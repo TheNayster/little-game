@@ -4,7 +4,7 @@
 
 **Purpose:** build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.
 
-**Current position:** **G1 — project and device foundation is in progress.** The Windows foundation passes save/restart, version-update and local-video checks again on 0.0.6 → 0.0.9; prior native mouse/forced-close checks passed on 0.0.6. Open `Play-Foundation.cmd` for the verified 0.0.9 preview. Android/server build commands and a separate server scene are prepared, but Windows canceled the module installer launch and their native builds remain pending. See the [live implementation record](implementation/g1-status.md) and [platform setup record](implementation/platform-build-setup.md). Mac/iPad work remains deferred; mobile qualification and game features are pending.
+**Current position:** **G1 — project and device foundation is in progress.** Windows 0.0.9 passes save/restart/update/video checks; open `Play-Foundation.cmd` for that preview. Mac/iPad work has resumed: signed Release 0.0.1 installed on the iPad 9, but its first launch hit a device signing/trust rejection. The next check is developer trust on the iPad, followed by physical touch and saved-data tests. Android/server build commands are prepared; the Android installer was launched at the user's request, and native qualification remains pending. See the [live implementation record](implementation/g1-status.md) and [platform setup record](implementation/platform-build-setup.md).
 
 [Open the feature goal sheet](bluey-game-research-2026-09-23.html) · [Package research](family-playset-package-research-2026-09-23.html) · [Technical evidence](family-playset-technical-research-2026-09-23.html) · [Feasibility audit](family-playset-feasibility-audit-2026-09-23.html)
 
@@ -461,10 +461,10 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 | --- | --- |
 | Goal sheet | Main Family Playset research, 54 sections, including the latest TV bookmark clarification |
 | Production guide | This document; ordered method and acceptance gates |
-| Implementation state | G1: saved Windows profile; 0.0.5 → 0.0.6 and 0.0.6 → 0.0.9 save/video checks passed. Prior mouse/forced-close checks passed on 0.0.6. Android/server commands and server scene prepared; platform modules, native artifact checks and mobile qualification remain pending. |
+| Implementation state | G1: Windows 0.0.9 verified; signed iPad 0.0.1 installed but first launch rejected by device signing/trust checks. Android/server commands and server scene prepared. Native mobile launch/update and server qualification remain pending. |
 | Current research deliverable | G0 guide, coverage map and source review; document validation recorded separately |
 | Active implementation gate | G1 — project and device foundation; [live record](implementation/g1-status.md) |
-| Current bounded task | Android/dedicated-server setup: source preparation complete and Windows regression passed. Finish module installation after Windows canceled the installer launch; then build/inspect APK and run the server lifecycle check. Exact evidence and continuation: [platform setup](implementation/platform-build-setup.md). Mac/iPad work remains deferred. |
+| Current bounded task | Resumed G1 iPad launch/save/update qualification after the user completed the Mac password step. First install is verified; check developer trust, physical taps and restart retention before installing the update. Android/server setup remains queued at installation/build qualification; [platform record](implementation/platform-build-setup.md). |
 | Package budget | $0 starting setup; optional paid candidates around $20 require a concrete benefit and purchase authorization |
 | Open technical evidence | Exact package set, native build path, refresh cycle, A10 hosting/recovery and save reconciliation |
 | Scope preserved | Four mixed devices, independent rooms, both iPads hosting, automatic recovery, full offline solo and the complete content goal sheet |

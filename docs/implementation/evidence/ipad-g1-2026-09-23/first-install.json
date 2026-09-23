@@ -1,0 +1,28 @@
+{
+  "observedUtc": "2026-09-23T22:31:14.8638740Z",
+  "platform": "iOS",
+  "bundleId": "com.littleweeps.familyplayset",
+  "version": "0.0.1",
+  "build": "1",
+  "xcodeBuildExit": 0,
+  "signatureVerified": true,
+  "executableSha256": "a778f55eaf69eb92d202de47ea87dd92f51acdff8906d471e06950b3bc2ca7e9",
+  "installedVersions": [
+    {
+      "bundleId": "com.littleweeps.familyplayset",
+      "version": "0.0.1",
+      "build": "1"
+    }
+  ],
+  "installOutcome": "success",
+  "launchOutcome": "failed",
+  "launchBlocker": "Device rejected launch with code-signature/entitlements/developer-trust security message; user asked to check developer trust.",
+  "device": "iPad (9th generation)",
+  "os": "18.6.2",
+  "developerMode": "enabled",
+  "profileCreatedUtc": "2026-09-23T21:15:06Z",
+  "profileExpiresUtc": "2026-09-30T21:15:06Z",
+  "physicalTouchVerified": false,
+  "updateRetentionVerified": false,
+  "automaticRenewalVerified": false
+}

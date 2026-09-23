@@ -2,7 +2,7 @@
 
 Started 23 September 2026. In progress; no device qualification is complete.
 
-Current work (user steering, 23 September): continue entirely on Windows while the user is away. **Latest result:** Android/server build commands and a separate server bootstrap scene are prepared; Windows 0.0.9 builds and passes save/restart/update/video regression. Matching Android/server module installation did not run: Windows returned “The operation was canceled by the user” when launching the Android installer. Native Android/server artifacts and their saved UI profiles remain unverified. The bounded G1 task stays open at module installation and artifact qualification. Mac/iPad actions remain deferred. G2 and later game features have not started.
+Current work (latest user steering, 23 September): the user returned to the Mac and completed the local password step, resuming G1 iPad qualification. **Latest result:** Mac Release 0.0.1 built successfully, strict signature verification passed, and the app installed on the 9th-generation iPad. First launch was rejected with a device signing/trust security message; the user was asked to check developer trust. Physical touch, restart and in-place update retention are not yet verified. Windows 0.0.9 remains verified. The Android installer was subsequently launched at the user's request, but completion and Android/server native qualification remain unverified. G2 and later game features have not started.
 
 ## Boundary and tools
 
@@ -15,7 +15,7 @@ Current work (user steering, 23 September): continue entirely on Windows while t
 - Codex CLI 0.155.0-alpha.16.3 exists under the desktop app's versioned bin directory. That directory is absent from the normal user PATH, explaining the shortcut error. The new resolver locates it directly on each launch. The launcher passed a live Blender-only reconnect with a normal Windows user/machine PATH, and PowerShell syntax validation passed. Both desktop shortcuts now point here.
 - Git 2.53.0.windows.1 and Git LFS 3.7.1 available.
 - Samsung SM-S948U1: Android 16 / API 36 verified through ADB. No new-game app installed yet.
-- A2602 iPad 9: connected by cable, paired and Developer Mode enabled. Live device inventory reports iPadOS 18.6.2 (22G100); this supersedes the earlier reported OS pairing. Native launch is still pending. A2197 iPad 7 and A2484 iPhone remain untested.
+- A2602 iPad 9: connected by cable, paired and Developer Mode enabled. Live device inventory reports iPadOS 18.6.2 (22G100); this supersedes the earlier reported OS pairing. Signed foundation 0.0.1 is installed; first launch was blocked by the device's signing/trust check. A2197 iPad 7 and A2484 iPhone remain untested.
 - Mac SSH authenticated successfully after correcting authorized_keys from a directory to a file. Live inventory: macOS 26.3.1 (25D2128), arm64, Xcode 26.6 (17F113), developer directory /Applications/Xcode.app/Contents/Developer, about 247 GiB free. No Unity Hub editor directory on Mac.
 
 ## Exit checks
@@ -28,7 +28,7 @@ Current work (user steering, 23 September): continue entirely on Windows while t
 | Matching editor, small package lock and saved profiles | 6000.3.24f1 and package lock exist. URP 17.3.0, Input System 1.20.0, UGUI 2.0.0, Test Framework 1.6.0; editor MCP 9.7.3 pinned. Saved Windows Foundation profile is built and verified; other platform profiles remain pending. |
 | Touch/save scene and local-video probe | Native Windows mouse input, saved taps, profile retention, local H.264/AAC decoding, play/pause/seek/restart and bookmark recovery passed. Touch, audio perception and video behavior on mobile remain unverified. |
 | Android release launch and update retaining seed data | Pending |
-| Native launch on each iPad via Mac | Windows iOS exports 0.0.1 and 0.0.2 passed. Mac compiled 0.0.1 but signing requires local keychain interaction. No installed/launch evidence yet. |
+| Native launch on each iPad via Mac | Mac Release 0.0.1 compiled, signature verified and installed on A2602. First launch returned a device signing/trust rejection; developer trust check requested. A2197 remains untested. |
 | Free provisioning renewal observation started | Pending |
 | Build/test scripts and source/artifact evidence | Explicit profile/target, numbered outputs, build summaries, source-file hashes and artifact hashes. Windows checks passed on 0.0.5 → 0.0.6 and 0.0.6 → 0.0.9. Android/server commands and server lifecycle test are prepared, but missing modules prevent native qualification. Mobile in-place installation/update checks remain pending. |
 
@@ -66,7 +66,7 @@ Signing references: [Apple guidance for errSecInternalComponent](https://develop
 
 An additional cold-start check exposed MCP 9.7.3 leaving its cached transport session as `pending` even while live project tools worked. The helper now acknowledges transport state, and the launcher additionally uses the project-checked MCP client to require a live project-info response matching the new root. Both a reconnect with apps open and a full Unity close/reopen passed from the normal Windows PATH. No Unity console errors were returned after compilation. The editor-only change occurred after the two iOS exports and does not change their player content.
 
-Deferred Mac task: **Finish-iPad-Build.command** was waiting for keychain unlock at the last observation. Do not poll or continue Mac/iPad work while the user has requested Windows-only progress. When they return, inspect the result before retrying. Native installation, real touches and update retention remain unverified on the iPad. Windows work proceeds independently below.
+Earlier Mac deferral ended when the user reported completing the local password step. **Finish-iPad-Build.command** returned build exit 0, and `codesign --verify --deep --strict` passed. The signed 0.0.1 app is now installed; the remaining immediate blocker is the device's first-launch signing/trust rejection. See the current iPad evidence below. Passwords were not requested or transferred to Windows.
 
 ## Windows-only continuation
 
@@ -97,4 +97,16 @@ Implementation references: [Unity Build Profiles API](https://docs.unity3d.com/6
 
 ## Android/server build preparation and Windows regression
 
-See [the platform setup record](platform-build-setup.md) for implemented commands, server scene, installation blocker, supporting sources and the exact continuation sequence. Windows 0.0.9 built with zero reported errors/warnings, and run `b18b274af9c4413da4fd162155fc692b` passed seed/restart/update/video checks from 0.0.6 → 0.0.9. The build wrapper now waits only for Unity, avoiding a hang on its persistent compiler child. No Android or native dedicated-server build has passed yet; no networking feature is implemented. The missing modules are a Windows setup blocker, independent of the deferred Mac/iPad work.
+See [the platform setup record](platform-build-setup.md) for implemented commands, server scene, installation blocker, supporting sources and the exact continuation sequence. Windows 0.0.9 built with zero reported errors/warnings, and run `b18b274af9c4413da4fd162155fc692b` passed seed/restart/update/video checks from 0.0.6 → 0.0.9. The build wrapper now waits only for Unity, avoiding a hang on its persistent compiler child. No Android or native dedicated-server build has passed yet; no networking feature is implemented. The Android installer was subsequently launched on request, but its completion has not been verified. This remains separate from the resumed iPad qualification.
+
+## First native iPad installation
+
+On 23 September, after the user completed the local Mac keychain step, the existing 0.0.1 export produced a signed Release app. Build log: `/Users/nayster/Developer/LittleWeeps/Logs/g1-ios-0.0.1-local-20260923-212019.log`; Xcode exit 0 and strict/deep signature verification passed. This is the earlier tap/save fixture, not the newer Windows video fixture.
+
+The app was absent before installation. `devicectl` then installed `com.littleweeps.familyplayset` and independently reported version 0.0.1 / build 1 on the connected iPad 9 running iPadOS 18.6.2. Developer Mode is enabled. The subsequent launch failed with CoreDevice 10002 / FBS Security, naming invalid signature, inadequate entitlements or a profile not explicitly trusted. Because local signature verification passed, the next check is the device's developer-trust setting; this is not yet a proven trust-only diagnosis. The user was asked to check Settings → General → VPN & Device Management and open Little Weeps after trusting their developer profile. No app was uninstalled and no device data was cleared.
+
+Sanitized evidence: [first installation](evidence/ipad-g1-2026-09-23/first-install.json). Raw install, installed-app and failed-launch JSON remain in the game's Mac `Logs` directory. The actual embedded provisioning profile was created 23 September 2026 at 21:15:06 UTC and expires 30 September at 21:15:06 UTC. Automatic renewal is not configured or proven by this installation.
+
+Next acceptance steps: resolve the launch rejection; confirm physical taps and saved count; relaunch to check persistence; install the separately signed 0.0.2 update over the app and confirm the same saved count remains. Device UI and saved values must be observed before claiming these pass. [Apple developer-trust guidance](https://help.apple.com/xcode/mac/current/en.lproj/dev96a12fb84.html), [running on a device](https://help.apple.com/xcode/mac/current/en.lproj/dev5a825a1ca.html).
+
+Update preparation: the already transferred 0.0.2 export was compiled remotely while waiting for the device trust check. Native compilation reached signing, but `UnityFramework.framework` signing returned `errSecInternalComponent`, Xcode exit 65. Log: `/Users/nayster/Developer/LittleWeeps/Logs/g1-ios-0.0.2-20260923-223023.log`. This update was not installed or claimed as signed. Use the proven local Mac Terminal signing route for build 2 when continuing; completing the earlier build-1 password prompt did not establish that remote signing works for later builds. Do not weaken keychain protections to bypass this.

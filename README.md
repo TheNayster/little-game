@@ -16,9 +16,11 @@ This is the separate home for the family's Bluey-inspired game.
 
 G1 foundation setup is in progress. See [the current implementation record](docs/implementation/g1-status.md) for what exists and what is still unverified. No playable game or device qualification is complete yet.
 
-**Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.9 technical fixture with a saved tap counter and local-video controls. Windows restart and version-update checks passed again on 0.0.6 → 0.0.9; the earlier forced-close check passed on 0.0.6. This is not the finished game. Mac/iPad work is deferred while the user is away.
+**Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.9 technical fixture with a saved tap counter and local-video controls. Windows restart and version-update checks passed again on 0.0.6 → 0.0.9; the earlier forced-close check passed on 0.0.6. This is not the finished game.
 
-**Android/server preparation:** build commands and a separate server scene are in place. Windows canceled the platform installer launch, so Android/server binaries and native checks remain pending. [Exact status and continuation steps](docs/implementation/platform-build-setup.md).
+**First iPad installation:** the user completed the local Mac signing step, and signed 0.0.1 is installed on the iPad 9. Its first launch was rejected by the device's signing/trust check; developer trust and physical touch/save checks are next. See [the live record](docs/implementation/g1-status.md).
+
+**Android/server preparation:** build commands and a separate server scene are in place. After an earlier canceled launch, the Android installer was started at the user's request; installation completion and Android/server native checks remain unverified. [Exact status and continuation steps](docs/implementation/platform-build-setup.md).
 
 Use the desktop **Connect Little Weeps** shortcut, or run `Connect-GameTools.ps1` in this folder. [Tool connection instructions](docs/implementation/tool-connections.md) explain the launcher and Mac build connection.
 
