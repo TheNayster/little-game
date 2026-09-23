@@ -2,7 +2,7 @@
 
 Started 23 September 2026. In progress; no device qualification is complete.
 
-Current work (latest user steering, 23 September): the user returned to the Mac and completed the local password step, resuming G1 iPad qualification. **Latest result:** Mac Release 0.0.1 built successfully, strict signature verification passed, and the app installed on the 9th-generation iPad. First launch was rejected with a device signing/trust security message; the user was asked to check developer trust. Physical touch, restart and in-place update retention are not yet verified. Windows 0.0.9 remains verified. The Android installer was subsequently launched at the user's request, but completion and Android/server native qualification remain unverified. G2 and later game features have not started.
+Current work (latest user steering, 23 September): iPad trust is deferred again until the user has time; continue the Windows Android/server build setup. **Latest result:** all seven Android dependency archives are verified and the user-owned SDK toolchain is installed, registered and repeat-checked. The Android Unity module installer remains at its welcome screen and did not respond to automated input; the user was asked to complete its manual steps. Both Android and Windows Server build preflights still report missing Unity modules. No APK/server artifact is built yet. Windows 0.0.9 remains verified; iPad 0.0.1 remains installed with first launch blocked by its signing/trust check. G2 and later game features have not started.
 
 ## Boundary and tools
 
@@ -28,6 +28,7 @@ Current work (latest user steering, 23 September): the user returned to the Mac 
 | Matching editor, small package lock and saved profiles | 6000.3.24f1 and package lock exist. URP 17.3.0, Input System 1.20.0, UGUI 2.0.0, Test Framework 1.6.0; editor MCP 9.7.3 pinned. Saved Windows Foundation profile is built and verified; other platform profiles remain pending. |
 | Touch/save scene and local-video probe | Native Windows mouse input, saved taps, profile retention, local H.264/AAC decoding, play/pause/seek/restart and bookmark recovery passed. Touch, audio perception and video behavior on mobile remain unverified. |
 | Android release launch and update retaining seed data | Pending |
+| Android SDK tools and APK inspection preparation | Exact Java/NDK/SDK/CMake versions installed in the user's Little Weeps toolchain folder; SDK Manager inventory and repeat preparation passed. APK inspection script syntax passed. Unity Android module installation and actual APK checks remain pending. |
 | Native launch on each iPad via Mac | Mac Release 0.0.1 compiled, signature verified and installed on A2602. First launch returned a device signing/trust rejection; developer trust check requested. A2197 remains untested. |
 | Free provisioning renewal observation started | Pending |
 | Build/test scripts and source/artifact evidence | Explicit profile/target, numbered outputs, build summaries, source-file hashes and artifact hashes. Windows checks passed on 0.0.5 → 0.0.6 and 0.0.6 → 0.0.9. Android/server commands and server lifecycle test are prepared, but missing modules prevent native qualification. Mobile in-place installation/update checks remain pending. |

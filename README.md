@@ -20,7 +20,7 @@ G1 foundation setup is in progress. See [the current implementation record](docs
 
 **First iPad installation:** the user completed the local Mac signing step, and signed 0.0.1 is installed on the iPad 9. Its first launch was rejected by the device's signing/trust check; developer trust and physical touch/save checks are next. See [the live record](docs/implementation/g1-status.md).
 
-**Android/server preparation:** build commands and a separate server scene are in place. After an earlier canceled launch, the Android installer was started at the user's request; installation completion and Android/server native checks remain unverified. [Exact status and continuation steps](docs/implementation/platform-build-setup.md).
+**Android/server preparation:** build commands, an APK inspection script and a separate server scene are in place. The pinned Android SDK tools are installed in a user-owned folder and passed version/registration/repeat checks. The Unity module installer still needs its manual steps; no Android/server native artifact is qualified yet. [Exact status and continuation steps](docs/implementation/platform-build-setup.md). The user has deferred iPad trust until available.
 
 Use the desktop **Connect Little Weeps** shortcut, or run `Connect-GameTools.ps1` in this folder. [Tool connection instructions](docs/implementation/tool-connections.md) explain the launcher and Mac build connection.
 

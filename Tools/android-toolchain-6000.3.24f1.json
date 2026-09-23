@@ -1,0 +1,70 @@
+{
+  "unity": "6000.3.24f1",
+  "metadataSource": "https://services.api.unity.com/unity/editor/release/v1/releases?version=6000.3.24f1&limit=1",
+  "googleChecksumsSource": "https://dl.google.com/android/repository/repository2-1.xml",
+  "archives": [
+    {
+      "id": "android-open-jdk-17.0.18+8",
+      "url": "https://download.unity3d.com/download_unity/open-jdk/open-jdk-win-x64/jdk17.0.18-8_15e8817d1f5db6db3571ebe7430ef37f7fa8e60e8ff6f3e18ca1cb4c29f78774.zip",
+      "bytes": 118110508,
+      "sha256": "15e8817d1f5db6db3571ebe7430ef37f7fa8e60e8ff6f3e18ca1cb4c29f78774",
+      "verification": "Unity release download filename SHA-256",
+      "destination": "OpenJDK",
+      "stripPrefix": ""
+    },
+    {
+      "id": "android-ndk-r27c",
+      "url": "https://dl.google.com/android/repository/android-ndk-r27c-windows.zip",
+      "bytes": 781511249,
+      "sha256": "27e49f11e0cee5800983d8af8f4acd5bf09987aa6f790d4439dda9f3643d2494",
+      "verification": "Google repository SHA-1",
+      "destination": "NDK",
+      "stripPrefix": "android-ndk-r27c/"
+    },
+    {
+      "id": "cmake-3.22.1",
+      "url": "https://dl.google.com/android/repository/cmake-3.22.1-windows.zip",
+      "bytes": 16116742,
+      "sha256": "c9a9d568452a20cf27d703cb21ef9529dd67bda6be048c4d4b884acb3ac3a2b8",
+      "verification": "Google repository SHA-1",
+      "destination": "SDK/cmake/3.22.1",
+      "stripPrefix": ""
+    },
+    {
+      "id": "android-sdk-build-tools-36.0.0",
+      "url": "https://dl.google.com/android/repository/build-tools_r36_windows.zip",
+      "bytes": 58699878,
+      "sha256": "aa1095cb14d83e483818a748a2c06faaeb8e601561b06a356a119a1b2ca280d3",
+      "verification": "Google repository SHA-1",
+      "destination": "SDK/build-tools/36.0.0",
+      "stripPrefix": "android-16/"
+    },
+    {
+      "id": "android-sdk-platform-tools-36.0.0",
+      "url": "https://dl.google.com/android/repository/platform-tools_r36.0.0-win.zip",
+      "bytes": 7138784,
+      "sha256": "12c2841f354e92a0eb2fd7bf6f0f9bf8538abce7bd6b060ac8349d6f6a61107c",
+      "verification": "Compared to fresh official Google HTTPS download",
+      "destination": "SDK",
+      "stripPrefix": ""
+    },
+    {
+      "id": "android-sdk-platforms-36",
+      "url": "https://dl.google.com/android/repository/platform-36_r02.zip",
+      "bytes": 65878410,
+      "sha256": "37607369a28c5b640b3a7998868d45898ebcb777565a0e85f9acf36f29631d2e",
+      "verification": "Google repository SHA-1",
+      "destination": "SDK/platforms",
+      "stripPrefix": ""
+    },
+    {
+      "id": "android-sdk-command-line-tools-16.0",
+      "url": "https://dl.google.com/android/repository/commandlinetools-win-12266719_latest.zip",
+      "bytes": 143481958,
+      "sha256": "f9088c04a44f1f37a8a3a228a7663e11ae9445fa07529c96cef38acb985a88f3",
+      "verification": "Google repository SHA-1",
+      "destination": "SDK/cmdline-tools/16.0",
+      "stripPrefix": "cmdline-tools/"
+    }
+  ]
+}

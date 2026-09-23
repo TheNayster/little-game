@@ -1,0 +1,22 @@
+{
+  "observedUtc": "2026-09-23T23:17:49.2679318Z",
+  "unity": "6000.3.24f1",
+  "root": "C:\\Users\\sephi\\AppData\\Local\\LittleWeeps\\Toolchains\\Unity-6000.3.24f1",
+  "archiveCount": 7,
+  "sdkManagerRegistered": true,
+  "repeatPreparationPassed": true,
+  "java": "17.0.18+8",
+  "ndk": "27.2.12479018 (r27c)",
+  "cmake": "3.22.1",
+  "buildTools": "36.0.0",
+  "platformTools": "36.0.0",
+  "commandLineTools": "16.0",
+  "targetPlatform": "android-36 revision 2",
+  "aapt2": "2.20-13193326",
+  "apkSigner": "0.9",
+  "androidUnityModuleInstalled": false,
+  "serverModuleInstalled": false,
+  "apkBuilt": false,
+  "serverBuilt": false,
+  "deviceActions": false
+}

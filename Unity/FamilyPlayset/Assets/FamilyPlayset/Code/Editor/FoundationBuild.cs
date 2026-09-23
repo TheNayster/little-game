@@ -49,6 +49,8 @@ namespace LittleWeeps.EditorTools
             }
             if (target == BuildTarget.Android)
             {
+                if (PlayerSettings.Android.useCustomKeystore)
+                    throw new InvalidOperationException("A custom signing key is configured. The build-only probe must not replace the family signing identity.");
                 PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
                 PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
                 PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
@@ -63,6 +65,7 @@ namespace LittleWeeps.EditorTools
             var output = Path.Combine(folder, artifact);
             if (File.Exists(output) || Directory.Exists(output)) throw new IOException("Build output already exists. Use a fresh build number; do not overwrite evidence.");
             Directory.CreateDirectory(folder);
+            using var androidTools = target == BuildTarget.Android ? AndroidFoundationTools.Configure() : null;
             BuildReport report;
             if (target == BuildTarget.StandaloneWindows64 && !server)
             {

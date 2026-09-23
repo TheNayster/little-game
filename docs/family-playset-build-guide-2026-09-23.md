@@ -4,7 +4,7 @@
 
 **Purpose:** build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.
 
-**Current position:** **G1 — project and device foundation is in progress.** Windows 0.0.9 passes save/restart/update/video checks; open `Play-Foundation.cmd` for that preview. Mac/iPad work has resumed: signed Release 0.0.1 installed on the iPad 9, but its first launch hit a device signing/trust rejection. The next check is developer trust on the iPad, followed by physical touch and saved-data tests. Android/server build commands are prepared; the Android installer was launched at the user's request, and native qualification remains pending. See the [live implementation record](implementation/g1-status.md) and [platform setup record](implementation/platform-build-setup.md).
+**Current position:** **G1 — project and device foundation is in progress.** Windows 0.0.9 passes save/restart/update/video checks; open `Play-Foundation.cmd` for that preview. The Android SDK toolchain is now prepared, registered and repeat-checked. The Unity module installer still needs its manual Next/Install/Finish steps, so Android/server artifacts remain pending. The user has deferred iPad trust until available; signed 0.0.1 remains installed but its first launch was rejected by the device signing/trust check. See the [live implementation record](implementation/g1-status.md) and [platform setup record](implementation/platform-build-setup.md).
 
 [Open the feature goal sheet](bluey-game-research-2026-09-23.html) · [Package research](family-playset-package-research-2026-09-23.html) · [Technical evidence](family-playset-technical-research-2026-09-23.html) · [Feasibility audit](family-playset-feasibility-audit-2026-09-23.html)
 
@@ -461,10 +461,10 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 | --- | --- |
 | Goal sheet | Main Family Playset research, 54 sections, including the latest TV bookmark clarification |
 | Production guide | This document; ordered method and acceptance gates |
-| Implementation state | G1: Windows 0.0.9 verified; signed iPad 0.0.1 installed but first launch rejected by device signing/trust checks. Android/server commands and server scene prepared. Native mobile launch/update and server qualification remain pending. |
+| Implementation state | G1: Windows 0.0.9 verified; Android SDK tools installed/registered/repeat-checked, APK inspection script prepared. Android/server Unity modules and native artifact checks pending. iPad 0.0.1 installed; first-launch trust check remains deferred. |
 | Current research deliverable | G0 guide, coverage map and source review; document validation recorded separately |
 | Active implementation gate | G1 — project and device foundation; [live record](implementation/g1-status.md) |
-| Current bounded task | Resumed G1 iPad launch/save/update qualification after the user completed the Mac password step. First install is verified; check developer trust, physical taps and restart retention before installing the update. Android/server setup remains queued at installation/build qualification; [platform record](implementation/platform-build-setup.md). |
+| Current bounded task | Windows Android/server build setup. Dependencies are ready; finish the open Android installer manually, install the matching server module, then build/inspect the APK and run the server lifecycle test. The user has deferred iPad trust; [platform record](implementation/platform-build-setup.md). |
 | Package budget | $0 starting setup; optional paid candidates around $20 require a concrete benefit and purchase authorization |
 | Open technical evidence | Exact package set, native build path, refresh cycle, A10 hosting/recovery and save reconciliation |
 | Scope preserved | Four mixed devices, independent rooms, both iPads hosting, automatic recovery, full offline solo and the complete content goal sheet |

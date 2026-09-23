@@ -8,8 +8,16 @@ $version=($versionLine -split ':',2)[1].Trim()
 $editor=Join-Path $env:ProgramFiles "Unity\Hub\Editor\$version\Editor\Unity.exe"
 $engines=Join-Path (Split-Path $editor) 'Data\PlaybackEngines'
 if ($Target -eq 'Android') {
-    foreach($relative in @('AndroidPlayer\UnityEditor.Android.Extensions.dll','AndroidPlayer\OpenJDK\bin\java.exe','AndroidPlayer\NDK\source.properties','AndroidPlayer\SDK\platforms\android-36\android.jar','AndroidPlayer\SDK\build-tools\36.0.0\aapt2.exe','AndroidPlayer\SDK\cmdline-tools\16.0\bin\sdkmanager.bat','AndroidPlayer\SDK\cmake\3.22.1\bin\cmake.exe')) {
-        if (!(Test-Path -LiteralPath (Join-Path $engines $relative))) { throw "Matching Android toolchain is incomplete ($relative). Install the $version Android module and dependencies first." }
+    if (!(Test-Path -LiteralPath (Join-Path $engines 'AndroidPlayer\UnityEditor.Android.Extensions.dll'))) { throw "Install the $version Android Build Support module first." }
+    $toolchainRecord=Join-Path $root 'LocalData\android-toolchain.json'
+    $androidTools=Join-Path $engines 'AndroidPlayer'
+    if (Test-Path -LiteralPath $toolchainRecord) {
+        $toolchain=Get-Content -LiteralPath $toolchainRecord -Raw | ConvertFrom-Json
+        if ($toolchain.unity -ne $version) { throw 'Android toolchain does not match the project editor.' }
+        $androidTools=[IO.Path]::GetFullPath($toolchain.root)
+    }
+    foreach($relative in @('OpenJDK\bin\java.exe','NDK\source.properties','SDK\platforms\android-36\android.jar','SDK\build-tools\36.0.0\aapt2.exe','SDK\cmdline-tools\16.0\bin\sdkmanager.bat','SDK\cmake\3.22.1\bin\cmake.exe')) {
+        if (!(Test-Path -LiteralPath (Join-Path $androidTools $relative))) { throw "Android tools are incomplete ($relative). Run Tools/Prepare-AndroidToolchain.py first." }
     }
 }
 if ($Target -eq 'WindowsServer' -and !(Test-Path -LiteralPath (Join-Path $engines 'windowsstandalonesupport\Variations\win64_server_nondevelopment_mono'))) { throw "Install the $version Windows Dedicated Server module first." }
@@ -22,6 +30,7 @@ New-Item -ItemType Directory -Path $logs -Force | Out-Null
 $log=Join-Path $logs ("build-$Target-$BuildNumber-"+[DateTime]::UtcNow.ToString('yyyyMMdd-HHmmss')+'.log')
 $argsList=@('-batchmode','-quit','-projectPath',('"'+$project+'"'),'-buildTarget',$platform,'-executeMethod',"LittleWeeps.EditorTools.FoundationBuild.$method",'-familyBuildNumber',"$BuildNumber",'-logFile',('"'+$log+'"'))
 if ($Target -eq 'WindowsServer') { $argsList += @('-standaloneBuildSubtarget','Server') }
+if ($Target -eq 'Android') { $argsList += @('-familyAndroidToolchain',('"'+$androidTools+'"')) }
 Write-Host "Building $Target 0.0.$BuildNumber. Log: $log"
 $process=Start-Process -FilePath $editor -ArgumentList $argsList -WindowStyle Hidden -PassThru
 # Wait for Unity itself. Start-Process -Wait also waits for persistent Roslyn child servers.
