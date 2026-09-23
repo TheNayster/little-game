@@ -124,6 +124,18 @@ if (!$BlenderOnly) {
         Start-Sleep -Seconds 1
     } while ([DateTime]::UtcNow -lt $deadline)
     if (!$ready) { throw 'The new Unity project has not confirmed its connection. Let compilation finish, then run this shortcut again.' }
+    # A transport may be open before its server has registered tools. Verify an
+    # actual project-info resource through our client, which rejects other roots.
+    $uv = Join-Path $env:USERPROFILE '.local\bin\uv.exe'
+    if (!(Test-Path -LiteralPath $uv)) { throw "Missing project-verification runner: $uv" }
+    $verified = $false
+    $verifyDeadline = [DateTime]::UtcNow.AddSeconds(30)
+    do {
+        $proof = & $uv run --python 3.11 --with mcp==2.2.0 python (Join-Path $PSScriptRoot 'Tools\unity_mcp.py') 2>&1
+        if ($LASTEXITCODE -eq 0) { $verified = $true; break }
+        Start-Sleep -Seconds 2
+    } while ([DateTime]::UtcNow -lt $verifyDeadline)
+    if (!$verified) { throw "Unity opened, but live project verification failed: $proof" }
     Write-Host "Unity connected and project verified: $project"
 }
 if ($changed) { Write-Host 'Tool registrations changed. Restart Codex once to load them.' }

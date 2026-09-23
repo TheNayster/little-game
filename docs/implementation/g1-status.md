@@ -23,12 +23,12 @@ Current bounded task: compile, install and verify the tiny touch/save fixture on
 | Check | Result |
 | --- | --- |
 | Correct isolated root | Verified |
-| Local Git baseline and source policy | Local repository and ignore/LFS rules created; baseline commit pending |
+| Local Git baseline and source policy | Baseline committed locally as 674c1f6; version 0.0.2 build settings recorded as d021213. Ignore/LFS rules are present. No external backup configured. |
 | New tool launcher; exact Unity project verified | Live full shortcut passed from normal Windows PATH. Blender responded; Unity MCP reported the new root, Unity 6000.3.24f1 and ready-for-tools. |
 | Matching editor, small package lock and saved profiles | 6000.3.24f1 project and package lock exist. URP 17.3.0, Input System 1.20.0, UGUI 2.0.0, Test Framework 1.6.0; editor MCP 9.7.3 pinned to commit 75fcf10ea5e230e21963298e1942c36504727eba. Saved Build Profile assets pending. |
 | Touch/save scene and local-video probe | Bootstrap scene compiles and runs in Editor; button event increments the save and Play Mode restart restores it. No Unity console errors in this check. Physical touch/video checks pending. |
 | Android release launch and update retaining seed data | Pending |
-| Native launch on each iPad via Mac | Windows iOS export passed; Mac native compilation in progress. No installed/launch evidence yet. |
+| Native launch on each iPad via Mac | Windows iOS exports 0.0.1 and 0.0.2 passed. Mac compiled 0.0.1 but signing requires local keychain interaction. No installed/launch evidence yet. |
 | Free provisioning renewal observation started | Pending |
 | Build/test scripts and source/artifact evidence | FoundationBuild and Tools/Build-Foundation.ps1 provide explicit Windows/iOS targets, fresh numbered output and build summaries. Windows standalone build passed; iOS export passed. Physical touch, release update retention and local-video probe pending. |
 
@@ -54,9 +54,16 @@ Update: standard Unity project creation and FoundationSetup.Create both finished
 - Windows standalone 0.0.1: succeeded via Unity MCP, non-development Mono build, 0 errors / 1 reported warning, about 96 MB. Output: `Unity/FamilyPlayset/Builds/Windows/G1-0.0.1/LittleWeeps.exe`. Native launch has not been checked.
 - iOS 0.0.1 export: succeeded, IL2CPP, device SDK, non-development build. Summary: `Builds/iOS/G1-0.0.1/build-summary.json`; Unity reported 0 errors / 0 build-summary warnings. Import logs contain package shader precision warnings, so the full log is retained in ignored `LocalData/Logs`.
 - Xcode export archive SHA-256 matched on Windows and Mac: `34e9b942083a3adfd03e0466423f264b53f535777d4868c247bf419bc7b2d830`.
+- iOS 0.0.2 export also passed with 0 reported errors/warnings, preparing the in-place update check. Its archive SHA-256 matched on both machines: `fb5e5fb731912a15ba4912a994a093dd3c0c2c439277ede7d9f3853365c84d6d`. It is extracted in the separate Mac `Builds/G1-0.0.2` directory; native compilation of this version has not started.
 - Mac destination: `/Users/nayster/Developer/LittleWeeps/Builds/G1-0.0.1/Xcode`. Only the export and build summary were transferred; no Windows Library or unrelated project was copied.
 - Mac build: Release / Unity-iPhone scheme / automatic Personal Team signing. Native compilation completed, but the first SSH build failed at signing with `errSecInternalComponent`; a keychain query also returned `User interaction is not allowed`. A local Mac Terminal retry uses `Tools/Build-iOS-Mac.sh` and prompts for keychain access only on the Mac. No password is stored or sent to Windows. Awaiting that build's result. Logs and DerivedData stay under `/Users/nayster/Developer/LittleWeeps`.
 
 Native launches, physical touch, saved Build Profile assets, the local-video probe, release-update data retention and free-provisioning renewal observation remain G1 work. A successful initial Personal Team install does not establish automatic renewal.
 
 Signing references: [Apple guidance for errSecInternalComponent](https://developer.apple.com/forums/thread/712005), [Apple signing intermediate certificates](https://developer.apple.com/help/account/certificates/wwdr-intermediate-certificates). The initial compile also reported placeholder app-icon and generated build-script warnings; a finished app icon is not part of this fixture.
+
+## Reconnect regression and immediate next action
+
+An additional cold-start check exposed MCP 9.7.3 leaving its cached transport session as `pending` even while live project tools worked. The helper now acknowledges transport state, and the launcher additionally uses the project-checked MCP client to require a live project-info response matching the new root. Both a reconnect with apps open and a full Unity close/reopen passed from the normal Windows PATH. No Unity console errors were returned after compilation. The editor-only change occurred after the two iOS exports and does not change their player content.
+
+Current human-input blocker: the Mac's local **Finish-iPad-Build.command** Terminal window is waiting for keychain unlock. The user must enter their Mac password locally and approve codesign key access if macOS asks. After that: inspect the local build result and signature, install 0.0.1 on the connected iPad, verify real taps, relaunch with the same save, then build/install 0.0.2 and verify the same count/profile remain. Do not mark any of those checks passed before observing them. The next test is not game content production.

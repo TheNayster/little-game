@@ -461,7 +461,7 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 | --- | --- |
 | Goal sheet | Main Family Playset research, 54 sections, including the latest TV bookmark clarification |
 | Production guide | This document; ordered method and acceptance gates |
-| Implementation state | G1: isolated Universal 2D project, compiled touch/save fixture, verified tool launcher and Mac SSH access; mobile builds and game systems pending |
+| Implementation state | G1: isolated project and local Git baseline, working touch/save fixture, verified launcher, Windows standalone build and iOS exports passed. Mac native compilation passed; signing awaits local keychain unlock. No mobile install or game systems verified yet. |
 | Current research deliverable | G0 guide, coverage map and source review; document validation recorded separately |
 | Active implementation gate | G1 — project and device foundation; [live record](implementation/g1-status.md) |
 | Current bounded task | Compile, install and verify the existing touch/save fixture on the connected 9th-generation iPad; record physical touch and save/update evidence |

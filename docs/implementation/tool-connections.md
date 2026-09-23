@@ -10,7 +10,7 @@ From any Windows PowerShell window:
 
 Optional flags: `-BlenderOnly`, `-UnityOnly`, `-NoLaunch` (connect to already-open applications), `-CheckOnly` (read-only preflight).
 
-The launcher resolves the installed Codex executable each time, including the desktop app's changing versioned directory. It does not depend on a `codex` entry in the normal user PATH. It verifies Blender's response and requires a fresh Unity acknowledgment containing this project's exact path. A listening port alone never counts as a connected Unity project.
+The launcher resolves the installed Codex executable each time, including the desktop app's changing versioned directory. It does not depend on a `codex` entry in the normal user PATH. It verifies Blender's response, requires a fresh Unity acknowledgment, and reads live project info through MCP to confirm this project's exact path. A listening port alone never counts as a connected Unity project. Both reconnecting with Unity open and launching from a closed editor passed on 23 September.
 
 Blender's separate Little Weeps reconnect helper watches `~/.little-weeps-tools/blender-connect.request`. It starts the existing MCP add-on without opening or saving a `.blend` file. Unsaved artwork stays open. No old-project reconnect request is sent.
 

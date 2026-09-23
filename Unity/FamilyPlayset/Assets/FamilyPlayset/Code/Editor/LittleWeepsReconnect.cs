@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using MCPForUnity.Editor.Services;
 using MCPForUnity.Editor.Services.Transport;
 using UnityEditor;
@@ -40,17 +39,12 @@ namespace LittleWeeps.EditorTools
                 var transport = MCPServiceLocator.TransportManager;
                 var ok = await transport.VerifyAsync(TransportMode.Http);
                 if (!ok) ok = await transport.StartAsync(TransportMode.Http);
-                // StartAsync can return while the server is still assigning a session.
-                for (var attempt = 0; ok && attempt < 20; attempt++)
-                {
-                    var current = transport.GetState(TransportMode.Http);
-                    if (!string.IsNullOrEmpty(current.SessionId) && current.SessionId != "pending") break;
-                    await Task.Delay(250);
-                    ok = await transport.VerifyAsync(TransportMode.Http);
-                }
                 var status = transport.GetState(TransportMode.Http);
-                var ready = ok && status.IsConnected && !string.IsNullOrEmpty(status.SessionId) && status.SessionId != "pending";
-                WriteStatus(request, ready, status.Error ?? (ready ? "Connected" : "Server handshake did not finish"), status.SessionId);
+                // MCP 9.7.3 can overwrite its assigned session with "pending" during startup.
+                // This acknowledges only the transport; the launcher separately calls the
+                // server and verifies its live project-info response before reporting success.
+                var ready = ok && status.IsConnected;
+                WriteStatus(request, ready, status.Error ?? (ready ? "Transport open; verify live project" : "Transport did not connect"), status.SessionId);
                 lastRequest = request;
             }
             catch (Exception e) { WriteStatus(request, false, e.Message, null); lastRequest = request; }
