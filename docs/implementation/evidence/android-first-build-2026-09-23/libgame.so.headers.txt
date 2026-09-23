@@ -17,13 +17,13 @@ Program Headers:
 
  Section to Segment mapping:
   Segment Sections...
-   00     
-   01     .note.android.ident .note.gnu.build-id .dynsym .gnu.version .gnu.version_r .gnu.hash .dynstr .rela.dyn .rela.plt .gcc_except_table .rodata .eh_frame_hdr .eh_frame .text .plt 
-   02     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding 
-   03     .data .bss 
-   04     .dynamic 
-   05     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding 
-   06     .eh_frame_hdr 
-   07     
-   08     .note.android.ident .note.gnu.build-id 
-   None   .comment .shstrtab 
+   00
+   01     .note.android.ident .note.gnu.build-id .dynsym .gnu.version .gnu.version_r .gnu.hash .dynstr .rela.dyn .rela.plt .gcc_except_table .rodata .eh_frame_hdr .eh_frame .text .plt
+   02     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding
+   03     .data .bss
+   04     .dynamic
+   05     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding
+   06     .eh_frame_hdr
+   07
+   08     .note.android.ident .note.gnu.build-id
+   None   .comment .shstrtab

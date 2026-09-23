@@ -18,14 +18,14 @@ Program Headers:
 
  Section to Segment mapping:
   Segment Sections...
-   00     
-   01     .note.android.ident .note.gnu.build-id .dynsym .gnu.version .gnu.version_d .gnu.version_r .gnu.hash .dynstr .rela.dyn .rela.plt .rodata .gcc_except_table .eh_frame_hdr .eh_frame 
-   02     .text .plt 
-   03     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding 
-   04     .data .bss 
-   05     .dynamic 
-   06     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding 
-   07     .eh_frame_hdr 
-   08     
-   09     .note.android.ident .note.gnu.build-id 
-   None   .shstrtab .note.unity .gnu_debuglink 
+   00
+   01     .note.android.ident .note.gnu.build-id .dynsym .gnu.version .gnu.version_d .gnu.version_r .gnu.hash .dynstr .rela.dyn .rela.plt .rodata .gcc_except_table .eh_frame_hdr .eh_frame
+   02     .text .plt
+   03     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding
+   04     .data .bss
+   05     .dynamic
+   06     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding
+   07     .eh_frame_hdr
+   08
+   09     .note.android.ident .note.gnu.build-id
+   None   .shstrtab .note.unity .gnu_debuglink

@@ -20,16 +20,16 @@ Program Headers:
 
  Section to Segment mapping:
   Segment Sections...
-   00     
-   01     .note.android.ident .note.gnu.build-id .note.gnu.property .dynsym .gnu.version .gnu.version_r .gnu.hash .hash .dynstr .rela.dyn .rela.plt .gcc_except_table .rodata .eh_frame_hdr .eh_frame 
-   02     .text .plt 
-   03     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding 
-   04     .data .bss 
-   05     .dynamic 
-   06     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding 
-   07     .eh_frame_hdr 
-   08     
-   09     .note.gnu.property 
-   10     .note.android.ident .note.gnu.build-id 
-   11     .note.gnu.property 
-   None   .comment .shstrtab 
+   00
+   01     .note.android.ident .note.gnu.build-id .note.gnu.property .dynsym .gnu.version .gnu.version_r .gnu.hash .hash .dynstr .rela.dyn .rela.plt .gcc_except_table .rodata .eh_frame_hdr .eh_frame
+   02     .text .plt
+   03     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding
+   04     .data .bss
+   05     .dynamic
+   06     .data.rel.ro .fini_array .init_array .dynamic .got .got.plt .relro_padding
+   07     .eh_frame_hdr
+   08
+   09     .note.gnu.property
+   10     .note.android.ident .note.gnu.build-id
+   11     .note.gnu.property
+   None   .comment .shstrtab
