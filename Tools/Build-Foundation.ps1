@@ -17,4 +17,21 @@ $argsList=@('-batchmode','-quit','-projectPath',('"'+$project+'"'),'-buildTarget
 Write-Host "Building $Target 0.0.$BuildNumber. Log: $log"
 $process=Start-Process -FilePath $editor -ArgumentList $argsList -WindowStyle Hidden -PassThru -Wait
 if ($process.ExitCode -ne 0) { throw "Unity build failed (exit $($process.ExitCode)). See $log" }
+$folder=Join-Path $root "Builds\$Target\G1-0.0.$BuildNumber"
+$summary=Get-Content -LiteralPath (Join-Path $folder 'build-summary.json') -Raw | ConvertFrom-Json
+if ($summary.result -ne 'Succeeded' -or $summary.version -ne "0.0.$BuildNumber") { throw 'Build evidence does not match the requested build.' }
+$revision=(& git -C $root rev-parse HEAD).Trim()
+$dirty=@(& git -C $root status --porcelain -- Unity Tools)
+$sourcePaths=@(& git -C $root ls-files --cached --others --exclude-standard -- Unity/FamilyPlayset/Assets Unity/FamilyPlayset/Packages Unity/FamilyPlayset/ProjectSettings Tools | Sort-Object -Unique)
+$sourceFiles=@($sourcePaths | ForEach-Object {
+    $path=Join-Path $root $_
+    if (Test-Path -LiteralPath $path -PathType Leaf) { [ordered]@{path=$_;sha256=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()} }
+})
+[ordered]@{sourceCommit=$revision;dirtyPaths=$dirty;unity=$version;build="0.0.$BuildNumber";files=$sourceFiles} | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $folder 'source-manifest.json') -Encoding utf8
+if ($Target -eq 'Windows') {
+    $files=@(Get-ChildItem -LiteralPath $folder -Recurse -File | Where-Object { $_.Name -notin @('source-manifest.json','build-summary.json','artifact-manifest.json') } | Sort-Object FullName | ForEach-Object {
+        [ordered]@{path=$_.FullName.Substring($folder.Length+1).Replace('\','/');bytes=$_.Length;sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()}
+    })
+    $files | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $folder 'artifact-manifest.json') -Encoding utf8
+}
 Write-Host "Build completed. Evidence: $root\Builds\$Target\G1-0.0.$BuildNumber\build-summary.json"

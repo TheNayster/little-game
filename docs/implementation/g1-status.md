@@ -2,7 +2,7 @@
 
 Started 23 September 2026. In progress; no device qualification is complete.
 
-Current bounded task: compile, install and verify the tiny touch/save fixture on the connected 9th-generation iPad. The isolated project, tool launcher and Mac command connection exist. G2 and later game features have not started.
+Current work (user steering, 23 September): continue entirely on Windows while the user is away. **Completed Windows task:** saved build profile, native save/restart/version-update checks, forced-close recovery, and an offline local-video probe (TV-01 foundation). Mac/iPad actions remain deferred until the user returns. Next Windows task: finish the Android and dedicated-server toolchain/build configurations on the PC; device qualification stays separate. G2 and later game features have not started.
 
 ## Boundary and tools
 
@@ -25,12 +25,12 @@ Current bounded task: compile, install and verify the tiny touch/save fixture on
 | Correct isolated root | Verified |
 | Local Git baseline and source policy | Baseline committed locally as 674c1f6; version 0.0.2 build settings recorded as d021213. Ignore/LFS rules are present. No external backup configured. |
 | New tool launcher; exact Unity project verified | Live full shortcut passed from normal Windows PATH. Blender responded; Unity MCP reported the new root, Unity 6000.3.24f1 and ready-for-tools. |
-| Matching editor, small package lock and saved profiles | 6000.3.24f1 project and package lock exist. URP 17.3.0, Input System 1.20.0, UGUI 2.0.0, Test Framework 1.6.0; editor MCP 9.7.3 pinned to commit 75fcf10ea5e230e21963298e1942c36504727eba. Saved Build Profile assets pending. |
-| Touch/save scene and local-video probe | Bootstrap scene compiles and runs in Editor; button event increments the save and Play Mode restart restores it. No Unity console errors in this check. Physical touch/video checks pending. |
+| Matching editor, small package lock and saved profiles | 6000.3.24f1 and package lock exist. URP 17.3.0, Input System 1.20.0, UGUI 2.0.0, Test Framework 1.6.0; editor MCP 9.7.3 pinned. Saved Windows Foundation profile is built and verified; other platform profiles remain pending. |
+| Touch/save scene and local-video probe | Native Windows mouse input, saved taps, profile retention, local H.264/AAC decoding, play/pause/seek/restart and bookmark recovery passed. Touch, audio perception and video behavior on mobile remain unverified. |
 | Android release launch and update retaining seed data | Pending |
 | Native launch on each iPad via Mac | Windows iOS exports 0.0.1 and 0.0.2 passed. Mac compiled 0.0.1 but signing requires local keychain interaction. No installed/launch evidence yet. |
 | Free provisioning renewal observation started | Pending |
-| Build/test scripts and source/artifact evidence | FoundationBuild and Tools/Build-Foundation.ps1 provide explicit Windows/iOS targets, fresh numbered output and build summaries. Windows standalone build passed; iOS export passed. Physical touch, release update retention and local-video probe pending. |
+| Build/test scripts and source/artifact evidence | Explicit profile/target, numbered outputs, build summaries, source-file hashes and Windows artifact hashes. Native Windows integration checks passed on 0.0.5 → 0.0.6. Mobile in-place installation/update checks remain pending. |
 
 Local Git history is not an off-device backup. Keep private media and signing credentials outside this repository; do not reuse another app's keys. Establish and verify an external recovery destination before family distribution.
 
@@ -58,7 +58,7 @@ Update: standard Unity project creation and FoundationSetup.Create both finished
 - Mac destination: `/Users/nayster/Developer/LittleWeeps/Builds/G1-0.0.1/Xcode`. Only the export and build summary were transferred; no Windows Library or unrelated project was copied.
 - Mac build: Release / Unity-iPhone scheme / automatic Personal Team signing. Native compilation completed, but the first SSH build failed at signing with `errSecInternalComponent`; a keychain query also returned `User interaction is not allowed`. A local Mac Terminal retry uses `Tools/Build-iOS-Mac.sh` and prompts for keychain access only on the Mac. No password is stored or sent to Windows. Awaiting that build's result. Logs and DerivedData stay under `/Users/nayster/Developer/LittleWeeps`.
 
-Native launches, physical touch, saved Build Profile assets, the local-video probe, release-update data retention and free-provisioning renewal observation remain G1 work. A successful initial Personal Team install does not establish automatic renewal.
+Native mobile launches, physical touch, remaining platform profiles, mobile video/update checks and free-provisioning renewal observation remain G1 work. Windows-only evidence below does not satisfy these device gates. A successful initial Personal Team install does not establish automatic renewal.
 
 Signing references: [Apple guidance for errSecInternalComponent](https://developer.apple.com/forums/thread/712005), [Apple signing intermediate certificates](https://developer.apple.com/help/account/certificates/wwdr-intermediate-certificates). The initial compile also reported placeholder app-icon and generated build-script warnings; a finished app icon is not part of this fixture.
 
@@ -66,4 +66,31 @@ Signing references: [Apple guidance for errSecInternalComponent](https://develop
 
 An additional cold-start check exposed MCP 9.7.3 leaving its cached transport session as `pending` even while live project tools worked. The helper now acknowledges transport state, and the launcher additionally uses the project-checked MCP client to require a live project-info response matching the new root. Both a reconnect with apps open and a full Unity close/reopen passed from the normal Windows PATH. No Unity console errors were returned after compilation. The editor-only change occurred after the two iOS exports and does not change their player content.
 
-Current human-input blocker: the Mac's local **Finish-iPad-Build.command** Terminal window is waiting for keychain unlock. The user must enter their Mac password locally and approve codesign key access if macOS asks. After that: inspect the local build result and signature, install 0.0.1 on the connected iPad, verify real taps, relaunch with the same save, then build/install 0.0.2 and verify the same count/profile remain. Do not mark any of those checks passed before observing them. The next test is not game content production.
+Deferred Mac task: **Finish-iPad-Build.command** was waiting for keychain unlock at the last observation. Do not poll or continue Mac/iPad work while the user has requested Windows-only progress. When they return, inspect the result before retrying. Native installation, real touches and update retention remain unverified on the iPad. Windows work proceeds independently below.
+
+## Windows-only continuation
+
+The saved **Windows Foundation** Build Profile was created through Unity's supported UI and stored at `Assets/BuildProfiles/Windows Foundation.asset`. Native builds use this explicit profile, not whichever platform was last selected. The fixture now includes a generated 12-second H.264 Constrained Baseline / AAC local clip, 640×360 at 30 FPS, plus play/pause, skip and restart controls. No external video or network service is needed. Creation command: `Tools/Create-VideoProbe.ps1`.
+
+Opt-in verification uses a new GUID namespace for each run, separate from normal `foundation.*` preferences. `Tools/Test-WindowsFoundation.ps1` checks seeded button events, an unchanged profile/tap count after process restart, decoded video frames, pause, seeking, leave/reopen bookmarks, and a different app build using the same saved data. This remains a small PlayerPrefs fixture, not the final recoverable multiplayer save system or complete TV library.
+
+### Observed results
+
+- Fresh Windows builds **0.0.5 and 0.0.6** succeeded with the saved profile, non-development Mono configuration, zero reported build errors/warnings. Each has a build summary, source manifest and artifact manifest under `Builds/Windows/G1-0.0.N`.
+- The first native check on 0.0.3 caught a video resume defect. A freshly prepared Windows decoder could finish seeking before it displayed the saved frame. The controller now waits for the requested frame, prevents premature checkpoint writes and returns paused. The fix passed in 0.0.5 and 0.0.6.
+- Automated run `f8cce936d3204f5c964aaa29a84338ff`: seed on 0.0.5, restart 0.0.5, then launch 0.0.6. **All three passed**, preserving the same profile, 3 taps and a 4.0-second bookmark. Each phase decoded at least 15 video frames. Records: [seed](evidence/windows-g1-2026-09-23/seed.json), [restart](evidence/windows-g1-2026-09-23/resume.json), [new version](evidence/windows-g1-2026-09-23/update.json). Raw logs remain in ignored `LocalData/Verification`.
+- Real Windows mouse checks on 0.0.6: tap 0 → 1, video play and pause at 6.3 seconds, skip to 8.3 seconds. Force-terminated only this test app, reopened it, and visually verified **1 tap and the same paused 8.3-second bookmark**. Start Over then returned playback and its bookmark to 0.0 seconds.
+- Native preview visually checked at the actual Windows window size. Unity was reopened and its exact new project connection verified afterward. No Mac, iPad or Android-device actions occurred during this Windows continuation.
+- Known limit: the generated diagnostic clip produces a Windows Media Foundation color-primaries warning; it decodes and passes timing checks, but final imported media will need explicit color metadata. The automated hidden-player screenshot is best effort; the image below is the separate, visible native check.
+
+![Native Windows preview after forced-close recovery](g1-windows-native-preview.png)
+
+The Windows update check launches two fresh versions against the same application preferences; it is not an Android APK or iPad installation test. This evidence does not qualify older iPad performance, final save-file corruption recovery, multiplayer, audio quality, the full TV library or the complete game.
+
+### Repeat the Windows workflow
+
+Double-click **`Play-Foundation.cmd`** at the game root to open the last verified Windows preview. It checks artifact hashes before launching and avoids opening duplicate copies. The preview is a technical fixture with a generated test clip.
+
+With Unity saved and closed, build with `Tools/Build-Foundation.ps1 -Target Windows -BuildNumber N` using unused numbers, then run `Tools/Test-WindowsFoundation.ps1 -FirstBuild N -UpdatedBuild M`. Build failure or test failure stops the flow; no old artifact is substituted. Ordinary preview data and automated test namespaces are preserved separately.
+
+Implementation references: [Unity Build Profiles API](https://docs.unity3d.com/6000.3/Documentation/ScriptReference/BuildPlayerWithProfileOptions.html), [video preparation](https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/video/videoplayer/preparecompleted), [frame-ready callbacks](https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/video/videoplayer/frameready). Runtime evidence above, rather than documentation alone, establishes what passed on Windows.

@@ -10,85 +10,100 @@ namespace LittleWeeps.Runtime
     // G1 device fixture. This is not the final game menu or world-save format.
     public sealed class FoundationScreen : MonoBehaviour
     {
-        private const string ProfileKey = "foundation.profile-id";
-        private const string CountKey = "foundation.tap-count";
+        public int SavedCount => count.Value;
+        public string ProfileId => PlayerPrefs.GetString(FoundationRun.Key("profile-id"));
+        public Button TapButton { get; private set; }
+        public FoundationVideo Video { get; private set; }
         private TapCount count;
-        private Text countLabel;
+        private Text countLabel, videoStatus;
         private Font font;
+        private RectTransform safe;
+        private RawImage videoImage;
+        private Rect lastSafeArea;
 
         private void Start()
         {
             Application.targetFrameRate = 30;
-            count = new TapCount(PlayerPrefs.GetInt(CountKey, 0));
-            if (!PlayerPrefs.HasKey(ProfileKey))
+            Application.runInBackground = true;
+            count = new TapCount(PlayerPrefs.GetInt(FoundationRun.Key("tap-count"), 0));
+            if (!PlayerPrefs.HasKey(FoundationRun.Key("profile-id")))
             {
-                PlayerPrefs.SetString(ProfileKey, Guid.NewGuid().ToString("N"));
+                PlayerPrefs.SetString(FoundationRun.Key("profile-id"), Guid.NewGuid().ToString("N"));
                 PlayerPrefs.Save();
             }
             font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             var canvasObject = new GameObject("Foundation Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
-            var canvas = canvasObject.GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvasObject.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             var scaler = canvasObject.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1200, 800);
             scaler.matchWidthOrHeight = 0.5f;
-
-            var safe = new GameObject("Safe Area", typeof(RectTransform)).GetComponent<RectTransform>();
-            safe.SetParent(canvas.transform, false);
-            var area = Screen.safeArea;
-            safe.anchorMin = new Vector2(area.xMin / Screen.width, area.yMin / Screen.height);
-            safe.anchorMax = new Vector2(area.xMax / Screen.width, area.yMax / Screen.height);
-            safe.offsetMin = safe.offsetMax = Vector2.zero;
-
-            Label(safe, "Little Weeps", 58, 220, new Vector2(950, 90));
-            Label(safe, "Foundation check", 30, 145, new Vector2(950, 55));
-            countLabel = Label(safe, "", 42, 55, new Vector2(950, 70));
-            var buttonObject = new GameObject("Tap and Save", typeof(RectTransform), typeof(Image), typeof(Button));
-            var buttonRect = buttonObject.GetComponent<RectTransform>();
-            buttonRect.SetParent(safe, false);
-            buttonRect.sizeDelta = new Vector2(460, 130);
-            buttonRect.anchoredPosition = new Vector2(0, -65);
-            buttonObject.GetComponent<Image>().color = new Color(0.97f, 0.71f, 0.28f);
-            var button = buttonObject.GetComponent<Button>();
-            button.onClick.AddListener(AddAndSave);
-            var caption = Label(buttonRect, "TAP & SAVE", 38, 0, new Vector2(440, 120));
-            caption.color = new Color(0.10f, 0.19f, 0.23f);
-            Label(safe, "Close and reopen: your tap count should stay.", 25, -190, new Vector2(1000, 60));
-            Label(safe, "Build " + Application.version, 22, -260, new Vector2(900, 45));
-            Refresh();
-
+            safe = MakeRect(canvasObject.transform, "Safe Area", Vector2.zero, Vector2.zero);
+            UpdateSafeArea();
+            Label(safe, "Little Weeps", 52, new Vector2(0, 325), new Vector2(1100, 75));
+            Label(safe, "Foundation check  /  Build " + Application.version, 26, new Vector2(0, 260), new Vector2(1100, 48));
+            countLabel = Label(safe, "", 35, new Vector2(-350, 115), new Vector2(340, 70));
+            TapButton = MakeButton(safe, "TAP & SAVE", new Vector2(-350, 10), new Vector2(330, 100), AddAndSave);
+            Label(safe, "Your tap count stays when\nyou close and reopen.", 24, new Vector2(-350, -100), new Vector2(340, 90));
+            Label(safe, "Local video check", 28, new Vector2(220, 200), new Vector2(620, 50));
+            var screen = MakeRect(safe, "Local Video", new Vector2(220, -5), new Vector2(620, 349));
+            videoImage = screen.gameObject.AddComponent<RawImage>();
+            videoImage.raycastTarget = false;
+            videoStatus = Label(safe, "Preparing video...", 20, new Vector2(220, -202), new Vector2(640, 40));
+            MakeButton(safe, "PLAY / PAUSE", new Vector2(-15, -255), new Vector2(220, 70), () => { if (Video.Player.isPlaying) Video.Pause(); else Video.Play(); });
+            MakeButton(safe, "+2 SECONDS", new Vector2(220, -255), new Vector2(220, 70), () => Video.Seek(Video.Player.time + 2));
+            MakeButton(safe, "START OVER", new Vector2(455, -255), new Vector2(220, 70), () => Video.Restart());
+            Label(safe, "Technical test scene - game worlds come later", 21, new Vector2(0, -350), new Vector2(1100, 45));
+            OpenVideo(); Refresh();
             if (FindAnyObjectByType<EventSystem>() == null)
             {
                 var events = new GameObject("Event System", typeof(EventSystem), typeof(InputSystemUIInputModule));
                 events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
             }
+            if (FoundationRun.Automated) gameObject.AddComponent<FoundationVerification>();
             Debug.Log($"LITTLE_WEEPS_FOUNDATION ready build={Application.version} taps={count.Value}");
         }
-
-        private Text Label(Transform parent, string value, int size, float y, Vector2 dimensions)
+        public void OpenVideo()
         {
-            var obj = new GameObject(value.Length == 0 ? "Saved Count" : value, typeof(RectTransform), typeof(Text));
-            var rect = obj.GetComponent<RectTransform>();
-            rect.SetParent(parent, false);
-            rect.sizeDelta = dimensions;
-            rect.anchoredPosition = new Vector2(0, y);
-            var label = obj.GetComponent<Text>();
-            label.text = value;
-            label.font = font;
-            label.fontSize = size;
-            label.alignment = TextAnchor.MiddleCenter;
-            label.color = new Color(0.1f, 0.2f, 0.25f);
-            label.raycastTarget = false;
-            return label;
+            Video = new GameObject("Local Video Probe").AddComponent<FoundationVideo>();
+            Video.transform.SetParent(transform, false); Video.Initialize(); videoImage.texture = Video.Texture;
         }
-
+        public void CloseVideo() { Video.Pause(); Destroy(Video.gameObject); Video = null; videoImage.texture = null; }
+        private void Update()
+        {
+            if (safe != null && lastSafeArea != Screen.safeArea) UpdateSafeArea();
+            if (Video == null) return;
+            videoStatus.text = Video.Failure ?? (!Video.Ready ? "Preparing video..." :
+                $"{(Video.Player.isPlaying ? "Playing" : "Paused")}  {Video.Player.time:0.0}s / {Video.Player.length:0.0}s  |  Saved {Video.SavedPosition:0.0}s");
+        }
+        private void UpdateSafeArea()
+        {
+            lastSafeArea = Screen.safeArea;
+            safe.anchorMin = new Vector2(lastSafeArea.xMin / Screen.width, lastSafeArea.yMin / Screen.height);
+            safe.anchorMax = new Vector2(lastSafeArea.xMax / Screen.width, lastSafeArea.yMax / Screen.height);
+            safe.offsetMin = safe.offsetMax = Vector2.zero;
+        }
+        private RectTransform MakeRect(Transform parent, string name, Vector2 position, Vector2 size)
+        {
+            var rect = new GameObject(name, typeof(RectTransform)).GetComponent<RectTransform>();
+            rect.SetParent(parent, false); rect.sizeDelta = size; rect.anchoredPosition = position; return rect;
+        }
+        private Text Label(Transform parent, string value, int size, Vector2 position, Vector2 dimensions)
+        {
+            var label = MakeRect(parent, value.Length == 0 ? "Saved Count" : value, position, dimensions).gameObject.AddComponent<Text>();
+            label.text = value; label.font = font; label.fontSize = size; label.alignment = TextAnchor.MiddleCenter;
+            label.color = new Color(0.1f, 0.2f, 0.25f); label.raycastTarget = false; return label;
+        }
+        private Button MakeButton(Transform parent, string title, Vector2 position, Vector2 size, UnityEngine.Events.UnityAction clicked)
+        {
+            var rect = MakeRect(parent, title, position, size);
+            rect.gameObject.AddComponent<Image>().color = new Color(0.97f, 0.71f, 0.28f);
+            var button = rect.gameObject.AddComponent<Button>(); button.onClick.AddListener(clicked);
+            Label(rect, title, 25, Vector2.zero, size); return button;
+        }
         private void AddAndSave()
         {
-            count.Add();
-            PlayerPrefs.SetInt(CountKey, count.Value);
-            PlayerPrefs.Save();
-            Refresh();
+            count.Add(); PlayerPrefs.SetInt(FoundationRun.Key("tap-count"), count.Value); PlayerPrefs.Save(); Refresh();
             Debug.Log($"LITTLE_WEEPS_FOUNDATION saved taps={count.Value}");
         }
         private void Refresh() => countLabel.text = "Saved taps: " + count.Value;

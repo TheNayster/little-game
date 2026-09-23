@@ -1,0 +1,14 @@
+{
+    "passed": true,
+    "mode": "resume",
+    "build": "0.0.5",
+    "runId": "f8cce936d3204f5c964aaa29a84338ff",
+    "profileId": "879a2fb370584e7b9d6e0114323c87de",
+    "videoUrl": "C:/Users/sephi/Desktop/Little weeps game/Builds/Windows/G1-0.0.5/LittleWeeps_Data/StreamingAssets\\Foundation\\test-clip.mp4",
+    "graphics": "NVIDIA GeForce RTX 5090",
+    "utc": "2026-09-23T21:50:17.7716974Z",
+    "error": "",
+    "taps": 3,
+    "decodedFrames": 15,
+    "bookmark": 4.0
+}

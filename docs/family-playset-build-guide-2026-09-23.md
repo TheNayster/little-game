@@ -4,7 +4,7 @@
 
 **Purpose:** build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.
 
-**Current position:** **G1 — project and device foundation is in progress.** The separate Unity 6000.3.24f1 project now compiles, its touch/save fixture runs in the Editor, and the repaired launcher connects Blender and the correct Unity project. Mac SSH command access is verified. See the [live implementation record](implementation/g1-status.md) for exact evidence. Native iPad/Android qualification and game features are still pending.
+**Current position:** **G1 — project and device foundation is in progress.** The Windows foundation app now passes native input, save/restart, version-update and local-video resume checks, including a forced-close check. Open `Play-Foundation.cmd` in the game folder for the verified 0.0.6 preview. The [live implementation record](implementation/g1-status.md) contains results and a native screenshot. Mac/iPad work is deferred while the user is away; mobile qualification and game features remain pending.
 
 [Open the feature goal sheet](bluey-game-research-2026-09-23.html) · [Package research](family-playset-package-research-2026-09-23.html) · [Technical evidence](family-playset-technical-research-2026-09-23.html) · [Feasibility audit](family-playset-feasibility-audit-2026-09-23.html)
 
@@ -461,10 +461,10 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 | --- | --- |
 | Goal sheet | Main Family Playset research, 54 sections, including the latest TV bookmark clarification |
 | Production guide | This document; ordered method and acceptance gates |
-| Implementation state | G1: isolated project and local Git baseline, working touch/save fixture, verified launcher, Windows standalone build and iOS exports passed. Mac native compilation passed; signing awaits local keychain unlock. No mobile install or game systems verified yet. |
+| Implementation state | G1: saved Windows profile and native 0.0.5 → 0.0.6 save/video checks passed; actual mouse controls and forced-close recovery verified. Preview launcher and source/artifact manifests exist. Mobile install/update qualification and game systems remain pending. |
 | Current research deliverable | G0 guide, coverage map and source review; document validation recorded separately |
 | Active implementation gate | G1 — project and device foundation; [live record](implementation/g1-status.md) |
-| Current bounded task | Compile, install and verify the existing touch/save fixture on the connected 9th-generation iPad; record physical touch and save/update evidence |
+| Current bounded task | Windows save/video/build verification completed. Next: Android and dedicated-server toolchain/build setup on Windows. Mac/iPad work deferred until the user returns; no device interaction needed for the next Windows task. |
 | Package budget | $0 starting setup; optional paid candidates around $20 require a concrete benefit and purchase authorization |
 | Open technical evidence | Exact package set, native build path, refresh cycle, A10 hosting/recovery and save reconciliation |
 | Scope preserved | Four mixed devices, independent rooms, both iPads hosting, automatic recovery, full offline solo and the complete content goal sheet |
