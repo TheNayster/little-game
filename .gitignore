@@ -2,6 +2,8 @@
 **/[Ll]ibrary/
 **/[Tt]emp/
 **/[Oo]bj/
+# Android Gradle/CMake generated native build cache.
+**/.utmp/
 **/[Ll]ogs/
 **/[Uu]ser[Ss]ettings/
 **/[Mm]emoryCaptures/

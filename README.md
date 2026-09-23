@@ -18,9 +18,9 @@ G1 foundation setup is in progress. See [the current implementation record](docs
 
 **Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.9 technical fixture with a saved tap counter and local-video controls. Windows restart and version-update checks passed again on 0.0.6 → 0.0.9; the earlier forced-close check passed on 0.0.6. This is not the finished game.
 
-**First iPad installation:** the user completed the local Mac signing step, and signed 0.0.1 is installed on the iPad 9. Its first launch was rejected by the device's signing/trust check; developer trust and physical touch/save checks are next. See [the live record](docs/implementation/g1-status.md).
+**First iPad launch:** signed 0.0.1 is installed on the iPad 9. After the user allowed the developer profile in VPN & Device Management, a fresh device launch command succeeded. Physical touch, saved count after reopening, and update retention remain to be observed. See [the live record](docs/implementation/g1-status.md).
 
-**Android/server preparation:** build commands, an APK inspection script and a separate server scene are in place. The pinned Android SDK tools are installed in a user-owned folder and passed version/registration/repeat checks. The Unity module installer still needs its manual steps; no Android/server native artifact is qualified yet. [Exact status and continuation steps](docs/implementation/platform-build-setup.md). The user has deferred iPad trust until available.
+**Android/server preparation:** Android 0.0.11 compiled successfully. Its package identity, SDK levels, ARM64 code and signature passed inspection; an additional 16 KB native-library alignment finding remains open. No Android device qualification is complete. The separate Windows Server module still needs installation: double-click `Install-ServerModule.cmd` with Unity closed and allow the Windows prompt when ready. Its native build/run check comes afterward. [Exact status and continuation steps](docs/implementation/platform-build-setup.md).
 
 Use the desktop **Connect Little Weeps** shortcut, or run `Connect-GameTools.ps1` in this folder. [Tool connection instructions](docs/implementation/tool-connections.md) explain the launcher and Mac build connection.
 

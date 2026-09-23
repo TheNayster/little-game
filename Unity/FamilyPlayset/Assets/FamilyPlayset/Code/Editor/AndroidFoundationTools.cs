@@ -31,11 +31,53 @@ namespace LittleWeeps.EditorTools
         }
 
 #if UNITY_ANDROID
+        // Regression check for the first Android build: bundled tools can be absent.
+        public static void VerifyRestoration()
+        {
+            using var original = new RestorePaths();
+            UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath = null;
+            UnityEditor.Android.AndroidExternalToolsSettings.sdkRootPath = null;
+            UnityEditor.Android.AndroidExternalToolsSettings.ndkRootPath = null;
+            var bundledJdk = UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath;
+            var bundledSdk = UnityEditor.Android.AndroidExternalToolsSettings.sdkRootPath;
+            var bundledNdk = UnityEditor.Android.AndroidExternalToolsSettings.ndkRootPath;
+            using (Configure()) { }
+            RequireSame(bundledJdk, UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath);
+            RequireSame(bundledSdk, UnityEditor.Android.AndroidExternalToolsSettings.sdkRootPath);
+            RequireSame(bundledNdk, UnityEditor.Android.AndroidExternalToolsSettings.ndkRootPath);
+            using (Configure())
+            {
+                var customJdk = UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath;
+                var customSdk = UnityEditor.Android.AndroidExternalToolsSettings.sdkRootPath;
+                var customNdk = UnityEditor.Android.AndroidExternalToolsSettings.ndkRootPath;
+                using (Configure()) { }
+                RequireSame(customJdk, UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath);
+                RequireSame(customSdk, UnityEditor.Android.AndroidExternalToolsSettings.sdkRootPath);
+                RequireSame(customNdk, UnityEditor.Android.AndroidExternalToolsSettings.ndkRootPath);
+            }
+            UnityEngine.Debug.Log("LITTLE_WEEPS_ANDROID_TOOLS_PASS: bundled defaults and custom paths restored.");
+        }
+
+        private static void RequireSame(string expected, string actual)
+        {
+            if (!string.Equals(Path.GetFullPath(expected), Path.GetFullPath(actual), StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Android External Tools restoration mismatch.");
+        }
+
         private sealed class RestorePaths : IDisposable
         {
-            private readonly string jdk = UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath;
-            private readonly string sdk = UnityEditor.Android.AndroidExternalToolsSettings.sdkRootPath;
-            private readonly string ndk = UnityEditor.Android.AndroidExternalToolsSettings.ndkRootPath;
+            private readonly string jdk = RestoreValue(UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath, "OpenJDK");
+            private readonly string sdk = RestoreValue(UnityEditor.Android.AndroidExternalToolsSettings.sdkRootPath, "SDK");
+            private readonly string ndk = RestoreValue(UnityEditor.Android.AndroidExternalToolsSettings.ndkRootPath, "NDK");
+
+            private static string RestoreValue(string path, string folder)
+            {
+                var bundled = Path.Combine(UnityEditor.EditorApplication.applicationContentsPath, "PlaybackEngines", "AndroidPlayer", folder);
+                // The getter resolves the bundled path even when it doesn't exist.
+                // Unity documents null as the setter for "Installed with Unity".
+                return string.IsNullOrEmpty(path) || string.Equals(Path.GetFullPath(path), Path.GetFullPath(bundled), StringComparison.OrdinalIgnoreCase)
+                    ? null : path;
+            }
             public void Dispose()
             {
                 UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath = jdk;

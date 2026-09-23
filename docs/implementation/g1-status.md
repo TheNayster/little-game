@@ -2,7 +2,7 @@
 
 Started 23 September 2026. In progress; no device qualification is complete.
 
-Current work (latest user steering, 23 September): iPad trust is deferred again until the user has time; continue the Windows Android/server build setup. **Latest result:** all seven Android dependency archives are verified and the user-owned SDK toolchain is installed, registered and repeat-checked. The Android Unity module installer remains at its welcome screen and did not respond to automated input; the user was asked to complete its manual steps. Both Android and Windows Server build preflights still report missing Unity modules. No APK/server artifact is built yet. Windows 0.0.9 remains verified; iPad 0.0.1 remains installed with first launch blocked by its signing/trust check. G2 and later game features have not started.
+Current work (latest user steering, 23 September): the user enabled iPad developer trust and completed the Android module installer. **Latest result:** iPad 0.0.1 launches successfully; Android 0.0.11 builds successfully with complete source/artifact evidence. APK identity, SDK levels, ARM64 code, signature, ZIP alignment and ELF load alignment passed inspection. The additional 16 KB RELRO check flagged six native libraries, so full compatibility inspection remains open; no Android device launch or crash was observed. The Windows Server module remains absent: its separate administrator prompt was canceled before installation started. `Install-ServerModule.cmd` provides a verified manual retry when available. Windows 0.0.9 remains verified. G2 and later game features have not started.
 
 ## Boundary and tools
 
@@ -15,7 +15,7 @@ Current work (latest user steering, 23 September): iPad trust is deferred again 
 - Codex CLI 0.155.0-alpha.16.3 exists under the desktop app's versioned bin directory. That directory is absent from the normal user PATH, explaining the shortcut error. The new resolver locates it directly on each launch. The launcher passed a live Blender-only reconnect with a normal Windows user/machine PATH, and PowerShell syntax validation passed. Both desktop shortcuts now point here.
 - Git 2.53.0.windows.1 and Git LFS 3.7.1 available.
 - Samsung SM-S948U1: Android 16 / API 36 verified through ADB. No new-game app installed yet.
-- A2602 iPad 9: connected by cable, paired and Developer Mode enabled. Live device inventory reports iPadOS 18.6.2 (22G100); this supersedes the earlier reported OS pairing. Signed foundation 0.0.1 is installed; first launch was blocked by the device's signing/trust check. A2197 iPad 7 and A2484 iPhone remain untested.
+- A2602 iPad 9: connected by cable, paired and Developer Mode enabled. Live device inventory reports iPadOS 18.6.2 (22G100); this supersedes the earlier reported OS pairing. Signed foundation 0.0.1 is installed and launches after the user allowed developer trust. Physical touch and saved values still need observation. A2197 iPad 7 and A2484 iPhone remain untested.
 - Mac SSH authenticated successfully after correcting authorized_keys from a directory to a file. Live inventory: macOS 26.3.1 (25D2128), arm64, Xcode 26.6 (17F113), developer directory /Applications/Xcode.app/Contents/Developer, about 247 GiB free. No Unity Hub editor directory on Mac.
 
 ## Exit checks
@@ -28,10 +28,10 @@ Current work (latest user steering, 23 September): iPad trust is deferred again 
 | Matching editor, small package lock and saved profiles | 6000.3.24f1 and package lock exist. URP 17.3.0, Input System 1.20.0, UGUI 2.0.0, Test Framework 1.6.0; editor MCP 9.7.3 pinned. Saved Windows Foundation profile is built and verified; other platform profiles remain pending. |
 | Touch/save scene and local-video probe | Native Windows mouse input, saved taps, profile retention, local H.264/AAC decoding, play/pause/seek/restart and bookmark recovery passed. Touch, audio perception and video behavior on mobile remain unverified. |
 | Android release launch and update retaining seed data | Pending |
-| Android SDK tools and APK inspection preparation | Exact Java/NDK/SDK/CMake versions installed in the user's Little Weeps toolchain folder; SDK Manager inventory and repeat preparation passed. APK inspection script syntax passed. Unity Android module installation and actual APK checks remain pending. |
-| Native launch on each iPad via Mac | Mac Release 0.0.1 compiled, signature verified and installed on A2602. First launch returned a device signing/trust rejection; developer trust check requested. A2197 remains untested. |
+| Android tools and first APK | Matching Android module and verified toolchain work. 0.0.11 builds with zero summary errors/warnings; identity/signature/ABI/SDK and ZIP/ELF load alignment checks pass. Six native libraries fail the additional RELRO-end alignment check; actual 16 KB runtime compatibility remains unverified. |
+| Native launch on each iPad via Mac | Mac Release 0.0.1 compiled, signature verified and installed on A2602. The user allowed developer trust and a fresh device launch succeeded. A2197 remains untested. |
 | Free provisioning renewal observation started | Pending |
-| Build/test scripts and source/artifact evidence | Explicit profile/target, numbered outputs, build summaries, source-file hashes and artifact hashes. Windows checks passed on 0.0.5 → 0.0.6 and 0.0.6 → 0.0.9. Android/server commands and server lifecycle test are prepared, but missing modules prevent native qualification. Mobile in-place installation/update checks remain pending. |
+| Build/test scripts and source/artifact evidence | Windows checks passed on 0.0.5 → 0.0.6 and 0.0.6 → 0.0.9. Android 0.0.11 has build, source and artifact manifests; a real Unity integration check passed tool-path restoration. Server build/lifecycle checks await its separate module. Mobile in-place updates remain pending. |
 
 Local Git history is not an off-device backup. Keep private media and signing credentials outside this repository; do not reuse another app's keys. Establish and verify an external recovery destination before family distribution.
 
@@ -67,7 +67,7 @@ Signing references: [Apple guidance for errSecInternalComponent](https://develop
 
 An additional cold-start check exposed MCP 9.7.3 leaving its cached transport session as `pending` even while live project tools worked. The helper now acknowledges transport state, and the launcher additionally uses the project-checked MCP client to require a live project-info response matching the new root. Both a reconnect with apps open and a full Unity close/reopen passed from the normal Windows PATH. No Unity console errors were returned after compilation. The editor-only change occurred after the two iOS exports and does not change their player content.
 
-Earlier Mac deferral ended when the user reported completing the local password step. **Finish-iPad-Build.command** returned build exit 0, and `codesign --verify --deep --strict` passed. The signed 0.0.1 app is now installed; the remaining immediate blocker is the device's first-launch signing/trust rejection. See the current iPad evidence below. Passwords were not requested or transferred to Windows.
+Earlier Mac deferral ended when the user reported completing the local password step. **Finish-iPad-Build.command** returned build exit 0, and `codesign --verify --deep --strict` passed. The signed 0.0.1 app was installed and subsequently launched after the user allowed developer trust. See the current iPad evidence below. Passwords were not requested or transferred to Windows.
 
 ## Windows-only continuation
 
@@ -98,7 +98,7 @@ Implementation references: [Unity Build Profiles API](https://docs.unity3d.com/6
 
 ## Android/server build preparation and Windows regression
 
-See [the platform setup record](platform-build-setup.md) for implemented commands, server scene, installation blocker, supporting sources and the exact continuation sequence. Windows 0.0.9 built with zero reported errors/warnings, and run `b18b274af9c4413da4fd162155fc692b` passed seed/restart/update/video checks from 0.0.6 → 0.0.9. The build wrapper now waits only for Unity, avoiding a hang on its persistent compiler child. No Android or native dedicated-server build has passed yet; no networking feature is implemented. The Android installer was subsequently launched on request, but its completion has not been verified. This remains separate from the resumed iPad qualification.
+See [the platform setup record](platform-build-setup.md) for implemented commands, server scene, actual results, supporting sources and the continuation sequence. Windows 0.0.9 built with zero reported errors/warnings, and run `b18b274af9c4413da4fd162155fc692b` passed seed/restart/update/video checks from 0.0.6 → 0.0.9. Android 0.0.11 has now compiled successfully after fixing tool-path restoration. The native dedicated-server build remains pending its module; no networking feature is implemented.
 
 ## First native iPad installation
 
@@ -108,6 +108,16 @@ The app was absent before installation. `devicectl` then installed `com.littlewe
 
 Sanitized evidence: [first installation](evidence/ipad-g1-2026-09-23/first-install.json). Raw install, installed-app and failed-launch JSON remain in the game's Mac `Logs` directory. The actual embedded provisioning profile was created 23 September 2026 at 21:15:06 UTC and expires 30 September at 21:15:06 UTC. Automatic renewal is not configured or proven by this installation.
 
-Next acceptance steps: resolve the launch rejection; confirm physical taps and saved count; relaunch to check persistence; install the separately signed 0.0.2 update over the app and confirm the same saved count remains. Device UI and saved values must be observed before claiming these pass. [Apple developer-trust guidance](https://help.apple.com/xcode/mac/current/en.lproj/dev96a12fb84.html), [running on a device](https://help.apple.com/xcode/mac/current/en.lproj/dev5a825a1ca.html).
+**Developer trust resolved:** the user allowed the developer profile under Settings → General → VPN & Device Management. A fresh `devicectl device process launch` returned success and process ID 675. [Launch evidence](evidence/ipad-g1-2026-09-23/launch-after-trust.json). This verifies launch only; the user was asked to tap the counter and report its value.
+
+Next acceptance steps: confirm physical taps and saved count; relaunch to check persistence; finish local signing of 0.0.2, install it over the app and confirm the same saved count remains. Device UI and saved values must be observed before claiming these pass. [Apple developer-trust guidance](https://help.apple.com/xcode/mac/current/en.lproj/dev96a12fb84.html), [running on a device](https://help.apple.com/xcode/mac/current/en.lproj/dev5a825a1ca.html).
 
 Update preparation: the already transferred 0.0.2 export was compiled remotely while waiting for the device trust check. Native compilation reached signing, but `UnityFramework.framework` signing returned `errSecInternalComponent`, Xcode exit 65. Log: `/Users/nayster/Developer/LittleWeeps/Logs/g1-ios-0.0.2-20260923-223023.log`. This update was not installed or claimed as signed. Use the proven local Mac Terminal signing route for build 2 when continuing; completing the earlier build-1 password prompt did not establish that remote signing works for later builds. Do not weaken keychain protections to bypass this.
+
+## First Android build and remaining server installation
+
+Android 0.0.10 compiled but the wrapper failed afterward: restoring the missing bundled JDK as a custom path raised an exception. It is preserved as incomplete build evidence. `AndroidFoundationTools` now restores a bundled default with Unity's documented null setter. `Tools/Test-AndroidToolPaths.ps1` exercised both bundled-default and custom-path restoration inside the actual editor and exited 0. Fresh build **0.0.11** then completed with Unity exit 0, zero build-summary errors/warnings, and full manifests. [Build](evidence/android-first-build-2026-09-23/build-summary.json), [tool-path regression](evidence/android-first-build-2026-09-23/tool-paths.json).
+
+The 35,698,953-byte APK is non-development IL2CPP/ARM64, minimum API 26, target API 36, signed with the default Android Debug certificate for this build-only probe. It has not been installed on a phone and is not a family release. Actual inspection verified its identity/signature and 16 KB ZIP/ELF load alignment. The extra check from Google's current page-size guidance flagged non-aligned RELRO ends in six libraries. [Inspection and exact names](evidence/android-first-build-2026-09-23/apk-inspection.json). Keep this as an unresolved static finding until the check and runtime behavior are validated in a 16 KB environment; it is not an observed crash on the family's phone. Do not weaken the check or replace the pinned editor/NDK without investigating the supported route.
+
+The separate verified Windows Server installer did not start: Windows returned “The operation was canceled by the user” at administrator approval. No automatic approval-review rejection occurred. No server artifact exists. `Install-ServerModule.cmd` verifies the exact cached installer, refuses an open matching editor and requests ordinary Windows approval. Its syntax is checked; the new helper's installation path still needs a successful manual run.

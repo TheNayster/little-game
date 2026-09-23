@@ -1,0 +1,15 @@
+{
+    "platform": "Android",
+    "version": "0.0.11",
+    "unity": "6000.3.24f1",
+    "result": "Succeeded",
+    "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\Android\\G1-0.0.11\\LittleWeeps.apk",
+    "utc": "2026-09-23T23:47:21.8074014Z",
+    "profile": "Explicit Android build configuration",
+    "scene": "Assets/FamilyPlayset/Scenes/Bootstrap.unity",
+    "signing": "Default Android debug certificate; build-only probe, not family release",
+    "errors": 0,
+    "warnings": 0,
+    "development": false,
+    "dedicatedServer": false
+}

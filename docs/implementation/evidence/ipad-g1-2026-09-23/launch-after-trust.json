@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-23",
+  "device": "iPad 9th generation (A2602)",
+  "os": "iPadOS 18.6.2",
+  "package": "com.littleweeps.familyplayset",
+  "installedVersion": "0.0.1",
+  "installedBuild": "1",
+  "userReportedDeveloperTrustAllowed": true,
+  "verification": "xcrun devicectl device process launch",
+  "outcome": "success",
+  "processIdentifier": 675,
+  "rawMacEvidence": "/Users/nayster/Developer/LittleWeeps/Logs/ipad-launch-after-trust.json",
+  "physicalTouchObserved": false,
+  "saveRestartObserved": false,
+  "inPlaceUpdateObserved": false,
+  "automaticRenewalVerified": false
+}
