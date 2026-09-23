@@ -16,7 +16,9 @@ This is the separate home for the family's Bluey-inspired game.
 
 G1 foundation setup is in progress. See [the current implementation record](docs/implementation/g1-status.md) for what exists and what is still unverified. No playable game or device qualification is complete yet.
 
-**Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.6 technical fixture with a saved tap counter and local-video controls. Windows restart, version-update and forced-close checks passed; this is not the finished game. Mac/iPad work is deferred while the user is away.
+**Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.9 technical fixture with a saved tap counter and local-video controls. Windows restart and version-update checks passed again on 0.0.6 → 0.0.9; the earlier forced-close check passed on 0.0.6. This is not the finished game. Mac/iPad work is deferred while the user is away.
+
+**Android/server preparation:** build commands and a separate server scene are in place. Windows canceled the platform installer launch, so Android/server binaries and native checks remain pending. [Exact status and continuation steps](docs/implementation/platform-build-setup.md).
 
 Use the desktop **Connect Little Weeps** shortcut, or run `Connect-GameTools.ps1` in this folder. [Tool connection instructions](docs/implementation/tool-connections.md) explain the launcher and Mac build connection.
 

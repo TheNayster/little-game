@@ -1,0 +1,6 @@
+{
+  "name": "LittleWeeps.Server",
+  "rootNamespace": "LittleWeeps.Server",
+  "references": ["LittleWeeps.Core"],
+  "defineConstraints": ["UNITY_SERVER || UNITY_EDITOR"]
+}

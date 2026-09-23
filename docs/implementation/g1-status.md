@@ -2,7 +2,7 @@
 
 Started 23 September 2026. In progress; no device qualification is complete.
 
-Current work (user steering, 23 September): continue entirely on Windows while the user is away. **Completed Windows task:** saved build profile, native save/restart/version-update checks, forced-close recovery, and an offline local-video probe (TV-01 foundation). Mac/iPad actions remain deferred until the user returns. Next Windows task: finish the Android and dedicated-server toolchain/build configurations on the PC; device qualification stays separate. G2 and later game features have not started.
+Current work (user steering, 23 September): continue entirely on Windows while the user is away. **Latest result:** Android/server build commands and a separate server bootstrap scene are prepared; Windows 0.0.9 builds and passes save/restart/update/video regression. Matching Android/server module installation did not run: Windows returned “The operation was canceled by the user” when launching the Android installer. Native Android/server artifacts and their saved UI profiles remain unverified. The bounded G1 task stays open at module installation and artifact qualification. Mac/iPad actions remain deferred. G2 and later game features have not started.
 
 ## Boundary and tools
 
@@ -30,7 +30,7 @@ Current work (user steering, 23 September): continue entirely on Windows while t
 | Android release launch and update retaining seed data | Pending |
 | Native launch on each iPad via Mac | Windows iOS exports 0.0.1 and 0.0.2 passed. Mac compiled 0.0.1 but signing requires local keychain interaction. No installed/launch evidence yet. |
 | Free provisioning renewal observation started | Pending |
-| Build/test scripts and source/artifact evidence | Explicit profile/target, numbered outputs, build summaries, source-file hashes and Windows artifact hashes. Native Windows integration checks passed on 0.0.5 → 0.0.6. Mobile in-place installation/update checks remain pending. |
+| Build/test scripts and source/artifact evidence | Explicit profile/target, numbered outputs, build summaries, source-file hashes and artifact hashes. Windows checks passed on 0.0.5 → 0.0.6 and 0.0.6 → 0.0.9. Android/server commands and server lifecycle test are prepared, but missing modules prevent native qualification. Mobile in-place installation/update checks remain pending. |
 
 Local Git history is not an off-device backup. Keep private media and signing credentials outside this repository; do not reuse another app's keys. Establish and verify an external recovery destination before family distribution.
 
@@ -89,8 +89,12 @@ The Windows update check launches two fresh versions against the same applicatio
 
 ### Repeat the Windows workflow
 
-Double-click **`Play-Foundation.cmd`** at the game root to open the last verified Windows preview. It checks artifact hashes before launching and avoids opening duplicate copies. The preview is a technical fixture with a generated test clip.
+Double-click **`Play-Foundation.cmd`** at the game root to open the last verified Windows preview (now 0.0.9). It checks artifact hashes before launching and avoids opening duplicate copies. The preview is a technical fixture with a generated test clip.
 
 With Unity saved and closed, build with `Tools/Build-Foundation.ps1 -Target Windows -BuildNumber N` using unused numbers, then run `Tools/Test-WindowsFoundation.ps1 -FirstBuild N -UpdatedBuild M`. Build failure or test failure stops the flow; no old artifact is substituted. Ordinary preview data and automated test namespaces are preserved separately.
 
 Implementation references: [Unity Build Profiles API](https://docs.unity3d.com/6000.3/Documentation/ScriptReference/BuildPlayerWithProfileOptions.html), [video preparation](https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/video/videoplayer/preparecompleted), [frame-ready callbacks](https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/video/videoplayer/frameready). Runtime evidence above, rather than documentation alone, establishes what passed on Windows.
+
+## Android/server build preparation and Windows regression
+
+See [the platform setup record](platform-build-setup.md) for implemented commands, server scene, installation blocker, supporting sources and the exact continuation sequence. Windows 0.0.9 built with zero reported errors/warnings, and run `b18b274af9c4413da4fd162155fc692b` passed seed/restart/update/video checks from 0.0.6 → 0.0.9. The build wrapper now waits only for Unity, avoiding a hang on its persistent compiler child. No Android or native dedicated-server build has passed yet; no networking feature is implemented. The missing modules are a Windows setup blocker, independent of the deferred Mac/iPad work.
