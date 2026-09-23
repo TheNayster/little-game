@@ -1,0 +1,14 @@
+{
+  "id": "organization",
+  "url": "https://unity.com/how-to/organizing-your-project",
+  "resolved_url": "https://unity.com/how-to/organizing-your-project",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Best practices for organizing your Unity project | Unity",
+  "sha256": "9f92b8e3ccf17acdea7f978aae081b81025cae4f950bba0e2e56ba19b51f8994",
+  "excerpts": [
+    "cture – example 1 Subfolders split up by asset type Create the same folder structure for all projects Empty folders The .meta file Naming standards Split up your assets Presets Code standards Code standards continued ONE-COLUMN AND TWO-COLUMN PROJECT WINDOW VIEWS Folder structure Although there is no single way to organize a Unity project, here are some key recommendations: Document your naming conventions and folder structure . A style guide and/or project template makes files easier to locate and organize. Pick what works for your team, and make sure that everyone is on board with it. Be consistent with your naming conventions . Don’t deviate from your chosen style guide or template. If you do need to amend your naming rules, parse and rename your affected assets all at once. If ever the",
+    "mple 1 Subfolders split up by asset type Create the same folder structure for all projects Empty folders The .meta file Naming standards Split up your assets Presets Code standards Code standards continued ONE-COLUMN AND TWO-COLUMN PROJECT WINDOW VIEWS Folder structure Although there is no single way to organize a Unity project, here are some key recommendations: Document your naming conventions and folder structure . A style guide and/or project template makes files easier to locate and organize. Pick what works for your team, and make sure that everyone is on board with it. Be consistent with your naming conventions . Don’t deviate from your chosen style guide or template. If you do need to amend your naming rules, parse and rename your affected assets all at once. If ever the changes af",
+    "pe Create the same folder structure for all projects Empty folders The .meta file Naming standards Split up your assets Presets Code standards Code standards continued ONE-COLUMN AND TWO-COLUMN PROJECT WINDOW VIEWS Folder structure Although there is no single way to organize a Unity project, here are some key recommendations: Document your naming conventions and folder structure . A style guide and/or project template makes files easier to locate and organize. Pick what works for your team, and make sure that everyone is on board with it. Be consistent with your naming conventions . Don’t deviate from your chosen style guide or template. If you do need to amend your naming rules, parse and rename your affected assets all at once. If ever the changes affect a large number of files, consider"
+  ]
+}

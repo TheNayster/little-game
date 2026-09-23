@@ -1,0 +1,21 @@
+{
+  "url": "https://download.packages.unity.com/com.unity.inputsystem/-/com.unity.inputsystem-1.20.0.tgz",
+  "package_sha256": "7f1050d80b8771ad2d3405972b1e222d4fa4fb409521521020d1eae341bd95e5",
+  "files": [
+    {
+      "source_path": "package/InputSystem/Runtime/Plugins/OnScreen/OnScreenStick.cs",
+      "saved": "input-1.20-OnScreenStick.cs",
+      "sha256": "7484000f46ed62460c54a51de0cd80030be1d2f8366afd536d2066dc8f9b7983"
+    },
+    {
+      "source_path": "package/Documentation~/devices-touch.md",
+      "saved": "input-1.20-devices-touch.md",
+      "sha256": "f2b0a80971ab41b660cab22f1df07b6c38f9cf50e79842dc77960df560bb97a4"
+    },
+    {
+      "source_path": "package/InputSystem/Runtime/Plugins/OnScreen/OnScreenStick.cs.meta",
+      "saved": "input-1.20-OnScreenStick.cs.meta",
+      "sha256": "483fbb6e792ec0afd8ba1217fc41ee9ccd82eec171201c7db2151e7de53e01ca"
+    }
+  ]
+}

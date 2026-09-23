@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Family Playset — templates and packages</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;background:radial-gradient(circle at center,#fff 0 28%,#eef3ee 28% 29%,transparent 29%)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid transparent;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+
+.package-intro{padding:42px 0 24px}.package-intro h1{font-size:clamp(32px,4vw,52px);margin:0 0 18px}.package-intro p{max-width:880px}.package-status{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}.package-status span{border-radius:20px;background:#e7f0f1;padding:6px 14px;font-size:14px}.topbar nav{flex-wrap:wrap}.report code{overflow-wrap:anywhere}
+</style></head><body>
+<header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Package review navigation"><a href="bluey-game-research-2026-09-23.html#54-templates-packages-and-the-free-starting-setup">Main plan</a><a href="#3-official-free-packages-and-exact-candidates">Free packages</a><a href="#6-one-optional-purchase-within-the-budget">Optional purchase</a></nav></header>
+<main class="wrap" id="top"><div class="package-intro"><p class="eyebrow">Templates + package research · 23 September 2026</p><h1>A free foundation.<br>Built for your family.</h1><p class="intro">Start with Unity's official 2D template and focused, reusable tools. This review shows what they provide, which templates do not fit, and what still needs our own game rules and device testing.</p></div>
+<div class="package-status"><span>Starting package budget: $0</span><span>Unity 6.3 LTS candidate</span><span>Optional purchase: about $15</span><span>No packages installed</span></div>
+<div class="report-layout"><aside class="contents"><h3>In this review</h3><div class="toc">
+<ul>
+<li><a href="#1-what-to-start-with">1. What to start with</a></li>
+<li><a href="#2-template-comparison">2. Template comparison</a></li>
+<li><a href="#3-official-free-packages-and-exact-candidates">3. Official free packages and exact candidates</a></li>
+<li><a href="#4-networking-stability-a-real-documentation-mismatch">4. Networking stability: a real documentation mismatch</a></li>
+<li><a href="#5-useful-free-additions">5. Useful free additions</a></li>
+<li><a href="#6-one-optional-purchase-within-the-budget">6. One optional purchase within the budget</a></li>
+<li><a href="#7-how-the-pieces-fit-the-requested-features">7. How the pieces fit the requested features</a></li>
+<li><a href="#8-what-compatibility-means-for-your-equipment">8. What compatibility means for your equipment</a></li>
+<li><a href="#9-installation-order-and-acceptance-checks">9. Installation order and acceptance checks</a></li>
+<li><a href="#10-evidence-scope-and-budget-decision">10. Evidence, scope and budget decision</a></li>
+</ul>
+</div>
+</aside><article class="report">
+<p><strong>Research checked September 23, 2026. Budget: free first; consider an optional purchase around $20 only when it clearly saves work.</strong> No package was installed or purchased, and no Unity game was created during this review.</p>
+<p><strong>Recommendation:</strong> begin with Unity's <strong>Universal 2D template</strong>, reuse maintained packages, and build the family game's particular interaction, activity and shared-world rules. I did not find a complete template that already provides this combination of a Toca-style dollhouse, four separate devices, independent rooms, mobile host recovery and offline saves. The initial package budget can be <strong>$0</strong>. This is a researched candidate setup; it is not yet a device-tested combination.</p>
+<p><a href="bluey-game-research-2026-09-23.html#54-templates-packages-and-the-free-starting-setup">Back to the main plan, section 54</a> · <a href="family-playset-technical-research-2026-09-23.html">Networking research</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
+<h2 id="1-what-to-start-with">1. What to start with</h2>
+<p>Unity's Universal 2D template creates a project with URP and its 2D renderer already configured. It supplies the rendering foundation, rather than finished gameplay. That is a good fit for illustrated rooms, layered characters and draggable props. Start with simple sprite materials and restrained effects on the older iPad. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/urp/creating-a-new-project-with-urp.html">Unity 6.3 template documentation</a></p>
+<p>Use <strong>Unity 6.3 LTS</strong> as the candidate editor line. The previously reviewed <strong>6000.3.24f1</strong> patch is a concrete baseline, not a promise that every package combination is stable. Its release notes identify a 2D-renderer/Bloom black-screen issue, so leave Bloom out of the initial setup and review relevant fixes before freezing the editor version. Keep Windows and Mac on the same chosen patch. <a href="https://unity.com/releases/editor/whats-new/6000.3.24f1">6000.3.24f1 release notes</a></p>
+<p>The first slice should contain one character, a room and garden, a tap, bucket, plant and sponge, both movement options, and a save. Then add a second area, shared item ownership, automatic PC connection and mixed-device play. Prove required iPad hosting and recovery before producing large amounts of content. Do not begin by importing every optional package below.</p>
+<h2 id="2-template-comparison">2. Template comparison</h2>
+<p>These are reuse decisions based on their documented design and inspected sources, not measured estimates of hours saved.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Package comparison table"><table>
+<thead>
+<tr>
+<th>Template or example</th>
+<th>Useful material</th>
+<th>Fit for this game</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/urp/creating-a-new-project-with-urp.html">Unity Universal 2D</a></td>
+<td>Configured 2D rendering foundation</td>
+<td>Does not impose inventory, combat or room-travel rules</td>
+<td><strong>Use as the new project base</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Unity-Technologies/UnityPlayground">Unity Playground</a></td>
+<td>Small movement, collision and pickup examples; inspected project uses Unity 6000.0.66f2</td>
+<td>Its existing pickup behavior can take an item from another holder, contrary to our rule</td>
+<td><strong>Learning/reference only</strong>; adapt individual ideas</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop">Unity Boss Room</a></td>
+<td>Networked co-op patterns; inspected sample uses Unity 6000.0.52f1 and NGO 2.4.3</td>
+<td>An RPG sample with different session and gameplay assumptions</td>
+<td><strong>Networking reference</strong>, not the whole game base</td>
+</tr>
+<tr>
+<td><a href="https://mirror-networking.gitbook.io/docs/manual/examples/multiple-additive-scenes">Mirror additive-level examples</a></td>
+<td>Separately loaded areas and visibility patterns</td>
+<td>Useful architectural evidence, but Mirror code does not plug into NGO unchanged</td>
+<td><strong>Reference only</strong>; choose one networking framework</td>
+</tr>
+<tr>
+<td><a href="https://topdown-engine-docs.moremountains.com/multiplayer.html">TopDown Engine</a></td>
+<td>Character movement and a four-player local demo</td>
+<td>Its bundled multiplayer is local play in one application; separate networked devices need additional work</td>
+<td><strong>Do not buy as the multiplayer foundation</strong></td>
+</tr>
+<tr>
+<td><a href="https://adventurecreator.org/forum/discussion/16881/feasibility-check-host-authoritative-co-op-layer-on-top-of-ac-eventmanager-mirroring-possible">Adventure Creator</a></td>
+<td>Adventure interaction and story authoring</td>
+<td>Maintainer discussion describes custom co-op integration; blocking ActionLists change global cutscene state, which needs careful adaptation for independently playing children</td>
+<td><strong>Not the preferred foundation</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/UnityTechnologies/open-project-1">Chop Chop</a> / <a href="https://github.com/hsadler/unity-2d-topdown-template">hsadler top-down template</a></td>
+<td>Examples of event structure / grid placement</td>
+<td>Discontinued older 3D project / older grid-building assumptions and BinaryFormatter saves</td>
+<td><strong>Selected reference only</strong>, not imports into production</td>
+</tr>
+</tbody>
+</table></div>
+<p>The earlier <a href="bluey-game-research-2026-09-23.html#9-github-templates-and-components-what-is-actually-useful">main-plan source inspection</a> records repository revisions and additional limitations. An attractive demo or a “four players” label does not establish four iPads/phones, separate rooms, safe saves or host recovery.</p>
+<h2 id="3-official-free-packages-and-exact-candidates">3. Official free packages and exact candidates</h2>
+<p>The versions in this table were checked against <strong>Unity's 6000.3 package catalog</strong>. “Released for 6000.3” is Unity's published package status; it does not mean I ran the package on your devices. Core packages follow the editor. These are candidate versions to resolve and test together, not an already-created lockfile.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Package comparison table"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Checked version/status</th>
+<th>What it saves us</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.inputsystem.html">Input System</a></td>
+<td><strong>1.20.0</strong>, released for 6000.3</td>
+<td>Touch handling, input actions, on-screen joystick components and examples</td>
+<td>Initial setup</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.ugui.html">Unity UI / uGUI</a></td>
+<td><strong>Editor core package</strong>; use its compatible TextMeshPro integration</td>
+<td>Menus, large buttons, sliders, stage circles, picture prompts</td>
+<td>Initial setup</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.2d.animation.html">2D Animation</a></td>
+<td><strong>13.0.6</strong>, released</td>
+<td>Sprite rigging and reusable character animation</td>
+<td>When introducing the first illustrated character</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.2d.psdimporter.html">PSD Importer</a></td>
+<td><strong>12.0.2</strong>, released</td>
+<td>Layered character-art import</td>
+<td>Only if our art export uses supported layered files; individual PNG pieces can start the project</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.cinemachine.html">Cinemachine</a></td>
+<td><strong>3.1.7</strong>, released</td>
+<td>Camera following, confinement and transitions</td>
+<td>When room scrolling needs it; fixed cameras can start simply</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.localization.html">Localization</a></td>
+<td><strong>1.5.13</strong>, released</td>
+<td>English/Spanish string and asset tables</td>
+<td>Establish stable text/audio IDs early; English content first</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.addressables.html">Addressables</a></td>
+<td><strong>2.10.3</strong>, catalog's designated released version</td>
+<td>Controlled loading/unloading of rooms, books, voices and toys</td>
+<td>Early content pipeline, with local groups for offline play</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.transport.html">Unity Transport</a></td>
+<td><strong>2.7.4</strong>, released</td>
+<td>Network transport underneath NGO</td>
+<td>Multiplayer proof, as a qualified dependency combination</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.netcode.gameobjects.html">Netcode for GameObjects</a></td>
+<td><strong>2.13.2 editor-release baseline; 2.13.3 status needs resolution</strong></td>
+<td>Connections, messages and object replication</td>
+<td>First networking candidate; see section 4</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.multiplayer.playmode.html">Multiplayer Play Mode</a></td>
+<td><strong>2.0.2</strong>, released</td>
+<td>Multiple editor instances on one development computer</td>
+<td>Development/testing aid; not proof of mobile performance</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.multiplayer.tools.html">Multiplayer Tools</a></td>
+<td><strong>2.2.12</strong>, released</td>
+<td>Networking diagnostics and development tooling</td>
+<td>During multiplayer qualification</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.2d.spriteshape.html">2D SpriteShape</a></td>
+<td><strong>13.0.0</strong>, released</td>
+<td>Curved terrain/shape authoring</td>
+<td>Optional; painted dollhouse backgrounds may not need it</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.ai.navigation.html">AI Navigation</a></td>
+<td><strong>2.0.14</strong>, released</td>
+<td>NavMesh tools</td>
+<td>Evaluate only with our chosen walking-plane approach; it is not a complete illustrated-2D controller</td>
+</tr>
+</tbody>
+</table></div>
+<p>Do not select Addressables 4.x merely because a documentation link appears first. Likewise, a sample's older package set is not a reason to downgrade the entire game. Localization 1.5.13's registry manifest declares Addressables 1.25.0 and Newtonsoft JSON 3.0.2 dependencies; the proposed newer top-level Addressables version must be checked in the resolved project. <a href="https://packages.unity.com/com.unity.localization">Localization registry metadata</a></p>
+<h2 id="4-networking-stability-a-real-documentation-mismatch">4. Networking stability: a real documentation mismatch</h2>
+<p>The <strong>6000.3.24f1 editor release notes</strong> list an NGO package update from <strong>2.13.1 to 2.13.2</strong>. That gives us an editor-aligned baseline to investigate first. The published manifests for NGO 2.13.2 and 2.13.3 both declare Unity <strong>6000.0</strong> and Transport <strong>2.6.0</strong>. An editor minimum and a dependency declaration are not a tested combination with our proposed Transport 2.7.4. <a href="https://unity.com/releases/editor/whats-new/6000.3.24f1">Editor package changes</a>, <a href="https://packages.unity.com/com.unity.netcode.gameobjects">NGO registry</a></p>
+<p>The current 6000.3 catalog marks <strong>2.13.3 as pre-release</strong>, while the registry's latest tag and the GitHub release point to 2.13.3. This review does not guess which label should win. The previous technical review's “released v2.13.3 source” means a <strong>published GitHub release</strong>, not verified production status in Unity's editor catalog. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.netcode.gameobjects.html">Catalog</a>, <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/releases/tag/v2.13.3">Published v2.13.3 release</a></p>
+<p><strong>Decision:</strong> retain NGO as the first framework candidate, inspect Package Manager status in the exact editor patch, compare the 2.13.3 fixes against our prototype, then freeze one passing version set. Do not install a moving development branch. Do not call either candidate “proven stable on our iPads” before native tests.</p>
+<p>Even a fully qualified network package will not supply our complete automatic discovery, durable world model, room subscriptions, item-return policy, iPad host recovery or offline-save reconciliation. Those remain explicit game systems, as detailed in the <a href="family-playset-technical-research-2026-09-23.html">networking report</a>. The PC remains the normal host; either iPad hosting and automatic recovery remain required. Bluetooth stays removed.</p>
+<h2 id="5-useful-free-additions">5. Useful free additions</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Package comparison table"><table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Evidence checked</th>
+<th>Good use here</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://dotween.demigiant.com/download.php">DOTween Free</a></td>
+<td><strong>1.3.030</strong>, June 23, 2026; release includes a Unity 6000.3 initialization-warning fix</td>
+<td>Button bounce, opening drawers, fish bobbing, book hotspots and gentle feedback</td>
+<td><strong>Preferred small animation helper</strong>, add when first interactions need polish</td>
+</tr>
+<tr>
+<td><a href="https://github.com/KyryloKuzyk/PrimeTween">PrimeTween</a></td>
+<td>Publisher README specifies <strong>1.4.11</strong>; inspected revision July 18, 2026</td>
+<td>Alternative tweening library</td>
+<td>Credible alternative, <strong>not an additional dependency alongside DOTween</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/YarnSpinnerTool/YarnSpinner-Unity/releases/tag/v3.2.8">Yarn Spinner for Unity</a></td>
+<td><strong>3.2.8</strong>, August 11, 2026; MIT; release targets .NET Standard 2.1</td>
+<td>Branching teacher/parent dialogue and larger pretend adventures</td>
+<td><strong>Later</strong>, if dialogue complexity justifies it; simple quest cards do not need it</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Unity-UI-Extensions/com.unity.uiextensions/releases/tag/v3.0.0">Unity UI Extensions</a></td>
+<td><strong>3.0.0</strong>, June 19, 2026; release explicitly focuses on Unity 6</td>
+<td>Scroll snapping/carousels and selected menu controls</td>
+<td><strong>Optional</strong>; six circular stage buttons are already practical with ordinary uGUI</td>
+</tr>
+<tr>
+<td><a href="https://github.com/h8man/NavMeshPlus/tree/16283ee1040e591b9a99ddf93f37e9af93925aaf">NavMeshPlus</a></td>
+<td>Manifest <strong>0.2.23</strong>, Unity minimum 2022.3; MIT; inspected commit August 29, 2026</td>
+<td>Navigation surfaces built from 2D sprites/colliders for tap-to-walk and roaming parents</td>
+<td><strong>Pilot only</strong>; no claim of verified Unity 6.3 + iOS compatibility</td>
+</tr>
+</tbody>
+</table></div>
+<p>For NavMeshPlus, pin the inspected commit rather than its README's moving master branch. It contains its own fork of navigation components, so check overlap before adding Unity AI Navigation too. For simple rooms, authored walkable paths may be less work than maintaining a complex runtime NavMesh. Choose after the first room test.</p>
+<p>Yarn provides dialogue flow and presentation, not generated voices or multiplayer quest authority. Its Unity-localized line provider can use Unity Localization's text and audio assets. That lets English-first and later Spanish use the same stable line IDs. <a href="https://docs.yarnspinner.dev/components/line-provider/unity-localised-line-provider">Yarn Unity-localized provider</a>, <a href="https://docs.yarnspinner.dev/yarn-spinner-for-unity/samples/sample-guide-voice-over-and-localisation">Voice-over sample</a></p>
+<h2 id="6-one-optional-purchase-within-the-budget">6. One optional purchase within the budget</h2>
+<p><strong>DOTween Pro</strong> is the paid candidate worth keeping on the shortlist. The listing showed <strong>$15 USD regular price</strong>, with a <strong>$7.50 sale</strong> during this check, before applicable taxes; prices can change. Listed version: <strong>1.0.430</strong>, June 23, 2026. Budget against the regular price, not a temporary discount. <a href="https://marketplace.unity.com/packages/tools/visual-scripting/dotween-pro-32416">Current publisher listing</a></p>
+<p>Pro adds visual animation/path authoring and related tools. That could save repetitive Inspector/code work when making many doors, bouncing toys and decorative effects. Its path editor is not automatic obstacle-avoiding navigation. It does not replace cooking rules, saves or networking. <a href="https://dotween.demigiant.com/pro.php">Publisher's Pro feature description</a></p>
+<p><strong>Buy nothing yet.</strong> Use the free version for the first polished room. Consider Pro if visual authoring becomes a repeated bottleneck and you want to tune these effects yourself in Unity. Follow the publisher's upgrade process if that happens; avoid importing duplicate Free/Pro runtime copies. No evidence here justifies a measured “saves weeks” promise.</p>
+<h2 id="7-how-the-pieces-fit-the-requested-features">7. How the pieces fit the requested features</h2>
+<p>The following is our proposed integration design, informed by the sources above. These are implementation decisions rather than features promised by a template vendor.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Package comparison table"><table>
+<thead>
+<tr>
+<th>Requested behavior</th>
+<th>Reuse</th>
+<th>Game-specific work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Joystick or tap-to-walk, plus dragging</td>
+<td>Input System on-screen controls and touch APIs</td>
+<td>Assign each finger to UI, walking or a prop until release; a prop drag must not also issue a walking command</td>
+</tr>
+<tr>
+<td>Change character during play</td>
+<td>2D Animation, sprite libraries and Animator</td>
+<td>Keep player/profile identity separate from avatar art; appearance change preserves activity and held-item state</td>
+</tr>
+<tr>
+<td>Pour into a bucket, water plants, cook, clean</td>
+<td>Colliders, sprite feedback, audio, DOTween presentation</td>
+<td>Shared capability/recipe data; authority validates holder, target and quantities; one durable result per action</td>
+</tr>
+<tr>
+<td>Roaming parents, hide-and-seek</td>
+<td>Animator plus the selected navigation approach</td>
+<td>Parent task states, hiding slots, timed hints, seeking rules and interruption/resume behavior</td>
+</tr>
+<tr>
+<td>Books and dinosaur names read aloud</td>
+<td>uGUI, Localization, locally stored audio</td>
+<td>Page hotspots, narration sequence, large play/repeat buttons and child-friendly pacing</td>
+</tr>
+<tr>
+<td>Personal rooms, secret rooms and six worlds</td>
+<td>Addressables for local content loading</td>
+<td>Stable room IDs, independent travel, subscriptions, save ownership and restoration</td>
+</tr>
+<tr>
+<td>Four mixed-device players</td>
+<td>One selected NGO/Transport combination</td>
+<td>Automatic family discovery/joining, approved devices, shared item arbitration and host recovery</td>
+</tr>
+<tr>
+<td>Offline play and safe room saves</td>
+<td>Unity JSON serialization and persistent storage</td>
+<td>Versioned save records, stable IDs, backups, journal/recovery policy and reunion conflict handling</td>
+</tr>
+</tbody>
+</table></div>
+<p>Input System 1.20's registry includes an <strong>On-Screen Controls</strong> sample and a <strong>UI vs. Game Input</strong> sample. The inspected joystick source also documents isolated input actions for avoiding unwanted cancellation during device/control-scheme switching. Use these as focused references, then test simultaneous joystick and prop touches on each tablet. <a href="https://packages.unity.com/com.unity.inputsystem">Official package metadata</a>, <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.20/manual/devices-touch.html">Touch documentation</a>, <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.20/manual/on-screen-controls.html">On-screen controls</a></p>
+<p>For saving, a small explicit data model serialized as JSON is a reasonable free start. Unity's serializer has structural restrictions, including no ordinary Dictionary serialization; use suitable records/lists or deliberately choose a compatible serializer. Save stable content IDs instead of runtime scene-object references. Persistent storage is only a location: it does not automatically provide backup, merging or crash-safe transactions. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/json-serialization.html">Unity JSON serialization</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Application-persistentDataPath.html">persistentDataPath</a></p>
+<p>Keep authoritative timers and state independent of presentation. A cake should finish according to game time/state even if its animation is not being rendered. The Windows dedicated server must run without a UI, sound playback or an animation completion callback. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-optimizations.html">Dedicated Server optimizations</a></p>
+<h2 id="8-what-compatibility-means-for-your-equipment">8. What compatibility means for your equipment</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Package comparison table"><table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Known baseline</th>
+<th>Qualification needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iPad 7, A2197 / A10</td>
+<td>User reports iPadOS 18.6.2</td>
+<td>Primary performance target: touch responsiveness, memory, host workload and repeated room changes</td>
+</tr>
+<tr>
+<td>iPad 9, A2602 / A13</td>
+<td>User reports iPadOS 18.7.10</td>
+<td>Same gameplay and save format; test as both client and host</td>
+</tr>
+<tr>
+<td>iPhone 13 Pro Max, A2484</td>
+<td>User reports iOS 26.6.1</td>
+<td>Smaller-screen UI, permissions, reconnects and mixed-device play</td>
+</tr>
+<tr>
+<td>Samsung SM-S948U1</td>
+<td>Model supplied; installed Android version still unknown</td>
+<td>Native Android build, touch layout, resume behavior and network discovery; record installed OS before qualification</td>
+</tr>
+<tr>
+<td>Windows PC</td>
+<td>Main authoring machine and normal dedicated host</td>
+<td>Build server independently of graphics/audio; verify firewall/discovery and saved-world startup</td>
+</tr>
+<tr>
+<td>MacBook Pro 14-inch, 2021, M1 Pro, 16 GB</td>
+<td>Hardware supplied; current macOS/Xcode versions unknown</td>
+<td>Match editor patch and qualify native iOS export/build/signing tools</td>
+</tr>
+</tbody>
+</table></div>
+<p>Both iPads meet the previously checked Unity 6.3 baseline. That establishes an eligible target, not a performance guarantee for our entire world. Hardware, package APIs, native platform permissions, build tools and the final workload are separate checks. The Android OS and Mac software versions remain unverified; no complete end-to-end compatibility claim is justified yet. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/system-requirements.html">Unity 6.3 system requirements</a></p>
+<p>For travel, put required gameplay content, English voices and selected books/videos on the device. Addressables can organize local content; it does not require that our rooms download from a service. Use local groups deliberately and test a cold launch without internet. Remote/hotspot multiplayer remains an optional later goal.</p>
+<h2 id="9-installation-order-and-acceptance-checks">9. Installation order and acceptance checks</h2>
+<ol>
+<li><strong>Create the isolated base:</strong> new Universal 2D project under this game's folder, chosen Unity 6.3 patch, Input System and uGUI. Make native iPad and Android builds early. Keep the unrelated old project untouched.</li>
+<li><strong>Prove one interaction:</strong> bucket/tap/plant/sponge, finger ownership, joystick and tap walking, then a versioned save. Add DOTween Free only for visible feedback. Verify force-close/relaunch preserves committed progress.</li>
+<li><strong>Add the first character and content pipeline:</strong> 2D Animation; layered importer only if needed; English Localization assets; local Addressables loading. Check room transitions release unused resources and voices load offline.</li>
+<li><strong>Qualify networking:</strong> choose and lock NGO/Transport versions, use Multiplayer Play Mode and network diagnostics, then the PC server plus both iPads and phones. Simultaneous pickup must have one winner. A new join must see current item and room state.</li>
+<li><strong>Test the required difficult cases:</strong> PC absent, either iPad hosting, automatic discovery, planned handoff, abrupt host exit, resume, returning host, separate rooms and conflicting saved creations. Editor instances alone cannot pass these mobile lifecycle tests.</li>
+<li><strong>Add optional packages only for observed needs:</strong> Cinemachine for scrolling, navigation after the floor-plane decision, Yarn for substantial branching dialogue, UI Extensions for a useful specific control. Then grow activity content.</li>
+</ol>
+<p>Before accepting a package set, record the exact editor patch, package manifest and resolved lockfile, native build settings and device results. Use a fixed Git tag or commit for Git dependencies. Keep editor-only tooling and client presentation separate from server logic. Re-run the affected native checks after an upgrade; do not auto-update all packages during feature work.</p>
+<p>Physical-device acceptance must include release/IL2CPP builds, app suspend/resume, interruptions during a drag, repeated world travel, save/update preservation and the A10 host load. The existing <strong>30 FPS target is a proposed acceptance target</strong>, not a measured result. Measure memory and frame time with representative toys/NPCs/audio; no package badge can establish this for us.</p>
+<h2 id="10-evidence-scope-and-budget-decision">10. Evidence, scope and budget decision</h2>
+<p>This pass checked Unity's editor-specific package pages, the public Unity package registry, selected package source, repository manifests/releases, publisher documentation and the DOTween listing. Raw research records live in <a href="bluey-research/package-review-2026-09-23/official-package-summary.json">the package-review folder</a>. The earlier template and networking source snapshots remain in the main research folders.</p>
+<p>Freshly checked optional-package revisions include PrimeTween <code>3f06f369143fc896bc19cf346468818a0853ca11</code>, NavMeshPlus <code>16283ee1040e591b9a99ddf93f37e9af93925aaf</code>, UI Extensions release <code>v3.0.0</code>, and Yarn Spinner release <code>v3.2.8</code>. The registry copy of Input System 1.20.0 was inspected for its on-screen joystick source; only selected research files were saved outside any Unity Assets folder. No code was imported into a game.</p>
+<p><strong>Adopt in the plan:</strong> Universal 2D, a small official package set, DOTween Free when useful, explicit custom playset systems, and an early networking/version qualification gate. <strong>Initial package spend: $0. Optional later purchase: DOTween Pro, budget approximately $15 before tax.</strong> Keep the complete feature plan, but qualify the platform/network foundation before investing in all the rooms and mini-games.</p></article></div>
+<footer class="footer"><p>Source-backed research and a proposed setup. Native builds, package integration and physical-device tests remain to be done.</p><a href="family-playset-package-research-2026-09-23.md">Editable package report</a><a href="family-playset-technical-research-2026-09-23.html">Networking research</a><a href="bluey-game-research-2026-09-23.html">Main research and character board</a></footer></main></body></html>

@@ -1,0 +1,91 @@
+{
+  "research_date": "2026-09-23",
+  "sections": [
+    47,
+    48
+  ],
+  "main_report": "../bluey-game-research-2026-09-23.md",
+  "status": "Research and design only; no native build, device installation, multiplayer measurement, or art-rig implementation.",
+  "confirmed_decisions": [
+    "1–4 human family players across iPad, iPhone and Android.",
+    "Android device supplied: SM-S948U1; identified by Samsung as Galaxy S26 Ultra; installed Android version not supplied.",
+    "Every player may choose any available character, including playable Bandit and Chilli; no parent/child restrictions.",
+    "Keep two child-owned bedrooms and secret rooms; parent visitors do not replace owners."
+  ],
+  "proposed_architecture": [
+    "One game project with platform-specific builds and discovery adapters, common protocol and save schema.",
+    "PC preferred at home; one stable eligible mobile host away; automatic family joining after setup.",
+    "Four independent profiles, dynamic activity participants, atomic admission and object reservations.",
+    "Human character choice separate from NPC actor and activity role; duplicate favorites supported.",
+    "Full solo offline fallback; custom snapshot/event recovery and branch reconciliation."
+  ],
+  "requires_physical_tests": [
+    "Installed Android version and permission behavior.",
+    "A10 performance with four humans and independent zones.",
+    "Both iPads as host; Android and iPhone hosting candidates.",
+    "Actual hotspot provider also playing; mixed client routing and discovery.",
+    "Host loss with three surviving clients; four returning offline branches."
+  ],
+  "sources": [
+    {
+      "title": "Unity NGO supported platforms",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/index.html",
+      "finding": "NGO 2.13 documentation lists Unity 6+, iOS and Android support; does not certify this game or its capacity.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Unity connection approval",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/connection-approval.html",
+      "finding": "Connection approval hooks support an application-defined admission policy. Four humans is our design target, not an engine limit.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Android network service discovery",
+      "url": "https://developer.android.com/develop/connectivity/wifi/use-nsd",
+      "finding": "NsdManager implements DNS-SD with cross-platform discovery and multiplayer use cases.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Android local network permission",
+      "url": "https://developer.android.com/privacy-and-security/local-network-permission",
+      "finding": "Android 17 enforces local-network protections for target SDK 37+; broad access uses ACCESS_LOCAL_NETWORK. Android 16 has an opt-in path. Apply OS/target-aware behavior.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Unity 6.3 Android build process",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/android-BuildProcess.html",
+      "finding": "Android build profile can produce APK and Build and Run with Android dependencies installed.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Unity Screen.safeArea",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Screen-safeArea.html",
+      "finding": "Returns safe screen rectangle; phone controls need actual layout/device checks.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Apple TN3111 Wi-Fi API overview",
+      "url": "https://developer.apple.com/documentation/technotes/tn3111-ios-wifi-api-overview",
+      "finding": "Apple proprietary peer-to-peer Wi-Fi is Apple-only. Newer Wi-Fi Aware is not the iPadOS 18 baseline. Earlier research also read official DocC JSON.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Samsung Galaxy S26 Ultra SM-S948U1 update record",
+      "url": "https://doc.samsungmobile.com/SM-S948U1/037285260311/eng.html",
+      "finding": "Confirms model name. Published Android 16 firmware does not prove installed OS on user phone.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Bandit official character reference",
+      "url": "https://www.bluey.tv/characters/bandit/",
+      "finding": "Official page and Bandit.png character pose used as a linked portrait reference, not a finished game asset.",
+      "checked": "2026-09-23"
+    },
+    {
+      "title": "Chilli official character reference",
+      "url": "https://www.bluey.tv/characters/chilli/",
+      "finding": "Official page and Chilli.png character pose used as a linked portrait reference, not a finished game asset.",
+      "checked": "2026-09-23"
+    }
+  ]
+}

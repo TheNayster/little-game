@@ -1,0 +1,5 @@
+{
+  "name": "LittleWeeps.Runtime",
+  "rootNamespace": "LittleWeeps.Runtime",
+  "references": ["LittleWeeps.Core", "Unity.InputSystem", "UnityEngine.UI"]
+}

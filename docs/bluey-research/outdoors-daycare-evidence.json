@@ -1,0 +1,276 @@
+{
+  "research_date": "2026-09-23",
+  "main_report": "../bluey-game-research-2026-09-23.md",
+  "sections": [
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "status": "Research and proposed designs only; no Unity implementation or device testing.",
+  "catalog_counts": {
+    "beach": 10,
+    "creek": 10,
+    "park": 12,
+    "learning_stations": 12,
+    "imagination_stories": 9,
+    "worlds": 6
+  },
+  "timing_preference": "Short 20–30 minute pretend day is proposed; user confirmation not yet recorded.",
+  "sources": [
+    {
+      "label": "The Beach, S1E26",
+      "url": "https://www.bluey.tv/watch/season-1/the-beach/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-1/the-beach/",
+      "page_title": "Bluey Season 1, Episode 26 | The Beach",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "The Creek, S1E29",
+      "url": "https://www.bluey.tv/watch/season-1/the-creek/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-1/the-creek/",
+      "page_title": "Bluey Season 1, Episode 29 | The Creek",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Barky Boats, S2E30",
+      "url": "https://www.bluey.tv/watch/season-2/barky-boats/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-2/barky-boats/",
+      "page_title": "Bluey Season 2, Episode 30 | Barky Boats",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Piggyback, S2E18",
+      "url": "https://www.bluey.tv/watch/season-2/piggyback/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-2/piggyback/",
+      "page_title": "Bluey Season 2, Episode 18 | Piggyback",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "See Saw, S2E27",
+      "url": "https://www.bluey.tv/watch/season-2/see-saw/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-2/see-saw/",
+      "page_title": "Bluey Season 2, Episode 27 | See Saw",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Bike, S1E11",
+      "url": "https://www.bluey.tv/watch/season-1/bike/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-1/bike/",
+      "page_title": "Bluey Season 1, Episode 11 | Bike",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Shadowlands, S1E5",
+      "url": "https://www.bluey.tv/watch/season-1/shadowlands/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-1/shadowlands/",
+      "page_title": "Bluey Season 1, Episode 5 | Shadowlands",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Calypso character reference",
+      "url": "https://www.bluey.tv/characters/calypso/",
+      "category": "character reference",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/characters/calypso/",
+      "page_title": "Calypso - Characters | Bluey Official Website",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "NAEYC: teaching to enhance development and learning",
+      "url": "https://www.naeyc.org/node/3812",
+      "category": "learning principles",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.naeyc.org/node/3812",
+      "page_title": "DAP: Teaching to Enhance Each Child’s Development and Learning | NAEYC",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Head Start literacy",
+      "url": "https://headstart.gov/school-readiness/article/literacy-preschool",
+      "category": "learning principles",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_check_error": "HTTP Error 403: Forbidden",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate.",
+      "access_note": "Direct script received HTTP 403; article text was successfully retrieved and reviewed through web research tool."
+    },
+    {
+      "label": "Head Start music and patterns",
+      "url": "https://headstart.gov/teaching-practices/play-head-start-way/1-2-3-dance-me",
+      "category": "learning principles",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_check_error": "HTTP Error 403: Forbidden",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate.",
+      "access_note": "Direct script received HTTP 403; article text was successfully retrieved and reviewed through web research tool."
+    },
+    {
+      "label": "Unity PlayScheduled",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/AudioSource.PlayScheduled.html",
+      "category": "engine documentation",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/AudioSource.PlayScheduled.html",
+      "page_title": "Unity - Scripting API: AudioSource.PlayScheduled",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Calypso, S1E17",
+      "url": "https://www.bluey.tv/watch/season-1/calypso/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-1/calypso/",
+      "page_title": "Bluey Season 1, Episode 17 | Calypso",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Helicopter, S2E25",
+      "url": "https://www.bluey.tv/watch/season-2/helicopter/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-2/helicopter/",
+      "page_title": "Bluey Season 2, Episode 25 | Helicopter",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Wild Girls, S3E44",
+      "url": "https://www.bluey.tv/watch/season-3/wild-girls/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-3/wild-girls/",
+      "page_title": "Bluey Season 3, Episode 44 | Wild Girls",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Early Baby, S1E41",
+      "url": "https://www.bluey.tv/watch/season-1/early-baby/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-1/early-baby/",
+      "page_title": "Bluey Season 1, Episode 41 | Early Baby",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Typewriter, S2E48",
+      "url": "https://www.bluey.tv/watch/season-2/typewriter/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-2/typewriter/",
+      "page_title": "Bluey Season 2, Episode 48 | Typewriter",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Mums and Dads, S1E33",
+      "url": "https://www.bluey.tv/watch/season-1/mums-and-dads/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-1/mums-and-dads/",
+      "page_title": "Bluey Season 1, Episode 33 | Mums and Dads",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "The Adventure, S1E38",
+      "url": "https://www.bluey.tv/watch/season-1/the-adventure/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-1/the-adventure/",
+      "page_title": "Bluey Season 1, Episode 38 | The Adventure",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Space, S3E34",
+      "url": "https://www.bluey.tv/watch/season-3/space/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-3/space/",
+      "page_title": "Bluey Season 3, Episode 34 | Space",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Explorers, S3E15",
+      "url": "https://www.bluey.tv/watch/season-3/explorers/",
+      "category": "episode inspiration",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://www.bluey.tv/watch/season-3/explorers/",
+      "page_title": "Bluey Season 3, Episode 15 | Explorers",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Unity ScriptableObject manual",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html",
+      "category": "engine documentation",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html",
+      "page_title": "Unity - Manual: ScriptableObject",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    },
+    {
+      "label": "Unity NetworkVariables",
+      "url": "https://mp-docs.dl.it.unity3d.com/netcode/current/basics/networkvariable/index.html",
+      "category": "engine documentation",
+      "checked": "2026-09-23",
+      "scope": "Source supports inspiration or documented principles; game mechanics and numeric targets are original proposals.",
+      "http_status": 200,
+      "resolved_url": "https://mp-docs.dl.it.unity3d.com/netcode/current/basics/networkvariable/index.html",
+      "page_title": "NetworkVariables | Unity Multiplayer",
+      "content_review": "Reviewed through web research tool on 2026-09-23; direct HTTP check is separate."
+    }
+  ]
+}

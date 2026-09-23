@@ -1,0 +1,117 @@
+{
+  "researchDate": "2026-09-23",
+  "scope": "Add narrated interactive house books, a local video library, dinosaur toys and a discovery mini-game to the existing main research plan.",
+  "mainFile": "../bluey-game-research-2026-09-23.md",
+  "sections": [
+    25,
+    26,
+    27,
+    28,
+    29
+  ],
+  "status": "Research/design only. No Unity implementation, generated media, imported video, or device verification.",
+  "proposedContent": {
+    "books": 6,
+    "firstBookPages": 8,
+    "dinosaurToyTypes": 20,
+    "discoveryInvitations": 5
+  },
+  "museumCatalog": "dinosaur-reference-catalog.json",
+  "distinction": "Capabilities and factual dinosaur references are sourced. UI flows, content counts, scripts, interaction rules, storage estimates, encoding starting points, and implementation architecture are proposals or stated calculations.",
+  "sources": [
+    {
+      "url": "https://journals.sagepub.com/doi/full/10.3102/0034654314566989",
+      "title": "Benefits and Pitfalls of Multimedia and Interactive Features in Technology-Enhanced Storybooks: A Meta-Analysis",
+      "type": "Primary research",
+      "use": "43 studies, 2,147 children; multimedia benefits and interaction distraction inform restrained story-related hotspots.",
+      "access": "Full article read during research; a later repeat request timed out. No per-page hotspot count is prescribed by this study."
+    },
+    {
+      "url": "https://www.nhm.ac.uk/discover/what-are-dinosaurs.html",
+      "title": "What are dinosaurs?",
+      "type": "Museum",
+      "use": "Distinguish dinosaurs from pterosaurs and marine reptiles."
+    },
+    {
+      "url": "https://www.nhm.ac.uk/discover/dino-directory.html",
+      "title": "Dino Directory",
+      "type": "Museum",
+      "use": "Individual verified species/genus pages are listed in dinosaur-reference-catalog.json; source for names and English pronunciation guides."
+    },
+    {
+      "url": "https://docs.unity3d.com/Packages/com.unity.localization@1.5/manual/AssetTables.html",
+      "title": "Localization asset tables",
+      "type": "Official technical documentation",
+      "use": "Locale-specific assets addressed by shared keys. Package version compatibility must be checked during implementation."
+    },
+    {
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/AudioSource-timeSamples.html",
+      "title": "AudioSource.timeSamples",
+      "type": "Official technical documentation",
+      "use": "PCM sample playback position; proposed reviewed cue-timing workflow."
+    },
+    {
+      "url": "https://support.google.com/youtube/answer/7381437?hl=en",
+      "title": "YouTube offline video FAQ",
+      "type": "Official product documentation",
+      "use": "YouTube offline downloads are encrypted and remain playable through YouTube, not ordinary importable MP4 files."
+    },
+    {
+      "url": "https://developers.google.com/youtube/iframe_api_reference",
+      "title": "YouTube IFrame Player API",
+      "type": "Official technical documentation",
+      "use": "Online embedded player is a separate integration; not selected for first local clip library."
+    },
+    {
+      "url": "https://support.apple.com/en-us/111911",
+      "title": "iPad seventh-generation technical specifications",
+      "type": "Manufacturer",
+      "use": "H.264/AAC media support. Does not establish tested Unity game performance."
+    },
+    {
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/video-sources-compatibility-target-platforms.html",
+      "title": "Video compatibility with target platforms",
+      "type": "Official technical documentation",
+      "use": "Validate codecs on target build platforms, not only Windows Editor."
+    },
+    {
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/VideoSources-FileCompatibility.html",
+      "title": "Video file compatibility with the Unity Editor",
+      "type": "Official technical documentation",
+      "use": "H.264 recommended for many platforms; distinguish Editor import and device compatibility."
+    },
+    {
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/DocumentPickerProgrammingGuide/Introduction/Introduction.html",
+      "title": "About the Document Picker",
+      "type": "Official archived technical guide",
+      "use": "Import/copy versus external-file access model.",
+      "limitation": "Archived 2015 overview; use current API for implementation, not its old setup instructions."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller",
+      "title": "UIDocumentPickerViewController",
+      "type": "Official current API entry",
+      "use": "Implementation reference for a proposed native file importer.",
+      "access": "API entry identified; web reader exposes limited JavaScript-rendered body. No bridge built or tested."
+    },
+    {
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/StreamingAssets.html",
+      "title": "StreamingAssets",
+      "type": "Official technical documentation",
+      "use": "Read-only runtime bundled files versus writable persistentDataPath."
+    },
+    {
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Video.VideoPlayer.Prepare.html",
+      "title": "VideoPlayer.Prepare",
+      "type": "Official technical documentation",
+      "use": "Preparation resources, prepareCompleted/isPrepared, Play preparation, Stop versus Pause."
+    },
+    {
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Video.VideoPlayer.html",
+      "title": "VideoPlayer",
+      "type": "Official technical documentation",
+      "use": "Native video playback component and lifecycle/event surface."
+    }
+  ],
+  "acceptance": "All content, imports, playback, host responsiveness, update retention and signing renewal require physical tests on A2197 and A2602 before completion."
+}

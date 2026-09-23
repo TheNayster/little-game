@@ -1,0 +1,12 @@
+{
+  "id": "android-install",
+  "url": "https://developer.android.com/developer-verification/guides/faq",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Frequently asked questions &nbsp;|&nbsp; Android developer verification &nbsp;|&nbsp; Android Developers",
+  "sha256": "cc9b0d17440136685876b5ffdcf2635e6ee210507fe9a2d0ad0cc848b00aab8c",
+  "excerpts": [
+    "don't have bad end-user experience. Last updated: June 8, 2026 Will Android Debug Bridge (ADB) install work without registration? As a developer, you are free to install apps without verification with ADB. This is designed to support developers' need to develop, test apps that are not intended or not yet ready to distribute to the wider consumer population. Last updated: Sept 3, 2025 Do enterprise apps need to complete the verification requirements? Apps distributed through your organization store, on managed devices, won't need to complete the verification requirements since your IT admin has vetted them. However, we recommend to still register and claim these apps since this creates a smooth installation, if the app is downloaded from another source (not the managed store) or to a non-managed device. Last updated: Sept 3, 2025 If I want to modify or hack s",
+    " Android Studio Overview Register on Android Developer Console Overview Full distribution Limited distribution Register on Google Play Console Register package names with the Android Developer Console API Check registration status FAQ Build AI experiences Get started Get started Hello, world! Developer Verification Adaptive apps Compose for UI AI-powered IDE Training Monetization with Play ↗️ Optimize by form factor Phones, tablets, foldables Android for Cars Android TV Android XR Googlebook ChromeOS Wear OS Build by category Games Camera & media Social & messaging Health & fitness Productivity Enterprise apps Get the latest Latest updates Experimental updates Android Studio preview Jetpack & Compose libraries Wear OS releases Privacy Sandbox ↗️ Excellent Experiences Learn more UI Design Design for Android Mobile Desktop experiences XR Headsets & XR Glasses "
+  ]
+}

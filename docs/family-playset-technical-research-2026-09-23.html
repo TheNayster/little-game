@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Family Playset — technical research</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;background:radial-gradient(circle at center,#fff 0 28%,#eef3ee 28% 29%,transparent 29%)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid transparent;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+
+.tech-intro{padding:42px 0 24px}.tech-intro h1{font-size:clamp(32px,4vw,52px);margin:0 0 18px}.tech-intro p{max-width:880px}.tech-status{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}.tech-status span{border-radius:20px;background:#e7f0f1;padding:6px 14px;font-size:14px}.topbar nav{flex-wrap:wrap}
+</style></head><body>
+<header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Technical research navigation"><a href="bluey-game-research-2026-09-23.html#53-source-backed-networking-and-recovery-review">Main research</a><a href="#1-automatic-pc-connection-is-the-normal-path">Automatic connection</a><a href="#9-what-changed-in-confidence-and-what-to-build-first">Findings</a></nav></header>
+<main class="wrap" id="top"><div class="tech-intro"><p class="eyebrow">Documentation + source review · 23 September 2026</p><h1>One family world.<br>Come and go freely.</h1><p class="intro">Automatic connection to your PC server is the normal path. This research checks what the networking tools actually provide, what needs custom game logic, and what still needs to be proven on your iPads.</p></div>
+<div class="tech-status"><span>PC server: normal home play</span><span>iPad hosting &amp; recovery: required</span><span>Offline solo: required</span><span>Bluetooth: removed</span></div>
+<div class="report-layout"><aside class="contents"><h3>In this review</h3><div class="toc">
+<ul>
+<li><a href="#1-automatic-pc-connection-is-the-normal-path">1. Automatic PC connection is the normal path</a></li>
+<li><a href="#2-the-selected-network-path">2. The selected network path</a></li>
+<li><a href="#3-discovery-across-windows-ipad-and-android">3. Discovery across Windows, iPad and Android</a></li>
+<li><a href="#4-what-the-networking-packages-actually-solve">4. What the networking packages actually solve</a></li>
+<li><a href="#5-independent-areas-have-an-actual-source-example">5. Independent areas have an actual source example</a></li>
+<li><a href="#6-host-recovery-needs-state-outside-network-objects">6. Host recovery needs state outside network objects</a></li>
+<li><a href="#7-shared-toys-automatic-returns-and-save-conflicts">7. Shared toys, automatic returns and save conflicts</a></li>
+<li><a href="#8-older-ipad-performance-and-the-headless-server-constraint">8. Older-iPad performance and the headless-server constraint</a></li>
+<li><a href="#9-what-changed-in-confidence-and-what-to-build-first">9. What changed in confidence and what to build first</a></li>
+<li><a href="#10-reproducible-evidence-and-boundaries">10. Reproducible evidence and boundaries</a></li>
+</ul>
+</div>
+</aside><article class="report">
+<p><strong>Reviewed September 23, 2026.</strong> This follows the <a href="family-playset-feasibility-audit-2026-09-23.html">full feasibility audit</a> and addresses the parts that needed stronger evidence. It incorporates your latest preference: the iPads automatically connect to the Windows PC server when the game opens. The other iPad, Android phone, or iPhone joins that same world when opened later.</p>
+<p><strong>Conclusion:</strong> that normal home-play arrangement is a strong fit for a dedicated server. Required iPad hosting and automatic recovery remain in the plan for when the PC is unavailable. Full offline solo remains required; travel connectivity remains optional.</p>
+<p><strong>Package-status clarification from the subsequent review:</strong> “released v2.13.3 source” below refers to a published GitHub release. The 6000.3 editor catalog labels that version differently. The <a href="family-playset-package-research-2026-09-23.html#4-networking-stability-a-real-documentation-mismatch">package review</a> compares it with the editor-release baseline, NGO 2.13.2, and explains why the exact NGO/Transport set still needs qualification. None of this report's source inspection establishes a tested production lockfile.</p>
+<p>This review combines official platform/package documentation, released source code, selected development-source excerpts, and primary distributed-systems research. The findings below distinguish <strong>documented behavior</strong>, <strong>source-confirmed behavior</strong>, <strong>our proposed design</strong>, and <strong>device proof still needed</strong>. No Unity project, server, networking prototype, or on-device benchmark was created or run. Downloaded source is research material, not imported game code.</p>
+<h2 id="1-automatic-pc-connection-is-the-normal-path">1. Automatic PC connection is the normal path</h2>
+<p>A dedicated server is a separate process that owns the world and accepts clients. A listen server combines that authority with one player's app. The distinction matters: closing an iPad client does not remove the dedicated PC server. This architecture directly fits your online-game comparison. <a href="https://fish-networking.gitbook.io/docs/guides/high-level-overview/networking-models">FishNet's explanation of dedicated and listen servers</a></p>
+<p><strong>Proposed everyday flow:</strong></p>
+<ol>
+<li>The PC server starts, restores the family world, opens its game port, and advertises availability on the home network.</li>
+<li>Child one opens the game. It restores their local profile, discovers the paired PC, authenticates, and joins without a Host/Join menu.</li>
+<li>Child two opens later and independently joins the same server. They can start in their own room, visit the first child, or go elsewhere.</li>
+<li>Either child closes their app. The server releases their temporary grabs and activity roles; everybody else's world continues.</li>
+<li>A returning child receives the current state, including moved objects and finished activities. They do not bring an old room snapshot that overwrites the ongoing world.</li>
+</ol>
+<p>The PC may connect by Ethernet and the mobile devices by Wi-Fi, provided the router permits communication between them. This local path does not require internet, a cloud account, Relay, or router port forwarding. That is an architectural consequence of using a reachable local server, not a claim that the family's router has already passed testing. Guest-network isolation and Windows firewall rules must be checked during setup.</p>
+<p>“Automatic” means <strong>after one parent setup</strong>: permit local networking, pair the family devices, establish stable child/adult profiles, and configure the PC server's startup and local firewall access. Discovery names alone are not authentication. Use a paired device credential and protocol/content checks, rather than trusting any service named “Family Playset.” No child should repeatedly enter addresses or approve invitations.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Technical research table"><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Required behavior</th>
+<th>Host migration needed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Another player opens the game</td>
+<td>Add their connection and personal view</td>
+<td>No</td>
+</tr>
+<tr>
+<td>One player leaves the beach for the creek</td>
+<td>Change only that player's zone subscription and view</td>
+<td>No</td>
+</tr>
+<tr>
+<td>One iPad closes while the PC serves</td>
+<td>Release its transient interactions; others continue</td>
+<td>No</td>
+</tr>
+<tr>
+<td>A player changes character</td>
+<td>Change appearance while keeping profile, room and activity identity</td>
+<td>No</td>
+</tr>
+<tr>
+<td>The PC process crashes or becomes unreachable</td>
+<td>Recover from replicated state on an eligible iPad</td>
+<td>Yes, or start a separate continuation branch during a partition</td>
+</tr>
+<tr>
+<td>An iPad is hosting and closes</td>
+<td>Remaining eligible device recovers automatically</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table></div>
+<p>This keeps ordinary family play much simpler than continuously making the iPads compete to host. An already healthy iPad session should also remain stable when the PC becomes available later; any transfer back is an explicit automatic handoff at a coherent checkpoint.</p>
+<h2 id="2-the-selected-network-path">2. The selected network path</h2>
+<p><strong>Decision: Bluetooth is removed from the feature plan and backlog at your request.</strong> There is no Bluetooth implementation, discovery feature, transport experiment or test milestone to build.</p>
+<p>Use Wi-Fi for mobile devices and either Ethernet or Wi-Fi for the PC. Unity Transport's built-in driver uses UDP sockets or WebSockets, fitting the ordinary local-network path. <a href="https://docs.unity3d.com/Packages/com.unity.transport@2.6/manual/index.html">Unity Transport 2.6 documentation</a></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Technical research table"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Selected behavior</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC reachable on the home network</td>
+<td>Automatically join the paired PC's world</td>
+<td>Normal required path</td>
+</tr>
+<tr>
+<td>PC unavailable, family devices share Wi-Fi</td>
+<td>Either iPad can host; others automatically join; recover when authority is lost</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>No usable shared connection, or child chooses solo</td>
+<td>Full local play with saved progress</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Phone hotspot or remote connection to home PC</td>
+<td>Qualify separately after the core game works</td>
+<td>Optional travel feature</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-discovery-across-windows-ipad-and-android">3. Discovery across Windows, iPad and Android</h2>
+<p>Use a common DNS-SD service contract with native adapters. Windows provides <code>DnsServiceRegister</code>; its service registration is asynchronous and tied to the process lifetime. Android's <code>NsdManager</code> provides DNS-SD registration, discovery and resolution across platforms. These are concrete platform primitives for automatic server discovery, not complete game/session managers. <a href="https://learn.microsoft.com/en-us/windows/win32/api/windns/nf-windns-dnsserviceregister">Microsoft service registration</a>, <a href="https://developer.android.com/develop/connectivity/wifi/use-nsd">Android NSD guide</a></p>
+<p>On iPadOS 18, use supported Bonjour/Network framework APIs and declare the service and local-network purpose in the app. Apple's privacy guidance distinguishes system Bonjour from an app directly sending raw multicast/broadcast packets; the latter has additional entitlement requirements. A downloaded discovery script must be inspected before assuming it works under the intended signing setup. <a href="https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy">Apple local-network privacy</a></p>
+<p><strong>Source finding:</strong> Mirror's inspected <code>NetworkDiscoveryBase</code> creates <code>UdpClient</code> instances with <code>EnableBroadcast = true</code> and sends discovery toward <code>IPAddress.Broadcast</code>. That is why we should not copy its discovery sample unchanged as our iPad setup. This finding does not invalidate Mirror's gameplay networking. <a href="https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Components/Discovery/NetworkDiscoveryBase.cs#L167">Pinned Mirror discovery source</a></p>
+<p><strong>Proposed adapter contract:</strong> advertise and resolve a service; report endpoint changes/loss; stop on suspension; restart on foreground; surface denied permission distinctly from “no server found.” Advertise only compact, non-secret metadata such as protocol version, world identifier and readiness. Authenticate after connection. Re-resolve changing addresses instead of making children enter IP addresses. Bonjour on ordinary LAN must not be confused with Apple's separate peer-to-peer Wi-Fi transport.</p>
+<p>Use one connection controller per device. An existing paired family session wins; otherwise prefer a reachable PC, then negotiate among eligible mobile hosts. Ignore stale callbacks using an attempt generation. Retry in the foreground with bounded backoff, rather than repeatedly scanning and reconnecting every frame. A short discovery grace period is a tuning choice, not proof that an unseen peer does not exist.</p>
+<h2 id="4-what-the-networking-packages-actually-solve">4. What the networking packages actually solve</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Technical research table"><table>
+<thead>
+<tr>
+<th>Candidate</th>
+<th>Verified useful part</th>
+<th>Missing or limiting part</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NGO + Unity Transport</td>
+<td>GameObject networking, server/client model and cross-platform IP transport</td>
+<td>Exact package status/version qualification, custom LAN discovery, durable world state and LAN host recovery remain work</td>
+<td>Retain as the first prototype candidate</td>
+</tr>
+<tr>
+<td>Mirror</td>
+<td>Actual additive-level sample with per-player scene transitions and scene interest management</td>
+<td>No built-in host migration in its documented FAQ; broadcast discovery needs replacement for our chosen route</td>
+<td>Useful reference or alternative, not an automatic recovery shortcut</td>
+</tr>
+<tr>
+<td>FishNet</td>
+<td>Dedicated/listen servers and connection-specific scene management</td>
+<td>Its documentation explicitly says host migration is not built in</td>
+<td>Viable alternative to measure if NGO hits a demonstrated blocker</td>
+</tr>
+<tr>
+<td>Photon Fusion 2</td>
+<td>Documented reconnect and host-migration samples</td>
+<td>The demonstrated migration path uses Photon coordination; application state restoration still needs code</td>
+<td>Strong reference, but not evidence of a drop-in offline LAN solution</td>
+</tr>
+</tbody>
+</table></div>
+<p><a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/index.html">NGO package documentation</a>, <a href="https://mirror-networking.gitbook.io/docs/manual/faq">Mirror FAQ</a>, <a href="https://fish-networking.gitbook.io/docs/guides/high-level-overview/networking-models">FishNet networking models</a>, <a href="https://doc.photonengine.com/fusion/v2/technical-samples/fusion-disconnect-reconnect">Photon reconnect/migration sample</a></p>
+<p>Unity's MPS documentation separates <strong>host election</strong> from <strong>state migration</strong>. Its default migration implementation is for Netcode for Entities; for NGO it points to Distributed Authority. Crucially, the custom migration snapshot APIs described there store/retrieve snapshots through <strong>Lobby</strong>. Adding <code>IMigrationDataHandler</code> is therefore not itself an offline LAN migration implementation. Our inference: keep local recovery independent of cloud sessions instead of treating an MPS example as the whole solution. <a href="https://docs.unity.com/en-us/mps-sdk/session-host-migration">Unity session migration</a></p>
+<p>Photon's reconnect example likewise distinguishes a reconnect token from migration. Its migration procedure requires snapshots, shutting down the old runner, creating another runner, and reconstructing network objects; the sample unloads and reloads its scene. Built-in assistance does not establish zero visible interruption or automatic preservation of all arbitrary game data. <a href="https://doc.photonengine.com/fusion/v2/technical-samples/fusion-disconnect-reconnect">Photon's actual migration procedure</a></p>
+<p><strong>Version finding:</strong> the inspected NGO development head declares package <strong>3.0.1</strong>, Unity <strong>6000.7.0b1</strong>, and different transport/Entities dependencies. It is not the package to paste into our proposed Unity 6.3 project. I separately checked the released <strong>v2.13.3</strong> source: its manifest declares Unity <strong>6000.0</strong> and Transport <strong>2.6.0</strong>. Its release notes include scene synchronization and Rigidbody2D fixes. This makes 2.13.3 a concrete package candidate to qualify with 6.3, not a certified lockfile. <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/297c8b0d38ab666741752a1db43a1a4a61294a08/com.unity.netcode.gameobjects/package.json">Development manifest</a>, <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/package.json">Released manifest</a>, <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/releases/tag/v2.13.3">v2.13.3 release</a></p>
+<p>Keep Unity 6.3 LTS as the editor branch candidate. Recheck its available patches and renderer issues when creating the project. No editor/package was installed or upgraded during this research.</p>
+<h2 id="5-independent-areas-have-an-actual-source-example">5. Independent areas have an actual source example</h2>
+<p>Mirror's additive-level portal sends scene messages through <strong>one player's connection</strong>, moves that player's server object into the destination scene, then adds that player back. Its scene interest manager compares actual scene identities. This is concrete evidence for the architectural pattern: one server, different player locations, shared visibility when players meet. <a href="https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Examples/AdditiveLevels/Scripts/Portal.cs#L92">Portal source</a>, <a href="https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Components/InterestManagement/Scene/SceneInterestManagement.cs">Scene interest source</a></p>
+<p>It is a reference, not our finished scene loader: the example loads its subscenes on the server, uses Physics3D, and explicitly avoids unloading the server's subscene when the local host player travels. Copying the full visual scenes onto an A10 host could defeat our memory plan. NGO requires its own implementation; Mirror API calls cannot simply be pasted into NGO. <a href="https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Examples/AdditiveLevels/Scripts/AdditiveLevelsNetworkManager.cs#L42">Example manager source</a></p>
+<p>FishNet's scene documentation supplies another useful constraint: loading by name with stacking enabled creates separate instances; loading the existing handle joins that instance. Connection-scene unload policy also affects whether an empty scene stays loaded. This reinforces the need to distinguish <strong>a world identity</strong> from a loaded scene or display name. <a href="https://fish-networking.gitbook.io/docs/guides/features/scene-management/scene-stacking">FishNet stacking</a>, <a href="https://fish-networking.gitbook.io/docs/guides/features/scene-management/scene-data/sceneloaddata">Scene load data</a></p>
+<p><strong>Our proposed implementation:</strong> one ordinary <code>zoneId</code> for the creek, one for the playground, and stable separate IDs for each bedroom/secret room. The authority keeps logical state for all of them. Clients load detailed art for their own view. A zone transition has a destination-ready acknowledgement and a current snapshot/revision before the arriving child can manipulate its toys. The sibling's zone and activity do not reload. Separate imagination activities can have explicit instance IDs; a recovery conflict must never create an invisible second ordinary playground.</p>
+<p>Two replication channels serve different purposes: nearby visual updates keep the screen responsive; compact whole-world recovery state allows a successor host to restore offscreen areas. Object visibility is not a substitute for the second channel. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/object-visibility.html">NGO visibility rules</a></p>
+<h2 id="6-host-recovery-needs-state-outside-network-objects">6. Host recovery needs state outside network objects</h2>
+<p><strong>Released-source finding:</strong> NGO v2.13.3's shutdown path calls <code>DespawnAndDestroyNetworkObjects</code>, disposes networking services, and clears the spawn manager. The spawn code destroys ordinary dynamically spawned objects unless a prefab handler controls their destruction. <code>DontDestroyWithOwner</code> concerns a departing object's owner; it does not preserve the entire world through a network-manager shutdown. <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Core/NetworkManager.cs#L1659">Shutdown source</a>, <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Spawning/NetworkSpawnManager.cs#L1488">Spawn cleanup</a>, <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Core/NetworkObject.cs#L1387">Owner-disconnect flag</a></p>
+<p><strong>Design consequence:</strong> persistent entity IDs, room layouts, contents, activity checkpoints and accepted operation IDs must live in a separate serializable model. NetworkObjects present that model during a connection; they cannot be its only durable copy. A network ID is not a permanent toy identity.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Technical research table"><table>
+<thead>
+<tr>
+<th>Recovery case</th>
+<th>Proposed procedure</th>
+<th>Limit to prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planned transfer</td>
+<td>Finish/cancel current atomic operations; send final checkpoint and event tail; successor verifies; transfer authority token; old host retires</td>
+<td>Handle a failure at every step without both sides mutating the same connected session</td>
+</tr>
+<tr>
+<td>Hard close/power loss</td>
+<td>Detect missing authority; use latest complete checkpoint plus ordered events; create continuation branch; rebuild bindings</td>
+<td>Cannot recover an action never received by any survivor</td>
+</tr>
+<tr>
+<td>Network partition</td>
+<td>Each reachable group can continue a separate identified branch</td>
+<td>No algorithm makes disconnected live toy interactions globally visible</td>
+</tr>
+<tr>
+<td>Old host returns</td>
+<td>Authenticate, compare history, preserve conflicts, join the continuing session</td>
+<td>Old authority must not overwrite newer connected work</td>
+</tr>
+</tbody>
+</table></div>
+<p>Apple gives ordinary apps limited background execution before suspension. Therefore a foreground iPad can host, but a locked/backgrounded iPad cannot be treated as a dependable dedicated server. Handoff callbacks are an optimization; hard-loss recovery must work without them. <a href="https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time">Apple background execution</a></p>
+<p>A relevant distributed-systems result explains why “just elect another host” is insufficient. Raft requires a communicating majority for continued committed operation. With two fixed voting replicas, one survivor is not a majority. <strong>Our application inference:</strong> strict two-device quorum behavior conflicts with your requirement that either child can keep playing alone. We should use available local continuation with explicit branches and later reconciliation, not call a deterministic device ranking a proven consensus system. <a href="https://raft.github.io/raft.pdf">Raft paper, sections 2 and 5</a></p>
+<p>No exact recovery delay or guaranteed loss window is established. Snapshot intervals, acknowledgement policy, load times and packet-loss detection need measurements. Ordinary departure from the PC-hosted game should not trigger this recovery path at all.</p>
+<h2 id="7-shared-toys-automatic-returns-and-save-conflicts">7. Shared toys, automatic returns and save conflicts</h2>
+<p>The inspected Unity Playground pickup script reads a keyboard key, searches pickup-tagged objects, and deliberately calls another player's <code>Drop()</code> before taking the object. That directly conflicts with your exclusive bucket rule. It also lacks network arbitration and durable toy state. Use it to understand a local interaction, not as a qualified multiplayer item template. <a href="https://github.com/Unity-Technologies/UnityPlayground/blob/3d8acd7432ee115f28e05f2b1af39fa783376b4a/Assets/UnityTechnologies/Playground/Scripts/Gameplay/PickUpAndHold.cs">Pinned pickup source</a></p>
+<p><strong>Proposed item transaction:</strong> a client requests an action with stable actor/entity IDs, a unique operation ID, and the expected item revision. The authority validates location, current holder and capabilities; commits the change once; broadcasts the resulting state; persists the operation. Two simultaneous pickup requests are ordered by the authority, so only one receives the hold. Retry returns the existing result instead of duplicating a pour or recipe.</p>
+<p>For pouring, update source quantity and destination quantity as one operation. Use an authored liquid quantity/composition model and a cosmetic stream; the outcome must not depend on every device simulating identical particles. For movement, clients may smooth the picture, but smoothing must not grant ownership. A hand pose can change instantly with the avatar without creating another bucket.</p>
+<p><strong>Automatic unused-item return is your confirmed preference.</strong> The specific idle interval, cue duration and room loan budget remain tuning proposals. Define content categories before applying timers:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Technical research table"><table>
+<thead>
+<tr>
+<th>Item type</th>
+<th>Return policy</th>
+<th>Protection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared borrowed toy/tool</td>
+<td>Eligible after a period of genuine inactivity</td>
+<td>Never reclaim while held, being used, or part of a protected active operation</td>
+</tr>
+<tr>
+<td>Fixed station equipment</td>
+<td>Stays at its station/allowed zone</td>
+<td>Cannot empty the kitchen by carrying its fixtures home</td>
+</tr>
+<tr>
+<td>Personal decoration or unlocked personal copy</td>
+<td>Persists in its owner's saved room</td>
+<td>Not counted as a borrowed communal original</td>
+</tr>
+<tr>
+<td>Saved cake, drawing, sandcastle or build</td>
+<td>Persist as a creation record with stable identity</td>
+<td>Returning a plate/tray cannot erase its creation</td>
+</tr>
+<tr>
+<td>Temporary consumable/effect</td>
+<td>Explicit replenishment/cleanup rule</td>
+<td>Never mistaken for a durable personal possession</td>
+</tr>
+</tbody>
+</table></div>
+<p>An idle return is an authority transaction, not a client countdown teleport. Recheck idleness and revision when it executes. If a child picks the toy up during the warning, cancel the pending return. Check nested container contents for held/protected items. Move protected creations to a valid saved container/workspace before returning equipment; if there is nowhere valid, defer the return instead of deleting work. Late join sees the committed result; a packet retry must not create a replacement plus an original.</p>
+<p>For disconnected play, fine-grained merge research supports combining some independent edits, but it does not prove arbitrary game operations can be merged safely. CRDTs are designed to converge; our game's resource rules are an additional requirement. The local-first paper concerns collaborative data structures and applications, not this game's bucket conservation or recipe dependencies. <a href="https://www.inkandswitch.com/essay/local-first/">Ink &amp; Switch local-first research</a></p>
+<p><strong>Proposed reconciliation examples:</strong></p>
+<ul>
+<li>Child one's bedroom changes and child two's bedroom changes: import disjoint records under the same owner IDs.</li>
+<li>Two different edits to the same cake: preserve both creations with distinct IDs; do not silently overwrite one.</li>
+<li>Both offline worlds use the same communal bucket: keep one canonical communal bucket on reunion; retain creative outcomes under the creation policy, not two copies of the communal stock.</li>
+<li>A poured quantity is already committed: recognize its operation ID; do not reapply it from a stale client journal.</li>
+<li>Deletion versus modification: retain a tombstone/history and recoverable variant rather than using whole-save “newest timestamp wins.”</li>
+</ul>
+<p>SQLite offers atomic transactions that can protect a compound local save from partial writes, subject to its documented storage assumptions. It does not itself synchronize devices. It is a storage candidate to compare with a small versioned snapshot/journal implementation; a Unity iOS IL2CPP/Android binding still needs qualification. Keep each device's save local rather than sharing one live database file over the network. <a href="https://www.sqlite.org/atomiccommit.html">SQLite atomic commit</a></p>
+<h2 id="8-older-ipad-performance-and-the-headless-server-constraint">8. Older-iPad performance and the headless-server constraint</h2>
+<p>Apple documents that an app's available memory limit can change during its lifecycle and need not equal physical device RAM. That rules out presenting a guessed fixed memory number as an established crash threshold for this game. The earlier 400 MiB goal and prop/NPC limits are starting budgets, not measurements. <a href="https://developer.apple.com/documentation/os/os_proc_available_memory">Apple available-memory API</a></p>
+<p>Unity's Dedicated Server target disables audio and removes graphics-related work/assets. <strong>Design consequence:</strong> cooking timers, hide-and-seek logic, object capabilities and NPC tasks must run without playing audio, rendering a sprite, or receiving local touch input on the server. Store gameplay durations/anchors/collision shapes in logical content data; client speech and animation follow committed events. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-optimizations.html">Unity 6.3 server optimizations</a></p>
+<p>For an iPad host, keep the same logical rules but load detailed art only for its player's current view. Offscreen occupied areas still run necessary logical activities. Empty areas can sleep or advance from saved logical timers where appropriate; that does not mean their items reset. Opening a local book, TV or settings overlay must not set a global pause that stops a sibling's kitchen.</p>
+<p><strong>Required measurements, not completed tests:</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Technical research table"><table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>Why it differs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A10 client with PC server</td>
+<td>Tests drawing, input, local assets and network presentation</td>
+</tr>
+<tr>
+<td>A10 host with four players spread across zones</td>
+<td>Adds authority, offscreen activity logic and recovery replication</td>
+</tr>
+<tr>
+<td>Four players and many props in one room</td>
+<td>Stresses visible characters, sorting, animation and item contention</td>
+</tr>
+<tr>
+<td>A10 host opening a narrated book or local video</td>
+<td>Adds loading/decoder/audio costs while authority continues</td>
+</tr>
+<tr>
+<td>Repeated room changes and character swaps</td>
+<td>Reveals retained assets and accumulating references</td>
+</tr>
+<tr>
+<td>Late join or recovery during those workloads</td>
+<td>Exposes temporary snapshot/loading memory spikes</td>
+</tr>
+</tbody>
+</table></div>
+<p>Measure frame-time spikes, main-thread stalls, native/managed memory, thermal behavior and save/recovery correctness on release builds. Keep the 30 FPS target, but do not label it achieved from minimum engine requirements. Package samples and editor play mode do not certify an A10-host workload.</p>
+<h2 id="9-what-changed-in-confidence-and-what-to-build-first">9. What changed in confidence and what to build first</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Technical research table"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Evidence level after this pass</th>
+<th>Remaining proof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC-hosted clients can come and go independently</td>
+<td>Documented server architecture; clear design fit</td>
+<td>Real mixed-device automatic join/leave test</td>
+</tr>
+<tr>
+<td>Clients can occupy different areas and meet later</td>
+<td>Source-confirmed reference pattern</td>
+<td>Our NGO loader, state persistence and A10 host cost</td>
+</tr>
+<tr>
+<td>Automatic LAN discovery has native cross-platform building blocks</td>
+<td>Official Windows/Apple/Android APIs</td>
+<td>Native bridges, permissions, firewall and actual router</td>
+</tr>
+<tr>
+<td>A host-election call restores the world</td>
+<td>Contradicted by migration docs and NGO cleanup source</td>
+<td>Separate model, checkpoints and restoration</td>
+</tr>
+<tr>
+<td>An existing pickup template already enforces our toy ownership</td>
+<td>Contradicted by inspected Playground script</td>
+<td>Authoritative item transactions</td>
+</tr>
+<tr>
+<td>Conflicting offline worlds merge automatically without policy</td>
+<td>Not established by CRDT/local-first research</td>
+<td>Domain rules and reconciliation tests</td>
+</tr>
+<tr>
+<td>Four-player A10 hosting meets the desired feel</td>
+<td>Still unmeasured</td>
+<td>Physical-device workload tests</td>
+</tr>
+</tbody>
+</table></div>
+<p>The next implementation should be a small <strong>two-zone proof</strong>: PC server, both iPads, one bucket, one tap, one plant, a saved creation, and independent travel. Demonstrate first child joining, second child arriving later, third/fourth player joining, one child closing, and shared-item contention without affecting anyone else. Then disconnect the PC and qualify either iPad's hosting, orderly switching, hard-loss recovery and reunion. This sequence keeps mobile hosting required while making the normal server path concrete first.</p>
+<p>A plain prototype is enough to expose these risks; producing six finished worlds before these tests would not make the networking claims better supported. No defensible calendar estimate follows from these sources. Measure the first implemented slice and asset workflow before estimating the complete production schedule.</p>
+<h2 id="10-reproducible-evidence-and-boundaries">10. Reproducible evidence and boundaries</h2>
+<p>Selected source was saved under <a href="bluey-research/deep-source-review-2026-09-23/review-notes.md">deep-source-review-2026-09-23</a>. The manifests record original paths, revisions, source URLs, byte lengths and SHA-256 hashes. Review was targeted to the cited methods/manifests/licenses, not an exhaustive audit of entire repositories.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Technical research table"><table>
+<thead>
+<tr>
+<th>Repository/material</th>
+<th>Revision inspected</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NGO released v2.13.3</td>
+<td><code>ddd715da4695a278a143d9af3530fd60a3814b73</code></td>
+<td>Package dependencies; shutdown/despawn; owner-disconnect distinction</td>
+</tr>
+<tr>
+<td>NGO development head</td>
+<td><code>297c8b0d38ab666741752a1db43a1a4a61294a08</code></td>
+<td>Same areas; detected incompatible newer editor/dependency baseline</td>
+</tr>
+<tr>
+<td>Mirror development head</td>
+<td><code>c4f3739966e151f405be1762d33502794fd034ff</code></td>
+<td>Additive-level portal/manager, scene visibility, broadcast discovery, project version and license</td>
+</tr>
+<tr>
+<td>FishNet development head</td>
+<td><code>7c4a6448d48ed65b154ebd5615c86fb9001da1cf</code></td>
+<td>Manifest/license, paired with official scene and migration documentation</td>
+</tr>
+<tr>
+<td>Unity Playground</td>
+<td><code>3d8acd7432ee115f28e05f2b1af39fa783376b4a</code></td>
+<td>Pickup behavior, project version and license</td>
+</tr>
+</tbody>
+</table></div>
+<p>Official documentation and primary papers are linked beside the claims they support. Some Apple/Unity pages returned JavaScript shells or fetch errors through one access method; successful indexed documentation, vendor clarifications and pinned code were used where available. A failed fetch is not evidence that a feature is absent. Research does not replace device testing, and proposals such as timers, budgets and merge policy remain explicitly unqualified.</p>
+<p>Only this game's research directory was changed. The unrelated old project and its Unity/Blender connector remain outside this work.</p></article></div>
+<footer class="footer"><p>Targeted source inspection and research. No game implementation or device benchmark was run.</p><a href="family-playset-technical-research-2026-09-23.md">Editable technical report</a><a href="family-playset-feasibility-audit-2026-09-23.html">Full feasibility audit</a><a href="bluey-game-research-2026-09-23.html">Main research and character board</a></footer></main></body></html>

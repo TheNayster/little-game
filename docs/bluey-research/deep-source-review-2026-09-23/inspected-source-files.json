@@ -1,0 +1,155 @@
+[
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "297c8b0d38ab666741752a1db43a1a4a61294a08",
+    "path": "com.unity.netcode.gameobjects/package.json",
+    "local": "com.unity.netcode.gameobjects--com.unity.netcode.gameobjects__package.json.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/297c8b0d38ab666741752a1db43a1a4a61294a08/com.unity.netcode.gameobjects/package.json",
+    "bytes": 722,
+    "sha256": "2ada15ef052b52f737eaff0da4015e9903ef0de468602163ae06e36fe8667dfc"
+  },
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "297c8b0d38ab666741752a1db43a1a4a61294a08",
+    "path": "com.unity.netcode.gameobjects/Runtime/Core/NetworkManager.cs",
+    "local": "com.unity.netcode.gameobjects--com.unity.netcode.gameobjects__Runtime__Core__NetworkManager.cs.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/297c8b0d38ab666741752a1db43a1a4a61294a08/com.unity.netcode.gameobjects/Runtime/Core/NetworkManager.cs",
+    "bytes": 87388,
+    "sha256": "89c8ca9f0c5b4902015c097a01d508a4efbcecfbb1109c9065afd4190d5f4d64"
+  },
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "297c8b0d38ab666741752a1db43a1a4a61294a08",
+    "path": "com.unity.netcode.gameobjects/Runtime/Core/NetworkObject.cs",
+    "local": "com.unity.netcode.gameobjects--com.unity.netcode.gameobjects__Runtime__Core__NetworkObject.cs.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/297c8b0d38ab666741752a1db43a1a4a61294a08/com.unity.netcode.gameobjects/Runtime/Core/NetworkObject.cs",
+    "bytes": 197343,
+    "sha256": "b39365f50bdae2ec5c29b64c465f7db6ffcdc1a9cb356a9f7704f7ea772a0168"
+  },
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "297c8b0d38ab666741752a1db43a1a4a61294a08",
+    "path": "com.unity.netcode.gameobjects/Runtime/Spawning/NetworkSpawnManager.cs",
+    "local": "com.unity.netcode.gameobjects--com.unity.netcode.gameobjects__Runtime__Spawning__NetworkSpawnManager.cs.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/297c8b0d38ab666741752a1db43a1a4a61294a08/com.unity.netcode.gameobjects/Runtime/Spawning/NetworkSpawnManager.cs",
+    "bytes": 125253,
+    "sha256": "e9760db92e425442a4f497f4e8103fe8a8d2a2f12aa09b7471a196271a327106"
+  },
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "297c8b0d38ab666741752a1db43a1a4a61294a08",
+    "path": "LICENSE.md",
+    "local": "com.unity.netcode.gameobjects--LICENSE.md.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/297c8b0d38ab666741752a1db43a1a4a61294a08/LICENSE.md",
+    "bytes": 501,
+    "sha256": "accca05c3a2443924b3e5bf1acb4d15a6864dfc2c75d2874fb27ba8a4ae35295"
+  },
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "297c8b0d38ab666741752a1db43a1a4a61294a08",
+    "path": "com.unity.netcode.gameobjects/LICENSE.md",
+    "local": "com.unity.netcode.gameobjects--com.unity.netcode.gameobjects__LICENSE.md.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/297c8b0d38ab666741752a1db43a1a4a61294a08/com.unity.netcode.gameobjects/LICENSE.md",
+    "bytes": 493,
+    "sha256": "48fecd5f02a7a7fbd6a0a2d80f6e54c886d370fb9af101dfcc56b2f74af4663e"
+  },
+  {
+    "repo": "MirrorNetworking/Mirror",
+    "revision": "c4f3739966e151f405be1762d33502794fd034ff",
+    "path": "Assets/Mirror/Examples/AdditiveLevels/Scripts/Portal.cs",
+    "local": "Mirror--Assets__Mirror__Examples__AdditiveLevels__Scripts__Portal.cs.txt",
+    "url": "https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Examples/AdditiveLevels/Scripts/Portal.cs",
+    "bytes": 5252,
+    "sha256": "7094fa9e13ad5b2d4c0720e3728d6d39690dc2da5e3f93794e37d4cc38e816b9"
+  },
+  {
+    "repo": "MirrorNetworking/Mirror",
+    "revision": "c4f3739966e151f405be1762d33502794fd034ff",
+    "path": "Assets/Mirror/Examples/AdditiveLevels/Scripts/AdditiveLevelsNetworkManager.cs",
+    "local": "Mirror--Assets__Mirror__Examples__AdditiveLevels__Scripts__AdditiveLevelsNetworkManager.cs.txt",
+    "url": "https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Examples/AdditiveLevels/Scripts/AdditiveLevelsNetworkManager.cs",
+    "bytes": 8144,
+    "sha256": "0cabf7654c34d6e809213e018b06addcc47590357e27f3d02fcc2ee404a9ef25"
+  },
+  {
+    "repo": "MirrorNetworking/Mirror",
+    "revision": "c4f3739966e151f405be1762d33502794fd034ff",
+    "path": "Assets/Mirror/Components/InterestManagement/Scene/SceneInterestManagement.cs",
+    "local": "Mirror--Assets__Mirror__Components__InterestManagement__Scene__SceneInterestManagement.cs.txt",
+    "url": "https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Components/InterestManagement/Scene/SceneInterestManagement.cs",
+    "bytes": 4850,
+    "sha256": "c1d48a142eddec6b4d98cf822164cd94c74c3494df7892493a61b4a60c85adc0"
+  },
+  {
+    "repo": "MirrorNetworking/Mirror",
+    "revision": "c4f3739966e151f405be1762d33502794fd034ff",
+    "path": "Assets/Mirror/Components/Discovery/NetworkDiscoveryBase.cs",
+    "local": "Mirror--Assets__Mirror__Components__Discovery__NetworkDiscoveryBase.cs.txt",
+    "url": "https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Components/Discovery/NetworkDiscoveryBase.cs",
+    "bytes": 15688,
+    "sha256": "d0362e8c88e1ddbc0a9f05f6895f39955723d9684cce79078672fdbedae0e4db"
+  },
+  {
+    "repo": "MirrorNetworking/Mirror",
+    "revision": "c4f3739966e151f405be1762d33502794fd034ff",
+    "path": "ProjectSettings/ProjectVersion.txt",
+    "local": "Mirror--ProjectSettings__ProjectVersion.txt.txt",
+    "url": "https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/ProjectSettings/ProjectVersion.txt",
+    "bytes": 85,
+    "sha256": "effff606632bde39949d0e9f4a1c72f3cff064ebbf3907f0c5806744b58ae254"
+  },
+  {
+    "repo": "MirrorNetworking/Mirror",
+    "revision": "c4f3739966e151f405be1762d33502794fd034ff",
+    "path": "LICENSE",
+    "local": "Mirror--LICENSE.txt",
+    "url": "https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/LICENSE",
+    "bytes": 1149,
+    "sha256": "74819ab7f08d5e3b91f0392fc41a3146e27bbefe4af90dfafbf71b9c470a9560"
+  },
+  {
+    "repo": "FirstGearGames/FishNet",
+    "revision": "7c4a6448d48ed65b154ebd5615c86fb9001da1cf",
+    "path": "Assets/FishNet/package.json",
+    "local": "FishNet--Assets__FishNet__package.json.txt",
+    "url": "https://github.com/FirstGearGames/FishNet/blob/7c4a6448d48ed65b154ebd5615c86fb9001da1cf/Assets/FishNet/package.json",
+    "bytes": 1108,
+    "sha256": "bec9c664c21d53a9c91b9e12894a1a84f6ca00a12f77cd73cb1720400d4cecc7"
+  },
+  {
+    "repo": "FirstGearGames/FishNet",
+    "revision": "7c4a6448d48ed65b154ebd5615c86fb9001da1cf",
+    "path": "LICENSE.md",
+    "local": "FishNet--LICENSE.md.txt",
+    "url": "https://github.com/FirstGearGames/FishNet/blob/7c4a6448d48ed65b154ebd5615c86fb9001da1cf/LICENSE.md",
+    "bytes": 3640,
+    "sha256": "9fa6147d951b5dba1efd31c4ed30a7f6a478518cbae775b4e5d020bffdcea679"
+  },
+  {
+    "repo": "Unity-Technologies/UnityPlayground",
+    "revision": "3d8acd7432ee115f28e05f2b1af39fa783376b4a",
+    "path": "Assets/UnityTechnologies/Playground/Scripts/Gameplay/PickUpAndHold.cs",
+    "local": "UnityPlayground--Assets__UnityTechnologies__Playground__Scripts__Gameplay__PickUpAndHold.cs.txt",
+    "url": "https://github.com/Unity-Technologies/UnityPlayground/blob/3d8acd7432ee115f28e05f2b1af39fa783376b4a/Assets/UnityTechnologies/Playground/Scripts/Gameplay/PickUpAndHold.cs",
+    "bytes": 2777,
+    "sha256": "6bcf3c961356d0a09075eebdac6e77d90450c2e8342133a674503d13da3db072"
+  },
+  {
+    "repo": "Unity-Technologies/UnityPlayground",
+    "revision": "3d8acd7432ee115f28e05f2b1af39fa783376b4a",
+    "path": "ProjectSettings/ProjectVersion.txt",
+    "local": "UnityPlayground--ProjectSettings__ProjectVersion.txt.txt",
+    "url": "https://github.com/Unity-Technologies/UnityPlayground/blob/3d8acd7432ee115f28e05f2b1af39fa783376b4a/ProjectSettings/ProjectVersion.txt",
+    "bytes": 85,
+    "sha256": "95ee123e6b804592781c4a0c86df4df626330548729346dccafcdaa21f7720c1"
+  },
+  {
+    "repo": "Unity-Technologies/UnityPlayground",
+    "revision": "3d8acd7432ee115f28e05f2b1af39fa783376b4a",
+    "path": "License.md",
+    "local": "UnityPlayground--License.md.txt",
+    "url": "https://github.com/Unity-Technologies/UnityPlayground/blob/3d8acd7432ee115f28e05f2b1af39fa783376b4a/License.md",
+    "bytes": 1093,
+    "sha256": "0e8544dd2a3fcf81a08d4d27bbfa6887e4b6186e9bc777e90be18635aa719870"
+  }
+]

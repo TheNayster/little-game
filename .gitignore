@@ -1,0 +1,35 @@
+# Unity-generated state; source, settings and .meta files remain tracked.
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+**/[Mm]emoryCaptures/
+**/[Rr]ecordings/
+Builds/
+**/Captures/
+LocalData/
+.vs/
+.idea/
+*.csproj
+*.sln
+*.slnx
+*.user
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+sysinfo.txt
+__pycache__/
+# Keep signing material, credentials and personal media outside the repository.
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.mobileprovision
+.env
+.env.*
+*.secrets.*
+.DS_Store
+Thumbs.db

@@ -1,0 +1,132 @@
+{
+  "date": "2026-09-23",
+  "type": "documentation feasibility audit; not device qualification",
+  "coverage": {
+    "main_original_sections": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "toca_supplement_sections": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "platform_supplement_sections": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "confirmed_scope": {
+    "ipad_hosting": "required",
+    "automatic_joining": "required",
+    "automatic_host_switching": "required",
+    "independent_areas": "required",
+    "offline_solo": "required",
+    "travel_multiplayer": "optional later"
+  },
+  "documents": [
+    {
+      "file": "bluey-game-research-2026-09-23.html",
+      "report_sections": 52,
+      "local_links": 151
+    },
+    {
+      "file": "family-playset-feasibility-audit-2026-09-23.html",
+      "report_sections": 8,
+      "local_links": 16
+    },
+    {
+      "file": "toca-piknik-interaction-research-2026-09-23.html",
+      "report_sections": 12,
+      "local_links": 20
+    }
+  ],
+  "document_validation": {
+    "duplicate_ids": 0,
+    "missing_local_files": 0,
+    "missing_local_html_fragments": 0,
+    "main_world_buttons": 6,
+    "portrait_entries": 34
+  },
+  "limitations": [
+    "No Unity implementation, compile, networking runtime, voice audition or device test performed.",
+    "Primary documentation was rechecked selectively; not every existing external URL or historical repository line was independently reverified.",
+    "Old project was not opened, copied or modified."
+  ],
+  "source_hashes": {
+    "bluey-game-research-2026-09-23.md": "37c47d445c11f2d2e7cfb208ca45a02b940763347d094739fc9d66caf56e7883",
+    "family-playset-feasibility-audit-2026-09-23.md": "ff214c91d69e7e80a5716dc595c37ca869c1b457e8bbe1335a5d257f375b5a0d",
+    "ipad-game-research-2026-09-23.md": "eb0825a9e796aeb5ef8bbc3bcd7917fd3d91b40d1e4ea503569c12fb3f488e52",
+    "toca-piknik-interaction-research-2026-09-23.md": "47d217401f3f1547fb187cca9aef02d52417f99cf3546ef1314b4ca53aa00625"
+  }
+}

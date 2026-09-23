@@ -1,0 +1,27 @@
+# Connecting the game tools
+
+Use the desktop **Connect Little Weeps** shortcut. **Connect Unity + Blender** now points to the same new launcher. The original shortcut is backed up in ignored `LocalData/Connect Unity + Blender.original.lnk`; the old project's script and assets have not been edited.
+
+From any Windows PowerShell window:
+
+```powershell
+& 'C:\Users\sephi\Desktop\Little weeps game\Connect-GameTools.ps1'
+```
+
+Optional flags: `-BlenderOnly`, `-UnityOnly`, `-NoLaunch` (connect to already-open applications), `-CheckOnly` (read-only preflight).
+
+The launcher resolves the installed Codex executable each time, including the desktop app's changing versioned directory. It does not depend on a `codex` entry in the normal user PATH. It verifies Blender's response and requires a fresh Unity acknowledgment containing this project's exact path. A listening port alone never counts as a connected Unity project.
+
+Blender's separate Little Weeps reconnect helper watches `~/.little-weeps-tools/blender-connect.request`. It starts the existing MCP add-on without opening or saving a `.blend` file. Unsaved artwork stays open. No old-project reconnect request is sent.
+
+The new project is installed, compiled, and its live MCP project-info response matches `Unity/FamilyPlayset` under this root, using 6000.3.24f1. The full launcher passed from a normal Windows PATH. It never falls back to the old Meeps project. Tool registrations being present is different from tools being loaded in an existing Codex session. If a new registration is needed, the launcher requests a Codex restart. For the current session, the project-checked `Tools/unity_mcp.py` client provides working access without restarting Codex.
+
+## Mac build connection
+
+Windows is the source workspace. The Mac is a separate build machine. The user supplied `nayster@eduardos-mbp.lan`; SSH authentication and a read-only inventory now succeed with the dedicated key. The user preserved a mistakenly created authorized_keys directory and installed the key in the required file. Actual inventory is in g1-status.md.
+
+Run `Tools/Check-Mac.ps1` on Windows to execute the read-only `Tools/Mac-Inventory.sh` remotely. The first iOS export has been transferred and hash-verified at `/Users/nayster/Developer/LittleWeeps/Builds/G1-0.0.1/Xcode`. Future transfers stay under this game's Mac directory and exclude Windows `Library`, private media and signing keys. Do not mirror or delete unrelated Mac files. macOS signing keys stay on the Mac; the Windows SSH private key stays outside this repository.
+
+SSH supports remote shell/file/build work. It is not desktop clicking. Codex remote projects/control require their own app connection and applicable permissions: [OpenAI remote connections](https://learn.chatgpt.com/docs/remote-connections). Mac Remote Login setup: [Apple documentation](https://support.apple.com/guide/mac-help/allow-a-remote-computer-to-access-your-mac-mchlp1066/mac).
+
+The first native build compiled but SSH could not access the signing key. `Tools/Build-iOS-Mac.sh` provides a local Terminal build route after export transfer: it takes a build number, Apple team ID and device UDID; unlocks the login keychain interactively; builds Release; and verifies the resulting signature. Passwords are entered only in the Mac's local prompt. This does not alter certificate trust settings or disable keychain protection.

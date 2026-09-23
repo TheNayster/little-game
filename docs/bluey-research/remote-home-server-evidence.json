@@ -1,0 +1,31 @@
+{
+  "research_date": "2026-09-23",
+  "sections": [49],
+  "main_report": "../bluey-game-research-2026-09-23.md",
+  "status": "Research only; no account enrollment, VPN configuration, firewall/router change, server build, or device test.",
+  "confirmed_request": "PC is basically always on and may host family devices away from home.",
+  "recommendation": "Prototype Tailscale route to existing PC authority; compare Relay if VPN automation conflicts with free signing renewal. Retain local co-op and full offline solo.",
+  "critical_distinctions": [
+    "Remote PC play needs usable internet at both ends.",
+    "Enroll each remote game device; do not depend on inheriting the hotspot phone VPN.",
+    "Saved private endpoint is separate from local Bonjour discovery.",
+    "A disconnected client creates a continuation branch; the PC remains authoritative for players still connected to it.",
+    "Published product capabilities do not certify the unbuilt game or these exact devices."
+  ],
+  "sources": [
+    {"title": "Tailscale Windows installation", "url": "https://tailscale.com/docs/install/windows", "finding": "Official Windows client installation path."},
+    {"title": "Tailscale iOS installation", "url": "https://tailscale.com/docs/install/ios", "finding": "Official Apple mobile client; qualify on both iPads."},
+    {"title": "Tailscale Android installation", "url": "https://tailscale.com/docs/install/android", "finding": "Official Android client; qualify on Galaxy S26 Ultra."},
+    {"title": "Tailscale connection types", "url": "https://tailscale.com/docs/reference/connection-types", "finding": "Direct and relayed paths; route and latency can change."},
+    {"title": "Tailscale firewall guidance", "url": "https://tailscale.com/docs/reference/faq/firewall-ports", "finding": "Manual inbound forwarding normally unnecessary; endpoint still requires correct host firewall configuration."},
+    {"title": "Tailscale Personal pricing", "url": "https://tailscale.com/pricing", "finding": "As checked: $0, up to six users and unlimited user devices; no subscription created."},
+    {"title": "Tailscale MagicDNS", "url": "https://tailscale.com/docs/features/magicdns", "finding": "Private device hostname can identify saved remote endpoint."},
+    {"title": "Tailscale VPN On Demand", "url": "https://tailscale.com/docs/features/client/ios-vpn-on-demand", "finding": "Apple rules; another VPN can disable On Demand until manual Tailscale reconnection."},
+    {"title": "SideStore installation", "url": "https://docs.sidestore.io/docs/installation/install", "finding": "Current flow connects LocalDevVPN; Tailscale coexistence requires actual qualification."},
+    {"title": "Windows unattended mode", "url": "https://tailscale.com/docs/how-to/run-unattended", "finding": "Network client can run after logout; game server needs independent startup/recovery."},
+    {"title": "Tailscale grants syntax", "url": "https://tailscale.com/docs/reference/syntax/grants", "finding": "Destination and protocol/port controls; additive permissions require reviewing existing broad grants."},
+    {"title": "Unity Relay servers", "url": "https://docs.unity.com/relay/relay-servers", "finding": "Public relay endpoints and host/listen pattern; PC-host and allocation-lifecycle integration remain a prototype."},
+    {"title": "Unity Gaming Services pricing", "url": "https://unity.com/products/gaming-services/pricing", "finding": "Relay includes free allowances with paid overages; measure usage."},
+    {"title": "Unity Relay fair usage", "url": "https://docs.unity.com/en-us/mps-sdk/networking/fair-usage", "finding": "Game-state traffic; excludes audio/video streaming and generic file transfer."}
+  ]
+}

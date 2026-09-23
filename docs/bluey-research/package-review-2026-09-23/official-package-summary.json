@@ -1,0 +1,80 @@
+[
+  {
+    "package": "com.unity.2d.animation",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.2d.animation.html",
+    "status": 200,
+    "released": "Package version 13.0.6 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.2d.psdimporter",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.2d.psdimporter.html",
+    "status": 200,
+    "released": "Package version 12.0.2 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.2d.spriteshape",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.2d.spriteshape.html",
+    "status": 200,
+    "released": "Package version 13.0.0 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.addressables",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.addressables.html",
+    "status": 200,
+    "released": "Package version 2.10.3 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.ai.navigation",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.ai.navigation.html",
+    "status": 200,
+    "released": "Package version 2.0.14 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.cinemachine",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.cinemachine.html",
+    "status": 200,
+    "released": "Package version 3.1.7 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.inputsystem",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.inputsystem.html",
+    "status": 200,
+    "released": "Package version 1.20.0 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.localization",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.localization.html",
+    "status": 200,
+    "released": "Package version 1.5.13 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.multiplayer.playmode",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.multiplayer.playmode.html",
+    "status": 200,
+    "released": "Package version 2.0.2 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.multiplayer.tools",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.multiplayer.tools.html",
+    "status": 200,
+    "released": "Package version 2.2.12 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.netcode.gameobjects",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.netcode.gameobjects.html",
+    "status": 200,
+    "released": null
+  },
+  {
+    "package": "com.unity.transport",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.transport.html",
+    "status": 200,
+    "released": "Package version 2.7.4 is released for Unity Editor version 6000.3."
+  },
+  {
+    "package": "com.unity.ugui",
+    "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.ugui.html",
+    "status": 200,
+    "released": null
+  }
+]

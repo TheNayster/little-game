@@ -1,0 +1,14 @@
+{
+  "id": "profiles",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/build-profiles.html",
+  "resolved_url": "https://docs.unity3d.com/6000.3/Documentation/Manual/build-profiles.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Unity - Manual: Introduction to build profiles",
+  "sha256": "f971a0686d4cbc5ccb4da93d1bf1a9fa412399a3c26d04fb002570b0eced5b8b",
+  "excerpts": [
+    " Unity - Manual: Introduction to build profiles Manual Scripting API unity.com Version: Unity 6.3 LTS (6000.3) Supported Legacy Language : English English 中文 日本語 한국어 Unity Manual Version: Unity 6.3 LTS Select a different version Language : English English 中文 日本語 한국어 Building and publishing Create a build from the Editor Introduction to build profiles Create a build from the Editor Create and manage build profiles Introduction to build profiles A build profile is a set of configuration settings you can use to build your application on a particular platform. Use the Build Profiles window to create multiple build profiles for each platform you work on, saving different configurations for rel",
+    "require using a custom name for each profile. Unity saves the build profile as an asset file that is ready for use with version control. Build profiles stored as Assets in the Project window. Additional resources Create a build profile Build Profiles window reference Build Profiles scripting API reference Create a build from the Editor Create and manage build profiles Copyright ©2005-2026 Unity Technologies. All rights reserved. Built from job ID 75971899. Built on: 2026-09-23. Tutorials Community Answers Knowledge Base Forums Asset Store Terms of use Legal Privacy Policy Cookies Documentation Terms of Use Do Not Sell or Share My Personal Information Your Privacy Choices (Cookie Settings) ",
+    "ate a build from the Editor Create and manage build profiles Introduction to build profiles A build profile is a set of configuration settings you can use to build your application on a particular platform. Use the Build Profiles window to create multiple build profiles for each platform you work on, saving different configurations for release and development builds. For more information on release and development builds, refer to Introduction to building . Navigate to File > Build Profiles to access the Build Profiles window. Profile types There are two types of profiles available in the Build Profiles window. Platforms The Platforms pane displays a list of currently installed platforms that Unity supports. A platform profile includes some shared settings that apply to all platforms. For "
+  ]
+}

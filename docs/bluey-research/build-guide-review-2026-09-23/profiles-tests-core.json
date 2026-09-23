@@ -1,0 +1,11 @@
+{
+  "id": "profiles-tests-core",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.test-framework.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Unity - Manual: Test Framework ",
+  "sha256": "9532ddf59d3557c3884f84923f94af9bc44d8d75f334e81685fe6b2fc5c9274b",
+  "excerpts": [
+    "nt version Language : English English 中文 日本語 한국어 Packages and package management Packages Core packages Test Framework Shader Graph uGUI Test Framework com.unity.test-framework Description Test framework for running Edit mode and Play mode tests in Unity. Version information Core packages are fixed to a single version matching the Editor version. Shader Graph uGUI Copyright ©2005-2026 Unity Technologies. All rights reserved. Built from job ID 75971899. Built on: 2026-09-23. Tutorials Community Answers Knowledge Base Forums Asset Store Terms of use Legal Privacy Policy Cookies Documentation Terms of Use Do Not Sell or Share My Personal Information Your Privacy Choices (Cookie Settings) "
+  ]
+}

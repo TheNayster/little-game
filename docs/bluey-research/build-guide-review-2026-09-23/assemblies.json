@@ -1,0 +1,13 @@
+{
+  "id": "assemblies",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/assembly-definitions-intro.html",
+  "resolved_url": "https://docs.unity3d.com/6000.3/Documentation/Manual/assembly-definitions-intro.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Unity - Manual: Introduction to assemblies in Unity",
+  "sha256": "de73ff24592cdeae75ac0a5b0ae4b0b19a61b77566476c12d520b460e320adab",
+  "excerpts": [
+    "heir own assembly, no matter where those folders are located. Unity compiles assemblies in an order determined by their dependencies. You can’t specify the order in which compilation takes place. Finding which assembly a script belongs to To identify which assembly a script belongs to, select the script file in the Project window to view its properties in the Inspector window. The assembly filename and the Assembly Definition, if one exists, are shown in the Assembly Information section of the Inspector . Editor folder Unity normally compiles any scripts in folders named Editor into the predefined Assembly-CSharp-Editor assembly no matter where those scripts are located. However, if you create an Assembly Definition asset in a folder that has an Editor folder underneath it, Unity no longer",
+    " any other script, which can make it more difficult to refactor and improve your code. All scripts are compiled for all platforms. By defining assemblies, you can organize your code to promote modularity and reusability. Scripts in assemblies you define are no longer added to the default assemblies and can only access scripts in your other custom assemblies. A conceptual illustration of organizing scripts into multiple custom assemblies as an alternative to compiling them all in the default assembly. An arrow points from the default assembly, Assembly-Csharp, to an alternative setup in which a custom Main assembly directly references two other custom assemblies called Stuff and ThirdParty. Stuff in turn references a fourth custom assembly called Library. The previous diagram illustrates ho"
+  ]
+}

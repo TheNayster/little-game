@@ -1,0 +1,15 @@
+{
+  "repo": "YarnSpinnerTool/YarnSpinner-Unity",
+  "branch": "main",
+  "archived": false,
+  "sha": "478309e5e70a1d88e94be47c65c793b851d35f56",
+  "date": "2026-09-16T01:23:22Z",
+  "license": "MIT",
+  "release": {
+    "tag": "v3.2.8",
+    "published": "2026-08-11T04:27:08Z",
+    "prerelease": false,
+    "url": "https://github.com/YarnSpinnerTool/YarnSpinner-Unity/releases/tag/v3.2.8",
+    "notes": "<!-- RELEASE_TEMPLATE.md is not a formally supported file used by GitHub. This file is used by .github/workflows/release.yml to add a release notes preface. -->\r\n\r\nYarn Spinner is made possible by your generous patronage. Please consider supporting Yarn Spinner's development by [becoming a patron](https://patreon.com/secretlab), or by buying a copy of Yarn Spinner on [itch.io](https://yarnspinner.itch.io/yarn-spinner) or the [Unity Asset Store](https://assetstore.unity.com/packages/tools/behavior-ai/yarn-spinner-for-unity-267061)!\r\n\r\n<a href=\"https://patreon.com/secretlab\"><img width=\"200\" src=\"https://user-images.githubusercontent.com/901768/71883373-6f40ff80-318a-11ea-9d3a-01f1f58cb39e.png\"></a>\r\n\r\n## \ud83d\udc69\u200d\ud83d\ude92 Getting Help\r\n\r\nThere are several places you can go to get help with Yarn Spinner.\r\n\r\n* Join the [Yarn Spinner Discord](https://discord.gg/yarnspinner).\r\n* Talk to us via [BlueSky](http://bsky.app/profile/yarnspinner.dev) or [Mastodon](https://team.yarnspinner.dev/@yarnspinner)\r\n* To report a bug, [file an issue on GitHub](https://github.com/YarnSpinnerTool/YarnSpinner-Unity/issues/new?labels=bug+beta&template=bug_report.md&title=).\r\n\r\n## \ud83d\udce6 How To Install Yarn Spinner\r\n\r\nTo install the most recent release of Yarn Spinner for Unity, please see the [Installation Instructions](https://docs.yarnspinner.dev/using-yarnspinner-with-unity/installation-and-setup) in the Yarn Spinner documentation.\r\n\r\nIf you want to install _this_ particular version of Yarn Spinner for Unity, follow these steps:\r\n\r\n<details>\r\n<summary>Installing Yarn Spinner for Unity v3.2.8 from Git</summary>\r\n<p>\r\n\r\n* Open the Window menu, and choose Package Manager.\r\n* If you already have any previous version of the Yarn Spinner package installed, remove it.\r\n* Click the `+` button, and click *Add package from git URL...*\r\n* Enter the following URL:\r\n  * `https://github.com/YarnSpinnerTool/YarnSpinner-Unity.git#v3.2.8`\r\n\r\nEach release will have a different URL. To upgrade to future versions of Yarn Spinner, you will need to uninstall the package, and reinstall using the new URL.\r\n</p>\r\n</details>\r\n\r\n\r\n## \ud83d\udcdc Changes\r\n\r\n\r\n\r\n- Updated Yarn Spinner DLLs to target .NET Standard 2.1.\r\n- Removed a number of unnecessary .NET Standard 2.0 supporting DLLs.\r\n- Fixed an issue where IL2CPP builds would fail on Unity 6.5."
+  }
+}

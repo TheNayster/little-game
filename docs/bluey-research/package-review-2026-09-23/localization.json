@@ -1,0 +1,10 @@
+{
+  "package": "com.unity.localization",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.localization.html",
+  "status": 200,
+  "released": "Package version 1.5.13 is released for Unity Editor version 6000.3.",
+  "manual_excerpt": " Localization com.unity.localization Description Use the Localization package to easily configure localization settings for your application. Add support for multiple languages and regional variants, including: \u2022 String localization: Set different strings to display based on locale. Use the Smart Strings feature to add logic to automatically replace specific strings, such as placeholders and plurals. \u2022 Asset localization: Use a different asset (such as a texture, model, or audio file) based on a locale. \u2022 Pseudo-localization: Test how your project will adapt to different localizations at an early stage, before adding your translations. \u2022 Import and export localization data to XLIFF, CSV and Google Sheets. Add localization to your projects using the Localization package to help make your applications more accessible to a wider audience. Version information Released for Unity Package version 1.5.13 is released for Unity Editor version 6000.3. Compatible with Unity These package versions are available in Unity version 6000.3: Documentation location: State Versions available: com.unity.localization@1.5 released 1.5.8, 1.5.9, 1.5.10, 1.5.11, 1.5.12, 1.5.13 Keywords localization , locale , language Leaderboards Mathematics Copyright \u00a92005-2026 Unity Technologies. All rights reserved. Built from job ID 75971899. Built on: 2026-09-23. Tutorials Community Answers Knowledge Base Forums Asset Store Terms of use Legal Privacy Policy Cookies Documentation Terms of Use Do Not Sell or Share My Personal Information Your Privacy Choices (Cookie Settings) ",
+  "links": [
+    "https://docs.unity3d.com/Packages/com.unity.localization@1.5/manual/index.html"
+  ]
+}

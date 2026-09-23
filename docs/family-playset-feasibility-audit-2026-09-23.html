@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Family Playset — feasibility audit</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;background:radial-gradient(circle at center,#fff 0 28%,#eef3ee 28% 29%,transparent 29%)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid transparent;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+
+.audit-intro{padding:48px 0 25px}.audit-intro h1{font-size:clamp(32px,4vw,52px);margin:0 0 20px}.audit-intro p{max-width:900px}.audit-status{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}.audit-status span{border-radius:20px;background:#e7f0f1;padding:6px 14px;font-size:14px}.report>h2:first-of-type{margin-top:32px}.topbar nav{flex-wrap:wrap}
+</style></head><body>
+<header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Audit navigation"><a href="bluey-game-research-2026-09-23.html#52-feasibility-audit-and-current-priorities">Main research</a><a href="#2-feature-by-feature-verdict">Feature verdicts</a><a href="#6-the-proof-plan-before-producing-the-full-game">Proof plan</a></nav></header>
+<main class="wrap" id="top"><div class="audit-intro"><p class="eyebrow">Full plan review · 23 September 2026</p><h1>Can we build this game?<br>Yes—with the right foundations.</h1><p class="intro">The whole playset is feasible in principle. Automatic multiplayer recovery and the older iPad's workload need early device proof; the artwork, voices and activities need staged production.</p></div>
+<div class="audit-status"><span>51 sections + both supplements reviewed</span><span>iPad hosting &amp; automatic switching: required</span><span>Travel multiplayer: optional</span><span>Offline solo: required</span></div>
+<div class="report-layout"><aside class="contents"><h3>In this audit</h3><div class="toc">
+<ul>
+<li><a href="#1-what-i-audited-and-what-exists-today">1. What I audited and what exists today</a></li>
+<li><a href="#2-feature-by-feature-verdict">2. Feature-by-feature verdict</a></li>
+<li><a href="#3-the-limits-that-must-remain-honest">3. The limits that must remain honest</a></li>
+<li><a href="#4-findings-and-corrections-to-the-existing-research">4. Findings and corrections to the existing research</a></li>
+<li><a href="#5-one-coherent-architecture-to-prove">5. One coherent architecture to prove</a></li>
+<li><a href="#6-the-proof-plan-before-producing-the-full-game">6. The proof plan before producing the full game</a></li>
+<li><a href="#7-workload-and-things-that-are-still-unknown">7. Workload and things that are still unknown</a></li>
+<li><a href="#8-audit-coverage-register">8. Audit coverage register</a></li>
+</ul>
+</div>
+</aside><article class="report">
+<p><strong>Technical follow-up:</strong> <a href="family-playset-technical-research-2026-09-23.html">Read the deeper source-backed review</a>. It verifies released NGO shutdown behavior, independent-area examples, native discovery and template limitations. Automatic PC-server joining is the normal flow; iPad hosting/recovery stays required. Bluetooth was removed from the plan at your request.</p>
+<p>September 23, 2026 · Design and technical audit · No game build has been tested</p>
+<p><strong>Yes: this game is technically achievable in Unity.</strong> The illustrated dollhouse, rich toys, optional activities, speaking characters, personal rooms, and four-player iPad/Android play are compatible ideas. The full plan is a substantial custom game, however. Its hardest work is dependable automatic multiplayer and preserving children's creations through interruptions; the quantity of finished artwork, animation, and audio is the other major workload.</p>
+<p><strong>Your latest clarification is preserved:</strong> iPad hosting, automatic joining, automatic host switching, independent exploration, and shared items remain <strong>required</strong>. Only multiplayer connectivity <strong>while traveling</strong> is a lower-priority want. Complete solo play without the PC or internet remains required, including on trips. Deferring hotspot/remote-access work does not defer the normal-network host-recovery system.</p>
+<p><a href="bluey-game-research-2026-09-23.html#52-feasibility-audit-and-current-priorities">Back to the main illustrated research</a> · <a href="family-playset-feasibility-audit-2026-09-23.md">Editable audit</a></p>
+<h2 id="1-what-i-audited-and-what-exists-today">1. What I audited and what exists today</h2>
+<p>I reviewed all <strong>51 existing main-guide sections</strong>, the complete Toca/Piknik supplement, and the complete iPad/build supplement. I checked their requirements against one another, inspected the saved evidence indexes for recorded gaps, and rechecked pivotal engine, networking, device-lifecycle, and installation claims against current primary documentation. The coverage table below accounts for every section. This was not a fresh independent verification of every episode sentence, educational fact, repository line, or external URL.</p>
+<p>The new game folder currently contains research, reference catalogs, page generators, and project-boundary instructions. It does <strong>not</strong> contain this game's Unity project, playable scenes, completed character rigs, generated voice library, working server, or tested device builds. The illustrated page is a research interface, not the game. The unrelated <code>Meeps game</code> project and its connector shortcut do not establish implementation progress for this game.</p>
+<p>Evidence has three different levels: an official API can establish that an engine supports something; a design can explain how we intend to combine those APIs; only a working build on the actual devices establishes that our combination works well. Much of the current report is a good design proposal at the second level.</p>
+<h2 id="2-feature-by-feature-verdict">2. Feature-by-feature verdict</h2>
+<p><strong>Buildable</strong> means there is an ordinary, credible implementation path. <strong>Needs early proof</strong> means feasible in principle but risky enough that we should demonstrate it before producing lots of content. Neither label means implemented.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Audit table"><table>
+<thead>
+<tr>
+<th>Feature you want</th>
+<th>Verdict</th>
+<th>What makes it achievable / what remains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat cartoon dollhouse, six-world wheel, menus and settings</td>
+<td>Buildable</td>
+<td>Orthographic 2D scenes, layered art, large touch controls, local camera and menu state. Blender is optional for this style.</td>
+</tr>
+<tr>
+<td>Any available character, change during play, duplicate favorites, playable parents</td>
+<td>Buildable; substantial art</td>
+<td>Keep player identity separate from the visual rig. Test tiny and large bodies, seating, hiding, carrying, and switching before expanding the roster. Portrait references are not animated assets.</td>
+</tr>
+<tr>
+<td>Joystick or tap walking, with dragging in either mode</td>
+<td>Buildable; child usability test</td>
+<td>One input router decides which finger owns the joystick, item, floor, or menu. Simple Play allows direct object use without precise walking.</td>
+</tr>
+<tr>
+<td>Toca-like interactive objects</td>
+<td>Buildable; foundation work</td>
+<td>Authored capabilities and state changes: fill, pour, wash, cut, combine, attach, carry. Stylized liquid and dirt effects can feel rich without fluid simulation. Compatibility must be authored; every possible pair cannot automatically have a meaningful result.</td>
+</tr>
+<tr>
+<td>Optional quests, easy start/stop/change</td>
+<td>Buildable</td>
+<td>World objects work independently of quest prompts. Leaving releases participation while preserving accepted work.</td>
+</tr>
+<tr>
+<td>Five pizzas, five cakes, five meals and cleanup</td>
+<td>Buildable; content-heavy</td>
+<td>Shared preparation/decoration/serving rules, with distinct recipe art and tested cancellation at each step. Finished food remains a toy.</td>
+</tr>
+<tr>
+<td>Pond fishing, beach, creek, park and usable equipment</td>
+<td>Buildable</td>
+<td>Authored catches, paths, seats, placement sockets and gentle motion. Reuse fishing, collecting, pouring and construction across locations.</td>
+</tr>
+<tr>
+<td>Roaming parents, hide-and-seek, closets/drawers and optional clues</td>
+<td>Buildable</td>
+<td>Authored NPC states and hiding anchors. A roughly 30-second search is a tuned goal in a small arena, not a guarantee across all worlds or moving hiders.</td>
+</tr>
+<tr>
+<td>Books, spoken dinosaur names and small page interactions</td>
+<td>Buildable</td>
+<td>Local illustrated pages, hotspots and reviewed recordings; each device controls its own reading and audio.</td>
+</tr>
+<tr>
+<td>TV clips with a thumbnail library</td>
+<td>Buildable; media test</td>
+<td>Supplied ordinary video files, local storage and one decoder per device. A YouTube page or its encrypted offline download is not an imported MP4. The library does not require an in-game YouTube browser.</td>
+</tr>
+<tr>
+<td>Dinosaur toys, discovery mat and science stations</td>
+<td>Buildable; reviewed content</td>
+<td>Reuse drag/wash/container rules and small bounded simulations. Check factual narration and pronunciations; these ideas do not establish measured educational benefits.</td>
+</tr>
+<tr>
+<td>Separate bedrooms and secret plush/aurora rooms</td>
+<td>Buildable</td>
+<td>Stable room IDs, ownership of decorating, safe placement and lightweight 2D effects. Both children can visit either existing room.</td>
+</tr>
+<tr>
+<td>Daycare's optional day, learning and nine imagination stories</td>
+<td>Buildable; especially large content batch</td>
+<td>Saved activity selections, local spoken invitations and reusable role/session systems. Nine complete stories still require individual artwork, pacing, interactions and testing.</td>
+</tr>
+<tr>
+<td>Up to four people, Android mixed with iPads/iPhone</td>
+<td>Buildable; needs device proof</td>
+<td>Same game protocol and content IDs across platform builds. Four human slots; a dedicated PC consumes no human slot. Unity NGO documents iOS and Android support. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/index.html">Platform support</a></td>
+</tr>
+<tr>
+<td>Everyone goes anywhere independently; friends meet in the same area</td>
+<td>Buildable; needs early proof</td>
+<td>Separate persistent world data from each client's loaded artwork. Enter the existing zone, not a new copy. A mobile host must keep guests' offscreen areas running.</td>
+</tr>
+<tr>
+<td>One bucket, one holder; visible pickups, carrying and dropping</td>
+<td>Buildable; needs early proof</td>
+<td>Authority orders actions, grants one reservation and records transfers once. Room changes and disconnects must preserve the same object identity.</td>
+</tr>
+<tr>
+<td>Automatic item returns and stocked rooms</td>
+<td>Buildable; cross-system testing</td>
+<td>Categories distinguish shared loans, essential tools, personal belongings and saved creations. Timers alone cannot prevent hoarding. Containers, pending actions and creations need explicit handling.</td>
+</tr>
+<tr>
+<td>Automatic discovery and joining without a child Host/Join menu</td>
+<td>Needs early proof; required</td>
+<td>Platform discovery, initial parent pairing/permissions, authentication, compatible versions and one session controller. Discovery finds devices; it does not migrate a world.</td>
+</tr>
+<tr>
+<td>Both iPads host; automatic host switching and reunion</td>
+<td>Needs early proof; required; highest engineering risk</td>
+<td>Custom saved state, successor selection, ordered handoff, hard-failure recovery and reconciliation. It is not an NGO checkbox.</td>
+</tr>
+<tr>
+<td>Every solo-capable activity without internet or PC</td>
+<td>Buildable; required</td>
+<td>Same local rules, bundled art/audio, installed clips and NPC substitutes. There can be no dependency on a live voice model or cloud login to play.</td>
+</tr>
+<tr>
+<td>Hotspot co-op / remote access to the home PC while traveling</td>
+<td>Optional later qualification</td>
+<td>Preserve the existing research; test the actual network only after core multiplayer works. Failure here must not prevent solo play.</td>
+</tr>
+<tr>
+<td>AR</td>
+<td>Optional separate experiment</td>
+<td>Not needed for the selected dollhouse style. Do not load AR packages/camera work into the first ordinary-play milestone.</td>
+</tr>
+<tr>
+<td>Free automatic iPad installation renewal</td>
+<td>Plausible deployment workflow; must verify</td>
+<td>Keep the agreed free plan. Successful recurring refresh and preserved saves need proof on both iPads; installation expiry is separate from offline gameplay.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-the-limits-that-must-remain-honest">3. The limits that must remain honest</h2>
+<h3 id="automatic-host-switching-is-possible-a-vanished-host-cannot-guarantee-an-invisible-handoff">Automatic host switching is possible; a vanished host cannot guarantee an invisible handoff</h3>
+<p>Ordinary joining, leaving an activity, changing rooms, or closing a <strong>client</strong> while the PC continues should not restart or pause the remaining players. That remains the target.</p>
+<p>If the <strong>hosting</strong> iPad is force-closed, loses power or becomes unreachable, survivors must first detect that loss and restore a consistent state. A brief recovery transition and uncertainty about the final unreplicated action are possible. We can design automatic recovery without a lobby or manual Host button; we cannot certify zero delay or preserve an action nobody else received. iOS also suspends ordinary background apps, so an iPad left in the app switcher is not a dependable always-running server. <a href="https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time">Apple background execution</a></p>
+<p>Unity explicitly separates host election from migration of game data. Its documented default session data migration is for Netcode for Entities; it directs NGO users to Distributed Authority for migration-related operations. That cloud-oriented alternative does not demonstrate our offline/LAN requirements. Our proposed NGO architecture therefore needs its own recovery implementation, with the package choice revisited if the prototype fails. <a href="https://docs.unity.com/en-us/mps-sdk/session-host-migration">Unity host migration</a></p>
+<h3 id="offline-worlds-can-preserve-work-without-magically-agreeing-about-every-object">Offline worlds can preserve work without magically agreeing about every object</h3>
+<p>Two disconnected devices can each use their local copy of a bucket. They cannot enforce a single live holder across a missing connection. On reunion, one common world must be established, shared stock normalized, safe independent edits imported, and conflicting creations retained as separate saved variants.</p>
+<p>The current plan's proposal to keep a conflicting activity in a private continuation instance needs tightening: it must not quietly create two ordinary playgrounds while claiming both players occupy the same playground. Prefer importing a creation into an available personal work tray, or keeping both variants in recovery storage. Explicit story/workspace instances need distinct identity and an understandable way to visit. This is a proposed resolution to prototype; arbitrary conflict-free reunion with no visible change is not established.</p>
+<h3 id="the-older-ipad-is-a-target-not-a-passed-benchmark">The older iPad is a target, not a passed benchmark</h3>
+<p>Unity 6.3's published player requirements include iOS/iPadOS 15+, A8 or newer and Metal. Your A10 and A13 iPads meet that baseline. This supports using Unity; it does not prove our busiest scene or four-player A10 hosting performance. <a href="https://docs.unity.com/en-us/engine/6000.3/manual/get-started/install-and-upgrade/getting-started-installing-unity/system-requirements">Unity 6.3 requirements</a></p>
+<p>Keep the 30 FPS target, load only the local view's detailed art, and retain compact simulation for other occupied zones. Profile an A10 host with four people in different areas, then with everyone together, and while it opens a book or video. Those are different workloads. The report's 400 MiB goal, NPC counts, sprite sizes, 32-prop room budget and snapshot intervals are hypotheses, not measured safe limits.</p>
+<h3 id="a-local-game-still-needs-a-valid-ipad-installation">A local game still needs a valid iPad installation</h3>
+<p>Apple's free Personal Team provisioning expires after seven days. Sideloadly documents automatic refresh when the paired device is reachable over Wi-Fi or USB; automation reduces manual work but does not make the installation permanent. Verify a real recurring refresh, app launch, and preserved saves. Longer offline trips still need valid signing even though travel multiplayer is optional. No paid subscription is being added to the plan. <a href="https://developer.apple.com/help/account/basics/about-your-developer-account">Apple Personal Team limits</a>, <a href="https://sideloadly.io/faq">Sideloadly refresh documentation</a></p>
+<h2 id="4-findings-and-corrections-to-the-existing-research">4. Findings and corrections to the existing research</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Audit table"><table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Impact</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Section 18 still said shared stage travel; the Toca supplement repeated a same-stage first version</td>
+<td>Contradicts required independent movement</td>
+<td>Replace those statements with a clearly labeled one-room prototype boundary; independent zones are an early completion gate.</td>
+</tr>
+<tr>
+<td>The Toca supplement still had five worlds; section 14 said “other four” after the plan grew to six</td>
+<td>Inconsistent navigation/content scope</td>
+<td>Update the supplement to six including Daycare, and make the main content milestone six locations.</td>
+</tr>
+<tr>
+<td>Section 12's “two player avatars / one active location” budget</td>
+<td>Could lead to disabling guest zones on a host</td>
+<td>State up to four human avatars per view, with a separate logical simulation budget for every occupied zone.</td>
+</tr>
+<tr>
+<td>The opening said the bucket scene would prove the hardest systems</td>
+<td>A normal two-player pour does not prove recovery, reconciliation, or four-zone hosting</td>
+<td>Call it a first interaction proof, followed by explicit networking and interruption gates.</td>
+</tr>
+<tr>
+<td>Earlier platform/setup instructions described the unrelated old project as “your project”</td>
+<td>Risks importing or connecting the wrong project</td>
+<td>Label observations and connector commands historical. Create this game's Unity project separately in the new home.</td>
+</tr>
+<tr>
+<td>Unity patch and package numbers were discussed as if one finished combination existed</td>
+<td>No new project or lockfile establishes that combination</td>
+<td>Retain Unity 6.3 LTS as the candidate branch; qualify one exact editor/renderer/Input/NGO/Transport set on Windows, Mac, iOS and Android before content production.</td>
+</tr>
+<tr>
+<td>Independent-zone visibility can hide the only copy of recovery data</td>
+<td>A new host could lose offscreen rooms</td>
+<td>Keep the full compact recovery model separate from view-based replication. Unity's visibility hides client representations; it is not a world backup. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/object-visibility.html">Object visibility</a></td>
+</tr>
+<tr>
+<td>Per-player travel cannot be a global scene replacement</td>
+<td>A room change could move or unload everybody</td>
+<td>Keep a persistent world/network root and registered dynamic entities; manage local presentation readiness explicitly. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/scenemanagement/custom-management.html">Custom scene management</a></td>
+</tr>
+<tr>
+<td>“Automatic” could be mistaken for no setup or permissions</td>
+<td>Apps cannot silently grant OS network access</td>
+<td>One-time parent pairing and local-network permission, then automatic child use. Use declared Bonjour services rather than an unqualified raw-broadcast template. <a href="https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy">Apple network privacy</a></td>
+</tr>
+<tr>
+<td>Private continuation copies versus one shared ordinary location</td>
+<td>Returning players might be connected yet unable to meet</td>
+<td>Preserve conflicting work explicitly; never silently fork a normal room with the same identity. Test this at reunion.</td>
+</tr>
+<tr>
+<td>Idle returns versus “all work stays”</td>
+<td>A shared plate return could erase its cake; a saved fort could permanently reserve all tools</td>
+<td>Classify every object and its contained items. Transfer protected creations safely before returning equipment; enforce loan and station rules separately.</td>
+</tr>
+<tr>
+<td>Two-tool examples persisted after four-player expansion</td>
+<td>Players could be blocked by content authored only for two</td>
+<td>Treat those as examples, and qualify sufficient work surfaces/tools/roles for four; do not duplicate an already held unique item.</td>
+</tr>
+<tr>
+<td>“All characters” and “all activities” could imply completed assets or an exhaustive show catalog</td>
+<td>The effort and current status would be understated</td>
+<td>Keep the roster extensible and the show catalog a backlog. There are 34 portrait entries, including one group image, not 34 finished rigs. Pretzel's portrait remains unverified.</td>
+</tr>
+<tr>
+<td>Many content counts were research proposals</td>
+<td>Adding their totals exaggerates the number of distinct game systems</td>
+<td>The 15 recipes are an explicit minimum; six books, 20 toy types, eight science stations and other catalog sizes are proposed content batches. Reused fishing or counting is not a new engine each time.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The selected 6000.3.24f1 patch is real and its release notes list a 2D Renderer/Bloom black-screen issue. Keep Bloom disabled in the first renderer test and recheck the available 6.3 patches before creating the project. “LTS” does not prove fastest or bug-free. No editor installation is changed by this audit. <a href="https://unity.com/releases/editor/whats-new/6000.3.24f1">Official release notes</a></p>
+<p>The saved evidence also records two direct HTTP 403 results for Head Start, with separate successful web-review notes; these are access-method limitations, not proof the articles are absent. Repository evidence is source inspection, not import/build certification. No complete GitHub template has been qualified for the whole requested game.</p>
+<h2 id="5-one-coherent-architecture-to-prove">5. One coherent architecture to prove</h2>
+<p>The existing design is strongest when it follows this flow:</p>
+<p><strong>Local touch → requested action → current world authority → committed state → views, audio and durable save.</strong></p>
+<p>Run the same world rules locally for solo play, on either iPad for hosting, and on the Windows PC as a dedicated server. Keep profile, character appearance, room ownership, object reservation and host authority as separate identities. This lets a child switch from Bingo to Bandit without changing their bedroom, bucket or hiding role.</p>
+<p>Use native service discovery behind a small common adapter. Android's NSD supports DNS-SD service discovery across platforms; the game still supplies trust, protocol compatibility and session selection. <a href="https://developer.android.com/develop/connectivity/wifi/use-nsd">Android NSD</a></p>
+<p>Keep an established healthy host stable. Choose the PC when initially available; otherwise choose an eligible iPad. Transfer automatically when required, with a coherent state checkpoint. A faster device appearing is not a reason to repeatedly restart a healthy session. Simultaneous launches, returning hosts and network partitions need one controller with explicit generations and bounded retry behavior.</p>
+<p>Persist accepted object operations, room edits, creations and activity checkpoints. Separate small recovery state from big textures, voices and videos. Delay expensive content expansion until the same save/action model survives late joining and host loss. Do not build one game for solo and rewrite its rules for multiplayer later.</p>
+<p>Author activities from reusable families: containers/pouring, preparation, cleaning, decorating/building, collection, traversal/seating, discovery, role play, narration and picture matching. Reuse those mechanics while still budgeting individual activity art, sound, pacing and cancellation. NPC routines and prerecorded speech are enough; no live LLM is required for ordinary play.</p>
+<h2 id="6-the-proof-plan-before-producing-the-full-game">6. The proof plan before producing the full game</h2>
+<p>These are implementation gates, not permission requests or claims that tests ran. A small milestone deliberately has fewer finished scenes; it does not remove the final requirements.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Audit table"><table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Smallest useful build</th>
+<th>What must be demonstrated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Device/build path</td>
+<td>Fresh 2D project, simple touch scene, build number, tiny save</td>
+<td>Native release launches on both iPads; Android build works; exact Mac/Xcode/package matrix recorded; stable identities and in-place update work. Begin free-renewal verification here.</td>
+</tr>
+<tr>
+<td>2. Feel and objects</td>
+<td>Two characters, bucket/tap/plant, sponge and toy</td>
+<td>Both input modes, direct Simple Play use, meaningful reactions, safe cancellation, local save and cold offline launch. Let both children try it.</td>
+</tr>
+<tr>
+<td>3. Shared world</td>
+<td>Two simple areas, PC host, both iPads; add Android then iPhone</td>
+<td>Automatic paired joining, four people, independent travel, one bucket holder, late arrival and client departure while another keeps playing.</td>
+</tr>
+<tr>
+<td>4. Required mobile authority</td>
+<td>Same tiny world, PC absent, either iPad hosting</td>
+<td>Either launch order, simultaneous launch, sticky authority, orderly host transfer and hard-close recovery. Add four-player and offscreen-zone stress to the A10-host test (host player plus three clients).</td>
+</tr>
+<tr>
+<td>5. Recovery and reunion</td>
+<td>Two editable rooms, cake/creation, held bucket</td>
+<td>Reconnect after disjoint and conflicting edits, repeated operation delivery, host return and network partition. No duplicated communal stock, lost protected creations or invisible duplicate ordinary rooms.</td>
+</tr>
+<tr>
+<td>6. One polished family area</td>
+<td>Home/backyard slice with one cooking activity, hiding spot, narrated book, dinosaur and returnable loan</td>
+<td>Finished art/audio, young-child usability, personal room ownership, safe idle returns, one video test, and sustained release performance while hosting.</td>
+</tr>
+<tr>
+<td>7. Content batches</td>
+<td>Expand to six worlds, wider roster, recipe variants, daycare and stories</td>
+<td>Every finished activity has solo, join/leave, cancellation, narration, save and contention coverage; complete English, then reviewed Spanish.</td>
+</tr>
+<tr>
+<td>8. Family deployment</td>
+<td>The same tested release, saved worlds and media</td>
+<td>Renewal, updates, recovery backups, server startup, crash symbols/logs and offline checks. Qualify travel multiplayer separately if desired.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Record frame-time spikes and memory trends, not only average FPS. Exercise rapid touches, stalled loads, low storage, interruptions during saves, late join during object use, repeated area changes and host loss. Use automated tests for state invariants and device sessions for native networking, touch, heat, decoder behavior and renewal. Do not claim a game can never crash; make failures diagnosable and saves recoverable.</p>
+<p>The most important early go/no-go is <strong>A10 mobile hosting with independent zones and automatic recovery</strong>. If it fails, first reduce offscreen simulation cost, animation detail, memory and load bursts. If it still fails, explain the measured limitation and revisit the architecture with you; do not silently change “both iPads can host” into PC-only play.</p>
+<h2 id="7-workload-and-things-that-are-still-unknown">7. Workload and things that are still unknown</h2>
+<p>This is realistic as a staged family project. The complete commercial-style experience described here is not a small template customization or a weekend build. No defensible calendar estimate has been measured. The earlier many-months/year-scale wording was a planning impression, not a research result; estimate production only after the implemented slice and asset workflow have measurable throughput. A smaller enjoyable version can arrive much earlier. Gates 1–5 should determine whether the riskiest requirements work before we commit to producing the entire catalog.</p>
+<p>The main production costs are:</p>
+<ul>
+<li>Consistent layered environments, depth sorting, hand/seat anchors, different body rigs and many state illustrations.</li>
+<li>Networking, durable state, host recovery, conflicting saves and lifecycle handling across three operating-system families.</li>
+<li>Distinct and intelligible character speech, auditioning, pronunciation review, local audio behavior and Spanish adaptation. English phonics/rhymes cannot simply be translated word for word.</li>
+<li>Testing combinations: avatar switching while hiding or riding, pouring while disconnecting, returning a plate with a cake, and entering a room while its objects change.</li>
+</ul>
+<p>Still unknown: the Mac's installed macOS/Xcode, the Android phone's installed OS, available storage on the iPads, exact package/plugin compatibility, A10 hosting measurements, voice quality, and how the children respond to the controls. These are prototype/setup checks, not reasons to discard the idea.</p>
+<p>The first release should contain finished, usable activities rather than visible buttons to unbuilt content. Keep the full feature backlog in this research and expand from working batches. That production sequence preserves the intended game instead of promising all of its content before its foundations are proven.</p>
+<h2 id="8-audit-coverage-register">8. Audit coverage register</h2>
+<p>Every numbered section of the original main report is covered below. The verdicts refer to feasibility and consistency, not implementation completion.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Audit table"><table>
+<thead>
+<tr>
+<th>Main sections reviewed</th>
+<th>Subjects</th>
+<th>Audit conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–3</td>
+<td>Requirements, child experience, six worlds and menu</td>
+<td>Coherent; keep six destinations and per-child assistance. Numerical usability timings are proposed.</td>
+</tr>
+<tr>
+<td>4–6</td>
+<td>Characters, touch and object rules</td>
+<td>Credible foundation; substantial asset work and device touch tests remain.</td>
+</tr>
+<tr>
+<td>7–9</td>
+<td>LAN networking, speech and GitHub candidates</td>
+<td>LAN/cross-platform path is credible; Bluetooth removed from scope; no complete template qualified; prerecorded speech is appropriate.</td>
+</tr>
+<tr>
+<td>10–12</td>
+<td>Architecture, saving, performance/crashes</td>
+<td>Retain separated state and saves; qualify one package set; correct two-player/rendering assumptions.</td>
+</tr>
+<tr>
+<td>13–15</td>
+<td>Tests, milestones and unresolved choices</td>
+<td>Useful tests; early recovery proof is missing from the original short milestone list. Signing remains a deployment gate.</td>
+</tr>
+<tr>
+<td>16–18</td>
+<td>Tracker, avatar changes and optional quests</td>
+<td>Implementable; correct obsolete shared-travel sentence and apply stable identity throughout.</td>
+</tr>
+<tr>
+<td>19–22</td>
+<td>Cooking, fishpond, cleanup, parents/hiding</td>
+<td>Implementable with authored states; protect creations, shared resources and free exits.</td>
+</tr>
+<tr>
+<td>23–24</td>
+<td>Show catalog and integration</td>
+<td>Useful reusable backlog, not 32 completed systems; tie content to the tested activity model.</td>
+</tr>
+<tr>
+<td>25–29</td>
+<td>Books, dinosaur narration, TV, toys and integration</td>
+<td>Implementable; imported media, reviewed recordings, storage and decoder tests remain.</td>
+</tr>
+<tr>
+<td>30–34</td>
+<td>Science, drop-in play, bedrooms, secret rooms and hiding</td>
+<td>Implementable; resolve independent simulation, role continuity and per-hider timing.</td>
+</tr>
+<tr>
+<td>35–36</td>
+<td>Travel, offline play and milestones</td>
+<td>Solo stays required. Travel network qualification is optional; ordinary mobile hosting/recovery stays required.</td>
+</tr>
+<tr>
+<td>37–39</td>
+<td>Beach, creek and park activities</td>
+<td>Buildable content; reuse mechanics, bound physics/effects, and expand equipment capacity for four.</td>
+</tr>
+<tr>
+<td>40–43</td>
+<td>Daycare, learning, nine stories and integration</td>
+<td>Coherent but large; optional schedules, NPC substitutes and independent story instances are necessary.</td>
+</tr>
+<tr>
+<td>44–46</td>
+<td>Discovery, iPad hosting, recovery and implementation</td>
+<td>Required and highest technical risk; must prove on physical iPads before broad production.</td>
+</tr>
+<tr>
+<td>47–48</td>
+<td>Four players, Android and phone qualification</td>
+<td>Documented platform support; actual mixed-device/hosting and phone-layout tests pending.</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Remote home PC</td>
+<td>Feasible candidate approaches; lower-priority travel want, not a gate for core multiplayer.</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Shared world, independent travel, exclusive props</td>
+<td>Sound central requirement; constrain scene lifetime and visibility; resolve conflicts with private continuation instances.</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Automatic returns and anti-hoarding</td>
+<td>Sound direction; classify all content, test nested containers and preserve creative work transactionally.</td>
+</tr>
+<tr>
+<td>Toca/Piknik supplement, all 12 sections</td>
+<td>Interaction inspiration, two assistance levels, object catalog and first prototype</td>
+<td>Useful public-source synthesis, not reverse engineering; update stale five-world and same-stage wording.</td>
+</tr>
+<tr>
+<td>iPad/build supplement, all 14 sections</td>
+<td>Devices, engines, build path, signing, AR, reliability and connections</td>
+<td>Useful platform background; explicitly separate old-project observations and superseded 3D/creature advice from this new 2D game.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Decision:</strong> proceed with a fresh Unity 2D implementation in staged proofs. The vision is achievable; automatic hosting/recovery and the A10 workload must earn their claims through prototypes. Travel multiplayer remains optional. Core multiplayer, free exploration, interactive toys and complete solo play remain in the plan.</p></article></div>
+<footer class="footer"><p>Design audit, not runtime certification. No Unity implementation or device test was performed.</p><a href="family-playset-feasibility-audit-2026-09-23.md">Editable audit</a><a href="bluey-game-research-2026-09-23.html">Full research and character board</a></footer></main></body></html>

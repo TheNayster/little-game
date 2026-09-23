@@ -1,0 +1,14 @@
+{
+  "id": "tests",
+  "url": "https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/index.html",
+  "resolved_url": "https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/index.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "About Unity Test Framework | Test Framework | 1.4.6 ",
+  "sha256": "7c5b80611569642740af014ef72a04528e6710786c0861300d941c3a00387f26",
+  "excerpts": [
+    "le of Contents About Unity Test Framework The Unity Test Framework (UTF) enables Unity users to test their code in both Edit Mode and Play Mode , and also on target platforms such as Standalone , Android, iOS, etc. This package provides a standard test framework for users of Unity and developers at Unity so that both benefit from the same features and can write tests the same way. UTF uses a Unity integration of NUnit library, which is an open-source unit testing library for .Net languages. UTF currently uses NUnit version 3.5. For more information about NUnit, see the official NUnit website and the NUnit documentation . Note : UTF is not a new concept or toolset; it is an adjusted and more descriptive naming for the toolset otherwise known as Unity Test Runner, which is now available as t",
+    " About Unity Test Framework The Unity Test Framework (UTF) enables Unity users to test their code in both Edit Mode and Play Mode , and also on target platforms such as Standalone , Android, iOS, etc. This package provides a standard test framework for users of Unity and developers at Unity so that both benefit from the same features and can write tests the same way. UTF uses a Unity integration of NUnit library, which is an open-source unit testing library for .Net languages. UTF currently uses NUnit version 3.5. For more information about NUnit, see the official NUnit website and the NUnit documentation . Note : UTF is not a new concept or toolset; it is an adjusted and more descriptive naming for the toolset otherwise known as Unity Test Runner, which is now available as this package. I",
+    " Unity Test Framework (UTF) enables Unity users to test their code in both Edit Mode and Play Mode , and also on target platforms such as Standalone , Android, iOS, etc. This package provides a standard test framework for users of Unity and developers at Unity so that both benefit from the same features and can write tests the same way. UTF uses a Unity integration of NUnit library, which is an open-source unit testing library for .Net languages. UTF currently uses NUnit version 3.5. For more information about NUnit, see the official NUnit website and the NUnit documentation . Note : UTF is not a new concept or toolset; it is an adjusted and more descriptive naming for the toolset otherwise known as Unity Test Runner, which is now available as this package. Installing Unity Test Framework "
+  ]
+}

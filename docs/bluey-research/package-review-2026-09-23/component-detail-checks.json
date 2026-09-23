@@ -1,0 +1,50 @@
+[
+  {
+    "name": "input-touch",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "input-onscreen",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "primetween-readme",
+    "url": "https://raw.githubusercontent.com/KyryloKuzyk/PrimeTween/3f06f369143fc896bc19cf346468818a0853ca11/README.md",
+    "matches": [
+      "And the last method is awaiting animations using the **async/await** pattern. Async/await is a great tool to prevent the callback hell in your code. PrimeTween doesn't use threads, so tweens can be awaited on all platforms, even on WebGL.",
+      "    // Animations can be awaited on all platforms, even on WebGL",
+      "> The generic TweenSettings<T> can be serialized and tweaked from the Inspector in Unity 2020.1+. If you're using an older version of Unity, use the non-generic TweenSetting and serialize `startValue/endValue` separately.",
+      "The Package Manager installation method allows to include PrimeTween in derivative (free and commercial) projects (templates, libraries, GitHub repositories). For more info, see the [license](https://github.com/KyryloKuzyk/PrimeTween?tab=License-1-ov-file).  ",
+      "    \"com.kyrylokuzyk.primetween\": \"1.4.11\",",
+      "* PrimeTween is truly multiplatform with no exceptions. Awaiting tweens in async methods works even on WebGL!"
+    ]
+  },
+  {
+    "name": "navmeshplus-readme",
+    "url": "https://raw.githubusercontent.com/h8man/NavMeshPlus/16283ee1040e591b9a99ddf93f37e9af93925aaf/README.md",
+    "text": "\n# NavMeshPlus\n\nNavMeshComponents.Extensions provides you with ability to create navigation meshes that are generated automatically from your Scene\ngeometry, which allows characters to move intelligently around the game world.\n\n![NavMesh](https://github.com/h8man/NavMeshPlus/wiki/images/Tittle-01.png)\n\n# Unity 2D Pathfinding \nThis repo is fork of Unity NavMeshComponents enhanced with Extensions system for 2d Pathfinding and more. [[link]](https://github.com/Unity-Technologies/NavMeshComponents)\n\n#### Wiki [[here]](https://github.com/h8man/NavMeshPlus/wiki)\n#### How To [[here]](https://github.com/h8man/NavMeshPlus/wiki/HOW-TO).\n#### Demo [[github]](https://github.com/h8man/RedHotSweetPepper ).\n#### Discuss [[unityforum]](https://discussions.unity.com/t/2d-navmesh-plus-components-and-extensions-system/881241/328).\n\n# 2D Navigation\n\n| ![](./Gizmos/NavMeshLink%20Icon.png) | ![](./Gizmos/NavMeshModifierVolume%20Icon.png) | ![](./Gizmos/NavMeshSurface%20Icon.png) | ![](./Gizmos/NavMeshLink%20Icon.png) | ![](./Gizmos/NavMeshModifierVolume%20Icon.png) | ![](./Gizmos/NavMeshSurface%20Icon.png) |\n|----------------|----------------|----------------|----------------|----------------|----------------|\n\nIn repo you will find implementation of NavMeshSurface and 2d Extensions for tilemap, sprites and collider2d top down games.\n\nTo use it in your project:\n\n1. Copy repo into your Asset folder (or install as a package).\n2. Create Empty Object in scene root.\n3. Add \"Navigation Surface\" component to Empty Object and add NavMeshCollecSources2d component after.\n4. Click Rotate Surface to XY (to face surface toward standard 2d camera x-90;y0;z0)\n5. Add \"Navigation Modifier\" component to scene objects obstacles, override the area.\n6. In \"Navigation Surface\" hit Bake.\n\nHow does it works:\n\n1. It uses [NavMeshSurface](https://docs.unity3d.com/Manual/class-NavMeshSurface.html) as base implementation.\n2. Implements world bound calculation.\n3. Implements source collector of tiles, sprites and 2d colliders\n4. Creates walkable mesh box from world bounds.\n5. Convert tiles, sprites and 2d colliders to sources as `NavMeshBuilder` would do.\n\n# Components & Extensions:\n- NavMeshLink\n- NavMeshModifier\n- NavMeshModifierVolume\n- NavMeshSurface:\n  - NavMeshCollectSources2d\n  - NavMeshCollectRootSources2d\n  - NavMeshCacheSources2d\n\nUtilities\n- NavMeshExtensionsProvider.cs\n- NavMeshBuilder2d.cs\n- NavMeshExtension.cs\n- NavMeshBuilderState.cs\n\n# Setup\n\nYou can use this in two different ways: downloading this repository or adding it to your project's Package Manager manifest. [Git](https://git-scm.com/) must be installed and added to your path.\nAlternatively, you can pick scripts and place in your project's `Assets` folder.\n\n#### Method 1. Download\nDownload or clone this repository into your project in the folder `Packages/com.h8man.2d.navmeshplus`.\n\n#### Method 2. Package Manager Manifest\nThe following line needs to be added to your `Packages/manifest.json` file in your Unity Project under the `dependencies` section:\n```\n\"com.h8man.2d.navmeshplus\": \"https://github.com/h8man/NavMeshPlus.git#master\"\n```\n#### Method 3. Add Package form git URL\nGo to `Package Manager` click `+` and then select `Add Package form git URL` paste url:\n```\nhttps://github.com/h8man/NavMeshPlus.git\n```\n"
+  },
+  {
+    "name": "navmeshplus-package",
+    "url": "https://raw.githubusercontent.com/h8man/NavMeshPlus/16283ee1040e591b9a99ddf93f37e9af93925aaf/package.json",
+    "text": "{\n\n    \"name\": \"com.h8man.2d.navmeshplus\",\n    \"displayName\": \"NavMeshPlus\",\n    \"version\": \"0.2.23\",\n    \"unity\": \"2022.3\",\n    \"description\": \"NavMesh building components provide you with ability to create navigation meshes that are generated automatically from your Scene geometry, which allows characters to move intelligently around the game world.\",\n    \"keywords\": [\"2d\"],\n    \"category\": \"2D\",\n    \"dependencies\": { }\n\n}\n"
+  },
+  {
+    "name": "dotween-store",
+    "url": "https://assetstore.unity.com/packages/tools/animation/dotween-pro-32416",
+    "price_fields": [
+      "                        \"priceCurrency\": \"USD\",",
+      "                        \"price\": \"7.50\",",
+      "\" data-reactid=\"320\">$7.50</div><div class=\"IGWtd\" data-reactid=\"321\">$15</div></div><div class=\"_2tFf7\" data-reactid=\"322\"><div class=\"_3tNZ0 _9l85j\" data-reactid=\"323\">-50",
+      "me\":\"Category\"}],\"__typename\":\"Category\"}],\"__typename\":\"Category\"}]},\"price\":{\"options\":[{\"text\":\"range\",\"value\":[0,3999],\"original\":[0,3999]},{\"text\":\"price_free\",\"value\":\"fre",
+      "pportedSearchEngine\":[\"solr\"],\"value\":8}]}},\"criteria\":{\"category\":[],\"price\":[],\"platform\":[],\"srp\":[],\"publisherSuggest\":\"\",\"version\":\"\",\"rating\":0,\"release\":\"\",\"publisher\":[]",
+      "d-cdn.unity3d.com/key-image/2095a4ee-473b-43ab-b3f2-e80f3e4b3e49.png\",\"price\":{\"price\":\"29.99\",\"originPrice\":\"29.99\",\"__typename\":\"Price\"},\"plusProSale\":false,\"onSale\":false,\"el",
+      "d-cdn.unity3d.com/key-image/2730f78a-898b-4c31-baac-f43fe79cec04.png\",\"price\":{\"price\":\"10.00\",\"originPrice\":\"19.99\",\"__typename\":\"Price\"},\"plusProSale\":false,\"onSale\":true,\"ele",
+      "d-cdn.unity3d.com/key-image/117825ff-6794-42a0-921a-209cbce54148.png\",\"price\":{\"price\":\"59.99\",\"originPrice\":\"59.99\",\"__typename\":\"Price\"},\"plusProSale\":false,\"onSale\":false,\"el",
+      "d-cdn.unity3d.com/key-image/80455abf-4ea6-4a78-a3bc-dddd774bc7f6.png\",\"price\":{\"price\":\"50.00\",\"originPrice\":\"99.99\",\"__typename\":\"Price\"},\"plusProSale\":false,\"onSale\":true,\"ele",
+      "d-cdn.unity3d.com/key-image/0e205766-8421-43f0-92b8-e7d338bf27bd.png\",\"price\":{\"price\":\"51.99\",\"originPrice\":\"51.99\",\"__typename\":\"Price\"},\"plusProSale\":false,\"onSale\":false,\"el",
+      "d-cdn.unity3d.com/key-image/70b7113d-f1c9-4587-996d-0d6bc7f2525d.png\",\"price\":{\"price\":\"599.99\",\"originPrice\":\"599.99\",\"__typename\":\"Price\"},\"plusProSale\":false,\"onSale\":false,\"",
+      "d-cdn.unity3d.com/key-image/04a3b4f5-c0b9-4820-a9bf-390c7a003209.png\",\"price\":{\"price\":\"25.00\",\"originPrice\":\"50.00\",\"__typename\":\"Price\"},\"plusProSale\":false,\"onSale\":true,\"ele"
+    ]
+  }
+]

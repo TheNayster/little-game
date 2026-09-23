@@ -1,0 +1,13 @@
+{
+  "id": "scriptableobjects",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html",
+  "resolved_url": "https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Unity - Manual: ScriptableObject",
+  "sha256": "a58aa826c556b12cf57ff5bc094f35dacd5f5c02f20806500398cf7588df6ec0",
+  "excerpts": [
+    "r type to help manage the data that it represents. Saving changes to ScriptableObject data In the Unity Editor, you can save data to ScriptableObjects in Edit mode and Play mode. In a standalone Player at runtime, you can only read saved data from the ScriptableObject assets. When you use Editor authoring tools or the Inspector to modify a ScriptableObject asset, Unity automatically writes the data to disk and it persists between Editor sessions. However, Unity doesn’t automatically save changes to a ScriptableObject made via script in Edit mode. In these cases, you must call EditorUtility.SetDirty on the ScriptableObject to ensure Unity’s serialization system recognizes it as changed and saves the changes to disk. Without this, changes may not persist between Editor sessions. The followin",
+    "viours, ScriptableObjects are not attached to GameObjects as components but exist in the project as assets Any media or data that can be used in your game or project. An asset may come from a file created outside of Unity, such as a 3D Model, an audio file or an image. You can also create some asset types in Unity, such as an Animator Controller, an Audio Mixer or a Render Texture. More info See in Glossary , independent of GameObjects. Because ScriptableObjects inherit from UnityEngine.Object , you can drag or pick instances of them into fields in the Inspector. The main value of a ScriptableObject is as a data store, but they can also define behavior. A common use for ScriptableObjects is as a container for shared data used by multiple objects at runtime, which can reduce a project’s mem"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "package": "com.unity.transport",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.transport.html",
+  "status": 200,
+  "released": "Package version 2.7.4 is released for Unity Editor version 6000.3.",
+  "manual_excerpt": " Unity Transport com.unity.transport Description Unity network transport layer - the low-level interface for connecting and sending data through a network Version information Released for Unity Package version 2.7.4 is released for Unity Editor version 6000.3. Compatible with Unity These package versions are available in Unity version 6000.3: Documentation location: State Versions available: com.unity.transport@2.7 released 2.7.4 Unity Profiling Core API Unity Version Control Copyright \u00a92005-2026 Unity Technologies. All rights reserved. Built from job ID 75971899. Built on: 2026-09-23. Tutorials Community Answers Knowledge Base Forums Asset Store Terms of use Legal Privacy Policy Cookies Documentation Terms of Use Do Not Sell or Share My Personal Information Your Privacy Choices (Cookie Settings) ",
+  "links": []
+}

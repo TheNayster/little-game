@@ -1,0 +1,14 @@
+{
+  "id": "android-sign",
+  "url": "https://developer.android.com/studio/publish/app-signing",
+  "resolved_url": "https://developer.android.com/studio/publish/app-signing",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Sign your app  |  Android Studio  |  Android Developers",
+  "sha256": "5923c9d31397ba541b3095e6cc169beca9e56f45292f373cc53a182cf934e25e",
+  "excerpts": [
+    "Signing, if you lose your app’s signing key, you lose the ability to update your app. Important: If you want to use the same signing key across multiple stores, make sure to provide your own signing key when you configure Play App Signing , instead of having Google generate one for you. Figure 1 . Signing an app with Play App Signing Your keys are stored on the same infrastructure that Google uses to store its own keys, where they are protected by Google’s Key Management Service. You can learn more about Google’s technical infrastructure by reading the Google Cloud Security Whitepapers . When you use Play App Signing, if you lose your upload key, or if it is compromised, you can request an upload key reset in the Play Console. Because your app signing key is secured by Google, you can cont",
+    "roid Studio Overview Install Android Studio New UI in Android Studio Get to know the UI Overview Accessibility features Keyboard shortcuts Workflow basics Manage your project Overview Create a project Migrate to Android Studio Version control basics Configure the IDE Update the IDE and tools About Play Feature Delivery Add C and C++ code Overview Install NDK and CMake Configure the NDK for AGP Configure CMake Link Gradle Create an Android library Set up continuous integration Write your code Write your code quicker and more efficiently Work with templates Add code from a template Find sample code Create a Java class or type Add a module for a new device Use Java 8 language features Java 8 language support table Add app resources Use tools to develop UI Develop a layout with Compose ⍈ Creat",
+    "tay in touch with the latest releases throughout the year, join our preview programs, and give us your feedback. Latest updates Experimental updates Android Studio preview Jetpack & Compose libraries Wear OS releases Privacy Sandbox ↗️ Design & Plan Excellent Experiences Build the best experiences for your best users. Learn more UI Design Design a beautiful user interface using Android best practices. Design for Android Mobile Desktop experiences XR Headsets & XR Glasses AI Glasses Widgets Wear OS Android TV Android for Cars Architecture Design robust, testable, and maintainable app logic and services. Introduction Libraries Navigation Modularization Testing Kotlin Multiplatform Quality Plan for app quality and align with Play store guidelines. Overview Core value User experience Accessibi"
+  ]
+}

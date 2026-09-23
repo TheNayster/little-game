@@ -1,0 +1,552 @@
+{
+  "checkedAt": "2026-09-23T17:10:06.337939+00:00",
+  "scope": "Official public descriptions and proposed game adaptations; no episode video or game runtime tested.",
+  "catalogCount": 32,
+  "distinctCatalogEpisodeSources": 30,
+  "sources": [
+    {
+      "url": "https://docs.unity3d.com/6000.1/Documentation/Manual/class-ScriptableObject.html",
+      "resolved": "https://docs.unity3d.com/6000.1/Documentation/Manual/class-ScriptableObject.html",
+      "status": 200,
+      "title": "Unity - Manual: ScriptableObject"
+    },
+    {
+      "url": "https://docs.unity3d.com/Packages/com.unity.2d.animation@13.0/manual/ex-sprite-swap.html",
+      "resolved": "https://docs.unity3d.com/Packages/com.unity.2d.animation@13.0/manual/ex-sprite-swap.html",
+      "status": 200,
+      "title": "Sprite Swap examples | 2D Animation | 13.0.6"
+    },
+    {
+      "url": "https://mp-docs.dl.it.unity3d.com/netcode/2.1.1/basics/playerobjects/",
+      "resolved": "https://mp-docs.dl.it.unity3d.com/netcode/2.1.1/basics/playerobjects/",
+      "status": 200,
+      "title": "PlayerObjects and player prefabs | Unity Multiplayer"
+    },
+    {
+      "url": "https://mp-docs.dl.it.unity3d.com/netcode/current/basics/networkvariable/index.html",
+      "resolved": "https://mp-docs.dl.it.unity3d.com/netcode/current/basics/networkvariable/index.html",
+      "status": 200,
+      "title": "NetworkVariables | Unity Multiplayer"
+    },
+    {
+      "url": "https://www.bluey.tv/characters/the-tradies/",
+      "resolved": "https://www.bluey.tv/characters/the-tradies/",
+      "status": 200,
+      "title": "The Tradies - Characters | Bluey Official Website"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/asparagus/",
+      "resolved": "https://www.bluey.tv/watch/season-1/asparagus/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 49 | Asparagus"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/bbq/",
+      "resolved": "https://www.bluey.tv/watch/season-1/bbq/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 7 | BBQ"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/daddy-robot/",
+      "resolved": "https://www.bluey.tv/watch/season-1/daddy-robot/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 4 | Daddy Robot"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/grannies/",
+      "resolved": "https://www.bluey.tv/watch/season-1/grannies/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 28 | Grannies"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/hide-and-seek/",
+      "resolved": "https://www.bluey.tv/watch/season-1/hide-and-seek/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 42 | Hide and Seek"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/hospital/",
+      "resolved": "https://www.bluey.tv/watch/season-1/hospital/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 2 | Hospital"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/hotel/",
+      "resolved": "https://www.bluey.tv/watch/season-1/hotel/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 10 | Hotel"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/keepy-uppy/",
+      "resolved": "https://www.bluey.tv/watch/season-1/keepy-uppy/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 3 | Keepy Uppy"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/pirates/",
+      "resolved": "https://www.bluey.tv/watch/season-1/pirates/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 27 | Pirates"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/shadowlands/",
+      "resolved": "https://www.bluey.tv/watch/season-1/shadowlands/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 5 | Shadowlands"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/shops/",
+      "resolved": "https://www.bluey.tv/watch/season-1/shops/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 23 | Shops"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/taxi/",
+      "resolved": "https://www.bluey.tv/watch/season-1/taxi/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 25 | Taxi"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-1/the-magic-xylophone/",
+      "resolved": "https://www.bluey.tv/watch/season-1/the-magic-xylophone/",
+      "status": 200,
+      "title": "Bluey Season 1, Episode 1 | The Magic Xylophone"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/barky-boats/",
+      "resolved": "https://www.bluey.tv/watch/season-2/barky-boats/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 30 | Barky Boats"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/bin-night/",
+      "resolved": "https://www.bluey.tv/watch/season-2/bin-night/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 41 | Bin Night"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/burger-shop/",
+      "resolved": "https://www.bluey.tv/watch/season-2/burger-shop/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 31 | Burger Shop"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/dance-mode/",
+      "resolved": "https://www.bluey.tv/watch/season-2/dance-mode/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 1 | Dance Mode"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/duck-cake/",
+      "resolved": "https://www.bluey.tv/watch/season-2/duck-cake/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 43 | Duck Cake"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/fancy-restaurant/",
+      "resolved": "https://www.bluey.tv/watch/season-2/fancy-restaurant/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 17 | Fancy Restaurant"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/feather-wand/",
+      "resolved": "https://www.bluey.tv/watch/season-2/feather-wand/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 3 | Feather Wand"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/postman/",
+      "resolved": "https://www.bluey.tv/watch/season-2/postman/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 35 | Postman"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/rug-island/",
+      "resolved": "https://www.bluey.tv/watch/season-2/rug-island/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 10 | Rug Island"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-2/trains/",
+      "resolved": "https://www.bluey.tv/watch/season-2/trains/",
+      "status": 200,
+      "title": "Bluey Season 2, Episode 15 | Trains"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/cubby/",
+      "resolved": "https://www.bluey.tv/watch/season-3/cubby/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 38 | Cubby"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/musical-statues/",
+      "resolved": "https://www.bluey.tv/watch/season-3/musical-statues/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 27 | Musical Statues"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/obstacle-course/",
+      "resolved": "https://www.bluey.tv/watch/season-3/obstacle-course/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 2 | Obstacle Course"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/pass-the-parcel/",
+      "resolved": "https://www.bluey.tv/watch/season-3/pass-the-parcel/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 13 | Pass The Parcel"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/pavlova/",
+      "resolved": "https://www.bluey.tv/watch/season-3/pavlova/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 17 | Pavlova"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/pizza-girls/",
+      "resolved": "https://www.bluey.tv/watch/season-3/pizza-girls/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 19 | Pizza Girls"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/ragdoll/",
+      "resolved": "https://www.bluey.tv/watch/season-3/ragdoll/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 25 | Ragdoll"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/rain/",
+      "resolved": "https://www.bluey.tv/watch/season-3/rain/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 18 | Rain"
+    },
+    {
+      "url": "https://www.bluey.tv/watch/season-3/tradies/",
+      "resolved": "https://www.bluey.tv/watch/season-3/tradies/",
+      "status": 200,
+      "title": "Bluey Season 3, Episode 32 | Tradies"
+    }
+  ],
+  "proposedActivities": [
+    {
+      "id": "SHOW-01",
+      "episode": "Hide and Seek",
+      "source": "https://www.bluey.tv/watch/season-1/hide-and-seek/",
+      "activityQualifier": "",
+      "showReference": "Bluey searches for hidden family members",
+      "simplePlay": "Tap a hiding place while a parent seeks",
+      "cooperativePlay": "Both hide, or alternate child seeker/hider roles",
+      "systemAndPriority": "Cover, perception, roles; **A**"
+    },
+    {
+      "id": "SHOW-02",
+      "episode": "Daddy Robot",
+      "source": "https://www.bluey.tv/watch/season-1/daddy-robot/",
+      "activityQualifier": "",
+      "showReference": "The children enlist a pretend robot for tidying",
+      "simplePlay": "Feed a toy to a large helper basket",
+      "cooperativePlay": "One collects; one directs the robot to picture destinations",
+      "systemAndPriority": "Cleaning, parent role, pickup; **A**"
+    },
+    {
+      "id": "SHOW-03",
+      "episode": "Hotel",
+      "source": "https://www.bluey.tv/watch/season-1/hotel/",
+      "activityQualifier": "",
+      "showReference": "The children run a hotel with Dad as guest",
+      "simplePlay": "Put a pillow on a guest bed; ring a bell",
+      "cooperativePlay": "Reception, room setup, and snack delivery; freely exchange jobs",
+      "systemAndPriority": "Stations, customer reactions; **B**"
+    },
+    {
+      "id": "SHOW-04",
+      "episode": "Shops",
+      "source": "https://www.bluey.tv/watch/season-1/shops/",
+      "activityQualifier": "",
+      "showReference": "Friends negotiate shop roles and scan items",
+      "simplePlay": "Drag an item across a big scanner for a satisfying beep",
+      "cooperativePlay": "One shops while the other scans and bags; roles never block starting",
+      "systemAndPriority": "Containers, scanning, role play; **A**"
+    },
+    {
+      "id": "SHOW-05",
+      "episode": "Taxi",
+      "source": "https://www.bluey.tv/watch/season-1/taxi/",
+      "activityQualifier": "",
+      "showReference": "An indoor pretend taxi trip has comic interruptions",
+      "simplePlay": "Tap a destination picture; an assisted taxi follows a safe route",
+      "cooperativePlay": "Driver, passenger, and mechanic activities; let either child change roles",
+      "systemAndPriority": "Authored routes, seated anchors; **C**"
+    },
+    {
+      "id": "SHOW-06",
+      "episode": "Trains",
+      "source": "https://www.bluey.tv/watch/season-2/trains/",
+      "activityQualifier": "",
+      "showReference": "Dad is a train linking pretend daily destinations",
+      "simplePlay": "Tap a station to ride and ring the bell",
+      "cooperativePlay": "Choose stops, deliver passengers, and set up destination play areas",
+      "systemAndPriority": "Route graph, passenger attachment; **C**"
+    },
+    {
+      "id": "SHOW-07",
+      "episode": "Hospital",
+      "source": "https://www.bluey.tv/watch/season-1/hospital/",
+      "activityQualifier": "",
+      "showReference": "Doctor and nurse play reveals a silly animal in Dad's tummy",
+      "simplePlay": "Tap a toy scanner and place a bandage sticker",
+      "cooperativePlay": "One scans, one offers toy treatments; the patient gives funny reactions",
+      "systemAndPriority": "Tool targets, character states; **B**"
+    },
+    {
+      "id": "SHOW-08",
+      "episode": "Grannies",
+      "source": "https://www.bluey.tv/watch/season-1/grannies/",
+      "activityQualifier": "",
+      "showReference": "Janet and Rita dress up, cause mischief, and dance",
+      "simplePlay": "Put on glasses and a blanket, then choose a dance",
+      "cooperativePlay": "Both invent a granny scene and tidy pretend spilled beans afterward",
+      "systemAndPriority": "Wearables, poses, spill cleanup; **B**"
+    },
+    {
+      "id": "SHOW-09",
+      "episode": "Pizza Girls",
+      "source": "https://www.bluey.tv/watch/season-3/pizza-girls/",
+      "activityQualifier": "",
+      "showReference": "The children make mud pizzas and deliver them",
+      "simplePlay": "Decorate a base and serve to a nearby parent",
+      "cooperativePlay": "One prepares; the other delivers; add a toy-car mechanic later",
+      "systemAndPriority": "Recipe, delivery, optional vehicle; **A**"
+    },
+    {
+      "id": "SHOW-10",
+      "episode": "Duck Cake",
+      "source": "https://www.bluey.tv/watch/season-2/duck-cake/",
+      "activityQualifier": "",
+      "showReference": "Dad builds Bingo's cake; Bluey helps with the mess",
+      "simplePlay": "Decorate a ready-shaped duck",
+      "cooperativePlay": "Assemble, ice, decorate, serve, and optionally clean together",
+      "systemAndPriority": "Cooking, decoration, cleanup; **A**"
+    },
+    {
+      "id": "SHOW-11",
+      "episode": "BBQ",
+      "source": "https://www.bluey.tv/watch/season-1/bbq/",
+      "activityQualifier": "",
+      "showReference": "Bingo gathers colors for a pretend salad",
+      "simplePlay": "Put large colorful ingredients in a bowl",
+      "cooperativePlay": "One gathers, one mixes and sets the table; no urgent customer demands",
+      "systemAndPriority": "Gathering, mixing, serving; **A**"
+    },
+    {
+      "id": "SHOW-12",
+      "episode": "Fancy Restaurant",
+      "source": "https://www.bluey.tv/watch/season-2/fancy-restaurant/",
+      "activityQualifier": "",
+      "showReference": "Bluey and Bingo host their parents for a meal",
+      "simplePlay": "Place one plate and serve a creation",
+      "cooperativePlay": "Make a menu, prepare food, and take turns as chef and server",
+      "systemAndPriority": "Shared kitchen, guest reservations; **A**"
+    },
+    {
+      "id": "SHOW-13",
+      "episode": "Burger Shop",
+      "source": "https://www.bluey.tv/watch/season-2/burger-shop/",
+      "activityQualifier": "",
+      "showReference": "Bath play becomes a burger shop",
+      "simplePlay": "Stack three large burger pieces",
+      "cooperativePlay": "Assemble different picture orders while the other child plates or washes",
+      "systemAndPriority": "Layering, order hints, washing; **A**"
+    },
+    {
+      "id": "SHOW-14",
+      "episode": "Pavlova",
+      "source": "https://www.bluey.tv/watch/season-3/pavlova/",
+      "activityQualifier": "",
+      "showReference": "Kitchen café play includes a competing pretend chef",
+      "simplePlay": "Add fruit and decorations to a dessert",
+      "cooperativePlay": "Run adjacent café counters and serve each other, without a winner requirement",
+      "systemAndPriority": "Decoration and customer reactions; **B**"
+    },
+    {
+      "id": "SHOW-15",
+      "episode": "Cubby",
+      "source": "https://www.bluey.tv/watch/season-3/cubby/",
+      "activityQualifier": "",
+      "showReference": "Cushions and blankets form an expanding playhouse",
+      "simplePlay": "Snap a cushion or blanket into a broad target",
+      "cooperativePlay": "Build connected nooks, furnish them, and place a toy inside",
+      "systemAndPriority": "Stable sockets, saved constructions; **B**"
+    },
+    {
+      "id": "SHOW-16",
+      "episode": "Rug Island",
+      "source": "https://www.bluey.tv/watch/season-2/rug-island/",
+      "activityQualifier": "",
+      "showReference": "Felt pens become objects in an imaginary island world",
+      "simplePlay": "Arrange oversized pretend sticks as food or a shelter",
+      "cooperativePlay": "Build a shared island and act out fishing/foraging with a parent",
+      "systemAndPriority": "Prop arrangement, pretend variants; **B**"
+    },
+    {
+      "id": "SHOW-17",
+      "episode": "The Magic Xylophone",
+      "source": "https://www.bluey.tv/watch/season-1/the-magic-xylophone/",
+      "activityQualifier": "",
+      "showReference": "A pretend instrument freezes Dad",
+      "simplePlay": "Tap a note to freeze/unfreeze a willing parent in a funny pose",
+      "cooperativePlay": "One plays, the other adds a hat or chooses a pose; share turns",
+      "systemAndPriority": "Temporary effects, NPC role; **A**"
+    },
+    {
+      "id": "SHOW-18",
+      "episode": "Feather Wand",
+      "source": "https://www.bluey.tv/watch/season-2/feather-wand/",
+      "activityQualifier": "",
+      "showReference": "Bingo's feather makes objects pretend-heavy",
+      "simplePlay": "Tap a prop and watch a parent struggle comically",
+      "cooperativePlay": "Change heavy/light states to arrange a silly obstacle scene",
+      "systemAndPriority": "Temporary state, reactions; **B**"
+    },
+    {
+      "id": "SHOW-19",
+      "episode": "Asparagus",
+      "source": "https://www.bluey.tv/watch/season-1/asparagus/",
+      "activityQualifier": "",
+      "showReference": "Magic asparagus makes family members act like animals",
+      "simplePlay": "Choose an animal picture; a parent imitates it",
+      "cooperativePlay": "Both build a pretend zoo and switch animal roles",
+      "systemAndPriority": "Animation/voice variants, reversible effects; **B**"
+    },
+    {
+      "id": "SHOW-20",
+      "episode": "Musical Statues",
+      "source": "https://www.bluey.tv/watch/season-3/musical-statues/",
+      "activityQualifier": "",
+      "showReference": "The family dances and plays with stop/start rules",
+      "simplePlay": "Tap to dance; automatically settle into a pose when music pauses",
+      "cooperativePlay": "Choose poses and respond to a generous visual/audio stop cue together",
+      "systemAndPriority": "Shared clock, animation, audio; **B**"
+    },
+    {
+      "id": "SHOW-21",
+      "episode": "Dance Mode",
+      "source": "https://www.bluey.tv/watch/season-2/dance-mode/",
+      "activityQualifier": "",
+      "showReference": "Bingo can prompt her parents to dance",
+      "simplePlay": "Big dance picture triggers a funny parent routine",
+      "cooperativePlay": "Take turns selecting moves or build a short joint routine",
+      "systemAndPriority": "Parent role, queued reactions; **B**"
+    },
+    {
+      "id": "SHOW-22",
+      "episode": "Pass the Parcel",
+      "source": "https://www.bluey.tv/watch/season-3/pass-the-parcel/",
+      "activityQualifier": "",
+      "showReference": "Party passing uses different prize rules",
+      "simplePlay": "Assisted passing, followed by a big unwrap gesture",
+      "cooperativePlay": "Children choose wrapping and pass to each other or NPCs; no elimination",
+      "systemAndPriority": "Container layers, turn transfer; **B**"
+    },
+    {
+      "id": "SHOW-23",
+      "episode": "Barky Boats",
+      "source": "https://www.bluey.tv/watch/season-2/barky-boats/",
+      "activityQualifier": "",
+      "showReference": "Bluey and Mackenzie race bark in a school fountain",
+      "simplePlay": "Put a decorated boat in a wide launch area",
+      "cooperativePlay": "Each makes a boat; guide both to a landing or take turns sending a leaf passenger",
+      "systemAndPriority": "Floating path, decoration, shared water; **B**"
+    },
+    {
+      "id": "SHOW-24",
+      "episode": "Ragdoll",
+      "source": "https://www.bluey.tv/watch/season-3/ragdoll/",
+      "activityQualifier": "",
+      "showReference": "The children try to move a floppy Dad",
+      "simplePlay": "Drag a large handle to help Dad onto a cushion",
+      "cooperativePlay": "Alternate gentle pushes along a short shared route",
+      "systemAndPriority": "Authored floppy poses, joint contribution; **C**"
+    },
+    {
+      "id": "SHOW-25",
+      "episode": "Keepy Uppy",
+      "source": "https://www.bluey.tv/watch/season-1/keepy-uppy/",
+      "activityQualifier": "",
+      "showReference": "The family keeps a balloon off the ground",
+      "simplePlay": "Large slow balloon, broad tap region, gentle automatic rescue",
+      "cooperativePlay": "Both bat the same balloon or guide it through broad targets",
+      "systemAndPriority": "Host-authoritative ball motion; **A**"
+    },
+    {
+      "id": "SHOW-26",
+      "episode": "Shadowlands",
+      "source": "https://www.bluey.tv/watch/season-1/shadowlands/",
+      "activityQualifier": "",
+      "showReference": "Children move between shadows and avoid sunny grass",
+      "simplePlay": "Tap a large nearby shadow and auto-walk there",
+      "cooperativePlay": "Choose a route together; later add slowly moving shade",
+      "systemAndPriority": "Valid zones, guided routes; **C**"
+    },
+    {
+      "id": "SHOW-27",
+      "episode": "Postman",
+      "source": "https://www.bluey.tv/watch/season-2/postman/",
+      "activityQualifier": "Ground's Lava",
+      "showReference": "The sisters avoid touching the floor",
+      "simplePlay": "Tap big cushions; automatic safe hops",
+      "cooperativePlay": "One arranges a route, the other crosses; either can leave freely",
+      "systemAndPriority": "Safe nodes, placement constraints; **B**"
+    },
+    {
+      "id": "SHOW-28",
+      "episode": "Postman",
+      "source": "https://www.bluey.tv/watch/season-2/postman/",
+      "activityQualifier": "letter delivery",
+      "showReference": "A letter becomes a paper plane to reach Mum",
+      "simplePlay": "Deliver a picture card to a nearby mailbox",
+      "cooperativePlay": "Decorate, fold, and send letters to each other or a parent",
+      "systemAndPriority": "Craft transform, delivery, simple flight; **B**"
+    },
+    {
+      "id": "SHOW-29",
+      "episode": "Obstacle Course",
+      "source": "https://www.bluey.tv/watch/season-3/obstacle-course/",
+      "activityQualifier": "",
+      "showReference": "A backyard course becomes a race",
+      "simplePlay": "Follow three broad stations without a timer",
+      "cooperativePlay": "Build routes and take turns; personal timing is optional",
+      "systemAndPriority": "Authored movement stations; **C**"
+    },
+    {
+      "id": "SHOW-30",
+      "episode": "Obstacle Course",
+      "source": "https://www.bluey.tv/watch/season-3/obstacle-course/",
+      "activityQualifier": "Memory Snap",
+      "showReference": "The official page also identifies Memory Snap",
+      "simplePlay": "Match two large face-up pictures",
+      "cooperativePlay": "Use a few face-down pairs and cooperate on a shared board",
+      "systemAndPriority": "Card matching, turn-optional input; **B**"
+    },
+    {
+      "id": "SHOW-31",
+      "episode": "Rain",
+      "source": "https://www.bluey.tv/watch/season-3/rain/",
+      "activityQualifier": "",
+      "showReference": "Bluey and Mum try to dam rainwater",
+      "simplePlay": "Drop a broad barrier into a shallow channel",
+      "cooperativePlay": "Arrange channels and barriers together, then clean muddy tracks",
+      "systemAndPriority": "Bounded flow graph, water visuals; **C**"
+    },
+    {
+      "id": "SHOW-32",
+      "episode": "Bin Night",
+      "source": "https://www.bluey.tv/watch/season-2/bin-night/",
+      "activityQualifier": "",
+      "showReference": "The family regularly takes out the bins",
+      "simplePlay": "Put a marked cleanup prop in a picture bin",
+      "cooperativePlay": "Collect, sort, and wheel bins with a parent",
+      "systemAndPriority": "Cleanup tags, route and container; **B**"
+    }
+  ]
+}

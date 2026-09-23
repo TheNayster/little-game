@@ -1,0 +1,10 @@
+{
+  "package": "com.unity.2d.animation",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.2d.animation.html",
+  "status": 200,
+  "released": "Package version 13.0.6 is released for Unity Editor version 6000.3.",
+  "manual_excerpt": " 2D Animation com.unity.2d.animation Description 2D Animation provides all the necessary tooling and runtime components for skeletal animation using Sprites. Version information Released for Unity Package version 13.0.6 is released for Unity Editor version 6000.3. Compatible with Unity These package versions are available in Unity version 6000.3: Documentation location: State Versions available: com.unity.2d.animation@13.0 released 13.0.6 Keywords 2d , animation Released packages 2D Aseprite Importer Copyright \u00a92005-2026 Unity Technologies. All rights reserved. Built from job ID 75971899. Built on: 2026-09-23. Tutorials Community Answers Knowledge Base Forums Asset Store Terms of use Legal Privacy Policy Cookies Documentation Terms of Use Do Not Sell or Share My Personal Information Your Privacy Choices (Cookie Settings) ",
+  "links": [
+    "https://docs.unity3d.com/Packages/com.unity.2d.animation@13.0/manual/index.html"
+  ]
+}

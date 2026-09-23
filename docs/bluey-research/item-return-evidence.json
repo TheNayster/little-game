@@ -1,0 +1,31 @@
+{
+  "research_date": "2026-09-23",
+  "sections": [51],
+  "main_report": "../bluey-game-research-2026-09-23.md",
+  "status": "Research/design only. No game code or device tests performed.",
+  "confirmed_choice": "Borrowed shared items return automatically after being unused for a while; personal decorations and saved creations are protected.",
+  "proposed_rules": [
+    "Use item categories; avoid blanket room/world resets.",
+    "Keep shared fixtures and essential working kits in their allowed areas; player travel remains free.",
+    "Bound shared loans and count items inside containers; personal toy catalog is separate.",
+    "Return only eligible unused items, with final authority revalidation and idempotent operation IDs.",
+    "Store creations and personal toys as recoverable records; never silently delete them to satisfy clutter budgets.",
+    "Preserve a shared prop's canonical identity across moves, returns, host recovery, and offline reconciliation."
+  ],
+  "unconfirmed_tuning_values": {
+    "idle_return_minutes": 3,
+    "visible_cue_seconds": 5,
+    "borrowed_props_per_player": 4,
+    "initial_loose_props_per_bedroom": 32,
+    "note": "Design experiments only, not measured capacity or user-approved numeric settings. Weight complex objects and tune with both children on A10."
+  },
+  "sources": [
+    {"title": "Toca Boca reset/rebuild guidance", "url": "https://tocaboca.helpshift.com/hc/en/3-toca-boca-world/faq/68-what-happens-if-i-reset-my-world-or-rebuild-my-home-1616575224/", "finding": "Reset/rebuild can clear progress or house/furniture; broad reset is unsuitable for our everyday cleanup."},
+    {"title": "Toca Boca Lost & Found", "url": "https://tocaboca.helpshift.com/hc/en/3-toca-boca-world/faq/382-post-office-upgrade-the-all-new-lost-found-display-1780413382/", "finding": "Illustrated recovery with filters and rules for trashed gifts/containers; does not document an idle-return timer."},
+    {"title": "Toca Boca gifts and container recovery", "url": "https://tocaboca.helpshift.com/hc/en/3-toca-boca-world/faq/406-where-are-my-gifts/", "finding": "Distinguishes already-placed gifts from retrievable stock and contents remaining in a recovered box."},
+    {"title": "Toca Boca bunched-items stability note", "url": "https://tocaboca.helpshift.com/hc/en/3-toca-boca-world/faq/317-bunched-items-in-hd-homes-stability-improvements/", "finding": "Acknowledges unwanted furniture bunching during stability recovery; use as a design caution, not evidence for an internal algorithm."},
+    {"title": "Unity ScriptableObjects", "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html", "finding": "Definition assets for authored item policies; runtime records/save data remain separate in our design."},
+    {"title": "Unity NetworkObject ownership", "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/components/core/networkobject-ownership.html", "finding": "Server ownership and authority; item-return arbitration remains custom application logic."},
+    {"title": "Unity ObjectPool", "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Pool.ObjectPool_1.html", "finding": "Reuses instances; an empty pool can create another, so retained pool capacity is not a gameplay live-item limit."}
+  ]
+}

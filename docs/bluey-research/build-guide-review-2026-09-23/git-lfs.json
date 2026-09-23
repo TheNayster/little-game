@@ -1,0 +1,12 @@
+{
+  "id": "git-lfs",
+  "url": "https://git-lfs.com/",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Git Large File Storage | Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.",
+  "sha256": "96e82a7124027aa5a4d039e570bdff17b1cc54d1d6e1673bc9b1bfff567e7fc6",
+  "excerpts": [
+    "LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise. Docs Discussions Wiki Installation Releases Source An open source Git extension for versioning large files Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise. Download v3.8.0 (Windows) Download v3.8.0 (Mac - Intel Silicon) Download v3.8.0 (Mac - Apple Silicon) Homebrew : brew install git-lfs MacPorts : port install git-lfs Install v3.8.0 via PackageCloud (Linux) Download v3.8.0 (Linux - x86-64) How it works: Git LFS security update: All users should update to 3.7.1 or newer . Getting Started D",
+    " Git Large File Storage | Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise. Docs Discussions Wiki Installation Releases Source An open source Git extension for versioning large files Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise. Download v3.8.0 (Windows) Download v3.8.0 (Mac - Intel Silicon) Download v3.8.0 (Mac - Apple Silicon) Homebrew : brew install git-lfs MacPorts : port install git-lfs Install v3.8.0 via PackageCloud (Linux) Download v3.8.0 (Linux - x86-64) How it works: Git LFS se"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "review_date": "2026-09-23",
+  "scope": "Research document integrity, not game or device testing",
+  "files": [
+    {
+      "file": "bluey-game-research-2026-09-23.html",
+      "h2": 57,
+      "links": 445,
+      "sha256": "955d710fb6982244fbfe585f3482807effabc0d9f6bf0f225eb328563295d05b"
+    },
+    {
+      "file": "family-playset-package-research-2026-09-23.html",
+      "h2": 10,
+      "links": 67,
+      "sha256": "a051056443d61449c4f92c8097477063f07e1e5b8264e44bc52f8936076a26d6"
+    },
+    {
+      "file": "family-playset-technical-research-2026-09-23.html",
+      "h2": 10,
+      "links": 51,
+      "sha256": "c588231945a939ed99baca0b632d474d5c857df2c87d6ea62a43e8fc37a41059"
+    },
+    {
+      "file": "family-playset-feasibility-audit-2026-09-23.html",
+      "h2": 8,
+      "links": 28,
+      "sha256": "f8c1d964ba04cd3a320b19b5b05a9f2cdee1d5cbd1a5cc69baaae61f2132b8b0"
+    }
+  ],
+  "errors": [],
+  "runtime_packages_installed": false,
+  "runtime_tests_performed": false,
+  "browser_checks": {
+    "main_page_section_54_present": true,
+    "main_header_package_link_navigates": true,
+    "package_page_sections": 10,
+    "matrix_rows": 13,
+    "package_matrix_navigation_verified": true,
+    "viewport_width": 553,
+    "package_document_scroll_width": 538,
+    "main_document_scroll_width": 549,
+    "visual_inspection": "Title, budget badges, contents and report introduction rendered correctly; no document horizontal overflow; wide tables scroll within wrappers."
+  }
+}

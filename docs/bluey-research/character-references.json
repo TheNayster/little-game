@@ -1,0 +1,350 @@
+[
+  {
+    "name": "Bluey",
+    "group": "Heeler kids",
+    "source": "https://www.bluey.tv/characters/bluey/",
+    "resolved": "https://www.bluey.tv/characters/bluey/",
+    "title": "Bluey - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Bluey.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Bingo",
+    "group": "Heeler kids",
+    "source": "https://www.bluey.tv/characters/bingo/",
+    "resolved": "https://www.bluey.tv/characters/bingo/",
+    "title": "Bingo - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/B2.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Muffin",
+    "group": "Heeler kids",
+    "source": "https://www.bluey.tv/characters/muffin/",
+    "resolved": "https://www.bluey.tv/characters/muffin/",
+    "title": "Muffin - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Muffin-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Socks",
+    "group": "Heeler kids",
+    "source": "https://www.bluey.tv/characters/socks/",
+    "resolved": "https://www.bluey.tv/characters/socks/",
+    "title": "Socks - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Socks-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Chloe",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/chloe/",
+    "resolved": "https://www.bluey.tv/characters/chloe/",
+    "title": "Chloe - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Untitled-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Coco",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/coco/",
+    "resolved": "https://www.bluey.tv/characters/coco/",
+    "title": "Coco - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Coco.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Honey",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/honey/",
+    "resolved": "https://www.bluey.tv/characters/honey/",
+    "title": "Honey - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Honey.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Indy",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/indy/",
+    "resolved": "https://www.bluey.tv/characters/indy/",
+    "title": "Indy - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/InDY.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Mackenzie",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/mackenzie/",
+    "resolved": "https://www.bluey.tv/characters/mackenzie/",
+    "title": "Mackenzie - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/MACKENZIE-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Rusty",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/rusty/",
+    "resolved": "https://www.bluey.tv/characters/rusty/",
+    "title": "Rusty - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Rusty-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Jack",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/jack/",
+    "resolved": "https://www.bluey.tv/characters/jack/",
+    "title": "Jack - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Jack-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Snickers",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/snickers/",
+    "resolved": "https://www.bluey.tv/characters/snickers/",
+    "title": "Snickers - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Snickers.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Winton",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/winton/",
+    "resolved": "https://www.bluey.tv/characters/winton/",
+    "title": "Winton - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Winton.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "The Terriers",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/the-terriers/",
+    "resolved": "https://www.bluey.tv/characters/the-terriers/",
+    "title": "The Terriers - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Terr.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Lucky",
+    "group": "Neighbours and friends",
+    "source": "https://www.bluey.tv/characters/lucky/",
+    "resolved": "https://www.bluey.tv/characters/lucky/",
+    "title": "LUCKY - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/LUCKY.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Chucky",
+    "group": "Neighbours and friends",
+    "source": "https://www.bluey.tv/characters/chucky/",
+    "resolved": "https://www.bluey.tv/characters/chucky/",
+    "title": "Chucky - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/CHUCKY.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Judo",
+    "group": "Neighbours and friends",
+    "source": "https://www.bluey.tv/characters/judo/",
+    "resolved": "https://www.bluey.tv/characters/judo/",
+    "title": "Judo - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Judo.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Pom Pom",
+    "group": "Neighbours and friends",
+    "source": "https://www.bluey.tv/characters/pom-pom/",
+    "resolved": "https://www.bluey.tv/characters/pom-pom/",
+    "title": "Pom Pom - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/POM.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Lila",
+    "group": "Kindy friends",
+    "source": "https://www.bluey.tv/characters/lila/",
+    "resolved": "https://www.bluey.tv/characters/lila/",
+    "title": "Lila - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/LILA.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Missy",
+    "group": "Kindy friends",
+    "source": "https://www.bluey.tv/characters/missy/",
+    "resolved": "https://www.bluey.tv/characters/missy/",
+    "title": "Missy - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Missy-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Buddy",
+    "group": "Kindy friends",
+    "source": "https://www.bluey.tv/characters/buddy/",
+    "resolved": "https://www.bluey.tv/characters/buddy/",
+    "title": "Buddy - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Buddy.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Bentley",
+    "group": "Kindy friends",
+    "source": "https://www.bluey.tv/characters/bentley/",
+    "resolved": "https://www.bluey.tv/characters/bentley/",
+    "title": "Bentley - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Bentley.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Juniper",
+    "group": "Kindy friends",
+    "source": "https://www.bluey.tv/characters/juniper/",
+    "resolved": "https://www.bluey.tv/characters/juniper/",
+    "title": "Juniper - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2026/03/Juniper1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Winnie",
+    "group": "Neighbours and friends",
+    "source": "https://www.bluey.tv/characters/winnie/",
+    "resolved": "https://www.bluey.tv/characters/winnie/",
+    "title": "Winnie - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2025/09/B2.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Jean-Luc",
+    "group": "Neighbours and friends",
+    "source": "https://www.bluey.tv/characters/jean-luc/",
+    "resolved": "https://www.bluey.tv/characters/jean-luc/",
+    "title": "Jean Luc - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Jean-Luc-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Lulu",
+    "group": "Younger siblings and friends",
+    "source": "https://www.bluey.tv/characters/lulu/",
+    "resolved": "https://www.bluey.tv/characters/lulu/",
+    "title": "Lulu - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2025/12/luluu-head-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Dusty",
+    "group": "Younger siblings and friends",
+    "source": "https://www.bluey.tv/characters/dusty/",
+    "resolved": "https://www.bluey.tv/characters/dusty/",
+    "title": "Dusty - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2024/01/Dusty-1.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Dougie",
+    "group": "Younger siblings and friends",
+    "source": "https://www.bluey.tv/characters/dougie/",
+    "resolved": "https://www.bluey.tv/characters/dougie/",
+    "title": "Dougie - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Dougie.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Hercules",
+    "group": "More child characters",
+    "source": "https://www.bluey.tv/characters/hercules/",
+    "resolved": "https://www.bluey.tv/characters/hercules/",
+    "title": "Hercules - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2025/09/hercules.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Pretzel",
+    "group": "School friends",
+    "source": "https://www.bluey.tv/characters/pretzel/",
+    "portrait": null,
+    "verified": false,
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "Digger",
+    "group": "Older child characters",
+    "source": "https://www.bluey.tv/characters/digger/",
+    "resolved": "https://www.bluey.tv/characters/digger/",
+    "title": "Digger - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2024/01/Digger.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Mia",
+    "group": "Older child characters",
+    "source": "https://www.bluey.tv/characters/mia/",
+    "resolved": "https://www.bluey.tv/characters/mia/",
+    "title": "Mia - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2025/02/MIA.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Captain",
+    "group": "Older child characters",
+    "source": "https://www.bluey.tv/characters/captain/",
+    "resolved": "https://www.bluey.tv/characters/captain/",
+    "title": "Captain - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2025/01/captainn.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Bandit",
+    "group": "Heeler parents · selectable by everyone",
+    "source": "https://www.bluey.tv/characters/bandit/",
+    "resolved": "https://www.bluey.tv/characters/bandit/",
+    "title": "Bandit - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Bandit.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  },
+  {
+    "name": "Chilli",
+    "group": "Heeler parents · selectable by everyone",
+    "source": "https://www.bluey.tv/characters/chilli/",
+    "resolved": "https://www.bluey.tv/characters/chilli/",
+    "title": "Chilli - Characters | Bluey Official Website",
+    "portrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Chilli.png",
+    "verified": true,
+    "checked": "2026-09-23"
+  }
+]

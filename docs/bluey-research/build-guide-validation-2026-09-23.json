@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-23",
+  "scope": "Document integrity and requirement coverage, not Unity or device testing",
+  "guide_sections": 18,
+  "goal_sections": 54,
+  "feature_count": 35,
+  "missing_features": [],
+  "files": [
+    {
+      "file": "family-playset-build-guide-2026-09-23.html",
+      "h2": 18,
+      "tables": 14,
+      "links": 69,
+      "sha256": "f491b28bc3f54f4be97266a2e5c24778daf60dfe3f4cf17edc596f14389318fc"
+    },
+    {
+      "file": "bluey-game-research-2026-09-23.html",
+      "h2": 57,
+      "tables": 75,
+      "links": 452,
+      "sha256": "07efeaec4f16a6ba621044e6b19c90f91e3c4529b868e90c886d8f7a36b02380"
+    }
+  ],
+  "errors": [],
+  "implementation_started": false,
+  "browser_validation": {
+    "goal_sheet_build_guide_link": true,
+    "guide_title_and_intro_visually_checked": true,
+    "phase_cards_rendered": 5,
+    "next_tasks_link_verified": true,
+    "next_tasks_rows": 10,
+    "viewport_width": 553,
+    "document_scroll_width": 538,
+    "document_horizontal_overflow": false,
+    "deliverable_tab": "family-playset-build-guide-2026-09-23.html#top"
+  }
+}

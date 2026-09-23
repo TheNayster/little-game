@@ -1,0 +1,10 @@
+{
+  "package": "com.unity.netcode.gameobjects",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.netcode.gameobjects.html",
+  "status": 200,
+  "released": null,
+  "manual_excerpt": " Netcode for GameObjects com.unity.netcode.gameobjects Description Netcode for GameObjects is a high-level netcode SDK that provides networking capabilities to GameObject/MonoBehaviour workflows within Unity and sits on top of underlying transport layer. Version information Compatible with Unity These package versions are available in Unity version 6000.3: Documentation location: State Versions available: com.unity.netcode.gameobjects@2.13 pre-release 2.13.3 Pre-release packages Core packages Copyright \u00a92005-2026 Unity Technologies. All rights reserved. Built from job ID 75971899. Built on: 2026-09-23. Tutorials Community Answers Knowledge Base Forums Asset Store Terms of use Legal Privacy Policy Cookies Documentation Terms of Use Do Not Sell or Share My Personal Information Your Privacy Choices (Cookie Settings) ",
+  "links": [
+    "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/index.html"
+  ]
+}

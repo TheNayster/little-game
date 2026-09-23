@@ -1,0 +1,33 @@
+{
+  "review_date": "2026-09-23",
+  "type": "document integrity and cached source verification; no Unity/device tests",
+  "pages": [
+    {
+      "file": "bluey-game-research-2026-09-23.html",
+      "links": 436,
+      "sha256": "e64e9439ba1f8ee384c2cc9e457b4ebe57096e0ea6588111ff0d509ed6c3d6ca",
+      "h2_count": 56,
+      "numbered_report_sections": 53
+    },
+    {
+      "file": "family-playset-feasibility-audit-2026-09-23.html",
+      "links": 28,
+      "sha256": "1dc78397146701b117dc0613ed5e3363000230612bca343ed5ea0d25655f69c9",
+      "h2_count": 8,
+      "numbered_report_sections": 8
+    },
+    {
+      "file": "family-playset-technical-research-2026-09-23.html",
+      "links": 50,
+      "sha256": "ee93d08280b3168c1ea18df1db5d6c896c7f3c518f7fd7a4a8174aee32d75c9d",
+      "h2_count": 10,
+      "numbered_report_sections": 10
+    }
+  ],
+  "cached_source_files_verified": 21,
+  "errors": [],
+  "bluetooth_scope": "removed from plan and backlog",
+  "normal_topology": "automatic connection to paired PC server; mobile hosting/recovery remains required",
+  "placeholder_check": "Named template tokens checked; adjacent CSS closing braces are valid.",
+  "preview": "Main guide and technical report loaded in in-app browser; technical page visually inspected at 553px; no horizontal overflow observed."
+}

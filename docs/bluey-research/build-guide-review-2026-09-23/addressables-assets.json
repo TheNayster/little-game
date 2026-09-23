@@ -1,0 +1,12 @@
+{
+  "id": "addressables-assets",
+  "url": "https://docs.unity3d.com/Packages/com.unity.addressables@2.10/manual/memory-assets.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Managing Addressable asset memory | Addressables | 2.10.3 ",
+  "sha256": "2bea81c709563c8200ba0bbf813be41c2bd55c2e8b71d17fccf6778832bf353d",
+  "excerpts": [
+    " Hide Table of Contents Managing Addressable asset memory The Addressables system keeps a reference count of every item it loads to manage the memory it uses to load assets and AssetBundles. When Unity loads an Addressable asset, the system increments the reference count. When Unity releases the asset, the system decrements the reference count. When the reference count of an Addressable returns to zero, it can be unloaded. When you explicitly load an Addressable asset, you must also release the asset when you're finished using it. Memory leaks To avoid memory leaks, where assets remain in memory after they're no longer needed, mirror every call to a load method with a call to a release method. You can release an asset with a reference to the asset instance itself or with the result handle that the original load operation returns. However, Unity doesn't unloa",
+    "n Unity loads an Addressable asset, the system increments the reference count. When Unity releases the asset, the system decrements the reference count. When the reference count of an Addressable returns to zero, it can be unloaded. When you explicitly load an Addressable asset, you must also release the asset when you're finished using it. Memory leaks To avoid memory leaks, where assets remain in memory after they're no longer needed, mirror every call to a load method with a call to a release method. You can release an asset with a reference to the asset instance itself or with the result handle that the original load operation returns. However, Unity doesn't unload released assets from memory immediately, because the memory that an asset uses isn't freed until the AssetBundle it belongs to is also unloaded. AssetBundles have their own reference count, an"
+  ]
+}

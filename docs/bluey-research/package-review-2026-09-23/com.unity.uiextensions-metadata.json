@@ -1,0 +1,15 @@
+{
+  "repo": "Unity-UI-Extensions/com.unity.uiextensions",
+  "branch": "release",
+  "archived": false,
+  "sha": "d47f838ba918bbb9b26f242bd944940a711f525f",
+  "date": "2026-06-19T17:50:25Z",
+  "license": "NOASSERTION",
+  "release": {
+    "tag": "v3.0.0",
+    "published": "2026-06-19T16:09:51Z",
+    "prerelease": false,
+    "url": "https://github.com/Unity-UI-Extensions/com.unity.uiextensions/releases/tag/v3.0.0",
+    "notes": "## New Unity 6 focused release!\r\n\r\nWelcome to the latest and refreshed release for the Unity UI Extensions, with over 70 + updated controls and a handful of new submissions, all tested up to the latest LTS release.\r\n\r\n> [!IMPORTANT]\r\n> If you are still using Unity 2022 or below, please continue to use the `2.3.2` release.  V3 \"should\" work, but it is not supported\r\n\r\n## What's Changed\r\n\r\n- Initial check-in for Unity 6 update - thank you Unity for continuing to support Unity UI\r\n- Unity 6 script clean-up (remove legacy dependencies)\r\n- Update package definition for Unity 6 focus\r\n- Updated Picker control and samples to latest\r\n- Update UIVertical Scroller to be more efficient for U6 and update example\r\n- Clear out old text controls, no longer valid. Update combobox scripts\r\n- Reverted Curly Text back to old Text component as it is not compatible with TextMeshPro - will investigate alternatives\r\n- Added GridRawImage & UI_Knob2\r\n- UISegmentedCIrcle control - Renamed Segment to SegmentedControlSegment from original\r\n- Added UI Graphic Selector\r\n- Addressed NRE in Reorderable List\r\n- Patch debug option to allow both Text and TMPro\r\n- Update layout groups to rebuild on disable/enable\r\n- Resolved stacking issue with the Reorderable list when moving the elements \"slightly\"\r\n- Added a close line option which finished the line off with a \"closer\" to fill any gaps at the end\r\n- Resolved race condition issue in regards to the ScrollSnap control which could raise a NaN error when lerping\r\n- Patch the HSS/VSS against a potential divide by zero error is the scroll snap has a single page\r\n- Update GetCurrentPage to be more resilient\r\n- Resolve out of bounds issues with the Infinite scroll control\r\n- Updated UI Particle system to address #486/#487 requiring a new \"CullingMode\" option that when enabled alters the control to resolve unscaleddeltatime\r\n- Patch for #477 plus some general housekeeping for maintaining TMPro/Text compatibility\r\n- Update SegmentedCircle controls with new meta files and update examples checkout\r\n- Update scrollsnap to be more resilient to rescaling and patch full screen scroll snap RIF\r\n- Address layout issues with the flow layout group\r\n- Remove unused variable in UITextureLineRenderer\r\n- Patch GridRawImage for editor and update automation steps\r\n- Compile flag support for Unity 6 (Update CardPopup2D.cs / Gradient2.ModifyMesh) (#493)\r\n- Pivot can now be used as reference point when drawing lines (#490)\r\n- Removed cap points as they caused lod and "
+  }
+}

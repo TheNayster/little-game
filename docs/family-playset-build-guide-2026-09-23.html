@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Family Playset — ground-up build guide</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;background:radial-gradient(circle at center,#fff 0 28%,#eef3ee 28% 29%,transparent 29%)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid transparent;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+
+.build-intro{padding:42px 0 24px}.build-intro h1{font-size:clamp(34px,4.6vw,58px);margin:0 0 18px}.build-intro p{max-width:890px}.build-status{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}.build-status span{border-radius:20px;background:#e7f0f1;padding:6px 14px;font-size:14px}.build-status .next{background:#ffe6b3}.topbar nav{flex-wrap:wrap}.report code{overflow-wrap:anywhere}.report pre{overflow-x:auto;max-width:100%;background:#edf2f1;padding:20px;border-radius:12px}.report pre code{white-space:pre;overflow-wrap:normal;font-size:13px}.build-roadmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;padding:0;margin:0 0 36px;gap:12px}.build-roadmap li{background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px}.build-roadmap a{text-decoration:none;display:block}.build-roadmap small{display:block;letter-spacing:.07em;font-size:11px;font-weight:700;margin-bottom:8px}.build-roadmap strong{display:block;font-size:16px;line-height:1.4}.build-roadmap span{display:block;font-size:13px;margin-top:8px;color:#596a6b}.build-callout{border-left:4px solid #d3a13c;padding:16px 20px;background:#fff6e4;border-radius:0 12px 12px 0;margin-bottom:30px}.build-callout p{margin:4px 0}.build-callout a{font-weight:700}
+@media(max-width:900px){.build-roadmap{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){.build-roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}.build-intro h1{font-size:38px}.build-roadmap li{padding:14px}}
+@media print{.build-roadmap,.build-callout{break-inside:avoid}.report pre{white-space:pre-wrap}.report pre code{white-space:pre-wrap}.build-roadmap{grid-template-columns:repeat(5,minmax(0,1fr))}}
+</style></head><body>
+<header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Build guide navigation"><a href="bluey-game-research-2026-09-23.html">Goal sheet</a><a href="#8-ordered-phases-and-completion-gates">Build order</a><a href="#9-first-implementation-work-queue">Next tasks</a><a href="#18-current-work-record-and-research-basis">Current status</a></nav></header>
+<main class="wrap" id="top"><div class="build-intro"><p class="eyebrow">Ground-up production guide · 23 September 2026</p><h1>One clear build order.<br>A foundation for the whole game.</h1><p class="intro">The Family Playset is our goal sheet. This guide turns it into a practical sequence: prove the foundations, finish a representative playable area, expand the content, and deliver reliable updates to the family's devices.</p></div>
+<div class="build-status"><span>35 feature IDs mapped</span><span>10 ordered phases</span><span>Foundation setup started</span><span class="next">Active: G1 project &amp; devices</span></div>
+<ol class="build-roadmap" aria-label="Production sequence">
+<li><a href="#7-android-ios-and-pc-build-pipeline"><small>G1</small><strong>Establish the project</strong><span>Builds, devices, saves and updates.</span></a></li>
+<li><a href="#8-ordered-phases-and-completion-gates"><small>G2–G5</small><strong>Prove shared play</strong><span>Touch, world rules, hosting and recovery.</span></a></li>
+<li><a href="#g6-the-representative-finished-slice"><small>G6</small><strong>Finish one slice</strong><span>Real art, voices, activities and child testing.</span></a></li>
+<li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
+<li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
+</ol>
+<div class="build-callout"><p><strong>The next step is a small native test build.</strong></p><p>First establish the isolated project and verify the actual devices and toolchain. Large content production comes after the difficult technical requirements pass. <a href="#9-first-implementation-work-queue">See the initial work queue →</a></p></div>
+<div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
+<ul>
+<li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
+<li><a href="#2-what-professional-teams-do-and-how-we-apply-it">2. What professional teams do, and how we apply it</a></li>
+<li><a href="#3-foundation-requirements-we-must-preserve">3. Foundation requirements we must preserve</a></li>
+<li><a href="#4-project-home-folders-and-source-control">4. Project home, folders and source control</a></li>
+<li><a href="#5-architecture-before-feature-expansion">5. Architecture before feature expansion</a></li>
+<li><a href="#6-data-ownership-and-contracts-to-settle-early">6. Data ownership and contracts to settle early</a></li>
+<li><a href="#7-android-ios-and-pc-build-pipeline">7. Android, iOS and PC build pipeline</a></li>
+<li><a href="#8-ordered-phases-and-completion-gates">8. Ordered phases and completion gates</a></li>
+<li><a href="#9-first-implementation-work-queue">9. First implementation work queue</a></li>
+<li><a href="#10-the-working-method-that-prevents-jumping-around">10. The working method that prevents jumping around</a></li>
+<li><a href="#11-art-audio-and-content-production-pipeline">11. Art, audio and content production pipeline</a></li>
+<li><a href="#12-content-batch-order-after-the-foundations-pass">12. Content batch order after the foundations pass</a></li>
+<li><a href="#13-test-strategy-and-the-evidence-required">13. Test strategy and the evidence required</a></li>
+<li><a href="#14-performance-interruptions-and-diagnostics">14. Performance, interruptions and diagnostics</a></li>
+<li><a href="#15-family-delivery-updates-and-recovery">15. Family delivery, updates and recovery</a></li>
+<li><a href="#16-risks-decisions-and-change-control">16. Risks, decisions and change control</a></li>
+<li><a href="#17-coverage-of-the-family-playset-goal-sheet">17. Coverage of the Family Playset goal sheet</a></li>
+<li><a href="#18-current-work-record-and-research-basis">18. Current work record and research basis</a></li>
+</ul>
+</div>
+</aside><article class="report">
+<p><strong>Production guide · September 23, 2026 · Foundation implementation in progress</strong></p>
+<p><strong>Purpose:</strong> build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.</p>
+<p><strong>Current position:</strong> <strong>G1 — project and device foundation is in progress.</strong> The separate Unity 6000.3.24f1 project now compiles, its touch/save fixture runs in the Editor, and the repaired launcher connects Blender and the correct Unity project. Mac SSH command access is verified. See the <a href="implementation/g1-status.md">live implementation record</a> for exact evidence. Native iPad/Android qualification and game features are still pending.</p>
+<p><a href="bluey-game-research-2026-09-23.html">Open the feature goal sheet</a> · <a href="family-playset-package-research-2026-09-23.html">Package research</a> · <a href="family-playset-technical-research-2026-09-23.html">Technical evidence</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
+<h2 id="1-two-documents-with-different-jobs">1. Two documents with different jobs</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Its job</th>
+<th>When it changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The Family Playset research — goal sheet</strong></td>
+<td>What the finished game should do: characters, worlds, activities, controls and family-play behavior</td>
+<td>When the user adds, clarifies or changes a requirement</td>
+</tr>
+<tr>
+<td><strong>This build guide</strong></td>
+<td>How we organize and implement those requirements: dependencies, architecture, phase order, tests and completion evidence</td>
+<td>When implementation evidence improves the method or the user changes priorities</td>
+</tr>
+<tr>
+<td>Supporting research reports</td>
+<td>Why a technical choice is plausible, its sources, package candidates and unresolved limitations</td>
+<td>When new evidence resolves an uncertainty or changes a candidate</td>
+</tr>
+<tr>
+<td>Work record inside this guide / later implementation records</td>
+<td>What actually exists, what passed, the current phase and next bounded task</td>
+<td>At the end of each meaningful work session</td>
+</tr>
+</tbody>
+</table></div>
+<p>The user's latest instructions take priority. The goal sheet controls product scope; this guide controls the default build sequence. Earlier milestone lists in the research are background to this consolidated sequence. A later phase means <strong>not yet</strong>, not <strong>removed</strong>. If a required feature fails its proof, record the failure and revisit the design; do not quietly weaken the requirement.</p>
+<p>Keep the current feature IDs from <a href="bluey-game-research-2026-09-23.html#16-expanded-feature-tracker">goal-sheet section 16</a>. Each implementation task names its goal IDs and acceptance evidence. General requirements without existing IDs—such as build setup, input, menu accessibility and installation—are explicitly covered by this guide too.</p>
+<h2 id="2-what-professional-teams-do-and-how-we-apply-it">2. What professional teams do, and how we apply it</h2>
+<p>There is no single process used by every company. This guide adapts published production guidance and a commercial Unity studio's account to a small family project.</p>
+<p>Unity describes pre-production, production, post-production and ongoing operations; its pre-production guidance emphasizes establishing the design and resolving decisions before large-scale creation. Unity's USC course uses milestones and a <strong>vertical slice</strong>, a small playable portion that represents the intended final experience. Our technical proofs precede the polished slice because the hardest requirements are shared state and mobile recovery. <a href="https://learn.unity.com/course/job-seeker-s-guide-to-learning-unity/tutorial/the-real-time-production-cycle">Unity production cycle</a>, <a href="https://learn.unity.com/course/design-and-publish-your-original-game-unity-usc-games-unlocked/unit/milestones">Unity/USC milestones</a></p>
+<p>In its published Unity workflow, <strong>Mega Cat Studios</strong> describes focused components, explicit dependencies, smaller additive scenes, reusable prefabs and asset validation. This is useful evidence from a working studio, not proof that its exact architecture fits our game. We adopt the separation of responsibilities and adapt it for independent rooms, older iPads and a headless PC server. <a href="https://unity.com/blog/scaling-workflows-lessons-from-medium-to-large-projects">Mega Cat Studios workflow account</a></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Common production discipline</th>
+<th>Our concrete implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maintain a design document</td>
+<td>Keep the existing Family Playset as the goal sheet</td>
+</tr>
+<tr>
+<td>Prototype the expensive uncertainties</td>
+<td>Prove physical-device builds, saves, four-device play, independent rooms and iPad host recovery early</td>
+</tr>
+<tr>
+<td>Establish a repeatable production pipeline</td>
+<td>One asset format, stable content IDs, reproducible builds, versioned saves and content validation</td>
+</tr>
+<tr>
+<td>Finish a representative vertical slice</td>
+<td>A small home/backyard experience with polished touch, speech, toys and interruption recovery</td>
+</tr>
+<tr>
+<td>Produce in batches</td>
+<td>Expand reusable activity families into the six worlds and requested content</td>
+</tr>
+<tr>
+<td>Review quality continuously</td>
+<td>Automated rule tests, real-device checks and short playtests with each child throughout development</td>
+</tr>
+<tr>
+<td>Maintain deployed software</td>
+<td>Preserve signing identities, saves, media, diagnostics and a tested update route</td>
+</tr>
+</tbody>
+</table></div>
+<p>These disciplines do not require a commercial launch. Our delivery target is the family's devices. Responsibilities still exist: the user directs the experience and evaluates it with the children; implementation work covers engineering, asset integration, testing and documentation. The guide does not assume a staffed studio or paid cloud services.</p>
+<h2 id="3-foundation-requirements-we-must-preserve">3. Foundation requirements we must preserve</h2>
+<p>The <a href="bluey-game-research-2026-09-23.html#1-your-requirements-now-recorded">goal sheet</a> remains authoritative. These requirements have architectural consequences from the first prototype:</p>
+<ul>
+<li><strong>One game, three execution modes:</strong> offline solo, an iPad hosting, or the Windows PC serving the shared world. Reuse the same world rules in all three.</li>
+<li><strong>One to four mixed-device players:</strong> iPad, iPhone and Android; a dedicated PC consumes no human slot. Both iPads must be capable hosts when needed.</li>
+<li><strong>Automatic ordinary-network joining and recovery:</strong> one-time parent setup, then no child Host/Join workflow. The PC is preferred when starting a session; an established healthy host remains stable.</li>
+<li><strong>Independent places and activities:</strong> entering the playground finds its current occupants and objects; nobody else's travel unloads or pauses that world.</li>
+<li><strong>Interactive shared items:</strong> one connected-world holder per instance, consistent contents, safe carrying and return policies, and protected creations.</li>
+<li><strong>Complete solo capability without internet:</strong> local art, reviewed speech and installed media; suitable NPC substitutes; save/reunion behavior designed in from the start.</li>
+<li><strong>Each child's identity survives avatar changes:</strong> room ownership, settings, activity role and video bookmarks do not belong to whichever character skin is selected.</li>
+<li><strong>Ages 3 and 6:</strong> speech and picture instructions, two assistance styles, joystick or tap walking, dragging in either mode, and unrestricted exit from activities.</li>
+<li><strong>Six destinations:</strong> Heeler Home, Backyard Garden, Creek, Playground &amp; Park, Beach and Daycare. Bedrooms, secret rooms and story spaces are destinations within that world model.</li>
+<li><strong>Travel connectivity is optional later; travel solo is required.</strong> Bluetooth is removed. English comes first; the data and UI must support Spanish, with reviewed content added in its planned batch.</li>
+</ul>
+<p>Automatic recovery cannot promise an invisible transition when a hosting device disappears. Disconnected devices cannot enforce one live holder between them. Those known limits require preserved checkpoints, explicit branches and reunion rules; they do not justify deleting the hosting requirement. See the <a href="family-playset-technical-research-2026-09-23.html">source-backed recovery review</a>.</p>
+<h2 id="4-project-home-folders-and-source-control">4. Project home, folders and source control</h2>
+<p><strong>Only this game's home:</strong> <code>C:\Users\sephi\Desktop\Little weeps game</code>. The existing <code>Meeps game</code> project and its assets remain unrelated. The desktop Connect Unity + Blender shortcut now points to this game's separate launcher; the old project's script is unchanged. Verify the editor's actual project path before using a connection.</p>
+<p>The following is the <strong>proposed structure to create during implementation</strong>, not a claim these folders already exist:</p>
+<pre><code class="language-text">Little weeps game/
+  AGENTS.md
+  README.md
+  docs/                         Goal sheet, this guide, research, decisions
+    implementation/             Current work, test evidence, build records
+  Unity/FamilyPlayset/
+    Assets/
+      FamilyPlayset/
+        Code/
+          Core/                 Identities, world rules, commands and records
+          Runtime/              Session orchestration and service interfaces
+          Adapters/             Saves, networking and platform services
+          Client/               Input, UI, cameras, animation, audio and video
+          Server/               Dedicated-server startup and configuration
+          Editor/               Build scripts and content validators
+        Content/                Characters, items, recipes, activities, locales
+        Scenes/                 Bootstrap, shell and small area views
+        Art/                    Game-ready sprites and animations
+        Audio/                  Game-ready speech, music and effects
+        UI/                     Shared prefabs, icons and layouts
+        Tests/                  Focused rule and integration tests
+      ThirdParty/               Clearly separated vendor assets
+      BuildProfiles/            Checked-in platform/profile assets
+    Packages/
+    ProjectSettings/
+  SourceArt/                    Editable illustration/animation sources
+  SourceAudio/                  Scripts and approved source recordings
+  Tools/                        Build, validation and local workflow helpers
+  Builds/                       Generated builds; excluded from source history
+  LocalData/                    Local test worlds/media; excluded from source history
+</code></pre>
+<p>Use <strong>Git</strong> with a known-good main branch and small <code>codex/…</code> work branches. Keep one bounded change per branch; review before merging. Use a local private repository first; choose a backup/remote destination deliberately rather than publishing assets automatically. A version-control repository and an independent recoverable backup serve different purposes.</p>
+<p>Commit <code>Assets</code> with their <code>.meta</code> files, <code>Packages/manifest.json</code>, <code>Packages/packages-lock.json</code>, <code>ProjectSettings</code>, build scripts and documentation. Use visible metadata and text serialization for suitable Unity assets. Do not commit <code>Library</code>, <code>Temp</code>, build output, editor logs, credentials, signing keys or personal imported video libraries. Move assets through Unity, or move their matching metadata too. Unity uses metadata IDs to maintain asset references; losing them can break those references. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/AssetMetadata.html">Unity asset metadata</a>, <a href="https://unity.com/how-to/organizing-your-project">Project organization guidance</a></p>
+<p>Choose Git LFS patterns for large binary art/audio before a substantial asset import, and verify that the chosen backup/remote stores the actual LFS objects as well as pointers. Keep small text assets in ordinary Git. Do not synchronize a live Unity project by having two editors share a cloud-synced Library folder. <a href="https://git-lfs.com/">Git LFS</a>, <a href="https://docs.unity.com/en-us/engine/6000.0/manual/get-started/project-configuration/default-directories">Unity project directory guidance</a></p>
+<p>Use stable names, consistent case across Windows/Mac, import presets, and one ownership location for each content definition. Do not create alternative copies named final2/final-new to resolve confusion; source history and explicit versions should explain the change.</p>
+<h2 id="5-architecture-before-feature-expansion">5. Architecture before feature expansion</h2>
+<p><strong>Proposed design:</strong> a modular Unity application with a compact, serializable world model. Keep the number of modules modest; introduce a boundary when it protects a real responsibility, not an interface for every method.</p>
+<pre><code class="language-text">Touch / activity UI
+        |
+        v
+Command request ------&gt; local authority OR network adapter to authority
+                                |
+                         validate world rules
+                                |
+                         accepted state change
+                          /       |         \
+                         v        v          v
+                    client view  save     peer updates + recovery state
+                    and audio    records
+
+Offline solo, iPad host and PC server use the same world-rule code.
+</code></pre>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Owns</th>
+<th>Must not become responsible for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core</td>
+<td>Stable IDs, object state, inventory/containers, commands, invariants, activity facts</td>
+<td>Unity scenes, video playback, editor APIs, network SDK objects</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>Session state machine, activity lifecycle, world services, cancellation and logical clocks</td>
+<td>Drawing the screen or platform-specific permission UI</td>
+</tr>
+<tr>
+<td>Adapters</td>
+<td>Persistence, transport, service discovery, native file import and lifecycle notifications</td>
+<td>A second implementation of cooking, pickup or quest rules</td>
+</tr>
+<tr>
+<td>Client</td>
+<td>Touch arbitration, character presentation, camera, menus, narration, book/video player</td>
+<td>Declaring a shared action successful without authority validation</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>PC bootstrap, configuration, durable world storage and logical simulation</td>
+<td>A requirement to render sprites, play sound or finish an animation</td>
+</tr>
+<tr>
+<td>Editor/tools</td>
+<td>Content authoring checks, import conventions, builds and diagnostics</td>
+<td>Runtime dependencies on UnityEditor</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use assembly definitions to enforce useful dependency directions and isolate editor/platform code. Start with these broad responsibilities; split further only for a demonstrated dependency or build-time benefit. The core should be testable without Unity rendering or the network SDK. Unity documents that assembly definitions restrict dependencies and can isolate code compilation. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/assembly-definitions-intro.html">Assembly definitions</a></p>
+<p><strong>Scene model:</strong> a persistent bootstrap/session root plus local area views loaded as needed. The authority retains logical state for every occupied area, including areas its own camera cannot see. Logical bounds, hiding spots, seats and interaction anchors cannot depend on reading pixels or a loaded render texture. A global scene replacement must not transport all players together.</p>
+<p><strong>Content model:</strong> ScriptableObjects can author character/item/recipe definitions; a separate runtime model stores the current bucket fill, child's creation or quest state. Do not use a mutable shared definition asset as the save for two children. Unity's player does not save edits back into those authored assets as a persistence system. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html">ScriptableObject data behavior</a></p>
+<p><strong>No multiplayer retrofit:</strong> even the solo bucket prototype sends an action through the same rule boundary that a remote player will use. Presentation may immediately highlight or animate a tentative action, but durable results come from accepted world state. We are not relying on identical 2D physics results on every platform.</p>
+<h2 id="6-data-ownership-and-contracts-to-settle-early">6. Data ownership and contracts to settle early</h2>
+<p>These are proposed implementation contracts, drawn from the existing shared-world and recovery requirements. They should receive small tests before large scenes exist.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Owner and persistence rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Child profile, assistance, preferred avatar</td>
+<td>Stable profile identity; avatar swaps do not create a new person</td>
+</tr>
+<tr>
+<td>Local UI/audio settings and TV bookmarks</td>
+<td>Per-device/profile storage; separate from the communal world; a bookmark also identifies the exact clip content</td>
+</tr>
+<tr>
+<td>Ordinary room, object instance and current holder</td>
+<td>Current world authority; stable room/object IDs; one canonical connected-world instance</td>
+</tr>
+<tr>
+<td>Bedrooms and protected creations</td>
+<td>World state with explicit creator/room ownership and a recoverable saved representation</td>
+</tr>
+<tr>
+<td>Shared-loan returns and station stock</td>
+<td>Authority-managed policy by item category; returns cannot erase protected contents or active work</td>
+</tr>
+<tr>
+<td>Quest and story participation</td>
+<td>Activity/session identity plus each participant's role; one departure does not reset remaining participants</td>
+</tr>
+<tr>
+<td>Recovery state</td>
+<td>Compact full-world checkpoint/journal independent of per-client visual visibility</td>
+</tr>
+<tr>
+<td>Imported movies and voice/art files</td>
+<td>Local content files; not ordinary gameplay network packets</td>
+</tr>
+</tbody>
+</table></div>
+<p>Define separate versions for <strong>application build</strong>, <strong>network protocol</strong>, <strong>content catalog</strong>, and <strong>save schema</strong>. A later app update might change one without changing all four. Reject an incompatible connection gracefully while retaining solo play; never interpret an unknown save schema as a blank world.</p>
+<p>Commands carry a request ID, player identity, relevant object/room identity and expected state/revision. The authority orders accepted actions and rejects stale ownership. Repeated delivery must not pour twice, duplicate a fish or complete the same return twice. Movement/drag visual updates can be coalesced; final placements and creations require explicit accepted results.</p>
+<p>Saving distinguishes state accepted in memory, state replicated to a successor, and state successfully persisted. Do not describe an in-memory acknowledgement as crash-proof. Use versioned records, validated checkpoints, a last-known-good backup and an explicit migration path; keep a small journal where needed for recovery. Checkpoint frequency and durability boundaries are prototype decisions to measure.</p>
+<p>An interrupted write must preserve the previous valid save. A failed migration must preserve the original data. Fixture saves from earlier versions belong in the tests. Avoid storing Unity instance IDs or network-spawn IDs as permanent identity. A standard serializer does not supply these policies for us.</p>
+<p>Disconnected play creates identified branches. On reunion, validate operations and preserve conflicting creations explicitly; do not silently create two normal playgrounds with the same identity. Do not select the winner using an untrusted device clock alone. The <a href="family-playset-technical-research-2026-09-23.html#7-shared-toys-automatic-returns-and-save-conflicts">technical report</a> records the supporting reasoning and limitations.</p>
+<h2 id="7-android-ios-and-pc-build-pipeline">7. Android, iOS and PC build pipeline</h2>
+<p><strong>Working baseline:</strong> Unity 6000.3.24f1 is installed and the minimal project has a checked-in package-lock candidate. Editor checks and Windows/iOS export builds pass; actual-device qualification remains in G1. The <a href="family-playset-package-research-2026-09-23.html">package report</a> controls later candidates, including the NGO 2.13.2/2.13.3 status difference. Networking packages are not installed yet.</p>
+<p>Keep everyday creation on <strong>Windows</strong>. Build Android and the Windows server there. Our verified export route also generates the iOS Xcode project on Windows and transfers that export to the <strong>M1 Pro Mac</strong> for native compilation/signing. Unity does not need to be installed on the Mac for this route; if the Mac later exports directly from source, use the identical Unity patch. Record source revision, export hash and native build result together. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/iphone-BuildProcess.html">Unity iOS build process</a></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Build profile to establish</th>
+<th>Purpose</th>
+<th>Initial output / check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows development client</td>
+<td>Fast authoring and interaction checks</td>
+<td>Playable client; not mobile qualification</td>
+</tr>
+<tr>
+<td>Android development</td>
+<td>Profiling and native integration on the Samsung</td>
+<td>Diagnostic build with clear identity</td>
+</tr>
+<tr>
+<td>Android family release</td>
+<td>Actual personal-use game</td>
+<td>Signed release APK, tested as an in-place update</td>
+</tr>
+<tr>
+<td>iOS development</td>
+<td>Profiling and native integration</td>
+<td>Xcode device build on the real iPads</td>
+</tr>
+<tr>
+<td>iOS family release configuration</td>
+<td>Actual personal-use game with agreed signing route</td>
+<td>Release-configured app using available development signing; test without debugger</td>
+</tr>
+<tr>
+<td>Windows Dedicated Server</td>
+<td>Persistent home-world authority</td>
+<td>Headless server with local config, saves and logs</td>
+</tr>
+</tbody>
+</table></div>
+<p>Unity Build Profiles are versionable assets for different platform/configuration combinations. Save these settings instead of relying on whatever someone last selected in the editor. Command-line builds must name the project and intended build profile/target explicitly. The first automation can be local scripts on Windows and Mac; a paid cloud build service is not required by this plan. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/build-profiles.html">Build Profiles</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/build-command-line.html">Command-line builds</a></p>
+<p>Freeze the editor version, resolved package lockfile, Android toolchain supplied for that editor, Mac/Xcode versions, scripting backend, architectures and graphics settings after qualification. Commit the manifest and lockfile; package upgrades are deliberate changes with affected-device retesting. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/upm-conflicts-auto.html">Unity package lock files</a></p>
+<p>Each artifact record includes source commit, build number, platform/profile, toolchain versions, protocol/content/save versions, checksum, logs, native symbols and passed tests. Windows and Mac produce platform-specific artifacts from the same source revision; their output files are not expected to be identical.</p>
+<p>Keep app identifiers and signing identities stable for updates. Store signing material outside the repository with a recoverable backup. Do not use another project's Android key/app identity. For personal Android installation, the current developer-verification FAQ preserves ADB development installation; qualify that route on the Samsung rather than assuming a store account is needed. <a href="https://developer.android.com/studio/publish/app-signing">Android signing</a>, <a href="https://developer.android.com/developer-verification/guides/faq">Android ADB installation guidance</a></p>
+<p>Start verifying the agreed free iPad renewal process in G1 and let its real renewal-cycle observation run alongside later development. It must pass before unattended family deployment. Automatic refresh reduces manual reinstall work; it does not make free provisioning permanent. The existing <a href="family-playset-feasibility-audit-2026-09-23.html#3-the-limits-that-must-remain-honest">installation audit</a> remains applicable.</p>
+<h2 id="8-ordered-phases-and-completion-gates">8. Ordered phases and completion gates</h2>
+<p><strong>Default dependency chain:</strong> G0 → G1 → G2 → G3 → G4 → G5 → G6 → G7 → G8 → G9. Each phase may contain several small work sessions. Begin the next dependent phase when the current exit checks pass. A long-running signing-renewal observation may overlap, but its unresolved result remains recorded.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Main deliverable</th>
+<th>Complete only when</th>
+<th>Hold back until it passes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>G0 — production plan</strong></td>
+<td>Goal sheet, this guide, risk/coverage records</td>
+<td>Scope and sequence are recorded, documents link correctly, implementation status is honest</td>
+<td>Implementation not yet started in this research task</td>
+</tr>
+<tr>
+<td><strong>G1 — project and devices</strong></td>
+<td>Isolated project, build profiles, tiny native scene, save and update smoke test</td>
+<td>Both iPads and Android launch; Mac build route works; a release update retains a seeded save; exact toolchain recorded; renewal check started</td>
+<td>Large asset imports, final rooms and mini-game production</td>
+</tr>
+<tr>
+<td><strong>G2 — reusable solo rules</strong></td>
+<td>Touch router, two placeholder avatars, bucket/tap/plant/sponge, versioned state</td>
+<td>Both movement choices and drag ownership work; free exit and avatar switch preserve state; offline cold launch and interrupted-save recovery pass</td>
+<td>Multiple bespoke activity implementations</td>
+</tr>
+<tr>
+<td><strong>G3 — PC shared world</strong></td>
+<td>PC server, automatic paired joining, two basic areas, four mixed clients</td>
+<td>Four humans on both iPads + Android + iPhone; independent travel; late join; single-holder races; client departure leaves others playing</td>
+<td>Treating a two-client one-room demo as complete multiplayer</td>
+</tr>
+<tr>
+<td><strong>G4 — required iPad hosting</strong></td>
+<td>Automatic mobile authority selection, handoff and abrupt-loss recovery</td>
+<td>Each iPad hosts with PC absent; simultaneous launch and returning host converge; recovery restores both areas; hosting while opening media keeps peers active</td>
+<td>Broad content production if the A10/host architecture remains unproven</td>
+</tr>
+<tr>
+<td><strong>G5 — durable family world</strong></td>
+<td>Separate bedrooms, saved creation, offline branch/reunion and item-return rules</td>
+<td>Disjoint/conflicting edits survive; duplicate commands do not duplicate props; unused loans return without losing creations; stock stays usable</td>
+<td>Scaling furniture/recipes before persistence and ownership are reliable</td>
+</tr>
+<tr>
+<td><strong>G6 — polished vertical slice</strong></td>
+<td>A representative home/backyard experience with finished controls, art and voice</td>
+<td>Both children can independently play; integrated media/NPC/activity tests pass; sustained A10 client and host performance is acceptable</td>
+<td>Batch-producing every character and world</td>
+</tr>
+<tr>
+<td><strong>G7 — content production</strong></td>
+<td>Ordered batches expanding the proven slice to the goal sheet</td>
+<td>Each batch has complete assets, narration, data, exit/save/co-op behavior and tests; unbuilt items remain visibly pending</td>
+<td>Starting all worlds/stories at once or claiming the full goal sheet is done</td>
+</tr>
+<tr>
+<td><strong>G8 — family release</strong></td>
+<td>Versioned, signed, tested installation set and recovery instructions</td>
+<td>Target devices pass release checks, refresh/update preserve data, backups restore, server startup works; known issues recorded</td>
+<td>Giving an unqualified debug build to the children as the finished release</td>
+</tr>
+<tr>
+<td><strong>G9 — maintenance and later options</strong></td>
+<td>Small updates with preserved saves and measured fixes</td>
+<td>Each update passes its affected checks and can be traced to a source/artifact record</td>
+<td>Unrelated refactors inside a bug fix; optional travel work displacing a required failure</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="g1-prove-the-build-and-update-route">G1: prove the build and update route</h3>
+<p>Inventory the real Android OS, Mac macOS/Xcode, free storage and current Unity installations. Create the new project in the proposed subfolder. Verify any editor connector targets it. Start with plain shapes, a large touch button, an obvious build number and a tiny persisted value. Establish an initial character-independent profile ID and separate development/family data paths if identities differ.</p>
+<p>Build and launch on both iPads and Android; also establish the iPhone as the fourth test client before G3 can pass. Make a second release-configured build that visibly changes the build number while preserving the test save. Record the signing identity and installation route. A simulator or editor launch does not satisfy the device check.</p>
+<h3 id="g2-prove-feel-and-the-rule-boundary">G2: prove feel and the rule boundary</h3>
+<p>Use the same command path for grabbing, filling, pouring, washing and placing. Test one finger on a joystick and another on a toy, interrupted drags, accidental double taps, opening a menu mid-action and changing character while holding something. Add one optional spoken picture prompt after free object play works. Decide the room's walkable plane and depth sorting with this example before creating many backgrounds.</p>
+<h3 id="g3g5-prove-continuity-while-the-world-is-small">G3–G5: prove continuity while the world is small</h3>
+<p>Keep the test world small enough to inspect. Add a PC authority and native discovery/permission adapters. Then add independent areas, four clients, proper snapshots and object exclusivity. Parent pairing establishes trust; advertisements alone do not authorize world changes.</p>
+<p>Next test each iPad as host, planned handoff, hard termination, network partition and host return. Keep the full compact recovery state separate from visible objects. G5 adds actual conflicting edits, protected creations, containers and automatic loan returns. Existing <a href="family-playset-technical-research-2026-09-23.html">networking evidence</a> guides the design, but these gates require new runtime proof.</p>
+<h3 id="g6-the-representative-finished-slice">G6: the representative finished slice</h3>
+<p>Include one home area and the garden, two finished character rigs plus a representative parent-size rig, switching/holding/seating anchors, one complete cooking recipe, one cleanup interaction, pond fishing, one parent-led hiding round and the shared activity invitation UI. Add a small narrated book, one interactive dinosaur, one science example, a local-video library with resumable playback, a bedroom and a secret-room sample. Existing technical test fixtures already cover two owned bedrooms; the slice adds their usable presentation.</p>
+<p>These small examples exercise the content pipeline and cross-system interactions. They do not fulfill the full roster, all 15 recipes or nine imagination stories. Demonstrate a role-based activity and NPC substitution before scaling daycare stories. G6 may have sub-batches, but its cross-system acceptance is one gate.</p>
+<h3 id="g7g9-expand-release-and-maintain">G7–G9: expand, release and maintain</h3>
+<p>Use the batch order in section 12. A small private playable may be shared when its applicable release checks pass; label its incomplete content honestly. “Full goal sheet complete” is reserved for the implemented required scope, not the first family alpha. Estimate later batches from the measured time to create and test the slice, rather than inventing calendar dates now.</p>
+<h2 id="9-first-implementation-work-queue">9. First implementation work queue</h2>
+<p><strong>G1 has started.</strong> This remains the ordered work queue; per-task progress and evidence are recorded in the <a href="implementation/g1-status.md">live G1 record</a>. Complete one bounded task at a time. Build/signing records must contain actual paths and versions; never present untested commands as an already-working workflow.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Task</th>
+<th>Concrete result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Verify this project's boundary and device/tool inventory</td>
+<td>Exact new project path; installed editor, Android OS, macOS/Xcode and storage recorded</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Establish source control and backup conventions</td>
+<td>Correct repository root, ignores, large-file policy, protected signing storage and recoverable baseline</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Create Universal 2D and qualify initial packages</td>
+<td>Same editor patch on Windows/Mac; small manifest/lockfile; no unrelated old assets</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Set identities and build profiles</td>
+<td>Stable app identifiers, build-number scheme and platform profiles</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Create bootstrap, core/runtime separation and one test scene</td>
+<td>Large touch target, visible build ID, persistent sample value; no full scene catalog</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Make Android and native iPad builds</td>
+<td>Each target launches; a tiny local video sample is checked before media-heavy design</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Test an in-place release update</td>
+<td>New build visibly present; prior sample data remains; no uninstall/reset fallback</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Start free iPad signing-renewal observation</td>
+<td>Actual refresh route documented; result remains pending until a real cycle preserves launch/data</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Establish repeatable build/test entry points</td>
+<td>Explicit project/profile, fresh artifact identity, logs and meaningful failure status</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Record G1 exit evidence and advance the work record</td>
+<td>Known-good revision, device results and next G2 task; unresolved blockers remain visible</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-the-working-method-that-prevents-jumping-around">10. The working method that prevents jumping around</h2>
+<p>Use a lightweight board: <strong>Backlog → Ready → In progress → Verification → Done</strong>, plus <strong>Blocked</strong> with the exact missing input or failing check. Keep one main implementation task in progress. A small independent task may proceed during a build/long observation only if it does not bypass a dependency or mix unrelated changes.</p>
+<h3 id="before-coding-ready-means-specific">Before coding: ready means specific</h3>
+<p>A task is ready when it names the goal-sheet requirement, its phase, a concrete user-visible result, the existing system it extends, and a testable completion condition. If it changes shared state, decide what happens on duplicate input, cancellation, departure and restoration before writing the happy path.</p>
+<pre><code class="language-text">Task: G2-004 — Fill and pour the bucket
+Goal references: object rules; ITEM-02; later ITEM-03
+Depends on: stable object IDs, touch router, command boundary
+Result: a child fills a bucket and waters a plant in solo play
+Owns: container rule + its presentation adapter
+Does not yet finish: all recipes, shared-world recovery, full garden art
+Acceptance: quantities remain valid; interrupted drag is safe;
+            reload restores the accepted result; prompt is optional
+Evidence: source revision, rule test result, device/build and short observation
+Status: pending
+</code></pre>
+<p>The same feature later receives G3–G5 network/recovery coverage. This prevents a solo-only result being marked fully accepted for multiplayer.</p>
+<h3 id="while-working-follow-the-dependency">While working: follow the dependency</h3>
+<p>Read the active phase and relevant goal-sheet sections. Inspect existing code before creating a new manager or abstraction. Implement the smallest end-to-end behavior, including its appropriate save and failure path. Keep vendor packages separate and change them through a documented wrapper or patch if necessary. Defer unrelated cleanup to a named backlog item.</p>
+<p>New ideas go into the goal sheet/backlog first; then map them to the earliest phase with the necessary foundation. A bug that breaks the current gate takes priority. If investigation reveals a design problem, record its cause and affected gate rather than hiding it behind a workaround in every mini-game.</p>
+<h3 id="done-means-evidence">Done means evidence</h3>
+<ol>
+<li>The requested behavior works in its named scope; placeholders and unsupported cases are explicit.</li>
+<li>Relevant invariants, cancellation, persistence and multiplayer cases pass at this phase.</li>
+<li>The affected platform build succeeds. Device-sensitive changes are checked on the affected physical devices.</li>
+<li>Code/content is reviewed, stable IDs and references are valid, and no unrelated project changes are included.</li>
+<li>Goal IDs, build/revision, tests, remaining limitations and the next task are recorded.</li>
+</ol>
+<p>Cosmetic reversible edits do not need elaborate new unit tests. Ownership, save migration and recovery need meaningful tests that can catch a real fault. Passing tests is not a reason to keep repeating the same checks without a new change or concern.</p>
+<p>At each handoff, record <strong>current phase, completed task, exact revision/artifacts, checks passed, open issue, and next bounded task</strong>. Mark a phase complete only when its exit criteria have evidence. There is no routine approval ceremony between reversible implementation steps; obtain a user decision when scope, cost, irreversible data handling or another genuine authorization boundary changes.</p>
+<h2 id="11-art-audio-and-content-production-pipeline">11. Art, audio and content production pipeline</h2>
+<p>Complete one example of each difficult asset type before producing dozens. For this flat illustrated style, layered 2D art is primary; Blender remains available for a specific useful task rather than becoming a required 3D pipeline.</p>
+<h3 id="interaction-standards-shared-by-every-area">Interaction standards shared by every area</h3>
+<p>Use consistent large icons, repeatable spoken hints, visual feedback and an obvious exit. Each touch belongs to one UI control, walk command or draggable prop until release/cancellation. Opening a book, TV or settings panel must not set the entire shared world's time scale to zero. Language, movement mode and assistance settings remain local to the child.</p>
+<p>Apple's game-design guidance recommends aiming for 44-by-44-point touch targets on iPhone/iPad. Treat that as general platform guidance, not a preschool usability result or a literal Unity-pixel value. Use larger, well-spaced critical controls and check their physical size and reach on the actual devices with both children. Phone layouts need intentional placement, not simply a shrunk tablet screen. <a href="https://developer.apple.com/videos/play/wwdc2024/10085/">Apple game touch-design guidance</a></p>
+<h3 id="asset-standards">Asset standards</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Asset type</th>
+<th>Authoring standard to establish</th>
+<th>Acceptance before reuse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Character</td>
+<td>Consistent scale, pivot, facing, draw layers, idle/walk/use/hold poses and hand/seat/hiding anchors</td>
+<td>Short and tall representative rigs work with shared controls, props and furniture</td>
+</tr>
+<tr>
+<td>Room</td>
+<td>Drawn perspective plus an explicit walkable plane, depth order, portals and interaction anchors</td>
+<td>Characters pass correctly behind/in front of furniture; travel does not unload shared logical state</td>
+</tr>
+<tr>
+<td>Prop</td>
+<td>Stable ID, capabilities, collider/hit area, container/attachment rules, home/return category and state illustrations</td>
+<td>Works from each input mode and cannot become duplicated, stranded or permanently invisible</td>
+</tr>
+<tr>
+<td>Activity</td>
+<td>Definition, invitation, goals, optional hints, roles/NPC substitutes and leave/resume policy</td>
+<td>It remains enjoyable in free play and survives participants joining/leaving</td>
+</tr>
+<tr>
+<td>Speech</td>
+<td>Stable line ID, English script, speaker, pronunciation review and linked visual cue</td>
+<td>Understandable on device; speech cancellation and priority work; a missing line has a safe fallback</td>
+</tr>
+<tr>
+<td>Book</td>
+<td>Page data, narrated lines, hotspots and small animations</td>
+<td>Reading can pause/leave/reopen without overlapping voices or affecting another player</td>
+</tr>
+<tr>
+<td>Video</td>
+<td>Stable clip identity/hash, thumbnail, supported local encoding and bookmark schema</td>
+<td>Controls, offline playback, seek and relaunch resume work on actual devices</td>
+</tr>
+<tr>
+<td>Localization</td>
+<td>Locale tables and translated audio references</td>
+<td>UI accommodates text/audio differences; Spanish receives its own content review</td>
+</tr>
+</tbody>
+</table></div>
+<p>Generate or record voices outside the running game, then review and import them. A live LLM or ComfyUI server is not a dependency of ordinary play. Check dinosaur names and educational content before recording a large batch. Retain scripts and source audio so corrections do not require reverse engineering finished clips.</p>
+<p>Use shared prefabs and data definitions for reusable stations. A new pizza should mostly be a new recipe/content entry after cooking rules exist. Add custom code only for genuinely different behavior. Validate missing IDs, duplicate IDs, invalid references, missing English narration, oversized textures, missing exit paths and unclassified return policies before a content batch can ship.</p>
+<p>Addressables groups should separate always-needed UI, area art, character content and language/media sets. Gameplay required offline must be present locally. Each load has an owner and a matching release; cancelling a transition must not leak its handles or instantiate a late result into the wrong room. Unity's Addressables documentation describes reference counting and explicit releases; unloading can also depend on bundle references, so measure actual memory recovery. <a href="https://docs.unity3d.com/Packages/com.unity.addressables@2.10/manual/memory-assets.html">Addressables memory management</a></p>
+<h2 id="12-content-batch-order-after-the-foundations-pass">12. Content batch order after the foundations pass</h2>
+<p>These batches preserve the complete goal sheet while avoiding simultaneous unfinished worlds. Finish a batch's playable behavior and checks before opening another large content batch. Limited shared-asset preparation can run alongside it.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Batch</th>
+<th>Content</th>
+<th>Reused systems and completion evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>G7-A — complete home and garden</strong></td>
+<td>Requested kitchen variants, cleanup, fishpond, science, dinosaurs, books, TV, both personal rooms and secret rooms</td>
+<td>Build from G6 examples; all <strong>five pizzas, five cakes and five meals</strong> work as complete interactions; room changes and item returns preserve creations</td>
+</tr>
+<tr>
+<td><strong>G7-B — outdoor worlds</strong></td>
+<td>Beach, Creek, Playground &amp; Park; usable equipment, collection, fishing, building, tag and hiding</td>
+<td>Reuse collection/container/seat/construction rules; independent player travel and enough usable stations for four</td>
+</tr>
+<tr>
+<td><strong>G7-C — daycare and learning</strong></td>
+<td>Teacher routines, classmates, optional day with 2–3 persisted activity invitations, reading/math/music/science stations</td>
+<td>Invitations do not block free play; late join does not reroll another child's day; NPC schedules release resources safely</td>
+</tr>
+<tr>
+<td><strong>G7-D — imagination stories</strong></td>
+<td>Calypso, Helicopter, Wild Girls, Early Baby, Typewriter, Mums and Dads, The Adventure, Space and Explorers</td>
+<td>Complete one story first, including role/NPC substitution and exit/resume; then build the other eight from the proven pattern</td>
+</tr>
+<tr>
+<td><strong>G7-E — roster and activity catalog completion</strong></td>
+<td>Remaining requested child characters, parent choices and selected show-derived activities</td>
+<td>Extend rig families; switching never changes identity; duplicate favorites work; production tracker distinguishes requested scope from proposed extras</td>
+</tr>
+<tr>
+<td><strong>G7-F — Spanish content pass</strong></td>
+<td>Reviewed Spanish lines, narration, labels and suitable learning variants</td>
+<td>English family builds can arrive first; language switching remains local to each player; translated educational material is reviewed separately</td>
+</tr>
+</tbody>
+</table></div>
+<p>Necessary characters enter earlier batches as needed; G7-E closes the remaining roster gaps rather than withholding character choice until the end. The six-world wheel remains extensible from G2, but playable builds should not present broken entry buttons to content that does not exist yet.</p>
+<p>Counts such as six dinosaur books, 20 dinosaur types and eight science stations are proposed production batches in the goal sheet. Track their approved scope explicitly. The 15 cooking variants and nine named imagination stories are concrete requested content. Do not inflate progress by counting the same fishing system in two places as two finished engines.</p>
+<h2 id="13-test-strategy-and-the-evidence-required">13. Test strategy and the evidence required</h2>
+<p>Use a small test pyramid adapted to this game's risks: many fast state-rule checks, fewer system integration checks, and targeted real-device sessions. Unity's Test Framework supports Edit/Play Mode tests; use the core version tied to the selected editor, not a separately guessed version from an old tutorial. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.test-framework.html">Unity 6.3 Test Framework</a></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Test layer</th>
+<th>Examples that matter</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core rules</td>
+<td>Two requests cannot own the same bucket; repeated pour request is harmless; protected cake survives a plate return</td>
+<td>Focused automated results with meaningful assertions</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>Partial write, corrupted latest save, old schema, missing content ID, journal replay and conflicting offline creations</td>
+<td>Saved fixtures, migrated output and recovery outcomes</td>
+</tr>
+<tr>
+<td>Unity integration</td>
+<td>Touch/joystick arbitration, visual rebinding, load cancellation, quest event subscription and avatar swap</td>
+<td>Play Mode/native scene checks</td>
+</tr>
+<tr>
+<td>Network integration</td>
+<td>Four players, two or more zones, snapshots, stale messages, partition/rejoin and returning host</td>
+<td>Per-device session logs linked to the same run</td>
+</tr>
+<tr>
+<td>Physical lifecycle</td>
+<td>Suspend/resume, lock, hard-close, permissions, local discovery, iPad host loss and video decoder behavior</td>
+<td>Exact device/OS/build and expected/actual result</td>
+</tr>
+<tr>
+<td>Child usability</td>
+<td>Child can choose, move, interact, hear instructions, leave and return without reading</td>
+<td>Short observed session; record confusion and adjust design</td>
+</tr>
+<tr>
+<td>Release/update</td>
+<td>Signed release, debugger detached, seeded saves/media/bookmarks retained across update/renewal</td>
+<td>Installed version, visible content/data and matching artifact record</td>
+</tr>
+</tbody>
+</table></div>
+<p>Apple specifically recommends testing release builds, actual devices, app updates and operation without the debugger; debugger attachment changes lifecycle/watchdog behavior. Our family signing route may differ from a store release, but those testing principles still apply. <a href="https://developer.apple.com/documentation/xcode/testing-a-release-build">Apple release testing</a></p>
+<p>Android's core quality guidance covers lifecycle, media, stability and responsiveness. Apply relevant checks to this game; its store/account requirements are not being imported as product features. In particular, exercise lock/unlock, app switching, interrupted audio/video, layout changes and restoration. <a href="https://developer.android.com/docs/quality-guidelines/core-app-quality">Android core quality</a></p>
+<h3 id="required-device-matrix">Required device matrix</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Required role coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A2197 iPad 7 / reported iPadOS 18.6.2</td>
+<td>Solo, PC client, mobile host, host recovery, media while hosting and lowest-performance acceptance</td>
+</tr>
+<tr>
+<td>A2602 iPad 9 / reported iPadOS 18.7.10</td>
+<td>Same gameplay and both client/host roles; repeat handoffs in both directions</td>
+</tr>
+<tr>
+<td>SM-S948U1 Android phone</td>
+<td>Solo, cross-platform client, native discovery, phone UI, background/resume and in-place update; installed OS to record in G1</td>
+</tr>
+<tr>
+<td>A2484 iPhone / reported iOS 26.6.1</td>
+<td>Fourth simultaneous human, phone layout, joining/leaving and newer-OS compatibility</td>
+</tr>
+<tr>
+<td>Windows PC</td>
+<td>Headless startup, saves, restart, all four clients and failure/recovery scenarios</td>
+</tr>
+</tbody>
+</table></div>
+<p>The four-human test uses all four mobile devices. The PC server is additional. Android/iPhone authority roles can be evaluated later if desired; the mandatory mobile-host proof is specifically both iPads. Editor clones accelerate iteration but cannot replace this matrix.</p>
+<p>An acceptance record should contain test ID, goal ID, source/build versions, device/OS, starting save, steps, expected/actual result, result status and attached logs where useful. A short video may illustrate the result, but the test record still needs reproducible steps.</p>
+<h2 id="14-performance-interruptions-and-diagnostics">14. Performance, interruptions and diagnostics</h2>
+<p>Use the A10 iPad as the minimum performance target from G1. Keep the existing <strong>30 FPS target</strong> as a proposed game acceptance target and measure frame-time spikes as well as averages. A 30 FPS frame budget is about 33.3 ms; it is not permission to block touch handling for an entire loading operation. Phone/tablet layouts and graphics quality can differ while rules and content identities remain the same.</p>
+<p>Profile three distinct situations: four people together, four people in separate areas while A10 hosts, and A10 hosting while a local book/video is open. Repeat room and media changes to expose retained references. Existing memory, prop and NPC numbers in the goal sheet remain hypotheses until these measurements establish practical budgets. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/Profiler.html">Unity Profiler</a></p>
+<p>Use lightweight logic for offscreen NPCs/areas. Do not run their full visual animation/particles just because a guest is there; also do not suspend the guest's activity. Pool high-frequency effects where profiling warrants it, cap repeated interactions and decode one video per device. Avoid using an animation callback as the only timer for cooking or cleanup: a headless server has no need for its renderer/audio. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-optimizations.html">Dedicated Server optimizations</a></p>
+<p>Every asynchronous operation needs an owner and cancellation/generation check: scene load, narration, video prepare/seek, connection attempt and save write. A callback from an abandoned room must not teleport a character, start old audio or overwrite a newer save.</p>
+<p>Keep local structured diagnostics: build/protocol versions, authority generation, zone/activity IDs, request ID, state revision, load failure and save result. Retain native symbols for the exact release. Apple jetsam reports help distinguish memory-pressure termination from ordinary crashes; Android Logcat helps trace platform errors. Investigate freezes as well as crashes, including Android ANRs. <a href="https://developer.apple.com/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports">Apple jetsam reports</a>, <a href="https://developer.android.com/studio/debug/logcat">Android Logcat</a>, <a href="https://developer.android.com/topic/performance/issues/anr">Android ANRs</a></p>
+<p>The TV's bookmarks get their own test path: save on meaningful transitions and approximately every five seconds during playback, as proposed in <a href="bluey-game-research-2026-09-23.html#27-tv-corner-and-local-video-library">goal-sheet section 27</a>. A crash restores the last successful checkpoint. Bookmark writes must not depend on the PC being online or reset when the child changes character.</p>
+<h2 id="15-family-delivery-updates-and-recovery">15. Family delivery, updates and recovery</h2>
+<p>G8 uses the same approved source revision and platform profiles whose evidence was recorded. Install the intended fresh artifact, verify its version, launch it and inspect the seeded or existing data. A successful installer message alone does not establish that the right build or saved world is present.</p>
+<p>Use disposable test data or a separate development identity for destructive recovery experiments. Do not test a clean install by removing the children's actual app and its saved rooms. Before a save-format migration, preserve a recoverable backup. Forward migrations and supported recovery paths are explicit; an older app may not understand a newer save, so “roll back the APK” is not a complete recovery policy.</p>
+<p>A family-release checklist includes:</p>
+<ul>
+<li>Both iPads plus phones launch and can play offline; required art/audio and installed media are available without downloads.</li>
+<li>PC auto-join, four players, independent rooms, mobile hosting/recovery and creation preservation pass in the supported configuration.</li>
+<li>Menus and video/book overlays remain local; other players continue their activities.</li>
+<li>Current English content is understandable; unavailable content is not represented as complete.</li>
+<li>An in-place update and the real free iPad refresh cycle retain saves, personal rooms and imported media/bookmarks.</li>
+<li>PC startup, world backup and restore are documented and tested; native logs/symbols can identify a failure.</li>
+</ul>
+<p>Keep backups for world/profile records, imported media manifests/files where needed, source assets and signing material. Test one restore into a separate test location. A copy that has never been restored is not evidence of a working recovery procedure.</p>
+<p>The normal server runs privately on the home network. External PC access/hotspot qualification remains a later option. The core implementation does not require public hosting, cloud accounts for the children, or internet access to generate ordinary speech.</p>
+<h2 id="16-risks-decisions-and-change-control">16. Risks, decisions and change control</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Risk or unanswered question</th>
+<th>Resolve at</th>
+<th>Decision rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Actual Android OS, Mac/Xcode and native build compatibility</td>
+<td>G1</td>
+<td>Record and test actual installed tools; do not treat reported hardware as a completed toolchain</td>
+</tr>
+<tr>
+<td>NGO status/dependency mismatch</td>
+<td>G1 candidate setup; G3 network qualification</td>
+<td>Inspect exact editor/package status and relevant fixes; lock only a passing combination</td>
+</tr>
+<tr>
+<td>A10 hosting several independently active areas</td>
+<td>G3–G4</td>
+<td>Measure; reduce unnecessary simulation/render/load cost first; report a remaining hard limit rather than silently dropping iPad hosting</td>
+</tr>
+<tr>
+<td>Host termination and disconnected edits</td>
+<td>G4–G5</td>
+<td>Demonstrate coherent recovery and explicit conflict preservation before content expansion</td>
+</tr>
+<tr>
+<td>Shared props accumulate in bedrooms or returns destroy creations</td>
+<td>G5</td>
+<td>Validate categories, containers, station stock and creation transfer as one policy</td>
+</tr>
+<tr>
+<td>Free iPad installation expires despite intended automatic refresh</td>
+<td>Starts G1; release blocker at G8</td>
+<td>Prove the actual renewal path; record reachable-device requirements and data preservation</td>
+</tr>
+<tr>
+<td>Scope exceeds available production time</td>
+<td>G6–G7</td>
+<td>Use measured slice throughput; keep unbuilt scope visible; release labeled smaller batches</td>
+</tr>
+<tr>
+<td>Young child cannot operate controls or understand prompts</td>
+<td>G2 and G6</td>
+<td>Simplify interactions and assistance based on observed use before copying the UI everywhere</td>
+</tr>
+<tr>
+<td>Native media/import/navigation component fails on a target</td>
+<td>Small proof before its content batch</td>
+<td>Use a qualified alternative behind the same interface; record the replacement and affected tests</td>
+</tr>
+</tbody>
+</table></div>
+<p>Record major choices as short decision notes: <strong>context → choice → alternatives considered → reason → consequence → evidence → revisit trigger</strong>. Keep a stable decision ID. Initial decisions are: new isolated Universal 2D project; one authoritative rule model; independent logical rooms; local media/bookmarks; free-first packages; early mobile recovery proof; and the G0–G9 sequence.</p>
+<p>Changing a package or pipeline must have a concrete reason. Do not replace the network framework, save format, scene model or artwork pipeline mid-feature without identifying migration work and retesting affected contracts. The user can change the goal; the guide then records the effect on dependencies rather than scattering partial edits across unrelated systems.</p>
+<h2 id="17-coverage-of-the-family-playset-goal-sheet">17. Coverage of the Family Playset goal sheet</h2>
+<p>Every feature ID in the current section-16 tracker has a route below. The phase shown introduces/proves it; full content completion still needs its G7 batch and G8 release checks. This is a coverage map, not a completion report.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Goal IDs / requirement</th>
+<th>Foundation and proof</th>
+<th>Content completion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CHAR-01, CHAR-02 — switching, unrestricted favorites, parents</td>
+<td>G2 identity/rig boundary; G3 replication; G6 representative parent rig</td>
+<td>G7-A/E roster and all required interactions</td>
+</tr>
+<tr>
+<td>FAMILY-01, JOIN-01, NET-02 — four devices, drop-in play, PC continuity</td>
+<td>G3 real four-client shared world</td>
+<td>Rechecked across G6/G7 activities</td>
+</tr>
+<tr>
+<td>AUTO-01, AUTO-02 — automatic discovery, both iPads hosting/recovering</td>
+<td>G3 native discovery; G4–G5 recovery/reunion</td>
+<td>Mandatory G8 regression</td>
+</tr>
+<tr>
+<td>WORLD-01, WORLD-02 — independent travel and non-interruption</td>
+<td>G3 separate logical areas; G4 offscreen host proof</td>
+<td>All six worlds in G7</td>
+</tr>
+<tr>
+<td>ITEM-02 — exclusive shared holder</td>
+<td>G2 rule; G3 race/rejoin; G5 recovery</td>
+<td>Every shared prop</td>
+</tr>
+<tr>
+<td>ITEM-03, STOCK-01, ROOM-02 — returns, stock and usable bedrooms</td>
+<td>G5 full category/container policy</td>
+<td>G7-A and every new station</td>
+</tr>
+<tr>
+<td>ROOM-01, SECRET-01 — separate bedrooms and shared visits</td>
+<td>G5 owned layout/reunion; G6 presentation</td>
+<td>G7-A both bedrooms/secret rooms</td>
+</tr>
+<tr>
+<td>ACT-01 — optional easy quests</td>
+<td>G2 optional prompt; G6 reusable lifecycle</td>
+<td>All applicable G7 activities</td>
+</tr>
+<tr>
+<td>COOK-01 — five pizzas, five cakes, five meals</td>
+<td>G2 capabilities; G6 one complete recipe</td>
+<td>G7-A all 15, including PIZ/CAK/MEAL catalog entries</td>
+</tr>
+<tr>
+<td>FISH-01, CLEAN-01 — fishpond and cleanup</td>
+<td>G6 one polished example of each</td>
+<td>G7-A/B variants and cancellation</td>
+</tr>
+<tr>
+<td>HIDE-01, HIDE-02, HIDE-03, NPC-01 — hiding, clues, seekers and routines</td>
+<td>G5 ownership concepts; G6 parent seeker and NPC task/role integration</td>
+<td>G7-A/B child-seeker variant and furniture coverage</td>
+</tr>
+<tr>
+<td>BOOK-01, TV-01 — narrated books and resumable local videos</td>
+<td>G1 media smoke check; G6 complete controllers and persistence</td>
+<td>G7-A approved books/library import workflow</td>
+</tr>
+<tr>
+<td>DINO-01, DINO-02, LAB-01 — toys, discovery and science</td>
+<td>G2 interaction families; G6 representative examples</td>
+<td>G7-A approved collections/stations</td>
+</tr>
+<tr>
+<td>OUT-01 — beach, creek and usable playground</td>
+<td>G3 independent zones; G6 shared capabilities</td>
+<td>G7-B all selected outdoor activities</td>
+</tr>
+<tr>
+<td>DAY-01, LEARN-01 — daycare and learning</td>
+<td>G6 invitations/NPC/activity foundations</td>
+<td>G7-C optional day and reviewed stations</td>
+</tr>
+<tr>
+<td>IMG-01 — nine imagination stories</td>
+<td>G6 role/NPC substitution proof</td>
+<td>G7-D all nine requested stories</td>
+</tr>
+<tr>
+<td>CAT-01 — show activity catalog</td>
+<td>G6 reusable activity/data pipeline</td>
+<td>G7-E selected approved catalog content</td>
+</tr>
+<tr>
+<td>TRAVEL-01 — full offline solo and returning progress</td>
+<td>G2 cold offline play; G5 branch/reunion</td>
+<td>G7 offline coverage for every solo-capable feature</td>
+</tr>
+<tr>
+<td>REMOTE-01 — optional away-from-home PC connection</td>
+<td>Existing research retained</td>
+<td>G9 separate optional qualification; does not gate travel solo</td>
+</tr>
+<tr>
+<td>Controls, menus, six-world wheel, speech and settings</td>
+<td>G1–G2 shell/input; G6 usable presentation</td>
+<td>G7 complete content/language settings</td>
+</tr>
+<tr>
+<td>English/Spanish</td>
+<td>Stable locale IDs early; English in G6</td>
+<td>G7-F reviewed Spanish, following English delivery</td>
+</tr>
+<tr>
+<td>Signing, saves, crashes and updates</td>
+<td>G1 workflow; continuous G2–G7 checks</td>
+<td>G8 release acceptance and G9 maintenance</td>
+</tr>
+<tr>
+<td>Optional AR</td>
+<td>Not a dependency of the 2D foundation</td>
+<td>G9 separate experiment if pursued</td>
+</tr>
+</tbody>
+</table></div>
+<p>The current tracker contains 35 top-level feature IDs. The coverage validator checks that all appear in this map. The full research includes additional detail, proposed counts and acceptance conditions; follow the linked goal-sheet sections when implementing each row rather than treating this summary as a replacement specification.</p>
+<h2 id="18-current-work-record-and-research-basis">18. Current work record and research basis</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Current value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal sheet</td>
+<td>Main Family Playset research, 54 sections, including the latest TV bookmark clarification</td>
+</tr>
+<tr>
+<td>Production guide</td>
+<td>This document; ordered method and acceptance gates</td>
+</tr>
+<tr>
+<td>Implementation state</td>
+<td>G1: isolated Universal 2D project, compiled touch/save fixture, verified tool launcher and Mac SSH access; mobile builds and game systems pending</td>
+</tr>
+<tr>
+<td>Current research deliverable</td>
+<td>G0 guide, coverage map and source review; document validation recorded separately</td>
+</tr>
+<tr>
+<td>Active implementation gate</td>
+<td>G1 — project and device foundation; <a href="implementation/g1-status.md">live record</a></td>
+</tr>
+<tr>
+<td>Current bounded task</td>
+<td>Compile, install and verify the existing touch/save fixture on the connected 9th-generation iPad; record physical touch and save/update evidence</td>
+</tr>
+<tr>
+<td>Package budget</td>
+<td>$0 starting setup; optional paid candidates around $20 require a concrete benefit and purchase authorization</td>
+</tr>
+<tr>
+<td>Open technical evidence</td>
+<td>Exact package set, native build path, refresh cycle, A10 hosting/recovery and save reconciliation</td>
+</tr>
+<tr>
+<td>Scope preserved</td>
+<td>Four mixed devices, independent rooms, both iPads hosting, automatic recovery, full offline solo and the complete content goal sheet</td>
+</tr>
+</tbody>
+</table></div>
+<p>This research used the existing 54-section goal sheet, its feature tracker, architecture/media chapters and supporting audit/package/network reports. Fresh primary-source review covered Unity's production/milestone guidance, Mega Cat Studios' published workflow, Unity project/assembly/data/build/package documentation, Apple release/device/touch guidance, Android lifecycle/signing/installation guidance, Git LFS and Addressables memory management. Citations appear next to the findings they support.</p>
+<p>The folder <code>docs/bluey-research/build-guide-review-2026-09-23</code> records source URLs, retrieval evidence and selected excerpts. Existing package versions remain candidates from the package review; this pass did not import or certify them. The precise folder structure, task method, phase order, coverage mapping and acceptance gates are <strong>our proposed implementation plan</strong>, not a claim that a vendor or every company prescribes them.</p>
+<p>No calendar promise is made. After G6, use actual asset/task throughput and discovered defect work to estimate subsequent batches. Keep the work record current so the next session starts from evidence and the next dependency, not from memory or whichever feature seems most interesting that day.</p></article></div>
+<footer class="footer"><p>A source-backed production plan for this game. The precise architecture and phase gates are our proposed method; no game implementation or device qualification was performed while writing it.</p><a href="family-playset-build-guide-2026-09-23.md">Editable build guide</a><a href="bluey-game-research-2026-09-23.html">Feature goal sheet</a><a href="family-playset-package-research-2026-09-23.html">Package research</a></footer></main></body></html>

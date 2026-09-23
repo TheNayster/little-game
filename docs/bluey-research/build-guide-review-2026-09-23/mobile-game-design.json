@@ -1,0 +1,12 @@
+{
+  "id": "mobile-game-design",
+  "url": "https://developer.apple.com/videos/play/wwdc2024/10085/",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Design advanced games for Apple platforms - WWDC24 - Videos - Apple Developer",
+  "sha256": "28121c41c905e3d2237d7cddcbb43314ed81b2fa66aaf4c716086facc7d37dd3",
+  "excerpts": [
+    "e for their fingers. On iPhone and iPad the default tap target size you should aim for is 44 by 44 points. This is a comfortable size for most people's fingers to easily select controls. For less critical UI, you can push this down to 28 points, but keep in mind that buttons at this size can be harder to select accurately, especially if your players have their attention on your gameplay. On Mac, you should aim to make the hit area of your controls 28 by 28 points. Which gives enough room for a pointer, like a mouse or a trackpad, to land on. For less important or infrequent controls, you can reduce that to a minimum of 20 points. For both text and buttons, aim for the defaults rather than the minimums it'll make your game more comfortable for more players. Now if you're wondering how you'll fit these larger sizes onto more compact screens. Remember that peop",
+    "s especially important for games on our mobile platforms. Where your players may be using touch as their input and need larger affordance for their fingers. On iPhone and iPad the default tap target size you should aim for is 44 by 44 points. This is a comfortable size for most people's fingers to easily select controls. For less critical UI, you can push this down to 28 points, but keep in mind that buttons at this size can be harder to select accurately, especially if your players have their attention on your gameplay. On Mac, you should aim to make the hit area of your controls 28 by 28 points. Which gives enough room for a pointer, like a mouse or a trackpad, to land on. For less important or infrequent controls, you can reduce that to a minimum of 20 points. For both text and buttons, aim for the defaults rather than the minimums it'll make your game mo"
+  ]
+}

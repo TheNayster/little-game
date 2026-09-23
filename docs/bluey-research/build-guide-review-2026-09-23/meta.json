@@ -1,0 +1,13 @@
+{
+  "id": "meta",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/AssetMetadata.html",
+  "resolved_url": "https://docs.unity3d.com/6000.3/Documentation/Manual/AssetMetadata.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Unity - Manual: Asset metadata",
+  "sha256": "3b29c5ff0f504b65d6c9e5418531f724c2b7f4a22c31c787ecab99e067104f8e",
+  "excerpts": [
+    "r project uses the asset. When you import an asset, Unity does the following: Assigns the asset a unique ID . Creates a .meta file for the asset . Processes the asset . Asset IDs The Unity Editor frequently checks the contents of the Assets folder against the list of assets it already knows about. When you place an asset in the Assets folder, Unity detects that you have added a new file and assigns a unique ID to the asset. This is an ID that Unity uses internally to reference the asset, so that it can move or rename the asset without breaking anything. You can use the Import Activity window to view the ID of an asset. Meta files Unity creates .meta files for each folder and file in your project’s Assets folder and stores the .meta file in the same location as the asset file. These files a",
+    "e and assigns a unique ID to the asset. This is an ID that Unity uses internally to reference the asset, so that it can move or rename the asset without breaking anything. You can use the Import Activity window to view the ID of an asset. Meta files Unity creates .meta files for each folder and file in your project’s Assets folder and stores the .meta file in the same location as the asset file. These files are hidden in the Project window A window that shows the contents of your Assets folder (Project tab) More info See in Glossary , and are considered a hidden file by your operating system, so might be hidden by default in your file browser. The .meta files contain the unique ID assigned to the asset, and values for all the asset’s import settings . If you change the import settings for "
+  ]
+}

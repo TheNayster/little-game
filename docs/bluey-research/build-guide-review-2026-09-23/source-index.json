@@ -1,0 +1,166 @@
+{
+  "review_date": "2026-09-23",
+  "records": [
+    {
+      "record": "addressables-assets.json",
+      "url": "https://docs.unity3d.com/Packages/com.unity.addressables@2.10/manual/memory-assets.html",
+      "title": "Managing Addressable asset memory | Addressables | 2.10.3 ",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "addressables-memory.json",
+      "url": "https://docs.unity3d.com/Packages/com.unity.addressables@2.10/manual/MemoryManagement.html",
+      "title": "Memory management | Addressables | 2.10.3 ",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "android-install.json",
+      "url": "https://developer.android.com/developer-verification/guides/faq",
+      "title": "Frequently asked questions &nbsp;|&nbsp; Android developer verification &nbsp;|&nbsp; Android Developers",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "android-quality.json",
+      "url": "https://developer.android.com/docs/quality-guidelines/core-app-quality",
+      "title": "Core app quality guidelines \u00a0|\u00a0 App quality \u00a0|\u00a0 Android Developers",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "android-sign.json",
+      "url": "https://developer.android.com/studio/publish/app-signing",
+      "title": "Sign your app \u00a0|\u00a0 Android Studio \u00a0|\u00a0 Android Developers",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "assemblies.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/assembly-definitions-intro.html",
+      "title": "Unity - Manual: Introduction to assemblies in Unity",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "cli.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/build-command-line.html",
+      "title": "Unity - Manual: Build a player from the command line",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "git-lfs.json",
+      "url": "https://git-lfs.com/",
+      "title": "Git Large File Storage | Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "identifying-high-memory-use-with-jetsam-event-reports.json",
+      "url": "https://developer.apple.com/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports",
+      "title": null,
+      "status": null,
+      "error": null
+    },
+    {
+      "record": "ios-build.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/iphone-BuildProcess.html",
+      "title": "Unity - Manual: Build an iOS application",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "meta.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/AssetMetadata.html",
+      "title": "Unity - Manual: Asset metadata",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "mobile-game-design.json",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10085/",
+      "title": "Design advanced games for Apple platforms - WWDC24 - Videos - Apple Developer",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "organization.json",
+      "url": "https://unity.com/how-to/organizing-your-project",
+      "title": "Best practices for organizing your Unity project | Unity",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "package-lock.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/upm-conflicts-auto.html",
+      "title": "Unity - Manual: Lock files",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "production.json",
+      "url": "https://learn.unity.com/course/job-seeker-s-guide-to-learning-unity/tutorial/the-real-time-production-cycle",
+      "title": "The real-time production cycle - Unity Learn",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "profiles-tests-core.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.test-framework.html",
+      "title": "Unity - Manual: Test Framework ",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "profiles.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/build-profiles.html",
+      "title": "Unity - Manual: Introduction to build profiles",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "scriptableobjects.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html",
+      "title": "Unity - Manual: ScriptableObject",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "server.json",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-optimizations.html",
+      "title": "Unity - Manual: Dedicated Server optimizations",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "studio.json",
+      "url": "https://unity.com/blog/scaling-workflows-lessons-from-medium-to-large-projects",
+      "title": "Scaling Unity Workflows for Medium To Large Projects | Unity Blog",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "testing-a-release-build.json",
+      "url": "https://developer.apple.com/documentation/xcode/testing-a-release-build",
+      "title": null,
+      "status": null,
+      "error": null
+    },
+    {
+      "record": "tests-current.json",
+      "url": "https://docs.unity3d.com/Packages/com.unity.test-framework@1.6/manual/index.html",
+      "title": "Unity Test Framework scripting reference | Test Framework | 1.6.0 ",
+      "status": 200,
+      "error": null
+    },
+    {
+      "record": "tests.json",
+      "url": "https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/index.html",
+      "title": "About Unity Test Framework | Test Framework | 1.4.6 ",
+      "status": 200,
+      "error": null
+    }
+  ]
+}

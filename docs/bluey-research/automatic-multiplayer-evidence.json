@@ -1,0 +1,219 @@
+{
+  "research_date": "2026-09-23",
+  "sections": [
+    44,
+    45,
+    46
+  ],
+  "main_report": "../bluey-game-research-2026-09-23.md",
+  "status": "Research/design only. No plugin import, compile, server setup, pairing, or physical-device test performed.",
+  "confirmed_request": "Automatic family discovery and joining while app is foregrounded; either iPad can host or join.",
+  "recommendation": "Native declared Bonjour discovery, stable single authority per connected session, PC preference at session start, either iPad as LAN host, custom checkpoint recovery and branch reconciliation.",
+  "important_findings": [
+    "Apple TN3213 says Xcode 27 deprecates MPC; use older Network framework APIs for iPadOS 18, not its iOS 26-only sample syntax.",
+    "NWBrowser availability begins iPadOS 13; NWListener begins iPadOS 12.",
+    "Apple DTS says MPC no longer supports Bluetooth networking despite older overview text.",
+    "Declared Bonjour browsing differs from raw UDP broadcast/multicast entitlement requirements.",
+    "Background/suspended iPads cannot be relied on as always-running hosts.",
+    "Unity host election does not migrate state; current default migration is Netcode for Entities, with NGO documentation pointing to Distributed Authority.",
+    "An offline partition requires separate branches; automatically reconnecting is not equivalent to safely merging divergent saves."
+  ],
+  "repositories": [
+    {
+      "repository": "Unity-Technologies/multiplayer-community-contributions",
+      "revision": "0fab638470379ace12b0149dfb41c043d23dbce5",
+      "commit_date": "2026-09-08T19:15:39Z",
+      "license": "MIT",
+      "inspected": [
+        "README.md",
+        "com.community.netcode.extensions/Runtime/NetworkDiscovery/NetworkDiscovery.cs"
+      ],
+      "finding": "Selected discovery source uses UdpClient, IPAddress.Broadcast, EnableBroadcast; avoid as default iPad discovery dependency."
+    },
+    {
+      "repository": "realitydeslab/apple-multipeer-connectivity-unity-plugin",
+      "revision": "c6c5d7355d50e9325a70fe1ea18ef02061bff5e2",
+      "commit_date": "2023-05-23T07:05:20Z",
+      "license": "MIT",
+      "inspected": [
+        "README.md",
+        "package.json",
+        "Runtime/NativeCode/MultipeerNearbyServiceBrowser.m",
+        "Runtime/NativeCode/MultipeerNearbyServiceAdvertiser.m"
+      ],
+      "finding": "Unity 2021.3 metadata; MPC wrappers. Browser wrapper ignores supplied context/timeout and uses nil context, timeout 7. Reference only."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Apple networking API guidance",
+      "url": "https://developer.apple.com/documentation/technotes/tn3151-choosing-the-right-networking-api",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "retrieval": "Apple official DocC JSON because web page requires JavaScript",
+      "content_url": "https://developer.apple.com/tutorials/data/documentation/technotes/tn3151-choosing-the-right-networking-api.json",
+      "page_title": "TN3151: Choosing the right networking API"
+    },
+    {
+      "title": "Apple peer identity and architecture guidance",
+      "url": "https://developer.apple.com/documentation/technotes/tn3213-moving-from-multipeer-connectivity-to-network-framework",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "retrieval": "Apple official DocC JSON because web page requires JavaScript",
+      "content_url": "https://developer.apple.com/tutorials/data/documentation/technotes/tn3213-moving-from-multipeer-connectivity-to-network-framework.json",
+      "page_title": "TN3213: Moving from Multipeer Connectivity to Network framework"
+    },
+    {
+      "title": "NWBrowser",
+      "url": "https://developer.apple.com/documentation/network/nwbrowser",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "retrieval": "Apple official DocC JSON because web page requires JavaScript",
+      "content_url": "https://developer.apple.com/tutorials/data/documentation/network/nwbrowser.json",
+      "page_title": "NWBrowser"
+    },
+    {
+      "title": "NWListener",
+      "url": "https://developer.apple.com/documentation/network/nwlistener",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "retrieval": "Apple official DocC JSON because web page requires JavaScript",
+      "content_url": "https://developer.apple.com/tutorials/data/documentation/network/nwlistener.json",
+      "page_title": "NWListener"
+    },
+    {
+      "title": "Apple Wi-Fi overview",
+      "url": "https://developer.apple.com/documentation/technotes/tn3111-ios-wifi-api-overview",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "retrieval": "Apple official DocC JSON because web page requires JavaScript",
+      "content_url": "https://developer.apple.com/tutorials/data/documentation/technotes/tn3111-ios-wifi-api-overview.json",
+      "page_title": "TN3111: iOS Wi-Fi API overview"
+    },
+    {
+      "title": "includePeerToPeer",
+      "url": "https://developer.apple.com/documentation/network/nwparameters/includepeertopeer",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "retrieval": "Apple official DocC JSON because web page requires JavaScript",
+      "content_url": "https://developer.apple.com/tutorials/data/documentation/network/nwparameters/includepeertopeer.json",
+      "page_title": "includePeerToPeer"
+    },
+    {
+      "title": "Apple's Bluetooth clarification",
+      "url": "https://developer.apple.com/forums/thread/749346",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "page_title": "Security Verification",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    },
+    {
+      "title": "Apple Personal Hotspot",
+      "url": "https://support.apple.com/en-us/111785",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "page_title": "Connect to the Personal Hotspot of an iPhone or iPad - Apple Support",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    },
+    {
+      "title": "Apple local network privacy",
+      "url": "https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "retrieval": "Apple official DocC JSON because web page requires JavaScript",
+      "content_url": "https://developer.apple.com/tutorials/data/documentation/technotes/tn3179-understanding-local-network-privacy.json",
+      "page_title": "TN3179: Understanding local network privacy"
+    },
+    {
+      "title": "Microsoft DnsServiceRegister",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/windns/nf-windns-dnsserviceregister",
+      "reviewed_on": "2026-09-23",
+      "category": "Windows platform",
+      "http_status": 200,
+      "page_title": "DnsServiceRegister function - Win32 apps | Microsoft Learn",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    },
+    {
+      "title": "Apple background execution",
+      "url": "https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time",
+      "reviewed_on": "2026-09-23",
+      "category": "Apple platform",
+      "http_status": 200,
+      "retrieval": "Apple official DocC JSON because web page requires JavaScript",
+      "content_url": "https://developer.apple.com/tutorials/data/documentation/uikit/extending-your-app-s-background-execution-time.json",
+      "page_title": "Extending your app’s background execution time"
+    },
+    {
+      "title": "Unity host migration",
+      "url": "https://docs.unity.com/en-us/mps-sdk/session-host-migration",
+      "reviewed_on": "2026-09-23",
+      "category": "Unity engine/services",
+      "http_status": 200,
+      "page_title": "Migrate session host • Multiplayer • Unity Docs",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    },
+    {
+      "title": "Unity distributed authority",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/terms-concepts/distributed-authority.html",
+      "reviewed_on": "2026-09-23",
+      "category": "Unity engine/services",
+      "http_status": 200,
+      "page_title": "Distributed authority topologies | Netcode for GameObjects | 2.13.3",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    },
+    {
+      "title": "Unity network connection options",
+      "url": "https://docs.unity.com/en-us/mps-sdk/manage-session-network-connection",
+      "reviewed_on": "2026-09-23",
+      "category": "Unity engine/services",
+      "http_status": 200,
+      "page_title": "Network connection management • Multiplayer • Unity Docs",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    },
+    {
+      "title": "Unity connection approval",
+      "url": "https://mp-docs.dl.it.unity3d.com/netcode/current/basics/connection-approval/",
+      "reviewed_on": "2026-09-23",
+      "category": "Unity engine/services",
+      "http_status": 200,
+      "page_title": "Connection approval | Unity Multiplayer",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    },
+    {
+      "title": "Unity multiplayer community contributions",
+      "url": "https://github.com/Unity-Technologies/multiplayer-community-contributions/tree/0fab638470379ace12b0149dfb41c043d23dbce5",
+      "reviewed_on": "2026-09-23",
+      "category": "repository source",
+      "http_status": 200,
+      "page_title": "GitHub - Unity-Technologies/multiplayer-community-contributions at 0fab638470379ace12b0149dfb41c043d23dbce5 · GitHub",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    },
+    {
+      "title": "Apple MPC Unity plugin",
+      "url": "https://github.com/realitydeslab/apple-multipeer-connectivity-unity-plugin/tree/c6c5d7355d50e9325a70fe1ea18ef02061bff5e2",
+      "reviewed_on": "2026-09-23",
+      "category": "repository source",
+      "http_status": 200,
+      "page_title": "GitHub - realitydeslab/apple-multipeer-connectivity-unity-plugin at c6c5d7355d50e9325a70fe1ea18ef02061bff5e2 · GitHub",
+      "retrieval": "Public HTML; content reviewed via web tool and/or public source reads"
+    }
+  ],
+  "not_yet_measured": [
+    "Home LAN and hotspot discovery/data interoperability",
+    "Native bridge compatibility with Unity 6.3, iPadOS 18 and chosen signing method",
+    "Both iPads hosting independent active zones",
+    "Election races, repeated resume and permissions",
+    "Hard host loss, durable checkpoint coverage and automatic branch reconciliation",
+    "Router-free Network framework transport prototype"
+  ],
+  "numeric_values": "Election grace, retry backoff, heartbeat/loss windows and snapshot cadence are proposed starting points, not measurements or reliability guarantees."
+}

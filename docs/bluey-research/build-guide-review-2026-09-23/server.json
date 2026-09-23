@@ -1,0 +1,14 @@
+{
+  "id": "server",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-optimizations.html",
+  "resolved_url": "https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-optimizations.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Unity - Manual: Dedicated Server optimizations",
+  "sha256": "816ba8073b798afe8f5b82e3c75adde7758877723c5b8c13a90d798a1b5b468d",
+  "excerpts": [
+    "matic optimizations By default, the Dedicated Server build target performs the following optimizations: Deactivates the Audio Subsystem Removes lighting threads Removes some Player loop callbacks Removes GPU-only assets Audio Subsystem The Dedicated Server build target deactivates the Audio Subsystem because builds don’t need audio support when running as a dedicated server. Disabling the Audio Subsystem reduces CPU load. Lighting threads The Dedicated Server build target removes process threads related to lighting because there’s no need to render lighting on a server build. Player loop callbacks The Dedicated Server build target disables the following PlayerLoop callbacks because they aren’t necessary for a server build. Player update loop registration of SendMouseEvents Player update lo",
+    "wing optimizations: Deactivates the Audio Subsystem Removes lighting threads Removes some Player loop callbacks Removes GPU-only assets Audio Subsystem The Dedicated Server build target deactivates the Audio Subsystem because builds don’t need audio support when running as a dedicated server. Disabling the Audio Subsystem reduces CPU load. Lighting threads The Dedicated Server build target removes process threads related to lighting because there’s no need to render lighting on a server build. Player loop callbacks The Dedicated Server build target disables the following PlayerLoop callbacks because they aren’t necessary for a server build. Player update loop registration of SendMouseEvents Player update loop registration of UpdateAllRenderers Player update loop registration of PlayerUpdat",
+    "ystem because builds don’t need audio support when running as a dedicated server. Disabling the Audio Subsystem reduces CPU load. Lighting threads The Dedicated Server build target removes process threads related to lighting because there’s no need to render lighting on a server build. Player loop callbacks The Dedicated Server build target disables the following PlayerLoop callbacks because they aren’t necessary for a server build. Player update loop registration of SendMouseEvents Player update loop registration of UpdateAllRenderers Player update loop registration of PlayerUpdateCanvases Player update loop registration of all audio callbacks such as UpdateAudio Player update loop registration of all UI callbacks such as UIElementsUpdatePanels Player update loop registration of all input"
+  ]
+}

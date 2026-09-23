@@ -1,0 +1,195 @@
+{
+  "researchDate": "2026-09-23",
+  "mainFile": "../bluey-game-research-2026-09-23.md",
+  "sections": [
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+  ],
+  "status": "Research and proposed designs only; no Unity implementation, server install, signing change, or physical-device test.",
+  "confirmedUserChoices": [
+    "Two separate bedrooms; edits visible on both iPads when connected.",
+    "Windows PC may stay awake as home game server.",
+    "Road-trip play must work without PC or internet for all solo-capable content.",
+    "Phone hotspot may be used for optional travel co-op."
+  ],
+  "proposedScienceActivities": [
+    "SCI-01 Floaty boat tub",
+    "SCI-02 Magnet treasure trail",
+    "SCI-03 Ramp and roll",
+    "SCI-04 Color-light garden",
+    "SCI-05 Dinosaur shadow theatre",
+    "SCI-06 Bubble workshop",
+    "SCI-07 Sound-and-wiggle board",
+    "SCI-08 Little seed window"
+  ],
+  "roomIdentities": [
+    "bedroom-A",
+    "bedroom-B",
+    "secret-A",
+    "secret-B"
+  ],
+  "hideAndSeek": {
+    "defaultSeeker": "Parent",
+    "clues": "Optional auto 5–10 seconds, manual, or off; values are proposals.",
+    "findTarget": "Approximately 30 seconds per ready stationary/reachable hider; measured child testing required.",
+    "lateJoin": "Per-child Preparing state and eligibility clock; no restart of existing search."
+  },
+  "travelModes": [
+    "Home PC server + two clients",
+    "Independent offline local worlds",
+    "Optional iPad-hosted session through tested phone hotspot"
+  ],
+  "knownLimits": [
+    "No live cross-device synchronization without connectivity.",
+    "Travel-host loss may require a brief local-continuation transition; not claimed zero-delay NGO migration.",
+    "Full offline play requires locally installed content and still-valid iOS signing.",
+    "Personal room journals and shared-world branch conflicts require explicit reconciliation.",
+    "Phone hotspot LAN reachability and away-from-PC refresh not device-tested."
+  ],
+  "sources": [
+    {
+      "title": "PBS age-three pushes and pulls",
+      "url": "https://www.pbs.org/parents/learn-grow/age-3/science/pushes-and-pulls",
+      "type": "Science/education",
+      "use": "Cause-and-effect exploration and descriptive language; not evidence of a measured effect from this proposed digital game."
+    },
+    {
+      "title": "PBS sink or float",
+      "url": "https://www.pbs.org/video/sink-or-float-prek-kindergarten-science-m2z0ne/",
+      "type": "Science/education",
+      "use": "Observational floating/sinking activity; game implementation is proposed."
+    },
+    {
+      "title": "PBS ramps",
+      "url": "https://www.pbs.org/video/ramps-npt3-nanhcu/",
+      "type": "Science/education",
+      "use": "Ramps, gravity and friction; scene description consulted."
+    },
+    {
+      "title": "National MagLab permanent magnets",
+      "url": "https://nationalmaglab.org/about-the-maglab/around-the-lab/maglab-dictionary/permanent-magnet/",
+      "type": "Research institution",
+      "use": "Material distinctions for magnetic props."
+    },
+    {
+      "title": "Exploratorium colored shadows",
+      "url": "https://www.exploratorium.edu/snacks/colored-shadows",
+      "type": "Museum",
+      "use": "Additive color and light-blocking behavior, distinct from pigment mixing."
+    },
+    {
+      "title": "Exploratorium bubble shapes",
+      "url": "https://annex.exploratorium.edu/ronh/bubbles/shape_of_bubbles.html",
+      "type": "Museum",
+      "use": "Surface-area explanation for free spherical bubbles."
+    },
+    {
+      "title": "Exploratorium Sound Sandwich",
+      "url": "https://www.exploratorium.edu/snacks/sound-sandwich",
+      "type": "Museum",
+      "use": "Vibration, length/tension and pitch."
+    },
+    {
+      "title": "NASA plants and soil",
+      "url": "https://science.nasa.gov/eclips/videos/do-plants-need-soil/",
+      "type": "Science agency",
+      "use": "Plant needs and germination outside soil."
+    },
+    {
+      "title": "NASA aurora explanation",
+      "url": "https://spaceplace.nasa.gov/aurora/en/",
+      "type": "Science agency",
+      "use": "Real aurora explanation; room art is explicitly a fantasy ceiling/projection."
+    },
+    {
+      "title": "Bluey Hide and Seek",
+      "url": "https://www.bluey.tv/watch/season-1/hide-and-seek/",
+      "type": "Official show site",
+      "use": "Family hide-and-seek premise; custom parent roles and timings are not episode facts."
+    },
+    {
+      "title": "Unity Dedicated Server",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-introduction.html",
+      "type": "Official technical documentation",
+      "use": "Desktop server build support and stripping presentation work."
+    },
+    {
+      "title": "Unity NetworkVariables",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.5/manual/basics/networkvariable.html",
+      "type": "Official technical documentation",
+      "use": "Persistent network state for late joiners."
+    },
+    {
+      "title": "Unity NetworkSceneManager",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.5/manual/basics/scenemanagement/using-networkscenemanager.html",
+      "type": "Official technical documentation",
+      "use": "Scene/client synchronization lifecycle; independent room presentation remains custom work."
+    },
+    {
+      "title": "Unity object spawning",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.5/manual/basics/object-spawning.html",
+      "type": "Official technical documentation",
+      "use": "Object lifetime and owner-disconnection considerations."
+    },
+    {
+      "title": "Unity network time",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.5/manual/advanced-topics/networktime-ticks.html",
+      "type": "Official technical documentation",
+      "use": "Network time/ticks for coordinated events; custom per-hider timing still required."
+    },
+    {
+      "title": "Unity host migration",
+      "url": "https://docs.unity.com/en-us/mps-sdk/session-host-migration",
+      "type": "Official technical documentation",
+      "use": "Election is distinct from data migration; no automatic NGO client/server offline migration promise."
+    },
+    {
+      "title": "Apple Personal Hotspot",
+      "url": "https://support.apple.com/en-us/111785",
+      "type": "Official platform documentation",
+      "use": "Portable Wi-Fi via cellular; not a guarantee of this game's exact peer connectivity."
+    },
+    {
+      "title": "Apple hotspot troubleshooting",
+      "url": "https://support.apple.com/en-us/119837",
+      "type": "Official platform documentation",
+      "use": "Compatibility setting and connectivity checks; no network reset is proposed."
+    },
+    {
+      "title": "Apple Wi-Fi API overview",
+      "url": "https://developer.apple.com/documentation/technotes/tn3111-ios-wifi-api-overview",
+      "type": "Official API reference",
+      "use": "Further native peer-to-peer research entry; JavaScript-rendered body limited in web reader."
+    },
+    {
+      "title": "Apple developer Bluetooth clarification",
+      "url": "https://developer.apple.com/forums/thread/749346",
+      "type": "Apple Developer Technical Support",
+      "use": "Multipeer Bonjour transport no longer works over Bluetooth."
+    },
+    {
+      "title": "Apple Personal Team limits",
+      "url": "https://developer.apple.com/help/account/basics/about-your-developer-account",
+      "type": "Official platform documentation",
+      "use": "Seven-day provisioning validity remains relevant to travel readiness."
+    },
+    {
+      "title": "SideStore refresh FAQ",
+      "url": "https://docs.sidestore.io/docs/faq",
+      "type": "Official project documentation",
+      "use": "On-device refresh candidate after setup; no installation or renewal test performed."
+    },
+    {
+      "title": "SideStore prerequisites",
+      "url": "https://docs.sidestore.io/docs/installation/prerequisites",
+      "type": "Official project documentation",
+      "use": "Current Wi-Fi and helper requirements; actual hotspot refresh must be tested."
+    }
+  ],
+  "sourceCount": 23
+}

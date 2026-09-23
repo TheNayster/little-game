@@ -1,0 +1,14 @@
+{
+  "id": "ios-build",
+  "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/iphone-BuildProcess.html",
+  "resolved_url": "https://docs.unity3d.com/6000.3/Documentation/Manual/iphone-BuildProcess.html",
+  "reviewed": "2026-09-23",
+  "status": 200,
+  "title": "Unity - Manual: Build an iOS application",
+  "sha256": "9d14488ac64032aaf0fa189f7834e23e90840ed7b0f1fd49c73a4bbe35e39178",
+  "excerpts": [
+    "e Build an iOS application The process of building an iOS application with Unity has two main steps: Unity generates an Xcode project. Xcode builds the generated project into the application. For further information on how Unity builds iOS applications, refer to How Unity builds iOS applications . Note : To build an iOS application locally, your development machine must run macOS as Xcode is available only on macOS devices. If you don’t have a macOS device, you can use Unity Build Automation A continuous integration service for Unity projects that automates the process of creating builds on Unity’s servers. More info See in Glossary to build your applications in the cloud. Before you build your Project for iOS, make sure that you set the Bundle Identifier in the iOS Player Settings Setting",
+    "er to How Unity builds iOS applications . Note : To build an iOS application locally, your development machine must run macOS as Xcode is available only on macOS devices. If you don’t have a macOS device, you can use Unity Build Automation A continuous integration service for Unity projects that automates the process of creating builds on Unity’s servers. More info See in Glossary to build your applications in the cloud. Before you build your Project for iOS, make sure that you set the Bundle Identifier in the iOS Player Settings Settings that let you set various player-specific options for the final game built by Unity. More info See in Glossary (menu: Edit > Project Settings > Player Settings ). You can also choose whether your app targets the simulator or an actual device. To do this, c",
+    "for iOS iOS build settings reference Build an iOS application The process of building an iOS application with Unity has two main steps: Unity generates an Xcode project. Xcode builds the generated project into the application. For further information on how Unity builds iOS applications, refer to How Unity builds iOS applications . Note : To build an iOS application locally, your development machine must run macOS as Xcode is available only on macOS devices. If you don’t have a macOS device, you can use Unity Build Automation A continuous integration service for Unity projects that automates the process of creating builds on Unity’s servers. More info See in Glossary to build your applications in the cloud. Before you build your Project for iOS, make sure that you set the Bundle Identifier"
+  ]
+}

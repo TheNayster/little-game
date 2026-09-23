@@ -1,0 +1,42 @@
+[
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "ddd715da4695a278a143d9af3530fd60a3814b73",
+    "tag": "v2.13.3",
+    "path": "com.unity.netcode.gameobjects/package.json",
+    "local": "NGO-v2.13.3--com.unity.netcode.gameobjects__package.json.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/package.json",
+    "sha256": "0cd0a977d488591fdbdaf338feb9ac11f0a5bdbf914a2f6886966a5731d89194",
+    "bytes": 658
+  },
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "ddd715da4695a278a143d9af3530fd60a3814b73",
+    "tag": "v2.13.3",
+    "path": "com.unity.netcode.gameobjects/Runtime/Core/NetworkManager.cs",
+    "local": "NGO-v2.13.3--com.unity.netcode.gameobjects__Runtime__Core__NetworkManager.cs.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Core/NetworkManager.cs",
+    "sha256": "46bed269dd8feee471de4f40735ede2854797823ed94eca4c2b68f0d7c3ab94c",
+    "bytes": 80831
+  },
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "ddd715da4695a278a143d9af3530fd60a3814b73",
+    "tag": "v2.13.3",
+    "path": "com.unity.netcode.gameobjects/Runtime/Core/NetworkObject.cs",
+    "local": "NGO-v2.13.3--com.unity.netcode.gameobjects__Runtime__Core__NetworkObject.cs.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Core/NetworkObject.cs",
+    "sha256": "e7304ed2c54b4dda39a194d0c787bda90a16071d31888741253f649c59d7a94a",
+    "bytes": 188545
+  },
+  {
+    "repo": "Unity-Technologies/com.unity.netcode.gameobjects",
+    "revision": "ddd715da4695a278a143d9af3530fd60a3814b73",
+    "tag": "v2.13.3",
+    "path": "com.unity.netcode.gameobjects/Runtime/Spawning/NetworkSpawnManager.cs",
+    "local": "NGO-v2.13.3--com.unity.netcode.gameobjects__Runtime__Spawning__NetworkSpawnManager.cs.txt",
+    "url": "https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Spawning/NetworkSpawnManager.cs",
+    "sha256": "57530dabd741b6588d5902a68adc47e0c0e8ecd47e38ecf1ece7b83e67f1c43d",
+    "bytes": 123800
+  }
+]
