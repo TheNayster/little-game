@@ -1,0 +1,18 @@
+{
+  "device": "iPad 7",
+  "artifactBuild": 56,
+  "artifactVersion": "0.0.56",
+  "installedBundleId": "com.littleweeps.familyplayset",
+  "installationCommandSucceeded": true,
+  "appPreviouslyAbsent": true,
+  "firstInstallation": true,
+  "userApprovedDeveloperProfileAndOpenedApp": true,
+  "nativeLaunchSucceededAfterTrust": true,
+  "uninstallUsed": false,
+  "dataResetUsed": false,
+  "installationRepeated": false,
+  "independentInstalledAppVersionQueryPassed": false,
+  "inventoryLimitation": "CoreDevice StreamingAction app-list query still fails, including after trust and with an alternate filter. No signature/install/launch/save-read failure is inferred from that query error.",
+  "physicalRepeatedChecklistUserConfirmed": true,
+  "exactNativeSaveRestartPassed": true
+}

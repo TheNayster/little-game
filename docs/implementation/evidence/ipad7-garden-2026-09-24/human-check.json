@@ -1,0 +1,70 @@
+{
+  "device": "iPad 7",
+  "buildUnderTest": 56,
+  "userReport": "did all the tests from the other ipad and its running great",
+  "samePhysicalChecklistUserReportedPassed": true,
+  "subjectivePlayReportedSmooth": true,
+  "quantitativePerformanceMeasured": false,
+  "saveIntegrityValid": true,
+  "savePayloadSha256": "bff9e64f80e0e9b0b98136dbd590b9082de8bbbebd9a50be8b7ce78cc3ccbec7",
+  "revision": 439,
+  "players": [
+    {
+      "id": "31156b0d0b684ae4a090ac5aebbf9a27",
+      "avatar": "blue-pup",
+      "activity": "",
+      "x": 356.64166259765625,
+      "y": 122.33427429199219
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "holder": "",
+      "kind": 0,
+      "x": 171.42855834960938,
+      "y": 248.25924682617188,
+      "water": 3,
+      "wet": false
+    },
+    {
+      "id": "sponge-1",
+      "holder": "",
+      "kind": 1,
+      "x": 728.0423583984375,
+      "y": 231.7407684326172,
+      "water": 0,
+      "wet": true
+    },
+    {
+      "id": "tap-1",
+      "holder": "",
+      "kind": 2,
+      "x": 150.0,
+      "y": 340.0,
+      "water": 0,
+      "wet": false
+    },
+    {
+      "id": "plant-1",
+      "holder": "",
+      "kind": 3,
+      "x": 810.0,
+      "y": 330.0,
+      "water": 3,
+      "wet": false
+    },
+    {
+      "id": "puddle-1",
+      "holder": "",
+      "kind": 4,
+      "x": 680.0,
+      "y": 140.0,
+      "water": 0,
+      "wet": false
+    }
+  ],
+  "settings": {
+    "solo.prototype.joystick": 1
+  }
+}

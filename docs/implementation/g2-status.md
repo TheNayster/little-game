@@ -1,6 +1,8 @@
 # G2 — solo interaction prototype
 
-Updated 24 September 2026. Provisional Windows work was authorized while the Mac and physical mobile devices were unavailable. The user has now returned: **solo garden 56 is installed on iPad 9**, physical layout/touch/voice, simultaneous joystick/drag, menu/screen-lock cancellation, remembered settings and offline solo checks passed; closing/reopening retained the exact complete garden save. [Current iPad record](ipad-garden-2026-09-24.md). Remaining physical checks, the older iPad and child usability are still open; neither G1 nor G2 is declared passed.
+**Latest device follow-up:** garden 56 now also runs on **iPad 7 / iPadOS 18.7.10**. The user reported repeating the newer iPad's checks successfully with smooth play; an actual restart retained every save byte and recorded preference. Its installed-app inventory query still has a CoreDevice communication error. [Older iPad results and limits](ipad7-garden-2026-09-24.md). This does not close quantified performance, media, child usability, renewal or the complete G1/G2 gates.
+
+Updated 24 September 2026. Provisional Windows work was authorized while the Mac and physical mobile devices were unavailable. The user has now returned: **solo garden 56 is installed on iPad 9**, physical layout/touch/voice, simultaneous joystick/drag, menu/screen-lock cancellation, remembered settings and offline solo checks passed; closing/reopening retained the exact complete garden save. [Current iPad record](ipad-garden-2026-09-24.md). Remaining physical/performance checks and child usability are still open; neither G1 nor G2 is declared passed.
 
 ## Play the current Windows prototype
 

@@ -1,0 +1,13 @@
+{
+  "utc": "2026-09-24T17:38:10.852001+00:00",
+  "device": "iPad (7th generation)",
+  "productType": "iPad7,11",
+  "iPadOS": "18.7.10",
+  "transport": "wired",
+  "paired": true,
+  "connection": "connected",
+  "developerMode": "disabled",
+  "source": "Mac devicectl inventory after successful manage pair",
+  "nextStep": "User enables Developer Mode on the iPad, restarts and confirms on-device.",
+  "gameInstallAttempted": false
+}

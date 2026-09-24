@@ -2,7 +2,9 @@
 
 Started 23 September 2026. In progress. The Samsung foundation launch, input, media, restart and signed-update checks passed; the remaining G1 device/recovery gates are still open.
 
-**Latest iPad task completed:** signed **16 → 20** installed and launched on iPad 9, retaining **1,019 taps, the same profile and the current 10.3-second bookmark**. The user confirmed visible resume and start-over/play/pause/skip controls; the subsequent saved position is 8.9 seconds. [Completed iPad evidence](ipad-update-2026-09-23.md).
+**24 September device follow-up:** solo garden 56 now runs on both iPads. The [iPad 9 update and physical checks](ipad-garden-2026-09-24.md) retained the earlier foundation preferences; the [iPad 7 first install/play/restart](ipad7-garden-2026-09-24.md) has successful native launch and exact save retention, with a separate CoreDevice installed-app enumeration error still open. These garden results do not close older-iPad media coverage, measured performance, recovery, renewal or the whole G1 gate.
+
+**Earlier foundation iPad task completed:** signed **16 → 20** installed and launched on iPad 9, retaining **1,019 taps, the same profile and the current 10.3-second bookmark**. The user confirmed visible resume and start-over/play/pause/skip controls; the subsequent saved position is 8.9 seconds. [Completed iPad evidence](ipad-update-2026-09-23.md).
 
 **Latest G1 Windows task completed:** [paused-video stability](windows-bookmark-2026-09-23.md), TV-01 / FAMILY-01. Reproduced a no-play bookmark rewrite in build 21 and fixed it in build 22. Sixty paused reopenings, four seek interruptions, process relaunch and the 19 → 22 save/update regression passed. Foundation preview uses 22. Mobile retesting and remaining G1 gates stay open. Continued Windows-only work has since produced a [separate provisional G2 solo garden prototype](g2-status.md), Windows 37 and emulator 30, without marking either phase passed.
 

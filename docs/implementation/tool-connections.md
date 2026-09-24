@@ -28,4 +28,6 @@ The first native build compiled but SSH could not access the signing key. `Tools
 
 For G2 exports, supply a fourth argument `G2`; omitting it preserves the original `G1` path. The helper validates the export version and prevents concurrent helper builds of the same export with a directory lock. Local signing of solo garden 56 and its iPad 9 update passed on 24 September; see the [current device evidence](ipad-garden-2026-09-24.md). A stale lock after a forced process termination must be inspected before retrying, not blindly removed.
 
+An optional fifth argument, such as `ipad7`, keeps a newly signed device product under the export's `DeviceBuilds/<tag>/DerivedData`, with separate log/exit names. This preserves the previously qualified device product. The default three-/four-argument product location stays unchanged; builds of the same export still share one lock.
+
 Verified continuation: the user completed that local route for 0.0.1; build/signature checks passed and the app installed on iPad 9. Device launch still needs its signing/trust check resolved. A subsequent 0.0.2 build over SSH compiled but failed at signing with `errSecInternalComponent`, so use the local Terminal route for subsequent signing until a supported remote route is separately qualified. The full current result is in [G1 status](g1-status.md).

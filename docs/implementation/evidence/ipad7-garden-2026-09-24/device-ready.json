@@ -1,0 +1,9 @@
+{
+  "device": "iPad 7",
+  "productType": "iPad7,11",
+  "iPadOS": "18.7.10",
+  "developerMode": "enabled",
+  "paired": true,
+  "transport": "wired",
+  "gameAbsentBeforeInstall": true
+}

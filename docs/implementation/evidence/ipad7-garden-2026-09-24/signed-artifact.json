@@ -1,0 +1,22 @@
+{
+  "build": 56,
+  "version": "0.0.56",
+  "bundleId": "com.littleweeps.familyplayset",
+  "device": "iPad 7",
+  "signatureVerified": true,
+  "teamMatchesOriginal": true,
+  "profileIncludesConnectedDevice": true,
+  "profileExpiresUtc": "2026-10-01T17:41:17+00:00",
+  "minimumOS": "15.0",
+  "architecture": "arm64",
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "executableSha256": "f3d84f4d5e63767d4d6c2b0ebb9f063765077bebca31f9238300ab8b18785c7e",
+  "frameworkSha256": "52e87e726bc728b37184c9ccf5fc42c194a8292dd0791ca1b6f70f9e1962f444",
+  "signedFiles": 39,
+  "localXcodeExit": 0,
+  "originalIPad9ProductUnchanged": true,
+  "log": "g2-ios-0.0.56-ipad7-local-20260924-174101-22298.log"
+}

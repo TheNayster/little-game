@@ -1,0 +1,14 @@
+{
+  "device": "iPad 7",
+  "build": 56,
+  "nativeBuildAndSignaturePassed": true,
+  "installationCommandSucceeded": true,
+  "installedVersionIndependentlyVerified": false,
+  "postInstallAppInventory": "Two reads failed with CoreDevice StreamingAction: could not get message from device.",
+  "launchSucceeded": false,
+  "launchError": "CoreDevice 10002 / FBS Security: invalid signature, inadequate entitlements or profile not explicitly trusted.",
+  "nextStep": "User checks and approves developer profile in iPad Settings; no trust-only diagnosis proven yet.",
+  "uninstallUsed": false,
+  "dataResetUsed": false,
+  "installationRepeated": false
+}

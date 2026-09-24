@@ -1,0 +1,13 @@
+{
+  "device": "iPad 7",
+  "buildUnderTest": 56,
+  "nativeRelaunchSucceeded": true,
+  "wholeSaveBytesUnchanged": true,
+  "savePayloadSha256": "bff9e64f80e0e9b0b98136dbd590b9082de8bbbebd9a50be8b7ce78cc3ccbec7",
+  "revision": 439,
+  "allPreferencesUnchanged": true,
+  "joystick": 1,
+  "voiceStored": null,
+  "voiceEffectiveDefaultOn": true,
+  "noHeldItemAtRestart": true
+}

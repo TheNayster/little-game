@@ -11,12 +11,13 @@ The user tried the two Windows player windows and reported a positive experience
 
 ## Then, in order
 
-- [ ] **Older iPad 7 (A2197), when available:** repeat the core checks and measure sustained performance. It is the minimum target; the newer iPad cannot qualify it by itself.
+- [x] **Older iPad 7 (A2197), first play/restart round:** device setup, separate signing, installation receipt and launch passed; the user reported repeating the newer iPad checks with smooth play, and native reopening retained the exact complete save/preferences. [Evidence and open app-inventory diagnostic](ipad7-garden-2026-09-24.md).
+- [ ] **Older iPad measured performance and remaining qualification:** measure frame pacing/memory during sustained representative play; close additional feature, media, update and inventory checks. Smooth first play is not this measurement.
 - [ ] **Brief child playtest:** let each child try moving, dragging, listening and leaving an activity. Record confusing controls before copying them into more rooms. Placeholder art and voices are still provisional.
 - [ ] **Secondary phones:** qualify the garden on Android, then iPhone, after the primary iPads. The existing phone installations are earlier foundation builds; do not assume they contain the garden.
 - [ ] **Separate signing-refresh session:** finish proving a reliable renewal route that preserves saves. The iPhone's manual Windows USB refresh passed; unattended renewal and Wi-Fi detection remain unresolved. Neither iPad has completed Windows renewal qualification. Do not repeat all wireless troubleshooting during the first garden test.
 
-The newer iPad's first round is complete. The older iPad is next when available. No account password or verification code should be sent in chat; any native account/keychain prompt is handled on the Mac itself.
+Both iPads now run the solo garden and their first play/restart results are recorded. The older iPad app-inventory diagnostic and remaining qualification gates are explicitly open. [Older iPad record](ipad7-garden-2026-09-24.md). No account password or verification code should be sent in chat; any native account/keychain prompt is handled on the Mac itself.
 
 ## Work that stays queued
 
