@@ -4,7 +4,7 @@ Updated 24 September 2026. Provisional work authorized by the user while the Mac
 
 ## Play the current Windows prototype
 
-Double-click **Play-SoloPrototype.cmd** at the project root. The verified preview is **0.0.37**. Play-Foundation.cmd still opens the separate G1 video/tap fixture, build 22. The launcher checks hashes before starting and prevents duplicate normal previews.
+Double-click **Play-SoloPrototype.cmd** at the project root. The verified preview is **0.0.39**. Close an older preview first. Play-Foundation.cmd still opens the separate G1 video/tap fixture, build 22. The launcher checks hashes before starting and prevents duplicate normal previews.
 
 Click the ground to walk, or select Joystick. Drag the bucket onto the tap and then the plant. Drag the sponge over the puddle three times. Choose either pup at any time. Grow a flower and Splash cleanup are optional prompts; Free play and the menu let you leave without resetting the toys. Listen replays the current English hint.
 
@@ -54,6 +54,8 @@ N and M are distinct, successfully built Windows versions. Each player test crea
 Core: Code/Core/SoloWorld.cs. Disk adapter: Code/Adapters/CheckpointStore.cs. UI/input/narration: Code/Client. Saved scene: Scenes/SoloPrototype.unity. These paths are under Unity/FamilyPlayset/Assets/FamilyPlayset. Tools/Create-SoloNarration.ps1 generates the temporary offline hints without playing them through the PC speakers.
 
 ## Current task and remaining gates
+
+Completed Windows-only follow-up: **ITEM-02 / TRAVEL-01**, [native crash recovery and unreadable-save barriers](g2-recovery-2026-09-24.md). Fixed a reproduced path-classification bug; all 20 core tests, native forced termination/reopen, blocked-file checks, 37 → 39 save/update/recovery and tablet-shaped input checks passed. The prepared iPad export 38 predates this fix and must be refreshed before device testing.
 
 Layout follow-up completed on Windows build 36: all button/text rectangles, including the hidden menu, fit the actual viewport at **1280×960**, **1920×900** and **960×540**. Full mouse/two-touch/cancellation input checks and muted narration checks passed at each size. [Tablet](evidence/solo-prototype-2026-09-24/layout-tablet-36.json), [wide phone](evidence/solo-prototype-2026-09-24/layout-wide-36.json), [small landscape](evidence/solo-prototype-2026-09-24/layout-small-36.json). These are Windows window dimensions, not device safe-area or physical-touch qualification.
 

@@ -1,0 +1,11 @@
+{
+    "runId": "bcace14afff941958f3b677a6cdafe09",
+    "build": "0.0.39",
+    "mode": "crash-resume",
+    "utc": "2026-09-24T12:23:43.9323053Z",
+    "error": "",
+    "passed": true,
+    "exactStateRestored": true,
+    "staleHoldReleased": true,
+    "toyUsableAgain": true
+}

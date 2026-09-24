@@ -44,7 +44,8 @@ namespace LittleWeeps.Client
         private void Start()
         {
             Application.targetFrameRate = 30; Application.runInBackground = true;
-            ReadVerificationArgs();
+            if(!ReadVerificationArgs())
+            {Debug.LogError("Invalid solo verification arguments; normal saved play was not opened.");Application.Quit(2);return;}
             font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             rounded = Shape(false); circle = Shape(true);
             var canvas = new GameObject("Solo Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -79,7 +80,11 @@ namespace LittleWeeps.Client
             BuildScreen(); Render();
             if (LoadedStatus == CheckpointStatus.Missing) SaveNow();
             if (LoadedStatus == CheckpointStatus.Recovered) message.text = "Your last safe save is back. Let's play!";
-            if (VerifyRun != null) gameObject.AddComponent<SoloVerification>();
+            if (VerifyRun != null)
+            {
+                if(VerifyMode=="crash-hold" || VerifyMode=="crash-resume")gameObject.AddComponent<SoloCrashVerification>();
+                else gameObject.AddComponent<SoloVerification>();
+            }
         }
         public static bool ValidPayload(string payload)
         {
@@ -92,15 +97,20 @@ namespace LittleWeeps.Client
             catch (ArgumentException) { return false; }
             catch (InvalidOperationException) { return false; }
         }
-        private void ReadVerificationArgs()
+        private bool ReadVerificationArgs()
         {
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
             var args = Environment.GetCommandLineArgs();
-            for (var i=0;i<args.Length-1;i++)
-            { if(args[i]=="-soloVerify") VerifyMode=args[i+1]; if(args[i]=="-soloRun" && Guid.TryParse(args[i+1],out var id)) VerifyRun=id.ToString("N"); }
-            if (VerifyMode != "seed" && VerifyMode != "resume" && VerifyMode != "recover" && VerifyMode != "input") { VerifyMode=null; VerifyRun=null; }
-            if (VerifyMode==null || VerifyRun==null) { VerifyMode=null; VerifyRun=null; }
+            var requested=false;
+            for (var i=0;i<args.Length;i++)
+            {
+                if(args[i]=="-soloVerify"){requested=true;if(i+1<args.Length)VerifyMode=args[i+1];}
+                if(args[i]=="-soloRun"){requested=true;if(i+1<args.Length && Guid.TryParse(args[i+1],out var id))VerifyRun=id.ToString("N");}
+            }
+            if (VerifyMode != "seed" && VerifyMode != "resume" && VerifyMode != "recover" && VerifyMode != "input" && VerifyMode != "crash-hold" && VerifyMode != "crash-resume" && VerifyMode != "blocked") { VerifyMode=null; VerifyRun=null; }
+            if(requested && (VerifyMode==null || VerifyRun==null))return false;
 #endif
+            return true;
         }
         private void BuildScreen()
         {

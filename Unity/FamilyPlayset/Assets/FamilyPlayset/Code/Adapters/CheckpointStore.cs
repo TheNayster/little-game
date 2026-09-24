@@ -26,7 +26,13 @@ namespace LittleWeeps.Adapters
         { using var sha = SHA256.Create(); return BitConverter.ToString(sha.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant(); }
         private CheckpointRead Read(string file)
         {
-            if (!File.Exists(file)) return new CheckpointRead(CheckpointStatus.Missing);
+            // File.Exists suppresses access errors and returns false for directories.
+            // Only an actual missing path may be treated as a new world's empty slot.
+            FileAttributes attributes;
+            try { attributes = File.GetAttributes(file); }
+            catch (FileNotFoundException) { return new CheckpointRead(CheckpointStatus.Missing); }
+            catch (DirectoryNotFoundException) { return new CheckpointRead(CheckpointStatus.Missing); }
+            if ((attributes & FileAttributes.Directory) != 0) throw new IOException("A directory occupies the checkpoint file path.");
             if (new FileInfo(file).Length > MaxBytes) return new CheckpointRead(CheckpointStatus.Corrupt);
             var text = File.ReadAllText(file, new UTF8Encoding(false, true));
             var first = text.IndexOf('\n'); var second = first < 0 ? -1 : text.IndexOf('\n', first + 1);

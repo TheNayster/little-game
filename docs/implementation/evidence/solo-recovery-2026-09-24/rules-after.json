@@ -1,0 +1,105 @@
+{
+  "utc": "2026-09-24T12:21:05.0777592Z",
+  "checks": [
+    {
+      "name": "one holder; other player cannot steal or release",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "one child holds one prop; unrelated movement and avatar switch survive",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "fill/pour conserves water and duplicate pour does not apply twice",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "duplicate accepted action remains idempotent after restored checkpoint",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "stale and invalid commands leave world unchanged",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "remote target drop rejects then cancellation restores original location",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "cleanup works without a quest and activities can be freely switched/left",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "restore releases transient grabs and snapshot mutation cannot change authority",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "invalid snapshots are rejected",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "checkpoint replacement retains previous valid version",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "truncated main recovers backup; next save preserves damaged evidence",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "interrupted staging never displaces the committed checkpoint",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "first-write staged recovery stays recoverable during next save",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "unknown envelope and payload versions never fall back or overwrite",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "checksum mismatch and wholly corrupt saves are never silently reset",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "random legal and rejected actions retain invariants and bounded receipts",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "existing save directory cannot be mistaken for a missing world",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "unreadable primary must not silently roll back to older backup",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "presentation copies cannot mutate player or toy authority",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "presentation reads avoid copying checkpoint command history",
+      "passed": true,
+      "error": ""
+    }
+  ]
+}

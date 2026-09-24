@@ -131,6 +131,21 @@ static class Program
             }
             Check(w.Snapshot().receipts.Length<=128);
         });
+        Test("existing save directory cannot be mistaken for a missing world", () => {
+            var store=Store("directory-at-save");var payload=Encode(SoloWorld.Create("first").Snapshot());store.Save(payload);
+            var path=Path.Combine(root,"directory-at-save","world.save");
+            File.Move(path,path+".preserved");Directory.CreateDirectory(path);
+            Throws(()=>store.Load());Throws(()=>store.Save(payload));
+            Check(File.ReadAllText(path+".preserved")==Envelope(payload));
+        });
+        Test("unreadable primary must not silently roll back to older backup", () => {
+            var store=Store("locked-save");var w=SoloWorld.Create("first");store.Save(Encode(w.Snapshot()));
+            Good(w,SoloAction.Move,x:222,y:200);var current=Encode(w.Snapshot());store.Save(current);
+            var path=Path.Combine(root,"locked-save","world.save");
+            using(var held=new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.None))
+            {Throws(()=>store.Load());Throws(()=>store.Save(Encode(w.Snapshot())));}
+            Check(store.Load().Payload==current);
+        });
         Test("presentation copies cannot mutate player or toy authority", () => {
             var w=SoloWorld.Create("first","second");var before=Encode(w.Snapshot());
             var player=w.ReadPlayer("second");player.avatar="orange-pup";player.x=2;

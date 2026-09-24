@@ -190,7 +190,7 @@ namespace LittleWeeps.Client
         private async Task Wait(Func<bool> condition,string check,float seconds=10){var until=Time.realtimeSinceStartup+seconds;while(!condition()){Check(failure==null && Time.realtimeSinceStartup<until,check+" failed/timed out: "+failure);await Task.Delay(30);}}
         private static void Check(bool condition,string text){if(!condition)throw new InvalidOperationException(text);}
         public static void FinishBlocked(SoloScreen screen,string error)
-        {Directory.CreateDirectory(Path.GetDirectoryName(screen.SavePath));File.WriteAllText(Path.Combine(Path.GetDirectoryName(screen.SavePath),screen.VerifyMode+".json"),JsonUtility.ToJson(new Record{error=error,runId=screen.VerifyRun,mode=screen.VerifyMode,build=Application.version}));Application.Quit(1);}
+        {Directory.CreateDirectory(Path.GetDirectoryName(screen.SavePath));File.WriteAllText(Path.Combine(Path.GetDirectoryName(screen.SavePath),screen.VerifyMode+".json"),JsonUtility.ToJson(new Record{error=error,runId=screen.VerifyRun,mode=screen.VerifyMode,build=Application.version,loadBlocked=true,loadedStatus=screen.LoadedStatus.ToString()}));Application.Quit(1);}
         [Serializable] private sealed class Record
         {
             public string mode,runId,build,worldId,playerId,loadedStatus,utc,error;
@@ -199,6 +199,7 @@ namespace LittleWeeps.Client
             public int screenWidth,screenHeight;
             public Rect safeArea;
             public bool layoutBounds;
+            public bool loadBlocked;
         }
     }
 }
