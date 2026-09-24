@@ -12,6 +12,7 @@ namespace LittleWeeps.Core
         private readonly Dictionary<ulong,string> connections=new Dictionary<ulong,string>();
         public FamilySession(SoloWorld world){this.world=world??throw new ArgumentNullException(nameof(world));}
         public string[] ConnectedPlayers=>connections.Values.OrderBy(id=>id,StringComparer.Ordinal).ToArray();
+        public bool TryPlayer(ulong connection,out string profile)=>connections.TryGetValue(connection,out profile);
         public bool Attach(ulong connection,string profile,out string reason)
         {
             reason="";

@@ -1,6 +1,6 @@
 {
   "name": "LittleWeeps.NetworkProbe",
   "rootNamespace": "LittleWeeps.NetworkProbe",
-  "references": ["LittleWeeps.Core", "LittleWeeps.Adapters", "Unity.Netcode.Runtime", "Unity.Networking.Transport", "Unity.Collections"],
+  "references": ["LittleWeeps.Core", "LittleWeeps.Adapters", "LittleWeeps.Client", "Unity.InputSystem", "UnityEngine.UI", "Unity.Netcode.Runtime", "Unity.Networking.Transport", "Unity.Collections"],
   "includePlatforms": ["Editor", "WindowsStandalone64"]
 }

@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LittleWeeps.Core;
@@ -16,7 +17,7 @@ namespace LittleWeeps.NetworkProbe
     public sealed class NetworkProbe : MonoBehaviour
     {
         private const int Protocol=1, Content=1, MaxWireBytes=16384;
-        private const string CommandMessage="littleweeps.probe.command.v1", StateMessage="littleweeps.probe.state.v1";
+        private const string CommandMessage="littleweeps.probe.command.v1", StateMessage="littleweeps.probe.state.v1", PoseMessage="littleweeps.probe.pose.v1";
         private static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
         private Config config;
         private string root,output,epoch;
@@ -28,12 +29,22 @@ namespace LittleWeeps.NetworkProbe
         private int controlSerial;
         private float nextControl,started;
         private bool failed,stopping;
+        private readonly Dictionary<string,DragPose> poses=new Dictionary<string,DragPose>();
+        public State Latest {get;private set;}
+        public Config Settings=>config;
+        public string Output=>output;
+        public bool ConnectedToServer=>network!=null && network.IsConnectedClient && !failed && !stopping;
+        public string ConnectionStatus {get;private set;}="Connecting…";
+        public event Action<State> Received;
+        public event Action LostConnection;
+        [Serializable] public sealed class DragPose {public string actor,item,lease;public float x,y;public long tick;}
         [Serializable] public sealed class Slot {public string profile,token;}
         [Serializable] public sealed class Config
         {
             public string runId,instanceId,role,profile,token;
             public int port,protocol=Protocol,content=Content;
             public Slot[] slots;
+            public bool presentation,verifyGarden,interactive;
         }
         [Serializable] private sealed class Hello {public string runId,profile,token;public int protocol,content;}
         [Serializable] public sealed class Control {public int serial;public string kind;public Request request;}
@@ -46,6 +57,7 @@ namespace LittleWeeps.NetworkProbe
             public bool accepted,duplicate,durable;
             public SoloSnapshot view;
             public string[] connected;
+            public DragPose[] poses;
         }
         [Serializable] private sealed class Status {public string role,runId,instanceId,build,status,reason;public int pid;}
 
@@ -77,6 +89,13 @@ namespace LittleWeeps.NetworkProbe
                 if(config.role=="server")StartAuthority();else StartGuest();
                 network.CustomMessagingManager.RegisterNamedMessageHandler(CommandMessage,ReceiveCommand);
                 network.CustomMessagingManager.RegisterNamedMessageHandler(StateMessage,ReceiveState);
+                network.CustomMessagingManager.RegisterNamedMessageHandler(PoseMessage,ReceivePose);
+                if(config.role=="client" && config.presentation)
+                {
+                    var garden=gameObject.AddComponent<NetworkGardenSession>();garden.Initialize(this);
+                    var screen=gameObject.AddComponent<LittleWeeps.Client.SoloScreen>();screen.Configure(garden);
+                    if(config.verifyGarden)gameObject.AddComponent<NetworkGardenVerification>();
+                }
             }
             catch(Exception e){Fail(e);}
         }
@@ -90,6 +109,8 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
+            if(saved.Status==CheckpointStatus.Missing && config.presentation)
+                for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
             session=new FamilySession(world);epoch=Guid.NewGuid().ToString("N");SaveAuthority();
             network.ConnectionApprovalCallback=Approve;
@@ -130,7 +151,7 @@ namespace LittleWeeps.NetworkProbe
             {
                 if(config.role=="server")
                 {if(session.Detach(client)){SaveAuthority();Publish();}}
-                else if(client==network.LocalClientId)WriteStatus("disconnected",network.DisconnectReason??"");
+                else if(client==network.LocalClientId){WriteStatus("disconnected",network.DisconnectReason??"");LostConnection?.Invoke();}
             }
             catch(Exception e){Fail(e);}
         }
@@ -138,10 +159,11 @@ namespace LittleWeeps.NetworkProbe
         {
             return new State{runId=config.runId,epoch=epoch,sequence=++sequence,requestId=requestId,
                 accepted=result?.Accepted??false,duplicate=result?.Duplicate??false,outcome=result?.Outcome??"snapshot",
-                durable=true,view=session.View(),connected=session.ConnectedPlayers};
+                durable=true,view=session.View(),connected=session.ConnectedPlayers,poses=poses.Values.ToArray()};
         }
         private void Publish()
         {
+            foreach(var item in poses.Keys.ToArray())if(!session.Checkpoint().toys.Any(t=>t.id==item && t.holder==poses[item].actor))poses.Remove(item);
             var state=Current();WriteJson(Path.Combine(output,"view.json"),state);
             foreach(var peer in network.ConnectedClientsIds)Send(StateMessage,peer,state);
         }
@@ -154,7 +176,16 @@ namespace LittleWeeps.NetworkProbe
                 if(request==null || !Guid.TryParseExact(request.requestId,"N",out _))throw new InvalidDataException("Bad request identity.");
                 var result=request.protocol!=Protocol?new SoloResult(false,"incompatible-version",session.Checkpoint().revision):
                     request.command==null || request.command.requestId!=request.requestId?new SoloResult(false,"invalid-command",session.Checkpoint().revision):session.Submit(sender,request.command);
-                if(result.Accepted && !result.Duplicate)SaveAuthority();
+                if(result.Accepted && !result.Duplicate)
+                {
+                    SaveAuthority();
+                    if(request.command.action==SoloAction.Grab)
+                    {
+                        var toy=session.Checkpoint().toys.First(t=>t.id==request.command.item);
+                        poses[toy.id]=new DragPose{actor=toy.holder,item=toy.id,lease=request.requestId,x=toy.x,y=toy.y};
+                    }
+                    else if(request.command.action==SoloAction.Drop || request.command.action==SoloAction.CancelGrab)poses.Remove(request.command.item);
+                }
                 Send(StateMessage,sender,Current(request.requestId,result));
                 if(result.Accepted && !result.Duplicate)Publish();
             }
@@ -174,9 +205,33 @@ namespace LittleWeeps.NetworkProbe
                 epoch=state.epoch;
                 if(!string.IsNullOrEmpty(state.requestId))
                 {if(!Guid.TryParseExact(state.requestId,"N",out _))throw new InvalidDataException("Bad response identity.");WriteJson(Path.Combine(output,"reply-"+state.requestId+".json"),state);}
-                if(state.sequence>seenSequence){seenSequence=state.sequence;WriteJson(Path.Combine(output,"view.json"),state);}
+                if(state.sequence>seenSequence){seenSequence=state.sequence;Latest=state;WriteJson(Path.Combine(output,"view.json"),state);}
+                Received?.Invoke(state);
             }
             catch(Exception e){Fail(e);}
+        }
+        public void Submit(SoloCommand command)
+        {
+            if(!ConnectedToServer)throw new InvalidOperationException("Client is not connected.");
+            Send(CommandMessage,NetworkManager.ServerClientId,new Request{requestId=command.requestId,command=command});
+        }
+        public void DisconnectGuest()
+        {if(config.role!="client")return;stopping=true;network.Shutdown();WriteStatus("disconnected","response-timeout");LostConnection?.Invoke();}
+        public void Preview(DragPose pose)
+        {if(ConnectedToServer)Send(PoseMessage,NetworkManager.ServerClientId,pose);}
+        private void ReceivePose(ulong sender,FastBufferReader reader)
+        {
+            if(config.role!="server" || stopping || failed)return;
+            try
+            {
+                var pose=JsonUtility.FromJson<DragPose>(Read(reader));
+                if(pose==null || pose.item==null || !SoloWorld.Position(pose.x,pose.y) || !session.TryPlayer(sender,out var actor) ||
+                    actor!=pose.actor || !poses.TryGetValue(pose.item,out var current) || current.actor!=actor ||
+                    current.lease!=pose.lease || pose.tick<=current.tick)return;
+                current.x=pose.x;current.y=pose.y;current.tick=pose.tick;Publish();
+            }
+            catch(ArgumentException){network.DisconnectClient(sender,"invalid-preview");}
+            catch(InvalidDataException){network.DisconnectClient(sender,"invalid-preview");}
         }
         private void Send<T>(string name,ulong peer,T message)
         {
@@ -196,13 +251,17 @@ namespace LittleWeeps.NetworkProbe
         private void Update()
         {
             if(config==null || output==null || failed || stopping)return;
-            if(Time.realtimeSinceStartup-started>240){Fail(new TimeoutException("Isolated probe lifetime exceeded."));return;}
+            if(Time.realtimeSinceStartup-started>(config.interactive?7200:240)){Fail(new TimeoutException("Isolated probe lifetime exceeded."));return;}
             if(Time.realtimeSinceStartup<nextControl)return;nextControl=Time.realtimeSinceStartup+.04f;
             try
             {
                 var path=Path.Combine(output,"control.json");if(!File.Exists(path))return;
                 if(new FileInfo(path).Length>4096)throw new InvalidDataException("Control too large.");
-                var control=JsonUtility.FromJson<Control>(File.ReadAllText(path,Utf8));
+                string json;
+                try
+                {using var file=new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete);using var reader=new StreamReader(file,Utf8);json=reader.ReadToEnd();}
+                catch(IOException){return;}
+                var control=JsonUtility.FromJson<Control>(json);
                 if(control==null || control.serial<=controlSerial)return;controlSerial=control.serial;
                 if(control.kind=="quit"){Stop();return;}
                 if(control.kind!="command" || config.role!="client" || !network.IsConnectedClient)throw new InvalidOperationException("Command needs a connected test client.");
@@ -222,7 +281,7 @@ namespace LittleWeeps.NetworkProbe
             if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);
         }
         private void WriteStatus(string status,string reason)
-        {if(output!=null)WriteJson(Path.Combine(output,"status.json"),new Status{role=config.role,runId=config.runId,instanceId=config.instanceId,build=Application.version,status=status,reason=reason,pid=System.Diagnostics.Process.GetCurrentProcess().Id});}
+        {ConnectionStatus=status;if(output!=null)WriteJson(Path.Combine(output,"status.json"),new Status{role=config.role,runId=config.runId,instanceId=config.instanceId,build=Application.version,status=status,reason=reason,pid=System.Diagnostics.Process.GetCurrentProcess().Id});}
         private void Fail(Exception error)
         {failed=true;Debug.LogException(error);WriteStatus("failed",error.Message);Application.Quit(1);}
         private void Stop(){stopping=true;network.Shutdown();WriteStatus("stopped","");Application.Quit(0);}

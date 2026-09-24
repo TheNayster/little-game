@@ -1,0 +1,29 @@
+{
+  "note": "Exact successful harness/launcher scripts; native source/artifact manifests separately pin each compiled build.",
+  "files": [
+    {
+      "path": "Tools/Test-SharedGarden.py",
+      "sha256": "732cf0f0a693117557d1c131fe9ab69d900cf777d4576defd6c0d4d754bc2d9c"
+    },
+    {
+      "path": "Tools/shared_garden_runtime.py",
+      "sha256": "96ff39da52249cdf4de0ecc7229e89781afc143323d2d2a731c13cb96e7187bb"
+    },
+    {
+      "path": "Tools/Test-SharedGardenResume.py",
+      "sha256": "8e2f0e26ceb28069f774148a017afc4857bdc6720c9b570e00bca3c763a1de66"
+    },
+    {
+      "path": "Tools/Test-NetworkProbe.py",
+      "sha256": "53aab1c735b0ba20597fcf29f5cd743f0d6b232ecebdd821821ce9b6d0b457be"
+    },
+    {
+      "path": "Tools/Play-SharedGarden.py",
+      "sha256": "863f7e77ae5e80ac332cf3e1a220431ecb72578571c6d06e65170b4dd040366f"
+    },
+    {
+      "path": "Tools/Play-SharedGarden.ps1",
+      "sha256": "bb5df00cb005a8632a814d1b2a3b53f18b24373b7b27b0afba103a912392dbdd"
+    }
+  ]
+}

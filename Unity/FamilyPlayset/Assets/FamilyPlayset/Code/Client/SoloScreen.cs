@@ -11,7 +11,8 @@ using UnityEngine.UI;
 
 namespace LittleWeeps.Client
 {
-    // G2 Windows prototype. Placeholder illustrations, local authority, no network.
+    // One garden presentation; a supplied session routes actions to a remote
+    // authority. The ordinary solo scene retains its own existing save adapter.
     public sealed class SoloScreen : MonoBehaviour
     {
         public SoloWorld World { get; private set; }
@@ -41,7 +42,25 @@ namespace LittleWeeps.Client
         private Vector2 stickDirection;
         private string dragging;
         private bool dirty;
+        private IGardenSession shared;
+        private Text connecting;
+        private long renderedSequence=-1;
+        private bool grabConfirmed,gestureEnded,gestureCancelled,dropSubmitted,wasConnected;
+        private Vector2 dragPoint;
+        private readonly Dictionary<string,(RectTransform root,Image head,Image body)> friends=new Dictionary<string,(RectTransform,Image,Image)>();
+        private readonly Dictionary<string,Text> holders=new Dictionary<string,Text>();
+        public bool Shared=>shared!=null;
+        public bool Ready=>Board!=null && (World!=null || shared?.View!=null);
+        public bool ActionPending=>shared!=null && shared.Busy;
+        public string Feedback=>message?.text??"";
+        public string Dragging=>dragging;
+        public int VisiblePlayers=>1+friends.Values.Count(v=>v.root.gameObject.activeSelf);
+        public void Configure(IGardenSession session){if(safe!=null)throw new InvalidOperationException("Configure before Start.");shared=session;}
+        public SoloPlayer ReadPlayer(string id)=>shared==null?World.ReadPlayer(id):shared.View.players.First(p=>p.id==id).Copy();
+        public SoloToy[] ReadToys()=>shared==null?World.ReadToys():shared.View.toys.Select(t=>t.Copy()).ToArray();
+        private bool HasWorld=>World!=null || shared?.View!=null;
         private float nextSave, nextMovement, lastMovement;
+        private float lastSharedMovement;
         private Rect lastSafeArea;
         private static readonly Color Ink = new Color(.15f,.25f,.29f), Cream = new Color(.98f,.96f,.88f);
         private void Start()
@@ -60,6 +79,11 @@ namespace LittleWeeps.Client
             {
                 var events = new GameObject("Solo Events", typeof(EventSystem), typeof(InputSystemUIInputModule));
                 events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
+            }
+            if(shared!=null)
+            {
+                Actor=shared.Actor;connecting=Label(safe,"Joining your shared garden…",32,Vector2.zero,new Vector2(1000,160));
+                return;
             }
             SavePath = Path.Combine(Application.persistentDataPath,"SoloPrototype",VerifyRun ?? "family-local","world.save");
             store = new CheckpointStore(SavePath, ValidPayload);
@@ -90,6 +114,20 @@ namespace LittleWeeps.Client
                 else gameObject.AddComponent<SoloVerification>();
             }
         }
+        private void InitializeShared()
+        {
+            connecting.gameObject.SetActive(false);
+            if(FindAnyObjectByType<AudioListener>()==null)gameObject.AddComponent<AudioListener>();
+            if(FindAnyObjectByType<Camera>()==null)
+            {
+                var camera=new GameObject("Shared Garden Camera",typeof(Camera)).GetComponent<Camera>();
+                camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=Cream;camera.transform.position=new Vector3(0,0,-10);
+            }
+            JoystickMode=PlayerPrefs.GetInt(PreferenceKey("joystick"),0)==1;
+            Narration=gameObject.AddComponent<SoloNarration>();Narration.Initialize(shared.MutedTest);
+            Narration.SetVoiceEnabled(PlayerPrefs.GetInt(PreferenceKey("voice"),1)!=0);
+            BuildScreen();Render();wasConnected=shared.Connected;
+        }
         public static bool ValidPayload(string payload)
         {
             try
@@ -119,7 +157,7 @@ namespace LittleWeeps.Client
         private void BuildScreen()
         {
             Label(safe,"Little Weeps",36,new Vector2(-407,351),new Vector2(330,58));
-            Label(safe,"Garden play lab  /  "+Application.version,17,new Vector2(-404,313),new Vector2(340,34));
+            Label(safe,(shared==null?"Garden play lab":Actor.Replace("player-","Player ")+" · shared garden")+" / "+Application.version,17,new Vector2(-404,313),new Vector2(350,34));
             Button(safe,"Blue pup",new Vector2(-95,343),new Vector2(150,64),()=>ChooseAvatar("blue-pup"),new Color(.7f,.87f,.97f));
             Button(safe,"Orange pup",new Vector2(75,343),new Vector2(160,64),()=>ChooseAvatar("orange-pup"),new Color(1,.81f,.61f));
             movementLabel=Button(safe,JoystickMode?"Joystick":"Tap to walk",new Vector2(285,343),new Vector2(210,64),ToggleMovement,Cream);
@@ -138,7 +176,7 @@ namespace LittleWeeps.Client
             Panel(Board,"Sky",new Vector2(0,140),new Vector2(1116,216),new Color(.8f,.92f,.96f));
             for(var i=0;i<7;i++) Panel(Board,"Fence",new Vector2(-465+i*155,80),new Vector2(142,65),new Color(.99f,.95f,.83f));
             Panel(Board,"Path",new Vector2(0,-156),new Vector2(1050,70),new Color(.9f,.81f,.64f));
-            foreach(var toy in World.ReadToys()) DrawToy(toy);
+            foreach(var toy in ReadToys()) DrawToy(toy);
             DrawAvatar();
             stick=Panel(safe,"Walk joystick",new Vector2(-477,-193),new Vector2(146,146),new Color(1,1,1,.8f),true,true).rectTransform;
             Surface(stick,"stick");
@@ -168,14 +206,31 @@ namespace LittleWeeps.Client
         }
         public SoloResult Command(SoloAction action,string item="",string target="",string value="",float x=0,float y=0)
         {
+            if(shared!=null)
+            {
+                SubmitShared(action,item,target,value,x,y,result=>
+                {if(!result.Accepted && result.Outcome!="superseded")message.text=Friendly(result.Outcome);Render();});
+                return new SoloResult(false,"pending",shared.View.revision);
+            }
             var result=World.Apply(new SoloCommand {requestId=Guid.NewGuid().ToString("N"),actor=Actor,expectedRevision=World.Revision,action=action,item=item,target=target,value=value,x=x,y=y});
             if(result.Accepted) {dirty=true;Render();}
             return result;
         }
-        public void ChooseAvatar(string id) { if(World!=null) Command(SoloAction.ChangeAvatar,value:id); }
+        private bool SubmitShared(SoloAction action,string item,string target,string value,float x,float y,Action<SoloResult> done)
+        {
+            return shared.Submit(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=Actor,action=action,item=item,target=target,value=value,x=x,y=y},done);
+        }
+        private static string Friendly(string outcome)=>outcome=="already-held"?"Your friend is using that toy. Try another!":outcome=="disconnected"?"The connection stopped. Reopen the shared garden to play together.":"That move didn't finish. Please try again.";
+        public void ChooseAvatar(string id) { if(HasWorld) Command(SoloAction.ChangeAvatar,value:id); }
         public void StartActivity(string id)
         {
-            if(World==null)return;
+            if(!HasWorld)return;
+            if(shared!=null)
+            {
+                SubmitShared(id==""?SoloAction.LeaveActivity:SoloAction.StartActivity,"","",id,0,0,result=>
+                {if(result.Accepted){Narration.Speak(id==""?"freeplay":id);message.text="Pick any toy. You can leave this activity any time.";}else message.text=Friendly(result.Outcome);Render();});
+                return;
+            }
             Command(id==""?SoloAction.LeaveActivity:SoloAction.StartActivity,value:id);
             Narration.Speak(id==""?"freeplay":id);
             message.text=id==""?"All your toys still work. Explore!":id=="garden"?"Fill your bucket at the tap. Give the flower a drink!":"Drag the sponge over the puddle to soak it up.";
@@ -188,7 +243,7 @@ namespace LittleWeeps.Client
         }
         // Preferences belong to this device, not the shared world/checkpoint. Test
         // players use a fresh GUID key prefix and never alter the family's keys.
-        private string PreferenceKey(string name)=>(VerifyRun==null?"solo.prototype.":"solo.verify."+VerifyRun+".")+name;
+        private string PreferenceKey(string name)=>(shared!=null?shared.PreferenceScope:VerifyRun==null?"solo.prototype.":"solo.verify."+VerifyRun+".")+name;
         public void ToggleVoice()
         {
             Narration.SetVoiceEnabled(!Narration.VoiceEnabled);
@@ -202,30 +257,32 @@ namespace LittleWeeps.Client
             listenLabel.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
         }
         public void SetMenu(bool open) { if(open){CancelPointers();Narration.Stop();SaveNow();} menu.SetActive(open); }
-        public void Listen(){var activityId=World.ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
+        public void Listen(){var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
         { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return new Vector2((local.x/Board.rect.width+.5f)*SoloWorld.Width,(local.y/Board.rect.height+.5f)*SoloWorld.Height); }
         public Vector2 ScreenPoint(float x,float y) => RectTransformUtility.WorldToScreenPoint(null,Board.TransformPoint(new Vector3((x/SoloWorld.Width-.5f)*Board.rect.width,(y/SoloWorld.Height-.5f)*Board.rect.height,0)));
         public bool BeginPointer(string role,Vector2 screen)
         {
-            if(World==null || MenuOpen)return false;
+            if(!HasWorld || MenuOpen || (shared!=null && !shared.Connected))return false;
             if(role=="ground") {if(JoystickMode)return false;var point=BoardPoint(screen);destination=new Vector2(Mathf.Clamp(point.x,40,960),Mathf.Clamp(point.y,35,455));return true;}
             if(role=="stick") {if(!JoystickMode)return false;MovePointer(role,screen);return true;}
+            if(shared!=null)return BeginSharedDrag(role,screen);
             if(dragging!=null || !Command(SoloAction.Grab,role).Accepted)return false;
             dragging=role;MovePointer(role,screen);return true;
         }
         public void MovePointer(string role,Vector2 screen)
         {
             if(role=="stick") {RectTransformUtility.ScreenPointToLocalPointInRectangle(stick,screen,null,out var point);stickDirection=Vector2.ClampMagnitude(point/55,1);stickKnob.anchoredPosition=stickDirection*40;}
-            else if(role==dragging) {var point=BoardPoint(screen);toys[role].anchoredPosition=ToBoard(point.x,point.y);toys[role].SetAsLastSibling();UpdateTargetHints(point);}
+            else if(role==dragging && !gestureEnded) {var point=BoardPoint(screen);dragPoint=point;toys[role].anchoredPosition=ToBoard(point.x,point.y);toys[role].SetAsLastSibling();UpdateTargetHints(point);if(grabConfirmed && SoloWorld.Position(point.x,point.y))shared?.Preview(role,point);}
         }
         public void EndPointer(string role,Vector2 screen)
         {
             if(role=="stick"){stickDirection=Vector2.zero;stickKnob.anchoredPosition=Vector2.zero;return;}
             if(role!=dragging)return;
+            if(shared!=null){dragPoint=BoardPoint(screen);gestureEnded=true;gestureCancelled=!SoloWorld.Position(dragPoint.x,dragPoint.y);FinishSharedDrag();return;}
             var point=BoardPoint(screen);
             if(!SoloWorld.Position(point.x,point.y)){CancelPointer(role);return;}
-            var target=World.ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle)
+            var target=ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle)
                 .OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),point)).First();
             var id=Vector2.Distance(new Vector2(target.x,target.y),point)<=SoloWorld.InteractionRadius?target.id:"";
             var result=Command(SoloAction.Drop,role,id,x:point.x,y:point.y);
@@ -236,35 +293,93 @@ namespace LittleWeeps.Client
         public void CancelPointer(string role)
         {
             if(role=="stick"){stickDirection=Vector2.zero;if(stickKnob!=null)stickKnob.anchoredPosition=Vector2.zero;}
-            if(role==dragging){Command(SoloAction.CancelGrab,role);dragging=null;HideTargetHints();Render();}
+            if(role==dragging)
+            {
+                if(shared!=null){gestureEnded=true;gestureCancelled=true;HideTargetHints();FinishSharedDrag();}
+                else{Command(SoloAction.CancelGrab,role);dragging=null;HideTargetHints();Render();}
+            }
         }
+        private bool BeginSharedDrag(string role,Vector2 screen)
+        {
+            if(dragging!=null)return false;
+            var toy=ReadToys().FirstOrDefault(t=>t.id==role);
+            if(toy==null || (toy.kind!=ToyKind.Bucket && toy.kind!=ToyKind.Sponge))return false;
+            if(!string.IsNullOrEmpty(toy.holder)){message.text=Friendly("already-held");return false;}
+            dragging=role;grabConfirmed=false;gestureEnded=false;gestureCancelled=false;dropSubmitted=false;
+            MovePointer(role,screen);message.text="Picking it up…";Render();
+            return SubmitShared(SoloAction.Grab,role,"","",0,0,result=>
+            {
+                if(dragging!=role)return;
+                if(!result.Accepted){message.text=Friendly(result.Outcome);ClearSharedDrag();return;}
+                grabConfirmed=true;message.text="You have it! Drag it somewhere fun.";Render();
+                if(gestureEnded)FinishSharedDrag();
+            });
+        }
+        private void FinishSharedDrag()
+        {
+            if(!grabConfirmed || dropSubmitted || dragging==null)return;
+            var item=dragging;var target="";dropSubmitted=true;HideTargetHints();
+            if(!gestureCancelled)
+            {
+                var nearest=ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle).OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),dragPoint)).First();
+                if(Vector2.Distance(new Vector2(nearest.x,nearest.y),dragPoint)<=SoloWorld.InteractionRadius)target=nearest.id;
+            }
+            var cancelled=gestureCancelled;
+            message.text=cancelled?"Putting it back…":"Finishing your move…";
+            SubmitShared(cancelled?SoloAction.CancelGrab:SoloAction.Drop,item,target,"",cancelled?0:dragPoint.x,cancelled?0:dragPoint.y,result=>
+            {
+                if(!result.Accepted && shared.Connected && ReadToys().Any(t=>t.id==item && t.holder==Actor))
+                {
+                    SubmitShared(SoloAction.CancelGrab,item,"","",0,0,release=>{message.text=Friendly(result.Outcome);ClearSharedDrag();});return;
+                }
+                message.text=!result.Accepted?Friendly(result.Outcome):cancelled?"Your toy is back. Keep exploring!":result.Outcome=="bucket-filled"?"Splash! Your bucket is full.":result.Outcome=="plant-watered"?"A drink for the flower!":result.Outcome=="puddle-cleaned"?"Squeeze, soak, tidy!":"What shall we play next?";
+                ClearSharedDrag();
+            });
+        }
+        private void ClearSharedDrag(){dragging=null;grabConfirmed=false;gestureEnded=false;dropSubmitted=false;HideTargetHints();Render();}
         private void HideTargetHints(){foreach(var ring in targetRings.Values)ring.gameObject.SetActive(false);foreach(var arrow in targetArrows.Values)arrow.SetActive(false);}
         private void UpdateTargetHints(Vector2 point)
         {
-            foreach(var target in World.ReadToys())
+            foreach(var target in ReadToys())
             {
                 if(!targetRings.TryGetValue(target.id,out var ring))continue;
-                var useful=World.HasUsefulInteraction(dragging,target.id);
+                var item=ReadToys().FirstOrDefault(t=>t.id==dragging);
+                var useful=SoloWorld.HasUsefulInteraction(item,target);
                 var near=useful && Vector2.Distance(point,new Vector2(target.x,target.y))<=SoloWorld.InteractionRadius;
                 ring.gameObject.SetActive(useful);ring.color=near?new Color(.23f,.6f,.39f):new Color(1,.86f,.35f);
                 targetArrows[target.id].SetActive(near);
             }
         }
-        public void CancelPointers(){foreach(var surface in Surfaces.Values)surface.Cancel();destination=null;stickDirection=Vector2.zero;}
+        public void CancelPointers()
+        {
+            foreach(var surface in Surfaces.Values)surface.Cancel();
+            if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
+            destination=null;stickDirection=Vector2.zero;
+        }
         private void Update()
         {
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
-            if(World==null || MenuOpen)return;
+            if(shared!=null)
+            {
+                if(Board==null){if(shared.View!=null && safe!=null)InitializeShared();else if(connecting!=null && !shared.Connected)connecting.text="Joining your shared garden…\nIf the server stopped, close this window and rejoin.";return;}
+                if(wasConnected && !shared.Connected){CancelPointers();ClearSharedDrag();message.text=Friendly("disconnected");Narration.Stop();}
+                wasConnected=shared.Connected;
+                if(renderedSequence!=shared.ViewSequence){Render();renderedSequence=shared.ViewSequence;}
+                saveLabel.text=Actor.Replace("player-","Player ")+" · "+shared.Players.Length+" playing · "+shared.Status;
+                if(!shared.Connected)return;
+            }
+            if(!HasWorld || MenuOpen)return;
             // Minimized Windows players may update much faster than presentation.
             // Bound command creation independently of render frequency.
             var now=Time.realtimeSinceStartup;
             if(now<nextMovement)return;
             var delta=Mathf.Clamp(now-lastMovement,0,.1f);lastMovement=now;nextMovement=now+1f/30;
-            var p=World.ReadPlayer(Actor);var current=new Vector2(p.x,p.y);var next=current;
+            if(shared!=null)delta=Mathf.Clamp(now-lastSharedMovement,0,.1f);
+            var p=ReadPlayer(Actor);var current=new Vector2(p.x,p.y);var next=current;
             if(JoystickMode)next+=stickDirection*(210*delta);
-            else if(destination.HasValue){next=Vector2.MoveTowards(current,destination.Value,210*delta);if(Vector2.Distance(next,destination.Value)<1)destination=null;}
+            else if(destination.HasValue){next=Vector2.MoveTowards(current,destination.Value,210*delta);if(Vector2.Distance(shared==null?next:current,destination.Value)<1)destination=null;}
             next.x=Mathf.Clamp(next.x,40,960);next.y=Mathf.Clamp(next.y,35,455);
-            if(Vector2.Distance(current,next)>.01f)Command(SoloAction.Move,x:next.x,y:next.y);
+            if(Vector2.Distance(current,next)>.01f && (shared==null || !shared.Busy)){lastSharedMovement=now;Command(SoloAction.Move,x:next.x,y:next.y);}
             if(dirty && Time.realtimeSinceStartup>=nextSave){SaveNow();nextSave=Time.realtimeSinceStartup+1;}
         }
         public void SaveNow()
@@ -274,27 +389,35 @@ namespace LittleWeeps.Client
             catch(Exception e){if(saveLabel!=null)saveLabel.text="Couldn't save yet. Please ask a grown-up.";Debug.LogError("Solo checkpoint: "+e.Message);}
         }
         private void OnApplicationPause(bool paused){if(paused){CancelPointers();SaveNow();}}
-        private void OnApplicationFocus(bool focused){if(!focused && World!=null){CancelPointers();SaveNow();}}
-        private void OnApplicationQuit(){if(World!=null){CancelPointers();SaveNow();}}
+        private void OnApplicationFocus(bool focused){if(!focused && HasWorld){CancelPointers();SaveNow();}}
+        private void OnApplicationQuit(){if(HasWorld){CancelPointers();SaveNow();}}
         private Vector2 ToBoard(float x,float y)=>new Vector2((x/SoloWorld.Width-.5f)*Board.rect.width,(y/SoloWorld.Height-.5f)*Board.rect.height);
         private void Render()
         {
             if(avatar==null)return;
-            var toyStates=World.ReadToys();var p=World.ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
+            var toyStates=ReadToys();var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
             head.color=p.avatar=="blue-pup"?new Color(.35f,.65f,.85f):new Color(.94f,.58f,.31f);body.color=head.color;
             foreach(var t in toyStates){if(t.id!=dragging)toys[t.id].anchoredPosition=ToBoard(t.x,t.y);
+                if(shared!=null)
+                {
+                    if(t.id!=dragging && !string.IsNullOrEmpty(t.holder) && shared.TryPreview(t.id,out var preview))toys[t.id].anchoredPosition=ToBoard(preview.x,preview.y);
+                    var group=toys[t.id].GetComponent<CanvasGroup>();group.alpha=t.id==dragging && !grabConfirmed ? .55f : 1;
+                    holders[t.id].text=t.id==dragging && !grabConfirmed?"Picking up…":string.IsNullOrEmpty(t.holder)?"":t.holder==Actor?"Yours":t.holder.Replace("player-","Player ")+" has it";
+                }
                 if(t.kind==ToyKind.Bucket)fills[t.id].rectTransform.sizeDelta=new Vector2(58,5+13*t.water);
                 if(t.kind==ToyKind.Plant)fills[t.id].gameObject.SetActive(t.water==3);
                 if(t.kind==ToyKind.Puddle)fills[t.id].rectTransform.localScale=Vector3.one*(t.water/3f);
             }
+            if(shared!=null)RenderFriends();
             // Larger y is farther back on the illustrated floor plane.
-            foreach(var rect in toys.Where(pair=>pair.Key!=dragging).Select(pair=>pair.Value).Concat(new[]{avatar}).OrderByDescending(r=>r.anchoredPosition.y))rect.SetAsLastSibling();
+            foreach(var rect in toys.Where(pair=>pair.Key!=dragging).Select(pair=>pair.Value).Concat(new[]{avatar}).Concat(friends.Values.Select(v=>v.root)).OrderByDescending(r=>r.anchoredPosition.y))rect.SetAsLastSibling();
             if(dragging!=null)toys[dragging].SetAsLastSibling();
             activity.text=p.activity==""?"Free play · walk, drag, discover":p.activity=="garden"?(toyStates.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(toyStates.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");
         }
         private void DrawToy(SoloToy t)
         {
             var root=Rect(Board,t.id,ToBoard(t.x,t.y),new Vector2(125,115));toys.Add(t.id,root);
+            if(shared!=null){root.gameObject.AddComponent<CanvasGroup>();holders[t.id]=Label(root,"",16,new Vector2(0,-91),new Vector2(190,28));}
             var hit=root.gameObject.AddComponent<Image>();hit.color=Color.clear;hit.raycastTarget=t.kind==ToyKind.Bucket || t.kind==ToyKind.Sponge;
             // The graphic must stay in the raycast list after transparent-mesh culling.
             hit.canvasRenderer.cullTransparentMesh=false;
@@ -317,16 +440,33 @@ namespace LittleWeeps.Client
             Label(root,t.kind.ToString(),18,new Vector2(0,-70),new Vector2(135,32));
         }
         private void DrawAvatar()
+        {var visual=CreateAvatar("Pup");avatar=visual.root;head=visual.head;body=visual.body;}
+        private (RectTransform root,Image head,Image body) CreateAvatar(string name)
         {
-            avatar=Rect(Board,"Pup",Vector2.zero,new Vector2(85,136));
+            var avatar=Rect(Board,name,Vector2.zero,new Vector2(85,136));
             Panel(avatar,"Shadow",new Vector2(0,-45),new Vector2(92,22),new Color(.27f,.41f,.26f,.3f),false,true);
-            body=Panel(avatar,"Body",new Vector2(0,-8),new Vector2(61,75),Color.white);
-            head=Panel(avatar,"Head",new Vector2(0,50),new Vector2(87,72),Color.white);
+            var body=Panel(avatar,"Body",new Vector2(0,-8),new Vector2(61,75),Color.white);
+            var head=Panel(avatar,"Head",new Vector2(0,50),new Vector2(87,72),Color.white);
             Panel(head.transform,"Ear",new Vector2(-30,43),new Vector2(24,43),new Color(.23f,.38f,.48f));
             Panel(head.transform,"Ear",new Vector2(30,43),new Vector2(24,43),new Color(.23f,.38f,.48f));
             Panel(head.transform,"Muzzle",new Vector2(0,-10),new Vector2(67,32),Cream);
             foreach(var x in new[]{-20,20}){Panel(head.transform,"Eye",new Vector2(x,10),new Vector2(22,27),Color.white,false,true);Panel(head.transform,"Pupil",new Vector2(x,8),new Vector2(9,13),Ink,false,true);}
             Panel(head.transform,"Nose",new Vector2(0,-9),new Vector2(20,13),Ink,false,true);
+            return(avatar,head,body);
+        }
+        private void RenderFriends()
+        {
+            foreach(var player in shared.View.players.Where(p=>p.id!=Actor))
+            {
+                if(!friends.TryGetValue(player.id,out var visual))
+                {
+                    visual=CreateAvatar("Friend-"+player.id);friends.Add(player.id,visual);
+                    Label(visual.root,player.id.Replace("player-","Player "),16,new Vector2(0,-66),new Vector2(110,28));
+                }
+                visual.root.gameObject.SetActive(shared.Players.Contains(player.id));
+                visual.root.anchoredPosition=ToBoard(player.x,player.y);
+                visual.head.color=player.avatar=="blue-pup"?new Color(.35f,.65f,.85f):new Color(.94f,.58f,.31f);visual.body.color=visual.head.color;
+            }
         }
         private void Surface(RectTransform rect,string role){var s=rect.gameObject.AddComponent<SoloPointerSurface>();s.Screen=this;s.Role=role;Surfaces.Add(role,s);}
         private RectTransform Rect(Transform parent,string name,Vector2 position,Vector2 size){var r=new GameObject(name,typeof(RectTransform)).GetComponent<RectTransform>();r.SetParent(parent,false);r.anchoredPosition=position;r.sizeDelta=size;return r;}

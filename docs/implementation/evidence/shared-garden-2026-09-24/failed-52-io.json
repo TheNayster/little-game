@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "build": 52,
+  "runId": "e30d3d43a8a04a438cc2669473c18659",
+  "checks": [
+    {
+      "check": "two native gardens draw both connected players",
+      "passed": true
+    }
+  ],
+  "error": "[WinError 5] Access is denied: 'C:\\\\Users\\\\sephi\\\\Desktop\\\\Little weeps game\\\\LocalData\\\\SharedGarden\\\\e30d3d43a8a04a438cc2669473c18659\\\\f85f14e1f48b42349e12c0b93387bd88\\\\garden-control.pending' -> 'C:\\\\Users\\\\sephi\\\\Desktop\\\\Little weeps game\\\\LocalData\\\\SharedGarden\\\\e30d3d43a8a04a438cc2669473c18659\\\\f85f14e1f48b42349e12c0b93387bd88\\\\garden-control.json'"
+}

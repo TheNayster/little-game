@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "build": 52,
+  "runId": "923701371f014ec7aa605be2d574098f",
+  "checks": [
+    {
+      "check": "two native gardens draw both connected players",
+      "passed": true
+    },
+    {
+      "check": "release before pickup acknowledgement finishes exactly once without a stuck hold",
+      "passed": true
+    },
+    {
+      "check": "sibling sees held toy moving; contention is explained; confirmed pour replicates",
+      "passed": true
+    }
+  ],
+  "error": "Timed out: settled UI"
+}

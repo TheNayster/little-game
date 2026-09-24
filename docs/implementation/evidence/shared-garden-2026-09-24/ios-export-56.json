@@ -1,0 +1,22 @@
+{
+  "utc": "2026-09-24T15:34:20.037161+00:00",
+  "build": 56,
+  "unity": "6000.3.24f1",
+  "exportInspectionPassed": true,
+  "artifactFilesVerified": 3083,
+  "identity": "com.littleweeps.familyplayset",
+  "minimumIOS": "15.0",
+  "deviceFamilies": [
+    "iPhone",
+    "iPad"
+  ],
+  "orientations": [
+    "UIInterfaceOrientationLandscapeRight"
+  ],
+  "il2cppCodeGenerated": true,
+  "nativeXcodeBuildPassed": false,
+  "signed": false,
+  "installed": false,
+  "macAccessed": false,
+  "limitation": "Windows export inspection only; Mac compilation, signing and real-device tests remain pending."
+}

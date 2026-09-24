@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "build": 54,
+  "runId": "fb5a2869aae448b6a5329fa1161d4b1a",
+  "twoClientsConnected": true,
+  "sameCompleteWorld": true,
+  "loopbackOnly": true,
+  "interactiveWindowsRequested": true,
+  "profiles": [
+    "player-1",
+    "player-2"
+  ],
+  "pids": [
+    22908,
+    31776,
+    13544
+  ]
+}

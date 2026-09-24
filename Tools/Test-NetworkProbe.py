@@ -61,7 +61,7 @@ def main():
     check(os.name == 'nt' and 46 <= args.build <= 9999, 'Windows probe build required')
     folder = ROOT / 'Builds/NetworkProbe' / f'G3-0.0.{args.build}'
     summary = read(folder / 'build-summary.json')
-    check(summary and summary['contract'] == 1, 'Wrong probe contract')
+    check(summary and summary['contract'] in (1, 2), 'Wrong probe contract')
     check({b['role'] for b in summary['builds']} == {'Server', 'Client'}, 'Both builds required')
     for b in summary['builds']:
         check(b['result'] == 'Succeeded' and b['version'] == f'0.0.{args.build}', 'Build identity mismatch')

@@ -1,0 +1,28 @@
+{
+  "passed": false,
+  "build": 53,
+  "runId": "b6e8106c593346c884759d1bea766fe7",
+  "checks": [
+    {
+      "check": "two native gardens draw both connected players",
+      "passed": true
+    },
+    {
+      "check": "release before pickup acknowledgement finishes exactly once without a stuck hold",
+      "passed": true
+    },
+    {
+      "check": "sibling sees held toy moving; contention is explained; confirmed pour replicates",
+      "passed": true
+    },
+    {
+      "check": "canceled touch and menu during pickup approval release the lease without interacting",
+      "passed": true
+    },
+    {
+      "check": "tap walking and avatar switching are confirmed and visible to the other player",
+      "passed": true
+    }
+  ],
+  "error": "UI verification failed: ArgumentException: Passed in texture is invalid (null)."
+}

@@ -19,6 +19,48 @@ static class Program
         root = Path.GetFullPath(args.Length == 1 ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        Test("client queue waits for acknowledgement before releasing a pending pickup",()=>{
+            var q=new GardenCommandQueue();var w=SoloWorld.Create("first");var done=false;
+            var grab=Command(w,SoloAction.Grab,"bucket-1");q.Enqueue(grab,r=>done=r.Accepted);
+            Check(q.Take(4).requestId==grab.requestId && q.Take(4)==null);
+            var cancel=Command(w,SoloAction.CancelGrab,"bucket-1");q.Enqueue(cancel,null);
+            Check(q.Take(5)==null && !q.Complete("another-request",new SoloResult(true,"accepted",5)));
+            q.Complete(grab.requestId,new SoloResult(true,"accepted",5));Check(done && q.Take(5).action==SoloAction.CancelGrab);
+        });
+        Test("explicit stale rejection rebases but an unknown result keeps its identity",()=>{
+            var q=new GardenCommandQueue();var w=SoloWorld.Create("first");var callbacks=0;
+            var cmd=Command(w,SoloAction.Drop,"bucket-1","tap-1",x:150,y:340);q.Enqueue(cmd,_=>callbacks++);
+            Check(q.Take(9).expectedRevision==9 && q.Take(10)==null);
+            q.Complete(cmd.requestId,new SoloResult(false,"stale-revision",10));
+            var retry=q.Take(10);Check(retry.requestId==cmd.requestId && retry.expectedRevision==10 && callbacks==0);
+            q.Complete(cmd.requestId,new SoloResult(true,"bucket-filled",11));Check(callbacks==1 && !q.Busy);
+            Check(!q.Complete(cmd.requestId,new SoloResult(true,"bucket-filled",11)) && callbacks==1);
+        });
+        Test("queued movement coalesces without replacing a drop and cancellation has priority",()=>{
+            var q=new GardenCommandQueue();var w=SoloWorld.Create("first");var replaced=false;
+            q.Enqueue(Command(w,SoloAction.Move,x:10),r=>replaced=r.Outcome=="superseded");
+            var drop=Command(w,SoloAction.Drop,"bucket-1");q.Enqueue(drop,null);
+            q.Enqueue(Command(w,SoloAction.Move,x:20),null);Check(replaced);
+            var cancel=Command(w,SoloAction.CancelGrab,"sponge-1");q.Enqueue(cancel,null);
+            Check(q.Take(0).requestId==cancel.requestId);q.Complete(cancel.requestId,new SoloResult(true,"accepted",1));
+            Check(q.Take(1).requestId==drop.requestId);q.Complete(drop.requestId,new SoloResult(true,"accepted",2));
+            Check(q.Take(2).x==20);
+        });
+        Test("disconnect settles callbacks once and never sends queued old actions",()=>{
+            var q=new GardenCommandQueue();var w=SoloWorld.Create("first");var failed=0;
+            q.Enqueue(Command(w,SoloAction.Grab,"bucket-1"),r=>{if(r.Outcome=="disconnected")failed++;});
+            q.Enqueue(Command(w,SoloAction.Drop,"bucket-1"),r=>{if(r.Outcome=="disconnected")failed++;});
+            q.Take(0);q.Disconnect();q.Disconnect();Check(failed==2 && !q.Busy && q.Take(2)==null);
+        });
+        Test("cancellation survives sustained stale responses while ordinary actions stop",()=>{
+            var q=new GardenCommandQueue();var w=SoloWorld.Create("first");var failures=0;
+            q.Enqueue(Command(w,SoloAction.Grab,"bucket-1"),r=>{if(!r.Accepted)failures++;});
+            for(var i=0;i<9;i++){var c=q.Take(i);q.Complete(c.requestId,new SoloResult(false,"stale-revision",i+1));}
+            Check(failures==1 && !q.Busy);
+            q.Enqueue(Command(w,SoloAction.CancelGrab,"bucket-1"),r=>failures++);
+            for(var i=0;i<12;i++){var c=q.Take(i);q.Complete(c.requestId,new SoloResult(false,"stale-revision",i+1));}
+            Check(q.Busy && failures==1);q.Disconnect();Check(failures==2 && !q.Busy);
+        });
         Test("session admission prevents duplicate and unknown player connections",()=>{
             var w=SoloWorld.Create("first","second","third","fourth");var session=new FamilySession(w);
             Check(session.Attach(1,"first",out _));Check(!session.Attach(2,"first",out _));

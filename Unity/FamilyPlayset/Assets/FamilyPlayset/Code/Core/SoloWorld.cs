@@ -108,6 +108,10 @@ namespace LittleWeeps.Core
         {
             SoloToy item=null,target=null;
             foreach(var toy in state.toys){if(toy.id==itemId)item=toy;if(toy.id==targetId)target=toy;}
+            return HasUsefulInteraction(item,target);
+        }
+        public static bool HasUsefulInteraction(SoloToy item,SoloToy target)
+        {
             if(item==null || target==null || item==target)return false;
             if(item.kind==ToyKind.Bucket)
                 return target.kind==ToyKind.Tap?item.water<3:target.kind==ToyKind.Plant && item.water>0 && target.water<3;
