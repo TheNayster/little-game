@@ -28,11 +28,23 @@ namespace LittleWeeps.NetworkProbe
         public void Initialize(NetworkProbe source)
         {probe=source;probe.Received+=Receive;probe.MotionReceived+=CapturePositions;probe.LostConnection+=Disconnected;}
         public string Actor=>probe.Settings.profile;
-        public string PreferenceScope=>"shared.lab."+probe.Settings.runId+"."+Actor+".";
+        public string PreferenceScope
+        {
+            get
+            {
+#if UNITY_IOS && !UNITY_EDITOR
+                // The installed device's voice/control choices survive solo
+                // and shared play. Desktop test profiles remain isolated.
+                return "solo.prototype.";
+#else
+                return "shared.lab."+probe.Settings.runId+"."+Actor+".";
+#endif
+            }
+        }
         public bool Connected=>probe.ConnectedToServer;
         public bool Busy=>queue.Busy;
         public bool MutedTest=>probe.Settings.verifyGarden;
-        public string Status=>Connected?(Busy?"Finishing your move…":"Playing together"):"Connection stopped — close this window and rejoin";
+        public string Status=>Connected?(Busy?"Finishing your move…":"Playing together"):probe.Reconnecting?"Finding your family again…":probe.FamilyLan?"A grown-up can help reconnect.":"Connection stopped — close this window and rejoin";
         public SoloSnapshot View=>probe.Latest?.view;
         public string[] Players=>probe.Latest?.connected??Array.Empty<string>();
         public long ViewSequence=>probe.Latest?.sequence??0;
@@ -143,7 +155,7 @@ namespace LittleWeeps.NetworkProbe
             if(tracks.TryGetValue(actor,out var track)){var point=track.Sample(probe.ServerClock-InterpolationDelay);return new Vector2(point.X,point.Y);}
             return new Vector2(p.x,p.y);
         }
-        private void Disconnected(){replies.Clear();queue.Disconnect();tracks.Clear();toyTracks.Clear();ownGeneration=null;}
+        private void Disconnected(){replies.Clear();queue.Disconnect();tracks.Clear();toyTracks.Clear();ownGeneration=null;walking=new WalkInput{mode=WalkMode.Stop};}
         private void OnDestroy(){if(probe!=null){probe.Received-=Receive;probe.MotionReceived-=CapturePositions;probe.LostConnection-=Disconnected;}}
     }
 }

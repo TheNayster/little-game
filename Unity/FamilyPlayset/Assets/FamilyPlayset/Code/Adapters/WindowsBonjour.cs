@@ -11,14 +11,13 @@ namespace LittleWeeps.Adapters
     // Uses the installed Bonjour service, not our own broadcast/multicast socket.
     // All calls, callbacks and disposal run on the Unity main thread. Poll is
     // nonblocking; DNSServiceProcessResult must never be called on an idle socket.
-    public sealed class WindowsBonjour : IDisposable
+    public sealed class WindowsBonjour : IFamilyDiscovery
     {
         public const string ServiceType="_lw-playset._udp";
-        public sealed class Endpoint {public string address;public ushort port;public uint networkInterface;}
         private sealed class Operation {public IntPtr handle;public string key;public double deadline;}
         private readonly List<Operation> operations=new List<Operation>();
         private readonly HashSet<string> resolving=new HashSet<string>();
-        private readonly Queue<Endpoint> endpoints=new Queue<Endpoint>();
+        private readonly Queue<FamilyEndpoint> endpoints=new Queue<FamilyEndpoint>();
         private readonly Dictionary<IntPtr,(ushort port,uint nic)> addresses=new Dictionary<IntPtr,(ushort,uint)>();
         private readonly FamilyPairing paired;
         private readonly int protocol,content;
@@ -46,7 +45,7 @@ namespace LittleWeeps.Adapters
             Check(DNSServiceRegister(out var handle,8,0,"LW-"+paired.authorityId,ServiceType,"local.",null,NetworkOrder(port),(ushort)txt.Length,txt,registerReply,IntPtr.Zero));
             operations.Add(new Operation{handle=handle,deadline=double.PositiveInfinity});
         }
-        public Endpoint Take()=>endpoints.Count>0?endpoints.Dequeue():null;
+        public FamilyEndpoint Take()=>endpoints.Count>0?endpoints.Dequeue():null;
         public void Tick(double clock)
         {
             now=clock;
@@ -99,7 +98,7 @@ namespace LittleWeeps.Adapters
             if(Marshal.ReadInt16(socketAddress)!=2)return;
             var bytes=new byte[4];Marshal.Copy(IntPtr.Add(socketAddress,4),bytes,0,4);
             if(bytes[0]==0 || bytes[0]>=224)return;
-            endpoints.Enqueue(new Endpoint{address=new IPAddress(bytes).ToString(),port=destination.port,networkInterface=nic});
+            endpoints.Enqueue(new FamilyEndpoint{address=new IPAddress(bytes).ToString(),port=destination.port,networkInterface=nic});
         }
         private void OnRegister(IntPtr handle,uint flags,int error,string name,string type,string domain,IntPtr context)
         {if(error!=0)Error=error;else Registered=true;}

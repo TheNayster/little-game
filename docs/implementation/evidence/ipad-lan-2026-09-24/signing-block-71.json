@@ -1,0 +1,8 @@
+{
+  "build": 71,
+  "stage": "UnityFramework codesign",
+  "error": "errSecInternalComponent",
+  "nativeCompilationReachedSigning": true,
+  "installed": false,
+  "action": "Unlock/use the development signing key from the local Mac Terminal; never send the password to Windows."
+}

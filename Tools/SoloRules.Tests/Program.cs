@@ -53,7 +53,7 @@ static class Program
         if(nativeBonjour)Test("native Bonjour advertises and resolves only the enrolled authority without leaked handles",()=>{
             var pair=new FamilyPairing{familyId=Guid.NewGuid().ToString("N"),authorityId=Guid.NewGuid().ToString("N"),worldId=Guid.NewGuid().ToString("N")};
             using var advertiser=new WindowsBonjour(pair,3,3);using var browser=new WindowsBonjour(pair,3,3);
-            advertiser.Advertise(49199);browser.Browse();var clock=System.Diagnostics.Stopwatch.StartNew();WindowsBonjour.Endpoint endpoint=null;
+            advertiser.Advertise(49199);browser.Browse();var clock=System.Diagnostics.Stopwatch.StartNew();FamilyEndpoint endpoint=null;
             while(clock.Elapsed.TotalSeconds<12 && endpoint==null){advertiser.Tick(clock.Elapsed.TotalSeconds);browser.Tick(clock.Elapsed.TotalSeconds);endpoint=browser.Take();System.Threading.Thread.Sleep(10);}
             Check(advertiser.Registered && endpoint!=null && endpoint.port==49199 && System.Net.IPAddress.TryParse(endpoint.address,out _));
             advertiser.Dispose();browser.Dispose();Check(advertiser.HandleCount==0 && browser.HandleCount==0);

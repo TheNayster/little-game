@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "platforms": {
+    "windows": {
+      "runtimeSourceFilesVerified": 150,
+      "version": "0.0.74"
+    },
+    "ios": {
+      "runtimeSourceFilesVerified": 150,
+      "version": "0.0.74"
+    }
+  },
+  "scope": "Current C#/Objective-C++/assembly definitions match each build source manifest; final project settings record build 74 and whitespace normalization. Tools/docs may have later evidence-only edits."
+}

@@ -25,9 +25,13 @@ namespace LittleWeeps.NetworkProbe
         private NetworkManager network;
         private UnityTransport transport;
         private FamilyPairing pairing;
-        private WindowsBonjour discovery;
+        private IFamilyDiscovery discovery;
         private double discoveryDeadline,admissionDeadline;
         private bool guestStarted,presentationStarted,soloFallback;
+        private bool clientReady,retryPending,applicationPaused,reconnectBlocked;
+        private double nextRetry;
+        private int reconnectAttempts;
+        public bool Reconnecting=>pairing!=null && presentationStarted && !ConnectedToServer && !reconnectBlocked && !stopping && !failed;
         public bool FamilyLan=>pairing!=null;
         private double previousFrame,nextConnectionEvidence,lastTransportData;
         private double maxFrameGap;
@@ -67,7 +71,7 @@ namespace LittleWeeps.NetworkProbe
         public State Latest {get;private set;}
         public Config Settings=>config;
         public string Output=>output;
-        public bool ConnectedToServer=>network!=null && network.IsConnectedClient && !failed && !stopping;
+        public bool ConnectedToServer=>network!=null && network.IsConnectedClient && clientReady && !failed && !stopping;
         public string ConnectionStatus {get;private set;}="Connecting…";
         public event Action<State> Received;
         public event Action LostConnection;
@@ -102,6 +106,16 @@ namespace LittleWeeps.NetworkProbe
             Application.runInBackground=true;Application.targetFrameRate=60;started=Time.realtimeSinceStartup;
             try
             {
+#if UNITY_IOS && !UNITY_EDITOR
+                pairing=AppleEnrollment.Load(out var enrollmentStatus);
+                Directory.CreateDirectory(Path.Combine(Application.persistentDataPath,"FamilyLAN"));
+                // Only a coarse reason is recorded; credential/certificate data
+                // never enters status files. An unpaired update keeps solo usable.
+                File.WriteAllText(Path.Combine(Application.persistentDataPath,"FamilyLAN","enrollment-status.txt"),enrollmentStatus);
+                if(pairing==null){EnsureLocalPresentation();gameObject.AddComponent<LittleWeeps.Client.SoloScreen>();enabled=false;return;}
+                config=new Config{runId=pairing.worldId,instanceId=Guid.NewGuid().ToString("N"),role="client",profile=pairing.profile,token=pairing.credential,port=1025,presentation=true,interactive=true};
+                root=Path.Combine(Application.persistentDataPath,"FamilyLAN",config.runId);
+#else
                 var args=Environment.GetCommandLineArgs();var index=Array.IndexOf(args,"-familyNetworkConfig");
                 if(index<0 || index+1>=args.Length)throw new ArgumentException("Explicit isolated network config required.");
                 var path=Path.GetFullPath(args[index+1]);root=Path.GetDirectoryName(path);
@@ -110,7 +124,6 @@ namespace LittleWeeps.NetworkProbe
                 if(config==null || !Guid.TryParseExact(config.runId,"N",out _) || !Guid.TryParseExact(config.instanceId,"N",out _) ||
                     new DirectoryInfo(root).Name!=config.runId || config.port<1024 || config.port>65535 ||
                     (config.role!="server" && config.role!="client"))throw new InvalidDataException("Invalid isolated configuration.");
-                output=Path.Combine(root,config.instanceId);Directory.CreateDirectory(output);
                 if(!string.IsNullOrEmpty(config.pairingPath))
                 {
                     pairing=JsonUtility.FromJson<FamilyPairing>(WindowsPairingVault.Read(config.pairingPath));
@@ -119,6 +132,9 @@ namespace LittleWeeps.NetworkProbe
                     if(config.role=="server")config.slots=pairing.members.Select(m=>new Slot{profile=m.profile,token=m.credentialHash}).ToArray();
                     else {config.profile=pairing.profile;config.token=pairing.credential;}
                 }
+#endif
+                output=Path.Combine(root,config.instanceId);Directory.CreateDirectory(output);
+                File.WriteAllText(Path.Combine(root,"latest-instance.txt"),config.instanceId);
                 var go=new GameObject("Loopback Network",typeof(NetworkManager),typeof(UnityTransport));
                 network=go.GetComponent<NetworkManager>();transport=go.GetComponent<UnityTransport>();
                 transport.OnTransportEvent+=TraceTransport;
@@ -150,13 +166,30 @@ namespace LittleWeeps.NetworkProbe
                 {
                     try
                     {
-                        discovery=new WindowsBonjour(pairing,Protocol,Content);discovery.Browse();
+                        discovery=CreateDiscovery();discovery.Browse();
                         discoveryDeadline=Time.realtimeSinceStartupAsDouble+10;WriteStatus("discovering","");
                     }
                     catch(Exception){FallbackSolo("discovery-unavailable");}
                 }
             }
             catch(Exception e){Fail(e);}
+        }
+        private IFamilyDiscovery CreateDiscovery()
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+            return new AppleBonjour(pairing,Protocol,Content);
+#else
+            return new WindowsBonjour(pairing,Protocol,Content);
+#endif
+        }
+        private void EnsureLocalPresentation()
+        {
+            if(FindAnyObjectByType<AudioListener>()==null)gameObject.AddComponent<AudioListener>();
+            if(FindAnyObjectByType<Camera>()==null)
+            {
+                var camera=new GameObject("Offline Garden Camera",typeof(Camera)).GetComponent<Camera>();
+                camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.95f,.94f,.86f);camera.transform.position=new Vector3(0,0,-10);
+            }
         }
         private void RegisterMessages()
         {
@@ -180,12 +213,7 @@ namespace LittleWeeps.NetworkProbe
             WriteStatus("solo-available",reason);
             if(config.presentation)
             {
-                if(FindAnyObjectByType<AudioListener>()==null)gameObject.AddComponent<AudioListener>();
-                if(FindAnyObjectByType<Camera>()==null)
-                {
-                    var camera=new GameObject("Offline Garden Camera",typeof(Camera)).GetComponent<Camera>();
-                    camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.95f,.94f,.86f);camera.transform.position=new Vector3(0,0,-10);
-                }
+                EnsureLocalPresentation();
                 var screen=gameObject.AddComponent<LittleWeeps.Client.SoloScreen>();
                 // This branch never writes the authority checkpoint or the
                 // previously qualified unpaired solo save.
@@ -195,6 +223,19 @@ namespace LittleWeeps.NetworkProbe
         private void TickDiscovery()
         {
             if(pairing==null || soloFallback)return;
+            if(config.role=="client" && (applicationPaused || reconnectBlocked))return;
+            if(retryPending)
+            {
+                // NGO disposes its driver asynchronously. Never start a new
+                // client from inside the old driver's disconnect callback.
+                if(network.ShutdownInProgress || network.IsListening || Time.realtimeSinceStartupAsDouble<nextRetry)return;
+                retryPending=false;guestStarted=false;
+                epoch=null;seenSequence=0;seenMotionSequence=0;
+                positionTimes.Clear();inputAcks.Clear();delayedFrames.Clear();
+                discovery=CreateDiscovery();discovery.Browse();
+                discoveryDeadline=Time.realtimeSinceStartupAsDouble+10;
+                WriteStatus("rediscovering","");
+            }
             discovery?.Tick(Time.realtimeSinceStartupAsDouble);
             if(config.role=="server")return;
             if(!guestStarted)
@@ -205,9 +246,27 @@ namespace LittleWeeps.NetworkProbe
                     transport.SetConnectionData(true,endpoint.address,endpoint.port);
                     TraceConnection("discovered",0,"native-bonjour-ipv4");StartGuest();
                 }
-                else if(discovery?.Error!=0 || Time.realtimeSinceStartupAsDouble>discoveryDeadline)FallbackSolo("discovery-unavailable");
+                else if(discovery?.Error!=0 || Time.realtimeSinceStartupAsDouble>discoveryDeadline)Unavailable("discovery-unavailable");
             }
-            else if(!ConnectedToServer && Time.realtimeSinceStartupAsDouble>admissionDeadline)FallbackSolo("admission-unavailable");
+            else if(!ConnectedToServer && Time.realtimeSinceStartupAsDouble>admissionDeadline)Unavailable("admission-unavailable");
+        }
+        private void Unavailable(string reason)
+        {
+            if(pairing!=null && presentationStarted)BeginReconnect(reason);
+            else FallbackSolo(reason);
+        }
+        private void BeginReconnect(string reason)
+        {
+            if(config.role!="client" || pairing==null || soloFallback || stopping || failed || retryPending || reconnectBlocked)return;
+            clientReady=false;retryPending=true;
+            // Empty reason is ordinary transport loss. Explicit authentication
+            // or compatibility rejection needs parent action, not an attack loop.
+            reconnectBlocked=reason=="unpaired-profile" || reason=="incompatible-version" || reason=="unknown-profile" || reason=="invalid-admission" || reason=="invalid-message" || reason=="invalid-walk";
+            nextRetry=Time.realtimeSinceStartupAsDouble+Math.Min(15,Math.Pow(2,Math.Min(4,++reconnectAttempts)));
+            discovery?.Dispose();discovery=null;delayedFrames.Clear();
+            LostConnection?.Invoke();network.Shutdown();
+            WriteStatus(reconnectBlocked?"needs-parent":"reconnecting",reason);
+            TraceConnection("reconnect-scheduled",0,reconnectBlocked?"blocked":reconnectAttempts.ToString());
         }
         private void StartAuthority()
         {
@@ -228,11 +287,15 @@ namespace LittleWeeps.NetworkProbe
             network.ConnectionApprovalCallback=Approve;
             if(!network.StartServer())throw new InvalidOperationException("Loopback server did not start.");
             RegisterMessages();
-            if(pairing!=null){discovery=new WindowsBonjour(pairing,Protocol,Content);discovery.Advertise((ushort)config.port);}
+            if(pairing!=null)
+            {
+                var advertiser=new WindowsBonjour(pairing,Protocol,Content);discovery=advertiser;advertiser.Advertise((ushort)config.port);
+            }
             WriteStatus("listening","");Publish();
         }
         private void StartGuest()
         {
+            clientReady=false;
             var hello=new Hello{runId=config.runId,profile=config.profile,token=config.token,protocol=config.protocol,content=config.content,family=pairing?.familyId,authority=pairing?.authorityId};
             network.NetworkConfig.ConnectionData=Utf8.GetBytes(JsonUtility.ToJson(hello));
             if(!network.StartClient())throw new InvalidOperationException("Loopback client did not start.");
@@ -263,7 +326,7 @@ namespace LittleWeeps.NetworkProbe
             TraceConnection("connected",client,"");
             if(config.role=="server")Publish();
             else if(client==network.LocalClientId)
-            {discovery?.Dispose();discovery=null;WriteStatus("connected","");ShowShared();}
+            {discovery?.Dispose();discovery=null;WriteStatus("synchronizing","");ShowShared();}
         }
         private void Disconnected(ulong client)
         {
@@ -274,7 +337,11 @@ namespace LittleWeeps.NetworkProbe
                 if(config.role=="server")
                 {if(session.TryPlayer(client,out var actor))movement.Forget(actor);if(session.Detach(client)){SaveAuthority();Publish();}}
                 else if(client==network.LocalClientId)
-                {WriteStatus("disconnected",network.DisconnectReason??"");LostConnection?.Invoke();if(pairing!=null)FallbackSolo("admission-unavailable");}
+                {
+                    clientReady=false;
+                    if(pairing!=null && presentationStarted)BeginReconnect(network.DisconnectReason??"");
+                    else {WriteStatus("disconnected",network.DisconnectReason??"");LostConnection?.Invoke();if(pairing!=null)FallbackSolo("admission-unavailable");}
+                }
             }
             catch(Exception e){Fail(e);}
         }
@@ -339,7 +406,11 @@ namespace LittleWeeps.NetworkProbe
                         if(prior!=null && prior.zone==p.zone && prior.visit==p.visit && PositionTime(p.id)>state.time){p.x=prior.x;p.y=prior.y;}
                         else{positionTimes[p.id]=state.time;if(prior==null || prior.visit!=p.visit)inputAcks[p.id]=0;}
                     }
-                    if(Latest==null)TraceConnection("first-snapshot",sender,state.sequence.ToString());
+                    if(!clientReady)
+                    {
+                        TraceConnection("first-snapshot",sender,state.sequence.ToString());
+                        clientReady=true;retryPending=false;reconnectAttempts=0;WriteStatus("connected","");
+                    }
                     seenSequence=state.sequence;Latest=state;WriteJson(Path.Combine(output,"view.json"),state);
                 }
                 Received?.Invoke(state);
@@ -352,7 +423,11 @@ namespace LittleWeeps.NetworkProbe
             Send(CommandMessage,NetworkManager.ServerClientId,new Request{requestId=command.requestId,command=command});
         }
         public void DisconnectGuest()
-        {if(config.role!="client")return;stopping=true;network.Shutdown();WriteStatus("disconnected","response-timeout");LostConnection?.Invoke();}
+        {
+            if(config.role!="client")return;
+            if(pairing!=null && presentationStarted){BeginReconnect("response-timeout");return;}
+            stopping=true;network.Shutdown();WriteStatus("disconnected","response-timeout");LostConnection?.Invoke();
+        }
         public void Preview(DragPose pose)
         {if(ConnectedToServer)Send(PoseMessage,NetworkManager.ServerClientId,pose);}
         public void SendWalk(WalkInput input,bool stop)
@@ -451,13 +526,18 @@ namespace LittleWeeps.NetworkProbe
         private void Update()
         {
             if(config==null || output==null || failed || stopping)return;
-            try{TickDiscovery();}catch(Exception) when(pairing!=null && config.role=="client" && !presentationStarted){FallbackSolo("discovery-unavailable");}
+            try{TickDiscovery();}catch(Exception) when(pairing!=null && config.role=="client"){Unavailable("discovery-unavailable");}
             UpdateConnectionEvidence();
             try{TickMovement(Time.realtimeSinceStartupAsDouble);}catch(Exception e){Fail(e);return;}
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
             if(Time.realtimeSinceStartup-started>(config.interactive?7200:240)){Fail(new TimeoutException("Isolated probe lifetime exceeded."));return;}
+#endif
             if(Time.realtimeSinceStartup<nextControl)return;nextControl=Time.realtimeSinceStartup+.04f;
             try
             {
+#if UNITY_IOS && !UNITY_EDITOR
+                return; // Desktop qualification control files are not a mobile command surface.
+#else
                 var path=Path.Combine(output,"control.json");if(!File.Exists(path))return;
                 if(new FileInfo(path).Length>4096)throw new InvalidDataException("Control too large.");
                 string json;
@@ -469,6 +549,7 @@ namespace LittleWeeps.NetworkProbe
                 if(control.kind=="quit"){Stop();return;}
                 if(control.kind!="command" || config.role!="client" || !network.IsConnectedClient)throw new InvalidOperationException("Command needs a connected test client.");
                 Send(CommandMessage,NetworkManager.ServerClientId,control.request);
+#endif
             }
             catch(Exception e){Fail(e);}
         }
@@ -521,6 +602,28 @@ namespace LittleWeeps.NetworkProbe
         private void Fail(Exception error)
         {failed=true;Debug.LogException(error);WriteStatus("failed",error.Message);Application.Quit(1);}
         private void Stop(){if(config.role=="server" && positionDirty)SaveAuthority();stopping=true;network.Shutdown();WriteStatus("stopped","");Application.Quit(0);}
+        private void OnApplicationPause(bool paused)
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+            SetFamilyForeground(!paused);
+#endif
+        }
+        private void SetFamilyForeground(bool foreground)
+        {
+            applicationPaused=!foreground;
+            if(pairing==null || config?.role!="client")return;
+            if(!foreground)
+            {
+                if(presentationStarted)BeginReconnect("foreground-required");
+                else FallbackSolo("foreground-required");
+            }
+            else if(retryPending)nextRetry=Time.realtimeSinceStartupAsDouble+.25;
+        }
+        public void VerifyFamilyForeground(bool foreground)
+        {
+            if(config==null || !config.verifyGarden)throw new InvalidOperationException("Verification config required.");
+            SetFamilyForeground(foreground);
+        }
         private void OnApplicationQuit(){if(!failed && config?.role=="server" && positionDirty)SaveAuthority();stopping=true;discovery?.Dispose();if(network!=null)network.Shutdown();authorityLock?.Dispose();}
     }
 }

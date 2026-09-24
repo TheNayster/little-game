@@ -11,7 +11,7 @@ output_tag=${5:-}
 case "$build_number" in ''|*[!0-9]*) echo 'Invalid build number'; exit 2;; esac
 case "$team" in ''|*[!A-Z0-9]*) echo 'Invalid team ID'; exit 2;; esac
 case "$device" in ''|*[!a-zA-Z0-9-]*) echo 'Invalid device ID'; exit 2;; esac
-case "$phase" in G1|G2) ;; *) echo 'Invalid build phase (expected G1 or G2)'; exit 2;; esac
+case "$phase" in G1|G2|G3) ;; *) echo 'Invalid build phase (expected G1, G2 or G3)'; exit 2;; esac
 case "$output_tag" in *[!a-zA-Z0-9_-]*) echo 'Invalid device output tag'; exit 2;; esac
 
 game_root="$HOME/Developer/LittleWeeps"

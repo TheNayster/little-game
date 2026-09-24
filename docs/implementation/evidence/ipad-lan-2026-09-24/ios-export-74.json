@@ -1,0 +1,13 @@
+{
+    "version": "0.0.74",
+    "unity": "6000.3.24f1",
+    "profile": "Assets/BuildProfiles/iPad Family LAN.asset",
+    "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\iOSFamilyLAN\\G3-0.0.74\\Xcode",
+    "result": "Succeeded",
+    "utc": "2026-09-24T21:25:03.7074445Z",
+    "platform": "iOS",
+    "signing": "Unsigned Xcode export; native compile/sign and physical networking pending",
+    "development": false,
+    "errors": 0,
+    "warnings": 0
+}

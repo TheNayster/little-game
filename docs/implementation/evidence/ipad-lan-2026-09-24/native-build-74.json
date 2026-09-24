@@ -1,0 +1,28 @@
+{
+  "build": 74,
+  "status": "unsigned-verified",
+  "version": "0.0.74",
+  "bundleId": "com.littleweeps.familyplayset",
+  "nativeCompileAndLinkPassed": true,
+  "xcodeExit": 0,
+  "signing": "CODE_SIGNING_ALLOWED=NO",
+  "installed": false,
+  "minimumOS": "15.0",
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "nativeSymbolsVerified": [
+    "LWFamilyBrowse",
+    "LWFamilyPump",
+    "LWFamilyTake",
+    "LWFamilyStop",
+    "LWPairingAdd",
+    "LWPairingRead"
+  ],
+  "frameworkSha256": "7a4fa7bc36763f01748ecb54db19f3c86eb50d5ea66ce773e6b4b40ed41622e6",
+  "bonjourServices": [
+    "_lw-playset._udp"
+  ],
+  "unityGeneratedWarningsPresent": true
+}

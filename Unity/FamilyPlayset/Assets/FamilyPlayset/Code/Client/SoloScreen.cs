@@ -246,7 +246,7 @@ namespace LittleWeeps.Client
         {
             return shared.Submit(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=Actor,action=action,item=item,target=target,value=value,x=x,y=y},done);
         }
-        private static string Friendly(string outcome)=>outcome=="already-held"?"Your friend is using that toy. Try another!":outcome=="disconnected"?"The connection stopped. Reopen the shared garden to play together.":"That move didn't finish. Please try again.";
+        private string Friendly(string outcome)=>outcome=="already-held"?"Your friend is using that toy. Try another!":outcome=="disconnected"?(shared?.Status??"The connection stopped."):"That move didn't finish. Please try again.";
         public void ChooseAvatar(string id) { if(HasWorld && !TravelPending) Command(SoloAction.ChangeAvatar,value:id); }
         public void Travel(string zone)
         {
@@ -289,7 +289,14 @@ namespace LittleWeeps.Client
         }
         // Preferences belong to this device, not the shared world/checkpoint. Test
         // players use a fresh GUID key prefix and never alter the family's keys.
-        private string PreferenceKey(string name)=>(shared!=null?shared.PreferenceScope:VerifyRun!=null?"solo.verify."+VerifyRun+".":offlineBranch!=null?offlineBranch+".":"solo.prototype.")+name;
+        private string PreferenceKey(string name)
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+            return "solo.prototype."+name;
+#else
+            return (shared!=null?shared.PreferenceScope:VerifyRun!=null?"solo.verify."+VerifyRun+".":offlineBranch!=null?offlineBranch+".":"solo.prototype.")+name;
+#endif
+        }
         public void ToggleVoice()
         {
             Narration.SetVoiceEnabled(!Narration.VoiceEnabled);
@@ -408,8 +415,9 @@ namespace LittleWeeps.Client
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
             if(shared!=null)
             {
-                if(Board==null){if(shared.View!=null && safe!=null)InitializeShared();else if(connecting!=null && !shared.Connected)connecting.text="Joining your shared garden…\nIf the server stopped, close this window and rejoin.";return;}
+                if(Board==null){if(shared.View!=null && safe!=null)InitializeShared();else if(connecting!=null && !shared.Connected)connecting.text="Joining your shared garden…\n"+shared.Status;return;}
                 if(wasConnected && !shared.Connected){requestedArea=null;travelSubmitted=false;CancelPointers();ClearSharedDrag();message.text=Friendly("disconnected");Narration.Stop();}
+                if(!wasConnected && shared.Connected){CancelPointers();renderedSequence=-1;message.text="You're back. Let's play!";}
                 wasConnected=shared.Connected;
                 if(renderedSequence!=shared.ViewSequence){Render();renderedSequence=shared.ViewSequence;}
                 saveLabel.text=string.Join("   ·   ",shared.View.players.Where(p=>shared.Players.Contains(p.id)).Select(p=>p.id.Replace("player-","Player ")+": "+p.zone))+"   ·   "+shared.Status;

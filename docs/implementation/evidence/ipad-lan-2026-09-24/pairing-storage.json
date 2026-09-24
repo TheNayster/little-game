@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "encryptedRoundTrip": true,
+  "createOnlyRetainsIdentity": true,
+  "plaintextRejected": true
+}

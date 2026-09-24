@@ -2,7 +2,8 @@
 
 Run with `uv run --with cryptography python Tools/family_pairing.py`.
 Creates a new isolated family; never resets an existing family or saves. Device
-enrollment UI/QR transfer and iOS Keychain integration are separate next steps.
+enrollment UI/QR transfer remains a separate step. The iOS client consumes a
+parent-provisioned USB inbox into Keychain; its physical qualification is pending.
 """
 import argparse
 import ctypes as C
@@ -48,6 +49,25 @@ def write_record(path, value):
     # operation, never a side effect of starting the game again.
     with path.open('xb') as output:
         output.write(protect(value))
+
+
+def read_record(path):
+    """Open only this Windows user's protected enrollment; never print its body."""
+    protected=path.read_bytes()
+    if not 16<=len(protected)<=65536:raise ValueError('Invalid enrollment size')
+    buffer=(C.c_ubyte*len(protected)).from_buffer_copy(protected)
+    source,target=Blob(len(protected),buffer),Blob()
+    crypt=C.WinDLL('crypt32',use_last_error=True)
+    crypt.CryptUnprotectData.argtypes=[C.POINTER(Blob),C.c_void_p,C.c_void_p,C.c_void_p,C.c_void_p,W.DWORD,C.POINTER(Blob)]
+    crypt.CryptUnprotectData.restype=W.BOOL
+    free=C.WinDLL('kernel32').LocalFree;free.argtypes,free.restype=[C.c_void_p],C.c_void_p
+    try:
+        if not crypt.CryptUnprotectData(C.byref(source),None,None,None,None,1,C.byref(target)):
+            raise RuntimeError('Enrollment cannot be unlocked for this Windows user')
+        if not 1<=target.length<=32768:raise ValueError('Invalid enrollment payload')
+        return json.loads(C.string_at(target.data,target.length))
+    finally:
+        if target.data:C.memset(target.data,0,target.length);free(target.data)
 
 
 def create_family():

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "resolvedAndDisposed": 3,
+  "malformedEnrollmentsRejectedWithoutKeychain": 6,
+  "peakPumpMs": 2.282,
+  "scope": "macOS bridge to Windows advertisement; not iOS permission or Keychain qualification",
+  "sourceSha256": "d6472a861561fc72b95469b96e0100bf3d540b24f3f2dced8a3fdfccdb1b2388",
+  "remoteEvidence": "/Users/nayster/Developer/LittleWeeps/NativeTests/apple-bridge-3b045394e7964f36afffa7971bc7d6ef"
+}

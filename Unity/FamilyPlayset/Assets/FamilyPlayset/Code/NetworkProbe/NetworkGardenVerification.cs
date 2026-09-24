@@ -106,6 +106,8 @@ namespace LittleWeeps.NetworkProbe
                 {
                     File.WriteAllText(Path.Combine(probe.Output,"motion-trace.json"),JsonUtility.ToJson(new MotionEvidence{actor=traceActor,build=Application.version,samples=motionTrace.ToArray()},true));traceActor=null;
                 }
+                else if(step.action=="network-pause")probe.VerifyFamilyForeground(false);
+                else if(step.action=="network-resume")probe.VerifyFamilyForeground(true);
                 else if(step.action=="capture")StartCoroutine(Capture());
                 else if(step.action!="inspect")throw new ArgumentException("Unknown garden input action.");
                 await Task.Delay(step.action=="inspect"?20:65);Write();
