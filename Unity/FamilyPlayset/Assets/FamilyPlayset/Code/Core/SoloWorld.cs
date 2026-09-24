@@ -102,6 +102,17 @@ namespace LittleWeeps.Core
             for(var i=0;i<copies.Length;i++)copies[i]=state.toys[i].Copy();
             return copies;
         }
+        // A read-only picture hint, not permission to grab/drop or bypass distance.
+        // Show combinations that currently change water/cleanup state.
+        public bool HasUsefulInteraction(string itemId,string targetId)
+        {
+            SoloToy item=null,target=null;
+            foreach(var toy in state.toys){if(toy.id==itemId)item=toy;if(toy.id==targetId)target=toy;}
+            if(item==null || target==null || item==target)return false;
+            if(item.kind==ToyKind.Bucket)
+                return target.kind==ToyKind.Tap?item.water<3:target.kind==ToyKind.Plant && item.water>0 && target.water<3;
+            return item.kind==ToyKind.Sponge && target.kind==ToyKind.Puddle && target.water>0;
+        }
         private static SoloSnapshot Clone(SoloSnapshot s) => new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId,
             players = s.players.Select(p => p.Copy()).ToArray(), toys = s.toys.Select(t => t.Copy()).ToArray(), receipts = s.receipts.Select(r => r.Copy()).ToArray() };
         private static bool Id(string s) => !string.IsNullOrWhiteSpace(s) && s.Length <= 128 && !s.Contains("|");

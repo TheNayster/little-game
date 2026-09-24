@@ -4,9 +4,9 @@ Updated 24 September 2026. Provisional work authorized by the user while the Mac
 
 ## Play the current Windows prototype
 
-Double-click **Play-SoloPrototype.cmd** at the project root. The verified preview is **0.0.41**. Close an older preview first. Play-Foundation.cmd still opens the separate G1 video/tap fixture, build 22. The launcher checks hashes before starting and prevents duplicate normal previews.
+Double-click **Play-SoloPrototype.cmd** at the project root. The verified preview is **0.0.43**. Close an older preview first. Play-Foundation.cmd still opens the separate G1 video/tap fixture, build 22. The launcher checks hashes before starting and prevents duplicate normal previews.
 
-Click the ground to walk, or select Joystick. Drag the bucket onto the tap and then the plant. Drag the sponge over the puddle three times. Choose either pup at any time. Grow a flower and Splash cleanup are optional prompts; Free play and the menu let you leave without resetting the toys. Listen replays the current English hint. Menu → Voice on/off remembers speech on this device and stops it immediately when disabled.
+Click the ground to walk, or select Joystick. Drag the bucket onto the tap and then the plant. A yellow ring marks useful destinations; a green ring and arrow show when a drop is in range. Drag the sponge over the puddle three times. Choose either pup at any time. Grow a flower and Splash cleanup are optional prompts; Free play and the menu let you leave without resetting the toys. Listen replays the current English hint. Menu → Voice on/off remembers speech on this device and stops it immediately when disabled.
 
 The illustrations and narrator are placeholders. This one garden is a rules prototype, not the complete Heeler home, full game or multiplayer.
 
@@ -55,9 +55,11 @@ Core: Code/Core/SoloWorld.cs. Disk adapter: Code/Adapters/CheckpointStore.cs. UI
 
 ## Current task and remaining gates
 
-Completed Windows-only speech/settings follow-up: **Windows 41**, remembered local voice choice, immediate stop, actual menu input, restart, three viewport layouts and 39 → 41 saved-play recovery passed. [Settings evidence](g2-settings-2026-09-24.md). Refreshed **iPad export 42** passed Windows inspection and supersedes export 38 for the next device task. It remains unsigned and uncompiled in Xcode. Next bounded Windows task: pictured valid drop targets for the existing bucket/sponge interactions; no new worlds or networking.
+Latest completed task: **ITEM-02 / ACT-01 / CLEAN-01**, static picture hints for useful drop targets. **21 core tests passed**, Windows **43** passed native input/hint cancellation and **41 → 43** garden/settings update and recovery. Refreshed iPad **export 44** passed Windows inspection; local Android emulator **30 → 45** retained its exact complete save, rendered both hint states, filled the bucket and retained Voice off after force-stop/restart. [Picture-hint evidence and limitations](g2-picture-hints-2026-09-24.md). Current preview is 43; current uncompiled iPad export is 44. The next required gate is physical iPad/child acceptance, not additional rooms or broad multiplayer presentation.
 
-Completed Windows-only follow-up: **ITEM-02 / TRAVEL-01**, [native crash recovery and unreadable-save barriers](g2-recovery-2026-09-24.md). Fixed a reproduced path-classification bug; all 20 core tests, native forced termination/reopen, blocked-file checks, 37 → 39 save/update/recovery and tablet-shaped input checks passed. The later export 42 includes this fix; native device testing remains pending.
+Completed Windows-only speech/settings follow-up: **Windows 41**, remembered local voice choice, immediate stop, actual menu input, restart, three viewport layouts and 39 → 41 saved-play recovery passed. [Settings evidence](g2-settings-2026-09-24.md). Refreshed **iPad export 42** passed Windows inspection and supersedes export 38 for the next device task. It remains unsigned and uncompiled in Xcode. That follow-up completed in Windows 43 and emulator 45, recorded above.
+
+Completed Windows-only follow-up: **ITEM-02 / TRAVEL-01**, [native crash recovery and unreadable-save barriers](g2-recovery-2026-09-24.md). Fixed a reproduced path-classification bug; all 20 core tests, native forced termination/reopen, blocked-file checks, 37 → 39 save/update/recovery and tablet-shaped input checks passed. Later exports 42 and 44 include this fix; native device testing remains pending.
 
 Layout follow-up completed on Windows build 36: all button/text rectangles, including the hidden menu, fit the actual viewport at **1280×960**, **1920×900** and **960×540**. Full mouse/two-touch/cancellation input checks and muted narration checks passed at each size. [Tablet](evidence/solo-prototype-2026-09-24/layout-tablet-36.json), [wide phone](evidence/solo-prototype-2026-09-24/layout-wide-36.json), [small landscape](evidence/solo-prototype-2026-09-24/layout-small-36.json). These are Windows window dimensions, not device safe-area or physical-touch qualification.
 

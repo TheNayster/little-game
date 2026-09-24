@@ -60,7 +60,7 @@ namespace LittleWeeps.Client
                         await MouseDrag(mouse,"bucket-1","tap-1");Check(Toy("bucket-1").water==3,"Input-module drag did not fill bucket.");
                         await MouseDrag(mouse,"bucket-1","plant-1");Check(Toy("plant-1").water==3 && Toy("bucket-1").water==0,"Input-module pour failed.");
                         await MouseDrag(mouse,"sponge-1","puddle-1");Check(Toy("puddle-1").water==2,"Input-module cleanup failed.");
-                        result.mouseInputModule=true;
+                        result.mouseInputModule=true;result.visualTargetHints=true;
                     }
                     finally {InputSystem.RemoveDevice(mouse);foreach(var device in hostPointers)InputSystem.EnableDevice(device);}
                     var touch=(Touchscreen)InputSystem.AddDevice("SoloTestTouch");
@@ -80,7 +80,7 @@ namespace LittleWeeps.Client
                         await Wait(()=>Toy("bucket-1").holder=="","Touch release");Check(Toy("bucket-1").water==3,"Touch drag did not fill bucket.");
                         Touch(touch,13,UnityEngine.InputSystem.TouchPhase.Began,ToyPoint("sponge-1"));
                         await Wait(()=>Toy("sponge-1").holder==screen.Actor,"Touch grab before menu");
-                        screen.SetMenu(true);Check(Toy("sponge-1").holder=="","Menu did not cancel real input-module touch.");
+                        screen.SetMenu(true);Check(Toy("sponge-1").holder=="","Menu did not cancel real input-module touch.");VerifyHints(null);
                         Touch(touch,13,UnityEngine.InputSystem.TouchPhase.Canceled,ToyPoint("sponge-1"));
                         screen.SetMenu(false);
                         await Task.Delay(100);
@@ -90,6 +90,7 @@ namespace LittleWeeps.Client
                         Touch(touch,14,UnityEngine.InputSystem.TouchPhase.Moved,ToyPoint("puddle-1"));await Task.Delay(100);
                         Touch(touch,14,UnityEngine.InputSystem.TouchPhase.Canceled,ToyPoint("puddle-1"));
                         await Wait(()=>Toy("sponge-1").holder=="","OS touch cancellation");
+                        VerifyHints(null);
                         Check(Toy("puddle-1").water==waterBefore && Toy("sponge-1").x==originalSponge.x && Toy("sponge-1").y==originalSponge.y,"Cancelled touch committed an interaction.");
                         result.touchInputModule=true;result.osTouchCancellation=true;
                     }
@@ -244,9 +245,26 @@ namespace LittleWeeps.Client
             var module=EventSystem.current.GetComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
             Debug.Log("SOLO_TEST_POINTER enabled="+mouse.enabled+" background="+mouse.canRunInBackground+" position="+mouse.position.ReadValue()+" pressed="+mouse.leftButton.isPressed+" action="+module.leftClick.action.enabled+" focus="+EventSystem.current.isFocused);
             await Wait(()=>Toy(item).holder==screen.Actor,"Input-module press "+item);
+            VerifyHints(item);
             for(var i=1;i<=6;i++){InputSystem.QueueStateEvent(mouse,new MouseState{position=Vector2.Lerp(from,to,i/6f)}.WithButton(MouseButton.Left));await Task.Delay(60);}
+            VerifyHints(item,target);
             InputSystem.QueueStateEvent(mouse,new MouseState{position=to});
             await Wait(()=>Toy(item).holder=="","Input-module release "+item);
+            VerifyHints(null);
+        }
+        private void VerifyHints(string heldItem,string hoveredTarget=null)
+        {
+            var rings=FindObjectsByType<Image>(FindObjectsInactive.Include,FindObjectsSortMode.None).Where(i=>i.name=="Helpful target ring").ToArray();
+            Check(rings.Length==3,"Expected three station hints.");
+            foreach(var ring in rings)
+            {
+                var target=ring.transform.parent.name;
+                var useful=heldItem!=null && screen.World.HasUsefulInteraction(heldItem,target);
+                Check(ring.gameObject.activeSelf==useful && !ring.raycastTarget,"Target hint visibility or input transparency is wrong: "+target);
+                var arrow=ring.transform.parent.Find("Drop here").gameObject;
+                if(heldItem==null)Check(!arrow.activeSelf,"A drop arrow survived gesture cancellation.");
+                if(target==hoveredTarget)Check(useful && arrow.activeSelf,"Useful hovered target has no picture arrow.");
+            }
         }
         private SoloToy Toy(string id)=>screen.World.Snapshot().toys.First(t=>t.id==id);
         private Vector2 ToyPoint(string id){var t=Toy(id);return screen.ScreenPoint(t.x,t.y);}
@@ -269,6 +287,7 @@ namespace LittleWeeps.Client
             public bool layoutBounds;
             public bool loadBlocked;
             public bool voiceImmediateStop,mutedReplayBlocked,voiceMenuInput,voiceReenabled,preferencesLocalOnly,preferencesRestored;
+            public bool visualTargetHints;
         }
     }
 }

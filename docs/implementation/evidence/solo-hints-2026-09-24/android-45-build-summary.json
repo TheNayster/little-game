@@ -1,0 +1,14 @@
+{
+    "version": "0.0.45",
+    "unity": "6000.3.24f1",
+    "profile": "Assets/BuildProfiles/Android Solo Prototype.asset",
+    "result": "Succeeded",
+    "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\AndroidSolo\\G2-0.0.45\\LittleWeepsSolo.apk",
+    "utc": "2026-09-24T12:46:20.5192231Z",
+    "platform": "Android",
+    "signing": "Default Android debug certificate; isolated emulator probe only",
+    "errors": 0,
+    "warnings": 0,
+    "verificationContract": 3,
+    "development": false
+}

@@ -27,13 +27,15 @@ namespace LittleWeeps.Client
         public readonly Dictionary<string, SoloPointerSurface> Surfaces = new Dictionary<string, SoloPointerSurface>();
         private readonly Dictionary<string, RectTransform> toys = new Dictionary<string, RectTransform>();
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
+        private readonly Dictionary<string, Image> targetRings = new Dictionary<string, Image>();
+        private readonly Dictionary<string, GameObject> targetArrows = new Dictionary<string, GameObject>();
         private CheckpointStore store;
         private RectTransform safe, avatar, stickKnob, stick;
         private Image head, body;
         private Text message, activity, movementLabel, saveLabel, voiceLabel, listenLabel;
         private GameObject voiceSlash;
         private Font font;
-        private Sprite rounded, circle;
+        private Sprite rounded, circle, hintRing;
         private GameObject menu;
         private Vector2? destination;
         private Vector2 stickDirection;
@@ -48,7 +50,7 @@ namespace LittleWeeps.Client
             if(!ReadVerificationArgs())
             {Debug.LogError("Invalid solo verification arguments; normal saved play was not opened.");Application.Quit(2);return;}
             font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            rounded = Shape(false); circle = Shape(true);
+            rounded = Shape(false); circle = Shape(true);hintRing=Ring();
             var canvas = new GameObject("Solo Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             var scale = canvas.GetComponent<CanvasScaler>(); scale.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
@@ -215,7 +217,7 @@ namespace LittleWeeps.Client
         public void MovePointer(string role,Vector2 screen)
         {
             if(role=="stick") {RectTransformUtility.ScreenPointToLocalPointInRectangle(stick,screen,null,out var point);stickDirection=Vector2.ClampMagnitude(point/55,1);stickKnob.anchoredPosition=stickDirection*40;}
-            else if(role==dragging) {var point=BoardPoint(screen);toys[role].anchoredPosition=ToBoard(point.x,point.y);toys[role].SetAsLastSibling();}
+            else if(role==dragging) {var point=BoardPoint(screen);toys[role].anchoredPosition=ToBoard(point.x,point.y);toys[role].SetAsLastSibling();UpdateTargetHints(point);}
         }
         public void EndPointer(string role,Vector2 screen)
         {
@@ -228,13 +230,25 @@ namespace LittleWeeps.Client
             var id=Vector2.Distance(new Vector2(target.x,target.y),point)<=SoloWorld.InteractionRadius?target.id:"";
             var result=Command(SoloAction.Drop,role,id,x:point.x,y:point.y);
             if(!result.Accepted)Command(SoloAction.CancelGrab,role);
-            dragging=null;Render();
+            dragging=null;HideTargetHints();Render();
             message.text=result.Outcome=="bucket-filled"?"Splash! Your bucket is full.":result.Outcome=="plant-watered"?"A drink for the flower!":result.Outcome=="puddle-cleaned"?"Squeeze, soak, tidy!":"What shall we play next?";
         }
         public void CancelPointer(string role)
         {
             if(role=="stick"){stickDirection=Vector2.zero;if(stickKnob!=null)stickKnob.anchoredPosition=Vector2.zero;}
-            if(role==dragging){Command(SoloAction.CancelGrab,role);dragging=null;Render();}
+            if(role==dragging){Command(SoloAction.CancelGrab,role);dragging=null;HideTargetHints();Render();}
+        }
+        private void HideTargetHints(){foreach(var ring in targetRings.Values)ring.gameObject.SetActive(false);foreach(var arrow in targetArrows.Values)arrow.SetActive(false);}
+        private void UpdateTargetHints(Vector2 point)
+        {
+            foreach(var target in World.ReadToys())
+            {
+                if(!targetRings.TryGetValue(target.id,out var ring))continue;
+                var useful=World.HasUsefulInteraction(dragging,target.id);
+                var near=useful && Vector2.Distance(point,new Vector2(target.x,target.y))<=SoloWorld.InteractionRadius;
+                ring.gameObject.SetActive(useful);ring.color=near?new Color(.23f,.6f,.39f):new Color(1,.86f,.35f);
+                targetArrows[target.id].SetActive(near);
+            }
         }
         public void CancelPointers(){foreach(var surface in Surfaces.Values)surface.Cancel();destination=null;stickDirection=Vector2.zero;}
         private void Update()
@@ -284,6 +298,16 @@ namespace LittleWeeps.Client
             var hit=root.gameObject.AddComponent<Image>();hit.color=Color.clear;hit.raycastTarget=t.kind==ToyKind.Bucket || t.kind==ToyKind.Sponge;
             // The graphic must stay in the raycast list after transparent-mesh culling.
             hit.canvasRenderer.cullTransparentMesh=false;
+            if(t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle)
+            {
+                var ring=Panel(root,"Helpful target ring",Vector2.zero,new Vector2(202,180),Color.white);
+                ring.sprite=hintRing;ring.type=Image.Type.Simple;targetRings.Add(t.id,ring);ring.gameObject.SetActive(false);
+                var arrow=Rect(root,"Drop here",new Vector2(0,108),new Vector2(50,50));
+                Panel(arrow,"Stem",new Vector2(0,5),new Vector2(9,34),Ink);
+                var left=Panel(arrow,"Arrow left",new Vector2(-8,-8),new Vector2(24,9),Ink);left.rectTransform.localRotation=Quaternion.Euler(0,0,-45);
+                var right=Panel(arrow,"Arrow right",new Vector2(8,-8),new Vector2(24,9),Ink);right.rectTransform.localRotation=Quaternion.Euler(0,0,45);
+                targetArrows.Add(t.id,arrow.gameObject);arrow.gameObject.SetActive(false);
+            }
             if(hit.raycastTarget)Surface(root,t.id);
             if(t.kind==ToyKind.Bucket){Panel(root,"Handle",new Vector2(0,27),new Vector2(65,50),Ink,false,true);Panel(root,"Handle hole",new Vector2(0,29),new Vector2(52,40),new Color(.76f,.89f,.72f),false,true);Panel(root,"Bucket",Vector2.zero,new Vector2(80,70),new Color(.98f,.67f,.28f));fills[t.id]=Panel(root,"Water",new Vector2(0,3),new Vector2(58,10),new Color(.32f,.68f,.91f));}
             if(t.kind==ToyKind.Sponge){Panel(root,"Sponge",Vector2.zero,new Vector2(92,53),new Color(1,.87f,.39f));for(var i=0;i<4;i++)Panel(root,"Hole",new Vector2(-27+i*18,(i%2)*15-8),new Vector2(8,8),new Color(.78f,.58f,.25f),false,true);}
@@ -317,6 +341,13 @@ namespace LittleWeeps.Client
             var texture=new Texture2D(64,64,TextureFormat.RGBA32,false);texture.filterMode=FilterMode.Bilinear;
             for(var y=0;y<64;y++)for(var x=0;x<64;x++){var dx=Mathf.Abs(x-31.5f);var dy=Mathf.Abs(y-31.5f);var d=oval?Mathf.Sqrt(dx*dx+dy*dy)-31:Mathf.Sqrt(Mathf.Pow(Mathf.Max(0,dx-18),2)+Mathf.Pow(Mathf.Max(0,dy-18),2))-13;texture.SetPixel(x,y,new Color(1,1,1,Mathf.Clamp01(1-d)));}
             texture.Apply();return Sprite.Create(texture,new Rect(0,0,64,64),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect,oval?Vector4.zero:new Vector4(16,16,16,16));
+        }
+        private Sprite Ring()
+        {
+            var texture=new Texture2D(96,96,TextureFormat.RGBA32,false);texture.filterMode=FilterMode.Bilinear;
+            for(var y=0;y<96;y++)for(var x=0;x<96;x++)
+            {var distance=Vector2.Distance(new Vector2(x,y),new Vector2(47.5f,47.5f));texture.SetPixel(x,y,new Color(1,1,1,Mathf.Clamp01(47-distance)*Mathf.Clamp01(distance-41)));}
+            texture.Apply();return Sprite.Create(texture,new Rect(0,0,96,96),new Vector2(.5f,.5f));
         }
         private void UpdateSafeArea(){lastSafeArea=Screen.safeArea;safe.anchorMin=new Vector2(lastSafeArea.xMin/Screen.width,lastSafeArea.yMin/Screen.height);safe.anchorMax=new Vector2(lastSafeArea.xMax/Screen.width,lastSafeArea.yMax/Screen.height);safe.offsetMin=safe.offsetMax=Vector2.zero;}
     }

@@ -1,0 +1,7 @@
+09-24 07:45:22.151   848   848 E AndroidRuntime: Process: com.google.android.bluetooth, PID: 848
+09-24 07:45:22.246   551   649 E AndroidRuntime: *** FATAL EXCEPTION IN SYSTEM PROCESS: appscheduling.default
+09-24 07:45:22.246   551   649 E AndroidRuntime: 	at com.android.server.pm.parsing.PackageInfoUtils.generateApplicationInfo(PackageInfoUtils.java:466)
+09-24 07:47:18.509  3487  3542 I Unity   : UnityApplication::CreateInstance
+09-24 07:47:18.849  3487  3542 I Unity   : ApplicationInfo 'com.littleweeps.familyplayset', Version '0.0.45', Min API Level '26', Target API Level '36'
+09-24 07:48:50.484  3850  3870 I Unity   : UnityApplication::CreateInstance
+09-24 07:48:50.683  3850  3870 I Unity   : ApplicationInfo 'com.littleweeps.familyplayset', Version '0.0.45', Min API Level '26', Target API Level '36'

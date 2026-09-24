@@ -49,6 +49,24 @@ static class Program
             Check(restored.Apply(c).Duplicate && restored.Revision == w.Revision);
             c.x = 300; Check(!restored.Apply(c).Accepted);
         });
+        Test("picture hints match actual productive interactions without mutating state", () => {
+            foreach(var item in new[]{"bucket-1","sponge-1"})
+            foreach(var target in new[]{"tap-1","plant-1","puddle-1"})
+            for(var bucket=0;bucket<=3;bucket++)for(var amount=0;amount<=3;amount++)
+            {
+                var saved=SoloWorld.Create("first").Snapshot();
+                saved.toys.First(t=>t.id=="bucket-1").water=bucket;
+                saved.toys.First(t=>t.id=="plant-1").water=amount;
+                saved.toys.First(t=>t.id=="puddle-1").water=amount;
+                var w=SoloWorld.Restore(saved);var unchanged=Encode(w.Snapshot());
+                var hint=w.HasUsefulInteraction(item,target);Check(Encode(w.Snapshot())==unchanged);
+                var before=w.ReadToys();var station=Toy(w,target);
+                Good(w,SoloAction.Grab,item);Good(w,SoloAction.Drop,item,target,x:station.x,y:station.y);
+                var after=w.ReadToys();var changed=before.Where((t,index)=>t.water!=after[index].water || t.wet!=after[index].wet).Any();
+                Check(hint==changed);
+            }
+            var fresh=SoloWorld.Create("first");Check(!fresh.HasUsefulInteraction("missing","tap-1") && !fresh.HasUsefulInteraction("bucket-1","bucket-1"));
+        });
         Test("stale and invalid commands leave world unchanged", () => {
             var w = SoloWorld.Create("first"); var stale = Command(w,SoloAction.Move,x:1,y:1); Good(w,SoloAction.Move,x:20,y:20);
             var before=Encode(w.Snapshot()); Check(!w.Apply(stale).Accepted);
