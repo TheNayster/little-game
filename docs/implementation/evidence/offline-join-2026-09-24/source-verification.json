@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "platform": "Windows",
+      "build": 79,
+      "productionSources": 45,
+      "sourceHashesMatch": true,
+      "sourceBaseCommit": "786f57dac0eebea20ba668b0ac3872378d78dd47"
+    },
+    {
+      "platform": "Android",
+      "build": 79,
+      "productionSources": 45,
+      "sourceHashesMatch": true,
+      "sourceBaseCommit": "786f57dac0eebea20ba668b0ac3872378d78dd47"
+    },
+    {
+      "platform": "iOS export",
+      "build": 79,
+      "productionSources": 45,
+      "sourceHashesMatch": true,
+      "sourceBaseCommit": "786f57dac0eebea20ba668b0ac3872378d78dd47"
+    }
+  ],
+  "note": "Manifests retain exact build-time bytes. Test runners and documentation were finalized after builds; only Unity-generated whitespace is normalized after this source check."
+}

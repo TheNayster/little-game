@@ -1,0 +1,10 @@
+{
+  "build": 79,
+  "initialAttempt": "SSH timeout at old LAN address",
+  "resolved": "User supplied current address; connection verified against the existing SSH host key",
+  "transferSucceeded": true,
+  "filesVerified": 3092,
+  "nativeCompile": true,
+  "signed": false,
+  "installed": false
+}

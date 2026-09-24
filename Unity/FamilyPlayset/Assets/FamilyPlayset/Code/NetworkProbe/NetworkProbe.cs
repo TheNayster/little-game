@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using LittleWeeps.Core;
 using LittleWeeps.Adapters;
+using LittleWeeps.Client;
 using Unity.Collections;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -27,11 +28,13 @@ namespace LittleWeeps.NetworkProbe
         private FamilyPairing pairing;
         private IFamilyDiscovery discovery;
         private double discoveryDeadline,admissionDeadline;
-        private bool guestStarted,presentationStarted,soloFallback;
+        private bool guestStarted,presentationStarted,localOnly,localRequested;
+        private SoloScreen familyScreen;
+        private NetworkGardenSession familyGarden;
         private bool clientReady,retryPending,applicationPaused,reconnectBlocked;
         private double nextRetry;
         private int reconnectAttempts;
-        public bool Reconnecting=>pairing!=null && presentationStarted && !ConnectedToServer && !reconnectBlocked && !stopping && !failed;
+        public bool Reconnecting=>pairing!=null && presentationStarted && !localOnly && !ConnectedToServer && !reconnectBlocked && !stopping && !failed;
         public bool FamilyLan=>pairing!=null;
         private double previousFrame,nextConnectionEvidence,lastTransportData;
         private double maxFrameGap;
@@ -168,12 +171,13 @@ namespace LittleWeeps.NetworkProbe
                 else if(pairing==null)StartGuest();
                 else
                 {
+                    ShowLocal();
                     try
                     {
                         discovery=CreateDiscovery();discovery.Browse();
                         discoveryDeadline=Time.realtimeSinceStartupAsDouble+10;WriteStatus("discovering","");
                     }
-                    catch(Exception){FallbackSolo("discovery-unavailable");}
+                    catch(Exception){BeginReconnect("discovery-unavailable");}
                 }
             }
             catch(Exception e){Fail(e);}
@@ -207,29 +211,46 @@ namespace LittleWeeps.NetworkProbe
         }
         private void ShowShared()
         {
+            if(pairing!=null)return; // Paired play switches only after a valid snapshot and safe local checkpoint.
             if(presentationStarted || !config.presentation)return;presentationStarted=true;
             var garden=gameObject.AddComponent<NetworkGardenSession>();garden.Initialize(this);
             var screen=gameObject.AddComponent<LittleWeeps.Client.SoloScreen>();screen.Configure(garden);
             if(config.verifyGarden)gameObject.AddComponent<NetworkGardenVerification>();
         }
-        private void FallbackSolo(string reason)
+        private void ShowLocal()
         {
-            if(soloFallback || presentationStarted || config.role!="client")return;
-            soloFallback=true;discovery?.Dispose();discovery=null;network?.Shutdown();
-            WriteStatus("solo-available",reason);
-            if(config.presentation)
+            if(!config.presentation || familyScreen!=null)return;
+            EnsureLocalPresentation();
+            familyGarden=gameObject.AddComponent<NetworkGardenSession>();familyGarden.Initialize(this);
+            familyScreen=gameObject.AddComponent<SoloScreen>();
+            familyScreen.ConfigureOfflineBranch(config.runId,config.profile);
+            familyScreen.ConfigureFamilyMode(RequestFamilyMode,config.verifyGarden);
+            if(config.verifyGarden)gameObject.AddComponent<NetworkGardenVerification>();
+        }
+        private void RequestFamilyMode()
+        {
+            familyScreen.SetMenu(false);
+            if(familyScreen.Shared){localRequested=true;return;}
+            if(reconnectBlocked)return; // Explicit revocation needs new parent enrollment, not button retries.
+            localOnly=false;
+            if(retryPending)nextRetry=Time.realtimeSinceStartupAsDouble+.25;
+        }
+        private void TickPresentation()
+        {
+            if(familyScreen==null || applicationPaused)return;
+            if(localRequested)
             {
-                EnsureLocalPresentation();
-                var screen=gameObject.AddComponent<LittleWeeps.Client.SoloScreen>();
-                // This branch never writes the authority checkpoint or the
-                // previously qualified unpaired solo save.
-                screen.ConfigureOfflineBranch(config.runId,config.profile);
+                if(!familyScreen.TryReturnToLocal())return;
+                localOnly=true;localRequested=false;BeginReconnect("solo-selected");
+                WriteStatus("solo-selected","");TraceConnection("local-restored",0,"");
             }
+            else if(!localOnly && ConnectedToServer && !familyScreen.Shared && familyScreen.TryJoinFamily(familyGarden))
+            {presentationStarted=true;TraceConnection("shared-presented",0,"local-checkpoint-preserved");}
         }
         private void TickDiscovery()
         {
-            if(pairing==null || soloFallback)return;
-            if(config.role=="client" && (applicationPaused || reconnectBlocked))return;
+            if(pairing==null)return;
+            if(config.role=="client" && (applicationPaused || reconnectBlocked || localOnly))return;
             if(retryPending)
             {
                 // NGO disposes its driver asynchronously. Never start a new
@@ -258,12 +279,11 @@ namespace LittleWeeps.NetworkProbe
         }
         private void Unavailable(string reason)
         {
-            if(pairing!=null && presentationStarted)BeginReconnect(reason);
-            else FallbackSolo(reason);
+            if(pairing!=null)BeginReconnect(reason);
         }
         private void BeginReconnect(string reason)
         {
-            if(config.role!="client" || pairing==null || soloFallback || stopping || failed || retryPending || reconnectBlocked)return;
+            if(config.role!="client" || pairing==null || stopping || failed || retryPending || reconnectBlocked)return;
             clientReady=false;retryPending=true;
             // Empty reason is ordinary transport loss. Explicit authentication
             // or compatibility rejection needs parent action, not an attack loop.
@@ -271,7 +291,7 @@ namespace LittleWeeps.NetworkProbe
             nextRetry=Time.realtimeSinceStartupAsDouble+Math.Min(15,Math.Pow(2,Math.Min(4,++reconnectAttempts)));
             discovery?.Dispose();discovery=null;delayedFrames.Clear();
             LostConnection?.Invoke();network.Shutdown();
-            WriteStatus(reconnectBlocked?"needs-parent":"reconnecting",reason);
+            WriteStatus(reconnectBlocked?"needs-parent":familyScreen!=null && !familyScreen.Shared?"solo-available":"reconnecting",reason);
             TraceConnection("reconnect-scheduled",0,reconnectBlocked?"blocked":reconnectAttempts.ToString());
         }
         private void StartAuthority()
@@ -337,7 +357,7 @@ namespace LittleWeeps.NetworkProbe
         private void Disconnected(ulong client)
         {
             TraceConnection("disconnected",client,network.DisconnectReason??"");
-            if(stopping || failed || soloFallback)return;
+            if(stopping || failed)return;
             try
             {
                 if(config.role=="server")
@@ -345,8 +365,8 @@ namespace LittleWeeps.NetworkProbe
                 else if(client==network.LocalClientId)
                 {
                     clientReady=false;
-                    if(pairing!=null && presentationStarted)BeginReconnect(network.DisconnectReason??"");
-                    else {WriteStatus("disconnected",network.DisconnectReason??"");LostConnection?.Invoke();if(pairing!=null)FallbackSolo("admission-unavailable");}
+                    if(pairing!=null)BeginReconnect(network.DisconnectReason??"");
+                    else {WriteStatus("disconnected",network.DisconnectReason??"");LostConnection?.Invoke();}
                 }
             }
             catch(Exception e){Fail(e);}
@@ -394,12 +414,13 @@ namespace LittleWeeps.NetworkProbe
         }
         private void ReceiveState(ulong sender,FastBufferReader reader)
         {
-            if(config.role!="client" || sender!=NetworkManager.ServerClientId || failed)return;
+            if(config.role!="client" || sender!=NetworkManager.ServerClientId || failed || applicationPaused || retryPending || localOnly || !network.IsConnectedClient)return;
             try
             {
                 var state=JsonUtility.FromJson<State>(Read(reader));
                 if(state==null || state.protocol!=Protocol || state.content!=Content || state.runId!=config.runId || !Guid.TryParseExact(state.epoch,"N",out _))throw new InvalidDataException("Wrong server state.");
                 SoloWorld.Validate(state.view);
+                if(!state.view.players.Any(p=>p.id==config.profile))throw new InvalidDataException("Snapshot lacks the admitted player.");
                 if(!string.IsNullOrEmpty(epoch) && state.epoch!=epoch)throw new InvalidDataException("Unexpected authority epoch.");
                 epoch=state.epoch;
                 if(!string.IsNullOrEmpty(state.requestId))
@@ -431,7 +452,7 @@ namespace LittleWeeps.NetworkProbe
         public void DisconnectGuest()
         {
             if(config.role!="client")return;
-            if(pairing!=null && presentationStarted){BeginReconnect("response-timeout");return;}
+            if(pairing!=null){BeginReconnect("response-timeout");return;}
             stopping=true;network.Shutdown();WriteStatus("disconnected","response-timeout");LostConnection?.Invoke();
         }
         public void Preview(DragPose pose)
@@ -533,6 +554,7 @@ namespace LittleWeeps.NetworkProbe
         {
             if(config==null || output==null || failed || stopping)return;
             try{TickDiscovery();}catch(Exception) when(pairing!=null && config.role=="client"){Unavailable("discovery-unavailable");}
+            try{TickPresentation();}catch(Exception e){Fail(e);return;}
             UpdateConnectionEvidence();
             try{TickMovement(Time.realtimeSinceStartupAsDouble);}catch(Exception e){Fail(e);return;}
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
@@ -620,8 +642,7 @@ namespace LittleWeeps.NetworkProbe
             if(pairing==null || config?.role!="client")return;
             if(!foreground)
             {
-                if(presentationStarted)BeginReconnect("foreground-required");
-                else FallbackSolo("foreground-required");
+                BeginReconnect("foreground-required");
             }
             else if(retryPending)nextRetry=Time.realtimeSinceStartupAsDouble+.25;
         }

@@ -41,7 +41,7 @@ def main():
         v.process=subprocess.Popen(command,stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,startupinfo=startup,creationflags=subprocess.CREATE_NO_WINDOW)
         active.append(v)
         wait(lambda:v.status() and v.status()['status']==('listening' if v.role=='server' else 'connected'),'native '+v.role,30)
-        if v.role=='client':wait(lambda:v.input('inspect')['ready'],'garden ready')
+        if v.role=='client':wait(lambda:v.input('inspect')['shared'],'garden ready')
         return v
     try:
         first_port=port();server=start(authority,first_port);clients=[start(p) for p in players];first=clients[0];second=clients[1]

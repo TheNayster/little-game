@@ -31,7 +31,7 @@
 <li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
-<div class="build-callout"><p><strong>The foundations follow the plan. Here is what is done and what is still ahead.</strong></p><p>The user confirmed four Windows players on shared build 68 are working well. Both iPads have passed solo garden checks on 56. Everyday mobile joining, iPad hosting/recovery, personal rooms, item returns and full content remain open. iPad 74 remains prepared for signing. Android release 78 now joins three Windows peers on the PC, with emulator touch, save and automatic-rejoin checks passed. Physical mobile qualification remains open. Next: local Mac signing, in-place iPad updates and physical multiplayer checks. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Your return checklist →</a> <a href="#19-implementation-audit-and-remaining-work">Read the implementation audit →</a> <a href="#9-first-implementation-work-queue">Next tasks in order →</a></p></div>
+<div class="build-callout"><p><strong>The foundations follow the plan. Here is what is done and what is still ahead.</strong></p><p>The user confirmed four Windows players on shared build 68 are working well. Both iPads have passed solo garden checks on 56. Everyday mobile joining, iPad hosting/recovery, personal rooms, item returns and full content remain open. Build 79 adds safe automatic joining from solo play and access to the preserved solo draft; Windows and Android-release emulator checks passed. The iPad 79 native Mac compile passed after correcting its network address. The older iPad is backed up and the signing helper is open. Next: finish local signing, verify/back up both iPads, update in place and run physical multiplayer checks. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Your return checklist →</a> <a href="#19-implementation-audit-and-remaining-work">Read the implementation audit →</a> <a href="#9-first-implementation-work-queue">Next tasks in order →</a></p></div>
 <div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
 <ul>
 <li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
@@ -454,13 +454,13 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <tbody>
 <tr>
 <td><strong>1 — next bounded task</strong></td>
-<td><strong>Finish signing and qualify the prepared G3 iPad client 74.</strong> Native Bonjour/permission and Keychain code now exists; in-place installation and device enrollment remain pending local Mac signing access.</td>
-<td>Back up both iPads' solo saves/preferences, verify the signed identity/profile, update in place, enroll separate players, then test discovery/authentication, permission allow/deny and server-absent solo. <a href="implementation/g3-ipad-lan-2026-09-24.html">Implementation and evidence</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Actions when you return</a>.</td>
+<td><strong>Finish local signing and qualify G3 iPad client 79.</strong> Transfer/native compile/link now passed after the user supplied the Mac’s new address. The 79 signing helper is open; the older iPad backup is verified.</td>
+<td>Back up both iPads' solo saves/preferences, verify signing/device coverage, update in place, enroll separate players, then test discovery, permission allow/deny, safe initial joining and saved solo return. <a href="implementation/g3-offline-join-2026-09-24.html">Latest implementation</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Actions when you return</a>.</td>
 </tr>
 <tr>
 <td>2</td>
 <td>Complete G3 everyday joining and qualify the mixed-device matrix</td>
-<td>Android 78 now discovers/joins the PC with three Windows peers; native storage, touch/shared interactions and emulator lifecycle passed. Still qualify both iPads first, then Samsung/iPhone: native permissions/backgrounding, four actual players, travel and ownership. Initial offline-to-shared joining, prolonged-loss solo transition and route changes remain open. <a href="implementation/g3-android-lan-2026-09-24.html">Android evidence</a>.</td>
+<td>Build 79 safe initial joining and saved solo return pass on Windows and the Android release emulator. Still qualify both iPads first, then Samsung/iPhone: permissions/backgrounding, four actual players, travel and ownership. Prolonged-loss automatic solo flow, parent setup/status UI and route changes remain open. <a href="implementation/g3-offline-join-2026-09-24.html">Evidence</a>.</td>
 </tr>
 <tr>
 <td>3</td>
@@ -933,7 +933,7 @@ Status: pending
 </tr>
 <tr>
 <td>Implementation state</td>
-<td>Both iPads still run solo 56; iPad 74 remains prepared for local signing. Android release 78 now joins the PC automatically, with seven emulator/three-Windows gameplay/lifecycle checks and protected enrollment. Windows 77 retains encrypted discovery/reconnect proofs. The shared-68 preview remains preserved. Four physical mobile players, initial offline transitions and iPad hosting are not qualified.</td>
+<td>Both iPads still run solo 56. iPad 79 passed native Mac compile/link; local signing and physical installation are pending. The older iPad backup is verified on Mac and Windows. Windows and Android release 79 pass safe initial solo-to-family joining, local draft preservation and return/rejoin. Shared preview 68 is preserved. Four physical mobile players and iPad hosting remain unqualified.</td>
 </tr>
 <tr>
 <td>Current research deliverable</td>
@@ -945,15 +945,15 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td><strong>G3 Android native connection — implemented and emulator-qualified.</strong> NSD, Keystore enrollment, release build/signing and touch/background/rejoin were checked against the actual PC server. Physical Samsung qualification remains open. <a href="implementation/g3-android-lan-2026-09-24.html">Implementation/evidence</a>.</td>
+<td><strong>G3 initial offline-to-shared joining — implemented and Windows/emulator-qualified.</strong> Foreground retry, safe input/checkpoint boundary and independent saved solo return are present. <a href="implementation/g3-offline-join-2026-09-24.html">Implementation and evidence</a>.</td>
 </tr>
 <tr>
 <td>Latest completed engineering task</td>
-<td>Android 78: 24 native checks, seven cross-platform gameplay/lifecycle cases, held-item background cleanup and server-absent solo/save checks passed. Windows 77: 11 encrypted LAN cases plus seven four-client reconnect cases passed. Signed updates preserved the seeded solo save and pairing. These emulator results do not close physical mobile gates.</td>
+<td>Build 79: 7 Windows offline-join, 11 encrypted LAN, 7 four-client reconnect and 10 garden input cases passed. Android release 79 passed 4 native late-join/lifecycle cases with three Windows peers; its in-place update preserved both saves. iOS export and native compile/link passed after correcting the Mac route; signing/install remain pending.</td>
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td><strong>Sign, preserve saves, update and enroll both iPads</strong>, then physical networking/lifecycle checks, Samsung third player and iPhone fourth. The <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">return checklist</a> still starts with <strong>Finish-Little-Weeps-74.command</strong>. While the user is away, the next independent G3 task is safe initial/offline-to-shared transitions; required iPad hosting/recovery remains G4.</td>
+<td><strong>Finish local signing of 79, verify/back up both iPads, update in place and enroll both</strong>, then physical networking/lifecycle checks, Samsung and iPhone. The older 74 helper does not contain this work. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Return checklist</a>. Independent G3 work while devices are unavailable: prolonged shared-outage local recovery with explicit draft preservation, then parent setup/status UX. Required iPad hosting/recovery remains G4.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -973,7 +973,7 @@ Status: pending
 <p>The folder <code>docs/bluey-research/build-guide-review-2026-09-23</code> records the original source URLs, retrieval evidence and selected excerpts. Earlier package recommendations are research candidates; the actual installed baseline and later qualification are recorded in sections 7 and 19. The precise folder structure, task method, phase order, coverage mapping and acceptance gates are <strong>our implementation plan</strong>, not a claim that a vendor or every company prescribes them.</p>
 <p>No calendar promise is made. After G6, use actual asset/task throughput and discovered defect work to estimate subsequent batches. Keep the work record current so the next session starts from evidence and the next dependency, not from memory or whichever feature seems most interesting that day.</p>
 <h2 id="19-implementation-audit-and-remaining-work">19. Implementation audit and remaining work</h2>
-<p><strong>Audit date: September 24, 2026. Original source baseline: <code>879b1bd</code>; incremental G3 evidence now includes iPad preparation 74, Windows 77 and Android 78. Verdict: aligned foundations, unfinished game.</strong> The implementation uses the intended separate project, shared solo/server rules, stable player identities, authoritative items, independent areas and local saves/media. Windows four-player movement, encrypted admission and automatic reconnection have scoped proofs. The Apple adapter is prepared for signing; Android release 78 has emulator-to-PC gameplay and lifecycle proofs. These results do not qualify four physical mobile devices, automatic hosting or the complete content goal sheet.</p>
+<p><strong>Audit date: September 24, 2026. Original source baseline: <code>879b1bd</code>; incremental G3 evidence now includes Windows/Android 79 and the iPad 79 Xcode export. Verdict: aligned foundations, unfinished game.</strong> The implementation uses the intended separate project, shared solo/server rules, stable player identities, authoritative items, independent areas and local saves/media. Windows four-player movement, encrypted admission and automatic reconnection have scoped proofs. The Apple 79 export passed native Mac compilation and awaits signing/install; Windows and Android release 79 have safe initial joining and draft-preservation proofs. These results do not qualify four physical mobile devices, automatic hosting or the complete content goal sheet.</p>
 <p>The audit maps all <strong>54 research chapters and 35 feature IDs</strong> to implementation work. It compares the goal sheet with actual code, package locks, build records and dated device/test reports. It does not rerun the game tests or retest devices. <a href="implementation/evidence/plan-audit-2026-09-24/audit.json">Audit scope, chapter coverage and evidence index</a>. No requirements were removed. No overall percentage is assigned: a passing bucket prototype and a finished daycare story are different sizes of work.</p>
 <p><strong>How to read status:</strong> <strong>Passed proof</strong> means a named, bounded check passed in the stated environment. <strong>Partial</strong> means useful implementation exists but the full requirement is not accepted. <strong>Not built</strong> means research/design only. <strong>Optional later</strong> applies only to explicitly optional work. None of the 35 complete feature requirements is being marked fully accepted today.</p>
 <h3 id="completed-proofs-we-can-build-on">Completed proofs we can build on</h3>
@@ -1027,6 +1027,11 @@ Status: pending
 <td>Physical Samsung or four real mobile devices, native ARM64 16 KB, API 26–33 adapter, parent pairing UI, initial offline transitions or host migration</td>
 </tr>
 <tr>
+<td>Safe initial offline-to-family joining and saved solo return</td>
+<td>Build 79: <a href="implementation/evidence/offline-join-2026-09-24/windows-offline-7.json">7 Windows cases</a>, <a href="implementation/evidence/offline-join-2026-09-24/android-offline-4.json">4 Android release cases</a>, <a href="implementation/g3-offline-join-2026-09-24.html">update/regressions</a></td>
+<td>Physical mobile qualification, automatic prolonged-outage local flow, parent setup UI, offline reconciliation or host migration</td>
+</tr>
+<tr>
 <td>Smoother remote movement under the tested conditions</td>
 <td>Shared 68: <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-normal.json">normal</a>, <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-1.json">delayed-motion run 1</a>, <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-2.json">run 2</a></td>
 <td>Sustained mobile FPS, real Wi-Fi impairment or larger-world performance. Tests impair received motion only.</td>
@@ -1075,8 +1080,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>G3 — PC shared world</strong></td>
-<td><strong>Partial; Windows encrypted discovery/rejoin and Android-emulator/PC four-player play pass; Apple adapter prepared</strong></td>
-<td>Local signing and real iPad/Samsung/iPhone enrollment/permissions/lifecycle, parent setup UI, initial offline joining, prolonged-outage solo flow, four physical devices and sustained measurements.</td>
+<td><strong>Partial; safe initial joining passes on Windows/Android emulator 79; iPad export ready</strong></td>
+<td>Local signing and physical enrollment/permissions/lifecycle, parent setup UI, prolonged-outage automatic solo flow, four physical devices and sustained measurements.</td>
 </tr>
 <tr>
 <td><strong>G4 — iPad hosting</strong></td>
@@ -1143,12 +1148,12 @@ Status: pending
 </tr>
 <tr>
 <td><strong>Windows</strong></td>
-<td>Live preview <strong>68</strong>; isolated <strong>77</strong> passes 11 encrypted admission/fallback cases and seven reconnect cases; three native Windows peers also played with Android emulator 78. <a href="implementation/g3-android-lan-2026-09-24.html">Latest evidence</a></td>
-<td>Four physical mobile peers, parent setup UI, initial offline joining, alternate/IPv6 endpoints and production startup/backup operations.</td>
+<td>Live preview <strong>68</strong> remains; isolated <strong>79</strong> passes 7 offline-join, 11 LAN, 7 reconnect and 10 garden cases, and plays with Android release 79. <a href="implementation/g3-offline-join-2026-09-24.html">Evidence</a></td>
+<td>Four physical peers, prolonged-outage automatic solo recovery, parent setup, alternate/IPv6 endpoints and production operations.</td>
 </tr>
 <tr>
 <td><strong>Android emulator</strong></td>
-<td>Family-signed release <strong>78</strong>, API 35 / 16 KB x86_64 with ARM translation: native NSD/Keystore checks, direct encrypted PC play with three Windows peers, touch interactions, activity background/rejoin and cold restart/save retention. <a href="implementation/g3-android-lan-2026-09-24.html">Record</a></td>
+<td>Family-signed release <strong>79</strong>, API 35 / 16 KB x86_64 with ARM translation: native late-join/menu deferral, saved solo return, real background/foreground, cold rejoin and unchanged saves across 78 → 79. Earlier native/gameplay evidence remains. <a href="implementation/g3-offline-join-2026-09-24.html">Latest record</a></td>
 <td>Physical Samsung/iPhone/iPads, legacy Android adapter, sustained performance and native ARM64 16 KB qualification.</td>
 </tr>
 </tbody>
@@ -1248,8 +1253,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>JOIN-01</strong></td>
-<td><strong>Partial:</strong> launch/late join plus automatic Windows reconnection of an established paired session; survivors continue</td>
-<td>Physical lifecycle/reconnect during every activity; safe initial/offline transitions and local loading/preparation. G3, then G6/G7.</td>
+<td><strong>Partial:</strong> build 79 continuous initial discovery, safe local-to-shared switching and saved solo return pass on Windows/Android emulator; survivors continue</td>
+<td>Physical lifecycle/reconnect during every activity, prolonged-outage automatic local flow and full loading/preparation. G3, then G6/G7.</td>
 </tr>
 <tr>
 <td><strong>WORLD-01</strong></td>
@@ -1313,8 +1318,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>AUTO-01</strong></td>
-<td><strong>Partial:</strong> Windows trusted discovery/rejoin; Android NSD/Keystore and established-session lifecycle pass in emulator; Apple adapter prepared; server-absent launch has solo fallback</td>
-<td>Physical mobile discovery/storage/permissions, parent UI, continuous initial solo discovery, route changes and safe solo/shared transitions. G3.</td>
+<td><strong>Partial:</strong> build 79 keeps discovering while solo is playable, safely joins later and preserves an accessible local draft; Windows/native Android-emulator checks pass; Apple export ready</td>
+<td>Physical mobile discovery/storage/permissions, parent UI, route changes and prolonged-outage local recovery. G3.</td>
 </tr>
 <tr>
 <td><strong>AUTO-02</strong></td>
@@ -1398,11 +1403,11 @@ Status: pending
 <p>Code files below are under <code>Unity/FamilyPlayset/Assets/FamilyPlayset/Code</code>; the audit index records their exact relative paths and hashes.</p>
 <ol>
 <li><strong>The rule boundary is sound, but content is still hardcoded.</strong> <code>SoloWorld.cs</code>, <code>FamilySession.cs</code> and <code>SharedMovement.cs</code> keep world rules separate from Unity presentation. Current validation expects five solo or ten shared props and two named areas. Add versioned content definitions and migrations before multiplying recipes/worlds.</li>
-<li><strong>Networking now has two explicit qualification paths.</strong> The original loopback preview stays bound to <code>127.0.0.1</code> with lab credentials. Windows LAN proof 70 requires protected parent enrollment, native Bonjour and certificate-validated encryption before player credentials are sent. It remains an isolated harness: Apple code is prepared and Android NSD/Keystore is emulator-qualified. Established-session retries work; physical mobile qualification, parent setup UI, initial offline transitions and host recovery remain open. <a href="implementation/g3-android-lan-2026-09-24.html">Latest scope and evidence</a>.</li>
+<li><strong>Networking now has two explicit qualification paths.</strong> The original loopback preview stays bound to <code>127.0.0.1</code> with lab credentials. Windows LAN proof 70 requires protected parent enrollment, native Bonjour and certificate-validated encryption before player credentials are sent. It remains an isolated harness: Apple code is prepared and Android NSD/Keystore is emulator-qualified. Established-session retries and initial offline-to-family transitions work on Windows/Android emulator. Physical mobile qualification, parent setup UI, prolonged-outage automatic local recovery and host recovery remain open. <a href="implementation/g3-offline-join-2026-09-24.html">Latest evidence</a>.</li>
 <li><strong>Client snapshots are not complete recovery copies.</strong> Current views omit action receipts; clients do not persist the full authority checkpoint. <code>CheckpointStore.cs</code> supplies checksums and backup/pending recovery for one writer, not peer election, a complete operation history or branch merging. Walking checkpoints are approximately one second apart plus stops; hard loss can restore the last durable position rather than the last rendered frame.</li>
 <li><strong>Area independence is implemented before streaming optimization.</strong> The server sends full small-world snapshots and clients filter the displayed area. Final content needs area interest, loading/memory ownership and lightweight offscreen activity/NPC simulation; do not render all six worlds on the A10.</li>
 <li><strong>Station-tool return on travel is a narrow policy.</strong> It prevents carrying this area's test bucket away, but does not implement portable toys, borrowed containers, inactivity returns or protected creations. Add category-specific behavior before claiming general cross-area carrying or tidy bedrooms.</li>
-<li><strong>Media and offline mode still live in separate fixtures.</strong> <code>FoundationVideo.cs</code> has one local test clip; <code>SoloScreen.cs</code> runs the garden. Integrate overlays and shared/solo session transitions without erasing either save or pausing siblings. A disconnected shared client does not yet automatically become a solo game.</li>
+<li><strong>Media and offline mode still live in separate fixtures.</strong> <code>FoundationVideo.cs</code> has one local test clip; <code>SoloScreen.cs</code> runs the garden. Build 79 safely switches between the paired local garden and the shared world while preserving separate saves. Media overlays and automatic prolonged-outage local recovery remain open; Menu can already restore the separate solo draft.</li>
 </ol>
 <p>These are bounded prototype choices and explicit unfinished work, not reasons to restart from scratch. Preserve the tested rules, saves and movement; qualify the next dependency before expanding content.</p>
 <h3 id="documentation-corrections-made-by-this-audit">Documentation corrections made by this audit</h3>

@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import subprocess
 from family_pairing import ROOT
+from mac_connection import SSH,OPTIONS,HOST
 
 
 def main():
@@ -30,8 +31,7 @@ assert all('_'+name in defined for name in names),'Native bridge functions not l
 record=dict(build=build,status='unsigned-verified',version=info['CFBundleShortVersionString'],bundleId=info['CFBundleIdentifier'],nativeCompileAndLinkPassed=True,xcodeExit=0,signing='CODE_SIGNING_ALLOWED=NO',installed=False,minimumOS=info['MinimumOSVersion'],deviceFamilies=info['UIDeviceFamily'],nativeSymbolsVerified=names,frameworkSha256=hashlib.sha256(framework.read_bytes()).hexdigest(),bonjourServices=info['NSBonjourServices'],unityGeneratedWarningsPresent='warning:' in text)
 (logs/'unsigned-verification.json').write_text(json.dumps(record,indent=2));print(json.dumps(record))
 '''
-    ssh=Path(os.environ['WINDIR'])/'System32/OpenSSH/ssh.exe'
-    result=subprocess.run([str(ssh),'-i',str(Path.home()/'.ssh/little_weeps_mac_ed25519'),'-o','IdentitiesOnly=yes','-o','BatchMode=yes','-o','ConnectTimeout=8','nayster@eduardos-mbp.lan','python3 -'],input=code,text=True,capture_output=True,timeout=30)
+    result=subprocess.run([str(SSH),*OPTIONS,HOST,'python3 -'],input=code,text=True,capture_output=True,timeout=30)
     if result.returncode:raise RuntimeError(result.stderr)
     record=json.loads(result.stdout)
     if record['nativeCompileAndLinkPassed']:(ROOT/f'LocalData/ios-{args.build}-native-verified.json').write_text(json.dumps(record,indent=2))

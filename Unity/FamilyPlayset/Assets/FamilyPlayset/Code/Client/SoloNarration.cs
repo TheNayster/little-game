@@ -25,5 +25,6 @@ namespace LittleWeeps.Client
         public void Stop(){if(speaker!=null)speaker.Stop();}
         private void OnApplicationPause(bool paused){if(paused)Stop();}
         private void OnApplicationFocus(bool focused){if(!focused)Stop();}
+        private void OnDestroy(){Stop();if(speaker!=null)Destroy(speaker);}
     }
 }

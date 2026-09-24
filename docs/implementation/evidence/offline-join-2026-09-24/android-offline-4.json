@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "androidBuild": 79,
+  "windowsBuild": 79,
+  "apkSha256": "57e54422a4665dadf64749d78aa79e25daebcc27ab9c517fa949294927e655f6",
+  "checks": [
+    {
+      "check": "release app stays playable after discovery timeout and saves a real offline touch action",
+      "passed": true
+    },
+    {
+      "check": "actual Android NSD finds a server started later; the open menu delays switching and the same process joins on leaving it",
+      "passed": true
+    },
+    {
+      "check": "menu solo choice restores its own draft and survives real Android background/foreground; family rejoin preserves both saves",
+      "passed": true
+    },
+    {
+      "check": "cold launch defaults to automatic joining with Keystore enrollment and both saved worlds retained",
+      "passed": true
+    }
+  ],
+  "scope": "Android 15/API35 16KB x86_64 emulator with ARM translation and three Windows clients. No physical Android/iPad, host migration or offline merge claim."
+}

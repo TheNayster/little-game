@@ -31,6 +31,47 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Image> targetRings = new Dictionary<string, Image>();
         private readonly Dictionary<string, GameObject> targetArrows = new Dictionary<string, GameObject>();
         private CheckpointStore store;
+        private SoloWorld localWorld;
+        private Action familyModeAction;
+        private bool familyTestMuted;
+        private float lastLocalAction, nextTransitionSave;
+        private GameObject ownedCanvas, ownedEvents;
+        public void ConfigureFamilyMode(Action changeMode,bool muted=false) { familyModeAction=changeMode;familyTestMuted=muted; }
+        public bool CanChangeSession => Ready && dragging==null && !ActionPending && !TravelPending &&
+            !destination.HasValue && stickDirection.sqrMagnitude<.0001f && !Surfaces.Values.Any(s=>s.Pressed) &&
+            !UnityEngine.InputSystem.InputSystem.devices.Any(d=>
+                d is UnityEngine.InputSystem.Mouse m && m.leftButton.isPressed ||
+                d is UnityEngine.InputSystem.Touchscreen t && t.touches.Any(p=>p.press.isPressed));
+        public bool TryJoinFamily(IGardenSession session)
+        {
+            if(Shared || !CanChangeSession || MenuOpen || Time.realtimeSinceStartup-lastLocalAction<1 ||
+                Time.realtimeSinceStartup<nextTransitionSave || !session.Connected || session.View==null)return false;
+            nextTransitionSave=Time.realtimeSinceStartup+2;
+            // Never replace the only live copy with a server snapshot. Commit the
+            // separate device branch before showing shared play; G5 owns merging.
+            if(!TrySaveNow())return false;
+            localWorld=World;ResetPresentation();World=null;shared=session;Actor=session.Actor;
+            InitializeShared();message.text="Your solo play is saved. You're playing with family now!";
+            return true;
+        }
+        public bool TryReturnToLocal()
+        {
+            if(!Shared || localWorld==null || !CanChangeSession)return false;
+            ResetPresentation();shared=null;World=localWorld;Actor=World.Snapshot().players[0].id;
+            BuildScreen();Render();message.text="Your saved solo play. Menu lets you find your family again.";
+            return true;
+        }
+        private void ResetPresentation()
+        {
+            CancelPointers();Narration?.Stop();
+            // Keep one canvas, event system and narration source across switches.
+            // Disable old children now so deferred Destroy cannot receive input.
+            foreach(Transform child in safe){child.gameObject.SetActive(false);Destroy(child.gameObject);}
+            Surfaces.Clear();toys.Clear();fills.Clear();targetRings.Clear();targetArrows.Clear();
+            friends.Clear();holders.Clear();travelButtons.Clear();fence.Clear();
+            Board=null;avatar=null;menu=null;connecting=null;dragging=null;requestedArea=null;travelSubmitted=false;
+            grabConfirmed=false;gestureEnded=false;gestureCancelled=false;dropSubmitted=false;renderedSequence=-1;
+        }
         private string offlineBranch,offlineActor;
         public void ConfigureOfflineBranch(string world,string profile)
         {
@@ -86,6 +127,7 @@ namespace LittleWeeps.Client
             font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             rounded = Shape(false); circle = Shape(true);hintRing=Ring();
             var canvas = new GameObject("Solo Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+            ownedCanvas=canvas;
             canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             var scale = canvas.GetComponent<CanvasScaler>(); scale.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scale.referenceResolution = new Vector2(1280,800); scale.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
@@ -93,6 +135,7 @@ namespace LittleWeeps.Client
             if (FindAnyObjectByType<EventSystem>() == null)
             {
                 var events = new GameObject("Solo Events", typeof(EventSystem), typeof(InputSystemUIInputModule));
+                ownedEvents=events;
                 events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
             }
             if(shared!=null)
@@ -118,7 +161,7 @@ namespace LittleWeeps.Client
                 return;
             }
             JoystickMode = PlayerPrefs.GetInt(PreferenceKey("joystick"),0) == 1;
-            Narration=gameObject.AddComponent<SoloNarration>();Narration.Initialize(VerifyRun!=null);
+            Narration=gameObject.AddComponent<SoloNarration>();Narration.Initialize(VerifyRun!=null || familyTestMuted);
             Narration.SetVoiceEnabled(PlayerPrefs.GetInt(PreferenceKey("voice"),1)!=0);
             BuildScreen(); Render();
             if (LoadedStatus == CheckpointStatus.Missing) SaveNow();
@@ -135,7 +178,7 @@ namespace LittleWeeps.Client
             QualitySettings.vSyncCount=0;
             Application.targetFrameRate=60;
 #endif
-            connecting.gameObject.SetActive(false);
+            if(connecting!=null)connecting.gameObject.SetActive(false);
             if(FindAnyObjectByType<AudioListener>()==null)gameObject.AddComponent<AudioListener>();
             if(FindAnyObjectByType<Camera>()==null)
             {
@@ -143,7 +186,7 @@ namespace LittleWeeps.Client
                 camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=Cream;camera.transform.position=new Vector3(0,0,-10);
             }
             JoystickMode=PlayerPrefs.GetInt(PreferenceKey("joystick"),0)==1;
-            Narration=gameObject.AddComponent<SoloNarration>();Narration.Initialize(shared.MutedTest);
+            if(Narration==null){Narration=gameObject.AddComponent<SoloNarration>();Narration.Initialize(shared.MutedTest);}
             Narration.SetVoiceEnabled(PlayerPrefs.GetInt(PreferenceKey("voice"),1)!=0);
             BuildScreen();Render();wasConnected=shared.Connected;
         }
@@ -227,6 +270,11 @@ namespace LittleWeeps.Client
             Label(menu.transform,"Spoken hints on this device",18,new Vector2(0,-24),new Vector2(650,36));
             Button(menu.transform,"Back to play",new Vector2(0,-90),new Vector2(350,85),()=>SetMenu(false),new Color(.81f,.92f,.72f));
             Button(menu.transform,"Leave activity",new Vector2(0,-200),new Vector2(350,75),()=>{StartActivity("");SetMenu(false);},Cream);
+            if(familyModeAction!=null)
+            {
+                Button(menu.transform,Shared?"Play by myself":"Find my family",new Vector2(0,-290),new Vector2(490,65),()=>familyModeAction(),new Color(.77f,.88f,.96f));
+                Label(menu.transform,"Solo and family play are saved separately.",18,new Vector2(0,-341),new Vector2(850,32));
+            }
             UpdateVoiceControls();
             menu.SetActive(false);
         }
@@ -239,7 +287,7 @@ namespace LittleWeeps.Client
                 return new SoloResult(false,"pending",shared.View.revision);
             }
             var result=World.Apply(new SoloCommand {requestId=Guid.NewGuid().ToString("N"),actor=Actor,expectedRevision=World.Revision,action=action,item=item,target=target,value=value,x=x,y=y});
-            if(result.Accepted) {dirty=true;Render();}
+            if(result.Accepted) {dirty=true;lastLocalAction=Time.realtimeSinceStartup;Render();}
             return result;
         }
         private bool SubmitShared(SoloAction action,string item,string target,string value,float x,float y,Action<SoloResult> done)
@@ -309,7 +357,7 @@ namespace LittleWeeps.Client
             listenLabel.text=Narration.VoiceEnabled?"Listen":"Voice off";
             listenLabel.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
         }
-        public void SetMenu(bool open) { if(open){CancelPointers();Narration.Stop();SaveNow();} menu.SetActive(open); }
+        public void SetMenu(bool open) { lastLocalAction=Time.realtimeSinceStartup;if(open){CancelPointers();Narration.Stop();SaveNow();} menu.SetActive(open); }
         public void Listen(){var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
         { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return new Vector2((local.x/Board.rect.width+.5f)*SoloWorld.Width,(local.y/Board.rect.height+.5f)*SoloWorld.Height); }
@@ -449,10 +497,18 @@ namespace LittleWeeps.Client
             if(dirty && Time.realtimeSinceStartup>=nextSave){SaveNow();nextSave=Time.realtimeSinceStartup+1;}
         }
         public void SaveNow()
+        {TrySaveNow();}
+        public bool TrySaveNow()
         {
-            if(World==null || store==null)return;
-            try{store.Save(JsonUtility.ToJson(World.Snapshot()));dirty=false;if(saveLabel!=null)saveLabel.text="Saved on this device · solo prototype · "+Application.version;}
-            catch(Exception e){if(saveLabel!=null)saveLabel.text="Couldn't save yet. Please ask a grown-up.";Debug.LogError("Solo checkpoint: "+e.Message);}
+            if(World==null || store==null)return false;
+            try{store.Save(JsonUtility.ToJson(World.Snapshot()));dirty=false;if(saveLabel!=null)saveLabel.text="Saved on this device · solo prototype · "+Application.version;return true;}
+            catch(Exception e){if(saveLabel!=null)saveLabel.text="Couldn't save yet. Please ask a grown-up.";Debug.LogWarning("Solo checkpoint: "+e.Message);return false;}
+        }
+        private void OnDestroy()
+        {
+            if(ownedCanvas!=null)Destroy(ownedCanvas);if(ownedEvents!=null)Destroy(ownedEvents);
+            if(Narration!=null)Destroy(Narration);
+            foreach(var sprite in new[]{rounded,circle,hintRing})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}
         }
         private void OnApplicationPause(bool paused){if(paused){CancelPointers();SaveNow();}}
         private void OnApplicationFocus(bool focused){if(!focused && HasWorld){CancelPointers();SaveNow();}}

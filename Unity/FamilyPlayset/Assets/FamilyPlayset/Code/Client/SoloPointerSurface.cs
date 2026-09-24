@@ -11,6 +11,7 @@ namespace LittleWeeps.Client
         public SoloScreen Screen;
         public string Role;
         private int? pointer;
+        public bool Pressed => pointer.HasValue;
         public void OnPointerDown(PointerEventData e)
         {
             if (pointer.HasValue || !Screen.BeginPointer(Role, e.position)) return;

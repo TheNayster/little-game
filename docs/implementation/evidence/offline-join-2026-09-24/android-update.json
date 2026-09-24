@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "fromBuild": 78,
+  "toBuild": 79,
+  "apkSha256": "57e54422a4665dadf64749d78aa79e25daebcc27ab9c517fa949294927e655f6",
+  "certificate": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "saveHashesBeforeAfter": {
+    "/sdcard/Android/data/com.littleweeps.familyplayset/files/SoloPrototype/family-local/world.save": "d3a7ad29f2ea6f6209fc9584f63f4c2a7b127353a7a1771e2e30b3f933ed612c",
+    "/sdcard/Android/data/com.littleweeps.familyplayset/files/SoloPrototype/paired-d21633f381e74b17a226b083a22ffbaa-35e3ce718a8c4a59af28ad4afe011c65/world.save": "df921e3c0743d6fc4fde4457dd35a14b468743c26dd3d211bf437fd183256b8b"
+  },
+  "device": "project emulator, not physical Android"
+}

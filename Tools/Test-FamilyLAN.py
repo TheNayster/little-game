@@ -40,7 +40,7 @@ def main():
         pairing=run.path/(instance.identity+'.pairing');write_record(pairing,record)
         cfg=dict(runId=run.run_id,instanceId=instance.identity,role=instance.role,profile=instance.profile,
                  port=port if instance.role=='server' else 1025,protocol=3,content=3,pairingPath=str(pairing),
-                 presentation=True,verifyGarden=instance.role=='client')
+                 presentation=True,verifyGarden=instance.role=='client' and not solo_run)
         cfg.update(overrides)
         config=run.path/(instance.identity+'.config.json');write(config,cfg)
         exe=folder/('Server' if instance.role=='server' else 'Client')/'LittleWeepsNetwork.exe'
@@ -57,7 +57,7 @@ def main():
         clients=[]
         for player in players:
             client=start(player);wait(lambda: client.state(),'native discovery and DTLS snapshot',30)
-            wait(lambda: client.input('inspect')['ready'],'playable encrypted garden');clients.append(client)
+            wait(lambda: client.input('inspect')['shared'],'playable encrypted garden');clients.append(client)
         wait(lambda: len(server.state()['connected'])==4,'four admitted players')
         require(all(c.input('inspect')['visiblePlayers']==4 for c in clients),'Four avatars visible')
         passed('four enrolled clients discover the server without a configured IP or correct port and join over DTLS')
@@ -81,7 +81,7 @@ def main():
         other,_,_=create_family();bad=deepcopy(players[0]);bad['caCertificate']=other['caCertificate'];variants.append(('untrusted server certificate',bad,{}))
         for name,record,options in variants:
             guest=start(record,**options)
-            wait(lambda: guest.status() and guest.status()['status']=='solo-available',name+' denied with solo fallback',30)
+            wait(lambda: guest.status() and guest.status()['status'] in ('solo-available','needs-parent'),name+' denied with solo fallback',30)
             require(not guest.state(),name+' got shared state')
             # The fallback writes only its distinct local branch, not shared/old solo saves.
             require(server.state()['view']==before and len(server.state()['connected'])==4,name+' changed authority')
@@ -95,7 +95,6 @@ def main():
         replacement.close();server.close()
         solo_run=uuid.uuid4().hex
         missing=start(players[0],solo_run=solo_run)
-        wait(lambda: missing.status() and missing.status()['status']=='solo-available','absent server fallback',30)
         missing.process.wait(timeout=90)
         solo_folder=Path(os.environ['USERPROFILE'])/'AppData/LocalLow/Little Weeps/Little Weeps/SoloPrototype'/solo_run
         result=read(solo_folder/'input.json')

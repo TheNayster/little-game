@@ -6,14 +6,10 @@ import os
 from pathlib import Path
 import subprocess
 import tarfile
+from mac_connection import HOST,SSH,SCP,OPTIONS
 
 ROOT=Path(__file__).resolve().parent.parent
-HOST='nayster@eduardos-mbp.lan'
 REMOTE='/Users/nayster/Developer/LittleWeeps'
-KEY=Path.home()/'.ssh/little_weeps_mac_ed25519'
-SSH=Path(os.environ['WINDIR'])/'System32/OpenSSH/ssh.exe'
-SCP=SSH.with_name('scp.exe')
-OPTIONS=['-i',str(KEY),'-o','IdentitiesOnly=yes','-o','BatchMode=yes','-o','ConnectTimeout=8']
 
 
 def sha(path):
