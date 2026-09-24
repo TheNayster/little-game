@@ -1,0 +1,16 @@
+{
+  "build": 56,
+  "controlledBaselineJoystick": 1,
+  "controlledBaselineVoice": 0,
+  "terminateAndRelaunchSucceeded": true,
+  "afterRelaunchJoystick": 1,
+  "afterRelaunchVoice": 0,
+  "allPreferencesUnchanged": true,
+  "visibleJoystickAfterRelaunchPending": false,
+  "visibleJoystickAfterRelaunchUserConfirmed": true,
+  "voiceReenableQuietUntilListenUserConfirmed": true,
+  "listenSpeaksAfterReenableUserConfirmed": true,
+  "finalJoystick": 1,
+  "finalVoice": 1,
+  "originalG1PreferencesStillUnchanged": true
+}

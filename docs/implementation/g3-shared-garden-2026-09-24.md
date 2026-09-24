@@ -43,6 +43,8 @@ Early test failures are preserved under ignored `LocalData/SharedGarden` and as 
 
 ## Preview and limits
 
+**Later device update:** the separately prepared **solo iPad build 56** has now been compiled/signed on the Mac, installed over build 20 on iPad 9, and passed initial human controls/audio plus exact saved-world restart checks. [Native evidence](ipad-garden-2026-09-24.md). That qualification does not add mobile networking to this Windows shared preview.
+
 Double-click **Play-SharedGarden.cmd** for verified build **57**. It opens two native Windows garden windows and their loopback server. Arrange the two windows side by side. Each represents a different player; they share the bucket, sponge, plant and puddle. Closing both clients stops this preview's server. The launcher remembers the separate preview world for the next launch and prevents duplicate servers. Run the shortcut again while one window is still open to reopen only the missing player. **Play-SoloPrototype.cmd** now opens the independently verified solo build **55**.
 
 The updated launcher was exercised on build 57: preview update retained the complete world; Player 1 was closed normally, then the shortcut reopened just that player. Player 2 and the server retained their exact process IDs and world state. Both interactive windows remain open for the user. [Launcher/rejoin evidence](evidence/shared-garden-2026-09-24/launcher-rejoin-57.json). The first launcher check caught a request arriving while Unity was still exiting; the controller now retains that request through normal shutdown. Other isolated test processes were closed.
@@ -54,6 +56,8 @@ The UI fixture adds a deliberate **250 ms acknowledgement delay** and uses proce
 Next bounded task: independent logical areas and per-player travel, while preserving the same authority and shared-object ownership. Native discovery/parent pairing and iPad hosting remain separate required tasks; resume [iPad qualification](g2-device-checklist.md) when the devices are available. Do not expand all six content worlds from a one-room Windows result.
 
 ## Repeat the qualification
+
+**User feedback, 24 September:** after returning home, the user reported trying the two Windows player windows and responded positively. No specific interaction, child usability, mobile or performance check is inferred from that report. The [return-home checklist](return-home-checklist-2026-09-24.md) prioritizes the prepared solo garden on iPad 9, followed by iPad 7. Independent-area networking remains queued while physical-device qualification resumes when the user makes the devices available.
 
 Use an unused build number with Unity closed:
 

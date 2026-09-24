@@ -1,0 +1,14 @@
+{
+  "build": 56,
+  "device": "iPad 9",
+  "userConfirmedReopenedSameGarden": true,
+  "saveIntegrityValid": true,
+  "completeSnapshotUnchanged": true,
+  "beforePayloadSha256": "6c86143dca73696fecd7ea58370a146e2d1d8587729fc12ca174fb7fd75c8f18",
+  "afterPayloadSha256": "6c86143dca73696fecd7ea58370a146e2d1d8587729fc12ca174fb7fd75c8f18",
+  "revision": 239,
+  "avatar": "blue-pup",
+  "plantWater": 3,
+  "puddleWater": 0,
+  "allPropsReleased": true
+}

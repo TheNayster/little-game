@@ -1,0 +1,15 @@
+{
+  "build": 56,
+  "device": "iPad 9",
+  "source": "User confirmed each prompted physical sequence",
+  "voiceOffSilencesListen": true,
+  "screenLockDuringHoldAllowsPickupAfterResume": true,
+  "voiceOffRetainedAfterReopenUserConfirmed": true,
+  "storedVoiceAfterReopen": 0,
+  "wifiDisabledPlayAndToyDragging": true,
+  "wifiReenabledRequested": true,
+  "joystickPersistenceUserReported": true,
+  "storedMovementAtLaterRead": 0,
+  "joystickPersistenceVerified": true,
+  "note": "The intermediate read showed Tap to walk. A later controlled baseline/restart retained Joystick = 1, confirmed in storage and visibly by the user; see joystick-restart-check.json."
+}

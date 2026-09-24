@@ -1,6 +1,6 @@
 # G2 — solo interaction prototype
 
-Updated 24 September 2026. Provisional work authorized by the user while the Mac and physical mobile devices are unavailable. G1 remains open; neither G1 nor G2 is declared passed.
+Updated 24 September 2026. Provisional Windows work was authorized while the Mac and physical mobile devices were unavailable. The user has now returned: **solo garden 56 is installed on iPad 9**, physical layout/touch/voice, simultaneous joystick/drag, menu/screen-lock cancellation, remembered settings and offline solo checks passed; closing/reopening retained the exact complete garden save. [Current iPad record](ipad-garden-2026-09-24.md). Remaining physical checks, the older iPad and child usability are still open; neither G1 nor G2 is declared passed.
 
 ## Play the current Windows prototype
 

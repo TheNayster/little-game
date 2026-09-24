@@ -1,0 +1,10 @@
+{
+  "build": 56,
+  "device": "iPad 9",
+  "source": "User physical test: works like a charm",
+  "joystickAndBucketSimultaneously": true,
+  "menuWhileHoldingCancelsCleanly": true,
+  "canPickUpAfterMenu": true,
+  "stuckMovementOrBucketReported": false,
+  "screenLockAndSettingsPersistencePending": true
+}

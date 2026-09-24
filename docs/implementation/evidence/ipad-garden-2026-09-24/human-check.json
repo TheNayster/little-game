@@ -1,0 +1,13 @@
+{
+  "build": 56,
+  "source": "User confirmed on physical iPad 9",
+  "versionAndFullLayout": true,
+  "tapWalking": true,
+  "bucketFillAndWatering": true,
+  "spokenListen": true,
+  "saveIntegrityValid": true,
+  "savePayloadSha256": "6c86143dca73696fecd7ea58370a146e2d1d8587729fc12ca174fb7fd75c8f18",
+  "gardenRestartPending": false,
+  "revision": 239,
+  "rawSnapshotLocation": "Mac Logs/ipad-garden-56-20260924/after-human-world.save"
+}

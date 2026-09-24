@@ -1,6 +1,8 @@
 # Next G2 device check — when the family is available
 
-The playable Windows preview is 55. The Windows-produced iPad Xcode export is 56, at `Builds/iOSSolo/G2-0.0.56/Xcode`. These include the new package configuration; [Windows regression and export inspection](g3-shared-garden-2026-09-24.md) passed. The Mac and physical devices were deliberately not used during this work. Start with iPad 9; iPad 7 remains the performance baseline and is still required. Android/iPhone follow after the primary iPads.
+**24 September update:** solo garden **56 is compiled, signed, installed and tested on iPad 9**, with the older build-20 preferences retained exactly. Layout, tap walking, bucket watering, spoken Listen instructions, joystick plus dragging, menu/screen-lock cancellation, exact garden reopening, voice/movement settings persistence and Wi-Fi-off solo play passed. The older iPad, child usability, sustained performance, additional character/activity/hint checks and a future garden-to-garden update remain pending. See the [native update record](ipad-garden-2026-09-24.md). The preparation checklist below is retained for repeatable future updates; do not reinstall 56 simply to repeat already passed steps.
+
+The playable Windows preview is 55. The Windows-produced iPad Xcode export is 56, at `Builds/iOSSolo/G2-0.0.56/Xcode`. These include the new package configuration; [Windows regression and export inspection](g3-shared-garden-2026-09-24.md) passed before the later Mac/device work above. Start with iPad 9; iPad 7 remains the performance baseline and is still required. Android/iPhone follow after the primary iPads.
 
 ## Build/install preparation
 
