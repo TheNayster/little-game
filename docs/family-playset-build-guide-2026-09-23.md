@@ -62,6 +62,8 @@ Automatic recovery cannot promise an invisible transition when a hosting device 
 
 **Only this game's home:** `C:\Users\sephi\Desktop\Little weeps game`. The existing `Meeps game` project and its assets remain unrelated. The desktop Connect Unity + Blender shortcut now points to this game's separate launcher; the old project's script is unchanged. Verify the editor's actual project path before using a connection.
 
+**GitHub destination confirmed September 24:** [TheNayster/little-weeps-game](https://github.com/TheNayster/little-weeps-game) is this game's private remote, named `origin`. Previously the project's Git history existed only locally. Use `main` for the shared baseline and retain the `codex/…` development branches. Git LFS accompanies the tracked narration/video. This source repository does not back up ignored local worlds, builds, personal media or signing material; those still require the separate backup/restore workflow.
+
 The following is the **target structure**. The isolated Unity project, build profiles, tools and Core/Runtime/Adapters/Client/Server/Editor code boundaries now exist. A separate NetworkProbe assembly contains the provisional networking adapter. The current game assets are mainly Code, Resources and Scenes; the full Content/Art/Audio/UI/Tests and editable source-asset pipeline below is still to be established as needed, before content production. Do not read this tree as a completed inventory:
 
 ```text
