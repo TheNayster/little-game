@@ -31,7 +31,7 @@
 <li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
-<div class="build-callout"><p><strong>The foundations follow the plan. Here is what is done and what is still ahead.</strong></p><p>The user confirmed four Windows players on shared build 68 are working well. Both iPads have passed solo garden checks on 56. Automatic device joining, iPad hosting/recovery, personal rooms, item returns and full content remain open. Next: parent-approved LAN pairing and discovery. <a href="#19-implementation-audit-and-remaining-work">Read the implementation audit →</a> <a href="#9-first-implementation-work-queue">Next tasks in order →</a></p></div>
+<div class="build-callout"><p><strong>The foundations follow the plan. Here is what is done and what is still ahead.</strong></p><p>The user confirmed four Windows players on shared build 68 are working well. Both iPads have passed solo garden checks on 56. Everyday mobile joining, iPad hosting/recovery, personal rooms, item returns and full content remain open. Windows build 70 now proves encrypted family discovery/admission and usable offline fallback. Next: native iPad enrollment/discovery and a signed client build. <a href="#19-implementation-audit-and-remaining-work">Read the implementation audit →</a> <a href="#9-first-implementation-work-queue">Next tasks in order →</a></p></div>
 <div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
 <ul>
 <li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
@@ -454,8 +454,8 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <tbody>
 <tr>
 <td><strong>1 — next bounded task</strong></td>
-<td><strong>G3 parent pairing and LAN discovery</strong>: define family/profile identity, trusted admission and a small discovery/permission adapter, then prove it with PC and Windows clients</td>
-<td>A paired profile finds the intended authority; an unpaired or wrong-family peer cannot mutate its world; no credentials in advertisements/logs; permission denied or no server leaves solo usable. Keep the loopback preview intact. Merely opening the server port is not this feature.</td>
+<td><strong>G3 native iPad discovery and protected enrollment</strong>, following the completed Windows proof on 70: native Bonjour/permission adapter, Keychain enrollment and signed in-place client build</td>
+<td>Both iPads discover and authenticate the intended PC, retain their solo saves, and leave usable solo play when permission is denied or the server is absent. The Windows proof passed four encrypted clients and rejected admissions; it is not mobile pairing or a finished parent setup screen. <a href="implementation/g3-family-lan-2026-09-24.html">Proof and limits</a>.</td>
 </tr>
 <tr>
 <td>2</td>
@@ -933,7 +933,7 @@ Status: pending
 </tr>
 <tr>
 <td>Implementation state</td>
-<td>Both iPads still run solo 56. Windows shared 68 has independent Garden/Creek play, smooth authoritative walking and a qualified fix for the reproduced receive-pool/rejoin failure. Separate solo 67 passed regression. These results do not qualify physical mobile networking, automatic joining or iPad hosting. G1/G2 device, renewal and performance gates remain open.</td>
+<td>Both iPads still run solo 56 and were confirmed connected to the Mac. Windows LAN proof 70 adds native Bonjour discovery, protected enrollment, encrypted four-player admission and usable offline fallback. The user's four-window shared 68 preview and separate solo 67 remain preserved. Physical mobile networking, continuous automatic joining and iPad hosting are not qualified.</td>
 </tr>
 <tr>
 <td>Current research deliverable</td>
@@ -945,15 +945,15 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td><strong>Completed: audit of the goal sheet, plan, source and retained evidence.</strong> Recorded the user's four-window build-68 feedback, “working great!”, and corrected stale claims. This was documentation work; no game build, installation, save edit or new runtime test was performed. <a href="#19-implementation-audit-and-remaining-work">Full implementation audit</a>.</td>
+<td><strong>Completed proof: G3 Windows trusted discovery/admission on 70.</strong> Parent-operated protected enrollments, native Bonjour, certificate-validated DTLS and independent player credentials. Parent UI, mobile adapters and continuous connection orchestration remain open. <a href="implementation/g3-family-lan-2026-09-24.html">Implementation/evidence</a>.</td>
 </tr>
 <tr>
 <td>Latest completed engineering task</td>
-<td>Receive/rejoin reliability on shared 68: eight hard departure/rejoin cycles, network/UI/independent-area regressions and four-walker motion checks passed. The final 180 ms remote buffer passed one normal and two delayed-motion runs; solo 67 passed input/update/recovery. <a href="implementation/g3-rejoin-recovery-2026-09-24.html">Evidence and limits</a>. Four native Windows preview clients received positive human feedback; this is not four physical mobile devices.</td>
+<td>Build 70: 45 rules/native-discovery checks, 11 encrypted-LAN cases, actual solo input/audio fallback and 10 shared UI cases passed. Mac native browsing sees the PC advertisement. An outdated 150 ms UI-test sleep was corrected to await the intentional 180 ms smoothed position; gameplay timing was unchanged. The earlier shared-68 receive fix and movement evidence remain valid historical proofs.</td>
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td><strong>Parent-approved LAN pairing and discovery</strong>, followed by automatic joining on actual mixed devices. Required iPad hosting and automatic recovery remain ahead. The present harness explicitly relaunches returning clients; it does not implement those features.</td>
+<td><strong>Native iPad Bonjour/permission and protected enrollment adapters</strong>, followed by a signed in-place client build and both iPads joining the PC. Then foreground retries, late join/reconnect and the mixed four-device matrix. Required iPad hosting and automatic recovery remain ahead.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -973,7 +973,7 @@ Status: pending
 <p>The folder <code>docs/bluey-research/build-guide-review-2026-09-23</code> records the original source URLs, retrieval evidence and selected excerpts. Earlier package recommendations are research candidates; the actual installed baseline and later qualification are recorded in sections 7 and 19. The precise folder structure, task method, phase order, coverage mapping and acceptance gates are <strong>our implementation plan</strong>, not a claim that a vendor or every company prescribes them.</p>
 <p>No calendar promise is made. After G6, use actual asset/task throughput and discovered defect work to estimate subsequent batches. Keep the work record current so the next session starts from evidence and the next dependency, not from memory or whichever feature seems most interesting that day.</p>
 <h2 id="19-implementation-audit-and-remaining-work">19. Implementation audit and remaining work</h2>
-<p><strong>Audit date: September 24, 2026. Source baseline: <code>879b1bd</code>. Verdict: aligned foundations, unfinished game.</strong> The implementation uses the intended separate project, shared solo/server rules, stable player identities, authoritative items, independent areas and local saves/media. Windows four-player movement and departures now have both automated evidence and the user's positive four-window feedback. Neither that result nor the two iPads' solo checks proves mobile multiplayer, automatic hosting or the complete content goal sheet.</p>
+<p><strong>Audit date: September 24, 2026. Original source baseline: <code>879b1bd</code>; incremental G3 LAN proof added below on build 70. Verdict: aligned foundations, unfinished game.</strong> The implementation uses the intended separate project, shared solo/server rules, stable player identities, authoritative items, independent areas and local saves/media. Windows four-player movement and departures have automated evidence and positive four-window feedback; parent-provisioned Windows discovery/admission now has its own bounded proof. These results do not prove mobile multiplayer, automatic hosting or the complete content goal sheet.</p>
 <p>The audit maps all <strong>54 research chapters and 35 feature IDs</strong> to implementation work. It compares the goal sheet with actual code, package locks, build records and dated device/test reports. It does not rerun the game tests or retest devices. <a href="implementation/evidence/plan-audit-2026-09-24/audit.json">Audit scope, chapter coverage and evidence index</a>. No requirements were removed. No overall percentage is assigned: a passing bucket prototype and a finished daycare story are different sizes of work.</p>
 <p><strong>How to read status:</strong> <strong>Passed proof</strong> means a named, bounded check passed in the stated environment. <strong>Partial</strong> means useful implementation exists but the full requirement is not accepted. <strong>Not built</strong> means research/design only. <strong>Optional later</strong> applies only to explicitly optional work. None of the 35 complete feature requirements is being marked fully accepted today.</p>
 <h3 id="completed-proofs-we-can-build-on">Completed proofs we can build on</h3>
@@ -1010,6 +1010,11 @@ Status: pending
 <td>Four Windows clients share one PC authority; independent Garden/Creek views and exclusive props</td>
 <td>Shared 68: <a href="implementation/evidence/rejoin-recovery-2026-09-24/network-68.json">10 network cases</a>, <a href="implementation/evidence/rejoin-recovery-2026-09-24/garden-ui-68.json">10 UI cases</a>, <a href="implementation/evidence/rejoin-recovery-2026-09-24/areas-68.json">8 area cases</a></td>
 <td>LAN discovery, mobile admission or a complete Creek location</td>
+</tr>
+<tr>
+<td>Trusted native discovery and encrypted family admission on Windows</td>
+<td>Build 70: <a href="implementation/evidence/family-lan-2026-09-24/lan-70.json">11 LAN cases</a>, <a href="implementation/evidence/family-lan-2026-09-24/rules-45.json">45 rules/native checks</a>, <a href="implementation/evidence/family-lan-2026-09-24/offline-input-70.json">offline input</a></td>
+<td>Parent pairing UI, iOS/Android adapters, continuous foreground reconnect, mobile host recovery or IPv6 qualification</td>
 </tr>
 <tr>
 <td>Smoother remote movement under the tested conditions</td>
@@ -1060,8 +1065,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>G3 — PC shared world</strong></td>
-<td><strong>Partial; Windows loopback proof passes</strong></td>
-<td>Parent pairing, native discovery/permissions, automatic connect/reconnect, physical four-device gameplay and sustained measurements.</td>
+<td><strong>Partial; Windows loopback and encrypted discovery/admission proofs pass</strong></td>
+<td>Parent setup UI, native mobile enrollment/discovery/permissions, automatic foreground connect/reconnect, physical four-device gameplay and sustained measurements.</td>
 </tr>
 <tr>
 <td><strong>G4 — iPad hosting</strong></td>
@@ -1128,8 +1133,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>Windows</strong></td>
-<td>Shared <strong>68</strong>, separate solo <strong>67</strong>; four native clients plus headless authority; source/artifact records retained. <a href="implementation/g3-rejoin-recovery-2026-09-24.html">Qualification</a></td>
-<td>Actual LAN/mobile traffic, pairing, discovery and production server startup/backup operations.</td>
+<td>Live preview <strong>68</strong>, separate solo <strong>67</strong>, isolated LAN proof <strong>70</strong>; four encrypted clients, Bonjour, DPAPI enrollment and offline input checks. <a href="implementation/g3-family-lan-2026-09-24.html">Latest qualification</a></td>
+<td>Physical mobile data traffic, parent pairing UI, continuous rejoin, alternate/IPv6 endpoints and production startup/backup operations.</td>
 </tr>
 <tr>
 <td><strong>Android emulator</strong></td>
@@ -1298,8 +1303,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>AUTO-01</strong></td>
-<td><strong>Not built:</strong> same-PC launcher is a test convenience</td>
-<td>Native foreground discovery, one-time parent pairing, automatic launch/rejoin, permission handling and usable offline fallback. G3.</td>
+<td><strong>Partial:</strong> Windows parent-provisioned Bonjour discovery and encrypted launch admission; unavailable server opens a tested solo branch</td>
+<td>Native iOS/Android discovery/storage, parent enrollment UI, continuous foreground retries/rejoin, permission/lifecycle cases and safe solo/shared transitions. G3.</td>
 </tr>
 <tr>
 <td><strong>AUTO-02</strong></td>
@@ -1383,7 +1388,7 @@ Status: pending
 <p>Code files below are under <code>Unity/FamilyPlayset/Assets/FamilyPlayset/Code</code>; the audit index records their exact relative paths and hashes.</p>
 <ol>
 <li><strong>The rule boundary is sound, but content is still hardcoded.</strong> <code>SoloWorld.cs</code>, <code>FamilySession.cs</code> and <code>SharedMovement.cs</code> keep world rules separate from Unity presentation. Current validation expects five solo or ten shared props and two named areas. Add versioned content definitions and migrations before multiplying recipes/worlds.</li>
-<li><strong>Networking is deliberately a loopback test implementation.</strong> <code>NetworkProbe.cs</code> binds <code>127.0.0.1</code> and uses lab admission credentials. Its launcher does not discover devices or establish family trust. Production pairing must not broadcast or transmit a long-lived family secret as an unprotected connection payload. Native permissions and platform discovery still need implementation.</li>
+<li><strong>Networking now has two explicit qualification paths.</strong> The original loopback preview stays bound to <code>127.0.0.1</code> with lab credentials. Windows LAN proof 70 requires protected parent enrollment, native Bonjour and certificate-validated encryption before player credentials are sent. It remains an isolated harness: native mobile permissions/storage, parent setup UI, continuous retries and recovery remain unbuilt. <a href="implementation/g3-family-lan-2026-09-24.html">Latest scope and evidence</a>.</li>
 <li><strong>Client snapshots are not complete recovery copies.</strong> Current views omit action receipts; clients do not persist the full authority checkpoint. <code>CheckpointStore.cs</code> supplies checksums and backup/pending recovery for one writer, not peer election, a complete operation history or branch merging. Walking checkpoints are approximately one second apart plus stops; hard loss can restore the last durable position rather than the last rendered frame.</li>
 <li><strong>Area independence is implemented before streaming optimization.</strong> The server sends full small-world snapshots and clients filter the displayed area. Final content needs area interest, loading/memory ownership and lightweight offscreen activity/NPC simulation; do not render all six worlds on the A10.</li>
 <li><strong>Station-tool return on travel is a narrow policy.</strong> It prevents carrying this area's test bucket away, but does not implement portable toys, borrowed containers, inactivity returns or protected creations. Add category-specific behavior before claiming general cross-area carrying or tidy bedrooms.</li>
@@ -1399,4 +1404,4 @@ Status: pending
 <li>Recorded known Android/Mac versions, corrected the two iPads' OS mapping from device evidence, and clarified that Windows exports to Xcode on the Mac.</li>
 <li>Separated the original research findings and proposed package choices from current installed code and dated qualification. Historical reports remain evidence, not a second competing plan.</li>
 </ul></article></div>
-<footer class="footer"><p>Production research dated September 23; implementation audit updated September 24. The architecture and gates are our project method. Completed checks link to dated evidence; the audit itself made no app changes or new device tests.</p><a href="family-playset-build-guide-2026-09-23.md">Editable build guide</a><a href="bluey-game-research-2026-09-23.html">Feature goal sheet</a><a href="family-playset-package-research-2026-09-23.html">Package research</a></footer></main></body></html>
+<footer class="footer"><p>Production research dated September 23; implementation audit updated September 24. The architecture and gates are our project method. Completed checks link to dated evidence; the original audit itself made no app changes; later implementation results have separate records.</p><a href="family-playset-build-guide-2026-09-23.md">Editable build guide</a><a href="bluey-game-research-2026-09-23.html">Feature goal sheet</a><a href="family-playset-package-research-2026-09-23.html">Package research</a></footer></main></body></html>

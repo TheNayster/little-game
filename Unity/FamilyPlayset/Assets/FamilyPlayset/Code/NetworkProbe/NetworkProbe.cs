@@ -12,8 +12,8 @@ using UnityEngine;
 
 namespace LittleWeeps.NetworkProbe
 {
-    // Isolated Windows loopback qualification. No LAN discovery, family pairing,
-    // mobile authority selection or normal-game save access is implemented here.
+    // Loopback qualification remains the default. An explicit protected family
+    // enrollment enables the separate Windows LAN proof; never widen the lab bind.
     public sealed class NetworkProbe : MonoBehaviour
     {
         private const int Protocol=3, Content=3, MaxWireBytes=16384;
@@ -24,6 +24,11 @@ namespace LittleWeeps.NetworkProbe
         private string root,output,epoch;
         private NetworkManager network;
         private UnityTransport transport;
+        private FamilyPairing pairing;
+        private WindowsBonjour discovery;
+        private double discoveryDeadline,admissionDeadline;
+        private bool guestStarted,presentationStarted,soloFallback;
+        public bool FamilyLan=>pairing!=null;
         private double previousFrame,nextConnectionEvidence,lastTransportData;
         private double maxFrameGap;
         private long receivedDataEvents,receivedDataBytes;
@@ -70,13 +75,13 @@ namespace LittleWeeps.NetworkProbe
         [Serializable] public sealed class Slot {public string profile,token;}
         [Serializable] public sealed class Config
         {
-            public string runId,instanceId,role,profile,token;
+            public string runId,instanceId,role,profile,token,pairingPath;
             public int port,protocol=Protocol,content=Content;
             public Slot[] slots;
             public bool presentation,verifyGarden,interactive;
             public int testMotionDelayMs,testMotionJitterMs,testMotionDropEvery;
         }
-        [Serializable] private sealed class Hello {public string runId,profile,token;public int protocol,content;}
+        [Serializable] private sealed class Hello {public string runId,profile,token,family,authority;public int protocol,content;}
         [Serializable] public sealed class Control {public int serial;public string kind;public Request request;}
         [Serializable] public sealed class Request {public string requestId;public int protocol=Protocol;public SoloCommand command;}
         [Serializable] public sealed class State
@@ -106,6 +111,14 @@ namespace LittleWeeps.NetworkProbe
                     new DirectoryInfo(root).Name!=config.runId || config.port<1024 || config.port>65535 ||
                     (config.role!="server" && config.role!="client"))throw new InvalidDataException("Invalid isolated configuration.");
                 output=Path.Combine(root,config.instanceId);Directory.CreateDirectory(output);
+                if(!string.IsNullOrEmpty(config.pairingPath))
+                {
+                    pairing=JsonUtility.FromJson<FamilyPairing>(WindowsPairingVault.Read(config.pairingPath));
+                    if(pairing==null)throw new InvalidDataException("Missing enrollment.");pairing.Validate();
+                    if(pairing.role!=config.role || pairing.worldId!=config.runId)throw new InvalidDataException("Enrollment does not match this world/role.");
+                    if(config.role=="server")config.slots=pairing.members.Select(m=>new Slot{profile=m.profile,token=m.credentialHash}).ToArray();
+                    else {config.profile=pairing.profile;config.token=pairing.credential;}
+                }
                 var go=new GameObject("Loopback Network",typeof(NetworkManager),typeof(UnityTransport));
                 network=go.GetComponent<NetworkManager>();transport=go.GetComponent<UnityTransport>();
                 transport.OnTransportEvent+=TraceTransport;
@@ -115,26 +128,86 @@ namespace LittleWeeps.NetworkProbe
                 // Explicit loopback bind prevents this development protocol from
                 // becoming a LAN service. Tokens below are test credentials only.
                 transport.SetConnectionData(true,"127.0.0.1",(ushort)config.port,"127.0.0.1");
+                if(pairing!=null)
+                {
+                    transport.UseEncryption=true;
+                    if(config.role=="server")
+                    {
+                        transport.SetServerSecrets(pairing.certificate,pairing.privateKey);
+                        transport.SetConnectionData(true,"127.0.0.1",(ushort)config.port,"0.0.0.0");
+                    }
+                    else transport.SetClientSecrets(pairing.serverName,pairing.caCertificate);
+                }
                 transport.MaxPayloadSize=MaxWireBytes;transport.DisconnectTimeoutMS=2500;transport.HeartbeatTimeoutMS=400;
                 // Runtime-created managers have no inspector-serialized config.
                 network.NetworkConfig=new NetworkConfig{NetworkTransport=transport};
                 network.NetworkConfig.EnableSceneManagement=false;network.NetworkConfig.ConnectionApproval=true;
                 network.NetworkConfig.ForceSamePrefabs=false;network.NetworkConfig.TickRate=30;
                 network.OnClientConnectedCallback+=Connected;network.OnClientDisconnectCallback+=Disconnected;
-                if(config.role=="server")StartAuthority();else StartGuest();
-                network.CustomMessagingManager.RegisterNamedMessageHandler(CommandMessage,ReceiveCommand);
-                network.CustomMessagingManager.RegisterNamedMessageHandler(StateMessage,ReceiveState);
-                network.CustomMessagingManager.RegisterNamedMessageHandler(PoseMessage,ReceivePose);
-                network.CustomMessagingManager.RegisterNamedMessageHandler(WalkMessage,ReceiveWalk);
-                network.CustomMessagingManager.RegisterNamedMessageHandler(MotionMessage,ReceiveMotion);
-                if(config.role=="client" && config.presentation)
+                if(config.role=="server")StartAuthority();
+                else if(pairing==null)StartGuest();
+                else
                 {
-                    var garden=gameObject.AddComponent<NetworkGardenSession>();garden.Initialize(this);
-                    var screen=gameObject.AddComponent<LittleWeeps.Client.SoloScreen>();screen.Configure(garden);
-                    if(config.verifyGarden)gameObject.AddComponent<NetworkGardenVerification>();
+                    try
+                    {
+                        discovery=new WindowsBonjour(pairing,Protocol,Content);discovery.Browse();
+                        discoveryDeadline=Time.realtimeSinceStartupAsDouble+10;WriteStatus("discovering","");
+                    }
+                    catch(Exception){FallbackSolo("discovery-unavailable");}
                 }
             }
             catch(Exception e){Fail(e);}
+        }
+        private void RegisterMessages()
+        {
+            network.CustomMessagingManager.RegisterNamedMessageHandler(CommandMessage,ReceiveCommand);
+            network.CustomMessagingManager.RegisterNamedMessageHandler(StateMessage,ReceiveState);
+            network.CustomMessagingManager.RegisterNamedMessageHandler(PoseMessage,ReceivePose);
+            network.CustomMessagingManager.RegisterNamedMessageHandler(WalkMessage,ReceiveWalk);
+            network.CustomMessagingManager.RegisterNamedMessageHandler(MotionMessage,ReceiveMotion);
+        }
+        private void ShowShared()
+        {
+            if(presentationStarted || !config.presentation)return;presentationStarted=true;
+            var garden=gameObject.AddComponent<NetworkGardenSession>();garden.Initialize(this);
+            var screen=gameObject.AddComponent<LittleWeeps.Client.SoloScreen>();screen.Configure(garden);
+            if(config.verifyGarden)gameObject.AddComponent<NetworkGardenVerification>();
+        }
+        private void FallbackSolo(string reason)
+        {
+            if(soloFallback || presentationStarted || config.role!="client")return;
+            soloFallback=true;discovery?.Dispose();discovery=null;network?.Shutdown();
+            WriteStatus("solo-available",reason);
+            if(config.presentation)
+            {
+                if(FindAnyObjectByType<AudioListener>()==null)gameObject.AddComponent<AudioListener>();
+                if(FindAnyObjectByType<Camera>()==null)
+                {
+                    var camera=new GameObject("Offline Garden Camera",typeof(Camera)).GetComponent<Camera>();
+                    camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.95f,.94f,.86f);camera.transform.position=new Vector3(0,0,-10);
+                }
+                var screen=gameObject.AddComponent<LittleWeeps.Client.SoloScreen>();
+                // This branch never writes the authority checkpoint or the
+                // previously qualified unpaired solo save.
+                screen.ConfigureOfflineBranch(config.runId,config.profile);
+            }
+        }
+        private void TickDiscovery()
+        {
+            if(pairing==null || soloFallback)return;
+            discovery?.Tick(Time.realtimeSinceStartupAsDouble);
+            if(config.role=="server")return;
+            if(!guestStarted)
+            {
+                var endpoint=discovery?.Take();
+                if(endpoint!=null)
+                {
+                    transport.SetConnectionData(true,endpoint.address,endpoint.port);
+                    TraceConnection("discovered",0,"native-bonjour-ipv4");StartGuest();
+                }
+                else if(discovery?.Error!=0 || Time.realtimeSinceStartupAsDouble>discoveryDeadline)FallbackSolo("discovery-unavailable");
+            }
+            else if(!ConnectedToServer && Time.realtimeSinceStartupAsDouble>admissionDeadline)FallbackSolo("admission-unavailable");
         }
         private void StartAuthority()
         {
@@ -154,13 +227,17 @@ namespace LittleWeeps.NetworkProbe
             motionClock=Time.realtimeSinceStartupAsDouble;nextMotionSend=motionClock;
             network.ConnectionApprovalCallback=Approve;
             if(!network.StartServer())throw new InvalidOperationException("Loopback server did not start.");
+            RegisterMessages();
+            if(pairing!=null){discovery=new WindowsBonjour(pairing,Protocol,Content);discovery.Advertise((ushort)config.port);}
             WriteStatus("listening","");Publish();
         }
         private void StartGuest()
         {
-            var hello=new Hello{runId=config.runId,profile=config.profile,token=config.token,protocol=config.protocol,content=config.content};
+            var hello=new Hello{runId=config.runId,profile=config.profile,token=config.token,protocol=config.protocol,content=config.content,family=pairing?.familyId,authority=pairing?.authorityId};
             network.NetworkConfig.ConnectionData=Utf8.GetBytes(JsonUtility.ToJson(hello));
             if(!network.StartClient())throw new InvalidOperationException("Loopback client did not start.");
+            guestStarted=true;admissionDeadline=Time.realtimeSinceStartupAsDouble+10;RegisterMessages();
+            if(pairing==null)ShowShared();
             WriteStatus("connecting","");
         }
         private void Approve(NetworkManager.ConnectionApprovalRequest request,NetworkManager.ConnectionApprovalResponse response)
@@ -173,7 +250,9 @@ namespace LittleWeeps.NetworkProbe
                 if(hello==null || hello.runId!=config.runId)return;
                 if(hello.protocol!=Protocol || hello.content!=Content){response.Reason="incompatible-version";return;}
                 var slot=config.slots.FirstOrDefault(s=>s.profile==hello.profile);
-                if(slot==null || slot.token!=hello.token){response.Reason="unpaired-profile";return;}
+                var admitted=pairing==null?slot!=null && slot.token==hello.token:
+                    transport.UseEncryption && pairing.Admits(hello.family,hello.authority,hello.runId,hello.profile,hello.token);
+                if(!admitted){response.Reason="unpaired-profile";return;}
                 response.Approved=session.Attach(request.ClientNetworkId,hello.profile,out var reason);response.Reason=reason;
             }
             catch(ArgumentException){response.Reason="invalid-admission";}
@@ -183,17 +262,19 @@ namespace LittleWeeps.NetworkProbe
         {
             TraceConnection("connected",client,"");
             if(config.role=="server")Publish();
-            else if(client==network.LocalClientId)WriteStatus("connected","");
+            else if(client==network.LocalClientId)
+            {discovery?.Dispose();discovery=null;WriteStatus("connected","");ShowShared();}
         }
         private void Disconnected(ulong client)
         {
             TraceConnection("disconnected",client,network.DisconnectReason??"");
-            if(stopping || failed)return;
+            if(stopping || failed || soloFallback)return;
             try
             {
                 if(config.role=="server")
                 {if(session.TryPlayer(client,out var actor))movement.Forget(actor);if(session.Detach(client)){SaveAuthority();Publish();}}
-                else if(client==network.LocalClientId){WriteStatus("disconnected",network.DisconnectReason??"");LostConnection?.Invoke();}
+                else if(client==network.LocalClientId)
+                {WriteStatus("disconnected",network.DisconnectReason??"");LostConnection?.Invoke();if(pairing!=null)FallbackSolo("admission-unavailable");}
             }
             catch(Exception e){Fail(e);}
         }
@@ -370,6 +451,7 @@ namespace LittleWeeps.NetworkProbe
         private void Update()
         {
             if(config==null || output==null || failed || stopping)return;
+            try{TickDiscovery();}catch(Exception) when(pairing!=null && config.role=="client" && !presentationStarted){FallbackSolo("discovery-unavailable");}
             UpdateConnectionEvidence();
             try{TickMovement(Time.realtimeSinceStartupAsDouble);}catch(Exception e){Fail(e);return;}
             if(Time.realtimeSinceStartup-started>(config.interactive?7200:240)){Fail(new TimeoutException("Isolated probe lifetime exceeded."));return;}
@@ -439,6 +521,6 @@ namespace LittleWeeps.NetworkProbe
         private void Fail(Exception error)
         {failed=true;Debug.LogException(error);WriteStatus("failed",error.Message);Application.Quit(1);}
         private void Stop(){if(config.role=="server" && positionDirty)SaveAuthority();stopping=true;network.Shutdown();WriteStatus("stopped","");Application.Quit(0);}
-        private void OnApplicationQuit(){if(!failed && config?.role=="server" && positionDirty)SaveAuthority();stopping=true;if(network!=null)network.Shutdown();authorityLock?.Dispose();}
+        private void OnApplicationQuit(){if(!failed && config?.role=="server" && positionDirty)SaveAuthority();stopping=true;discovery?.Dispose();if(network!=null)network.Shutdown();authorityLock?.Dispose();}
     }
 }

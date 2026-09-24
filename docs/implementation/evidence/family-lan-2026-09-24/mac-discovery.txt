@@ -1,0 +1,5 @@
+Browsing for _lw-playset._udp.local.
+DATE: ---Thu 24 Sep 2026---
+15:37:19.029  ...STARTING...
+Timestamp     A/R    Flags  if Domain               Service Type         Instance Name
+15:37:19.029  Add        2  14 local.               _lw-playset._udp.    LW-c240d6c8475c433c9c5ca6737c56beec

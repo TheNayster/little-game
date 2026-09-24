@@ -31,6 +31,12 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Image> targetRings = new Dictionary<string, Image>();
         private readonly Dictionary<string, GameObject> targetArrows = new Dictionary<string, GameObject>();
         private CheckpointStore store;
+        private string offlineBranch,offlineActor;
+        public void ConfigureOfflineBranch(string world,string profile)
+        {
+            if(safe!=null || !FamilyPairing.Id(world) || !FamilyPairing.Id(profile))throw new ArgumentException("Invalid offline branch.");
+            offlineBranch="paired-"+world+"-"+profile;offlineActor=profile;
+        }
         private RectTransform safe, avatar, stickKnob, stick;
         private Image head, body;
         private Text message, activity, movementLabel, saveLabel, voiceLabel, listenLabel;
@@ -94,14 +100,14 @@ namespace LittleWeeps.Client
                 Actor=shared.Actor;connecting=Label(safe,"Joining your shared garden…",32,Vector2.zero,new Vector2(1000,160));
                 return;
             }
-            SavePath = Path.Combine(Application.persistentDataPath,"SoloPrototype",VerifyRun ?? "family-local","world.save");
+            SavePath = Path.Combine(Application.persistentDataPath,"SoloPrototype",VerifyRun ?? offlineBranch ?? "family-local","world.save");
             store = new CheckpointStore(SavePath, ValidPayload);
             try
             {
                 var loaded = store.Load(); LoadedStatus = loaded.Status;
                 if (loaded.Status == CheckpointStatus.Corrupt || loaded.Status == CheckpointStatus.Unsupported)
                     throw new InvalidDataException("Existing save needs recovery or a compatible version.");
-                World = loaded.Status == CheckpointStatus.Missing ? SoloWorld.Create(Guid.NewGuid().ToString("N")) : SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(loaded.Payload));
+                World = loaded.Status == CheckpointStatus.Missing ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(loaded.Payload));
                 Actor = World.Snapshot().players[0].id;
             }
             catch (Exception e)
@@ -283,7 +289,7 @@ namespace LittleWeeps.Client
         }
         // Preferences belong to this device, not the shared world/checkpoint. Test
         // players use a fresh GUID key prefix and never alter the family's keys.
-        private string PreferenceKey(string name)=>(shared!=null?shared.PreferenceScope:VerifyRun==null?"solo.prototype.":"solo.verify."+VerifyRun+".")+name;
+        private string PreferenceKey(string name)=>(shared!=null?shared.PreferenceScope:VerifyRun!=null?"solo.verify."+VerifyRun+".":offlineBranch!=null?offlineBranch+".":"solo.prototype.")+name;
         public void ToggleVoice()
         {
             Narration.SetVoiceEnabled(!Narration.VoiceEnabled);

@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "utc": "2026-09-24T20:33:30.407343+00:00",
+  "build": 69,
+  "runId": "4c1a0a79ed424da3ab07c50f2444034d",
+  "checks": [
+    {
+      "check": "loopback server and two independent clients",
+      "passed": true,
+      "serverPid": 39868,
+      "bind": [
+        "UDP    127.0.0.1:51437        *:*                                    39868"
+      ],
+      "worldId": "c0cdc5349f7b4c2c9b90b9bec03e4a62"
+    },
+    {
+      "check": "bad credentials, incompatible version, duplicate player and fifth profile rejected without reset",
+      "passed": true
+    },
+    {
+      "check": "contested bucket has exactly one holder; avatar switch keeps the hold",
+      "passed": true,
+      "winner": "player-2"
+    },
+    {
+      "check": "four native clients converge; late join sees current holder and water",
+      "passed": true
+    },
+    {
+      "check": "commands cannot impersonate another admitted player",
+      "passed": true
+    },
+    {
+      "check": "independent actions continue and delayed duplicate pour applies once",
+      "passed": true
+    },
+    {
+      "check": "hard-killed client releases only its hold while others keep playing",
+      "passed": true,
+      "observedRecoverySeconds": 2.547
+    },
+    {
+      "check": "returning player retains identity and replay history",
+      "passed": true
+    },
+    {
+      "check": "graceful leave does not interrupt remaining client commands",
+      "passed": true
+    },
+    {
+      "check": "server hard-stop/restart restores committed world with a new epoch and cleared stale holds",
+      "passed": true
+    }
+  ],
+  "separateClientProcesses": 4,
+  "physicalDevicesAccessed": false,
+  "loopbackOnly": true,
+  "automaticDiscoveryImplemented": false,
+  "mobileHostingImplemented": false,
+  "independentAreasExercised": false,
+  "limitation": "Windows native process qualification only. Reconnect/restart was driven by the test harness, not automatic host recovery."
+}

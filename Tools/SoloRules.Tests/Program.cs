@@ -16,9 +16,48 @@ static class Program
     static int failures;
     static int Main(string[] args)
     {
-        root = Path.GetFullPath(args.Length == 1 ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory."));
+        var nativeBonjour=args.Length==2 && args[1]=="--bonjour";
+        root = Path.GetFullPath(args.Length == 1 || nativeBonjour ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory and optional --bonjour."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        Test("family admission rejects another family authority world profile or credential",()=>{
+            var family=Guid.NewGuid().ToString("N");var authority=Guid.NewGuid().ToString("N");var world=Guid.NewGuid().ToString("N");
+            var secret=new string('a',64);var roster=Enumerable.Range(0,4).Select(i=>new FamilyMember{profile=Guid.NewGuid().ToString("N"),credentialHash=FamilyPairing.Hash(secret)}).ToArray();
+            var paired=new FamilyPairing{familyId=family,authorityId=authority,worldId=world,role="server",serverName="lw-"+authority+".local",caCertificate="fixture",certificate="fixture",privateKey="fixture",members=roster};
+            paired.Validate();var player=roster[0].profile;
+            Check(paired.Admits(family,authority,world,player,secret));
+            Check(!paired.Admits(Guid.NewGuid().ToString("N"),authority,world,player,secret));
+            Check(!paired.Admits(family,Guid.NewGuid().ToString("N"),world,player,secret));
+            Check(!paired.Admits(family,authority,Guid.NewGuid().ToString("N"),player,secret));
+            Check(!paired.Admits(family,authority,world,Guid.NewGuid().ToString("N"),secret));
+            Check(!paired.Admits(family,authority,world,player,new string('b',64)));
+            Check(!paired.Admits(family,authority,world,player,null));
+            Check(!paired.Admits(family,authority,world,player,new string('a',100000)));
+            paired.members[0].credentialHash=new string('b',64);Check(!paired.Admits(family,authority,world,player,secret));
+        });
+        Test("discovery matching is bounded to enrolled authority family world and versions",()=>{
+            var paired=new FamilyPairing{familyId=Guid.NewGuid().ToString("N"),authorityId=Guid.NewGuid().ToString("N"),worldId=Guid.NewGuid().ToString("N")};
+            var ad=new FamilyAdvertisement{family=paired.familyId,authority=paired.authorityId,world=paired.worldId,schema=1,protocol=3,content=3};
+            Check(ad.Matches(paired,3,3));Check(!ad.Matches(paired,2,3));Check(!ad.Matches(paired,3,2));
+            ad.authority=Guid.NewGuid().ToString("N");Check(!ad.Matches(paired,3,3));ad.authority=paired.authorityId;
+            ad.family=Guid.NewGuid().ToString("N");Check(!ad.Matches(paired,3,3));ad.family=paired.familyId;
+            ad.world=Guid.NewGuid().ToString("N");Check(!ad.Matches(paired,3,3));
+        });
+        Test("player enrollment cannot contain authority private material or a malformed identity",()=>{
+            var paired=new FamilyPairing{familyId=Guid.NewGuid().ToString("N"),authorityId=Guid.NewGuid().ToString("N"),worldId=Guid.NewGuid().ToString("N"),role="client",profile=Guid.NewGuid().ToString("N"),credential=new string('a',64),caCertificate="fixture"};
+            paired.serverName="lw-"+paired.authorityId+".local";paired.Validate();
+            paired.privateKey="server key";Throws(paired.Validate);paired.privateKey=null;
+            paired.members=new[]{new FamilyMember()};Throws(paired.Validate);paired.members=null;
+            paired.serverName="another.local";Throws(paired.Validate);
+        });
+        if(nativeBonjour)Test("native Bonjour advertises and resolves only the enrolled authority without leaked handles",()=>{
+            var pair=new FamilyPairing{familyId=Guid.NewGuid().ToString("N"),authorityId=Guid.NewGuid().ToString("N"),worldId=Guid.NewGuid().ToString("N")};
+            using var advertiser=new WindowsBonjour(pair,3,3);using var browser=new WindowsBonjour(pair,3,3);
+            advertiser.Advertise(49199);browser.Browse();var clock=System.Diagnostics.Stopwatch.StartNew();WindowsBonjour.Endpoint endpoint=null;
+            while(clock.Elapsed.TotalSeconds<12 && endpoint==null){advertiser.Tick(clock.Elapsed.TotalSeconds);browser.Tick(clock.Elapsed.TotalSeconds);endpoint=browser.Take();System.Threading.Thread.Sleep(10);}
+            Check(advertiser.Registered && endpoint!=null && endpoint.port==49199 && System.Net.IPAddress.TryParse(endpoint.address,out _));
+            advertiser.Dispose();browser.Dispose();Check(advertiser.HandleCount==0 && browser.HandleCount==0);
+        });
         Test("walking advances at server speed independent of packet count and transactions",()=>{
             var w=SoloWorld.WithAreas(SoloWorld.Create("first","second"));var s=new FamilySession(w);s.Attach(1,"first",out _);s.Attach(2,"second",out _);var m=new MovementAuthority(w,s);
             var revision=w.Revision;var receiptCount=w.Snapshot().receipts.Length;var start=w.ReadPlayer("first").x;

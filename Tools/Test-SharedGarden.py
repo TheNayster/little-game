@@ -31,9 +31,14 @@ def main():
 
         first.input('press', role='bucket-1'); wait(lambda: not first.input('inspect')['pending'], 'grab acknowledged')
         require(toy('bucket-1')['holder'] == first.profile, 'Pickup not admitted')
-        first.input('move', x=480, y=280); time.sleep(.15)
-        preview = second.input('inspect'); rendered = next(t for t in preview['toys'] if t['id'] == 'bucket-1')
-        require(abs(rendered['position']['x'] - 480) < 2 and 'Player 1 has it' in rendered['label'], 'Sibling did not render accepted drag/holder')
+        first.input('move', x=480, y=280)
+        def remote_bucket_arrived():
+            rendered = next(t for t in second.input('inspect')['toys'] if t['id'] == 'bucket-1')
+            return abs(rendered['position']['x'] - 480) < 2 and abs(rendered['position']['y'] - 280) < 2 and 'Player 1 has it' in rendered['label']
+        # Remote poses intentionally render behind the authority (180 ms). A
+        # 150 ms sleep depended on incidental test/IO overhead to pass. Require
+        # the actual position AND ownership, with a bounded failure deadline.
+        wait(remote_bucket_arrived, 'sibling rendered accepted drag and holder', seconds=1.5)
         blocked = second.input('press', role='bucket-1'); second.input('release', role='bucket-1')
         require('friend is using' in blocked['feedback'] and toy('bucket-1')['holder'] == first.profile, 'Contested UI pickup did not explain rejection')
         first.input('release', x=810, y=330); settled(first)

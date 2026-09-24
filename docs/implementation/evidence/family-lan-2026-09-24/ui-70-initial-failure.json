@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "build": 70,
+  "runId": "4c73cb823fe4481ca9ba5619f7bdaa3e",
+  "checks": [
+    {
+      "check": "two native gardens draw both connected players",
+      "passed": true
+    },
+    {
+      "check": "release before pickup acknowledgement finishes exactly once without a stuck hold",
+      "passed": true
+    }
+  ],
+  "error": "Sibling did not render accepted drag/holder"
+}
