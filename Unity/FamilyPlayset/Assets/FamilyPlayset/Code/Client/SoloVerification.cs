@@ -32,6 +32,10 @@ namespace LittleWeeps.Client
                 VerifyLayout();result.layoutBounds=true;
                 Check(screen.Narration.Ready,"Bundled English narration did not load.");result.narrationLoaded=true;
                 Check(FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Count(l=>l.enabled && l.gameObject.activeInHierarchy)==1,"Scene needs exactly one active audio listener.");
+                if(screen.VerifyMode=="settings-seed" || screen.VerifyMode=="settings-resume")
+                    await VerifySettings(result);
+                else
+                {
                 screen.Narration.Speak("garden");
                 var speaker=screen.Narration.GetComponent<AudioSource>();
                 await Wait(()=>speaker.isPlaying && speaker.timeSamples>0,"Muted narration playback");
@@ -136,6 +140,7 @@ namespace LittleWeeps.Client
                     Check(screen.LoadedStatus==(screen.VerifyMode=="recover"?CheckpointStatus.Recovered:CheckpointStatus.Loaded),"Unexpected recovery path.");
                     screen.SaveNow();result.relaunch=true;
                 }
+                }
                 Check(failure==null,failure??"Runtime error.");
                 result.worldId=screen.World.Snapshot().worldId;result.playerId=screen.Actor;result.revision=screen.World.Revision;
                 result.loadedStatus=screen.LoadedStatus.ToString();result.passed=true;
@@ -144,6 +149,69 @@ namespace LittleWeeps.Client
             result.utc=DateTime.UtcNow.ToString("O");
             File.WriteAllText(Path.Combine(Path.GetDirectoryName(screen.SavePath),screen.VerifyMode+".json"),JsonUtility.ToJson(result,true));
             Debug.Log("LITTLE_WEEPS_SOLO_VERIFY "+JsonUtility.ToJson(result));Application.Quit(result.passed?0:1);
+        }
+        private async Task VerifySettings(Record result)
+        {
+            var speaker=screen.Narration.GetComponent<AudioSource>();
+            if(screen.VerifyMode=="settings-seed")
+            {
+                Check(screen.LoadedStatus==CheckpointStatus.Missing && screen.Narration.VoiceEnabled && !screen.JoystickMode,"Fresh preferences should be voice on, tap to walk.");
+                screen.Listen();await Wait(()=>speaker.isPlaying && speaker.timeSamples>0,"Voice before disabling");
+                var before=JsonUtility.ToJson(screen.World.Snapshot());
+                screen.ToggleVoice();Check(!speaker.isPlaying && !screen.Narration.VoiceEnabled,"Disabling speech did not stop it immediately.");
+                Check(JsonUtility.ToJson(screen.World.Snapshot())==before,"Local voice preference changed the world.");
+                result.voiceImmediateStop=true;
+            }
+            else
+            {
+                var seed=JsonUtility.FromJson<Record>(File.ReadAllText(Path.Combine(Path.GetDirectoryName(screen.SavePath),"settings-seed.json")));
+                Check(seed.passed && screen.LoadedStatus==CheckpointStatus.Loaded,"Settings seed did not load.");
+                Check(!screen.Narration.VoiceEnabled && screen.JoystickMode,"Device preferences did not survive relaunch.");
+                Check(screen.World.Snapshot().worldId==seed.worldId && screen.Actor==seed.playerId && Player().avatar=="orange-pup" && Player().activity=="garden","Saved play changed during preference relaunch.");
+                result.preferencesRestored=true;
+            }
+            screen.Listen();screen.Narration.Speak("cleanup");await Task.Delay(150);
+            Check(!speaker.isPlaying,"Disabled speech replayed a hint.");result.mutedReplayBlocked=true;
+            screen.SetMenu(true);Canvas.ForceUpdateCanvases();
+            var original=JsonUtility.ToJson(screen.World.Snapshot());
+            var hostPointers=InputSystem.devices.Where(d=>(d is Mouse || d is Pen) && d.enabled).ToArray();
+            foreach(var device in hostPointers)InputSystem.DisableDevice(device);
+            InputSystem.RegisterLayout("{\"name\":\"SoloSettingsMouse\",\"extend\":\"Mouse\",\"runInBackground\":\"enabled\"}");
+            var mouse=(Mouse)InputSystem.AddDevice("SoloSettingsMouse");
+            try
+            {
+                var button=FindObjectsByType<Button>(FindObjectsSortMode.None).Single(b=>b.name=="Voice setting");
+                await MouseClick(mouse,button);
+                Check(screen.Narration.VoiceEnabled && !speaker.isPlaying,"Enabling voice should wait for the next requested hint.");
+                screen.SetMenu(false);screen.Listen();await Wait(()=>speaker.isPlaying && speaker.timeSamples>0,"Reenabled narration");
+                screen.SetMenu(true);Check(!speaker.isPlaying,"Menu failed to stop the new hint.");
+                await MouseClick(mouse,button);
+                Check(!screen.Narration.VoiceEnabled && !speaker.isPlaying,"Menu voice button did not switch speech off.");
+                Check(JsonUtility.ToJson(screen.World.Snapshot())==original,"Voice menu changed shared world state.");
+                result.voiceMenuInput=true;result.voiceReenabled=true;result.preferencesLocalOnly=true;
+            }
+            finally
+            {
+                InputSystem.RemoveDevice(mouse);InputSystem.RemoveLayout("SoloSettingsMouse");
+                foreach(var device in hostPointers)InputSystem.EnableDevice(device);
+            }
+            screen.SetMenu(false);
+            if(screen.VerifyMode=="settings-seed")
+            {screen.ToggleMovement();screen.StartActivity("garden");screen.ChooseAvatar("orange-pup");}
+            screen.Listen();await Task.Delay(150);
+            Check(!speaker.isPlaying,"Activity or movement triggered speech while disabled.");
+            screen.SaveNow();result.narrationPlayback=true;
+        }
+        private async Task MouseClick(Mouse mouse,Button button)
+        {
+            Canvas.ForceUpdateCanvases();
+            var point=RectTransformUtility.WorldToScreenPoint(null,button.transform.position);
+            // Reactivating a menu rebuilds its graphics on the next canvas update.
+            // Wait for the real raycast target before injecting the next click.
+            await Wait(()=>Hit(point)==button.gameObject,"Settings button raycast "+button.name);
+            InputSystem.QueueStateEvent(mouse,new MouseState{position=point});await Task.Delay(120);
+            InputSystem.QueueStateEvent(mouse,new MouseState{position=point}.WithButton(MouseButton.Left));await Task.Delay(120);
+            InputSystem.QueueStateEvent(mouse,new MouseState{position=point});await Task.Delay(150);
         }
         private SoloPlayer Player()=>screen.World.Snapshot().players[0];
         private void VerifyLayout()
@@ -190,7 +258,7 @@ namespace LittleWeeps.Client
         private async Task Wait(Func<bool> condition,string check,float seconds=10){var until=Time.realtimeSinceStartup+seconds;while(!condition()){Check(failure==null && Time.realtimeSinceStartup<until,check+" failed/timed out: "+failure);await Task.Delay(30);}}
         private static void Check(bool condition,string text){if(!condition)throw new InvalidOperationException(text);}
         public static void FinishBlocked(SoloScreen screen,string error)
-        {Directory.CreateDirectory(Path.GetDirectoryName(screen.SavePath));File.WriteAllText(Path.Combine(Path.GetDirectoryName(screen.SavePath),screen.VerifyMode+".json"),JsonUtility.ToJson(new Record{error=error,runId=screen.VerifyRun,mode=screen.VerifyMode,build=Application.version,loadBlocked=true,loadedStatus=screen.LoadedStatus.ToString()}));Application.Quit(1);}
+        {Directory.CreateDirectory(Path.GetDirectoryName(screen.SavePath));File.WriteAllText(Path.Combine(Path.GetDirectoryName(screen.SavePath),screen.VerifyMode+".json"),JsonUtility.ToJson(new Record{error=error,runId=screen.VerifyRun,mode=screen.VerifyMode,build=Application.version,loadBlocked=true,loadedStatus="Blocked",utc=DateTime.UtcNow.ToString("O")}));Application.Quit(1);}
         [Serializable] private sealed class Record
         {
             public string mode,runId,build,worldId,playerId,loadedStatus,utc,error;
@@ -200,6 +268,7 @@ namespace LittleWeeps.Client
             public Rect safeArea;
             public bool layoutBounds;
             public bool loadBlocked;
+            public bool voiceImmediateStop,mutedReplayBlocked,voiceMenuInput,voiceReenabled,preferencesLocalOnly,preferencesRestored;
         }
     }
 }

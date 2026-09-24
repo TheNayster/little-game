@@ -70,6 +70,6 @@ namespace LittleWeeps.EditorTools
                 result=summary.result.ToString(),output=output,utc=DateTime.UtcNow.ToString("O"),errors=summary.totalErrors,warnings=summary.totalWarnings,development=(summary.options&BuildOptions.Development)!=0},true));
             if(summary.result!=BuildResult.Succeeded || (summary.options&BuildOptions.Development)!=0)throw new Exception("Solo build failed.");
         }
-        [Serializable] private sealed class Evidence{public string version,unity,profile,result,output,utc,platform,signing;public int errors,warnings;public int verificationContract=2;public bool development;}
+        [Serializable] private sealed class Evidence{public string version,unity,profile,result,output,utc,platform,signing;public int errors,warnings;public int verificationContract=3;public bool development;}
     }
 }

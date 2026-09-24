@@ -1,0 +1,14 @@
+{
+    "version": "0.0.42",
+    "unity": "6000.3.24f1",
+    "profile": "Assets/BuildProfiles/iPad Solo Prototype.asset",
+    "result": "Succeeded",
+    "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\iOSSolo\\G2-0.0.42\\Xcode",
+    "utc": "2026-09-24T12:37:14.4302712Z",
+    "platform": "iOS",
+    "signing": "Unsigned Xcode export; Mac compilation/signing and device qualification pending",
+    "errors": 0,
+    "warnings": 0,
+    "verificationContract": 3,
+    "development": false
+}

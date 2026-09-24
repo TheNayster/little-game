@@ -4,7 +4,7 @@ $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
 $folder=Join-Path $root "Builds\WindowsSolo\G2-0.0.$BuildNumber"
 $summary=Get-Content -LiteralPath (Join-Path $folder 'build-summary.json') -Raw | ConvertFrom-Json
-if($summary.result -ne 'Succeeded' -or $summary.development -or $summary.platform -ne 'Windows' -or $summary.version -ne "0.0.$BuildNumber" -or $summary.verificationContract -ne 2){throw 'This suite requires a matching native build with isolated recovery-test support.'}
+if($summary.result -ne 'Succeeded' -or $summary.development -or $summary.platform -ne 'Windows' -or $summary.version -ne "0.0.$BuildNumber" -or $summary.verificationContract -lt 2){throw 'This suite requires a matching native build with isolated recovery-test support.'}
 foreach($entry in (Get-Content -LiteralPath (Join-Path $folder 'artifact-manifest.json') -Raw | ConvertFrom-Json)){
     if((Get-FileHash -LiteralPath (Join-Path $folder $entry.path) -Algorithm SHA256).Hash -ne $entry.sha256){throw "Artifact changed: $($entry.path)"}
 }

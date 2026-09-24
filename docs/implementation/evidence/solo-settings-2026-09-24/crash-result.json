@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build": 41,
+  "runId": "ba4822ff08db483584deda5d09b34afc",
+  "invalidArgumentsRejected": true,
+  "hardStopWithoutQuitCallback": true,
+  "heldCheckpointObserved": true,
+  "exactStateRestored": true,
+  "toyUsableAgain": true,
+  "directoryBlockedWithoutOverwrite": true,
+  "lockedPrimaryBlockedWithoutRollback": true,
+  "physicalDevicesAccessed": false,
+  "utc": "2026-09-24T12:37:56.8222817Z"
+}

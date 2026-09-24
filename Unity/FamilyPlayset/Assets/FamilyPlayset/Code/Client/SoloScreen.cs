@@ -30,7 +30,8 @@ namespace LittleWeeps.Client
         private CheckpointStore store;
         private RectTransform safe, avatar, stickKnob, stick;
         private Image head, body;
-        private Text message, activity, movementLabel, saveLabel;
+        private Text message, activity, movementLabel, saveLabel, voiceLabel, listenLabel;
+        private GameObject voiceSlash;
         private Font font;
         private Sprite rounded, circle;
         private GameObject menu;
@@ -75,8 +76,9 @@ namespace LittleWeeps.Client
                 if (VerifyRun != null) SoloVerification.FinishBlocked(this,e.Message);
                 return;
             }
-            JoystickMode = VerifyRun == null && PlayerPrefs.GetInt("solo.prototype.joystick",0) == 1;
+            JoystickMode = PlayerPrefs.GetInt(PreferenceKey("joystick"),0) == 1;
             Narration=gameObject.AddComponent<SoloNarration>();Narration.Initialize(VerifyRun!=null);
+            Narration.SetVoiceEnabled(PlayerPrefs.GetInt(PreferenceKey("voice"),1)!=0);
             BuildScreen(); Render();
             if (LoadedStatus == CheckpointStatus.Missing) SaveNow();
             if (LoadedStatus == CheckpointStatus.Recovered) message.text = "Your last safe save is back. Let's play!";
@@ -107,7 +109,7 @@ namespace LittleWeeps.Client
                 if(args[i]=="-soloVerify"){requested=true;if(i+1<args.Length)VerifyMode=args[i+1];}
                 if(args[i]=="-soloRun"){requested=true;if(i+1<args.Length && Guid.TryParse(args[i+1],out var id))VerifyRun=id.ToString("N");}
             }
-            if (VerifyMode != "seed" && VerifyMode != "resume" && VerifyMode != "recover" && VerifyMode != "input" && VerifyMode != "crash-hold" && VerifyMode != "crash-resume" && VerifyMode != "blocked") { VerifyMode=null; VerifyRun=null; }
+            if (VerifyMode != "seed" && VerifyMode != "resume" && VerifyMode != "recover" && VerifyMode != "input" && VerifyMode != "crash-hold" && VerifyMode != "crash-resume" && VerifyMode != "blocked" && VerifyMode != "settings-seed" && VerifyMode != "settings-resume") { VerifyMode=null; VerifyRun=null; }
             if(requested && (VerifyMode==null || VerifyRun==null))return false;
 #endif
             return true;
@@ -143,14 +145,23 @@ namespace LittleWeeps.Client
             activity=Label(safe,"",24,new Vector2(0,-312),new Vector2(1130,44));
             message=Label(safe,"Drag the bucket to the tap, then to the plant.",21,new Vector2(-85,-354),new Vector2(950,40));
             var listen=Button(safe,"Listen",new Vector2(490,-352),new Vector2(150,52),Listen,Cream);
+            listenLabel=listen;
             listen.rectTransform.anchoredPosition=new Vector2(15,0);listen.rectTransform.sizeDelta=new Vector2(108,52);
             for(var i=0;i<3;i++)Panel(listen.transform.parent,"Sound",new Vector2(-52+i*9,0),new Vector2(5,12+i*9),Ink);
             saveLabel=Label(safe,"Local solo prototype · placeholder art",15,new Vector2(0,-380),new Vector2(1130,28));
             menu=Panel(safe,"Pause panel",Vector2.zero,new Vector2(1190,760),new Color(.97f,.97f,.91f,.98f),true).gameObject;
-            Label(menu.transform,"Take your time",42,new Vector2(0,150),new Vector2(760,100));
-            Label(menu.transform,"Your toys stay where you put them.\nYou can always leave an activity.",25,new Vector2(0,40),new Vector2(800,100));
+            Label(menu.transform,"Take your time",42,new Vector2(0,230),new Vector2(760,100));
+            Label(menu.transform,"Your toys stay where you put them.\nYou can always leave an activity.",25,new Vector2(0,140),new Vector2(800,80));
+            voiceLabel=Button(menu.transform,"Voice on",new Vector2(0,35),new Vector2(350,75),ToggleVoice,new Color(.77f,.88f,.96f));
+            voiceLabel.transform.parent.name="Voice setting";
+            voiceLabel.rectTransform.anchoredPosition=new Vector2(20,0);voiceLabel.rectTransform.sizeDelta=new Vector2(250,75);
+            for(var i=0;i<3;i++)Panel(voiceLabel.transform.parent,"Sound",new Vector2(-130+i*12,0),new Vector2(7,15+i*12),Ink);
+            var slash=Panel(voiceLabel.transform.parent,"Voice off mark",new Vector2(-118,0),new Vector2(55,7),new Color(.73f,.26f,.23f));
+            slash.rectTransform.localRotation=Quaternion.Euler(0,0,45);voiceSlash=slash.gameObject;
+            Label(menu.transform,"Spoken hints on this device",18,new Vector2(0,-24),new Vector2(650,36));
             Button(menu.transform,"Back to play",new Vector2(0,-90),new Vector2(350,85),()=>SetMenu(false),new Color(.81f,.92f,.72f));
             Button(menu.transform,"Leave activity",new Vector2(0,-200),new Vector2(350,75),()=>{StartActivity("");SetMenu(false);},Cream);
+            UpdateVoiceControls();
             menu.SetActive(false);
         }
         public SoloResult Command(SoloAction action,string item="",string target="",string value="",float x=0,float y=0)
@@ -171,7 +182,22 @@ namespace LittleWeeps.Client
         {
             CancelPointers(); JoystickMode=!JoystickMode; movementLabel.text=JoystickMode?"Joystick":"Tap to walk";stick.gameObject.SetActive(JoystickMode);
             Narration.Speak(JoystickMode?"joystick":"tapwalk");
-            if(VerifyRun==null){PlayerPrefs.SetInt("solo.prototype.joystick",JoystickMode?1:0);PlayerPrefs.Save();}
+            PlayerPrefs.SetInt(PreferenceKey("joystick"),JoystickMode?1:0);PlayerPrefs.Save();
+        }
+        // Preferences belong to this device, not the shared world/checkpoint. Test
+        // players use a fresh GUID key prefix and never alter the family's keys.
+        private string PreferenceKey(string name)=>(VerifyRun==null?"solo.prototype.":"solo.verify."+VerifyRun+".")+name;
+        public void ToggleVoice()
+        {
+            Narration.SetVoiceEnabled(!Narration.VoiceEnabled);
+            PlayerPrefs.SetInt(PreferenceKey("voice"),Narration.VoiceEnabled?1:0);PlayerPrefs.Save();
+            UpdateVoiceControls();
+        }
+        private void UpdateVoiceControls()
+        {
+            voiceLabel.text=Narration.VoiceEnabled?"Voice on":"Voice off";voiceSlash.SetActive(!Narration.VoiceEnabled);
+            listenLabel.text=Narration.VoiceEnabled?"Listen":"Voice off";
+            listenLabel.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
         }
         public void SetMenu(bool open) { if(open){CancelPointers();Narration.Stop();SaveNow();} menu.SetActive(open); }
         public void Listen(){var activityId=World.ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}

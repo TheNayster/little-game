@@ -1,13 +1,15 @@
 [CmdletBinding()]
-param([Parameter(Mandatory)][int]$BuildNumber,[switch]$InputOnly,[int]$UpdatedBuildNumber=0,
+param([Parameter(Mandatory)][int]$BuildNumber,[switch]$InputOnly,[switch]$SettingsOnly,[int]$UpdatedBuildNumber=0,
       [ValidateRange(640,2560)][int]$Width=1280,[ValidateRange(480,1440)][int]$Height=800)
 $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
 if($UpdatedBuildNumber -and ($InputOnly -or $UpdatedBuildNumber -eq $BuildNumber)){throw 'Use a distinct updated build for the save/update suite.'}
+if($InputOnly -and $SettingsOnly){throw 'Choose one isolated suite.'}
 foreach($number in @($BuildNumber,$UpdatedBuildNumber) | Where-Object {$_ -gt 0} | Select-Object -Unique){
     $folder=Join-Path $root "Builds\WindowsSolo\G2-0.0.$number"
     $summary=Get-Content -LiteralPath (Join-Path $folder 'build-summary.json') -Raw | ConvertFrom-Json
     if($summary.result -ne 'Succeeded' -or $summary.development -or $summary.version -ne "0.0.$number"){throw 'Matching release-configured prototype required.'}
+    if($SettingsOnly -and $summary.verificationContract -lt 3){throw 'Settings verification requires contract 3 or later.'}
     foreach($file in (Get-Content -LiteralPath (Join-Path $folder 'artifact-manifest.json') -Raw | ConvertFrom-Json)){
         if((Get-FileHash -LiteralPath (Join-Path $folder $file.path) -Algorithm SHA256).Hash -ne $file.sha256){throw "Artifact changed: $($file.path)"}
     }
@@ -16,9 +18,9 @@ $run=[Guid]::NewGuid().ToString('N')
 $data=Join-Path $env:USERPROFILE "AppData\LocalLow\Little Weeps\Little Weeps\SoloPrototype\$run"
 $evidence=Join-Path $root "LocalData\Verification\solo-$run"
 New-Item -ItemType Directory -Path $evidence | Out-Null
-$modes=if($InputOnly){@('input')}else{@('seed','resume','recover')}
+$modes=if($InputOnly){@('input')}elseif($SettingsOnly){@('settings-seed','settings-resume')}else{@('seed','resume','recover')}
 foreach($mode in $modes){
-    $currentBuild=if($mode -ne 'seed' -and $UpdatedBuildNumber){$UpdatedBuildNumber}else{$BuildNumber}
+    $currentBuild=if($mode -notin @('seed','settings-seed') -and $UpdatedBuildNumber){$UpdatedBuildNumber}else{$BuildNumber}
     $folder=Join-Path $root "Builds\WindowsSolo\G2-0.0.$currentBuild"
     if($mode -eq 'recover'){
         # Fault injection only in this script's fresh, explicitly identified test namespace.
@@ -36,9 +38,11 @@ foreach($mode in $modes){
     if($player.ExitCode -ne 0){throw "Prototype failed; see $evidence"}
     $result=Get-Content -LiteralPath (Join-Path $evidence "$mode.json") -Raw | ConvertFrom-Json
     if(!$result.passed -or $result.runId -ne $run -or $result.build -ne "0.0.$currentBuild"){throw 'Mismatched prototype evidence.'}
+    if($SettingsOnly -and (!$result.voiceMenuInput -or !$result.mutedReplayBlocked -or !$result.voiceReenabled -or !$result.preferencesLocalOnly -or ($mode -eq 'settings-resume' -and !$result.preferencesRestored))){throw 'Settings acceptance evidence is incomplete.'}
     if($result.PSObject.Properties.Name -contains 'screenWidth'){
         if($result.screenWidth -ne $Width -or $result.screenHeight -ne $Height -or !$result.layoutBounds){throw 'Requested viewport or layout checks did not pass.'}
     }
 }
 if($InputOnly){Write-Host "PASS: full Input System mouse/touch integration. Evidence: $evidence"}
+elseif($SettingsOnly){Write-Host "PASS: voice setting input, immediate stop, isolated preferences and relaunch. Evidence: $evidence"}
 else{Write-Host "PASS: handlers, interactions, saved play and corrupted-primary recovery. Evidence: $evidence"}
