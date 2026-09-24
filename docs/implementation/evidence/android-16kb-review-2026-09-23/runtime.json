@@ -1,0 +1,84 @@
+{
+  "recordedUtc": "2026-09-24T01:09:26.6008859Z",
+  "goalIds": [
+    "FAMILY-01",
+    "TV-01"
+  ],
+  "phase": "G1",
+  "version": "0.0.11",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "5a31db0c215eaea1e2b51efd9b7962be7cd1c7d49391c3a61fbf26e392a3a3d5",
+  "installedApkHashMatched": true,
+  "signing": "Android Debug certificate; isolated emulator probe",
+  "debuggable": false,
+  "environment": {
+    "avd": "LittleWeeps_G1_API35_16KB",
+    "serial": "emulator-5566",
+    "emulatorVersion": "37.1.11",
+    "systemImage": "android-35/google_apis_ps16k/x86_64",
+    "systemImageRevision": 5,
+    "fingerprint": "google/sdk_gphone16k_x86_64/emu64xa16k:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "pageBytes": 16384,
+    "abis": [
+      "x86_64",
+      "arm64-v8a"
+    ],
+    "nativeBridge": "libndk_translation.so",
+    "graphics": "swiftshader",
+    "hostAudioEnabled": false,
+    "stoppedAfterTest": true,
+    "dataRetained": true
+  },
+  "observations": {
+    "appLaunch": true,
+    "injectedTaps": 3,
+    "visibleSavedTapsAfterRestart": 3,
+    "videoFramesDisplayed": true,
+    "playPause": true,
+    "skip": true,
+    "bookmarkBeforeRestartDisplaySeconds": 6.1,
+    "bookmarkAfterRestartDisplaySeconds": 6.1,
+    "videoTimeAfterRestartDisplaySeconds": 6.2,
+    "pausedAfterRestart": true,
+    "firstPid": 6390,
+    "restartPid": 7873,
+    "exitReason": "USER REQUESTED / FORCE STOP",
+    "inPlaceVersionUpdateTested": false
+  },
+  "geometryDiagnostic": {
+    "librariesInspected": 7,
+    "declaredGeometryIssues": 0,
+    "rawRelroEndFlags": 6,
+    "syntheticTestsPassed": 8,
+    "strictArtifactGateUnchanged": true
+  },
+  "qualification": {
+    "limitedTranslatedEmulatorSmokePassed": true,
+    "nativeArm64Page16KbQualified": false,
+    "physicalPhoneQualified": false,
+    "physicalTouchQualified": false,
+    "audibleOutputQualified": false,
+    "longSessionQualified": false,
+    "familyReleaseQualified": false,
+    "phaseComplete": false
+  },
+  "screenshots": [
+    "playing.png",
+    "paused-after-skip.png",
+    "restarted.png"
+  ],
+  "rawLogs": [
+    {
+      "path": "LocalData\\Verification\\littleweeps-16kb-launch-logcat.txt",
+      "sha256": "48c8140438a23d27a4289973fde71e8136c43e07728414f3a2c1307b5b54196a"
+    },
+    {
+      "path": "LocalData\\Verification\\littleweeps-16kb-restart-logcat.txt",
+      "sha256": "3d03053f9bfb8ffc2e05b4810350eeae1d7e92aae2b1990260e7b2ab452c4647"
+    },
+    {
+      "path": "LocalData\\Verification\\littleweeps-16kb-exit-info.txt",
+      "sha256": "31defd06f71af0d952cab621bfaff2a4b36d290e56d1ecafc3c9bbb42122c103"
+    }
+  ]
+}

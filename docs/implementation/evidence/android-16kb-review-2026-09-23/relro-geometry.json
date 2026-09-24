@@ -1,0 +1,143 @@
+{
+  "utc": "2026-09-24T01:04:20.090167+00:00",
+  "apkSha256": "5a31db0c215eaea1e2b51efd9b7962be7cd1c7d49391c3a61fbf26e392a3a3d5",
+  "pageBytes": 16384,
+  "scope": "Declared ELF64 LOAD/RELRO geometry only",
+  "androidCompatibilityQualified": false,
+  "strictArtifactGateUnchanged": true,
+  "libraries": [
+    {
+      "name": "lib/arm64-v8a/lib_burst_generated.so",
+      "sha256": "df6fd5a49a2df25ef59afaea4a8a618e2b271062eb15406e1cdae6bbe1a1372b",
+      "loadIssues": [],
+      "relro": [
+        {
+          "start": "0x5dbe0",
+          "end": "0x60000",
+          "rawEnd16KbAligned": true,
+          "roundedStart": "0x5c000",
+          "roundedEnd": "0x60000",
+          "containedInLoads": true,
+          "writableBytesOutsideRelro": []
+        }
+      ],
+      "rawRelroEnds16KbAligned": true,
+      "declaredGeometryIssuesFound": false,
+      "relroPresent": true
+    },
+    {
+      "name": "lib/arm64-v8a/libc++_shared.so",
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "loadIssues": [],
+      "relro": [
+        {
+          "start": "0x1392f0",
+          "end": "0x143000",
+          "rawEnd16KbAligned": false,
+          "roundedStart": "0x138000",
+          "roundedEnd": "0x144000",
+          "containedInLoads": true,
+          "writableBytesOutsideRelro": []
+        }
+      ],
+      "rawRelroEnds16KbAligned": false,
+      "declaredGeometryIssuesFound": false,
+      "relroPresent": true
+    },
+    {
+      "name": "lib/arm64-v8a/libgame.so",
+      "sha256": "e828684d33198ec7cd65f4fa653742c9727f3f78580da16ec6ba26344b5373de",
+      "loadIssues": [],
+      "relro": [
+        {
+          "start": "0x27690",
+          "end": "0x29000",
+          "rawEnd16KbAligned": false,
+          "roundedStart": "0x24000",
+          "roundedEnd": "0x2c000",
+          "containedInLoads": true,
+          "writableBytesOutsideRelro": []
+        }
+      ],
+      "rawRelroEnds16KbAligned": false,
+      "declaredGeometryIssuesFound": false,
+      "relroPresent": true
+    },
+    {
+      "name": "lib/arm64-v8a/libil2cpp.so",
+      "sha256": "ebaa050810abac590814b9151bc3f9c8823f154973660e0c1c9d1adef692e600",
+      "loadIssues": [],
+      "relro": [
+        {
+          "start": "0x3827d30",
+          "end": "0x3abe000",
+          "rawEnd16KbAligned": false,
+          "roundedStart": "0x3824000",
+          "roundedEnd": "0x3ac0000",
+          "containedInLoads": true,
+          "writableBytesOutsideRelro": []
+        }
+      ],
+      "rawRelroEnds16KbAligned": false,
+      "declaredGeometryIssuesFound": false,
+      "relroPresent": true
+    },
+    {
+      "name": "lib/arm64-v8a/libmain.so",
+      "sha256": "bf92f1914f7d394d0f36cc3f586a670165377692f6b3a774bc61c57076b776b6",
+      "loadIssues": [],
+      "relro": [
+        {
+          "start": "0x8f20",
+          "end": "0xa000",
+          "rawEnd16KbAligned": false,
+          "roundedStart": "0x8000",
+          "roundedEnd": "0xc000",
+          "containedInLoads": true,
+          "writableBytesOutsideRelro": []
+        }
+      ],
+      "rawRelroEnds16KbAligned": false,
+      "declaredGeometryIssuesFound": false,
+      "relroPresent": true
+    },
+    {
+      "name": "lib/arm64-v8a/libswappywrapper.so",
+      "sha256": "aaf0c8bffcdf8735836f2c2254d772956d3f6cee834ae407854697e8d671befe",
+      "loadIssues": [],
+      "relro": [
+        {
+          "start": "0x36de0",
+          "end": "0x39000",
+          "rawEnd16KbAligned": false,
+          "roundedStart": "0x34000",
+          "roundedEnd": "0x3c000",
+          "containedInLoads": true,
+          "writableBytesOutsideRelro": []
+        }
+      ],
+      "rawRelroEnds16KbAligned": false,
+      "declaredGeometryIssuesFound": false,
+      "relroPresent": true
+    },
+    {
+      "name": "lib/arm64-v8a/libunity.so",
+      "sha256": "b164ba7d2e972f362c7f4a33c25359221f1a64de59f1b0b4525d9049b58b399c",
+      "loadIssues": [],
+      "relro": [
+        {
+          "start": "0x1352810",
+          "end": "0x139e000",
+          "rawEnd16KbAligned": false,
+          "roundedStart": "0x1350000",
+          "roundedEnd": "0x13a0000",
+          "containedInLoads": true,
+          "writableBytesOutsideRelro": []
+        }
+      ],
+      "rawRelroEnds16KbAligned": false,
+      "declaredGeometryIssuesFound": false,
+      "relroPresent": true
+    }
+  ]
+}

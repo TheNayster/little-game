@@ -944,7 +944,7 @@ Status: pending
 </tr>
 <tr>
 <td>Implementation state</td>
-<td>G1: Windows 0.0.9 verified; iPad 0.0.1 launches after developer trust. Android 0.0.11 builds and basic artifact checks pass; additional RELRO alignment inspection needs follow-up. Windows Server 0.0.12 builds and its native lifecycle check passes. Mobile device/save/update qualification remains pending.</td>
+<td>G1: Windows 0.0.9 verified; iPad 0.0.1 launches after developer trust. Android 0.0.11 builds and passes a limited tap/save/video/restart check in a 16 KB emulator using ARM64 translation; native ARM64 compatibility and physical-phone qualification remain open. Windows Server 0.0.12 builds and its native lifecycle check passes. Mobile device/save/update qualification remains pending.</td>
 </tr>
 <tr>
 <td>Current research deliverable</td>
@@ -956,7 +956,7 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td>Server-module installation and native lifecycle verification completed. Next Windows-side task: investigate the Android 16 KB static finding without changing pinned tools speculatively. Physical mobile taps/save/update checks remain pending when the user is available. <a href="implementation/platform-build-setup.md">Platform record</a>.</td>
+<td>Android 16 KB investigation recorded: seven libraries show no declared writable overlap under rounded RELRO, eight diagnostic tests pass, and the exact APK survives emulator tap/video/force-stop recovery. Strict artifact gate remains unchanged because translation is not native ARM64 qualification. Samsung pairing/inventory completed: Android 16 / API 36, 4 KB pages, no game package on active user 0. Next: stable game signing/recovery, then physical install/update checks. <a href="implementation/android-16kb-review-2026-09-23.md">Investigation and evidence</a>.</td>
 </tr>
 <tr>
 <td>Package budget</td>

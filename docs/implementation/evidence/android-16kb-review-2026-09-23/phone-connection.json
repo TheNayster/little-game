@@ -1,0 +1,14 @@
+{
+  "verifiedUtc": "2026-09-24T01:11:09.9497239Z",
+  "model": "SM-S948U1",
+  "androidRelease": "16",
+  "api": 36,
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "gamePackage": "com.littleweeps.familyplayset",
+  "gameInstalledForActiveUser": false,
+  "paired": true,
+  "connected": true,
+  "phoneAppInstalledOrModified": false,
+  "native16KbQualification": false
+}

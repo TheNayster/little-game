@@ -2,7 +2,7 @@
 
 This bounded G1 task supports FAMILY-01/JOIN-01/NET-02 and retains TV-01 regression coverage. It establishes platform builds, not networking, mobile hosting or game content.
 
-**Current result:** Android **0.0.11** built successfully with complete manifests. Its basic artifact checks pass; the additional 16 KB RELRO finding remains unresolved and no Android device run is qualified. The user approved the later Windows prompt and the matching Server module is now installed. Fresh Windows Server **0.0.12** built successfully and passed its native headless lifecycle test. The iPad trust issue is resolved and a launch command succeeded; physical tap/save observations remain pending.
+**Current result:** Android **0.0.11** built successfully with complete manifests. It now also passes a limited tap/save/video/restart smoke check in an isolated 16 KB x86_64 emulator using ARM64 translation. The [RELRO investigation](android-16kb-review-2026-09-23.md) found no declared writable-data overlap, but retains the strict inspection warning and native ARM64/physical-device gates. The matching Server module is installed; Windows Server **0.0.12** built and passed its native headless lifecycle test. The iPad trust issue is resolved and a launch command succeeded; physical tap/save observations remain pending.
 
 ## What exists and what has passed
 
@@ -13,7 +13,7 @@ This bounded G1 task supports FAMILY-01/JOIN-01/NET-02 and retains TV-01 regress
 | Tool-path regression | `Tools/Test-AndroidToolPaths.ps1` passed in the real Unity editor: both bundled defaults and valid custom paths restore after configuration. |
 | First accepted build process | 0.0.11, Unity exit 0, zero build-summary errors/warnings, 35,698,953-byte APK. Non-development IL2CPP, ARM64, minimum API 26, target API 36. |
 | APK inspection | `Tools/Test-AndroidArtifact.ps1` ran against the actual APK and its hash manifest. Core identity/signature checks pass. Overall inspection exits nonzero because the additional RELRO alignment check remains unresolved. |
-| Signing/device qualification | This build-only probe uses the default Android Debug certificate. No phone install, actual touch, mobile video or update/save retention is qualified. Stable family signing and recovery remain separate gates. |
+| Signing/device qualification | The default Android Debug certificate probe ran only in the new isolated emulator. Three injected taps and the video bookmark survived force-stop/reopen; the pulled installed APK hash matches build 11. No phone install, physical touch/audio or in-place mobile update is qualified. Stable family signing/recovery remain separate gates. |
 | Server build | Windows 64-bit Dedicated Server / Mono 0.0.12 built with zero summary errors/warnings and complete source/artifact manifests. `ServerBootstrap.unity` is the only scene. |
 | Server test | `Tools/Test-ServerFoundation.ps1 -BuildNumber 12` passed actual readiness, three heartbeats, null graphics, zero cameras and cooperative shutdown with exit 0. Networking is not implemented. |
 | Windows regression | 0.0.6 → 0.0.9 passed save/restart/update/video checks; 0.0.9 remains the selected preview. |
