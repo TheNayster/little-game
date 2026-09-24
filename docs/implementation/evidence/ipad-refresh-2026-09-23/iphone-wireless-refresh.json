@@ -1,0 +1,99 @@
+{
+  "startedUtc": "2026-09-24T03:40:31.094752+00:00",
+  "goalIds": [
+    "FAMILY-01",
+    "TV-01"
+  ],
+  "device": "iPhone 13 Pro Max",
+  "iosVersion": "26.6.1",
+  "bundleId": "com.littleweeps.familyplayset",
+  "appVersion": "0.0.20",
+  "build": 20,
+  "seed": {
+    "source": "User report before cable-free refresh test",
+    "tapCount": 1,
+    "videoBookmarkSeconds": 10.8,
+    "usbUnpluggedByUser": true
+  },
+  "initialWirelessObservation": "Sideloadly no devices detected; Start disabled",
+  "refreshAttempted": false,
+  "retentionVerified": false,
+  "checkedUtc": "2026-09-24T03:42:22.585611+00:00",
+  "iTunesObservation": "iTunes could not connect to the iPhone because it is locked with a passcode; enter the passcode on the iPhone before it can be used with iTunes.",
+  "phonePasscodeHandledByAgent": false,
+  "windowsServices": {
+    "Bonjour": "Running",
+    "AppleMobileDeviceService": "Running"
+  },
+  "wirelessSetupStatus": "Discovery not working yet; phone restart requested. No manual refresh or automatic renewal has occurred.",
+  "reference": "https://sideloadly.io/faq",
+  "userConfirmedSameWifiAndUnlocked": true,
+  "afterUnlockRetry": {
+    "observedUtc": "2026-09-24T03:43:44.838612+00:00",
+    "iTunesLockNoticeCleared": true,
+    "iTunesDeviceVisible": false,
+    "sideloadlyDeviceVisible": false,
+    "startEnabled": false
+  },
+  "usbRecovery": {
+    "observedUtc": "2026-09-24T03:46:10.542832+00:00",
+    "userReconnectedUsb": true,
+    "wifiSyncCheckboxPersisted": true,
+    "manualITunesSyncCompleted": true,
+    "syncObserved": "Step 3 of 3, waiting for changes to be applied; then progress cleared and Sync re-enabled without an error",
+    "doneClicked": true,
+    "unrelatedICloudOffer": "dismissed without installing"
+  },
+  "secondUnpluggedCheck": {
+    "userConfirmedUsbUnplugged": true,
+    "sideloadlyDeviceVisible": false,
+    "startEnabled": false
+  },
+  "networkDiagnostics": {
+    "targetNamedBonjourAdvertisementDetected": true,
+    "serviceType": "_apple-mobdev2._tcp.local.",
+    "targetTcp62078Reachable": true,
+    "advertisedPort32498ConnectionRefused": true,
+    "scope": "One Apple mobile-device service browse on the PC Wi-Fi interface; TCP probes to the matching advertised phone only.",
+    "limitation": "An advertisement/port response is not an authenticated paired-device or install test.",
+    "windowsNetworkCategory": "Public",
+    "bonjourInboundAllowRulesMatchCurrentProfile": true,
+    "iTunesInboundAllowRuleProfile": "Any",
+    "firewallSettingsChanged": false
+  },
+  "serviceRecovery": {
+    "standardRestartAttempt": "insufficient permission; service remained running",
+    "elevatedDeviceServiceRestart": {
+      "observedUtc": "2026-09-24T03:49:15.1967189Z",
+      "service": "Apple Mobile Device Service",
+      "succeeded": true,
+      "error": null,
+      "status": "Running"
+    },
+    "elevatedDiscoveryRestart": [
+      {
+        "observedUtc": "2026-09-24T03:50:54.4421167Z",
+        "service": "Bonjour Service",
+        "succeeded": true,
+        "error": null
+      },
+      {
+        "observedUtc": "2026-09-24T03:50:54.9870429Z",
+        "service": "Apple Mobile Device Service",
+        "succeeded": true,
+        "error": null
+      }
+    ],
+    "servicesVerifiedRunningAfterward": true,
+    "iTunesReopened": true,
+    "nativeAppleServiceReadOnlyDeviceListAfterward": [],
+    "sideloadlyDeviceVisibleAfterward": false
+  },
+  "nextAction": "User restarts the iPhone once, unlocks locally with its passcode, leaves USB unplugged; then repeat detection.",
+  "references": [
+    "https://sideloadly.io/faq",
+    "https://support.apple.com/en-gb/102347",
+    "https://raw.githubusercontent.com/doronz88/pymobiledevice3/master/pymobiledevice3/bonjour.py"
+  ],
+  "updatedUtc": "2026-09-24T03:54:01.198616+00:00"
+}

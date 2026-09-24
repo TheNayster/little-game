@@ -8,7 +8,13 @@
 
 The daemon database contains this game's active installation record with `one_off = 0`, no recorded error and zero failures. Its recorded fields include `known_ttl = 7` and `refresh_at_hours = 96`; these are configuration evidence, not a measured provisioning expiry or completed renewal. The daemon has a Windows user-login startup entry. **Actual automatic renewal and save retention remain pending.**
 
-The iTunes **Sync with this iPhone over Wi-Fi** option was initially off. It was enabled and saved with Apply; the checkbox remained checked and the Apply button returned to Sync. Cable-free device detection still needs testing. The user replied **'k iphone app worked'** to the launch/tap/video/audio check. Record this as human-reported success; the exact tap count and paused bookmark are still pending. The user has now been asked to note those values and unplug USB on the same home Wi-Fi for the wireless check. Neither iPad has been enrolled through Windows yet.
+The user reported that the iPhone app worked after the launch/tap/video/audio check, then supplied the save seed **1 tap / 10.8 seconds**. These are human-reported visible values; the profile/container was not independently extracted.
+
+**Wireless refresh is not yet working.** The Wi-Fi-sync checkbox persisted after reconnecting USB. An iTunes passcode-lock notice cleared after the user confirmed the same Wi-Fi and an unlocked phone. A subsequent **Sync → Done** completed without an error, but a second unplugged test still showed no iPhone in Sideloadly. Start remains disabled, so no refresh has been attempted. [Wireless check and save seed](evidence/ipad-refresh-2026-09-23/iphone-wireless-refresh.json).
+
+A targeted network check received a Bonjour advertisement matching the phone's name and a TCP response on port 62078. This establishes a reachable advertised endpoint, not authenticated installation access. Existing Bonjour/iTunes inbound rules cover the current Windows network profile; firewall settings were not changed. Apple Mobile Device Service and Bonjour were restarted and verified running, but a read-only query to the native Apple device service still returned an empty device list. iTunes was reopened; Sideloadly remained unable to detect the phone. Restarting AMDS is a documented recognition troubleshooting step, not a guaranteed fix. [Apple guidance](https://support.apple.com/en-gb/102347). The service-type reference came from [pymobiledevice3's Bonjour source](https://raw.githubusercontent.com/doronz88/pymobiledevice3/master/pymobiledevice3/bonjour.py).
+
+The next check is one iPhone restart, local passcode unlock and another cable-free detection attempt. Neither iPad has been enrolled through Windows yet. USB installation, recurring-refresh enrollment and Wi-Fi discovery are tracked separately; no automatic renewal or refresh-retention result is claimed.
 
 Installed support components are iTunes **12.13.11.1**, Apple Mobile Device Support **20.0.0.35**, Apple Application Support **8.7 (both architectures)** and Bonjour **3.0.0.10**. Device-support and Bonjour services were verified running. [Support checks](evidence/ipad-refresh-2026-09-23/support-and-sideloadly-check.json).
 
@@ -47,8 +53,8 @@ Sideloadly documents automatic refresh through its background daemon while the p
 
 ## Next checks
 
-1. Initial launch/tap/video/audio check: the user reports the app worked. Capture the exact tap count and paused bookmark before any refresh. The request for those values is pending.
-2. After the launch check, unplug the USB cable while the phone and PC are on the same home network. Confirm that Sideloadly discovers the same iPhone over Wi-Fi. The saved iTunes checkbox alone is not proof of reachability.
+1. The user-reported seed is **1 tap / 10.8 seconds**. Preserve these values during the refresh check; do not treat the report as an independently read profile/container snapshot.
+2. USB remains unplugged after a second test. Sync → Done and service restarts have completed, but discovery still fails. Await the requested iPhone restart/passcode unlock, then recheck detection. The vendor FAQ calls for the same network and the device screen to be on; both were confirmed before the failed check. Do not mark wireless refresh ready from the checkbox alone.
 3. Once there is a known save seed, test an in-place refresh and verify the same count/profile/bookmark afterward. Record the resulting provisioning expiry if available. A manual refresh is separate from observing a later automatic cycle.
 4. Observe a real automatic refresh with a later expiry, successful launch and retained progress. The daemon enrollment and Windows startup entry are established, but no later automatic cycle has been observed yet.
 5. Enroll iPad 9 and the older iPad separately when available, retaining the same Xcode Apple Account and `com.littleweeps.familyplayset`. Capture each device's current saves before enrollment. The last iPad 9 values were **1,019 taps / 8.9 seconds** with the original profile; account for any later play. [Completed iPad check](ipad-update-2026-09-23.md). Never uninstall or change identity to work around an error.
