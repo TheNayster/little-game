@@ -1,0 +1,37 @@
+{
+  "androidBuild": 78,
+  "windowsBuild": 77,
+  "apkSha256": "0a151d93c8a15d5d3fca095f738cc0ac8aa5122eca7663788d09c226a20c7e4e",
+  "scope": "Android 15 emulator ARM translation plus three native Windows clients, direct NSD/DTLS to PC; no relay",
+  "checks": [
+    {
+      "name": "Release Android client discovers the PC and joins three Windows players over enrolled DTLS",
+      "passed": true
+    },
+    {
+      "name": "Ordinary Android touch movement reaches the server and all three Windows views",
+      "passed": true
+    },
+    {
+      "name": "Dragging on Android fills and pours the single shared bucket; all clients see the result",
+      "passed": true
+    },
+    {
+      "name": "Android travels to Creek and back while the three other players stay in Garden",
+      "passed": true
+    },
+    {
+      "name": "Backgrounding Android detaches only that player; a Windows sibling keeps changing the world",
+      "passed": true
+    },
+    {
+      "name": "The same Android process automatically rejoins and receives the sibling changes",
+      "passed": true
+    },
+    {
+      "name": "Force-stop/relaunch retains Keystore pairing, re-enters the same world, and preserves the original solo save",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

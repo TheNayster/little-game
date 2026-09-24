@@ -1,0 +1,9 @@
+{
+  "releaseNonDebuggable": true,
+  "manifestReferencesBothRules": true,
+  "compiledRules": {
+    "backup": "E: full-backup-content (line=1)\n  E: exclude (line=1)\n    A: domain=\"external\" (Raw: \"external\")\n    A: path=\"FamilyLAN/enrollment.json\" (Raw: \"FamilyLAN/enrollment.json\")\n  E: exclude (line=1)\n    A: domain=\"external\" (Raw: \"external\")\n    A: path=\"FamilyLAN/enrollment.pending\" (Raw: \"FamilyLAN/enrollment.pending\")\n",
+    "transfer": "E: data-extraction-rules (line=1)\n  E: cloud-backup (line=1)\n    E: exclude (line=1)\n      A: domain=\"external\" (Raw: \"external\")\n      A: path=\"FamilyLAN/enrollment.json\" (Raw: \"FamilyLAN/enrollment.json\")\n    E: exclude (line=1)\n      A: domain=\"external\" (Raw: \"external\")\n      A: path=\"FamilyLAN/enrollment.pending\" (Raw: \"FamilyLAN/enrollment.pending\")\n  E: device-transfer (line=1)\n    E: exclude (line=1)\n      A: domain=\"external\" (Raw: \"external\")\n      A: path=\"FamilyLAN/enrollment.json\" (Raw: \"FamilyLAN/enrollment.json\")\n    E: exclude (line=1)\n      A: domain=\"external\" (Raw: \"external\")\n      A: path=\"FamilyLAN/enrollment.pending\" (Raw: \"FamilyLAN/enrollment.pending\")\n"
+  },
+  "note": "AAPT optimized resource names mapped from the actual APK resource table; no-backup private vault is separately excluded by Android"
+}

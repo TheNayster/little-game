@@ -106,8 +106,12 @@ namespace LittleWeeps.NetworkProbe
             Application.runInBackground=true;Application.targetFrameRate=60;started=Time.realtimeSinceStartup;
             try
             {
-#if UNITY_IOS && !UNITY_EDITOR
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+                #if UNITY_IOS
                 pairing=AppleEnrollment.Load(out var enrollmentStatus);
+#else
+                pairing=AndroidEnrollment.Load(out var enrollmentStatus);
+#endif
                 Directory.CreateDirectory(Path.Combine(Application.persistentDataPath,"FamilyLAN"));
                 // Only a coarse reason is recorded; credential/certificate data
                 // never enters status files. An unpaired update keeps solo usable.
@@ -178,6 +182,8 @@ namespace LittleWeeps.NetworkProbe
         {
 #if UNITY_IOS && !UNITY_EDITOR
             return new AppleBonjour(pairing,Protocol,Content);
+#elif UNITY_ANDROID && !UNITY_EDITOR
+            return new AndroidBonjour(pairing,Protocol,Content);
 #else
             return new WindowsBonjour(pairing,Protocol,Content);
 #endif
@@ -535,7 +541,7 @@ namespace LittleWeeps.NetworkProbe
             if(Time.realtimeSinceStartup<nextControl)return;nextControl=Time.realtimeSinceStartup+.04f;
             try
             {
-#if UNITY_IOS && !UNITY_EDITOR
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
                 return; // Desktop qualification control files are not a mobile command surface.
 #else
                 var path=Path.Combine(output,"control.json");if(!File.Exists(path))return;
@@ -604,7 +610,7 @@ namespace LittleWeeps.NetworkProbe
         private void Stop(){if(config.role=="server" && positionDirty)SaveAuthority();stopping=true;network.Shutdown();WriteStatus("stopped","");Application.Quit(0);}
         private void OnApplicationPause(bool paused)
         {
-#if UNITY_IOS && !UNITY_EDITOR
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
             SetFamilyForeground(!paused);
 #endif
         }

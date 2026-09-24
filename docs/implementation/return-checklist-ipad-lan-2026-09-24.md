@@ -13,6 +13,11 @@ This checklist follows G3 in the main build guide. Both iPads still have their t
 
 Mac shortcut: `/Users/nayster/Desktop/Finish-Little-Weeps-74.command`. Use **74**, not the earlier intermediate 72/73 helpers. If macOS shows an error, leave the window open and share its wording.
 
+## Android and the fourth player — after the iPad checks
+
+7. **Have the Samsung available on home Wi-Fi.** Android family release **78** is built and signed with the original family key. Codex will verify the installed app/signature and back up accessible saved data before an in-place update. If wireless debugging needs pairing again, enter the code at that time. No phone action is needed while you are away.
+8. **Repeat a short mixed-device check:** both iPads plus Android, then add the iPhone for four players. Test movement, independent areas, shared bucket ownership, lock/return and saved settings. Android-emulator/three-Windows play already passed, but the actual Samsung, phone layout and four physical devices still need testing. [Android work and evidence](g3-android-lan-2026-09-24.html).
+
 ## Existing release items, not prerequisites for this code work
 
 - Unattended app renewal on both iPads is still unproven; the earlier iPhone USB renewal did not qualify Wi-Fi renewal.

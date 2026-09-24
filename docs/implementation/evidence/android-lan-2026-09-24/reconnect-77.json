@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "build": 77,
+  "utc": "2026-09-24T22:05:26.811178+00:00",
+  "checks": [
+    {
+      "check": "four encrypted clients have current playable snapshots before input is enabled",
+      "passed": true
+    },
+    {
+      "check": "suspending one client releases its held item, stops retries and leaves siblings playing",
+      "passed": true
+    },
+    {
+      "check": "resuming reuses the same app/profile and receives current state without replaying its drag",
+      "passed": true
+    },
+    {
+      "check": "abrupt authority loss disables mutations and clears pending actions on all four clients",
+      "passed": true
+    },
+    {
+      "check": "all four existing processes rediscover a changed port and accept a new epoch with saved progress",
+      "passed": true
+    },
+    {
+      "check": "shared interactions work after recovery with no duplicate stale action",
+      "passed": true
+    },
+    {
+      "check": "explicit credential rejection stops automatic retries while the other three players rejoin",
+      "passed": true
+    }
+  ],
+  "scope": "Four native Windows clients; simulated lifecycle input calls the shared foreground adapter. Not physical iOS suspension, iPad hosting or offline reunion."
+}

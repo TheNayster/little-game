@@ -291,7 +291,7 @@ namespace LittleWeeps.Client
         // players use a fresh GUID key prefix and never alter the family's keys.
         private string PreferenceKey(string name)
         {
-#if UNITY_IOS && !UNITY_EDITOR
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
             return "solo.prototype."+name;
 #else
             return (shared!=null?shared.PreferenceScope:VerifyRun!=null?"solo.verify."+VerifyRun+".":offlineBranch!=null?offlineBranch+".":"solo.prototype.")+name;

@@ -1,0 +1,14 @@
+{
+  "build": 78,
+  "emulatorAPI": "35",
+  "pages": "16384",
+  "checks": {
+    "androidHeldItemReleasedOnActualHome": true,
+    "siblingsRemainConnectedDuringPause": true,
+    "authorityIntentionallyStopped": true,
+    "coldServerAbsentLaunchReachesSolo": true,
+    "offlineBranchSaved": true,
+    "originalSoloUnchanged": true
+  },
+  "offlineHash": "df921e3c0743d6fc4fde4457dd35a14b468743c26dd3d211bf437fd183256b8b"
+}

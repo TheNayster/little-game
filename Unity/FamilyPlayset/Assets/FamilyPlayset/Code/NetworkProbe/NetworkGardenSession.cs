@@ -32,7 +32,7 @@ namespace LittleWeeps.NetworkProbe
         {
             get
             {
-#if UNITY_IOS && !UNITY_EDITOR
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
                 // The installed device's voice/control choices survive solo
                 // and shared play. Desktop test profiles remain isolated.
                 return "solo.prototype.";

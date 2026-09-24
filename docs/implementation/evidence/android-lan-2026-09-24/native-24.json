@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "serial": "emulator-5580",
+  "scope": "Actual Java adapters in separate native test package; not Unity gameplay or physical LAN qualification",
+  "sources": [
+    {
+      "path": "Unity\\FamilyPlayset\\Assets\\Plugins\\Android\\FamilyDiscovery.java",
+      "sha256": "b9b32e799301efc5f6f6920af5b9dd66c098c79004ee10767a70686dffe8d9bd"
+    },
+    {
+      "path": "Unity\\FamilyPlayset\\Assets\\Plugins\\Android\\FamilyEnrollment.java",
+      "sha256": "4a9a44a755469b5376aa00ca115a3245d0ca46dbf20b9d6ac056217714cd579d"
+    },
+    {
+      "path": "Tools\\AndroidBridgeTests\\BridgeTests.java",
+      "sha256": "c49b05a6c5824037014bc5c14199356222d3c11d8f3663926394e67e7f02eb07"
+    }
+  ],
+  "count": 24,
+  "runs": [
+    {
+      "passed": [
+        "AES-GCM Keystore enrollment round trip",
+        "Identical enrollment retry is idempotent",
+        "Replacement player is refused without changing saved identity",
+        "Reject malformed/server material: privateKey",
+        "Reject malformed/server material: certificate",
+        "Reject malformed/server material: members",
+        "Reject malformed/server material: schema",
+        "Reject malformed/server material: credential",
+        "Reject malformed/server material: role",
+        "Private no-backup file contains ciphertext, not the player credential",
+        "Tampering fails closed and does not replace the vault",
+        "Validated USB inbox is removed after protected persistence",
+        "Bad inbox is preserved for parent review; existing identity is intact",
+        "Native NSD test service registered",
+        "Native browse/resolve cycle 1",
+        "Closed browser drops late results 1",
+        "Native browse/resolve cycle 2",
+        "Closed browser drops late results 2",
+        "Native browse/resolve cycle 3",
+        "Closed browser drops late results 3",
+        "Different-family TXT cannot produce an endpoint",
+        "Protocol mismatch cannot produce an endpoint"
+      ],
+      "count": 22
+    },
+    {
+      "passed": [
+        "Keystore enrollment survives a new process"
+      ],
+      "count": 1
+    },
+    {
+      "passed": [
+        "Actual Windows DNS-SD advertisement resolves through the Android adapter"
+      ],
+      "count": 1
+    }
+  ]
+}

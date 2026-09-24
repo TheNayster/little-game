@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([Parameter(Mandatory)][ValidateRange(1,9999)][int]$BuildNumber,[switch]$UseRecoveryKey)
+param([Parameter(Mandatory)][ValidateRange(1,9999)][int]$BuildNumber,[switch]$UseRecoveryKey,[switch]$FamilyLan)
 $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
 $record=Get-Content -LiteralPath (Join-Path $root 'LocalData\android-signing.json') -Raw | ConvertFrom-Json
@@ -7,11 +7,26 @@ $pin=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'android-family-signing.j
 if ($record.certificateSha256 -ne $pin.certificateSha256 -or $record.alias -ne $pin.alias) { throw 'Private registration does not match the pinned family identity.' }
 $key=if ($UseRecoveryKey) { Join-Path $record.recovery 'family-release.p12' } else { $record.keystore }
 if ((Get-FileHash -LiteralPath $key -Algorithm SHA256).Hash.ToLowerInvariant() -ne $record.keystoreSha256) { throw 'Signing key hash mismatch.' }
-$output=Join-Path $root "Builds\AndroidSigned\G1-0.0.$BuildNumber"
-$source=Join-Path $root "Builds\Android\G1-0.0.$BuildNumber"
-if ((Test-Path -LiteralPath $output) -or (Test-Path -LiteralPath $source)) { throw 'Use a fresh build number. Existing artifacts are never substituted or overwritten.' }
-# Always build the requested source now. The original Unity artifact is retained separately.
-& (Join-Path $PSScriptRoot 'Build-Foundation.ps1') -Target Android -BuildNumber $BuildNumber
+$phase=if($FamilyLan){'G3'}else{'G1'}
+$output=Join-Path $root "Builds\AndroidSigned\$phase-0.0.$BuildNumber"
+$source=if($FamilyLan){Join-Path $root "Builds\AndroidFamilyLAN\G3-0.0.$BuildNumber"}else{Join-Path $root "Builds\Android\G1-0.0.$BuildNumber"}
+if(Test-Path -LiteralPath $output){throw 'Use a fresh build number. Signed outputs are never overwritten.'}
+if($FamilyLan){
+    # Build-AndroidLAN just produced this intermediate. Refuse stale source even
+    # if this signing entry point is invoked directly at a later time.
+    $sourceRecord=Get-Content -LiteralPath (Join-Path $source 'source-manifest.json') -Raw | ConvertFrom-Json
+    $currentPaths=@(& git -C $root ls-files --cached --others --exclude-standard -- Unity/FamilyPlayset/Assets Unity/FamilyPlayset/Packages Unity/FamilyPlayset/ProjectSettings Tools | Sort-Object -Unique | Where-Object {Test-Path -LiteralPath (Join-Path $root $_) -PathType Leaf})
+    if(@(Compare-Object $currentPaths @($sourceRecord.files.path | Sort-Object -Unique)).Count){throw 'Family LAN source file set changed after the build.'}
+    foreach($entry in $sourceRecord.files){
+        $path=Join-Path $root $entry.path
+        if(!(Test-Path -LiteralPath $path -PathType Leaf) -or (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -ne $entry.sha256){throw 'Family LAN source changed after the build.'}
+    }
+    $built=Get-Content -LiteralPath (Join-Path $source 'build-summary.json') -Raw | ConvertFrom-Json
+    if($built.version -ne "0.0.$BuildNumber" -or $built.result -ne 'Succeeded' -or $built.development -or $built.profile -ne 'Assets/BuildProfiles/Android Family LAN.asset'){throw 'Wrong family LAN artifact.'}
+}else{
+    if(Test-Path -LiteralPath $source){throw 'Use a fresh build number.'}
+    & (Join-Path $PSScriptRoot 'Build-Foundation.ps1') -Target Android -BuildNumber $BuildNumber
+}
 $manifest=@(Get-Content -LiteralPath (Join-Path $source 'artifact-manifest.json') -Raw | ConvertFrom-Json)
 $inputApk=Join-Path $source 'LittleWeeps.apk'
 $inputHash=(Get-FileHash -LiteralPath $inputApk -Algorithm SHA256).Hash.ToLowerInvariant()

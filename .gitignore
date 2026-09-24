@@ -11,6 +11,9 @@
 Builds/
 **/Captures/
 LocalData/
+# Unity Performance Testing emits these temporary build-run records.
+**/Assets/Resources/PerformanceTestRunInfo.json*
+**/Assets/Resources/PerformanceTestRunSettings.json*
 # Personal TV library: exclude every media format and all nested/generated files.
 # Keep only the folder instructions in source control.
 /Media/TV/*

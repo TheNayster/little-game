@@ -1,0 +1,49 @@
+{
+    "listening": true,
+    "connected": true,
+    "driverCreated": true,
+    "driverBound": true,
+    "driverListening": false,
+    "receiveError": 0,
+    "seconds": 4.131962304782168,
+    "maxFrameGap": 0.37150528600000146,
+    "lastDataAge": 0.0063134399999853489,
+    "receivedDataEvents": 26,
+    "receivedDataBytes": 14800,
+    "profiles": [
+        "2a341f5a148c4bf489cb75fa583fecc2",
+        "35e3ce718a8c4a59af28ad4afe011c65",
+        "5a7adbb27b034108bab60127b89d9d4e",
+        "8e5be06ef4244177918484b198c38d3a"
+    ],
+    "events": [
+        {
+            "utc": "2026-09-24T22:11:45.5928450Z",
+            "phase": "discovered",
+            "detail": "native-bonjour-ipv4",
+            "seconds": 2.549537352782285,
+            "peer": 0
+        },
+        {
+            "utc": "2026-09-24T22:11:46.0036340Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 2.95834486778232,
+            "peer": 4294967296
+        },
+        {
+            "utc": "2026-09-24T22:11:46.0582000Z",
+            "phase": "connected",
+            "detail": "",
+            "seconds": 3.0129017247821725,
+            "peer": 6
+        },
+        {
+            "utc": "2026-09-24T22:11:46.0821120Z",
+            "phase": "first-snapshot",
+            "detail": "7435",
+            "seconds": 3.0368004407822486,
+            "peer": 0
+        }
+    ]
+}

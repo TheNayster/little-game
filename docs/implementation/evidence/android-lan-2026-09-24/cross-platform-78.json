@@ -1,0 +1,9 @@
+{
+  "androidBuild": 78,
+  "pcBuild": 77,
+  "connected": 4,
+  "soloSavePreserved": true,
+  "directDiscovery": true,
+  "relayUsed": false,
+  "enrollment": "paired"
+}

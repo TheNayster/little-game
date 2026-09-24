@@ -1,0 +1,52 @@
+{
+  "utc": "2026-09-24T22:06:17.709774+00:00",
+  "build": 77,
+  "runId": "86eb80e780444f129ba6cdc67736ded1",
+  "checks": [
+    {
+      "check": "four enrolled clients discover the server without a configured IP or correct port and join over DTLS",
+      "passed": true
+    },
+    {
+      "check": "encrypted clients preserve independent travel and one-holder item ownership",
+      "passed": true
+    },
+    {
+      "check": "wrong credential cannot enter or mutate the world; local play remains available",
+      "passed": true
+    },
+    {
+      "check": "unpaired profile cannot enter or mutate the world; local play remains available",
+      "passed": true
+    },
+    {
+      "check": "duplicate profile cannot enter or mutate the world; local play remains available",
+      "passed": true
+    },
+    {
+      "check": "incompatible protocol cannot enter or mutate the world; local play remains available",
+      "passed": true
+    },
+    {
+      "check": "wrong family advertisement cannot enter or mutate the world; local play remains available",
+      "passed": true
+    },
+    {
+      "check": "untrusted server certificate cannot enter or mutate the world; local play remains available",
+      "passed": true
+    },
+    {
+      "check": "leaving and relaunching a paired client discovers the same live authority without disturbing the others",
+      "passed": true
+    },
+    {
+      "check": "absent server fallback passes actual solo touch, joystick, dragging, menu, watering and audio checks",
+      "passed": true
+    },
+    {
+      "check": "credentials and authority private key absent from configs, observations and logs",
+      "passed": true
+    }
+  ],
+  "scope": "Windows native Bonjour/DTLS proof on one PC, IPv4; no physical device or automatic recovery qualification"
+}
