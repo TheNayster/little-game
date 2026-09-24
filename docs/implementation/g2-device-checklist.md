@@ -1,10 +1,10 @@
 # Next G2 device check — when the family is available
 
-The playable Windows preview is 43. The Windows-produced iPad Xcode export is 44, at `Builds/iOSSolo/G2-0.0.44/Xcode`. The Mac and physical devices were deliberately not used during the overnight work. Start with iPad 9; iPad 7 remains the performance baseline and is still required. Android/iPhone follow after the primary iPads.
+The playable Windows preview is 49. The Windows-produced iPad Xcode export is 50, at `Builds/iOSSolo/G2-0.0.50/Xcode`. These include the new package configuration; [Windows regression and export inspection](g3-network-probe-2026-09-24.md) passed. The Mac and physical devices were deliberately not used during this work. Start with iPad 9; iPad 7 remains the performance baseline and is still required. Android/iPhone follow after the primary iPads.
 
 ## Build/install preparation
 
-1. Verify export 44's existing artifact manifest before transfer, then verify the transferred archive/hash on the Mac. Use a separate `Builds/G2-0.0.44` destination. Existing Mac helper paths are G1-specific; update the helper for an explicit G2 destination before running it. Do not point it at the old project or reuse an unverified artifact.
+1. Verify export 50's existing artifact manifest before transfer, then verify the transferred archive/hash on the Mac. Use a separate `Builds/G2-0.0.50` destination. Existing Mac helper paths are G1-specific; update the helper for an explicit G2 destination before running it. Do not point it at the old project or reuse an unverified artifact.
 2. Compile the Unity-iPhone Release target with the established family Apple team. Verify the resulting signature and app ID `com.littleweeps.familyplayset`. No app uninstall or data reset is needed.
 3. Record exact existing G1 counter/profile/video preferences before installing over the same app. The new garden has its own `SoloPrototype/family-local` save and does not repurpose G1 diagnostic preferences. Check those old values still exist afterward, even though the garden does not display the diagnostic counter/video UI.
 4. Install and launch only after the phone/tablet is available. Windows export success does not prove Xcode compilation, provisioning, installation or device execution. Keep the signing-refresh work separate; Wi-Fi renewal is still unresolved.

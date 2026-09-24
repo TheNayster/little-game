@@ -37,7 +37,7 @@ namespace LittleWeeps.Core
         public SoloToy[] toys;
         public SoloReceipt[] receipts = Array.Empty<SoloReceipt>();
     }
-    public sealed class SoloCommand
+    [Serializable] public sealed class SoloCommand
     {
         public string requestId, actor, item = "", target = "", value = "";
         public long expectedRevision;

@@ -19,6 +19,32 @@ static class Program
         root = Path.GetFullPath(args.Length == 1 ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        Test("session admission prevents duplicate and unknown player connections",()=>{
+            var w=SoloWorld.Create("first","second","third","fourth");var session=new FamilySession(w);
+            Check(session.Attach(1,"first",out _));Check(!session.Attach(2,"first",out _));
+            Check(!session.Attach(2,"unknown",out _));Check(!session.Attach(1,"second",out _));
+            Check(session.Attach(2,"second",out _) && session.Attach(3,"third",out _) && session.Attach(4,"fourth",out _));
+            Check(session.ConnectedPlayers.Length==4 && !session.Attach(5,"fifth",out _));
+        });
+        Test("session binds commands to the admitted player",()=>{
+            var w=SoloWorld.Create("first","second");var session=new FamilySession(w);Check(session.Attach(1,"first",out _));
+            var before=Encode(w.Snapshot());Check(!session.Submit(1,Command(w,SoloAction.Move,actor:"second",x:20,y:30)).Accepted);
+            Check(!session.Submit(2,Command(w,SoloAction.Move,x:20,y:30)).Accepted);Check(Encode(w.Snapshot())==before);
+        });
+        Test("departing player releases only their prop and preserves the sibling",()=>{
+            var w=SoloWorld.Create("first","second");var session=new FamilySession(w);session.Attach(1,"first",out _);session.Attach(2,"second",out _);
+            Good(w,SoloAction.Grab,"bucket-1");Good(w,SoloAction.Grab,"sponge-1",actor:"second");Good(w,SoloAction.StartActivity,value:"cleanup",actor:"second");
+            var sibling=w.ReadPlayer("second");Check(session.Detach(1));Check(!session.Detach(1));
+            Check(Toy(w,"bucket-1").holder=="" && Toy(w,"sponge-1").holder=="second" && w.ReadPlayer("second").activity==sibling.activity);
+            Check(session.Attach(3,"first",out _) && session.ConnectedPlayers.Length==2);
+        });
+        Test("accepted duplicate stays idempotent after connection replacement",()=>{
+            var w=SoloWorld.Create("first");var session=new FamilySession(w);session.Attach(1,"first",out _);
+            var cmd=Command(w,SoloAction.Move,x:77,y:88);Check(session.Submit(1,cmd).Accepted);
+            session.Detach(1);session.Attach(9,"first",out _);var revision=w.Revision;
+            Check(session.Submit(9,cmd).Duplicate && w.Revision==revision && !session.Submit(1,cmd).Accepted);
+            Check(session.View().receipts.Length==0 && session.Checkpoint().receipts.Length==1);
+        });
         Test("one holder; other player cannot steal or release", () => {
             var w = SoloWorld.Create("first", "second");
             Good(w, SoloAction.Grab, "bucket-1");
@@ -202,7 +228,7 @@ static class Program
     static void Check(bool condition){if(!condition)throw new Exception("Assertion failed.");}
     static void Throws(Action body){try{body();}catch{return;}throw new Exception("Expected rejection.");}
     static SoloCommand Command(SoloWorld w,SoloAction action,string item="",string target="",string value="",float x=0,float y=0,string actor="first")=>new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=actor,expectedRevision=w.Revision,action=action,item=item,target=target,value=value,x=x,y=y};
-    static void Good(SoloWorld w,SoloAction action,string item="",string target="",string value="",float x=0,float y=0){var r=w.Apply(Command(w,action,item,target,value,x,y));Check(r.Accepted);}
+    static void Good(SoloWorld w,SoloAction action,string item="",string target="",string value="",float x=0,float y=0,string actor="first"){var r=w.Apply(Command(w,action,item,target,value,x,y,actor));Check(r.Accepted);}
     static SoloToy Toy(SoloWorld w,string id)=>w.Snapshot().toys.Single(t=>t.id==id);
     static void Fill(SoloWorld w){Good(w,SoloAction.Grab,"bucket-1");Good(w,SoloAction.Drop,"bucket-1","tap-1",x:150,y:340);}
     static string Encode(SoloSnapshot s)=>JsonSerializer.Serialize(s,Json);
