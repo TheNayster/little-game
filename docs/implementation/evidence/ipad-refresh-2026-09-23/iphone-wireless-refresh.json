@@ -25,7 +25,7 @@
     "Bonjour": "Running",
     "AppleMobileDeviceService": "Running"
   },
-  "wirelessSetupStatus": "Discovery not working yet; phone restart requested. No manual refresh or automatic renewal has occurred.",
+  "wirelessSetupStatus": "Unresolved: still absent after Private Wi-Fi Address Off, successful USB re-pair and post-change phone restart.",
   "reference": "https://sideloadly.io/faq",
   "userConfirmedSameWifiAndUnlocked": true,
   "afterUnlockRetry": {
@@ -89,11 +89,106 @@
     "nativeAppleServiceReadOnlyDeviceListAfterward": [],
     "sideloadlyDeviceVisibleAfterward": false
   },
-  "nextAction": "User restarts the iPhone once, unlocks locally with its passcode, leaves USB unplugged; then repeat detection.",
+  "nextAction": "User saves open PC work and restarts Windows; then retest iTunes/Sideloadly detection with unlocked phone on Acorn. No automatic PC restart. If unresolved, keep Wi-Fi qualification open and test USB retention separately.",
   "references": [
     "https://sideloadly.io/faq",
     "https://support.apple.com/en-gb/102347",
-    "https://raw.githubusercontent.com/doronz88/pymobiledevice3/master/pymobiledevice3/bonjour.py"
+    "https://raw.githubusercontent.com/doronz88/pymobiledevice3/master/pymobiledevice3/bonjour.py",
+    "https://docs.rs/idevice/0.1.68/idevice/mdns/index.html",
+    "https://docs.rs/idevice/0.1.68/src/idevice/mdns.rs.html",
+    "https://sideloadly.io/changelog"
   ],
-  "updatedUtc": "2026-09-24T03:54:01.198616+00:00"
+  "updatedUtc": "2026-09-24T04:12:33.174614+00:00",
+  "phoneRestartCheck": {
+    "userReportedRestartAndUnlock": true,
+    "sideloadlyDeviceVisibleAfterward": false,
+    "startEnabled": false
+  },
+  "communityResearch": {
+    "checkedUtc": "2026-09-24T03:56:10.024685+00:00",
+    "reportedWorkaround": "Private Wi-Fi Address Off for the home network; Fixed still uses a private address.",
+    "evidenceLevel": "Firsthand mixed results; this device remains undetected after Off and re-pair, before a requested post-change restart.",
+    "communitySource": "https://www.reddit.com/r/sideloaded/comments/1s8ng76/comment/odqhtq4/",
+    "corroboratingThread": "https://www.reddit.com/r/sideloadly/comments/1s3my98/ios_264_and_wifi_device_detection_not_working/",
+    "appleSettingDocumentation": "https://support.apple.com/en-us/102509",
+    "userAskedToNotePriorSettingAndTryOffForHomeNetworkOnly": true,
+    "settingChangedByAgent": false
+  },
+  "privateAddressTrial": {
+    "userReply": "off now",
+    "reportedUtc": "2026-09-24T03:56:42.306957+00:00",
+    "scope": "iPhone home network only",
+    "priorSetting": "not reported",
+    "newSettingReported": "Off",
+    "initialImmediateDeviceDetection": false,
+    "retentionTestStillPending": true,
+    "detectionAfterUsbRepairAndUnplug": false,
+    "detectionAfterPostChangeRestart": false
+  },
+  "pairingRepair": {
+    "performedOverUsb": true,
+    "firstResult": "Pairing failed: Please accept the trust dialog on the screen of device, then try again",
+    "userConfirmedTrustLocally": true,
+    "retryResult": "Pairing repaired, now the device should be available through Wi-Fi",
+    "observedUtc": "2026-09-24T03:59:48.100225+00:00",
+    "limitation": "Successful pairing message does not establish cable-free detection or refresh."
+  },
+  "postRepairUnplugCheck": {
+    "userConfirmedUsbUnplugged": true,
+    "nativeCheckUtc": "2026-09-24T04:05:39.776828+00:00",
+    "nativeDeviceCount": 0,
+    "targetConnectionTypes": [],
+    "freshSideloadlyScreenshot": "No devices detected; Start disabled",
+    "refreshAttempted": false
+  },
+  "pairingMetadataCheck": {
+    "readOnly": true,
+    "pairRecordWifiMacPresent": true,
+    "matchingHostnameAdvertisementReceived": true,
+    "advertisementContainsMacShapedIdentifier": true,
+    "normalizedIdentifierMatchesPairRecordWifiMac": false,
+    "limitation": "Advertisement matched by hostname, not authenticated device identity. Difference is a clue, not a proven root cause.",
+    "pairRecordsModified": false,
+    "credentialsCopiedIntoEvidence": false
+  },
+  "postSettingRestart": {
+    "requested": true,
+    "completed": true,
+    "reason": "First phone restart preceded the Private Wi-Fi Address change; firsthand reports include restarting after this change.",
+    "userConfirmedRestartAndUnlock": true,
+    "checkedUtc": "2026-09-24T04:08:36.817601+00:00",
+    "nativeDeviceCount": 0,
+    "sideloadlyDeviceVisible": false,
+    "startEnabled": false
+  },
+  "modernAdvertisementCheck": {
+    "observedUtc": "2026-09-24T04:09:51.283923+00:00",
+    "matchingHostname": true,
+    "identifierTxtPresent": true,
+    "authTagCount": 1,
+    "localPairingHostTagMatches": true,
+    "normalizedMacMatches": false,
+    "advertisedPort": 32498,
+    "method": "Read-only local calculation following idevice 0.1.68 mdns matching; no protocol credentials printed or retained.",
+    "source": "https://docs.rs/idevice/0.1.68/idevice/mdns/index.html",
+    "sourceImplementation": "https://docs.rs/idevice/0.1.68/src/idevice/mdns.rs.html",
+    "limitation": "Matched advertisement associated with existing pairing, not a successful device session/install. Exact Windows cause unresolved."
+  },
+  "installedLibraryInspection": {
+    "file": "MobileDevice.dll",
+    "authTagMarkerPresent": true,
+    "AMDIsTXTRecordForUDIDMarkerPresent": true,
+    "limitation": "String presence does not prove successful runtime protocol handling; do not claim protocol is absent from the library."
+  },
+  "vendorReleaseCheck": {
+    "url": "https://sideloadly.io/changelog",
+    "latestListed": "0.60.0",
+    "installedVersionMatches": true,
+    "confirmedFixForThisCaseFound": false
+  },
+  "pcRestart": {
+    "performed": false,
+    "reason": "Remaining vendor-documented step after support installation/service changes; user must save open work first.",
+    "source": "https://support.apple.com/en-gb/102347"
+  }
 }
