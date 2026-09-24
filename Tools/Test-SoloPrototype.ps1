@@ -1,5 +1,6 @@
 [CmdletBinding()]
-param([Parameter(Mandatory)][int]$BuildNumber,[switch]$InputOnly,[int]$UpdatedBuildNumber=0)
+param([Parameter(Mandatory)][int]$BuildNumber,[switch]$InputOnly,[int]$UpdatedBuildNumber=0,
+      [ValidateRange(640,2560)][int]$Width=1280,[ValidateRange(480,1440)][int]$Height=800)
 $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
 if($UpdatedBuildNumber -and ($InputOnly -or $UpdatedBuildNumber -eq $BuildNumber)){throw 'Use a distinct updated build for the save/update suite.'}
@@ -27,7 +28,7 @@ foreach($mode in $modes){
         [IO.File]::WriteAllText($save,'interrupted test write')
     }
     $log=Join-Path $evidence "$mode.log"
-    $arguments=@('-screen-fullscreen','0','-screen-width','1280','-screen-height','800','-soloVerify',$mode,'-soloRun',$run,'-logFile',('"'+$log+'"'))
+    $arguments=@('-screen-fullscreen','0','-screen-width',"$Width",'-screen-height',"$Height",'-soloVerify',$mode,'-soloRun',$run,'-logFile',('"'+$log+'"'))
     Write-Host "Solo $mode on build $currentBuild; run $run"
     $player=Start-Process -FilePath (Join-Path $folder 'LittleWeepsSolo.exe') -ArgumentList $arguments -WindowStyle Hidden -PassThru
     if(!$player.WaitForExit(90000)){$player.Kill();throw "Prototype test timed out: $log"}
@@ -35,6 +36,9 @@ foreach($mode in $modes){
     if($player.ExitCode -ne 0){throw "Prototype failed; see $evidence"}
     $result=Get-Content -LiteralPath (Join-Path $evidence "$mode.json") -Raw | ConvertFrom-Json
     if(!$result.passed -or $result.runId -ne $run -or $result.build -ne "0.0.$currentBuild"){throw 'Mismatched prototype evidence.'}
+    if($result.PSObject.Properties.Name -contains 'screenWidth'){
+        if($result.screenWidth -ne $Width -or $result.screenHeight -ne $Height -or !$result.layoutBounds){throw 'Requested viewport or layout checks did not pass.'}
+    }
 }
 if($InputOnly){Write-Host "PASS: full Input System mouse/touch integration. Evidence: $evidence"}
 else{Write-Host "PASS: handlers, interactions, saved play and corrupted-primary recovery. Evidence: $evidence"}

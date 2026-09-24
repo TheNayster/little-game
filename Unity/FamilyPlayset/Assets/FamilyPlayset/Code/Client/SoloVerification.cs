@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
 
 namespace LittleWeeps.Client
 {
@@ -25,6 +26,10 @@ namespace LittleWeeps.Client
             try
             {
                 await Task.Delay(300);Check(screen.World!=null,"World did not start.");
+                Canvas.ForceUpdateCanvases();
+                result.screenWidth=Screen.width;result.screenHeight=Screen.height;
+                result.safeArea=Screen.safeArea;
+                VerifyLayout();result.layoutBounds=true;
                 Check(screen.Narration.Ready,"Bundled English narration did not load.");result.narrationLoaded=true;
                 Check(FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Count(l=>l.enabled && l.gameObject.activeInHierarchy)==1,"Scene needs exactly one active audio listener.");
                 screen.Narration.Speak("garden");
@@ -141,6 +146,25 @@ namespace LittleWeeps.Client
             Debug.Log("LITTLE_WEEPS_SOLO_VERIFY "+JsonUtility.ToJson(result));Application.Quit(result.passed?0:1);
         }
         private SoloPlayer Player()=>screen.World.Snapshot().players[0];
+        private void VerifyLayout()
+        {
+            // Check actual transformed bounds, including the hidden menu, rather than
+            // assuming the reference canvas size matches the current window.
+            var safe=Screen.safeArea;
+            var tolerance=1f;
+            var corners=new Vector3[4];
+            foreach(var rect in FindObjectsByType<Button>(FindObjectsInactive.Include,FindObjectsSortMode.None).Select(b=>(RectTransform)b.transform)
+                .Concat(FindObjectsByType<Text>(FindObjectsInactive.Include,FindObjectsSortMode.None).Select(t=>t.rectTransform)))
+            {
+                rect.GetWorldCorners(corners);
+                foreach(var corner in corners)
+                {
+                    var point=RectTransformUtility.WorldToScreenPoint(null,corner);
+                    Check(point.x>=safe.xMin-tolerance && point.x<=safe.xMax+tolerance && point.y>=safe.yMin-tolerance && point.y<=safe.yMax+tolerance,
+                        "UI outside safe viewport: "+rect.name+" at "+point+" in "+safe);
+                }
+            }
+        }
         private void Touch(Touchscreen touch,int id,UnityEngine.InputSystem.TouchPhase phase,Vector2 position)=>InputSystem.QueueStateEvent(touch,new TouchState{touchId=id,phase=phase,position=position,pressure=phase==UnityEngine.InputSystem.TouchPhase.Ended?0:1});
         private async Task MouseDrag(Mouse mouse,string item,string target)
         {
@@ -172,6 +196,9 @@ namespace LittleWeeps.Client
             public string mode,runId,build,worldId,playerId,loadedStatus,utc,error;
             public bool passed,tapWalk,joystickAndDrag,pointerExclusivity,interactions,cancellation,relaunch,mouseInputModule,touchInputModule,osTouchCancellation,narrationLoaded,narrationPlayback;
             public long revision;
+            public int screenWidth,screenHeight;
+            public Rect safeArea;
+            public bool layoutBounds;
         }
     }
 }

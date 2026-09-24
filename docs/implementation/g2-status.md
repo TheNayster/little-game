@@ -55,6 +55,8 @@ Core: Code/Core/SoloWorld.cs. Disk adapter: Code/Adapters/CheckpointStore.cs. UI
 
 ## Current task and remaining gates
 
-Next bounded Windows-only task: verify control bounds and interaction routing at tablet and wide-phone aspect ratios, then record the exact tested dimensions. This does not substitute for actual iPad safe areas, multi-touch or performance.
+Layout follow-up completed on Windows build 36: all button/text rectangles, including the hidden menu, fit the actual viewport at **1280×960**, **1920×900** and **960×540**. Full mouse/two-touch/cancellation input checks and muted narration checks passed at each size. [Tablet](evidence/solo-prototype-2026-09-24/layout-tablet-36.json), [wide phone](evidence/solo-prototype-2026-09-24/layout-wide-36.json), [small landscape](evidence/solo-prototype-2026-09-24/layout-small-36.json). These are Windows window dimensions, not device safe-area or physical-touch qualification.
+
+Next bounded Windows-only task: measure and reduce unnecessary snapshot allocations in the per-frame presentation path. Preserve the authority boundary and recheck saved play. Desktop allocation evidence will not be presented as older-iPad performance qualification.
 
 G1 still needs older-iPad qualification, independent backup, native ARM64 16 KB investigation and mobile renewal/device checks. G2 needs actual-device gestures, audio quality and observation of both children. Spanish, final characters, full settings/world wheel, final rooms, network transport, pairing/discovery, iPad hosts, shared-world recovery, offline reunion and the remaining mini-games are not implemented. Do not batch-produce content or declare multiplayer ready from this prototype.

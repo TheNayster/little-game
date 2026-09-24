@@ -1,0 +1,33 @@
+{
+    "mode": "input",
+    "runId": "ae965a6950f0448ab764b976779e5351",
+    "build": "0.0.36",
+    "worldId": "1be45dc4f242465d8d2677609f8a40ba",
+    "playerId": "2bf857850e7e48d6ada5c13db4cfa75b",
+    "loadedStatus": "Missing",
+    "utc": "2026-09-24T05:55:40.8797748Z",
+    "error": "",
+    "passed": true,
+    "tapWalk": false,
+    "joystickAndDrag": false,
+    "pointerExclusivity": false,
+    "interactions": false,
+    "cancellation": false,
+    "relaunch": false,
+    "mouseInputModule": true,
+    "touchInputModule": true,
+    "osTouchCancellation": true,
+    "narrationLoaded": true,
+    "narrationPlayback": true,
+    "revision": 27,
+    "screenWidth": 960,
+    "screenHeight": 540,
+    "safeArea": {
+        "serializedVersion": "2",
+        "x": 0.0,
+        "y": 0.0,
+        "width": 960.0,
+        "height": 540.0
+    },
+    "layoutBounds": true
+}
