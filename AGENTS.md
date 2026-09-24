@@ -1,6 +1,7 @@
 # Project boundary
 
 - This game's GitHub home is the private repository `https://github.com/TheNayster/little-weeps-game`, with Git remote `origin`. Use this repository for this game's source/history; never substitute a repository from the unrelated old project. Keep credentials, signing material, generated builds and local saved worlds out of commits. Preserve Git LFS media when pushing or restoring.
+- Personal TV source videos belong in `Media/TV/`. Its contents are ignored except `README.md`; never force-add personal clips, thumbnails, subtitles or local catalogs. The separate generated foundation test clip remains tracked. Folder preparation does not mean the TV importer is implemented.
 
 - This directory is the new home for the family game described in `docs/bluey-game-research-2026-09-23.md`.
 - `C:\Users\sephi\Desktop\Meeps game` is an unrelated old Unity project. Do not move, copy, merge, or modify that project as part of this game's work unless the user specifically requests it.

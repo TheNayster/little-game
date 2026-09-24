@@ -64,6 +64,8 @@ Automatic recovery cannot promise an invisible transition when a hosting device 
 
 **GitHub destination confirmed September 24:** [TheNayster/little-weeps-game](https://github.com/TheNayster/little-weeps-game) is this game's private remote, named `origin`. Previously the project's Git history existed only locally. Use `main` for the shared baseline and retain the `codex/…` development branches. Git LFS accompanies the tracked narration/video. This source repository does not back up ignored local worlds, builds, personal media or signing material; those still require the separate backup/restore workflow.
 
+**Personal TV folder prepared September 24 — TV-01:** `Media/TV/` at the project root is reserved for the family's video library. The root `.gitignore` excludes all its contents and subfolders except its README, including clips, posters, subtitles and local catalogs. This is local folder preparation only; automatic import, the in-game library and device media delivery remain unbuilt. Keep the generated foundation playback test clip tracked separately.
+
 The following is the **target structure**. The isolated Unity project, build profiles, tools and Core/Runtime/Adapters/Client/Server/Editor code boundaries now exist. A separate NetworkProbe assembly contains the provisional networking adapter. The current game assets are mainly Code, Resources and Scenes; the full Content/Art/Audio/UI/Tests and editable source-asset pipeline below is still to be established as needed, before content production. Do not read this tree as a completed inventory:
 
 ```text
