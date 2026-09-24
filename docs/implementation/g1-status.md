@@ -1,5 +1,7 @@
 # G1 — project and device foundation
 
+**Current-status pointer, September 24:** this file retains dated implementation history. Use the [main plan audit](../family-playset-build-guide-2026-09-23.html#19-implementation-audit-and-remaining-work) for the consolidated device/build ledger, all feature statuses and next task; earlier “next” and “unavailable” statements below belong to their recorded stage.
+
 Started 23 September 2026. In progress. The Samsung foundation launch, input, media, restart and signed-update checks passed; the remaining G1 device/recovery gates are still open.
 
 **24 September device follow-up:** solo garden 56 now runs on both iPads. The [iPad 9 update and physical checks](ipad-garden-2026-09-24.md) retained the earlier foundation preferences; the [iPad 7 first install/play/restart](ipad7-garden-2026-09-24.md) has successful native launch and exact save retention, with a separate CoreDevice installed-app enumeration error still open. These garden results do not close older-iPad media coverage, measured performance, recovery, renewal or the whole G1 gate.

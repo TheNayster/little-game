@@ -4,13 +4,13 @@ Feature goal sheet and supporting research • September 23, 2026
 
 **Device priority confirmed:** the two iPads are the main play devices; Android is secondary. Design touch controls, layout, memory use and performance around the iPads first, using the older A2197 iPad 7 as the minimum performance baseline. Android/iPhone support and four-player mixed-device play remain required; a successful Samsung test does not replace iPad testing.
 
-**How we will build it:** the separate [ground-up build guide](family-playset-build-guide-2026-09-23.html) organizes implementation into ordered phases, architecture, asset workflows, device tests and completion gates. **This page is the goal sheet; that guide is the build sequence.** The guide consolidates earlier milestone suggestions without removing feature requirements. G1 foundation setup has started; see the [implementation record](implementation/g1-status.md). Game features remain planned until their acceptance checks pass.
+**How we will build it:** the separate [ground-up build guide](family-playset-build-guide-2026-09-23.html) organizes implementation into ordered phases, architecture, asset workflows, device tests and completion gates. **This page is the goal sheet; that guide is the build sequence.** The guide consolidates earlier milestone suggestions without removing feature requirements. **Implementation status, September 24:** both iPads run the solo garden; four Windows clients share the prototype world and received positive play feedback. The [implementation audit](family-playset-build-guide-2026-09-23.html#19-implementation-audit-and-remaining-work) records passed proofs, all 35 feature statuses and remaining work. G1/G2/G3 are partial; mobile multiplayer, automatic joining/hosting/recovery and full content remain ahead. Historical statements below describe the September 23 research pass unless a later date is specified.
 
 **Templates and packages:** [the detailed free-first package review](family-playset-package-research-2026-09-23.html) compares starting templates, exact Unity 6.3 package candidates, optional GitHub components, and one purchase around $15. [Section 54](#54-templates-packages-and-the-free-starting-setup) records the recommended setup. No complete ready-made template was found that supplies all our requirements.
 
 **Deeper technical review:** [Source-backed networking and recovery research](family-playset-technical-research-2026-09-23.html) adds released-code findings, the automatic PC-server flow, package comparisons, shared-item rules and remaining device proofs. Bluetooth has been removed. See [section 53](#53-source-backed-networking-and-recovery-review).
 
-**Feasibility audit:** [the complete audit](family-playset-feasibility-audit-2026-09-23.html) finds a credible path to this game, with required early proofs for automatic host recovery, independent areas, save reconciliation, and performance on the older iPad. [Section 52](#52-feasibility-audit-and-current-priorities) records the verdict and current priorities. This folder contains research, not an implemented game.
+**Feasibility audit:** [the complete audit](family-playset-feasibility-audit-2026-09-23.html) finds a credible path to this game, with required early proofs for automatic host recovery, independent areas, save reconciliation, and performance on the older iPad. [Section 52](#52-feasibility-audit-and-current-priorities) records the verdict and current priorities. That was a research-only feasibility review; subsequent prototype implementation and its limits are recorded in the build guide, not implied by feasibility.
 
 **Latest clarification:** iPad hosting, automatic joining, automatic host switching, four-player mixed-device play, and independent exploration remain **required**. Only multiplayer connectivity **while traveling** is an optional, lower-priority want. Full solo play without the PC or internet remains required everywhere. This distinction applies throughout the travel and networking chapters; it does not make ordinary-network host recovery optional.
 
@@ -90,8 +90,8 @@ I interpret the bucket example as watering a **plant**. The six requested worlds
 
 | Device | Model | OS you reported | Role |
 | --- | --- | --- | --- |
-| First iPad, A2197 | iPad 7th generation, A10, 10.2-inch | iPadOS 18.6.2 | Required minimum performance target |
-| Second iPad, A2602 | iPad 9th generation, A13, 10.2-inch | iPadOS 18.7.10 | Required second player; preferred travel-session host for initial testing |
+| First iPad, A2197 | iPad 7th generation, A10, 10.2-inch | Device-observed iPadOS 18.7.10, September 24 | Required minimum performance target |
+| Second iPad, A2602 | iPad 9th generation, A13, 10.2-inch | Device-observed iPadOS 18.6.2, September 24 | Required second player and host-role test device; travel co-op is optional |
 | iPhone, A2484 | iPhone 13 Pro Max, A15 | iOS 26.6.1 | Additional parent/fourth player; layout and newer-OS testing |
 | Android phone, SM-S948U1 | Samsung Galaxy S26 Ultra | Installed Android version not yet reported | Primary Android parent device; third-player cross-platform testing |
 | Mac | 14-inch MacBook Pro, 2021, M1 Pro, 16 GB | macOS version still to check | Xcode build, signing, native logs |
@@ -504,11 +504,11 @@ The renewal plan is intended to remove manual weekly reinstall work. It still de
 
 The research can proceed with the confirmed defaults and expanded requirements below. Remaining preferences include favorite characters to produce first, the preferred Spanish dialect, and voice choices after listening to auditions. Router-free and travel multiplayer remain optional experiments; full offline solo play is required. Sections 16–51 refine the earlier milestones, and section 52 records the audited interpretation and current priorities. Two separate bedrooms, a PC server during home play, iPad hosting, and automatic host switching are confirmed requirements.
 
-**Research limits:** no game build or iPad runtime test was performed; GitHub findings are selected-source inspections; ComfyUI integrations were researched but not installed; generated voices were not auditioned; character pictures are official visual references rather than finished game rigs. The companion guide and evidence files make the proposed implementation concrete enough to review and start with the backyard prototype.
+**Original September 23 research limits:** no game build or iPad runtime test was performed during that research pass; GitHub findings are selected-source inspections; ComfyUI integrations were researched but not installed; generated voices were not auditioned; character pictures are official visual references rather than finished game rigs. The companion guide and evidence files make the proposed implementation concrete enough to review and start with the backyard prototype.
 
 ## 16. Expanded feature tracker
 
-Added September 23, 2026, following the Toca/Piknik research. This is the main record of the new requirements. **Status for every row: researched and planned; implementation and device acceptance are pending.** Episode facts below come from the official Bluey site. Controls, recipes, timing, AI behavior, and multiplayer rules are our proposed adaptations, not claims about existing Bluey games or the show's internal production technology.
+Added September 23, 2026, following the Toca/Piknik research. This is the main record of the new requirements. **These rows specify the finished requirements, not current implementation status.** The [September 24 implementation audit](family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status) tracks every ID as partial, not built or optional later, with evidence and remaining acceptance. No complete feature row is accepted yet. Episode facts below come from the official Bluey site. Controls, recipes, timing, AI behavior, and multiplayer rules are our proposed adaptations, not claims about existing Bluey games or the show's internal production technology.
 
 | ID | Required feature | Proposed behavior | Complete only when |
 | --- | --- | --- | --- |

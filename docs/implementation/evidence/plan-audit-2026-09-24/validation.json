@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-24",
+  "passed": true,
+  "type": "Documentation/coverage/evidence validation, not game runtime testing",
+  "featureIdsCovered": 35,
+  "researchChaptersMapped": 54,
+  "localLinksChecked": 288,
+  "linkErrors": [],
+  "retainedEvidenceHashChecks": 14,
+  "unchangedCodeAndPackageHashChecks": 35,
+  "sharedBuildSummaryVerified": "0.0.68 Server and Client Succeeded, no errors",
+  "soloBuildSummaryVerified": "0.0.67 Succeeded, no errors",
+  "gameRuntimeTestsRerun": false,
+  "diffCheckPassed": true,
+  "trackedChangesDocumentationOnly": true,
+  "browserPreviewVerified": true,
+  "browserPreviewScope": "Updated main guide and audit section rendered in the in-app browser; screenshot inspected for readable headings, paragraphs, navigation and table layout.",
+  "documentServer": "Existing helper started loopback-only docs server on 127.0.0.1:8917; no game process was changed."
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-24",
+  "source": "User message in this task after the four-window preview",
+  "userStatement": "working great!",
+  "build": 68,
+  "humanPlayerWindows": 4,
+  "environment": "Four native Windows client windows connected to one PC authority; same-machine loopback",
+  "result": "Positive subjective human play feedback",
+  "physicalMixedDeviceAcceptance": false,
+  "measuredBenchmark": false,
+  "longSessionDurationRecorded": false,
+  "priorSetupEvidence": "../rejoin-recovery-2026-09-24/four-window-preview.json"
+}

@@ -1,0 +1,956 @@
+{
+  "date": "2026-09-24",
+  "baselineCommit": "879b1bd8614c195725f7d58f41d789a4257194b9",
+  "purpose": "Compare saved goal sheet, build guide, source and retained evidence; update truthful status and remaining sequence.",
+  "newRuntimeTests": false,
+  "physicalDevicesAccessed": false,
+  "gameCodeChanged": false,
+  "gameSavesChanged": false,
+  "externalCitationsFreshlyRevalidated": false,
+  "method": "Local requirements/source/evidence audit. Prior automated and native results are dated evidence, not rerun results. User four-window feedback is new evidence.",
+  "overallVerdict": "Aligned foundations; incomplete G1/G2/G3 gates and unbuilt required recovery/content. No complete feature requirement accepted.",
+  "featureCount": 35,
+  "featureStatuses": [
+    {
+      "id": "CHAR-01",
+      "current": "**Partial:** switch between two placeholder skins while preserving identity and held prop",
+      "remaining": "Complete roster/rigs; switching during every activity on mobile. G2/G3 → G6/G7."
+    },
+    {
+      "id": "CHAR-02",
+      "current": "**Partial:** duplicate placeholder favorites are permitted",
+      "remaining": "Any player chooses children or parents; NPC jobs stay separate; seating/holding/activity role continuity. G6/G7."
+    },
+    {
+      "id": "FAMILY-01",
+      "current": "**Partial:** four native Windows clients share a server",
+      "remaining": "Four physical mixed devices, automatic admission, phone layouts and A10 load/recovery. G3/G4."
+    },
+    {
+      "id": "ACT-01",
+      "current": "**Partial:** optional garden/cleanup prompts; free exit",
+      "remaining": "Picture picker, reusable invitations/membership/checkpoints and nonblocking join/switch for all activities. G6/G7."
+    },
+    {
+      "id": "COOK-01",
+      "current": "**Not built**",
+      "remaining": "Kitchen interactions and all 15 recipes, free creations, serving/saves/shared preparation. G6/G7-A."
+    },
+    {
+      "id": "FISH-01",
+      "current": "**Not built**",
+      "remaining": "Backyard fishpond and creek fishing; assisted catch/release, exclusive catches and exit cleanup. G6/G7-A/B."
+    },
+    {
+      "id": "CLEAN-01",
+      "current": "**Partial:** sponge cleans the garden puddle",
+      "remaining": "Toys, dishes, spills, laundry and garden sorting with creation protection and multiplayer cancellation. G6/G7."
+    },
+    {
+      "id": "HIDE-01",
+      "current": "**Not built**",
+      "remaining": "Parent default seeker, both children hiding, fair search and immediate participation. G6/G7."
+    },
+    {
+      "id": "HIDE-02",
+      "current": "**Not built**",
+      "remaining": "Optional child seeker; hidden avatars cannot leak through names, targeting or switching. G6/G7."
+    },
+    {
+      "id": "NPC-01",
+      "current": "**Not built**",
+      "remaining": "Parent routines, interruptible requests, role reservation/release and substitutes for solo play. G6/G7."
+    },
+    {
+      "id": "CAT-01",
+      "current": "**Research only:** 32 episode-based ideas cataloged",
+      "remaining": "Select and implement approved activities with assets, narration, saves and cancellation. G6/G7-E."
+    },
+    {
+      "id": "BOOK-01",
+      "current": "**Not built**",
+      "remaining": "Reading nook, pickup overlay, narration controls, interactive pages/names and approved books offline. G6/G7-A."
+    },
+    {
+      "id": "TV-01",
+      "current": "**Partial:** separate single-clip foundation fixture with persistent bookmark and playback controls",
+      "remaining": "House TV, thumbnails/library/import, per-child/per-video catalog, failures, transitions and media retention. G6/G7-A."
+    },
+    {
+      "id": "DINO-01",
+      "current": "**Not built**",
+      "remaining": "Proposed 20 toy types, spoken names, animation, accessible storage and shared interactions. G6/G7-A."
+    },
+    {
+      "id": "DINO-02",
+      "current": "**Not built**",
+      "remaining": "Discovery Mat: dig/brush/wash/arrange and five optional invitations. G6/G7-A."
+    },
+    {
+      "id": "LAB-01",
+      "current": "**Not built**",
+      "remaining": "Simple science corner and proposed eight experiments, solo/co-op and independent exits. G6/G7-A."
+    },
+    {
+      "id": "JOIN-01",
+      "current": "**Partial:** explicit client launch/relaunch obtains current shared state; survivors continue",
+      "remaining": "Automatic join/reconnect during every activity on devices; local loading/preparation. G3, then G6/G7."
+    },
+    {
+      "id": "WORLD-01",
+      "current": "**Partial:** four Windows players split/gather across two persistent logical areas",
+      "remaining": "Six worlds, rooms/story zones, production scene loading and mobile host independence. G3–G7."
+    },
+    {
+      "id": "WORLD-02",
+      "current": "**Partial:** garden travel leaves another player's movement/drag/cleanup intact",
+      "remaining": "Apply to cooking, riding, books, hiding and all later activities; four-device checks. G3/G6/G7."
+    },
+    {
+      "id": "ITEM-02",
+      "current": "**Partial:** authoritative pickup/contents/release, races and stale-command rejection",
+      "remaining": "Carry approved portable props between areas and recover them across host loss/reunion; current tools stay in their station. G3–G5."
+    },
+    {
+      "id": "ITEM-03",
+      "current": "**Not built:** no inactivity return timer",
+      "remaining": "Typed loans, home anchors, activity-aware timers, return cues and atomic recovery-safe returns. G5."
+    },
+    {
+      "id": "STOCK-01",
+      "current": "**Partial constraint only:** garden tools stay in their area when a player travels",
+      "remaining": "Per-player essential station stock, loan bounds and nested-container checks. One bucket per test area does not satisfy this feature. G5."
+    },
+    {
+      "id": "ROOM-02",
+      "current": "**Not built**",
+      "remaining": "Personal catalogs, loose-prop limits, clear exits, toy storage, protected creation shelf and safe visitors. G5/G7-A."
+    },
+    {
+      "id": "NET-02",
+      "current": "**Partial:** PC authority remains when Windows clients close",
+      "remaining": "Either actual iPad may lock/close while siblings keep valid gameplay; operational home server. G3."
+    },
+    {
+      "id": "REMOTE-01",
+      "current": "**Optional later; not built**",
+      "remaining": "Private away-from-home route if pursued; failure never blocks offline solo. G9."
+    },
+    {
+      "id": "ROOM-01",
+      "current": "**Not built**",
+      "remaining": "Two child-owned layouts, connected updates/visits and non-destructive offline reunion. G5/G6/G7-A."
+    },
+    {
+      "id": "SECRET-01",
+      "current": "**Not built**",
+      "remaining": "Both optional mini-door plush rooms, shared visits, exits, saved layouts and stars/aurora effects. G5/G6/G7-A."
+    },
+    {
+      "id": "HIDE-03",
+      "current": "**Not built**",
+      "remaining": "Enterable closets/drawers, optional 5–10-second clues and about-30-second parent search, tested for fun and no stuck avatars. G6/G7."
+    },
+    {
+      "id": "TRAVEL-01",
+      "current": "**Partial:** isolated solo garden works offline on both iPads",
+      "remaining": "Full solo content/NPC substitutes and safe return-home reconciliation; no automatic shared-session-to-solo transition yet. G2/G5/G7."
+    },
+    {
+      "id": "AUTO-01",
+      "current": "**Not built:** same-PC launcher is a test convenience",
+      "remaining": "Native foreground discovery, one-time parent pairing, automatic launch/rejoin, permission handling and usable offline fallback. G3."
+    },
+    {
+      "id": "AUTO-02",
+      "current": "**Not built:** server restart from its own checkpoint is not host migration",
+      "remaining": "Both iPads host, complete peer recovery, election/handoff/hard-loss/partition/resume/reunion. G4/G5."
+    },
+    {
+      "id": "OUT-01",
+      "current": "**Not built as outdoor content:** Creek is a second garden-rule fixture",
+      "remaining": "Beach/creek/park activity designs, usable equipment, tag and hiding, with solo/co-op acceptance. G6/G7-B."
+    },
+    {
+      "id": "DAY-01",
+      "current": "**Not built**",
+      "remaining": "Sixth world, Calypso/all child characters, optional day with 2–3 saved invitations and independent participation. G7-C."
+    },
+    {
+      "id": "LEARN-01",
+      "current": "**Not built**",
+      "remaining": "Proposed 12 spoken reading/math/music/social/science stations with age-appropriate help. G7-C/F."
+    },
+    {
+      "id": "IMG-01",
+      "current": "**Not built**",
+      "remaining": "Picture play mat, roles/NPC substitutes and all nine requested stories, independent exit and progress. G6 foundations → G7-D."
+    }
+  ],
+  "researchChapterCount": 54,
+  "chapterCoverage": [
+    {
+      "number": 1,
+      "title": "Your requirements, now recorded",
+      "guideRoute": "G0–G8 scope"
+    },
+    {
+      "number": 2,
+      "title": "What makes this kind of game work",
+      "guideRoute": "G2/G6 experience"
+    },
+    {
+      "number": 3,
+      "title": "Six worlds and eighteen starter quest ideas",
+      "guideRoute": "G3/G6/G7 worlds and quests"
+    },
+    {
+      "number": 4,
+      "title": "Character roster and pictures",
+      "guideRoute": "G2/G6/G7 characters"
+    },
+    {
+      "number": 5,
+      "title": "Touch movement and object interaction",
+      "guideRoute": "G2 controls"
+    },
+    {
+      "number": 6,
+      "title": "Reusable item rules: bucket → water → plant",
+      "guideRoute": "G2/G5/G6 item rules"
+    },
+    {
+      "number": 7,
+      "title": "Two iPads together: choose home Wi-Fi first",
+      "guideRoute": "G3/G4 networking; later chapters supersede early assumptions"
+    },
+    {
+      "number": 8,
+      "title": "Spoken English and Spanish, using your PC and ComfyUI",
+      "guideRoute": "G6/G7-F speech"
+    },
+    {
+      "number": 9,
+      "title": "GitHub templates and components: what is actually useful",
+      "guideRoute": "G1 packages"
+    },
+    {
+      "number": 10,
+      "title": "Project structure and coding plan",
+      "guideRoute": "G1–G6 architecture"
+    },
+    {
+      "number": 11,
+      "title": "Menus, settings, saves, and recovery",
+      "guideRoute": "G2/G5/G6 menus/saves"
+    },
+    {
+      "number": 12,
+      "title": "Performance and crashes on the older iPad",
+      "guideRoute": "G1–G8 performance/reliability"
+    },
+    {
+      "number": 13,
+      "title": "Required acceptance checks",
+      "guideRoute": "G1–G8 acceptance"
+    },
+    {
+      "number": 14,
+      "title": "Build order and completion gates",
+      "guideRoute": "G0; superseded by main guide G0–G9"
+    },
+    {
+      "number": 15,
+      "title": "Decisions to make after the first prototype",
+      "guideRoute": "G0 decisions"
+    },
+    {
+      "number": 16,
+      "title": "Expanded feature tracker",
+      "guideRoute": "All 35 feature statuses"
+    },
+    {
+      "number": 17,
+      "title": "Changing characters without stopping the game",
+      "guideRoute": "CHAR-01/02 G2/G3/G6"
+    },
+    {
+      "number": 18,
+      "title": "Quests that are easy to start and easy to leave",
+      "guideRoute": "ACT-01 G2/G6"
+    },
+    {
+      "number": 19,
+      "title": "Kitchen: five pizzas, five cakes, five meals",
+      "guideRoute": "COOK-01 G6/G7-A"
+    },
+    {
+      "number": 20,
+      "title": "The water feature and fishing mini-game",
+      "guideRoute": "FISH-01 G6/G7-A/B"
+    },
+    {
+      "number": 21,
+      "title": "Five cleanup games that remain playful",
+      "guideRoute": "CLEAN-01 G2/G6/G7"
+    },
+    {
+      "number": 22,
+      "title": "Hide-and-seek and parents with everyday routines",
+      "guideRoute": "HIDE-01/02 NPC-01 G6/G7"
+    },
+    {
+      "number": 23,
+      "title": "Show games and activities catalog",
+      "guideRoute": "CAT-01 G7-E"
+    },
+    {
+      "number": 24,
+      "title": "Integration, build sequence, and acceptance for the new features",
+      "guideRoute": "G6 integration"
+    },
+    {
+      "number": 25,
+      "title": "Reading nook and interactive books",
+      "guideRoute": "BOOK-01 G6/G7-A"
+    },
+    {
+      "number": 26,
+      "title": "Dinosaur books and spoken names",
+      "guideRoute": "BOOK-01 G6/G7-A"
+    },
+    {
+      "number": 27,
+      "title": "TV corner and local video library",
+      "guideRoute": "TV-01 G1/G6/G7-A"
+    },
+    {
+      "number": 28,
+      "title": "Dinosaur toy room and discovery mini-game",
+      "guideRoute": "DINO-01/02 G6/G7-A"
+    },
+    {
+      "number": 29,
+      "title": "Building and testing books, TV, and dinosaurs",
+      "guideRoute": "G6 media/dino integration"
+    },
+    {
+      "number": 30,
+      "title": "A simple and playful science corner",
+      "guideRoute": "LAB-01 G6/G7-A"
+    },
+    {
+      "number": 31,
+      "title": "Joining and leaving without restarting play",
+      "guideRoute": "JOIN-01 NET-02 G3/G6"
+    },
+    {
+      "number": 32,
+      "title": "Two personal bedrooms with shared updates",
+      "guideRoute": "ROOM-01 G5/G7-A"
+    },
+    {
+      "number": 33,
+      "title": "Secret plush rooms with stars and northern lights",
+      "guideRoute": "SECRET-01 G5/G6/G7-A"
+    },
+    {
+      "number": 34,
+      "title": "Hide-and-seek with enterable furniture and gentle clues",
+      "guideRoute": "HIDE-01/02/03 G6/G7"
+    },
+    {
+      "number": 35,
+      "title": "Road-trip play, hotspot co-op, and coming home",
+      "guideRoute": "TRAVEL-01 G2/G5/G7; optional connectivity G9"
+    },
+    {
+      "number": 36,
+      "title": "Integration milestones and acceptance for this expansion",
+      "guideRoute": "G3–G6 continuity"
+    },
+    {
+      "number": 37,
+      "title": "The beach: collecting, building, and playing together",
+      "guideRoute": "OUT-01 G7-B"
+    },
+    {
+      "number": 38,
+      "title": "The creek: rocks, water, and gentle discovery",
+      "guideRoute": "OUT-01 G7-B"
+    },
+    {
+      "number": 39,
+      "title": "Playground and park: equipment that really works",
+      "guideRoute": "OUT-01 G7-B"
+    },
+    {
+      "number": 40,
+      "title": "Daycare: a sixth world with an optional pretend day",
+      "guideRoute": "DAY-01 G7-C"
+    },
+    {
+      "number": 41,
+      "title": "Daycare learning: short, playful, and spoken",
+      "guideRoute": "LEARN-01 G7-C/F"
+    },
+    {
+      "number": 42,
+      "title": "The imagination mat: nine stories that become playable worlds",
+      "guideRoute": "IMG-01 G6/G7-D"
+    },
+    {
+      "number": 43,
+      "title": "Building, saving, and testing the outdoor and daycare expansion",
+      "guideRoute": "G7 outdoor/daycare integration"
+    },
+    {
+      "number": 44,
+      "title": "Automatic family connection and iPad hosting",
+      "guideRoute": "AUTO-01/02 G3/G4"
+    },
+    {
+      "number": 45,
+      "title": "Automatic host selection, recovery, and save reconciliation",
+      "guideRoute": "AUTO-02 TRAVEL-01 G4/G5"
+    },
+    {
+      "number": 46,
+      "title": "Automatic multiplayer implementation and verification plan",
+      "guideRoute": "G3–G5 network acceptance"
+    },
+    {
+      "number": 47,
+      "title": "Up to four family players across iPad, iPhone, and Android",
+      "guideRoute": "FAMILY-01 CHAR-02 G3/G6/G7"
+    },
+    {
+      "number": 48,
+      "title": "Android build, phone layout, and four-player acceptance",
+      "guideRoute": "FAMILY-01 G1/G3 phone/device acceptance"
+    },
+    {
+      "number": 49,
+      "title": "Reaching your home PC from a road trip",
+      "guideRoute": "REMOTE-01 optional G9"
+    },
+    {
+      "number": 50,
+      "title": "One shared world, independent travel, and shared items",
+      "guideRoute": "WORLD-01/02 ITEM-02 G3–G7"
+    },
+    {
+      "number": 51,
+      "title": "Automatic item returns, stocked areas, and tidy bedrooms",
+      "guideRoute": "ITEM-03 STOCK-01 ROOM-02 G5/G7"
+    },
+    {
+      "number": 52,
+      "title": "Feasibility audit and current priorities",
+      "guideRoute": "G0 priorities and mandatory G3–G5 proofs"
+    },
+    {
+      "number": 53,
+      "title": "Source-backed networking and recovery review",
+      "guideRoute": "G3–G5 source-backed networking basis"
+    },
+    {
+      "number": 54,
+      "title": "Templates, packages and the free starting setup",
+      "guideRoute": "G1/G3 package qualification"
+    }
+  ],
+  "codeAndPackageSnapshot": [
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/CheckpointStore.cs",
+      "sha256": "4b7b38ae0fa90227f1621ef6ac7d0e09e69430eb3e6ff6b126a0a662f54889d1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/LittleWeeps.Adapters.asmdef",
+      "sha256": "059bce7e6d3504b88b11657db6e24b1a274c485854cc37822fb04d33bda9c840"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/IGardenSession.cs",
+      "sha256": "66746003fae5e6b305e742424be3a9a26f986fd27099dd68253a6b7721536ec6"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/LittleWeeps.Client.asmdef",
+      "sha256": "188e4e810dd4cb3ded5499f810d11d4352dc4f393eee6ce8483fc8bddf8a799d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCrashVerification.cs",
+      "sha256": "68a82c3e6f0bc32e32bf50e83242e2ca129ae0f2423d7820fbae9ac4e2184658"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNarration.cs",
+      "sha256": "7a6daab715740aca9b3eb24c74f1614da9d0611a58eab449644b7fccc2ced4aa"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloPointerSurface.cs",
+      "sha256": "c9e842ae1bc15dff32d1d77fc6ac5678335a9018e81822809ebdb470beb4151d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
+      "sha256": "a0d95a84ea06354c9aa2613ba18c8433e5bf2c3ed3baac66302dbcba28c6295f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloVerification.cs",
+      "sha256": "1d3c51b941e80f4ea006c0a0f39ba7ead72bb54e13791e383d2ea3968935d8b3"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs",
+      "sha256": "2de62861aa6339150f27b382321294885f797a64478d4944aa426e49439cd5da"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/GardenCommandQueue.cs",
+      "sha256": "f6160df6a0012916adbb385062dee65293e7ec863704b6709274d683e2d3013a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/LittleWeeps.Core.asmdef",
+      "sha256": "1c1ab3b8b26b9f9ae5f130f6d354fea8027150b835e2864c1433fe3995fc274e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs",
+      "sha256": "f0a6dbd3026062a879c3a66e9b7e65a8e2441ad70189cef305ba24f1daa28d18"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
+      "sha256": "a577dc8b468530a78fff7f2afe20c68ee787a8b93c6f2d010c67d756130e4af2"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/TapCount.cs",
+      "sha256": "2c6f6c77bc6711be493f7be67fd4d24d5f91ae2f7d6525021e3ccd86d928a647"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/AndroidFoundationTools.cs",
+      "sha256": "e2e865adff18c54644f7edbcfe2c064d18b79252eab92892a8f77cf5bf7ce2d8"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationBuild.cs",
+      "sha256": "3a1a00b36f0cd82d57df101b38f0758aac00d975fd3c5b5ab052963b2efbafca"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationServerSetup.cs",
+      "sha256": "200b6362381063c0fa3fbcd15958d82be10d47e4b2d3f67aed1f9cb7dddc4ffc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationSetup.cs",
+      "sha256": "f069581cb67c10db57c45a8ae136e6864bfff73fb8e330cafa9b352876b0f477"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/LittleWeepsReconnect.cs",
+      "sha256": "f5cff15cc26fe4a8c9186b12d1e5c469707bd7edf0491ec046a33ffa188b9060"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/NetworkProbeBuild.cs",
+      "sha256": "66d466ac7f96370696f7dad848a2eec71a15bee2d0653f4da7f42e8e2138a3ed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/SoloBuild.cs",
+      "sha256": "3fefce7ade82f88ba8503fcaf1f666886c6e927d4240428ab9eff6607388b1bc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/LittleWeeps.NetworkProbe.asmdef",
+      "sha256": "816024c5dbacb60d97749a812391c6b5e50a009b4605782d7d5727e5db2aad9f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenSession.cs",
+      "sha256": "aed4f48e19ce0ad488da1f2713f0b55f931bbf2b1e510fc0d503ace025422d62"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs",
+      "sha256": "70e005c97d642a80a19e94946ff740b65e4fc7db554f3296afe9dc0780321f61"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs",
+      "sha256": "b10d496f45c3442dee158f43b17307e8a2996976c90b6f990936eb588ec6c642"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationRun.cs",
+      "sha256": "41c870da2836e374ac180e16b85a25a5ec4bb225ffe292d0208819dae320ae91"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationScreen.cs",
+      "sha256": "55627ed8f925bb98046beec21250d2be9fba402ce68d5e5094234dc072afd4fd"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVerification.cs",
+      "sha256": "600191873ce79cde6a5a093509754a63d2f9f5b6a1051e48cef37d302b09139c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs",
+      "sha256": "a0af6dc40b7d71a6f129522a0549adb7e1f74a2b0749c4e0baca29eba8d67b19"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/LittleWeeps.Runtime.asmdef",
+      "sha256": "07fb94dfe9cc5622568b6ef25d34d3c8e040c4da7b2ae0619261f3f734f3c3f1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server/FoundationServer.cs",
+      "sha256": "8d8f74112e7cfb76aed34b9a6bf44c8c4600c9e443f877143f1016b706e3cc5d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server/LittleWeeps.Server.asmdef",
+      "sha256": "3651fb27effef7391b7e5d99ade87f21fbdcf10c32fc0a1abc8c7e0a2ef4a79a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Packages/manifest.json",
+      "sha256": "2f28cfa90e43aef239d7c7394c937e22bdd286a82c7ea793203e5d7464ac69f4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Packages/packages-lock.json",
+      "sha256": "7fdea91ed790152230cb54f1c344ab6783697e0ee8a35b224f8902f013319912"
+    }
+  ],
+  "retainedEvidence": [
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/shared-build-summary-68.json",
+      "sha256": "2f6b297d118535ee46207f73a2440231a070e2e1fc4f5924d65fc0720db24e35",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0,
+      "topLevelKeys": [
+        "utc",
+        "contract",
+        "gardenPresentation",
+        "builds"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/receive-resilience-68.json",
+      "sha256": "e779cdaf554c39ae3c02ac5b1c20b950a5182cf3053ff3f5f34056b406e3941b",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 10,
+      "topLevelKeys": [
+        "passed",
+        "build",
+        "runId",
+        "utc",
+        "checks",
+        "physicalDevicesAccessed",
+        "serverRestartsDuringCrashCycles"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/network-68.json",
+      "sha256": "e0b79f1617107e11b0d7c3cc54db4dfbf7d96e29c1bb20778bd3dae9493f648c",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 10,
+      "topLevelKeys": [
+        "passed",
+        "utc",
+        "build",
+        "runId",
+        "checks",
+        "separateClientProcesses",
+        "physicalDevicesAccessed",
+        "loopbackOnly",
+        "automaticDiscoveryImplemented",
+        "mobileHostingImplemented",
+        "independentAreasExercised",
+        "limitation"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/garden-ui-68.json",
+      "sha256": "10137a2d07a477d416ebd2fb6c16796e5b81f371f697981f91fb43b89dacdcde",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 10,
+      "topLevelKeys": [
+        "passed",
+        "build",
+        "runId",
+        "utc",
+        "checks",
+        "delayedAcknowledgementMs",
+        "physicalDevicesAccessed",
+        "automaticRejoin"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/areas-68.json",
+      "sha256": "5137eb9b0894e8f7386d65509cea808004c86bf4f823da5fa3d929ebe086a4bc",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 8,
+      "topLevelKeys": [
+        "passed",
+        "build",
+        "runId",
+        "utc",
+        "checks",
+        "worldId",
+        "physicalDevicesAccessed",
+        "loopbackOnly",
+        "automaticRejoin",
+        "captures"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/motion-68-normal.json",
+      "sha256": "b5615abea0f00b98118b7f990529f7d85132ae637e06a82a7d61278b26722e1e",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 4,
+      "topLevelKeys": [
+        "passed",
+        "build",
+        "runId",
+        "utc",
+        "players",
+        "concurrentWalkers",
+        "harnessHashes",
+        "conditions",
+        "impairmentScope",
+        "checks",
+        "comparison",
+        "physicalDevicesAccessed"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-1.json",
+      "sha256": "c1bbe8b041112d4924ac9538751074d1ee70d7204a2c6a99872f532ae69ebd73",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 4,
+      "topLevelKeys": [
+        "passed",
+        "build",
+        "runId",
+        "utc",
+        "players",
+        "concurrentWalkers",
+        "harnessHashes",
+        "conditions",
+        "impairmentScope",
+        "checks",
+        "comparison",
+        "physicalDevicesAccessed"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-2.json",
+      "sha256": "b359d904c40c2a0c7843f6ff2d8410186f5c43c345a64fed3595acb823920a33",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 4,
+      "topLevelKeys": [
+        "passed",
+        "build",
+        "runId",
+        "utc",
+        "players",
+        "concurrentWalkers",
+        "harnessHashes",
+        "conditions",
+        "impairmentScope",
+        "checks",
+        "comparison",
+        "physicalDevicesAccessed"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/solo-build-67.json",
+      "sha256": "5fa671c0fdb9227ea7018d6cb46aacd78e1b3aedc95c47b4d8f9410ac077dae0",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0,
+      "topLevelKeys": [
+        "version",
+        "unity",
+        "profile",
+        "result",
+        "output",
+        "utc",
+        "platform",
+        "signing",
+        "errors",
+        "warnings",
+        "verificationContract",
+        "development"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/solo-input-67.json",
+      "sha256": "b64cec8a55f43856981ff0f56dbbd5e522007c2b29f7c8374951434a11db56a7",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.67",
+      "checkCount": 0,
+      "topLevelKeys": [
+        "mode",
+        "runId",
+        "build",
+        "worldId",
+        "playerId",
+        "loadedStatus",
+        "utc",
+        "error",
+        "passed",
+        "tapWalk",
+        "joystickAndDrag",
+        "pointerExclusivity",
+        "interactions",
+        "cancellation",
+        "relaunch",
+        "mouseInputModule",
+        "touchInputModule",
+        "osTouchCancellation",
+        "narrationLoaded",
+        "narrationPlayback",
+        "revision",
+        "screenWidth",
+        "screenHeight",
+        "safeArea",
+        "layoutBounds",
+        "loadBlocked",
+        "voiceImmediateStop",
+        "mutedReplayBlocked",
+        "voiceMenuInput",
+        "voiceReenabled",
+        "preferencesLocalOnly",
+        "preferencesRestored",
+        "visualTargetHints"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/solo-update-64-to-67.json",
+      "sha256": "7a141de905c9ae0002dbea123b60035d6d084d5ac2f1b8abbc3a0a4fc075522d",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.67",
+      "checkCount": 0,
+      "topLevelKeys": [
+        "mode",
+        "runId",
+        "build",
+        "worldId",
+        "playerId",
+        "loadedStatus",
+        "utc",
+        "error",
+        "passed",
+        "tapWalk",
+        "joystickAndDrag",
+        "pointerExclusivity",
+        "interactions",
+        "cancellation",
+        "relaunch",
+        "mouseInputModule",
+        "touchInputModule",
+        "osTouchCancellation",
+        "narrationLoaded",
+        "narrationPlayback",
+        "revision",
+        "screenWidth",
+        "screenHeight",
+        "safeArea",
+        "layoutBounds",
+        "loadBlocked",
+        "voiceImmediateStop",
+        "mutedReplayBlocked",
+        "voiceMenuInput",
+        "voiceReenabled",
+        "preferencesLocalOnly",
+        "preferencesRestored",
+        "visualTargetHints"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/solo-recovery-67.json",
+      "sha256": "5203de21534e034970967ba41d7ab0b4647534e6cece1acb8f95c730633b56d3",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.67",
+      "checkCount": 0,
+      "topLevelKeys": [
+        "mode",
+        "runId",
+        "build",
+        "worldId",
+        "playerId",
+        "loadedStatus",
+        "utc",
+        "error",
+        "passed",
+        "tapWalk",
+        "joystickAndDrag",
+        "pointerExclusivity",
+        "interactions",
+        "cancellation",
+        "relaunch",
+        "mouseInputModule",
+        "touchInputModule",
+        "osTouchCancellation",
+        "narrationLoaded",
+        "narrationPlayback",
+        "revision",
+        "screenWidth",
+        "screenHeight",
+        "safeArea",
+        "layoutBounds",
+        "loadBlocked",
+        "voiceImmediateStop",
+        "mutedReplayBlocked",
+        "voiceMenuInput",
+        "voiceReenabled",
+        "preferencesLocalOnly",
+        "preferencesRestored",
+        "visualTargetHints"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/preview-update-63-to-68.json",
+      "sha256": "45f4a093ffb82317df1a59839d84dc8a5feaee77a1774c42611e5f4f1dd59e64",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0,
+      "topLevelKeys": [
+        "passed",
+        "fromBuild",
+        "toBuild",
+        "runId",
+        "completeWorldAndReceiptsPreserved",
+        "bothClientViewsMatch",
+        "worldId",
+        "schema",
+        "utc",
+        "beforeSha256",
+        "afterSha256"
+      ]
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/four-window-preview.json",
+      "sha256": "744ffde5d6c586e8ed3e1b9f96c923c613f35985bf07cbdf176ed9c3fe9d845a",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 0,
+      "topLevelKeys": [
+        "passed",
+        "build",
+        "runId",
+        "utc",
+        "players",
+        "oneServer",
+        "allViewsListAllFourPlayers",
+        "worldId"
+      ]
+    }
+  ],
+  "nextTask": "G3 parent-approved LAN pairing/discovery, keeping the isolated preview intact; physical mobile qualification next.",
+  "mandatoryPreserved": [
+    "both iPads as hosts",
+    "automatic foreground joining and host recovery",
+    "four mixed-device family players",
+    "independent travel",
+    "single-holder items",
+    "full offline solo",
+    "all required content"
+  ],
+  "optionalOnly": [
+    "travel multiplayer connectivity",
+    "remote PC access",
+    "AR"
+  ],
+  "removedOption": "Bluetooth"
+}
