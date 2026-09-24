@@ -2,7 +2,7 @@
 
 This bounded G1 task supports FAMILY-01/JOIN-01/NET-02 and retains TV-01 regression coverage. It establishes platform builds, not networking, mobile hosting or game content.
 
-**Current result:** family-signed Android **14 → 15** is installed and verified on the Samsung's 4 KB configuration. Saved taps and video bookmark survived restart/update; the user confirmed physical touch/audio. Build 15 fixes the clipped title. The local recovery key signed the update; independent backup and native 16 KB qualification remain open. [Phone/signing evidence](android-signing-and-phone-2026-09-23.md). Windows Server 0.0.18 passes its native lifecycle checks. iPad 9 now passes touch/video/audio, tap/profile update retention and visible bookmark resume after restart; video-bookmark update retention and older-iPad qualification remain pending.
+**Current result:** family-signed Android **14 → 15** is installed and verified on the Samsung's 4 KB configuration. Saved taps and video bookmark survived restart/update; the user confirmed physical touch/audio. Build 15 fixes the clipped title. The local recovery key signed the update; independent backup and native 16 KB qualification remain open. [Phone/signing evidence](android-signing-and-phone-2026-09-23.md). Windows Server 0.0.18 passes its native lifecycle checks. iPad 9 now passes touch/video/audio, tap/profile/bookmark retention across 16 → 20 and visible resume/start-over/skip controls. Older-iPad qualification and automatic refresh remain pending.
 
 ## What exists and what has passed
 
@@ -22,7 +22,7 @@ Evidence: [Android build](evidence/android-first-build-2026-09-23/build-summary.
 
 **Latest profile check:** iPad/iOS, Android, Windows Server and Windows client now all have saved Build Profile assets and fresh explicit-profile builds (16, 17, 18 and 19 respectively). Server 18 lifecycle and Windows 9 → 19 save/video/update checks pass. Android 17's strict 16 KB compatibility gate remains open; phone 15 remains installed. iPad 16 has since passed native signing, installation and physical touch/media/restart checks. [Full profile evidence](build-profiles-2026-09-23.md). iPads are primary; Android is secondary. G1 is not complete. The first-build records below remain historical evidence.
 
-Latest iPad continuation: after the remote signing error, the local Mac retry passed. Signed 1 → 16 is installed on iPad 9 with taps/profile retained. Human touch/media and visible bookmark resume after restart passed. Export 20 reached native signing but remote key access failed; `Finish-Little-Weeps-20.command` is ready on the Mac desktop for the local signing step. Build 16 remains installed; the older iPad is unavailable for now. [Current iPad task](ipad-update-2026-09-23.md).
+Latest iPad continuation: the local build-20 signing step passed. Signed 16 → 20 installed and launched on iPad 9 with 1,019 taps/profile and the latest 10.3-second bookmark retained. The user confirmed on-screen resume and start-over/play/pause/skip. The older iPad is unavailable for now; Windows automatic-refresh setup is next. [Current iPad task](ipad-update-2026-09-23.md).
 
 ## Defects caught during the first Android build
 

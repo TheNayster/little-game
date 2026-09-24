@@ -1,0 +1,32 @@
+[
+  {
+    "Name": "SideloadlySetup64.exe",
+    "Source": "https://sideloadly.io/SideloadlySetup64.exe",
+    "Bytes": 131003599,
+    "Sha256": "625ad1e8240ee4765d0d181a33acab686b5b92f842e625c0f17e812a7893fdf4",
+    "SignatureStatus": "NotSigned",
+    "Signer": null,
+    "Product": "",
+    "Version": ""
+  },
+  {
+    "Name": "iTunes64Setup.exe",
+    "Source": "https://www.apple.com/itunes/download/win64",
+    "Bytes": 202759648,
+    "Sha256": "25b28905a81406a5edbf482f7f3ee4831a8641d32d29dceda5d1eb3e8d534c08",
+    "SignatureStatus": "Valid",
+    "Signer": "CN=Apple Inc., O=Apple Inc., L=Cupertino, S=California, C=US",
+    "Product": "iTunes",
+    "Version": "12.13.11.1"
+  },
+  {
+    "Name": "iCloudSetup.exe",
+    "Source": "https://updates.cdn-apple.com/2020/windows/001-39935-20200911-1A70AA56-F448-11EA-8CC0-99D41950005E/iCloudSetup.exe",
+    "Bytes": 161146680,
+    "Sha256": "4cfd20d13cdce2b5c435f2ddaf4ee4c81d976461846bf3b954e8af6cbcdeb9f7",
+    "SignatureStatus": "Valid",
+    "Signer": "CN=Apple Inc., O=Apple Inc., L=Cupertino, S=California, C=US",
+    "Product": "iCloud",
+    "Version": "7.21.0.23"
+  }
+]

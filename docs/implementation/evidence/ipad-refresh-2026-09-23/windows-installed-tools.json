@@ -1,0 +1,14 @@
+[
+  {
+    "DisplayName": "iTunes",
+    "DisplayVersion": "12.13.11.1",
+    "Publisher": "Apple Inc.",
+    "InstallLocation": "C:\\Program Files\\iTunes\\"
+  },
+  {
+    "DisplayName": "Apple Mobile Device Support",
+    "DisplayVersion": "20.0.0.35",
+    "Publisher": "Apple Inc.",
+    "InstallLocation": "C:\\Program Files\\Common Files\\Apple\\Mobile Device Support\\"
+  }
+]

@@ -1,8 +1,18 @@
-# G1 iPad update — build 16 installed, touch/media and restart checked
+# G1 iPad update — build 20 installed, saved video position retained
 
 23 September 2026, local time. Task: the iPad 9 in-place foundation update and media/save checks, supporting FAMILY-01 / TV-01. The phase plan still requires both iPads to pass G1 before dependent G2 work.
 
-## Current result after the local signing step
+## Current result — 16 → 20 update passed
+
+The local Mac helper completed build 20 with exit 0. Strict/deep signature verification passed, and its bundle/build, signing team, device eligibility and unexpired provisioning profile were checked before installation. The profile expiry is still **30 September 2026 at 21:15:06 UTC**; automatic renewal is not configured by this update. [Build-20 signed artifact](evidence/ipad-update-2026-09-23/ios-20-signed-artifact.json).
+
+A fresh read immediately before installation found **1,019 taps**, the same profile and a **10.3-second bookmark**. The video position had changed since the earlier 9.4-second restart check, so this newer value was used as the update baseline. [Before build-20 update](evidence/ipad-update-2026-09-23/ios-20-before-update.json).
+
+The normal **16 → 20 in-place update passed**. Independent device inventory confirmed installed version **0.0.20 / build 20**; actual preferences retained all three values exactly. Launching build 20 succeeded and retained them again. No uninstall, reset or downgrade was used. This proves preservation of an existing video bookmark across an installed iPad update, beyond the earlier tap/profile-only 1 → 16 check. [Update check](evidence/ipad-update-2026-09-23/ios-20-update-check.json), [launch and saved values](evidence/ipad-update-2026-09-23/ios-20-launch-check.json).
+
+The user confirmed **“yes they all work!”** for the visible 10.3-second resume, START OVER returning to zero, playback/pause and +2 SECONDS. A subsequent device read retained the same profile and 1,019 taps, with the newly chosen **8.9-second bookmark**. [Physical checks](evidence/ipad-update-2026-09-23/ios-20-human-check.json). This bounded iPad 9 fixture task is complete. The older iPad 7 remains unavailable; its qualification and the renewal observation remain open. G1 is still active.
+
+## Earlier build-16 result
 
 The user completed local signing. Xcode returned 0, strict/deep signature verification passed, and the app reports the expected game bundle ID, **build 16**, ARM64/device configuration and the same signing team as build 1. The embedded provisioning profile still expires **30 September 2026 at 21:15:06 UTC**; this update did not establish automatic renewal. [Signed-artifact evidence](evidence/ipad-update-2026-09-23/signed-artifact.json).
 
@@ -12,11 +22,11 @@ The user answered **“yes both worked”** to the physical touch and moving-vid
 
 Build **20** tests an existing video bookmark across an update. Build 1 had no video fixture, so the first update cannot prove that case. The older iPad 7 is currently unavailable, per the user; its qualification and free-renewal checks remain open. [Availability record](evidence/ipad-update-2026-09-23/older-ipad-availability.json). G1 is not complete.
 
-## Build 20 — prepared, awaiting local signing
+## Build 20 — export and earlier signing handoff
 
 The saved iPad Foundation profile produced a fresh non-development **0.0.20** export with zero reported Unity build errors/warnings. The archive hash matched on Windows and Mac, and all **3,025 exported files** matched their manifest hashes on the Mac. [Export](evidence/ipad-update-2026-09-23/ios-20-export.json), [transfer](evidence/ipad-update-2026-09-23/ios-20-transfer.json).
 
-Xcode Release compilation reached signing, then returned **65** at `UnityFramework.framework` with **`errSecInternalComponent`**. This is the same remote keychain-access failure as build 16; build 20 has not passed signing or been installed. Build 16 remains on the iPad. The executable, syntax-checked **`Finish-Little-Weeps-20.command`** is prepared on the Mac desktop to use the existing local signing helper and compile cache. The user has been asked to run it and reply ready. Keychain protections were not changed. [Native build result](evidence/ipad-update-2026-09-23/ios-20-native-build.json).
+The earlier remote Xcode Release build reached signing, then returned **65** at `UnityFramework.framework` with **`errSecInternalComponent`**. The executable, syntax-checked **`Finish-Little-Weeps-20.command`** was prepared on the Mac desktop to use the existing local signing helper and compile cache. The user completed that step and replied ready; its exit and signature were independently verified before the successful update recorded above. Keychain protections were not changed. The remote failure remains historical evidence, not the current build status. [Earlier remote result](evidence/ipad-update-2026-09-23/ios-20-native-build.json).
 
 ## Earlier preparation and signing handoff
 
@@ -35,6 +45,5 @@ The user ran this helper and replied **ready**. Its successful exit was checked 
 
 ## Remaining checks
 
-1. After the local build-20 helper succeeds, verify its exit, bundle/build/team, signature and provisioning profile. Capture the latest installed version and preferences before installing it normally over 16. Compare the current tap count, profile and existing video bookmark after install/relaunch; never uninstall/reset as a fallback. The latest observed baseline is 1,019 taps / 9.4 seconds, but read it again in case the user has played meanwhile.
-2. Finish physical skip/start-over checks after preserving the update-test baseline; confirm the post-update paused position on screen.
-3. Qualify the older iPad 7 when it is available. Start the agreed free-provisioning refresh observation. G1 remains open; all multiplayer/content phases remain planned.
+1. Begin the agreed Windows automatic-refresh setup and verify enrollment, actual renewal and save retention. The native build/update/media fixture checks on iPad 9 are complete; they do not qualify the finished game or prove automatic renewal.
+2. Qualify the older iPad 7 when it is available. G1 remains open; all multiplayer/content phases remain planned.

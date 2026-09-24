@@ -1,0 +1,14 @@
+{
+  "build": "0.0.20",
+  "userConfirmedPostUpdatePausedPosition": true,
+  "confirmedPostUpdatePositionSeconds": 10.3,
+  "userConfirmedStartOver": true,
+  "userConfirmedPlayPauseAndSkip": true,
+  "userReply": "yes they all work!",
+  "preferencesAfterHuman": {
+    "foundation.video.7621e9e553214cf29814ecc239cdf9ef.g1-clip-v1": 8.899999618530273,
+    "foundation.tap-count": 1019,
+    "foundation.profile-id": "7621e9e553214cf29814ecc239cdf9ef"
+  },
+  "utc": "2026-09-24T02:46:50.656431+00:00"
+}

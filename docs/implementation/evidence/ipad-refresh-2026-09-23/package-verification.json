@@ -1,0 +1,10 @@
+{
+  "build": 20,
+  "bundleId": "com.littleweeps.familyplayset",
+  "archiveBytes": 41088273,
+  "archiveSha256": "cbfc39d51acd4f7b6d22001804719f907ea3d2c18255bcb3e01e4e1180da5ecd",
+  "executableSha256": "d5cb8ee288e5ea4a180da6ec91de9e50c939024ed33af7173fba5bc7f711bd96",
+  "packagedAppSignatureVerified": true,
+  "zipIntegrityPassed": true,
+  "renewalConfigured": false
+}
