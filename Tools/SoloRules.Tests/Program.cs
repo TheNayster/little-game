@@ -19,6 +19,56 @@ static class Program
         root = Path.GetFullPath(args.Length == 1 ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        Test("area upgrade preserves existing garden and runs only once",()=>{
+            var old=SoloWorld.Create("first","second");Fill(old);Good(old,SoloAction.StartActivity,value:"garden");
+            var before=old.Snapshot();var w=SoloWorld.WithAreas(SoloWorld.Restore(Decode(Encode(before))));var after=w.Snapshot();
+            Check(after.schema==2 && after.worldId==before.worldId && after.revision==before.revision+1);
+            Check(JsonSerializer.Serialize(after.players,Json)==JsonSerializer.Serialize(before.players,Json));
+            Check(JsonSerializer.Serialize(after.toys.Take(5),Json)==JsonSerializer.Serialize(before.toys,Json));
+            Check(JsonSerializer.Serialize(after.receipts,Json)==JsonSerializer.Serialize(before.receipts,Json));
+            Check(Encode(SoloWorld.WithAreas(w).Snapshot())==Encode(after));
+            var legacy=Decode(Encode(before));foreach(var p in legacy.players)p.zone=null;foreach(var t in legacy.toys)t.zone=null;
+            Check(SoloWorld.WithAreas(SoloWorld.Restore(legacy)).ReadPlayer("first").zone=="garden");
+        });
+        Test("travel settles own station tool and never changes the sibling",()=>{
+            var w=SoloWorld.WithAreas(SoloWorld.Create("first","second"));Fill(w);Good(w,SoloAction.Grab,"bucket-1");
+            Good(w,SoloAction.Grab,"sponge-1",actor:"second");Good(w,SoloAction.StartActivity,value:"cleanup",actor:"second");
+            var sibling=JsonSerializer.Serialize(w.ReadPlayer("second"),Json);var sponge=JsonSerializer.Serialize(Toy(w,"sponge-1"),Json);
+            var travel=Command(w,SoloAction.Travel,value:"creek");Check(w.Apply(travel).Accepted);var after=Encode(w.Snapshot());
+            Check(w.Apply(travel).Duplicate && Encode(w.Snapshot())==after);
+            Check(w.ReadPlayer("first").zone=="creek" && w.ReadPlayer("first").visit==1);
+            Check(Toy(w,"bucket-1").holder=="" && Toy(w,"bucket-1").water==3 && Toy(w,"bucket-1").x==360);
+            Check(JsonSerializer.Serialize(w.ReadPlayer("second"),Json)==sibling && JsonSerializer.Serialize(Toy(w,"sponge-1"),Json)==sponge);
+        });
+        Test("cross-area grabs drops and hints cannot affect remote toys",()=>{
+            var w=SoloWorld.WithAreas(SoloWorld.Create("first","second"));Good(w,SoloAction.Travel,value:"creek");
+            Check(w.Apply(Command(w,SoloAction.Grab,"bucket-1")).Outcome=="wrong-area");Good(w,SoloAction.Grab,"bucket-creek");
+            var before=Encode(w.Snapshot());Check(!w.Apply(Command(w,SoloAction.Drop,"bucket-creek","tap-1",x:150,y:340)).Accepted);
+            Check(Encode(w.Snapshot())==before && !w.HasUsefulInteraction("bucket-creek","tap-1"));
+            Good(w,SoloAction.Drop,"bucket-creek","tap-creek",x:150,y:340);Check(Toy(w,"bucket-creek").water==3 && Toy(w,"bucket-1").water==0);
+        });
+        Test("old visit input stays rejected after revision rebase and returning",()=>{
+            var w=SoloWorld.WithAreas(SoloWorld.Create("first"));var oldMove=Command(w,SoloAction.Move,x:900);
+            Good(w,SoloAction.Travel,value:"creek");Good(w,SoloAction.Travel,value:"garden");oldMove.expectedRevision=w.Revision;
+            var before=Encode(w.Snapshot());Check(w.Apply(oldMove).Outcome=="stale-area" && Encode(w.Snapshot())==before);
+            Good(w,SoloAction.Move,x:800);Check(w.ReadPlayer("first").x==800 && w.ReadPlayer("first").visit==2);
+        });
+        Test("invalid travel changes nothing and empty areas retain progress",()=>{
+            var w=SoloWorld.WithAreas(SoloWorld.Create("first"));Fill(w);Good(w,SoloAction.Grab,"bucket-1");Good(w,SoloAction.Drop,"bucket-1","plant-1",x:810,y:330);
+            var before=Encode(w.Snapshot());Check(!w.Apply(Command(w,SoloAction.Travel,value:"missing")).Accepted && Encode(w.Snapshot())==before);
+            var toys=JsonSerializer.Serialize(w.ReadToys(),Json);Good(w,SoloAction.Travel,value:"creek");Good(w,SoloAction.Travel,value:"garden");
+            Check(JsonSerializer.Serialize(w.ReadToys(),Json)==toys && Toy(w,"plant-1").water==3);
+        });
+        Test("four-player area saves retain every location and detach releases only its hold",()=>{
+            var w=SoloWorld.WithAreas(SoloWorld.Create("first","second","third","fourth"));var session=new FamilySession(w);
+            session.Attach(1,"first",out _);session.Attach(2,"second",out _);session.Attach(3,"third",out _);session.Attach(4,"fourth",out _);
+            Good(w,SoloAction.Travel,value:"creek");Good(w,SoloAction.Travel,value:"creek",actor:"third");
+            Good(w,SoloAction.Grab,"bucket-creek");Good(w,SoloAction.Grab,"bucket-1",actor:"second");
+            Check(session.Detach(1) && Toy(w,"bucket-creek").holder=="" && Toy(w,"bucket-1").holder=="second");
+            var restored=SoloWorld.Restore(Decode(Encode(w.Snapshot())));Check(restored.ReadToys().Length==10 && restored.ReadToys().All(t=>t.holder==""));
+            Check(restored.ReadPlayer("first").zone=="creek" && restored.ReadPlayer("third").zone=="creek" && restored.ReadPlayer("second").zone=="garden");
+            var bad=restored.Snapshot();bad.toys[0].zone="creek";Throws(()=>SoloWorld.Validate(bad));
+        });
         Test("client queue waits for acknowledgement before releasing a pending pickup",()=>{
             var q=new GardenCommandQueue();var w=SoloWorld.Create("first");var done=false;
             var grab=Command(w,SoloAction.Grab,"bucket-1");q.Enqueue(grab,r=>done=r.Accepted);
@@ -269,7 +319,8 @@ static class Program
     }
     static void Check(bool condition){if(!condition)throw new Exception("Assertion failed.");}
     static void Throws(Action body){try{body();}catch{return;}throw new Exception("Expected rejection.");}
-    static SoloCommand Command(SoloWorld w,SoloAction action,string item="",string target="",string value="",float x=0,float y=0,string actor="first")=>new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=actor,expectedRevision=w.Revision,action=action,item=item,target=target,value=value,x=x,y=y};
+    static SoloCommand Command(SoloWorld w,SoloAction action,string item="",string target="",string value="",float x=0,float y=0,string actor="first")
+    {var p=w.Snapshot().players.FirstOrDefault(p=>p.id==actor);return new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=actor,expectedRevision=w.Revision,zone=p?.zone??"garden",visit=p?.visit??0,action=action,item=item,target=target,value=value,x=x,y=y};}
     static void Good(SoloWorld w,SoloAction action,string item="",string target="",string value="",float x=0,float y=0,string actor="first"){var r=w.Apply(Command(w,action,item,target,value,x,y,actor));Check(r.Accepted);}
     static SoloToy Toy(SoloWorld w,string id)=>w.Snapshot().toys.Single(t=>t.id==id);
     static void Fill(SoloWorld w){Good(w,SoloAction.Grab,"bucket-1");Good(w,SoloAction.Drop,"bucket-1","tap-1",x:150,y:340);}

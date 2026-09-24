@@ -1,0 +1,179 @@
+{
+  "resolved": false,
+  "observedFailures": [
+    {
+      "passed": false,
+      "build": 58,
+      "runId": "518be6b836684bd2950c8412f0604e4c",
+      "checks": [
+        {
+          "check": "loopback server and two independent clients",
+          "passed": true,
+          "serverPid": 10324,
+          "bind": [
+            "UDP    127.0.0.1:62071        *:*                                    10324"
+          ],
+          "worldId": "a745e8a408a34393ac8cb03583798812"
+        },
+        {
+          "check": "bad credentials, incompatible version, duplicate player and fifth profile rejected without reset",
+          "passed": true
+        },
+        {
+          "check": "contested bucket has exactly one holder; avatar switch keeps the hold",
+          "passed": true,
+          "winner": "player-2"
+        },
+        {
+          "check": "four native clients converge; late join sees current holder and water",
+          "passed": true
+        },
+        {
+          "check": "commands cannot impersonate another admitted player",
+          "passed": true
+        },
+        {
+          "check": "independent actions continue and delayed duplicate pour applies once",
+          "passed": true
+        },
+        {
+          "check": "hard-killed client releases only its hold while others keep playing",
+          "passed": true,
+          "observedRecoverySeconds": 2.532
+        }
+      ],
+      "error": "Timed out: client initial snapshot"
+    },
+    {
+      "passed": false,
+      "build": 58,
+      "runId": "3c3e6e27079b472bb8735ed334614d05",
+      "checks": [
+        {
+          "check": "loopback server and two independent clients",
+          "passed": true,
+          "serverPid": 12252,
+          "bind": [
+            "UDP    127.0.0.1:58499        *:*                                    12252"
+          ],
+          "worldId": "ee38984edaf343478801d919dcfed771"
+        },
+        {
+          "check": "bad credentials, incompatible version, duplicate player and fifth profile rejected without reset",
+          "passed": true
+        },
+        {
+          "check": "contested bucket has exactly one holder; avatar switch keeps the hold",
+          "passed": true,
+          "winner": "player-1"
+        },
+        {
+          "check": "four native clients converge; late join sees current holder and water",
+          "passed": true
+        },
+        {
+          "check": "commands cannot impersonate another admitted player",
+          "passed": true
+        },
+        {
+          "check": "independent actions continue and delayed duplicate pour applies once",
+          "passed": true
+        },
+        {
+          "check": "hard-killed client releases only its hold while others keep playing",
+          "passed": true,
+          "observedRecoverySeconds": 2.516
+        }
+      ],
+      "error": "Timed out: client initial snapshot"
+    },
+    {
+      "passed": false,
+      "build": 58,
+      "runId": "bb27cece94834ec5acfec5fc89c01663",
+      "checks": [
+        {
+          "check": "loopback server and two independent clients",
+          "passed": true,
+          "serverPid": 20308,
+          "bind": [
+            "UDP    127.0.0.1:56031        *:*                                    20308"
+          ],
+          "worldId": "adde7a2e0c264173bcb0171a9c993a52"
+        },
+        {
+          "check": "bad credentials, incompatible version, duplicate player and fifth profile rejected without reset",
+          "passed": true
+        },
+        {
+          "check": "contested bucket has exactly one holder; avatar switch keeps the hold",
+          "passed": true,
+          "winner": "player-2"
+        },
+        {
+          "check": "four native clients converge; late join sees current holder and water",
+          "passed": true
+        },
+        {
+          "check": "commands cannot impersonate another admitted player",
+          "passed": true
+        },
+        {
+          "check": "independent actions continue and delayed duplicate pour applies once",
+          "passed": true
+        },
+        {
+          "check": "hard-killed client releases only its hold while others keep playing",
+          "passed": true,
+          "observedRecoverySeconds": 2.562
+        }
+      ],
+      "error": "Timed out: client initial snapshot"
+    },
+    {
+      "passed": false,
+      "build": 54,
+      "runId": "91370291fe39426a8df2fb0459ddb846",
+      "checks": [
+        {
+          "check": "loopback server and two independent clients",
+          "passed": true,
+          "serverPid": 25436,
+          "bind": [
+            "UDP    127.0.0.1:51188        *:*                                    25436"
+          ],
+          "worldId": "425919278d084999828f07d4fe1c9adb"
+        },
+        {
+          "check": "bad credentials, incompatible version, duplicate player and fifth profile rejected without reset",
+          "passed": true
+        },
+        {
+          "check": "contested bucket has exactly one holder; avatar switch keeps the hold",
+          "passed": true,
+          "winner": "player-2"
+        },
+        {
+          "check": "four native clients converge; late join sees current holder and water",
+          "passed": true
+        },
+        {
+          "check": "commands cannot impersonate another admitted player",
+          "passed": true
+        },
+        {
+          "check": "independent actions continue and delayed duplicate pour applies once",
+          "passed": true
+        },
+        {
+          "check": "hard-killed client releases only its hold while others keep playing",
+          "passed": true,
+          "observedRecoverySeconds": 2.578
+        }
+      ],
+      "error": "Timed out: client initial snapshot"
+    }
+  ],
+  "subsequentFullPass": "network-58.json",
+  "conclusion": "Intermittent initial-snapshot wait after abrupt departure; also reproduced with unchanged build 54. No root cause proven. Passing rerun is not a fix."
+}

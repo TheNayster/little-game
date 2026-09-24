@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "fromBuild": 57,
+  "toBuild": 58,
+  "runId": "b562ed01696841fba5cfc5e8926e0eff",
+  "worldId": "617b47c928014cb68523d101747a9de8",
+  "originalSha256": "b37c2860666eb90fdbcaef1a7b1f629e70bfcda854ee36a97e0730e507bac734",
+  "originalPlayersAndToysPreserved": true,
+  "receiptsPreserved": true,
+  "secondRestartExact": true,
+  "normalFamilySaveAccessed": false
+}

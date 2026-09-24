@@ -1,0 +1,33 @@
+{
+  "note": "Final harness hashes. Test-NetworkProbe report field renamed from independentAreasImplemented to independentAreasExercised after its passing run; no test logic changed.",
+  "files": [
+    {
+      "path": "Tools/Test-IndependentAreas.py",
+      "sha256": "be863211724b521950c34b9b7141c7a2978bf454b28b48da022e847ec70bb578"
+    },
+    {
+      "path": "Tools/Test-AreaUpgrade.py",
+      "sha256": "6cbce722a05c11e40f83d6af4b021cc1c7e1fd72e8eb057f17d6b7c59a366263"
+    },
+    {
+      "path": "Tools/shared_garden_runtime.py",
+      "sha256": "8becf2c07f05d0b406e9fa260b9c00f86c4fe10ea8f0e9ce7c7c66482a117cf7"
+    },
+    {
+      "path": "Tools/Test-SharedGarden.py",
+      "sha256": "732cf0f0a693117557d1c131fe9ab69d900cf777d4576defd6c0d4d754bc2d9c"
+    },
+    {
+      "path": "Tools/Test-SharedGardenResume.py",
+      "sha256": "8e2f0e26ceb28069f774148a017afc4857bdc6720c9b570e00bca3c763a1de66"
+    },
+    {
+      "path": "Tools/Test-NetworkProbe.py",
+      "sha256": "c8a0efa0d54cd63958d32b7bbdfb9776058f051c866a6a8fdd701f96b6939073"
+    },
+    {
+      "path": "Tools/SoloRules.Tests/Program.cs",
+      "sha256": "b125db97f99b1413d75684608027f1bae93650147a53429e58c7b4d42c940f0d"
+    }
+  ]
+}

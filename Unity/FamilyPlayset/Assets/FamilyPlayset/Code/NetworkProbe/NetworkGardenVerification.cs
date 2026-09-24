@@ -30,7 +30,7 @@ namespace LittleWeeps.NetworkProbe
         [Serializable] private sealed class Evidence
         {
             public int serial,visiblePlayers;public bool passed,ready,pending,connected,menuOpen;
-            public string error,build,actor,feedback,dragging;public PlayerView[] players;public ToyView[] toys;
+            public string error,build,actor,feedback,dragging,zone;public PlayerView[] players;public ToyView[] toys;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
         private void OnDisable()=>Application.logMessageReceived-=Log;
@@ -132,7 +132,7 @@ namespace LittleWeeps.NetworkProbe
         private void Write()
         {
             var evidence=new Evidence{serial=serial,passed=string.IsNullOrEmpty(failure),error=failure??"",build=Application.version,actor=probe.Settings.profile,ready=screen.Ready,connected=probe.ConnectedToServer,
-                pending=screen.ActionPending,feedback=screen.Feedback,dragging=screen.Dragging??"",visiblePlayers=screen.Ready?screen.VisiblePlayers:0,menuOpen=screen.MenuOpen};
+                pending=screen.ActionPending,feedback=screen.Feedback,dragging=screen.Dragging??"",zone=screen.CurrentArea,visiblePlayers=screen.Ready?screen.VisiblePlayers:0,menuOpen=screen.MenuOpen};
             if(screen.Ready)
             {
                 evidence.players=probe.Latest.view.players.Select(p=>

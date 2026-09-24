@@ -6,16 +6,19 @@ using System.Linq;
 namespace LittleWeeps.Core
 {
     public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
+        public string zone = "garden";
+        public long visit;
         public float x = 420, y = 200;
         public SoloPlayer Copy() => (SoloPlayer)MemberwiseClone();
     }
     [Serializable] public sealed class SoloToy
     {
         public string id, holder = "";
+        public string zone = "garden";
         public ToyKind kind;
         public float x, y;
         public int water;
@@ -41,11 +44,14 @@ namespace LittleWeeps.Core
     {
         public string requestId, actor, item = "", target = "", value = "";
         public long expectedRevision;
+        public string zone = "garden";
+        public long visit;
         public SoloAction action;
         public float x, y;
         internal string Fingerprint() => string.Join("|", new[] { actor, item, target, value,
             ((int)action).ToString(CultureInfo.InvariantCulture), expectedRevision.ToString(CultureInfo.InvariantCulture),
-            x.ToString("R", CultureInfo.InvariantCulture), y.ToString("R", CultureInfo.InvariantCulture) });
+            x.ToString("R", CultureInfo.InvariantCulture), y.ToString("R", CultureInfo.InvariantCulture), zone,
+            visit.ToString(CultureInfo.InvariantCulture) });
     }
     public readonly struct SoloResult
     {
@@ -88,6 +94,20 @@ namespace LittleWeeps.Core
             }
             return new SoloWorld(copy);
         }
+        // Explicit shared-save upgrade. Solo saves stay at schema 1. Existing
+        // identities, placements, progress and receipts are never regenerated.
+        public static SoloWorld WithAreas(SoloWorld world)
+        {
+            var copy=world.Snapshot();
+            if(copy.schema==2)return world;
+            copy.schema=2;
+            var creek=Create("template").ReadToys();
+            foreach(var toy in creek){toy.zone="creek";toy.id=toy.kind.ToString().ToLowerInvariant()+"-creek";}
+            copy.toys=copy.toys.Concat(creek).ToArray();copy.revision++;
+            Validate(copy);return new SoloWorld(copy);
+        }
+        public static string AreaOf(string zone)=>string.IsNullOrEmpty(zone)?"garden":zone;
+        public static bool KnownArea(string zone)=>zone=="garden" || zone=="creek";
         public SoloSnapshot Snapshot() => Clone(state);
         // Presentation reads do not need the durable command receipt history.
         // Return detached copies so a view cannot mutate the authority.
@@ -112,32 +132,40 @@ namespace LittleWeeps.Core
         }
         public static bool HasUsefulInteraction(SoloToy item,SoloToy target)
         {
-            if(item==null || target==null || item==target)return false;
+            if(item==null || target==null || item==target || AreaOf(item.zone)!=AreaOf(target.zone))return false;
             if(item.kind==ToyKind.Bucket)
                 return target.kind==ToyKind.Tap?item.water<3:target.kind==ToyKind.Plant && item.water>0 && target.water<3;
             return item.kind==ToyKind.Sponge && target.kind==ToyKind.Puddle && target.water>0;
         }
-        private static SoloSnapshot Clone(SoloSnapshot s) => new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId,
-            players = s.players.Select(p => p.Copy()).ToArray(), toys = s.toys.Select(t => t.Copy()).ToArray(), receipts = s.receipts.Select(r => r.Copy()).ToArray() };
+        private static SoloSnapshot Clone(SoloSnapshot s)
+        {
+            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId,
+                players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray() };
+            foreach(var p in copy.players)p.zone=AreaOf(p.zone);
+            foreach(var t in copy.toys)t.zone=AreaOf(t.zone);
+            return copy;
+        }
         private static bool Id(string s) => !string.IsNullOrWhiteSpace(s) && s.Length <= 128 && !s.Contains("|");
         public static bool Position(float x, float y) => !float.IsNaN(x) && !float.IsInfinity(x) && !float.IsNaN(y) && !float.IsInfinity(y) && x >= 0 && x <= Width && y >= 0 && y <= Height;
         private static bool Avatar(string s) => s == "blue-pup" || s == "orange-pup";
         private static bool Activity(string s) => s == "" || s == "garden" || s == "cleanup";
         public static void Validate(SoloSnapshot s)
         {
-            if (s == null || s.schema != 1) throw new InvalidOperationException("Unsupported solo save schema.");
+            if (s == null || s.schema < 1 || s.schema > 2) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
-                s.toys == null || s.toys.Length != 5 || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
+                s.toys == null || s.toys.Length != (s.schema==1?5:10) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
             var ids = new HashSet<string>();
             foreach (var p in s.players)
-                if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !Position(p.x, p.y)) throw new InvalidOperationException("Invalid player record.");
+                if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !Position(p.x, p.y) ||
+                    !ValidArea(p.zone,s.schema) || p.visit<0 || p.visit==long.MaxValue || (s.schema==1 && p.visit!=0)) throw new InvalidOperationException("Invalid player record.");
             ids.Clear();
             foreach (var t in s.toys)
-                if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || t.id != t.kind.ToString().ToLowerInvariant() + "-1" ||
+                if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || !ValidArea(t.zone,s.schema) ||
+                    t.id != t.kind.ToString().ToLowerInvariant() + (AreaOf(t.zone)=="garden"?"-1":"-creek") ||
                     !Position(t.x, t.y) || t.water < 0 || t.water > 3 ||
                     ((t.kind == ToyKind.Tap || t.kind == ToyKind.Sponge) && t.water != 0) ||
                     (t.kind != ToyKind.Sponge && t.wet) ||
-                    (!string.IsNullOrEmpty(t.holder) && (t.kind != ToyKind.Bucket && t.kind != ToyKind.Sponge || !s.players.Any(p => p.id == t.holder))))
+                    (!string.IsNullOrEmpty(t.holder) && (t.kind != ToyKind.Bucket && t.kind != ToyKind.Sponge || !s.players.Any(p => p.id == t.holder && AreaOf(p.zone)==AreaOf(t.zone)))))
                     throw new InvalidOperationException("Invalid toy record.");
             if (s.toys.Where(t => !string.IsNullOrEmpty(t.holder)).GroupBy(t => t.holder).Any(g => g.Count() > 1)) throw new InvalidOperationException("One player cannot hold two toys.");
             ids.Clear();
@@ -145,21 +173,35 @@ namespace LittleWeeps.Core
                 if (r == null || !Id(r.requestId) || !ids.Add(r.requestId) || string.IsNullOrEmpty(r.fingerprint) || r.fingerprint.Length > 1024 ||
                     string.IsNullOrEmpty(r.outcome) || r.outcome.Length > 128 || r.revision < 1 || r.revision > s.revision) throw new InvalidOperationException("Invalid command receipt.");
         }
+        private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":KnownArea(zone);
         public SoloResult Apply(SoloCommand c)
         {
             SoloResult Reject(string reason) => new SoloResult(false, reason, Revision);
             if (c == null || !Id(c.requestId) || !Id(c.actor) || !Enum.IsDefined(typeof(SoloAction), c.action) ||
                 c.item == null || c.target == null || c.value == null || c.item.Length > 128 || c.target.Length > 128 || c.value.Length > 128 ||
-                c.item.Contains("|") || c.target.Contains("|") || c.value.Contains("|") || !Position(c.x, c.y)) return Reject("invalid-command");
+                c.item.Contains("|") || c.target.Contains("|") || c.value.Contains("|") || !KnownArea(c.zone) || c.visit<0 || !Position(c.x, c.y)) return Reject("invalid-command");
             var previous = state.receipts.FirstOrDefault(r => r.requestId == c.requestId);
             if (previous != null) return previous.fingerprint == c.Fingerprint() ? new SoloResult(true, previous.outcome, previous.revision, true) : Reject("request-id-reused");
             var player = state.players.FirstOrDefault(p => p.id == c.actor);
             if (player == null) return Reject("unknown-player");
+            // Check visit before revision rebasing: an old-area action must not
+            // become valid when a player leaves and later returns to that area.
+            if(c.zone!=player.zone || c.visit!=player.visit)return Reject("stale-area");
             if (c.expectedRevision != Revision || Revision >= long.MaxValue - 1) return Reject("stale-revision");
             var item = state.toys.FirstOrDefault(t => t.id == c.item);
+            if(item!=null && item.zone!=player.zone)return Reject("wrong-area");
             var outcome = "accepted";
             switch (c.action)
             {
+                case SoloAction.Travel:
+                    if(state.schema!=2 || !KnownArea(c.value))return Reject("unknown-area");
+                    if(c.value==player.zone)return Reject("already-there");
+                    if(player.visit>=long.MaxValue-1)return Reject("visit-limit");
+                    // These are essential station tools. Settle a live hold at
+                    // its rack, preserving water; no new instance is spawned.
+                    foreach(var held in state.toys.Where(t=>t.holder==c.actor))
+                    {held.holder="";held.x=held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Bucket?130:120;}
+                    player.zone=c.value;player.visit++;player.x=420;player.y=100;player.activity="";outcome="area-entered";break;
                 case SoloAction.Move: player.x = c.x; player.y = c.y; break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
@@ -178,7 +220,7 @@ namespace LittleWeeps.Core
                 case SoloAction.Drop:
                     if (item == null || item.holder != c.actor) return Reject("not-holder");
                     var target = state.toys.FirstOrDefault(t => t.id == c.target);
-                    if (c.target != "" && (target == null || target == item)) return Reject("invalid-target");
+                    if (c.target != "" && (target == null || target == item || target.zone!=player.zone)) return Reject("invalid-target");
                     if (target != null && ((target.x - c.x) * (target.x - c.x) + (target.y - c.y) * (target.y - c.y) > InteractionRadius * InteractionRadius)) return Reject("target-too-far");
                     if (item.kind == ToyKind.Bucket && target?.kind == ToyKind.Tap) { item.water = 3; outcome = "bucket-filled"; }
                     if (item.kind == ToyKind.Bucket && target?.kind == ToyKind.Plant)

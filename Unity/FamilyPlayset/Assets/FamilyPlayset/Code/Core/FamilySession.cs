@@ -34,8 +34,9 @@ namespace LittleWeeps.Core
             connections.Remove(connection);
             foreach(var toy in world.ReadToys().Where(t=>t.holder==profile))
             {
+                var player=world.ReadPlayer(profile);
                 var result=world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=profile,
-                    expectedRevision=world.Revision,action=SoloAction.CancelGrab,item=toy.id});
+                    expectedRevision=world.Revision,zone=player.zone,visit=player.visit,action=SoloAction.CancelGrab,item=toy.id});
                 if(!result.Accepted)throw new InvalidOperationException("Could not release disconnected player's hold.");
             }
             return true;

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "build": 58,
+  "runId": "fb5a2869aae448b6a5329fa1161d4b1a",
+  "worldId": "1c5e43edb97b445aa8df2d1fbbf134a8",
+  "originalPlayersAndToyStatePreserved": true,
+  "serverAndTwoClientsAgree": true,
+  "processes": [
+    {
+      "role": "server",
+      "pid": 19468
+    },
+    {
+      "role": "client",
+      "pid": 8148
+    },
+    {
+      "role": "client",
+      "pid": 24144
+    }
+  ],
+  "installedMobileAppsChanged": false
+}

@@ -54,7 +54,8 @@ class Run:
         self.build, self.interactive = build, interactive
         self.folder = ROOT / f'Builds/NetworkProbe/G3-0.0.{build}'
         summary = read(self.folder / 'build-summary.json')
-        require(summary and summary['contract'] == 2 and summary['gardenPresentation'], 'Playable garden build required')
+        require(summary and summary['contract'] in (2, 3) and summary['gardenPresentation'], 'Playable garden build required')
+        self.protocol = 2 if summary['contract'] >= 3 else 1
         require(len(summary['builds']) == 2, 'Both binaries required')
         for b in summary['builds']:
             require(b['result'] == 'Succeeded' and b['version'] == f'0.0.{build}' and b['errors'] == 0, 'Wrong build')
@@ -106,7 +107,7 @@ class Instance:
         self.out.mkdir()
         cfg = dict(runId=run.run_id, instanceId=self.identity, role=role, profile=profile,
                    token=next((s['token'] for s in run.slots if s['profile'] == profile), ''),
-                   protocol=1, content=1, port=run.port, slots=run.slots if role == 'server' else [],
+                   protocol=run.protocol, content=run.protocol, port=run.port, slots=run.slots if role == 'server' else [],
                    presentation=True, verifyGarden=role == 'client' and not run.interactive, interactive=run.interactive)
         config = run.path / (self.identity + '.config.json'); write(config, cfg)
         exe = run.folder / ('Server' if role == 'server' else 'Client') / 'LittleWeepsNetwork.exe'

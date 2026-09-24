@@ -15,7 +15,7 @@ $process=Start-Process -FilePath $editor -ArgumentList $argsList -WindowStyle Hi
 $process.WaitForExit()
 if($process.ExitCode){throw "Network build failed. See $log"}
 $summary=Get-Content -LiteralPath (Join-Path $folder 'build-summary.json') -Raw | ConvertFrom-Json
-if($summary.contract -notin @(1,2) -or @($summary.builds).Count -ne 2 -or @($summary.builds | Where-Object {$_.result -ne 'Succeeded' -or $_.version -ne "0.0.$BuildNumber"}).Count){throw 'Network build summary mismatch.'}
+if($summary.contract -notin @(1,2,3) -or @($summary.builds).Count -ne 2 -or @($summary.builds | Where-Object {$_.result -ne 'Succeeded' -or $_.version -ne "0.0.$BuildNumber"}).Count){throw 'Network build summary mismatch.'}
 $files=@(& git -C $root ls-files --cached --others --exclude-standard -- Unity/FamilyPlayset/Assets Unity/FamilyPlayset/Packages Unity/FamilyPlayset/ProjectSettings Tools | Sort-Object -Unique | ForEach-Object {
     $path=Join-Path $root $_
     if(Test-Path -LiteralPath $path -PathType Leaf){[ordered]@{path=$_;sha256=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()}}

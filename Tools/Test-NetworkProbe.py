@@ -61,7 +61,8 @@ def main():
     check(os.name == 'nt' and 46 <= args.build <= 9999, 'Windows probe build required')
     folder = ROOT / 'Builds/NetworkProbe' / f'G3-0.0.{args.build}'
     summary = read(folder / 'build-summary.json')
-    check(summary and summary['contract'] in (1, 2), 'Wrong probe contract')
+    check(summary and summary['contract'] in (1, 2, 3), 'Wrong probe contract')
+    wire_version = 2 if summary['contract'] >= 3 else 1
     check({b['role'] for b in summary['builds']} == {'Server', 'Client'}, 'Both builds required')
     for b in summary['builds']:
         check(b['result'] == 'Succeeded' and b['version'] == f'0.0.{args.build}', 'Build identity mismatch')
@@ -81,14 +82,14 @@ def main():
     server = None
 
     class Instance:
-        def __init__(self, role, profile='', token='', protocol=1):
+        def __init__(self, role, profile='', token='', protocol=wire_version):
             self.instance_id = uuid.uuid4().hex
             self.profile = profile
             self.serial = 0
             self.out = run / self.instance_id
             self.out.mkdir()
             cfg = dict(runId=run_id, instanceId=self.instance_id, role=role, profile=profile,
-                       token=token, protocol=protocol, content=1, port=port,
+                       token=token, protocol=protocol, content=wire_version, port=port,
                        slots=slots if role == 'server' else [])
             path = run / (self.instance_id + '.config.json')
             write(path, cfg)
@@ -127,7 +128,7 @@ def main():
         results.append(dict(check=name, passed=True, **details))
         print('PASS ' + name, flush=True)
 
-    def start_client(profile, token=None, protocol=1, rejected=None):
+    def start_client(profile, token=None, protocol=wire_version, rejected=None):
         if token is None:
             token = next(s['token'] for s in slots if s['profile'] == profile)
         client = Instance('client', profile, token, protocol)
@@ -136,7 +137,11 @@ def main():
             check(status['reason'] == rejected, 'Wrong rejection: ' + status['reason'])
             client.close()
         else:
-            wait(lambda: client.view(), 'client initial snapshot')
+            def initial_view():
+                status = client.status()
+                check(not status or status['status'] != 'disconnected', 'Join disconnected: ' + str(status))
+                return client.view()
+            wait(initial_view, 'client initial snapshot')
             active[profile] = client
         return client
 
@@ -150,8 +155,9 @@ def main():
 
     def command(client, action, item='', target='', value='', x=0, y=0, actor=None):
         rid = uuid.uuid4().hex
-        return dict(requestId=rid, protocol=1, command=dict(requestId=rid, actor=actor or client.profile,
-                    expectedRevision=authority()['view']['revision'], action=action, item=item, target=target, value=value, x=x, y=y))
+        player = next(p for p in authority()['view']['players'] if p['id'] == client.profile)
+        return dict(requestId=rid, protocol=wire_version, command=dict(requestId=rid, actor=actor or client.profile,
+                    expectedRevision=authority()['view']['revision'], zone=player.get('zone', 'garden'), visit=player.get('visit', 0), action=action, item=item, target=target, value=value, x=x, y=y))
 
     def send(client, request, previous_sequence=0):
         client.control('command', request)
@@ -180,7 +186,7 @@ def main():
         passed('loopback server and two independent clients', serverPid=server.process.pid, bind=bindings, worldId=baseline['view']['worldId'])
 
         start_client('player-3', token='0' * 64, rejected='unpaired-profile')
-        start_client('player-3', protocol=2, rejected='incompatible-version')
+        start_client('player-3', protocol=wire_version+1, rejected='incompatible-version')
         start_client('player-1', rejected='profile-already-connected')
         start_client('player-5', token='1' * 64, rejected='unpaired-profile')
         check(authority()['view'] == baseline['view'] and len(authority()['connected']) == 2, 'Rejected join altered active play')
@@ -257,12 +263,14 @@ def main():
 
         report = dict(passed=True, utc=datetime.now(timezone.utc).isoformat(), build=args.build, runId=run_id,
                       checks=results, separateClientProcesses=4, physicalDevicesAccessed=False, loopbackOnly=True,
-                      automaticDiscoveryImplemented=False, mobileHostingImplemented=False, independentAreasImplemented=False,
+                      automaticDiscoveryImplemented=False, mobileHostingImplemented=False, independentAreasExercised=False,
                       limitation='Windows native process qualification only. Reconnect/restart was driven by the test harness, not automatic host recovery.')
         write(run / 'result.json', report)
         print('PASS all loopback checks. Evidence: ' + str(run), flush=True)
     except Exception as error:
-        write(run / 'result.json', dict(passed=False, build=args.build, runId=run_id, checks=results, error=str(error)))
+        write(run / 'result.json', dict(passed=False, build=args.build, runId=run_id, checks=results, error=str(error),
+              finalAuthority=read(server.out/'view.json') if server else None,
+              processStatuses=[dict(profile=p.profile, exitCode=p.process.poll(), status=read(p.out/'status.json')) for p in processes]))
         print('FAIL ' + str(error) + '. Evidence: ' + str(run), flush=True)
         raise
     finally:

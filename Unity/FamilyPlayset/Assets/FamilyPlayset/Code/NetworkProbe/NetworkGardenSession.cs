@@ -28,6 +28,8 @@ namespace LittleWeeps.NetworkProbe
         public bool Submit(SoloCommand command,Action<SoloResult> complete)
         {
             if(!Connected){complete?.Invoke(new SoloResult(false,"disconnected",0));return false;}
+            // Capture the visit at input time, never while rebasing a retry.
+            var player=View.players.First(p=>p.id==Actor);command.zone=player.zone;command.visit=player.visit;
             return queue.Enqueue(command,complete);
         }
         private void Receive(NetworkProbe.State state)
