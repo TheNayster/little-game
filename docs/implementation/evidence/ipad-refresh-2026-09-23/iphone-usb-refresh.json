@@ -14,11 +14,112 @@
     "tapCount": 1,
     "videoBookmarkSeconds": 10.8
   },
-  "status": "Awaiting USB connection; verified original IPA selected and automatic bundle-ID option turned off after app restart.",
-  "usbConnectionVerified": false,
-  "refreshAttempted": false,
+  "status": "Manual USB signing refresh and launch succeeded; tap count retained. Controlled relaunch retained profile/tap/bookmark. Initial rounded bookmark difference remains unattributed; exact bookmark retention across the refresh itself is not established.",
+  "usbConnectionVerified": true,
+  "refreshAttempted": true,
   "retentionVerified": false,
   "automaticCycleObserved": false,
   "priorInstallationLastUpdated": "2026-09-23 22:32:01.5829655-05:00",
-  "limitation": "A manual USB refresh cannot qualify wireless discovery or an unattended automatic renewal cycle."
+  "limitation": "A manual USB refresh cannot qualify wireless discovery or an unattended automatic renewal cycle.",
+  "usbVerifiedUtc": "2026-09-24T04:24:55.088530+00:00",
+  "preflight": {
+    "nativeConnectionType": "USB",
+    "sideloadlyTargetMatchesExistingPhone": true,
+    "sameAppleAccountSelected": true,
+    "autoBundleIdEnabled": false,
+    "explicitBundleId": "com.littleweeps.familyplayset",
+    "nameOverride": false,
+    "versionOverride": false,
+    "customEntitlements": false,
+    "tweakInjection": false,
+    "infoPlistChanges": 0,
+    "inputFile": "LittleWeeps-0.0.20.ipa"
+  },
+  "refreshStartedUtc": "2026-09-24T04:25:32.805157+00:00",
+  "postRefreshDeviceCheck": {
+    "observedUtc": "2026-09-24T04:32:26.208628+00:00",
+    "installedApp": {
+      "CFBundleShortVersionString": "0.0.20",
+      "CFBundleDisplayName": "Little Weeps",
+      "CFBundleVersion": "20",
+      "CFBundleIdentifier": "com.littleweeps.familyplayset"
+    },
+    "matchingInstalledProfiles": [
+      {
+        "creationUtc": "2026-09-24T03:31:48Z",
+        "expirationUtc": "2026-10-01T03:31:48Z",
+        "targetDeviceIncluded": true,
+        "getTaskAllow": true
+      },
+      {
+        "creationUtc": "2026-09-24T04:25:16Z",
+        "expirationUtc": "2026-10-01T04:25:16Z",
+        "targetDeviceIncluded": true,
+        "getTaskAllow": true
+      }
+    ],
+    "scope": "Read-only device queries; only this game metadata retained. Pairing was not modified."
+  },
+  "installationCompleted": true,
+  "sideloadlyCompletion": {
+    "uiStatus": "Done.",
+    "percent": 100,
+    "daemonLastUpdated": "2026-09-23 23:30:56.5443087-05:00",
+    "oneOff": false,
+    "knownTtlDays": 7,
+    "refreshAtHours": 96,
+    "lastError": "",
+    "failuresCount": 0
+  },
+  "installWaitObservation": "Signed and uploaded, then remained at Installing 0 percent for several minutes. User reported app open/unlocked; Home Screen requested; completion subsequently observed. Cause of delay not established.",
+  "postRefreshPreferences": {
+    "observedUtc": "2026-09-24T04:34:39.456960+00:00",
+    "tapCount": 1,
+    "videoBookmarkSeconds": 11.066666603088379,
+    "profileIdSha256": "b539dd0f03b196441cb895de1156e6e01523a8a9dd282890c27f4bd55181a4c9",
+    "scope": "Read-only this game preference file; no save changes."
+  },
+  "userPostRefreshReport": {
+    "tapCount": 1,
+    "videoPositionSeconds": 11.1,
+    "clipLengthSeconds": 12.0,
+    "savedBookmarkSeconds": 11.1,
+    "launchConfirmed": true
+  },
+  "tapRetentionVerified": true,
+  "bookmarkRetainedNearOriginal": true,
+  "exactBookmarkRetentionVerified": false,
+  "bookmarkDifferenceSeconds": 0.3,
+  "bookmarkDifferenceAssessment": "Reported rounded values differ by 0.3 s. Existing saved-bookmark acceptance is less than 0.25 s, but no exact immediate pre-refresh preference snapshot exists; rounding and intervening app use prevent an exact comparison. Do not widen the tolerance or attribute the difference to signing without evidence.",
+  "relaunchBaseline": {
+    "observedUtc": "2026-09-24T04:34:39.456960+00:00",
+    "tapCount": 1,
+    "videoBookmarkSeconds": 11.066666603088379,
+    "profileIdSha256": "b539dd0f03b196441cb895de1156e6e01523a8a9dd282890c27f4bd55181a4c9",
+    "scope": "Read-only this game preference file; no save changes."
+  },
+  "controlledRelaunch": {
+    "requested": true,
+    "completed": true,
+    "userReportedTapCount": 1,
+    "userReportedSavedSeconds": 11.1,
+    "preferences": {
+      "observedUtc": "2026-09-24T04:36:12.787312+00:00",
+      "tapCount": 1,
+      "videoBookmarkSeconds": 11.100000381469727,
+      "profileIdSha256": "b539dd0f03b196441cb895de1156e6e01523a8a9dd282890c27f4bd55181a4c9",
+      "sameProfile": true,
+      "bookmarkDeltaSeconds": 0.033333778381347656,
+      "passed": true
+    }
+  },
+  "sourceReview": {
+    "checkpointMethod": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs:70",
+    "existingSavedBookmarkToleranceSecondsExclusive": 0.25,
+    "testToleranceChanged": false,
+    "runtimeCodeChanged": false,
+    "finding": "Checkpoint writes decoder time on app pause/quit even when the video was already paused. This is a possible contributor to drift, not a reproduced diagnosis."
+  },
+  "updatedUtc": "2026-09-24T04:36:12.788312+00:00",
+  "retentionScope": "Tap retention across refresh verified; exact bookmark retention across refresh lacks an immediate pre-refresh snapshot. Controlled post-refresh relaunch is separately verified."
 }

@@ -25,7 +25,7 @@
     "Bonjour": "Running",
     "AppleMobileDeviceService": "Running"
   },
-  "wirelessSetupStatus": "Unresolved after Windows restart and reopening iTunes/Sideloadly; proceeding to a separate USB save-retention test when connected.",
+  "wirelessSetupStatus": "Unresolved after Windows restart and reopening iTunes/Sideloadly. The separate manual USB signing refresh and controlled relaunch are complete; see iphone-usb-refresh.json.",
   "reference": "https://sideloadly.io/faq",
   "userConfirmedSameWifiAndUnlocked": true,
   "afterUnlockRetry": {
@@ -89,7 +89,7 @@
     "nativeAppleServiceReadOnlyDeviceListAfterward": [],
     "sideloadlyDeviceVisibleAfterward": false
   },
-  "nextAction": "Await user USB reconnection; perform in-place signing refresh with original app ID, then confirm 1 tap and 10.8-second bookmark. Keep wireless and future automatic-cycle qualification open.",
+  "nextAction": "Wireless remains unresolved. Separate manual USB signing refresh and controlled relaunch completed; see iphone-usb-refresh.json. Qualify the iPads separately and an actual future unattended cycle.",
   "references": [
     "https://sideloadly.io/faq",
     "https://support.apple.com/en-gb/102347",
@@ -98,7 +98,7 @@
     "https://docs.rs/idevice/0.1.68/src/idevice/mdns.rs.html",
     "https://sideloadly.io/changelog"
   ],
-  "updatedUtc": "2026-09-24T04:21:30.065388+00:00",
+  "updatedUtc": "2026-09-24T04:38:41.825782+00:00",
   "phoneRestartCheck": {
     "userReportedRestartAndUnlock": true,
     "sideloadlyDeviceVisibleAfterward": false,
@@ -210,5 +210,7 @@
     "explanation": "Windows blocked this module inside the protected Local Security Authority process; it does not establish that the whole Bonjour service is blocked or identify the Wi-Fi discovery cause.",
     "securitySettingsChanged": false,
     "reference": "https://support.microsoft.com/en-us/windows/security/windows-security/device-security-in-the-windows-security-app"
-  }
+  },
+  "scope": "Wireless discovery record. refreshAttempted/retentionVerified in this file refer to wireless only; the separate USB test did run.",
+  "relatedUsbEvidence": "iphone-usb-refresh.json"
 }
