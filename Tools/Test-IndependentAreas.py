@@ -11,7 +11,7 @@ def main():
     parser.add_argument('build', type=int)
     args = parser.parse_args()
     run = Run(args.build)
-    require(run.protocol == 2, 'Area build required')
+    require(run.protocol >= 2, 'Area build required')
     checks = []
 
     def passed(name):
@@ -35,7 +35,7 @@ def main():
             cmd = dict(requestId=rid, actor=client.profile, expectedRevision=world()['revision'], zone=p['zone'], visit=p['visit'],
                        action=action, item='', target='', value='', x=0, y=0)
             cmd.update(overrides); client.serial += 1
-            write(client.out/'control.json', dict(serial=client.serial, kind='command', request=dict(requestId=rid, protocol=2, command=cmd)))
+            write(client.out/'control.json', dict(serial=client.serial, kind='command', request=dict(requestId=rid, protocol=run.protocol, command=cmd)))
             return wait(lambda: read(client.out/('reply-' + rid + '.json')), 'explicit area command')
 
         first.input('button', text='Splash cleanup'); settled(first)

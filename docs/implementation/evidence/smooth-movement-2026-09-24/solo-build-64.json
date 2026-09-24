@@ -1,0 +1,14 @@
+{
+    "version": "0.0.64",
+    "unity": "6000.3.24f1",
+    "profile": "Assets/BuildProfiles/Windows Solo Prototype.asset",
+    "result": "Succeeded",
+    "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\WindowsSolo\\G2-0.0.64\\LittleWeepsSolo.exe",
+    "utc": "2026-09-24T19:00:52.0900713Z",
+    "platform": "Windows",
+    "signing": "Not applicable",
+    "errors": 0,
+    "warnings": 0,
+    "verificationContract": 3,
+    "development": false
+}

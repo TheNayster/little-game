@@ -54,8 +54,10 @@ def main():
         require(player(second.profile)['avatar'] == 'orange-pup', 'Avatar switch did not reach authority')
         second.input('press', x=500, y=65); second.input('release', x=500, y=65)
         wait(lambda: abs(player(second.profile)['x']-500)<2 and abs(player(second.profile)['y']-65)<2, 'tap walking', seconds=20)
-        first_view = first.input('inspect'); friend = next(p for p in first_view['players'] if p['id'] == second.profile)
-        require(abs(friend['position']['x']-500)<2 and friend['visible'], 'Sibling character render did not move')
+        def friend_arrived():
+            friend = next(p for p in first.input('inspect')['players'] if p['id'] == second.profile)
+            return abs(friend['position']['x']-500)<2 and friend['visible']
+        wait(friend_arrived, 'interpolated sibling render settles at destination', seconds=2)
         passed('tap walking and avatar switching are confirmed and visible to the other player')
 
         second.input('button', text='Tap to walk')

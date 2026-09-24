@@ -19,6 +19,39 @@ static class Program
         root = Path.GetFullPath(args.Length == 1 ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        Test("walking advances at server speed independent of packet count and transactions",()=>{
+            var w=SoloWorld.WithAreas(SoloWorld.Create("first","second"));var s=new FamilySession(w);s.Attach(1,"first",out _);s.Attach(2,"second",out _);var m=new MovementAuthority(w,s);
+            var revision=w.Revision;var receiptCount=w.Snapshot().receipts.Length;var start=w.ReadPlayer("first").x;
+            for(var i=1;i<=30;i++)
+            {Check(m.Accept(1,new WalkInput{actor="first",zone="garden",sequence=i,mode=WalkMode.Direction,x=1},i/30.0));m.Tick(i/30.0,1f/30);}
+            Check(Math.Abs(w.ReadPlayer("first").x-start-210)<.01 && w.Revision==revision && w.Snapshot().receipts.Length==receiptCount);
+            Good(w,SoloAction.Grab,"bucket-1",actor:"second");Check(Toy(w,"bucket-1").holder=="second");
+        });
+        Test("walking rejects forged old and previous-visit inputs then times out safely",()=>{
+            var w=SoloWorld.WithAreas(SoloWorld.Create("first","second"));var s=new FamilySession(w);s.Attach(1,"first",out _);var m=new MovementAuthority(w,s);
+            var input=new WalkInput{actor="first",zone="garden",sequence=4,mode=WalkMode.Direction,x=1,y=1};
+            Check(!m.Accept(2,input,0));Check(m.Accept(1,input,0));Check(!m.Accept(1,input,0));input.actor="second";input.sequence=5;Check(!m.Accept(1,input,0));
+            var before=w.ReadPlayer("first");m.Tick(.1,1f/30);var after=w.ReadPlayer("first");
+            Check(Math.Abs(Math.Sqrt(Math.Pow(after.x-before.x,2)+Math.Pow(after.y-before.y,2))-7)<.001);
+            Check(!m.Tick(.5,1f/30));Good(w,SoloAction.Travel,value:"creek");input.actor="first";Check(!m.Accept(1,input,.6));
+            var entered=Encode(w.Snapshot());Check(!m.Tick(.6,1f/30) && Encode(w.Snapshot())==entered);
+        });
+        Test("stop sequence overrides delayed walking and disconnect cannot move an avatar",()=>{
+            var w=SoloWorld.Create("first");var s=new FamilySession(w);s.Attach(1,"first",out _);var m=new MovementAuthority(w,s);
+            Check(m.Accept(1,new WalkInput{actor="first",zone="garden",sequence=9,mode=WalkMode.Stop},0));
+            Check(!m.Accept(1,new WalkInput{actor="first",zone="garden",sequence=8,mode=WalkMode.Direction,x=1},.1));Check(!m.Tick(.1,.03f));
+            Check(m.Accept(1,new WalkInput{actor="first",zone="garden",sequence=10,mode=WalkMode.Direction,x=1},.2));s.Detach(1);Check(!m.Tick(.2,.03f));
+        });
+        Test("destination walking lands exactly and floor bounds retain finite positions",()=>{
+            var goal=new WalkInput{mode=WalkMode.Destination,x=421,y=200};var point=Walking.Step(420,200,goal,.033f);Check(point.X==421 && point.Y==200);
+            var diagonal=new WalkInput{mode=WalkMode.Direction,x=1000,y=1000};point=Walking.Step(960,455,diagonal,.033f);Check(point.X==960 && point.Y==455);
+        });
+        Test("timestamp interpolation smooths sparse samples and never extrapolates an outage",()=>{
+            var b=new MotionBuffer();b.Add("garden:0",10,100,200);b.Add("garden:0",10.1,121,200);
+            Check(Math.Abs(b.Sample(10.05).X-110.5)<.001 && b.Sample(11).X==121 && b.Sample(9).X==100);
+            Check(!b.Add("garden:0",10.05,999,200));b.Add("creek:1",10.2,420,100);Check(b.Count==1 && b.Sample(10).X==420);
+            for(var i=0;i<100;i++)b.Add("creek:1",11+i*.05f,i,100);Check(b.Count<=32);
+        });
         Test("area upgrade preserves existing garden and runs only once",()=>{
             var old=SoloWorld.Create("first","second");Fill(old);Good(old,SoloAction.StartActivity,value:"garden");
             var before=old.Snapshot();var w=SoloWorld.WithAreas(SoloWorld.Restore(Decode(Encode(before))));var after=w.Snapshot();

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LittleWeeps.Client;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace LittleWeeps.NetworkProbe
 {
     // Only installed for explicit isolated verification configs. Inputs travel
     // through Input System + UGUI and the same asynchronous presentation path.
+    [DefaultExecutionOrder(1000)]
     public sealed class NetworkGardenVerification : MonoBehaviour
     {
         private NetworkProbe probe;
@@ -24,6 +26,10 @@ namespace LittleWeeps.NetworkProbe
         private bool working,down;
         private string failure;
         private Vector2 mousePoint;
+        private string traceActor;
+        private readonly List<MotionSample> motionTrace=new List<MotionSample>();
+        [Serializable] private sealed class MotionSample {public double time;public Vector2 visual,authority;}
+        [Serializable] private sealed class MotionEvidence {public string actor,build;public MotionSample[] samples;}
         [Serializable] private sealed class Step {public int serial;public string action,role,text;public float x,y;public int finger=11;}
         [Serializable] private sealed class PlayerView {public string id;public Vector2 position;public bool visible;}
         [Serializable] private sealed class ToyView {public string id,label;public Vector2 position;public float alpha;}
@@ -95,6 +101,11 @@ namespace LittleWeeps.NetworkProbe
                         InputSystem.QueueStateEvent(mouse,new MouseState{position=point}.WithButton(MouseButton.Left,false));
                     }
                 }
+                else if(step.action=="traceStart"){traceActor=step.role;motionTrace.Clear();}
+                else if(step.action=="traceStop")
+                {
+                    File.WriteAllText(Path.Combine(probe.Output,"motion-trace.json"),JsonUtility.ToJson(new MotionEvidence{actor=traceActor,build=Application.version,samples=motionTrace.ToArray()},true));traceActor=null;
+                }
                 else if(step.action=="capture")StartCoroutine(Capture());
                 else if(step.action!="inspect")throw new ArgumentException("Unknown garden input action.");
                 await Task.Delay(step.action=="inspect"?20:65);Write();
@@ -126,6 +137,13 @@ namespace LittleWeeps.NetworkProbe
                 canvas.renderMode=oldMode;canvas.worldCamera=oldCamera;canvas.planeDistance=oldDistance;RenderTexture.active=previous;
                 camera.targetTexture=null;target.Release();Destroy(target);Destroy(go);if(image!=null)Destroy(image);Canvas.ForceUpdateCanvases();
             }
+        }
+        private void LateUpdate()
+        {
+            if(traceActor==null || !screen.Ready || motionTrace.Count>=1800)return;
+            var p=probe.Latest.view.players.First(v=>v.id==traceActor);
+            var rect=screen.Board.Find(traceActor==screen.Actor?"Pup":"Friend-"+traceActor) as RectTransform;
+            if(rect!=null && rect.gameObject.activeSelf)motionTrace.Add(new MotionSample{time=Time.realtimeSinceStartupAsDouble,visual=BoardPosition(rect),authority=new Vector2(p.x,p.y)});
         }
         private Vector2 BoardPosition(RectTransform rect)
         {var p=screen.Board.InverseTransformPoint(rect.position);return new Vector2((p.x/screen.Board.rect.width+.5f)*1000,(p.y/screen.Board.rect.height+.5f)*500);}

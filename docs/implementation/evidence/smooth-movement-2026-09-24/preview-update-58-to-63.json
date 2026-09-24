@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "fromBuild": 58,
+  "toBuild": 63,
+  "runId": "fb5a2869aae448b6a5329fa1161d4b1a",
+  "completeWorldAndReceiptsPreserved": true,
+  "bothClientViewsMatch": true,
+  "worldId": "1c5e43edb97b445aa8df2d1fbbf134a8",
+  "schema": 2,
+  "utc": "2026-09-24T19:03:44.504581+00:00",
+  "beforeSha256": "64e7b31e73b82fc3afbf2ccefd27a35cefd871c33f2a86ade40645444941f87a",
+  "afterSha256": "64e7b31e73b82fc3afbf2ccefd27a35cefd871c33f2a86ade40645444941f87a"
+}

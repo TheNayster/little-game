@@ -1,0 +1,175 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Family Playset — smooth four-player movement</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;background:radial-gradient(circle at center,#fff 0 28%,#eef3ee 28% 29%,transparent 29%)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid transparent;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+
+.movement-review{max-width:980px;margin:42px auto;padding:0 24px}.movement-review h1{font-size:clamp(30px,4vw,46px)}.movement-review p,.movement-review li{line-height:1.65}.movement-review code{overflow-wrap:anywhere}.movement-review pre{overflow-x:auto}
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="g3-smooth-movement-2026-09-24.md">Editable research</a></nav></header><main class="movement-review report"><h1>G3 — smooth shared movement: research and implementation</h1>
+<p>24 September 2026. <strong>Implemented in Windows shared build 63; the user tested the updated two-window preview and confirmed “Yes—much smoother.”</strong> Four-player native measurements, source research and remaining limits are recorded below. Solo regression build 64 is also verified; installed iPad solo 56 is unchanged.</p>
+<p>User feedback on shared 58: one window correctly showed the other player walking, but the motion was choppy. This bounded task covers FAMILY-01 and WORLD-01/02, preserving touch controls and ITEM-02 authority. The user's smoothing request took priority over the previously queued reconnect investigation; that open issue remains tracked.</p>
+<h2>What the current code actually did</h2>
+<p>Inspection of build-58 source found direct assignment of remote avatar position whenever a snapshot arrived. Walking also used the same one-in-flight acknowledgement queue as item transactions, with a 50 ms send gate, waiting for the previous response. Each accepted step generated a receipt, serialized the whole world, and synchronously flushed a checkpoint to disk. The position was then sent twice as response/broadcast in reliable state messages. These are confirmed code behaviors, not measurements of a particular iPad or an inferred slow router. The test-only 250 ms acknowledgement delay is not enabled in the user's interactive preview.</p>
+<h2>Source-backed findings</h2>
+<ul>
+<li><strong>Render between snapshots.</strong> Fiedler demonstrates how irregular packet arrivals cause visible jumps even with a high send rate. Buffering timestamped snapshots lets the renderer interpolate between known states; it trades a small amount of presentation delay for steadier motion. Lost superseded snapshots need not block later ones. Buffer sizing depends on send rate, jitter and loss; the article's example numbers are not universal defaults for this game. <a href="https://gafferongames.com/post/snapshot_interpolation/">Snapshot Interpolation — Glenn Fiedler</a>.</li>
+<li><strong>Separate simulation rate from rendering.</strong> Gambetta explains a server that advances at a regular timestep instead of simulating separately on each arriving request. Other players can be rendered along the received trajectory between authoritative updates. For this game's slow, noncompetitive walking, a short visual buffer is a reasonable engineering choice; it does not require MMO-scale infrastructure. <a href="https://www.gabrielgambetta.com/entity-interpolation.html">Entity interpolation</a>.</li>
+<li><strong>Own-player responsiveness is a separate problem.</strong> Full prediction/reconciliation retains numbered inputs and replays unacknowledged work after correction. Our first walking-only implementation uses simpler local visual anticipation and bounded correction, not a complete rollback/replay simulation. Inventory/water transfers remain server-confirmed. <a href="https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html">Prediction and reconciliation</a>.</li>
+<li><strong>Unity already supports these patterns, but does not supply our game's complete rules.</strong> NGO's anticipation distinguishes visual state from authoritative state, including handling stale responses and smoothing corrections. Its documentation explicitly distinguishes anticipation from full prediction/reconciliation. Our existing 2D canvas has no NetworkObject hierarchy; adding NetworkTransform alone would neither remove the movement acknowledgement queue nor stop per-step saving. The pinned NGO/UTP packages stay installed. The public 2.13 documentation currently identifies patch 2.13.3; this project remains pinned to 2.13.2. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/advanced-topics/client-anticipation.html">Unity client anticipation</a>.</li>
+<li><strong>Reliable delivery has costs.</strong> Reliable packets can hold later messages behind loss/retransmission. Replaceable movement samples are suitable for sequenced unreliable delivery, while state-changing transactions require their reliable, idempotent path. Unity's transport documentation describes these pipeline tradeoffs. Our movement packets are complete compact positions, not dependent deltas, and are checked against a 1,200-byte application budget. <a href="https://docs.unity3d.com/Packages/com.unity.transport@2.7/manual/pipelines-usage.html">Unity Transport pipelines</a>.</li>
+<li><strong>Use consistent clocks and test bad conditions.</strong> NGO exposes local/server network time and tick scheduling. Use double-precision time for the interpolation timeline. Qualification needs jitter, delay and packet loss as well as an ideal local connection. Unity's Network Simulator is an available broader testing tool; the initial custom fixture below only impairs received movement snapshots, which is a narrower test. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/advanced-topics/networktime-ticks.html">Network time and ticks</a>, <a href="https://docs.unity3d.com/Packages/com.unity.multiplayer.tools@2.2/manual/network-simulator.html">Network Simulator</a>.</li>
+</ul>
+<h2>Chosen first implementation</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Initial setting / reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server walking</td>
+<td>Fixed 30 Hz; normalized direction or destination at 210 floor units/second; bounded catch-up</td>
+</tr>
+<tr>
+<td>Input and position stream</td>
+<td>Approximately 20 Hz, sequenced, no waiting for item acknowledgements; authenticated connection, area and visit checked</td>
+</tr>
+<tr>
+<td>Remote avatars</td>
+<td>Timestamp buffer, 120 ms behind the client's synchronized server clock; interpolate each rendered frame; hold the last known point during a long outage. Samples are stamped at the completed simulation step, avoiding artificial speed fluctuation when 30 Hz simulation is sampled at 20 Hz.</td>
+</tr>
+<tr>
+<td>Own avatar</td>
+<td>Immediate visual walking, acknowledgement-aware correction; pause anticipation after stale incoming state; authority still sets actual position</td>
+</tr>
+<tr>
+<td>Stops</td>
+<td>Reliable stop intent, repeated latest input, plus a 400 ms authority watchdog if input disappears</td>
+</tr>
+<tr>
+<td>Area changes</td>
+<td>Clear old walk intent; reset interpolation on a different area/visit; reject delayed input from earlier visits</td>
+</tr>
+<tr>
+<td>Shared items</td>
+<td>Exclusive holders and confirmed fill/pour/drop remain transactional; remote held-item presentation also interpolates accepted drag positions</td>
+</tr>
+<tr>
+<td>Disk persistence</td>
+<td>Coalesce walking checkpoints to approximately once/second while moving, save settled positions and graceful exits, and include current positions in every durable item transaction</td>
+</tr>
+<tr>
+<td>Render rate</td>
+<td>Windows shared preview targets 60 FPS; existing mobile targets are unchanged pending device measurements</td>
+</tr>
+</tbody>
+</table></div>
+<p>A hard server process kill during uninterrupted walking can lose up to roughly one checkpoint interval of <strong>position</strong>, plus scheduling/disk time. Completed item transactions retain their existing immediate checkpoint contract. This tradeoff must remain explicit; calling every transient movement packet “durably saved” would be incorrect. Movement does not increment the inventory transaction revision or create durable action receipts, so a continuously walking sibling cannot cause endless revision conflicts for a bucket pickup.</p>
+<p>These rates and buffers are our initial measured-test candidates, not claims of ideal values for all devices/networks. Four-player iPad/Android profiling, sustained heat/battery checks, wider network impairment, obstacle/navigation collision rules and required iPad-host recovery are later qualification work. The existing intermittent initial join/rejoin stall has not been declared fixed by this movement change.</p>
+<h2>Qualification</h2>
+<p><strong>Windows qualification completed for this movement change.</strong> No mobile build has been installed for this task. Detailed frame results are recorded in the table below; they are a short steady-walk measurement on this PC, not a sustained mobile-performance claim.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Executed check</th>
+<th>Result / evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Four connected native clients and concurrent walking, normal loopback</td>
+<td>Passed. The actual smoothed remote canvas advances between sparse snapshots. <a href="evidence/smooth-movement-2026-09-24/motion-four-normal.json">Result</a></td>
+</tr>
+<tr>
+<td>Four connected clients and all four walking, impaired received motion stream</td>
+<td>Passed with added 80 ms delay, ±25 ms deterministic jitter and every tenth movement snapshot dropped. Only incoming motion is impaired, not input, transactions, admission or the entire connection. <a href="evidence/smooth-movement-2026-09-24/motion-four-impaired.json">Result</a></td>
+</tr>
+<tr>
+<td>Menu stop, exact position after server restart, diagnostic-file lock</td>
+<td>Passed in both four-player movement runs. A disposable diagnostic reader cannot stop authoritative play.</td>
+</tr>
+<tr>
+<td>Core rules, saves, queues and movement</td>
+<td><strong>41 passed</strong>; includes authority/sequence/visit checks, normalized server speed, no walking receipt churn, watchdog and interpolation bounds. <a href="evidence/smooth-movement-2026-09-24/rules-41.json">Rules</a></td>
+</tr>
+<tr>
+<td>Two-player native UI regression</td>
+<td><strong>10 scenarios passed</strong>, including movement, exclusive held items, water transfer, delayed pickup acknowledgement, multitouch, cancellation, departure, return and server loss. <a href="evidence/smooth-movement-2026-09-24/garden-ui-63.json">UI results</a></td>
+</tr>
+<tr>
+<td>Four-player independent areas</td>
+<td><strong>8 scenarios passed</strong>, including split/gather, current holds, empty-area retention and exact restart. <a href="evidence/smooth-movement-2026-09-24/areas-63.json">Area results</a></td>
+</tr>
+<tr>
+<td>Separate solo behavior</td>
+<td>Build 64 passed tablet-shaped 1280 × 960 input and <strong>59 → 64</strong> saved-progress update plus damaged-primary recovery. <a href="evidence/smooth-movement-2026-09-24/solo-input-64.json">Input</a>, <a href="evidence/smooth-movement-2026-09-24/solo-update-59-to-64.json">update</a>, <a href="evidence/smooth-movement-2026-09-24/solo-recovery-64.json">recovery</a></td>
+</tr>
+<tr>
+<td>Existing user's shared preview</td>
+<td><strong>58 → 63</strong> preserved the complete saved world and receipts byte-for-byte, and both client views matched it before user input. User then reported much smoother walking. <a href="evidence/smooth-movement-2026-09-24/preview-update-58-to-63.json">Preservation</a>, <a href="evidence/smooth-movement-2026-09-24/user-play-check.json">user report</a></td>
+</tr>
+<tr>
+<td>Native build outputs</td>
+<td>Shared server/client 63 and solo 64 built with zero summary errors/warnings. <a href="evidence/smooth-movement-2026-09-24/shared-build-63.json">Shared build</a>, <a href="evidence/smooth-movement-2026-09-24/solo-build-64.json">solo build</a>; exact source manifests accompany the results.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Four-player condition</th>
+<th>Remote frame pairs</th>
+<th>Median frame interval</th>
+<th>Smoothed moving frames</th>
+<th>Raw moving frames</th>
+<th>p95 speed, smoothed / raw (units/s)</th>
+<th>870-unit walk</th>
+<th>Walking checkpoints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal loopback</td>
+<td>160</td>
+<td>16.65 ms</td>
+<td>100.0%</td>
+<td>33.1%</td>
+<td>243.43 / 753.88</td>
+<td>4.25 s</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Impaired received motion</td>
+<td>161</td>
+<td>16.68 ms</td>
+<td>97.5%</td>
+<td>20.5%</td>
+<td>247.73 / 1146.23</td>
+<td>4.25 s</td>
+<td>6</td>
+</tr>
+</tbody>
+</table></div>
+<p>The comparison samples the smoothed native RectTransform and raw received authoritative positions <strong>on the same render frames</strong>. It is not a historical build-58 benchmark. “Moving frame” means more than 0.05 floor units of forward progress during the steady middle of a walk. This demonstrates interpolation filling display frames, rather than claiming fewer network packets were lost. The reported lag field measures position lag behind the <strong>latest received</strong> sample; it is not a measured end-to-end network delay. Four-player tests retain contemporaneous server positions proving all four were partway along their walks.</p>
+<p><strong>Open reliability result:</strong> the separate legacy network suite passed its first <strong>7 scenarios</strong>, then again timed out on the initial snapshot of a returning client after a hard kill. That intermittent stall was already reproduced on unchanged older builds. It remains unresolved despite successful UI rejoin scenarios; this update does not qualify automatic joining, mobile hosting or recovery. <a href="evidence/smooth-movement-2026-09-24/network-63-open-reconnect.json">Failure retained</a>. <strong>Next bounded task: reproduce and instrument this initial snapshot/rejoin failure, then fix and qualify recovery before LAN/device multiplayer.</strong></p>
+<p>Intermediate failures are retained rather than hidden: build 60's trace filled prematurely because hidden windows ran uncapped; 61's impaired run hit an evidence-read race after its movement check passed; 62 exposed a Windows diagnostic replacement sharing error that stopped the server. Build 63 handles only diagnostic sharing conflicts without swallowing durable-save failures, and a deliberate file-lock test now proves that behavior. Readers use bounded fresh retries. <a href="evidence/smooth-movement-2026-09-24/intermediate-runs.json">Intermediate runs</a>.</p>
+<p><code>Play-SharedGarden.cmd</code> now opens shared <strong>63</strong> with the existing saved world. <code>Play-SoloPrototype.cmd</code> selects separate solo <strong>64</strong>. Repeatable tests: <code>python Tools/Test-SmoothMovement.py 63 --players 4</code> and the same command with <code>--impaired</code>; existing area/UI/network and solo suites remain in <code>Tools</code>.</p>
+<h2>Four players are the supported design target</h2>
+<p>The same authority simulates all four profiles. Every client sends its own latest walking intent; each movement snapshot contains all four current positions. One client's frame rate or acknowledgement delay does not choose another player's walking speed. Per-player sequence numbers and visit numbers prevent an old input from undoing a newer stop or driving a character after travel. Bucket ownership, water, activities and room changes retain server-confirmed rules. The second player's view does not pause when the first player changes areas.</p>
+<p>Sending four small positions about 20 times/second is a reasonable initial budget for this family game. The enforced 1,200-byte application-payload ceiling gives an upper bound of about <strong>96 KB/second</strong> for movement snapshot payload sent by one server to four clients (1,200 × 20 × 4), excluding transport headers, inputs and transactions. That is a ceiling calculation, not a bandwidth measurement. The actual four-avatar message is smaller. Increasing send rate alone would not fix irregular arrival times, blocked item queues or slow rendering; the implementation addresses each separately.</p>
+<p>Unity's tools support multiplayer testing and network simulation, including four-player local iteration. Here we use separate native Windows clients so the tests include their real UI and built player code. Four local processes still do not represent four different mobile processors or Wi-Fi radios. <a href="https://docs.unity.com/en-us/multiplayer/netcode/networking-utilities">Unity networking tools</a>.</p>
+<p>The proposed mobile acceptance sequence is: both iPads plus Android and iPhone on one server; all four in one busy room, then split across rooms; concurrent walking, dragging, watering and travel; one player backgrounds/closes while the others continue; repeat with controlled delay, jitter, loss and an interrupted connection. Measure frame-time percentiles, render stalls, snapshot age, correction distance, bytes/second, memory and garbage collection. Start with stable 30 FPS on the older iPad (about 33.3 ms/frame); only raise the target when sustained device measurements support it. Use device profiling builds to find costs, then repeat behavioral/performance checks on the intended release build. These are acceptance plans, not completed mobile results. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/profiling-target-device.html">Unity 6.3 target-device profiling</a>.</p>
+<p>For the eventual larger playset, load/render only the current area's art, pool frequently reused effects, avoid allocations in continuous movement, and send detailed object updates only to interested areas while preserving shared server state. Those are later workload controls, not a restriction forcing four players to stay together. The current ten-prop prototype still uses full reliable state snapshots for transactions. Required iPad hosting, automatic joining and host switching remain separate implementation gates. No networking technique can guarantee uninterrupted shared authority through every disconnection; recovery must be measured separately from smooth rendering.</p></main></body></html>

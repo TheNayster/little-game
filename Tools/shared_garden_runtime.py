@@ -13,10 +13,15 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def read(path):
-    try:
-        return json.loads(path.read_text(encoding='utf-8-sig'))
-    except (FileNotFoundError, PermissionError):
-        return None
+    # Atomic evidence replacement can briefly deny a Windows reader. Retry a
+    # fresh read; never substitute cached state or hide a malformed JSON file.
+    for attempt in range(6):
+        try:
+            return json.loads(path.read_text(encoding='utf-8-sig'))
+        except (FileNotFoundError, PermissionError):
+            if attempt == 5:
+                return None
+            time.sleep(.01)
 
 
 def write(path, value):
@@ -49,13 +54,14 @@ def require(value, message):
 
 
 class Run:
-    def __init__(self, build, interactive=False, resume=None):
+    def __init__(self, build, interactive=False, resume=None, motion_conditions=None):
         require(os.name == 'nt' and 51 <= build <= 9999, 'Windows shared garden build required')
         self.build, self.interactive = build, interactive
         self.folder = ROOT / f'Builds/NetworkProbe/G3-0.0.{build}'
         summary = read(self.folder / 'build-summary.json')
-        require(summary and summary['contract'] in (2, 3) and summary['gardenPresentation'], 'Playable garden build required')
-        self.protocol = 2 if summary['contract'] >= 3 else 1
+        require(summary and summary['contract'] in (2, 3, 4) and summary['gardenPresentation'], 'Playable garden build required')
+        self.protocol = 3 if summary['contract'] >= 4 else 2 if summary['contract'] >= 3 else 1
+        self.motion_conditions = motion_conditions or {}
         require(len(summary['builds']) == 2, 'Both binaries required')
         for b in summary['builds']:
             require(b['result'] == 'Succeeded' and b['version'] == f'0.0.{build}' and b['errors'] == 0, 'Wrong build')
@@ -109,6 +115,7 @@ class Instance:
                    token=next((s['token'] for s in run.slots if s['profile'] == profile), ''),
                    protocol=run.protocol, content=run.protocol, port=run.port, slots=run.slots if role == 'server' else [],
                    presentation=True, verifyGarden=role == 'client' and not run.interactive, interactive=run.interactive)
+        if role == 'client' and not run.interactive: cfg.update(run.motion_conditions)
         config = run.path / (self.identity + '.config.json'); write(config, cfg)
         exe = run.folder / ('Server' if role == 'server' else 'Client') / 'LittleWeepsNetwork.exe'
         args = [str(exe), '-familyNetworkConfig', str(config), '-logFile', str(self.out / 'player.log')]

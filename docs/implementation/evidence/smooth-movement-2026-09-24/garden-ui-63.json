@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "build": 63,
+  "runId": "7a19b8ab94334b09b94c1a482bb323b1",
+  "utc": "2026-09-24T19:01:07.443676+00:00",
+  "checks": [
+    {
+      "check": "two native gardens draw both connected players",
+      "passed": true
+    },
+    {
+      "check": "release before pickup acknowledgement finishes exactly once without a stuck hold",
+      "passed": true
+    },
+    {
+      "check": "sibling sees held toy moving; contention is explained; confirmed pour replicates",
+      "passed": true
+    },
+    {
+      "check": "canceled touch and menu during pickup approval release the lease without interacting",
+      "passed": true
+    },
+    {
+      "check": "tap walking and avatar switching are confirmed and visible to the other player",
+      "passed": true
+    },
+    {
+      "check": "joystick walking and toy dragging use separate touches through the shared session",
+      "passed": true
+    },
+    {
+      "check": "activities can be freely started and left; both garden views captured",
+      "passed": true
+    },
+    {
+      "check": "closing one game window releases its toy; remaining garden keeps accepting interactions",
+      "passed": true
+    },
+    {
+      "check": "returning garden renders the current shared world",
+      "passed": true
+    },
+    {
+      "check": "server loss leaves a clear inactive view without pretending actions were saved",
+      "passed": true
+    }
+  ],
+  "delayedAcknowledgementMs": 250,
+  "physicalDevicesAccessed": false,
+  "automaticRejoin": false
+}

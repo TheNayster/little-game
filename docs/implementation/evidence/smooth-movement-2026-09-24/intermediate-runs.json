@@ -1,0 +1,104 @@
+[
+  {
+    "passed": false,
+    "build": 60,
+    "runId": "ec4a6a7e584849a5a40fa5d1736f0198",
+    "conditions": {},
+    "checks": [],
+    "error": "Insufficient moving canvas samples"
+  },
+  {
+    "passed": true,
+    "build": 61,
+    "runId": "fd1b1caa25c6462e98cc75aade137cae",
+    "utc": "2026-09-24T18:53:51.846144+00:00",
+    "conditions": {},
+    "impairmentScope": "Client receive-side motion stream only; not whole-network impairment.",
+    "checks": [
+      {
+        "check": "continuous local and remote canvas motion",
+        "passed": true,
+        "local": {
+          "sampleCount": 161,
+          "medianFrameMs": 16.69,
+          "visualMovingFrameFraction": 1.0,
+          "rawMovingFrameFraction": 0.329,
+          "p95VisualSpeed": 256.84,
+          "p95RawSnapSpeed": 774.4,
+          "worstBackwardStep": 2.139,
+          "p95LagSeconds": 0.024
+        },
+        "remote": {
+          "sampleCount": 161,
+          "medianFrameMs": 16.69,
+          "visualMovingFrameFraction": 1.0,
+          "rawMovingFrameFraction": 0.329,
+          "p95VisualSpeed": 316.41,
+          "p95RawSnapSpeed": 768.64,
+          "worstBackwardStep": 2.302,
+          "p95LagSeconds": 0.179
+        },
+        "walkSeconds": 4.25,
+        "checkpointWritesDuringWalk": 5
+      },
+      {
+        "check": "menu cancels continuous joystick input and it remains stopped",
+        "passed": true
+      },
+      {
+        "check": "stopped positions survive server restart exactly",
+        "passed": true
+      }
+    ],
+    "comparison": "Smoothed native canvas vs raw authoritative snap positions sampled on the same render frames; not a historical-build benchmark.",
+    "physicalDevicesAccessed": false
+  },
+  {
+    "passed": false,
+    "build": 61,
+    "runId": "7264a9c7d596434c8e984b69eea468b9",
+    "conditions": {
+      "testMotionDelayMs": 80,
+      "testMotionJitterMs": 25,
+      "testMotionDropEvery": 10
+    },
+    "checks": [
+      {
+        "check": "continuous local and remote canvas motion",
+        "passed": true,
+        "local": {
+          "sampleCount": 156,
+          "medianFrameMs": 16.68,
+          "visualMovingFrameFraction": 1.0,
+          "rawMovingFrameFraction": 0.212,
+          "p95VisualSpeed": 254.35,
+          "p95RawSnapSpeed": 1148.26,
+          "worstBackwardStep": 2.888,
+          "p95LagSeconds": -0.016
+        },
+        "remote": {
+          "sampleCount": 161,
+          "medianFrameMs": 16.67,
+          "visualMovingFrameFraction": 0.975,
+          "rawMovingFrameFraction": 0.217,
+          "p95VisualSpeed": 310.96,
+          "p95RawSnapSpeed": 1122.69,
+          "worstBackwardStep": 0.0,
+          "p95LagSeconds": 0.091
+        },
+        "walkSeconds": 4.187,
+        "checkpointWritesDuringWalk": 5
+      }
+    ],
+    "error": "'NoneType' object is not subscriptable"
+  },
+  {
+    "passed": false,
+    "build": 62,
+    "runId": "7f15d85e07fe46949d66a33b7c34b4f2",
+    "players": 2,
+    "conditions": {},
+    "checks": [],
+    "error": "The process cannot access the file because it is being used by another process."
+  }
+]

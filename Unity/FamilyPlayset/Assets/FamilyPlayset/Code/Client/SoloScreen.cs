@@ -125,6 +125,10 @@ namespace LittleWeeps.Client
         }
         private void InitializeShared()
         {
+#if UNITY_STANDALONE_WIN
+            QualitySettings.vSyncCount=0;
+            Application.targetFrameRate=60;
+#endif
             connecting.gameObject.SetActive(false);
             if(FindAnyObjectByType<AudioListener>()==null)gameObject.AddComponent<AudioListener>();
             if(FindAnyObjectByType<Camera>()==null)
@@ -243,11 +247,12 @@ namespace LittleWeeps.Client
             if(shared==null || !shared.Connected || !SoloWorld.KnownArea(zone))return;
             requestedArea=zone;CancelPointers();Narration.Stop();
             message.text="Going to the "+zone+"…";
+            Render();
         }
         private void FinishTravel()
         {
             if(requestedArea==null || travelSubmitted || shared.Busy || dragging!=null)return;
-            if(requestedArea==CurrentArea){requestedArea=null;return;}
+            if(requestedArea==CurrentArea){requestedArea=null;message.text="Keep exploring the "+CurrentArea+".";Render();return;}
             var target=requestedArea;travelSubmitted=true;
             SubmitShared(SoloAction.Travel,"","",target,0,0,result=>
             {
@@ -390,6 +395,7 @@ namespace LittleWeeps.Client
             foreach(var surface in Surfaces.Values)surface.Cancel();
             if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
             destination=null;stickDirection=Vector2.zero;
+            shared?.Walk(WalkMode.Stop);
         }
         private void Update()
         {
@@ -403,6 +409,16 @@ namespace LittleWeeps.Client
                 saveLabel.text=string.Join("   ·   ",shared.View.players.Where(p=>shared.Players.Contains(p.id)).Select(p=>p.id.Replace("player-","Player ")+": "+p.zone))+"   ·   "+shared.Status;
                 if(!shared.Connected)return;
                 FinishTravel();
+                if(MenuOpen || TravelPending)shared.Walk(WalkMode.Stop);
+                else if(JoystickMode)shared.Walk(stickDirection.sqrMagnitude>.0001f?WalkMode.Direction:WalkMode.Stop,stickDirection.x,stickDirection.y);
+                else if(destination.HasValue)
+                {
+                    var player=ReadPlayer(Actor);
+                    if(Vector2.Distance(new Vector2(player.x,player.y),destination.Value)<1){destination=null;shared.Walk(WalkMode.Stop);}
+                    else shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
+                }
+                else shared.Walk(WalkMode.Stop);
+                return;
             }
             if(!HasWorld || MenuOpen || TravelPending)return;
             // Minimized Windows players may update much faster than presentation.
@@ -428,6 +444,16 @@ namespace LittleWeeps.Client
         private void OnApplicationFocus(bool focused){if(!focused && HasWorld){CancelPointers();SaveNow();}}
         private void OnApplicationQuit(){if(HasWorld){CancelPointers();SaveNow();}}
         private Vector2 ToBoard(float x,float y)=>new Vector2((x/SoloWorld.Width-.5f)*Board.rect.width,(y/SoloWorld.Height-.5f)*Board.rect.height);
+        private void LateUpdate()
+        {
+            if(shared==null || !Ready)return;
+            var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
+            foreach(var friend in friends)
+            {if(!friend.Value.root.gameObject.activeSelf)continue;var p=shared.VisualPosition(friend.Key);friend.Value.root.anchoredPosition=ToBoard(p.x,p.y);}
+            foreach(var t in ReadToys())if(t.id!=dragging && !string.IsNullOrEmpty(t.holder) && shared.TryPreview(t.id,out var p))toys[t.id].anchoredPosition=ToBoard(p.x,p.y);
+            foreach(var rect in toys.Where(pair=>pair.Key!=dragging && pair.Value.gameObject.activeSelf).Select(pair=>pair.Value).Concat(new[]{avatar}).Concat(friends.Values.Where(v=>v.root.gameObject.activeSelf).Select(v=>v.root)).OrderByDescending(r=>r.anchoredPosition.y))rect.SetAsLastSibling();
+            if(dragging!=null)toys[dragging].SetAsLastSibling();
+        }
         private void Render()
         {
             if(avatar==null)return;
