@@ -4,7 +4,7 @@ Updated 24 September 2026. Provisional work authorized by the user while the Mac
 
 ## Play the current Windows prototype
 
-Double-click **Play-SoloPrototype.cmd** at the project root. The verified preview is **0.0.35**. Play-Foundation.cmd still opens the separate G1 video/tap fixture, build 22. The launcher checks hashes before starting and prevents duplicate normal previews.
+Double-click **Play-SoloPrototype.cmd** at the project root. The verified preview is **0.0.37**. Play-Foundation.cmd still opens the separate G1 video/tap fixture, build 22. The launcher checks hashes before starting and prevents duplicate normal previews.
 
 Click the ground to walk, or select Joystick. Drag the bucket onto the tap and then the plant. Drag the sponge over the puddle three times. Choose either pup at any time. Grow a flower and Splash cleanup are optional prompts; Free play and the menu let you leave without resetting the toys. Listen replays the current English hint.
 
@@ -57,6 +57,8 @@ Core: Code/Core/SoloWorld.cs. Disk adapter: Code/Adapters/CheckpointStore.cs. UI
 
 Layout follow-up completed on Windows build 36: all button/text rectangles, including the hidden menu, fit the actual viewport at **1280×960**, **1920×900** and **960×540**. Full mouse/two-touch/cancellation input checks and muted narration checks passed at each size. [Tablet](evidence/solo-prototype-2026-09-24/layout-tablet-36.json), [wide phone](evidence/solo-prototype-2026-09-24/layout-wide-36.json), [small landscape](evidence/solo-prototype-2026-09-24/layout-small-36.json). These are Windows window dimensions, not device safe-area or physical-touch qualification.
 
-Next bounded Windows-only task: measure and reduce unnecessary snapshot allocations in the per-frame presentation path. Preserve the authority boundary and recheck saved play. Desktop allocation evidence will not be presented as older-iPad performance qualification.
+Allocation follow-up completed on Windows build 37. Presentation now requests detached player/toy copies without copying the checkpoint's command history every update. All **18** core tests pass, including protection against view mutations. In a .NET 9.0.17 measurement of 1,000 reads with 128 receipts, idle player reads fell from **7,824,000 to 48,000 allocated bytes**, and render-state reads from **7,824,000 to 392,000 bytes**. This measures only the C# read path, not total frames, Unity rendering, battery use or iPad performance. [Measurement](evidence/solo-prototype-2026-09-24/presentation-allocations.json), [18 rules](evidence/solo-prototype-2026-09-24/rules-presentation.json). Full tablet-shaped input/narration/layout checks and the **35 → 37** save/update/recovery suite pass: [input](evidence/solo-prototype-2026-09-24/presentation-input-37.json), [update](evidence/solo-prototype-2026-09-24/presentation-update-37.json), [recovery](evidence/solo-prototype-2026-09-24/presentation-recover-37.json).
+
+Next bounded Windows-only task: prepare a saved iPad solo Build Profile and export the current garden to an isolated Xcode directory on Windows. No Mac connection, signing or physical installation is part of that export task.
 
 G1 still needs older-iPad qualification, independent backup, native ARM64 16 KB investigation and mobile renewal/device checks. G2 needs actual-device gestures, audio quality and observation of both children. Spanish, final characters, full settings/world wheel, final rooms, network transport, pairing/discovery, iPad hosts, shared-world recovery, offline reunion and the remaining mini-games are not implemented. Do not batch-produce content or declare multiplayer ready from this prototype.

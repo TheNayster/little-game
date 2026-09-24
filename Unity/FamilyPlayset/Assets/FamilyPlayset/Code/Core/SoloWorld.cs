@@ -89,6 +89,19 @@ namespace LittleWeeps.Core
             return new SoloWorld(copy);
         }
         public SoloSnapshot Snapshot() => Clone(state);
+        // Presentation reads do not need the durable command receipt history.
+        // Return detached copies so a view cannot mutate the authority.
+        public SoloPlayer ReadPlayer(string id)
+        {
+            foreach(var player in state.players)if(player.id==id)return player.Copy();
+            throw new ArgumentException("Unknown player.",nameof(id));
+        }
+        public SoloToy[] ReadToys()
+        {
+            var copies=new SoloToy[state.toys.Length];
+            for(var i=0;i<copies.Length;i++)copies[i]=state.toys[i].Copy();
+            return copies;
+        }
         private static SoloSnapshot Clone(SoloSnapshot s) => new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId,
             players = s.players.Select(p => p.Copy()).ToArray(), toys = s.toys.Select(t => t.Copy()).ToArray(), receipts = s.receipts.Select(r => r.Copy()).ToArray() };
         private static bool Id(string s) => !string.IsNullOrWhiteSpace(s) && s.Length <= 128 && !s.Contains("|");

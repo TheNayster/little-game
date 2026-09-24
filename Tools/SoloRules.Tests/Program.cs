@@ -131,10 +131,41 @@ static class Program
             }
             Check(w.Snapshot().receipts.Length<=128);
         });
+        Test("presentation copies cannot mutate player or toy authority", () => {
+            var w=SoloWorld.Create("first","second");var before=Encode(w.Snapshot());
+            var player=w.ReadPlayer("second");player.avatar="orange-pup";player.x=2;
+            var toys=w.ReadToys();toys[0].water=3;toys[0].holder="second";toys[1]=null;
+            Check(Encode(w.Snapshot())==before);Throws(()=>w.ReadPlayer("unknown"));
+        });
+        Test("presentation reads avoid copying checkpoint command history", () => {
+            var w=SoloWorld.Create("first");
+            for(var i=0;i<128;i++)Good(w,SoloAction.Move,x:i,y:100);
+            var before=Encode(w.Snapshot());
+            var oldIdle=Measure(()=>w.Snapshot().players[0].x);
+            var newIdle=Measure(()=>w.ReadPlayer("first").x);
+            var oldRender=Measure(()=>{var s=w.Snapshot();return s.players[0].x+s.toys[0].x;});
+            var newRender=Measure(()=>w.ReadPlayer("first").x+w.ReadToys()[0].x);
+            Check(oldIdle.checksum==newIdle.checksum && oldRender.checksum==newRender.checksum);
+            Check(newIdle.bytes*10<oldIdle.bytes && newRender.bytes*10<oldRender.bytes);
+            Check(Encode(w.Snapshot())==before);
+            File.WriteAllText(Path.Combine(root,"presentation-allocations.json"),JsonSerializer.Serialize(new{
+                runtime=System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription,
+                iterations=1000,receipts=128,baselineIdleBytes=oldIdle.bytes,currentIdleBytes=newIdle.bytes,
+                baselineRenderReadBytes=oldRender.bytes,currentRenderReadBytes=newRender.bytes,
+                measuredScope="Pure C# state reads only; excludes Unity rendering, commands and serialization.",
+                iPadPerformanceQualified=false},Json));
+        });
         File.WriteAllText(Path.Combine(root,"results.json"),JsonSerializer.Serialize(new{utc=DateTime.UtcNow,checks=Results},Json));
         return failures == 0 ? 0 : 1;
     }
     static void Test(string name,Action body){try{body();Results.Add(new{name,passed=true,error=""});Console.WriteLine("PASS "+name);}catch(Exception e){failures++;Results.Add(new{name,passed=false,error=e.ToString()});Console.WriteLine("FAIL "+name+": "+e.Message);}}
+    static (long bytes,float checksum) Measure(Func<float> read)
+    {
+        for(var i=0;i<100;i++)read();
+        var before=GC.GetAllocatedBytesForCurrentThread();var sum=0f;
+        for(var i=0;i<1000;i++)sum+=read();
+        return(GC.GetAllocatedBytesForCurrentThread()-before,sum);
+    }
     static void Check(bool condition){if(!condition)throw new Exception("Assertion failed.");}
     static void Throws(Action body){try{body();}catch{return;}throw new Exception("Expected rejection.");}
     static SoloCommand Command(SoloWorld w,SoloAction action,string item="",string target="",string value="",float x=0,float y=0,string actor="first")=>new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=actor,expectedRevision=w.Revision,action=action,item=item,target=target,value=value,x=x,y=y};

@@ -18,7 +18,7 @@ This is the separate home for the family's Bluey-inspired game.
 
 G1 foundation setup is in progress. See [the current implementation record](docs/implementation/g1-status.md) for remaining device checks. The user authorized provisional Windows-only G2 work while those checks remain open.
 
-**Playable garden prototype:** double-click `Play-SoloPrototype.cmd`. It opens verified Windows **0.0.35** with tap/joystick walking, two placeholder pups, bucket watering, sponge cleanup, optional activities, English hints and recoverable local saves. Windows input/update/recovery and an isolated Android emulator update passed. [G2 results and limits](docs/implementation/g2-status.md). Physical-device qualification and multiplayer remain ahead.
+**Playable garden prototype:** double-click `Play-SoloPrototype.cmd`. It opens verified Windows **0.0.37** with tap/joystick walking, two placeholder pups, bucket watering, sponge cleanup, optional activities, English hints and recoverable local saves. Windows input/update/recovery and an isolated Android emulator update passed. [G2 results and limits](docs/implementation/g2-status.md). Physical-device qualification and multiplayer remain ahead.
 
 **Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.22 technical fixture with a saved tap counter and local-video controls. Windows restart and version-update checks passed again on 0.0.19 → 0.0.22. Paused bookmark stability also passed 60 reopenings; [fix evidence](docs/implementation/windows-bookmark-2026-09-23.md). This is not the finished game.
 

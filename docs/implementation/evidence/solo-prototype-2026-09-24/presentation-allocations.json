@@ -1,0 +1,11 @@
+{
+  "runtime": ".NET 9.0.17",
+  "iterations": 1000,
+  "receipts": 128,
+  "baselineIdleBytes": 7824000,
+  "currentIdleBytes": 48000,
+  "baselineRenderReadBytes": 7824000,
+  "currentRenderReadBytes": 392000,
+  "measuredScope": "Pure C# state reads only; excludes Unity rendering, commands and serialization.",
+  "iPadPerformanceQualified": false
+}

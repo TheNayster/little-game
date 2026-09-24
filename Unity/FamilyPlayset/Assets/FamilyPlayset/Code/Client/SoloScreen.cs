@@ -124,7 +124,7 @@ namespace LittleWeeps.Client
             Panel(Board,"Sky",new Vector2(0,140),new Vector2(1116,216),new Color(.8f,.92f,.96f));
             for(var i=0;i<7;i++) Panel(Board,"Fence",new Vector2(-465+i*155,80),new Vector2(142,65),new Color(.99f,.95f,.83f));
             Panel(Board,"Path",new Vector2(0,-156),new Vector2(1050,70),new Color(.9f,.81f,.64f));
-            foreach(var toy in World.Snapshot().toys) DrawToy(toy);
+            foreach(var toy in World.ReadToys()) DrawToy(toy);
             DrawAvatar();
             stick=Panel(safe,"Walk joystick",new Vector2(-477,-193),new Vector2(146,146),new Color(1,1,1,.8f),true,true).rectTransform;
             Surface(stick,"stick");
@@ -164,7 +164,7 @@ namespace LittleWeeps.Client
             if(VerifyRun==null){PlayerPrefs.SetInt("solo.prototype.joystick",JoystickMode?1:0);PlayerPrefs.Save();}
         }
         public void SetMenu(bool open) { if(open){CancelPointers();Narration.Stop();SaveNow();} menu.SetActive(open); }
-        public void Listen(){var activityId=World.Snapshot().players[0].activity;Narration.Speak(activityId==""?"freeplay":activityId);}
+        public void Listen(){var activityId=World.ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
         { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return new Vector2((local.x/Board.rect.width+.5f)*SoloWorld.Width,(local.y/Board.rect.height+.5f)*SoloWorld.Height); }
         public Vector2 ScreenPoint(float x,float y) => RectTransformUtility.WorldToScreenPoint(null,Board.TransformPoint(new Vector3((x/SoloWorld.Width-.5f)*Board.rect.width,(y/SoloWorld.Height-.5f)*Board.rect.height,0)));
@@ -187,7 +187,7 @@ namespace LittleWeeps.Client
             if(role!=dragging)return;
             var point=BoardPoint(screen);
             if(!SoloWorld.Position(point.x,point.y)){CancelPointer(role);return;}
-            var target=World.Snapshot().toys.Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle)
+            var target=World.ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle)
                 .OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),point)).First();
             var id=Vector2.Distance(new Vector2(target.x,target.y),point)<=SoloWorld.InteractionRadius?target.id:"";
             var result=Command(SoloAction.Drop,role,id,x:point.x,y:point.y);
@@ -210,7 +210,7 @@ namespace LittleWeeps.Client
             var now=Time.realtimeSinceStartup;
             if(now<nextMovement)return;
             var delta=Mathf.Clamp(now-lastMovement,0,.1f);lastMovement=now;nextMovement=now+1f/30;
-            var p=World.Snapshot().players[0];var current=new Vector2(p.x,p.y);var next=current;
+            var p=World.ReadPlayer(Actor);var current=new Vector2(p.x,p.y);var next=current;
             if(JoystickMode)next+=stickDirection*(210*delta);
             else if(destination.HasValue){next=Vector2.MoveTowards(current,destination.Value,210*delta);if(Vector2.Distance(next,destination.Value)<1)destination=null;}
             next.x=Mathf.Clamp(next.x,40,960);next.y=Mathf.Clamp(next.y,35,455);
@@ -230,9 +230,9 @@ namespace LittleWeeps.Client
         private void Render()
         {
             if(avatar==null)return;
-            var s=World.Snapshot();var p=s.players[0];avatar.anchoredPosition=ToBoard(p.x,p.y);
+            var toyStates=World.ReadToys();var p=World.ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
             head.color=p.avatar=="blue-pup"?new Color(.35f,.65f,.85f):new Color(.94f,.58f,.31f);body.color=head.color;
-            foreach(var t in s.toys){if(t.id!=dragging)toys[t.id].anchoredPosition=ToBoard(t.x,t.y);
+            foreach(var t in toyStates){if(t.id!=dragging)toys[t.id].anchoredPosition=ToBoard(t.x,t.y);
                 if(t.kind==ToyKind.Bucket)fills[t.id].rectTransform.sizeDelta=new Vector2(58,5+13*t.water);
                 if(t.kind==ToyKind.Plant)fills[t.id].gameObject.SetActive(t.water==3);
                 if(t.kind==ToyKind.Puddle)fills[t.id].rectTransform.localScale=Vector3.one*(t.water/3f);
@@ -240,7 +240,7 @@ namespace LittleWeeps.Client
             // Larger y is farther back on the illustrated floor plane.
             foreach(var rect in toys.Where(pair=>pair.Key!=dragging).Select(pair=>pair.Value).Concat(new[]{avatar}).OrderByDescending(r=>r.anchoredPosition.y))rect.SetAsLastSibling();
             if(dragging!=null)toys[dragging].SetAsLastSibling();
-            activity.text=p.activity==""?"Free play · walk, drag, discover":p.activity=="garden"?(s.toys.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(s.toys.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");
+            activity.text=p.activity==""?"Free play · walk, drag, discover":p.activity=="garden"?(toyStates.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(toyStates.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");
         }
         private void DrawToy(SoloToy t)
         {
