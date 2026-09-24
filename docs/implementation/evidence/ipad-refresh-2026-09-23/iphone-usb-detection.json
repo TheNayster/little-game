@@ -1,0 +1,12 @@
+{
+  "deviceRequestedByUser": "iPhone (previously reported A2484)",
+  "usbPortableDeviceDetected": "Apple iPhone",
+  "usbMobileDeviceStatus": "OK",
+  "appleMobileDeviceService": "Running",
+  "trustedPairingVerified": false,
+  "liveModelAndOsVerified": false,
+  "gameInstalledOnIPhone": null,
+  "automaticRefreshEnrolled": false,
+  "ipadRefreshStillPending": true,
+  "utc": "2026-09-24T02:56:46.887230+00:00"
+}
