@@ -1,0 +1,13 @@
+{
+    "phase": "heartbeat",
+    "runId": "5123c88f5b5449ad91cee48d248ac63d",
+    "build": "0.0.12",
+    "unity": "6000.3.24f1",
+    "utc": "2026-09-24T00:38:20.2697308Z",
+    "graphics": "Null",
+    "heartbeats": 3,
+    "cameras": 0,
+    "batchMode": true,
+    "dedicatedServer": true,
+    "networkingImplemented": false
+}

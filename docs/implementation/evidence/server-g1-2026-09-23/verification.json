@@ -1,0 +1,18 @@
+{
+  "observedUtc": "2026-09-24T00:40:56.4380167Z",
+  "passed": true,
+  "runId": "5123c88f5b5449ad91cee48d248ac63d",
+  "version": "0.0.12",
+  "unity": "6000.3.24f1",
+  "artifactHashesVerified": true,
+  "ready": true,
+  "heartbeats": 3,
+  "graphics": "Null",
+  "cameras": 0,
+  "dedicatedServer": true,
+  "cooperativeShutdown": true,
+  "processExit": 0,
+  "testScriptExit": 0,
+  "networkingImplemented": false,
+  "command": "Tools/Test-ServerFoundation.ps1 -BuildNumber 12"
+}

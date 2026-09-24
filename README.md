@@ -20,7 +20,7 @@ G1 foundation setup is in progress. See [the current implementation record](docs
 
 **First iPad launch:** signed 0.0.1 is installed on the iPad 9. After the user allowed the developer profile in VPN & Device Management, a fresh device launch command succeeded. Physical touch, saved count after reopening, and update retention remain to be observed. See [the live record](docs/implementation/g1-status.md).
 
-**Android/server preparation:** Android 0.0.11 compiled successfully. Its package identity, SDK levels, ARM64 code and signature passed inspection; an additional 16 KB native-library alignment finding remains open. No Android device qualification is complete. The separate Windows Server module still needs installation: double-click `Install-ServerModule.cmd` with Unity closed and allow the Windows prompt when ready. Its native build/run check comes afterward. [Exact status and continuation steps](docs/implementation/platform-build-setup.md).
+**Android/server preparation:** Android 0.0.11 compiled successfully. Its package identity, SDK levels, ARM64 code and signature passed inspection; an additional 16 KB native-library alignment finding remains open. Windows Server 0.0.12 now builds and passes headless startup, three heartbeats and cooperative shutdown. The module installation is complete. This is a server process fixture; multiplayer and Android device qualification remain ahead. [Exact status and continuation steps](docs/implementation/platform-build-setup.md).
 
 Use the desktop **Connect Little Weeps** shortcut, or run `Connect-GameTools.ps1` in this folder. [Tool connection instructions](docs/implementation/tool-connections.md) explain the launcher and Mac build connection.
 

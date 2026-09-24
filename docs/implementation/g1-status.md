@@ -2,7 +2,7 @@
 
 Started 23 September 2026. In progress; no device qualification is complete.
 
-Current work (latest user steering, 23 September): the user enabled iPad developer trust and completed the Android module installer. **Latest result:** iPad 0.0.1 launches successfully; Android 0.0.11 builds successfully with complete source/artifact evidence. APK identity, SDK levels, ARM64 code, signature, ZIP alignment and ELF load alignment passed inspection. The additional 16 KB RELRO check flagged six native libraries, so full compatibility inspection remains open; no Android device launch or crash was observed. The Windows Server module remains absent: its separate administrator prompt was canceled before installation started. `Install-ServerModule.cmd` provides a verified manual retry when available. Windows 0.0.9 remains verified. G2 and later game features have not started.
+Current work (latest user steering, 23 September): the user confirmed approving the Windows prompt; the matching Windows Server module is now verified installed. **Latest result:** fresh Windows Server 0.0.12 built with zero summary errors/warnings and passed headless startup, three heartbeats and cooperative shutdown with exit 0. iPad 0.0.1 launches successfully; Android 0.0.11 builds and its basic artifact checks pass. The additional Android 16 KB RELRO check remains open; no Android device launch or crash was observed. Windows 0.0.9 remains the verified client preview. Next Windows-side task: investigate the static Android finding. Physical mobile save/update checks still need observation. G2 and later game features have not started.
 
 ## Boundary and tools
 
@@ -31,7 +31,7 @@ Current work (latest user steering, 23 September): the user enabled iPad develop
 | Android tools and first APK | Matching Android module and verified toolchain work. 0.0.11 builds with zero summary errors/warnings; identity/signature/ABI/SDK and ZIP/ELF load alignment checks pass. Six native libraries fail the additional RELRO-end alignment check; actual 16 KB runtime compatibility remains unverified. |
 | Native launch on each iPad via Mac | Mac Release 0.0.1 compiled, signature verified and installed on A2602. The user allowed developer trust and a fresh device launch succeeded. A2197 remains untested. |
 | Free provisioning renewal observation started | Pending |
-| Build/test scripts and source/artifact evidence | Windows checks passed on 0.0.5 → 0.0.6 and 0.0.6 → 0.0.9. Android 0.0.11 has build, source and artifact manifests; a real Unity integration check passed tool-path restoration. Server build/lifecycle checks await its separate module. Mobile in-place updates remain pending. |
+| Build/test scripts and source/artifact evidence | Windows client checks passed on 0.0.5 → 0.0.6 and 0.0.6 → 0.0.9. Android 0.0.11 and Windows Server 0.0.12 have build/source/artifact manifests. Android tool-path restoration and native server startup/heartbeat/shutdown checks passed. Mobile in-place updates remain pending. |
 
 Local Git history is not an off-device backup. Keep private media and signing credentials outside this repository; do not reuse another app's keys. Establish and verify an external recovery destination before family distribution.
 
@@ -39,7 +39,7 @@ Local Git history is not an off-device backup. Keep private media and signing cr
 
 The first Hub download failed with `socket hang up`; its retry left the editor paused. The completed portion was preserved and resumed from Unity's official download URL in ignored LocalData. The completed installer matched Unity's published MD5, had a valid Unity Technologies SF Authenticode signature, and was installed side-by-side using Unity's documented silent installer. Other editors were not replaced. Verification is in `LocalData/Logs/unity-installer-verification.json`.
 
-Automatic approval review rejected a combined custom template-extraction/module-install command with only `blocked by policy`. It did not run. The narrower standard Unity `-createProject` / `-cloneFromTemplate` command succeeded using the bundled Universal 2D 6.1.6 template in the new project path. The iOS module was installed from Unity's verified, signed installer; successful iOS export confirms it works. Android/Windows IL2CPP/server modules still require setup and qualification.
+Automatic approval review rejected a combined custom template-extraction/module-install command with only `blocked by policy`. It did not run. The narrower standard Unity `-createProject` / `-cloneFromTemplate` command succeeded using the bundled Universal 2D 6.1.6 template in the new project path. The iOS module was installed from Unity's verified, signed installer; successful iOS export confirms it works. Android and Windows Server modules were subsequently installed and produced the builds recorded below. Windows client/server currently use Mono; Windows client IL2CPP is not qualified.
 
 The Mac initially rejected authentication because `~/.ssh/authorized_keys` was a directory. The user preserved that directory as a backup and created the required key file. Remote inventory succeeds through `Tools/Check-Mac.ps1`. The Windows SSH key and Mac signing key remain outside source control. Xcode now recognizes a valid Apple Development signing identity after its intermediate certificate became available; no custom trust override was applied.
 
@@ -98,7 +98,7 @@ Implementation references: [Unity Build Profiles API](https://docs.unity3d.com/6
 
 ## Android/server build preparation and Windows regression
 
-See [the platform setup record](platform-build-setup.md) for implemented commands, server scene, actual results, supporting sources and the continuation sequence. Windows 0.0.9 built with zero reported errors/warnings, and run `b18b274af9c4413da4fd162155fc692b` passed seed/restart/update/video checks from 0.0.6 → 0.0.9. Android 0.0.11 has now compiled successfully after fixing tool-path restoration. The native dedicated-server build remains pending its module; no networking feature is implemented.
+See [the platform setup record](platform-build-setup.md) for implemented commands, server scene, actual results, supporting sources and the continuation sequence. Windows 0.0.9 built with zero reported errors/warnings, and run `b18b274af9c4413da4fd162155fc692b` passed seed/restart/update/video checks from 0.0.6 → 0.0.9. Android 0.0.11 compiled successfully after fixing tool-path restoration. Windows Server 0.0.12 now also builds and passes its native lifecycle test; no networking feature is implemented.
 
 ## First native iPad installation
 
@@ -120,4 +120,12 @@ Android 0.0.10 compiled but the wrapper failed afterward: restoring the missing 
 
 The 35,698,953-byte APK is non-development IL2CPP/ARM64, minimum API 26, target API 36, signed with the default Android Debug certificate for this build-only probe. It has not been installed on a phone and is not a family release. Actual inspection verified its identity/signature and 16 KB ZIP/ELF load alignment. The extra check from Google's current page-size guidance flagged non-aligned RELRO ends in six libraries. [Inspection and exact names](evidence/android-first-build-2026-09-23/apk-inspection.json). Keep this as an unresolved static finding until the check and runtime behavior are validated in a 16 KB environment; it is not an observed crash on the family's phone. Do not weaken the check or replace the pinned editor/NDK without investigating the supported route.
 
-The separate verified Windows Server installer did not start: Windows returned “The operation was canceled by the user” at administrator approval. No automatic approval-review rejection occurred. No server artifact exists. `Install-ServerModule.cmd` verifies the exact cached installer, refuses an open matching editor and requests ordinary Windows approval. Its syntax is checked; the new helper's installation path still needs a successful manual run.
+The earlier Windows Server installer attempt returned “The operation was canceled by the user” at administrator approval. After the user reported approving the later prompt, fresh inspection verified the server module under the exact 6000.3.24f1 editor. No automatic approval-review rejection occurred. Installation is complete and the build below proves the module works.
+
+## First native dedicated-server verification
+
+On 23 September local time (24 September UTC), Windows Server **0.0.12** built with Unity exit 0 and zero build-summary errors/warnings. It is a non-development Windows 64-bit Dedicated Server / Mono build of `ServerBootstrap.unity`, with full source/artifact manifests under `Builds/WindowsServer/G1-0.0.12`. Log: `LocalData/Logs/build-WindowsServer-12-20260924-003721.log`.
+
+`Tools/Test-ServerFoundation.ps1 -BuildNumber 12` verified artifact hashes, started its own headless process, observed three heartbeats, requested cooperative shutdown and verified exit 0. Run `5123c88f5b5449ad91cee48d248ac63d` records the expected build, null graphics, zero cameras and `networkingImplemented: false` in all phases. [Module](evidence/server-g1-2026-09-23/module.json), [build](evidence/server-g1-2026-09-23/build-summary.json), [lifecycle result](evidence/server-g1-2026-09-23/verification.json), [ready](evidence/server-g1-2026-09-23/ready.json), [heartbeat](evidence/server-g1-2026-09-23/heartbeat.json), [stopped](evidence/server-g1-2026-09-23/stopped.json).
+
+This proves the dedicated process foundation only. It opens no game network listener, configures no firewall or automatic service, and does not yet host family players. The tested process has stopped. Mobile qualification, saved platform profiles, signing/renewal and all shared-world requirements remain ahead; G1 is still in progress.

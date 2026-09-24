@@ -57,7 +57,7 @@
 </aside><article class="report">
 <p><strong>Production guide · September 23, 2026 · Foundation implementation in progress</strong></p>
 <p><strong>Purpose:</strong> build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.</p>
-<p><strong>Current position:</strong> <strong>G1 — project and device foundation is in progress.</strong> Windows 0.0.9 passes save/restart/update/video checks; open <code>Play-Foundation.cmd</code> for that preview. The trusted iPad 9 now launches signed 0.0.1. Android 0.0.11 builds successfully and passes identity/signature/ABI/SDK checks; an additional 16 KB native-library alignment finding remains open before compatibility qualification. The separate Windows Server module is still missing after its administrator prompt was canceled. <code>Install-ServerModule.cmd</code> is ready for a manual retry. See the <a href="implementation/g1-status.md">live implementation record</a> and <a href="implementation/platform-build-setup.md">platform setup record</a>.</p>
+<p><strong>Current position:</strong> <strong>G1 — project and device foundation is in progress.</strong> Windows 0.0.9 passes save/restart/update/video checks; open <code>Play-Foundation.cmd</code> for that preview. The trusted iPad 9 now launches signed 0.0.1. Android 0.0.11 builds successfully and passes identity/signature/ABI/SDK checks; an additional 16 KB native-library alignment finding remains open before compatibility qualification. The Windows Server module is installed, and fresh server 0.0.12 passes headless startup, three heartbeats and clean shutdown. Shared multiplayer is not implemented yet. See the <a href="implementation/g1-status.md">live implementation record</a> and <a href="implementation/platform-build-setup.md">platform setup record</a>.</p>
 <p><a href="bluey-game-research-2026-09-23.html">Open the feature goal sheet</a> · <a href="family-playset-package-research-2026-09-23.html">Package research</a> · <a href="family-playset-technical-research-2026-09-23.html">Technical evidence</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
 <h2 id="1-two-documents-with-different-jobs">1. Two documents with different jobs</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
@@ -944,7 +944,7 @@ Status: pending
 </tr>
 <tr>
 <td>Implementation state</td>
-<td>G1: Windows 0.0.9 verified; iPad 0.0.1 launches after developer trust. Android 0.0.11 builds and basic artifact checks pass; additional RELRO alignment inspection needs follow-up. Windows Server module/build, Android device qualification and mobile save/update checks remain pending.</td>
+<td>G1: Windows 0.0.9 verified; iPad 0.0.1 launches after developer trust. Android 0.0.11 builds and basic artifact checks pass; additional RELRO alignment inspection needs follow-up. Windows Server 0.0.12 builds and its native lifecycle check passes. Mobile device/save/update qualification remains pending.</td>
 </tr>
 <tr>
 <td>Current research deliverable</td>
@@ -956,7 +956,7 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td>Finish G1 platform qualification: resolve the Android 16 KB static finding; complete the separate server-module installation and run the native server lifecycle check; observe iPad taps/save retention when the user is available. Android installation and a fresh APK build are complete. <a href="implementation/platform-build-setup.md">Platform record</a>.</td>
+<td>Server-module installation and native lifecycle verification completed. Next Windows-side task: investigate the Android 16 KB static finding without changing pinned tools speculatively. Physical mobile taps/save/update checks remain pending when the user is available. <a href="implementation/platform-build-setup.md">Platform record</a>.</td>
 </tr>
 <tr>
 <td>Package budget</td>

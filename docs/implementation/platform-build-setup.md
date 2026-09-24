@@ -2,7 +2,7 @@
 
 This bounded G1 task supports FAMILY-01/JOIN-01/NET-02 and retains TV-01 regression coverage. It establishes platform builds, not networking, mobile hosting or game content.
 
-**Current result:** the matching Android Unity module is installed. Fresh Android **0.0.11** built successfully with complete manifests. APK identity, SDK levels, ARM64, signature, ZIP alignment and ELF load alignment checks pass. A stricter 16 KB RELRO-end check flags six native libraries and remains unresolved; the APK has not run on an Android device. The separate Windows Server module is still absent after Windows canceled its administrator prompt before installation began. The iPad trust issue is resolved and a launch command succeeded; physical tap/save observations remain pending.
+**Current result:** Android **0.0.11** built successfully with complete manifests. Its basic artifact checks pass; the additional 16 KB RELRO finding remains unresolved and no Android device run is qualified. The user approved the later Windows prompt and the matching Server module is now installed. Fresh Windows Server **0.0.12** built successfully and passed its native headless lifecycle test. The iPad trust issue is resolved and a launch command succeeded; physical tap/save observations remain pending.
 
 ## What exists and what has passed
 
@@ -14,8 +14,8 @@ This bounded G1 task supports FAMILY-01/JOIN-01/NET-02 and retains TV-01 regress
 | First accepted build process | 0.0.11, Unity exit 0, zero build-summary errors/warnings, 35,698,953-byte APK. Non-development IL2CPP, ARM64, minimum API 26, target API 36. |
 | APK inspection | `Tools/Test-AndroidArtifact.ps1` ran against the actual APK and its hash manifest. Core identity/signature checks pass. Overall inspection exits nonzero because the additional RELRO alignment check remains unresolved. |
 | Signing/device qualification | This build-only probe uses the default Android Debug certificate. No phone install, actual touch, mobile video or update/save retention is qualified. Stable family signing and recovery remain separate gates. |
-| Server source | Dedicated Server target configuration and `ServerBootstrap.unity` exist. The server assembly is excluded from ordinary client builds. No native server artifact has been built. |
-| Server test | `Tools/Test-ServerFoundation.ps1` is syntax-checked, not runtime-qualified. It requires readiness, three heartbeats, null graphics, zero cameras and cooperative shutdown. |
+| Server build | Windows 64-bit Dedicated Server / Mono 0.0.12 built with zero summary errors/warnings and complete source/artifact manifests. `ServerBootstrap.unity` is the only scene. |
+| Server test | `Tools/Test-ServerFoundation.ps1 -BuildNumber 12` passed actual readiness, three heartbeats, null graphics, zero cameras and cooperative shutdown with exit 0. Networking is not implemented. |
 | Windows regression | 0.0.6 → 0.0.9 passed save/restart/update/video checks; 0.0.9 remains the selected preview. |
 
 Evidence: [Android build](evidence/android-first-build-2026-09-23/build-summary.json), [APK inspection](evidence/android-first-build-2026-09-23/apk-inspection.json), [tool-path regression](evidence/android-first-build-2026-09-23/tool-paths.json), [Windows checks](g1-status.md#androidserver-build-preparation-and-windows-regression), [iPad launch](evidence/ipad-g1-2026-09-23/launch-after-trust.json).
@@ -32,13 +32,13 @@ The extra page-size inspection follows [Google's current native-library guidance
 
 Raw evidence: `LocalData/Logs/build-Android-10-20260923-233847.log`, `build-Android-11-20260923-234651.log`, `LocalData/Verification/android-tools-56fca9f521b34479b8bf4a56c5eeb24f`, and `LocalData/Verification/android-40e115f759ca4675b047f95b0dcb2385`. Builds remain under `Builds/Android/G1-0.0.11`; only sanitized evidence is tracked.
 
-## Remaining server installation
+## Server installation and first native run
 
-The user completed the Android installer; inspection confirms `AndroidPlayer` is present. Windows Dedicated Server is a separate module. Its cached installer matches the official 6000.3.24f1 release MD5 and a valid Unity Technologies SF signature. A silent launch with ordinary Windows elevation returned “The operation was canceled by the user” before starting. This is not a compiler failure or an automatic approval-review rejection. No elevation prompt or installer is left running.
+The cached server installer matches the official 6000.3.24f1 release MD5 and a valid Unity Technologies SF signature. An earlier elevation attempt was canceled. The user subsequently confirmed approving the Windows prompt, and fresh inspection verified the installed `win64_server_nondevelopment_mono` module with file version 6000.3.24.5143451. No additional installation is needed. [Module evidence](evidence/server-g1-2026-09-23/module.json).
 
-When available, close Unity and double-click **`Install-ServerModule.cmd`** in the game root. This helper verifies the exact version, checksum and publisher before asking Windows to run the standard installer. Click Yes on Windows' prompt. The helper checks the expected server module file afterward. Its syntax is verified; its successful installation path has not yet run. It neither launches a game server nor changes firewall rules.
+`Tools/Build-Foundation.ps1 -Target WindowsServer -BuildNumber 12` completed with Unity exit 0, zero build-summary errors/warnings and a non-development Dedicated Server / Mono artifact. `Tools/Test-ServerFoundation.ps1 -BuildNumber 12` then verified hashes, headless startup, three advancing heartbeats and cooperative shutdown with exit 0. Run ID: `5123c88f5b5449ad91cee48d248ac63d`. Records show build 0.0.12, null graphics, zero cameras and `networkingImplemented: false`. [Build](evidence/server-g1-2026-09-23/build-summary.json), [verification](evidence/server-g1-2026-09-23/verification.json), [ready](evidence/server-g1-2026-09-23/ready.json), [heartbeat](evidence/server-g1-2026-09-23/heartbeat.json), [stopped](evidence/server-g1-2026-09-23/stopped.json).
 
-Next, build using an unused number: `Tools/Build-Foundation.ps1 -Target WindowsServer -BuildNumber N`, then `Tools/Test-ServerFoundation.ps1 -BuildNumber N`. A passing result establishes the dedicated process lifecycle only. Source readiness records explicitly state `networkingImplemented: false`; there is no network listener, discovery, shared world or host migration yet.
+The test process is stopped. No network listener, firewall change, automatic service, discovery, shared world or host migration was added. `Install-ServerModule.cmd` remains a setup/recovery helper and should report the module already present. To repeat after relevant source changes, use fresh build numbers with the same build/test commands. No unchanged repeat run is needed now. Next Windows-side work is the Android compatibility finding; device save/update observations and saved platform UI profiles remain separate G1 work.
 
 ## Verified user-owned Android dependencies
 
