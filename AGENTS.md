@@ -14,3 +14,13 @@
 - Before implementation, read the build guide's current work record and the goal-sheet sections for the task. Follow the active phase and its dependencies; later phases do not remove required features.
 - Keep one bounded implementation task active, record its goal IDs and acceptance evidence, and update the work record with what exists, what passed and the next task. Do not mark a phase complete based only on code/assets being present.
 - Keep platform builds, saved data, shared-world recovery and actual-device qualification in the sequence. Do not silently replace required iPad hosting with PC-only behavior or use the old project's connector as proof this new project is connected.
+
+## Git delivery and project records
+
+- The user wants Git maintained and completed work pushed as part of each project task. Check the working tree, current branch and `origin` before editing; preserve unrelated user changes.
+- Keep changes focused and make descriptive commits explaining the resulting behavior and purpose. Add code comments for non-obvious decisions, constraints or workarounds; avoid comments that merely repeat the code.
+- For implementation milestones, update the main build guide and relevant evidence with what changed, what actually passed, remaining limits and the next task. Documentation-only or repository-maintenance tasks need an appropriate record, not unrelated game tests.
+- Review the diff and run checks appropriate to the change before committing. Stage only relevant files. Respect `.gitignore`, preserve tracked Git LFS assets, and never force-add private media, signing keys, credentials, generated builds or local saves.
+- Push completed, checked commits to this private `origin` and verify the remote branch points to the intended commit. Keep `main` synchronized with completed work through a safe fast-forward or normal integration. Keep incomplete or failing work off `main`; identify it clearly if checkpointed on a development branch.
+- Do not force-push, rewrite shared history, delete branches or discard changes as routine cleanup. Reconcile concurrent updates without overwriting them. Report a genuine push/authentication/conflict blocker instead of claiming the work is uploaded.
+- End meaningful work with a clear status: what changed, relevant validation and any unpushed or unfinished work. This workflow applies while working on the project; it does not imply an unattended background sync service.

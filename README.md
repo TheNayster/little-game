@@ -4,6 +4,8 @@ This is the separate home for the family's Bluey-inspired game.
 
 **Private GitHub repository:** [TheNayster/little-weeps-game](https://github.com/TheNayster/little-weeps-game). This project uses that repository as `origin`; `main` is the shared baseline and `codex/…` branches hold development work. Source, research and versioned test evidence belong here. Git LFS stores the tracked narration and test video; generated builds, local worlds, credentials and signing keys remain excluded.
 
+**Git working routine:** complete focused changes, run the relevant checks, update the plan/evidence, commit with clear explanations, and push to this private repository. Verify the uploaded commit and keep `main` current with completed work. The persistent workflow is recorded in [AGENTS.md](AGENTS.md).
+
 **Personal TV videos:** use [Media/TV](Media/TV/README.md). Its contents are excluded from GitHub except the folder instructions, including nested folders, thumbnails and subtitles. The game's TV importer remains planned; this creates its local source folder only.
 
 **Primary devices: both iPads. Android is secondary.** The older iPad 7 sets the minimum performance baseline. Samsung results do not substitute for iPad tests; four-player mixed-device support remains required.
