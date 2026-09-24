@@ -20,7 +20,7 @@ This bounded G1 task supports FAMILY-01/JOIN-01/NET-02 and retains TV-01 regress
 
 Evidence: [Android build](evidence/android-first-build-2026-09-23/build-summary.json), [APK inspection](evidence/android-first-build-2026-09-23/apk-inspection.json), [tool-path regression](evidence/android-first-build-2026-09-23/tool-paths.json), [Windows checks](g1-status.md#androidserver-build-preparation-and-windows-regression), [iPad launch](evidence/ipad-g1-2026-09-23/launch-after-trust.json).
 
-Only Windows has a saved UI Build Profile asset. Android/server commands currently use explicit build configurations; their saved UI profiles remain to be created. G1 is not complete.
+**Latest profile check:** iPad/iOS, Android, Windows Server and Windows client now all have saved Build Profile assets and fresh explicit-profile builds (16, 17, 18 and 19 respectively). Server 18 lifecycle and Windows 9 → 19 save/video/update checks pass. Android 17's strict 16 KB compatibility gate remains open; phone 15 remains installed. The iPad export still needs native compilation and actual iPad tests. [Full profile evidence](build-profiles-2026-09-23.md). iPads are primary; Android is secondary. G1 is not complete. The first-build records below remain historical evidence.
 
 ## Defects caught during the first Android build
 

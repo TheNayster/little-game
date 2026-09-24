@@ -11,6 +11,9 @@ namespace LittleWeeps.EditorTools
     public static class FoundationBuild
     {
         public const string WindowsProfilePath = "Assets/BuildProfiles/Windows Foundation.asset";
+        public const string IOSProfilePath = "Assets/BuildProfiles/iPad Foundation.asset";
+        public const string AndroidProfilePath = "Assets/BuildProfiles/Android Foundation.asset";
+        public const string ServerProfilePath = "Assets/BuildProfiles/Windows Server Foundation.asset";
         public static void Windows() => Build(BuildTarget.StandaloneWindows64, "Windows", "LittleWeeps.exe");
         public static void IOS() => Build(BuildTarget.iOS, "iOS", "Xcode");
         public static void Android() => Build(BuildTarget.Android, "Android", "LittleWeeps.apk");
@@ -26,6 +29,10 @@ namespace LittleWeeps.EditorTools
             FoundationServerSetup.Create();
             var scenePath = server ? FoundationServerSetup.ScenePath : FoundationSetup.ScenePath;
             if (!File.Exists(FoundationSetup.ScenePath)) throw new InvalidOperationException("Run FoundationSetup.Create first.");
+            var profilePath = server ? ServerProfilePath : target == BuildTarget.iOS ? IOSProfilePath :
+                target == BuildTarget.Android ? AndroidProfilePath : WindowsProfilePath;
+            var profile = AssetDatabase.LoadAssetAtPath<BuildProfile>(profilePath);
+            ValidateProfile(profile, target, server, scenePath);
             var number = 1;
             var args = Environment.GetCommandLineArgs();
             for (var i = 0; i < args.Length - 1; i++)
@@ -57,7 +64,7 @@ namespace LittleWeeps.EditorTools
                 PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)36;
                 EditorUserBuildSettings.buildAppBundle = false;
                 EditorUserBuildSettings.exportAsGoogleAndroidProject = false;
-                // Build-only probe. A stable private family signing key is a separate release gate.
+                // The family build wrapper signs a separate APK with the protected family key.
                 PlayerSettings.Android.useCustomKeystore = false;
             }
             var root = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "..", ".."));
@@ -66,40 +73,57 @@ namespace LittleWeeps.EditorTools
             if (File.Exists(output) || Directory.Exists(output)) throw new IOException("Build output already exists. Use a fresh build number; do not overwrite evidence.");
             Directory.CreateDirectory(folder);
             using var androidTools = target == BuildTarget.Android ? AndroidFoundationTools.Configure() : null;
-            BuildReport report;
-            if (target == BuildTarget.StandaloneWindows64 && !server)
+            var report = BuildPipeline.BuildPlayer(new BuildPlayerWithProfileOptions
             {
-                var profile = AssetDatabase.LoadAssetAtPath<BuildProfile>(WindowsProfilePath);
-                if (profile == null) throw new InvalidOperationException("Missing saved Windows build profile.");
-                profile.overrideGlobalScenes = true;
-                profile.scenes = new[] { new EditorBuildSettingsScene(FoundationSetup.ScenePath, true) };
-                EditorUtility.SetDirty(profile);
-                AssetDatabase.SaveAssets();
-                report = BuildPipeline.BuildPlayer(new BuildPlayerWithProfileOptions
-                { buildProfile = profile, locationPathName = output, options = BuildOptions.StrictMode | BuildOptions.DetailedBuildReport });
-            }
-            else report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
-            {
-                scenes = new[] { scenePath },
-                target = target,
-                subtarget = server ? (int)StandaloneBuildSubtarget.Server : 0,
+                buildProfile = profile,
                 locationPathName = output,
                 options = BuildOptions.StrictMode | BuildOptions.DetailedBuildReport
             });
             var summary = report.summary;
             if (summary.platform != target) throw new InvalidOperationException("Built platform does not match the requested target.");
+            if ((summary.options & BuildOptions.Development) != 0)
+                throw new InvalidOperationException("Foundation qualification requires a non-development build.");
+            if (target == BuildTarget.StandaloneWindows64 &&
+                summary.GetSubtarget<StandaloneBuildSubtarget>() != (server ? StandaloneBuildSubtarget.Server : StandaloneBuildSubtarget.Player))
+                throw new InvalidOperationException("Built Windows player/server subtarget does not match the request.");
             File.WriteAllText(Path.Combine(folder, "build-summary.json"), JsonUtility.ToJson(new Evidence
             {
                 platform = platform, version = PlayerSettings.bundleVersion, unity = Application.unityVersion,
                 result = summary.result.ToString(), output = output, utc = DateTime.UtcNow.ToString("O"),
                 errors = summary.totalErrors, warnings = summary.totalWarnings,
                 development = (summary.options & BuildOptions.Development) != 0,
-                profile = target == BuildTarget.StandaloneWindows64 && !server ? WindowsProfilePath : "Explicit " + platform + " build configuration",
+                profile = profilePath,
                 scene = scenePath, dedicatedServer = server,
                 signing = target == BuildTarget.Android ? "Default Android debug certificate; build-only probe, not family release" : "Not applicable or platform managed"
             }, true));
             if (summary.result != BuildResult.Succeeded) throw new InvalidOperationException("Build failed; inspect the log and build-summary.json.");
             Debug.Log("LITTLE_WEEPS_BUILD succeeded: " + output);
+        }
+
+        public static void ValidateProfile(BuildProfile profile, BuildTarget target, bool server, string scenePath)
+        {
+            if (profile == null) throw new InvalidOperationException("Missing saved foundation Build Profile.");
+            // Unity 6000.3 exposes no public target/settings getters on BuildProfile.
+            // Read its verified serialized schema; fail closed if an editor upgrade changes it.
+            using var settings = new SerializedObject(profile);
+            SerializedProperty Required(string path) => settings.FindProperty(path) ??
+                throw new InvalidOperationException("Build Profile schema changed: " + path);
+            var expectedSubtarget = target == BuildTarget.StandaloneWindows64 ?
+                (int)(server ? StandaloneBuildSubtarget.Server : StandaloneBuildSubtarget.Player) : 0;
+            if (Required("m_BuildTarget").intValue != (int)target || Required("m_Subtarget").intValue != expectedSubtarget)
+                throw new InvalidOperationException("Build Profile target/subtarget mismatch: " + profile.name);
+            foreach (var flag in new[] { "m_Development", "m_ConnectProfiler", "m_BuildWithDeepProfilingSupport", "m_AllowDebugging", "m_WaitForManagedDebugger" })
+                if (Required("m_PlatformBuildProfile." + flag).boolValue)
+                    throw new InvalidOperationException("Foundation profile must disable " + flag);
+            if (Required("m_PlayerSettingsYaml.m_Settings").arraySize != 0 || Required("m_HasScriptingDefines").boolValue)
+                throw new InvalidOperationException("Foundation profiles must use the shared Player Settings and scripting defines.");
+            var scenes = profile.scenes;
+            if (!profile.overrideGlobalScenes || scenes.Length != 1 || !scenes[0].enabled || scenes[0].path != scenePath)
+                throw new InvalidOperationException("Foundation profile must explicitly contain only " + scenePath);
+            if (target == BuildTarget.Android &&
+                (Required("m_PlatformBuildProfile.m_ExportAsGoogleAndroidProject").boolValue ||
+                 Required("m_PlatformBuildProfile.m_BuildAppBundle").boolValue))
+                throw new InvalidOperationException("Android foundation profile must produce an APK.");
         }
 
         [Serializable] private sealed class Evidence

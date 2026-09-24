@@ -1,0 +1,37 @@
+{
+  "passed": false,
+  "identityAndSignaturePassed": true,
+  "utc": "2026-09-24T01:45:29.7821534Z",
+  "version": "0.0.17",
+  "package": "com.littleweeps.familyplayset",
+  "minSdk": 26,
+  "targetSdk": 36,
+  "abi": "arm64-v8a",
+  "debuggable": false,
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "signing": "Pinned Little Weeps family key; device qualification remains separate",
+  "familyReleaseQualified": false,
+  "deviceInstalled": false,
+  "zip16KbAligned": true,
+  "elf16KbAligned": true,
+  "relro16KbAligned": false,
+  "nativeLibraries": [
+    "lib/arm64-v8a/lib_burst_generated.so",
+    "lib/arm64-v8a/libc++_shared.so",
+    "lib/arm64-v8a/libgame.so",
+    "lib/arm64-v8a/libil2cpp.so",
+    "lib/arm64-v8a/libmain.so",
+    "lib/arm64-v8a/libswappywrapper.so",
+    "lib/arm64-v8a/libunity.so"
+  ],
+  "page16KbRuntimeTested": false,
+  "alignmentIssues": [
+    "ELF RELRO alignment failed: libc++_shared.so; end=0x143000",
+    "ELF RELRO alignment failed: libgame.so; end=0x29000",
+    "ELF RELRO alignment failed: libil2cpp.so; end=0x3abe000",
+    "ELF RELRO alignment failed: libmain.so; end=0xa000",
+    "ELF RELRO alignment failed: libswappywrapper.so; end=0x39000",
+    "ELF RELRO alignment failed: libunity.so; end=0x139e000"
+  ],
+  "apkSha256": "53991bb8dc3872938aa6f9f0c4798d083cb2cb5c5c94a73a8961a601fc238dea"
+}

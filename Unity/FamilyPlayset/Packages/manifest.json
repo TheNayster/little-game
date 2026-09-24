@@ -2,6 +2,7 @@
   "dependencies": {
     "com.coplaydev.unity-mcp": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#75fcf10ea5e230e21963298e1942c36504727eba",
     "com.unity.2d.sprite": "1.0.0",
+    "com.unity.dedicated-server": "2.0.2",
     "com.unity.inputsystem": "1.20.0",
     "com.unity.render-pipelines.universal": "17.3.0",
     "com.unity.test-framework": "1.6.0",

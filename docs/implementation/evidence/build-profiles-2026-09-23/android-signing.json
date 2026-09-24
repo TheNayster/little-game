@@ -1,0 +1,9 @@
+{
+  "utc": "2026-09-24T01:45:05.3731992Z",
+  "sourceApkSha256": "e666637d2dca8835f9ec99080d1967eae47158f40a59edfa98d00d8920e82fe0",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "usedRecoveryKey": false,
+  "payloadEntriesVerified": 398,
+  "payloadUnchanged": true,
+  "offDeviceBackupVerified": false
+}

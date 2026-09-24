@@ -1,0 +1,13 @@
+{
+    "phase": "ready",
+    "runId": "6c83abb0b30a429994146d572bdaa7d2",
+    "build": "0.0.18",
+    "unity": "6000.3.24f1",
+    "utc": "2026-09-24T01:46:04.9546457Z",
+    "graphics": "Null",
+    "heartbeats": 0,
+    "cameras": 0,
+    "batchMode": true,
+    "dedicatedServer": true,
+    "networkingImplemented": false
+}

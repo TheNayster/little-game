@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "version": "0.0.16",
+  "profile": "Assets/BuildProfiles/iPad Foundation.asset",
+  "artifactFilesVerified": 3026,
+  "bundleId": "com.littleweeps.familyplayset",
+  "deviceFamilies": [
+    "iPhone",
+    "iPad"
+  ],
+  "minimumIOS": "15.0",
+  "architecture": "arm64",
+  "nativeXcodeCompileTested": false,
+  "deviceInstallTested": false,
+  "utc": "2026-09-24T01:45:11.2059921Z"
+}

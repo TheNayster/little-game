@@ -2,6 +2,8 @@
 
 Feature goal sheet and supporting research • September 23, 2026
 
+**Device priority confirmed:** the two iPads are the main play devices; Android is secondary. Design touch controls, layout, memory use and performance around the iPads first, using the older A2197 iPad 7 as the minimum performance baseline. Android/iPhone support and four-player mixed-device play remain required; a successful Samsung test does not replace iPad testing.
+
 **How we will build it:** the separate [ground-up build guide](family-playset-build-guide-2026-09-23.html) organizes implementation into ordered phases, architecture, asset workflows, device tests and completion gates. **This page is the goal sheet; that guide is the build sequence.** The guide consolidates earlier milestone suggestions without removing feature requirements. G1 foundation setup has started; see the [implementation record](implementation/g1-status.md). Game features remain planned until their acceptance checks pass.
 
 **Templates and packages:** [the detailed free-first package review](family-playset-package-research-2026-09-23.html) compares starting templates, exact Unity 6.3 package candidates, optional GitHub components, and one purchase around $15. [Section 54](#54-templates-packages-and-the-free-starting-setup) records the recommended setup. No complete ready-made template was found that supplies all our requirements.

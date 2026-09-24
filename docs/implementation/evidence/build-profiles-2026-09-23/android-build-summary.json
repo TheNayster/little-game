@@ -1,0 +1,15 @@
+{
+  "platform": "Android",
+  "version": "0.0.17",
+  "unity": "6000.3.24f1",
+  "result": "Succeeded",
+  "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\AndroidSigned\\G1-0.0.17\\LittleWeeps.apk",
+  "utc": "2026-09-24T01:44:58.7360972Z",
+  "profile": "Assets/BuildProfiles/Android Foundation.asset",
+  "scene": "Assets/FamilyPlayset/Scenes/Bootstrap.unity",
+  "signing": "Pinned Little Weeps family key; externally signed unchanged Unity payload",
+  "errors": 0,
+  "warnings": 0,
+  "development": false,
+  "dedicatedServer": false
+}

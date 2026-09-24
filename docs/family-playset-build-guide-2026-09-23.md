@@ -4,7 +4,7 @@
 
 **Purpose:** build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.
 
-**Current position:** **G1 — project and device foundation is in progress.** Windows 0.0.9 passes save/restart/update/video checks; open `Play-Foundation.cmd` for that preview. The trusted iPad 9 now launches signed 0.0.1. Android 0.0.11 builds successfully and passes identity/signature/ABI/SDK checks; an additional 16 KB native-library alignment finding remains open before compatibility qualification. The Windows Server module is installed, and fresh server 0.0.12 passes headless startup, three heartbeats and clean shutdown. Shared multiplayer is not implemented yet. See the [live implementation record](implementation/g1-status.md) and [platform setup record](implementation/platform-build-setup.md).
+**Current position:** **G1 — project and device foundation is in progress; iPads first, Android second.** All four saved Build Profiles produce fresh artifacts: iPad/iOS export 16, family-signed Android 17, server 18 and Windows 19. Windows 9 → 19 save/video/update and server lifecycle checks passed. `Play-Foundation.cmd` opens preview 19. The phone retains tested build 15. iPad 9 launches the earlier signed build 1; the new export and older iPad still need native/device checks. Android's existing 16 KB compatibility finding and independent-backup/renewal gates remain open. Shared multiplayer is not implemented. See the [latest task evidence](implementation/build-profiles-2026-09-23.md) and [live record](implementation/g1-status.md).
 
 [Open the feature goal sheet](bluey-game-research-2026-09-23.html) · [Package research](family-playset-package-research-2026-09-23.html) · [Technical evidence](family-playset-technical-research-2026-09-23.html) · [Feasibility audit](family-playset-feasibility-audit-2026-09-23.html)
 
@@ -457,14 +457,16 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 
 ## 18. Current work record and research basis
 
+**Device priority:** iPads first, Android second. The A2197 iPad 7 is the minimum performance baseline; A2602 iPad 9 is the other primary play device. Test core controls, layouts, media, saves and hosting on both. Android and optional iPhone testing remain part of the mixed-device acceptance gates.
+
 | Field | Current value |
 | --- | --- |
 | Goal sheet | Main Family Playset research, 54 sections, including the latest TV bookmark clarification |
 | Production guide | This document; ordered method and acceptance gates |
-| Implementation state | G1: Samsung family-signed 14 → 15 passes launch, human touch/audio, video, restart and in-place save retention; its clipped title is fixed. Local signing recovery exercised. Windows 0.0.9 and server 0.0.12 remain verified; iPad 0.0.1 launches. Independent recovery, native 16 KB and remaining Apple-device checks are open. |
+| Implementation state | G1: four saved profiles built successfully; iOS export 16 awaits native/device tests, family-signed Android 17 was inspected but not installed, server 18 lifecycle and Windows 9 → 19 save/video/update passed. Samsung retains tested 15; iPad 9 launches earlier 1. Independent recovery, native Android 16 KB and Apple-device/renewal checks remain open. |
 | Current research deliverable | G0 guide, coverage map and source review; document validation recorded separately |
 | Active implementation gate | G1 — project and device foundation; [live record](implementation/g1-status.md) |
-| Current bounded task | Android signing and physical update check completed for FAMILY-01/TV-01: 3 taps and 6.2-second bookmark retained, exact APK hashes and same certificate verified, recovery copy signed 15. Next Windows-side task: saved Android/server Build Profiles. Apple-device/update/renewal and independent-backup gates remain. [Phone evidence](implementation/android-signing-and-phone-2026-09-23.md). |
+| Current bounded task | Saved-profile foundation task completed for FAMILY-01/TV-01 build coverage. [Profile evidence](implementation/build-profiles-2026-09-23.md). Next: compile/sign iOS export 16 through the Mac, verify an iPad 9 in-place update/media/save and qualify the older iPad 7; start renewal observation. G1 remains open. |
 | Package budget | $0 starting setup; optional paid candidates around $20 require a concrete benefit and purchase authorization |
 | Open technical evidence | Exact package set, native build path, refresh cycle, A10 hosting/recovery and save reconciliation |
 | Scope preserved | Four mixed devices, independent rooms, both iPads hosting, automatic recovery, full offline solo and the complete content goal sheet |
