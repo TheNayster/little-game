@@ -1,0 +1,17 @@
+{
+    "passed": false,
+    "mode": "bookmark",
+    "build": "0.0.21",
+    "runId": "610b7124049049c6941f97b090a5baa2",
+    "profileId": "4a9cd93ac2ad4f268e00a82bf10da2ad",
+    "videoUrl": "",
+    "graphics": "NVIDIA GeForce RTX 5090",
+    "utc": "2026-09-24T04:47:22.5387331Z",
+    "error": "Paused checkpoint changed the bookmark without playback.",
+    "taps": 3,
+    "decodedFrames": 0,
+    "reopenCycles": 0,
+    "bookmark": 4.013000011444092,
+    "observedBookmark": 4.0,
+    "maxBookmarkDrift": 0.013000011444091797
+}

@@ -1,0 +1,18 @@
+{
+    "passed": true,
+    "mode": "bookmark-resume",
+    "build": "0.0.22",
+    "runId": "94b508681d5f4eda8c45047137c7cb6a",
+    "profileId": "00a79428280e46c29b85f455f6e5d286",
+    "videoUrl": "",
+    "graphics": "NVIDIA GeForce RTX 5090",
+    "utc": "2026-09-24T04:49:06.7894913Z",
+    "error": "",
+    "taps": 3,
+    "decodedFrames": 0,
+    "reopenCycles": 30,
+    "interruptedSeekChecks": 2,
+    "bookmark": 4.013000011444092,
+    "observedBookmark": 4.013000011444092,
+    "maxBookmarkDrift": 0.0
+}

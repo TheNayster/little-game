@@ -18,7 +18,7 @@ This is the separate home for the family's Bluey-inspired game.
 
 G1 foundation setup is in progress. See [the current implementation record](docs/implementation/g1-status.md) for what exists and what is still unverified. No playable game or device qualification is complete yet.
 
-**Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.19 technical fixture with a saved tap counter and local-video controls. Windows restart and version-update checks passed again on 0.0.9 → 0.0.19. This is not the finished game.
+**Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.22 technical fixture with a saved tap counter and local-video controls. Windows restart and version-update checks passed again on 0.0.19 → 0.0.22. Paused bookmark stability also passed 60 reopenings; [fix evidence](docs/implementation/windows-bookmark-2026-09-23.md). This is not the finished game.
 
 **First iPad launch (earlier):** signed 0.0.1 launched on iPad 9 after the user allowed developer trust. It has since been updated in place to build 20, as recorded below.
 

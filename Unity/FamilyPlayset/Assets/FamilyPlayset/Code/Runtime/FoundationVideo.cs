@@ -19,7 +19,8 @@ namespace LittleWeeps.Runtime
         private string BookmarkKey => FoundationRun.Key("video." + PlayerPrefs.GetString(FoundationRun.Key("profile-id")) + ".g1-clip-v1");
         private float deadline, nextCheckpoint;
         private double seekTarget;
-        private bool continueAfterSeek, presentedFrame;
+        // Decoder playback used to present a seek frame is not a child's Play request.
+        private bool playRequested, presentedFrame;
 
         public void Initialize()
         {
@@ -33,7 +34,7 @@ namespace LittleWeeps.Runtime
             Player.frameReady += FrameReady;
             Player.errorReceived += (_, error) => { Failure = error; Ready = false; Debug.LogError("Local video: " + error); };
             Player.prepareCompleted += Prepared;
-            Player.loopPointReached += _ => { Player.Pause(); Checkpoint(); };
+            Player.loopPointReached += _ => Pause();
             Player.url = Path.Combine(Application.streamingAssetsPath, "Foundation", "test-clip.mp4");
             deadline = Time.realtimeSinceStartup + 20;
             Player.Prepare();
@@ -45,12 +46,22 @@ namespace LittleWeeps.Runtime
             if (RestoredPosition > 0.05) Seek(RestoredPosition);
             nextCheckpoint = Time.realtimeSinceStartup + 5;
         }
-        public void Play() { if (Ready && !Seeking) Player.Play(); }
-        public void Pause() { if (Player == null) return; Player.Pause(); Checkpoint(); }
+        public void Play() { if (Ready && !Seeking) { playRequested = true; Player.Play(); } }
+        public void Pause()
+        {
+            if (Player == null) return;
+            if (Seeking)
+            {
+                // Finish presenting the requested frame, then stay paused even if
+                // the seek began during playback. Do not save an intermediate frame.
+                playRequested = false;
+                return;
+            }
+            Player.Pause(); Checkpoint(); playRequested = false;
+        }
         public void Seek(double seconds)
         {
             if (!Ready || Seeking || !Player.canSetTime) return;
-            continueAfterSeek = Player.isPlaying;
             Seeking = true; Ready = false; deadline = Time.realtimeSinceStartup + 20;
             seekTarget = Math.Max(0, Math.Min(seconds, Math.Max(0, Player.length - 0.1)));
             Player.time = seekTarget;
@@ -63,13 +74,13 @@ namespace LittleWeeps.Runtime
             DecodedFrames++; presentedFrame = true;
             if (!Seeking || Math.Abs(frame / player.frameRate - seekTarget) > 0.25) return;
             Seeking = false; Ready = true;
-            if (!continueAfterSeek) player.Pause();
+            if (!playRequested) player.Pause();
             PlayerPrefs.SetFloat(BookmarkKey, (float)seekTarget); PlayerPrefs.Save();
         }
         public void Restart() { Pause(); Seek(0); }
         public void Checkpoint()
         {
-            if (Player == null || !Player.isPrepared || !Ready || !presentedFrame || Seeking || Failure != null) return;
+            if (!playRequested || Player == null || !Player.isPrepared || !Ready || !presentedFrame || Seeking || Failure != null) return;
             PlayerPrefs.SetFloat(BookmarkKey, (float)Player.time); PlayerPrefs.Save();
         }
         private void Update()

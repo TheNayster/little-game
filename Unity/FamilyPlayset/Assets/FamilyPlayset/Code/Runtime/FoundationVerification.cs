@@ -22,6 +22,13 @@ namespace LittleWeeps.Runtime
             {
                 var screen = GetComponent<FoundationScreen>();
                 await Wait(() => screen.Video.Ready && !screen.Video.Seeking, "Prepare local video");
+                if (FoundationRun.Mode == "bookmark" || FoundationRun.Mode == "bookmark-resume")
+                {
+                    await VerifyPausedBookmark(screen, result);
+                    result.passed = true;
+                }
+                else
+                {
                 var initialBookmark = screen.Video.SavedPosition;
                 if (FoundationRun.Mode == "seed")
                 {
@@ -66,12 +73,77 @@ namespace LittleWeeps.Runtime
                 result.passed = true;
                 ScreenCapture.CaptureScreenshot(Path.Combine(FoundationRun.EvidenceDirectory, FoundationRun.Mode + ".png"));
                 await Task.Delay(800);
+                }
             }
             catch (Exception e) { result.passed = false; result.error = e.Message; }
             result.utc = DateTime.UtcNow.ToString("O");
             File.WriteAllText(Path.Combine(FoundationRun.EvidenceDirectory, FoundationRun.Mode + ".json"), JsonUtility.ToJson(result, true));
             Debug.Log("LITTLE_WEEPS_VERIFY " + JsonUtility.ToJson(result));
             Application.Quit(result.passed ? 0 : 1);
+        }
+        private async Task VerifyPausedBookmark(FoundationScreen screen, Result result)
+        {
+            // Use an off-frame time to expose accidental decoder rounding writes.
+            if (FoundationRun.Mode == "bookmark")
+            {
+                Require(screen.SavedCount == 0, "Bookmark run must use a fresh namespace.");
+                for (var i = 0; i < 3; i++) screen.TapButton.onClick.Invoke();
+                screen.Video.Seek(4.013);
+                await Wait(() => screen.Video.Ready && !screen.Video.Seeking, "Seed paused bookmark");
+                result.bookmark = screen.Video.SavedPosition;
+                Require(result.bookmark == (double)(float)4.013, "Seek did not save the requested time.");
+            }
+            else
+            {
+                var seed = JsonUtility.FromJson<Result>(File.ReadAllText(Path.Combine(FoundationRun.EvidenceDirectory, "bookmark.json")));
+                Require(seed.passed, "Bookmark seed must pass before relaunch.");
+                Require(screen.ProfileId == seed.profileId && screen.SavedCount == seed.taps, "Relaunch changed profile/taps.");
+                result.bookmark = seed.bookmark;
+            }
+            result.profileId = screen.ProfileId; result.taps = screen.SavedCount;
+            result.graphics = SystemInfo.graphicsDeviceName;
+            for (var i = 0; i < 30; i++)
+            {
+                await Task.Delay(100);
+                screen.Video.Pause();
+                screen.Video.Checkpoint();
+                result.observedBookmark = screen.Video.SavedPosition;
+                result.maxBookmarkDrift = Math.Max(result.maxBookmarkDrift, Math.Abs(result.observedBookmark - result.bookmark));
+                Require(result.observedBookmark == result.bookmark, "Paused checkpoint changed the bookmark without playback.");
+                screen.CloseVideo();
+                await Task.Delay(50);
+                screen.OpenVideo();
+                await Wait(() => screen.Video.Ready && !screen.Video.Seeking, "Repeated paused reopen");
+                Require(!screen.Video.Player.isPlaying, "Reopen started playback without Play.");
+                Require(Math.Abs(screen.Video.Player.time - result.bookmark) < 0.3, "Reopen did not display the saved frame.");
+                result.reopenCycles++;
+                result.observedBookmark = screen.Video.SavedPosition;
+                Require(result.observedBookmark == result.bookmark, "Reopening rewrote the paused bookmark.");
+            }
+            // Pause and lifecycle suspension must cancel autoplay while a seek
+            // is decoding, without stranding the controller in its Seeking state.
+            for (var i = 0; i < 2; i++)
+            {
+                screen.Video.Play();
+                var start = screen.Video.Player.time;
+                await Wait(() => screen.Video.Player.time > start + 0.2, "Playback before interrupted seek");
+                screen.Video.Seek(7.013);
+                if (i == 0) screen.Video.Pause();
+                else screen.Video.SendMessage("OnApplicationPause", true);
+                await Wait(() => screen.Video.Ready && !screen.Video.Seeking, "Complete interrupted seek");
+                await Task.Delay(150);
+                Require(!screen.Video.Player.isPlaying, "Pause during seek resumed playback.");
+                Require(screen.Video.SavedPosition == (double)(float)7.013, "Interrupted seek saved an intermediate frame.");
+                result.interruptedSeekChecks++;
+            }
+            screen.Video.Restart();
+            await Wait(() => screen.Video.Ready && !screen.Video.Seeking, "Start over after seek interruption");
+            Require(screen.Video.SavedPosition == 0, "Start over did not save zero.");
+            screen.Video.Seek(result.bookmark);
+            await Wait(() => screen.Video.Ready && !screen.Video.Seeking, "Restore relaunch baseline");
+            screen.Video.Pause();
+            Require(screen.Video.SavedPosition == result.bookmark, "Final paused checkpoint changed baseline.");
+            Require(runtimeError == null, runtimeError ?? "Unexpected video error.");
         }
         private async Task Wait(Func<bool> condition, string check)
         {
@@ -88,8 +160,8 @@ namespace LittleWeeps.Runtime
         {
             public bool passed;
             public string mode, build, runId, profileId, videoUrl, graphics, utc, error;
-            public int taps, decodedFrames;
-            public double bookmark;
+            public int taps, decodedFrames, reopenCycles, interruptedSeekChecks;
+            public double bookmark, observedBookmark, maxBookmarkDrift;
         }
     }
 }

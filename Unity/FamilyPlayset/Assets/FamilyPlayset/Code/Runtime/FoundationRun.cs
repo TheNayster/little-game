@@ -20,7 +20,8 @@ namespace LittleWeeps.Runtime
                 if (args[i] == "-foundationVerify") Mode = args[i + 1];
                 if (args[i] == "-foundationRun" && Guid.TryParse(args[i + 1], out var id)) RunId = id.ToString("N");
             }
-            if (Mode != "seed" && Mode != "resume" && Mode != "update") { Mode = null; RunId = null; }
+            if (Mode != "seed" && Mode != "resume" && Mode != "update" &&
+                Mode != "bookmark" && Mode != "bookmark-resume") { Mode = null; RunId = null; }
             if (Mode == null) RunId = null;
 #endif
         }
