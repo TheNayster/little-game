@@ -1,0 +1,16 @@
+{
+  "version": "0.0.16",
+  "configuration": "Release",
+  "xcode": "26.6",
+  "macOS": "26.3.1",
+  "xcodeExit": 65,
+  "compileReachedSigning": true,
+  "signingPassed": false,
+  "error": "CodeSign UnityFramework.framework: errSecInternalComponent",
+  "log": "Logs/g1-ios-0.0.16-remote-20260924-015846.log",
+  "installed": false,
+  "ipadCurrentVersion": "0.0.1",
+  "localMacActionRequired": true,
+  "desktopHelper": "Finish-Little-Weeps-16.command",
+  "keychainProtectionChanged": false
+}

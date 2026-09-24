@@ -22,6 +22,8 @@ G1 foundation setup is in progress. See [the current implementation record](docs
 
 **First iPad launch:** signed 0.0.1 is installed on the iPad 9. After the user allowed the developer profile in VPN & Device Management, a fresh device launch command succeeded. Physical touch, saved count after reopening, and update retention remain to be observed. See [the live record](docs/implementation/g1-status.md).
 
+**Current iPad update:** build 16 is transferred and compiled on the Mac, but local keychain access is needed to finish signing. The Mac desktop file `Finish-Little-Weeps-16.command` is ready. The iPad still has build 1; its observed 1,010 saved taps are preserved. [Exact next steps](docs/implementation/ipad-update-2026-09-23.md).
+
 **Android/server preparation:** Family-signed Android **0.0.15** is installed on the Samsung. Touch/audio, local video, force-stop recovery and the **14 → 15** in-place update passed, preserving 3 saved taps and a 6.2-second bookmark. The wide-screen title is fixed; local signing recovery was exercised. [Phone results](docs/implementation/android-signing-and-phone-2026-09-23.md). Native 16 KB and independent-backup gates remain open. Windows Server 0.0.12 passes its headless lifecycle test; multiplayer remains ahead.
 
 Use the desktop **Connect Little Weeps** shortcut, or run `Connect-GameTools.ps1` in this folder. [Tool connection instructions](docs/implementation/tool-connections.md) explain the launcher and Mac build connection.

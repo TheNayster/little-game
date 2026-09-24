@@ -1,0 +1,14 @@
+{
+  "observedUtc": "2026-09-24T01:57:11Z",
+  "device": "iPad (9th generation)",
+  "os": "18.6.2",
+  "bundleId": "com.littleweeps.familyplayset",
+  "installedVersion": "0.0.1",
+  "installedBuild": 1,
+  "tapCount": 1010,
+  "profileId": "7621e9e553214cf29814ecc239cdf9ef",
+  "source": "Read actual app preferences through devicectl appDataContainer",
+  "preferenceBackupOnMac": "Logs/ipad-before-update-20260924-015711/preferences.plist",
+  "physicalTouchObservedThisSession": false,
+  "updated": false
+}

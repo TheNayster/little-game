@@ -1,0 +1,9 @@
+{
+  "build": "0.0.16",
+  "archiveSha256": "95cf086ebd5e8af969b3e3b156710d84033cbf332add82955adc4dcc9f003d54",
+  "bytes": 239841946,
+  "windowsMacArchiveHashesMatch": true,
+  "macExportedFileHashesVerified": 3026,
+  "nativeBuildStarted": true,
+  "nativeBuildResult": "Native compile reached signing; Xcode exit 65 at UnityFramework codesign (errSecInternalComponent)"
+}

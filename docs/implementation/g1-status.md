@@ -2,6 +2,8 @@
 
 Started 23 September 2026. In progress. The Samsung foundation launch, input, media, restart and signed-update checks passed; the remaining G1 device/recovery gates are still open.
 
+**Latest iPad task:** export 16 is transferred and all 3,026 files verified on the Mac. Native Release compilation reached signing, then remote codesign failed with `errSecInternalComponent` (Xcode exit 65). The iPad still has build 1 and its observed 1,010 taps/profile; no update was installed. **Waiting for the user to run `Finish-Little-Weeps-16.command` on the Mac desktop**, then verify/sign/install normally in place. [Exact evidence and resume steps](ipad-update-2026-09-23.md). G1 remains the active phase.
+
 Current work (23 September): **iPads are primary; Android is secondary.** Saved iPad/iOS, Android and Windows Server profiles now join the Windows client profile. Fresh iOS 16, family-signed Android 17, server 18 and Windows 19 builds passed; server lifecycle and Windows 9 → 19 save/video/update checks passed. Android's strict 16 KB static check still flags the same unresolved issue. [Profile task and evidence](build-profiles-2026-09-23.md). Next: actual iPad 9 update/media/save checks and older iPad 7 foundation qualification through the Mac, then renewal observation. The current phone install remains family-signed 15 with human-confirmed touch/audio and observed 14 → 15 save retention. [Phone evidence](android-signing-and-phone-2026-09-23.md). Independent backup/native ARM64 16 KB gates remain open. G2/game worlds have not started.
 
 ## Boundary and tools

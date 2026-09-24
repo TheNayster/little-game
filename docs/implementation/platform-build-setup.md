@@ -22,6 +22,8 @@ Evidence: [Android build](evidence/android-first-build-2026-09-23/build-summary.
 
 **Latest profile check:** iPad/iOS, Android, Windows Server and Windows client now all have saved Build Profile assets and fresh explicit-profile builds (16, 17, 18 and 19 respectively). Server 18 lifecycle and Windows 9 → 19 save/video/update checks pass. Android 17's strict 16 KB compatibility gate remains open; phone 15 remains installed. The iPad export still needs native compilation and actual iPad tests. [Full profile evidence](build-profiles-2026-09-23.md). iPads are primary; Android is secondary. G1 is not complete. The first-build records below remain historical evidence.
 
+Latest iPad continuation: export 16 is verified on the Mac and compiled through native signing, but remote codesign returned `errSecInternalComponent`, exit 65. The user has a prepared desktop command to complete local keychain access and signing. No iPad update has yet been installed. [Current iPad task](ipad-update-2026-09-23.md).
+
 ## Defects caught during the first Android build
 
 0.0.10 compiled successfully, then the build wrapper failed during cleanup. Unity's External Tools getter returned a bundled JDK path that did not exist; assigning that path back as a custom JDK caused an exception. The fix restores bundled defaults using Unity's documented null setter. The integration check exercised this exact case and custom paths; fresh 0.0.11 then completed with full manifests. Build 10 remains preserved as an incomplete process result, not substituted for 11.
