@@ -1,0 +1,13 @@
+﻿{
+    "locale":  "en-US",
+    "voice":  "Microsoft Zira Desktop",
+    "rate":  -1,
+    "purpose":  "Temporary offline prototype narration; not character voice imitation",
+    "cues":  {
+                 "garden":  "Let\u0027s give the flower a drink! Drag the bucket to the tap. Then drag it to the plant.",
+                 "cleanup":  "Let\u0027s soak up the puddle! Drag the yellow sponge onto the water. You can stop whenever you like.",
+                 "freeplay":  "Let\u0027s explore! You can walk around, move the toys, or choose a game.",
+                 "tapwalk":  "Touch the ground where you want to walk. Drag a toy to move it.",
+                 "joystick":  "Move the circle to walk. You can use another finger to move a toy."
+             }
+}

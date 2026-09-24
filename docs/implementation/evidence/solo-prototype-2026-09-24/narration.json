@@ -1,0 +1,37 @@
+[
+  {
+    "id": "cleanup",
+    "seconds": 7.918,
+    "sampleRate": 22050,
+    "channels": 1,
+    "sha256": "9e4cd09ab7704a38299600a2a10da9cda60a57a64c7e2aeaada17d457de75505"
+  },
+  {
+    "id": "freeplay",
+    "seconds": 6.759,
+    "sampleRate": 22050,
+    "channels": 1,
+    "sha256": "38c2b24048326dfa73d6d03786374c7a88d71285e4a30ad566e2f6614f6bd00a"
+  },
+  {
+    "id": "garden",
+    "seconds": 7.288,
+    "sampleRate": 22050,
+    "channels": 1,
+    "sha256": "3939d662df32f5d36e871f7fbb6cb3d8fd1e07fe9a73a880df46e7e0e1c8a330"
+  },
+  {
+    "id": "joystick",
+    "seconds": 5.394,
+    "sampleRate": 22050,
+    "channels": 1,
+    "sha256": "813591f283435b66bf1cb27b6fa6f21d96bdd038ced2c1e53151bf1d703eb46c"
+  },
+  {
+    "id": "tapwalk",
+    "seconds": 4.114,
+    "sampleRate": 22050,
+    "channels": 1,
+    "sha256": "5af49c0bb22a93905d089288092fbd789016cf5690709e8fc584294a2fb032c4"
+  }
+]

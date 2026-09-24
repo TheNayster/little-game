@@ -16,7 +16,9 @@ This is the separate home for the family's Bluey-inspired game.
 - [Toca Boca and Piknik interaction research](docs/toca-piknik-interaction-research-2026-09-23.html)
 - [Device and build research](docs/ipad-game-research-2026-09-23.md)
 
-G1 foundation setup is in progress. See [the current implementation record](docs/implementation/g1-status.md) for what exists and what is still unverified. No playable game or device qualification is complete yet.
+G1 foundation setup is in progress. See [the current implementation record](docs/implementation/g1-status.md) for remaining device checks. The user authorized provisional Windows-only G2 work while those checks remain open.
+
+**Playable garden prototype:** double-click `Play-SoloPrototype.cmd`. It opens verified Windows **0.0.35** with tap/joystick walking, two placeholder pups, bucket watering, sponge cleanup, optional activities, English hints and recoverable local saves. Windows input/update/recovery and an isolated Android emulator update passed. [G2 results and limits](docs/implementation/g2-status.md). Physical-device qualification and multiplayer remain ahead.
 
 **Windows preview available:** double-click `Play-Foundation.cmd` in this folder. It opens the verified 0.0.22 technical fixture with a saved tap counter and local-video controls. Windows restart and version-update checks passed again on 0.0.19 → 0.0.22. Paused bookmark stability also passed 60 reopenings; [fix evidence](docs/implementation/windows-bookmark-2026-09-23.md). This is not the finished game.
 
@@ -30,7 +32,7 @@ Use the desktop **Connect Little Weeps** shortcut, or run `Connect-GameTools.ps1
 
 **Saved build profiles complete:** iPad/iOS export 16, Android 17, server 18 and Windows 19 all built from named profiles. Server lifecycle and Windows save/update checks passed. iOS 16 has since passed native signing, installation and touch/media/restart checks; phone 15 remains installed. [Latest profile evidence and next iPad checks](docs/implementation/build-profiles-2026-09-23.md).
 
-Normal home play: devices automatically join the Windows PC server after parent setup. Bluetooth has been removed from the plan and backlog.
+Planned normal home play: devices automatically join the Windows PC server after parent setup. That networking is not implemented yet. Bluetooth has been removed from the plan and backlog.
 
 Required: iPad hosting, automatic joining and host switching, independent areas, up to four mixed-device players, and full offline solo play. Multiplayer connectivity while traveling is an optional later want; it does not make core hosting/recovery optional.
 

@@ -1,0 +1,23 @@
+{
+    "mode": "recover",
+    "runId": "13eabd9b85d94faba00b0ee5a1576a0a",
+    "build": "0.0.35",
+    "worldId": "ca3ef7c3eb644d65a11e7c4cea68cf55",
+    "playerId": "46c58a4080784a419bb6ca0b42535c1c",
+    "loadedStatus": "Recovered",
+    "utc": "2026-09-24T05:48:03.1840600Z",
+    "error": "",
+    "passed": true,
+    "tapWalk": false,
+    "joystickAndDrag": false,
+    "pointerExclusivity": false,
+    "interactions": false,
+    "cancellation": false,
+    "relaunch": true,
+    "mouseInputModule": false,
+    "touchInputModule": false,
+    "osTouchCancellation": false,
+    "narrationLoaded": true,
+    "narrationPlayback": true,
+    "revision": 43
+}

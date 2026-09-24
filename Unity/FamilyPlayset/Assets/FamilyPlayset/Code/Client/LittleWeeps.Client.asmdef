@@ -1,0 +1,5 @@
+{
+  "name": "LittleWeeps.Client",
+  "rootNamespace": "LittleWeeps.Client",
+  "references": ["LittleWeeps.Core", "LittleWeeps.Adapters", "Unity.InputSystem", "UnityEngine.UI"]
+}

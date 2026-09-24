@@ -1,0 +1,23 @@
+{
+    "mode": "seed",
+    "runId": "13eabd9b85d94faba00b0ee5a1576a0a",
+    "build": "0.0.29",
+    "worldId": "ca3ef7c3eb644d65a11e7c4cea68cf55",
+    "playerId": "46c58a4080784a419bb6ca0b42535c1c",
+    "loadedStatus": "Missing",
+    "utc": "2026-09-24T05:47:54.4397587Z",
+    "error": "",
+    "passed": true,
+    "tapWalk": true,
+    "joystickAndDrag": true,
+    "pointerExclusivity": true,
+    "interactions": true,
+    "cancellation": true,
+    "relaunch": false,
+    "mouseInputModule": false,
+    "touchInputModule": false,
+    "osTouchCancellation": false,
+    "narrationLoaded": true,
+    "screenshotCaptured": false,
+    "revision": 43
+}

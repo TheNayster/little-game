@@ -1,0 +1,6 @@
+{
+  "name": "LittleWeeps.Adapters",
+  "rootNamespace": "LittleWeeps.Adapters",
+  "references": ["LittleWeeps.Core"],
+  "noEngineReferences": true
+}

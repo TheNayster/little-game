@@ -1,21 +1,24 @@
 [CmdletBinding()]
 param([Parameter(Mandatory)][ValidateRange(1,9999)][int]$BuildNumber,
-      [ValidateSet('DebugProbe','Family')][string]$Signing='DebugProbe')
+      [ValidateSet('DebugProbe','Family')][string]$Signing='DebugProbe', [switch]$SoloPrototype)
 $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
-$artifactKind=if ($Signing -eq 'Family') { 'AndroidSigned' } else { 'Android' }
-$folder=Join-Path $root "Builds\$artifactKind\G1-0.0.$BuildNumber"
+if ($SoloPrototype -and $Signing -ne 'DebugProbe') { throw 'Solo emulator probes use their explicit debug signing identity.' }
+$artifactKind=if ($SoloPrototype) { 'AndroidSolo' } elseif ($Signing -eq 'Family') { 'AndroidSigned' } else { 'Android' }
+$gate=if ($SoloPrototype) { 'G2' } else { 'G1' }
+$apkName=if ($SoloPrototype) { 'LittleWeepsSolo.apk' } else { 'LittleWeeps.apk' }
+$folder=Join-Path $root "Builds\$artifactKind\$gate-0.0.$BuildNumber"
 $summary=Get-Content -LiteralPath (Join-Path $folder 'build-summary.json') -Raw | ConvertFrom-Json
 if ($summary.result -ne 'Succeeded' -or $summary.development -or $summary.platform -ne 'Android' -or $summary.version -ne "0.0.$BuildNumber") { throw 'A matching non-development Android build is required.' }
 $manifest=@(Get-Content -LiteralPath (Join-Path $folder 'artifact-manifest.json') -Raw | ConvertFrom-Json)
-if (!($manifest | Where-Object path -eq 'LittleWeeps.apk')) { throw 'APK is missing from build artifact evidence.' }
+if (!($manifest | Where-Object path -eq $apkName)) { throw 'APK is missing from build artifact evidence.' }
 foreach ($file in $manifest) {
     if ((Get-FileHash -LiteralPath (Join-Path $folder $file.path) -Algorithm SHA256).Hash -ne $file.sha256) { throw "Artifact changed: $($file.path)" }
 }
 $toolchain=Get-Content -LiteralPath (Join-Path $root 'LocalData\android-toolchain.json') -Raw | ConvertFrom-Json
 if ($toolchain.unity -ne $summary.unity) { throw 'Inspection tools do not match the recorded build toolchain.' }
 $buildTools=Join-Path $toolchain.root 'SDK\build-tools\36.0.0'
-$apk=Join-Path $folder 'LittleWeeps.apk'
+$apk=Join-Path $folder $apkName
 $badging=@(& (Join-Path $buildTools 'aapt2.exe') dump badging $apk)
 if ($LASTEXITCODE -ne 0) { throw 'aapt2 could not inspect the APK.' }
 $text=$badging -join "`n"

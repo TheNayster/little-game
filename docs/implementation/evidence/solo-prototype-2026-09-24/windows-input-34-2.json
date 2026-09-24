@@ -1,0 +1,22 @@
+{
+    "mode": "input",
+    "runId": "010ba73d77c54c2ca868b84552a3be4d",
+    "build": "0.0.34",
+    "worldId": "d0de6a1bb3c742769f302180f1332372",
+    "playerId": "eed1c4ba9f674f07a2fa6fff1467bd7a",
+    "loadedStatus": "Missing",
+    "utc": "2026-09-24T05:44:14.6490736Z",
+    "error": "",
+    "passed": true,
+    "tapWalk": false,
+    "joystickAndDrag": false,
+    "pointerExclusivity": false,
+    "interactions": false,
+    "cancellation": false,
+    "relaunch": false,
+    "mouseInputModule": true,
+    "touchInputModule": true,
+    "osTouchCancellation": true,
+    "narrationLoaded": true,
+    "revision": 27
+}

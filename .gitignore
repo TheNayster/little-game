@@ -14,6 +14,9 @@ LocalData/
 .vs/
 .idea/
 *.csproj
+!Tools/SoloRules.Tests/SoloRules.Tests.csproj
+Tools/SoloRules.Tests/bin/
+Tools/SoloRules.Tests/obj/
 *.sln
 *.slnx
 *.user

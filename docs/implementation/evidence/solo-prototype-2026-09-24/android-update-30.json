@@ -1,0 +1,13 @@
+{
+  "build": 30,
+  "previousBuild": 28,
+  "sha256": "77284420655b685166109a492c7ec87d2684936f459d253749dc986ffb7caca4",
+  "inPlace": true,
+  "signerMatched": true,
+  "completeSnapshotRetained": true,
+  "avd": "LittleWeeps_G1_API35_16KB",
+  "pageSize": 16384,
+  "nativeBridge": "libndk_translation.so",
+  "physicalDeviceAccessed": false,
+  "nativeArm64Qualified": false
+}

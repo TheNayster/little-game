@@ -1,0 +1,20 @@
+{
+  "build": 30,
+  "screen": "updated.png",
+  "visibleBuild": "0.0.30",
+  "observed": [
+    "orange avatar",
+    "grown flower",
+    "empty bucket",
+    "cleaned puddle"
+  ],
+  "updateRetainedWholeSnapshot": true,
+  "postUpdateAvatarSwitch": true,
+  "revisionBefore": 13,
+  "revisionAfter": 14,
+  "worldIdentityRetained": true,
+  "playerIdentityRetained": true,
+  "toyStateRetained": true,
+  "physicalTouchTest": false,
+  "audibleNarrationTest": false
+}
