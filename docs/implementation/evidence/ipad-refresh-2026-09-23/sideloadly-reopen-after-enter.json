@@ -1,0 +1,21 @@
+{
+  "observedUtc": "2026-09-24T03:26:21.489559+00:00",
+  "userReportedAction": "Entered email in Apple ID box and pressed Enter; window closed",
+  "mainProcessPresentAfterReport": false,
+  "daemonProcessPresent": true,
+  "matchingWindowsCrashEntryFound": false,
+  "causeEstablished": false,
+  "reopenedInstalledApp": true,
+  "reopenedUiVersion": "0.60",
+  "selectedIPhoneStillDetected": true,
+  "fileSelectionRetained": false,
+  "appleIdFieldPopulatedAfterReopen": false,
+  "restoredExplicitBundleId": "com.littleweeps.familyplayset",
+  "automaticBundleIdDisabledAfterReopen": true,
+  "fileChooserOpened": true,
+  "filePickerAutomationError": "element 131 is not available in cached app state for sideloadly.exe",
+  "userAskedToReloadAndClickStart": true,
+  "authenticationVerified": false,
+  "iPhoneInstallationVerified": false,
+  "refreshEnrollmentVerified": false
+}
