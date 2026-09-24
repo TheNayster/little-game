@@ -1,0 +1,19 @@
+{
+  "runId": "e113270bc7b6432b8fa6d6842df08372",
+  "build": 66,
+  "interpolationDelayMs": 120,
+  "results": [
+    {
+      "viewer": "player-2",
+      "samplePairs": 161,
+      "atNewestPosition": 41,
+      "pausedAtNewestPosition": 21
+    },
+    {
+      "viewer": "player-1",
+      "samplePairs": 165,
+      "atNewestPosition": 0,
+      "pausedAtNewestPosition": 0
+    }
+  ]
+}

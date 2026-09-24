@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "build": 68,
+  "runId": "7ab374e9ebd84aedbb41ab66b91d3966",
+  "utc": "2026-09-24T19:37:30.576806+00:00",
+  "checks": [
+    {
+      "check": "1024 empty and 1024 oversized datagrams do not exhaust receives or disconnect players",
+      "passed": true
+    },
+    {
+      "check": "hard departure and current-world rejoin 1",
+      "passed": true,
+      "survivorCommands": 20,
+      "rejoinSeconds": 3.656,
+      "serverPid": 36336
+    },
+    {
+      "check": "hard departure and current-world rejoin 2",
+      "passed": true,
+      "survivorCommands": 20,
+      "rejoinSeconds": 3.688,
+      "serverPid": 36336
+    },
+    {
+      "check": "hard departure and current-world rejoin 3",
+      "passed": true,
+      "survivorCommands": 20,
+      "rejoinSeconds": 3.656,
+      "serverPid": 36336
+    },
+    {
+      "check": "hard departure and current-world rejoin 4",
+      "passed": true,
+      "survivorCommands": 20,
+      "rejoinSeconds": 3.657,
+      "serverPid": 36336
+    },
+    {
+      "check": "hard departure and current-world rejoin 5",
+      "passed": true,
+      "survivorCommands": 17,
+      "rejoinSeconds": 3.75,
+      "serverPid": 36336
+    },
+    {
+      "check": "hard departure and current-world rejoin 6",
+      "passed": true,
+      "survivorCommands": 18,
+      "rejoinSeconds": 3.703,
+      "serverPid": 36336
+    },
+    {
+      "check": "hard departure and current-world rejoin 7",
+      "passed": true,
+      "survivorCommands": 17,
+      "rejoinSeconds": 3.75,
+      "serverPid": 36336
+    },
+    {
+      "check": "hard departure and current-world rejoin 8",
+      "passed": true,
+      "survivorCommands": 17,
+      "rejoinSeconds": 3.672,
+      "serverPid": 36336
+    },
+    {
+      "check": "complete world survives final graceful authority restart",
+      "passed": true
+    }
+  ],
+  "physicalDevicesAccessed": false,
+  "serverRestartsDuringCrashCycles": 0
+}

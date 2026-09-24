@@ -1,0 +1,21 @@
+--- upstream-2.7.4/Runtime/UDPNetworkInterface.cs
++++ embedded-patch-1/Runtime/UDPNetworkInterface.cs
+@@ -417,12 +417,18 @@
+                         if (results[i].status == Binding.Baselib_RegisteredNetwork_CompletionStatus.Failed)
+                         {
+                             failedCount++;
++                            // Little Weeps patch 1: the completed request no
++                            // longer owns this buffer, even when it failed.
++                            ReceiveQueue.ReleaseBuffer(bufferIndex);
+                             continue;
+                         }
+ 
+                         var receivedBytes = (int)results[i].bytesTransferred;
+                         if (receivedBytes <= 0 || receivedBytes > ReceiveQueue.PayloadCapacity)
++                        {
++                            ReceiveQueue.ReleaseBuffer(bufferIndex);
+                             continue;
++                        }
+ 
+                         if (!ReceiveQueue.EnqueuePacket(bufferIndex, out var packetProcessor))
+                         {

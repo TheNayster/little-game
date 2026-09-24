@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "utc": "2026-09-24T19:39:03.948471+00:00",
+  "base": "2.7.4",
+  "revision": "4ab5f764fea8cb22683a635175bcb13fcd0b23de",
+  "originalFiles": 293,
+  "changed": [
+    {
+      "path": "Runtime/UDPNetworkInterface.cs",
+      "before": "f59f23dfb8998c2cd35e72fced30993f11aa3e9d049679474ef2dcd5d1bee0d6",
+      "after": "c6d5990124efb3dde11ab00e72cfded924e7acbbc33d419a88da0e37492c5438"
+    }
+  ],
+  "added": [
+    "LITTLE_WEEPS_PATCH.md",
+    "LITTLE_WEEPS_PATCH.md.meta"
+  ],
+  "originalNoticesAndLicensesUnchanged": true
+}

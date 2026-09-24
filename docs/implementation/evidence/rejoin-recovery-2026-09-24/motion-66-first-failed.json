@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "build": 66,
+  "runId": "e113270bc7b6432b8fa6d6842df08372",
+  "players": 4,
+  "conditions": {
+    "testMotionDelayMs": 80,
+    "testMotionJitterMs": 25,
+    "testMotionDropEvery": 10
+  },
+  "checks": [],
+  "error": "Visible jitter/correction is too large: {'sampleCount': 161, 'medianFrameMs': 16.67, 'visualMovingFrameFraction': 0.87, 'rawMovingFrameFraction': 0.205, 'p95VisualSpeed': 427.77, 'p95RawSnapSpeed': 1142.52, 'worstBackwardStep': 0.0, 'p95VisualLagBehindReceivedSeconds': 0.061}"
+}

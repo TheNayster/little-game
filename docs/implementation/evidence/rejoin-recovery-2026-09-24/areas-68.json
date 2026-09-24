@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "build": 68,
+  "runId": "007d0918ad2f4c6ba71be335bb2700e2",
+  "utc": "2026-09-24T19:38:15.842946+00:00",
+  "checks": [
+    {
+      "check": "one player travels while sibling holds a sponge; remaining cleanup continues in its existing area",
+      "passed": true
+    },
+    {
+      "check": "authority rejects remote item access and unknown destinations without mutation",
+      "passed": true
+    },
+    {
+      "check": "arrival sees current filled held bucket and shared ownership; pour affects only that area",
+      "passed": true
+    },
+    {
+      "check": "second-finger travel during pending pickup settles hold; obsolete visit commands stay rejected",
+      "passed": true
+    },
+    {
+      "check": "four clients separate and gather; empty area and revisits preserve exact item state",
+      "passed": true
+    },
+    {
+      "check": "rapid destination changes finish at latest requested area with one avatar membership",
+      "passed": true
+    },
+    {
+      "check": "closing and rejoining restores current area while remaining players continue",
+      "passed": true
+    },
+    {
+      "check": "authority restart and client rejoin preserve complete world and separate player locations",
+      "passed": true
+    }
+  ],
+  "worldId": "3cc46c2add1e4fd3ba2d803d70b3238d",
+  "physicalDevicesAccessed": false,
+  "loopbackOnly": true,
+  "automaticRejoin": false,
+  "captures": [
+    "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\SharedGarden\\007d0918ad2f4c6ba71be335bb2700e2\\129ae6c72f7e4df8a7428e00b6d8e163\\garden.png",
+    "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\SharedGarden\\007d0918ad2f4c6ba71be335bb2700e2\\68c1d7085a8b4b68989910b0865b728e\\garden.png"
+  ]
+}

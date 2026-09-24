@@ -1,5 +1,7 @@
 # G3 — smooth shared movement: research and implementation
 
+**Later follow-up, 24 September:** [shared build 68](g3-rejoin-recovery-2026-09-24.html) fixes the reproduced transport receive/rejoin fault and uses a 180 ms remote history buffer after further delayed-packet testing. The build-63 measurements and failures below remain the historical record. The current preview is shared 68 / solo 67.
+
 24 September 2026. **Implemented in Windows shared build 63; the user tested the updated two-window preview and confirmed “Yes—much smoother.”** Four-player native measurements, source research and remaining limits are recorded below. Solo regression build 64 is also verified; installed iPad solo 56 is unchanged.
 
 User feedback on shared 58: one window correctly showed the other player walking, but the motion was choppy. This bounded task covers FAMILY-01 and WORLD-01/02, preserving touch controls and ITEM-02 authority. The user's smoothing request took priority over the previously queued reconnect investigation; that open issue remains tracked.

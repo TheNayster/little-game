@@ -1,0 +1,240 @@
+{
+    "listening": true,
+    "connected": false,
+    "driverCreated": true,
+    "driverBound": true,
+    "driverListening": true,
+    "receiveError": 0,
+    "seconds": 51.01514540334467,
+    "maxFrameGap": 0.029484000000000067,
+    "lastDataAge": 35.190154699999997,
+    "receivedDataEvents": 23,
+    "receivedDataBytes": 7224,
+    "profiles": [],
+    "events": [
+        {
+            "utc": "2026-09-24T19:18:45.9652877Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 2.6107825033446709,
+            "peer": 4294967296
+        },
+        {
+            "utc": "2026-09-24T19:18:46.0056860Z",
+            "phase": "approved",
+            "detail": "",
+            "seconds": 2.647726103344671,
+            "peer": 1
+        },
+        {
+            "utc": "2026-09-24T19:18:46.0217768Z",
+            "phase": "connected",
+            "detail": "",
+            "seconds": 2.663549303344671,
+            "peer": 1
+        },
+        {
+            "utc": "2026-09-24T19:18:46.4490400Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 3.090767503344671,
+            "peer": 4294967297
+        },
+        {
+            "utc": "2026-09-24T19:18:46.4820657Z",
+            "phase": "approved",
+            "detail": "",
+            "seconds": 3.123935903344671,
+            "peer": 2
+        },
+        {
+            "utc": "2026-09-24T19:18:46.5008956Z",
+            "phase": "connected",
+            "detail": "",
+            "seconds": 3.142342603344671,
+            "peer": 2
+        },
+        {
+            "utc": "2026-09-24T19:18:46.9487676Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 3.590845203344671,
+            "peer": 4294967298
+        },
+        {
+            "utc": "2026-09-24T19:18:46.9824928Z",
+            "phase": "rejected",
+            "detail": "unpaired-profile",
+            "seconds": 3.6240359033446709,
+            "peer": 3
+        },
+        {
+            "utc": "2026-09-24T19:18:47.0048276Z",
+            "phase": "disconnected",
+            "detail": "",
+            "seconds": 3.6463340033446709,
+            "peer": 3
+        },
+        {
+            "utc": "2026-09-24T19:18:49.5324108Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 6.174075403344672,
+            "peer": 8589934594
+        },
+        {
+            "utc": "2026-09-24T19:18:49.5655384Z",
+            "phase": "rejected",
+            "detail": "incompatible-version",
+            "seconds": 6.207431003344672,
+            "peer": 4
+        },
+        {
+            "utc": "2026-09-24T19:18:49.5843242Z",
+            "phase": "disconnected",
+            "detail": "",
+            "seconds": 6.225946703344672,
+            "peer": 4
+        },
+        {
+            "utc": "2026-09-24T19:18:52.1496058Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 8.791273803344672,
+            "peer": 12884901890
+        },
+        {
+            "utc": "2026-09-24T19:18:52.1658820Z",
+            "phase": "rejected",
+            "detail": "profile-already-connected",
+            "seconds": 8.80794670334467,
+            "peer": 5
+        },
+        {
+            "utc": "2026-09-24T19:18:52.1861019Z",
+            "phase": "disconnected",
+            "detail": "",
+            "seconds": 8.827735103344672,
+            "peer": 5
+        },
+        {
+            "utc": "2026-09-24T19:18:54.7160581Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 11.35793950334467,
+            "peer": 17179869186
+        },
+        {
+            "utc": "2026-09-24T19:18:54.7493934Z",
+            "phase": "rejected",
+            "detail": "unpaired-profile",
+            "seconds": 11.39130950334467,
+            "peer": 6
+        },
+        {
+            "utc": "2026-09-24T19:18:54.7664752Z",
+            "phase": "disconnected",
+            "detail": "",
+            "seconds": 11.407995603344672,
+            "peer": 6
+        },
+        {
+            "utc": "2026-09-24T19:18:57.6995772Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 14.341591203344672,
+            "peer": 21474836482
+        },
+        {
+            "utc": "2026-09-24T19:18:57.7328921Z",
+            "phase": "approved",
+            "detail": "",
+            "seconds": 14.374945803344671,
+            "peer": 7
+        },
+        {
+            "utc": "2026-09-24T19:18:57.7496958Z",
+            "phase": "connected",
+            "detail": "",
+            "seconds": 14.391999803344671,
+            "peer": 7
+        },
+        {
+            "utc": "2026-09-24T19:18:58.1830164Z",
+            "phase": "transport-Connect",
+            "detail": "",
+            "seconds": 14.825065203344672,
+            "peer": 4294967299
+        },
+        {
+            "utc": "2026-09-24T19:18:58.2174209Z",
+            "phase": "approved",
+            "detail": "",
+            "seconds": 14.858771903344671,
+            "peer": 8
+        },
+        {
+            "utc": "2026-09-24T19:18:58.2340342Z",
+            "phase": "connected",
+            "detail": "",
+            "seconds": 14.875331003344672,
+            "peer": 8
+        },
+        {
+            "utc": "2026-09-24T19:19:01.6016908Z",
+            "phase": "transport-Disconnect",
+            "detail": "ProtocolTimeout",
+            "seconds": 18.24336500334467,
+            "peer": 4294967297
+        },
+        {
+            "utc": "2026-09-24T19:19:01.6047099Z",
+            "phase": "disconnected",
+            "detail": "[Disconnect Event][Client-2][TransportClientId-4294967297][ProtocolTimeout] Connection closed due to timed out.",
+            "seconds": 18.24645790334467,
+            "peer": 2
+        },
+        {
+            "utc": "2026-09-24T19:19:03.3177545Z",
+            "phase": "transport-Disconnect",
+            "detail": "ProtocolTimeout",
+            "seconds": 19.95939590334467,
+            "peer": 4294967296
+        },
+        {
+            "utc": "2026-09-24T19:19:03.3177545Z",
+            "phase": "disconnected",
+            "detail": "[Disconnect Event][Client-1][TransportClientId-4294967296][ProtocolTimeout] Connection closed due to timed out.",
+            "seconds": 19.95944880334467,
+            "peer": 1
+        },
+        {
+            "utc": "2026-09-24T19:19:03.3223496Z",
+            "phase": "transport-Disconnect",
+            "detail": "ProtocolTimeout",
+            "seconds": 19.96424050334467,
+            "peer": 21474836482
+        },
+        {
+            "utc": "2026-09-24T19:19:03.3223496Z",
+            "phase": "disconnected",
+            "detail": "[Disconnect Event][Client-7][TransportClientId-21474836482][ProtocolTimeout] Connection closed due to timed out.",
+            "seconds": 19.96426860334467,
+            "peer": 7
+        },
+        {
+            "utc": "2026-09-24T19:19:03.3263690Z",
+            "phase": "transport-Disconnect",
+            "detail": "ProtocolTimeout",
+            "seconds": 19.96793180334467,
+            "peer": 4294967299
+        },
+        {
+            "utc": "2026-09-24T19:19:03.3263690Z",
+            "phase": "disconnected",
+            "detail": "[Disconnect Event][Client-8][TransportClientId-4294967299][ProtocolTimeout] Connection closed due to timed out.",
+            "seconds": 19.96794400334467,
+            "peer": 8
+        }
+    ]
+}

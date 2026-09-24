@@ -23,6 +23,18 @@ namespace LittleWeeps.NetworkProbe
         private Config config;
         private string root,output,epoch;
         private NetworkManager network;
+        private UnityTransport transport;
+        private double previousFrame,nextConnectionEvidence,lastTransportData;
+        private double maxFrameGap;
+        private long receivedDataEvents,receivedDataBytes;
+        private readonly List<ConnectionTrace> connectionTrace=new List<ConnectionTrace>();
+        [Serializable] private sealed class ConnectionTrace {public string utc,phase,detail;public double seconds;public ulong peer;}
+        [Serializable] private sealed class ConnectionEvidence
+        {
+            public bool listening,connected,driverCreated,driverBound,driverListening;
+            public int receiveError;public double seconds,maxFrameGap,lastDataAge;
+            public long receivedDataEvents,receivedDataBytes;public string[] profiles;public ConnectionTrace[] events;
+        }
         private FamilySession session;
         private MovementAuthority movement;
         private double motionClock,accumulator,nextMotionSend,lastPositionSave,nextMotionEvidence;
@@ -95,7 +107,11 @@ namespace LittleWeeps.NetworkProbe
                     (config.role!="server" && config.role!="client"))throw new InvalidDataException("Invalid isolated configuration.");
                 output=Path.Combine(root,config.instanceId);Directory.CreateDirectory(output);
                 var go=new GameObject("Loopback Network",typeof(NetworkManager),typeof(UnityTransport));
-                network=go.GetComponent<NetworkManager>();var transport=go.GetComponent<UnityTransport>();
+                network=go.GetComponent<NetworkManager>();transport=go.GetComponent<UnityTransport>();
+                transport.OnTransportEvent+=TraceTransport;
+                network.OnServerStopped+=host=>TraceConnection("server-stopped",0,host.ToString());
+                network.OnClientStopped+=host=>TraceConnection("client-stopped",0,host.ToString());
+                network.OnTransportFailure+=()=>TraceConnection("transport-failure",0,"");
                 // Explicit loopback bind prevents this development protocol from
                 // becoming a LAN service. Tokens below are test credentials only.
                 transport.SetConnectionData(true,"127.0.0.1",(ushort)config.port,"127.0.0.1");
@@ -161,14 +177,17 @@ namespace LittleWeeps.NetworkProbe
                 response.Approved=session.Attach(request.ClientNetworkId,hello.profile,out var reason);response.Reason=reason;
             }
             catch(ArgumentException){response.Reason="invalid-admission";}
+            finally{TraceConnection(response.Approved?"approved":"rejected",request.ClientNetworkId,response.Reason);}
         }
         private void Connected(ulong client)
         {
+            TraceConnection("connected",client,"");
             if(config.role=="server")Publish();
             else if(client==network.LocalClientId)WriteStatus("connected","");
         }
         private void Disconnected(ulong client)
         {
+            TraceConnection("disconnected",client,network.DisconnectReason??"");
             if(stopping || failed)return;
             try
             {
@@ -239,6 +258,7 @@ namespace LittleWeeps.NetworkProbe
                         if(prior!=null && prior.zone==p.zone && prior.visit==p.visit && PositionTime(p.id)>state.time){p.x=prior.x;p.y=prior.y;}
                         else{positionTimes[p.id]=state.time;if(prior==null || prior.visit!=p.visit)inputAcks[p.id]=0;}
                     }
+                    if(Latest==null)TraceConnection("first-snapshot",sender,state.sequence.ToString());
                     seenSequence=state.sequence;Latest=state;WriteJson(Path.Combine(output,"view.json"),state);
                 }
                 Received?.Invoke(state);
@@ -350,6 +370,7 @@ namespace LittleWeeps.NetworkProbe
         private void Update()
         {
             if(config==null || output==null || failed || stopping)return;
+            UpdateConnectionEvidence();
             try{TickMovement(Time.realtimeSinceStartupAsDouble);}catch(Exception e){Fail(e);return;}
             if(Time.realtimeSinceStartup-started>(config.interactive?7200:240)){Fail(new TimeoutException("Isolated probe lifetime exceeded."));return;}
             if(Time.realtimeSinceStartup<nextControl)return;nextControl=Time.realtimeSinceStartup+.04f;
@@ -370,6 +391,28 @@ namespace LittleWeeps.NetworkProbe
             catch(Exception e){Fail(e);}
         }
         private void SaveAuthority(){store.Save(JsonUtility.ToJson(session.Checkpoint()));checkpointWrites++;positionDirty=false;lastPositionSave=Time.realtimeSinceStartupAsDouble;}
+        private void TraceConnection(string phase,ulong peer,string detail)
+        {
+            if(connectionTrace.Count>=256)connectionTrace.RemoveAt(0);
+            connectionTrace.Add(new ConnectionTrace{utc=DateTime.UtcNow.ToString("O"),seconds=Time.realtimeSinceStartupAsDouble,phase=phase,peer=peer,detail=detail});
+            nextConnectionEvidence=0;
+        }
+        private void TraceTransport(NetworkEvent kind,ulong peer,ArraySegment<byte> payload,float receivedAt)
+        {
+            if(kind==NetworkEvent.Data){receivedDataEvents++;receivedDataBytes+=payload.Count;lastTransportData=Time.realtimeSinceStartupAsDouble;}
+            else TraceConnection("transport-"+kind,peer,kind==NetworkEvent.Disconnect?transport.DisconnectEvent.ToString():"");
+        }
+        private void UpdateConnectionEvidence()
+        {
+            var now=Time.realtimeSinceStartupAsDouble;
+            if(previousFrame>0)maxFrameGap=Math.Max(maxFrameGap,now-previousFrame);previousFrame=now;
+            if(now<nextConnectionEvidence || transport==null)return;nextConnectionEvidence=now+1;
+            ref var driver=ref transport.GetNetworkDriver();var created=driver.IsCreated;
+            WriteJson(Path.Combine(output,"connection-evidence.json"),new ConnectionEvidence{seconds=now,listening=network.IsListening,connected=network.IsConnectedClient,
+                driverCreated=created,driverBound=created && driver.Bound,driverListening=created && driver.Listening,receiveError=created?driver.ReceiveErrorCode:0,
+                maxFrameGap=maxFrameGap,lastDataAge=now-lastTransportData,receivedDataEvents=receivedDataEvents,receivedDataBytes=receivedDataBytes,
+                profiles=session?.ConnectedPlayers??Latest?.connected??Array.Empty<string>(),events=connectionTrace.ToArray()});
+        }
         private static bool ValidSave(string payload)
         {
             try{var saved=JsonUtility.FromJson<SoloSnapshot>(payload);if(saved!=null && saved.schema>2)throw new NotSupportedException("Newer schema.");SoloWorld.Validate(saved);return true;}

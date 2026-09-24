@@ -21,7 +21,10 @@ namespace LittleWeeps.NetworkProbe
         private double nextWalkSend,lastMotionReceived;
         private string ownGeneration;
         private Vector2 anticipated;
-        public const double InterpolationDelay=.12;
+        // Leave room for the 50 ms snapshot spacing plus the tested 80 ms
+        // delay, 25 ms jitter and a missed snapshot. Own-player anticipation
+        // stays immediate; only other players/held props use this history.
+        public const double InterpolationDelay=.18;
         public void Initialize(NetworkProbe source)
         {probe=source;probe.Received+=Receive;probe.MotionReceived+=CapturePositions;probe.LostConnection+=Disconnected;}
         public string Actor=>probe.Settings.profile;

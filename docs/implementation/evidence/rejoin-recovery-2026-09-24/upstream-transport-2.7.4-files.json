@@ -1,0 +1,1174 @@
+[
+  {
+    "path": "CHANGELOG.md",
+    "sha256": "1680abc78add2ec285a199f93988a68e9668d9ad9fc7b804acd7958dcbf46673"
+  },
+  {
+    "path": "CHANGELOG.md.meta",
+    "sha256": "7b9b4ec667b7e9a7172ae0cf150db41e3d07bcc096df6fb9417fb0152aecb101"
+  },
+  {
+    "path": "Documentation~/client-server-jobs.md",
+    "sha256": "5e599fd70ae160895c4ef842af14102eea8ebe8663fb7a2721be4b1a5ee7556c"
+  },
+  {
+    "path": "Documentation~/client-server-secure.md",
+    "sha256": "19bb0b9234fffbcf9cf60cba7127eb9c031ddf32daec4bd4c2e08d8de80f77ab"
+  },
+  {
+    "path": "Documentation~/client-server-simple.md",
+    "sha256": "10d73f130db988459b480d0c8bafb9c37824060031bbadc86c37beb32fe5ab66"
+  },
+  {
+    "path": "Documentation~/cross-play.md",
+    "sha256": "2666115813b7e9403c744efc424b12bc42f6e30c2b5a408aae37686d8f0bd94b"
+  },
+  {
+    "path": "Documentation~/event-consumption.md",
+    "sha256": "3596925329f97b6a96161f173c096a6fd5499d1994db3c61eeaa8f85bbcdbaad"
+  },
+  {
+    "path": "Documentation~/faq.md",
+    "sha256": "5b1615be7e58bf03639b8eb6590c735ce1c94a2f580c31a3af55ee08cc9b9adc"
+  },
+  {
+    "path": "Documentation~/filter.yml",
+    "sha256": "aca8a4fdf179fd6ca1a1a7f6b6ce5b2cb17aaa7510279ad6ae28a85ea52c9c28"
+  },
+  {
+    "path": "Documentation~/images/add.png",
+    "sha256": "8a7fc22678c2e676ed547e8c1c2cf6a31ddf11a8ec4eec9f94b71dfe9c67f339"
+  },
+  {
+    "path": "Documentation~/images/block-diagram.png",
+    "sha256": "5a70500f1c2f9e282022320f0d26fa9cc589cac53bc58a18eed93877c52a9261"
+  },
+  {
+    "path": "Documentation~/images/console-view.png",
+    "sha256": "831a913c70c4a2dc12948923cfab147ad2a902bbbaa649328a6cc629e1d405bf"
+  },
+  {
+    "path": "Documentation~/images/game-object.png",
+    "sha256": "16d9e67c99e1fb717c1c314fbd86c742a03ca502ed0485fa9b7dd6f9b26089cc"
+  },
+  {
+    "path": "Documentation~/images/inspector.png",
+    "sha256": "e3ef79e641961a9a0cf03e0a16f82a7b58988282e37f75b9cf813841219fffc8"
+  },
+  {
+    "path": "Documentation~/images/pipelines-example.png",
+    "sha256": "0a251c6a84d8c713700d5223c7843dd8f2aadf80c23ac1e74909b8072cd76f5d"
+  },
+  {
+    "path": "Documentation~/images/pipelines-stages.png",
+    "sha256": "aec608aa126f545ae3fcdd7c9009067f0e1924e9e42c586d5ac3b941a4357f0e"
+  },
+  {
+    "path": "Documentation~/index.md",
+    "sha256": "505df57e5c91ce7a0370bfe862ac19f91a60c7453d8d6dc373f655474cb395ae"
+  },
+  {
+    "path": "Documentation~/install.md",
+    "sha256": "f5424206b754c2a5dfd4bf297f073da18097dbc14f3779610c6306b9c9df23e4"
+  },
+  {
+    "path": "Documentation~/logging.md",
+    "sha256": "ef4b0f4437cec1504acc138df8915b7f6ca3db76eef797d208c120a54df03bfd"
+  },
+  {
+    "path": "Documentation~/migration.md",
+    "sha256": "86c5ff2ce3b11b6c1bd46eec144a31a1b5ba23ef3eb99f60c7d15be95fd9be63"
+  },
+  {
+    "path": "Documentation~/network-settings.md",
+    "sha256": "e92483b598f75868669441c303e037825e7f8ba0e26f51187e6d656d83af0f9a"
+  },
+  {
+    "path": "Documentation~/pipelines-usage.md",
+    "sha256": "59a7963d504d675b51953d3ac8932a7e0a74be376ca27b12dc5ca8f9db814b78"
+  },
+  {
+    "path": "Documentation~/samples-usage.md",
+    "sha256": "de4d7458cf15da8beade2544c45959b893c9742eecb94f33092a712d6f72e948"
+  },
+  {
+    "path": "Documentation~/toc.md",
+    "sha256": "b1b128900d780eeefaedf844dbc9a4597dceb4f02c3a083da7cd4193c197b7aa"
+  },
+  {
+    "path": "Documentation~/websockets.md",
+    "sha256": "012049e65e199e5a9578fb02745f117cfb4b77d51d0bfbdaec6668dd3721cf10"
+  },
+  {
+    "path": "Editor/RoslynAnalyzerFix.cs",
+    "sha256": "2d6e0fd2048ee1a8514c565cf902cf32137434f678aaa61888650f21086c8357"
+  },
+  {
+    "path": "Editor/RoslynAnalyzerFix.cs.meta",
+    "sha256": "5d0e7284fbc539fff1dc6d90dcc998b7d2415750dfdb3b57ea97ecd97ee2a493"
+  },
+  {
+    "path": "Editor/Unity.Networking.Editor.asmdef",
+    "sha256": "d4ebc99f3501a37de9139e9d94a861c4aae1bd76eef402bda4284a439a42673d"
+  },
+  {
+    "path": "Editor/Unity.Networking.Editor.asmdef.meta",
+    "sha256": "8f47fb3e36fcc43928c0062a6695a590c64bc2d5076a6d18ab5b3ca2b64e7624"
+  },
+  {
+    "path": "Editor.meta",
+    "sha256": "4a7c4e5bed1fb9726ccf72d639deba9bed75aa245da7ab6e8f3b02d9d974399d"
+  },
+  {
+    "path": "LICENSE.md",
+    "sha256": "bcbfa9a6e7d2e9d0e1b693246ff99203b986dbc6433a5437b6cc307c3a052af9"
+  },
+  {
+    "path": "LICENSE.md.meta",
+    "sha256": "90e17af86e103d1e6408b94739a81a8286531621e7aaf5664d9cdb32ec9ff96d"
+  },
+  {
+    "path": "package.json",
+    "sha256": "8b0be04768c3e572efbbd530a97750694e712039d6235d1c86db2b104391689d"
+  },
+  {
+    "path": "package.json.meta",
+    "sha256": "026e49f51be3d494d1ff2e85fe228355b1e21a41351aea1bb34712344727d779"
+  },
+  {
+    "path": "Runtime/Analytics/BandwidthStatistics.cs",
+    "sha256": "98539ebca5cb7651a656168ea1d2bee0aa6def970bd45e770826a105563a64ce"
+  },
+  {
+    "path": "Runtime/Analytics/BandwidthStatistics.cs.meta",
+    "sha256": "f8a798aa212f9ec8cf14a55bb73b6d4555da86593632379837b6d3d65ce4842b"
+  },
+  {
+    "path": "Runtime/Analytics/ConnectionMedium.cs",
+    "sha256": "881698ee306314b37373e82be5320a345c1fdd68acdc6e20f3c605b7b7395ce5"
+  },
+  {
+    "path": "Runtime/Analytics/ConnectionMedium.cs.meta",
+    "sha256": "8698b788969848819e6948c70a755f8f2e62ca2976766e3ffc134fe67b3ea921"
+  },
+  {
+    "path": "Runtime/Analytics/ConnectionMedium.jslib",
+    "sha256": "2661adecc91e5a25f0f55e02a96b88eb1e22a9c9fd9b59f73b2256364691765c"
+  },
+  {
+    "path": "Runtime/Analytics/ConnectionMedium.jslib.meta",
+    "sha256": "8341145a32cd3b05f7e780664e24c77d976e29f8ac883d5e85d9cda991ae4dc0"
+  },
+  {
+    "path": "Runtime/Analytics/ConnectionStatistics.cs",
+    "sha256": "5a4063973e14b499aa7e82ad836be581a09c047b4f330ae48cc7122ec64efa03"
+  },
+  {
+    "path": "Runtime/Analytics/ConnectionStatistics.cs.meta",
+    "sha256": "b304dfa604a59ebf4fd31ddc4bc441fb88962d90f35dfff17bc9db84b1ecea08"
+  },
+  {
+    "path": "Runtime/Analytics/DriverStatistics.cs",
+    "sha256": "2a87fcf6f5f4da0b98d044cb0dfa84d6f471e7176c5babd00d83b615cc68045e"
+  },
+  {
+    "path": "Runtime/Analytics/DriverStatistics.cs.meta",
+    "sha256": "110124a1450a56b35232e1744f57a4e3a896252dd7ea79455f0c53bfd3d06e5f"
+  },
+  {
+    "path": "Runtime/Analytics/PacketSizeStatistics.cs",
+    "sha256": "76a6523daa17cc52ec02b238ab06283c60a55fc17062985a414d229f7eb3c82a"
+  },
+  {
+    "path": "Runtime/Analytics/PacketSizeStatistics.cs.meta",
+    "sha256": "3cbad43b3ee0fd2b19a7371622e933b30222f4b336d64b6ef6561df2b96efce9"
+  },
+  {
+    "path": "Runtime/Analytics/RunningStatistics.cs",
+    "sha256": "d2878a5599fdce5345730a1b115b021dbbd882bfc1c0839f4ddcd27b973bea5d"
+  },
+  {
+    "path": "Runtime/Analytics/RunningStatistics.cs.meta",
+    "sha256": "7a597d9c9f293b217ff352d942499d74da2b7e587bfe161b1f31701615df87a9"
+  },
+  {
+    "path": "Runtime/Analytics.meta",
+    "sha256": "8d3c399783e08ef91c30c75c1c0d342df2b80d672864913665b3dc5fc5a63215"
+  },
+  {
+    "path": "Runtime/AssemblyInfo.cs",
+    "sha256": "fc42427b2f2897a519762b3f6551b686768461a584aa914478a1a669da07f8cd"
+  },
+  {
+    "path": "Runtime/AssemblyInfo.cs.meta",
+    "sha256": "877d7a073b76265aa57579f3dc211a3781c1b60d5e3f4a063a35f15e0fe92dc2"
+  },
+  {
+    "path": "Runtime/AtomicFreeList.cs",
+    "sha256": "a7c2cfc04b5062be0ed5659f3283ebf209717ec3884f342ce403c47e248160f1"
+  },
+  {
+    "path": "Runtime/AtomicFreeList.cs.meta",
+    "sha256": "f7893ad949b590f77a18d1b8d97e499e1391e7c07b79ebd5dadac5eb59ff5eef"
+  },
+  {
+    "path": "Runtime/BaselibNetworkArray.cs",
+    "sha256": "bccc33221eda2b14be819e64ea3903d2c9adf5f9419a906366efe837008570ff"
+  },
+  {
+    "path": "Runtime/BaselibNetworkArray.cs.meta",
+    "sha256": "b6907b4fc477ef405d68aa249b8453ee94dc74d999501b594f7d49197889bad8"
+  },
+  {
+    "path": "Runtime/BaselibNetworkInterface.deprecated.cs",
+    "sha256": "4c31b77104cfaaf76e99fc44f623a8e0c7bdc0fdb59ef41c7ac2c24c9a5c2162"
+  },
+  {
+    "path": "Runtime/BaselibNetworkInterface.deprecated.cs.meta",
+    "sha256": "57e62bf54957cbca2a1aa7900dcab71fe666507020fe53c20741e6030507e38a"
+  },
+  {
+    "path": "Runtime/ConnectionDataMap.cs",
+    "sha256": "ed8cf7c1947709fc9db3a28575cf65a7261a75dab66570ef805ecae769f1485c"
+  },
+  {
+    "path": "Runtime/ConnectionDataMap.cs.meta",
+    "sha256": "3f42ee17ba74dd9e13d5992f6cf45c426fc0d5d62688d02b91d1af82c3aff378"
+  },
+  {
+    "path": "Runtime/ConnectionId.cs",
+    "sha256": "7b8f9593ad4dab6cfaa98ef8857c7ba297fa9ac2648a3b73d22d148d41cd6f5e"
+  },
+  {
+    "path": "Runtime/ConnectionId.cs.meta",
+    "sha256": "9fc78d68713f487f15bf31b7040356c3d2ff5efc7ef73a6242255d3440dc0dd1"
+  },
+  {
+    "path": "Runtime/ConnectionList.cs",
+    "sha256": "74f2587fb0c10f8950e59368cb3882da4a6c325d7e060bf1fe76d770600ab5e3"
+  },
+  {
+    "path": "Runtime/ConnectionList.cs.meta",
+    "sha256": "8c68ac899cf93ae3902741a892afc49382d8bd74c6ffc537710456e02fd01775"
+  },
+  {
+    "path": "Runtime/ConnectionToken.cs",
+    "sha256": "e085aaa5b25283641b618b32937e7fe849d1a72cfd0ee12d80be64392ecb390f"
+  },
+  {
+    "path": "Runtime/ConnectionToken.cs.meta",
+    "sha256": "0eadafcdfe6efa6f8fa16ec251c987684b672e52ac7889d8c7fad3fd688bfb57"
+  },
+  {
+    "path": "Runtime/HMACSHA256.cs",
+    "sha256": "307caf1549515f12d6629438f1a87503a7265c8a173d34ba6ebab483ba628c9e"
+  },
+  {
+    "path": "Runtime/HMACSHA256.cs.meta",
+    "sha256": "965dc9a553966fddb49f84ed504f0995513577b40b8dc13b1d5b12403ba108a7"
+  },
+  {
+    "path": "Runtime/INetworkInterface.cs",
+    "sha256": "1a9d3f100000530571beed2016dc84f9866d451331b3dfc098c9cc7be35a2417"
+  },
+  {
+    "path": "Runtime/INetworkInterface.cs.meta",
+    "sha256": "806553b0fb8dc1e9dceb76126a1463b1eae38db627811f05e1ec70129cc483dd"
+  },
+  {
+    "path": "Runtime/INetworkLayer.cs",
+    "sha256": "5fb7fa222745afeaff69df2dc5f28df4d028f9f07b26f1511894dcd1a15a9690"
+  },
+  {
+    "path": "Runtime/INetworkLayer.cs.meta",
+    "sha256": "f263453ad7be2e18690c887a669bec9882f2e4ddaf26ba29957fac995dd97175"
+  },
+  {
+    "path": "Runtime/IPCManager.cs",
+    "sha256": "c9fb670e97f5b493f51e55a5f1275005504342a15f0bd3dc6d7c60b5b9e0ac9c"
+  },
+  {
+    "path": "Runtime/IPCManager.cs.meta",
+    "sha256": "fdc041300e48b4890c265dcd4ff85ad288706f94a0f350794c3c8d1dc92fbb3d"
+  },
+  {
+    "path": "Runtime/IPCNetworkInterface.cs",
+    "sha256": "24add7214c90a1ab3387b941993e40e9c85f1da21851ef2b16a4e40108487d09"
+  },
+  {
+    "path": "Runtime/IPCNetworkInterface.cs.meta",
+    "sha256": "ed1015e0be75ebfd97211d29ff7ea182fcbc2d405579a62f097c89f47883f305"
+  },
+  {
+    "path": "Runtime/Layers/AnalyticsLayer.cs",
+    "sha256": "33772b56f15c363f6b85af1df3c3d9edd7ea12607c6e32e6590d3c1f90384f52"
+  },
+  {
+    "path": "Runtime/Layers/AnalyticsLayer.cs.meta",
+    "sha256": "67472f86d3c663e8cd78759c2fdfd2cc0de5fd1335da2dbc1e8034518dba2f9c"
+  },
+  {
+    "path": "Runtime/Layers/BottomLayer.cs",
+    "sha256": "3edd34ca6e17a605ff5c41e385ff8c957c6f1be419164ea6de3959f84ad901d1"
+  },
+  {
+    "path": "Runtime/Layers/BottomLayer.cs.meta",
+    "sha256": "a7c26aadd5ad9b8f406c51596d2e204089cff503de4b5824f533f069113a6607"
+  },
+  {
+    "path": "Runtime/Layers/DTLSLayer.cs",
+    "sha256": "3dd492d41ace454bb74a33d8d8bf06e388e550a3ef97d9fdbccbc15824741641"
+  },
+  {
+    "path": "Runtime/Layers/DTLSLayer.cs.meta",
+    "sha256": "d868296261e3356918c6492d14c23882d04b6068989c21da72d0a609c330ae8a"
+  },
+  {
+    "path": "Runtime/Layers/LogLayer.cs",
+    "sha256": "3059be10aaf7d2dfa4e443cc30da70f71ce170d4f603f48b77ee7ec2fd929998"
+  },
+  {
+    "path": "Runtime/Layers/LogLayer.cs.meta",
+    "sha256": "bda7c63fb72071731039264244c4d404a5ca7a23915b358b7102f865c6b8a819"
+  },
+  {
+    "path": "Runtime/Layers/NetworkInterfaceLayer.cs",
+    "sha256": "4b495faa3b69a2d8e0f5bb1912f4faddb6f0248f62f985ee76a337a2cf9da986"
+  },
+  {
+    "path": "Runtime/Layers/NetworkInterfaceLayer.cs.meta",
+    "sha256": "ceb53304c53701a8c82dcbf42f2ad19619dae5354cd1b182f4746b69687fc108"
+  },
+  {
+    "path": "Runtime/Layers/RelayLayer.cs",
+    "sha256": "dfe3172df394ef08fad577a26a7f132dcf5f96b952e2d73864f05cb0d54008f8"
+  },
+  {
+    "path": "Runtime/Layers/RelayLayer.cs.meta",
+    "sha256": "86a6fde1e4e24bd5960408ba7741a3fb013b7105cd6354a016bb03d0dcce8500"
+  },
+  {
+    "path": "Runtime/Layers/SimpleConnectionLayer.cs",
+    "sha256": "ec55124452f3a5185b459edcc6f58598841aa69adda56f2e7d3257900307795d"
+  },
+  {
+    "path": "Runtime/Layers/SimpleConnectionLayer.cs.meta",
+    "sha256": "8e2cc960f30f2d57475239abdfb7ecd1577b0cd8a9886b33378d78960b8dae17"
+  },
+  {
+    "path": "Runtime/Layers/SimulatorLayer.cs",
+    "sha256": "e5058fcc9774adc5ca97cc5c9f534d1d78d7de0615790f8c4e946cce32c729c2"
+  },
+  {
+    "path": "Runtime/Layers/SimulatorLayer.cs.meta",
+    "sha256": "b4c4e4f7417d65ac73963cf6c2a97eaa355dc482d45d8d15f5ce434163d3126e"
+  },
+  {
+    "path": "Runtime/Layers/StreamSegmentationLayer.cs",
+    "sha256": "ead0f803d0f7222b1bf70af07235ae89aacbcf844ea9dcb713818838ee27708a"
+  },
+  {
+    "path": "Runtime/Layers/StreamSegmentationLayer.cs.meta",
+    "sha256": "b1bd40571afff1f12230506b6655ffb95b75cdd2f4fb5fbfe2fa0886539218ff"
+  },
+  {
+    "path": "Runtime/Layers/StreamToDatagramLayer.cs",
+    "sha256": "fc2e6ef86eb208a18b717c416e1ff968e0352848d7e545845cdb4ca1d62aac44"
+  },
+  {
+    "path": "Runtime/Layers/StreamToDatagramLayer.cs.meta",
+    "sha256": "d7e2e379f5fc9636d3148acd5ff752f400d6feda96a830ec4216538df52746e9"
+  },
+  {
+    "path": "Runtime/Layers/TLSLayer.cs",
+    "sha256": "f80ea1ff85d5c02f436d1a112e986b787325c7310f802455974d9b4c468934e3"
+  },
+  {
+    "path": "Runtime/Layers/TLSLayer.cs.meta",
+    "sha256": "264324462803b4a19a1a6efed2797c66744cd3457f3fd9848bf5c4b55cf6dc58"
+  },
+  {
+    "path": "Runtime/Layers/TopLayer.cs",
+    "sha256": "3846706fb0b2995753adc032f1ab46bd6b4c60a2909ff73ce3638cd31e835621"
+  },
+  {
+    "path": "Runtime/Layers/TopLayer.cs.meta",
+    "sha256": "39057a8c68fdecd0d41f6483b3e0759058a54050e97c2a1efdbdd16ff15253ac"
+  },
+  {
+    "path": "Runtime/Layers/WebSocketLayer.cs",
+    "sha256": "3bc84d43bd8370d80be94b19b112ed54d72a18fb1526203f4d046ebeadb1da10"
+  },
+  {
+    "path": "Runtime/Layers/WebSocketLayer.cs.meta",
+    "sha256": "c941089132109a7576111ec3ae0ee0a30e7f1de6bc075a122c2a4f6f18e22b3d"
+  },
+  {
+    "path": "Runtime/Layers.meta",
+    "sha256": "c050fd5be916d054b64134f88faf6ec2785c9fdd63de1f3ade3e0926b1260414"
+  },
+  {
+    "path": "Runtime/LoggingParameters.cs",
+    "sha256": "f8b33aa342488f3764d8c6e8d272616f544ee2c39198eeeaf8f85a3445efe8ed"
+  },
+  {
+    "path": "Runtime/LoggingParameters.cs.meta",
+    "sha256": "704d05caba4986c23e56da61ec84129cfb9eaa4fc6d240b925a330f0828a27d5"
+  },
+  {
+    "path": "Runtime/MultiNetworkDriver.cs",
+    "sha256": "45e1c5980439afc2c14a166cb4eaf257689de3c6f4ba18d534ca2da0188d42d6"
+  },
+  {
+    "path": "Runtime/MultiNetworkDriver.cs.meta",
+    "sha256": "1d033addda2c7b7785c9ed8fbd3ff3ecd5ae12bab58296746624264febbb9fe3"
+  },
+  {
+    "path": "Runtime/NetworkConnection.cs",
+    "sha256": "dbf0875384252492a8ce054b464200be6b59783b10f82a7f5895db07256e9218"
+  },
+  {
+    "path": "Runtime/NetworkConnection.cs.meta",
+    "sha256": "4b358a798d772345989f109c73a28823c02dcfded1d33da52932d1d3cf67af56"
+  },
+  {
+    "path": "Runtime/NetworkDriver.cs",
+    "sha256": "91201d4e3b1c46d0cd4da75df8c8233560079efd439908abc3fda5c2941bcb60"
+  },
+  {
+    "path": "Runtime/NetworkDriver.cs.meta",
+    "sha256": "f926c613783c55206ccc9e8ef5b8bacc0c221a831b7f883720d43e3286086c87"
+  },
+  {
+    "path": "Runtime/NetworkDriverReceiver.cs",
+    "sha256": "b466c95a3eb086b199bd7236c30de62d7f90c8623212514977684021a664464a"
+  },
+  {
+    "path": "Runtime/NetworkDriverReceiver.cs.meta",
+    "sha256": "da7a1e483535b0ff4374c9f945d2e709f8dce2de5150f287f46b09d65e5a2b20"
+  },
+  {
+    "path": "Runtime/NetworkDriverSender.cs",
+    "sha256": "2cc4e453ba9e2d874010b7632b39eff1de67c8a82970a081368944e41648780b"
+  },
+  {
+    "path": "Runtime/NetworkDriverSender.cs.meta",
+    "sha256": "1a8a4b1e47a3ef0f98f42d8ef51939acb36c067892738ece8168c5101713abd3"
+  },
+  {
+    "path": "Runtime/NetworkEndpoint.cs",
+    "sha256": "da298dd34a43c43f342b00c0adeefdb728cd81354374c1592320fc4ee32a2ad1"
+  },
+  {
+    "path": "Runtime/NetworkEndpoint.cs.meta",
+    "sha256": "241d08ad784c2f2d22c1f490a8d57a15af06248e4a3cc029ed529a9366eadfe9"
+  },
+  {
+    "path": "Runtime/NetworkEventQueue.cs",
+    "sha256": "bbce6adff5c314f83a49c29d86345b4719f984e5592fa1b504f46216d829292a"
+  },
+  {
+    "path": "Runtime/NetworkEventQueue.cs.meta",
+    "sha256": "6fddc8f723121b5c60b08e0acf67a856837bd15a07453984cc6f69da3f3ae931"
+  },
+  {
+    "path": "Runtime/NetworkInterfaceUnmanagedWrapper.cs",
+    "sha256": "a948a80040470040da642134c9cac2f748798458dcaaf7317c55951acf1ab962"
+  },
+  {
+    "path": "Runtime/NetworkInterfaceUnmanagedWrapper.cs.meta",
+    "sha256": "60897863d887528c4b440baa5d66c705b1e08b69c96aecebd65d5ffc96ea799e"
+  },
+  {
+    "path": "Runtime/NetworkLayerWrapper.cs",
+    "sha256": "893f59a4ac85d9ef780fe3c351c8c6f5852304af7d96ad1daa9f2ec6ed7ce702"
+  },
+  {
+    "path": "Runtime/NetworkLayerWrapper.cs.meta",
+    "sha256": "3f7e8a13ef892173c5a6babe4b14daffe1a6a8f49022474190edcf5a131c5ad2"
+  },
+  {
+    "path": "Runtime/NetworkParams.cs",
+    "sha256": "bfb1a2e0cd719221f45430ea9ffe9df8c664d2937040d2b3d8150e30402b028b"
+  },
+  {
+    "path": "Runtime/NetworkParams.cs.meta",
+    "sha256": "98c992b304290162b0e702bec6aa7098f80bc25e985919beac006caaca010848"
+  },
+  {
+    "path": "Runtime/NetworkPipeline.cs",
+    "sha256": "81f7c5f85d03c446bfaf02dbe4aa2ef526af876141449927807a03b4b141913b"
+  },
+  {
+    "path": "Runtime/NetworkPipeline.cs.meta",
+    "sha256": "0d97d757e211ed995ddbde144e18d1ee7d66c9a84754271958fc4af2c5a130c9"
+  },
+  {
+    "path": "Runtime/NetworkSettings.cs",
+    "sha256": "5b9e4b988ce7dadf6fe939dd124e33bb63b1facb93b4df08345da3e4cc36c9f8"
+  },
+  {
+    "path": "Runtime/NetworkSettings.cs.meta",
+    "sha256": "5c14162417f74694fce099f08c52603c1dde5eee3a51c506964323f9c2e8aa8f"
+  },
+  {
+    "path": "Runtime/NetworkStack.cs",
+    "sha256": "dbd2e8da3b70d007e4526a2c433e8fdec9668eeb5b19892565f137b2af1e8898"
+  },
+  {
+    "path": "Runtime/NetworkStack.cs.meta",
+    "sha256": "5cd40f738821b1f09864886aaeebda6a1c5bf308001ed16799bddf9ac9753ef1"
+  },
+  {
+    "path": "Runtime/OperationResult.cs",
+    "sha256": "dbe76346c1fbdbd54bc9bce6f2c638545906c21b48b612a9ac05ce74b236a4ba"
+  },
+  {
+    "path": "Runtime/OperationResult.cs.meta",
+    "sha256": "8b3b4516e2dbcfa8fb96309a4fbae525c37a3ca0ea48dd5d19ba93530d8df9a2"
+  },
+  {
+    "path": "Runtime/PacketBuffer.cs",
+    "sha256": "da7c12bbce7d664688d99f4adb7e5e10896318fd821afcd964cd222c55c2d57a"
+  },
+  {
+    "path": "Runtime/PacketBuffer.cs.meta",
+    "sha256": "b4a3b1318356264a8f3fd4d1c9829a154610ca085ed82331527ff715e35f5f14"
+  },
+  {
+    "path": "Runtime/PacketMetadata.cs",
+    "sha256": "5a7b1fa97f9ac4d4286983b928ef63630ced1025339884f2e38d02b7f8ff2981"
+  },
+  {
+    "path": "Runtime/PacketMetadata.cs.meta",
+    "sha256": "d7cb58e0fc711780efaff8d29ee718ca7bcebf6242de8f5f1813105ae8b2fd6d"
+  },
+  {
+    "path": "Runtime/PacketProcessor.cs",
+    "sha256": "a2bbdbc615615aa14a1bbf063fbdd860a45a6ef22cd09c9df9e8e5ba1cd5f523"
+  },
+  {
+    "path": "Runtime/PacketProcessor.cs.meta",
+    "sha256": "00dc729198de98529ee3722dff1f64875bf29c1cd243072898a10734dc76af24"
+  },
+  {
+    "path": "Runtime/PacketsQueue.cs",
+    "sha256": "7c433273345a71606bd38d05bb14af755edb603c09b605d7278c4c8177112efb"
+  },
+  {
+    "path": "Runtime/PacketsQueue.cs.meta",
+    "sha256": "f6dcff362b77a7ed1b894cdfdb3ce0c3803caa4c498c2789bf68d37c0685d269"
+  },
+  {
+    "path": "Runtime/Pipelines/FragmentationPipelineStage.cs",
+    "sha256": "4670493f9141c8abc9456fa25240754c8bfbb9a9e4cddcc6637b59a3c2f3fcfc"
+  },
+  {
+    "path": "Runtime/Pipelines/FragmentationPipelineStage.cs.meta",
+    "sha256": "cbc1de041794b6319e0aa21c89ab737f555c1f1bb5ba86e4ffd248eca878604c"
+  },
+  {
+    "path": "Runtime/Pipelines/FragmentationUtility.cs",
+    "sha256": "a5593d7998e5ffdb31d4336c4f712e5894d4ec1b4ac7a91196fd2e02088e2448"
+  },
+  {
+    "path": "Runtime/Pipelines/FragmentationUtility.cs.meta",
+    "sha256": "213c2486b2334e41855610abe7e2001d7f7dc31c1fd8880ffe00ec338ca3761c"
+  },
+  {
+    "path": "Runtime/Pipelines/NullPipelineStage.cs",
+    "sha256": "79ad62f6dafd33062fb542a075c47ae111f687484e3984d96cf60360e53c14cf"
+  },
+  {
+    "path": "Runtime/Pipelines/NullPipelineStage.cs.meta",
+    "sha256": "10de9527d7cdacb640a4b702474b4bba80e0cc474389f5f07266c45603aa41fc"
+  },
+  {
+    "path": "Runtime/Pipelines/ReliableAckMask.cs",
+    "sha256": "af18d401e12f1a440fca8db04607c3012e971883a38cbc291f82d270eb8cb824"
+  },
+  {
+    "path": "Runtime/Pipelines/ReliableAckMask.cs.meta",
+    "sha256": "831b8bc7bd7fe02845fe3e2a749cadf195d3168ea306ca04ae0fd06c3367dedc"
+  },
+  {
+    "path": "Runtime/Pipelines/ReliableSequencedPipelineStage.cs",
+    "sha256": "5eed1e8a506362feebba20e87be4ca79ff10ae26eafd7aa8ce535964a142f59b"
+  },
+  {
+    "path": "Runtime/Pipelines/ReliableSequencedPipelineStage.cs.meta",
+    "sha256": "9d2fd28899498af8300a0ec3494a6740b9bb7a4722becee1d3e01e096b726101"
+  },
+  {
+    "path": "Runtime/Pipelines/ReliableUtility.cs",
+    "sha256": "3510ec60acca3c527db96e97cf3e560206aa4ec8f37970d3f36d7de90196866e"
+  },
+  {
+    "path": "Runtime/Pipelines/ReliableUtility.cs.meta",
+    "sha256": "1dca0ccbed7a3b4ee483f9404b797ebad925a10a628be6d84a6935ed7a0f3e15"
+  },
+  {
+    "path": "Runtime/Pipelines/SimulatorPipelineStage.cs",
+    "sha256": "e09c24aaf9c5926b9f48f292b8c14855265e9656b4a53871a94ff1656822b7b3"
+  },
+  {
+    "path": "Runtime/Pipelines/SimulatorPipelineStage.cs.meta",
+    "sha256": "a2ff0425b87c4960a4be561dcc5de8912ec97fe1c1597294cb32ff128b441558"
+  },
+  {
+    "path": "Runtime/Pipelines/SimulatorUtility.cs",
+    "sha256": "eea61ace8dece28c5b11a9215db3e29cd4f4a245e131681a3260946fb22ba4f6"
+  },
+  {
+    "path": "Runtime/Pipelines/SimulatorUtility.cs.meta",
+    "sha256": "55159cc48400bf4f266c87766c545a297d29215e4f674cf128a475484ec296bb"
+  },
+  {
+    "path": "Runtime/Pipelines/UnreliableSequencedPipelineStage.cs",
+    "sha256": "0b8991bcd7d194633d605f8d022cf4315fec1d15194daec0a85cfe2326edc788"
+  },
+  {
+    "path": "Runtime/Pipelines/UnreliableSequencedPipelineStage.cs.meta",
+    "sha256": "543b562361d42b954ef7cc6029f63d09a1a8eced2b8256b9ed516d686f2da770"
+  },
+  {
+    "path": "Runtime/Pipelines.meta",
+    "sha256": "407a6a2544cfa9dfd5c8148b4341793ae63ce7dec8b8223e827890c63229a70e"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageAccepted.cs",
+    "sha256": "ed8463959ee124b3db30faafe4166eb505b8d4acd779a8766fc8044cdd7ae117"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageAccepted.cs.meta",
+    "sha256": "a951b75df6e1e714e6fa0f2173561460b5a9283419d37dfc5da7b6ddc93db946"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageBind.cs",
+    "sha256": "b4d8525ff52211ae3796f1b1de8f31a8ff6c516f668cdc005a219940cfe9f32f"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageBind.cs.meta",
+    "sha256": "7f6dd54059472bdaf697cd2ae7347457ff6f8696d29813b05a7e7f7cf41a4593"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageConnectRequest.cs",
+    "sha256": "36df673ed2d28c53ae033f955b3a3229e4c31b1c14eee6b53187c61a28119553"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageConnectRequest.cs.meta",
+    "sha256": "ea74a791c4cc96e30bf0010b4f38419313a996719afedc2aeb793b5a32ec2f5c"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageDisconnect.cs",
+    "sha256": "f8d02388f1ecb8f3b044e1373617f5099159edf0d034fc7a35191ed4756e8ecb"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageDisconnect.cs.meta",
+    "sha256": "0595409e4bacf2c10772e8ef91da06ee17a83fd5de6b065fef6fd4471e7b3c04"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageError.cs",
+    "sha256": "1170e5372db5863466ca23d9e817725fdb96bb21dfd7508ee1a963288b9169d4"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageError.cs.meta",
+    "sha256": "71ca9142dac14a2e136c460658ca5c5eab709d9effcb3729c5826a07d3d5f78d"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageHeader.cs",
+    "sha256": "bdf32c507d63359369390010bdf7f8d4e5fa027747fe79a192903d3153d2e9a0"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageHeader.cs.meta",
+    "sha256": "82a6fd7653ff583607903e66931f5e54232ed31bd37c1ce2cc1d8aeca1667149"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessagePing.cs",
+    "sha256": "e696f96d3536a70a20779bcd2075393fb4c0e033ad6eaa9e3334f2a3fab5932c"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessagePing.cs.meta",
+    "sha256": "b2f5c1609fd3e66641809f9965f0b16ebe6a24b5f0e072b02ea83e14eb650695"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageRelay.cs",
+    "sha256": "996f4e3344b7cf9f8cfc94f77d5c517de6218576b386b215d80acbfea649c027"
+  },
+  {
+    "path": "Runtime/Relay/Messages/RelayMessageRelay.cs.meta",
+    "sha256": "c9dfb94ccb15974b6cf8b0403cfcd5839cdc6afcd188fa7e8e6d8a91873527e5"
+  },
+  {
+    "path": "Runtime/Relay/Messages.meta",
+    "sha256": "4987ea9dbfacbadd2abea7dbfb4a53357e0612a3891c6fbb3b264dc7d3f93b37"
+  },
+  {
+    "path": "Runtime/Relay/NetworkDriverRelayExtensions.cs",
+    "sha256": "263ad5b3b0ce446144ee9c09a5c21182fccae6e322ec080559ff5a92e4450b74"
+  },
+  {
+    "path": "Runtime/Relay/NetworkDriverRelayExtensions.cs.meta",
+    "sha256": "4f560365b84cbb4a74fbb00ca8bd1d7afc095042041d2a120ec51cfe57708918"
+  },
+  {
+    "path": "Runtime/Relay/RelayAllocationId.cs",
+    "sha256": "3e66cb2c5951849976c86d42ab69ceb69ff585a8cc3010fba0082a100bf3763b"
+  },
+  {
+    "path": "Runtime/Relay/RelayAllocationId.cs.meta",
+    "sha256": "9b06e02ad47b9ac997d5c0329c83a03ffababfbd35ae8f0043ac9ed091248132"
+  },
+  {
+    "path": "Runtime/Relay/RelayConnectionData.cs",
+    "sha256": "fe805e0cc03945a7dbe5af3f72d31641824a781570d5c1cda9d467906e705e55"
+  },
+  {
+    "path": "Runtime/Relay/RelayConnectionData.cs.meta",
+    "sha256": "f1a3819a11558593f2ef484abcb60057e53acd80103d1ac8d2f6e2a624bece56"
+  },
+  {
+    "path": "Runtime/Relay/RelayConnectionStatus.cs",
+    "sha256": "1536ffd1c985000bb21977d21d9c37a0f9c7258b4f9f653072bb2b3e132b9518"
+  },
+  {
+    "path": "Runtime/Relay/RelayConnectionStatus.cs.meta",
+    "sha256": "5d10abc5d100388a983475e6b41c15ddd52d5f600bfd282263f22e195d34fb21"
+  },
+  {
+    "path": "Runtime/Relay/RelayHMACKey.cs",
+    "sha256": "5105f7f3b602cdd441bd1c94e62d3d9ff2f9bccbc623a7b57713e8d63e4c32d6"
+  },
+  {
+    "path": "Runtime/Relay/RelayHMACKey.cs.meta",
+    "sha256": "b8de8c17ff28c5c59512c1e4049eebc502eed6f4a45842c014f12ebbf36a9e6e"
+  },
+  {
+    "path": "Runtime/Relay/RelayNetworkParameter.cs",
+    "sha256": "8d814dcca0bf3b11df5b49933d631b36927172922a02bc8cbb55e2971f813544"
+  },
+  {
+    "path": "Runtime/Relay/RelayNetworkParameter.cs.meta",
+    "sha256": "c8cc9aa08442945a7a8b5b7d8e67aa3d25a73f8d2fc7219c81bbf7ebd8dcbbc4"
+  },
+  {
+    "path": "Runtime/Relay/RelayServerData.cs",
+    "sha256": "1591e43392b0ec05a79ba271d5c5679942cd7c4b5d6290fdccdf91b3237cacb2"
+  },
+  {
+    "path": "Runtime/Relay/RelayServerData.cs.meta",
+    "sha256": "cc705d87f3c8d28e5ffb2e0f4123a97fc8798291c0a0d4dde68adfcf63c3b46d"
+  },
+  {
+    "path": "Runtime/Relay.meta",
+    "sha256": "abc31d8a61e5a8147db5749b226c542418e8bb8af96694062c46c6459e89a38b"
+  },
+  {
+    "path": "Runtime/SHA256.cs",
+    "sha256": "edeaabb7d9c61bde6360a9216b6d7cb8619e6b817e738e244cd8db2f0690a3e9"
+  },
+  {
+    "path": "Runtime/SHA256.cs.meta",
+    "sha256": "3c47fcd3da8b16cfb6625a3085fda58e188abb4f9056eda43488650ae15ab830"
+  },
+  {
+    "path": "Runtime/StreamSegmentationParameters.cs",
+    "sha256": "01d58f9282710ab1c9a66c67a0916f829cbb3005930e35d3fba64fd658eaac80"
+  },
+  {
+    "path": "Runtime/StreamSegmentationParameters.cs.meta",
+    "sha256": "49c3b0814aed2ecb3a55e749e103755d2e81aa673c394ba7eb20702f743fa54f"
+  },
+  {
+    "path": "Runtime/TCPNetworkInterface.cs",
+    "sha256": "7716a532bd3a3188414799985b08c3f1fdbb5ad51543ac97ff1c6c682aab4f18"
+  },
+  {
+    "path": "Runtime/TCPNetworkInterface.cs.meta",
+    "sha256": "824e4a7b06838cb105c4bd1c89cdc1fa9adaed188f168c43db84444bddb18d27"
+  },
+  {
+    "path": "Runtime/TLS/DTLSUtilities.cs",
+    "sha256": "89283b0a12b6e0cf85ecedd3565683b2bd26429edd89834a37150ea3dba361f8"
+  },
+  {
+    "path": "Runtime/TLS/DTLSUtilities.cs.meta",
+    "sha256": "6f48d2d859d0e29701bf2dae56d593c710e6ad6d6130849620df7574e173d616"
+  },
+  {
+    "path": "Runtime/TLS/FixedPEMString.cs",
+    "sha256": "d00cbea99a4bd5db2c6d797766396116732db95a62638bfcdaa4100bdaa05e5b"
+  },
+  {
+    "path": "Runtime/TLS/FixedPEMString.cs.meta",
+    "sha256": "b793c3cb203dd4dd296b521b8cff094b27d1fcc2ff98a34a08f8315a9bf77520"
+  },
+  {
+    "path": "Runtime/TLS/SecureParameters.cs",
+    "sha256": "ebdad4d933e56836ea60cb0452190ba728f213a079da8a068d0dee902d3160bb"
+  },
+  {
+    "path": "Runtime/TLS/SecureParameters.cs.meta",
+    "sha256": "9eab197baf12df386e2dbaebef2e42b8cdcbdd674aa10ce467e9f548ceda425f"
+  },
+  {
+    "path": "Runtime/TLS/UnityTLSCallbacks.cs",
+    "sha256": "88bb217a9486b5941e43633988fcf0a836a55e1200e95503b15152e1c8032fb8"
+  },
+  {
+    "path": "Runtime/TLS/UnityTLSCallbacks.cs.meta",
+    "sha256": "602ee27081d77465116325c48905a2287eb4d8a081398be340a54d37f824cc57"
+  },
+  {
+    "path": "Runtime/TLS/UnityTLSConfiguration.cs",
+    "sha256": "7629c7df11e58a057b76d06fc87ccf5afadb9244ec31b7e9e165c369d029763d"
+  },
+  {
+    "path": "Runtime/TLS/UnityTLSConfiguration.cs.meta",
+    "sha256": "c97cc0617852fed1fbdccd3694d8de5746f82a29b0f516525a3c07400b99ca5c"
+  },
+  {
+    "path": "Runtime/TLS.meta",
+    "sha256": "36f2725473c3941f1d08ad7a0e181988d919537258f3c8356da2fec496f0003c"
+  },
+  {
+    "path": "Runtime/TransportFunctionPointer.cs",
+    "sha256": "ce6a9ec3842aad548a1b2fe83874d34bdf9630f4cb9b3de43cb28aeacc76b81c"
+  },
+  {
+    "path": "Runtime/TransportFunctionPointer.cs.meta",
+    "sha256": "debde7376c323a7de95c338ae5b41e51ada53aa0e018999914a6d7ac530db1f0"
+  },
+  {
+    "path": "Runtime/UDPNetworkInterface.cs",
+    "sha256": "f59f23dfb8998c2cd35e72fced30993f11aa3e9d049679474ef2dcd5d1bee0d6"
+  },
+  {
+    "path": "Runtime/UDPNetworkInterface.cs.meta",
+    "sha256": "c63bd68574dc5302c08353f9bddb73114db063fc6eb7feef8489a1190f6c2bcb"
+  },
+  {
+    "path": "Runtime/UnderlyingConnectionList.cs",
+    "sha256": "f3a889761674cf3b556020556e68cae1689b189a892b0018aeb1ef486b740998"
+  },
+  {
+    "path": "Runtime/UnderlyingConnectionList.cs.meta",
+    "sha256": "23991b8c23f5636bbfec33b32597202e8548d71e4633e6f6ac565e28e1637d5e"
+  },
+  {
+    "path": "Runtime/Unity.Networking.Transport.asmdef",
+    "sha256": "062a7001c73eac41b98d03014a60c7b0a63f0547c816aeeb2aaafee5fa690e39"
+  },
+  {
+    "path": "Runtime/Unity.Networking.Transport.asmdef.meta",
+    "sha256": "385188d5158a7887ea0c88c62c3ef47790d668400420b8f79a03265821a6265e"
+  },
+  {
+    "path": "Runtime/Utilities/ManagedCallWrapper.cs",
+    "sha256": "1ebdb67d0d6fda5a8c52e02913fff6ee67902a02951b3eb78d185f1f7290aab1"
+  },
+  {
+    "path": "Runtime/Utilities/ManagedCallWrapper.cs.meta",
+    "sha256": "901a805c38581eb0081655e8ac8f452ff2370745e1e13c90a4d8957cc9406eed"
+  },
+  {
+    "path": "Runtime/Utilities/ManagedReference.cs",
+    "sha256": "540ba8fde354791b90b0e8bc9a5b2bc221a11d4209665a7d5870f2650c3f917b"
+  },
+  {
+    "path": "Runtime/Utilities/ManagedReference.cs.meta",
+    "sha256": "096908e71b368eed64074757ca281307a8b7d2f53f3099c18bd0c63aa8a2c319"
+  },
+  {
+    "path": "Runtime/Utilities/UnsafeDynamicRingQueue.cs",
+    "sha256": "6b96d7ed92fd62180932443efe54c30b64dcd9491a9064314046919ebc4d6162"
+  },
+  {
+    "path": "Runtime/Utilities/UnsafeDynamicRingQueue.cs.meta",
+    "sha256": "88bacb8011a8a648445376c4df7fd9ef722b4dd78e287956e3443c550ce9d43d"
+  },
+  {
+    "path": "Runtime/Utilities.cs",
+    "sha256": "efe16d273033145fb162ec8a44972f03450d0c266e2f3bea80ce370915971f10"
+  },
+  {
+    "path": "Runtime/Utilities.cs.meta",
+    "sha256": "9d9d1c1df58c1e6a96df1e0e3f8aca57c8670f09440a9be1fddf94074a268cb7"
+  },
+  {
+    "path": "Runtime/Utilities.meta",
+    "sha256": "df0bad98dab90c784a5603dd3d9533ea2cb2340152d0b89ff4c9f4766fac1756"
+  },
+  {
+    "path": "Runtime/WebSocket/WebSocket.cs",
+    "sha256": "810f0d76f9e083baa4db8aa8d5501be02916509c4975f529df5e92330bf24ad6"
+  },
+  {
+    "path": "Runtime/WebSocket/WebSocket.cs.meta",
+    "sha256": "94e67ee8da404f95cab4426106281184cfd3b28904aaf76d76ddd6a51b9081ad"
+  },
+  {
+    "path": "Runtime/WebSocket/WebSocketParameters.cs",
+    "sha256": "39283a9e01907ec6f0e600790d9b91434f632e401846f178f25d7b041e97026c"
+  },
+  {
+    "path": "Runtime/WebSocket/WebSocketParameters.cs.meta",
+    "sha256": "1db63423a9a9dad8f5e9518254527899f96732af143cccd865576b74b1208f87"
+  },
+  {
+    "path": "Runtime/WebSocket.meta",
+    "sha256": "f95befc03337afa82d444720657717986cec0fc5ddbd8867f1f9e3d172dc2783"
+  },
+  {
+    "path": "Runtime/WebSocketNetworkInterface.cs",
+    "sha256": "593758955b37f4211885544147d215cca3a478c0fe09040a4a9f0e03cb930201"
+  },
+  {
+    "path": "Runtime/WebSocketNetworkInterface.cs.meta",
+    "sha256": "7090e091a45dd545644d8f098a8063882ed7add9f15b4c2250537c1971adad79"
+  },
+  {
+    "path": "Runtime/WebSocketNetworkInterface.jslib",
+    "sha256": "c2377a2397abbb66993cde3c8920d7ac57d5ad95f8a672f64d23272e9319f6b1"
+  },
+  {
+    "path": "Runtime/WebSocketNetworkInterface.jslib.meta",
+    "sha256": "f83b43d72d7e30163ff71315147c7d8e824371d1a847d69a62400aaecce6328f"
+  },
+  {
+    "path": "Runtime.meta",
+    "sha256": "fab49c65d5f11fb6e144b3d7ab8454e711f49fe0f1406e17b7c357a5af399215"
+  },
+  {
+    "path": "Samples~/CrossPlay/.sample.json",
+    "sha256": "0165a3904ae2c0fc1301e59ee23823e5eebe310b585aac7410f6a497a64861ad"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scenes/CrossPlay.unity",
+    "sha256": "fb8fd69f503f276229e73d2ce16e2906040a5ed726dda6fa26fb003ac856d573"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scenes/CrossPlay.unity.meta",
+    "sha256": "efc122e3e4996e0ecae24578cd8815244ccdbc377eedfc7e11080e3dd03e265b"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scenes.meta",
+    "sha256": "9cc8ba8cbd8d0927ad134b150f01decf4b4ff18933c086712708108e985d2d9f"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts/CrossPlayServerBehaviour.cs",
+    "sha256": "bdc3a309e34741801cd250342d6a752418b460aae84ac5b45fc515911f8a51fb"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts/CrossPlayServerBehaviour.cs.meta",
+    "sha256": "1f56fbf1895bf961ae32d126502e2c36288dbb2075f264bf1613d7d6dc5cab0c"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts/UDPClientBehaviour.cs",
+    "sha256": "07cfc9e102e03fbe1e1c95a7a1d7b40a9cd7eb1e6b30cca6519bfe5ae490fc91"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts/UDPClientBehaviour.cs.meta",
+    "sha256": "5a41c4384303630639bb5cab4b072f11d7013fb0e5cbc07bf7ce5cbad94cc29a"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts/Unity.Networking.Transport.Samples.CrossPlay.asmdef",
+    "sha256": "8f0aec847f30f62c183ff23af676f550f52f63960cb5be7537266b62424dd1d3"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts/Unity.Networking.Transport.Samples.CrossPlay.asmdef.meta",
+    "sha256": "f40b5175163c3de4fea7fcc73d4fb341fc267d29413355d1ba8edabdb0267a69"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts/WebSocketClientBehaviour.cs",
+    "sha256": "3475ac03e1fb25a653cd038697e630ae0040aae99a97c34d3230106843b79b5d"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts/WebSocketClientBehaviour.cs.meta",
+    "sha256": "c812c6a129c860a8dfcbd4c6f7c75655882503bc49ff0b44aaf333bb34f8df43"
+  },
+  {
+    "path": "Samples~/CrossPlay/Scripts.meta",
+    "sha256": "d1c128366968478e80a83177bc2335025233f21f35820a052ca2fe8b424d49f2"
+  },
+  {
+    "path": "Samples~/CrossPlay.meta",
+    "sha256": "0d5f224e880805329680fd487a261cf832e27f04a3379b12bad353a7a34fae36"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/.sample.json",
+    "sha256": "10441f168986d2fe4f99e07cdb7a154548c2f143b3827fcfc6895511560de381"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scenes/JobifiedClientServer.unity",
+    "sha256": "fcaf26dc1b977a17b83b5d04b6a4534614092c33fdb04a2afb6d93ca041ae1a9"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scenes/JobifiedClientServer.unity.meta",
+    "sha256": "2474d26a3be574a520a04edcb9f2b9fff84d059930b60dadd404cea8f305484a"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scenes.meta",
+    "sha256": "187a3713c3ca9150b81a48f201231723d4ed73596328aeb9f3baeea49ef4e759"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scripts/JobifiedClientBehaviour.cs",
+    "sha256": "0c4d7913277c761beb92e9cba37a22f659c6f373f57abce493719d26cd11cc70"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scripts/JobifiedClientBehaviour.cs.meta",
+    "sha256": "7e1038bdd6f58b5af9fb2c67e93767e17de1214f919a94bd35afce4ed7215d10"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scripts/JobifiedServerBehaviour.cs",
+    "sha256": "171eaf4c8282700bc3b4df835e9a4a2e19e101eb1803c04d1c4c27b3b523b54c"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scripts/JobifiedServerBehaviour.cs.meta",
+    "sha256": "8e0b17a63908d5df10627dd7768adceb4159857fd2e184268a1ded761e615d36"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scripts/Unity.Networking.Transport.Samples.JobifiedClientServer.asmdef",
+    "sha256": "31fef6af8cdec3878f4e8e38bf792f314fb1571754fea0be62bd22cff52c8694"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scripts/Unity.Networking.Transport.Samples.JobifiedClientServer.asmdef.meta",
+    "sha256": "f20750ee75a48e3254ed896b5e6616437a69f7fb9212559afe596a63ab555696"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer/Scripts.meta",
+    "sha256": "81dfecdd08f2ff805f99bbeab9d37024851c4d37c53e95f4d353e54985ca4234"
+  },
+  {
+    "path": "Samples~/JobifiedClientServer.meta",
+    "sha256": "f5419e95bc1c34499ce9a033dae0937b6da9a07dfb9197eb5ffea05d55a91090"
+  },
+  {
+    "path": "Samples~/Ping/.sample.json",
+    "sha256": "c6b6f2601c761434d1482291dba2de4c40010566850d1f8e15edfba7d7fbfde3"
+  },
+  {
+    "path": "Samples~/Ping/Scenes/Ping.unity",
+    "sha256": "6af822d683e46992530d0b61d84246de450e9506d50b0c834bfd074a0a6d9b68"
+  },
+  {
+    "path": "Samples~/Ping/Scenes/Ping.unity.meta",
+    "sha256": "a46519388ac357eff02336e034a3411d7d915554cc1b2a0e2dfe0c8f74580f04"
+  },
+  {
+    "path": "Samples~/Ping/Scenes/PingClient.unity",
+    "sha256": "f9b40edfd3f7a74bce0fdb5d3af15cf269d8c16c675b24b044a0e4bd5802bae0"
+  },
+  {
+    "path": "Samples~/Ping/Scenes/PingClient.unity.meta",
+    "sha256": "423c2f1bbdc22401cab4fb5e1998b5dd34e22ecdc7c29ea727a3111943438a32"
+  },
+  {
+    "path": "Samples~/Ping/Scenes/PingServer.unity",
+    "sha256": "3d35ec49e1c14d28bc75929c2957615b1e1376938019690c94923857b4c942eb"
+  },
+  {
+    "path": "Samples~/Ping/Scenes/PingServer.unity.meta",
+    "sha256": "a0981c2ce4769d0bd1ea46422f762218d68d84b2379d8d59eea7379932114806"
+  },
+  {
+    "path": "Samples~/Ping/Scenes.meta",
+    "sha256": "fae89617bb223e308b5d7f2917a7530d3da82e86792d150cf6563cbc11631b82"
+  },
+  {
+    "path": "Samples~/Ping/Scripts/PingClientBehaviour.cs",
+    "sha256": "0ffd2fe836ef4a5bfe915310a81a4664784a59de1c1a72acb8aa9e3c3f57e08d"
+  },
+  {
+    "path": "Samples~/Ping/Scripts/PingClientBehaviour.cs.meta",
+    "sha256": "7bb7c1b85a018201fc25816ceb04f700646dfbed3ada5f9fb30701ef563e8aef"
+  },
+  {
+    "path": "Samples~/Ping/Scripts/PingClientUIBehaviour.cs",
+    "sha256": "d41f0eaa420e3d36cd4161a3c549211f14f59d8e0bbb44dc6adc005c974fcb5b"
+  },
+  {
+    "path": "Samples~/Ping/Scripts/PingClientUIBehaviour.cs.meta",
+    "sha256": "2667a95cdeb65516453e693d7bdb7d0df543901814c0bc0dd29ef758bb5230b8"
+  },
+  {
+    "path": "Samples~/Ping/Scripts/PingServerBehaviour.cs",
+    "sha256": "292e05c72b501ed8d1490968fa5892e21fdc666b80c435555aec0a05760fbfe3"
+  },
+  {
+    "path": "Samples~/Ping/Scripts/PingServerBehaviour.cs.meta",
+    "sha256": "e13afaa89d0d7b8b3c84106fbfe18e34fe82d79f5f97ea97171c23b6b9116bf0"
+  },
+  {
+    "path": "Samples~/Ping/Scripts/Unity.Networking.Transport.Samples.Ping.asmdef",
+    "sha256": "a8d9f633242a5c00d349f2e4e6a2d6e846f4f40964ff1cbaae80b33777d17350"
+  },
+  {
+    "path": "Samples~/Ping/Scripts/Unity.Networking.Transport.Samples.Ping.asmdef.meta",
+    "sha256": "2b825848368673409e5f401cccbb4e9038c92e46ced56159e0e9c997abe02128"
+  },
+  {
+    "path": "Samples~/Ping/Scripts.meta",
+    "sha256": "3896a04198860939492bc2e23d6e5e17ec4213d90f60cc6f74b16b42eea9f20e"
+  },
+  {
+    "path": "Samples~/Ping.meta",
+    "sha256": "102372ea37fe00f8bd1cebae0df5532e2f9f18782b3d62c837cac9716501b906"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/.sample.json",
+    "sha256": "503a8a000f2b4e7a685db6179b07ca6307e45edcac57a4ebd79e981a3ac74322"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scenes/SimpleClientServer.unity",
+    "sha256": "836458a72cbe24ea4f7c0f0f01ee720dc62533760f59a52bce1aabed62d48aba"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scenes/SimpleClientServer.unity.meta",
+    "sha256": "9358b40628dbaee1321591b5dc0705c06e4e9454fb894af8056343df88344bd8"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scenes.meta",
+    "sha256": "a4053e814db5038e203dd1a531e3d4099e46c3e132b8c187518bc81d6b8017cd"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scripts/ClientBehaviour.cs",
+    "sha256": "cf79f88ca5a35748a1e1119d8527fdad7a9827668ec9cc07d5ad5435d1370e62"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scripts/ClientBehaviour.cs.meta",
+    "sha256": "3705e332e4995dab06dfb16b1ffc07188daf1c35ac5af56ea1a02d43b9330bed"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scripts/ServerBehaviour.cs",
+    "sha256": "2f1b33699d50e40bf3a58b87680295c7f2e67743597b2e6540ee2e3cf83ef726"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scripts/ServerBehaviour.cs.meta",
+    "sha256": "3f0313c29bcf1e55394b28bf2496bab60d56913ddfa54620d6c30c86e79a6808"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scripts/Unity.Networking.Transport.Samples.SimpleClientServer.asmdef",
+    "sha256": "0eae7fc7a0e1d216c6e71242095b6aa94e0d58ffe190c42f7b905cc1a67366b2"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scripts/Unity.Networking.Transport.Samples.SimpleClientServer.asmdef.meta",
+    "sha256": "8d809ab0fb9aac028e0f4bda68d08e71f30ebadfd0cee5b5c397f07d421ffb21"
+  },
+  {
+    "path": "Samples~/SimpleClientServer/Scripts.meta",
+    "sha256": "84d1429c2ea4cb997bad5bbdcb09cf5ba333e74ddad58b2cdf34e46bde95501f"
+  },
+  {
+    "path": "Samples~/SimpleClientServer.meta",
+    "sha256": "d69e80991a3a3b68b80b58320d2f762e708e4ccb773ce925b06befef6c0e9595"
+  },
+  {
+    "path": "ValidationExceptions.json",
+    "sha256": "2ddc90794cd1d96d26da90e422fa1cde0c7f82ea231fea96b014d55172c8aec3"
+  },
+  {
+    "path": "ValidationExceptions.json.meta",
+    "sha256": "eb3c7edc16950a56a951c75b0470cb5bcdfc4aea76b662bf7b01b1d1973db3b2"
+  }
+]

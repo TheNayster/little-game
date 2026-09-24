@@ -8,4 +8,4 @@ $python=(Get-Command python.exe -ErrorAction Stop).Source
 $script=Join-Path $PSScriptRoot 'Play-SharedGarden.py'
 $process=Start-Process -FilePath $python -ArgumentList @(('"'+$script+'"')) -WorkingDirectory $root -WindowStyle Hidden -PassThru
 if($process.WaitForExit(3000) -and $process.ExitCode -ne 0){throw (Get-Content -LiteralPath (Join-Path $root 'LocalData\shared-preview-error.txt') -Raw)}
-Write-Host 'Two shared garden windows are opening. Arrange them side by side. Close both to stop this preview server.'
+Write-Host 'Shared garden windows are opening with the saved player count. Close every preview window to stop its server.'
