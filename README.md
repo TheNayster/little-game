@@ -4,6 +4,8 @@ This is the separate home for the family's Bluey-inspired game.
 
 **Primary devices: both iPads. Android is secondary.** The older iPad 7 sets the minimum performance baseline. Samsung results do not substitute for iPad tests; four-player mixed-device support remains required.
 
+Double-click `Open-BuildGuide.cmd` to reopen the local build-guide page after a reboot. It starts a loopback-only server for this game's docs. The existing research links on that page use the same server.
+
 **Two main documents:** The Family Playset research is the feature goal sheet. The ground-up build guide is the implementation sequence, project structure, testing method and current work record.
 
 - [The Family Playset — illustrated guide](docs/bluey-game-research-2026-09-23.html)
