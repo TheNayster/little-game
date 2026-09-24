@@ -1,0 +1,9 @@
+{
+  "build": "0.0.20",
+  "archiveSha256": "9ee587b793401a1bca861e0f5b4035c72851614817af0317a4785f0eebab319b",
+  "bytes": 239871091,
+  "windowsMacArchiveHashesMatch": true,
+  "macExportedFileHashesVerified": 3025,
+  "macDestination": "/Users/nayster/Developer/LittleWeeps/Builds/G1-0.0.20",
+  "nativeBuildStarted": true
+}

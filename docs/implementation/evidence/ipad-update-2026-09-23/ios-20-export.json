@@ -1,0 +1,15 @@
+{
+    "platform": "iOS",
+    "version": "0.0.20",
+    "unity": "6000.3.24f1",
+    "result": "Succeeded",
+    "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\iOS\\G1-0.0.20\\Xcode",
+    "utc": "2026-09-24T02:10:48.7977899Z",
+    "profile": "Assets/BuildProfiles/iPad Foundation.asset",
+    "scene": "Assets/FamilyPlayset/Scenes/Bootstrap.unity",
+    "signing": "Not applicable or platform managed",
+    "errors": 0,
+    "warnings": 0,
+    "development": false,
+    "dedicatedServer": false
+}
