@@ -10,7 +10,7 @@ Click the ground to walk, or select Joystick. Drag the bucket onto the tap and t
 
 The illustrations and narrator are placeholders. This one garden is a rules prototype, not the complete Heeler home, full game or multiplayer.
 
-![Garden after the Android emulator update; build 30](evidence/solo-prototype-2026-09-24/android-garden-30.png)
+![Verified Windows garden preview, build 37](evidence/solo-prototype-2026-09-24/windows-garden-37.jpg)
 
 ## Completed bounded task
 
@@ -59,6 +59,8 @@ Layout follow-up completed on Windows build 36: all button/text rectangles, incl
 
 Allocation follow-up completed on Windows build 37. Presentation now requests detached player/toy copies without copying the checkpoint's command history every update. All **18** core tests pass, including protection against view mutations. In a .NET 9.0.17 measurement of 1,000 reads with 128 receipts, idle player reads fell from **7,824,000 to 48,000 allocated bytes**, and render-state reads from **7,824,000 to 392,000 bytes**. This measures only the C# read path, not total frames, Unity rendering, battery use or iPad performance. [Measurement](evidence/solo-prototype-2026-09-24/presentation-allocations.json), [18 rules](evidence/solo-prototype-2026-09-24/rules-presentation.json). Full tablet-shaped input/narration/layout checks and the **35 → 37** save/update/recovery suite pass: [input](evidence/solo-prototype-2026-09-24/presentation-input-37.json), [update](evidence/solo-prototype-2026-09-24/presentation-update-37.json), [recovery](evidence/solo-prototype-2026-09-24/presentation-recover-37.json).
 
-Next bounded Windows-only task: prepare a saved iPad solo Build Profile and export the current garden to an isolated Xcode directory on Windows. No Mac connection, signing or physical installation is part of that export task.
+iPad preparation completed on Windows: saved **iPad Solo Prototype** Build Profile produced non-development IL2CPP Xcode export **38**, with zero build-summary errors/warnings. The independent inspection verified 3,032 artifact hashes, the original app ID, iPhone/iPad device targets, ARM64, minimum iOS 15.0, landscape orientation and generated current core/client/checkpoint C++ code. [Inspection](evidence/solo-prototype-2026-09-24/ios-export-38.json). Output: `Builds/iOSSolo/G2-0.0.38/Xcode`. This is unsigned source/export data, not an installable IPA or completed native build. No Mac was accessed. Existing G1 Mac helpers use a G1 path and must be adapted explicitly before using this G2 export.
+
+Next device-dependent task: use the [G2 device checklist](g2-device-checklist.md) to compile/sign the prepared export, preserve the existing installation and test iPad 9 controls, narration and saved garden state. Qualify iPad 7 when available. Do not call G2 passed until those device/child checks have evidence. Windows-only follow-ups should remain small and avoid locking in content or multiplayer presentation before that feedback.
 
 G1 still needs older-iPad qualification, independent backup, native ARM64 16 KB investigation and mobile renewal/device checks. G2 needs actual-device gestures, audio quality and observation of both children. Spanish, final characters, full settings/world wheel, final rooms, network transport, pairing/discovery, iPad hosts, shared-world recovery, offline reunion and the remaining mini-games are not implemented. Do not batch-produce content or declare multiplayer ready from this prototype.

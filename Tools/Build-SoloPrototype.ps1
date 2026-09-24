@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([Parameter(Mandatory)][ValidateRange(23,9999)][int]$BuildNumber,[ValidateSet('Windows','Android')][string]$Target='Windows')
+param([Parameter(Mandatory)][ValidateRange(23,9999)][int]$BuildNumber,[ValidateSet('Windows','Android','iOS')][string]$Target='Windows')
 $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
 $project=Join-Path $root 'Unity\FamilyPlayset'
@@ -9,8 +9,9 @@ $editor=Join-Path $env:ProgramFiles "Unity\Hub\Editor\$version\Editor\Unity.exe"
 $folder=Join-Path $root "Builds\${Target}Solo\G2-0.0.$BuildNumber"
 if(Test-Path -LiteralPath $folder){throw 'Use a new build number.'}
 $log=Join-Path $root ("LocalData\Logs\build-solo-$Target-$BuildNumber-"+[DateTime]::UtcNow.ToString('yyyyMMdd-HHmmss')+'.log')
-$platform=if($Target -eq 'Android'){'Android'}else{'StandaloneWindows64'}
-$argsList=@('-batchmode','-quit','-projectPath',('"'+$project+'"'),'-buildTarget',$platform,'-executeMethod',"LittleWeeps.EditorTools.SoloBuild.$Target",'-familyBuildNumber',"$BuildNumber",'-logFile',('"'+$log+'"'))
+$platform=if($Target -eq 'Android'){'Android'}elseif($Target -eq 'iOS'){'iOS'}else{'StandaloneWindows64'}
+$method=if($Target -eq 'iOS'){'IOS'}else{$Target}
+$argsList=@('-batchmode','-quit','-projectPath',('"'+$project+'"'),'-buildTarget',$platform,'-executeMethod',"LittleWeeps.EditorTools.SoloBuild.$method",'-familyBuildNumber',"$BuildNumber",'-logFile',('"'+$log+'"'))
 if($Target -eq 'Android'){
     $toolchain=Get-Content -LiteralPath (Join-Path $root 'LocalData\android-toolchain.json') -Raw | ConvertFrom-Json
     if($toolchain.unity -ne $version){throw 'Android tools/editor mismatch.'}
@@ -21,7 +22,7 @@ $process=Start-Process -FilePath $editor -ArgumentList $argsList -WindowStyle Hi
 $process.WaitForExit()
 if($process.ExitCode -ne 0){throw "Solo build failed. See $log"}
 $summary=Get-Content -LiteralPath (Join-Path $folder 'build-summary.json') -Raw | ConvertFrom-Json
-if($summary.result -ne 'Succeeded' -or $summary.development -or $summary.version -ne "0.0.$BuildNumber"){throw 'Unexpected build result.'}
+if($summary.result -ne 'Succeeded' -or $summary.development -or $summary.version -ne "0.0.$BuildNumber" -or $summary.platform -ne $Target){throw 'Unexpected build result.'}
 $source=@(& git -C $root ls-files --cached --others --exclude-standard -- Unity/FamilyPlayset/Assets Unity/FamilyPlayset/Packages Unity/FamilyPlayset/ProjectSettings Tools | Sort-Object -Unique | ForEach-Object {
     $path=Join-Path $root $_
     if(Test-Path -LiteralPath $path -PathType Leaf){[ordered]@{path=$_;sha256=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()}}

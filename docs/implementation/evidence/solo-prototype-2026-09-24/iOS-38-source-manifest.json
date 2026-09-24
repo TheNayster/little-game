@@ -1,0 +1,717 @@
+{
+  "sourceCommit": "61c6e02d09734b76220e0d5f8cb2fe5b35445bcc",
+  "dirtyPaths": [
+    " M Tools/Build-SoloPrototype.ps1",
+    " M Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/SoloBuild.cs",
+    " M Unity/FamilyPlayset/ProjectSettings/Packages/com.unity.dedicated-server/MultiplayerRolesSettings.asset",
+    " M Unity/FamilyPlayset/ProjectSettings/ProjectSettings.asset",
+    "?? \"Unity/FamilyPlayset/Assets/BuildProfiles/iPad Solo Prototype.asset\"",
+    "?? \"Unity/FamilyPlayset/Assets/BuildProfiles/iPad Solo Prototype.asset.meta\""
+  ],
+  "files": [
+    {
+      "path": "Tools/android-family-signing.json",
+      "sha256": "74799581f1b8fb0fdd1c56c5d7ad24069145fd3557657cb37e19582fd2dd81f5"
+    },
+    {
+      "path": "Tools/android-toolchain-6000.3.24f1.json",
+      "sha256": "a96d918c73ff9bbb4793bbe88fa04523c4bfbe1aa383f48dd5203b048a370daf"
+    },
+    {
+      "path": "Tools/blender_little_weeps_connect.py",
+      "sha256": "f1af5d6f726e1131b06aec56148936c8dfce956c7cbbf684a0967d29ae4558fd"
+    },
+    {
+      "path": "Tools/Build-AndroidFamily.ps1",
+      "sha256": "d17003bd74c2634df1cd49ce5eafe4db63e0da4819c6b5fd55cb0b69a822a5f8"
+    },
+    {
+      "path": "Tools/Build-Foundation.ps1",
+      "sha256": "788b1143cac83bb024792625bc4302d0993c69cb09969f7306771214bbc45d65"
+    },
+    {
+      "path": "Tools/Build-iOS-Mac.sh",
+      "sha256": "2de97de57fa46df88c997a97d8728f4c4ceb8163000009d453e28c9eed3bc415"
+    },
+    {
+      "path": "Tools/Build-SoloPrototype.ps1",
+      "sha256": "0c7aefe8039a46fba3788d18d4022012a375a012dbd40c4ae86148f320489943"
+    },
+    {
+      "path": "Tools/Check-Mac.ps1",
+      "sha256": "8bc222afd3364549534727557988be302566becd96d45bbf98ebeb1a6fa22f33"
+    },
+    {
+      "path": "Tools/Create-SoloNarration.ps1",
+      "sha256": "4bb5b91a5c95dc2795980a6872fcfca0a330089f4393375ed01e93072e520942"
+    },
+    {
+      "path": "Tools/Create-VideoProbe.ps1",
+      "sha256": "a271b6d02de8dc40dfbd50481e643501374354f9ab60e0609f8b12d34d51f4e2"
+    },
+    {
+      "path": "Tools/Initialize-AndroidSigning.ps1",
+      "sha256": "a4833a5273f1753aeaede451f44859a56333b4cefaf813f361e873bb4a499aba"
+    },
+    {
+      "path": "Tools/inspect_android_relro.py",
+      "sha256": "526f58fba7396b4649d289fc3550679046d0f1982c1d0b21aba587570f6eb6f8"
+    },
+    {
+      "path": "Tools/Install-AndroidFamily.ps1",
+      "sha256": "301f95c9d1ec1ec8e572f184bab05deca7abd720379afef323b01d76282aea2d"
+    },
+    {
+      "path": "Tools/Install-WindowsServerModule.ps1",
+      "sha256": "09057d38ae02a488da856ade26aba59c8a2b1292a0dd7b54dd729b240377b9d6"
+    },
+    {
+      "path": "Tools/Mac-Inventory.sh",
+      "sha256": "59d19090f6ee518c38659e08e17effd024d9919406a0715d41108bd09ea85f0f"
+    },
+    {
+      "path": "Tools/Play-SoloPrototype.ps1",
+      "sha256": "1e1429e00c9f93d68fc77e5748a1b9abb6abb19bfebb524d9d1585b8ef543aae"
+    },
+    {
+      "path": "Tools/Play-WindowsFoundation.ps1",
+      "sha256": "2baeff30b4eb575e4242d71b4ee85601a53969d68fcf29687869231f14e17dba"
+    },
+    {
+      "path": "Tools/Prepare-AndroidToolchain.py",
+      "sha256": "efe95761075e908c89504e1ff1259f84b17656a23d780b3a06064174115fd791"
+    },
+    {
+      "path": "Tools/Resolve-Codex.ps1",
+      "sha256": "b6f6b277cb199adb43e3c0f3da2a5d04f73b9c6e4c715443782d9107d226d32c"
+    },
+    {
+      "path": "Tools/SoloRules.Tests/Program.cs",
+      "sha256": "dca497936c751b795121f37c999d823efdbe97b64d1420551020883a03679e22"
+    },
+    {
+      "path": "Tools/SoloRules.Tests/SoloRules.Tests.csproj",
+      "sha256": "158f8f867da9ff7d60eb1f98547e41221706be663160264545c37fa8ea47c458"
+    },
+    {
+      "path": "Tools/test_android_relro.py",
+      "sha256": "decc79675ff5740a85d46f9c7f84119dbac2df89007c968c3b9bb6b084f5c7f6"
+    },
+    {
+      "path": "Tools/Test-AndroidArtifact.ps1",
+      "sha256": "de9374d341754cb4f5d887c742ee54451b46e58d47fd4503e0b9b7c0d3914fb0"
+    },
+    {
+      "path": "Tools/Test-AndroidToolPaths.ps1",
+      "sha256": "a1413c6cbb582878920c97d7c5b987684ea6fdd907eaa0dd0e7bee0e21fcb9ee"
+    },
+    {
+      "path": "Tools/Test-ServerFoundation.ps1",
+      "sha256": "1b8b6a5e0b68a81febff67fbf1f70b79e1a6bd0d23cbd3bac454bb6f90800138"
+    },
+    {
+      "path": "Tools/Test-SoloPrototype.ps1",
+      "sha256": "a9e72a97a5206f02faa7b08f7126916db129a4563bf193e57ca9faebe4814f68"
+    },
+    {
+      "path": "Tools/Test-WindowsBookmark.ps1",
+      "sha256": "0dd78de33fc6f4c429b95d954237781880e027c5c5a9f59337fae1f3ca55209d"
+    },
+    {
+      "path": "Tools/Test-WindowsFoundation.ps1",
+      "sha256": "704305999355f00c771a1136436e1578f0ed7bb9122517c354c45cb782ebc168"
+    },
+    {
+      "path": "Tools/unity_mcp.py",
+      "sha256": "5dc6956fa5c85ff3b44444d037e45e121e5f60c958ef1ba618785ea1d1f968f8"
+    },
+    {
+      "path": "Tools/UnityEditor/LittleWeepsReconnect.cs",
+      "sha256": "f5cff15cc26fe4a8c9186b12d1e5c469707bd7edf0491ec046a33ffa188b9060"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles.meta",
+      "sha256": "4e60ad8fbee55d7359e614c10b81e3b7427593466b1dea287b8908e75e43699f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Android Foundation.asset",
+      "sha256": "0712b2becd13477d4bce17817a9336b8e6949c161856008b7d615b75fc154cc8"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Android Foundation.asset.meta",
+      "sha256": "05148eaa2fceffe3a6bdaa98f041df769a20e8ac5bcc341d6dc9663b74fb7c11"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Android Solo Prototype.asset",
+      "sha256": "734e8c78d7e8bd3a3e6b6c02b8906091f65577b33753f1ec8c6e384786f75e96"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Android Solo Prototype.asset.meta",
+      "sha256": "0392cea8089907678e5e3eba245d3786b99834134b0a01f023f3670cb378a488"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/iPad Foundation.asset",
+      "sha256": "3ea2d456f249cfdcd134ac0d1a96ccde08883baa6207c4445ea9b237148c1410"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/iPad Foundation.asset.meta",
+      "sha256": "9d12c65705af69fbb2cb81218f080c595f168de33d138dfabbb9ffc2f13db075"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/iPad Solo Prototype.asset",
+      "sha256": "e8648af50a0654977c93d0b0f3c3ced4c43cdd0807a64701bfbfeee3ef73f274"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/iPad Solo Prototype.asset.meta",
+      "sha256": "bc533c4120d8079fd7638c4e3679c21db4411bf49d5e0e88d22c85d973cb9016"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Foundation.asset",
+      "sha256": "00c3e9b66aa4f1d779a4e422b3c86b8547a992f08d00fafdb156e86b27f5703a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Foundation.asset.meta",
+      "sha256": "6d07a1ff8dc06bc44e90a945de816592aa943c143b4b45803992400fd2aa4f2e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Server Foundation.asset",
+      "sha256": "d702791b42fcb5c884792625a2b81005d1ab3b198539a647f863546a771592dc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Server Foundation.asset.meta",
+      "sha256": "6ff90084161edba3d8f0ed6b038caac72532500ac43783f0b4a31d1a1501d1a6"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Solo Prototype.asset",
+      "sha256": "7ba2010494582980dda1cca8d3f7fa3cbfda8672c7f855e14ba5d5507a69c50d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Solo Prototype.asset.meta",
+      "sha256": "5483ccddd11f83ddc9b01897de17afe15069665c42ea44a5ff2ae999503876db"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset.meta",
+      "sha256": "84afbb0bc328aa0fcb6185ff648371c2fbd7b0069e6c20f46a63ccd7a18460a1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code.meta",
+      "sha256": "7c1f4b502a513df179824f808a1feea99b7accb90f333b144435c1953f5eeaa2"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters.meta",
+      "sha256": "95ff4586f2a32fdd3416c58cdc0523a2c839a83812460e88db63924df8d45f93"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/CheckpointStore.cs",
+      "sha256": "bb50ec1fe423faa8cc3ac4b090dca252f0b4c0fb736620375432ec5d70b989b3"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/CheckpointStore.cs.meta",
+      "sha256": "eda9f833d3628f45d16a6ffffeae6061b257b3c6969b8791b2deedee5934d732"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/LittleWeeps.Adapters.asmdef",
+      "sha256": "059bce7e6d3504b88b11657db6e24b1a274c485854cc37822fb04d33bda9c840"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/LittleWeeps.Adapters.asmdef.meta",
+      "sha256": "9cfd6cc7f9231f50cee49d31956693ddf6f39c099237cc8e80559e0f5e753a88"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client.meta",
+      "sha256": "32f48a58f2dc715c1cc759bcbcba5335cdb1bd16aacd94b88ccf6f3062399105"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/LittleWeeps.Client.asmdef",
+      "sha256": "188e4e810dd4cb3ded5499f810d11d4352dc4f393eee6ce8483fc8bddf8a799d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/LittleWeeps.Client.asmdef.meta",
+      "sha256": "d40cb0bceb258a0c3795d44cefe638b12418de0d07aeed1759736f11f78dfc98"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNarration.cs",
+      "sha256": "35252f9adf3f9cc0cf9a03d8312f2d3d399df6ac804a16db0e2ed6106332ea48"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNarration.cs.meta",
+      "sha256": "056e0cf2e23d72c7435ebc57344587c16755267bece9f51e1a61961c069aebdd"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloPointerSurface.cs",
+      "sha256": "c9e842ae1bc15dff32d1d77fc6ac5678335a9018e81822809ebdb470beb4151d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloPointerSurface.cs.meta",
+      "sha256": "166b4259757b9f1acac89312cacdc7aee71919a3e6c35df0964d5e6ef45536e8"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
+      "sha256": "a227887643dfce58f2a718ca90793b9f2d370b4c5485c6d81c6901ac465683c7"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs.meta",
+      "sha256": "9e2859a046001056609e0a666c2431c473afefcd2780c91a4afdc323d6a98908"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloVerification.cs",
+      "sha256": "e098621b8a698595da662cfe13cb2a10e692da8f90db833e534709b9e93e6ef8"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloVerification.cs.meta",
+      "sha256": "78e11bb9e8494a848ed6ac2e827edbe7379fb14d845629adafcf9227dfda2415"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core.meta",
+      "sha256": "1ba71c28590208e63cfa8d807fac51f8b03599ba981508191ae6e4ca58f0578d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/LittleWeeps.Core.asmdef",
+      "sha256": "1c1ab3b8b26b9f9ae5f130f6d354fea8027150b835e2864c1433fe3995fc274e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/LittleWeeps.Core.asmdef.meta",
+      "sha256": "384f36d5174e2342956dfafcc136d8f7b566e69498627f72b9b7361b0e481014"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
+      "sha256": "ee36672eb9be9772becbfdca4987973297b4a0d61c5126561ad0e70bcdc05084"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs.meta",
+      "sha256": "3a9ef924db90c4f6e485552432982483de53f448a0ef431bdf42c1ee6f9d813e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/TapCount.cs",
+      "sha256": "2c6f6c77bc6711be493f7be67fd4d24d5f91ae2f7d6525021e3ccd86d928a647"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/TapCount.cs.meta",
+      "sha256": "6117b43fa5665f1d5663f3e94ea370ffd686581ddc735336b52ce2ddcf9796ff"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor.meta",
+      "sha256": "ff4631da2f573f61f012cfde15e72f61930b766afe4ea76d3a517bc7d0bac72e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/AndroidFoundationTools.cs",
+      "sha256": "e2e865adff18c54644f7edbcfe2c064d18b79252eab92892a8f77cf5bf7ce2d8"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/AndroidFoundationTools.cs.meta",
+      "sha256": "558d02b000a1e8de564eef0cd9a153f7e21636f66783009ac2dbd66d8ca9aa17"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationBuild.cs",
+      "sha256": "3a1a00b36f0cd82d57df101b38f0758aac00d975fd3c5b5ab052963b2efbafca"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationBuild.cs.meta",
+      "sha256": "4c62ed1de70419e180918bd90473ca83c879edbc619c5011908abfae0b7c34cc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationServerSetup.cs",
+      "sha256": "200b6362381063c0fa3fbcd15958d82be10d47e4b2d3f67aed1f9cb7dddc4ffc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationServerSetup.cs.meta",
+      "sha256": "c7859f3252ea14a41cfe7939658b52cd2407c1d91edc42d1d0cce59d323cae37"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationSetup.cs",
+      "sha256": "f069581cb67c10db57c45a8ae136e6864bfff73fb8e330cafa9b352876b0f477"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationSetup.cs.meta",
+      "sha256": "e2118e6a27dbe9145e3ba872deb0018f02d7ea83086b38c266f7ea70164f19ef"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/LittleWeepsReconnect.cs",
+      "sha256": "f5cff15cc26fe4a8c9186b12d1e5c469707bd7edf0491ec046a33ffa188b9060"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/LittleWeepsReconnect.cs.meta",
+      "sha256": "354976c2a7b7c19477e88d8938415bb9376a25c0db2fe0ca2301c3383634630a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/SoloBuild.cs",
+      "sha256": "a3d24e85c4d21e497338a0b98d9c4402523084fbcc6bc25fb6656039838c6f99"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/SoloBuild.cs.meta",
+      "sha256": "9818cee0d2e4589490f5a5849bdf67ca728671812c48b1d7e5220e950852c93e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime.meta",
+      "sha256": "8fe3bf98f65ffa7e04e5a1b9d77a97ca9016a23d9f043747625d2aaa02642cfe"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationRun.cs",
+      "sha256": "41c870da2836e374ac180e16b85a25a5ec4bb225ffe292d0208819dae320ae91"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationRun.cs.meta",
+      "sha256": "bd815fcb53880bb24201ee934a9aa5298d1364bb46d7cd71f8949d2eccbc3fca"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationScreen.cs",
+      "sha256": "55627ed8f925bb98046beec21250d2be9fba402ce68d5e5094234dc072afd4fd"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationScreen.cs.meta",
+      "sha256": "09138f4b965a471ab1f62c167a948c4e66eaff61e3018d20e1622129b475cb9a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVerification.cs",
+      "sha256": "600191873ce79cde6a5a093509754a63d2f9f5b6a1051e48cef37d302b09139c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVerification.cs.meta",
+      "sha256": "4a58c509444fcdb75f12f1b167b43e6777015c85996db51fa22b3baf0d56edf5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs",
+      "sha256": "a0af6dc40b7d71a6f129522a0549adb7e1f74a2b0749c4e0baca29eba8d67b19"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs.meta",
+      "sha256": "2e6233835a64c5587311819d666b92bb8fbaddecb10b42effee8bd6a6df3531f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/LittleWeeps.Runtime.asmdef",
+      "sha256": "07fb94dfe9cc5622568b6ef25d34d3c8e040c4da7b2ae0619261f3f734f3c3f1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/LittleWeeps.Runtime.asmdef.meta",
+      "sha256": "79584ac9e2a05c9252eed233037603d498375630e087931dc51c76cf92007295"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server.meta",
+      "sha256": "7a4b2215476a995dd69982d010a689fd151569e873d2b28ca2419509ecf32909"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server/FoundationServer.cs",
+      "sha256": "8d8f74112e7cfb76aed34b9a6bf44c8c4600c9e443f877143f1016b706e3cc5d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server/FoundationServer.cs.meta",
+      "sha256": "cad62c3c33e8ad386d49925e6b0c706470614b69f84148c327fcd621d02731e2"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server/LittleWeeps.Server.asmdef",
+      "sha256": "3651fb27effef7391b7e5d99ade87f21fbdcf10c32fc0a1abc8c7e0a2ef4a79a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server/LittleWeeps.Server.asmdef.meta",
+      "sha256": "ee1c7b852f25a0a3d22a92afa21046fa4deb0e1e866ef37a68e1433b41a56d82"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources.meta",
+      "sha256": "7ab94467fe73c26a37da5a10699f636cba5586ed81224817ea7af29478ce1e57"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration.meta",
+      "sha256": "2d4694b1a4b0f57b43819dcfbdf23559c0ae776ad22cc917cd6a92a1405e1885"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US.meta",
+      "sha256": "1b59efed90c26025947f4c603d7f714fe75c607e124cf5f132f2f6fbb49eb32e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/cleanup.wav",
+      "sha256": "9e4cd09ab7704a38299600a2a10da9cda60a57a64c7e2aeaada17d457de75505"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/cleanup.wav.meta",
+      "sha256": "6d363dde7a6e8051a99ea61042b8dcb9586ece86e2f5b0ffca085cd2d5e22928"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/freeplay.wav",
+      "sha256": "38c2b24048326dfa73d6d03786374c7a88d71285e4a30ad566e2f6614f6bd00a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/freeplay.wav.meta",
+      "sha256": "a9968b25754d4d9bef46884b6724e48f61f4356da8ebcc307fe8152f3dda999b"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/garden.wav",
+      "sha256": "3939d662df32f5d36e871f7fbb6cb3d8fd1e07fe9a73a880df46e7e0e1c8a330"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/garden.wav.meta",
+      "sha256": "eaa1ac9360ea0bf25656e023be608ff8aaf9d4d263bf905e97399e0aa65d8c5e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/joystick.wav",
+      "sha256": "813591f283435b66bf1cb27b6fa6f21d96bdd038ced2c1e53151bf1d703eb46c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/joystick.wav.meta",
+      "sha256": "f88a49b049b2331a5858734e044bd1341d8cee5f6340f4503a56348e74b46892"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/tapwalk.wav",
+      "sha256": "5af49c0bb22a93905d089288092fbd789016cf5690709e8fc584294a2fb032c4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/tapwalk.wav.meta",
+      "sha256": "54b0f081779601055e95818024de7953c4d6af944368b05cf84a704e978ce3eb"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/transcript.json",
+      "sha256": "cbacd736ae11337eac48b6fe2edffd9042ffca40947757f0b40d247d3da92d14"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SoloNarration/en-US/transcript.json.meta",
+      "sha256": "36be3c06b27f2d1f495a86e345a5e4054b9f9e304765c6ff48938006667aa9fe"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Scenes.meta",
+      "sha256": "fd5d3f06fbba902f9d161986054c8138a0031bfba784c1da2c0b9c2e303ad644"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Scenes/Bootstrap.unity",
+      "sha256": "1b98d67d9ebb26b362fb9909bdd28e4ec66b8c89ae914f025852fb245ef98548"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Scenes/Bootstrap.unity.meta",
+      "sha256": "dff4fa9a6d69dc33842011bfbcfbb7e49fe67399b5003947fe5b04d88719e6f4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Scenes/ServerBootstrap.unity",
+      "sha256": "a031f6f50a9447ee9de8311bca239e508b5b76c24fcc5c665984a3347d72cea6"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Scenes/ServerBootstrap.unity.meta",
+      "sha256": "5976cba0c9954721d0740830acb25816b362d509a126e330da33686cc03e96e5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Scenes/SoloPrototype.unity",
+      "sha256": "c25d98532c7fd7737abdfe5b491bd9dd4be43ce9b6394f6207758dc4a379a6a6"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Scenes/SoloPrototype.unity.meta",
+      "sha256": "7746b9d323ef2e9e3fb966062cff6c19ed75314179ce5e9a822252011babcce4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Scenes.meta",
+      "sha256": "a80a7b316e7d7ce80c8a01ecb374702a04e91228a0729629c894c70250baea5d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Scenes/SampleScene.unity",
+      "sha256": "387d8216a517be775b6ecc2ab55b97ece687c3372322da2ba027a96908014912"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Scenes/SampleScene.unity.meta",
+      "sha256": "204f446bc13539151c15af875550a7fa6f791662e967572a1b4b06fd0005dad1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings.meta",
+      "sha256": "0b5ba35daae66cbfcfa17bf61091aeab7f3bed07681f8db7bed3fb72d178c2d4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Build Profiles.meta",
+      "sha256": "335192757040df6417780f9c16bc7dde10eddfcfab86088f37e2df0400068037"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Build Profiles/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/DefaultVolumeProfile.asset",
+      "sha256": "4789b43834dd5efb32eec4c3b436baf0895c9f8cf2a0624121da8dd812ee984a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/DefaultVolumeProfile.asset.meta",
+      "sha256": "037700fc76ee8e15bf57a6608bf0229b50b9ba78a1095a943fe0add01a6bf5c5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/InputSystem_Actions.inputactions",
+      "sha256": "1c6cbb519d65ecfe19a29231735b7f54741a20ac1a8ad4f46a18e1bfb28a3c39"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/InputSystem_Actions.inputactions.meta",
+      "sha256": "e2df3de96691137dc24b37bd9009e7be17040f3e5cd6d5401b2cd9d8ae2c9c1d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Lit2DSceneTemplate.scenetemplate",
+      "sha256": "ca928761bf976c878d54df524a3742c5f1bca53a013b4061abd2c752c8a212aa"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Lit2DSceneTemplate.scenetemplate.meta",
+      "sha256": "d4cc0f73332c3228945aa64f9c5019f1c1950d77703728c5e9674a0367c5e4d1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Renderer2D.asset",
+      "sha256": "900455794d0d788504847c3aa54e03a0374fd3635afa295ed05c2f646f974705"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Renderer2D.asset.meta",
+      "sha256": "9689252004910cfad653e8a8d09b8c96befb560e1fb583033630db0f5bb76420"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Scenes.meta",
+      "sha256": "705b24f629af6836450c9fd2085f781fe11d8633bcaa0c7b3197058b93a766e5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Scenes/URP2DSceneTemplate.unity",
+      "sha256": "f6fb3e91aaa90417e2920b7f903066833b3b9aea72ddcb5e46b91afa729c2e90"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/Scenes/URP2DSceneTemplate.unity.meta",
+      "sha256": "e7391ff924b7defdf30e0b0b235f8113618481c93f567e0c699c8895a9534579"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset",
+      "sha256": "85456401b63bf0edf5cfe391b4622e3b10c06ea314eb9f258ec65072b89457cd"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset.meta",
+      "sha256": "746a38b93f8f49b644ff6893456cf24db401e5c342aaae3864e91560d37c5422"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/UniversalRP.asset",
+      "sha256": "167d20e3285f9071dc9bcb0a4fee7cdf8bb335dd849ec96e4b3fa39bd401f266"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/Settings/UniversalRP.asset.meta",
+      "sha256": "8b7653265c1a9a054461264fc7b03bdbafc030149949fce5bf9e85924fb565a5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/StreamingAssets.meta",
+      "sha256": "5662ba7dfe42b1ef70a74b182324119e6a19b390b9741ccaf76734108907645e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/StreamingAssets/Foundation.meta",
+      "sha256": "1b00da79ab4ed04e984867c836f71e42ce8fd082d523c631a127ed78885f3081"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/StreamingAssets/Foundation/test-clip.mp4",
+      "sha256": "11d7eb3c92f0d044641a0b231e116cce7e11fcf3273df4dafd79151000bd01bf"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/StreamingAssets/Foundation/test-clip.mp4.meta",
+      "sha256": "4e1810fbbc76cb5302d604260c903b3999a70c4908f66a435fda4451974581a7"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Packages/manifest.json",
+      "sha256": "964c6dc20c95803c668655346277288db5490bd9d9b2a6616650c1fd4c07abcc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Packages/packages-lock.json",
+      "sha256": "97adb30a148c6d7766394637b9193ac6c71ba970eedb1a110f94ca44d80ed7f2"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/AudioManager.asset",
+      "sha256": "aeedeb3243f07b61dbbe854aa08b5ef6f0b5274dd9852ad9f6129dde3e105a31"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/ClusterInputManager.asset",
+      "sha256": "40e65dd214bf254955d2c8829ca8ce2130fd3510485560ce012e9a1ddd93e623"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/DynamicsManager.asset",
+      "sha256": "b7c9a9dc08b98990109d4346f68745e15e238de400f96c583e53e1c83c743a78"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "83388aea2cc98d10a510e18b1e0654ed8726f2f0a08b1a31ba689763ed5a67ec"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/EditorSettings.asset",
+      "sha256": "fe4a08ad89a92c468a8befd7d86d4389875b648e8ec60e712ba998f3de7194e4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/GraphicsSettings.asset",
+      "sha256": "bcdb6ee570b5edc137b79e48f860495035136e494030e214fe39c151d16fe993"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/InputManager.asset",
+      "sha256": "7a1bb836a1008d26d0860d143e9d9df7ca41731d30a72901b518063819c62df2"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/MemorySettings.asset",
+      "sha256": "1e8379a461b10ae09f3f696911088c16875d63e87ed5f2d95df9e1892703f9fd"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/MultiplayerManager.asset",
+      "sha256": "eb47ba45bcdb0fef8c991147844bb52b48bd318a3c23b28127564e2aa8579a97"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/NavMeshAreas.asset",
+      "sha256": "80106cfa7e6181a1928b142c075f3e510d527441e3d79bc83590e4ac91e7cd66"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/NetworkManager.asset",
+      "sha256": "46395def99a6b5ae38ebb19b3e18f75215a9d4172c219361521a5a51e051f386"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/PackageManagerSettings.asset",
+      "sha256": "8f19147a8cca86d1b47fa1af6cd2e2d45b16747f409f55b61cde7dc2bc4c599d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/Packages/com.unity.dedicated-server/ContentSelectionSettings.asset",
+      "sha256": "64c10bff19d1f228278dd12a8ca30350d55c886bc83fa4f2f73e213379ae4e69"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/Packages/com.unity.dedicated-server/MultiplayerRolesSettings.asset",
+      "sha256": "66f5310616983159b47ac6b1dfa249b1ea29385b1cecf077e5d596132fc5f0d8"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/Physics2DSettings.asset",
+      "sha256": "50e61d70bc38c632cb0e6efe364a9c5bcfd9a8dbcf4e7b5ecfb06a2030c4518f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/PresetManager.asset",
+      "sha256": "29c125923fe6e29f90190d4fce1c82d660e7051546e2c9d02908d18c9cf2436c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/ProjectSettings.asset",
+      "sha256": "01d9cecadcf597f613cfdfa5ead17b6fbf76ca2e9cf752091a75d2831a8bbeee"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/ProjectVersion.txt",
+      "sha256": "7a43a06dfe51c4e3933c5a7848320925ce96e667f8c7736557d13a02007e9860"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/QualitySettings.asset",
+      "sha256": "c1ed060f85623d3595b1e9eea133d957cd92191639a6edc51c638e3edcba240c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/SceneTemplateSettings.json",
+      "sha256": "bb9098b3bfcde78d93e264b96f7b77b5430e64e8c57a7aad7f5a5d9c3945e16a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/ShaderGraphSettings.asset",
+      "sha256": "5c432c9c73fdf73fee91c8823ea02ab98e3b7a8edf341b5ae6901d699cce52a7"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/TagManager.asset",
+      "sha256": "8e18b1c820e9c09e16bbd1f1b7842e9fb3b0158a0921b0964e0b8fa12c6e2c01"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/TimeManager.asset",
+      "sha256": "1a83e54adbbda7c9f4851103a0c6ab7f6448a3343d4ea5b7620452fa08416ecd"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/UnityConnectSettings.asset",
+      "sha256": "b7dd1e8290598f5ce86919ba1c98b42b766c8c42191a30fa2c4d12195c4ecd00"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/URPProjectSettings.asset",
+      "sha256": "c317fe22b9488785c0611f0642429922e5d324430d929bffb41648130f30c218"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/VersionControlSettings.asset",
+      "sha256": "e199cdfa6a8f2bf33cfd47e549198f13e3eb2a5099e908fdb4e0f14d939ccc6b"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/VFXManager.asset",
+      "sha256": "f066c6483919961332415ee64204f74fe52f38c02e82892eb02b7a5b2e381f0e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/XRSettings.asset",
+      "sha256": "edd2beb4a2e388312b4b7da241aa51070434005d82c59363f1237dd2e567585f"
+    }
+  ]
+}
