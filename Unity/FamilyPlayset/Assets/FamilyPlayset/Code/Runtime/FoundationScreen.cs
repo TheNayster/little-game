@@ -37,7 +37,8 @@ namespace LittleWeeps.Runtime
             var scaler = canvasObject.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1200, 800);
-            scaler.matchWidthOrHeight = 0.5f;
+            // Keep the whole reference layout visible on wide phones and squarer tablets.
+            scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             safe = MakeRect(canvasObject.transform, "Safe Area", Vector2.zero, Vector2.zero);
             UpdateSafeArea();
             Label(safe, "Little Weeps", 52, new Vector2(0, 325), new Vector2(1100, 75));

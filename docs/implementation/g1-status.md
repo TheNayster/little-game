@@ -1,8 +1,8 @@
 # G1 — project and device foundation
 
-Started 23 September 2026. In progress; no device qualification is complete.
+Started 23 September 2026. In progress. The Samsung foundation launch, input, media, restart and signed-update checks passed; the remaining G1 device/recovery gates are still open.
 
-Current work (latest user steering, 23 September): Android **0.0.11** now passes a limited launch/tap/save/video/force-stop recovery check in a new 16 KB emulator using ARM64 translation. A source-backed diagnostic finds no declared writable overlap in its seven libraries; eight synthetic tests pass. The strict RELRO gate remains open for native ARM64 qualification. The Samsung is now paired and connected; live inventory reports Android 16 / API 36 with 4 KB pages. This game is absent for active user 0. Next: establish this game's stable signing/recovery before physical install/update tests. Windows 0.0.9 remains the verified preview; Windows Server 0.0.12 passes its native lifecycle checks; iPad 0.0.1 launches. G2 and later game features have not started. [Latest investigation](android-16kb-review-2026-09-23.md).
+Current work (23 September): family-signed Android **0.0.14 → 0.0.15** is verified on the Samsung (Android 16 / API 36, 4 KB). Three saved taps and the paused 6.2-second video bookmark survived force-stop/reopen and the in-place update. The user confirmed physical touch and the audible test tone. Build 15 fixes the clipped title and shows the whole screen. The update was signed with the protected local recovery key. Independent backup and native ARM64 16 KB qualification remain open. Next Windows-side task: saved Android/server Build Profiles; remaining iPad/iPhone device and update checks still need completion. Windows client 0.0.9 and server 0.0.12 remain their verified artifacts. [Signing, phone and layout evidence](android-signing-and-phone-2026-09-23.md). G2/game worlds have not started.
 
 ## Boundary and tools
 
@@ -14,7 +14,7 @@ Current work (latest user steering, 23 September): Android **0.0.11** now passes
 - Blender 5.0.1, native MCP protocol 9 / add-on 1.7 responded successfully on 23 September.
 - Codex CLI 0.155.0-alpha.16.3 exists under the desktop app's versioned bin directory. That directory is absent from the normal user PATH, explaining the shortcut error. The new resolver locates it directly on each launch. The launcher passed a live Blender-only reconnect with a normal Windows user/machine PATH, and PowerShell syntax validation passed. Both desktop shortcuts now point here.
 - Git 2.53.0.windows.1 and Git LFS 3.7.1 available.
-- Samsung SM-S948U1: Android 16 / API 36 verified earlier through ADB. No new-game app installed yet. Wireless pairing/connection succeeded; live inventory confirms Android 16 / API 36 and 4,096-byte pages. Package absence was checked for active user 0 only.
+- Samsung SM-S948U1: Android 16 / API 36, 4,096-byte pages, active user 0. Family-signed 0.0.15 is installed; exact APK bytes, corrected layout, touch/audio, video, restart and 14 → 15 save retention passed. This does not qualify native 16 KB devices or long sessions.
 - A2602 iPad 9: connected by cable, paired and Developer Mode enabled. Live device inventory reports iPadOS 18.6.2 (22G100); this supersedes the earlier reported OS pairing. Signed foundation 0.0.1 is installed and launches after the user allowed developer trust. Physical touch and saved values still need observation. A2197 iPad 7 and A2484 iPhone remain untested.
 - Mac SSH authenticated successfully after correcting authorized_keys from a directory to a file. Live inventory: macOS 26.3.1 (25D2128), arm64, Xcode 26.6 (17F113), developer directory /Applications/Xcode.app/Contents/Developer, about 247 GiB free. No Unity Hub editor directory on Mac.
 
@@ -26,8 +26,8 @@ Current work (latest user steering, 23 September): Android **0.0.11** now passes
 | Local Git baseline and source policy | Baseline committed locally as 674c1f6; version 0.0.2 build settings recorded as d021213. Ignore/LFS rules are present. No external backup configured. |
 | New tool launcher; exact Unity project verified | Live full shortcut passed from normal Windows PATH. Blender responded; Unity MCP reported the new root, Unity 6000.3.24f1 and ready-for-tools. |
 | Matching editor, small package lock and saved profiles | 6000.3.24f1 and package lock exist. URP 17.3.0, Input System 1.20.0, UGUI 2.0.0, Test Framework 1.6.0; editor MCP 9.7.3 pinned. Saved Windows Foundation profile is built and verified; other platform profiles remain pending. |
-| Touch/save scene and local-video probe | Native Windows mouse input, saved taps, profile retention, local H.264/AAC decoding, play/pause/seek/restart and bookmark recovery passed. Touch, audio perception and video behavior on mobile remain unverified. |
-| Android release launch and update retaining seed data | Pending |
+| Touch/save scene and local-video probe | Native Windows mouse input, saved taps, profile retention, local H.264/AAC decoding, play/pause/seek/restart and bookmark recovery passed. Samsung touch/audio and video/save/update checks now pass; iPad media qualification remains pending. |
+| Android release launch and update retaining seed data | Passed for this Samsung 4 KB configuration: non-development family-signed 14 → 15 retained 3 taps and the 6.2-second bookmark. Human touch/audio confirmed; local recovery key signed the update. Independent backup/native 16 KB/long-session tests remain separate. |
 | Android tools and first APK | Matching module/toolchain work. 0.0.11 builds with zero summary errors/warnings; identity/signature/ABI/SDK and ZIP/ELF load alignment pass. Six raw RELRO-end flags remain. New geometry diagnostic finds no declared writable overlap; 16 KB emulator launch/tap/video/restart smoke passes under ARM64 translation. Native ARM64 and physical-phone qualification remain pending. |
 | Native launch on each iPad via Mac | Mac Release 0.0.1 compiled, signature verified and installed on A2602. The user allowed developer trust and a fresh device launch succeeded. A2197 remains untested. |
 | Free provisioning renewal observation started | Pending |
@@ -137,3 +137,12 @@ Bounded G1 work for FAMILY-01/TV-01: [source-backed investigation and exact evid
 The exact APK installed and rendered on the new game-owned Android 15 16 KB emulator. Three injected taps saved, the local clip played/paused/skipped, and force-stop/reopen restored 3 taps and the paused 6.1-second bookmark. The pulled installed APK matches the build hash. This is x86_64 with ARM64 translation, so it does not qualify native ARM64 16 KB behavior, physical touch/audio, version updates or long-session stability. The emulator was stopped; its test data remains. [Runtime record](evidence/android-16kb-review-2026-09-23/runtime.json).
 
 Samsung wireless pairing and inventory are complete: Android 16 / API 36, 4 KB pages, active user 0 with no game package. Next: prepare this game's stable Android signing/recovery before physical install and in-place update verification. A 4 KB phone result cannot close the separate native 16 KB gate. No phone package or unrelated project was changed. G1 remains in progress.
+
+
+## Family signing and first physical Android update
+
+[Full record and commands](android-signing-and-phone-2026-09-23.md). A new RSA-3072 family signing identity is pinned publicly in Tools; private material is stored outside Git with ACLs limited to the Windows user and SYSTEM. The protected local recovery copy signed fresh build 15 and its update was verified on the phone. It is not yet an independent/off-device backup.
+
+Both accepted builds 14 and 15 completed with zero summary errors/warnings. The signer verified 449 unchanged game payload entries; the installer checked the previous certificate and matched pulled installed APK hashes. The actual screen showed 3 saved taps and a 6.2-second paused bookmark after reopening 14 and after updating to 15. Build 15 also corrected the title/footer clipping on the wide Samsung screen. The user confirmed physical taps and the audible test tone. No uninstall, clear-data, downgrade or other-app operation occurred. [Verification](evidence/android-phone-g1-2026-09-23/verification.json).
+
+Strict 16 KB findings remain unchanged; these were controlled 4 KB physical-phone checks. The initial build-13 signing wrapper failed its case-sensitive ZIP payload check and was never installed; fresh 14/15 passed the corrected pipeline. Remaining G1 work includes saved Android/server UI Build Profiles, independent recovery and iPad/iPhone qualification/renewal.

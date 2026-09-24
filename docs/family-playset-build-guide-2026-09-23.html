@@ -944,7 +944,7 @@ Status: pending
 </tr>
 <tr>
 <td>Implementation state</td>
-<td>G1: Windows 0.0.9 verified; iPad 0.0.1 launches after developer trust. Android 0.0.11 builds and passes a limited tap/save/video/restart check in a 16 KB emulator using ARM64 translation; native ARM64 compatibility and physical-phone qualification remain open. Windows Server 0.0.12 builds and its native lifecycle check passes. Mobile device/save/update qualification remains pending.</td>
+<td>G1: Samsung family-signed 14 → 15 passes launch, human touch/audio, video, restart and in-place save retention; its clipped title is fixed. Local signing recovery exercised. Windows 0.0.9 and server 0.0.12 remain verified; iPad 0.0.1 launches. Independent recovery, native 16 KB and remaining Apple-device checks are open.</td>
 </tr>
 <tr>
 <td>Current research deliverable</td>
@@ -956,7 +956,7 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td>Android 16 KB investigation recorded: seven libraries show no declared writable overlap under rounded RELRO, eight diagnostic tests pass, and the exact APK survives emulator tap/video/force-stop recovery. Strict artifact gate remains unchanged because translation is not native ARM64 qualification. Samsung pairing/inventory completed: Android 16 / API 36, 4 KB pages, no game package on active user 0. Next: stable game signing/recovery, then physical install/update checks. <a href="implementation/android-16kb-review-2026-09-23.md">Investigation and evidence</a>.</td>
+<td>Android signing and physical update check completed for FAMILY-01/TV-01: 3 taps and 6.2-second bookmark retained, exact APK hashes and same certificate verified, recovery copy signed 15. Next Windows-side task: saved Android/server Build Profiles. Apple-device/update/renewal and independent-backup gates remain. <a href="implementation/android-signing-and-phone-2026-09-23.md">Phone evidence</a>.</td>
 </tr>
 <tr>
 <td>Package budget</td>

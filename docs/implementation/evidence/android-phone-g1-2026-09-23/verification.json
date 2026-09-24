@@ -1,0 +1,55 @@
+{
+  "utc": "2026-09-24T01:28:06.0798285Z",
+  "goalIds": [
+    "FAMILY-01",
+    "TV-01"
+  ],
+  "deviceModel": "SM-S948U1",
+  "android": 16,
+  "api": 36,
+  "pageBytes": 4096,
+  "fromBuild": "0.0.14",
+  "toBuild": "0.0.15",
+  "checks": {
+    "signedFreshBuilds": true,
+    "installedArtifactHashesMatched": true,
+    "signingCertificateMatchedBeforeUpdate": true,
+    "recoveryKeyUsedForUpdate": true,
+    "nonSignaturePayloadEntriesVerified": 449,
+    "seedSavedTaps": 3,
+    "seedBookmarkSeconds": 6.2,
+    "forceStopRestartRetainedSavedTaps": 3,
+    "forceStopRestartRetainedBookmarkSeconds": 6.2,
+    "updateRetainedSavedTaps": 3,
+    "updateRetainedBookmarkSeconds": 6.2,
+    "videoDecodedAndPlayPauseSkipPassed": true,
+    "titleAndFooterFullyVisible": true,
+    "humanTouchConfirmed": true,
+    "humanTestToneConfirmed": true
+  },
+  "humanObservation": "User confirmed: Tap works and I hear the tone, on build 0.0.15.",
+  "boundaries": {
+    "noUninstallOrClearData": true,
+    "noOtherAppTouched": true,
+    "localRecoveryExercised": true,
+    "offDeviceBackupVerified": false,
+    "native16KbQualified": false,
+    "longSessionQualified": false,
+    "wholeG1Complete": false
+  },
+  "screenshots": [
+    "seed-14.png",
+    "restart-14.png",
+    "update-15.png"
+  ],
+  "rawLogs": [
+    {
+      "path": "LocalData\\Verification\\littleweeps-phone14-logcat.txt",
+      "sha256": "38eb5880d16f96cfa7b7d006e479c8a6312f3882dd9d843011ce883e3b6bd4f5"
+    },
+    {
+      "path": "LocalData\\Verification\\littleweeps-phone15-logcat.txt",
+      "sha256": "9f09b247fac97c0ff7bf0442df09b6e0b0cb4df8a60c739a05d7d98c45e0d180"
+    }
+  ]
+}
