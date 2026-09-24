@@ -1,0 +1,65 @@
+{
+  "ObservedUtc": "2026-09-24T03:03:39.0079400Z",
+  "InstalledProducts": [
+    {
+      "DisplayName": "iTunes",
+      "DisplayVersion": "12.13.11.1",
+      "Publisher": "Apple Inc.",
+      "InstallLocation": "C:\\Program Files\\iTunes\\"
+    },
+    {
+      "DisplayName": "Bonjour",
+      "DisplayVersion": "3.0.0.10",
+      "Publisher": "Apple Inc.",
+      "InstallLocation": "C:\\Program Files (x86)\\Bonjour\\"
+    },
+    {
+      "DisplayName": "Apple Application Support (64-bit)",
+      "DisplayVersion": "8.7",
+      "Publisher": "Apple Inc.",
+      "InstallLocation": "C:\\Program Files\\Common Files\\Apple\\Apple Application Support\\"
+    },
+    {
+      "DisplayName": "Apple Mobile Device Support",
+      "DisplayVersion": "20.0.0.35",
+      "Publisher": "Apple Inc.",
+      "InstallLocation": "C:\\Program Files\\Common Files\\Apple\\Mobile Device Support\\"
+    },
+    {
+      "DisplayName": "Apple Software Update",
+      "DisplayVersion": "2.6.3.1",
+      "Publisher": "Apple Inc.",
+      "InstallLocation": "C:\\Program Files (x86)\\Apple Software Update\\"
+    },
+    {
+      "DisplayName": "Apple Application Support (32-bit)",
+      "DisplayVersion": "8.7",
+      "Publisher": "Apple Inc.",
+      "InstallLocation": "C:\\Program Files (x86)\\Common Files\\Apple\\Apple Application Support\\"
+    }
+  ],
+  "Services": [
+    {
+      "Name": "Apple Mobile Device Service",
+      "Status": "Running"
+    },
+    {
+      "Name": "Bonjour Service",
+      "Status": "Running"
+    }
+  ],
+  "SideloadlyObservedUiVersion": "0.60",
+  "SideloadlyRunningPath": "C:\\Users\\sephi\\AppData\\Local\\Sideloadly\\Sideloadly.exe",
+  "DeviceObserved": "iPhone",
+  "DeviceOsObserved": "26.6.1",
+  "DeviceConnectionObserved": "USB",
+  "ICloudApplicationInstallSucceeded": false,
+  "ICloudError": 1722,
+  "ICloudInstallerExit": 1603,
+  "FailedAction": "RuniCloudUpgrade",
+  "FailedCommand": "iCloud.exe /upgrade",
+  "FailureRootCauseBeyondActionKnown": false,
+  "GamePackageLoaded": false,
+  "AuthenticationVerified": false,
+  "RefreshEnrollmentVerified": false
+}

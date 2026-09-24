@@ -4,7 +4,11 @@
 
 ## Current state
 
-**Prepared, not enrolled or proven.** The Windows setup files and tested IPA are ready. The iTunes installer was launched, but its controls could not be automated: the computer-control tool returned **`product policy blocks this app: msiexec.exe`**. No attempt was made to bypass that restriction. The user then reported iTunes installed and signed in. A fresh registry check confirmed **iTunes 12.13.11.1** and **Apple Mobile Device Support 20.0.0.35**; the mobile-device service is running. [Installed-tool inventory](evidence/ipad-refresh-2026-09-23/windows-installed-tools.json). iCloud support and Sideloadly are not yet present in that inventory, and trusted USB/Wi-Fi pairing and Sideloadly authentication remain unverified. The user has the remaining numbered setup steps; no duplicate installer was started.
+**Installed support components; enrollment remains unproven.** iTunes 12.13.11.1, Apple Mobile Device Support 20.0.0.35, Apple Application Support **8.7 (both architectures)** and Bonjour **3.0.0.10** are now verified installed. Both device-support and Bonjour services are running. Sideloadly **0.60** is running and its UI recognizes the connected iPhone on **iOS 26.6.1 over USB**. [Current checks](evidence/ipad-refresh-2026-09-23/support-and-sideloadly-check.json).
+
+The iCloud application itself did **not** complete installation: Windows logged **1722**, installer exit **1603**, at **`RuniCloudUpgrade` / `iCloud.exe /upgrade`**. The separate support-package installations succeeded before this failure and remain installed. The underlying cause of that custom-action failure is not established. Raw setup logs were preserved in ignored `LocalData/iPadRefresh/Logs`. We are checking Sideloadly's actual requirements before deciding whether further iCloud repair is necessary; app startup/device detection do not prove Apple authentication will work.
+
+The earlier Windows Installer automation block remains respected. The user completed the support/Sideloadly installers themselves. The game-file chooser is now open in Sideloadly. Its parent/owned-dialog coordinates and file-field APIs were unreliable through the control tool, so the user has been asked to select the exact verified IPA manually. Loading, app-identity/refresh-option checks, authentication, first iPhone installation and automatic renewal are still pending.
 
 The desktop shortcut **Set up Little Weeps iPad refresh** opens:
 
@@ -14,7 +18,7 @@ That folder contains `READ ME FIRST.txt`, three numbered installer shortcuts and
 
 ## Current test device — iPhone
 
-The user cannot bring the iPad to Windows now and has connected their iPhone instead. Continue this Windows refresh setup on the iPhone first; both iPads remain required later. Windows reports an **Apple iPhone** portable device and Apple Mobile Device USB devices with status **OK**. That verifies USB detection, not trusted pairing, the exact iOS version, app installation or automatic refresh. The previously reported model is A2484; read the live device identity before enrollment. [USB detection evidence](evidence/ipad-refresh-2026-09-23/iphone-usb-detection.json).
+The user cannot bring the iPad to Windows now and has connected their iPhone instead. Continue this Windows refresh setup on the iPhone first; both iPads remain required later. Windows reports an **Apple iPhone** portable device and Apple Mobile Device USB devices with status **OK**. Sideloadly subsequently read the device name and iOS **26.6.1** over USB. This does not yet prove app installation, Wi-Fi pairing or automatic refresh. The previously reported model is A2484; keep that model attribution separate from the observed iOS version until the live model is read. [USB detection evidence](evidence/ipad-refresh-2026-09-23/iphone-usb-detection.json).
 
 Build 20 declares both iPhone and iPad device families and minimum iOS 15.0. The IPA can be the input for an iPhone installation, but the current Xcode profile was verified for the iPad only. Sideloadly must sign/provision for the connected iPhone through the same Apple Account; do not assume the existing iPad signature authorizes a direct iPhone install. Actual iPhone launch, layout, touch/audio/video and save/update checks remain pending.
 
