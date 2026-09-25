@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "localLinksAndAnchors": 120,
+  "topLevelGoalIds": 35,
+  "scope": "Documentation and exact user feedback only; no new runtime tests or unreported physical checks."
+}

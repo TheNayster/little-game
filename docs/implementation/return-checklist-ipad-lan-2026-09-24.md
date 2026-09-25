@@ -7,8 +7,8 @@ The PC family server is running, and **both iPads have automatically joined the 
 ## Start here
 
 1. **Done: both apps open, local-network permission allowed, both joined.** Keep them open and unlocked on home Wi-Fi for the following checks.
-2. **Current check — movement and one shared bucket:** move one character while watching the other iPad, then reverse it. Hold the bucket on one; the other should see it held and be unable to take it. Drop it and let the other player pick it up.
-3. **Independent areas and touch:** send one player to Creek while the other stays in Garden, then meet again. Try joystick plus dragging, Listen, remembered settings and full-screen layout.
+2. **Done by user report: smooth two-way movement and one shared bucket.** Both iPads show the other player moving; the bucket can only be held by one player, then dropped and picked up by the other. [Recorded feedback](evidence/ipad79-2026-09-24/movement-bucket-feedback.json).
+3. **Current check — independent areas; then touch:** send one player to Creek while the other stays in Garden, then meet again. Try joystick plus dragging, Listen, remembered settings and full-screen layout.
 4. **Leave and return:** lock one iPad while the other keeps walking/using toys. Unlock and return; it should rejoin without a stuck drag or interrupting the sibling. Repeat with the other device. Codex will inspect the current state alongside these observations.
 5. **Saved solo and late joining:** with Codex coordinating the PC, open while the server is absent and play solo. Start the server while a toy is held or Menu is open; switching should wait for a safe moment. Menu → Play by myself restores the separate solo draft; Find my family rejoins. Finally check a cold app restart, retained enrollment and saved settings.
 

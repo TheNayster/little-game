@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "recordedUtc": "2026-09-25T01:11:42.428857+00:00",
+  "build": "0.0.79",
+  "devices": [
+    "iPad 7 A2197",
+    "iPad 9 A2602"
+  ],
+  "authority": "Windows PC family server",
+  "goalIds": [
+    "FAMILY-01",
+    "ITEM-02"
+  ],
+  "evidenceType": "User-reported physical check",
+  "requestedChecks": [
+    "Walk on each iPad while watching the other screen; assess movement smoothness in both directions.",
+    "Hold the bucket on one iPad and try taking it on the other; drop it and swap. Only one player may hold it at a time."
+  ],
+  "userReply": "works great!",
+  "result": "User confirms the requested two-device movement and shared bucket checks work.",
+  "limits": [
+    "Qualitative user observation, not measured frame time or latency.",
+    "Independent travel, multi-touch in this shared build, lock/return, cold restart, solo return and late joining are not established by this response.",
+    "Four physical devices, either iPad hosting and automatic host switching remain unqualified."
+  ]
+}
