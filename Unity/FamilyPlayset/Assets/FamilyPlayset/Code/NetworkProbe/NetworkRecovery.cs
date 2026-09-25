@@ -49,6 +49,17 @@ namespace LittleWeeps.NetworkProbe
             network.CustomMessagingManager.RegisterNamedMessageHandler(RecoveryAckMessage,ReceiveRecoveryAck);
         }
         private void ResetRecoveryTransfer(){recoveryTransfer.Reset();recoveryCompletedTransfer=null;}
+        private RecoveryReplica OpenRecoveryReplica()
+        {
+            if(!recoveryInitialized)
+            {
+                recoveryInitialized=true;
+                recoveryReplica=new RecoveryReplica(Path.Combine(root,"client-recovery",config.profile,"world.save"),
+                    pairing?.familyId??config.runId,pairing?.authorityId??config.runId,config.runId,text=>JsonUtility.FromJson<RecoveryRecord>(text));
+            }
+            if(recoveryReplica==null)throw new IOException("Client recovery store needs attention.");
+            return recoveryReplica;
+        }
         private void CaptureRecovery(SoloSnapshot snapshot)
         {
             recoveryCommitted=new RecoveryRecord{version=1,protocol=Protocol,content=Content,family=pairing?.familyId??config.runId,
@@ -98,16 +109,8 @@ namespace LittleWeeps.NetworkProbe
                 var bytes=recoveryTransfer.Add(part,epoch,Time.realtimeSinceStartupAsDouble);recoveryChunks++;
                 if(bytes!=null && recoveryCompletedTransfer!=part.transfer)
                 {
-                    if(!recoveryInitialized)
-                    {
-                        recoveryInitialized=true;
-                        var path=Path.Combine(root,"client-recovery",config.profile,"world.save");
-                        recoveryReplica=new RecoveryReplica(path,pairing?.familyId??config.runId,pairing?.authorityId??config.runId,config.runId,
-                            text=>JsonUtility.FromJson<RecoveryRecord>(text));
-                    }
-                    if(recoveryReplica==null)throw new IOException("Client recovery store needs attention.");
                     var timer=System.Diagnostics.Stopwatch.StartNew();
-                    var record=recoveryReplica.Commit(bytes,epoch,Latest.view.worldId,Latest.view.players.Select(p=>p.id).ToArray());
+                    var record=OpenRecoveryReplica().Commit(bytes,epoch,Latest.view.worldId,Latest.view.players.Select(p=>p.id).ToArray());
                     timer.Stop();recoveryCompletedTransfer=part.transfer;
                     WriteJson(Path.Combine(output,"recovery-evidence.json"),new RecoveryEvidence{status="durable",epoch=epoch,hash=part.hash,
                         checkpoint=record.checkpoint,revision=record.snapshot.revision,bytes=bytes.Length,receivedChunks=recoveryChunks,

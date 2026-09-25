@@ -13,7 +13,7 @@ namespace LittleWeeps.Client
 {
     // One garden presentation; a supplied session routes actions to a remote
     // authority. The ordinary solo scene retains its own existing save adapter.
-    public sealed class SoloScreen : MonoBehaviour
+    public sealed partial class SoloScreen : MonoBehaviour
     {
         public SoloWorld World { get; private set; }
         public string Actor { get; private set; }
@@ -52,14 +52,20 @@ namespace LittleWeeps.Client
             // Never replace the only live copy with a server snapshot. Commit the
             // separate device branch before showing shared play; G5 owns merging.
             if(!TrySaveNow())return false;
-            localWorld=World;ResetPresentation();World=null;shared=session;Actor=session.Actor;
-            InitializeShared();message.text="Your solo play is saved. You're playing with family now!";
+            if(!TryDeselectAdventure())return false;
+            var savedAdventure=continuation!=null;
+            if(continuation==null)localWorld=World;
+            continuation=null;SavePath=soloSavePath;ResetPresentation();World=null;shared=session;Actor=session.Actor;
+            InitializeShared();message.text=savedAdventure?"Your adventure is in Menu → Saved adventures. You're with family now!":"Your solo play is saved. You're playing with family now!";
             return true;
         }
         public bool TryReturnToLocal()
         {
-            if(!Shared || localWorld==null || !CanChangeSession)return false;
-            ResetPresentation();shared=null;World=localWorld;Actor=World.Snapshot().players[0].id;
+            if(localWorld==null || !CanChangeSession)return false;
+            if(!Shared && continuation==null)return TryDeselectAdventure();
+            if(World!=null && !TrySaveNow() || !TryDeselectAdventure())return false;
+            continuation=null;SavePath=soloSavePath;
+            ResetPresentation();shared=null;World=localWorld;Actor=offlineActor ?? World.Snapshot().players[0].id;
             BuildScreen();Render();message.text="Your saved solo play. Menu lets you find your family again.";
             return true;
         }
@@ -148,6 +154,7 @@ namespace LittleWeeps.Client
                 return;
             }
             SavePath = Path.Combine(Application.persistentDataPath,"SoloPrototype",VerifyRun ?? offlineBranch ?? "family-local","world.save");
+            soloSavePath=SavePath;
             store = new CheckpointStore(SavePath, ValidPayload);
             try
             {
@@ -170,6 +177,7 @@ namespace LittleWeeps.Client
             BuildScreen(); Render();
             if (LoadedStatus == CheckpointStatus.Missing) SaveNow();
             if (LoadedStatus == CheckpointStatus.Recovered) message.text = "Your last safe save is back. Let's play!";
+            localWorld=World;OpenInitialAdventure();
             if (VerifyRun != null)
             {
                 if(VerifyMode=="crash-hold" || VerifyMode=="crash-resume")gameObject.AddComponent<SoloCrashVerification>();
@@ -236,7 +244,7 @@ namespace LittleWeeps.Client
             cleanup.rectTransform.anchoredPosition=new Vector2(22,0);cleanup.rectTransform.sizeDelta=new Vector2(191,48);
             Panel(cleanup.transform.parent,"Sponge picture",new Vector2(-94,0),new Vector2(34,23),new Color(1,.83f,.28f));
             Button(safe,"Free play",new Vector2(120,265),new Vector2(190,48),()=>StartActivity(""),Cream);
-            if(shared!=null)
+            if(shared!=null || continuation!=null)
                 foreach(var zone in new[]{"garden","creek"})
                 {
                     var place=zone;
@@ -276,8 +284,9 @@ namespace LittleWeeps.Client
             Button(menu.transform,"Leave activity",new Vector2(0,-200),new Vector2(350,75),()=>{StartActivity("");SetMenu(false);},Cream);
             if(familyModeAction!=null)
             {
-                Button(menu.transform,Shared?"Play by myself":"Find my family",new Vector2(0,-290),new Vector2(490,65),()=>familyModeAction(),new Color(.77f,.88f,.96f));
-                Label(menu.transform,"Solo and family play are saved separately.",18,new Vector2(0,-341),new Vector2(850,32));
+                Button(menu.transform,Shared?"Play by myself":"Find my family",new Vector2(-220,-290),new Vector2(390,65),()=>familyModeAction(),new Color(.77f,.88f,.96f));
+                if(adventures!=null)Button(menu.transform,"Saved adventures",new Vector2(220,-290),new Vector2(390,65),()=>ShowAdventures(0),new Color(.81f,.92f,.72f));
+                Label(menu.transform,"Solo, family and saved adventures stay separate.",18,new Vector2(0,-341),new Vector2(850,32));
             }
             UpdateVoiceControls();
             menu.SetActive(false);
@@ -294,7 +303,8 @@ namespace LittleWeeps.Client
                 {if(!result.Accepted && result.Outcome!="superseded")message.text=Friendly(result.Outcome);Render();});
                 return new SoloResult(false,"pending",shared.View.revision);
             }
-            var result=World.Apply(new SoloCommand {requestId=Guid.NewGuid().ToString("N"),actor=Actor,expectedRevision=World.Revision,action=action,item=item,target=target,value=value,x=x,y=y});
+            var player=World.ReadPlayer(Actor);
+            var result=World.Apply(new SoloCommand {requestId=Guid.NewGuid().ToString("N"),actor=Actor,zone=player.zone,visit=player.visit,expectedRevision=World.Revision,action=action,item=item,target=target,value=value,x=x,y=y});
             if(result.Accepted) {dirty=true;lastLocalAction=Time.realtimeSinceStartup;Render();}
             return result;
         }
@@ -306,6 +316,8 @@ namespace LittleWeeps.Client
         public void ChooseAvatar(string id) { if(HasWorld && !TravelPending) Command(SoloAction.ChangeAvatar,value:id); }
         public void Travel(string zone)
         {
+            if(continuation!=null && shared==null && SoloWorld.KnownArea(zone))
+            {CancelPointers();Narration.Stop();Command(SoloAction.Travel,value:zone);return;}
             if(shared==null || !shared.Connected || !SoloWorld.KnownArea(zone))return;
             requestedArea=zone;CancelPointers();Narration.Stop();
             message.text="Going to the "+zone+"…";
@@ -511,7 +523,7 @@ namespace LittleWeeps.Client
         public bool TrySaveNow()
         {
             if(World==null || store==null)return false;
-            try{store.Save(JsonUtility.ToJson(World.Snapshot()));dirty=false;if(saveLabel!=null)saveLabel.text="Saved on this device · solo prototype · "+Application.version;return true;}
+            try{if(continuation!=null)adventures.Save(continuation,World.Snapshot());else store.Save(JsonUtility.ToJson(World.Snapshot()));dirty=false;if(saveLabel!=null)saveLabel.text=continuation!=null?"Your adventure is saved on this device":"Saved on this device · solo prototype · "+Application.version;return true;}
             catch(Exception e){if(saveLabel!=null)saveLabel.text="Couldn't save yet. Please ask a grown-up.";Debug.LogWarning("Solo checkpoint: "+e.Message);return false;}
         }
         private void OnDestroy()
@@ -542,7 +554,7 @@ namespace LittleWeeps.Client
             Board.GetComponent<Image>().color=creek?new Color(.7f,.85f,.71f):new Color(.76f,.89f,.72f);
             floorPath.color=creek?new Color(.37f,.72f,.87f):new Color(.9f,.81f,.64f);
             foreach(var part in fence)part.SetActive(!creek);
-            foreach(var pair in travelButtons)pair.Value.interactable=shared.Connected && (pair.Key!=zone || TravelPending);
+            foreach(var pair in travelButtons)pair.Value.interactable=(shared==null || shared.Connected) && (pair.Key!=zone || TravelPending);
             foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(SoloWorld.AreaOf(toy.zone)==zone);
             var toyStates=ReadToys();var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
             head.color=p.avatar=="blue-pup"?new Color(.35f,.65f,.85f):new Color(.94f,.58f,.31f);body.color=head.color;

@@ -155,7 +155,7 @@ namespace LittleWeeps.NetworkProbe
             if(tracks.TryGetValue(actor,out var track)){var point=track.Sample(probe.ServerClock-InterpolationDelay);return new Vector2(point.X,point.Y);}
             return new Vector2(p.x,p.y);
         }
-        private void Disconnected(){replies.Clear();queue.Disconnect();tracks.Clear();toyTracks.Clear();ownGeneration=null;walking=new WalkInput{mode=WalkMode.Stop};}
+        private void Disconnected(){probe.RememberInterrupted(queue.Unsettled());replies.Clear();queue.Disconnect();tracks.Clear();toyTracks.Clear();ownGeneration=null;walking=new WalkInput{mode=WalkMode.Stop};}
         private void OnDestroy(){if(probe!=null){probe.Received-=Receive;probe.MotionReceived-=CapturePositions;probe.LostConnection-=Disconnected;}}
     }
 }

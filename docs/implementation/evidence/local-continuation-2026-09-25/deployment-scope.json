@@ -1,0 +1,14 @@
+{
+  "utc": "2026-09-25T12:24:46.103836+00:00",
+  "actualFamilyBuild": 83,
+  "originalProcessAndInstanceStillRunning": true,
+  "actualCheckpointByteIdenticalToPriorVerifiedBackup": true,
+  "actualCheckpointRevision": 1866,
+  "parentPageSelectedBuild": 85,
+  "actualCrashSupervisionEnabled": false,
+  "mobileBuildsCreated": false,
+  "physicalDevicesAccessed": false,
+  "automaticOutageContinuationQualifiedOnWindows": true,
+  "iPadHostingQualified": false,
+  "independentBackupQualified": false
+}

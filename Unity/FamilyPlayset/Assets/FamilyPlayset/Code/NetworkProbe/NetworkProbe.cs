@@ -239,6 +239,7 @@ namespace LittleWeeps.NetworkProbe
             familyScreen=gameObject.AddComponent<SoloScreen>();
             familyScreen.ConfigureOfflineBranch(config.runId,config.profile);
             familyScreen.ConfigureFamilyMode(RequestFamilyMode,config.verifyGarden);
+            ConfigureContinuation();
             if(config.verifyGarden)gameObject.AddComponent<NetworkGardenVerification>();
         }
         private void RequestFamilyMode()
@@ -251,7 +252,17 @@ namespace LittleWeeps.NetworkProbe
         }
         private void TickPresentation()
         {
-            if(familyScreen==null || applicationPaused)return;
+            if(familyScreen==null)return;
+            var prolonged=outageClock.Tick(Time.realtimeSinceStartupAsDouble,!applicationPaused,!ConnectedToServer && !localOnly && !reconnectBlocked);
+            if(applicationPaused)return;
+            if(requestedAdventure!=null)
+            {
+                if(!familyScreen.CanChangeSession)return;
+                var selected=requestedAdventure;requestedAdventure=null;
+                if(selected==""?familyScreen.TryReturnToLocal():familyScreen.TryOpenAdventure(selected))
+                {localOnly=true;localRequested=false;BeginReconnect("adventure-selected");WriteStatus("solo-selected","");}
+                return;
+            }
             if(localRequested)
             {
                 if(!familyScreen.TryReturnToLocal())return;
@@ -260,6 +271,7 @@ namespace LittleWeeps.NetworkProbe
             }
             else if(!localOnly && ConnectedToServer && !familyScreen.Shared && familyScreen.TryJoinFamily(familyGarden))
             {presentationStarted=true;TraceConnection("shared-presented",0,"local-checkpoint-preserved");}
+            else if(prolonged)TryLocalContinuation();
         }
         private void TickDiscovery()
         {

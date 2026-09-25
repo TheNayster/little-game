@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LittleWeeps.Core
 {
@@ -12,6 +13,8 @@ namespace LittleWeeps.Core
         private Entry pending;
         public bool Busy=>pending!=null || queue.Count>0;
         public string PendingId=>pending?.command.requestId;
+        public SoloCommand[] Unsettled()=> (pending==null?queue: new[]{pending}.Concat(queue)).Select(e=>e.command).Select(c=>new SoloCommand{
+            requestId=c.requestId,actor=c.actor,item=c.item,target=c.target,value=c.value,expectedRevision=c.expectedRevision,zone=c.zone,visit=c.visit,action=c.action,x=c.x,y=c.y}).ToArray();
         public bool Enqueue(SoloCommand command,Action<SoloResult> done)
         {
             if(command==null)throw new ArgumentNullException(nameof(command));

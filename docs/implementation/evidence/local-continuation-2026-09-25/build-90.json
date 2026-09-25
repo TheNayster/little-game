@@ -1,0 +1,29 @@
+{
+  "utc": "2026-09-25T12:17:56.2331459Z",
+  "contract": 4,
+  "gardenPresentation": true,
+  "builds": [
+    {
+      "role": "Server",
+      "version": "0.0.90",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+      "result": "Succeeded",
+      "output": "Builds/NetworkProbe/G3-0.0.90/Server/LittleWeepsNetwork.exe",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": true
+    },
+    {
+      "role": "Client",
+      "version": "0.0.90",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+      "result": "Succeeded",
+      "output": "Builds/NetworkProbe/G3-0.0.90/Client/LittleWeepsNetwork.exe",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": false
+    }
+  ]
+}

@@ -21,6 +21,7 @@ static partial class Program
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
         RecoveryTests();
+        ContinuationTests();
         Test("home authority has no lifetime cutoff while isolated probes retain exact deadlines",()=>{
             foreach(var elapsed in new[]{0d,240d,241d,7200d,7201d,86400d,2592000d})
                 Check(!SessionLifetime.Expired(elapsed,true,true));

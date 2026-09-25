@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — When you return</title><style>
+<title>The Family Playset — Local continuation and saved adventures</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -16,58 +16,61 @@
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
-</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="return-checklist-ipad-lan-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1>Current checks — server/Android 83; Apple clients 79</h1>
-<p>Both iPads have been <strong>updated in place and launched</strong>. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Mac signing is complete; there is no need to run the signing window again. <a href="g3-ipad-79-2026-09-24.html">Current installation evidence</a>.</p>
-<p><strong>Both iPads, Samsung and iPhone have joined the same PC shared world.</strong> Native discovery and admission are verified, and the user confirms all devices work. After everyone left, the user authorized the PC server and Samsung update to 83. Those updates are complete; iPads/iPhone remain 79. <a href="g3-phones-79-2026-09-24.html">Four-device record</a>.</p>
-<h2>iPad progress — further hands-on checks paused at user request</h2>
-<ol>
-<li><strong>Done: both apps open, local-network permission allowed, both joined.</strong> No further iPad action is currently requested.</li>
-<li><strong>Done by user report: smooth two-way movement and one shared bucket.</strong> Both iPads show the other player moving; the bucket can only be held by one player, then dropped and picked up by the other. <a href="evidence/ipad79-2026-09-24/movement-bucket-feedback.json">Recorded feedback</a>.</li>
-<li><strong>Done by user report: independent areas and reunion.</strong> One player visited Creek while the other kept playing in Garden; they saw each other again on reunion. <a href="evidence/ipad79-2026-09-24/independent-travel-feedback.json">Recorded feedback</a>. Shared-build joystick plus dragging, Listen, remembered settings and full-screen layout still need their separate check.</li>
-<li><strong>Done: leave and return on both iPads.</strong> The user confirms locking/unlocking and also closing/reopening while the sibling continues; movement and bucket pickup work afterward. Native reads confirm retained identities and automatic rejoin from new app processes to the same PC authority. <a href="evidence/ipad79-2026-09-24/lock-cold-rejoin.json">Evidence</a>.</li>
-<li><strong>Passed on the tested iPad: saved solo round trip.</strong> The user confirmed easy family rejoin with server positions and restoration of the solo toy position when returning to Play by myself. <a href="evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json">Feedback</a>. Which iPad was used and repetition on both were not specified. Further iPad time is paused. Initial joining after a server-absent start and remaining multi-touch/layout/voice/settings checks remain deferred.</li>
-</ol>
-<p>The previous unpaired solo garden, paired-device solo draft and server world are separate. The update preserves the old save; it does not merge it into the family garden. Windows 90 now qualifies automatic local adventures and safe reunion; physical device qualification and full offline reconciliation still need their planned work.</p>
-<h2>Phone milestone — completed within the recorded scope</h2>
-<ol>
-<li><strong>Done: Samsung 15 → 79 in place.</strong> Original signing identity, installed APK hash, native enrollment/discovery and automatic family admission verified. Full layout, walking, bucket fill/pour and Listen passed by user report. Accessible files were backed up; exact private foundation-preference retention was not independently read back.</li>
-<li><strong>Done: iPhone 20 → 79 in place and all four connected.</strong> USB Sideloadly update completed, native version matched and all three prior preference values remained. The fourth identity was consumed into Keychain and joined automatically. User reports the full layout, walking, bucket drag and Listen work. Server evidence confirms four distinct physical clients together. This does not complete sustained four-device gameplay/lifecycle acceptance.</li>
-</ol>
-<h2>Phone layout and resets — Android/server 83 applied</h2>
-<p>The user requested less phone side space and timers for unused items/completed quests. <a href="g3-phone-layout-resets-2026-09-24.html">Build 82</a> widens the phone floor, keeps tablet geometry, returns idle bucket/sponge after 180 + 5 seconds and rearms completed flower/puddle after 60 + 5 seconds. Held tools stay protected. Windows, signed Android and unsigned native iOS builds pass, together with scoped regressions. Apple signing/installation remains. The later <a href="g3-persistent-server-2026-09-24.html">server and Samsung 83 update</a> is now applied after user authorization: the authority has active timers and no home-session cutoff, Android has the wider layout/cues, and its native screenshot was inspected. iPhone/iPads remain 79 and their updates still await availability.</p>
-<h2>Next Windows task</h2>
-<p>Completed while away, using separate test worlds:</p>
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-local-continuation-2026-09-25.md">Editable record</a></nav></header><main class="progress-report report"><h1>Automatic local continuation and saved adventures</h1>
+<p><strong>G3-REC-02 · NET-02 / AUTO-01 · September 25, 2026 · Windows build 90.</strong> The prototype now continues locally after a prolonged server loss using its last verified complete checkpoint. Each outage creates a separate saved adventure. Rejoining family play preserves that adventure and the older solo save. This is a Windows qualification milestone; the live family server and phones/tablets were not updated.</p>
+<h2>Behavior implemented</h2>
 <ul>
-<li><a href="g3-server-recovery-2026-09-24.html">Verified server backup/restore and rollback</a>.</li>
-<li><a href="g3-server-supervision-2026-09-24.html">Bounded crash recovery</a>, including four original clients rejoining and deliberate-stop protection.</li>
-<li><a href="g3-server-soak-2026-09-24.html">Ten-minute four-player Windows run</a>, covering movement, travel, timers, rejoin and save restart.</li>
-<li><a href="g3-parent-recovery-panel-2026-09-24.html">Parent backup/recovery buttons and status</a> in <strong>Little Weeps Server</strong> on the desktop. Your actual 83 world was backed up through this page and remains its original process; recovery activation is still Off.</li>
-<li>
-<p><a href="g3-client-recovery-2026-09-24.html">Complete client recovery checkpoints</a> in Windows 88, preserving receipts, idle timers and the separate solo draft. This is not installed on your devices yet.</p>
-</li>
-<li>
-<p><a href="g3-local-continuation-2026-09-25.html">Automatic local continuation and saved adventures</a> in Windows 90: four-client outage/restart, preserved solo progress, reopenable adventures and safe automatic reunion pass. No devices were updated.</p>
-</li>
+<li>After <strong>ten observed foreground seconds disconnected</strong>, a paired client with a valid recovery checkpoint switches to a local adventure at a safe input boundary. Transport loss detection adds time before this clock starts; background time is not counted. This is a custom prototype threshold, not a zero-delay guarantee.</li>
+<li>The adventure contains both current prototype areas, all four profiles, the retained receipts and idle clocks. It has a new world/branch ID and an immutable copy of its common shared checkpoint. The selected child's profile and location are retained. Temporary item holds are released, absent players are not drawn, and local walking, dragging, watering/cleanup, timers and area travel use the existing rules.</li>
+<li>The older paired solo draft is separate. The shared replica, adventure files and selected-adventure pointer also have separate paths. Save writes are checksummed, staged and read back; failed writes do not silently open an empty replacement. A new install without a checkpoint keeps ordinary solo play available.</li>
+<li>Cold launch resumes a selected adventure, including after an app crash while holding a toy. Restart releases the crashed pointer's hold before play resumes. Multiple outages retain distinct adventure files; there is no automatic history deletion.</li>
+<li>Discovery continues during automatic continuation. Rejoining waits for the current gesture to finish and the local save to succeed, then displays the server's authoritative world. It never uploads a whole local snapshot over the family world. <strong>Menu → Saved adventures</strong> can reopen the preserved work; <strong>My solo play</strong> restores the original solo draft. Deliberately opening saved play stops automatic joining for that session until <strong>Find my family</strong> is chosen.</li>
+<li>Unsettled queued commands are exported with their original request IDs into a separate local interrupted-action archive before the queue is cleared. They are unresolved intentions, not accepted events, and are never automatically replayed. The queue's copy/no-replay behavior is unit-tested; deliberate lost-ack/native archive failure scenarios remain in the next qualification task.</li>
 </ul>
-<p><strong>Next implementation: G3-REC-03 outage failure matrix</strong>, then mobile recovery builds and device qualification. iPad hosting and reconciliation remain required.</p>
-<p>When you return:</p>
-<ol>
-<li>Approve the reviewed Windows network setup for the selected prepared server, then update it during an empty session and click <strong>Enable recovery</strong> on the parent page. The page is still configured for qualified operations build 85; newer recovery/continuation 90 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.</li>
-<li>Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.</li>
-<li>Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.</li>
-<li>Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. Client recovery replication and local adventures also need mobile builds and A10 write/frame measurements. No repeat of the already-passed smoke checks is needed.</li>
-</ol>
-<p><a href="g3-persistent-server-2026-09-24.html">Persistent server 83</a> is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Sign-in startup/status, long-duration soak and broader lifecycle acceptance remain open.</p>
-<h2>Deferred hands-on checks — no action requested now</h2>
-<ul>
-<li>When devices are available for testing, finish detailed Samsung/iPhone shared-item, independent-area and lifecycle checks; repeat solo restoration per device as needed.</li>
-<li>Exercise a server-absent initial launch followed by late joining, remaining current-build iPad multi-touch/settings checks, and sustained four-device frame-time/memory measurements.</li>
-<li>Report any actual play issue as it occurs; already-passed controls do not need routine repetition.</li>
-</ul>
-<h2>Still tracked</h2>
-<ul>
-<li>Unattended app renewal on both iPads is unproven; the earlier iPhone USB renewal did not qualify Wi-Fi renewal. The current development profile expires October 1, 2026.</li>
-<li>Sustained performance on the older A10 iPad and observing the children use the controls remain open.</li>
-<li>Both iPads hosting, host switching/recovery, full offline reconciliation and the remaining game content are still in the main plan.</li>
-</ul>
-<p>These checks will be handled one short step at a time. Do not delete the app or reset its data to troubleshoot a connection.</p></main></body></html>
+<p>This implements a safe subset of the goal sheet's outage/reunion design in sections 35 and 45. Automatic joining with preserved, reopenable work is present. Importing compatible edits, resolving conflicting creations, bounded reunion during continuous input, an accepted-event tail, NPC role substitution and both iPads hosting remain required work. The saved-adventure menu uses prototype text; picture/voice navigation and child usability belong to G2/G6.</p>
+<h2>Evidence</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result and scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="evidence/local-continuation-2026-09-25/build-90.json">Fresh Windows 90 server/client builds</a></td>
+<td>Unity 6000.3.24f1; zero build errors or warnings. <a href="evidence/local-continuation-2026-09-25/source-provenance.json">All current Unity C# sources match the compiled source manifest</a>. No package upgrade.</td>
+</tr>
+<tr>
+<td><a href="evidence/local-continuation-2026-09-25/rules.json">67 core/storage checks</a></td>
+<td>Includes eight new groups for foreground outage timing, immutable bases, stale holds, branch selection/restart, separate histories, identity/rollback refusal, disk denial, corrupt/future formats and unresolved command identity.</td>
+</tr>
+<tr>
+<td><a href="evidence/local-continuation-2026-09-25/native-90.json">Six native continuation groups</a></td>
+<td>Four enrolled DTLS clients, first launch without server/checkpoint, authority crash, independent local worlds, non-first-profile interactions and travel, client crash with held toy, restart, gesture-safe reunion, saved-work menu, original solo access and a second outage. All four entered local play in one observed <strong>12.703 seconds after authority termination</strong>, including detection and sequential harness observation. This is one desktop observation, not a mobile timing budget or percentile.</td>
+</tr>
+<tr>
+<td><a href="evidence/local-continuation-2026-09-25/compatibility-90.json">Four staggered-version combinations</a></td>
+<td>90/79, 79/90, 90/83 and 83/90 server/client admission, pickup/fill and shared views pass. Legacy peers do not negotiate recovery checkpoints.</td>
+</tr>
+<tr>
+<td><a href="evidence/local-continuation-2026-09-25/motion-90.json">Four-player native movement</a></td>
+<td>Receipt-stressed recovery traffic remains active. Remote moving-frame fraction 1.0; median 16.65 ms; p95 visual speed 240.34 against the existing &lt;420 threshold; p95 delay behind received positions 0.212 seconds against &lt;0.4. Desktop loopback, not physical Wi-Fi or A10 performance.</td>
+</tr>
+<tr>
+<td><a href="evidence/local-continuation-2026-09-25/server-recovery-90.json">Server backup/restore regression</a></td>
+<td>Isolated live backup, exact restore/rollback, invalid archive refusal, interrupted-recovery protection, damaged-primary repair and missing-directory reconstruction. The qualified source-build ceiling is 90; this does not activate a deployment.</td>
+</tr>
+<tr>
+<td><a href="evidence/local-continuation-2026-09-25/deployment-scope.json">Deployment scope</a></td>
+<td>Actual family authority remains its original build 83 process. Parent page target remains 85 with automatic recovery Off. No Mac, phone or iPad was accessed.</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="Native saved-adventure menu" src="evidence/local-continuation-2026-09-25/saved-adventures-menu.png" /></p>
+<p>The early native harness required an exact float match for a screen-to-world drop and attempted a pickup before its delayed test travel acknowledgment settled. Those harness errors were corrected with a positional tolerance and the actual pending-operation boundary. Build 89 then passed; final 90 includes the reviewed malformed-selection fallback and adds the held-toy crash and repeated-outage checks. Failed test worlds remain separate from family data.</p>
+<h2>Limits and next task</h2>
+<p>Only completed recovery checkpoints are used; a recently rendered or accepted action may not yet be replicated. Retained command intentions are not a complete event journal or automatic conflict solution. Disk-full/access-denial behavior at native transition time, admission rejection, sustained packet loss and individual-client network partitions need further qualification. Deliberately using a saved adventure stays local until finding family again; a fresh app launch resumes it while seeking the server normally.</p>
+<p>No Apple/Android recovery build is installed. The ten-minute earlier soak was on 85, not this new continuation flow. Mobile atomic storage, A10 frame/write costs and real lifecycle behavior still require native builds and device checks. iPad hosting/election/handoff and G5 reconciliation remain mandatory; G1/G2/G3 are still partial.</p>
+<p><strong>Next bounded task: G3-REC-03 — outage failure matrix.</strong> Qualify native lost acknowledgments/archived intentions, denied branch/selection writes, background/foreground timing and rejected admission without erasing saved work or replaying actions. Then prepare coordinated mobile recovery builds and complete physical qualification. Existing parent activation, independent backup, renewal and VPS tasks remain in the ordered guide.</p>
+<p><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Main build guide</a> · <a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a></p></main></body></html>

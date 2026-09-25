@@ -8,6 +8,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="RecoveryTests.cs" />
+    <Compile Include="ContinuationTests.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/ContinuationLibrary.cs" Link="ContinuationLibrary.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/OutageClock.cs" Link="OutageClock.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/RecoveryTransfer.cs" Link="RecoveryTransfer.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/RecoveryReplica.cs" Link="RecoveryReplica.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SessionLifetime.cs" Link="SessionLifetime.cs" />

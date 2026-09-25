@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "build": 90,
+  "utc": "2026-09-25T12:20:15.467820+00:00",
+  "checks": [
+    {
+      "serverBuild": 90,
+      "clientBuild": 79,
+      "passed": true,
+      "runId": "8fe382c53eeb45888ae7f45e513b385b"
+    },
+    {
+      "serverBuild": 79,
+      "clientBuild": 90,
+      "passed": true,
+      "runId": "2e089e89d3924a1985c3dba35f36d08c"
+    },
+    {
+      "serverBuild": 90,
+      "clientBuild": 83,
+      "passed": true,
+      "runId": "839b1841bc69481881ba3c2de57c700e"
+    },
+    {
+      "serverBuild": 83,
+      "clientBuild": 90,
+      "passed": true,
+      "runId": "8b26aa46416b48e181d0d6eda7d56a23"
+    }
+  ],
+  "scope": "79/83 staggered-update admission and basic interaction. On recovery-capable builds, legacy peers negotiate no recovery traffic or durable credit. 79 lacks reset cues/timers.",
+  "physicalDevicesAccessed": false
+}

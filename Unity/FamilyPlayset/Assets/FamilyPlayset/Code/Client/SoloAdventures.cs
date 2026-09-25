@@ -1,0 +1,73 @@
+using System;
+using LittleWeeps.Adapters;
+using LittleWeeps.Core;
+using UnityEngine;
+
+namespace LittleWeeps.Client
+{
+    public sealed partial class SoloScreen
+    {
+        private ContinuationLibrary adventures;
+        private ContinuationRecord continuation;
+        private Action<string> openAdventure;
+        private string soloSavePath;
+        private string pendingContinuation;
+        public string AdventureId=>continuation?.id??"";
+        public void ConfigureAdventures(ContinuationLibrary library,Action<string> open)
+        {if(safe!=null)throw new InvalidOperationException("Configure before Start.");adventures=library;openAdventure=open;}
+        private bool TryDeselectAdventure()
+        {try{adventures?.Select("");return true;}catch(Exception){message.text="Your saved play needs a grown-up's help.";return false;}}
+        private void OpenInitialAdventure()
+        {
+            if(adventures==null || adventures.Selected=="")return;
+            TryOpenAdventure(adventures.Selected);
+        }
+        public bool TryContinue(RecoveryRecord basis)
+        {
+            if(adventures==null || !CanChangeSession || MenuOpen || (!Shared && continuation!=null))return false;
+            try
+            {
+                if(World!=null && !TrySaveNow())return false;
+                if(pendingContinuation==null)pendingContinuation=adventures.Create(basis).id;
+                if(!TryOpenAdventure(pendingContinuation))return false;
+                pendingContinuation=null;return true;
+            }
+            catch(Exception e){Debug.LogWarning("Adventure continuation: "+e.Message);message.text="Your saved play needs a grown-up's help.";return false;}
+        }
+        public bool TryOpenAdventure(string id)
+        {
+            if(adventures==null || !CanChangeSession)return false;
+            try
+            {
+                if(World!=null && !TrySaveNow())return false;
+                var record=adventures.Load(id);var restored=SoloWorld.Restore(record.snapshot);
+                // Release all old pointer leases and commit before changing the
+                // displayed authority. Failed disk writes leave current play intact.
+                adventures.Save(record,restored.Snapshot());adventures.Select(id);
+                if(World!=null && continuation==null)localWorld=World;
+                ResetPresentation();shared=null;continuation=record;World=restored;Actor=record.actor;SavePath=adventures.PathFor(id);
+                BuildScreen();Render();lastLocalAction=Time.realtimeSinceStartup;
+                message.text="Keep playing here. This adventure saves separately from family play.";return true;
+            }
+            catch(Exception e){Debug.LogWarning("Open adventure: "+e.Message);message.text="That adventure needs a grown-up's help. Your other play is safe.";return false;}
+        }
+        private GameObject adventurePanel;
+        private void ShowAdventures(int page)
+        {
+            if(adventurePanel!=null){adventurePanel.SetActive(false);Destroy(adventurePanel);}
+            adventurePanel=Panel(menu.transform,"Saved adventures panel",Vector2.zero,new Vector2(1190,760),Cream,true).gameObject;
+            Label(adventurePanel.transform,"Your saved adventures",38,new Vector2(0,290),new Vector2(960,80));
+            var branches=adventures.Branches();var pages=Math.Max(1,(branches.Length+2)/3);page=Mathf.Clamp(page,0,pages-1);
+            Label(adventurePanel.transform,branches.Length==0?"An adventure will appear here if the connection stops.":"Each adventure keeps its own toys and progress.",22,new Vector2(0,210),new Vector2(980,60));
+            for(var i=0;i<3 && page*3+i<branches.Length;i++)
+            {
+                var id=branches[page*3+i];var number=branches.Length-(page*3+i);
+                Button(adventurePanel.transform,"Adventure "+number,new Vector2(0,105-i*100),new Vector2(600,75),()=>{SetMenu(false);openAdventure(id);},new Color(.81f,.92f,.72f));
+            }
+            if(page>0)Button(adventurePanel.transform,"Newer",new Vector2(-330,-205),new Vector2(220,60),()=>ShowAdventures(page-1),Cream);
+            if(page+1<pages)Button(adventurePanel.transform,"Older",new Vector2(330,-205),new Vector2(220,60),()=>ShowAdventures(page+1),Cream);
+            Button(adventurePanel.transform,"My solo play",new Vector2(0,-205),new Vector2(300,65),()=>{SetMenu(false);openAdventure("");},new Color(.77f,.88f,.96f));
+            Button(adventurePanel.transform,"Back to menu",new Vector2(0,-305),new Vector2(350,65),()=>{adventurePanel.SetActive(false);Destroy(adventurePanel);},Cream);
+        }
+    }
+}

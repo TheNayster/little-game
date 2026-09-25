@@ -12,7 +12,7 @@ Both iPads have been **updated in place and launched**. Their earlier garden sav
 4. **Done: leave and return on both iPads.** The user confirms locking/unlocking and also closing/reopening while the sibling continues; movement and bucket pickup work afterward. Native reads confirm retained identities and automatic rejoin from new app processes to the same PC authority. [Evidence](evidence/ipad79-2026-09-24/lock-cold-rejoin.json).
 5. **Passed on the tested iPad: saved solo round trip.** The user confirmed easy family rejoin with server positions and restoration of the solo toy position when returning to Play by myself. [Feedback](evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json). Which iPad was used and repetition on both were not specified. Further iPad time is paused. Initial joining after a server-absent start and remaining multi-touch/layout/voice/settings checks remain deferred.
 
-The previous unpaired solo garden, paired-device solo draft and server world are separate. The update preserves the old save; it does not merge it into the family garden. Offline reconciliation and automatic prolonged-outage local recovery still need their planned work.
+The previous unpaired solo garden, paired-device solo draft and server world are separate. The update preserves the old save; it does not merge it into the family garden. Windows 90 now qualifies automatic local adventures and safe reunion; physical device qualification and full offline reconciliation still need their planned work.
 
 ## Phone milestone — completed within the recorded scope
 
@@ -33,14 +33,16 @@ Completed while away, using separate test worlds:
 - [Parent backup/recovery buttons and status](g3-parent-recovery-panel-2026-09-24.html) in **Little Weeps Server** on the desktop. Your actual 83 world was backed up through this page and remains its original process; recovery activation is still Off.
 - [Complete client recovery checkpoints](g3-client-recovery-2026-09-24.html) in Windows 88, preserving receipts, idle timers and the separate solo draft. This is not installed on your devices yet.
 
-**Next implementation: automatic local continuation from the last complete shared checkpoint.** The app does not make that transition yet; iPad hosting and reconciliation remain on the plan.
+- [Automatic local continuation and saved adventures](g3-local-continuation-2026-09-25.html) in Windows 90: four-client outage/restart, preserved solo progress, reopenable adventures and safe automatic reunion pass. No devices were updated.
+
+**Next implementation: G3-REC-03 outage failure matrix**, then mobile recovery builds and device qualification. iPad hosting and reconciliation remain required.
 
 When you return:
 
-1. Approve the reviewed Windows network setup for the selected prepared server, then update it during an empty session and click **Enable recovery** on the parent page. The page is still configured for qualified operations build 85; newer recovery-client 88 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.
+1. Approve the reviewed Windows network setup for the selected prepared server, then update it during an empty session and click **Enable recovery** on the parent page. The page is still configured for qualified operations build 85; newer recovery/continuation 90 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.
 2. Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.
 3. Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.
-4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. Client recovery replication also needs mobile builds and A10 write/frame measurements. No repeat of the already-passed smoke checks is needed.
+4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. Client recovery replication and local adventures also need mobile builds and A10 write/frame measurements. No repeat of the already-passed smoke checks is needed.
 
 [Persistent server 83](g3-persistent-server-2026-09-24.html) is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Sign-in startup/status, long-duration soak and broader lifecycle acceptance remain open.
 

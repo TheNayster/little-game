@@ -37,7 +37,7 @@ namespace LittleWeeps.NetworkProbe
         [Serializable] private sealed class Evidence
         {
             public int serial,visiblePlayers,canvases,narrators,audioSources;public bool passed,ready,pending,connected,menuOpen,shared;
-            public string error,build,actor,feedback,dragging,zone,savePath;public PlayerView[] players;public ToyView[] toys;
+            public string error,build,actor,feedback,dragging,zone,savePath,adventure;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
@@ -167,7 +167,7 @@ namespace LittleWeeps.NetworkProbe
         {
             var evidence=new Evidence{serial=serial,passed=string.IsNullOrEmpty(failure),error=failure??"",build=Application.version,actor=probe.Settings.profile,ready=screen.Ready,connected=probe.ConnectedToServer,
                 pending=screen.ActionPending,feedback=screen.Feedback,dragging=screen.Dragging??"",zone=screen.CurrentArea,visiblePlayers=screen.Ready?screen.VisiblePlayers:0,menuOpen=screen.MenuOpen,
-                shared=screen.Shared,savePath=screen.SavePath??"",canvases=FindObjectsByType<Canvas>(FindObjectsSortMode.None).Length,
+                shared=screen.Shared,adventure=screen.AdventureId,savePath=screen.SavePath??"",canvases=FindObjectsByType<Canvas>(FindObjectsSortMode.None).Length,
                 narrators=FindObjectsByType<SoloNarration>(FindObjectsSortMode.None).Length,audioSources=FindObjectsByType<AudioSource>(FindObjectsSortMode.None).Length};
             if(screen.Ready)
             {
