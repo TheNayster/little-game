@@ -1,0 +1,55 @@
+{
+  "build": "0.0.95",
+  "device": "iPad 7 / A10",
+  "captureUtc": "2026-09-25T20:34:31.4389320Z",
+  "captureSha256": "93085f5eea5bd5185a1aeee6d005d4ab8606b63c4a1b9b2c91e861152322054b",
+  "userReport": "menu open its way smoother!",
+  "allOfflineMovingIntervals": {
+    "frames": 2407,
+    "movingFrameIntervals": 1604,
+    "movingSeconds": 28.84422057580948,
+    "walkingGapsAtLeast50ms": 2,
+    "maximumGapMs": 1993.543212890625,
+    "maximumMainThreadSaveMs": 25.0484,
+    "medianMainThreadSaveMs": 0.1781
+  },
+  "finalOfflineSegment": {
+    "selection": "From the last recorded shared-to-local state transition through Menu export; no frame-gap threshold is used to select or discard samples.",
+    "firstFrame": 1267,
+    "lastFrame": 2407,
+    "elapsedSeconds": 19.174167167,
+    "frames": 1141,
+    "movingFrameIntervals": 1117,
+    "movingSeconds": 18.738114501953124,
+    "walkingGapsAtLeast50ms": 0,
+    "maximumGapMs": 28.57499885559082,
+    "maximumMainThreadSaveMs": 2.8808,
+    "medianMainThreadSaveMs": 0.18480000000000002
+  },
+  "earlierOutliers": [
+    {
+      "frame": 584,
+      "gapMs": 1993.543212890625,
+      "precedingSaveMs": 25.0484,
+      "precedingNetworkMs": 23.486,
+      "positionChanged": false,
+      "movingAfter": false,
+      "interpretation": "Movement-to-stationary boundary. Capture has no explicit lifecycle marker; cause unproven and retained in full-capture statistics."
+    },
+    {
+      "frame": 631,
+      "gapMs": 52.0459098815918,
+      "precedingSaveMs": 0,
+      "precedingNetworkMs": 48.162,
+      "interpretation": "Continuous local walking; networking update dominated preceding work. Exact sub-operation not yet isolated."
+    }
+  ],
+  "limits": [
+    "This is one mixed local/shared/local session, not a sustained multi-device pass.",
+    "Save timing measures gameplay-thread work; it does not measure total worker I/O latency.",
+    "Final Menu save took 27.1846 ms while stationary; explicit save barriers are not asynchronous gameplay polls.",
+    "Old-checkpoint transition rewind remains unfixed.",
+    "Subsequent user-confirmed offline cold reopen retained toys and smooth controls; recorded separately."
+  ],
+  "comparison": "Build 94 had 26 walking gaps >=50 ms in 33.42 moving seconds, all following synchronous save work. Build 95 final offline segment has no such gaps; the full capture still includes the separately described two outliers. Not a claim of zero hitches."
+}

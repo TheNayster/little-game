@@ -1,0 +1,8 @@
+{
+  "build": 95,
+  "passed": true,
+  "matchingRuntimeAndPackageFiles": 410,
+  "currentSourceMatches": true,
+  "il2cppBackgroundSaveIncluded": true,
+  "scope": "Windows and iOS source manifests plus current runtime/package hashes. Platform-specific ProjectSettings excluded; no physical performance assertion."
+}

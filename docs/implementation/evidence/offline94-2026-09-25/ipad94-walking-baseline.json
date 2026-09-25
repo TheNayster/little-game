@@ -1,0 +1,17 @@
+{
+  "build": "0.0.94",
+  "device": "iPad 7 / A10",
+  "captureUtc": "2026-09-25T20:18:45.2077420Z",
+  "captureSha256": "6bb7933adb8e679b4c23731efab883ffcb0c8b0cee3ad70b312ba71f7090866e",
+  "frames": 4096,
+  "movingFrameIntervals": 1908,
+  "movingSeconds": 33.421863130569456,
+  "walkingGapsAtLeast50ms": 26,
+  "suchGapsWithPrecedingSaveOver20ms": 26,
+  "maximumGapMs": 82.89712524414062,
+  "maximumMainThreadSaveMs": 79.6622,
+  "medianMainThreadSaveMs": 52.872,
+  "maximumGapWithoutSaveMs": 32.739498138427734,
+  "scope": "Game frame/work recording, not CPU profiler percentages. Frame N work is compared to frame N+1 gap. GC counter includes collections on any thread; does not isolate disk waiting versus serialization/GC within the save.",
+  "conclusion": "All 26 walking gaps of at least 50 ms follow synchronous main-thread save work. This identifies the save path as the dominant recurring stall in this capture; it does not prove every smaller gap has the same cause."
+}

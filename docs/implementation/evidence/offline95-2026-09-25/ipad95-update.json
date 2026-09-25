@@ -1,0 +1,32 @@
+{
+  "build": 95,
+  "label": "ipad7",
+  "installed": true,
+  "signedArtifactVerified": true,
+  "documentsCompared": 306,
+  "documentsUnchanged": 305,
+  "changedDiagnostics": [
+    {
+      "kind": "live connection diagnostics",
+      "fields": [
+        "events",
+        "lastDataAge",
+        "seconds"
+      ],
+      "addedReconnectEvents": 1
+    }
+  ],
+  "worldSaveFilesPreserved": 12,
+  "allExistingPreferencesPreserved": true,
+  "launchSucceeded": true,
+  "scope": "Installation succeeded; only the running old connection diagnostic changed. Exact field and appended-event review passed. All saved world files, other documents and existing preferences preserved. No second install.",
+  "backupFilesVerified": 307,
+  "profileExpires": "2026-10-01T17:41:17Z",
+  "signedFrameworkSha256": "b7726dbb67fb29b7faa24d9984771b8f5ed4bf0c124f8e008bf4d5700dc60ad8",
+  "runtimeVerified": true,
+  "physicalAcceptance": false,
+  "enrollment": "paired",
+  "initialLaunchBlocked": true,
+  "subsequentLaunchObserved": true,
+  "initialLaunchBlockedReason": "Device reports signature/entitlements/profile trust security denial; local signed verification passed. User device check pending."
+}

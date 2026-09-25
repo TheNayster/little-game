@@ -101,7 +101,10 @@ namespace LittleWeeps.Adapters
         }
         public void Save(ContinuationRecord record,SoloSnapshot snapshot)
         {
-            var next=decode(encode(record));next.snapshot=snapshot;Validate(next);
+            // No serialization round-trip of a discarded previous snapshot.
+            // Callers own the detached snapshot; the immutable basis is shared.
+            var next=new ContinuationRecord{version=record.version,id=record.id,actor=record.actor,
+                createdUtcTicks=record.createdUtcTicks,basis=record.basis,snapshot=snapshot};Validate(next);
             var store=Store(record.id);var old=store.Load();RequireReadable(old.Status);
             if(old.Payload!=null)
             {

@@ -1,0 +1,22 @@
+{
+  "build": "0.0.95",
+  "device": "iPad 7 / A10",
+  "utc": "2026-09-25T20:39:23.056580+00:00",
+  "userConfirmed": {
+    "wifiOff": true,
+    "coldReopen": true,
+    "toyPositionsRetained": true,
+    "smoothWalking": true
+  },
+  "readOnlyUsbInspection": {
+    "newProcess": true,
+    "runtimeBuild": "0.0.95",
+    "status": "solo-available",
+    "reason": "discovery-unavailable",
+    "enrollment": "paired",
+    "checksummedAdventuresReadable": 5,
+    "originalSoloFileCount": 2,
+    "originalSoloHashesUnchanged": true
+  },
+  "scope": "Physical user confirmation plus actual runtime/readable-save inspection. No independent coordinate comparison of the user-selected toy. Successful offline launch after prior online verification does not promise all future Apple signing checks will be offline."
+}

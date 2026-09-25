@@ -9,6 +9,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="RecoveryTests.cs" />
     <Compile Include="ContinuationTests.cs" />
+    <Compile Include="BackgroundSaveTests.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/BackgroundSave.cs" Link="BackgroundSave.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/ContinuationLibrary.cs" Link="ContinuationLibrary.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/OutageClock.cs" Link="OutageClock.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/RecoveryTransfer.cs" Link="RecoveryTransfer.cs" />

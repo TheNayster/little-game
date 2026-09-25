@@ -490,6 +490,7 @@ namespace LittleWeeps.Client
         }
         private void Update()
         {
+            FinishBackgroundSave(false);
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
             if(shared!=null)
             {
@@ -528,12 +529,13 @@ namespace LittleWeeps.Client
                 var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);SortDepth();
                 if(!JoystickMode && destination.HasValue && Vector2.Distance(new Vector2(p.x,p.y),destination.Value)<1)destination=null;
             }
-            if(dirty && Time.realtimeSinceStartup>=nextSave){SaveNow();nextSave=Time.realtimeSinceStartup+1;}
+            if(dirty && Time.realtimeSinceStartup>=nextSave){SaveDuringPlay();nextSave=Time.realtimeSinceStartup+1;}
         }
         public void SaveNow()
         {TrySaveNow();}
         public bool TrySaveNow()
         {
+            FinishBackgroundSave(true);
             if(World==null || store==null)return false;
             if(!dirty)return true;
             var saveStarted=System.Diagnostics.Stopwatch.GetTimestamp();
@@ -543,6 +545,7 @@ namespace LittleWeeps.Client
         }
         private void OnDestroy()
         {
+            if(HasWorld)SaveNow();else FinishBackgroundSave(true);
             if(ownedCanvas!=null)Destroy(ownedCanvas);if(ownedEvents!=null)Destroy(ownedEvents);
             if(Narration!=null)Destroy(Narration);
             foreach(var sprite in new[]{rounded,circle,hintRing})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}

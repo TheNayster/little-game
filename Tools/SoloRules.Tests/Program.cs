@@ -22,6 +22,7 @@ static partial class Program
         Directory.CreateDirectory(root);
         RecoveryTests();
         ContinuationTests();
+        BackgroundSaveTests();
         Test("local walking advances on irregular render frames and preserves transaction receipts",()=>{
             foreach(var twoAreas in new[]{false,true})
             {
