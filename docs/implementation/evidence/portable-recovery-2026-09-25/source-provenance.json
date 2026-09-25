@@ -1,0 +1,23 @@
+{
+  "python": "3.12.11 (main, Aug 18 2025, 19:17:54) [MSC v.1944 64 bit (AMD64)]",
+  "cryptography": "50.0.1",
+  "unitySourceFilesUnchanged": 148,
+  "files": [
+    {
+      "path": "Tools/server_recovery.py",
+      "sha256": "144e28e4625d91a4a5d2b85c0f96b9e219734eee38eb2a619d8c6a9565871519"
+    },
+    {
+      "path": "Tools/portable_recovery.py",
+      "sha256": "f741aeb0acfb8e5c106a9a26286d2642169c2329dc3b853b63fa43a7a26c33d4"
+    },
+    {
+      "path": "Tools/Portable-Recovery.py",
+      "sha256": "06b6f9a672cb6ae4b66433e9344a7b2cf21b058a8cd2292984037161636a47d6"
+    },
+    {
+      "path": "Tools/Test-PortableRecovery.py",
+      "sha256": "fb3f52f0bbed7e467f9245649e5ccef7de60e1215e52f00bf90d0b0504158c88"
+    }
+  ]
+}

@@ -2,13 +2,15 @@
 
 **Updated September 25 — no action is needed while you are away.** Windows 91 has passed the isolated outage failure matrix and related regressions. Matching Android 91 and the iPad/iPhone 91 Xcode export are now [prepared on Windows](g3-mobile-recovery-builds-2026-09-25.html). Native Apple compilation/signing and all physical updates/tests remain pending. The last recorded deployed versions above have not changed. Android's separate 16 KB qualification issue remains open.
 
+**Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. Your live world and devices were not changed, and no family passphrase was created.
+
 ## Your to-do list when you are home
 
 **Start with these setup items. No passwords or verification codes need to be sent in chat.**
 
 1. **Mac and older iPad:** turn on the Mac, leave it awake on home Wi-Fi, connect the older **iPad 7 / A2197** by USB and unlock it. Keep Little Weeps closed on the iPad's Home Screen for the update. The newer **iPad 9 / A2602** comes next; having its cable ready helps.
 2. **Tell me the devices are ready and whether anyone is playing.** I will verify backups, signing, installed versions and the prepared candidate before an in-place update. If a Mac password or signing prompt appears during that session, enter it on the Mac. Nothing needs to be approved while you are away.
-3. **Choose a backup destination:** an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. Portable credential recovery and a tested restore remain part of that work; choosing a folder alone does not finish them.
+3. **Choose a backup destination:** an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. The portable encrypted backup/reconstruction tool now passes isolated Windows tests. We still need a real copy on that destination and a restore on another Windows account/computer. Choose and save its passphrase privately when we export it; do not send it here. [What is ready and what remains](g3-portable-recovery-2026-09-25.html).
 
 **After I install and launch the checked candidate, we will do these together:**
 
@@ -57,12 +59,14 @@ Completed while away, using separate test worlds:
 - [Outage failure checks](g3-outage-failures-2026-09-25.html) in Windows 91: accepted actions with missing completion, denied archive/selection/branch writes, observed foreground timing and rejected admission pass. Unresolved archives retry safely after disk access returns; they never replay actions. Related continuation, movement, compatibility and restore regressions pass.
 - [Matching mobile artifact preparation](g3-mobile-recovery-builds-2026-09-25.html): family-signed Android 91 and iPad/iPhone 91 export built and source/bridge-checked on Windows. Android's strict 16 KB failure is retained; no mobile runtime or native Mac build is claimed.
 
+- [Portable encrypted server recovery](g3-portable-recovery-2026-09-25.html): six isolated portable groups and six local-recovery regressions pass; four original test clients rejoin the recovered world. Actual off-PC storage and second-account/computer recovery still need qualification.
+
 **Next: G3-REC-05 native Apple compile/signing and iPad-first recovery qualification.** Prepared artifacts are ready for this later session. Physical qualification waits for you; iPad hosting and reconciliation remain required.
 
 When you return:
 
 1. Complete any required Windows network approval for the selected prepared server, then update it during an empty session and enable recovery through the parent page. The page is still configured for qualified operations build 85; newer recovery/continuation 91 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.
-2. Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.
+2. Choose an independent backup destination. The new encrypted portable format and reconstruction pass isolated Windows tests; create the actual family copy there and verify a restore on another account/computer. Existing `.lwbackup` files remain tied to this Windows account.
 3. Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.
 4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. Client recovery replication and local adventures also need mobile builds and A10 write/frame measurements. No repeat of the already-passed smoke checks is needed.
 

@@ -18,12 +18,13 @@
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
 </style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="return-checklist-ipad-lan-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1>Current checks — server/Android 83; Apple clients 79</h1>
 <p><strong>Updated September 25 — no action is needed while you are away.</strong> Windows 91 has passed the isolated outage failure matrix and related regressions. Matching Android 91 and the iPad/iPhone 91 Xcode export are now <a href="g3-mobile-recovery-builds-2026-09-25.html">prepared on Windows</a>. Native Apple compilation/signing and all physical updates/tests remain pending. The last recorded deployed versions above have not changed. Android's separate 16 KB qualification issue remains open.</p>
+<p><strong>Completed while you were away:</strong> password-protected portable server recovery passed with a separate test family and all four original test players. Your live world and devices were not changed, and no family passphrase was created.</p>
 <h2>Your to-do list when you are home</h2>
 <p><strong>Start with these setup items. No passwords or verification codes need to be sent in chat.</strong></p>
 <ol>
 <li><strong>Mac and older iPad:</strong> turn on the Mac, leave it awake on home Wi-Fi, connect the older <strong>iPad 7 / A2197</strong> by USB and unlock it. Keep Little Weeps closed on the iPad's Home Screen for the update. The newer <strong>iPad 9 / A2602</strong> comes next; having its cable ready helps.</li>
 <li><strong>Tell me the devices are ready and whether anyone is playing.</strong> I will verify backups, signing, installed versions and the prepared candidate before an in-place update. If a Mac password or signing prompt appears during that session, enter it on the Mac. Nothing needs to be approved while you are away.</li>
-<li><strong>Choose a backup destination:</strong> an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. Portable credential recovery and a tested restore remain part of that work; choosing a folder alone does not finish them.</li>
+<li><strong>Choose a backup destination:</strong> an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. The portable encrypted backup/reconstruction tool now passes isolated Windows tests. We still need a real copy on that destination and a restore on another Windows account/computer. Choose and save its passphrase privately when we export it; do not send it here. <a href="g3-portable-recovery-2026-09-25.html">What is ready and what remains</a>.</li>
 </ol>
 <p><strong>After I install and launch the checked candidate, we will do these together:</strong></p>
 <ul>
@@ -65,13 +66,18 @@
 <p><a href="g3-local-continuation-2026-09-25.html">Automatic local continuation and saved adventures</a> in Windows 90: four-client outage/restart, preserved solo progress, reopenable adventures and safe automatic reunion pass. No devices were updated.</p>
 </li>
 <li><a href="g3-outage-failures-2026-09-25.html">Outage failure checks</a> in Windows 91: accepted actions with missing completion, denied archive/selection/branch writes, observed foreground timing and rejected admission pass. Unresolved archives retry safely after disk access returns; they never replay actions. Related continuation, movement, compatibility and restore regressions pass.</li>
-<li><a href="g3-mobile-recovery-builds-2026-09-25.html">Matching mobile artifact preparation</a>: family-signed Android 91 and iPad/iPhone 91 export built and source/bridge-checked on Windows. Android's strict 16 KB failure is retained; no mobile runtime or native Mac build is claimed.</li>
+<li>
+<p><a href="g3-mobile-recovery-builds-2026-09-25.html">Matching mobile artifact preparation</a>: family-signed Android 91 and iPad/iPhone 91 export built and source/bridge-checked on Windows. Android's strict 16 KB failure is retained; no mobile runtime or native Mac build is claimed.</p>
+</li>
+<li>
+<p><a href="g3-portable-recovery-2026-09-25.html">Portable encrypted server recovery</a>: six isolated portable groups and six local-recovery regressions pass; four original test clients rejoin the recovered world. Actual off-PC storage and second-account/computer recovery still need qualification.</p>
+</li>
 </ul>
 <p><strong>Next: G3-REC-05 native Apple compile/signing and iPad-first recovery qualification.</strong> Prepared artifacts are ready for this later session. Physical qualification waits for you; iPad hosting and reconciliation remain required.</p>
 <p>When you return:</p>
 <ol>
 <li>Complete any required Windows network approval for the selected prepared server, then update it during an empty session and enable recovery through the parent page. The page is still configured for qualified operations build 85; newer recovery/continuation 91 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.</li>
-<li>Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.</li>
+<li>Choose an independent backup destination. The new encrypted portable format and reconstruction pass isolated Windows tests; create the actual family copy there and verify a restore on another account/computer. Existing <code>.lwbackup</code> files remain tied to this Windows account.</li>
 <li>Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.</li>
 <li>Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. Client recovery replication and local adventures also need mobile builds and A10 write/frame measurements. No repeat of the already-passed smoke checks is needed.</li>
 </ol>

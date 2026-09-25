@@ -86,10 +86,16 @@ def checkpoint(raw):
 
 
 def validate_enrollment(files, world):
-    from cryptography import x509
-    from cryptography.hazmat.primitives import serialization
     public = json.loads(files['family.json'].decode('utf-8-sig'))
     records = {name: unprotect(files[name]) for name in ENROLLMENT if name.endswith('.pairing')}
+    return validate_enrollment_records(public, records, world)
+
+
+def validate_enrollment_records(public, records, world):
+    """Validate identities without requiring their original Windows DPAPI wrapper."""
+    from cryptography import x509
+    from cryptography.hazmat.primitives import serialization
+    check(set(records) == {n for n in ENROLLMENT if n.endswith('.pairing')}, 'Unexpected enrollment records.')
     server, issuer = records['authority.pairing'], records['issuer.pairing']
     clients = [records[f'player-{i}.pairing'] for i in range(1, 5)]
     for field in ('worldId', 'familyId', 'authorityId'):
@@ -99,7 +105,8 @@ def validate_enrollment(files, world):
     check(issuer['familyId'] == server['familyId'] and issuer['caCertificate'] == server['caCertificate'], 'Wrong issuer enrollment.')
     members = {m['profile']: m['credentialHash'] for m in server['members']}
     profiles = [canonical(c['profile']) for c in clients]
-    check(len(members) == len(set(profiles)) == 4 and set(public['profiles']) == set(profiles) == set(members), 'Wrong four-player roster.')
+    check(len(server['members']) == len(public['profiles']) == len(members) == len(set(profiles)) == 4
+          and set(public['profiles']) == set(profiles) == set(members), 'Wrong four-player roster.')
     for client in clients:
         check(client['schema'] == 1 and client['role'] == 'client' and client['serverName'] == server['serverName']
               and client['caCertificate'] == server['caCertificate']
@@ -154,9 +161,15 @@ def recover_missing(path, expected_family):
     recovery winner. This is same-user recovery, not a DPAPI portability bypass.
     """
     bundle, files, body = unpack(path)
+    return publish_missing(bundle, files, body, expected_family)
+
+
+def publish_missing(bundle, files, body, expected_family, fault=None):
+    """Publish validated, destination-protected files with create-only semantics."""
     check(bundle['world'] == canonical(expected_family), 'Wrong family selected for reconstruction.')
     destination = ROOT / 'LocalData/FamilyLAN' / expected_family
-    check(not destination.exists(), 'The family directory exists. Use guarded restore; reconstruction never replaces it.')
+    check(destination.parent.resolve() == destination.parent, 'Recovery does not follow linked directories.')
+    check(not os.path.lexists(destination), 'The family directory exists. Use guarded restore; reconstruction never replaces it.')
     for native in windows_processes():
         args = command_args(native.get('CommandLine') or '')
         if '-familyNetworkConfig' in args:
@@ -164,10 +177,15 @@ def recover_missing(path, expected_family):
             check(index < len(args) and Path(args[index]).resolve().parent != destination,
                   'A process still refers to this family. Stop it before reconstruction.')
     staged = destination.parent / ('recovery-stage-' + uuid.uuid4().hex)
+    destination.parent.mkdir(parents=True, exist_ok=True)
     staged.mkdir(); (staged / 'server-world').mkdir()
     for name in ENROLLMENT: durable(staged / name, files[name])
+    if fault: fault('enrollment')
     for name in ('world.save', 'world.save.bak'): durable(staged / 'server-world' / name, files['world.save'])
     check(all(file_bytes(staged / n) == files[n] for n in ENROLLMENT), 'Staged enrollment differs.')
+    check(all(file_bytes(staged / 'server-world' / n) == files['world.save']
+              for n in ('world.save', 'world.save.bak')), 'Staged checkpoint differs.')
+    if fault: fault('publish')
     # No startup config/launcher record or process is copied from the old host.
     os.rename(staged, destination)
     return dict(reconstructed=True, revision=body['revision'], started=False, independentRecoveryQualified=False)

@@ -25,6 +25,7 @@ LocalData/
 !Tools/RecoveryValidator/RecoveryValidator.csproj
 Tools/RecoveryValidator/bin/
 *.lwbackup
+*.lwportable
 Tools/SoloRules.Tests/bin/
 Tools/SoloRules.Tests/obj/
 *.sln
