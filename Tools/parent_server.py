@@ -237,6 +237,11 @@ class ParentServer:
                                     capture_output=True, text=True, timeout=65,
                                     creationflags=subprocess.CREATE_NO_WINDOW)
             if result.returncode:
+                # A launcher can fail before creating a native log (for example
+                # a sign-in environment/import error). Keep its bounded stderr
+                # in the private world folder, never in the parent HTTP response.
+                write(self.root / 'server-start-error.json', dict(returncode=result.returncode,
+                      stderr=result.stderr[-16000:], utc=datetime.now(timezone.utc).isoformat()))
                 raise OperationError('Server startup did not complete. Existing saves were not reset; inspect the local server log.')
             state = wait(lambda: (s if (s := self.snapshot())['state'] == 'ready' else None), 'fresh server readiness', 12)
             return dict(result='started', status=state)

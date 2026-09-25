@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "build": 91,
+  "utc": "2026-09-25T17:36:53.981517+00:00",
+  "checks": [
+    {
+      "check": "startup actions require local authorization, empty payload, healthy selected build and recovery; test registration never uses the real Startup folder",
+      "passed": true
+    },
+    {
+      "check": "native Windows shortcut create/read/remove is idempotent, preserves four active players and recovery, and refuses altered or unprepared registrations",
+      "passed": true
+    },
+    {
+      "check": "actual shortcut invokes the offline launcher; concurrent launches reuse one verified helper, duplicate direct service is rejected and stale live helper is left untouched",
+      "passed": true
+    },
+    {
+      "check": "deliberate Stop survives helper exit and actual shortcut relaunch without changing the stopped save",
+      "passed": true
+    },
+    {
+      "check": "saved recovery preference resumes after both helper and authority loss; guarded restart restores durable play and four original clients rejoin",
+      "passed": true
+    },
+    {
+      "check": "Pause and removal suppress sign-in launch, while manual reopening and active players remain available without changing saved intent",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "recoverySeconds": 19.33
+  },
+  "scope": "Isolated native Windows authority, four clients, real .lnk execution in a test folder and fresh helper processes. No actual account startup entry, Windows sign-out/reboot, live family change or physical mobile acceptance."
+}

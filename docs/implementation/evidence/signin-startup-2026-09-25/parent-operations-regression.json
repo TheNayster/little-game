@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "build": 91,
+  "utc": "2026-09-25T17:38:34.339006+00:00",
+  "checks": [
+    {
+      "check": "protected local HTTP backup creates a verified complete bundle while all four clients remain connected; routine page exposes no restore or enrollment secrets",
+      "passed": true
+    },
+    {
+      "check": "enable refuses wrong build/unprepared network; parent-managed helper then recovers an actual test crash and all four clients rejoin",
+      "passed": true
+    },
+    {
+      "check": "pause leaves current players alone; occupied stop stays protected; deliberate stop survives control-helper recreation and manual Start resumes supervision",
+      "passed": true
+    },
+    {
+      "check": "last-backup status persists and a subsequently altered bundle is no longer displayed as verified",
+      "passed": true
+    }
+  ],
+  "scope": "Real localhost HTTP, parent-owned supervisor thread, actual isolated crash and four native Windows clients. Not actual family deployment, physical-device or OS-service qualification."
+}

@@ -5,12 +5,14 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
 import secrets
+import subprocess
 import webbrowser
 
-from parent_server import ParentServer, OperationError
+from parent_server import ParentServer, OperationError, operation_lock
 from parent_operations import ParentOperations
 from parent_portable import ParentPortable, REQUEST_LIMIT
 from portable_recovery import FILE_LIMIT
+from parent_startup import ParentStartup, HELPER_PROTOCOL, state_folder
 from shared_garden_runtime import ROOT, write
 
 
@@ -21,6 +23,10 @@ class ParentHTTP(ThreadingHTTPServer):
         self.controller = controller
         self.operations = ParentOperations(controller)
         self.portable = ParentPortable(controller, self.operations.remember_backup)
+        try:
+            self.startup = ParentStartup(controller, self.operations)
+        except (OperationError, OSError, subprocess.SubprocessError):
+            self.startup = None  # Optional OS integration must not break care controls.
         self.token = secrets.token_urlsafe(32)
         self.authority = f'127.0.0.1:{self.server_port}'
         self.origin = 'http://' + self.authority
@@ -33,6 +39,9 @@ class ParentHTTP(ThreadingHTTPServer):
         native = self.controller.snapshot()
         native.update(self.operations.snapshot(native))
         native['portable'] = dict(available=True, maxBytes=FILE_LIMIT)
+        native['startup'] = self.startup.snapshot(native, native['recovery']) if self.startup else dict(
+            state='unavailable',canEnable=False,canDisable=False,message='Windows sign-in settings are unavailable. Current play and recovery are unaffected.')
+        native.update(family=self.controller.family, selectedBuild=self.controller.build, helperProtocol=HELPER_PROTOCOL)
         return native
 
     def server_close(self):
@@ -112,6 +121,12 @@ class Handler(BaseHTTPRequestHandler):
                 result = self.server.operations.enable()
             elif self.path == '/api/recovery-pause':
                 result = self.server.operations.pause()
+            elif self.path in ('/api/startup-enable', '/api/startup-disable'):
+                if data:
+                    raise ValueError('Startup actions take no paths or commands')
+                if self.server.startup is None:
+                    raise OperationError('Windows sign-in settings are unavailable.')
+                result = self.server.startup.enable() if self.path.endswith('enable') else self.server.startup.disable()
             else:
                 self.reply(404, dict(error='Not found.')); return
             result['status'] = self.server.status()
@@ -129,18 +144,23 @@ def main():
     parser.add_argument('--family', required=True)
     parser.add_argument('--build', type=int, default=84)
     parser.add_argument('--no-browser', action='store_true')
+    parser.add_argument('--isolated', action='store_true')
     args = parser.parse_args()
-    server = ParentHTTP(ParentServer(args.family, args.build))
-    folder = ROOT / 'LocalData/ParentServer'; folder.mkdir(parents=True, exist_ok=True)
-    # Launcher-only private file, ignored by Git; capability stays out of paths,
-    # query strings, public docs and the game protocol.
-    write(folder / 'dashboard.json', dict(url=server.url, family=args.family, pid=__import__('os').getpid()))
-    if not args.no_browser:
-        webbrowser.open(server.url)
-    try:
-        server.serve_forever()
-    finally:
-        server.server_close()  # Closing this panel never stops the game server.
+    controller=ParentServer(args.family,args.build)
+    if controller.isolated != args.isolated:
+        raise OperationError('Explicit isolated-helper scope required for test families.')
+    folder=state_folder(controller);folder.mkdir(parents=True,exist_ok=True)
+    with operation_lock(folder,'dashboard.lock'):
+        server=ParentHTTP(controller)
+        # Capability stays in an ignored private record, not process arguments.
+        write(folder/'dashboard.json',dict(url=server.url,family=args.family,build=args.build,
+              helperProtocol=HELPER_PROTOCOL,pid=__import__('os').getpid()))
+        if not args.no_browser:
+            webbrowser.open(server.url)
+        try:
+            server.serve_forever()
+        finally:
+            server.server_close()  # Helper exit does not stop the game server.
 
 
 if __name__ == '__main__':

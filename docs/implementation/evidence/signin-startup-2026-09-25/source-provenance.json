@@ -1,0 +1,44 @@
+{
+  "baseline": "17d68dc3532735951bb26a91575fc36aee57f683",
+  "gameBuild": 91,
+  "unityCSharpFilesUnchanged": 148,
+  "gameSourceChanged": false,
+  "files": [
+    {
+      "path": "Tools/parent_startup.py",
+      "sha256": "1d8858344e2faad8f3e87a99150ca0c5dd97852a5dd7f4c758aa17bc66a9d902"
+    },
+    {
+      "path": "Tools/parent_bootstrap.py",
+      "sha256": "d2d2090296e0f9afc4dbc659a36cde123298ce12b3c4fd895de0ccac741d14b4"
+    },
+    {
+      "path": "Tools/Startup-Shortcut.ps1",
+      "sha256": "5026d1b39b6f04bcf078f3c95832e174adc2a3b24077fb0deeff2a6f5dccdafb"
+    },
+    {
+      "path": "Tools/Open-ParentServer.ps1",
+      "sha256": "45269c684dead83a9c21e1a77ebe491c0fe04959ad0b0daaefc5a69d6253fdbe"
+    },
+    {
+      "path": "Tools/Parent-Server.py",
+      "sha256": "8c801ec1b69afe1474bbc7f4d58ed35c9e75d8f15b802332de6c496e0da45c05"
+    },
+    {
+      "path": "Tools/parent_server.py",
+      "sha256": "186779c2f52b76b4ce079f6135b1ce479776861bb4f078a63f0a0062c8a28d56"
+    },
+    {
+      "path": "Tools/parent-ui/app.js",
+      "sha256": "7e056fc92d4d6055d91171376b6cfb7fb0e4f77ddbfb5129090be061bfeecd80"
+    },
+    {
+      "path": "Tools/parent-ui/index.html",
+      "sha256": "0dd5aeff1ecce8a14888dbd884f2000cde586ac0c7b02455859bb43e2581013b"
+    },
+    {
+      "path": "Tools/Test-ParentStartup.py",
+      "sha256": "00f8deed703bf9f93f4e3d6e9e89cfea6dc687edd28a31965d4cad4445def1a7"
+    }
+  ]
+}

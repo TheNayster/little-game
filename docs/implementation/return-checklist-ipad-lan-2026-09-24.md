@@ -2,7 +2,7 @@
 
 **Updated September 25 — no action is needed while you are away.** Windows 91 has passed the isolated outage failure matrix and related regressions. Matching Android 91 and the iPad/iPhone 91 Xcode export are now [prepared on Windows](g3-mobile-recovery-builds-2026-09-25.html). Native Apple compilation/signing and all physical updates/tests remain pending. The last recorded deployed versions above have not changed. Android's separate 16 KB qualification issue remains open.
 
-**Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. The project Android emulator also passed a retained 79 → 91 update and [six recovery checks with three Windows players](g3-android-recovery-2026-09-25.html). The [parent page also gained protected-backup download and file checking](g3-parent-portable-backups-2026-09-25.html), tested with a separate four-player family. The emulator and three Windows players also passed a [ten-minute build 91 recovery run](g3-sustained-recovery-play-2026-09-25.html), including normal item resets and saved-adventure preservation. Your live world and physical devices were not changed, and no family passphrase was created.
+**Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. The project Android emulator also passed a retained 79 → 91 update and [six recovery checks with three Windows players](g3-android-recovery-2026-09-25.html). The [parent page also gained protected-backup download and file checking](g3-parent-portable-backups-2026-09-25.html), tested with a separate four-player family. The emulator and three Windows players also passed a [ten-minute build 91 recovery run](g3-sustained-recovery-play-2026-09-25.html), including normal item resets and saved-adventure preservation. The [optional Windows sign-in helper](g3-signin-startup-2026-09-25.html) also passes isolated native/browser checks, including recovery of four original players and preserved Stop/Pause choices. Your actual Startup folder, live world and physical devices were not changed, and no family passphrase was created.
 
 ## Your to-do list when you are home
 
@@ -16,7 +16,8 @@
 
 - On the older iPad first, check offline start, local play during an outage, closing/reopening, and family reunion with the local adventure still available. I will arrange the isolated test server and give the exact short steps; do not shut down the family server yourself to simulate a failure.
 - Repeat the relevant recovery checks on the newer iPad, then Samsung and iPhone. Check actual lock/background behavior, four-player movement and the updated phone layout/reset cues. Existing successful smoke tests stay recorded.
-- Update the family authority and enable its qualified recovery controls during an **empty session**. The current parent page still selects operations build 85 and recovery is Off. I will handle the matching build and backups; approve a Windows prompt only if the reviewed setup actually needs one.
+- Update the family authority and enable its qualified recovery controls during an **empty session**. The current parent page still selects operations build 85 and recovery is Off. I will handle the matching build and backups; approve a Windows prompt only if the reviewed setup actually needs one. I will deliberately retire the old parent helper while preserving the game and settings; the new launcher refuses to replace an older running helper automatically.
+- After that, if you want the helper to reopen when this Windows account signs in, use **Add sign-in startup**. We will then test an actual sign-out/sign-in or reboot together. This has only been tested using isolated shortcuts so far; it does not wake the PC or run before login. Removing the shortcut leaves current play/recovery running, and saved Stop/Pause choices remain respected.
 
 **Still pending:** reliable unattended renewal on both iPads. Keep the USB cables available; Wi-Fi refresh has not passed. The last recorded development profile expires October 1, so we will check the installed profile before updating.
 
@@ -67,6 +68,8 @@ Completed while away, using separate test worlds:
 
 - [Ten-minute mixed emulator/Windows recovery run](g3-sustained-recovery-play-2026-09-25.html) on 91: five acceptance groups cover movement/travel, normal resets, full durable checkpoints, Android Home/warm return, remote motion, diagnostic memory and seven retained local saves. Actual iPad performance and physical mixed play remain open.
 
+- [Optional Windows sign-in startup](g3-signin-startup-2026-09-25.html): six native groups, ten existing backup/recovery regressions and browser controls pass. The test shortcut recovered a lost helper/authority and all four original players in 19.33 seconds. No real account Startup entry or OS sign-in/reboot was performed.
+
 **Next: G3-REC-05 native Apple compile/signing and iPad-first recovery qualification.** Prepared artifacts are ready for this later session. Physical qualification waits for you; iPad hosting and reconciliation remain required.
 
 When you return:
@@ -76,7 +79,7 @@ When you return:
 3. Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.
 4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. Prepared recovery builds and emulator checks do not replace physical qualification or A10 write/frame measurements. No repeat of the already-passed smoke checks is needed.
 
-[Persistent server 83](g3-persistent-server-2026-09-24.html) is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Sign-in startup/status, long-duration soak and broader lifecycle acceptance remain open.
+[Persistent server 83](g3-persistent-server-2026-09-24.html) is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Optional sign-in startup now has isolated evidence, while actual activation/sign-in remains open. Sustained desktop/emulator runs are recorded above; physical long-duration and broader lifecycle acceptance remain open.
 
 ## Deferred hands-on checks — no action requested now
 

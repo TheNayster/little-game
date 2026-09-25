@@ -1,0 +1,13 @@
+{
+  "initialFullAttempts": 3,
+  "passedBeforeFailure": 4,
+  "failure": "Manual Start after the short-lived shortcut launcher exited returned an error.",
+  "diagnostic": {
+    "returncode": 106,
+    "stderr": "No pyvenv.cfg file"
+  },
+  "cause": "The first new bootstrap used its temporary uv sys.executable for a detached helper. That environment was removed once the launcher exited. Focused tests while the launcher environment remained alive did not reproduce the failure.",
+  "fix": "Launch the helper through its own persistent offline uv process. The environment now has the same lifetime as the helper.",
+  "verified": "Corrected full six-group native sequence passed, including post-launcher manual restart and restart after both helper and server loss.",
+  "liveDeploymentChanged": false
+}

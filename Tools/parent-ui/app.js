@@ -20,6 +20,8 @@ function buttons() { $('start').disabled = busy || !latest?.canStart; $('stop').
   $('backup').disabled = busy || !latest?.canBackup;
   $('recovery-enable').disabled = busy || !latest?.recovery?.canEnable;
   $('recovery-pause').disabled = busy || !latest?.recovery?.canPause;
+  $('startup-enable').disabled = busy || !latest?.startup?.canEnable;
+  $('startup-disable').disabled = busy || !latest?.startup?.canDisable;
   $('portable-export').disabled = busy || !latest?.portable?.available || !latest?.canBackup;
   $('portable-verify').disabled = busy || !latest?.portable?.available;
 }
@@ -37,6 +39,8 @@ function show(data) {
   $('backup-detail').textContent = data.backup?.state === 'verified' ? 'Saved ' + new Date(data.backup.verifiedAt).toLocaleString() + ' · On this PC' : 'Create a verified copy without interrupting play.';
   $('recovery-state').textContent = {off:'Off',healthy:'Watching',paused:'Paused after stop',waiting:'Waiting to retry',restarting:'Restarting',recovered:'Recovered',blocked:'Needs attention',checking:'Checking…','needs-attention':'Needs attention'}[data.recovery?.status] || 'Unavailable';
   $('recovery-detail').textContent = data.recovery?.message || 'Reopen the updated parent shortcut.';
+  $('startup-state').textContent = {off:'Off',configured:'Shortcut configured',changed:'Needs attention',unavailable:'Unavailable'}[data.startup?.state] || 'Update needed';
+  $('startup-detail').textContent = data.startup?.message || 'These controls need the updated parent helper. Your game can keep running.';
   $('portable-availability').textContent = data.portable?.available ? 'Passphrases are used only for this operation and are not saved by the control page.' : 'These controls need the updated parent helper. Your game can keep running.';
   buttons();
 }
@@ -61,12 +65,12 @@ $('stop').addEventListener('click', () => action('stop'));
 $('refresh').addEventListener('click', refresh);
 async function care(kind) {
   if (busy || !latest) return;
-  busy = true; buttons(); feedback(kind === 'backup' ? 'Saving and verifying a separate backup…' : 'Updating the recovery helper…');
-  try { const result = await api(kind, {}); show(result.status); feedback({'backup-verified':'Backup verified and saved on this PC.','recovery-enabled':'Automatic crash recovery enabled.','recovery-paused':'Automatic recovery paused. Current players can keep playing.'}[result.result] || 'Done.'); }
+  busy = true; buttons(); feedback(kind === 'backup' ? 'Saving and verifying a separate backup…' : kind.startsWith('startup-') ? 'Updating the sign-in shortcut…' : 'Updating the recovery helper…');
+  try { const result = await api(kind, {}); show(result.status); feedback({'backup-verified':'Backup verified and saved on this PC.','recovery-enabled':'Automatic crash recovery enabled.','recovery-paused':'Automatic recovery paused. Current players can keep playing.','startup-configured':'Sign-in shortcut verified. Test it at your next sign-in; saved Stop/Pause choices are preserved.','startup-removed':'Sign-in shortcut removed. Current play and recovery continue.'}[result.result] || 'Done.'); }
   catch (error) { feedback(error.message, true); }
   finally { busy = false; buttons(); await refresh(); }
 }
-for (const kind of ['backup','recovery-enable','recovery-pause']) $(kind).addEventListener('click', () => care(kind));
+for (const kind of ['backup','recovery-enable','recovery-pause','startup-enable','startup-disable']) $(kind).addEventListener('click', () => care(kind));
 function clearPassphrases() {
   for (const id of ['export-password','export-confirmation','verify-password']) $(id).value = '';
 }

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "utc": "2026-09-25T17:45:15.4820658Z",
+  "build": 91,
+  "actions": [
+    "Recovery Off: Add startup disabled",
+    "Enable recovery: Watching, Add available",
+    "Add startup: Shortcut configured, Remove available",
+    "Remove startup: Off, recovery Watching, 4 of 4 players still present",
+    "Panel screenshot inspected: text and controls fit the page",
+    "Pause recovery: Off, 4 of 4 players remain"
+  ],
+  "scope": "Actual in-app browser actions against an isolated four-player Windows family. Shortcut created and removed only inside its fixture. No actual account Startup entry, OS sign-in/reboot, live family changes or physical devices."
+}
