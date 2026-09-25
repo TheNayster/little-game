@@ -30,8 +30,12 @@ Clock metadata is additive and optional: earlier saves start fresh grace periods
 
 ## Delivery and remaining work
 
-The children's shared build 79 session has not been restarted or replaced. Timers take effect in shared play only after the PC authority is updated. Phone layout changes require updated clients. A controlled deployment and actual phone/notch checks remain separate from desktop aspect-ratio checks. The user was asked whether play has finished; deployment is pending their availability. The same app identities and existing saves must be retained.
+At build 82 preparation, the children were still using the shared 79 session and deployment was deferred. That historical status is superseded by the user-authorized server/Samsung 83 deployment below: timers are active on the authority and the wider native Android layout is verified. Apple client updates remain pending. Existing app/family identities and saved worlds are retained.
 
-This build 82 correction did not remove the two-hour runner limit. The later [build 83 persistence task](g3-persistent-server-2026-09-24.html) implements and tests that removal; deployment is awaiting Windows permission. Neither task completes G3/G5. Broader per-device lifecycle, sustained performance, parent setup, iPad hosting/recovery and content remain in the main guide.
+This build 82 correction did not remove the two-hour runner limit. The later [build 83 persistence task](g3-persistent-server-2026-09-24.html) implements and tests that removal; server and Samsung deployment is now complete after user approval; Apple client updates remain pending. Neither task completes G3/G5. Broader per-device lifecycle, sustained performance, parent setup, iPad hosting/recovery and content remain in the main guide.
 
 The regenerated guide/reports passed local link, anchor and image checks. All 35 goal IDs remain mapped. Python helpers parse, `git diff --check` passes after removing Unity-generated YAML whitespace, and only the app version/build counters changed in project settings.
+
+## Deployment update
+
+On September 24 the user authorized updates after everyone left the server. The PC authority and Samsung now run build 83, which includes this correction. The native Android screen was inspected and automatic family joining/save preservation were checked. iPhone/iPads remain on 79. See the [applied deployment record](g3-persistent-server-2026-09-24.html).

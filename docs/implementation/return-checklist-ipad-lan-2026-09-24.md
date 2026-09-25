@@ -2,7 +2,7 @@
 
 Both iPads have been **updated in place and launched**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Mac signing is complete; there is no need to run the signing window again. [Current installation evidence](g3-ipad-79-2026-09-24.html).
 
-**Both iPads, Samsung and iPhone have joined the same PC shared world.** Native discovery and admission are verified, and the user confirms all devices work. The children are playing on the iPads; leave their session alone. [Four-device record](g3-phones-79-2026-09-24.html).
+**Both iPads, Samsung and iPhone have joined the same PC shared world.** Native discovery and admission are verified, and the user confirms all devices work. After everyone left, the user authorized the PC server and Samsung update to 83. Those updates are complete; iPads/iPhone remain 79. [Four-device record](g3-phones-79-2026-09-24.html).
 
 ## iPad progress — further hands-on checks paused at user request
 
@@ -19,13 +19,13 @@ The previous unpaired solo garden, paired-device solo draft and server world are
 6. **Done: Samsung 15 → 79 in place.** Original signing identity, installed APK hash, native enrollment/discovery and automatic family admission verified. Full layout, walking, bucket fill/pour and Listen passed by user report. Accessible files were backed up; exact private foundation-preference retention was not independently read back.
 7. **Done: iPhone 20 → 79 in place and all four connected.** USB Sideloadly update completed, native version matched and all three prior preference values remained. The fourth identity was consumed into Keychain and joined automatically. User reports the full layout, walking, bucket drag and Listen work. Server evidence confirms four distinct physical clients together. This does not complete sustained four-device gameplay/lifecycle acceptance.
 
-## Prepared correction — build 82
+## Phone layout and resets — Android/server 83 applied
 
-The user requested less phone side space and timers for unused items/completed quests. [Build 82](g3-phone-layout-resets-2026-09-24.html) widens the phone floor, keeps tablet geometry, returns idle bucket/sponge after 180 + 5 seconds and rearms completed flower/puddle after 60 + 5 seconds. Held tools stay protected. Windows, signed Android and unsigned native iOS builds pass, together with scoped regressions. Apple signing/installation remains. Live deployment and phone/notch acceptance wait until the children finish playing. Shared timers need the authority update; phone layout needs the client update. No current device was interrupted.
+The user requested less phone side space and timers for unused items/completed quests. [Build 82](g3-phone-layout-resets-2026-09-24.html) widens the phone floor, keeps tablet geometry, returns idle bucket/sponge after 180 + 5 seconds and rearms completed flower/puddle after 60 + 5 seconds. Held tools stay protected. Windows, signed Android and unsigned native iOS builds pass, together with scoped regressions. Apple signing/installation remains. The later [server and Samsung 83 update](g3-persistent-server-2026-09-24.html) is now applied after user authorization: the authority has active timers and no home-session cutoff, Android has the wider layout/cues, and its native screenshot was inspected. iPhone/iPads remain 79 and their updates still await availability.
 
 ## Next Windows task
 
-[Persistent server 83](g3-persistent-server-2026-09-24.html) is built and tested: no home-server lifetime limit, timed probes retained, four-client restart/save/rejoin and duplicate-writer checks passed. Windows administrator approval was canceled, so deployment is pending. The old build 79 server reached its deadline at about 9:26 PM CDT with nobody connected; the save is intact. Approve the scoped firewall helper, apply the original family save, and verify mobile reconnects. Sign-in startup, long-duration soak and native deployment acceptance remain open.
+[Persistent server 83](g3-persistent-server-2026-09-24.html) is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Sign-in startup/status, long-duration soak and broader lifecycle acceptance remain open.
 
 ## Deferred hands-on checks — no action requested now
 

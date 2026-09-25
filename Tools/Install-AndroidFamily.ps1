@@ -22,8 +22,15 @@ $serial=if ($Serial) { $Serial } else { $device.endpoint }
 # USB and Bonjour serials already identify a connected transport; only connect IP endpoints.
 if ($serial -match '^\d{1,3}(\.\d{1,3}){3}:\d+$') { & $adb connect $serial | Out-Host }
 function Invoke-Phone([string[]]$Arguments) {
-    $value=@(& $adb -s $serial @Arguments 2>&1)
-    if ($LASTEXITCODE -ne 0) { throw "ADB failed: $($value -join ' ')" }
+    # Windows PowerShell 5 treats native stderr (including successful adb pull
+    # progress) as an ErrorRecord. Judge ADB by its exit code, not that stream.
+    $savedPreference=$ErrorActionPreference
+    try {
+        $ErrorActionPreference='Continue'
+        $value=@(& $adb -s $serial @Arguments 2>&1)
+        $exitCode=$LASTEXITCODE
+    } finally { $ErrorActionPreference=$savedPreference }
+    if ($exitCode -ne 0) { throw "ADB failed: $($value -join ' ')" }
     return ($value -join "`n").Trim()
 }
 if ((Invoke-Phone @('get-state')) -ne 'device') { throw 'Recorded phone is disconnected or unpaired.' }

@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "branch": "original local",
+      "checkpoint": "primary",
+      "byteIdentical": true,
+      "worldIdentityAndExistingItemsRetained": true,
+      "additionalAcceptedMovementCommands": 0,
+      "onlyMovementChanges": true,
+      "revisionBefore": 283,
+      "revisionAfter": 283
+    },
+    {
+      "branch": "original local",
+      "checkpoint": "backup",
+      "byteIdentical": true,
+      "worldIdentityAndExistingItemsRetained": true,
+      "additionalAcceptedMovementCommands": 0,
+      "onlyMovementChanges": true,
+      "revisionBefore": 268,
+      "revisionAfter": 268
+    },
+    {
+      "branch": "paired solo",
+      "checkpoint": "primary",
+      "byteIdentical": false,
+      "worldIdentityAndExistingItemsRetained": true,
+      "additionalAcceptedMovementCommands": 21,
+      "onlyMovementChanges": true,
+      "revisionBefore": 0,
+      "revisionAfter": 21
+    },
+    {
+      "branch": "paired solo",
+      "checkpoint": "backup",
+      "byteIdentical": false,
+      "worldIdentityAndExistingItemsRetained": true,
+      "additionalAcceptedMovementCommands": 21,
+      "onlyMovementChanges": true,
+      "revisionBefore": 0,
+      "revisionAfter": 21
+    }
+  ],
+  "scope": "Original local primary/backup are byte-identical. Paired solo primary/backup retain world, player identity and all existing item fields; resetPending=false is additive. Player position advanced through 21 accepted movement commands between observations. No restore/rollback performed. Android private settings not directly readable."
+}

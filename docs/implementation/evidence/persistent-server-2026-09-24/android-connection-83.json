@@ -1,0 +1,11 @@
+{
+  "build": "0.0.83",
+  "connectedAtVerification": true,
+  "receiveError": 0,
+  "existingProfileReused": true,
+  "discovery": true,
+  "sharedPresented": true,
+  "physicalDevice": "Samsung SM-S948U1",
+  "serverBuild": "0.0.83",
+  "laterServerRemainedAvailableAfterClientDeparture": true
+}

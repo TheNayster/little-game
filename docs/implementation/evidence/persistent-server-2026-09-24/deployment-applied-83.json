@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "build": 83,
+  "previousBuild": 79,
+  "utc": "2026-09-25T02:35:14.283559+00:00",
+  "worldFieldsPreserved": true,
+  "playerCount": 4,
+  "toyCount": 10,
+  "persistentServer": true,
+  "physicalRejoinTested": true,
+  "physicalRejoinScope": "Samsung Android 83 automatically joined using existing enrollment; iPads/iPhone remain 79 and were not accessed.",
+  "listening": true,
+  "persistent": true,
+  "currentPlayerCount": 0,
+  "androidAdmissionVerified": true,
+  "receiveError": 0
+}
