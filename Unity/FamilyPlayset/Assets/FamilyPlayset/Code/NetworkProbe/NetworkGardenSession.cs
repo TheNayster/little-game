@@ -43,6 +43,13 @@ namespace LittleWeeps.NetworkProbe
         }
         public bool Connected=>probe.ConnectedToServer;
         public bool Busy=>queue.Busy;
+        public string PendingRequestId=>queue.PendingId??"";
+        private bool dropTestAcknowledgments;
+        public void VerifyDropAcknowledgments(bool drop)
+        {
+            if(!probe.Settings.verifyGarden)throw new InvalidOperationException("Verification config required.");
+            dropTestAcknowledgments=drop;
+        }
         public bool MutedTest=>probe.Settings.verifyGarden;
         public string Status=>Connected?(Busy?"Finishing your move…":"Playing together"):probe.Reconnecting?"Finding your family again…":probe.FamilyLan?"A grown-up can help reconnect.":"Connection stopped — close this window and rejoin";
         public SoloSnapshot View=>probe.Latest?.view;
@@ -65,6 +72,9 @@ namespace LittleWeeps.NetworkProbe
             }
             foreach(var key in toyTracks.Keys.ToArray())if(!View.toys.Any(t=>t.id==key && !string.IsNullOrEmpty(t.holder)))toyTracks.Remove(key);
             if(string.IsNullOrEmpty(state.requestId))return;
+            // Isolated native failure tests retain snapshots but suppress command
+            // completion, representing an accepted action with an unknown result.
+            if(dropTestAcknowledgments)return;
             // Deterministic delayed-ack test, enabled only in isolated test configs.
             replies.Enqueue((Time.realtimeSinceStartup+(MutedTest ? .25f : 0),state));
         }

@@ -1,0 +1,40 @@
+{
+  "utc": "2026-09-25T13:37:55.874987+00:00",
+  "task": "G3-REC-03",
+  "goalIds": [
+    "NET-02",
+    "AUTO-01"
+  ],
+  "build": 91,
+  "passed": true,
+  "sourceBaseCommit": "22ff77256bc0564b4da22eaf091aec5a8c97929e",
+  "physicalDevicesAccessed": false,
+  "actualFamilyServerUpdated": false,
+  "actualFamilySavesChanged": false,
+  "scope": "Isolated generated Windows native test worlds only. No Mac, iPad, iPhone or Android device access.",
+  "lastRecordedDeployments": {
+    "pcServer": 83,
+    "android": 83,
+    "ipad7": 79,
+    "ipad9": 79,
+    "iphone": 79
+  },
+  "nextTask": "G3-REC-04 coordinated mobile build preparation on Windows; native signing and iPad-first physical acceptance later",
+  "harnessHashes": {
+    "Tools/Test-OutageFailures.py": "27b2e1d25d0555ed21e5ae23af338eec52c6a3e995bd4a358bf97ebd0f802657",
+    "Tools/recovery_fixture.py": "980219d230f1e383302f46cc58a95b38bde9e3ab0165cb3ca352813beb510e55",
+    "Tools/Test-LocalContinuation.py": "272c71420a71864310da49007827d2a9dcf00c432e0a153038f6ac0faf9fc5fe",
+    "Tools/Test-SmoothMovement.py": "bf4ee3086e2889f0dff7592223ff72807bc020add119b71e61d8a46f38fac52f",
+    "Tools/shared_garden_runtime.py": "5039b0e314380706756cb4fa6242dc3041166805ff9149b7f7e9f4c20a7b9e12",
+    "Tools/Test-GardenVersionCompatibility.py": "018fe5c83a1ff93b0c15969b6bee355a5896ceab2a306cb04c28222729497159",
+    "Tools/Test-ServerRecovery.py": "ad3d5b5d5e8d6bdaff821c3529fd58522a6b5df141e79934647597bfcb9c0fd8",
+    "Tools/server_recovery.py": "43849b73c26a897dbdec729603cc000a79cd31a4f3f42ab0b4846c73ae3ce5df"
+  },
+  "limitations": [
+    "Command-completion suppression is not whole-network packet loss.",
+    "Foreground adapter calls on Windows do not qualify real mobile suspension.",
+    "File locks/directory obstruction simulate real write refusal, not a physically full disk.",
+    "Unwritten memory-only archives cannot survive process death while storage rejects every write.",
+    "No automatic branch reconciliation, iPad hosting or new device qualification."
+  ]
+}

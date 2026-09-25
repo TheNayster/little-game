@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "build": 91,
+  "utc": "2026-09-25T13:26:38.038846+00:00",
+  "checks": [
+    {
+      "check": "accepted pour with missing completion is archived after a real write denial using the original ID; siblings continue and reunion never replays it",
+      "passed": true
+    },
+    {
+      "check": "denied selection replacement preserves previous pointer and solo save; retry opens the same pending adventure without duplicate worlds",
+      "passed": true
+    },
+    {
+      "check": "native lifecycle adapter ignores background outage time and waits for observed foreground time before continuing locally",
+      "passed": true
+    },
+    {
+      "check": "denied local branch save postpones reunion without losing live work or stopping siblings; releasing the lock commits the drop before joining",
+      "passed": true
+    },
+    {
+      "check": "native admission rejection leaves solo input and saves usable, does not retry through the child menu and does not disrupt the other three players",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "lostAck": {
+      "authorityAccepted": true,
+      "archiveRetried": true,
+      "originalRequestRetained": true,
+      "replayed": false
+    },
+    "foregroundSecondsAfterResume": 10.125
+  },
+  "scope": "Isolated Windows native clients and DTLS authority. Completion suppression and lifecycle-adapter calls are test hooks, not physical packet loss or iPad suspension. Real filesystem replacement denial. No family server or physical devices."
+}

@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "utc": "2026-09-25T13:39:43.633043+00:00",
+  "localLinksAndAnchorsChecked": 349,
+  "goalChapters": 55,
+  "planSections": 19,
+  "featureIds": 35,
+  "goalFeatureTrackerUnchangedFrom": "22ff772",
+  "sourceHashesMatch": 148,
+  "checksByEvidence": {
+    "native-91.json": 5,
+    "continuation-91.json": 6,
+    "rules.json": 67,
+    "compatibility-91.json": 4,
+    "motion-91.json": 4,
+    "server-recovery-91.json": 6
+  },
+  "pythonSyntax": true,
+  "externalSourcesReResearched": false
+}

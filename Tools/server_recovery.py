@@ -24,7 +24,7 @@ ENROLLMENT = ('family.json', 'authority.pairing', 'issuer.pairing',
 FILES = ENROLLMENT + ('world.save',)
 SAVES = ('world.save', 'world.save.bak', 'world.save.pending')
 LIMIT = 3 * 1024 * 1024
-MAX_QUALIFIED_BUILD = 90
+MAX_QUALIFIED_BUILD = 91
 
 
 def check(value, message):

@@ -1,0 +1,42 @@
+{
+  "status": "replicated",
+  "epoch": "3f089ac2521b4d6fad576f598e3c9d98",
+  "hash": "",
+  "receivedChunks": 0,
+  "bytes": 0,
+  "receipts": 0,
+  "timers": 0,
+  "checkpoint": 0,
+  "revision": 0,
+  "writeMilliseconds": 0.0,
+  "peers": [
+    {
+      "profile": "player-1",
+      "hash": "128eb36bfe85dcf05349c4c1f63b9136e63d727e12d64f6670729a39a865690d",
+      "checkpoint": 138,
+      "revision": 135,
+      "sent": 22
+    },
+    {
+      "profile": "player-2",
+      "hash": "128eb36bfe85dcf05349c4c1f63b9136e63d727e12d64f6670729a39a865690d",
+      "checkpoint": 138,
+      "revision": 135,
+      "sent": 22
+    },
+    {
+      "profile": "player-3",
+      "hash": "128eb36bfe85dcf05349c4c1f63b9136e63d727e12d64f6670729a39a865690d",
+      "checkpoint": 138,
+      "revision": 135,
+      "sent": 24
+    },
+    {
+      "profile": "player-4",
+      "hash": "128eb36bfe85dcf05349c4c1f63b9136e63d727e12d64f6670729a39a865690d",
+      "checkpoint": 138,
+      "revision": 135,
+      "sent": 21
+    }
+  ]
+}

@@ -37,7 +37,7 @@ namespace LittleWeeps.NetworkProbe
         [Serializable] private sealed class Evidence
         {
             public int serial,visiblePlayers,canvases,narrators,audioSources;public bool passed,ready,pending,connected,menuOpen,shared;
-            public string error,build,actor,feedback,dragging,zone,savePath,adventure;public PlayerView[] players;public ToyView[] toys;
+            public string error,build,actor,feedback,dragging,zone,savePath,adventure,pendingRequest;public int pendingArchives;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
@@ -116,6 +116,8 @@ namespace LittleWeeps.NetworkProbe
                 }
                 else if(step.action=="network-pause")probe.VerifyFamilyForeground(false);
                 else if(step.action=="network-resume")probe.VerifyFamilyForeground(true);
+                else if(step.action=="drop-acks")GetComponent<NetworkGardenSession>().VerifyDropAcknowledgments(true);
+                else if(step.action=="restore-acks")GetComponent<NetworkGardenSession>().VerifyDropAcknowledgments(false);
                 else if(step.action=="capture")StartCoroutine(Capture());
                 else if(step.action!="inspect")throw new ArgumentException("Unknown garden input action.");
                 await Task.Delay(step.action=="inspect"?20:65);Write();
@@ -167,7 +169,7 @@ namespace LittleWeeps.NetworkProbe
         {
             var evidence=new Evidence{serial=serial,passed=string.IsNullOrEmpty(failure),error=failure??"",build=Application.version,actor=probe.Settings.profile,ready=screen.Ready,connected=probe.ConnectedToServer,
                 pending=screen.ActionPending,feedback=screen.Feedback,dragging=screen.Dragging??"",zone=screen.CurrentArea,visiblePlayers=screen.Ready?screen.VisiblePlayers:0,menuOpen=screen.MenuOpen,
-                shared=screen.Shared,adventure=screen.AdventureId,savePath=screen.SavePath??"",canvases=FindObjectsByType<Canvas>(FindObjectsSortMode.None).Length,
+                shared=screen.Shared,adventure=screen.AdventureId,savePath=screen.SavePath??"",pendingRequest=GetComponent<NetworkGardenSession>()?.PendingRequestId??"",pendingArchives=probe.PendingInterruptedArchives,canvases=FindObjectsByType<Canvas>(FindObjectsSortMode.None).Length,
                 narrators=FindObjectsByType<SoloNarration>(FindObjectsSortMode.None).Length,audioSources=FindObjectsByType<AudioSource>(FindObjectsSortMode.None).Length};
             if(screen.Ready)
             {

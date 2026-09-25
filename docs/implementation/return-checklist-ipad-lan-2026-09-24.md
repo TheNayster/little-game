@@ -1,5 +1,15 @@
 # Current checks — server/Android 83; Apple clients 79
 
+**No action is needed while you are away.** Windows 91 has passed the isolated outage failure matrix and related regressions. Your last recorded family server/phone/iPad deployments remain the versions above; the new Windows work does not update those devices.
+
+## Short list for when you are home
+
+1. Make the Mac and older iPad available for the coordinated recovery update **after the new mobile artifacts are prepared**. Keep the iPad connected, unlocked and on home Wi-Fi during that session. Any native signing prompt will be handled then; none is waiting on you now.
+2. Test the older iPad's new recovery behavior first: start with the server absent, keep playing locally, close/reopen, and return to family play with that local work still accessible. Then qualify the newer iPad and phones, including actual lock/background behavior and four-device performance. Existing successful smoke tests stay recorded.
+3. Schedule an empty family-server session for the matching qualified update and guarded recovery activation. Choose an independent backup destination as part of that setup. The current parent page still selects operations build 85 and recovery is Off; preparation is not deployment.
+
+VPS details can wait until the reliability and deployment gates are ready. There is no need to reconnect devices or troubleshoot anything remotely right now.
+
 Both iPads have been **updated in place and launched**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Mac signing is complete; there is no need to run the signing window again. [Current installation evidence](g3-ipad-79-2026-09-24.html).
 
 **Both iPads, Samsung and iPhone have joined the same PC shared world.** Native discovery and admission are verified, and the user confirms all devices work. After everyone left, the user authorized the PC server and Samsung update to 83. Those updates are complete; iPads/iPhone remain 79. [Four-device record](g3-phones-79-2026-09-24.html).
@@ -12,7 +22,7 @@ Both iPads have been **updated in place and launched**. Their earlier garden sav
 4. **Done: leave and return on both iPads.** The user confirms locking/unlocking and also closing/reopening while the sibling continues; movement and bucket pickup work afterward. Native reads confirm retained identities and automatic rejoin from new app processes to the same PC authority. [Evidence](evidence/ipad79-2026-09-24/lock-cold-rejoin.json).
 5. **Passed on the tested iPad: saved solo round trip.** The user confirmed easy family rejoin with server positions and restoration of the solo toy position when returning to Play by myself. [Feedback](evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json). Which iPad was used and repetition on both were not specified. Further iPad time is paused. Initial joining after a server-absent start and remaining multi-touch/layout/voice/settings checks remain deferred.
 
-The previous unpaired solo garden, paired-device solo draft and server world are separate. The update preserves the old save; it does not merge it into the family garden. Windows 90 now qualifies automatic local adventures and safe reunion; physical device qualification and full offline reconciliation still need their planned work.
+The previous unpaired solo garden, paired-device solo draft and server world are separate. The update preserves the old save; it does not merge it into the family garden. Windows 90 qualifies automatic local adventures and safe reunion; Windows 91 adds failure/retry evidence. Physical device qualification and full offline reconciliation still need their planned work.
 
 ## Phone milestone — completed within the recorded scope
 
@@ -34,12 +44,13 @@ Completed while away, using separate test worlds:
 - [Complete client recovery checkpoints](g3-client-recovery-2026-09-24.html) in Windows 88, preserving receipts, idle timers and the separate solo draft. This is not installed on your devices yet.
 
 - [Automatic local continuation and saved adventures](g3-local-continuation-2026-09-25.html) in Windows 90: four-client outage/restart, preserved solo progress, reopenable adventures and safe automatic reunion pass. No devices were updated.
+- [Outage failure checks](g3-outage-failures-2026-09-25.html) in Windows 91: accepted actions with missing completion, denied archive/selection/branch writes, observed foreground timing and rejected admission pass. Unresolved archives retry safely after disk access returns; they never replay actions. Related continuation, movement, compatibility and restore regressions pass.
 
-**Next implementation: G3-REC-03 outage failure matrix**, then mobile recovery builds and device qualification. iPad hosting and reconciliation remain required.
+**Next implementation: G3-REC-04 coordinated mobile build preparation on Windows**, then native signing and iPad-first device qualification. The artifact preparation can proceed while you are away; physical qualification waits for you. iPad hosting and reconciliation remain required.
 
 When you return:
 
-1. Approve the reviewed Windows network setup for the selected prepared server, then update it during an empty session and click **Enable recovery** on the parent page. The page is still configured for qualified operations build 85; newer recovery/continuation 90 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.
+1. Complete any required Windows network approval for the selected prepared server, then update it during an empty session and enable recovery through the parent page. The page is still configured for qualified operations build 85; newer recovery/continuation 91 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.
 2. Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.
 3. Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.
 4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. Client recovery replication and local adventures also need mobile builds and A10 write/frame measurements. No repeat of the already-passed smoke checks is needed.
@@ -54,7 +65,7 @@ When you return:
 
 ## Still tracked
 
-- Unattended app renewal on both iPads is unproven; the earlier iPhone USB renewal did not qualify Wi-Fi renewal. The current development profile expires October 1, 2026.
+- Unattended app renewal on both iPads is unproven; the earlier iPhone USB renewal did not qualify Wi-Fi renewal. The last recorded development profile expires October 1, 2026; installed signing/profile status must be checked before the next update.
 - Sustained performance on the older A10 iPad and observing the children use the controls remain open.
 - Both iPads hosting, host switching/recovery, full offline reconciliation and the remaining game content are still in the main plan.
 

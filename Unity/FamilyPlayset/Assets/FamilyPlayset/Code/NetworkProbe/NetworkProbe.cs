@@ -588,6 +588,7 @@ namespace LittleWeeps.NetworkProbe
         private void Update()
         {
             if(config==null || output==null || failed || stopping)return;
+            TickInterruptedArchives();
             try{TickDiscovery();}catch(Exception) when(pairing!=null && config.role=="client"){Unavailable("discovery-unavailable");}
             try{TickPresentation();}catch(Exception e){Fail(e);return;}
             UpdateConnectionEvidence();

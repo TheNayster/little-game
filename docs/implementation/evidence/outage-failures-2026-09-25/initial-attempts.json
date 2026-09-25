@@ -1,0 +1,18 @@
+{
+  "scope": "Initial harness attempts retained locally; not passed acceptance runs.",
+  "attempts": [
+    {
+      "run": "2d4e216273e1423898346696a47cdf1d",
+      "test": "outage-failures",
+      "failure": "tap-1 not an input surface",
+      "correction": "Use actual drawn tap and plant target coordinates, then rerun the native matrix."
+    },
+    {
+      "run": "6de3c393e7754fc3907cbd7d6b4f897f",
+      "test": "four-player motion",
+      "failure": "No measured recovery traffic during walk",
+      "correction": "Wait for idle peer checkpoint convergence and expiration of the five-second offer cooldown before beginning measured motion. Retain before/after evidence. Keep frame, lag, speed and concurrent-transfer thresholds unchanged.",
+      "note": "Original completion-based counter assertion did not establish a transfer during that short walk; it was not a failed smoothness threshold."
+    }
+  ]
+}

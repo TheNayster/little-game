@@ -70,24 +70,47 @@ def main():
         movers=extras+[second] if extras else []
         for index,client in enumerate(movers):
             client.input('press',x=50,y=55+index*25);client.input('release',x=50,y=55+index*25)
-        for client in movers:wait(lambda:abs(player(client)['x']-50)<1,'extra client start position',seconds=12)
+        for index,client in enumerate(movers):
+            wait(lambda:math.hypot(player(client)['x']-50,player(client)['y']-(55+index*25))<1,'extra client start position',seconds=12)
+        if args.build>=86:
+            # Evidence is written on durable completion, not every chunk, and
+            # each peer then has a five-second offer cooldown. Let all idle
+            # clients catch up and exhaust that cooldown before starting the
+            # measured walk; otherwise a valid short walk can fit between
+            # transfers and prove nothing about concurrent recovery traffic.
+            stable_checkpoint=None;stable_since=None
+            def recovery_ready():
+                nonlocal stable_checkpoint,stable_since
+                evidence=read(server.out/'recovery-evidence.json') or {}
+                peers=evidence.get('peers',[])
+                checkpoints={p['checkpoint'] for p in peers}
+                if evidence.get('status')!='replicated' or len(peers)!=args.players or len(checkpoints)!=1 or min(checkpoints)<=0:
+                    stable_checkpoint=None;stable_since=None;return False
+                checkpoint=next(iter(checkpoints))
+                if checkpoint!=stable_checkpoint:
+                    stable_checkpoint=checkpoint;stable_since=time.monotonic()
+                return evidence if time.monotonic()-stable_since>=5.2 else False
+            ready=wait(recovery_ready,'idle recovery convergence and offer readiness',seconds=40)
+            write(run.path/'recovery-trace-readiness.json',ready)
+        metrics_before=read(server.out/'motion-stats.json')['checkpointWrites']
+        recovery_before=read(server.out/'recovery-evidence.json') or {}
         first.input('traceStart',role=first.profile);second.input('traceStart',role=first.profile)
         for client in movers:
             client.input('press',x=920,y=450);client.input('release',x=920,y=450)
-        metrics_before=read(server.out/'motion-stats.json')['checkpointWrites']
-        recovery_before=sum(p['sent'] for p in (read(server.out/'recovery-evidence.json') or {}).get('peers',[]))
         start=time.monotonic();concurrent=walk_to(920,70,bool(movers));elapsed=time.monotonic()-start;time.sleep(.6)
         first.input('traceStop');second.input('traceStop')
+        metrics_after=read(server.out/'motion-stats.json')['checkpointWrites'];writes=metrics_after-metrics_before
+        recovery_after=read(server.out/'recovery-evidence.json') or {}
+        recovery_chunks=sum(p['sent'] for p in recovery_after.get('peers',[]))-sum(p['sent'] for p in recovery_before.get('peers',[]))
+        write(run.path/'recovery-trace-measurement.json',dict(before=recovery_before,after=recovery_after,checkpointWrites=writes,recoveryChunks=recovery_chunks))
         local=analyze(read(first.out/'motion-trace.json')['samples']);remote=analyze(read(second.out/'motion-trace.json')['samples'])
         require(remote['visualMovingFrameFraction']>remote['rawMovingFrameFraction']+.2,'Interpolation did not fill missing display frames')
         require(3.8<elapsed<5.6,'Walking speed depends on acknowledgements: '+str(elapsed))
-        metrics_after=read(server.out/'motion-stats.json')['checkpointWrites'];writes=metrics_after-metrics_before
-        recovery_after=sum(p['sent'] for p in (read(server.out/'recovery-evidence.json') or {}).get('peers',[]))
         if args.build>=86:
-            require(recovery_after>recovery_before,'No measured recovery traffic during walk')
+            require(recovery_chunks>0,'No measured recovery traffic during walk')
         require(writes<=8,'Motion still causes per-step disk checkpoints: '+str(writes))
         checks.append(dict(check='continuous local and remote canvas motion',passed=True,local=local,remote=remote,walkSeconds=round(elapsed,3),checkpointWritesDuringWalk=writes,concurrentAuthoritativePositions=concurrent,
-                           recoveryChunksDuringTrace=recovery_after-recovery_before,receiptStress=args.build>=86))
+                           recoveryChunksDuringTrace=recovery_chunks,receiptStress=args.build>=86))
         print('PASS motion '+str(remote),flush=True)
         first.input('button',text='Tap to walk');first.input('touch-begin',role='stick',x=-45,finger=31)
         time.sleep(.45);first.input('touchButton',text='Menu');time.sleep(.65)

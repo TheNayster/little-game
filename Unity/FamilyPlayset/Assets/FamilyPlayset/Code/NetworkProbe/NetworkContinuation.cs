@@ -13,21 +13,35 @@ namespace LittleWeeps.NetworkProbe
         private double nextContinuationAttempt;
         [Serializable] private sealed class InterruptedActions
         {public int version=1;public string family,authority,world,profile,epoch;public SoloCommand[] commands;}
+        private sealed class PendingArchive {public string path,payload;}
+        private readonly System.Collections.Generic.Queue<PendingArchive> interruptedArchives=new System.Collections.Generic.Queue<PendingArchive>();
+        private double nextArchiveAttempt;
+        public int PendingInterruptedArchives=>interruptedArchives.Count;
         public void RememberInterrupted(SoloCommand[] commands)
         {
             if(pairing==null || commands.Length==0)return;
+            // Serialize before the live command queue is cleared. Retrying uses
+            // the same file and request IDs; this never resubmits game actions.
+            var value=new InterruptedActions{family=pairing.familyId,authority=pairing.authorityId,world=config.runId,
+                profile=config.profile,epoch=epoch,commands=commands};
+            interruptedArchives.Enqueue(new PendingArchive{
+                path=Path.Combine(root,"client-adventures",config.profile,"interrupted",Guid.NewGuid().ToString("N")+".save"),
+                payload=JsonUtility.ToJson(value)});
+            nextArchiveAttempt=0;TickInterruptedArchives();
+        }
+        private void TickInterruptedArchives()
+        {
+            if(interruptedArchives.Count==0 || Time.realtimeSinceStartupAsDouble<nextArchiveAttempt)return;
+            nextArchiveAttempt=Time.realtimeSinceStartupAsDouble+2;
             try
             {
-                // These are unresolved intentions, not accepted events. Retain
-                // their original IDs for future reconciliation; never replay.
-                var value=new InterruptedActions{family=pairing.familyId,authority=pairing.authorityId,world=config.runId,
-                    profile=config.profile,epoch=epoch,commands=commands};
-                var payload=JsonUtility.ToJson(value);
-                var path=Path.Combine(root,"client-adventures",config.profile,"interrupted",Guid.NewGuid().ToString("N")+".save");
-                var archive=new CheckpointStore(path,text=>text==payload);archive.Save(payload);
-                if(archive.Load().Payload!=payload)throw new IOException("Interrupted actions not verified.");
+                var pending=interruptedArchives.Peek();
+                var archive=new CheckpointStore(pending.path,text=>text==pending.payload);
+                archive.Save(pending.payload);
+                if(archive.Load().Payload!=pending.payload)throw new IOException("Interrupted actions not verified.");
+                interruptedArchives.Dequeue();
             }
-            catch(Exception e){Debug.LogWarning("Interrupted action archive unavailable: "+e.Message);}
+            catch(Exception e){Debug.LogWarning("Interrupted actions retained in memory; archive will retry: "+e.Message);}
         }
         [Serializable] private sealed class ContinuationEvidence
         {public string status,branch,baseEpoch;public long baseCheckpoint,baseRevision;}
