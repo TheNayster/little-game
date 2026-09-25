@@ -24,6 +24,7 @@ ENROLLMENT = ('family.json', 'authority.pairing', 'issuer.pairing',
 FILES = ENROLLMENT + ('world.save',)
 SAVES = ('world.save', 'world.save.bak', 'world.save.pending')
 LIMIT = 3 * 1024 * 1024
+MAX_QUALIFIED_BUILD = 88
 
 
 def check(value, message):
@@ -130,7 +131,7 @@ def unpack(path):
         bundle = json.loads(file_bytes(path, LIMIT))
         check(bundle['format'] == 'little-weeps-server-backup' and bundle['version'] == 1
               and bundle['protection'] == 'windows-current-user-dpapi'
-              and bundle['protocol'] == 3 and 83 <= bundle['build'] <= 85, 'Unsupported backup/build version.')
+              and bundle['protocol'] == 3 and 83 <= bundle['build'] <= MAX_QUALIFIED_BUILD, 'Unsupported backup/build version.')
         canonical(bundle['world']); canonical(bundle['id'])
         check(set(bundle['files']) == set(FILES), 'Unexpected or missing backup file. No paths were extracted.')
         files = {name: decoded(entry) for name, entry in bundle['files'].items()}
@@ -212,7 +213,7 @@ class Recovery:
             # A live backup labels the running writer, not the prepared next build.
             latest = read(self.root / 'latest-server.json')
             source_build = candidates[0]['build'] if len(candidates) == 1 else latest['build'] if latest else self.build
-            check(len(candidates) <= 1 and 83 <= source_build <= 85, 'Unverified source build.')
+            check(len(candidates) <= 1 and 83 <= source_build <= MAX_QUALIFIED_BUILD, 'Unverified source build.')
             bundle = dict(format='little-weeps-server-backup', version=1, id=uuid.uuid4().hex,
                           world=self.family, checkpointWorld=body['worldId'], revision=body['revision'],
                           build=source_build, protocol=3, createdAt=datetime.now(timezone.utc).isoformat(),

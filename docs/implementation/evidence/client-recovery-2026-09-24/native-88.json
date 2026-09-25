@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "build": 88,
+  "utc": "2026-09-25T04:49:10.205873+00:00",
+  "checks": [
+    {
+      "check": "four enrolled native clients durably receive multi-chunk snapshots containing both areas, four players, 128 receipts, idle clocks and the live held prop",
+      "passed": true
+    },
+    {
+      "check": "one client disk denial preserves its old checkpoint and receives no false durable credit; siblings stay connected and client restart resumes replication",
+      "passed": true
+    },
+    {
+      "check": "hard loss preserves committed replicas; reopening the same four profiles and a new authority epoch resumes complete replication",
+      "passed": true
+    },
+    {
+      "check": "manual solo draft remains a distinct unchanged save while shared checkpoint replication resumes",
+      "passed": true
+    }
+  ],
+  "clientObservations": [
+    {
+      "bytes": 22457,
+      "receipts": 128,
+      "timers": 1,
+      "writeMilliseconds": 4.6322
+    },
+    {
+      "bytes": 22457,
+      "receipts": 128,
+      "timers": 1,
+      "writeMilliseconds": 4.6564000000000005
+    },
+    {
+      "bytes": 22457,
+      "receipts": 128,
+      "timers": 1,
+      "writeMilliseconds": 5.7404
+    },
+    {
+      "bytes": 22457,
+      "receipts": 128,
+      "timers": 1,
+      "writeMilliseconds": 4.8986
+    }
+  ],
+  "scope": "Four native Windows clients, actual enrolled DTLS transport, client storage failure and isolated authority termination. No family world, phone, iPad or Mac. Not automatic outage continuation, host migration or branch reconciliation."
+}

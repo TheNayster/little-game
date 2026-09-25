@@ -15,7 +15,7 @@ namespace LittleWeeps.NetworkProbe
 {
     // Loopback qualification remains the default. An explicit protected family
     // enrollment enables the separate Windows LAN proof; never widen the lab bind.
-    public sealed class NetworkProbe : MonoBehaviour
+    public sealed partial class NetworkProbe : MonoBehaviour
     {
         private const int Protocol=3, Content=3, MaxWireBytes=16384;
         private const string WalkMessage="littleweeps.walk.v1", MotionMessage="littleweeps.motion.v1";
@@ -94,13 +94,14 @@ namespace LittleWeeps.NetworkProbe
             public double testLifetimeOffsetSeconds;
             public int testMotionDelayMs,testMotionJitterMs,testMotionDropEvery;
         }
-        [Serializable] private sealed class Hello {public string runId,profile,token,family,authority;public int protocol,content;}
+        [Serializable] private sealed class Hello {public string runId,profile,token,family,authority;public int protocol,content,recovery;}
         [Serializable] public sealed class Control {public int serial;public string kind;public Request request;}
         [Serializable] public sealed class Request {public string requestId;public int protocol=Protocol;public SoloCommand command;}
         [Serializable] public sealed class State
         {
             public double time;
             public int protocol=Protocol,content=Content;
+            public int recovery;
             public string runId,epoch,requestId,outcome;
             public long sequence;
             public bool accepted,duplicate,durable;
@@ -220,6 +221,7 @@ namespace LittleWeeps.NetworkProbe
             network.CustomMessagingManager.RegisterNamedMessageHandler(PoseMessage,ReceivePose);
             network.CustomMessagingManager.RegisterNamedMessageHandler(WalkMessage,ReceiveWalk);
             network.CustomMessagingManager.RegisterNamedMessageHandler(MotionMessage,ReceiveMotion);
+            RegisterRecoveryMessages();
         }
         private void ShowShared()
         {
@@ -296,7 +298,7 @@ namespace LittleWeeps.NetworkProbe
         private void BeginReconnect(string reason)
         {
             if(config.role!="client" || pairing==null || stopping || failed || retryPending || reconnectBlocked)return;
-            clientReady=false;retryPending=true;
+            clientReady=false;retryPending=true;ResetRecoveryTransfer();
             // Empty reason is ordinary transport loss. Explicit authentication
             // or compatibility rejection needs parent action, not an attack loop.
             reconnectBlocked=reason=="unpaired-profile" || reason=="incompatible-version" || reason=="unknown-profile" || reason=="invalid-admission" || reason=="invalid-message" || reason=="invalid-walk";
@@ -337,7 +339,7 @@ namespace LittleWeeps.NetworkProbe
         private void StartGuest()
         {
             clientReady=false;
-            var hello=new Hello{runId=config.runId,profile=config.profile,token=config.token,protocol=config.protocol,content=config.content,family=pairing?.familyId,authority=pairing?.authorityId};
+            var hello=new Hello{runId=config.runId,profile=config.profile,token=config.token,protocol=config.protocol,content=config.content,family=pairing?.familyId,authority=pairing?.authorityId,recovery=1};
             network.NetworkConfig.ConnectionData=Utf8.GetBytes(JsonUtility.ToJson(hello));
             if(!network.StartClient())throw new InvalidOperationException("Loopback client did not start.");
             guestStarted=true;admissionDeadline=Time.realtimeSinceStartupAsDouble+10;RegisterMessages();
@@ -359,6 +361,7 @@ namespace LittleWeeps.NetworkProbe
                     transport.UseEncryption && pairing.Admits(hello.family,hello.authority,hello.runId,hello.profile,hello.token);
                 if(!admitted){response.Reason="unpaired-profile";return;}
                 response.Approved=session.Attach(request.ClientNetworkId,hello.profile,out var reason);response.Reason=reason;
+                if(response.Approved && hello.recovery==1)recoveryPeers[request.ClientNetworkId]=new RecoveryPeer();
             }
             catch(ArgumentException){response.Reason="invalid-admission";}
             finally{TraceConnection(response.Approved?"approved":"rejected",request.ClientNetworkId,response.Reason);}
@@ -377,10 +380,10 @@ namespace LittleWeeps.NetworkProbe
             try
             {
                 if(config.role=="server")
-                {if(session.TryPlayer(client,out var actor))movement.Forget(actor);if(session.Detach(client)){SaveAuthority();Publish();}}
+                {recoveryPeers.Remove(client);if(session.TryPlayer(client,out var actor))movement.Forget(actor);if(session.Detach(client)){SaveAuthority();Publish();}}
                 else if(client==network.LocalClientId)
                 {
-                    clientReady=false;
+                    clientReady=false;ResetRecoveryTransfer();
                     if(pairing!=null)BeginReconnect(network.DisconnectReason??"");
                     else {WriteStatus("disconnected",network.DisconnectReason??"");LostConnection?.Invoke();}
                 }
@@ -389,7 +392,7 @@ namespace LittleWeeps.NetworkProbe
         }
         private State Current(string requestId="",SoloResult? result=null)
         {
-            return new State{runId=config.runId,epoch=epoch,time=ServerClock,sequence=++sequence,requestId=requestId,
+            return new State{runId=config.runId,epoch=epoch,time=ServerClock,sequence=++sequence,requestId=requestId,recovery=1,
                 accepted=result?.Accepted??false,duplicate=result?.Duplicate??false,outcome=result?.Outcome??"snapshot",
                 durable=!positionDirty,view=session.View(),connected=session.ConnectedPlayers,poses=poses.Values.ToArray()};
         }
@@ -577,6 +580,7 @@ namespace LittleWeeps.NetworkProbe
             try{TickPresentation();}catch(Exception e){Fail(e);return;}
             UpdateConnectionEvidence();
             try{TickMovement(Time.realtimeSinceStartupAsDouble);}catch(Exception e){Fail(e);return;}
+            TickRecovery(Time.realtimeSinceStartupAsDouble);
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
             // Only explicit home hosting opts out; automated probes keep their
             // deadlines. The offset exercises this exact branch without a two-hour test.
@@ -632,7 +636,12 @@ namespace LittleWeeps.NetworkProbe
             if(result!="stopping")return false;
             Stop();return true;
         }
-        private void SaveAuthority(){store.Save(JsonUtility.ToJson(session.Checkpoint()));checkpointWrites++;positionDirty=false;maintenanceDirty=false;lastPositionSave=lastMaintenanceSave=Time.realtimeSinceStartupAsDouble;}
+        private void SaveAuthority()
+        {
+            var checkpoint=session.Checkpoint();store.Save(JsonUtility.ToJson(checkpoint));
+            CaptureRecovery(checkpoint);
+            checkpointWrites++;positionDirty=false;maintenanceDirty=false;lastPositionSave=lastMaintenanceSave=Time.realtimeSinceStartupAsDouble;
+        }
         private void TraceConnection(string phase,ulong peer,string detail)
         {
             if(connectionTrace.Count>=256)connectionTrace.RemoveAt(0);

@@ -7,7 +7,7 @@ from shared_garden_runtime import ROOT,Run,wait,require,write
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('build',type=int);args=p.parse_args()
     checks=[]
-    for server_build,client_build in [(args.build,79),(79,args.build)]:
+    for server_build,client_build in [(args.build,79),(79,args.build),(args.build,83),(83,args.build)]:
         authority=Run(server_build);guest=None
         try:
             server=authority.start('server')
@@ -17,6 +17,11 @@ def main():
             client.input('press',role='bucket-1');client.input('release',x=150,y=340)
             wait(lambda:next(t for t in server.state()['view']['toys'] if t['id']=='bucket-1')['water']==3,'mixed-version fill')
             wait(lambda:next(t for t in client.state()['view']['toys'] if t['id']=='bucket-1')['water']==3,'mixed-version shared view')
+            if args.build>=86:
+                # Capability is additive: older peers must receive no recovery
+                # extension traffic and must not be credited with a replica.
+                require(not (client.out/'recovery-evidence.json').exists(), 'Legacy peer unexpectedly negotiated recovery')
+                require(not (server.out/'recovery-evidence.json').exists(), 'Legacy peer received recovery credit')
             checks.append(dict(serverBuild=server_build,clientBuild=client_build,passed=True,runId=authority.run_id))
             print(f'PASS server {server_build} / client {client_build}: admission, pickup, fill and shared snapshot',flush=True)
         finally:
@@ -25,7 +30,7 @@ def main():
     path=ROOT/f'LocalData/Verification/garden-compatibility-{args.build}.json'
     require(not path.exists(),'Keep previous evidence; choose a fresh output/build')
     write(path,dict(passed=True,build=args.build,utc=datetime.now(timezone.utc).isoformat(),checks=checks,
-        scope='Wire compatibility and basic interaction; older clients do not display the new reset cue. Older servers do not implement timers.',physicalDevicesAccessed=False))
+        scope='79/83 staggered-update admission and basic interaction. On recovery-capable builds, legacy peers negotiate no recovery traffic or durable credit. 79 lacks reset cues/timers.',physicalDevicesAccessed=False))
     print('Evidence: '+str(path),flush=True)
 
 

@@ -8,7 +8,7 @@ import subprocess
 import sys
 import uuid
 from recovery_fixture import RecoveryFixture
-from server_recovery import Recovery, OperationError, encoded, digest, unpack, checkpoint, recover_missing, ENROLLMENT, FILES, SAVES
+from server_recovery import Recovery, OperationError, encoded, digest, unpack, checkpoint, recover_missing, ENROLLMENT, FILES, SAVES, MAX_QUALIFIED_BUILD
 from shared_garden_runtime import ROOT, read, write, wait, require
 
 
@@ -61,7 +61,7 @@ def main():
         cases = []
         v = deepcopy(source); v['files']['world.save']['sha256'] = '0' * 64; cases.append(('checksum', v))
         v = deepcopy(source); v['version'] = 2; cases.append(('format', v))
-        v = deepcopy(source); v['build'] = 86; cases.append(('future-build', v))
+        v = deepcopy(source); v['build'] = MAX_QUALIFIED_BUILD + 1; cases.append(('future-build', v))
         v = deepcopy(source); v['files']['../world.save'] = v['files'].pop('world.save'); cases.append(('path', v))
         v = deepcopy(source); v['world'] = uuid.uuid4().hex; cases.append(('wrong-family', v))
         v = deepcopy(source); v['files']['player-1.pairing'] = v['files']['player-2.pairing']; cases.append(('wrong-enrollment', v))

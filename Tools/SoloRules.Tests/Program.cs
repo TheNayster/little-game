@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 using LittleWeeps.Core;
 using LittleWeeps.Adapters;
 
-static class Program
+static partial class Program
 {
     static readonly JsonSerializerOptions Json = new JsonSerializerOptions { IncludeFields = true, WriteIndented = true };
     static readonly List<object> Results = new List<object>();
@@ -20,6 +20,7 @@ static class Program
         root = Path.GetFullPath(args.Length == 1 || nativeBonjour ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory and optional --bonjour."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        RecoveryTests();
         Test("home authority has no lifetime cutoff while isolated probes retain exact deadlines",()=>{
             foreach(var elapsed in new[]{0d,240d,241d,7200d,7201d,86400d,2592000d})
                 Check(!SessionLifetime.Expired(elapsed,true,true));

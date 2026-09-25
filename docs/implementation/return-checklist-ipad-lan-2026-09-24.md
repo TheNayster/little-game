@@ -25,14 +25,22 @@ The user requested less phone side space and timers for unused items/completed q
 
 ## Next Windows task
 
-**Completed while away: local backup/restore.** Prepared server 85 adds an interrupted-recovery guard to the parent controls. A separate four-player world passed restore/rollback and failure checks; your actual server 83 was only backed up and remains running. **Also completed:** isolated crash recovery with four original clients rejoining, plus bounded retries and parent-stop protection. It is not enabled on the actual family world. **Also passed:** ten-minute four-client Windows movement/travel/timer/rejoin and save run. **Also completed:** backup and recovery buttons/status are integrated into your existing desktop server shortcut. Your live 83 world was backed up from the page; recovery activation correctly awaits 85. [Parent panel](g3-parent-recovery-panel-2026-09-24.html). **Next implementation: durable client recovery checkpoints.** [Sustained run](g3-server-soak-2026-09-24.html). [Supervision record](g3-server-supervision-2026-09-24.html). [Recovery record](g3-server-recovery-2026-09-24.html).
+Completed while away, using separate test worlds:
+
+- [Verified server backup/restore and rollback](g3-server-recovery-2026-09-24.html).
+- [Bounded crash recovery](g3-server-supervision-2026-09-24.html), including four original clients rejoining and deliberate-stop protection.
+- [Ten-minute four-player Windows run](g3-server-soak-2026-09-24.html), covering movement, travel, timers, rejoin and save restart.
+- [Parent backup/recovery buttons and status](g3-parent-recovery-panel-2026-09-24.html) in **Little Weeps Server** on the desktop. Your actual 83 world was backed up through this page and remains its original process; recovery activation is still Off.
+- [Complete client recovery checkpoints](g3-client-recovery-2026-09-24.html) in Windows 88, preserving receipts, idle timers and the separate solo draft. This is not installed on your devices yet.
+
+**Next implementation: automatic local continuation from the last complete shared checkpoint.** The app does not make that transition yet; iPad hosting and reconciliation remain on the plan.
 
 When you return:
 
-1. Approve the reviewed Windows network setup for prepared server 85, then update it during an empty session then click Enable recovery on the updated parent page. No prompt is being left waiting overnight.
+1. Approve the reviewed Windows network setup for the selected prepared server, then update it during an empty session and click **Enable recovery** on the parent page. The page is still configured for qualified operations build 85; newer recovery-client 88 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.
 2. Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.
 3. Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.
-4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. No repeat of the already-passed smoke checks is needed.
+4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. Client recovery replication also needs mobile builds and A10 write/frame measurements. No repeat of the already-passed smoke checks is needed.
 
 [Persistent server 83](g3-persistent-server-2026-09-24.html) is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Sign-in startup/status, long-duration soak and broader lifecycle acceptance remain open.
 

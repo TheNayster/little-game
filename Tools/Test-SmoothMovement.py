@@ -7,6 +7,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 import math
 import time
+import uuid
 from shared_garden_runtime import Run, read, write, wait, require
 
 
@@ -42,6 +43,16 @@ def main():
     try:
         server=run.start('server');first=run.start('client','player-1');second=run.start('client','player-2')
         extras=[run.start('client','player-'+str(i)) for i in range(3,args.players+1)]
+        if args.build>=86:
+            # Fill the real receipt window before measuring. This makes the
+            # new recovery stream span multiple bounded messages during motion.
+            for i in range(130):
+                state=server.state()['view'];p=next(p for p in state['players'] if p['id']==first.profile);rid=uuid.uuid4().hex
+                command=dict(requestId=rid,actor=first.profile,expectedRevision=state['revision'],zone=p['zone'],visit=p['visit'],action=1,
+                             item='',target='',value='blue-pup' if i%2==0 else 'orange-pup',x=0,y=0)
+                first.serial+=1;write(first.out/'control.json',dict(serial=first.serial,kind='command',request=dict(requestId=rid,protocol=3,command=command)))
+                reply=wait(lambda:read(first.out/('reply-'+rid+'.json')),'receipt stress setup')
+                require(reply['accepted'],'Receipt stress command failed')
         def player(c):return next(p for p in server.state()['view']['players'] if p['id']==c.profile)
         def walk_to(x,y,check_others=False):
             first.input('press',x=x,y=y);first.input('release',x=x,y=y)
@@ -64,14 +75,19 @@ def main():
         for client in movers:
             client.input('press',x=920,y=450);client.input('release',x=920,y=450)
         metrics_before=read(server.out/'motion-stats.json')['checkpointWrites']
+        recovery_before=sum(p['sent'] for p in (read(server.out/'recovery-evidence.json') or {}).get('peers',[]))
         start=time.monotonic();concurrent=walk_to(920,70,bool(movers));elapsed=time.monotonic()-start;time.sleep(.6)
         first.input('traceStop');second.input('traceStop')
         local=analyze(read(first.out/'motion-trace.json')['samples']);remote=analyze(read(second.out/'motion-trace.json')['samples'])
         require(remote['visualMovingFrameFraction']>remote['rawMovingFrameFraction']+.2,'Interpolation did not fill missing display frames')
         require(3.8<elapsed<5.6,'Walking speed depends on acknowledgements: '+str(elapsed))
         metrics_after=read(server.out/'motion-stats.json')['checkpointWrites'];writes=metrics_after-metrics_before
+        recovery_after=sum(p['sent'] for p in (read(server.out/'recovery-evidence.json') or {}).get('peers',[]))
+        if args.build>=86:
+            require(recovery_after>recovery_before,'No measured recovery traffic during walk')
         require(writes<=8,'Motion still causes per-step disk checkpoints: '+str(writes))
-        checks.append(dict(check='continuous local and remote canvas motion',passed=True,local=local,remote=remote,walkSeconds=round(elapsed,3),checkpointWritesDuringWalk=writes,concurrentAuthoritativePositions=concurrent))
+        checks.append(dict(check='continuous local and remote canvas motion',passed=True,local=local,remote=remote,walkSeconds=round(elapsed,3),checkpointWritesDuringWalk=writes,concurrentAuthoritativePositions=concurrent,
+                           recoveryChunksDuringTrace=recovery_after-recovery_before,receiptStress=args.build>=86))
         print('PASS motion '+str(remote),flush=True)
         first.input('button',text='Tap to walk');first.input('touch-begin',role='stick',x=-45,finger=31)
         time.sleep(.45);first.input('touchButton',text='Menu');time.sleep(.65)
