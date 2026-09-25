@@ -1,0 +1,31 @@
+{
+  "utc": "2026-09-25T03:12:15.5665084Z",
+  "contract": 4,
+  "gardenPresentation": true,
+  "builds": [
+    {
+      "role": "Server",
+      "version": "0.0.84",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": true
+    },
+    {
+      "role": "Client",
+      "version": "0.0.84",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": false
+    }
+  ],
+  "currentCompiledSourcesMatch": true,
+  "compiledSourceCount": 143,
+  "sourceManifestSha256": "365605b38d83d8a5d3d5f0ac0729c2f25bad21ca3a2cd411e988ab6f0a17ff05",
+  "artifactManifestSha256": "db4cff9ec98752cb0517c15053e97732966fcd5b842f04db81cccf189d423b5a"
+}

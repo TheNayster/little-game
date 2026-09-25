@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "task": "G3-OPS-01",
+  "checks": [
+    "Browser showed stopped with Start enabled for the isolated enrolled world.",
+    "Clicking Start produced Ready for play, build 84, 0/4 players and saved-file verification.",
+    "Clicking Stop produced Server stopped with a newly verified save; visual layout inspected.",
+    "Production start is blocked while build 84 Windows network setup is unrecorded.",
+    "Desktop Little Weeps Server shortcut targets this project and opens/reuses its loopback parent page.",
+    "Read-only status of original family authority remains ready on build 83 with the original process/instance; no restart or migration performed."
+  ],
+  "serverUpdatePrepared": 84,
+  "liveServerBuild": 83,
+  "androidBuild": 83,
+  "appleClientBuilds": 79,
+  "liveGameStopped": false,
+  "physicalDevicesAccessed": false,
+  "scope": "Native and browser acceptance used a separate enrolled test world. The actual family dashboard is monitoring-only on 83 because guarded stopping requires 84. No firewall, autostart, crash supervisor or VPS setup was changed."
+}

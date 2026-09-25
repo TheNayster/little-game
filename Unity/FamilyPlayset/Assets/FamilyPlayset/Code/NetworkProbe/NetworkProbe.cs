@@ -72,6 +72,9 @@ namespace LittleWeeps.NetworkProbe
         private int controlSerial;
         private double nextControl,started;
         private bool failed,stopping;
+        private string lastParentRequest;
+        [Serializable] private sealed class ParentRequest {public string requestId,instanceId,kind;}
+        [Serializable] private sealed class ParentResponse {public string requestId,instanceId,result;public int players;}
         private readonly Dictionary<string,DragPose> poses=new Dictionary<string,DragPose>();
         public State Latest {get;private set;}
         public Config Settings=>config;
@@ -343,6 +346,7 @@ namespace LittleWeeps.NetworkProbe
             response.Approved=false;response.CreatePlayerObject=false;response.Pending=false;response.Reason="invalid-admission";
             try
             {
+                if(stopping || failed){response.Reason="server-stopping";return;}
                 if(request.Payload==null || request.Payload.Length>1024)return;
                 var hello=JsonUtility.FromJson<Hello>(Utf8.GetString(request.Payload));
                 if(hello==null || hello.runId!=config.runId)return;
@@ -582,6 +586,7 @@ namespace LittleWeeps.NetworkProbe
 #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
                 return; // Desktop qualification control files are not a mobile command surface.
 #else
+                if(config.role=="server" && config.persistentServer && TickParentControl())return;
                 var path=Path.Combine(output,"control.json");if(!File.Exists(path))return;
                 if(new FileInfo(path).Length>4096)throw new InvalidDataException("Control too large.");
                 string json;
@@ -596,6 +601,33 @@ namespace LittleWeeps.NetworkProbe
 #endif
             }
             catch(Exception e){Fail(e);}
+        }
+        // Only this authority can decide that stopping is safe: a desktop roster
+        // check followed by an unconditional quit races with admission. Both this
+        // decision and Approve run on Unity's main thread; Stop closes admission.
+        private bool TickParentControl()
+        {
+            var path=Path.Combine(output,"parent-control.json");
+            if(!File.Exists(path))return false;
+            ParentRequest request;
+            try
+            {
+                if(new FileInfo(path).Length>4096)return false;
+                using var file=new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete);
+                using var reader=new StreamReader(file,Utf8);
+                request=JsonUtility.FromJson<ParentRequest>(reader.ReadToEnd());
+            }
+            catch(IOException){return false;}
+            catch(ArgumentException){return false;}
+            if(request==null || !Guid.TryParseExact(request.requestId,"N",out _) || request.requestId==lastParentRequest)return false;
+            lastParentRequest=request.requestId;
+            var count=session.ConnectedPlayers.Length;
+            var result=request.instanceId!=config.instanceId || request.kind!="stop-if-empty"?"invalid-request":
+                count>0 || network.ConnectedClientsIds.Count>0?"players-connected":"stopping";
+            if(result=="stopping")SaveAuthority();
+            WriteJson(Path.Combine(output,"parent-response.json"),new ParentResponse{requestId=request.requestId,instanceId=config.instanceId,result=result,players=count});
+            if(result!="stopping")return false;
+            Stop();return true;
         }
         private void SaveAuthority(){store.Save(JsonUtility.ToJson(session.Checkpoint()));checkpointWrites++;positionDirty=false;maintenanceDirty=false;lastPositionSave=lastMaintenanceSave=Time.realtimeSinceStartupAsDouble;}
         private void TraceConnection(string phase,ulong peer,string detail)

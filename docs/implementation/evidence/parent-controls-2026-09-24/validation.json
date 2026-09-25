@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "scope": "Parent controls task validation; live server observed only, not restarted.",
+  "goalIds": [
+    "ACT-01",
+    "AUTO-01",
+    "AUTO-02",
+    "BOOK-01",
+    "CAT-01",
+    "CHAR-01",
+    "CHAR-02",
+    "CLEAN-01",
+    "COOK-01",
+    "DAY-01",
+    "DINO-01",
+    "DINO-02",
+    "FAMILY-01",
+    "FISH-01",
+    "HIDE-01",
+    "HIDE-02",
+    "HIDE-03",
+    "IMG-01",
+    "ITEM-02",
+    "ITEM-03",
+    "JOIN-01",
+    "LAB-01",
+    "LEARN-01",
+    "NET-02",
+    "NPC-01",
+    "OUT-01",
+    "REMOTE-01",
+    "ROOM-01",
+    "ROOM-02",
+    "SECRET-01",
+    "STOCK-01",
+    "TRAVEL-01",
+    "TV-01",
+    "WORLD-01",
+    "WORLD-02"
+  ],
+  "nativeChecks": 10,
+  "compatibilityDirections": 2,
+  "localLinksChecked": 139,
+  "allSourceSyntaxPassed": true,
+  "liveServerUnchanged": true,
+  "liveBuild": 83,
+  "preparedBuild": 84,
+  "preparedBuildDeployed": false,
+  "sourceSnapshot": [
+    {
+      "path": "Tools/parent_server.py",
+      "sha256": "5b382b444b79cb60ec7ebd92a041d6ef0eeaefc6cc9485e2e01dd34966cc82dc"
+    },
+    {
+      "path": "Tools/Parent-Server.py",
+      "sha256": "f5c71d3cbb12dc39561b3565bcb6778b5b9aea9bbeebd039811b7c285c9580c7"
+    },
+    {
+      "path": "Tools/Test-ParentServer.py",
+      "sha256": "27168c13a399dfff7e7f3811b3b4fed487584daa64bee259527885a1bd9cbac8"
+    },
+    {
+      "path": "Tools/Open-ParentServer.ps1",
+      "sha256": "dd4a88ee5f3dcb91ad6802aa8cc83526aaf48680013ac01296ad24d7b8733c72"
+    },
+    {
+      "path": "Tools/parent-ui/index.html",
+      "sha256": "fb7672fd3894879921c02eee3e438337c226b0a6607d8effdd236b3eaf55c91e"
+    },
+    {
+      "path": "Tools/parent-ui/app.js",
+      "sha256": "079ae8eb5ede67986b8ddc7d49caa15629b336d7e480e63e9032be3064697342"
+    },
+    {
+      "path": "Tools/parent-ui/style.css",
+      "sha256": "9d355e84e1104d4595c2f75857037b317411175071f2985f5b794101c96adbe8"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs",
+      "sha256": "22b51719863193a6ad0c865cb0ccc43a575dfd0c33ac6bba6d9c3de8b00967c8"
+    }
+  ]
+}
