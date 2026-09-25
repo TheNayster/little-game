@@ -19,6 +19,7 @@ def main():
     world=uuid.UUID(args.family).hex;require(args.family==world and (args.port==0 or 1024<=args.port<=65535),'Invalid family/port')
     root=ROOT/'LocalData/FamilyLAN'/world;public=read(root/'family.json')
     require(public and public['worldId']==world,'Create parent enrollment first; no new identity was created')
+    require(not (root/'recovery.pending.json').exists(),'Finish or roll back the interrupted recovery before starting this world')
     folder=ROOT/f'Builds/NetworkProbe/G3-0.0.{args.build}'
     summary=read(folder/'build-summary.json')
     require(summary and len(summary['builds'])==2 and all(b['result']=='Succeeded' and b['version']==f'0.0.{args.build}' and b['errors']==0 for b in summary['builds']),'Wrong build summary')

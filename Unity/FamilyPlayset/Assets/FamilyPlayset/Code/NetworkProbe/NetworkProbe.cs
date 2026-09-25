@@ -312,6 +312,9 @@ namespace LittleWeeps.NetworkProbe
                 throw new InvalidDataException("Exactly four distinct test profiles required.");
             var folder=Path.Combine(root,"server-world");Directory.CreateDirectory(folder);
             authorityLock=File.Open(Path.Combine(folder,"authority.lock"),FileMode.OpenOrCreate,FileAccess.ReadWrite,FileShare.None);
+            // An interrupted parent restore must be resolved before any writer
+            // loads a possibly mixed checkpoint/backup set, even via direct launch.
+            if(File.Exists(Path.Combine(root,"recovery.pending.json")))throw new InvalidDataException("Parent recovery is incomplete; server start is blocked.");
             store=new CheckpointStore(Path.Combine(folder,"world.save"),ValidSave);
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");

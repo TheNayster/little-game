@@ -156,6 +156,8 @@ class ParentServer:
                       build=None, instanceId=None, canStart=False, canStop=False,
                       save=self.checkpoint(), checkedAt=datetime.now(timezone.utc).isoformat())
         try:
+            if (self.root / 'recovery.pending.json').exists():
+                raise OperationError('A restore was interrupted. Resolve recovery before starting this world; progress has not been reset.')
             candidates = self.processes()
             if not candidates:
                 # A missing/stale launcher record is not permission to overwrite

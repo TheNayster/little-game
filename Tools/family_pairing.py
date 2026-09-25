@@ -53,7 +53,11 @@ def write_record(path, value):
 
 def read_record(path):
     """Open only this Windows user's protected enrollment; never print its body."""
-    protected=path.read_bytes()
+    return unprotect(path.read_bytes())
+
+
+def unprotect(protected):
+    """Validate a protected backup in memory without writing plaintext credentials."""
     if not 16<=len(protected)<=65536:raise ValueError('Invalid enrollment size')
     buffer=(C.c_ubyte*len(protected)).from_buffer_copy(protected)
     source,target=Blob(len(protected),buffer),Blob()

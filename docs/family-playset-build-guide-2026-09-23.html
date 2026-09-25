@@ -31,7 +31,7 @@
 <li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
-<div class="build-callout"><p><strong>Current build summary:</strong> Parent server controls are implemented and tested with a separate four-player Windows world. The desktop shortcut shows actual family server status; guarded Stop requires the prepared 84 server update. Live PC/Samsung remain 83, Apple clients 79, with the family world untouched. G1/G2/G3 remain partial. <strong>Next: G3-OPS-02, backup/restore workflow and an isolated recovery drill.</strong></p><p><a href="#19-implementation-audit-and-remaining-work">Audit and remaining work</a> · <a href="#9-first-implementation-work-queue">Next task and acceptance</a> · <a href="implementation/g3-persistent-server-2026-09-24.html">Build 83 evidence</a></p></div>
+<div class="build-callout"><p><strong>Current build summary:</strong> Local server backup/restore is implemented and qualified with four native Windows clients, including complete-directory reconstruction, exact rollback and interrupted-recovery blocking. Prepared 85 includes these runtime guards and parent Stop. Live PC/Samsung remain 83 and Apple clients 79; the actual family world was backed up without restarting it. G1/G2/G3 remain partial. <strong>Next: G3-OPS-03, bounded crash supervision.</strong></p><p><a href="#19-implementation-audit-and-remaining-work">Audit and remaining work</a> · <a href="#9-first-implementation-work-queue">Next task and acceptance</a> · <a href="implementation/g3-persistent-server-2026-09-24.html">Build 83 evidence</a></p></div>
 <div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
 <ul>
 <li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
@@ -455,8 +455,8 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <tbody>
 <tr>
 <td><strong>1 — next bounded task</strong></td>
-<td><strong>G3-OPS-02: backup/restore workflow and an isolated recovery drill (NET-02, TRAVEL-01).</strong> G3-OPS-01 parent controls are implemented and tested; server 84 is prepared while the live family stays on 83.</td>
-<td>Verify checkpoint/enrollment retention and restored identities/items/receipts in a separate world; refuse corrupt/incompatible inputs and keep a safe rollback. Select/qualify an independent destination before calling off-device recovery complete.</td>
+<td><strong>G3-OPS-03: bounded crash supervision and isolated crash/rejoin qualification (NET-02).</strong> Local backup/restore is qualified; prepared 85 includes parent stop and recovery guards while the live family stays on 83.</td>
+<td>Respect deliberate stops; bound restart attempts; retain one authority and complete saved state; block corrupt saves or unfinished recovery. Independent storage/portable enrollment remains open.</td>
 </tr>
 <tr>
 <td>2</td>
@@ -487,8 +487,9 @@ Offline solo, iPad host and PC server use the same world-rule code.
 </table></div>
 <p><strong>Foundation checks to close alongside that sequence:</strong> complete free renewal on both iPads and observe an actual unattended refresh; choose an independent backup destination and prove a restore; finish native Android 16 KB qualification; complete remaining current-build phone acceptance; measure sustained frame times/memory on the A10. Both phone updates to 79 have passed. G2 also needs structured child usability, assistance styles and authored movement/interaction contracts before its gate closes. The user reports children are playing; that alone is not an observed usability study. These are tracked work, not a reason to repeat already-passed smoke checks every session.</p>
 <p><strong>G3-OPS-01 result:</strong> the parent page, safe lifecycle actions and isolated acceptance are complete within scope. It uses fresh native observations and validated process identity, verifies the checkpoint checksum, rejects duplicate starts, and has an authoritative occupied-stop guard. The real dashboard monitors existing 83 without stopping it. <a href="implementation/g3-parent-controls-2026-09-24.html">Implementation and test record</a>.</p>
-<p><strong>Deployment follow-up:</strong> guarded Stop requires runtime 84. Apply that prepared server only in an empty family session, after its exact executable has the reviewed Windows network permission; preserve the enrolled world through the existing controlled update path. Until then, the page intentionally disables Stop on 83. This is pending activation, not a failed runtime test. No client update is needed for the local control protocol.</p>
-<p><strong>G3-OPS-02 task boundary:</strong> implement and test a recoverable backup/restore workflow against a separate enrolled world. Include protected enrollment and version/checksum checks, compare restored player/item/receipt state, and keep corrupt/incompatible backups from replacing a usable world. Independent storage and cross-machine credential portability must be explicit; local same-PC copies alone do not prove those requirements. Keep crash supervision and VPS cutover as later bounded tasks.</p>
+<p><strong>Deployment follow-up:</strong> guarded Stop requires runtime 84 or later; prepared 85 also guards interrupted restores. Apply that prepared server only in an empty family session, after its exact executable has the reviewed Windows network permission; preserve the enrolled world through the existing controlled update path. Until then, the page intentionally disables Stop on 83. This is pending activation, not a failed runtime test. No client update is needed for the local control protocol.</p>
+<p><strong>G3-OPS-02 result:</strong> same-user Windows backups, exact restore/rollback, missing-directory reconstruction and fail-closed interrupted recovery are implemented and qualified in a separate four-player world. The actual 83 world was backed up without stopping it. Independent storage and portable credentials remain unqualified. <a href="implementation/g3-server-recovery-2026-09-24.html">Recovery record</a>.</p>
+<p><strong>G3-OPS-03 task boundary:</strong> implement bounded process-crash supervision, preserve explicit parent start/stop intent, prevent duplicate starts and rapid failure loops, and qualify native automatic rejoin against the last durable checkpoint. Do not auto-reset corrupt saves or bypass pending recovery. Keep boot/service deployment and sustained physical-device qualification explicit.</p>
 <p><strong>Device follow-up when available:</strong> update the Apple clients for return cues and the iPhone's wider layout, preserve their identities/saves, and check tablet geometry remains unchanged. Authority 83 already runs the shared timers for older 79 clients; those clients do not display the new cue, and their offline solo fixtures still use their older code. Phone 83 has a native layout/admission/save check, but no new human multitouch/audio acceptance. Native ARM64 16 KB remains a separate Android portability check; the family's actual Samsung uses 4 KB pages and already runs the release.</p>
 <p><strong>Future hosting decision:</strong> the owned VPS is the preferred shared-world deployment target after the server reliability gate. Prepare remote client endpoints and a controlled world/credential migration as a separate milestone; this need not wait for all game content. Travel co-op still depends on internet and stays lower priority than core reliability; AR remains optional. Full offline solo, ordinary-network automatic joining, both iPads hosting and host recovery remain required. Bluetooth remains removed. <a href="implementation/vps-hosting-plan-2026-09-24.html">VPS plan</a>.</p>
 <h2 id="10-the-working-method-that-prevents-jumping-around">10. The working method that prevents jumping around</h2>
@@ -918,7 +919,7 @@ Status: pending
 </table></div>
 <p>The current tracker contains 35 top-level feature IDs. The coverage validator checks that all appear in this map. The full research includes additional detail, proposed counts and acceptance conditions; follow the linked goal-sheet sections when implementing each row rather than treating this summary as a replacement specification.</p>
 <h2 id="18-current-work-record-and-research-basis">18. Current work record and research basis</h2>
-<p><strong>Current build summary:</strong> Parent server controls are implemented and tested with a separate four-player Windows world. The desktop shortcut shows actual family server status; guarded Stop requires the prepared 84 server update. Live PC/Samsung remain 83, Apple clients 79, with the family world untouched. G1/G2/G3 remain partial. <strong>Next: G3-OPS-02, backup/restore workflow and an isolated recovery drill.</strong></p>
+<p><strong>Current build summary:</strong> Local server backup/restore is implemented and qualified with four native Windows clients, including complete-directory reconstruction, exact rollback and interrupted-recovery blocking. Prepared 85 includes these runtime guards and parent Stop. Live PC/Samsung remain 83 and Apple clients 79; the actual family world was backed up without restarting it. G1/G2/G3 remain partial. <strong>Next: G3-OPS-03, bounded crash supervision.</strong></p>
 <p><strong>Device priority:</strong> iPads first, Android second. The A2197 iPad 7 is the minimum performance baseline; A2602 iPad 9 is the other primary play device. Test core controls, layouts, media, saves and hosting on both. Android and iPhone testing remain part of the mixed-device acceptance gates.</p>
 <p><strong>Earlier solo-device milestone, 24 September (build 56):</strong> the user tried the two Windows player windows and reported positive feedback. The Mac has now compiled/signed <strong>solo garden 56</strong>, and the iPad 9 update from 20 → 56 passed with all original preferences retained. Physical layout, walking, watering, speech, joystick plus dragging, menu/screen-lock cancellation, remembered voice/movement settings and Wi-Fi-off solo play passed. Closing and reopening retained the complete garden snapshot exactly. The older iPad 7 now also runs the garden: repeated checks were reported successful, and an actual restart retained its entire save and preferences. Its separate app-inventory query has a recorded CoreDevice error. Child usability, sustained measured performance and additional feature checks remain open. See the <a href="implementation/ipad-garden-2026-09-24.md">iPad garden evidence</a> and <a href="implementation/return-home-checklist-2026-09-24.md">return-home checklist</a>. Mobile multiplayer was not in that 56 export; subsequent 79/83 family builds and mixed-device evidence are recorded below. G1/G2/G3 are not complete.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
@@ -951,15 +952,15 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td><strong>G3-OPS-01 implemented and isolated qualification passed:</strong> parent status/safe start-stop page, desktop launcher, stale/PID checks, authoritative occupied-stop refusal and exact checkpoint restart. The live 83 authority was only observed; guarded Stop activation awaits controlled 84 deployment. <a href="implementation/g3-parent-controls-2026-09-24.html">Record</a>.</td>
+<td><strong>G3-OPS-02 completed within its local scope:</strong> same-user backup, validated exact restore/rollback and missing-directory reconstruction, qualified with four native clients. Independent recovery remains open. <a href="implementation/g3-server-recovery-2026-09-24.html">Record</a>.</td>
 </tr>
 <tr>
 <td>Latest completed engineering task</td>
-<td><strong>Parent controls and Windows server/client 84 prepared.</strong> Four-client native and browser checks passed. The Little Weeps Server desktop shortcut shows real family status and disables Stop on legacy 83. Live PC/Samsung remain 83, Apple clients 79; no family restart, firewall change or device update occurred. <a href="implementation/g3-parent-controls-2026-09-24.html">Evidence</a>.</td>
+<td><strong>Recovery tools and Windows server/client 85 prepared.</strong> Native restore, interruption/failure and compatibility checks pass; actual server 83 has a verified local backup and was not restarted. No devices or firewall settings changed.</td>
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td><strong>G3-OPS-02: backup/restore workflow and an isolated recovery drill.</strong> Qualify a separate destination before claiming independent recovery. Apply prepared 84 separately in an empty session with its reviewed Windows network setup. Crash supervision, sustained/device/outage checks and VPS readiness follow; required iPad hosting/recovery remains G4.</td>
+<td><strong>G3-OPS-03: bounded crash supervision and isolated crash/rejoin qualification.</strong> Prepared 85 deployment needs an empty session and its Windows network approval; independent destination/portable enrollment, sustained/device/outage checks and VPS readiness remain. Required iPad hosting/recovery remains G4.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -1101,6 +1102,7 @@ Status: pending
 </tr>
 </tbody>
 </table></div>
+<p><strong>Later recovery update:</strong> <a href="implementation/g3-server-recovery-2026-09-24.html">G3-OPS-02</a> qualifies local same-user backup/restore and rollback on prepared 85. This is not independent disaster recovery; live server 83 is unchanged.</p>
 <p><strong>Later implementation update:</strong> <a href="implementation/g3-parent-controls-2026-09-24.html">G3-OPS-01 parent controls</a> passed isolated native/browser checks on 84 after the audit. The live family deployment remains 83; this does not change completed device evidence or close G3.</p>
 <h3 id="phase-gates-done-versus-open">Phase gates: done versus open</h3>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
@@ -1130,7 +1132,7 @@ Status: pending
 <tr>
 <td><strong>G3 — PC shared world</strong></td>
 <td><strong>Partial; four physical admissions, persistent 83 live, parent controls qualified in isolated 84</strong></td>
-<td>Activate guarded controls through controlled 84 deployment; independent restore/crash recovery, parent pairing, remaining device lifecycle/ownership/travel, prolonged-outage automatic solo and sustained measurements. No home-server timer cutoff remains.</td>
+<td>Activate guarded controls through controlled 85 deployment; independent restore/crash recovery, parent pairing, remaining device lifecycle/ownership/travel, prolonged-outage automatic solo and sustained measurements. No home-server timer cutoff remains.</td>
 </tr>
 <tr>
 <td><strong>G4 — iPad hosting</strong></td>
@@ -1198,7 +1200,7 @@ Status: pending
 <tr>
 <td><strong>Windows</strong></td>
 <td>Live preview <strong>68</strong> remains. <strong>Persistent PC server 83</strong> is active with all original saved fields preserved; Android 83 automatically joined. Six native lifetime/recovery cases, 52 core checks and mixed-version compatibility pass; earlier four-device 79 admission remains recorded. <a href="implementation/g3-persistent-server-2026-09-24.html">Current evidence</a></td>
-<td>Parent controls monitor 83; prepared 84 supplies guarded Stop after controlled deployment. Independent restore/crash recovery, real sustained run, prolonged-outage automatic solo, pairing UI and alternate/IPv6 endpoints remain. Sign-in startup is a possible local convenience.</td>
+<td>Parent controls monitor 83; prepared 85 supplies guarded Stop after controlled deployment. Independent restore/crash recovery, real sustained run, prolonged-outage automatic solo, pairing UI and alternate/IPv6 endpoints remain. Sign-in startup is a possible local convenience.</td>
 </tr>
 <tr>
 <td><strong>Android emulator</strong></td>
@@ -1338,7 +1340,7 @@ Status: pending
 <tr>
 <td><strong>NET-02</strong></td>
 <td><strong>Partial:</strong> four physical admissions and scoped iPad rejoin; persistent 83 live with original progress. Parent status/start-stop and authoritative occupied-stop refusal qualified in isolated 84; real page monitors 83</td>
-<td>Apply guarded 84 controls, then independent restore, crash recovery, sustained run, remaining device/activity/outage acceptance. Boot/start supervision remains a deployment task. G3.</td>
+<td>Apply guarded 85 controls, then independent restore, crash recovery, sustained run, remaining device/activity/outage acceptance. Boot/start supervision remains a deployment task. G3.</td>
 </tr>
 <tr>
 <td><strong>REMOTE-01</strong></td>

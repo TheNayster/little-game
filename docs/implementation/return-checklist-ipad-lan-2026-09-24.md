@@ -25,7 +25,14 @@ The user requested less phone side space and timers for unused items/completed q
 
 ## Next Windows task
 
-**G3-OPS-01 implemented and tested:** the Little Weeps Server desktop shortcut opens parent status/controls. Guarded Stop is prepared in server 84; the live family remains 83 until controlled deployment/network setup. No device update was performed. **Next: G3-OPS-02 backup/restore drill.** The [main guide](../family-playset-build-guide-2026-09-23.html#9-first-implementation-work-queue) owns scope and acceptance.
+**Completed while away: local backup/restore.** Prepared server 85 adds an interrupted-recovery guard to the parent controls. A separate four-player world passed restore/rollback and failure checks; your actual server 83 was only backed up and remains running. **Next: bounded crash supervision.** [Recovery record](g3-server-recovery-2026-09-24.html).
+
+When you return:
+
+1. Approve the reviewed Windows network setup for prepared server 85, then update it during an empty session. No prompt is being left waiting overnight.
+2. Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.
+3. Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.
+4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. No repeat of the already-passed smoke checks is needed.
 
 [Persistent server 83](g3-persistent-server-2026-09-24.html) is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Sign-in startup/status, long-duration soak and broader lifecycle acceptance remain open.
 

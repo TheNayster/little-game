@@ -22,6 +22,9 @@ LocalData/
 .idea/
 *.csproj
 !Tools/SoloRules.Tests/SoloRules.Tests.csproj
+!Tools/RecoveryValidator/RecoveryValidator.csproj
+Tools/RecoveryValidator/bin/
+*.lwbackup
 Tools/SoloRules.Tests/bin/
 Tools/SoloRules.Tests/obj/
 *.sln
