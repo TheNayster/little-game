@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "recordedUtc": "2026-09-25T01:20:22.140797+00:00",
+  "goalIds": [
+    "NET-02",
+    "JOIN-01",
+    "AUTO-01"
+  ],
+  "build": "0.0.79",
+  "userReportedCheck": "Lock each iPad for about 15 seconds while the other keeps playing, then return; movement and bucket pickup work after rejoining.",
+  "userReply": "yes worked like a charm all above",
+  "clarification": "I also closed and reopened the apps",
+  "observedResult": "User confirms uninterrupted sibling play and successful return on both devices, including app closure/reopening. Native reads confirm new app processes, retained enrollment and automatic reconnection to the original authority.",
+  "server": {
+    "sameProcessAndAuthorityEpochAsInitialAdmission": true,
+    "status": "listening",
+    "receiveError": 0
+  },
+  "devices": [
+    {
+      "device": "ipad7",
+      "build": "0.0.79",
+      "newProcessSinceInitialAdmission": true,
+      "enrollmentRetained": true,
+      "inboxAbsent": true,
+      "connectedToOriginalAuthority": true,
+      "twoProfileRosterRetained": true,
+      "receiveError": 0,
+      "lastDataAgeSeconds": 0.004291166999998097,
+      "events": [
+        {
+          "utc": "2026-09-25T01:17:33.1865480Z",
+          "phase": "discovered",
+          "detail": "native-bonjour-ipv4"
+        },
+        {
+          "utc": "2026-09-25T01:17:33.4201550Z",
+          "phase": "transport-Connect",
+          "detail": ""
+        },
+        {
+          "utc": "2026-09-25T01:17:33.4891250Z",
+          "phase": "connected",
+          "detail": ""
+        },
+        {
+          "utc": "2026-09-25T01:17:33.4935310Z",
+          "phase": "first-snapshot",
+          "detail": "61538"
+        },
+        {
+          "utc": "2026-09-25T01:17:33.5303820Z",
+          "phase": "shared-presented",
+          "detail": "local-checkpoint-preserved"
+        }
+      ]
+    },
+    {
+      "device": "ipad9",
+      "build": "0.0.79",
+      "newProcessSinceInitialAdmission": true,
+      "enrollmentRetained": true,
+      "inboxAbsent": true,
+      "connectedToOriginalAuthority": true,
+      "twoProfileRosterRetained": true,
+      "receiveError": 0,
+      "lastDataAgeSeconds": 0.033759291999999164,
+      "events": [
+        {
+          "utc": "2026-09-25T01:16:43.6142360Z",
+          "phase": "discovered",
+          "detail": "native-bonjour-ipv4"
+        },
+        {
+          "utc": "2026-09-25T01:16:43.7809890Z",
+          "phase": "transport-Connect",
+          "detail": ""
+        },
+        {
+          "utc": "2026-09-25T01:16:43.8512490Z",
+          "phase": "connected",
+          "detail": ""
+        },
+        {
+          "utc": "2026-09-25T01:16:43.8574020Z",
+          "phase": "first-snapshot",
+          "detail": "60489"
+        },
+        {
+          "utc": "2026-09-25T01:16:43.8861860Z",
+          "phase": "shared-presented",
+          "detail": "local-checkpoint-preserved"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "The user reports lock/unlock and app close/reopen; the new-process samples independently qualify cold rejoin, not a same-process suspend/resume timeline.",
+    "No measured rejoin-time, sustained-performance, abrupt server-loss or iPad-host-switching claim.",
+    "Physical solo-branch preservation/return, initial late joining from unavailable server, shared multi-touch/settings and four mobile players still need qualification."
+  ]
+}

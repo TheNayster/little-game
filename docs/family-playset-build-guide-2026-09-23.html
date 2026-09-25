@@ -31,7 +31,7 @@
 <li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
-<div class="build-callout"><p><strong>The foundations follow the plan. Here is what is done and what is still ahead.</strong></p><p>The user confirmed four Windows players on shared build 68 are working well. Both iPads have passed solo garden checks on 56. Everyday mobile joining, iPad hosting/recovery, personal rooms, item returns and full content remain open. Build 79 adds safe automatic joining from solo play and access to the preserved solo draft; Windows and Android-release emulator checks passed. Both iPads now have signed family build 79 with their original saves/settings preserved and separate Keychain identities. Both now automatically join the PC with native discovery, authenticated admission and matching shared-world snapshots. The user confirms smooth two-way movement, shared bucket handling and independent Garden/Creek travel with reunion on both iPads. Next: lock/return, remaining touch and saved solo/late-joining checks. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Your return checklist →</a> <a href="#19-implementation-audit-and-remaining-work">Read the implementation audit →</a> <a href="#9-first-implementation-work-queue">Next tasks in order →</a></p></div>
+<div class="build-callout"><p><strong>The foundations follow the plan. Here is what is done and what is still ahead.</strong></p><p>The user confirmed four Windows players on shared build 68 are working well. Both iPads have passed solo garden checks on 56. Everyday mobile joining, iPad hosting/recovery, personal rooms, item returns and full content remain open. Build 79 adds safe automatic joining from solo play and access to the preserved solo draft; Windows and Android-release emulator checks passed. Both iPads now have signed family build 79 with their original saves/settings preserved and separate Keychain identities. Both now automatically join the PC with native discovery, authenticated admission and matching shared-world snapshots. The user confirms smooth two-way movement, shared bucket handling and independent Garden/Creek travel with reunion on both iPads. Both also pass lock/return by user report and automatic cold rejoin with retained identities. Next: saved solo round trips, remaining touch/settings and server-unavailable late joining. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Your return checklist →</a> <a href="#19-implementation-audit-and-remaining-work">Read the implementation audit →</a> <a href="#9-first-implementation-work-queue">Next tasks in order →</a></p></div>
 <div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
 <ul>
 <li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
@@ -454,7 +454,7 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <tbody>
 <tr>
 <td><strong>1 — next bounded task</strong></td>
-<td><strong>Qualify physical G3 play on both iPads, now updated to 79.</strong> Signing, verified backups, in-place installation, launch and separate Keychain enrollment passed. Both pass native discovery, authenticated admission and shared presentation; smooth movement and bucket exclusivity/release now pass by user report. Independent travel and reunion now pass by user report too; lock/return is the current check.</td>
+<td><strong>Qualify physical G3 play on both iPads, now updated to 79.</strong> Signing, verified backups, in-place installation, launch and separate Keychain enrollment passed. Both pass native discovery, authenticated admission and shared presentation; smooth movement and bucket exclusivity/release now pass by user report. Independent travel and reunion now pass by user report too; lock/return and cold reopening now pass on both. Saved solo round trips are the current check.</td>
 <td>Verify both join the PC, then check physical movement, ownership, travel, permission/lifecycle, safe initial joining and saved solo return. <a href="implementation/g3-offline-join-2026-09-24.html">Latest implementation</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Actions when you return</a>.</td>
 </tr>
 <tr>
@@ -933,7 +933,7 @@ Status: pending
 </tr>
 <tr>
 <td>Implementation state</td>
-<td>Both iPads now have family 79, installed in place after verified backups. Original garden documents and preferences were preserved; each app launched and stored a separate Keychain identity. Both now pass native Bonjour discovery, authenticated admission and matching shared-world presentation. The user confirms smooth two-way movement and shared bucket pickup/release, independent Garden/Creek travel and reunion; lifecycle checks are in progress. Windows/Android-emulator 79 checks passed. Preview 68 is preserved.</td>
+<td>Both iPads now have family 79, installed in place after verified backups. Original garden documents and preferences were preserved; each app launched and stored a separate Keychain identity. Both now pass native Bonjour discovery, authenticated admission and matching shared-world presentation. The user confirms smooth two-way movement and shared bucket pickup/release, independent Garden/Creek travel, reunion and lock/return. Native cold rejoin retains both identities and the original PC authority; solo-return/remaining touch checks are in progress. Windows/Android-emulator 79 checks passed. Preview 68 is preserved.</td>
 </tr>
 <tr>
 <td>Current research deliverable</td>
@@ -945,7 +945,7 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td><strong>G3 physical iPad 79 qualification — in progress.</strong> Signing, installation, retained saves/preferences, launch and Keychain enrollment are verified on both. Both opened with permission and automatically joined the PC authority. Physical movement, bucket pickup/release, independent travel and reunion passed by user report; lock/return on each iPad is the current check. <a href="implementation/g3-ipad-79-2026-09-24.html">Current record</a>.</td>
+<td><strong>G3 physical iPad 79 qualification — in progress.</strong> Signing, installation, retained saves/preferences, launch and Keychain enrollment are verified on both. Both opened with permission and automatically joined the PC authority. Physical movement, bucket pickup/release, independent travel and reunion passed by user report; lock/return and cold rejoin now pass on both. Saved solo round trips are the current check. <a href="implementation/g3-ipad-79-2026-09-24.html">Current record</a>.</td>
 </tr>
 <tr>
 <td>Latest completed engineering task</td>
@@ -973,7 +973,7 @@ Status: pending
 <p>The folder <code>docs/bluey-research/build-guide-review-2026-09-23</code> records the original source URLs, retrieval evidence and selected excerpts. Earlier package recommendations are research candidates; the actual installed baseline and later qualification are recorded in sections 7 and 19. The precise folder structure, task method, phase order, coverage mapping and acceptance gates are <strong>our implementation plan</strong>, not a claim that a vendor or every company prescribes them.</p>
 <p>No calendar promise is made. After G6, use actual asset/task throughput and discovered defect work to estimate subsequent batches. Keep the work record current so the next session starts from evidence and the next dependency, not from memory or whichever feature seems most interesting that day.</p>
 <h2 id="19-implementation-audit-and-remaining-work">19. Implementation audit and remaining work</h2>
-<p><strong>Audit date: September 24, 2026. Original source baseline: <code>879b1bd</code>; incremental G3 evidence now includes Windows/Android 79 and the iPad 79 Xcode export. Verdict: aligned foundations, unfinished game.</strong> The implementation uses the intended separate project, shared solo/server rules, stable player identities, authoritative items, independent areas and local saves/media. Windows four-player movement, encrypted admission and automatic reconnection have scoped proofs. Both iPads received signed build 79 with retained saves and separate Keychain identities; native discovery/admission and matching shared snapshots now pass; physical movement/bucket and independent travel/reunion checks pass by user report while lifecycle remains pending; Windows and Android release 79 have safe initial joining and draft-preservation proofs. These results do not qualify four physical mobile devices, automatic hosting or the complete content goal sheet.</p>
+<p><strong>Audit date: September 24, 2026. Original source baseline: <code>879b1bd</code>; incremental G3 evidence now includes Windows/Android 79 and the iPad 79 Xcode export. Verdict: aligned foundations, unfinished game.</strong> The implementation uses the intended separate project, shared solo/server rules, stable player identities, authoritative items, independent areas and local saves/media. Windows four-player movement, encrypted admission and automatic reconnection have scoped proofs. Both iPads received signed build 79 with retained saves and separate Keychain identities; native discovery/admission and matching shared snapshots now pass; physical movement, bucket handling, independent travel/reunion and lock/return pass by user report, with native cold-rejoin evidence; Windows and Android release 79 have safe initial joining and draft-preservation proofs. These results do not qualify four physical mobile devices, automatic hosting or the complete content goal sheet.</p>
 <p>The audit maps all <strong>54 research chapters and 35 feature IDs</strong> to implementation work. It compares the goal sheet with actual code, package locks, build records and dated device/test reports. It does not rerun the game tests or retest devices. <a href="implementation/evidence/plan-audit-2026-09-24/audit.json">Audit scope, chapter coverage and evidence index</a>. No requirements were removed. No overall percentage is assigned: a passing bucket prototype and a finished daycare story are different sizes of work.</p>
 <p><strong>How to read status:</strong> <strong>Passed proof</strong> means a named, bounded check passed in the stated environment. <strong>Partial</strong> means useful implementation exists but the full requirement is not accepted. <strong>Not built</strong> means research/design only. <strong>Optional later</strong> applies only to explicitly optional work. None of the 35 complete feature requirements is being marked fully accepted today.</p>
 <h3 id="completed-proofs-we-can-build-on">Completed proofs we can build on</h3>
@@ -1045,6 +1045,11 @@ Status: pending
 <td>Physical two-iPad independent areas and reunion</td>
 <td>Build 79: user confirmed Creek/Garden separation, uninterrupted play in the other area and seeing each other after reunion. <a href="implementation/evidence/ipad79-2026-09-24/independent-travel-feedback.json">Feedback</a></td>
 <td>Later activities/worlds, four physical devices, lock/return or mobile hosting</td>
+</tr>
+<tr>
+<td>Both physical iPads leave and rejoin without interrupting the sibling</td>
+<td>Build 79: user confirms lock/return plus app close/reopen; native reads confirm new processes, retained identities and the original PC authority. <a href="implementation/evidence/ipad79-2026-09-24/lock-cold-rejoin.json">Evidence</a></td>
+<td>A measured same-process suspension timeline, prolonged outages, every activity, four physical devices or host recovery</td>
 </tr>
 <tr>
 <td>Smoother remote movement under the tested conditions</td>
@@ -1143,13 +1148,13 @@ Status: pending
 <tbody>
 <tr>
 <td><strong>iPad 7 A2197, A10, iPadOS 18.7.10</strong></td>
-<td><strong>Family 79:</strong> in-place 56 → 79, documents/settings retained, exact-bundle launch, Keychain enrollment and automatic shared admission passed. User confirms smooth movement, shared bucket handling and independent travel/reunion on 79. Earlier solo physical controls/restart passed on 56. <a href="implementation/g3-ipad-79-2026-09-24.html">Current record</a></td>
-<td>Remaining touch/lifecycle, hosting/recovery, sustained A10 measurements and renewal. App inventory still has a CoreDevice error; on-device runtime identifies 79.</td>
+<td><strong>Family 79:</strong> in-place 56 → 79, documents/settings retained, exact-bundle launch, Keychain enrollment and automatic shared admission passed. User confirms smooth movement, shared bucket handling, independent travel/reunion and lock/return on 79; native cold rejoin retains enrollment. Earlier solo physical controls/restart passed on 56. <a href="implementation/g3-ipad-79-2026-09-24.html">Current record</a></td>
+<td>Remaining touch/settings, solo return/late joining, sustained lifecycle, hosting/recovery, sustained A10 measurements and renewal. App inventory still has a CoreDevice error; on-device runtime identifies 79.</td>
 </tr>
 <tr>
 <td><strong>iPad 9 A2602, A13, iPadOS 18.6.2</strong></td>
-<td><strong>Family 79:</strong> in-place 56 → 79, documents/settings retained, native inventory/launch, Keychain enrollment and automatic shared admission passed. User confirms smooth movement, shared bucket handling and independent travel/reunion on 79. Earlier physical solo controls/lifecycle passed on 56. <a href="implementation/g3-ipad-79-2026-09-24.html">Current record</a></td>
-<td>Remaining touch/lifecycle, hosting/recovery and renewal.</td>
+<td><strong>Family 79:</strong> in-place 56 → 79, documents/settings retained, native inventory/launch, Keychain enrollment and automatic shared admission passed. User confirms smooth movement, shared bucket handling, independent travel/reunion and lock/return on 79; native cold rejoin retains enrollment. Earlier physical solo controls/lifecycle passed on 56. <a href="implementation/g3-ipad-79-2026-09-24.html">Current record</a></td>
+<td>Remaining touch/settings, solo return/late joining, sustained lifecycle, hosting/recovery and renewal.</td>
 </tr>
 <tr>
 <td><strong>Samsung SM-S948U1, Android 16/API 36, 4 KB pages</strong></td>
@@ -1303,8 +1308,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>NET-02</strong></td>
-<td><strong>Partial:</strong> PC authority remains when Windows clients close</td>
-<td>Either actual iPad may lock/close while siblings keep valid gameplay; operational home server. G3.</td>
+<td><strong>Partial:</strong> PC authority remains when Windows clients close; both physical iPads pass user-reported lock/return and native cold rejoin</td>
+<td>Repeat across later activities and longer outages; operational home server. Two-iPad garden lock/close/rejoin now has scoped evidence. G3.</td>
 </tr>
 <tr>
 <td><strong>REMOTE-01</strong></td>
