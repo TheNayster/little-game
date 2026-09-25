@@ -1,0 +1,5 @@
+{
+  "scope": "Final Android process log only; earlier explicit process stops and sustained stability are separate.",
+  "sha256": "f6c0d1326a268a1c4cc692cad44eed2e6f06ab627748d8470457b9ca82f6e6de",
+  "fatalPatternsFound": false
+}

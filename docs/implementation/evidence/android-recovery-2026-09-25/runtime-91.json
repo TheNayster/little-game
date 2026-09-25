@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "build": 91,
+  "utc": "2026-09-25T15:01:42.086439+00:00",
+  "apkSha256": "1e8f7af73d04dcd35eb3dd8fdd6f5527d26e101bec9165c5bd7de1f79eceef4f",
+  "checks": [
+    {
+      "check": "retained Keystore identity joins three Windows siblings; ordinary walking/dragging works and Android durably stores both areas, four players, 128 receipts and an active item timer",
+      "passed": true
+    },
+    {
+      "check": "real Android Home/foreground cycle preserves the process and enrollment; three siblings continue and resumed checkpoint includes their changes",
+      "passed": true
+    },
+    {
+      "check": "abrupt fixture-authority loss automatically opens an Android local adventure from the complete checkpoint, releases stale holds and saves ordinary drag input",
+      "passed": true
+    },
+    {
+      "check": "force-stop and cold offline launch reopen the same changed adventure; existing toy placement and new touch edits survive",
+      "passed": true
+    },
+    {
+      "check": "reunion waits for the open menu, preserves local changes separately, and saved-adventure/original-solo controls work while siblings continue",
+      "passed": true
+    },
+    {
+      "check": "another outage creates a distinct adventure from the newer authority while keeping the earlier adventure byte for byte",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "replica": {
+      "status": "durable",
+      "epoch": "2b0464355e0244ac84326e125b01ebdb",
+      "hash": "8ff872dad785a28b1aeeb4da448560ac529a62433d0e783304667282c6488c28",
+      "receivedChunks": 32,
+      "bytes": 23264,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 10,
+      "revision": 264,
+      "writeMilliseconds": 12.433,
+      "peers": []
+    },
+    "outageToLocalSeconds": 12.359
+  },
+  "scope": "Retained Android API35 16 KB x86_64 AVD using ARM translation and three native Windows clients. Isolated test authority only; no physical device, native ARM64 16 KB, iPad hosting, automatic branch merge or live family deployment qualification."
+}

@@ -1,0 +1,16 @@
+{
+  "sourceBaseline": "19df0ba211ddfdbd0a2e01475b95bad0c474748c",
+  "unityCSharpFilesUnchanged": 148,
+  "apkSha256": "1e8f7af73d04dcd35eb3dd8fdd6f5527d26e101bec9165c5bd7de1f79eceef4f",
+  "python": "3.12.11 (main, Aug 18 2025, 19:17:54) [MSC v.1944 64 bit (AMD64)]",
+  "tools": [
+    {
+      "path": "Tools/Test-AndroidRecovery.py",
+      "sha256": "51609866f339501e383e2655373efb72e74f3ea07332a2237de00b5d839484a0"
+    },
+    {
+      "path": "Tools/Update-RecoveryEmulator.py",
+      "sha256": "3f980f8dd70aec05f7bedd9ab4bbd44d1fd2fd45e0ff94e20d97c86b12ab281f"
+    }
+  ]
+}

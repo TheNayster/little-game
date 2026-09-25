@@ -1,0 +1,13 @@
+{
+  "scope": "Harness development attempts, not accepted Android runtime passes",
+  "attempts": [
+    {
+      "result": "failed setup",
+      "reason": "135 delivered UI clicks produced only 115 retained receipts; harness did not wait for authoritative completion. Added per-action server-state/pending confirmation."
+    },
+    {
+      "result": "failed setup",
+      "reason": "Historical Android fixture predates the isolated-test purpose marker. Harness now explicitly identifies the existing AVD/world/history and uses the isolated controller path; production network/setup gate unchanged."
+    }
+  ]
+}
