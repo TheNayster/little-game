@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "date": "2026-09-25",
+  "localReferences": 308,
+  "brokenLinksOrAnchors": 0,
+  "goalChapters": 55,
+  "featureIds": 35,
+  "guideSections": 19,
+  "featureAcceptanceUnchanged": true,
+  "detailedGoalChaptersUnchanged": 52,
+  "currentUnityCSharpSourcesMatchBuild90": 148,
+  "indexedHashesVerified": 238,
+  "newRuntimeTests": false,
+  "physicalDevicesAccessed": false,
+  "liveServerAccessed": false,
+  "browserInspected": [
+    "goal sheet refreshed; current recovery/status notes render",
+    "build guide refreshed at section 19; current audit status, next task and readable layout verified"
+  ],
+  "gameCodeUnchanged": true
+}

@@ -1,0 +1,2377 @@
+{
+  "date": "2026-09-25",
+  "baselineCommit": "c17168106bf95bb07abfc35d85284998e47f7df4",
+  "purpose": "Audit both goal sheet and build plan, reconcile status against retained implementation evidence, preserve full scope and ordered next work.",
+  "newRuntimeTests": false,
+  "physicalDevicesAccessed": false,
+  "liveServerAccessed": false,
+  "gameCodeChanged": false,
+  "gameSavesChanged": false,
+  "externalCitationsFreshlyRevalidated": false,
+  "method": [
+    "Review all 55 chapter routes, all 35 feature acceptance/status mappings and non-ID requirements; preserve goal acceptance table verbatim.",
+    "Inspect focused architecture, package and recovery source plus dated build/runtime/device evidence. Hash indexing is not a claim of a line-by-line review of every source file or a rerun of tests.",
+    "Match all 148 current Unity C# source files byte-for-byte against the retained build-90 provenance.",
+    "Separate qualified Windows source, last recorded family deployment, current product requirements and historical research.",
+    "Regenerate maintained HTML pages and validate local links/anchors, coverage and source/document hashes."
+  ],
+  "overallVerdict": "Aligned foundations; unfinished game. Continue bounded G3 failure qualification then mobile acceptance, G4 hosting, G5 durable reconciliation and G6 content. No restart or scope reduction.",
+  "featureCount": 35,
+  "featureStatuses": [
+    {
+      "id": "CHAR-01",
+      "current": "Partial: switch between two placeholder skins while preserving identity and held prop",
+      "remaining": "Complete roster/rigs; switching during every activity on mobile. G2/G3 → G6/G7."
+    },
+    {
+      "id": "CHAR-02",
+      "current": "Partial: duplicate placeholder favorites are permitted",
+      "remaining": "Any player chooses children or parents; NPC jobs stay separate; seating/holding/activity role continuity. G6/G7."
+    },
+    {
+      "id": "FAMILY-01",
+      "current": "Partial: both iPads, Samsung and iPhone were concurrently admitted on 79, with scoped play feedback; PC/Samsung now 83, Android wider native layout inspected",
+      "remaining": "Sustained four-device play/lifecycle, remaining Apple cue/layout update, parent setup and A10 load/recovery; both iPads hosting. G3/G4."
+    },
+    {
+      "id": "ACT-01",
+      "current": "Partial: optional garden/cleanup prompts and free exit; deployed authority/Android 83 rearm completed fixtures while retaining partial progress and activity choice",
+      "remaining": "Apple client cue update and broader repeat-play acceptance; picture picker, reusable invitations/membership/checkpoints and nonblocking join/switch for all activities. G6/G7."
+    },
+    {
+      "id": "COOK-01",
+      "current": "Not built",
+      "remaining": "Kitchen interactions and all 15 recipes, free creations, serving/saves/shared preparation. G6/G7-A."
+    },
+    {
+      "id": "FISH-01",
+      "current": "Not built",
+      "remaining": "Backyard fishpond and creek fishing; assisted catch/release, exclusive catches and exit cleanup. G6/G7-A/B."
+    },
+    {
+      "id": "CLEAN-01",
+      "current": "Partial: sponge cleans the garden puddle",
+      "remaining": "Toys, dishes, spills, laundry and garden sorting with creation protection and multiplayer cancellation. G6/G7."
+    },
+    {
+      "id": "HIDE-01",
+      "current": "Not built",
+      "remaining": "Parent default seeker, both children hiding, fair search and immediate participation. G6/G7."
+    },
+    {
+      "id": "HIDE-02",
+      "current": "Not built",
+      "remaining": "Optional child seeker; hidden avatars cannot leak through names, targeting or switching. G6/G7."
+    },
+    {
+      "id": "NPC-01",
+      "current": "Not built",
+      "remaining": "Parent routines, interruptible requests, role reservation/release and substitutes for solo play. G6/G7."
+    },
+    {
+      "id": "CAT-01",
+      "current": "Research only: 32 episode-based ideas cataloged",
+      "remaining": "Select and implement approved activities with assets, narration, saves and cancellation. G6/G7-E."
+    },
+    {
+      "id": "BOOK-01",
+      "current": "Not built",
+      "remaining": "Reading nook, pickup overlay, narration controls, interactive pages/names and approved books offline. G6/G7-A."
+    },
+    {
+      "id": "TV-01",
+      "current": "Partial: separate single-clip foundation fixture with persistent bookmark and playback controls",
+      "remaining": "House TV, thumbnails/library/import, per-child/per-video catalog, failures, transitions and media retention. G6/G7-A."
+    },
+    {
+      "id": "DINO-01",
+      "current": "Not built",
+      "remaining": "Proposed 20 toy types, spoken names, animation, accessible storage and shared interactions. G6/G7-A."
+    },
+    {
+      "id": "DINO-02",
+      "current": "Not built",
+      "remaining": "Discovery Mat: dig/brush/wash/arrange and five optional invitations. G6/G7-A."
+    },
+    {
+      "id": "LAB-01",
+      "current": "Not built",
+      "remaining": "Simple science corner and proposed eight experiments, solo/co-op and independent exits. G6/G7-A."
+    },
+    {
+      "id": "JOIN-01",
+      "current": "Partial: 79 initial discovery, safe solo/family switching and saved solo return have automated proofs; both iPads pass scoped leave/rejoin, and user confirmed the tested iPad's solo position returns. Android 83 reuses enrollment and auto-joins",
+      "remaining": "Per-device and every-activity lifecycle/reconnect, physical prolonged-outage local qualification and full loading/preparation. G3, then G6/G7."
+    },
+    {
+      "id": "WORLD-01",
+      "current": "Partial: four Windows players split/gather across two persistent logical areas; both physical iPads pass independent travel/reunion by user report",
+      "remaining": "Six worlds, rooms/story zones, production scene loading, full four-device travel qualification and mobile host independence. G3–G7."
+    },
+    {
+      "id": "WORLD-02",
+      "current": "Partial: garden travel leaves another player's movement/drag/cleanup intact",
+      "remaining": "Apply to cooking, riding, books, hiding and all later activities; four-device checks. G3/G6/G7."
+    },
+    {
+      "id": "ITEM-02",
+      "current": "Partial: authoritative pickup/contents/release, races and stale-command rejection",
+      "remaining": "Carry approved portable props between areas and recover them across host loss/reunion; current tools stay in their station. G3–G5."
+    },
+    {
+      "id": "ITEM-03",
+      "current": "Partial, deployed in 83: garden bucket/sponge idle returns use one authority, saved clocks, a five-second cue and held-item protection; completed flower/puddle can repeat. Older 79 clients see authority resets but not the new cue",
+      "remaining": "Apple client update and broader device acceptance; full typed loans, home anchors, personal/creation protection, containers, spoken cue and host-recovery behavior. The garden fixture does not complete G5."
+    },
+    {
+      "id": "STOCK-01",
+      "current": "Partial constraint only: garden tools stay in their area when a player travels",
+      "remaining": "Per-player essential station stock, loan bounds and nested-container checks. One bucket per test area does not satisfy this feature. G5."
+    },
+    {
+      "id": "ROOM-02",
+      "current": "Not built",
+      "remaining": "Personal catalogs, loose-prop limits, clear exits, toy storage, protected creation shelf and safe visitors. G5/G7-A."
+    },
+    {
+      "id": "NET-02",
+      "current": "Partial: four physical admissions and scoped iPad rejoin; persistent 83 live. Parent operations and ten-minute desktop run qualified; Windows 90 adds complete replicas, automatic local adventures and preserved work on reunion",
+      "remaining": "Deploy guarded server operations and later client recovery; independent/portable recovery, sustained physical runs, remaining device/activity/outage acceptance. Boot/start supervision remains a deployment task. G3."
+    },
+    {
+      "id": "REMOTE-01",
+      "current": "Planned, not built: owned VPS is the preferred future shared host after server readiness",
+      "remaining": "Confirm host OS/resources; remote endpoint/platform/vault adapters, one-writer migration, startup/recovery/restore and mixed-device internet qualification. Offline solo and G4 iPad hosting/recovery remain. [Plan](implementation/vps-hosting-plan-2026-09-24.html)."
+    },
+    {
+      "id": "ROOM-01",
+      "current": "Not built",
+      "remaining": "Two child-owned layouts, connected updates/visits and non-destructive offline reunion. G5/G6/G7-A."
+    },
+    {
+      "id": "SECRET-01",
+      "current": "Not built",
+      "remaining": "Both optional mini-door plush rooms, shared visits, exits, saved layouts and stars/aurora effects. G5/G6/G7-A."
+    },
+    {
+      "id": "HIDE-03",
+      "current": "Not built",
+      "remaining": "Enterable closets/drawers, optional 5–10-second clues and about-30-second parent search, tested for fun and no stuck avatars. G6/G7."
+    },
+    {
+      "id": "TRAVEL-01",
+      "current": "Partial: isolated garden works offline on both iPads; Windows 90 automatically continues from a shared recovery checkpoint into a separate adventure",
+      "remaining": "Mobile continuation qualification, full solo content/NPC substitutes and return-home reconciliation. Saved adventures are not merged yet. G3/G5/G7."
+    },
+    {
+      "id": "AUTO-01",
+      "current": "Partial: physical 79/83 joining plus Windows 90 prolonged-outage continuation, cold adventure resume and safe automatic reunion with saved work accessible",
+      "remaining": "Outage failure matrix, mobile recovery builds/qualification, physical server-absent initial joining, remaining lifecycle/route checks and parent pairing UI. G3."
+    },
+    {
+      "id": "AUTO-02",
+      "current": "Host migration not built: complete replicas and separate local continuation are qualified on Windows 90",
+      "remaining": "Both iPads host, mobile checkpoint/event-tail qualification, election/handoff/hard-loss/partition/resume/reunion. G4/G5."
+    },
+    {
+      "id": "OUT-01",
+      "current": "Not built as outdoor content: Creek is a second garden-rule fixture",
+      "remaining": "Beach/creek/park activity designs, usable equipment, tag and hiding, with solo/co-op acceptance. G6/G7-B."
+    },
+    {
+      "id": "DAY-01",
+      "current": "Not built",
+      "remaining": "Sixth world, Calypso/all child characters, optional day with 2–3 saved invitations and independent participation. G7-C."
+    },
+    {
+      "id": "LEARN-01",
+      "current": "Not built",
+      "remaining": "Proposed 12 spoken reading/math/music/social/science stations with age-appropriate help. G7-C/F."
+    },
+    {
+      "id": "IMG-01",
+      "current": "Not built",
+      "remaining": "Picture play mat, roles/NPC substitutes and all nine requested stories, independent exit and progress. G6 foundations → G7-D."
+    }
+  ],
+  "researchChapterCount": 55,
+  "chapterCoverage": [
+    {
+      "number": 1,
+      "title": "Your requirements, now recorded",
+      "guideRoute": "G0–G8 scope"
+    },
+    {
+      "number": 2,
+      "title": "What makes this kind of game work",
+      "guideRoute": "G2/G6 experience"
+    },
+    {
+      "number": 3,
+      "title": "Six worlds and eighteen starter quest ideas",
+      "guideRoute": "G3/G6/G7 worlds and quests"
+    },
+    {
+      "number": 4,
+      "title": "Character roster and pictures",
+      "guideRoute": "G2/G6/G7 characters"
+    },
+    {
+      "number": 5,
+      "title": "Touch movement and object interaction",
+      "guideRoute": "G2 controls"
+    },
+    {
+      "number": 6,
+      "title": "Reusable item rules: bucket → water → plant",
+      "guideRoute": "G2/G5/G6 item rules"
+    },
+    {
+      "number": 7,
+      "title": "Two iPads together: choose home Wi-Fi first",
+      "guideRoute": "G3/G4 networking; later chapters supersede early assumptions"
+    },
+    {
+      "number": 8,
+      "title": "Spoken English and Spanish, using your PC and ComfyUI",
+      "guideRoute": "G6/G7-F speech"
+    },
+    {
+      "number": 9,
+      "title": "GitHub templates and components: what is actually useful",
+      "guideRoute": "G1 packages"
+    },
+    {
+      "number": 10,
+      "title": "Project structure and coding plan",
+      "guideRoute": "G1–G6 architecture"
+    },
+    {
+      "number": 11,
+      "title": "Menus, settings, saves, and recovery",
+      "guideRoute": "G2/G5/G6 menus/saves"
+    },
+    {
+      "number": 12,
+      "title": "Performance and crashes on the older iPad",
+      "guideRoute": "G1–G8 performance/reliability"
+    },
+    {
+      "number": 13,
+      "title": "Required acceptance checks",
+      "guideRoute": "G1–G8 acceptance"
+    },
+    {
+      "number": 14,
+      "title": "Build order and completion gates",
+      "guideRoute": "G0; superseded by main guide G0–G9"
+    },
+    {
+      "number": 15,
+      "title": "Decisions to make after the first prototype",
+      "guideRoute": "G0 decisions"
+    },
+    {
+      "number": 16,
+      "title": "Expanded feature tracker",
+      "guideRoute": "All 35 feature statuses"
+    },
+    {
+      "number": 17,
+      "title": "Changing characters without stopping the game",
+      "guideRoute": "CHAR-01/02 G2/G3/G6"
+    },
+    {
+      "number": 18,
+      "title": "Quests that are easy to start and easy to leave",
+      "guideRoute": "ACT-01 G2/G6"
+    },
+    {
+      "number": 19,
+      "title": "Kitchen: five pizzas, five cakes, five meals",
+      "guideRoute": "COOK-01 G6/G7-A"
+    },
+    {
+      "number": 20,
+      "title": "The water feature and fishing mini-game",
+      "guideRoute": "FISH-01 G6/G7-A/B"
+    },
+    {
+      "number": 21,
+      "title": "Five cleanup games that remain playful",
+      "guideRoute": "CLEAN-01 G2/G6/G7"
+    },
+    {
+      "number": 22,
+      "title": "Hide-and-seek and parents with everyday routines",
+      "guideRoute": "HIDE-01/02 NPC-01 G6/G7"
+    },
+    {
+      "number": 23,
+      "title": "Show games and activities catalog",
+      "guideRoute": "CAT-01 G7-E"
+    },
+    {
+      "number": 24,
+      "title": "Integration, build sequence, and acceptance for the new features",
+      "guideRoute": "G6 integration"
+    },
+    {
+      "number": 25,
+      "title": "Reading nook and interactive books",
+      "guideRoute": "BOOK-01 G6/G7-A"
+    },
+    {
+      "number": 26,
+      "title": "Dinosaur books and spoken names",
+      "guideRoute": "BOOK-01 G6/G7-A"
+    },
+    {
+      "number": 27,
+      "title": "TV corner and local video library",
+      "guideRoute": "TV-01 G1/G6/G7-A"
+    },
+    {
+      "number": 28,
+      "title": "Dinosaur toy room and discovery mini-game",
+      "guideRoute": "DINO-01/02 G6/G7-A"
+    },
+    {
+      "number": 29,
+      "title": "Building and testing books, TV, and dinosaurs",
+      "guideRoute": "G6 media/dino integration"
+    },
+    {
+      "number": 30,
+      "title": "A simple and playful science corner",
+      "guideRoute": "LAB-01 G6/G7-A"
+    },
+    {
+      "number": 31,
+      "title": "Joining and leaving without restarting play",
+      "guideRoute": "JOIN-01 NET-02 G3/G6"
+    },
+    {
+      "number": 32,
+      "title": "Two personal bedrooms with shared updates",
+      "guideRoute": "ROOM-01 G5/G7-A"
+    },
+    {
+      "number": 33,
+      "title": "Secret plush rooms with stars and northern lights",
+      "guideRoute": "SECRET-01 G5/G6/G7-A"
+    },
+    {
+      "number": 34,
+      "title": "Hide-and-seek with enterable furniture and gentle clues",
+      "guideRoute": "HIDE-01/02/03 G6/G7"
+    },
+    {
+      "number": 35,
+      "title": "Road-trip play, hotspot co-op, and coming home",
+      "guideRoute": "TRAVEL-01 G2/G5/G7 offline content; optional internet co-op via VPS milestone after server readiness"
+    },
+    {
+      "number": 36,
+      "title": "Integration milestones and acceptance for this expansion",
+      "guideRoute": "G3–G6 continuity"
+    },
+    {
+      "number": 37,
+      "title": "The beach: collecting, building, and playing together",
+      "guideRoute": "OUT-01 G7-B"
+    },
+    {
+      "number": 38,
+      "title": "The creek: rocks, water, and gentle discovery",
+      "guideRoute": "OUT-01 G7-B"
+    },
+    {
+      "number": 39,
+      "title": "Playground and park: equipment that really works",
+      "guideRoute": "OUT-01 G7-B"
+    },
+    {
+      "number": 40,
+      "title": "Daycare: a sixth world with an optional pretend day",
+      "guideRoute": "DAY-01 G7-C"
+    },
+    {
+      "number": 41,
+      "title": "Daycare learning: short, playful, and spoken",
+      "guideRoute": "LEARN-01 G7-C/F"
+    },
+    {
+      "number": 42,
+      "title": "The imagination mat: nine stories that become playable worlds",
+      "guideRoute": "IMG-01 G6/G7-D"
+    },
+    {
+      "number": 43,
+      "title": "Building, saving, and testing the outdoor and daycare expansion",
+      "guideRoute": "G7 outdoor/daycare integration"
+    },
+    {
+      "number": 44,
+      "title": "Automatic family connection and iPad hosting",
+      "guideRoute": "AUTO-01/02 G3/G4"
+    },
+    {
+      "number": 45,
+      "title": "Automatic host selection, recovery, and save reconciliation",
+      "guideRoute": "AUTO-02 TRAVEL-01 G4/G5"
+    },
+    {
+      "number": 46,
+      "title": "Automatic multiplayer implementation and verification plan",
+      "guideRoute": "G3–G5 network acceptance"
+    },
+    {
+      "number": 47,
+      "title": "Up to four family players across iPad, iPhone, and Android",
+      "guideRoute": "FAMILY-01 CHAR-02 G3/G6/G7"
+    },
+    {
+      "number": 48,
+      "title": "Android build, phone layout, and four-player acceptance",
+      "guideRoute": "FAMILY-01 G1/G3 phone/device acceptance"
+    },
+    {
+      "number": 49,
+      "title": "Reaching your home PC from a road trip",
+      "guideRoute": "REMOTE-01 historical home-PC routing; chapter 55 now prefers owned VPS after server readiness"
+    },
+    {
+      "number": 50,
+      "title": "One shared world, independent travel, and shared items",
+      "guideRoute": "WORLD-01/02 ITEM-02 G3–G7"
+    },
+    {
+      "number": 51,
+      "title": "Automatic item returns, stocked areas, and tidy bedrooms",
+      "guideRoute": "ITEM-03 STOCK-01 ROOM-02 G5/G7"
+    },
+    {
+      "number": 52,
+      "title": "Feasibility audit and current priorities",
+      "guideRoute": "G0 priorities and mandatory G3–G5 proofs"
+    },
+    {
+      "number": 53,
+      "title": "Source-backed networking and recovery review",
+      "guideRoute": "G3–G5 source-backed networking basis"
+    },
+    {
+      "number": 54,
+      "title": "Templates, packages and the free starting setup",
+      "guideRoute": "G1/G3 package qualification"
+    },
+    {
+      "number": 55,
+      "title": "Future hosting on your owned VPS",
+      "guideRoute": "REMOTE-01 VPS milestone after G3 server readiness; preserves G4/G5 and full offline solo"
+    }
+  ],
+  "nonIdCoverage": [
+    "iPad-first A10 performance",
+    "2D illustrated dollhouse art/floors/occlusion",
+    "tap and joystick with concurrent dragging",
+    "Simple Play and Explore assistance",
+    "English-first speech with Spanish-ready data and reviewed recordings",
+    "six-circle destination picker and settings",
+    "all proposed content inventories and nine specified imagination stories",
+    "free Apple renewal and stable in-place updates",
+    "independent save/media/signing backup",
+    "free-first packages; optional around-$20 purchases",
+    "private correct Git origin; personal TV media ignored"
+  ],
+  "scopePreservation": {
+    "featureAcceptanceTableByteEquivalentText": true,
+    "unchangedGoalChapters": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      55
+    ],
+    "changedChapterStatusOnly": [
+      1,
+      53,
+      54
+    ],
+    "allChapterNumbersAndTitlesPreserved": true,
+    "fullyAcceptedFeatures": 0
+  },
+  "documentSnapshot": [
+    {
+      "path": "docs/bluey-game-research-2026-09-23.md",
+      "sha256": "32dafa3c988138ad0f0a343771fdf3985667ff492aba0e1adf96fa58def9d1ea"
+    },
+    {
+      "path": "docs/family-playset-build-guide-2026-09-23.md",
+      "sha256": "61b4432fa1d096dfc07bdbb61582148ba2c02e783910bae73a72bffb1352cb1c"
+    }
+  ],
+  "codeAndPackageSnapshot": [
+    {
+      "path": ".gitignore",
+      "sha256": "dd345ccda3bb5f0f094b5383335aecf30bd240bb7d54dcd552f3fb05507372e6"
+    },
+    {
+      "path": "Tools/Restart-FamilyServer.py",
+      "sha256": "c04240fd75e4003d0a08d6cdcc6e9852b8f06fe4920d6e090dc24169530b60bb"
+    },
+    {
+      "path": "Tools/Start-FamilyLAN.py",
+      "sha256": "85bf2f5c1b2395130e5953b63526afdaeb79c5c2ae1c506ef0eb88025c38180a"
+    },
+    {
+      "path": "Tools/parent_operations.py",
+      "sha256": "dbe884b771f199d7edec738987cd5228a59ce5dd8284d54a998169e6aafae138"
+    },
+    {
+      "path": "Tools/parent_server.py",
+      "sha256": "4b3caafe6b1ee2cdd40ad7c88356d335ee8d1b2d8eb20164f2cd05e6dc93ef9f"
+    },
+    {
+      "path": "Tools/server_recovery.py",
+      "sha256": "b659dc2020793da0de8f277269a2e5ac335b5373bd833a2945b336238c19fa1e"
+    },
+    {
+      "path": "Tools/server_supervisor.py",
+      "sha256": "1c2a5589ab3d54aee2ee3589ece39015949859c2269ba25b9f2533385b311469"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/CheckpointStore.cs",
+      "sha256": "4b7b38ae0fa90227f1621ef6ac7d0e09e69430eb3e6ff6b126a0a662f54889d1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/ContinuationLibrary.cs",
+      "sha256": "70cbcc69354ce0a10daf78bd25ec3e0909e82eac7737bd5402304ea6bc6317b2"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/IFamilyDiscovery.cs",
+      "sha256": "c0234387200aa8a82d0c49873000c8d05ef291ab4d312125604a1c1d8376d290"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/LittleWeeps.Adapters.asmdef",
+      "sha256": "059bce7e6d3504b88b11657db6e24b1a274c485854cc37822fb04d33bda9c840"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/RecoveryReplica.cs",
+      "sha256": "c8ad4cf087f7587a1a36f7ef342ae77a4bf5ff42ea8671d252129a0804d88d79"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/WindowsBonjour.cs",
+      "sha256": "6d1c0e4ac9c99771a7c554e1d8879cddd5e2ce6ed3723e5e8b1da995959159f0"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/WindowsPairingVault.cs",
+      "sha256": "5867dda132481ae1bb24353f30c4d52f4cf8da8e1e9205fae1080fdf26275b8d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/IGardenSession.cs",
+      "sha256": "66746003fae5e6b305e742424be3a9a26f986fd27099dd68253a6b7721536ec6"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/LittleWeeps.Client.asmdef",
+      "sha256": "188e4e810dd4cb3ded5499f810d11d4352dc4f393eee6ce8483fc8bddf8a799d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloAdventures.cs",
+      "sha256": "ccab59b959c89c900154a0bff0e7b2a7ad07d8b111144b9cdf797deed75de020"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCrashVerification.cs",
+      "sha256": "68a82c3e6f0bc32e32bf50e83242e2ca129ae0f2423d7820fbae9ac4e2184658"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNarration.cs",
+      "sha256": "31718a26eb59e693ddc2bb0db0be79316c3270220e7dbef220f5c6fd5aeb7c2f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloPointerSurface.cs",
+      "sha256": "d0d3677d9979142b7888fe7ac356dc3aca58b3acad75c35fca63127d69e1bf4a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
+      "sha256": "dc30ce6fbeac39e32a02188818124a3c0eb55ec6f0924e7904f2c3820a24f43a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloVerification.cs",
+      "sha256": "1d3c51b941e80f4ea006c0a0f39ba7ead72bb54e13791e383d2ea3968935d8b3"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilyPairing.cs",
+      "sha256": "48f513301f588fb8b6e8ab69330366b408efb2199d3f2eaa69dfd233e7dbfc20"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs",
+      "sha256": "fdf9e3e5570e00a32cfbcd7d40ca519de734a29e1bcaac350934db3c0e09c10d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/GardenCommandQueue.cs",
+      "sha256": "59148e3c3444a43084aa9308aa6a48ed0e0dbe4bf0245068ee6016a60ba27a9b"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/LittleWeeps.Core.asmdef",
+      "sha256": "1c1ab3b8b26b9f9ae5f130f6d354fea8027150b835e2864c1433fe3995fc274e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/OutageClock.cs",
+      "sha256": "3d58a164667762f2e28c430c018ee0900d3b7574cc373e6f37eea114bcb085dc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/RecoveryTransfer.cs",
+      "sha256": "a81a29db88237f2cf10dd48e4994c3bf8639c0606fb30382d428db5385435b52"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SessionLifetime.cs",
+      "sha256": "8a0cd5273278ad00976af13763a34e212dd341838c0d841243479a3eb8b736e5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs",
+      "sha256": "f0a6dbd3026062a879c3a66e9b7e65a8e2441ad70189cef305ba24f1daa28d18"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
+      "sha256": "2626c8d58e115eaf35240d71444f901f4579e8f982b35f2c8f4ff6484fc3733c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/TapCount.cs",
+      "sha256": "2c6f6c77bc6711be493f7be67fd4d24d5f91ae2f7d6525021e3ccd86d928a647"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/AndroidFoundationTools.cs",
+      "sha256": "e2e865adff18c54644f7edbcfe2c064d18b79252eab92892a8f77cf5bf7ce2d8"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationBuild.cs",
+      "sha256": "3a1a00b36f0cd82d57df101b38f0758aac00d975fd3c5b5ab052963b2efbafca"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationServerSetup.cs",
+      "sha256": "200b6362381063c0fa3fbcd15958d82be10d47e4b2d3f67aed1f9cb7dddc4ffc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/FoundationSetup.cs",
+      "sha256": "f069581cb67c10db57c45a8ae136e6864bfff73fb8e330cafa9b352876b0f477"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/LittleWeepsReconnect.cs",
+      "sha256": "f5cff15cc26fe4a8c9186b12d1e5c469707bd7edf0491ec046a33ffa188b9060"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/NetworkProbeBuild.cs",
+      "sha256": "66d466ac7f96370696f7dad848a2eec71a15bee2d0653f4da7f42e8e2138a3ed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/SoloBuild.cs",
+      "sha256": "3fefce7ade82f88ba8503fcaf1f666886c6e927d4240428ab9eff6607388b1bc"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/AndroidFamilyPlatform.cs",
+      "sha256": "bd5a62c79e73385fad968b5407a5d9868c80f61f32bbea76a8d6f1adda173839"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/AppleFamilyPlatform.cs",
+      "sha256": "d3090eceb575192df2eaf37416a3cd4f69d6f0493cdcfff17455da533cc0aed0"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/LittleWeeps.NetworkProbe.asmdef",
+      "sha256": "03e5083b57c37632af924f877b6ae492e7e3266115cc3f6acc1b9f108f2c4397"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkContinuation.cs",
+      "sha256": "ff50bedfbb10840f561f724f8bd0555b4bd1b9f10e87b90e8023a860b9e8bdc1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenSession.cs",
+      "sha256": "0f1a4f49bc076a6813f202d6b41cceb56f14697ad5b6ab406762cbc0da90b1e9"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs",
+      "sha256": "4f42bf74e5f435fecd9ccd2708c82623fe667f6f4220903abc5757ff2d939762"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs",
+      "sha256": "23db4500c5feb62ac384f85b21e5c83d3cdc81b51fcf6798c5db5bfe1910ce5f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkRecovery.cs",
+      "sha256": "f97b8c2670a3b1c826873d7187b707962a11cf6be26cb2e762a901de82369e0a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationRun.cs",
+      "sha256": "41c870da2836e374ac180e16b85a25a5ec4bb225ffe292d0208819dae320ae91"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationScreen.cs",
+      "sha256": "55627ed8f925bb98046beec21250d2be9fba402ce68d5e5094234dc072afd4fd"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVerification.cs",
+      "sha256": "600191873ce79cde6a5a093509754a63d2f9f5b6a1051e48cef37d302b09139c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs",
+      "sha256": "a0af6dc40b7d71a6f129522a0549adb7e1f74a2b0749c4e0baca29eba8d67b19"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/LittleWeeps.Runtime.asmdef",
+      "sha256": "07fb94dfe9cc5622568b6ef25d34d3c8e040c4da7b2ae0619261f3f734f3c3f1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server/FoundationServer.cs",
+      "sha256": "8d8f74112e7cfb76aed34b9a6bf44c8c4600c9e443f877143f1016b706e3cc5d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Server/LittleWeeps.Server.asmdef",
+      "sha256": "3651fb27effef7391b7e5d99ade87f21fbdcf10c32fc0a1abc8c7e0a2ef4a79a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Packages/manifest.json",
+      "sha256": "2f28cfa90e43aef239d7c7394c937e22bdd286a82c7ea793203e5d7464ac69f4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Packages/packages-lock.json",
+      "sha256": "7fdea91ed790152230cb54f1c344ab6783697e0ee8a35b224f8902f013319912"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/ProjectVersion.txt",
+      "sha256": "7a43a06dfe51c4e3933c5a7848320925ce96e667f8c7736557d13a02007e9860"
+    }
+  ],
+  "build90Provenance": {
+    "evidence": {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/source-provenance.json",
+      "sha256": "9fb960c5d0938eed17a2490aa2433ea56730942a7c6f8bf744b87b7b35a29afe"
+    },
+    "allCurrentUnityCSharpFilesMatch": true,
+    "count": 148,
+    "originalManifestCommit": "a92fd3d24d6c2d1d97f18ed8c11ece42f19d10fe",
+    "originalManifestWasDirty": true,
+    "interpretation": "Byte hashes, not original pre-commit revision alone, identify the tested current sources."
+  },
+  "retainedReports": [
+    {
+      "path": "docs/implementation/g1-status.md",
+      "sha256": "1805e1872c3c76d40177a9bbf4b37a092f28b37196f96e42d6545382ea2c1967"
+    },
+    {
+      "path": "docs/implementation/g2-status.md",
+      "sha256": "c297d6f0c867d39dd6b88c312e44af3c2991289a01454c36da4585eefcd29cd8"
+    },
+    {
+      "path": "docs/implementation/g3-client-recovery-2026-09-24.md",
+      "sha256": "8a3e3c701db9991b78a72027abb78762eac36759f03aec6231bf22ef7fe5b660"
+    },
+    {
+      "path": "docs/implementation/g3-ipad-79-2026-09-24.md",
+      "sha256": "1bda0f5760c73de056fc1de253fbdbb7f021f76ca6dc254ff6a315b194e733fa"
+    },
+    {
+      "path": "docs/implementation/g3-local-continuation-2026-09-25.md",
+      "sha256": "2ba5a1c6c3f68be0322b39217f1dfc04ebe3c32be9d577ca7fc325e226cf6661"
+    },
+    {
+      "path": "docs/implementation/g3-offline-join-2026-09-24.md",
+      "sha256": "3e0b8371a84aa8702dd44a28cda82b484191bed8cea13e5f6dac7215e395c1a8"
+    },
+    {
+      "path": "docs/implementation/g3-parent-controls-2026-09-24.md",
+      "sha256": "99a71ea9e1188f665c89981fca7c0f507dc0acf0aef5467f4189df639a00ca1b"
+    },
+    {
+      "path": "docs/implementation/g3-parent-recovery-panel-2026-09-24.md",
+      "sha256": "c340daf063f0aa851127fd6495770154704f85ade67c87e45176171b2e48276a"
+    },
+    {
+      "path": "docs/implementation/g3-persistent-server-2026-09-24.md",
+      "sha256": "bfd0989b1b7ca1570875ad75aa1f86a82a4e17c0f584defe37c407e34d33e2bd"
+    },
+    {
+      "path": "docs/implementation/g3-phone-layout-resets-2026-09-24.md",
+      "sha256": "c819aafeaf291435a8efaa79b45a33139814d2348e2f1712fa514faf1502ca43"
+    },
+    {
+      "path": "docs/implementation/g3-phones-79-2026-09-24.md",
+      "sha256": "e0101480696cd55643c5d526811faf52c977b1e50f50c1effca81a6cf18f0af4"
+    },
+    {
+      "path": "docs/implementation/g3-server-recovery-2026-09-24.md",
+      "sha256": "99100731a729aeaf0a7b55f8dbcb7648db962badbd27a5b586b9ce955243e502"
+    },
+    {
+      "path": "docs/implementation/g3-server-soak-2026-09-24.md",
+      "sha256": "326d0897d97a6b8c278199866ec9bdb924c7eb851c4619bf2874d5943ff9ec21"
+    },
+    {
+      "path": "docs/implementation/g3-server-supervision-2026-09-24.md",
+      "sha256": "0db47b0aea8c41068420fcc763df87932a049543624851133102146a9f64d9d8"
+    },
+    {
+      "path": "docs/implementation/g3-smooth-movement-2026-09-24.md",
+      "sha256": "beffb22e5d400fe4e4fb55267999e9debb9b2c67cad5fa586b929c5ca1513ffa"
+    },
+    {
+      "path": "docs/implementation/ipad-garden-2026-09-24.md",
+      "sha256": "1f7c28dcf80ff27576686412e4199d429db724522d2bf0f7a805c08cb7cb61ca"
+    },
+    {
+      "path": "docs/implementation/ipad7-garden-2026-09-24.md",
+      "sha256": "beb0bcef4ce5156d23d356c9dda49a5c7a1729984ebb4621d7854e1e003a8cf0"
+    },
+    {
+      "path": "docs/implementation/return-checklist-ipad-lan-2026-09-24.md",
+      "sha256": "c6db88a44df8d2e780c63427b5f2d81ab8084d8482e6700dd0d5a228f0a556f5"
+    },
+    {
+      "path": "docs/implementation/vps-hosting-plan-2026-09-24.md",
+      "sha256": "8302656d14ed74dcc6c83fbdd830251c27a2b5c0ac79cc37ea09b60bd30912ec"
+    }
+  ],
+  "retainedEvidence": [
+    {
+      "path": "docs/implementation/evidence/android-16kb-review-2026-09-23/runtime.json",
+      "sha256": "3a5a9f282555d8f407f0c64972dfe85e555a7ef12ff1d7e333815f3465cbc9ae",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/android-first-build-2026-09-23/apk-inspection.json",
+      "sha256": "c0556b7d2d04ae6b72c6a58df9bfe655cb2163d7b3a59c57ed86f0ddf3f38c0c",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": false,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/android-first-build-2026-09-23/build-summary.json",
+      "sha256": "9ede3fa296d223386efc4228b83e6249a51b6b5c5c97a93d6b57a4e69fd68203",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/android-first-build-2026-09-23/tool-paths.json",
+      "sha256": "42999745b9f11822cae68f36478d5b48ca832014e068e57360c7c667b476338e",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/android-phone-g1-2026-09-23/verification.json",
+      "sha256": "90ce645260bfffd15bbf14cab0b910fc8a3e10db9ca24a457c3d9e6d14752f6a",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": null
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/build-88.json",
+      "sha256": "301872f314ef3e29e444aff33b7b6bbc89e6d18b89682277668ad595a1b927fa",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/compatibility-88.json",
+      "sha256": "e8eb57405bb5931adf59298993d496fb66afc798cf5484ac6a1465dfc5061c8a",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 88,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/deployment-scope.json",
+      "sha256": "d1c14958c4bfae3db96ff1dda66d0444ab50ad1b1eed69ff56931ec2daaf8d01",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/docs-validation.json",
+      "sha256": "0e83b2d875af68509d22a9b4745d1235f4c20357f962f020244280bf610f57f8",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/motion-88.json",
+      "sha256": "c49d002c64bc9807d533cd6fde9161f1ec77730197124b74c3c399843c7a5c5d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 88,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/native-88.json",
+      "sha256": "eb21015eb4babcf029d699dd7aabedadaedca76e6776782881fee2fdcdf0d212",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 88,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/rules.json",
+      "sha256": "b7096eb60391d2188aff7119136fd1f24a96a796e1a9a37bee91a54a7f883d83",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 59
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/server-recovery-88.json",
+      "sha256": "e9323d4c4683726d6800553d0c9edcf32349bb7ff0fb16744cd9fc17f092a661",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 88,
+      "checkCount": 6
+    },
+    {
+      "path": "docs/implementation/evidence/client-recovery-2026-09-24/source-provenance.json",
+      "sha256": "927690a709f5a8717059bb22a4e0b44d02d726a29eee3e65303c5055df3c0ae6",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 88,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-g1-2026-09-23/first-install.json",
+      "sha256": "a60cd283258c7d71598e0c244bfaf296b272cf04970b2b9789046e3a0dffa8a0",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": "1",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-g1-2026-09-23/launch-after-trust.json",
+      "sha256": "44f4e5c9aef8f7295535a0fab5dd3693275fc8a1ee471f951a6bd12117b3ecca",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/human-check.json",
+      "sha256": "7f0f3ca17c3f5309fed7a8849ba6070191e09edd77c78e2ed84b6f0cd927cf6c",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/joystick-restart-check.json",
+      "sha256": "923e7e8c98942cb39d6c90121445f948b18e1411c8c9eea256442db48a892681",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/launch-check.json",
+      "sha256": "41f32749906b06627c0dc164f5a7c066688acdc01ca8bc9c3cffe63bec55c3d2",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/lifecycle-offline-check.json",
+      "sha256": "a11c1ec5548053ede9b830af8c046ddb41165fdf06b58222b611885a84cfc58b",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/restart-check.json",
+      "sha256": "007bf98f6be857d8035fe7cb5030ab4033d94b4abe7251e8a31d4fa7848fc1d8",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/signed-artifact.json",
+      "sha256": "930776c810a0cbc31dace8a7f9b139ba41ca67c7c6f81484fdc375661cba489b",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/touch-check.json",
+      "sha256": "f1a940e7cc7efb52e94db6f5c316c6fc5eab9023572e54f4a4148238df4e6023",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/transfer-verified.json",
+      "sha256": "3f0d2cc25fc6705092f609e88baab41b1562d3b02386a7ee798f0dbf67fbaecd",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad-garden-2026-09-24/update-check.json",
+      "sha256": "2791001fefefe163267ee556a3336db115f467afa922f41e175e17aed42a0232",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad7-garden-2026-09-24/device-ready.json",
+      "sha256": "d0d47dcff4dd8f5dab0d11c6f7bf4523dd8735b481679d3136c0cb71122d5ea2",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad7-garden-2026-09-24/export-recheck.json",
+      "sha256": "88bb6e69790f4b6b8e18777790eb132e21b7055796a9dbe331796176c9cd72f0",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad7-garden-2026-09-24/human-check.json",
+      "sha256": "8ccebdd5ac35310d16c7ff3e3b2c7dcd4ee21a627d67cae77445637b8ccc0a5f",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad7-garden-2026-09-24/install-launch-check.json",
+      "sha256": "de38147cd71704dcc6eeab8c6e9f6548b9546fbd8ea5543767bde7e2c348f8f2",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad7-garden-2026-09-24/native-status-before-trust.json",
+      "sha256": "076de3c7faef1bb52889effb54b7173eab16d4e020797bf0ab7dcef1ba222a6a",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad7-garden-2026-09-24/restart-check.json",
+      "sha256": "2320ca56c87d0dc44a6b7474230bff3c018624b384b4d3dcb1684c041b7028eb",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad7-garden-2026-09-24/setup.json",
+      "sha256": "630f2a1102ae9b870f5ad24e9b8b9631fad9ee73da77b6078a4b5c358189073c",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad7-garden-2026-09-24/signed-artifact.json",
+      "sha256": "b94495b5c3e52b46b8ddf608719f171548ead98109020c05eabeaf693ae4f3cd",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 56,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/independent-travel-feedback.json",
+      "sha256": "8fd91278d4ce8c030b5cc7e3719509043cc8649b18947009ea7b33cf9b83ca0b",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.79",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/initial-pairing.json",
+      "sha256": "2b65e081f38c9a74c4fe966ee1f3b4d95fce9923eeb1d0a396dee04752273d6d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/ipad7-update.json",
+      "sha256": "95edb1089fa936b73da72f51cb6905e9b5e97727c1a580e51e04037d4affb185",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 79,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/ipad9-update.json",
+      "sha256": "ee432b31118e14a7630fe2236e3b4a1080499930129445afd1d82b720223fdda",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 79,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/lock-cold-rejoin.json",
+      "sha256": "835de08a3ce72aabfdc4a71c4e002f4b09557f5415135163bff2e2c38325560d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.79",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/movement-bucket-feedback.json",
+      "sha256": "44c7ab5faa65e1a51c6eec7f542989a9ee7fcb9710834b37515324cae7bfbceb",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.79",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/native-connection.json",
+      "sha256": "92763ff71f9f453370e9a85ee452ae3739fed1bf5b3c98c16bb2a9d5a3709c88",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.79",
+      "checkCount": null
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/signed-build.json",
+      "sha256": "ccad4f3df3181f6756f87d1560f02e747f31fc6009419ab3a084bdd82aa87435",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 79,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json",
+      "sha256": "d6dada157398e0008b8f7978db8700745513f792d37bf08b21a5f8baa8c8c9c4",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.79",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/build-90.json",
+      "sha256": "eb33ba70a64096b9092d0a866199e537fa159659af7148a63f3724765d29a338",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/compatibility-90.json",
+      "sha256": "f71b541130636c95dc4db3c2c0429962fe75f14c7243c1ce234a7ea5ddce9e69",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 90,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/deployment-scope.json",
+      "sha256": "b16fca452091d6fdc2d7e2d04b4c5b801ced01f6629011697a70002988af54a7",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/docs-validation.json",
+      "sha256": "e73133f2fbe4ebfdb5d0ec0ae47641a9dc22853c335591bf0e618f437afd8267",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/motion-90.json",
+      "sha256": "071c7447283751530711f4a0cd4617b8102afd1780b1db4b6ee31ef60e1c7384",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 90,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/native-90.json",
+      "sha256": "0e648bbc70e4d0e68c42ab45f2fc6ff8cf49d34e654565495f51a814373b840d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 90,
+      "checkCount": 6
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/rules.json",
+      "sha256": "78cc396ee02117b89dd8ae1885611412be9da91dcf423aef024098ea6a54a787",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 67
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/server-recovery-90.json",
+      "sha256": "ee8bf64dda06c942edfd39ad6f1d40b4577423f08d31f2b78358d0438ea392f3",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 90,
+      "checkCount": 6
+    },
+    {
+      "path": "docs/implementation/evidence/local-continuation-2026-09-25/source-provenance.json",
+      "sha256": "9fb960c5d0938eed17a2490aa2433ea56730942a7c6f8bf744b87b7b35a29afe",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 90,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/android-build.json",
+      "sha256": "68bb7706dc0635aa561de126a70a7232122c206d353efee8a62d968cb201620d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/android-offline-4.json",
+      "sha256": "b3449dcc44846c096521fa5d99228a86f965cc2298cb60ccbbb096336f8e8e87",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/android-signing.json",
+      "sha256": "62f142c8faa778a41a303bb5fb28cf74b65190106d689b2033b65174a367475e",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/android-update.json",
+      "sha256": "bc342fe37ec1353eafb3591f786338f19475a4bcb81ab58d7105a40dc757c8f9",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/cleanup.json",
+      "sha256": "2e044afa6e76460d8cc1deba7c9b910b7aa425b696fe503c7a9f2e128b132c08",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/doc-validation.json",
+      "sha256": "091813a84c78d396acc9c62759e31d843f9a0ccf46b944c5e1ae8bcfa3aa2a81",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/ipad-export.json",
+      "sha256": "29cb35ae9ae694352d0c8251e1c45b425917446303ddca1b348f10f101b60cd8",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/ipad-native.json",
+      "sha256": "db58c06ff66d1e0c6701e556a501a79435a7e74db3bc81c40f4a6b97a8a6789e",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 79,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/ipad-transfer.json",
+      "sha256": "40ae83393d03c43c82c8e87371aece70aa6394954d4eaa71e623b2f399919634",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 79,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/shared-garden-10.json",
+      "sha256": "0ba2764e706143656f7924c61f86f06a4e0baa0dd3f63605c05f275f62d086f5",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 79,
+      "checkCount": 10
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/source-verification.json",
+      "sha256": "b8d5e29c71240d5ce0cba1cbe6b2e5b5c40271ac7228dac5e55b021085e7d154",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 3
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/windows-build.json",
+      "sha256": "1ace291e02e09c6df34d59aff9296dcc9c6796388db852f6f5db7eb4f34ff193",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/windows-lan-11.json",
+      "sha256": "a107c15c293a21f5d3eb46b0e736968825e64c0b79710164fec73920f6da44f5",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 79,
+      "checkCount": 11
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/windows-offline-7.json",
+      "sha256": "7ea3e8d341b0ec380f2fe0591d09c34ae0459f15c1b411c8108aadcd33cf9ca8",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 79,
+      "checkCount": 7
+    },
+    {
+      "path": "docs/implementation/evidence/offline-join-2026-09-24/windows-reconnect-7.json",
+      "sha256": "efbd31313bb99a6afc6af97e26a6fce4c74c6b29e7afb641aa7b39c40742c7d8",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 79,
+      "checkCount": 7
+    },
+    {
+      "path": "docs/implementation/evidence/parent-controls-2026-09-24/build-84.json",
+      "sha256": "f5560a811d07fc1a415229e88f162a6c83a0baced5e085d97234c6daec405989",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/parent-controls-2026-09-24/compatibility-84.json",
+      "sha256": "acac45ff2493da0f6c5214b619742bec3e1f42901e7e60ecce873286433c7fec",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 84,
+      "checkCount": 2
+    },
+    {
+      "path": "docs/implementation/evidence/parent-controls-2026-09-24/native-84.json",
+      "sha256": "6b3732b868043dfcb81f413ac843344c82133cf4d97c5702ebc2c127b1d283d4",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 84,
+      "checkCount": 10
+    },
+    {
+      "path": "docs/implementation/evidence/parent-controls-2026-09-24/ui-and-deployment.json",
+      "sha256": "169a593991bbad930e9a8109dcfcb53eeeb47d315bead9108a0fdda87c4ec75f",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 6
+    },
+    {
+      "path": "docs/implementation/evidence/parent-controls-2026-09-24/validation.json",
+      "sha256": "20995507c58003a8d80e22e2d4acb2d75c57c3b194fe2a99ec41cc23539b99fd",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/parent-recovery-panel-2026-09-24/native-85.json",
+      "sha256": "5176ee6c6957425931b519fc3d72a9b35a4ea90a8e535f5e1659a3a0da706cf2",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 85,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/parent-recovery-panel-2026-09-24/ui-and-family.json",
+      "sha256": "58a201ca0ea67ca97b591cf7737e159eccacf148b481d35aeb17685b7dc76c9d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/android-connection-83.json",
+      "sha256": "ae84083890ca5250051329e11071dea134e8a295b7aa8b439bb9a983ba7bf72c",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": "0.0.83",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/android-install-83.json",
+      "sha256": "245d5710b8e764dbeff9bfbf5fa65ea75c4c21bc0741fa02097e31974ef9e942",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/android-save-retention-83.json",
+      "sha256": "fb74a1d1527681a8b656f67ff6c828cadf6379f435607378389e9a61dc0afc01",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/compatibility-83.json",
+      "sha256": "fe839adecb33a8a42bb4fccaf153d2f66b3b27073e86e915ac249715cb065f31",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 83,
+      "checkCount": 2
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/core-52.json",
+      "sha256": "90c82365f9864ad1ca86f68bd9a253a6eb450441cc6eec30f4b9537707c9cbd3",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 52
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/deployment-applied-83.json",
+      "sha256": "fe057340ee5f6f52481f576f373f98f207dda7e82cc66363c6c643d0aa17b2c3",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 83,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/deployment-pending.json",
+      "sha256": "d059b80c0641d21ba18ee787891544ff558b7304de470c7640795ae30a8e47e4",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 83,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/native-lifecycle-83.json",
+      "sha256": "e32dad4cf852aeef1189308f38c9a78e7a9885ce92df1b6f085c2161cedf588e",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 83,
+      "checkCount": 6
+    },
+    {
+      "path": "docs/implementation/evidence/persistent-server-2026-09-24/windows-build-83.json",
+      "sha256": "cb2e296b85534516cb00628ef6f6c2241fdcb5cb24d766074e0e4fc8c46c2f15",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/phone-layout-resets-2026-09-24/builds-82.json",
+      "sha256": "11738059e37cb5f3e5fcb437245ff191f50bf3d02263198b52adbd6e87a839de",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 82,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/phone-layout-resets-2026-09-24/compatibility-81.json",
+      "sha256": "734e623d517163b8d2c1c3e53b08e4ab299a5c774149046e77dca2c701f670ff",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 81,
+      "checkCount": 2
+    },
+    {
+      "path": "docs/implementation/evidence/phone-layout-resets-2026-09-24/core-51.json",
+      "sha256": "74020951a6c2751f60f828c8429ffd424c8c952f2aeca5248fe1be06dc8d00fb",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 51
+    },
+    {
+      "path": "docs/implementation/evidence/phone-layout-resets-2026-09-24/full-timers-81.json",
+      "sha256": "79fd83a3c95b14e249d52e7a0baa20228b877b0659d38f1fb21bfe86d28880f0",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 81,
+      "checkCount": 6
+    },
+    {
+      "path": "docs/implementation/evidence/phone-layout-resets-2026-09-24/ios-native-82.json",
+      "sha256": "ff4f6dac92979260d3badd0bfd23a222c44c67feb90cd9fd46ff0d5536b62bcd",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 82,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/phone-layout-resets-2026-09-24/layout-82.json",
+      "sha256": "40f525b23adf5c3fd48b22e5d2e9f902a0fe700779ec8f280a153074818eaab0",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 82,
+      "checkCount": 1
+    },
+    {
+      "path": "docs/implementation/evidence/phone-layout-resets-2026-09-24/offline-join-82.json",
+      "sha256": "a75aeff712ae2a14b1b7b6144bb3aaa8a3f69402a89a8b21c997bf76b03c0fe9",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 82,
+      "checkCount": 7
+    },
+    {
+      "path": "docs/implementation/evidence/phone-layout-resets-2026-09-24/shared-82.json",
+      "sha256": "c99e21cfe7bc1ec0a9594ecd83aaf1fe53fae013f37d68a41335e9ad7ad1387f",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 82,
+      "checkCount": 10
+    },
+    {
+      "path": "docs/implementation/evidence/phones79-2026-09-24/four-mobile-admission.json",
+      "sha256": "ac3b2e10687886dd10c0b72a98083a396824a6bc828dd529924a6b256310c74e",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.79",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/phones79-2026-09-24/iphone-update.json",
+      "sha256": "d99b7024ea829575edef22b51dee8987ad27ffd1271004768f6bc250b0bd7f1d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/phones79-2026-09-24/samsung-update-admission.json",
+      "sha256": "669b5bc6206caa21e9320c5f00e1b741f9a41da358ebf28f40417e3d2e023066",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 79,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/areas-68.json",
+      "sha256": "5137eb9b0894e8f7386d65509cea808004c86bf4f823da5fa3d929ebe086a4bc",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 8
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/four-window-preview.json",
+      "sha256": "744ffde5d6c586e8ed3e1b9f96c923c613f35985bf07cbdf176ed9c3fe9d845a",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/garden-ui-68.json",
+      "sha256": "10137a2d07a477d416ebd2fb6c16796e5b81f371f697981f91fb43b89dacdcde",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 10
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-1.json",
+      "sha256": "c1bbe8b041112d4924ac9538751074d1ee70d7204a2c6a99872f532ae69ebd73",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-2.json",
+      "sha256": "b359d904c40c2a0c7843f6ff2d8410186f5c43c345a64fed3595acb823920a33",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/motion-68-normal.json",
+      "sha256": "b5615abea0f00b98118b7f990529f7d85132ae637e06a82a7d61278b26722e1e",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/network-68.json",
+      "sha256": "e0b79f1617107e11b0d7c3cc54db4dfbf7d96e29c1bb20778bd3dae9493f648c",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 10
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/preview-update-63-to-68.json",
+      "sha256": "45f4a093ffb82317df1a59839d84dc8a5feaee77a1774c42611e5f4f1dd59e64",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/receive-resilience-68.json",
+      "sha256": "e779cdaf554c39ae3c02ac5b1c20b950a5182cf3053ff3f5f34056b406e3941b",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 68,
+      "checkCount": 10
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/shared-build-summary-68.json",
+      "sha256": "2f6b297d118535ee46207f73a2440231a070e2e1fc4f5924d65fc0720db24e35",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/solo-build-67.json",
+      "sha256": "5fa671c0fdb9227ea7018d6cb46aacd78e1b3aedc95c47b4d8f9410ac077dae0",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/solo-input-67.json",
+      "sha256": "b64cec8a55f43856981ff0f56dbbd5e522007c2b29f7c8374951434a11db56a7",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.67",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/solo-recovery-67.json",
+      "sha256": "5203de21534e034970967ba41d7ab0b4647534e6cece1acb8f95c730633b56d3",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.67",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/rejoin-recovery-2026-09-24/solo-update-64-to-67.json",
+      "sha256": "7a141de905c9ae0002dbea123b60035d6d084d5ac2f1b8abbc3a0a4fc075522d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.67",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-g1-2026-09-23/build-summary.json",
+      "sha256": "790340a098e37ecc63b783250574e61b31ad22da335653cbd74bace5849721e6",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-g1-2026-09-23/heartbeat.json",
+      "sha256": "e2836052afa7203f5e4957558b02e7861181826cdef3e56520868ab89fab9ecd",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": "0.0.12",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-g1-2026-09-23/module.json",
+      "sha256": "c00095d1d6184e2cd0057881164b4cf5a6e08fc892aa0452944ddc096339c643",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-g1-2026-09-23/ready.json",
+      "sha256": "bf0beb429e36825f6e3908a29bfd3f562fdea5654f73f3992d3ea079370e233c",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": "0.0.12",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-g1-2026-09-23/stopped.json",
+      "sha256": "e9e7592434fca7ef417555513288777f7d9f1f482ac9f717b382956e248899fb",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": "0.0.12",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-g1-2026-09-23/verification.json",
+      "sha256": "f9d4aea6204a1317cddfa2134b9db9f7367a8a728bf53ee2b0ec8dbd844e4070",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-recovery-2026-09-24/build-85.json",
+      "sha256": "8ff9a4bae094923322deb0218c5b1f9148df988c9f2b72ca46504e4f94b701b7",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-recovery-2026-09-24/compatibility-85.json",
+      "sha256": "526f627b8548bcc8fcca007e25bba7da81c0b064e752d11112e0a289349e5b56",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 85,
+      "checkCount": 2
+    },
+    {
+      "path": "docs/implementation/evidence/server-recovery-2026-09-24/deployment-scope.json",
+      "sha256": "cb991c369772563ad5f369fd32fe27c0f0ccc767684431ffae4cca90d38fb5af",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/server-recovery-2026-09-24/native-85.json",
+      "sha256": "7bba36d13519cc10a5e2c7bd60566e76ad8e0dd7820ae8630325ce9d5cf398c0",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 85,
+      "checkCount": 6
+    },
+    {
+      "path": "docs/implementation/evidence/server-soak-2026-09-24/soak-result.json",
+      "sha256": "6406341643671798c3ef166a990f9bf80192eccd277ce8905acba49af10065ba",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 85,
+      "checkCount": 5
+    },
+    {
+      "path": "docs/implementation/evidence/server-soak-2026-09-24/soak-samples.json",
+      "sha256": "0f9842b8ba7b37d3333fad799fe8f85a3c3ad8458f78a266c34f6ec017dfbec4",
+      "rerunDuringAudit": false,
+      "rootType": "list"
+    },
+    {
+      "path": "docs/implementation/evidence/server-supervision-2026-09-24/native-85.json",
+      "sha256": "b888dd0d8391d6c798d7c2aeca4364798f17ef18091eea8954f267acf7545711",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 85,
+      "checkCount": 6
+    },
+    {
+      "path": "docs/implementation/evidence/server-supervision-2026-09-24/parent-85.json",
+      "sha256": "fffb37ba65b73cdcacaeff7ba193d5b671f1984b37b9f27f5b57ee7153b05420",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 85,
+      "checkCount": 10
+    },
+    {
+      "path": "docs/implementation/evidence/server-supervision-2026-09-24/timeout-85.json",
+      "sha256": "f680300faa00b34141cdedbda9c6e6d9a974a371855207f58358bfc81e931b82",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/areas-63.json",
+      "sha256": "3c09ad38a8eb6c24236f4ff59bebb247e165d623c88419fbbfccb1cc63a9fd4d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 63,
+      "checkCount": 8
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/garden-ui-63.json",
+      "sha256": "e5933b208fff9a866e42a93188ada18344fe1225f1d37432509600111673f8fc",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 63,
+      "checkCount": 10
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/intermediate-runs.json",
+      "sha256": "411ae2ea1a48508936727b91980e4c63dc7887823d0029c7087a26f51fd52af5",
+      "rerunDuringAudit": false,
+      "rootType": "list"
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/motion-four-impaired.json",
+      "sha256": "bb7b4c7e9a98e02411e8ce13df0a52fc4db4e8e737670bc7a942af2659e30525",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 63,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/motion-four-normal.json",
+      "sha256": "750d2ad0e70017662ae24d146d5ab1c9997a7bbe4eeccc0a8fa88bb81af152dd",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": 63,
+      "checkCount": 4
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/network-63-open-reconnect.json",
+      "sha256": "45402affe0c581e00bf9dabe1f140b736df8378fd278d0efe345b9a7fa538e8d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": false,
+      "recordedBuild": 63,
+      "checkCount": 7
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/preview-update-58-to-63.json",
+      "sha256": "b621853ff265c5cc7560ebe87b400f47a083d1c2c86459ffacc024665f229e22",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/rules-41.json",
+      "sha256": "ea1586f581a0141f61b848ae1abcd798befaeb443bf9fabe90abb4ee9c81e94b",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 41
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/shared-build-63.json",
+      "sha256": "9f7127628a362773352e3871419f043f6a366d4ee3d401c4f2578ac8ef0e6072",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/solo-build-64.json",
+      "sha256": "9b6b2ae31f8c534391a715e97258beae45d240c64882b37c1afc4e6279cf69c6",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/solo-input-64.json",
+      "sha256": "5b45bcd7bc6d59159a4e5277d8e1f8ae35ead0b7c44bd04118b011a471fff849",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.64",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/solo-recovery-64.json",
+      "sha256": "6b06260539c6617cadc3f853ecda737748c0727a7a0e414fbeb9afc58232daf2",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.64",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/solo-update-59-to-64.json",
+      "sha256": "d8f4582fd0014163f94c851407a56f3ae1f6c5f8af2a853b5413680e27a441ea",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.64",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/smooth-movement-2026-09-24/user-play-check.json",
+      "sha256": "2297e51c788942935373e0ff04026272cca953b0c09b871c718e03d616640ee6",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 63,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/android-inspection-30.json",
+      "sha256": "fde21dab2b32f5458a30c166d405d65b2ebac597ea015b5689c7565bed56f066",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": false,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/android-runtime-30.json",
+      "sha256": "85cca69b7c5b133ff46c42620a63e6bf6fad3ad3442591e3a1a90fdd4212d967",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 30,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/android-update-30.json",
+      "sha256": "660567fb0fdec01ac6cdcfa6fd269458a6139654a92e5bad1800d65e67cb3172",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 30,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/ios-export-38.json",
+      "sha256": "2da2c05f40c7eff2e80485e9668a6ce75f6e9a06b9bae93c260242d92c827058",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": 38,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/layout-small-36.json",
+      "sha256": "a5cb0ac5ef8e88d3c5a0a0a08527c8774bb8cccc8cbedf5a6c719e4a36435dd4",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.36",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/layout-tablet-36.json",
+      "sha256": "5db3bc1c025d107a49a4b351ba1fe91e2053953045b3a09f661a78ee89cbb971",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.36",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/layout-wide-36.json",
+      "sha256": "308822b4e05784142300b1d79eb24b0c7734bfd9deff892aeb22a28cccb06c26",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.36",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/narration.json",
+      "sha256": "3f1e62359a518487d74446d396b3e6e67a4e417cf0b2e13077dceb8f7bd836b0",
+      "rerunDuringAudit": false,
+      "rootType": "list"
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/presentation-allocations.json",
+      "sha256": "884f47cf45cbcf3040197a8a574413eac28b8e428d3aa2d82e0fa850604cda04",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/presentation-input-37.json",
+      "sha256": "bd7132dcc0b291678e96bd635b278936a27eb413fac0877fdb9ce53a9f4d8598",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.37",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/presentation-recover-37.json",
+      "sha256": "ec482c18a1994aac8a262e615735086ac2cc527604b06dbae8f4007e81f25268",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.37",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/presentation-update-37.json",
+      "sha256": "c91584fe75392e847e5457c6de7380b3b13cdd88f94372956772c9e3d3490f3d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.37",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/rules-presentation.json",
+      "sha256": "afcad84a76b73abf4f261cad576f85ff3b297babda6082d7954e274493740539",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 18
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/rules.json",
+      "sha256": "fa801242da9ae9c5b096f5e95b34d59183d346c25535ed3b39639fbf74969d8d",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": null,
+      "recordedBuild": null,
+      "checkCount": 16
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/windows-input-34-1.json",
+      "sha256": "84fc2216feb61968dbd50d5737252e7d4bc047babf0886871c0b02af365e4d5e",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.34",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/windows-input-34-2.json",
+      "sha256": "b0b64e50de7e370e421e0e0d8c41a3381c926a5ed662308bcc325d6ad27f34d7",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.34",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/windows-input-34-3.json",
+      "sha256": "96a915f35d5148929e54f5279eb305a3a095ca330ada2dbe7ac3dc5538a929f1",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.34",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/windows-input-35.json",
+      "sha256": "f9eae4420f4256234baeed3e67523e6d6f9411a0537d3123c936fd4e91deff9c",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.35",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/windows-recover-35.json",
+      "sha256": "3e346998cc618eb12f919a33b964eb62ac82ee993fbfdb84c1a8b376fe40e3f4",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.35",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/windows-seed-29.json",
+      "sha256": "bc709e70bef459a1a369d5b855291b809c11b8a1bdd6d9c76e2ed0a985779666",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.29",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/solo-prototype-2026-09-24/windows-update-35.json",
+      "sha256": "070513b463b907a19b7fd885dc6abc6b9cc59674735dd7ff87cf971032105e52",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.35",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/windows-g1-2026-09-23/resume.json",
+      "sha256": "5889ed8026cd4540bea36400589e85d73216e664e8ffd3033ce4ae0197a0f338",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.5",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/windows-g1-2026-09-23/seed.json",
+      "sha256": "6f93dd648f4eab0aed4d166629e1514ff71ea0f5dd20742cb640987cf12a0b1c",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.5",
+      "checkCount": 0
+    },
+    {
+      "path": "docs/implementation/evidence/windows-g1-2026-09-23/update.json",
+      "sha256": "af78ae499f812410627ab751b2a0f2409ba61b7064f8bb02280c163d8592e5c9",
+      "rerunDuringAudit": false,
+      "rootType": "dict",
+      "recordedPassed": true,
+      "recordedBuild": "0.0.6",
+      "checkCount": 0
+    }
+  ],
+  "lastRecordedDeployment": {
+    "pcServer": 83,
+    "androidSamsung": 83,
+    "ipad7": 79,
+    "ipad9": 79,
+    "iphone": 79,
+    "latestQualifiedWindows": 90,
+    "historicalWindowsPreview": 68,
+    "parentPageSelectedBuild": 85,
+    "automaticCrashRecoveryEnabled": false,
+    "bootServiceInstalled": false,
+    "queriedDuringAudit": false,
+    "scopeRecord": "docs/implementation/evidence/local-continuation-2026-09-25/deployment-scope.json"
+  },
+  "evidenceInterpretation": [
+    "Four real mobile admissions and scoped user play feedback do not complete sustained four-device lifecycle/ownership/travel acceptance.",
+    "Build 90: 67 core/storage checks, six native continuation groups, four legacy compatibility combinations, four-player desktop motion and six server recovery groups are retained passes, not rerun here.",
+    "The ten-minute sustained native run is on Windows 85, not a mobile/A10 qualification or a new build-90 soak.",
+    "Complete checkpoints and separate preserved local adventures do not implement an operation journal, iPad host election or conflict merging. A hard loss may restore a checkpoint older than the last rendered/accepted action.",
+    "Guarded parent controls and crash supervision have isolated proof but were last recorded unactivated for the actual family. Same-Windows-user backup/restore is not portable disaster recovery.",
+    "Garden returns are a limited item-policy implementation; there are no owned bedrooms/protected creations yet. Creek and video are fixtures, not finished destinations/media library."
+  ],
+  "corrections": [
+    "Reconciled stale Windows 68 / untested-mobile summaries with Windows 90 versus deployed 83/79.",
+    "Marked historical no-project and unverified Android/Mac status correctly; updated goal intro and HTML status cards.",
+    "Updated gate/device/work ledgers and next task; G3-OPS-01 is completed scoped work, G3-REC-03 is next.",
+    "Separated adventure preservation from automatic reconciliation and recorded missing event-tail/loss-window work.",
+    "Avoided redundant intermediate deployment: recorded selected 85, next use a coordinated qualified candidate after checks.",
+    "Preserved all 55 chapters, 35 feature IDs and non-ID/content requirements."
+  ],
+  "nextTask": {
+    "id": "G3-REC-03",
+    "goalIds": [
+      "NET-02",
+      "AUTO-01"
+    ],
+    "result": "Native outage failure matrix with retained saves, no duplicate action application and explicit failure outcomes.",
+    "acceptance": [
+      "lost acknowledgments / unresolved action archive identity and no replay",
+      "denied branch/selection writes preserve current saves",
+      "background time does not advance foreground outage threshold",
+      "rejected admission preserves local play without retry loop"
+    ],
+    "then": "Coordinated mobile recovery candidate, iPad 7 first then iPad 9/phones, controlled server deployment and remaining sustained four-device G3 qualification. G4 hosting -> G5 reconciliation/rooms/item policies -> G6 polished slice."
+  },
+  "mandatoryPreserved": [
+    "iPads first with A2197 minimum; up to four iOS/Android players",
+    "Independent areas, departures and exclusive shared holders",
+    "Both iPads hosting; automatic joining, host switching and recovery",
+    "Full offline solo, durable progress and reunion",
+    "All six worlds and full character/activity/media/daycare goal sheet",
+    "Unused shared loans return; personal decorations/creations protected",
+    "Private Git; preserve saves/signing; personal TV media excluded"
+  ],
+  "optionalOnly": [
+    "Travel multiplayer connectivity",
+    "AR",
+    "Temporary Windows sign-in convenience before VPS"
+  ],
+  "removedOption": "Bluetooth",
+  "vpsDecision": "Preferred shared authority after reliability gate; preserves G4/G5/offline. Details supplied later; no access now.",
+  "validationRecord": "docs/implementation/evidence/plan-audit90-2026-09-25/validation.json",
+  "historicalAudit": "docs/implementation/evidence/plan-audit83-2026-09-24/audit.json"
+}
