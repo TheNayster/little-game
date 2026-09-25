@@ -1,39 +1,39 @@
-# Current checks — server/Android 83; Apple clients 79
+# Current checks — older iPad 91; server/Android 83; newer iPad/iPhone 79
 
-**Updated September 25 — no action is needed while you are away.** Windows 91 has passed the isolated outage failure matrix and related regressions. Matching Android 91 and the iPad/iPhone 91 Xcode export are now [prepared on Windows](g3-mobile-recovery-builds-2026-09-25.html). Native Apple compilation/signing and all physical updates/tests remain pending. The last recorded deployed versions above have not changed. Android's separate 16 KB qualification issue remains open.
+**Current return session, September 25:** native Apple build/signing and the older iPad 79 → 91 update passed. All 263 saved-document files and existing preferences were preserved, and the iPad automatically rejoined the original server. [Update evidence](g3-ipad91-qualification-2026-09-25.html). The next immediate action is the short physical controls check on that iPad. The server and other devices have not been updated in this session.
 
 **Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. The project Android emulator also passed a retained 79 → 91 update and [six recovery checks with three Windows players](g3-android-recovery-2026-09-25.html). The [parent page also gained protected-backup download and file checking](g3-parent-portable-backups-2026-09-25.html), tested with a separate four-player family. The emulator and three Windows players also passed a [ten-minute build 91 recovery run](g3-sustained-recovery-play-2026-09-25.html), including normal item resets and saved-adventure preservation. The [optional Windows sign-in helper](g3-signin-startup-2026-09-25.html) also passes isolated native/browser checks, including recovery of four original players and preserved Stop/Pause choices. Your actual Startup folder, live world and physical devices were not changed, and no family passphrase was created.
 
 ## Your to-do list when you are home
 
-**Start with these setup items. No passwords or verification codes need to be sent in chat.**
+**Current steps. No passwords or verification codes need to be sent in chat.**
 
-1. **Mac and older iPad:** turn on the Mac, leave it awake on home Wi-Fi, connect the older **iPad 7 / A2197** by USB and unlock it. Keep Little Weeps closed on the iPad's Home Screen for the update. The newer **iPad 9 / A2602** comes next; having its cable ready helps.
-2. **Tell me the devices are ready and whether anyone is playing.** I will verify backups, signing, installed versions and the prepared candidate before an in-place update. If a Mac password or signing prompt appears during that session, enter it on the Mac. Nothing needs to be approved while you are away.
+1. **Older iPad:** keep it connected to the Mac and unlocked. On build **0.0.91**, check walking, dragging the bucket to the tap/plant, Listen and full-screen visibility. Reply to the pending controls check, then leave the app open.
+2. **Next devices:** have the newer **iPad 9 / A2602** and its USB cable ready after we finish the older-iPad checks. Android and iPhone follow. Tell me if anyone else starts playing before we coordinate a server update. No old signing shortcut needs to be rerun.
 3. **Choose a backup destination:** an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. The portable encrypted backup/reconstruction tool now passes isolated Windows tests. We still need a real copy on that destination and a restore on another Windows account/computer. Once I relaunch the updated parent helper, use **Download protected backup**, move the downloaded file to your chosen destination, then use **Check backup file** on that copy. Choose and save the passphrase privately; do not send it here. That file check does not replace the later restore test. [The new controls](g3-parent-portable-backups-2026-09-25.html).
 
-**After I install and launch the checked candidate, we will do these together:**
+**After the older iPad controls check, we will do these together:**
 
-- On the older iPad first, check offline start, local play during an outage, closing/reopening, and family reunion with the local adventure still available. I will arrange the isolated test server and give the exact short steps; do not shut down the family server yourself to simulate a failure.
+- On the older iPad first, check offline start, local play during an outage, closing/reopening, and family reunion with the local adventure still available. I will arrange the recovery check and give exact short steps without interrupting other players; do not shut down the family server yourself to simulate a failure.
 - Repeat the relevant recovery checks on the newer iPad, then Samsung and iPhone. Check actual lock/background behavior, four-player movement and the updated phone layout/reset cues. Existing successful smoke tests stay recorded.
 - Update the family authority and enable its qualified recovery controls during an **empty session**. The current parent page still selects operations build 85 and recovery is Off. I will handle the matching build and backups; approve a Windows prompt only if the reviewed setup actually needs one. I will deliberately retire the old parent helper while preserving the game and settings; the new launcher refuses to replace an older running helper automatically.
 - After that, if you want the helper to reopen when this Windows account signs in, use **Add sign-in startup**. We will then test an actual sign-out/sign-in or reboot together. This has only been tested using isolated shortcuts so far; it does not wake the PC or run before login. Removing the shortcut leaves current play/recovery running, and saved Stop/Pause choices remain respected.
 
 **Still pending:** reliable unattended renewal on both iPads. Keep the USB cables available; Wi-Fi refresh has not passed. The last recorded development profile expires October 1, so we will check the installed profile before updating.
 
-VPS details can wait until the reliability and deployment gates are ready. There is no need to reconnect devices or troubleshoot anything remotely right now.
+VPS details can wait until the reliability and deployment gates are ready. Focus on the older iPad first.
 
-Both iPads were **updated in place and launched on 79**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Signing for that earlier build is complete. The new 91 candidate needs its own verified native build/signing session; do not rerun an old signing shortcut. [Earlier installation evidence](g3-ipad-79-2026-09-24.html).
+Both iPads were **updated in place and launched on 79**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Signing for that earlier build is complete. The new 91 candidate has now completed native build/signing and updated iPad 7; iPad 9 is still pending. Do not rerun an old signing shortcut. [Earlier installation evidence](g3-ipad-79-2026-09-24.html).
 
-**Both iPads, Samsung and iPhone have joined the same PC shared world.** Native discovery and admission are verified, and the user confirms all devices work. After everyone left, the user authorized the PC server and Samsung update to 83. Those updates are complete; iPads/iPhone remain 79. [Four-device record](g3-phones-79-2026-09-24.html).
+**Earlier four-device milestone: both iPads, Samsung and iPhone have joined the same PC shared world.** Native discovery and admission are verified, and the user confirms all devices work. After everyone left, the user authorized the PC server and Samsung update to 83. Those updates completed with iPads/iPhone on 79 at that time; the older iPad is now 91 as recorded above. [Four-device record](g3-phones-79-2026-09-24.html).
 
-## iPad progress — further hands-on checks paused at user request
+## Earlier iPad 79 evidence — new 91 checks are tracked above
 
-1. **Done: both apps open, local-network permission allowed, both joined.** No further iPad action is currently requested.
+1. **Done: both apps open, local-network permission allowed, both joined.** This passed during the earlier session.
 2. **Done by user report: smooth two-way movement and one shared bucket.** Both iPads show the other player moving; the bucket can only be held by one player, then dropped and picked up by the other. [Recorded feedback](evidence/ipad79-2026-09-24/movement-bucket-feedback.json).
 3. **Done by user report: independent areas and reunion.** One player visited Creek while the other kept playing in Garden; they saw each other again on reunion. [Recorded feedback](evidence/ipad79-2026-09-24/independent-travel-feedback.json). Shared-build joystick plus dragging, Listen, remembered settings and full-screen layout still need their separate check.
 4. **Done: leave and return on both iPads.** The user confirms locking/unlocking and also closing/reopening while the sibling continues; movement and bucket pickup work afterward. Native reads confirm retained identities and automatic rejoin from new app processes to the same PC authority. [Evidence](evidence/ipad79-2026-09-24/lock-cold-rejoin.json).
-5. **Passed on the tested iPad: saved solo round trip.** The user confirmed easy family rejoin with server positions and restoration of the solo toy position when returning to Play by myself. [Feedback](evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json). Which iPad was used and repetition on both were not specified. Further iPad time is paused. Initial joining after a server-absent start and remaining multi-touch/layout/voice/settings checks remain deferred.
+5. **Passed on the tested iPad: saved solo round trip.** The user confirmed easy family rejoin with server positions and restoration of the solo toy position when returning to Play by myself. [Feedback](evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json). Which iPad was used and repetition on both were not specified. Further testing was paused at the end of that session; the user has now returned. Initial joining after a server-absent start and remaining multi-touch/layout/voice/settings checks remain deferred.
 
 The previous unpaired solo garden, paired-device solo draft and server world are separate. The update preserves the old save; it does not merge it into the family garden. Windows 90 qualifies automatic local adventures and safe reunion; Windows 91 adds failure/retry evidence. Physical device qualification and full offline reconciliation still need their planned work.
 
@@ -70,9 +70,9 @@ Completed while away, using separate test worlds:
 
 - [Optional Windows sign-in startup](g3-signin-startup-2026-09-25.html): six native groups, ten existing backup/recovery regressions and browser controls pass. The test shortcut recovered a lost helper/authority and all four original players in 19.33 seconds. No real account Startup entry or OS sign-in/reboot was performed.
 
-**Next: G3-REC-05 native Apple compile/signing and iPad-first recovery qualification.** Prepared artifacts are ready for this later session. Physical qualification waits for you; iPad hosting and reconciliation remain required.
+**Active: G3-REC-05 older-iPad recovery qualification and coordinated remaining updates.** Native compile/signing and iPad 7 data-preserving update now pass. Physical recovery still needs the matching server; iPad hosting and reconciliation remain required.
 
-When you return:
+Remaining parent tasks:
 
 1. Complete any required Windows network approval for the selected prepared server, then update it during an empty session and enable recovery through the parent page. The page is still configured for qualified operations build 85; newer recovery/continuation 91 must be selected and qualified for deployment deliberately. No prompt is being left waiting overnight.
 2. Choose an independent backup destination. The new encrypted portable format and reconstruction pass isolated Windows tests; create the actual family copy there and verify a restore on another account/computer. Existing `.lwbackup` files remain tied to this Windows account.
@@ -81,7 +81,7 @@ When you return:
 
 [Persistent server 83](g3-persistent-server-2026-09-24.html) is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Optional sign-in startup now has isolated evidence, while actual activation/sign-in remains open. Sustained desktop/emulator runs are recorded above; physical long-duration and broader lifecycle acceptance remain open.
 
-## Deferred hands-on checks — no action requested now
+## Additional physical checks still open
 
 - When devices are available for testing, finish detailed Samsung/iPhone shared-item, independent-area and lifecycle checks; repeat solo restoration per device as needed.
 - Exercise a server-absent initial launch followed by late joining, remaining current-build iPad multi-touch/settings checks, and sustained four-device frame-time/memory measurements.

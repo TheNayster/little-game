@@ -1,0 +1,21 @@
+{
+  "utc": "2026-09-25T18:33:32.559796+00:00",
+  "device": "iPad 7 A2197",
+  "os": "18.7.10",
+  "clientBuild": "0.0.91",
+  "familyServerBuild": 83,
+  "enrollment": "paired",
+  "status": "connected",
+  "receiveError": 0,
+  "receivedDataEvents": 714,
+  "sampleSeconds": 37.110034711834466,
+  "phases": [
+    "discovered",
+    "transport-Connect",
+    "connected",
+    "first-snapshot",
+    "shared-presented"
+  ],
+  "recoveryCheckpointQualified": false,
+  "scope": "Native initial connection to original family server only; human controls, lifecycle, new recovery traffic and sustained physical play are separate."
+}

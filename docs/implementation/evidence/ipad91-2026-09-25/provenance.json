@@ -1,0 +1,12 @@
+{
+  "build": 91,
+  "gameRuntimeSourceChanged": false,
+  "verificationTool": "Tools/Verify-iPadSigned.py",
+  "verificationToolSha256": "0964e7dffaa8b400f51bf2f09a337f3ecabb48e89ec6f471554512b2c27fa6d9",
+  "sourceBaseline": "36d4367f9ccf1cb572c3f2bdaa68dd67e7fc23bb",
+  "exportFilesVerifiedOnBothComputers": 3094,
+  "exportArchiveSha256": "528fdb15c403693051ba18ad13016895b889c15f37e50897b99ab0640e839447",
+  "macOS": "26.3.1",
+  "xcode": "26.6 (17F113)",
+  "scope": "Native build and older-iPad update. Original family authority and other devices were not updated."
+}

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 91,
+  "checks": [
+    "Completed signed native build accepted for the provisioned iPad 7",
+    "Unprovisioned device rejected before manifest/record publication",
+    "Prior valid local verification record preserved on refusal"
+  ],
+  "scope": "Verifier only; does not install or change app data."
+}

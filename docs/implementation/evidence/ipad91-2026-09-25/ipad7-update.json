@@ -1,0 +1,18 @@
+{
+  "build": 91,
+  "previousBuild": 79,
+  "label": "ipad7",
+  "installed": true,
+  "signedArtifactVerified": true,
+  "backupFilesVerified": 264,
+  "backupLocations": [
+    "Mac",
+    "Windows"
+  ],
+  "documentsPreserved": 263,
+  "allExistingPreferencesPreserved": true,
+  "inventoryAvailable": false,
+  "exactBundleLaunched": true,
+  "uninstalled": false,
+  "enrollmentReplaced": false
+}
