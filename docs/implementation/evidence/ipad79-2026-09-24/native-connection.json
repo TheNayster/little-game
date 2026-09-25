@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "recordedUtc": "2026-09-25T01:05:42.401559+00:00",
+  "build": "0.0.79",
+  "goalIds": [
+    "AUTO-01",
+    "JOIN-01",
+    "FAMILY-01"
+  ],
+  "scope": "Physical iPad 7 and iPad 9 native Bonjour discovery, protected family admission, and presentation of the same PC-authority world after the user opened both apps and allowed local-network access.",
+  "server": {
+    "build": "0.0.79",
+    "status": "listening",
+    "connectedProfiles": 2,
+    "receiveError": 0
+  },
+  "devices": [
+    {
+      "device": "ipad7",
+      "build": "0.0.79",
+      "status": "connected",
+      "keychainPaired": true,
+      "inboxConsumed": true,
+      "discovery": "native-bonjour-ipv4",
+      "sharedPresentation": true,
+      "localCheckpointPreserved": true,
+      "snapshotSequence": 40808,
+      "snapshotRevision": 11,
+      "receiveError": 0,
+      "lastDataAgeSeconds": 0.033388125000101354,
+      "events": [
+        {
+          "utc": "2026-09-25T00:59:30.3674800Z",
+          "phase": "discovered",
+          "detail": "native-bonjour-ipv4"
+        },
+        {
+          "utc": "2026-09-25T00:59:30.7335690Z",
+          "phase": "transport-Connect",
+          "detail": ""
+        },
+        {
+          "utc": "2026-09-25T00:59:30.8015160Z",
+          "phase": "connected",
+          "detail": ""
+        },
+        {
+          "utc": "2026-09-25T00:59:30.8059590Z",
+          "phase": "first-snapshot",
+          "detail": "39770"
+        },
+        {
+          "utc": "2026-09-25T00:59:30.8427250Z",
+          "phase": "shared-presented",
+          "detail": "local-checkpoint-preserved"
+        }
+      ]
+    },
+    {
+      "device": "ipad9",
+      "build": "0.0.79",
+      "status": "connected",
+      "keychainPaired": true,
+      "inboxConsumed": true,
+      "discovery": "native-bonjour-ipv4",
+      "sharedPresentation": true,
+      "localCheckpointPreserved": true,
+      "snapshotSequence": 40814,
+      "snapshotRevision": 11,
+      "receiveError": 0,
+      "lastDataAgeSeconds": 0.032015999999885025,
+      "events": [
+        {
+          "utc": "2026-09-25T00:59:25.6867240Z",
+          "phase": "discovered",
+          "detail": "native-bonjour-ipv4"
+        },
+        {
+          "utc": "2026-09-25T00:59:25.9535200Z",
+          "phase": "transport-Connect",
+          "detail": ""
+        },
+        {
+          "utc": "2026-09-25T00:59:26.0564020Z",
+          "phase": "connected",
+          "detail": ""
+        },
+        {
+          "utc": "2026-09-25T00:59:26.0680890Z",
+          "phase": "first-snapshot",
+          "detail": "39673"
+        },
+        {
+          "utc": "2026-09-25T00:59:26.1085650Z",
+          "phase": "shared-presented",
+          "detail": "local-checkpoint-preserved"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "sameWorldAndAuthorityEpoch": true,
+    "sameTwoProfileRoster": true,
+    "matchingSampledRevisionAndPlayerState": true
+  },
+  "limits": [
+    "Physical movement smoothness, exclusive pickup and independent travel await user observation.",
+    "Lifecycle, cold restart, saved solo return and late joining on these physical devices remain pending.",
+    "Large client maxFrameGap includes the earlier paused permission/foreground interval; it is not a gameplay performance result.",
+    "This is a temporary PC test authority, not yet the always-on production service."
+  ]
+}

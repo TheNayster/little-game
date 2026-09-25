@@ -2,12 +2,12 @@
 
 Both iPads have been **updated in place and launched**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Mac signing is complete; there is no need to run the signing window again. [Current installation evidence](g3-ipad-79-2026-09-24.html).
 
-The PC family server is running. The last read showed both apps paused with `foreground-required` and no players admitted yet. These remaining steps verify actual multiplayer, rather than just installation.
+The PC family server is running, and **both iPads have automatically joined the same shared world**. Native discovery, authenticated admission and matching shared snapshots are verified. The remaining checks cover physical play and recovery.
 
 ## Start here
 
-1. **Open Little Weeps on both iPads.** Choose **Allow** if the game asks to find devices on the local network. Keep both games open and unlocked on home Wi-Fi. Tell Codex “both open,” or give the wording of any blocking message. Codex will check native admission and the current shared world.
-2. **After Codex confirms both joined:** move one character while watching the other iPad, then reverse it. Hold the bucket on one; the other should see it held and be unable to take it. Drop it and let the other player pick it up.
+1. **Done: both apps open, local-network permission allowed, both joined.** Keep them open and unlocked on home Wi-Fi for the following checks.
+2. **Current check — movement and one shared bucket:** move one character while watching the other iPad, then reverse it. Hold the bucket on one; the other should see it held and be unable to take it. Drop it and let the other player pick it up.
 3. **Independent areas and touch:** send one player to Creek while the other stays in Garden, then meet again. Try joystick plus dragging, Listen, remembered settings and full-screen layout.
 4. **Leave and return:** lock one iPad while the other keeps walking/using toys. Unlock and return; it should rejoin without a stuck drag or interrupting the sibling. Repeat with the other device. Codex will inspect the current state alongside these observations.
 5. **Saved solo and late joining:** with Codex coordinating the PC, open while the server is absent and play solo. Start the server while a toy is held or Menu is open; switching should wait for a safe moment. Menu → Play by myself restores the separate solo draft; Find my family rejoins. Finally check a cold app restart, retained enrollment and saved settings.
