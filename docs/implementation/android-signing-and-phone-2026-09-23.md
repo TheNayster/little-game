@@ -1,5 +1,8 @@
 # Android signing and phone update — 23 September 2026
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 Bounded **G1** task for **FAMILY-01 / TV-01**: establish this game's signing identity, install the foundation fixture on the Samsung, and prove a normal update preserves observed saved data. The user's reported clipped title is fixed in the installed update.
 
 **Result:** family-signed **0.0.14 → 0.0.15** installed and launched on **SM-S948U1, Android 16 / API 36, 4 KB pages**. The updated screen shows the complete title and footer. **3 saved taps and the paused 6.2-second video bookmark survived** both a force-stop/reopen of 14 and the in-place update to 15. The update was signed using the local recovery copy of the key. No uninstall, clear-data, downgrade or unrelated-app operation occurred.
@@ -73,3 +76,4 @@ Use a new build number; keep this Unity project saved and closed:
 These commands are examples for the next fresh build; **16 has not been built**. `-UseRecoveryKey` on the build command repeats the recovery-signing route. The install command alone does not build or claim a new version. If the phone's wireless port changes, refresh the ignored device record with the newly confirmed endpoint; never substitute another device or app.
 
 Next G1 work: complete the outstanding iPad save/update/device checks and saved platform profiles, and verify independent recovery storage. Preserve the native ARM64 16 KB qualification gate. All mixed-device play, iPad hosting, independent rooms and the complete content goal sheet remain later required work.
+<!-- historical-record-end -->

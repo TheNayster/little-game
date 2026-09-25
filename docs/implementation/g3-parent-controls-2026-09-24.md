@@ -1,5 +1,8 @@
 # Parent server controls — G3-OPS-01
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **NET-02 / AUTO-01. Implemented and qualified in an isolated Windows world.** A new **Little Weeps Server** desktop shortcut opens the parent page. It shows fresh server readiness, connected-player count and the time/checksum of the last saved checkpoint. The live family server remains on **83**; the guarded-stop runtime is prepared as **84** and has not replaced the family's running process.
 
 ## What the parent page does
@@ -34,3 +37,4 @@ The current 83 server can be monitored, but its Stop button stays disabled becau
 ## Next bounded task
 
 **G3-OPS-02: backup/restore workflow and an isolated recovery drill.** Preserve the checkpoint plus required protected enrollment, verify a restored isolated instance against saved identities/items/receipts, and document a safe failure path. An independent destination still needs to be selected and qualified; local copies alone do not meet that goal. Apply the prepared server-controls update separately when the empty-session/network-setup conditions are met. Crash supervision, sustained/device/outage testing, the VPS milestone, and required G4 iPad hosting/recovery retain their place in the [main build guide](../family-playset-build-guide-2026-09-23.html#9-first-implementation-work-queue).
+<!-- historical-record-end -->

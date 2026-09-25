@@ -1,5 +1,8 @@
 # Portable server backup and recovery
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **Task: G3-OPS-06 · September 25, 2026 · Goal references: NET-02 / FAMILY-01 and the G1 independent-backup gate.**
 
 This Windows-only task proceeds while G3-REC-05 waits for the Mac and physical iPads. It adds a portable encrypted backup path without changing the game, rebuilding mobile 91, or updating the deployed family authority. Native Apple compilation/signing and iPad-first recovery checks remain next in the build sequence.
@@ -68,3 +71,4 @@ The existing regression suite additionally passed occupied/stale-decision refusa
 These are **same-account/PC experiments** with source-DPAPI independence tested by disabling those calls. They do not demonstrate another Windows account/computer, independent storage, original physical-device re-admission, crash-proof media or a VPS migration. The live family world and its credentials were not exported or restored.
 
 **Still required for the independent-backup gate:** the parent's selected external drive/other computer, an actual retained backup and passphrase, a restore on another Windows account/computer, original-device re-admission there, and the backup coverage for device-local work/media/signing. The parent web page does not yet expose portable export. G3-REC-05, mobile host recovery, unattended iPad renewal and VPS deployment remain open.
+<!-- historical-record-end -->

@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — Persistent home server</title><style>
+<title>The Family Playset — Persistent home server — build 83</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -16,11 +16,15 @@
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
-</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-persistent-server-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1>Persistent home server — build 83</h1>
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-persistent-server-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1 id="persistent-home-server-build-83">Persistent home server — build 83</h1>
+<blockquote>
+<p><strong>Historical implementation record — current scope changed September 25.</strong> PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use <a href="../current-decisions.md">current decisions</a>, the <a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">build guide</a> and the <a href="return-checklist-ipad-lan-2026-09-24.html">current return checklist</a>.</p>
+</blockquote>
+<!-- historical-record-start -->
 <p>Goal <strong>NET-02</strong>, G3. User request: explain the two-hour cutoff and make normal home hosting keep running during family play.</p>
-<h2>Why it stopped</h2>
+<h2 id="why-it-stopped">Why it stopped</h2>
 <p>The Windows networking prototype shared one lifetime check between automated probes (240 seconds) and interactive sessions (7,200 seconds). <code>Start-FamilyLAN.py</code> launched the family authority as an interactive session, so the laboratory deadline also stopped the home server. This was a test-runner limit, not a Unity, iPad, multiplayer or licensing requirement. The phone/timer correction in build 82 did not change it.</p>
-<h2>What changed</h2>
+<h2 id="what-changed">What changed</h2>
 <ul>
 <li>Normal enrolled home-server launches now explicitly request <strong>persistent hosting</strong>, and verify that the server acknowledged it. There is no time limit or empty-player shutdown in that mode.</li>
 <li>Automated probes retain their original deadlines. Persistent mode requires an enrolled, interactive authority; a client or unpaired test cannot silently opt into it.</li>
@@ -30,7 +34,7 @@
 <li>A reviewed administrator helper grants only the selected server executable inbound UDP from <strong>LocalSubnet</strong>. It disables only the matching build's first-run block rules. It does not turn off Windows Firewall, change other apps' rules or open a router port.</li>
 </ul>
 <p>The PC must remain powered on, awake and connected. This does not yet install a Windows sign-in task, service or crash supervisor, and does not implement required iPad hosting. "Persistent" means the server no longer exits on a test timer; it is not a guarantee against operating-system shutdowns or power loss.</p>
-<h2>Evidence</h2>
+<h2 id="evidence">Evidence</h2>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -58,14 +62,15 @@
 </tbody>
 </table></div>
 <p>The native cutoff test supplies an explicit verification-only elapsed offset to the same lifetime branch. It is <strong>not a real two-hour soak</strong>. The production launcher supplies no offset. No new physical-device restart/soak acceptance is claimed. Build 83 includes build 82's garden timers; older 79 clients can interact with that state but do not display the new return cue. Their wider phone layout still requires a client update.</p>
-<h2>Deployment status</h2>
+<h2 id="deployment-status">Deployment status</h2>
 <p><strong>Applied on September 24 after the user confirmed everyone was off the server.</strong> The user approved Windows elevation. The reviewed rule allows the exact build 83 executable inbound UDP from LocalSubnet; the matching first-run block rules are disabled. A read-only verification confirmed the applied scope. The helper initially compared the first character of a scalar CIM address instead of the full address; that verification bug is fixed without requiring another permission change.</p>
 <p>The original family server is now running <strong>0.0.83 in persistent mode</strong>. The deployment tool backed up the original checkpoint/enrollment, verified its checksum, and compared every existing field after restoration: all four players, ten items, progress, positions and receipts were preserved. <a href="evidence/persistent-server-2026-09-24/deployment-applied-83.json">Applied deployment evidence</a>. The earlier <a href="evidence/persistent-server-2026-09-24/deployment-pending.json">pending record</a> remains historical evidence of the canceled first prompt.</p>
-<h3>Samsung updated to 83</h3>
+<h3 id="samsung-updated-to-83">Samsung updated to 83</h3>
 <p>A fresh non-development Android release was built from the current runtime source and signed with the existing family key. Build <strong>79 → 83</strong> installed in place; the installed APK hash and signer matched exactly, and the exact package launched. A PowerShell 5 issue that treated successful ADB download progress as failure was corrected to use the native exit code. <a href="evidence/persistent-server-2026-09-24/android-install-83.json">Installation evidence</a>.</p>
 <p>The phone discovered the PC server automatically, reused its existing enrollment, received the shared world and displayed the game. Both client and server recorded admission with no transport receive error. It later disconnected; the server remained available. This is one physical Android join, not a complete device lifecycle or long-duration qualification. <a href="evidence/persistent-server-2026-09-24/android-connection-83.json">Connection evidence</a>.</p>
 <p><img alt="Android build 83 using the wider phone play area" src="evidence/persistent-server-2026-09-24/android-screen-83.png" /></p>
 <p>The native screenshot was inspected: the title and controls are visible, the floor uses the wider display, and the game reports playing together. No new manual speech/multitouch check is claimed. The original local solo primary/backup are byte-identical. The separate paired solo branch retains its world/player identity and every existing item field; its position advanced through 21 accepted walking commands between observations. Additive resetPending=false fields are expected. No rollback was performed. <a href="evidence/persistent-server-2026-09-24/android-save-retention-83.json">Save comparison</a>. Private Android settings could not be read directly.</p>
 <p>The server's garden timers are now active, and Android has their visual cue and wider layout. iPads and iPhone remain on <strong>79</strong> and were not accessed during this update. Older clients can use the updated authority but do not show the new reset cue or phone layout.</p>
-<h2>Next</h2>
-<p>Update Apple clients when available, then continue parent-facing start/stop/status, Windows sign-in startup, prolonged-outage recovery and real sustained device measurements. The PC must remain awake; there is no time-based exit in home-server mode, but no automatic restart service has been installed. Keep the full goal sheet and required G4 iPad hosting/recovery unchanged. G1/G2/G3 are not declared complete.</p></main></body></html>
+<h2 id="next">Next</h2>
+<p>Update Apple clients when available, then continue parent-facing start/stop/status, Windows sign-in startup, prolonged-outage recovery and real sustained device measurements. The PC must remain awake; there is no time-based exit in home-server mode, but no automatic restart service has been installed. Keep the full goal sheet and required G4 iPad hosting/recovery unchanged. G1/G2/G3 are not declared complete.</p>
+<!-- historical-record-end --></main></body></html>

@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — Hosting preparation and character workshop</title><style>
+<title>The Family Playset — Hosting preparation and the first animation study</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -16,10 +16,14 @@
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
-</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g4-hosting-and-animation-preparation-2026-09-25.md">Editable record</a></nav></header><main class="progress-report report"><h1>Hosting preparation and the first animation study</h1>
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g4-hosting-and-animation-preparation-2026-09-25.md">Editable record</a></nav></header><main class="progress-report report"><h1 id="hosting-preparation-and-the-first-animation-study">Hosting preparation and the first animation study</h1>
+<blockquote>
+<p><strong>Historical implementation record — current scope changed September 25.</strong> PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use <a href="../current-decisions.md">current decisions</a>, the <a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">build guide</a> and the <a href="return-checklist-ipad-lan-2026-09-24.html">current return checklist</a>.</p>
+</blockquote>
+<!-- historical-record-start -->
 <p><strong>Status, September 25:</strong> the user authorized independent work while build 98 waits for device signing/acceptance, including a small character prototype. Two tracks are now explicit: <strong>device qualification when available</strong>, and <strong>bounded development that does not require those devices</strong>. This permits preparation/prototyping without declaring G3, G4 or G6 complete. No shipping Unity sources, package locks, game saves or running family server were changed by this task.</p>
 <p><strong>Delivered:</strong> an executable planned-host-handoff model with 20 passing groups and 117,649 six-event schedules; a layered character source and interactive animation workshop; a native hosting integration sequence; and room/save contracts to guide the next content work. <strong>Follow-up G4-PREP-02 now passes real-state restoration: seven C# groups and four native Windows groups, including all four original profiles rejoining a replica-derived authority.</strong> <a href="g4-real-state-restoration-2026-09-25.html">Restoration evidence and limits</a> · <a href="character-workshop/index.html">Try the character workshop</a> · <a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a> · <a href="../family-playset-build-guide-2026-09-23.html">Main plan</a>.</p>
-<h2>Research applied to this work</h2>
+<h2 id="research-applied-to-this-work">Research applied to this work</h2>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -57,7 +61,7 @@
 </tbody>
 </table></div>
 <p>The right-hand column contains project design decisions. The sources do not provide or certify our implementation. The older <a href="../family-playset-technical-research-2026-09-23.html">technical research</a> remains useful, with its automatic-merge language superseded by the user's current server-wins requirement.</p>
-<h2>G4-PREP-01: an executable planned-transfer model</h2>
+<h2 id="g4-prep-01-an-executable-planned-transfer-model">G4-PREP-01: an executable planned-transfer model</h2>
 <p>Goal IDs: <strong>AUTO-02, NET-02, FAMILY-01</strong>. Files: <code>Tools/HostingModel.Tests/HandoffModel.cs</code>, <code>Program.cs</code>, and <code>README.md</code>. The model is outside <code>Assets</code>; prepared build 98 is unchanged.</p>
 <p>The central invariant is <strong>at most one writer during one planned transfer</strong>. It has this sequence:</p>
 <ol>
@@ -70,7 +74,7 @@
 <p>If a write reports failure, the process stops being eligible to write until it rereads its journal. This handles the case where data reached storage but the caller did not receive success. Before any grant, the source may cancel and resume; after a grant, it cannot safely do so unilaterally.</p>
 <p><strong>Evidence:</strong> <a href="evidence/hosting-prep-2026-09-25/model-results.json">20 model groups</a>, including 117,649 enumerated six-event schedules and 705,894 checked transitions. Cases cover duplicates/reordering, lost messages, restarts, before/after-commit failures, forged identities, damaged or incomplete state, wrong epochs, background eligibility, restore failure, and the absence of a fabricated grant on hard loss.</p>
 <p><strong>Limits:</strong> the model assumes authenticated channels, one serialized controller per device, valid complete checkpoint input and atomic storage. It simulates journal commits; it does not test physical disk failure, encryption, sockets or iPad lifecycle. Its checkpoint payload is opaque fixture data; the separate <a href="g4-real-state-restoration-2026-09-25.html">G4-PREP-02 test</a> now verifies actual record parsing/restoration, without integrating the model into the live transport. The model covers one cooperative transfer, not repeated transfers, hard-loss election or all possible histories. Passing it does not mean iPad hosting is implemented.</p>
-<h2>Next native hosting steps that can be developed on Windows</h2>
+<h2 id="retired-native-hosting-sequence-do-not-implement">Retired native-hosting sequence — do not implement</h2>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -105,8 +109,8 @@
 </tr>
 </tbody>
 </table></div>
-<p>The next independent implementation task is <strong>G4-01</strong>, beginning with authenticated host identity and separation of authority lifecycle from presentation. Build 98 device checks remain a separate short task when the user returns. Production hosting integration stays gated by its own evidence.</p>
-<h2>Personal rooms: save and item boundaries reviewed</h2>
+<p>The former independent task was <strong>G4-01</strong>, now retired, beginning with authenticated host identity and separation of authority lifecycle from presentation. Build 98 device checks remain a separate short task when the user returns. Production hosting integration stays gated by its own evidence.</p>
+<h2 id="personal-rooms-save-and-item-boundaries-reviewed">Personal rooms: save and item boundaries reviewed</h2>
 <p>Goal IDs: <strong>ROOM-01, ITEM-03, WORLD-01</strong>. This is a design review, not implemented bedrooms. The current <code>SoloWorld</code> validators still assume the prototype's two areas and five/ten toys. Adding rooms first requires versioned content definitions and a deliberate save migration; simply appending room names or spawning furniture would leave validation and recovery inconsistent.</p>
 <div class="table-scroll"><table>
 <thead>
@@ -143,7 +147,7 @@
 </tbody>
 </table></div>
 <p>Before building the rooms, fixtures must prove old saves migrate without missing props, duplicate operations cannot duplicate furniture, leaving one room does not unload another player's room, and a recovered host restores rooms it was not displaying.</p>
-<h2>ART-PREP-01: first character and animation workflow</h2>
+<h2 id="art-prep-01-first-character-and-animation-workflow">ART-PREP-01: first character and animation workflow</h2>
 <p>Goal IDs: <strong>CHAR-01, ITEM-02</strong>. <a href="character-workshop/index.html">Open the workshop</a>. It contains original editable vector study artwork, four motions (idle, walk, wave, carry-and-walk), facing controls, walking pace, pause and visible attachment points. <a href="character-workshop/blue-pup-rig.svg">Layered SVG</a> · <a href="character-workshop/asset-contract.json">Asset contract</a>.</p>
 <p>This blue pup is a rig/attachment study, <strong>not approved final Bluey artwork or an animation already installed in the game</strong>. It is deliberately isolated from saved worlds and networking. The bucket is attached to a named hand anchor and counter-rotated to keep its opening level. Turning mirrors the whole presentation without changing a toy ID. The preview uses local animation time, supports reduced-motion pause, and avoids advancing animation while the page is hidden.</p>
 <p><a href="evidence/hosting-prep-2026-09-25/character-preview.json">Preview checks</a> cover all four actual browser motion controls, facing, pause, pace, visible attachment guides and a narrow layout without horizontal overflow. Declared SVG layers/pivots resolve to unique elements. Browser error logs were empty at the final check. Pixel-precision SVG matrix inspection was unavailable through the browser bridge; no such assertion or device frame-time claim is included.</p>
@@ -157,6 +161,7 @@
 <li>Measure render cost with four characters plus representative NPCs on the older iPad. Only then batch the roster and additional activity poses.</li>
 </ol>
 <p><strong>Next art task:</strong> the isolated Unity character-view/rig import proof, followed by one likeness review. No need to repeat 98 networking acceptance just to look at a character study. Full room/activity production still follows its save/ownership prerequisites.</p>
-<h2>Scope and handoff</h2>
+<h2 id="scope-and-handoff">Scope and handoff</h2>
 <p>The shipping project remains build 98; server/helper remain 91. Last installed physical clients remain iPad 7 95, iPad 9/iPhone 79 and Samsung 83. No Mac password, phone connection, iPad interaction or new account was needed for this preparation. The <a href="return-checklist-ipad-lan-2026-09-24.html">return checklist</a> now separates required device actions from the optional art preview and later host checks.</p>
-<p>Work continues in small, testable steps: native replacement-state restoration now passes within its recorded scope; authority/identity separation and actual handoff adapters are next. Art can advance through the isolated import proof alongside the device queue. Neither the model, restoration experiment nor browser preview closes a foundation gate or counts as deployed iPad hosting.</p></main></body></html>
+<p>Work continues in small, testable steps: native replacement-state restoration now passes within its recorded scope; authority/identity separation and actual handoff adapters are next. Art can advance through the isolated import proof alongside the device queue. Neither the model, restoration experiment nor browser preview closes a foundation gate or counts as deployed iPad hosting.</p>
+<!-- historical-record-end --></main></body></html>

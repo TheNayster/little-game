@@ -1,5 +1,8 @@
 # G1 saved build profiles — iPad first
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 23 September 2026 (local time; evidence timestamps use UTC).
 
 The two iPads are the primary devices; Android is secondary. The older A2197 iPad 7 remains the minimum performance baseline. This task supports the G1 build route for FAMILY-01 and TV-01; it implements no multiplayer or game content.
@@ -32,3 +35,4 @@ Full build/source/artifact manifests remain under `Builds/<platform>/G1-0.0.N`; 
 ## Next gate
 
 Prioritize the actual iPads: compile/sign export 16 using the established Mac route, update the iPad 9 in place and observe touch/audio, video and saved values; then install and run the same foundation on the older iPad 7. Start and observe the agreed free-provisioning refresh route. Independent recovery backup and native Android 16 KB qualification remain open. G1 is still in progress; iPad performance, hosting/recovery and the final save system cannot be certified from these desktop builds.
+<!-- historical-record-end -->

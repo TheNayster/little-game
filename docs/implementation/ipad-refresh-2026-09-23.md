@@ -1,5 +1,8 @@
 # G1 — Windows signing-refresh qualification
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 23 September 2026, local time. This is the next bounded task after the completed iPad 9 build-20 update check. It supports the agreed free family-installation requirement and FAMILY-01 / TV-01 save retention. G1 remains active; the older iPad 7 is unavailable and unqualified.
 
 ## Current state
@@ -95,3 +98,4 @@ Sideloadly documents automatic refresh through its background daemon while the p
 5. Enroll iPad 9 and the older iPad separately when available, retaining the same Xcode Apple Account and `com.littleweeps.familyplayset`. Capture each device's current saves before enrollment. The last iPad 9 values were **1,019 taps / 8.9 seconds** with the original profile; account for any later play. [Completed iPad check](ipad-update-2026-09-23.md). Never uninstall or change identity to work around an error.
 
 The original iPad Xcode profile expires **30 September 2026 at 21:15:06 UTC**. Its expiry did not move during the 16 → 20 update. The iPad is not yet enrolled for Windows refresh; the iPhone enrollment is separate. Long periods away from the refresh PC remain a separate deployment constraint; optional travel networking is not part of this task.
+<!-- historical-record-end -->

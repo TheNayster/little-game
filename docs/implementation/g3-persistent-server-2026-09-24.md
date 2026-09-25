@@ -1,5 +1,8 @@
 # Persistent home server — build 83
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 Goal **NET-02**, G3. User request: explain the two-hour cutoff and make normal home hosting keep running during family play.
 
 ## Why it stopped
@@ -49,3 +52,4 @@ The server's garden timers are now active, and Android has their visual cue and 
 ## Next
 
 Update Apple clients when available, then continue parent-facing start/stop/status, Windows sign-in startup, prolonged-outage recovery and real sustained device measurements. The PC must remain awake; there is no time-based exit in home-server mode, but no automatic restart service has been installed. Keep the full goal sheet and required G4 iPad hosting/recovery unchanged. G1/G2/G3 are not declared complete.
+<!-- historical-record-end -->

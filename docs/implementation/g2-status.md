@@ -1,5 +1,8 @@
 # G2 — solo interaction prototype
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **Current-status pointer, September 24:** this file retains dated implementation history. Use the [main plan audit](../family-playset-build-guide-2026-09-23.html#19-implementation-audit-and-remaining-work) for the consolidated device/build ledger, all feature statuses and next task; earlier “next” and “unavailable” statements below belong to their recorded stage.
 
 **Latest device follow-up:** garden 56 now also runs on **iPad 7 / iPadOS 18.7.10**. The user reported repeating the newer iPad's checks successfully with smooth play; an actual restart retained every save byte and recorded preference. Its installed-app inventory query still has a CoreDevice communication error. [Older iPad results and limits](ipad7-garden-2026-09-24.md). This does not close quantified performance, media, child usability, renewal or the complete G1/G2 gates.
@@ -78,3 +81,4 @@ iPad preparation completed on Windows: saved **iPad Solo Prototype** Build Profi
 Next device-dependent task: use the [G2 device checklist](g2-device-checklist.md) to compile/sign the prepared export, preserve the existing installation and test iPad 9 controls, narration and saved garden state. Qualify iPad 7 when available. Do not call G2 passed until those device/child checks have evidence. Windows-only follow-ups should remain small and avoid locking in content or multiplayer presentation before that feedback.
 
 G1 still needs older-iPad qualification, independent backup, native ARM64 16 KB investigation and mobile renewal/device checks. G2 needs actual-device gestures, audio quality and observation of both children. Spanish, final characters, full settings/world wheel, final rooms, physical-device network clients, pairing/discovery, iPad hosts, shared-world recovery, offline reunion and the remaining mini-games are not implemented. The Windows shared garden exercises real transport and a playable interface; it does not finish these requirements. Do not batch-produce content or declare family multiplayer ready from this prototype.
+<!-- historical-record-end -->

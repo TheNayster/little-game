@@ -1,5 +1,8 @@
 # G3 preparation — playable shared garden on Windows
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 24 September 2026. Completed bounded Windows task: **FAMILY-01, JOIN-01, CHAR-01, ITEM-02, ACT-01**. The user asked to connect the tested PC networking to the garden controls. No Mac or physical mobile device was accessed. G1/G2 device gates and the full G3 exit criteria remain open.
 
 ## What changed
@@ -69,3 +72,4 @@ dotnet run --project Tools/SoloRules.Tests/SoloRules.Tests.csproj --configuratio
 ~~~
 
 The launcher's saved-session route also has `Tools/Test-SharedGardenResume.py N RUN_ID OUTPUT_JSON`; use only a successfully completed isolated shared-garden test run. Normal preview state, test credentials and process logs remain ignored under LocalData. Source and artifact manifests pin the actual native outputs; the compact accepted evidence and images above are tracked with this record. Windows export 56 remains in `Builds/iOSSolo/G2-0.0.56/Xcode` for the next actual iPad task.
+<!-- historical-record-end -->

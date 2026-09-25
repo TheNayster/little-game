@@ -1,5 +1,8 @@
 # Protected backups from the parent page
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G3-OPS-07 · NET-02 / FAMILY-01 · September 25, 2026 · Windows tools; game build 91 unchanged.**
 
 The parent control page now offers **Download protected backup** and **Check backup file**. This makes the existing portable recovery format usable without composing terminal commands. It advances the G1 backup gate and G3 everyday server operations while native Apple/iPad recovery qualification waits for availability.
@@ -43,3 +46,4 @@ A rerun exposed an overly strict live-save assertion: the authority writes advan
 - Native Mac compilation/signing and **iPad 7 first** recovery checks remain G3-REC-05. iPad hosting, automatic host recovery, reconciliation and content remain on the goal sheet and ordered plan.
 
 [Updated return checklist](return-checklist-ipad-lan-2026-09-24.html) · [Build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Feature goals](../bluey-game-research-2026-09-23.html).
+<!-- historical-record-end -->

@@ -1,5 +1,8 @@
 # Parent backup and recovery panel — G3-OPS-05
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **NET-02. Implemented, tested and active for monitoring/backups on this PC.** The existing **Little Weeps Server** desktop shortcut now opens an updated page with **Back up world**, **Enable recovery**, and **Pause recovery**, plus last-backup verification and actual helper status. The actual family server remains its original **83** process. It was backed up through the browser, not stopped or replaced. Guarded Stop/recovery activation are correctly disabled until the prepared **85** deployment and reviewed network setup.
 
 ## Behavior
@@ -36,3 +39,4 @@ Independent storage/portable credential recovery, Windows boot/service deploymen
 **G3-REC-01: a complete, versioned, durable client recovery checkpoint as the prerequisite to prolonged-outage local continuation.** The existing view omits receipts and is not a complete authority backup. Preserve family/authority/world identity, revision/epoch, all areas, players, items, receipts and idle metadata; validate size/version/checksum and store atomically. Negotiate support so existing 79/83 clients retain their current behavior. Prove rejection of partial, stale, mismatched and invalid transfers without replacing a good checkpoint.
 
 This brings forward the data prerequisite shared by the G3 outage flow and G4 hosting; it does **not** declare G4 complete or replace iPad election/handoff/partition recovery. Do not implement automatic switching by silently replacing the shared picture with the older solo draft. Preserve that draft separately, then implement the local recovery transition after complete-state delivery is qualified. Branch reconciliation remains G5. [Main guide](../family-playset-build-guide-2026-09-23.html#9-first-implementation-work-queue).
+<!-- historical-record-end -->

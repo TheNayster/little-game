@@ -1,5 +1,8 @@
 # A replacement host restores the real shared world
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G4-PREP-02 is complete within Windows experiment scope.** A fresh native build-98 authority now has a verified test path from a client's actual complete recovery record. Four original player profiles rejoin it, with both areas and their item state preserved. This closes the next hosting prerequisite; automatic iPad hosting is still ahead.
 
 Goal IDs: **AUTO-02, NET-02, FAMILY-01, WORLD-01**. Reviewed against goal-sheet sections 45, 46 and 50 and the [hosting preparation sequence](g4-hosting-and-animation-preparation-2026-09-25.html). The user's current server-wins rule remains authoritative: private offline edits are saved separately and never automatically uploaded into the family world.
@@ -38,14 +41,15 @@ The previous [primary-source review](g4-hosting-and-animation-preparation-2026-0
 
 The source was explicitly stopped before the replacement started. The experiment reused that disposable family's PC authority credentials. It therefore does **not** establish mobile host permissions, automatic election, source retirement over a live transport, hard-loss fencing, or safe partition convergence. A selected replica may trail the latest live source state; planned handoff still requires the final frozen checkpoint and its acknowledged identity.
 
-A valid checksum and selected-record metadata do not themselves authorize a device to host. G4-01 must introduce authenticated mobile host identity/capabilities and endpoint changes without distributing the PC's private key. G4-02 then connects the [planned-transfer model](g4-hosting-and-animation-preparation-2026-09-25.html) to actual journals/messages and repeated transfers.
+A valid checksum and selected-record metadata do not themselves authorize a device to host. The retired G4-01 proposal would introduce authenticated mobile host identity/capabilities and endpoint changes without distributing the PC's private key. G4-02 then connects the [planned-transfer model](g4-hosting-and-animation-preparation-2026-09-25.html) to actual journals/messages and repeated transfers.
 
 Neither this Windows result nor the model replaces Apple lifecycle and A10 performance checks. Both iPads must eventually host with peers playing in independent areas, including while the host opens an in-game menu/book/video and when its app backgrounds or closes. Apple's background execution remains bounded. [Apple background execution](https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time).
 
 ## Next work and the user's checklist
 
-**Next independent task: G4-01 — separate authority lifecycle and authenticated host identity from the local player's presentation.** Begin with the existing protected enrollment/discovery contracts and a bounded Windows adapter proof. Then wire cooperative transfer, hard-loss branch selection and reunion in the recorded order. Do not simply change `StartClient` to `StartHost` or promote a private adventure.
+**Retired task (not next): G4-01 — separate authority lifecycle and authenticated host identity from the local player's presentation.** Begin with the existing protected enrollment/discovery contracts and a bounded Windows adapter proof. Then wire cooperative transfer, hard-loss branch selection and reunion in the recorded order. Do not simply change `StartClient` to `StartHost` or promote a private adventure.
 
 The optional isolated Unity character-view/import proof remains available as the next art task. Its browser [animation study](character-workshop/index.html) is ready for review now; final Bluey artwork and in-game rig integration remain unfinished.
 
 The return checklist still has the same focused physical work: sign/install prepared **98**, test the older iPad's visible-state continuity and offline movement, update the other devices in place, then perform a short four-player check. Last verified installed clients remain iPad 7 **95**, iPad 9/iPhone **79**, Samsung **83**; last deployed server/helper **91**. No new user action was added by this restoration task, and no live-server availability check is claimed here.
+<!-- historical-record-end -->

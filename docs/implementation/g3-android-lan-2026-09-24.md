@@ -1,5 +1,8 @@
 # G3 — Android automatic family connection
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 Goal IDs: **AUTO-01, JOIN-01, FAMILY-01, NET-02**, with WORLD-01/02 and ITEM-02 regressions. This is the next bounded G3 task from the build guide; G4 hosting and content production have not started.
 
 **Result:** family-signed Android **78** automatically discovered and joined the actual Windows **77** PC server alongside three Windows players. Ordinary Android touch input moved the player, filled/poured the shared bucket and traveled between Garden and Creek. Backgrounding released its held item and left siblings playing; the same Android process automatically rejoined with current state. Force-stop/relaunch retained its protected pairing. These are **Android 15 emulator results**, not a pass on the Samsung or four physical mobile devices.
@@ -57,3 +60,4 @@ The new isolated emulator lives in `LocalData/AndroidAVD/LittleWeeps_G3_AndroidL
 Use a fresh build number with `Tools/Build-AndroidLAN.ps1 -BuildNumber N`; it builds and signs an unchanged release payload with the pinned family key. The development enrollment helper is `Tools/Enroll-AndroidFamily.py --serial DEVICE --family WORLD --player 3 --build N` after installing and launching the unpaired app. It refuses an established or unresolved enrollment.
 
 `Tools/Test-AndroidFamilyBridge.py --serial emulator-5580 --family WORLD` compiles the actual Java sources into an isolated test APK and checks the current Windows advertisement. `Tools/Test-AndroidSharedSession.py` checks an already prepared isolated family/emulator; its documented preconditions include three Windows peers and the 1280×800 viewport. Neither tool is a substitute for the physical-device checklist.
+<!-- historical-record-end -->

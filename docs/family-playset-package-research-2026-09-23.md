@@ -1,8 +1,10 @@
 # The Family Playset — templates and packages
 
+**Current scope — September 25:** PC/VPS is the sole shared authority; four mobile clients join automatically. Offline solo stays private, and server state wins on reconnect without importing offline edits. G4/AUTO-02 device hosting is retired. [Current decisions](current-decisions.md) control scope; the [build guide](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) records current implementation. Technical sources and candidate comparisons below retain their original research date; this update is not a new external-source verification.
+
 **Research checked September 23, 2026. Budget: free first; consider an optional purchase around $20 only when it clearly saves work.** No package was installed or purchased, and no Unity game was created during this review.
 
-**Recommendation:** begin with Unity's **Universal 2D template**, reuse maintained packages, and build the family game's particular interaction, activity and shared-world rules. I did not find a complete template that already provides this combination of a Toca-style dollhouse, four separate devices, independent rooms, mobile host recovery and offline saves. The initial package budget can be **$0**. This is a researched candidate setup; it is not yet a device-tested combination.
+**Recommendation:** begin with Unity's **Universal 2D template**, reuse maintained packages, and build the family game's particular interaction, activity and shared-world rules. I did not find a complete template that already provides this combination of a Toca-style dollhouse, four separate devices, independent rooms, dedicated-server play and private offline saves. The initial package budget can be **$0**. This is a researched candidate setup; it is not yet a device-tested combination.
 
 [Back to the main plan, section 54](bluey-game-research-2026-09-23.html#54-templates-packages-and-the-free-starting-setup) · [Networking research](family-playset-technical-research-2026-09-23.html) · [Feasibility audit](family-playset-feasibility-audit-2026-09-23.html)
 
@@ -12,7 +14,7 @@ Unity's Universal 2D template creates a project with URP and its 2D renderer alr
 
 Use **Unity 6.3 LTS** as the candidate editor line. The previously reviewed **6000.3.24f1** patch is a concrete baseline, not a promise that every package combination is stable. Its release notes identify a 2D-renderer/Bloom black-screen issue, so leave Bloom out of the initial setup and review relevant fixes before freezing the editor version. Keep Windows and Mac on the same chosen patch. [6000.3.24f1 release notes](https://unity.com/releases/editor/whats-new/6000.3.24f1)
 
-The first slice should contain one character, a room and garden, a tap, bucket, plant and sponge, both movement options, and a save. Then add a second area, shared item ownership, automatic PC connection and mixed-device play. Prove required iPad hosting and recovery before producing large amounts of content. Do not begin by importing every optional package below.
+The first slice should contain one character, a room and garden, a tap, bucket, plant and sponge, both movement options, and a save. Then add a second area, shared item ownership, automatic PC connection and mixed-device play. Qualify client offline/rejoin and persistent item/room rules before integrating broad content; isolated character art may advance while device checks wait. Do not begin by importing every optional package below.
 
 ## 2. Template comparison
 
@@ -60,7 +62,7 @@ The current 6000.3 catalog marks **2.13.3 as pre-release**, while the registry's
 
 **Decision:** retain NGO as the first framework candidate, inspect Package Manager status in the exact editor patch, compare the 2.13.3 fixes against our prototype, then freeze one passing version set. Do not install a moving development branch. Do not call either candidate “proven stable on our iPads” before native tests.
 
-Even a fully qualified network package will not supply our complete automatic discovery, durable world model, room subscriptions, item-return policy, iPad host recovery or offline-save reconciliation. Those remain explicit game systems, as detailed in the [networking report](family-playset-technical-research-2026-09-23.html). The PC remains the normal host; either iPad hosting and automatic recovery remain required. Bluetooth stays removed.
+Even a fully qualified network package will not supply our complete automatic discovery, durable world model, room subscriptions, item-return policy, client outage handling or private-save preservation. Those remain explicit game systems, as detailed in the [networking report](family-playset-technical-research-2026-09-23.html). PC/VPS is the only shared authority; devices are clients and offline edits stay private. Bluetooth stays removed.
 
 ## 5. Useful free additions
 
@@ -96,7 +98,7 @@ The following is our proposed integration design, informed by the sources above.
 | Roaming parents, hide-and-seek | Animator plus the selected navigation approach | Parent task states, hiding slots, timed hints, seeking rules and interruption/resume behavior |
 | Books and dinosaur names read aloud | uGUI, Localization, locally stored audio | Page hotspots, narration sequence, large play/repeat buttons and child-friendly pacing |
 | Personal rooms, secret rooms and six worlds | Addressables for local content loading | Stable room IDs, independent travel, subscriptions, save ownership and restoration |
-| Four mixed-device players | One selected NGO/Transport combination | Automatic family discovery/joining, approved devices, shared item arbitration and host recovery |
+| Four mixed-device players | One selected NGO/Transport combination | Automatic family discovery/joining, approved devices, shared item arbitration and client reconnect |
 | Offline play and safe room saves | Unity JSON serialization and persistent storage | Versioned save records, stable IDs, backups, journal/recovery policy and reunion conflict handling |
 
 Input System 1.20's registry includes an **On-Screen Controls** sample and a **UI vs. Game Input** sample. The inspected joystick source also documents isolated input actions for avoiding unwanted cancellation during device/control-scheme switching. Use these as focused references, then test simultaneous joystick and prop touches on each tablet. [Official package metadata](https://packages.unity.com/com.unity.inputsystem), [Touch documentation](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.20/manual/devices-touch.html), [On-screen controls](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.20/manual/on-screen-controls.html)
@@ -109,8 +111,8 @@ Keep authoritative timers and state independent of presentation. A cake should f
 
 | Target | Known baseline | Qualification needed |
 | --- | --- | --- |
-| iPad 7, A2197 / A10 | User reports iPadOS 18.6.2 | Primary performance target: touch responsiveness, memory, host workload and repeated room changes |
-| iPad 9, A2602 / A13 | User reports iPadOS 18.7.10 | Same gameplay and save format; test as both client and host |
+| iPad 7, A2197 / A10 | Device observed iPadOS 18.7.10 on September 24 | Primary performance target: client/solo input, memory and repeated area changes |
+| iPad 9, A2602 / A13 | Device observed iPadOS 18.6.2 on September 24 | Same client/solo gameplay and save format, lifecycle and media |
 | iPhone 13 Pro Max, A2484 | User reports iOS 26.6.1 | Smaller-screen UI, permissions, reconnects and mixed-device play |
 | Samsung SM-S948U1 | Model supplied; installed Android version still unknown | Native Android build, touch layout, resume behavior and network discovery; record installed OS before qualification |
 | Windows PC | Main authoring machine and normal dedicated host | Build server independently of graphics/audio; verify firewall/discovery and saved-world startup |
@@ -126,7 +128,7 @@ For travel, put required gameplay content, English voices and selected books/vid
 2. **Prove one interaction:** bucket/tap/plant/sponge, finger ownership, joystick and tap walking, then a versioned save. Add DOTween Free only for visible feedback. Verify force-close/relaunch preserves committed progress.
 3. **Add the first character and content pipeline:** 2D Animation; layered importer only if needed; English Localization assets; local Addressables loading. Check room transitions release unused resources and voices load offline.
 4. **Qualify networking:** choose and lock NGO/Transport versions, use Multiplayer Play Mode and network diagnostics, then the PC server plus both iPads and phones. Simultaneous pickup must have one winner. A new join must see current item and room state.
-5. **Test the required difficult cases:** PC absent, either iPad hosting, automatic discovery, planned handoff, abrupt host exit, resume, returning host, separate rooms and conflicting saved creations. Editor instances alone cannot pass these mobile lifecycle tests.
+5. **Test required cases:** client route loss/rejoin, app lifecycle, server restart/restore, separate rooms, item contention and private-save preservation. No device-host or offline-merge gate.
 6. **Add optional packages only for observed needs:** Cinemachine for scrolling, navigation after the floor-plane decision, Yarn for substantial branching dialogue, UI Extensions for a useful specific control. Then grow activity content.
 
 Before accepting a package set, record the exact editor patch, package manifest and resolved lockfile, native build settings and device results. Use a fixed Git tag or commit for Git dependencies. Keep editor-only tooling and client presentation separate from server logic. Re-run the affected native checks after an upgrade; do not auto-update all packages during feature work.

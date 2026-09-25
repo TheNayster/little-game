@@ -2,43 +2,43 @@
 
 Feature goal sheet and supporting research • September 23, 2026
 
-**Current authority rule — user clarification, September 25:** offline play may diverge; reconnecting uses the server's current world. Offline actions are not automatically uploaded, merged or replayed. Local saves remain separate. This supersedes older merge/reconciliation requirements throughout the historical research below. Connected bedroom updates, full offline activities, four players and required iPad hosting remain goals. [Source-backed clarification and current repair](implementation/g3-offline-authority-and-hitch-review-2026-09-25.html).
+**Current scope — September 25:** PC/VPS multiplayer and independent offline solo. Devices never host the shared world. Server state wins on reconnect; offline edits stay local. G4/AUTO-02 are retired. [Current decisions](current-decisions.md) override historical proposals; the [build guide](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) records implementation status.
 
 **Device priority confirmed:** the two iPads are the main play devices; Android is secondary. Design touch controls, layout, memory use and performance around the iPads first, using the older A2197 iPad 7 as the minimum performance baseline. Android/iPhone support and four-player mixed-device play remain required; a successful Samsung test does not replace iPad testing.
 
-**How we will build it:** the separate [ground-up build guide](family-playset-build-guide-2026-09-23.html) organizes implementation into ordered phases, architecture, asset workflows, device tests and completion gates. **This page is the goal sheet; that guide is the build sequence.** **Implementation audit, September 25, through Windows build 90:** complete recovery checkpoints and separate local adventures after outages now have desktop evidence, including safe reunion with saved work retained. **Last recorded deployment: PC/Samsung 83 and iPads/iPhone 79.** Four physical mobile clients have joined together, with scoped shared-play/control feedback; desktop 90 is not a mobile recovery pass. The [current audit](family-playset-build-guide-2026-09-23.html#19-implementation-audit-and-remaining-work) accounts for all 55 chapters and 35 feature IDs. G1/G2/G3 remain partial. Both iPads hosting, automatic host switching, automatic reconciliation, full content and VPS deployment remain unfinished. This documentation audit did not contact devices or the live server, rerun game tests, or freshly revalidate web sources. Historical statements below describe the September 23 research pass unless dated otherwise; use the build guide for current implementation status.
+**How we will build it:** this page is the feature goal sheet; the [ground-up build guide](family-playset-build-guide-2026-09-23.html) is the implementation sequence. Its ledger retains all 55 chapters and 35 feature IDs, including retired AUTO-02. G1/G2/G3 remain partial. Device hosting is removed by the September 25 decision; rooms, creations and the full game content remain ahead.
 
-**Subsequent implementation, September 25 — Windows 91:** the [outage failure matrix](implementation/g3-outage-failures-2026-09-25.html) now passes in isolated native Windows sessions, including blocked-save recovery and rejected connections that leave solo play available. Failed unresolved-action archives are retained and retried without replay. No mobile or family-server update occurred. Matching Android 91 and iPad/iPhone 91 export are now [prepared on Windows](implementation/g3-mobile-recovery-builds-2026-09-25.html). Native Apple compilation/signing and physical recovery qualification are next; Android strict 16 KB qualification, iPad hosting and automatic reconciliation remain open. The [updated return checklist](implementation/return-checklist-ipad-lan-2026-09-24.html) lists the user setup steps.
+**Current recorded versions:** server/helper 91; iPad 7 95; iPad 9/iPhone 79; Samsung 83. Prepared client 98 has engineering evidence but still needs signing and physical acceptance. The [return checklist](implementation/return-checklist-ipad-lan-2026-09-24.html) is the current device queue. This audit did not recheck live availability.
 
-**Native Apple progress, September 25:** [build 91 compiled/signed and updated the older iPad](implementation/g3-ipad91-qualification-2026-09-25.html) with all saved documents/preferences retained and automatic family rejoin. The older-iPad walking, bucket, Listen and full-screen checks also pass by user report. The server is still 83; its 91 update is prepared and waiting for an empty session. Newer-iPad/phone updates and physical recovery/lifecycle qualification remain pending. The feature goals and phase order are unchanged.
+**Physical evidence:** four mobile clients have joined the same family world. Both iPads passed scoped shared controls, ownership, travel and rejoin checks. The older iPad passed smoother offline walking and cold reopening on 95. Updated-device sustained play is still open.
 
 **Independent Windows progress, September 25:** [portable encrypted server backup/reconstruction](implementation/g3-portable-recovery-2026-09-25.html) passes isolated recovery with the original four test players. The actual external destination, parent passphrase and second-account/computer restore remain open; no real-family export or deployment occurred. The [parent page now supports protected download and read-only file checking](implementation/g3-parent-portable-backups-2026-09-25.html), qualified in an isolated four-player world and browser. [Optional Windows sign-in startup](implementation/g3-signin-startup-2026-09-25.html) now also passes isolated native/browser checks, including four-player recovery and preserved Stop/Pause choices. Actual account startup/sign-in is not yet activated or qualified. These changes support the existing reliability goal and do not alter the feature list or phase order.
 
-**Android emulator progress, September 25:** the prepared release 91 now passes an in-place update from 79 with retained saves, plus [six emulator recovery/lifecycle groups with three Windows siblings](implementation/g3-android-recovery-2026-09-25.html). A [ten-minute recovery-build run](implementation/g3-sustained-recovery-play-2026-09-25.html) now also passes with normal item resets, repeated durable checkpoints, Android background/return, memory observations and preserved local saves. This supports the existing four-player/offline/reunion requirements without changing scope. The iPads and phones still need physical qualification; the emulator uses ARM translation and does not close native ARM64 16 KB, iPad hosting or reconciliation.
+**Build evidence:** native compilation, installation and scoped device tests are recorded in the build guide. Candidate package lists below describe research, not an instruction to replace the pinned manifest or lockfile.
 
 **Templates and packages:** [the detailed free-first package review](family-playset-package-research-2026-09-23.html) compares starting templates, exact Unity 6.3 package candidates, optional GitHub components, and one purchase around $15. [Section 54](#54-templates-packages-and-the-free-starting-setup) records the recommended setup. No complete ready-made template was found that supplies all our requirements.
 
 **Deeper technical review:** [Source-backed networking and recovery research](family-playset-technical-research-2026-09-23.html) adds released-code findings, the automatic PC-server flow, package comparisons, shared-item rules and remaining device proofs. Bluetooth has been removed. See [section 53](#53-source-backed-networking-and-recovery-review).
 
-**Feasibility audit:** [the complete audit](family-playset-feasibility-audit-2026-09-23.html) finds a credible path to this game, with required early proofs for automatic host recovery, independent areas, save reconciliation, and performance on the older iPad. [Section 52](#52-feasibility-audit-and-current-priorities) records the verdict and current priorities. That was a research-only feasibility review; subsequent prototype implementation and its limits are recorded in the build guide, not implied by feasibility.
+**Feasibility:** retain the working dedicated-server foundation. Finish focused connection/offline qualification, prepare character art independently, establish durable room/item rules, then complete one polished slice before expanding the catalog.
 
-**Current offline reliability work, September 25:** full offline play remains required. The latest physical tests report frozen controls after Wi-Fi loss and choppy offline walking, while online play is smooth. [Focused research, reproduced causes and replacement qualification](implementation/g3-offline-recovery-and-motion-2026-09-25.html) track the fixes without removing iPad hosting, four-player support or reconciliation from the goal sheet.
+**Current offline work:** build 98 continues privately from the latest usable visible state, without loading an older checkpoint over the scene. It does not wait for a complete server recovery replica. Physical transition acceptance and rollout remain open; offline changes never replay into the server.
 
-**Latest clarification:** iPad hosting, automatic joining, automatic host switching, four-player mixed-device play, and independent exploration remain **required**. Only multiplayer connectivity **while traveling** is an optional, lower-priority want. Full solo play without the PC or internet remains required everywhere. This distinction applies throughout the travel and networking chapters; it does not make ordinary-network host recovery optional.
+**Latest user decision:** multiplayer stays on PC/VPS. Devices are clients; no device hosting, host election/switching or offline merge engine is required. Full offline solo remains required and travel multiplayer remains optional.
 
 **Confirmed item-return rule:** [unused borrowed shared items return home automatically](#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms). Personal decorations and saved creations must remain protected. Section 51 adds item categories, stocked activity stations, toy-box storage, container checks, and multiplayer-safe cleanup so one bedroom cannot collect the whole house. The broad timing/capacity numbers there are design proposals. The current 83 garden fixture specifically implements 180-second idle tool returns and 60-second completed-station rearming, each with a five-second cue; held/use interactions and partial progress are protected. [Measured timer and deployment record](implementation/g3-phone-layout-resets-2026-09-24.html). That narrow implementation does not yet supply the broader personal-item/bedroom policy, and 79 clients do not display the cue.
 
 **Confirmed shared-world behavior:** [everyone travels independently, then meets in the same existing area](#50-one-shared-world-independent-travel-and-shared-items). Leaving never moves or pauses the players who stay. A shared item is one object: if someone holds the only bucket, others see it being held and cannot take it until released. Section 50 makes these acceptance requirements for all 1–4 players, locations, rooms, and compatible imagination activities.
 
-**Newest hosting decision — September 24:** you own a VPS and want it to become the shared-world host after the server reliability work is ready, so family play can work at home or over travel internet without depending on the PC. [Section 55](#55-future-hosting-on-your-owned-vps) records the migration/client plan. The earlier [remote home-PC research](#49-reaching-your-home-pc-from-a-road-trip) remains background; a private route or Relay is an alternative if needed. Local/iPad hosting, automatic recovery and full offline solo remain required. No VPS has been accessed or deployed.
+**VPS decision:** the owned VPS is the preferred future designated server after reliability qualification. [Section 55](#55-future-hosting-on-your-owned-vps) covers controlled migration. Home-PC remote routing is background research; no VPS has been accessed or deployed.
 
-**Newest family-play decision:** [1–4 players across iPad, iPhone, and Android](#47-up-to-four-family-players-across-ipad-iphone-and-android), with automatic joining and independent activities. Your Samsung Galaxy S26 Ultra (SM-S948U1) is the Android test phone. **Everyone may choose any available character**, including Bandit and Chilli, and switch during play. The [build and acceptance plan](#48-android-build-phone-layout-and-four-player-acceptance) covers mixed-device play, four-player recovery, phone controls, and hotspot testing. Four real devices have now joined the prototype together; only two generic puppy skins and garden-rule areas exist. The full roster, all activities, mobile hosting/recovery and hotspot qualification remain planned.
+**Family play:** up to four iPad/iPhone/Android clients, independent activities and free character choice including Bandit and Chilli. Four physical devices have joined the prototype; two generic puppy skins and garden-rule areas exist. The full roster and activities are still planned.
 
-**Automatic connection plan:** [automatic discovery and joining](#44-automatic-family-connection-and-ipad-hosting) while foregrounded, with both iPads able to host or join, PC preference at home, [automatic recovery and branch reconciliation](#45-automatic-host-selection-recovery-and-save-reconciliation), and [physical-device acceptance tests](#46-automatic-multiplayer-implementation-and-verification-plan). No child-facing Host/Join setup. Native discovery/admission and scoped PC-server reconnects have physical implementation evidence. **Windows 90 additionally qualifies complete durable checkpoints, prolonged-outage local adventures and safe reunion that preserves them separately.** These are not deployed to mobile yet. Both iPads hosting, automatic host switching, an operation journal and automatic branch reconciliation remain required and unbuilt. A saved adventure is reopenable but is not automatically merged into the shared world. The future VPS changes the preferred host after controlled migration; it does not remove these requirements.
+**Automatic connection:** discover and authenticate the designated PC on home Wi-Fi, or the configured VPS after migration. A later player joins that same authority. No device competes to host; server unavailability leads to private solo.
 
 **Outdoor and daycare expansion:** [10 beach activities](#37-the-beach-collecting-building-and-playing-together), [10 creek activities](#38-the-creek-rocks-water-and-gentle-discovery), [12 park activities](#39-playground-and-park-equipment-that-really-works), and [Daycare as the sixth world](#40-daycare-a-sixth-world-with-an-optional-pretend-day). The daycare plan adds 2–3 rotating activity invitations, [12 playful learning stations](#41-daycare-learning-short-playful-and-spoken), and [all nine requested imagination stories](#42-the-imagination-mat-nine-stories-that-become-playable-worlds). [Implementation and acceptance checks](#43-building-saving-and-testing-the-outdoor-and-daycare-expansion) preserve optional play, late joining, and offline travel. All are researched plans, not implemented game features.
 
-**Home and travel decisions:** [science play](#30-a-simple-and-playful-science-corner), [joining and leaving freely](#31-joining-and-leaving-without-restarting-play), [two separate synchronized bedrooms](#32-two-personal-bedrooms-with-shared-updates), [secret plush-and-aurora rooms](#33-secret-plush-rooms-with-stars-and-northern-lights), and [closet/drawer hide-and-seek](#34-hide-and-seek-with-enterable-furniture-and-gentle-clues). At home, your Windows PC will host the family world so either iPad can close without ending the other child's game. **[Full offline travel play](#35-road-trip-play-hotspot-co-op-and-coming-home)** is required; hotspot co-op is an optional extra to verify. Sections 30–36 supersede the earlier same-room/iPad-host assumptions where noted.
+**Home and travel:** the PC/VPS runs the shared world independently of any child. Science, personal rooms, secret rooms and hiding are retained. Full installed solo play is required; travel internet co-op is optional. Sections 44–46 define the current client/server scope.
 
 **Books and dinosaur plans:** a [reading nook with interactive books](#25-reading-nook-and-interactive-books), [six proposed dinosaur books with spoken names](#26-dinosaur-books-and-spoken-names), a [TV clip library](#27-tv-corner-and-local-video-library), and [20 dinosaur toys plus a discovery mini-game](#28-dinosaur-toy-room-and-discovery-mini-game). These join the [feature tracker](#16-expanded-feature-tracker), 15 kitchen recipes, backyard fishing, cleanup, hide-and-seek, roaming parents and [32 activities drawn from the show](#23-show-games-and-activities-catalog). The production content remains planned. A separate single-clip video/bookmark fixture and simple garden cleanup prototype have tests; they do not supply the house TV library or finished activity catalog.
 
@@ -46,7 +46,7 @@ Feature goal sheet and supporting research • September 23, 2026
 
 **Recommendation:** build a 2D illustrated dollhouse in Unity, with optional little quests, movable objects, spoken character dialogue, and 1–4-player family play across iPads, iPhone, and Android over your home Wi-Fi. The separate Universal 2D project now uses pinned Unity 6000.3.24f1; the build guide records its installed packages and evidence. Create the game and audio on Windows; use your M1 Pro Mac for native iPad builds and device debugging.
 
-The best first playable is **Bluey and Bingo in the backyard: walk, drag a bucket, fill it, and water a plant—on both iPads together, with spoken instructions.** That proves the initial interaction loop. It does not prove the hardest networking requirements: add the two-zone, four-player, iPad-host recovery and reunion gates in the audit before producing six locations and a large character roster.
+**First playable work:** preserve the proven garden/creek rules, qualify current connection transitions, and begin isolated character animation. Durable room/item contracts precede the polished home/backyard slice; then expand to six worlds. No device-hosting gate blocks this sequence.
 
 I found useful GitHub building blocks, but did not find a verified, complete template combining this dollhouse style, preschool touch controls, object recipes, voices, and local multiplayer. The optional third-party templates below were inspected through their documentation and selected source files during the research pass; those templates have **not** been qualified as our game. This does not describe the installed Unity/networking stack, which has later build and device evidence in the build guide. The design, budgets, quests, and milestones in this report are proposals, not measured results.
 
@@ -89,7 +89,7 @@ Open the companion **[illustrated research guide](bluey-game-research-2026-09-23
 | Playful learning | 12 proposed spoken learning stations with per-child assistance: reading, sounds, numbers, patterns, music, feelings, and science |
 | Imagination | Picture play mat; nine episode-inspired stories with spoken role choices, NPC substitutes, and independent locations |
 | Navigation | Main menu, settings, character choice, and a wheel of six circular location buttons |
-| Shared play | Automatic family discovery/joining while foregrounded; use PC when initially available, otherwise stable qualified mobile host; either iPad must support hosting; full offline fallback |
+| Shared play | Up to four mixed iPad/iPhone/Android clients automatically join the designated PC/VPS; independent areas and exclusive item use. No device hosting. |
 | Automatic recovery | No Host/Join menus; rejoin automatically after outages while preserving work, independent locations, and conflicting offline drafts |
 | Speech | Characters actually speak; instructions cannot depend on reading |
 | Languages | English first; structure the game for English and Spanish, then complete Spanish recordings |
@@ -103,7 +103,7 @@ I interpret the bucket example as watering a **plant**. The six requested worlds
 | Device | Model | Last recorded OS/toolchain | Role |
 | --- | --- | --- | --- |
 | First iPad, A2197 | iPad 7th generation, A10, 10.2-inch | Device-observed iPadOS 18.7.10, September 24 | Required minimum performance target |
-| Second iPad, A2602 | iPad 9th generation, A13, 10.2-inch | Device-observed iPadOS 18.6.2, September 24 | Required second player and host-role test device; travel co-op is optional |
+| Second iPad, A2602 | iPad 9th generation, A13, 10.2-inch | Device-observed iPadOS 18.6.2, September 24 | Required second client and solo test device |
 | iPhone, A2484 | iPhone 13 Pro Max, A15 | iOS 26.6.1 | Additional parent/fourth player; layout and newer-OS testing |
 | Android phone, SM-S948U1 | Samsung Galaxy S26 Ultra | Native-observed Android 16 / API 36, 4 KB pages, September 24 | Primary Android parent device; third-player cross-platform testing |
 | Mac | 14-inch MacBook Pro, 2021, M1 Pro, 16 GB | Recorded macOS 26.3.1 / Xcode 26.6 | Xcode build, signing, native logs |
@@ -287,24 +287,25 @@ Allow undo or easy recovery for accidental placement. Save permanent changes aft
 
 **Recommended transport: Unity Netcode for GameObjects with Unity Transport over the local network. Updated home topology: the Windows PC runs the server; both iPads join as clients.** This can work with the router's internet connection disconnected; the devices still need to reach the PC on the same local network. No internet account, cloud lobby, or Relay service is required for direct LAN sessions. Unity's network manager supports direct transport connection data. [Unity network manager / connection setup](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.5/manual/components/core/networkmanager.html)
 
-The PC can stay on during home play, as you confirmed. It is not required for solo play or road trips. For required mobile hosting, test the iPad 9 as host and the iPad 7 as client on home Wi-Fi with the PC absent, then reverse roles. Travel-network qualification is separate and optional. Build all world rules so they also run locally on either iPad. Local Wi-Fi does not depend on both devices running the same iPadOS patch.
+Test both iPads as clients of the designated PC/VPS, then loss/rejoin and offline solo independently. One player closing their app must not interrupt another player.
 
 ### Selected connection plan
 
-**Bluetooth has been removed from the plan and backlog at your request.** Mobile devices use Wi-Fi; the PC can use Ethernet or Wi-Fi. Automatic PC connection is the normal path, with required iPad hosting and recovery when the PC is unavailable.
+Bluetooth is removed. Use the ordinary authenticated Wi-Fi/IP client path to PC/VPS; offline solo remains usable without that connection.
 
 | Approach | Fit for this game | Decision |
 | --- | --- | --- |
-| Same-router Wi-Fi + Unity Transport | PC server and two iPad clients; no internet needed during play | **Home default** |
-| iPhone hotspot + Unity Transport | Both iPads join the phone's Wi-Fi; one iPad hosts locally; exact device discovery and routing require testing | **Travel co-op candidate; offline solo always available** |
-| Apple peer-to-peer Wi-Fi without a router | Potential travel option, but requires native Apple networking integration and separate testing | Later experiment |
-| Existing Multipeer Connectivity Unity transport | Older plugin examples; current Apple guidance deprecates MPC | Reference only; prefer Network framework for new native code |
+| Same-router Wi-Fi + Unity Transport | PC server and up to four mixed clients; internet unnecessary for local gameplay | **Home default** |
+| Travel hotspot | Possible internet route to the designated PC/VPS | Optional after remote deployment; no mobile authority |
+| Router-free peer-to-peer co-op | Removed from scope | Independent solo when server is unreachable |
+| Existing Multipeer Connectivity Unity transport | Historical plugin comparison | Outside the selected implementation scope |
 
-Apple now documents migrating Multipeer Connectivity applications toward Network framework. Its newer sample uses APIs introduced in iOS 26; our iPadOS 18 devices need an implementation using older supported APIs if we pursue this route. Peer-to-peer Wi-Fi still needs the Wi-Fi radio. [Apple migration guidance](https://developer.apple.com/documentation/technotes/tn3213-moving-from-multipeer-connectivity-to-network-framework), [Apple Wi-Fi API overview](https://developer.apple.com/documentation/technotes/tn3111-ios-wifi-api-overview)
+The Multipeer Connectivity material is historical API research only; no native peer transport or peer-host prototype is planned.
 
-### Finding the other iPad
+<a id="finding-the-other-ipad"></a>
+### Finding the designated family server
 
-**Updated by section 44:** open directly into play, automatically discover paired family sessions, and select PC or iPad authority without a child-facing Host/Join menu. Both iPads can host or join. Keep an optional Play by myself picture control, but automatic family connection is the default after parent setup. Discovery failure leaves full local play available. Connection does not move the child out of their current activity.
+After parent enrollment, automatic discovery/rejoin connects clients to the designated PC/VPS while foregrounded. Local play never waits for discovery.
 
 Add an understandable `NSLocalNetworkUsageDescription` and declare the exact Bonjour service in `NSBonjourServices`. Ordinary browsing of a declared service differs from arbitrary multicast/broadcast traffic; avoid adopting a raw broadcast-discovery sample without checking its entitlement needs. Retry connection after permission is granted, and keep solo play available after denial. [Apple local network privacy guidance](https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy)
 
@@ -320,7 +321,7 @@ Send the actual object state—water amount, position, holder, plant growth—no
 
 Joining players receive a consistent world snapshot plus the state needed for their current room, then catch up with newer changes. Shared quest completion credits the participating children. Each iPad retains its own language, audio, movement, and assistance preferences, so English on one device and Spanish on the other can refer to the same quest event.
 
-The PC owns the canonical home-world save; both iPads retain acknowledged snapshots and their own travel saves. Independent house rooms and activity joining are now required, not deferred extras. If a travel host or connection disappears, preserve the last confirmed state and automatically enter local continuation rather than discarding the world. This requires custom recovery; sections 35 and 44–46 record the limits, automatic reunion behavior, and merge rules. Throughout this report, “host” means the authoritative PC server at home, or the local/iPad host in the applicable travel mode.
+The designated server owns the shared world. A disconnected client can continue a separate private world; on rejoin it loads current server data. Offline actions, rooms and creations are not imported into shared state.
 
 ## 8. Spoken English and Spanish, using your PC and ComfyUI
 
@@ -393,7 +394,7 @@ The following is a source inspection dated September 23, 2026. “Last commit”
 - **The lluispalerm quest runtime imports `UnityEditor` without a guard**, which needs investigation before a player build. Its save implementation also uses `BinaryFormatter`. Replace that persistence path and validate runtime/editor assembly separation before adopting it. [Quest manager source](https://github.com/lluispalerm/QuestSystem/blob/ee1949421349b059c74b97b36f968dc11bdec539/Runtime/QuestManager.cs), [save source](https://github.com/lluispalerm/QuestSystem/blob/ee1949421349b059c74b97b36f968dc11bdec539/Runtime/SaveData/QuestSaveSystem.cs)
 - **FelixBole's restore path matches steps by name.** Stable IDs are preferable for our saves, because a renamed quest step should not lose a child's progress. Inspect this before building content on it. [Quest-system source snapshot](https://github.com/FelixBole/quest-system/tree/87cb9a15ed16e4107c634e5f1381d56b176b8eb6)
 - **The top-down template also uses `BinaryFormatter` for saves.** Its drag placement is tied to a grid-building game. We would need to replace saving and adapt placement rather than assume it is a ready dollhouse. [Source snapshot](https://github.com/hsadler/unity-2d-topdown-template/tree/0a301ff0402c2b9f8eefbbb2e6ca6625069edbf2)
-- **The Multipeer plugin needs Apple native build work.** Its documented Apple support does not make it usable as the Windows editor's transport. Its dependency pins also differ from the newer NGO sample. [Plugin source and setup](https://github.com/realitydeslab/netcode-transport-multipeer-connectivity/tree/e89723025a4f47fb2d4079f59fdfb071ce6635e4)
+Apple peer-to-peer plugin references above are historical comparisons, outside the selected PC/VPS implementation scope.
 
 **Chosen foundation:** a fresh Unity Universal 2D project; official Input System; a small custom interaction and quest data model; an NGO/Unity Transport combination to qualify; optionally a few UI Extensions components. Keep Yarn Spinner optional until actual dialogue complexity warrants it. The [current package review](family-playset-package-research-2026-09-23.html) records exact candidates and a newly identified NGO status mismatch. No package combination has yet been tested for this game.
 
@@ -401,7 +402,7 @@ The following is a source inspection dated September 23, 2026. “Last commit”
 
 Use Unity **6.3 LTS**, with **6000.3.24f1** as the concrete patch selected in the earlier research. Keep Windows and Mac on the same tested patch. Recheck release notes when creating the project and before family deployment. The patch's published known issues include a **2D Renderer black screen when Bloom is active**, directly relevant to this style: leave Bloom off in the initial project and test the actual renderer on both iPads. [Official patch notes](https://unity.com/releases/editor/whats-new/6000.3.24f1)
 
-Create this game's new 2D project separately in `C:\Users\sephi\Desktop\Little weeps game`. The existing 6000.5 project in `Meeps game` is unrelated: do not import, move, or modify it without a separate explicit request. The new style supersedes the earlier report's general-purpose Universal 3D starting suggestion. The exact editor/package combination remains to be qualified; a documented candidate version is not a device-tested build.
+The project now exists separately at `C:\Users\sephi\Desktop\Little weeps game\Unity\FamilyPlayset`. Keep the unrelated `Meeps game` project untouched. The pinned editor/packages and scoped device proof are in the build guide; no new project or template import is needed.
 
 Choose released, editor-compatible package versions and lock the resolved dependency set. Unity's package pages can list prerelease alternatives; that is not a reason to choose the newest number automatically. The inspected Boss Room package combination is evidence of that sample's setup, not certification of our complete game. [Unity 6.3 NGO package page](https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.netcode.gameobjects.html)
 
@@ -440,7 +441,7 @@ The A10 iPad sets the budget. Begin with **stable 30 FPS**, with optional 60 FPS
 
 Proposed engineering starting limits—not measured guarantees:
 
-- Render the local player's location and only necessary detailed characters, including up to four visible human avatars. Separately keep lightweight authoritative simulation for every occupied zone when this iPad hosts; hiding its artwork must not stop the other players' worlds.
+Keep all necessary logical area state on the PC/VPS even when each client renders only its own area. A client changing areas or opening media must not pause another player.
 - Load character rigs as needed; use lightweight portraits in the chooser rather than all full animated characters at once.
 - Start with mostly 2048-pixel sprite atlases, split by area. A 2048×2048 RGBA texture is 16 MiB uncompressed before mipmaps; 4096×4096 is 64 MiB. Actual device formats and compression change this footprint.
 - Evaluate ASTC settings against clean cartoon outlines. Avoid blurry outlines just to chase a smaller number.
@@ -473,7 +474,7 @@ These are future build gates. None are claimed complete by this research.
 | Solo on each exact iPad/OS | All six locations and spoken core instructions work without internet |
 | Both movement modes | Walk, drag, and use objects without accidental competing actions |
 | Younger-child assistance | Large targets and assisted pour allow completion without reading or precise aiming |
-| PC server and both iPads; separately, both travel-host roles | Join, move, interact, and change room without resetting the other child's play |
+| PC/VPS and four mobile clients; separate offline solo | Join, move, interact and change area without resetting another player; disconnect/rejoin preserves private saves |
 | Both players choose Bluey | Clear player markers; independent controls and settings |
 | Simultaneous bucket grab | One consistent owner; no teleport fight or duplicate bucket |
 | Repeated / retried pour | Water conserved, capacity respected, plant reward granted once |
@@ -514,7 +515,7 @@ The renewal plan is intended to remove manual weekly reinstall work. It still de
 
 ## 15. Decisions to make after the first prototype
 
-The research can proceed with the confirmed defaults and expanded requirements below. Remaining preferences include favorite characters to produce first, the preferred Spanish dialect, and voice choices after listening to auditions. Router-free and travel multiplayer remain optional experiments; full offline solo play is required. Sections 16–51 refine the earlier milestones, and section 52 records the audited interpretation and current priorities. Two separate bedrooms, a PC server during home play, iPad hosting, and automatic host switching are confirmed requirements.
+Travel internet/hotspot multiplayer is optional after VPS readiness. Router-free co-op and device hosting are removed; all installed solo activities remain available offline.
 
 **Original September 23 research limits:** no game build or iPad runtime test was performed during that research pass; GitHub findings are selected-source inspections; ComfyUI integrations were researched but not installed; generated voices were not auditioned; character pictures are official visual references rather than finished game rigs. The companion guide and evidence files make the proposed implementation concrete enough to review and start with the backyard prototype.
 
@@ -548,19 +549,19 @@ Added September 23, 2026, following the Toca/Piknik research. This is the main r
 | STOCK-01 | Keep every area playable | Fixed shared furnishings, protected essential station tools, bounded loan stock, one essential tool of each type per player at a station | One child cannot remove the working equipment from all areas or hide every tool inside bags |
 | ROOM-02 | Bedrooms remain usable | Separate personal catalog, bounded loose props, clear exits, recoverable toy storage and creation shelf | All planned dinosaur types remain available; limits do not delete decorations or creations; visitors cannot clear a child's room |
 | NET-02 | Either iPad may close without stopping the other | Dedicated authority runs the family world: PC now, owned VPS after qualified migration; clients hold no required server role | Either iPad closes or locks while the other continues with valid object state |
-| REMOTE-01 | Preferred future shared host: owned VPS after server reliability is ready; travel multiplayer when internet works | Saved remote endpoint, authenticated automatic joining, platform server build, service recovery and controlled world/credential migration; route selected after VPS inventory | Prove four mixed devices from home/hotspot, restore/restart and one canonical authority; loss of internet never removes offline solo; required iPad recovery remains |
-| ROOM-01 | Two separate personal rooms | Child-owned layouts with shared visibility; visits and independent room travel | Connected edits appear on both iPads; offline edits merge without overwriting the other room |
+| REMOTE-01 | Owned VPS after server reliability is ready | Authenticated endpoint, server build, recovery and controlled world/credential migration | Four mixed clients from home/internet; one canonical writer; offline solo on route loss |
+| ROOM-01 | Two separate child-owned bedrooms; connected edits appear on both clients | Durable room IDs, permissions, protected creations; offline copies remain local and never overwrite server rooms | Decorate, visit, save/reopen and rejoin without changing ownership, duplicating shared rooms or losing private saves |
 | SECRET-01 | Mini-door chill rooms | One optional secret room per child, shared visits, plush toys, stars, northern lights | Both can occupy either room; portals, exits, saves, and older-iPad effects pass |
 | HIDE-03 | Enterable furniture and gentle clues | Closets/oversized drawers; configurable 5–10-second clues; parent search around 30 seconds | No trapped avatars, hidden-role leaks, waiting for the next round, or unreachable required finds |
-| TRAVEL-01 | Full game without home PC/internet | Local world simulation and bundled content; optional hotspot co-op; return-home reconciliation | Every solo-capable feature passes offline; hotspot failure keeps My play available; trip saves survive |
+| TRAVEL-01 | Full offline solo on trips; optional internet/hotspot connection to PC/VPS | Installed content and local saves; server wins on rejoin, with local work retained separately | Cold offline launch and installed solo activities pass; route loss/rejoin retains local saves; remote multiplayer qualifies separately |
 | AUTO-01 | Automatic family discovery and joining | Foreground native Bonjour/DNS-SD discovery on Apple, Android, and Windows; paired devices, one stable authority; no child Host/Join steps | Either launch order and simultaneous launch work; permissions and offline fallback handled |
-| AUTO-02 | Both iPads can host and recover | PC preferred at session start; stable iPad host otherwise; complete recovery state on peer; automatic local continuation/reunion | Both host roles, hard-close, app resume, and divergent-save reunion pass on the exact iPads |
+| AUTO-02 | **Retired by user decision, September 25: device hosting and automatic host switching** | No implementation or device-test gate; identifier retained for traceability | Removed, not completed |
 | OUT-01 | Beach, creek, and park play | 32 outdoor activity designs, including working equipment, tag, hiding, collecting, construction, and water play | Each has touch, solo, co-op, cancellation, save, and device acceptance |
 | DAY-01 | Daycare as the sixth world | All child characters available across zones; Calypso routine; optional day with 2–3 saved rotating invitations | Late join and skip do not reroll or interrupt the sibling; all six worlds remain accessible |
 | LEARN-01 | Spoken playful learning | 12 reading, math, music, social, and science stations; independent assistance | Both children can understand and respond without reading; English complete offline; Spanish reviewed separately |
 | IMG-01 | Nine imagination stories | Picture mat, spoken role cards, transformed story zones, NPC role substitutes | All nine support solo and shared play, role/character changes, independent exit, and saved progress |
 
-All six locations remain freely accessible. Kitchen stations, hiding areas, the fishpond, books, TV, dinosaur mat, science, bedrooms, and secret rooms sit inside locations rather than replacing the six-area wheel. Each iPad retains its own language, movement controls, and Simple Play / Explore & Stories assistance. Sections 25–29 cover books, video, and dinosaurs; sections 30–36 add science, independent rooms, revised hiding, PC-hosted home play, and full offline travel. Sections 37–43 add outdoor activities, daycare, learning, and imagination stories. Sections 44–46 refine automatic connection, iPad hosting, recovery, and reconciliation. Sections 47–48 expand the target to four mixed-device family players and open character selection, including Bandit and Chilli. Section 49 adds optional remote access to the home PC while preserving local/offline play. Section 50 makes independent area travel and exclusive shared-item interaction explicit requirements for every player. Section 51 refines item persistence with confirmed automatic idle returns, protected creations, station stock, and clutter limits.
+The expanded tracker covers all 55 chapters and 35 feature IDs. AUTO-02 is explicitly retired; AUTO-01 automatic PC/VPS connection remains required. The six-world content inventory is unchanged.
 
 ## 17. Changing characters without stopping the game
 
@@ -920,7 +921,7 @@ The physical book prop has a world object ID; its readable content has a separat
 
 Give a reading avatar a seated/reading pose where practical; book opening should not wait for a long walk to a chair. Release the reader's temporary activity reservations using the existing leave/park rules. In hide-and-seek, opening a book withdraws that child from the round; the parent can keep seeking the remaining child. Closing the book returns control without restoring a stale role or a stuck movement touch.
 
-Save a bookmark per child and book, independent of chosen Bluey character. Normal bookmarks resume from the start of the saved page, avoiding fragile audio offsets. A page already open can remain readable during a LAN interruption; reconnect separately and reconcile the room. Synchronized shared reading can be a later option, but is not required for two children to use books.
+Keep the book readable through network changes. Page and narration position are local; resuming shared play loads the current server room without importing offline edits.
 
 ## 26. Dinosaur books and spoken names
 
@@ -1005,7 +1006,7 @@ Checkpoint on pause, completed seek/skip, clip change, leaving the TV, and lifec
 
 Replacing a clip with different content must not apply the old video's timestamp to it. Renaming the same library entry preserves its identity/bookmark. A missing or unreadable file keeps the bookmark and offers retry/back rather than silently erasing progress. A non-seekable or incompatible import should be identified during parent-side validation before it is presented as a normal resumable clip.
 
-**Required proof:** watch to a recognizable point, leave/reopen the TV, close/relaunch the game, switch clips, restart one intentionally, finish one, test offline, and test both children's different bookmarks for the same clip. Repeat with abrupt termination around a checkpoint and a normal in-place app update. While a hosting iPad watches video, the other child must still move, change rooms and interact normally. No device tests have been run yet.
+**Required proof:** watch, leave/reopen TV, close/relaunch, switch clips, start over, finish, test offline and preserve per-profile bookmarks through an update. One client watching must not affect the others. The foundation clip has scoped device proof; the full TV-library UI/importer remains planned.
 
 ### Files we can actually play
 
@@ -1037,9 +1038,9 @@ Use **one `VideoPlayer` per device**, a render texture, and a Unity UI image wit
 
 `VideoPlayer.Prepare()` allocates playback resources and preloads content, reporting readiness through `prepareCompleted`. Calling Play without preparation can delay the start. Stop releases prepared resources; Pause retains preparation. These APIs support the proposed controller but do not by themselves handle every failure or guarantee an already-presented first frame. Also handle playback errors and discard callbacks belonging to a closed/replaced player session. [Unity VideoPlayer.Prepare](https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Video.VideoPlayer.Prepare.html), [Unity VideoPlayer API](https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Video.VideoPlayer.html)
 
-Each child may watch a different clip or keep playing. Playback and saved bookmarks are local to each device/profile, and movie bytes are not part of the normal multiplayer stream. Import the wanted clips on both iPads; sharing a clip ID does not transfer its file. The PC continues the home world while either iPad watches; an iPad hosting the shared world must also keep its simulation running while its TV panel is open. Quiet local world chatter while watching and stop local book narration, so voices do not compete.
+Local TV decoding runs on the viewing device; the PC/VPS continues the world for other clients. Offline solo also plays installed clips. Pausing a video never pauses another player.
 
-Backgrounding the app pauses playback and records a checkpoint; returning shows a paused player. Home PC simulation continues when either iPad backgrounds. Backgrounding a hosting iPad can interrupt its session; sections 44–46 retain the required automatic hosting/recovery behavior. Later “watch together” would need an explicit invitation, matching content hashes, and synchronized play/pause/seek messages; it is optional future work, not a promise of the first TV version.
+Backgrounding pauses local playback and saves its bookmark; return shows a paused player. The PC/VPS keeps running for other clients. Optional future watch-together would need explicit invitations, matching media IDs and playback messages; it is outside the first TV version.
 
 ## 28. Dinosaur toy room and discovery mini-game
 
@@ -1129,12 +1130,12 @@ This extends the existing architecture instead of making each book, dinosaur, or
 
 1. **Keep the existing foundation gate.** Shared touch interactions, player IDs, save recovery, and LAN behavior must work before these features can be called integrated.
 2. **Books and first six toys:** build one eight-page book, six reviewed name recordings, Play/Pause/page controls, and toy pickup/washing. Verify one child reading while the other plays. Do not produce all six books before this works.
-3. **One TV clip:** use a small supplied MP4 to prove preparation, playback, audio focus, aspect ratio, exit, backgrounding, and host responsiveness on both iPads.
+3. **One TV clip:** use a small supplied MP4 to prove preparation, playback, audio focus, aspect ratio, exit, backgrounding, and client playback responsiveness and uninterrupted sibling play.
 4. **Discovery mat:** finish digging, brushing, toy placement, and the five optional invitations using the established object rules.
 5. **Expand content:** complete the 20-toy catalog and approved book titles, reviewing pronunciations and art. Add the Files importer after the basic video player has passed its device checks.
 6. **Family release checks:** profile the combined systems, verify offline availability, complete English, then expand Spanish, and test in-place update/signing renewal with books, imported clips, and toy saves present.
 
-The older iPad remains the acceptance baseline. Keep the existing measured-performance gates; additionally test it running the complete offline world or hosting travel play while showing a book or decoding a clip. Hiding the room visually must not stop required simulation. Load only needed book pages, avoid retaining old render textures, and unload inactive content. Final budgets must come from device profiling, not from desktop frame rates.
+The older iPad remains the performance baseline as client and solo player, including book/video loading. Load only needed pages and release old textures. The PC/VPS keeps other players running. Final budgets require device measurements.
 
 ### Acceptance checklist
 
@@ -1145,7 +1146,7 @@ The older iPad remains the acceptance baseline. Keep the existing measured-perfo
 | Tap a name repeatedly during narration, then Pause | One intelligible voice; no long queue and no delayed restart after Pause |
 | Turn pages or close during an audio/art load | Only the current view can become active; no stale picture or speech appears |
 | Both children open the same book | Independent pages, language, and controls; neither takes the book away from the other |
-| Either iPad reads or watches while sibling pours water or moves a dinosaur | PC-hosted home world and iPad-hosted travel world both remain responsive |
+| Book, TV or menu opens | Foreground media is local; PC/VPS world continues for siblings; offline solo stays usable. Do not set a global shared-world pause. |
 | Switch avatar after reading or carrying a dinosaur | Bookmark, player identity, toy instance, and held state remain correct |
 | Both children grab or wash the same toy | One valid ownership/state transition; no duplicated item or conflicting dirt value |
 | Leave the mat midway through digging or washing | Tools release; valid toy/world state remains; returning is straightforward |
@@ -1284,7 +1285,7 @@ A room change is a small transaction: request target room/door → load local vi
 
 Each iPad keeps a usable cached home layout and its child's editable travel branch. Live changes cannot reach the other iPad while they have no connection; synchronize when a session or home server becomes available again. Do not label a disconnected edit “synced.”
 
-Use a base revision plus a journal of operations with unique IDs, stable object IDs, previous object revision, and new values. Merge non-conflicting operations when reconnecting. Different rooms normally merge independently. If two disconnected branches changed the same furniture item from the same base, keep both versions and an undo/recovery copy; do not silently choose the device with the later clock. A parent-facing two-picture choice can resolve a genuine conflict while the children continue using a valid room. More precise travel rules follow in section 35.
+Connected bedroom edits are validated and saved by the PC/VPS, then sent to the other clients. Disconnected bedroom work is saved privately. Rejoining always loads the server room; do not merge room journals or ask children to resolve shared-world conflicts.
 
 Automatic saving should be frequent enough to preserve finished changes without rewriting the entire world on every drag frame. Record committed drops/style choices, create periodic compact snapshots, and validate migration when the game adds new furniture definitions. Test this on real interrupted writes and out-of-order reconnections, not only a normal save/load cycle.
 
@@ -1381,20 +1382,20 @@ If a child seeker leaves, the default parent takes over using the existing hider
 
 ## 35. Road-trip play, hotspot co-op, and coming home
 
-**Priority clarification from the audit:** full offline solo play is required. Making multiplayer work through a travel hotspot or the remote home-PC route is optional and lower priority. Both iPads hosting, automatic joining, automatic host switching and recovery on a usable ordinary network remain required under sections 44–48.
+**Travel priority:** full offline solo is required. Internet/hotspot access to the designated PC/VPS is optional later. Device-hosted travel sessions, authority switching and offline imports are removed.
 
 **Confirmed requirement: your phone hotspot may be available, but if the children cannot play together, each must still be able to do everything else.** [Section 49](#49-reaching-your-home-pc-from-a-road-trip) now also adds your requested optional internet connection to the always-on home PC. The PC remains optional for ordinary play; installed solo content needs no login or remote service. Full offline play is part of the core product, not a reduced demo.
 
-### Four operating modes
+### Shared play and private solo
 
 | Mode | Where game rules run | Connection needed | If the other child closes their app |
 | --- | --- | --- | --- |
 | **Home family world** | Dedicated Windows server | Both iPads can reach the awake PC on home LAN; internet unnecessary for gameplay | Remaining child continues in the same shared world |
-| **Remote family world** | Same Windows server at home | Usable internet at home and on each remote device, plus the configured private route | Remaining connected players continue on PC; disconnected devices use saved continuation |
+| **Remote family world** | Designated PC/VPS | Usable internet and configured authenticated endpoint | Other connected players continue; a disconnected player continues privately |
 | **My play / road-trip solo** | Locally on each iPad | None for installed content | No effect; each has their own saved branch |
-| **Travel together** | One iPad acts as local host, the other joins | A working local connection, initially test both on your iPhone's Wi-Fi hotspot | Guest leaving does not stop host; host leaving requires guest to continue from cached state locally, with a possible brief transition |
+| **Travel solo without internet** | Each device locally | None for installed content | No effect; private saves stay separate |
 
-**Updated by your remote-host request:** the PC may serve travel players over a configured private internet route. This is an additional mode, not a prerequisite for ordinary play. Start local play without waiting indefinitely for the home PC; see section 49 for automatic selection and recovery.
+Remote play is optional. Start local play without waiting for the designated server; the hotspot provides only a possible route to that server.
 
 ### What full offline mode includes
 
@@ -1403,7 +1404,7 @@ If a child seeker leaves, the default parent takes over using the existing hider
 | All finished locations and character choices | Bundled art and local scene data; no server unlock or download at the moment of entry |
 | Movement, object interactions, cooking, cleanup, fishing, science, dinosaurs | Same rules run on the iPad; every activity has a one-child path |
 | Parents and hide-and-seek | Authored AI and stored voice clips; parent seeks the child, or NPCs hide for a child seeker; no second human is required |
-| Bedroom and secret room | Child edits a local travel version; cached sibling rooms may be visited; own accepted changes reconcile later |
+| Bedrooms and creations | Private offline edits remain in the local save; connected rooms come from the server |
 | Books and narration | Finished books, dinosaur names, and supported language audio are installed locally |
 | TV | Already imported/bundled MP4 clips play locally; importing a new cloud-hosted file may require internet |
 | Saves and settings | Store locally during play, including without a successful network connection at startup |
@@ -1412,39 +1413,40 @@ The one thing offline solo cannot reproduce is the other human child's live acti
 
 ### Using your iPhone hotspot
 
-Apple documents Personal Hotspot as a portable Wi-Fi network using the phone's cellular connection. Both iPads can join it through Wi-Fi. This makes your iPhone a sensible **candidate** local network for travel co-op, but Apple's support page does not certify Bonjour discovery or game traffic between these exact iPads. Verify the actual transport, addresses, permissions, phone lock behavior, and reconnects on your A2484/A2197/A2602 devices. [Apple Personal Hotspot](https://support.apple.com/en-us/111785)
+Personal Hotspot can provide the mobile devices an internet route. Remote play requires testing the actual route to the configured PC/VPS, not Bonjour between iPads. [Apple Personal Hotspot](https://support.apple.com/en-us/111785).
 
-Proposed parent setup: turn on the phone's hotspot, connect both iPads to the same network, and test a small family-session discovery/echo first. After setup, the app automatically selects an iPad host and joins the sibling as specified in section 44. If automatic discovery fails, test a parent-only direct-address fallback to distinguish discovery trouble from blocked peer traffic. A manual IP cannot solve a network that blocks peers; the children can still use My play.
+A parent configures the hotspot/network. The app can then try its enrolled remote server endpoint without blocking solo play. No peer-client routing or local iPad authority is required.
 
 Apple lists Maximize Compatibility on iPhone 12 and later as one troubleshooting option. Our test should record whether the default or that option works best rather than relying on it as a guaranteed fix. No reset of saved network settings is part of our implementation plan. [Apple hotspot troubleshooting](https://support.apple.com/en-us/119837)
 
-For local travel co-op, gameplay stays on the local network and does not require a cloud lobby or voice service. In the optional remote-PC mode, game-state packets intentionally travel over the internet; installed solo content remains usable without it. **A working Wi-Fi connection and a working cellular internet connection are different things.** Cellular loss may leave local traffic available, or the hotspot/session may stop behaving as needed. Test it, and always preserve offline solo. Do not promise hotspot co-op with zero reception merely because the app itself needs no internet.
+A working hotspot and working internet are different things. If the route to the designated server fails, continue independent solo. There is no local mobile-host fallback.
 
-Router-free Apple peer-to-peer Wi-Fi is a possible later transport experiment. It requires native integration compatible with iPadOS 18 and testing under the actual signing setup. It is not a Unity Transport checkbox. This is not needed to satisfy the required offline fallback. [Apple Wi-Fi API overview](https://developer.apple.com/documentation/technotes/tn3111-ios-wifi-api-overview)
+Router-free Apple peer-to-peer play is outside scope; retain independent solo when the designated server is unreachable.
 
 ### Losing the connection must not lose the game
 
-Build the authoritative world rules behind an interface that can run on the PC, a travel host, or the same iPad. Keep persistent game state separate from disposable network objects and UI. NGO's network-object destruction behavior on disconnect means merely adding a reconnect button is not enough to preserve the visible world.
+Run the same rules locally for solo and on PC/VPS for shared play. Keep persistent state outside disposable network objects and UI; local controls do not wait for network teardown or a complete replica.
 
-Maintain an acknowledged local snapshot and accepted-event journal during shared play. On connection loss, keep the current picture responsive, stop accepting unconfirmed shared mutations into the old branch, clear temporary remote holds, and establish a **new local continuation branch** from the last valid state. Resume local NPCs and activity timers at that checkpoint. This requires custom implementation and performance testing; do not describe it as built-in seamless NGO host migration.
+On loss of the server, continue privately from the latest usable visible world and local pose, clearing stale network holds. A complete server checkpoint, receipt history or durable write is not a prerequisite to responsive local controls. Older private saves remain separate; do not rewind the current scene to them.
 
-Pending actions need explicit handling. For an acknowledged room change, retain it. For an unacknowledged pour or item transfer, do not apply it twice or guess that the absent sibling accepted it. Reconcile by action ID when the connection returns. Preserve a child's local visual placement as a recoverable draft where possible. Hide-and-seek may resume a valid local checkpoint or use a parent to replace the absent role, without trapping the child in furniture.
+Unconfirmed online commands are not automatically replayed on reconnection. Keep any diagnostic record separate from executable shared-world input.
 
-At home, the PC avoids host migration when either **iPad** closes. During iPad-hosted travel, a hard host shutdown cannot be promised to have zero delay for the guest; target a short local-continuation transition with no forced return to the main menu. Unity's current session migration documentation distinguishes host election from data migration and does not provide a default NGO client/server migration solution simply by selecting a new host. Its Distributed Authority path is a different architecture/service integration, not a shortcut to our offline requirement. [Unity host migration](https://docs.unity.com/en-us/mps-sdk/session-host-migration)
+A server outage leaves clients playing independently. Server restart/restore belongs to the PC/VPS workflow; no client becomes shared authority.
 
-**Updated by section 45:** after a Wi-Fi outage, discover and reconnect automatically, then reconcile branches at a safe committed-operation boundary. Keep both original saves, import compatible edits, and preserve conflicting creations or active activities in separate instances when needed. Do not overwrite a whole world or require a repeated join invitation. A brief local transition may still be necessary; the sibling's current activity continues.
+When a compatible designated server is reachable again, save the private continuation separately and join its current state at a safe input boundary. No automatic offline merge or conflict-import UI is required.
 
 ### Bringing road-trip progress home
 
-Use stable profile, room, and object IDs plus a base revision and branch ID. Suggested reconciliation rules:
+**Save rules:** server rooms and communal item identities come only from the server while connected.
 
-- **Own bedroom/secret room:** merge independent owner edits automatically when their target objects have not changed since the branch base. Keep both variants on a genuine conflict; never overwrite the entire other bedroom.
-- **Personal bookmarks, discoveries, and preferences:** merge explicitly defined fields. Discovery sets can be unioned; competing bookmarks remain per profile/book and should use recorded progress policy, not arbitrary device clock order.
-- **Shared kitchen, science, garden, or toy arrangements:** preserve travel creations as importable snapshots/creations when a destructive merge would conflict. Do not replay an old “consume ingredient” operation against a newer home kitchen.
-- **Objects moved between rooms:** validate removal and insertion as one transaction. Duplicate offline branches must not create two references to a supposedly unique instance; an intentionally imported copy receives a new instance ID.
-- **Repeated uploads:** use operation IDs and server acknowledgements so reopening an iPad does not reapply its travel changes. Retain the original local branch until import is durably acknowledged and recoverable.
+- Keep private offline rooms and creations local; they do not compete with canonical room revisions.
+- Keep preferences, book pages and TV bookmarks local to the relevant profile/device.
+- Do not duplicate communal props by uploading offline inventory or replaying old actions.
+- Preserve private saves on rejoin and updates; selecting them later is an explicit local action.
+- Connected cross-room item travel is one server transaction. Private inventories never enter the shared namespace.
+- Repeated connected requests use operation IDs; offline commands are never resubmitted as if they were pending online work.
 
-A connected shared travel session has one authoritative event history; carry that branch home once, rather than importing both iPads' copies twice. Offline guest edits to another child's permanent room remain a draft until resolved under the room's decoration policy. Most normal use—each child decorating their own bedroom—should require no conflict dialog.
+There is no travel branch to import into the server. Every client rejoining sees that server’s current room; the private continuation remains an explicitly separate local save.
 
 ### Content readiness and signing before travel
 
@@ -1468,10 +1470,10 @@ Keep this as part of the existing free deployment workflow, not a requirement to
 | Secret rooms | Two persistent destinations, mini doors, plush play, sky/aurora | Both children visit either room; exits always work; reduced-motion and A10 rendering pass |
 | Revised hide-and-seek | Enterable furniture, default parent, selectable clues, per-child timers | Inspect/find visibility is correct; mid-search joins work; valid stationary hiders meet measured pacing |
 | Full travel mode | All installed content and solo/NPC activities work without PC/network | Cold-launch offline checklist passes on both iPads; no hidden cloud dependency |
-| Optional travel co-op | Phone hotspot, iPad host, discovery/direct fallback, local continuation | Exact devices pass connection and dropout tests; unsuccessful co-op does not block solo |
-| Reconciliation and release | Room journals, travel branch import, backups, deployment renewal | Return-home changes survive retries/conflicts; actual pre-trip signing refresh is verified |
+| Optional remote connection | Use the designated PC/VPS over a usable internet route | Qualify after remote deployment; no device hosting |
+| Rejoin and save preservation | Current server world plus retained private saves | No offline imports, duplicated communal items or lost private creations |
 
-Build these foundations before producing dozens of additional rooms or science variants. The final home server and travel requirements change the architecture materially; they are not just new menu screens. Continue using Unity 6.3 LTS as planned, verify the pinned NGO/Transport packages against that project, and leave the existing Unity project untouched until implementation is explicitly started.
+Establish reusable rules before producing dozens of rooms/science variants. Continue with the existing pinned Unity project; no restart, new template or package upgrade is implied.
 
 ### Required test scenarios
 
@@ -1493,9 +1495,9 @@ Build these foundations before producing dozens of additional rooms or science v
 | Child seeker leaves while another remains hidden | Parent takes over; hider can still come out at any time |
 | Cold-launch with Wi-Fi and cellular unavailable, PC off, cached app process killed | All installed solo-capable game systems open and save locally |
 | Disconnect cellular internet while hotspot Wi-Fi remains connected | Record whether LAN co-op actually survives on these devices; solo remains available either way |
-| Turn hotspot off, lock the phone, or hard-close travel host | No world deletion or endless spinner; guest can continue locally with documented checkpoint handling |
+| Lose the hotspot or close one client | Private continuation stays usable; other reachable clients continue on the designated server |
 | Offline TV/book/science/secret-room session on the older iPad | Correct local audio/content; bounded memory and effects; existing performance targets still met |
-| Return from a trip with changed bedrooms and shared creations | Merge room changes, preserve conflicting travel creations, and keep recovery copies |
+| Return after offline bedroom edits | Server room loads in shared play; private room remains available locally and never overwrites shared state |
 | Rehearse the free signing refresh away from PC | New expiry, successful app launch, room saves and imported clips preserved on both iPads |
 
 Observe the children as well as logs: can the younger child make something happen in a few taps, join without instructions, find Come out, and get back from a secret room? Does the older child have useful choices without controlling the younger child's camera? Do parent calls and rattles create anticipation rather than frustration? These observations determine whether the proposed timings and controls are actually fun.
@@ -1788,7 +1790,7 @@ Reuse route travel, map pictures, lookout discoveries, and delivery. NPC pickup 
 
 Create a separate **ImaginationSession** with its own zone/instance ID, activity definition, participants, role assignments, props, phase, and checkpoints. Daycare remains active as a different zone. If one child enters Space and the other keeps painting, only the first client loads/displays the spaceship presentation. If the second joins Space, it receives the existing session state. If family members choose different stories, support up to four lightweight logical sessions; do not transform a single global classroom for everyone.
 
-Do not implement every transition as a global network scene replacement. Separate authoritative simulation state from client visual loading and filter objects by zone/session membership. The home PC can simulate both places while each iPad renders its own location. Travel solo runs the same rules locally. Hotspot co-op needs special testing with two independent locations because the hosting iPad also simulates the guest's area.
+Do not implement every transition as a global network scene replacement. Separate authoritative simulation state from client visual loading and filter objects by zone/session membership. The home PC can simulate both places while each iPad renders its own location. Travel solo runs the same rules locally. Optional remote co-op uses the same PC/VPS authority, with separate client views.
 
 Keep the real child avatar persistent; bind its role and visual to the current session. An NPC cast member has a session-specific actor ID so a helper in one imagination story cannot steal another session's prop. Story casting is distinct from the visible daycare roster. Do not create two network authorities for a character merely because both children chose Bluey.
 
@@ -1820,11 +1822,11 @@ Role replacement is a transaction: detach departing player, safely release their
 
 ### Saves, road trips, and crash recovery
 
-Apply section 35's local travel journal and merge rules to the new content. Save finished castles, rock towers, decorated boats, postcards, daycare choices, and story checkpoints with stable IDs. Commit at meaningful object operations and activity transitions, then flush a recoverable save atomically; do not depend only on receiving an app-close callback. Keep previous valid data until a new checkpoint is complete.
+Use the same activity rules in private solo and the server world. Persist each mode separately and use current server state when rejoining.
 
-On recovery, cancel transient touches and stale seat reservations, return carried-but-uncommitted props to a safe anchor, and reconstruct rides/boats at valid checkpoints. Preserve completed placements and catches exactly once. Reconcile offline personal creations as distinct records; if both iPads edited the same shared castle from different offline branches, preserve both versions for a simple parent choice instead of silently overwriting one.
+Keep offline creations in private saves. Do not add reconciliation/import workflows as a dependency for outdoor content.
 
-Every new world, role prompt, lesson, NPC helper, and required prop must be packaged locally. Daycare's selector filters for installed content even if a later update adds optional content packs. A network failure must not lock the daycare board behind Connecting. Home-server play continues for the remaining client when an iPad closes; travel host loss still follows the explicitly documented checkpoint-to-solo transition rather than promising impossible uninterrupted shared simulation after the host vanishes.
+One client leaving never stops the PC/VPS simulation. A client losing its route continues private solo; remaining connected players continue together.
 
 ### A practical production order
 
@@ -1860,226 +1862,70 @@ Retain the full requested backlog even while prototyping only representative act
 | Cold-launch every new activity in airplane mode with the PC unavailable | Local art/audio/logic and NPC substitutes work; saves survive relaunch |
 | Interrupt save or terminate app during placement/travel/role change | Previous or new valid checkpoint recovered; no half-committed duplicate or missing creation |
 | A10 performance after repeated world/story/character swaps | Existing performance budgets met; no accumulating rigs, voices, effects, or abandoned sessions |
-| Test iPad-hosted hotspot with children in different worlds | Measure host load and reconnect behavior; retain independent offline play if unsuitable |
+Test four clients across independent areas, including one disconnecting/rejoining while siblings keep playing. Test older-iPad local rendering and offline movement; no mobile-host load test is required.
 
 Observe enjoyment as well as correctness: does the younger child discover several uses for one object? Can the older child invent a story without directing every action for the younger child? Can both explain their role from its picture and spoken line? Tune proposed timings and assistance based on that observation.
 
 **Evidence and status:** official episode pages support the story inspirations; NAEYC and Head Start inform the learning approach; Unity documentation supports the selected API concepts. Our mechanics, numeric budgets, schedule, roles, networking design, and teaching scripts are proposals requiring implementation and physical-device tests. The [outdoors and daycare source index](bluey-research/outdoors-daycare-evidence.json) keeps these sources together. No game assets, Unity systems, servers, or device builds were installed or changed by this research update.
 
-## 44. Automatic family connection and iPad hosting
+<a id="44-automatic-family-connection-and-ipad-hosting"></a>
+## 44. Automatic family connection to PC or VPS
 
-**Still required after the latest clarification:** this entire core capability remains in scope. The optional status of travel multiplayer does not make iPad hosting, automatic joining, or automatic host switching optional. Qualify these first on ordinary home Wi-Fi with the PC present and absent.
+The September 25 user decision replaces the earlier mobile-authority proposal. **AUTO-01 stays required; AUTO-02 is retired.** Devices are clients of one designated shared server. No Host/Join menu, peer election, mobile host enrollment or background device server is needed.
 
-**New requirement, September 23, 2026:** either child opens the app and starts playing; the game automatically discovers the family devices, selects a host, connects, and reconnects while the app is in use. Children do not choose Host/Join, type addresses, enter room codes, or repeatedly accept invitations. Both iPads must be capable of hosting and joining. This section supersedes the earlier manual My play / Play together startup flow and reconnect invitation in sections 7 and 35.
-
-**Recommended behavior:** automatic family connection is on by default after initial parent setup. At home, use the available PC server. Away from it, keep an existing healthy iPad host or automatically choose an iPad. If no connection works, play locally immediately and keep looking unobtrusively while foregrounded. An optional picture control can deliberately select Play by myself; honor that choice instead of immediately reconnecting against the child's wishes.
-
-### Both can host, but one runs a connected shared world
-
-The distinction is between **being discoverable** and **being the game authority**. Both iPads can browse and advertise their presence while playing. In an iPad-hosted session, one runs the authoritative world plus its own player's view; the other is a client with a recoverable copy. A client is still able to become host later. Do not run two independent authorities over the same live toys, or repeatedly call StartHost and StartClient on the same active NGO NetworkManager.
-
-| Situation | Automatic choice | What the children see |
-| --- | --- | --- |
-| PC is running and reachable before shared play starts | Both join the PC's family session | Their own play areas; a sibling portrait appears when connected |
-| Only one iPad opens away from PC | Local play begins; it becomes available to host | Normal game, no waiting lobby |
-| Second iPad opens later | It joins the existing authenticated iPad session | First child's activity continues; arriving child's local view synchronizes |
-| Both open together, no established session | A short election selects one; prefer the A13 iPad when both are eligible, then use a stable ID tie-break | Both start local play while the connection is arranged |
-| A10 is already hosting when A13 opens | Keep the A10 host if its measured performance is acceptable | No unnecessary host switch just because a newer device appeared |
-| PC becomes available during healthy iPad co-op | Keep current authority; schedule any transfer at a checkpoint | No surprise restart or loss of creations |
-| No reachable peer, permission denied, or incompatible versions | Continue locally and show a small status picture | Full solo play remains available |
-| One child explicitly selects Play by myself | Stop automatic shared-session attempts for that child's selected mode | They remain independent until switching automatic connection back on |
-
-This is a proposed controller to build, not a built-in Unity toggle. Prefer a stable session over continually choosing the theoretically fastest device. Host capability is separate from player identity, character choice, bedroom ownership, and who started a mini-game.
-
-### Automatic connection does not mean automatic teleporting
-
-Three actions must remain separate:
-
-1. **Connect the family world:** automatic, with no repeated child confirmation.
-2. **Visit the sibling:** an optional large sibling portrait/door takes the child to a legal arrival point; ordinary room navigation also works. It affects only that child.
-3. **Participate in their activity:** approaching/tapping a free tool can enroll the child automatically in ordinary free play. Hiding/story games can use a short picture-role choice where the role matters. Never force a child into a role or interrupt their current book/video.
-
-Being connected while one cooks and the other plays dinosaurs already counts as playing in the same world. Joining should preserve character, room, settings, bookmarks, personal creations, and current activity where they can be carried across safely. An optional short “Your friend is here” cue should wait for a gap in foreground narration. Hide-and-seek must not expose a hidden player's coordinates through the sibling portrait; visiting leads to the activity entrance, not the hiding spot.
-
-### Discovery technology for these exact devices
-
-**Use native Bonjour discovery on shared Wi-Fi first, with Unity Transport for the tested LAN gameplay path.** Bonjour locates a service; it does not synchronize toys, choose a host, migrate a save, or prove that gameplay packets can get through. Test an actual authenticated connection and a small exchange before declaring Connected.
-
-There is a material update to earlier research: Apple's current TN3151 recommends Network framework, and TN3213 says Xcode 27 deprecates Multipeer Connectivity. TN3213's examples use newer APIs, but it explicitly says the approach can be implemented with the older `NWBrowser`, `NWListener`, and `NWConnection` APIs. Use those older APIs for the iPadOS 18 deployment target. Deprecation does not mean existing MPC apps instantly stop working; it changes our choice for new code. [Apple networking API guidance](https://developer.apple.com/documentation/technotes/tn3151-choosing-the-right-networking-api), [Apple migration guidance](https://developer.apple.com/documentation/technotes/tn3213-moving-from-multipeer-connectivity-to-network-framework)
-
-`NWBrowser` is available from iOS/iPadOS 13 and `NWListener` from 12, so the APIs predate both reported iPadOS versions. That is API availability, not proof our Unity bridge works on the devices. Keep new-only APIs behind availability checks rather than requiring an iPadOS upgrade. [NWBrowser](https://developer.apple.com/documentation/network/nwbrowser), [NWListener](https://developer.apple.com/documentation/network/nwlistener)
-
-| Candidate | Fit for this game | Recommendation |
-| --- | --- | --- |
-| Shared home Wi-Fi: native Bonjour + direct Unity Transport | Windows server and both iPads; local gameplay can work without internet | First implementation and required test path |
-| Phone hotspot: same discovery and transport | Reuses home LAN code; exact client-to-client routing/discovery remains device-dependent | Automatically use it when proven reachable; always retain solo |
-| Apple peer-to-peer Wi-Fi through Network framework | Nearby Apple devices without joining a router; custom native data transport/NGO adapter needed | Separate prototype after LAN; promising optional road-trip path |
-| Multipeer Connectivity Unity plugins | Existing examples, but Apple's current guidance deprecates the underlying framework | Reference/migration material; do not select as new production foundation |
-| Unity Distributed Authority service | Documented session-owner replacement and distributed object authority, with Unity service integration | Evaluate only if an internet-based mode is later wanted; not the default offline architecture |
-
-Apple supports peer-to-peer Wi-Fi through Network framework's `includePeerToPeer`; the proprietary Apple path is Apple-to-Apple. Wi-Fi Aware is a different, newer option introduced with iOS 26 and cannot be the baseline for these iPadOS 18 devices. A native discovery browser finding an Apple peer does **not** mean Unity Transport's ordinary socket connection will work over that peer link: the transport also needs a supported peer-aware API. Keep that experiment separate from LAN discovery. [Apple Wi-Fi overview](https://developer.apple.com/documentation/technotes/tn3111-ios-wifi-api-overview), [includePeerToPeer](https://developer.apple.com/documentation/network/nwparameters/includepeertopeer)
-
-Your iPhone hotspot creates the network; it need not run the game or serve as game host. The parent still enables/configures the hotspot and connects the iPads through system controls when necessary. “Automatic” applies to the app finding and joining the game once a usable network exists; it does not grant the game permission to silently enable the phone's hotspot or bypass iPad settings. [Apple Personal Hotspot](https://support.apple.com/en-us/111785)
-
-### One-time setup and foreground-only discovery
-
-Parent setup assigns a permanent child profile to each iPad and pairs them with the family world/PC using a setup code or QR exchange once. This is independent of selecting Bluey or Bingo. Store the family trust material locally; do not require an online account for play. A new installation can be paired again, and a parent can revoke a lost device. The children then need only open the game.
-
-Apple requires the local-network usage description and declared Bonjour service types; the system's permission prompt cannot be silently accepted by the game. Standard browsing/registration for specified Bonjour services avoids the extra entitlement required by raw UDP broadcast/multicast or browsing arbitrary service types. This matters for the already-planned signing workflow: avoid making a raw-broadcast entitlement a hidden prerequisite. Handle first access failing while the prompt is still open, and retry after permission is granted. [Apple local network privacy](https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy)
-
-A proposed private service name is `_meepsplay._tcp` for the discovery/control endpoint. Use a separately validated gameplay endpoint for the Unity Transport UDP channel; do not label a UDP game listener as a TCP service without an actual TCP control listener. Advertise only small protocol/capability fields and a session instance identifier. Verify family membership and version compatibility in the connection handshake. Discovery names, IP addresses, and TXT records are clues, never authentication; do not expose real children's names or secret pairing keys in them.
-
-On Windows, the server needs a matching DNS-SD advertiser. Microsoft's `DnsServiceRegister` registers discoverable services on Windows 10 and later and ties registration to the process lifetime. A small Windows bridge is a candidate; it still needs real interoperability/firewall tests against the iPads. The game server may start automatically with the parent's Windows sign-in after setup, with a status/stop shortcut. An iPad cannot rely on a powered-off or sleeping PC waking itself. [Microsoft DnsServiceRegister](https://learn.microsoft.com/en-us/windows/win32/api/windns/nf-windns-dnsserviceregister)
-
-Keep one event-driven service browser while the app is foregrounded and automatic connection is enabled. React to peer arrival/removal, app resume, and network-path changes. Do not scan IP ranges or recreate a browser every frame. While already connected, monitor the session; do not keep initiating new joins. Use bounded reconnect attempts with jitter/backoff—for example 1, 2, 4, then up to 15 seconds—and restart promptly after a meaningful network change. These are initial tuning values, not measured discovery guarantees.
-
-Define “open” as **running in the foreground**, including in-game books, TV, menus, and different rooms. An app merely remaining in the app switcher is not a reliable host. Stop discovery/advertising and perform a best-effort checkpoint/handoff when truly backgrounded; resume them and reconcile on return. Temporary focus changes should not immediately erase the session or trigger another election. UIKit may suspend background apps, and its extra background time is for bounded completion work, not an indefinite game server. [Apple background execution](https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time)
-
-## 45. Automatic host selection, recovery, and save reconciliation
-
-**Audit refinement:** recovery and reunion remain required. A conflicting continuation must not silently create a second ordinary room with the same identity: preserve conflicting creations in explicit workspaces/storage and keep visits to a shared room targeting its one canonical instance. The private-continuation technique below is a candidate that must satisfy this rule, not a resolved implementation. See the [audit's limits and proof plan](family-playset-feasibility-audit-2026-09-23.html#3-the-limits-that-must-remain-honest).
-
-### A session controller with explicit states
-
-Keep the persistent world model independent of the Unity NetworkManager and rendered scene. At launch, restore the local save and let the child play while discovery runs. Any later network transition attaches that model to the selected authority or carries its saved work into a reconciled session. Do not destroy the only copy of the world when NGO shuts down.
-
-| Controller state | Work it performs | Exit condition |
-| --- | --- | --- |
-| Local ready | Restore valid save and local rules; start discovery if enabled | Compatible family candidate appears, or this iPad offers hosting |
-| Discovering / negotiating | Validate peer identity, content/schema, connectivity, and proposed session | Agreed authority and connection generation, or return to local play |
-| Joining | Transfer snapshot plus later events; reconcile local draft; prepare only this client's view | Snapshot verified and current revision reached; no sibling-wide pause |
-| Hosting | Run world, advertise joinable session, replicate recoverable logical state | Orderly handoff, background, transport failure, or intentional solo choice |
-| Connected client | Send commands, render updates, save recovery journal | Lost authority, controlled transfer, or deliberate local mode |
-| Recovering locally | Seal old branch at last known revision, clear stale leases, restore NPCs and continue | New branch ready; discovery continues if foregrounded |
-| Reconciling | Compare common base and branch histories, import safe changes, preserve conflicts | Atomic switch at a safe point or retain current local branch |
-| Suspended | Save and release native network resources as appropriate | Foreground resume starts a fresh connection generation |
-
-Only one connection transition runs at a time. Every callback carries a generation token; ignore callbacks from cancelled attempts. Destroy old sockets and deregister old listeners before reusing their resources. A brief inability to reach the PC is not a reason to wipe local state or restart the menu.
-
-### Avoid the “both keep joining each other” problem
-
-An existing authenticated healthy session wins over new host candidates. At startup, prefer an available family PC when no session is already underway. If neither device has an established session, compare a deterministic eligibility/rank tuple: supported content → eligible host capacity → device preference → stable installation ID. The A13 preference is a proposed tie-break, conditional on actual testing; either iPad must still pass the host test.
-
-Use a short discovery grace period, perhaps 1–2 seconds, without blocking local play. This only reduces simultaneous-start collisions; it cannot prove that an unseen peer does not exist. Exchange candidate IDs and session IDs before joining. Designate one peer to initiate the connection; deduplicate reverse attempts using IDs and a connection nonce. Peers already connected to the PC report that session rather than recruiting the sibling into a second game. Apple's migration guide also describes stable peer identifiers and duplicate-connection handling; our world-election policy is additional game logic. [Apple peer identity and architecture guidance](https://developer.apple.com/documentation/technotes/tn3213-moving-from-multipeer-connectivity-to-network-framework)
-
-Keep the accepted host sticky. Do not automatically preempt it when the A13 or PC appears later. A planned PC transfer can occur after a coherent checkpoint; otherwise continue the healthy session and synchronize to PC when it ends. A battery/thermal warning can make a device ineligible for the **next** election or request an orderly transfer. Never bounce authority repeatedly as battery readings fluctuate.
-
-Record `familyWorldId`, `sessionId`, `branchId`, `authorityDeviceId`, `authorityEpoch`, protocol/content version, and last committed revision/hash. A wall-clock timestamp is not enough to order changes across iPads. Epochs identify authority changes inside an agreed session lineage; a larger epoch from an unrelated offline branch does not automatically defeat another branch.
-
-### What happens when an iPad stops playing
-
-| Departure | Planned outcome |
+| Situation | Behavior |
 | --- | --- |
-| Client leaves a mini-game but stays in app | Only activity membership changes; network connection continues |
-| Client locks/closes its app | Host continues; release that child's transient grabs/seats and substitute required NPC roles |
-| Host uses an in-game book, TV, or menu | Hosting continues; those local overlays must not globally pause simulation |
-| Host deliberately exits with time to notify the peer | Prepare a checkpoint and transfer authority; remaining iPad acknowledges readiness before the old host retires |
-| Host is force-closed, loses power, or becomes unreachable | Remaining iPad detects loss, restores its latest complete state, starts a new local authority branch, and becomes discoverable automatically |
-| Previous host returns | It discovers the continuing session, reconciles any draft, and joins; it does not reclaim authority because it hosted earlier |
-| PC crashes or network splits | Each reachable island continues from its last valid copy; histories are reconciled on reconnection |
+| First child opens the app | Local play starts; discover/authenticate the enrolled PC or configured VPS and join when ready |
+| Second, third or fourth opens | Join the same server; other players keep their area and activity |
+| Someone chooses Play by myself | Honor deliberate solo until they choose family play again |
+| Server is unreachable | Continue private solo without a lobby or a complete-replica wait |
+| PC is replaced by VPS | Parent-controlled migration of the same family world; retire old writer before enabling new one |
 
-At home, the PC already removes iPad-host departure from the normal path. Whenever an iPad hosts, a hard host loss can cause a short detection/recovery transition and uncertainty about the final in-flight action. **No zero-delay or zero-unreplicated-loss guarantee is technically justified.** The required behavior is automatic local continuation without a lobby, usable toys, preserved confirmed checkpoints, recoverable drafts, and automatic reunion when possible.
+Connection, visiting a sibling and joining a mini-game are distinct actions. A sibling portrait can offer a visit, but never teleports everyone or reveals a hide-and-seek hiding spot. Books, videos and settings stay local while the server keeps simulating other areas.
 
-### Replicate enough to recover the whole world
+Use native DNS-SD/Bonjour discovery for the enrolled home PC and a parent-configured authenticated endpoint for the future VPS. Discovery metadata is not authentication. Foreground retries must be bounded and independent of movement, rendering and saving; a denied network permission must leave solo usable. Do not scan IP ranges or create a new discovery browser every frame. [Apple local-network privacy](https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy), [Android NSD](https://developer.android.com/develop/connectivity/wifi/use-nsd), [Windows DNS-SD](https://learn.microsoft.com/en-us/windows/win32/api/windns/nf-windns-dnsserviceregister).
 
-The guest must receive a compact recovery model for every authoritative zone it may need to continue, not just visible sprites in its current room. Otherwise a child at the beach cannot take over daycare after the host disappears. Include object identities and creation layouts, room revisions, active mini-game facts, NPC logical tasks, deterministic random state where needed, participant roles, scheduled gameplay deadlines, and installed-content version references. Do not replicate rendered frames, all audio assets, or every particle.
+Bluetooth and router-free peer networking are removed. A hotspot can provide a remote internet route, not an iPad authority. Initial system permissions and parent enrollment remain one-time setup, never repeated child-facing connection chores.
 
-Use a consistent checkpoint at revision R plus ordered accepted events after R, with checksums, sizes, version tags, acknowledgements, and durable local journal writes. A partial snapshot is never a valid recovery checkpoint. Cosmetic movement can be smoothed separately; a completed pour, recipe, room edit, fish release, or inventory transfer needs a unique durable operation ID.
+<a id="45-automatic-host-selection-recovery-and-save-reconciliation"></a>
+## 45. Server authority, offline continuation and reconnecting
 
-For higher-value creation edits during connected play, distinguish **host accepted**, **peer replicated**, and **durably saved**. Acknowledge completed recovery coverage explicitly; do not call a merely rendered action safely saved on both devices. If the host fails before replication, preserve the guest's own unconfirmed action as a draft and recover the last complete checkpoint. Reconcile the operation ID later. Requiring both devices to acknowledge every action would stall play whenever either is unreachable; choose local availability with explicit branch recovery instead.
+**One shared authority:** the designated PC/VPS owns connected world state. Independent local worlds may differ. They never become a shared server or upload their history into it.
 
-Orderly handoff is a protocol, not just a new host flag: propose transfer → finish or cancel in-flight transactions → send final checkpoint/event tail → peer verifies and acknowledges readiness → issue a handoff token/new epoch → retire old authority → attach the surviving view to the new authority. If interrupted, fall back to hard-loss recovery. Background callbacks are best-effort and may not arrive on force-close, so recovery cannot depend on them.
+| Client state | Rule |
+| --- | --- |
+| Local ready | Restore the appropriate private save; play while foreground discovery runs |
+| Joining | Authenticate identity/version, receive the current server snapshot, switch at a safe input boundary |
+| Connected | Send validated intentions; render smooth motion and authoritative object results |
+| Connection lost | Continue privately from the latest usable visible state; clear stale network holds without rewinding to an older save |
+| Rejoining | Preserve the private save separately; use server state and discard stale pending network actions |
+| Suspended | Save the local/profile state as appropriate; stop unnecessary networking and resume with a new attempt generation |
 
-During hard-loss recovery, keep the last picture, allow local UI/navigation as feasible, stop sending mutations to the vanished authority, and start the local branch from the last coherent revision. Clear only stale remote interaction leases, replace missing essential roles with NPCs, and rebind visuals. Timers resume from saved logical state so a child does not miss an entire hiding round while networking recovers. Use unscaled/network timing for authority logic; a local TV overlay must not set the whole game's clock to zero.
+Ignore callbacks from cancelled attempts. Retry networking outside the frame-critical movement path. Do not require a complete recovery replica, proof of every prior server action, or a successful disk write before local input becomes usable. Responsive local simulation and durable background saving have distinct responsibilities; failed saves need a recoverable record, not frozen controls.
 
-### Automatic reunion after independent play
+A client closing does not stop the server. Its temporary holds/roles expire or release there. If the server stops, its restart/restore workflow preserves canonical data; clients continue separate solo games until it is available. A disconnected client cannot know whether a remote server has stopped, and must never promote itself based on a timeout.
 
-The earlier travel plan offered a join invitation after a split; this requirement changes the default to **automatic reunion at a safe state boundary**. Discovery can happen at once, but merging two worlds is different from making a socket connection. Both iPads may have changed a room or used the same toy independently. Never overwrite one whole save with the other or replay all historical effects.
+Connected bedroom changes sync through server revisions. Private bedroom/creation edits remain local, without automatic merge, import, conflict selection or replay on reconnect. Local media bookmarks and preferences remain local. The retained checkpoint experiments can inform server disaster recovery; they are not a requirement for simple offline play.
 
-1. Authenticate and exchange session lineage, common base revision, event summaries, and content versions. Keep both original branches saved.
-2. Choose a continuing session deterministically; a coherent existing multiplayer session has priority. Independent solo branches negotiate one target rather than each inviting the other repeatedly.
-3. Import disjoint owner-bedroom edits, discoveries, and personal settings under their existing policies. Preserve both versions of conflicting shared creations as recoverable drafts; do not force children through a technical conflict dialog.
-4. If the arriving child is mid-drag, finish/cancel that gesture before changing authority. Carry a portable activity's checkpoint into a new unique session/zone on the chosen authority when it can be imported without conflict. A recipe or story cannot be silently restarted just to connect.
-5. If their current activity conflicts with the target world's copy, preserve both creation checkpoints as distinct saved work and import the arriving work into an available explicit workspace when possible. Never silently fork an ordinary room. A separately identified story/workspace instance is a candidate only if visiting it is understandable and tested; private continuation is not a blanket solution for all conflicts.
-6. Atomically switch the arriving client's authority binding after the imported state is acknowledged. Keep their camera/character where practical. The sibling remains in their current activity throughout.
-
-A gesture boundary is not a requirement to finish a five-minute quest. If input never pauses, take a controlled checkpoint between valid committed operations. A brief local transition may be visible, especially in the first implementation; testing must determine whether the interruption is acceptable. Automatic merging of arbitrary divergent state with no transition, no discarded changes, and a single consistent shared object cannot simply be promised.
-
-During a genuine network partition, each iPad cannot know whether the other is closed or merely unreachable. Let each continue its own clearly identified branch. Deterministic election helps them converge **after communication resumes**; it cannot prevent disconnected devices from independently hosting. This is why stable IDs, journals, conflict preservation, and session lineage are core features rather than optional polish.
-
-### Why a different multiplayer package is not an automatic fix
-
-Unity's current session documentation separates host election from state migration: electing a host does not migrate network data, and its default migration implementation is for Netcode for Entities. It directs NGO users toward Distributed Authority for migration operations. That does not give our existing LAN/offline design a ready-made StartHost-on-disconnect solution. [Unity host migration](https://docs.unity.com/en-us/mps-sdk/session-host-migration)
-
-NGO Distributed Authority documents automatic session-owner reassignment and object-authority transfer. Unity's supplied session path integrates the Distributed Authority service and relay-style network options. That can be useful for an internet-oriented architecture, but it does not establish that an unmodified cloud-service sample works over an offline phone hotspot. Keep the offline core independent of service sign-in. Reconsider topology only after a measured prototype, not as a substitute for saving and reconciling world state. [Unity distributed authority](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/terms-concepts/distributed-authority.html), [Unity network connection options](https://docs.unity.com/en-us/mps-sdk/manage-session-network-connection)
+The live-state model stays separate from disposable network objects and visual scenes. NGO cleanup can destroy network representations on shutdown, so those objects cannot be the sole durable world record. [Inspected NGO shutdown source](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Core/NetworkManager.cs#L1659). This remains useful evidence without adopting the old mobile-host migration proposal.
 
 ## 46. Automatic multiplayer implementation and verification plan
 
-### What we can reuse and what we must build
-
-| Layer | Reuse | Required game-specific work |
-| --- | --- | --- |
-| Native discovery | Apple NWBrowser/NWListener; Windows DNS-SD registration | Unity/native bridge, declared service types, lifecycle handling, family handshake, reachable endpoint checks |
-| LAN gameplay | NGO and Unity Transport, pinned to a tested Unity 6.3-compatible package set | Commands, authority rules, client preparation, zone filtering, version compatibility |
-| Session orchestration | Library connection/disconnect callbacks | Automatic election, deduplication, sticky host, bounded retries, foreground policy |
-| Persistence and recovery | Existing planned local save/journal system | Complete recovery snapshots, replication acknowledgements, checkpoint import, authority transfer |
-| Seamless-feeling reunion | Existing activity/room separation | Branch reconciliation, portable activity instances, local view preservation, no forced sibling movement |
-| Optional router-free play | Network framework peer-to-peer support | Native data channel plus an NGO transport adapter; separate from LAN UTP; physical-device proof |
-
-Keep pairing credentials out of unencrypted NGO approval payloads. Unity's connection-approval documentation warns that it does not itself authenticate or encrypt connection data. Use a reviewed authenticated-channel/challenge design, bind any short-lived admission ticket to the verified peer and connection attempt, and reject incompatible or unpaired devices. Do not auto-accept everybody on hotel or hotspot Wi-Fi merely because their app advertises the same service name. This is a small necessary part of reliable automatic joining, not a cloud-account requirement. [Unity connection approval](https://mp-docs.dl.it.unity3d.com/netcode/current/basics/connection-approval/)
-
-Two GitHub options were inspected again for this requirement; neither is a verified complete solution:
-
-| Repository / inspected revision | Finding | Decision |
-| --- | --- | --- |
-| [Unity multiplayer community contributions](https://github.com/Unity-Technologies/multiplayer-community-contributions/tree/0fab638470379ace12b0149dfb41c043d23dbce5), MIT; latest inspected commit September 8, 2026 | `NetworkDiscovery.cs` uses `UdpClient`, `IPAddress.Broadcast`, and `EnableBroadcast`; repository also contains an MPC transport and explicitly disclaims guaranteed future NGO compatibility | Useful examples; do not import raw broadcast discovery as our iPad default. Native declared Bonjour avoids its extra multicast-entitlement dependency |
-| [Apple MPC Unity plugin](https://github.com/realitydeslab/apple-multipeer-connectivity-unity-plugin/tree/c6c5d7355d50e9325a70fe1ea18ef02061bff5e2), MIT; latest inspected commit May 23, 2023 | Package declares Unity 2021.3; native browser/advertiser wrappers expose invitations. Inspected browser wrapper hardcodes a seven-second invitation timeout and discards passed invitation context | Reference for native bridges only; dated MPC dependency and no demonstrated family election, save migration, or iPadOS 18/Unity 6 qualification |
-
-These were read-only repository/source inspections, not installations, compilations, or runtime tests. A found repository should not be described as providing automatic family play until the lifecycle and save tests below pass. Current engine documentation was consulted for capabilities; no package version was changed during research.
-
-### Build and prove it in this order
-
-1. **Discovery-only device experiment:** native Bonjour advertise/browse plus authenticated echo on both exact iPads and Windows. Test home Wi-Fi, phone hotspot, local-network permission, IPv4/IPv6 endpoints, network changes, and the actual free signing setup. Record separately whether discovery and data traffic work.
-2. **Automatic two-player toy scene:** one bucket, one plant, two movable avatars. Either iPad can open first; both can open together; PC present/absent; no Host/Join UI. Verify one stable authority while connected.
-3. **Recovery model before more content:** move toys in different rooms, replicate a complete checkpoint/journal, and hard-close the host. Continue on the guest automatically and reconnect the old host without duplicate toys.
-4. **Branch reunion:** let both children edit independently, restore connectivity, and automatically converge while preserving disjoint edits and conflicting drafts. Prove this before claiming automatic mid-game joining is finished.
-5. **Activity coverage:** cooking, books/TV, hiding, bedrooms, separate daycare stories, equipment, and all other selected mini-games receive per-step join/leave/recovery tests.
-6. **Optional peer-to-peer Wi-Fi transport:** only after LAN and persistence pass. Test with no shared router and no internet; do not infer success from Bonjour discovery or an Editor demo.
-
-### Proposed measurements, not promises
-
-Measure launch-to-local-control, discovery latency, handshake/snapshot time, outage detection, recovery duration, latest recoverable revision, longest input interruption, frame time, memory, bandwidth, and battery/thermal behavior. Log anonymous profile/device IDs and session generations locally so a parent can export a useful diagnostic report.
-
-For an initial prototype, try roughly a 1–2-second discovery grace, a small heartbeat about once per second, and loss suspicion after several missed heartbeats (for example 3–5 seconds), then tune with transport timeouts and physical tests. A heartbeat is not permission to promote a second authority while the old connection is merely slow. Once recovery begins, isolate the new branch and reject stale-generation packets. Do not add application timeouts on top of transport timeouts without measuring their combined delay.
-
-Start full recovery snapshots around every few seconds plus a continuous committed-operation journal; tune interval and size from measured A10 work. A snapshot interval is not the guaranteed maximum loss window: replication, acknowledgement, and durable write timing matter too. Bound journal queues, prioritize current gameplay over large snapshots, and retain the last complete checkpoint if a transfer fails.
-
-### Required scenario matrix
-
-| Scenario | Pass condition |
+| Check | Acceptance |
 | --- | --- |
-| A10 opens first; A13 opens later; repeat with order reversed | Local play starts without lobby; second joins automatically; existing authority remains stable |
-| Both launch nearly simultaneously, repeated with artificial discovery delays | One connected session after negotiation; no reciprocal join loop; all local work preserved |
-| PC awake, sleeping, stopped, restarting, or discovered late | Correct fallback; no infinite startup wait or sudden healthy-session preemption |
-| Child changes character, room, activity, book, or video during discovery/join | Identity and current view remain valid; no global pause or unexpected teleport |
-| Child is hiding when sibling connects or taps their portrait | Seeker rules respected; no hidden-location reveal |
-| Guest leaves, locks, or force-closes | Host continues; reservations expire; needed NPC roles fill |
-| Host locks, backgrounds, force-closes, loses power, or loses Wi-Fi | Automatic recoverable local continuation; no lobby, empty room, or indefinite Connecting screen |
-| Host opens in-game TV or narration while sibling plays | Host simulation/network stay active; local media does not freeze the shared world |
-| Previous host returns after guest has made progress | Joins current lineage after reconciliation; no stale host takeover or creation loss |
-| Both keep playing during a network split | Separate branches remain usable; reconnection converges without whole-save replacement |
-| Both edit different bedrooms offline; both edit the same shared castle offline | Bedroom edits merge; both castle variants survive with unique IDs and no duplicate committed transfer |
-| Joiner has a huge save or missing/incompatible required content | Current player unaffected; bounded transfer/failure; joiner remains in usable solo play |
-| Permission prompt accepted slowly, denied, later allowed | No repeated prompt loop or false Connected status; resume discovery when permitted |
-| Unknown device advertises matching app service | No automatic admission without family authentication |
-| Duplicate callbacks, stale ads, IP changes, resume storm, two connections per peer | One valid connection generation; stale work ignored; no leaked listeners |
-| Home LAN without internet; phone hotspot with/without cellular; hotspot locks/disappears | Record actual route support; gameplay uses local route when available and solo when not |
-| A10 hosts while each child is in a different world/story | Required performance budget and complete recovery coverage; no simulation missing for off-camera zones |
-| Repeated connect/disconnect and background/foreground cycles | Stable memory, one discovery browser, no runaway retry traffic, preserved saves |
+| Automatic family joining | Four enrolled iPad/iPhone/Android clients join the designated PC/VPS without repeated child input |
+| Independent areas | Creek and playground retain one shared identity; visiting meets existing players and never reloads a sibling's area |
+| Shared item contention | Exactly one accepted holder; duplicate actions do not duplicate contents or creations |
+| Departure and local media | Closing one app, opening a book/video or changing area leaves other players uninterrupted |
+| Network loss | Private controls continue without reopening; no periodic walking hitch or jump to an older saved world |
+| Offline cold launch | Installed activities and local saves remain available; distinguish OS signing verification from game connectivity |
+| Rejoin | Server state wins, original/private saves survive, no offline command upload or item duplication |
+| Dedicated server recovery | Backup/restore and restart retain identities, saves and canonical item state |
+| Planned VPS migration | Only one canonical writer; old enrollment/world retained through a verified controlled cutover |
 
-The acceptance bar is **automatic everyday connection and recovery with comprehensible local feedback**, not claiming that networking can never pause. The final tuning decision requires both physical iPads and observation of the children. All previously specified full offline activities, personal rooms, optional quests, and independent locations remain required.
+Four-device admission and scoped independent shared play already have physical evidence. Build 95's smoother offline walking passed on iPad 7; prepared 98's transition fix needs physical acceptance and rollout. Follow the [current return checklist](implementation/return-checklist-ipad-lan-2026-09-24.html). Device-host roles, election and handoff tests are removed; their earlier experiment records remain historical.
 
-**Research status:** the [automatic multiplayer evidence index](bluey-research/automatic-multiplayer-evidence.json) records the platform references, inspected GitHub revisions, and remaining device experiments. This update changes the research/design only. No native plugin, network permissions, PC startup task, server, Unity package, or iPad installation was changed.
+Independent character/art preparation may continue while device checks wait. G5 adds persistent bedrooms, protected creations and reusable item rules; G6 integrates one polished slice, then G7 expands to six worlds. Do not restore G4 as a hidden dependency for those activities.
 
 ## 47. Up to four family players across iPad, iPhone, and Android
 
@@ -2090,11 +1936,11 @@ This expands the earlier two-player design. Two-child examples throughout the gu
 | Family combination | Proposed support | Connection |
 | --- | --- | --- |
 | Two children on iPads | Required baseline, with solo and shared play | Home Wi-Fi or tested travel network |
-| Two iPads + parent on Android | Three people in the same world | Same reachable Wi-Fi LAN; PC or qualified mobile host |
+| Two iPads + parent on Android | Three people in one world | Each reaches the designated PC/VPS |
 | Two iPads + parent on iPhone | Three people in the same world | Same LAN; same game/session protocol |
 | Two iPads + Android + iPhone | Four people in the same world | Same LAN; PC preferred at home |
 | Two iPads + two Android phones | Four people in the same world | Same LAN; each Android device/build must qualify |
-| Apple devices using the optional Apple direct peer link | Separate Apple-only experiment | Does not provide an Android connection |
+| No route to the designated server | Independent solo on every device | Direct peer co-op is removed |
 | Parent away from home on cellular while children use home Wi-Fi | Now included as optional remote-PC play; see section 49 | Configured private route to the same home PC, with usable internet |
 
 The phone and iPad run separate platform builds from the same Unity project, with the same gameplay rules, protocol version, stable content IDs, and compatible save schema. Phone art compression and UI layout may differ without creating a different game world. Do not serialize platform file paths, local asset handles, or native pointers as shared object identities. Send explicit game values and IDs; retain one authority for shared outcomes rather than expecting Android and iPad physics to simulate identically.
@@ -2111,7 +1957,7 @@ On a road trip, connect the devices to a tested phone hotspot and run the same L
 
 ### Four players changes more than a connection limit
 
-Use a player collection keyed by permanent profile ID, with 1–4 active human slots. A dedicated PC server consumes **zero** human slots; an iPad/phone listen host includes its local human in the four. Reserve pending admissions atomically so two phones joining together cannot both take the last slot. Recognize a reconnecting profile's valid session lease rather than spawning another copy. A fifth device gets a quiet session-full status and can still play locally. No connected child is evicted to make room for a parent. NGO provides connection approval hooks; this slot policy is our application logic. [Unity connection approval](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/connection-approval.html)
+Use 1–4 human slots keyed by permanent profile ID. The dedicated PC/VPS consumes zero player slots. Reserve pending admission atomically, recognize valid reconnects and reject a fifth client without evicting anyone; solo remains available. [Unity connection approval](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/connection-approval.html).
 
 Make parent profiles distinct from Child A and Child B. If a parent uses the Android phone today and iPhone tomorrow, that may be one parent profile with a controlled device handoff; it should not create two simultaneous copies of that person. For four simultaneous players, use four distinct active profiles. Keep avatars independent: several people can choose the same favorite character, with clear per-player markers.
 
@@ -2130,15 +1976,15 @@ Make parent profiles distinct from Child A and Child B. If a parent uses the And
 | Bedrooms and secret rooms | Visitors share existing rooms; owner decoration rules remain; parents receive no automatic power to erase a child's layout |
 | Pictures/menu/status | A responsive list of up to four portraits; distinguish profile identity, connection state, character, and activity role |
 
-### Host recovery now needs to consider three remaining devices
+### Four clients remain independent of the server process
 
-Keep the PC as the preferred server at session start when reachable, including over the optional private internet route in section 49. An already healthy travel host remains in charge until a coordinated, reconciled transfer. Both iPads retain the hosting requirement; Android/iPhone may become eligible hosts after their hardware and native builds qualify. The Galaxy S26 Ultra is identified by Samsung’s [SM-S948U1 update record](https://doc.samsungmobile.com/SM-S948U1/037285260311/eng.html). Its newer hardware does not justify automatically replacing a healthy host; eligibility still depends on measured game behavior. Record supported player capacity, recovery readiness, content compatibility, and measured load as host eligibility inputs.
+A client’s hardware capability affects rendering, input and media performance; it never makes that device eligible to host. The designated PC/VPS remains authoritative until a parent-controlled server migration.
 
-With four players, losing the host leaves three candidates. Preselect a preferred eligible successor and keep a verified recovery checkpoint/event tail on it, with recoverable state on the other clients too. On an orderly transfer, tell all connected peers the target and new session generation. After a hard failure, survivors exchange the last acknowledged lineage/revision and elect one host within each reachable group; the others reconnect to that host. Do not promote all three clients independently and assume their worlds will stay identical.
+If any client leaves, the other connected clients continue on the same server. If the server is unreachable, each disconnected client continues separate solo; no successor election occurs.
 
-A network partition can still leave isolated groups. Preserve separate branches and reconcile when communication resumes, as in section 45. Pending admissions, object reservations, and authority messages must be scoped to the agreed generation. No migration requires the departed device to acknowledge before the remaining players can continue. A brief recovery transition is still possible.
+On reconnection, load the server world and keep offline saves private. Generation tokens reject callbacks from old attempts; pending offline operations are never uploaded.
 
-Recovery records must cover every active zone, even when all four players are in different places. Reuse a compact snapshot plus events; avoid sending a complete world snapshot separately every frame to three clients. Prioritize live interaction updates and bound background transfers. Do not wait for every peer to durably acknowledge every cosmetic event: one slow phone must not freeze the children. Define and report which durable revision each possible successor actually has.
+The server stores all logical areas. Prioritize live interaction updates and bound checkpoint transfers. A client does not need a complete world replica or every receipt before offline controls work.
 
 ## 48. Android build, phone layout, and four-player acceptance
 
@@ -2156,7 +2002,7 @@ Track the network/interface associated with discovered endpoints. In particular,
 
 Use the same landscape world with phone-aware UI scaling, safe-area padding, and camera framing. Keep the joystick away from gesture navigation, keep the item drag area clear, and avoid placing Home/Return or player portraits under a notch. Do not simply shrink every iPad control until four portraits fit. Unity's `Screen.safeArea` supplies the usable rectangle; respecting it still needs layout work and physical testing. [Unity safe area](https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Screen-safeArea.html)
 
-Each device renders its own view, so adding parents does not divide the iPad into four tiny screens. More humans do increase visible rigs, object commands, simulation, snapshots, and audio events. Keep the A10's stable 30 FPS target. Retest the earlier daycare NPC budget with four visible human avatars and with four independent zones; reduce background animation/detail before restricting meaningful play. Four-player success on PC does not establish that the A10 can host that workload.
+Each device renders its own view, so adding parents does not divide the iPad into four tiny screens. More humans do increase visible rigs, object commands, simulation, snapshots, and audio events. Keep the A10's stable 30 FPS target. Retest the earlier daycare NPC budget with four visible human avatars and with four independent zones; reduce background animation/detail before restricting meaningful play. Desktop success does not establish sustained A10 client/solo performance.
 
 ### Qualification matrix
 
@@ -2164,27 +2010,27 @@ Each device renders its own view, so adding parents does not divide the iPad int
 | --- | --- |
 | PC + two iPads + Android parent | Three humans automatically discover, join, interact, and leave; each retains their own profile and view |
 | PC + two iPads + Android + iPhone | Four simultaneous humans, correct capacity accounting, no forced common room |
-| Qualified iPad host + Android/iPhone clients | Same object state/protocol across operating systems; both iPads tested as host |
-| Android/iPhone mobile host candidates | Galaxy S26 Ultra and iPhone 13 Pro Max: qualify each native build on the installed OS; do not claim support from an Editor test |
+| Both iPads + Android/iPhone clients | Same server protocol and item state across operating systems; four players, no mobile-host roles |
+| Client interruption | Closing any phone/tablet leaves the others active; disconnected devices play private solo |
 | Third/fourth arrive during cooking, hiding, books, and separate imagination stories | No restart, no taken-over avatar, current state and suitable role/arrival anchor |
 | Everyone chooses Bandit, then changes characters during NPC hide-and-seek | Clear human badges and NPC actor; stable profile/role; no stolen control, revealed hiding location, or missing seeker |
 | Four simultaneous grabs/placements and two admissions for the last slot | Single valid object transaction; atomic slot count; no extra fifth player or duplicate profile |
-| Host departure with three remaining players | One successor per reachable group, consistent checkpoint lineage, automatic reconnection, retained work |
-| Parent receives a call, locks phone, or backgrounds app | Children continue when parent is client; tested recovery if parent was host; no stolen input after resume |
-| iPhone hotspot with Android and both iPads, then phone also playing | Verify client routing, discovery, usable capacity, lock behavior, heat, and reconnection on the actual phone |
-| Internet unavailable but local network works | Mixed-device game uses local connectivity; no cloud sign-in/content fetch gate |
+| One client leaves, then a server outage | Remaining connected players continue; disconnected clients use private solo, then rejoin server state |
+| Parent receives a call, locks phone, or backgrounds app | Children connected to PC/VPS continue; no stolen input after resume |
+| iPhone hotspot with Android and both iPads, then phone also playing | After remote deployment, test the route to PC/VPS, lock behavior, heat and reconnect; no local peer routing required |
+| Internet unavailable but designated home PC is reachable | Mixed-device game uses its local server; otherwise each plays solo |
 | App versions differ or Android permission is denied | Clear local status, full solo fallback, no corrupted session or repeated automatic retry dialog |
 | Android/iPhone aspect ratios and notches | Readable four-person status, usable movement/drag controls, safe exits, local narration |
 | Thirty-minute four-player stress session on A10 | Measured frame time, memory, thermal behavior, bounded snapshots, no accumulating rigs/listeners |
-| Four offline branches return | Preserve child rooms and all completed creations; resolve conflicting shared state without whole-save overwrite |
+| Four offline players reconnect | Load current server rooms; retain each private continuation separately, without importing edits or duplicating shared props |
 
-Build order: keep the original two-iPad interaction prototype, add **Android as the third player early**, then use the iPhone as a fourth test device before expanding all content. This exposes cross-platform assumptions before they spread through the project. The Android phone is confirmed as Galaxy S26 Ultra (SM-S948U1), and unrestricted selection from the available roster including Bandit and Chilli is confirmed. The installed Android version remains to be recorded before device qualification; it does not block the shared-LAN architectural recommendation.
+Build order: keep the original two-iPad interaction prototype, add **Android as the third player early**, then use the iPhone as a fourth test device before expanding all content. This exposes cross-platform assumptions before they spread through the project. The Android phone is confirmed as Galaxy S26 Ultra (SM-S948U1), and unrestricted selection from the available roster including Bandit and Chilli is confirmed. The build guide now records installed device/toolchain versions and scoped physical results.
 
-**Decision/status:** target up to four family players with Android/iOS cross-play on a shared local network, automatic family discovery, independent activities, and complete solo fallback. Phone-hotspot arrangements and mobile hosting limits remain physical-device tests. Sources are recorded in the [four-player cross-platform evidence index](bluey-research/four-player-cross-platform-evidence.json). This update changes research and design only; no game build or device compatibility test was performed.
+**Current target:** four mixed clients, independent activities, automatic PC/VPS joining and full offline solo. Remote hotspot routing is later optional. The [source index](bluey-research/four-player-cross-platform-evidence.json) is historical research; current scoped physical proof is in the build guide.
 
 ## 49. Reaching your home PC from a road trip
 
-**Latest priority:** optional later travel multiplayer. Keep this research, but do not make hotspot/VPN/Relay qualification a gate for ordinary-network iPad hosting and automatic switching. Complete offline solo play remains required.
+**Priority:** optional remote-server route after reliability qualification. Hotspot/VPN/Relay research creates no gate for ordinary home-server play or art preparation. Full offline solo stays required.
 
 **Confirmed expansion: your PC is basically always on and may host the family world while players are away from home.** Add an optional internet route to that same server, supporting 1–4 players across the iPads, Android, and iPhone. This supersedes the earlier nearby-only boundary. Full offline play remains required: a working home PC cannot compensate for a road with no usable internet.
 
@@ -2197,8 +2043,8 @@ Recommended first experiment: **a private Tailscale connection between the famil
 | Everyone at home | Home LAN to PC | Open the game and automatically join the family world |
 | Road trip with usable cellular internet | Each iPad uses hotspot internet and its own private connection to PC | Same family world, even though the PC stays home |
 | Parent on cellular, children at home | Parent connects privately to the same PC; children use LAN | Parent joins without moving the children or restarting their activity |
-| Internet fails, but devices can reach one another locally | Qualified mobile device hosts a saved travel continuation | Nearby family can continue together after a recovery transition |
-| No usable shared connection | Each device runs a local continuation | All installed solo activities remain available; shared edits reconcile later |
+| Internet fails and no designated local PC is reachable | Each device plays private solo | Nearby devices do not create a replacement shared world |
+| No usable shared connection | Each device runs private solo | Installed activities and saves remain local; reconnect uses server state without imports |
 
 The road-trip route is: **iPad game → phone hotspot → cellular internet → private connection → home internet/router → Windows game server**. The return path carries world updates. The Android phone can also be a player. Installing a VPN on the hotspot phone alone is not our proposed setup: install and enroll the client on each game device that must reach the PC. This avoids depending on the phone forwarding tethered traffic into its own VPN. Test the hotspot provider playing at the same time.
 
@@ -2226,7 +2072,7 @@ During parent setup, enroll each device and save the family's server identity, p
 
 Do not depend on the earlier local Bonjour browser finding the home PC across the internet. Add a direct remote-endpoint resolver alongside LAN discovery. Resolve the private hostname to a supported address, then attempt the same authenticated game handshake, checking world ID, protocol/content versions, player identity, and capacity. A VPN icon or successful ping alone is insufficient evidence that the game server is ready.
 
-At a new session, prefer a reachable home PC, using its local address at home and its private remote route away. Probe with bounded timeouts while local play remains usable. When several routes reach the same server, recognize its persistent identity and open only one game connection. Once a healthy travel session exists, do not move everybody to the PC just because its route briefly returns: reconcile first, then perform a coordinated transfer at a safe activity checkpoint. Preserve the earlier stable-host rule and independent locations.
+Resolve routes to the same designated server identity, with bounded attempts outside the gameplay path. Use one authenticated connection. Switching a network route is not a change of world authority; changing PC to VPS is a parent-controlled migration.
 
 The game searches/retries while foregrounded. The supporting VPN has its own OS lifecycle, which is separate from game discovery. On iPad/iPhone, Tailscale offers VPN On Demand rules; test a configuration for the hotspot Wi-Fi as well as cellular on the phone, including reboot and returning from background. The game cannot silently grant itself the OS's first VPN permission. Android startup/battery behavior must be tested on the Galaxy S26 Ultra; do not assume Apple's On Demand feature applies to Android. [Tailscale On Demand](https://tailscale.com/docs/features/client/ios-vpn-on-demand)
 
@@ -2248,7 +2094,7 @@ Configure private-network access to the needed game endpoint, with Windows firew
 
 If one iPad loses internet while others remain connected, the PC continues their shared session. The disconnected device stops issuing shared commands and continues from its last complete checkpoint in a new local branch. If both traveling iPads remain reachable locally, they may form a shared travel branch with one authority; otherwise each continues alone. Do not announce a global host replacement or revoke the reachable PC's authority because one client cannot see it.
 
-On reconnection, submit idempotent local operations with their branch/base revision and preserve conflicting creations as described in sections 35 and 45. The PC validates/reconciles before the returning player resumes its current live session. Do not overwrite the whole PC world with a travel save or discard an offline bedroom. A brief transition is possible; no network design can provide live shared actions across a complete loss of connectivity.
+On reconnection, join the server’s current world. Keep local work separately; never submit private branch operations or replace the server save with a travel save. A missing route cannot carry other players’ live actions.
 
 ### Build order and acceptance
 
@@ -2264,7 +2110,7 @@ On reconnection, submit idempotent local operations with their branch/base revis
 | Direct route unavailable; Tailscale relay path used | Measure latency and playability; graceful fallback if unacceptable |
 | Weak signal and repeated handovers | Test simulated 100/250/500 ms round trips, jitter, packet loss, and 10–30 second outages; these are test conditions, not promised performance |
 | One child disconnected while the other still reaches PC | Connected child continues; local branch preserves disconnected child's work |
-| Both lose internet but retain local Wi-Fi | Recover local shared play where peer routing works; otherwise solo remains available |
+| Both lose their route to the designated server | Each continues solo; a reachable enrolled home PC can still serve its designated local world without internet |
 | Windows logout, reboot, server crash, or home internet loss | Correct startup/recovery; durable world retained; clients never wait indefinitely |
 | Renewal helper, another VPN, denied VPN setup, expired enrollment | Clear parent diagnosis, usable local fallback, no repeated child prompts; renewal and reconnect proven together |
 | Returning from offline cooking/bedroom edits | No duplicate rewards, lost room, stolen held item, or whole-save overwrite |
@@ -2296,7 +2142,7 @@ Both children and parent visitors may enter either personal bedroom or secret ro
 
 Use one authoritative world model with stable `WorldId`, `ZoneId`, optional activity-instance ID, player profile IDs, and persistent prop IDs. Each player's current zone is separate from the host's viewed zone. The server owns the logical state of occupied areas and keeps saved records for empty ones. “This iPad stopped displaying the creek” must never mean “delete the creek.”
 
-Recommended Unity structure: keep a persistent networking/world root and dynamically spawned network entities there. Load the local room illustration, view components, and effects as presentation content. Identify a prop's location by its logical zone; avoid needing to move its authoritative entity between Unity scenes whenever a child passes through a door. On a mobile listen host, unloading its player's visuals must leave the server's data and any required simulation for other players intact.
+Keep a persistent logical world on the server and load each client’s room illustration/effects as presentation. Props have logical zone IDs; one client unloading art never removes authoritative entities or another player’s activity.
 
 Unity's integrated network scene manager synchronizes server scene events with clients. A global scene replacement for each player's travel would conflict with this requirement. Custom scene handling requires explicit synchronization and readiness handling; Unity also documents limitations for in-scene NetworkObjects with custom loading. Use registered network prefabs and a consistent persistent network scene, with presentation scenes containing no independently spawned duplicate gameplay props. This is our proposed architecture to prototype, not a built-in “independent worlds” checkbox. [Unity scene events](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/scenemanagement/using-networkscenemanager.html), [custom scene management](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/scenemanagement/custom-management.html)
 
@@ -2314,9 +2160,9 @@ Use transition IDs so a rapid Creek → Playground → Home sequence ignores obs
 
 ### Send each player the relevant state
 
-Replicate a lightweight family presence list globally, with coarse area names where allowed. Replicate detailed avatars and props for the player's current/entering zone; retain a separate complete recovery snapshot/journal where required by the hosting plan. Rendering/network visibility filters cannot be the only backup for offscreen zones.
+Send a lightweight presence list globally and detailed props/avatars for the client’s current/entering area. Server backups cover every area. Complete client replicas are optional recovery evidence, not a requirement for local input.
 
-NGO provides per-client visibility and `NetworkShow`/`NetworkHide`. Its visibility callback is used during spawning/joining, so explicitly update membership when players change zones. Hiding removes the client's network representation; it must not erase the server's persistent prop record. Keep an avatar and held-item dependencies visible coherently, and avoid a client cleanup callback mutating authority on the listen host. [Unity object visibility](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/object-visibility.html)
+NGO visibility hides client representations without erasing server records. Update subscriptions on travel and keep avatar/held-item dependencies coherent. Presentation cleanup must never mutate server authority. [Object visibility](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/object-visibility.html).
 
 Keep lasting facts as synchronized current state: holder, zone, position, water amount, planted state, and completed construction. A pickup RPC or animation alone cannot explain a bucket to someone who arrived afterward. Unity synchronizes NetworkVariable values to newly joined clients and exposes change callbacks; initialize the visual from the current value and then observe changes. Our multi-object transition/snapshot consistency still needs its own revision rules. [Unity NetworkVariables](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/networkvariable.html)
 
@@ -2336,7 +2182,7 @@ While Player 1 drags the bucket, Player 2 may move a ball, cook, or leave. Reser
 
 **Portable items follow their category policy (refined in section 51).** Personal toys and borrowable spare props may travel; essential station tools stay within their allowed play region and settle on a return rack if the player travels farther. The following bucket example uses a borrowable spare. On a successful area transition, the same bucket ID and its contents move to the destination; it disappears from the old area and appears held in the new one. Source players continue normally but no longer have that particular borrowed bucket nearby; section 51 preserves the station’s essential local working kit. A failed transition retains the original state. Fixed equipment stays in place; an uncommitted touch drag is safely settled before travel. A carried prop is not deleted on character swap, activity exit, or owner disconnect. A disconnect places it safely in the last committed zone and clears the temporary hold; restarting a server clears stale holds without replacing saved props with fresh copies.
 
-These rules apply while devices share a reachable authority. Offline branches cannot enforce a single live hold across disconnected devices; preserve each continuation and reconcile after connection returns, as already required. Ordinary room travel is not a host failure and must never trigger that recovery path.
+Single-holder rules apply within one authority. Private solo copies do not share live holds, and are never imported. Normal area travel changes a subscription, not authority or another player’s world.
 
 ### Required proof before expanding all six locations
 
@@ -2353,7 +2199,7 @@ Build a two-zone test with a creek, playground, one portable bucket, one water s
 | Last player leaves and later returns | Personal/creative state persists; eligible shared loans may have returned under section 51; no whole-room reset or duplicated starter bucket |
 | Rapid travel or cancelled/failed load | One valid player position; no phantom avatar or lost carried item |
 | All four players occupy different areas, then gather | All areas function; entering friends' rooms/stories joins the correct existing instance |
-| The hosting iPad changes areas while guests stay elsewhere | Host simulation continues; no despawn of guests' world objects or blocked activity timers |
+| Any client changes area while siblings stay elsewhere | Server simulation and siblings continue; no despawn or timer interruption |
 | Repeat on A10, Android/iOS mix, and remote-PC route | Measure arrival time, frame-time spikes, bandwidth, and holding consistency; ordinary travel remains independent |
 
 **Status:** these are explicit design and acceptance requirements, not implemented gameplay. The [independent-travel and shared-item evidence index](bluey-research/shared-world-evidence.json) records the Unity sources; document checks do not substitute for the physical-device tests above.
@@ -2434,7 +2280,7 @@ When a return is due, validate the expected revision and current eligibility, re
 
 Pooling can reuse visual/effect objects to reduce allocation churn, but it is not a game inventory or anti-hoarding system. Unity's pool creates an instance if none is available; its maximum retained size therefore does not cap all live items. Enforce gameplay supply and room budgets separately. Clear old listeners, references, contents visuals, and timers when reusing a view; an old timer must not return a new toy that reused that object. [Unity ObjectPool](https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Pool.ObjectPool_1.html)
 
-Offline play uses the same item policies within its own branch. During reunion, match a canonical shared prop's ID and generation rather than adding another physical copy because both branches returned it. Conflicting creative contents retain recoverable records. Returning ordinary shared equipment may normalize its stock position after active holds finish; it must not overwrite a different child's room or erase their offline cake. Log a return reason, operation ID, and revision for debugging, and keep a recovery snapshot so a policy bug is reversible.
+Offline play applies the same return policies within its private save. Rejoining loads the server’s item identities, contents and timers; private returns or creations are never imported. Keep local creations recoverable separately, and log committed return reasons/revisions for diagnosis.
 
 ### Acceptance before release
 
@@ -2450,84 +2296,34 @@ Offline play uses the same item policies within its own branch. During reunion, 
 | All four players use station tools; one attempts to reserve every spare | One holder per item, per-player stock rules, all activity roles remain usable |
 | Room budget reached with all dinosaur types accessible | Picture storage remains usable, exits clear, nothing silently deleted |
 | Lost packet, duplicate timer, server crash, and pooled-view reuse | One committed return; no stale cleanup of a different object |
-| Two offline branches borrow/return the same stock item | Reconciliation avoids extra shared instances and preserves personal creations |
+| Two offline players borrow/return the same stock item | Private copies stay local; reconnect loads the single server-owned stock item without importing or duplicating copies |
 | Long A10 session repeatedly spawning supplies and tidying | Bounded live objects, memory, listeners, save growth, and frame-time spikes; no growing hallway/room heap |
 
 **Decision/status:** automatic return after inactivity is confirmed; three-minute timing, five-second cue, four-loan allowance, and bedroom budget are proposed tuning values. Item-category rules, safe return transactions, protected storage, and the tests above are researched plans, not implemented features. Sources are saved in the [item-return evidence index](bluey-research/item-return-evidence.json).
 
 ## 52. Feasibility audit and current priorities
 
-**Verdict: yes, the intended game is achievable in Unity, as a substantial custom project built in stages.** The full audit covers all 51 preceding sections and both companion reports. It records feature verdicts, conflicting assumptions, technical limits, a revised proof sequence, workload, and a coverage register: **[Read the feasibility audit](family-playset-feasibility-audit-2026-09-23.html)** or [open its editable source](family-playset-feasibility-audit-2026-09-23.md).
+The game remains feasible as a staged custom Unity project. The latest architecture is simpler: one PC/VPS authority, four clients and independent offline solo. [Current decisions](current-decisions.md) supersede the old mobile-host and merge proposals. The [feasibility report](family-playset-feasibility-audit-2026-09-23.html) and [build guide](family-playset-build-guide-2026-09-23.html) now use the same scope.
 
-### Your latest clarification controls the priorities
+Required: four mixed clients, independent locations, interactive shared props, free joining/leaving, automatic connection, full installed solo activities, protected saves and personal rooms. Optional later: remote multiplayer while traveling and AR. Removed: device hosting, election/switching, router-free co-op, Bluetooth and automatic offline merging.
 
-| Required | Optional / later |
-| --- | --- |
-| Either iPad can host; automatic discovery, joining, host switching and recovery | Making multiplayer work through a travel hotspot or remote home-PC route |
-| Up to four mixed iPad/iPhone/Android players, independent locations, shared props and free joining/leaving | Apple-only router-free Wi-Fi investigation |
-| Complete solo play without PC or internet, including while traveling | AR presentation |
-| Safe saves, protected creations, automatic item returns, and free signing-renewal verification | Additional show-catalog content beyond the chosen production batches |
+Finish connection/offline qualification and deployment checks within their scope. Isolated character animation can advance meanwhile. Establish G5 room/item contracts, complete one polished home/backyard slice, then expand the six-world catalog. English comes first, reviewed Spanish later. G4/AUTO-02 are retired, not passed gates.
 
-**Making travel multiplayer optional does not remove any of the required ordinary-network hosting, switching, or reunion work.** Test core automatic multiplayer on home Wi-Fi with the PC both present and absent. Travel networking must not distract from that proof or from complete solo play.
-
-### What is straightforward and what needs proof
-
-The 2D dollhouse, character choice, two movement modes, rich item interactions, optional quests, cooking, fishing, cleanup, dinosaurs, books, TV, science, personal rooms and daycare all have credible implementation paths. Their volume still requires considerable artwork, animation, reviewed speech and activity testing. A downloaded template does not provide the combined product.
-
-Automatic recovery is the highest engineering risk. Unity distinguishes host election from migrating state, and its default session migration implementation is not a ready-made NGO LAN/offline solution. The game needs explicit checkpoints, handoff, hard-failure recovery and reconciliation. [Unity host migration](https://docs.unity.com/en-us/mps-sdk/session-host-migration)
-
-Ordinary client departure or room travel must not reset another player's activity. A hosting iPad vanishing can require a brief detection/recovery transition; zero delay and preservation of every unreplicated action cannot be guaranteed. Disconnected devices also cannot share live actions until they reconnect. Preserve conflicting creations without silently creating two ordinary rooms under the same identity.
-
-Both iPads meet Unity 6.3's published baseline, but four-player A10 hosting, independently active zones and local video playback remain unmeasured workloads. Keep the 30 FPS target and test the actual devices before treating draft memory/prop/NPC budgets as qualified limits. [Unity 6.3 requirements](https://docs.unity.com/en-us/engine/6000.3/manual/get-started/install-and-upgrade/getting-started-installing-unity/system-requirements)
-
-### Revised proof sequence
-
-1. Prove native builds, saved data, in-place updates and the free installation workflow on both iPads; qualify Android early.
-2. Make the bucket/plant/sponge interaction feel good in solo play with both input modes.
-3. Prove automatic PC-hosted play, two independent areas, shared item ownership and four mixed-device players.
-4. With the PC absent, prove either iPad hosting, launch-order handling, automatic handoff, hard-close recovery and host return.
-5. Prove separate bedroom edits, conflicting creations, repeated packets and safe reunion without lost work or duplicate communal items.
-6. Finish one polished home/backyard slice, then expand to the six-world content plan. Complete English first and reviewed Spanish afterward.
-
-The audit corrected obsolete five-world, two-avatar and shared-travel wording, clarified that the first bucket scene does not prove host recovery, and labeled the platform report's old-project observations. The unrelated `Meeps game` project remains outside this game's scope. All features here are still research/planning; no Unity game, server or device build was created by the audit.
-
+The A10 iPad still needs measured client/solo performance, memory, media and sustained play acceptance. Content production remains substantial: character art, state animations, reviewed speech, activity design and child usability. No template supplies the whole combined game. Scoped proofs already exist; use the build guide for current versions rather than research-date status claims.
 
 ## 53. Source-backed networking and recovery review
 
-**Your chosen normal flow:** open the game on either iPad and automatically connect to the family PC server. Open the second iPad, Android phone or iPhone later and it joins that same shared world. Players keep their own locations and activities; ordinary joins, departures and room changes do not require switching hosts.
+The [technical review](family-playset-technical-research-2026-09-23.html) retains the primary-source findings that support the dedicated-server design: native discovery, state outside network objects, independent area subscriptions, server-validated item operations and bounded client rendering.
 
-**Bluetooth is removed from the plan and backlog.** Use Wi-Fi for mobile devices and Wi-Fi or Ethernet for the PC. Either iPad hosting, automatic discovery/joining, host switching/recovery and full offline solo remain required. Only travel-network multiplayer is optional.
+The September 25 scope correction removes the old mobile-authority and offline-merge application conclusions. Research about a possible technology is not a requirement to implement it. Bluetooth, router-free peer networking and device hosting are outside scope.
 
-The [deeper technical report](family-playset-technical-research-2026-09-23.html) records the evidence, exact source revisions, proposed architecture and tests still needed. Its [editable source](family-playset-technical-research-2026-09-23.md) and [source-review notes](bluey-research/deep-source-review-2026-09-23/review-notes.md) stay with this game.
+Open the app to join the enrolled PC/VPS automatically; a second through fourth player joins the same world. A client's departure never changes authority. If disconnected, continue private solo; rejoin uses current server data. Test source-backed mechanisms on actual target devices before claiming their behavior or performance. The new architecture audit is a requirements/source consistency review, not a fresh external-source revalidation or a new runtime pass.
 
-### Findings that go beyond the earlier feasibility opinion
-
-| Finding from documentation or code | Practical consequence |
-| --- | --- |
-| A dedicated PC server is separate from each player's client | A child closing an iPad does not remove the world authority. Automatic PC joining is the normal implementation path. |
-| Mirror has real per-player additive-level code and scene-specific visibility | Independent creek/playground visits are an established pattern; our NGO implementation and mobile-host cost still need proof. |
-| Mirror's discovery example uses UDP broadcast | Do not assume the sample meets our iPad permissions/signing requirements; use native DNS-SD adapters for the chosen LAN path. |
-| NGO v2.13.3 shutdown destroys/despawns network representations | Keep the durable world model outside network objects. Restarting a host is not enough to restore the game. |
-| Unity's custom MPS migration snapshot APIs use Lobby | That example does not supply offline LAN recovery by itself. |
-| Mirror and FishNet do not document built-in host migration; Photon demonstrates a snapshot/rebuild process | Changing packages does not remove game-state restoration and save policy work. |
-| Unity Playground's pickup script deliberately steals held items | It conflicts with the one-holder bucket requirement and cannot be reused unchanged. |
-| NGO's development head targets a newer editor than our candidate | Avoid development-branch imports. Published v2.13.3 declares Unity 6000.0 and Transport 2.6.0, but its editor-catalog status differs; section 54 records the qualification decision. |
-| Majority-based consensus does not let one of two fixed replicas continue committing alone | Required solo continuation needs identified branches and explicit reunion rules; device ranking is not a proof of global consistency. |
-| Apple's per-app memory allowance is dynamic | Existing memory/prop limits remain draft budgets until measured on the A10 iPad. |
-
-Sources and precise qualifications are beside each claim in the [technical report](family-playset-technical-research-2026-09-23.html). This is documentation and targeted source inspection, not completed runtime testing.
-
-### What the first multiplayer proof must show
-
-Build a small two-zone scene with a PC server, both iPads, bucket/tap/plant interactions, one saved creation and separate travel. Verify that the second player joins the first automatically, a departing client does not restart the remaining child's activity, and simultaneous pickup requests give only one holder. Add the two phones to prove up to four mixed-device players.
-
-Then remove the PC from the connection and test each iPad as host, planned transfer, hard-close recovery, returning hosts, independently edited rooms, conflicting creations and item return races. This keeps the full required mobile behavior while establishing the simpler normal PC path first.
-
-**Historical research-pass status — September 23:** no server or Unity project was created during that research pass, and physical qualification was still pending then. Later work established the separate project, four-device admission and Windows recovery proofs; see the [current implementation ledger](family-playset-build-guide-2026-09-23.html#19-implementation-audit-and-remaining-work). Bluetooth remains removed and the unrelated old project remains separate.
+See the [implementation ledger](family-playset-build-guide-2026-09-23.html#19-implementation-audit-and-remaining-work) and [audit record](implementation/pc-vps-plan-audit-2026-09-25.html) for completed proof, retired requirements and remaining work.
 
 ## 54. Templates, packages and the free starting setup
 
-**Budget confirmed:** free first; consider an optional package around $20 only if it would save substantial work. The proposed starting package budget is **$0**. No purchase or installation was made.
+**Budget confirmed:** free first; consider an optional package around $20 only if it saves substantial work. The following table records research candidates. Installed versions are recorded in [current decisions](current-decisions.md) and the manifest/lockfile; no package change is implied by this audit.
 
 **Recommendation:** create this game from Unity's **Universal 2D template**, then reuse focused packages and build the particular playset rules. The template configures URP's 2D renderer. It is a suitable foundation, while the quests, interactive toys and shared family world remain our game code. [Unity's template documentation](https://docs.unity3d.com/6000.3/Documentation/Manual/urp/creating-a-new-project-with-urp.html)
 
@@ -2550,13 +2346,13 @@ Unity Playground and Boss Room remain useful source references. TopDown Engine's
 
 **Only paid shortlist item:** DOTween Pro, approximately **$15 USD regular price before tax**; a $7.50 sale was visible during research. Its visual authoring tools may help when we have many repetitive animations, but start with Free. [Publisher listing](https://marketplace.unity.com/packages/tools/visual-scripting/dotween-pro-32416)
 
-This decision preserves up to four mixed iPad/iPhone/Android players, independent travel, shared props, PC auto-join, required iPad hosting/recovery and full offline solo. **Historical qualification note — September 23:** Android OS and Mac/Xcode were unverified during this package-research pass. Their later inventory, the installed package versions and scoped native qualification are now recorded in the [build/device ledger](family-playset-build-guide-2026-09-23.html#device-and-toolchain-ledger). Sustained A10 performance and mobile hosting/recovery remain open. The unrelated old project remains untouched.
+This setup preserves four mixed clients, independent areas, shared props, automatic PC/VPS joining and full offline solo. Device hosting and offline merging are removed. Consult the [build/device ledger](family-playset-build-guide-2026-09-23.html#device-and-toolchain-ledger) for actual installed versions and measured qualification, rather than the research-date candidate table.
 
 ## 55. Future hosting on your owned VPS
 
 **User decision:** once the server is ready, plan to run it on the VPS you already own. This removes dependence on the home PC for the normal shared world. The apps should automatically connect to that enrolled family server from home internet or a road-trip hotspot, allowing up to four iPad/iPhone/Android players with the same independent movement, shared objects and saved progress.
 
-Travel multiplayer still needs a working internet route. In areas without a usable signal, full offline solo remains available; the existing iPad-hosting, automatic recovery and offline/reunion requirements are not removed. This is the preferred future deployment target, not a completed migration or a requirement to work on travel networking before the current server is stable.
+Travel multiplayer needs an internet route to the designated server. Without one, full independent offline solo remains available. Device hosting and offline imports are removed. VPS deployment remains planned after reliability qualification, without blocking isolated art/content preparation.
 
 The [VPS hosting plan](implementation/vps-hosting-plan-2026-09-24.html) records the code review, primary sources, migration gate and acceptance checks. Core game authority rules can be reused. The apps need remote endpoint discovery/configuration; a Linux VPS needs its own server build/platform adapters; the current Windows-protected credentials require controlled migration. Preserve the existing family world and identities, and stop the PC authority before the VPS accepts canonical writes.
 

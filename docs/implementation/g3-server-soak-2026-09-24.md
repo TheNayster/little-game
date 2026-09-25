@@ -1,5 +1,8 @@
 # Sustained four-client Windows run — G3-OPS-04
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **NET-02. Passed for the scoped desktop run.** Server/client 85 ran four enrolled native Windows clients for **600.03 seconds**, with **75 action/sample cycles** on a real clock. No family world or physical device was changed. [Results](evidence/server-soak-2026-09-24/soak-result.json), [sample series](evidence/server-soak-2026-09-24/soak-samples.json).
 
 ## What was exercised
@@ -37,3 +40,4 @@ The harness always creates a separate protected test family and saves its eviden
 **G3-OPS-05: parent-page backup and crash-recovery operations.** The tools from OPS-02/03 are qualified, but activating them still requires developer commands. Add a local backup action and accurate recovery status/enable/pause controls, respecting saved parent intent and the selected deployed build. Qualify through real HTTP/browser interaction in a separate world. The real 83 server may be backed up/observed, but activation of guarded 85 still requires Windows approval and an empty-session update.
 
 This operational step does not close G3: sustained physical-device/route/outage tests, automatic prolonged-outage local continuation, parent enrollment, independent/portable recovery and boot/service deployment remain. The required G4 iPad authority/recovery and G5 reconciliation/content sequence are unchanged. The main guide owns the current queue.
+<!-- historical-record-end -->

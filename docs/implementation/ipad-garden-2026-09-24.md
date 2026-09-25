@@ -1,5 +1,8 @@
 # Garden build 56 on iPad 9 — native update and first device checks passed
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 24 September 2026. Bounded task: install and qualify the prepared G2 solo garden on the primary available iPad, supporting CHAR-01, ACT-01, the local interaction foundation for ITEM-02, and preservation of existing TV-01 data. This does not implement mobile multiplayer or complete G1/G2.
 
 ## Installed result
@@ -41,3 +44,4 @@ Two local attempts started during preparation. The second attempt at 17:14:00 UT
 The install verification script initially placed launch options after the bundle identifier, which `devicectl` interpreted as app arguments. That launch command exited 64 after installation and update checks had already succeeded. The corrected option order launched the installed build successfully; no second installation was needed.
 
 Raw device preferences, inventory, launch/install results, signed-file manifest and native build logs remain under this game's Mac `Logs/ipad-garden-56-20260924` and `Logs/g2-ios-0.0.56-local-*` paths. No passwords/private signing keys were copied into this project. The original unrelated Meeps project was not touched.
+<!-- historical-record-end -->

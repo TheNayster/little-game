@@ -20,7 +20,7 @@
 </style></head><body>
 <header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Audit navigation"><a href="bluey-game-research-2026-09-23.html#52-feasibility-audit-and-current-priorities">Main research</a><a href="#2-feature-by-feature-verdict">Feature verdicts</a><a href="#6-the-proof-plan-before-producing-the-full-game">Proof plan</a></nav></header>
 <main class="wrap" id="top"><div class="audit-intro"><p class="eyebrow">Full plan review · 23 September 2026</p><h1>Can we build this game?<br>Yes—with the right foundations.</h1><p class="intro">The whole playset is feasible in principle. Automatic multiplayer recovery and the older iPad's workload need early device proof; the artwork, voices and activities need staged production.</p></div>
-<div class="audit-status"><span>51 sections + both supplements reviewed</span><span>iPad hosting &amp; automatic switching: required</span><span>Travel multiplayer: optional</span><span>Offline solo: required</span></div>
+<div class="audit-status"><span>Feature feasibility + current scope audit</span><span>PC/VPS shared authority; clients only</span><span>Travel multiplayer: optional</span><span>Offline solo: required</span></div>
 <div class="report-layout"><aside class="contents"><h3>In this audit</h3><div class="toc">
 <ul>
 <li><a href="#1-what-i-audited-and-what-exists-today">1. What I audited and what exists today</a></li>
@@ -34,10 +34,10 @@
 </ul>
 </div>
 </aside><article class="report">
-<p><strong>Technical follow-up:</strong> <a href="family-playset-technical-research-2026-09-23.html">Read the deeper source-backed review</a>. It verifies released NGO shutdown behavior, independent-area examples, native discovery and template limitations. Automatic PC-server joining is the normal flow; iPad hosting/recovery stays required. Bluetooth was removed from the plan at your request.</p>
+<p><strong>Current scope — September 25:</strong> PC/VPS is the sole shared authority; four mobile clients join automatically. Offline solo stays private, and server state wins on reconnect without importing offline edits. G4/AUTO-02 device hosting is retired. <a href="current-decisions.md">Current decisions</a> control scope; the <a href="family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">build guide</a> records current implementation. Technical sources and candidate comparisons below retain their original research date; this update is not a new external-source verification.</p>
 <p>September 23, 2026 · Design and technical audit · No game build has been tested</p>
 <p><strong>Yes: this game is technically achievable in Unity.</strong> The illustrated dollhouse, rich toys, optional activities, speaking characters, personal rooms, and four-player iPad/Android play are compatible ideas. The full plan is a substantial custom game, however. Its hardest work is dependable automatic multiplayer and preserving children's creations through interruptions; the quantity of finished artwork, animation, and audio is the other major workload.</p>
-<p><strong>Your latest clarification is preserved:</strong> iPad hosting, automatic joining, automatic host switching, independent exploration, and shared items remain <strong>required</strong>. Only multiplayer connectivity <strong>while traveling</strong> is a lower-priority want. Complete solo play without the PC or internet remains required, including on trips. Deferring hotspot/remote-access work does not defer the normal-network host-recovery system.</p>
+<p><strong>Latest decision:</strong> shared play uses PC/VPS only. Four clients, independent areas and complete offline solo remain required. G4/AUTO-02 and automatic offline imports are removed; historical hosting experiments are not prerequisites.</p>
 <p><a href="bluey-game-research-2026-09-23.html#52-feasibility-audit-and-current-priorities">Back to the main illustrated research</a> · <a href="family-playset-feasibility-audit-2026-09-23.md">Editable audit</a></p>
 <h2 id="1-what-i-audited-and-what-exists-today">1. What I audited and what exists today</h2>
 <p>I reviewed all <strong>51 existing main-guide sections</strong>, the complete Toca/Piknik supplement, and the complete iPad/build supplement. I checked their requirements against one another, inspected the saved evidence indexes for recorded gaps, and rechecked pivotal engine, networking, device-lifecycle, and installation claims against current primary documentation. The coverage table below accounts for every section. This was not a fresh independent verification of every episode sentence, educational fact, repository line, or external URL.</p>
@@ -125,9 +125,9 @@
 <td>Same game protocol and content IDs across platform builds. Four human slots; a dedicated PC consumes no human slot. Unity NGO documents iOS and Android support. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/index.html">Platform support</a></td>
 </tr>
 <tr>
-<td>Everyone goes anywhere independently; friends meet in the same area</td>
-<td>Buildable; needs early proof</td>
-<td>Separate persistent world data from each client's loaded artwork. Enter the existing zone, not a new copy. A mobile host must keep guests' offscreen areas running.</td>
+<td>Everyone explores independently and meets in the same area</td>
+<td>Buildable; scoped prototype proof exists</td>
+<td>PC/VPS owns logical areas; each client loads its view without creating duplicate ordinary rooms</td>
 </tr>
 <tr>
 <td>One bucket, one holder; visible pickups, carrying and dropping</td>
@@ -145,9 +145,9 @@
 <td>Platform discovery, initial parent pairing/permissions, authentication, compatible versions and one session controller. Discovery finds devices; it does not migrate a world.</td>
 </tr>
 <tr>
-<td>Both iPads host; automatic host switching and reunion</td>
-<td>Needs early proof; required; highest engineering risk</td>
-<td>Custom saved state, successor selection, ordered handoff, hard-failure recovery and reconciliation. It is not an NGO checkbox.</td>
+<td>Device hosting and automatic switching</td>
+<td><strong>Retired September 25</strong></td>
+<td>No mobile authority, election or handoff gate</td>
 </tr>
 <tr>
 <td>Every solo-capable activity without internet or PC</td>
@@ -172,16 +172,16 @@
 </tbody>
 </table></div>
 <h2 id="3-the-limits-that-must-remain-honest">3. The limits that must remain honest</h2>
-<h3 id="automatic-host-switching-is-possible-a-vanished-host-cannot-guarantee-an-invisible-handoff">Automatic host switching is possible; a vanished host cannot guarantee an invisible handoff</h3>
+<h3 id="a-dedicated-server-keeps-running-when-a-client-leaves">A dedicated server keeps running when a client leaves</h3>
 <p>Ordinary joining, leaving an activity, changing rooms, or closing a <strong>client</strong> while the PC continues should not restart or pause the remaining players. That remains the target.</p>
-<p>If the <strong>hosting</strong> iPad is force-closed, loses power or becomes unreachable, survivors must first detect that loss and restore a consistent state. A brief recovery transition and uncertainty about the final unreplicated action are possible. We can design automatic recovery without a lobby or manual Host button; we cannot certify zero delay or preserve an action nobody else received. iOS also suspends ordinary background apps, so an iPad left in the app switcher is not a dependable always-running server. <a href="https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time">Apple background execution</a></p>
-<p>Unity explicitly separates host election from migration of game data. Its documented default session data migration is for Netcode for Entities; it directs NGO users to Distributed Authority for migration-related operations. That cloud-oriented alternative does not demonstrate our offline/LAN requirements. Our proposed NGO architecture therefore needs its own recovery implementation, with the package choice revisited if the prototype fails. <a href="https://docs.unity.com/en-us/mps-sdk/session-host-migration">Unity host migration</a></p>
+<p>No iPad is a shared server. A client closing, sleeping or losing its route leaves the other connected players unaffected. A server outage uses private client continuation and the server’s own recovery process.</p>
+<p>The prior host-migration research is now outside scope. Retained checkpoints may help server recovery, but no peer election, mobile host adapter or automatic authority transfer is required.</p>
 <h3 id="offline-worlds-can-preserve-work-without-magically-agreeing-about-every-object">Offline worlds can preserve work without magically agreeing about every object</h3>
-<p>Two disconnected devices can each use their local copy of a bucket. They cannot enforce a single live holder across a missing connection. On reunion, one common world must be established, shared stock normalized, safe independent edits imported, and conflicting creations retained as separate saved variants.</p>
-<p>The current plan's proposal to keep a conflicting activity in a private continuation instance needs tightening: it must not quietly create two ordinary playgrounds while claiming both players occupy the same playground. Prefer importing a creation into an available personal work tray, or keeping both variants in recovery storage. Explicit story/workspace instances need distinct identity and an understandable way to visit. This is a proposed resolution to prototype; arbitrary conflict-free reunion with no visible change is not established.</p>
+<p>Disconnected devices may each use their own private bucket. Rejoining uses the server’s single canonical bucket and current room. Private edits and creations remain local; no automatic import or conflict resolution is required.</p>
+<p>Connected players share one ordinary room identity. A private offline world is explicitly separate; it is not a second invisible server room. Preserve it separately through rejoin and updates.</p>
 <h3 id="the-older-ipad-is-a-target-not-a-passed-benchmark">The older iPad is a target, not a passed benchmark</h3>
-<p>Unity 6.3's published player requirements include iOS/iPadOS 15+, A8 or newer and Metal. Your A10 and A13 iPads meet that baseline. This supports using Unity; it does not prove our busiest scene or four-player A10 hosting performance. <a href="https://docs.unity.com/en-us/engine/6000.3/manual/get-started/install-and-upgrade/getting-started-installing-unity/system-requirements">Unity 6.3 requirements</a></p>
-<p>Keep the 30 FPS target, load only the local view's detailed art, and retain compact simulation for other occupied zones. Profile an A10 host with four people in different areas, then with everyone together, and while it opens a book or video. Those are different workloads. The report's 400 MiB goal, NPC counts, sprite sizes, 32-prop room budget and snapshot intervals are hypotheses, not measured safe limits.</p>
+<p>Both iPads meet the published Unity baseline; that does not prove sustained client rendering, local simulation or media performance. <a href="https://docs.unity.com/en-us/engine/6000.3/manual/get-started/install-and-upgrade/getting-started-installing-unity/system-requirements">Unity requirements</a>.</p>
+<p>Measure A10 client and solo frame-time spikes, loading and memory, including books/video. Four-player views and separate areas remain test cases. Draft prop/NPC/memory budgets are hypotheses, not measured safety limits.</p>
 <h3 id="a-local-game-still-needs-a-valid-ipad-installation">A local game still needs a valid iPad installation</h3>
 <p>Apple's free Personal Team provisioning expires after seven days. Sideloadly documents automatic refresh when the paired device is reachable over Wi-Fi or USB; automation reduces manual work but does not make the installation permanent. Verify a real recurring refresh, app launch, and preserved saves. Longer offline trips still need valid signing even though travel multiplayer is optional. No paid subscription is being added to the plan. <a href="https://developer.apple.com/help/account/basics/about-your-developer-account">Apple Personal Team limits</a>, <a href="https://sideloadly.io/faq">Sideloadly refresh documentation</a></p>
 <h2 id="4-findings-and-corrections-to-the-existing-research">4. Findings and corrections to the existing research</h2>
@@ -210,9 +210,9 @@
 <td>State up to four human avatars per view, with a separate logical simulation budget for every occupied zone.</td>
 </tr>
 <tr>
-<td>The opening said the bucket scene would prove the hardest systems</td>
-<td>A normal two-player pour does not prove recovery, reconciliation, or four-zone hosting</td>
-<td>Call it a first interaction proof, followed by explicit networking and interruption gates.</td>
+<td>A bucket pour was described as proving the hardest systems</td>
+<td>A normal pour does not prove client loss/rejoin, persistence or sustained load</td>
+<td>Keep separate scoped acceptance for those systems</td>
 </tr>
 <tr>
 <td>Earlier platform/setup instructions described the unrelated old project as “your project”</td>
@@ -220,14 +220,14 @@
 <td>Label observations and connector commands historical. Create this game's Unity project separately in the new home.</td>
 </tr>
 <tr>
-<td>Unity patch and package numbers were discussed as if one finished combination existed</td>
-<td>No new project or lockfile establishes that combination</td>
-<td>Retain Unity 6.3 LTS as the candidate branch; qualify one exact editor/renderer/Input/NGO/Transport set on Windows, Mac, iOS and Android before content production.</td>
+<td>Package candidate tables can look like an installed baseline</td>
+<td>Can cause unnecessary reinstalls/upgrades</td>
+<td>Use the actual manifest/lockfile and current-decision version record; historic research is not an upgrade instruction</td>
 </tr>
 <tr>
-<td>Independent-zone visibility can hide the only copy of recovery data</td>
-<td>A new host could lose offscreen rooms</td>
-<td>Keep the full compact recovery model separate from view-based replication. Unity's visibility hides client representations; it is not a world backup. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/object-visibility.html">Object visibility</a></td>
+<td>Visual subscriptions are not backups</td>
+<td>Hidden areas still need persistent server state</td>
+<td>Server backups cover all logical areas; private continuation does not wait for a complete client replica</td>
 </tr>
 <tr>
 <td>Per-player travel cannot be a global scene replacement</td>
@@ -240,9 +240,9 @@
 <td>One-time parent pairing and local-network permission, then automatic child use. Use declared Bonjour services rather than an unqualified raw-broadcast template. <a href="https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy">Apple network privacy</a></td>
 </tr>
 <tr>
-<td>Private continuation copies versus one shared ordinary location</td>
-<td>Returning players might be connected yet unable to meet</td>
-<td>Preserve conflicting work explicitly; never silently fork a normal room with the same identity. Test this at reunion.</td>
+<td>Private saves versus connected rooms</td>
+<td>Rejoin must not overwrite either namespace</td>
+<td>Load current server world; keep private saves separate without imports</td>
 </tr>
 <tr>
 <td>Idle returns versus “all work stays”</td>
@@ -271,10 +271,10 @@
 <h2 id="5-one-coherent-architecture-to-prove">5. One coherent architecture to prove</h2>
 <p>The existing design is strongest when it follows this flow:</p>
 <p><strong>Local touch → requested action → current world authority → committed state → views, audio and durable save.</strong></p>
-<p>Run the same world rules locally for solo play, on either iPad for hosting, and on the Windows PC as a dedicated server. Keep profile, character appearance, room ownership, object reservation and host authority as separate identities. This lets a child switch from Bingo to Bandit without changing their bedroom, bucket or hiding role.</p>
+<p>Reuse world rules in private solo and on the dedicated PC/VPS. Keep profile, appearance, room ownership and item holds separate; changing character never changes child identity.</p>
 <p>Use native service discovery behind a small common adapter. Android's NSD supports DNS-SD service discovery across platforms; the game still supplies trust, protocol compatibility and session selection. <a href="https://developer.android.com/develop/connectivity/wifi/use-nsd">Android NSD</a></p>
-<p>Keep an established healthy host stable. Choose the PC when initially available; otherwise choose an eligible iPad. Transfer automatically when required, with a coherent state checkpoint. A faster device appearing is not a reason to repeatedly restart a healthy session. Simultaneous launches, returning hosts and network partitions need one controller with explicit generations and bounded retry behavior.</p>
-<p>Persist accepted object operations, room edits, creations and activity checkpoints. Separate small recovery state from big textures, voices and videos. Delay expensive content expansion until the same save/action model survives late joining and host loss. Do not build one game for solo and rewrite its rules for multiplayer later.</p>
+<p>Clients discover and authenticate the designated server. Bound retries and ignore stale callbacks. There is no mobile host candidate selection; server unavailability leaves local play responsive.</p>
+<p>Persist accepted object operations, room edits, creations and activity checkpoints. Separate small recovery state from big textures, voices and videos. Delay expensive content expansion until the same save/action model survives late joining and server route loss. Do not build one game for solo and rewrite its rules for multiplayer later.</p>
 <p>Author activities from reusable families: containers/pouring, preparation, cleaning, decorating/building, collection, traversal/seating, discovery, role play, narration and picture matching. Reuse those mechanics while still budgeting individual activity art, sound, pacing and cancellation. NPC routines and prerecorded speech are enough; no live LLM is required for ordinary play.</p>
 <h2 id="6-the-proof-plan-before-producing-the-full-game">6. The proof plan before producing the full game</h2>
 <p>These are implementation gates, not permission requests or claims that tests ran. A small milestone deliberately has fewer finished scenes; it does not remove the final requirements.</p>
@@ -303,19 +303,19 @@
 <td>Automatic paired joining, four people, independent travel, one bucket holder, late arrival and client departure while another keeps playing.</td>
 </tr>
 <tr>
-<td>4. Required mobile authority</td>
-<td>Same tiny world, PC absent, either iPad hosting</td>
-<td>Either launch order, simultaneous launch, sticky authority, orderly host transfer and hard-close recovery. Add four-player and offscreen-zone stress to the A10-host test (host player plus three clients).</td>
+<td>4. Offline transition and reconnect</td>
+<td>Current tiny world, lose/restore the server route</td>
+<td>Immediate usable private play without an old-save rewind; cold offline reopen; server state on rejoin, local work retained separately</td>
 </tr>
 <tr>
-<td>5. Recovery and reunion</td>
-<td>Two editable rooms, cake/creation, held bucket</td>
-<td>Reconnect after disjoint and conflicting edits, repeated operation delivery, host return and network partition. No duplicated communal stock, lost protected creations or invisible duplicate ordinary rooms.</td>
+<td>5. Persistent rooms and creations</td>
+<td>Two editable bedrooms, saved cake and shared bucket</td>
+<td>Connected server transactions and private saves; no duplicated stock, lost protected creations or automatic offline imports</td>
 </tr>
 <tr>
-<td>6. One polished family area</td>
-<td>Home/backyard slice with one cooking activity, hiding spot, narrated book, dinosaur and returnable loan</td>
-<td>Finished art/audio, young-child usability, personal room ownership, safe idle returns, one video test, and sustained release performance while hosting.</td>
+<td>6. One polished area</td>
+<td>Home/backyard slice with cooking, hiding, book, dinosaur and returnable loan</td>
+<td>Finished art/audio, child usability and measured client/solo performance; isolated art preparation can start earlier</td>
 </tr>
 <tr>
 <td>7. Content batches</td>
@@ -329,18 +329,18 @@
 </tr>
 </tbody>
 </table></div>
-<p>Record frame-time spikes and memory trends, not only average FPS. Exercise rapid touches, stalled loads, low storage, interruptions during saves, late join during object use, repeated area changes and host loss. Use automated tests for state invariants and device sessions for native networking, touch, heat, decoder behavior and renewal. Do not claim a game can never crash; make failures diagnosable and saves recoverable.</p>
-<p>The most important early go/no-go is <strong>A10 mobile hosting with independent zones and automatic recovery</strong>. If it fails, first reduce offscreen simulation cost, animation detail, memory and load bursts. If it still fails, explain the measured limitation and revisit the architecture with you; do not silently change “both iPads can host” into PC-only play.</p>
+<p>Record frame-time spikes and memory trends, not only average FPS. Exercise rapid touches, stalled loads, low storage, interruptions during saves, late join during object use, repeated area changes and server route loss. Use automated tests for state invariants and device sessions for native networking, touch, heat, decoder behavior and renewal. Do not claim a game can never crash; make failures diagnosable and saves recoverable.</p>
+<p>The key remaining foundation proofs are current-device offline continuity, responsive walking, server-authoritative rejoin, durable rooms/items and measured A10 client/solo load. Device hosting is retired. Character animation/import can advance independently while physical checks wait.</p>
 <h2 id="7-workload-and-things-that-are-still-unknown">7. Workload and things that are still unknown</h2>
 <p>This is realistic as a staged family project. The complete commercial-style experience described here is not a small template customization or a weekend build. No defensible calendar estimate has been measured. The earlier many-months/year-scale wording was a planning impression, not a research result; estimate production only after the implemented slice and asset workflow have measurable throughput. A smaller enjoyable version can arrive much earlier. Gates 1–5 should determine whether the riskiest requirements work before we commit to producing the entire catalog.</p>
 <p>The main production costs are:</p>
 <ul>
 <li>Consistent layered environments, depth sorting, hand/seat anchors, different body rigs and many state illustrations.</li>
-<li>Networking, durable state, host recovery, conflicting saves and lifecycle handling across three operating-system families.</li>
+<li>Durable world state, server recovery and client lifecycle handling across the supported platforms; separate private saves without an offline merge engine.</li>
 <li>Distinct and intelligible character speech, auditioning, pronunciation review, local audio behavior and Spanish adaptation. English phonics/rhymes cannot simply be translated word for word.</li>
 <li>Testing combinations: avatar switching while hiding or riding, pouring while disconnecting, returning a plate with a cake, and entering a room while its objects change.</li>
 </ul>
-<p>Still unknown: the Mac's installed macOS/Xcode, the Android phone's installed OS, available storage on the iPads, exact package/plugin compatibility, A10 hosting measurements, voice quality, and how the children respond to the controls. These are prototype/setup checks, not reasons to discard the idea.</p>
+<p>Known inventory and scoped tests now appear in the build guide. Still open: sustained A10 performance, full-content memory/loading, automatic renewal, independent recovery, voice quality and structured child usability. Do not repeat old unknown inventory as a current blocker.</p>
 <p>The first release should contain finished, usable activities rather than visible buttons to unbuilt content. Keep the full feature backlog in this research and expand from working batches. That production sequence preserves the intended game instead of promising all of its content before its foundations are proven.</p>
 <h2 id="8-audit-coverage-register">8. Audit coverage register</h2>
 <p>Every numbered section of the original main report is covered below. The verdicts refer to feasibility and consistency, not implementation completion.</p>
@@ -405,8 +405,8 @@
 </tr>
 <tr>
 <td>35–36</td>
-<td>Travel, offline play and milestones</td>
-<td>Solo stays required. Travel network qualification is optional; ordinary mobile hosting/recovery stays required.</td>
+<td>Travel and offline play</td>
+<td>Solo required; remote internet multiplayer optional; private saves never merge into the server</td>
 </tr>
 <tr>
 <td>37–39</td>
@@ -420,13 +420,13 @@
 </tr>
 <tr>
 <td>44–46</td>
-<td>Discovery, iPad hosting, recovery and implementation</td>
-<td>Required and highest technical risk; must prove on physical iPads before broad production.</td>
+<td>Automatic PC/VPS connection and private continuation</td>
+<td>Four clients join the dedicated world; device-hosting requirements retired</td>
 </tr>
 <tr>
 <td>47–48</td>
 <td>Four players, Android and phone qualification</td>
-<td>Documented platform support; actual mixed-device/hosting and phone-layout tests pending.</td>
+<td>Documented platform support; current-device sustained mixed play and layout qualification remain.</td>
 </tr>
 <tr>
 <td>49</td>
@@ -455,5 +455,5 @@
 </tr>
 </tbody>
 </table></div>
-<p><strong>Decision:</strong> proceed with a fresh Unity 2D implementation in staged proofs. The vision is achievable; automatic hosting/recovery and the A10 workload must earn their claims through prototypes. Travel multiplayer remains optional. Core multiplayer, free exploration, interactive toys and complete solo play remain in the plan.</p></article></div>
+<p><strong>Decision:</strong> keep the existing Unity foundation and staged content plan. PC/VPS shared play, independent exploration, interactive toys and full offline solo remain. G4 is retired; scoped art preparation may proceed while focused device qualification waits.</p></article></div>
 <footer class="footer"><p>Design audit, not runtime certification. No Unity implementation or device test was performed.</p><a href="family-playset-feasibility-audit-2026-09-23.md">Editable audit</a><a href="bluey-game-research-2026-09-23.html">Full research and character board</a></footer></main></body></html>

@@ -1,5 +1,8 @@
 # Automatic local continuation and saved adventures
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G3-REC-02 · NET-02 / AUTO-01 · September 25, 2026 · Windows build 90.** The prototype now continues locally after a prolonged server loss using its last verified complete checkpoint. Each outage creates a separate saved adventure. Rejoining family play preserves that adventure and the older solo save. This is a Windows qualification milestone; the live family server and phones/tablets were not updated.
 
 ## Behavior implemented
@@ -38,3 +41,4 @@ No Apple/Android recovery build is installed. The ten-minute earlier soak was on
 **Next bounded task: G3-REC-03 — outage failure matrix.** Qualify native lost acknowledgments/archived intentions, denied branch/selection writes, background/foreground timing and rejected admission without erasing saved work or replaying actions. Then prepare coordinated mobile recovery builds and complete physical qualification. Existing parent activation, independent backup, renewal and VPS tasks remain in the ordered guide.
 
 [Main build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Return checklist](return-checklist-ipad-lan-2026-09-24.html)
+<!-- historical-record-end -->

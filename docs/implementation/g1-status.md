@@ -1,5 +1,8 @@
 # G1 — project and device foundation
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **Current-status pointer, September 24:** this file retains dated implementation history. Use the [main plan audit](../family-playset-build-guide-2026-09-23.html#19-implementation-audit-and-remaining-work) for the consolidated device/build ledger, all feature statuses and next task; earlier “next” and “unavailable” statements below belong to their recorded stage.
 
 Started 23 September 2026. In progress. The Samsung foundation launch, input, media, restart and signed-update checks passed; the remaining G1 device/recovery gates are still open.
@@ -156,3 +159,4 @@ Samsung wireless pairing and inventory are complete: Android 16 / API 36, 4 KB p
 Both accepted builds 14 and 15 completed with zero summary errors/warnings. The signer verified 449 unchanged game payload entries; the installer checked the previous certificate and matched pulled installed APK hashes. The actual screen showed 3 saved taps and a 6.2-second paused bookmark after reopening 14 and after updating to 15. Build 15 also corrected the title/footer clipping on the wide Samsung screen. The user confirmed physical taps and the audible test tone. No uninstall, clear-data, downgrade or other-app operation occurred. [Verification](evidence/android-phone-g1-2026-09-23/verification.json).
 
 Strict 16 KB findings remain unchanged; these were controlled 4 KB physical-phone checks. The initial build-13 signing wrapper failed its case-sensitive ZIP payload check and was never installed; fresh 14/15 passed the corrected pipeline. Remaining G1 work includes saved Android/server UI Build Profiles, independent recovery and iPad/iPhone qualification/renewal.
+<!-- historical-record-end -->

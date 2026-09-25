@@ -20,7 +20,7 @@
 </style></head><body>
 <header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Package review navigation"><a href="bluey-game-research-2026-09-23.html#54-templates-packages-and-the-free-starting-setup">Main plan</a><a href="#3-official-free-packages-and-exact-candidates">Free packages</a><a href="#6-one-optional-purchase-within-the-budget">Optional purchase</a></nav></header>
 <main class="wrap" id="top"><div class="package-intro"><p class="eyebrow">Templates + package research · 23 September 2026</p><h1>A free foundation.<br>Built for your family.</h1><p class="intro">Start with Unity's official 2D template and focused, reusable tools. This review shows what they provide, which templates do not fit, and what still needs our own game rules and device testing.</p></div>
-<div class="package-status"><span>Starting package budget: $0</span><span>Unity 6.3 LTS candidate</span><span>Optional purchase: about $15</span><span>No packages installed</span></div>
+<div class="package-status"><span>Starting package budget: $0</span><span>Research candidates; see pinned project</span><span>Optional purchase: about $15</span><span>Installed versions in current decisions</span></div>
 <div class="report-layout"><aside class="contents"><h3>In this review</h3><div class="toc">
 <ul>
 <li><a href="#1-what-to-start-with">1. What to start with</a></li>
@@ -36,13 +36,14 @@
 </ul>
 </div>
 </aside><article class="report">
+<p><strong>Current scope — September 25:</strong> PC/VPS is the sole shared authority; four mobile clients join automatically. Offline solo stays private, and server state wins on reconnect without importing offline edits. G4/AUTO-02 device hosting is retired. <a href="current-decisions.md">Current decisions</a> control scope; the <a href="family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">build guide</a> records current implementation. Technical sources and candidate comparisons below retain their original research date; this update is not a new external-source verification.</p>
 <p><strong>Research checked September 23, 2026. Budget: free first; consider an optional purchase around $20 only when it clearly saves work.</strong> No package was installed or purchased, and no Unity game was created during this review.</p>
-<p><strong>Recommendation:</strong> begin with Unity's <strong>Universal 2D template</strong>, reuse maintained packages, and build the family game's particular interaction, activity and shared-world rules. I did not find a complete template that already provides this combination of a Toca-style dollhouse, four separate devices, independent rooms, mobile host recovery and offline saves. The initial package budget can be <strong>$0</strong>. This is a researched candidate setup; it is not yet a device-tested combination.</p>
+<p><strong>Recommendation:</strong> begin with Unity's <strong>Universal 2D template</strong>, reuse maintained packages, and build the family game's particular interaction, activity and shared-world rules. I did not find a complete template that already provides this combination of a Toca-style dollhouse, four separate devices, independent rooms, dedicated-server play and private offline saves. The initial package budget can be <strong>$0</strong>. This is a researched candidate setup; it is not yet a device-tested combination.</p>
 <p><a href="bluey-game-research-2026-09-23.html#54-templates-packages-and-the-free-starting-setup">Back to the main plan, section 54</a> · <a href="family-playset-technical-research-2026-09-23.html">Networking research</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
 <h2 id="1-what-to-start-with">1. What to start with</h2>
 <p>Unity's Universal 2D template creates a project with URP and its 2D renderer already configured. It supplies the rendering foundation, rather than finished gameplay. That is a good fit for illustrated rooms, layered characters and draggable props. Start with simple sprite materials and restrained effects on the older iPad. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/urp/creating-a-new-project-with-urp.html">Unity 6.3 template documentation</a></p>
 <p>Use <strong>Unity 6.3 LTS</strong> as the candidate editor line. The previously reviewed <strong>6000.3.24f1</strong> patch is a concrete baseline, not a promise that every package combination is stable. Its release notes identify a 2D-renderer/Bloom black-screen issue, so leave Bloom out of the initial setup and review relevant fixes before freezing the editor version. Keep Windows and Mac on the same chosen patch. <a href="https://unity.com/releases/editor/whats-new/6000.3.24f1">6000.3.24f1 release notes</a></p>
-<p>The first slice should contain one character, a room and garden, a tap, bucket, plant and sponge, both movement options, and a save. Then add a second area, shared item ownership, automatic PC connection and mixed-device play. Prove required iPad hosting and recovery before producing large amounts of content. Do not begin by importing every optional package below.</p>
+<p>The first slice should contain one character, a room and garden, a tap, bucket, plant and sponge, both movement options, and a save. Then add a second area, shared item ownership, automatic PC connection and mixed-device play. Qualify client offline/rejoin and persistent item/room rules before integrating broad content; isolated character art may advance while device checks wait. Do not begin by importing every optional package below.</p>
 <h2 id="2-template-comparison">2. Template comparison</h2>
 <p>These are reuse decisions based on their documented design and inspected sources, not measured estimates of hours saved.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Package comparison table"><table>
@@ -197,7 +198,7 @@
 <p>The <strong>6000.3.24f1 editor release notes</strong> list an NGO package update from <strong>2.13.1 to 2.13.2</strong>. That gives us an editor-aligned baseline to investigate first. The published manifests for NGO 2.13.2 and 2.13.3 both declare Unity <strong>6000.0</strong> and Transport <strong>2.6.0</strong>. An editor minimum and a dependency declaration are not a tested combination with our proposed Transport 2.7.4. <a href="https://unity.com/releases/editor/whats-new/6000.3.24f1">Editor package changes</a>, <a href="https://packages.unity.com/com.unity.netcode.gameobjects">NGO registry</a></p>
 <p>The current 6000.3 catalog marks <strong>2.13.3 as pre-release</strong>, while the registry's latest tag and the GitHub release point to 2.13.3. This review does not guess which label should win. The previous technical review's “released v2.13.3 source” means a <strong>published GitHub release</strong>, not verified production status in Unity's editor catalog. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.netcode.gameobjects.html">Catalog</a>, <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/releases/tag/v2.13.3">Published v2.13.3 release</a></p>
 <p><strong>Decision:</strong> retain NGO as the first framework candidate, inspect Package Manager status in the exact editor patch, compare the 2.13.3 fixes against our prototype, then freeze one passing version set. Do not install a moving development branch. Do not call either candidate “proven stable on our iPads” before native tests.</p>
-<p>Even a fully qualified network package will not supply our complete automatic discovery, durable world model, room subscriptions, item-return policy, iPad host recovery or offline-save reconciliation. Those remain explicit game systems, as detailed in the <a href="family-playset-technical-research-2026-09-23.html">networking report</a>. The PC remains the normal host; either iPad hosting and automatic recovery remain required. Bluetooth stays removed.</p>
+<p>Even a fully qualified network package will not supply our complete automatic discovery, durable world model, room subscriptions, item-return policy, client outage handling or private-save preservation. Those remain explicit game systems, as detailed in the <a href="family-playset-technical-research-2026-09-23.html">networking report</a>. PC/VPS is the only shared authority; devices are clients and offline edits stay private. Bluetooth stays removed.</p>
 <h2 id="5-useful-free-additions">5. Useful free additions</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Package comparison table"><table>
 <thead>
@@ -291,7 +292,7 @@
 <tr>
 <td>Four mixed-device players</td>
 <td>One selected NGO/Transport combination</td>
-<td>Automatic family discovery/joining, approved devices, shared item arbitration and host recovery</td>
+<td>Automatic family discovery/joining, approved devices, shared item arbitration and client reconnect</td>
 </tr>
 <tr>
 <td>Offline play and safe room saves</td>
@@ -315,13 +316,13 @@
 <tbody>
 <tr>
 <td>iPad 7, A2197 / A10</td>
-<td>User reports iPadOS 18.6.2</td>
-<td>Primary performance target: touch responsiveness, memory, host workload and repeated room changes</td>
+<td>Device observed iPadOS 18.7.10 on September 24</td>
+<td>Primary performance target: client/solo input, memory and repeated area changes</td>
 </tr>
 <tr>
 <td>iPad 9, A2602 / A13</td>
-<td>User reports iPadOS 18.7.10</td>
-<td>Same gameplay and save format; test as both client and host</td>
+<td>Device observed iPadOS 18.6.2 on September 24</td>
+<td>Same client/solo gameplay and save format, lifecycle and media</td>
 </tr>
 <tr>
 <td>iPhone 13 Pro Max, A2484</td>
@@ -353,7 +354,7 @@
 <li><strong>Prove one interaction:</strong> bucket/tap/plant/sponge, finger ownership, joystick and tap walking, then a versioned save. Add DOTween Free only for visible feedback. Verify force-close/relaunch preserves committed progress.</li>
 <li><strong>Add the first character and content pipeline:</strong> 2D Animation; layered importer only if needed; English Localization assets; local Addressables loading. Check room transitions release unused resources and voices load offline.</li>
 <li><strong>Qualify networking:</strong> choose and lock NGO/Transport versions, use Multiplayer Play Mode and network diagnostics, then the PC server plus both iPads and phones. Simultaneous pickup must have one winner. A new join must see current item and room state.</li>
-<li><strong>Test the required difficult cases:</strong> PC absent, either iPad hosting, automatic discovery, planned handoff, abrupt host exit, resume, returning host, separate rooms and conflicting saved creations. Editor instances alone cannot pass these mobile lifecycle tests.</li>
+<li><strong>Test required cases:</strong> client route loss/rejoin, app lifecycle, server restart/restore, separate rooms, item contention and private-save preservation. No device-host or offline-merge gate.</li>
 <li><strong>Add optional packages only for observed needs:</strong> Cinemachine for scrolling, navigation after the floor-plane decision, Yarn for substantial branching dialogue, UI Extensions for a useful specific control. Then grow activity content.</li>
 </ol>
 <p>Before accepting a package set, record the exact editor patch, package manifest and resolved lockfile, native build settings and device results. Use a fixed Git tag or commit for Git dependencies. Keep editor-only tooling and client presentation separate from server logic. Re-run the affected native checks after an upgrade; do not auto-update all packages during feature work.</p>

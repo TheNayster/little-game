@@ -1,5 +1,8 @@
 # Offline controls and walking: research, fixes and qualification
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 September 25, 2026 · G3-REC-05 · goals NET-02 / AUTO-01 / JOIN-01 / FAMILY-01.
 
 **Follow-up after the 93 device test:** the older iPad continued without reopening, but its 10+ second delay and periodic walking jerk remain open. The user clarified server-authoritative reunion without merging offline changes. [Current research and build 94](g3-offline-authority-and-hitch-review-2026-09-25.html) supersedes the pending-feedback and ten-second policy below; this report retains the 93 investigation and evidence.
@@ -80,3 +83,4 @@ The actual app reports **0.0.93**, retained Keychain pairing, successful family 
 Android 93 is prepared with the existing family signature; identity/signature and ZIP/LOAD alignment pass. **Strict 16 KB RELRO still fails**, as before; no phone installation or native 16 KB qualification is claimed. [Artifact check](evidence/offline93-2026-09-25/android93-inspection.json). **169 runtime/plugin/package source files match across the Windows, iOS and Android builds and the current checkout.** [Source parity](evidence/offline93-2026-09-25/source-parity93.json).
 
 The family authority/helper stays on 91 with healthy recovery. iPad 9/iPhone remain 79 and Samsung remains 83. Physical acceptance and coordinated remaining client updates follow; do not infer their older applications contain these fixes.
+<!-- historical-record-end -->

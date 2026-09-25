@@ -1,5 +1,8 @@
 # G3 preparation — one PC authority and four Windows clients
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 24 September 2026. Bounded task: **FAMILY-01, JOIN-01, ITEM-02**. The user requested continued work while away from home, without the Mac or physical mobile devices. This is provisional G3 preparation; G1/G2 device and child-observation gates remain open, and G3 is not complete.
 
 ## What this implements
@@ -66,3 +69,4 @@ python .\Tools\Test-NetworkProbe.py N
 N must be at least 46 and unused. Both executable trees are hash-verified before launch. Run-specific credentials, checkpoints, logs and process evidence remain ignored under `LocalData/NetworkProbe/<run-id>`. Source/artifact manifests and native builds are under `Builds/NetworkProbe/G3-0.0.N`. The runner shuts down only processes it created.
 
 Follow-up completed: [shared garden build 54](g3-shared-garden-2026-09-24.md) connects the existing presentation to two local clients and passes acknowledged pickup/drop, sibling motion, cancellation, departure and explicit rejoin tests. The same build also repeats all 10 four-client scenarios here. Keep pairing/discovery, a second logical area and physical mixed-device testing as separate bounded tasks. Resume [iPad/G2 checks](g2-device-checklist.md) when the devices are available; iPad hosting and automatic recovery remain mandatory G4/G5 work.
+<!-- historical-record-end -->

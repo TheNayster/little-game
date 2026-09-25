@@ -1,5 +1,8 @@
 # Back-home testing checklist — 24 September 2026
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 The user tried the two Windows player windows and reported a positive experience. This is useful hands-on feedback, not an item-by-item acceptance test. The shared Windows preview is build 57. **Solo garden build 56 is now installed and tested on iPad 9**: it does not yet connect two iPads to the shared Windows game.
 
 ## First: the newer iPad
@@ -24,3 +27,4 @@ Both iPads now run the solo garden and their first play/restart results are reco
 Independent logical areas and per-player travel remain the next bounded Windows networking task. Native family discovery/pairing, four physical mixed-platform players, iPad hosting and automatic recovery remain required later gates. Today's positive Windows feedback does not mark those complete.
 
 An independent backup/restore destination also remains to be settled; it is separate from making the first iPad garden test available. See the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) for the full sequence.
+<!-- historical-record-end -->

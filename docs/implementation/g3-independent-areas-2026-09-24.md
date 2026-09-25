@@ -1,5 +1,8 @@
 # G3 — independent areas
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 24 September 2026. Implemented bounded task: **WORLD-01, WORLD-02 and ITEM-02**. Windows shared build **58** adds two independently visited test areas (Garden and Creek). Existing shared saves, local solo behavior and another player's interaction are preserved. This is an incremental proof within goal-sheet sections 50–51, not completion of their entire acceptance matrix or G3.
 
 ## Behavior and design
@@ -54,3 +57,4 @@ python Tools/Test-AreaUpgrade.py 58
 ~~~
 
 Scope remains explicit: placeholder test areas, existing water/cleanup activities, full small-world snapshots and loopback Windows networking. Portable borrowed props, six authored worlds, asset streaming/interest management, iPad-host recovery, LAN discovery and physical multiplayer qualification remain later tasks. Installed iPad build 56 is unchanged.
+<!-- historical-record-end -->

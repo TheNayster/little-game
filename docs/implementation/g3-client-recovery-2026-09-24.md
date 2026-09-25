@@ -1,5 +1,8 @@
 # Durable client recovery checkpoints — G3-REC-01
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **Goal IDs: NET-02 / AUTO-01; prerequisite shared with G4. Implemented and qualified within Windows scope on build 88.** This milestone adds complete checkpoint delivery and durable client storage. It does not switch a disconnected child to local play yet. The existing manual solo branch remains separate. The family server and phones have not been updated as part of this work.
 
 ## Why a separate recovery stream
@@ -45,3 +48,4 @@ Device-specific atomic-file behavior, write/frame cost on the A10, packet loss/r
 **Next bounded task: G3-REC-02 — automatic local continuation after prolonged loss using this last verified complete checkpoint.** Preserve the current solo draft, create an explicitly identified separate continuation branch, settle stale holds and unconfirmed actions safely, and make startup/reconnect handling understand that branch. Do not automatically discard it on reunion. G4 election/handoff and G5 conflict reconciliation remain required. Keep the goal sheet's no-lobby, usable-toys and recoverable-work behavior; do not substitute an old solo picture and call the requirement complete.
 
 [Main build guide](../family-playset-build-guide-2026-09-23.html#9-first-implementation-work-queue) · [Return checklist](return-checklist-ipad-lan-2026-09-24.html)
+<!-- historical-record-end -->

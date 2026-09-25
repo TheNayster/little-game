@@ -1,5 +1,8 @@
 # G3 — keeping the other players connected when someone leaves
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 24 September 2026. **Fixed and qualified on Windows shared build 68; the two-window preview is updated with its exact saved world preserved.** This bounded task follows the movement work and covers **FAMILY-01, JOIN-01, WORLD-01/02 and ITEM-02**. Windows qualification is recorded below; automatic discovery, automatic reconnect and iPad host migration remain required implementation work.
 
 ## What failed, and what we verified
@@ -59,3 +62,4 @@ The embedded native transport change still needs **iOS/Android IL2CPP builds and
 Design and implement parent-approved LAN pairing and connection discovery, starting with a PC authority and two Windows clients on the LAN. Keep the current isolated preview available. Then qualify the joining flow on the two iPads before claiming mobile multiplayer. Preserve profile identity, independent rooms, exclusive shared items, solo saves and the required later iPad-host/automatic-recovery work.
 
 Repeatable commands: `python Tools/Test-ReceiveResilience.py 68 --cycles 8`, `python Tools/Test-NetworkProbe.py 68`, `python Tools/Test-SharedGarden.py 68`, `python Tools/Test-IndependentAreas.py 68`, and `python Tools/Test-SmoothMovement.py 68 --players 4` with or without `--impaired`. The motion fixture impairs only received motion samples, not the complete network connection.
+<!-- historical-record-end -->

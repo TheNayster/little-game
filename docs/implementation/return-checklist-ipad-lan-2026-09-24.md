@@ -1,6 +1,8 @@
 # Your next checks — offline controls and walking
 
-**Current installed versions:** iPad 7 **95** (actual runtime verified), iPad 9/iPhone **79**, Samsung **83**, PC server and parent helper **91**. The PC world/enrollment are preserved and automatic recovery is enabled/healthy. Actual Windows sign-in startup is still Off.
+**Current architecture:** PC/VPS shared authority; private offline solo; server state on reconnect, without offline imports. This is the current user checklist; older report checklists are historical.
+
+**Last verified installed versions (no live check during this audit):** iPad 7 **95** (actual runtime verified), iPad 9/iPhone **79**, Samsung **83**, PC server and parent helper **91**. The PC world/enrollment are preserved and automatic recovery was last verified enabled/healthy. Actual Windows sign-in startup is still Off.
 
 **Latest 95 feedback:** the older iPad is “way smoother.” The final offline walking segment confirms removal of the large periodic save stalls; offline cold reopening retains toys and smooth controls. Earlier network/lifecycle-boundary spikes remain recorded. The old-checkpoint transition jump is repaired in 98 engineering tests, awaiting physical acceptance. [Measurements and current repair](g3-offline-authority-and-hitch-review-2026-09-25.html). Other devices still need the replacement.
 
@@ -12,7 +14,7 @@
 2. **One focused older-iPad check after installation:** while connected, walk to the Creek, move a toy, then turn Wi-Fi off. The character, area and toy should stay where you were seeing them; controls should recover without closing the app. Briefly try both walking controls, then close/reopen offline and check the toy. On reconnection the server's current world must win.
 3. **Connect the newer iPad next**, then make the Samsung and iPhone available for in-place updates. The Samsung can use USB debugging or its current wireless-debugging address; the iPhone can use the established USB route. No uninstall or reset is needed. The Samsung's last saved address did not connect while you were away; send its current address or use USB when you return. I will install/verify these updates in place.
 4. **A short four-player check:** all four join, walk in separate areas, reunite, and one player leaves while the others continue. Repeat a brief offline/rejoin check on each updated device; no need to redo every old foundation test.
-5. **Later, after implementation:** both iPads hosting and automatic switching still need their own test session. That feature is not ready to test yet. I will add the exact steps when it is.
+**Removed from your list:** iPad hosting and automatic switching tests. You selected PC/VPS-only shared play; no device-host setup is needed.
 
 **Already passed on build 95 / older iPad:** significantly smoother offline walking, offline cold reopening, retained toys, and readable saves with the two original solo files unchanged. Do not repeat those as unfinished 95 checks. The next check targets the new transition behavior.
 
@@ -22,14 +24,14 @@ The family server does **not** need another update for these client-side fixes. 
 
 [Open the character workshop](character-workshop/index.html) and try **Idle, Walk, Wave and Carry & walk**, then turn the character left/right. This is the first layered animation study; the final Bluey artwork and Unity integration are still ahead. Feedback can wait until you return.
 
-While you are away, the [hosting preparation track](g4-hosting-and-animation-preparation-2026-09-25.html) can continue on Windows. The planned-handoff model and animation study are complete within their recorded scope. **Real saved-state restoration now also passes: four Windows players rejoined a replacement authority with both areas and item states preserved.** [Checks and limits](g4-real-state-restoration-2026-09-25.html). Next is separating host identity/lifecycle from the local player's view, before automatic mobile handoff. No new user action was added; you do not need to complete this checklist before that independent work proceeds.
+**Independent next work:** ART-PREP-02 imports the existing layered study into an isolated Unity character view with idle/walk/wave/carry and a hand anchor. G5 persistent rooms/item contracts follow. These can be prepared without device-host work or extra user setup. G4 experiments are historical; unfinished host-99 work is archived. [Current decisions](../current-decisions.md).
 
 ## Parent setup still needed later
 
 - Choose an **independent backup destination** such as an external drive or another computer. The parent helper now has protected-backup download/file checking. Choose/store its passphrase privately. An actual off-PC copy and another-account/computer restore remain unproven. [Backup controls](g3-parent-portable-backups-2026-09-25.html).
 - If you want automatic helper launch when this Windows account signs in, we still need to enable **Add sign-in startup** and test an actual sign-out/sign-in or reboot. This does not wake the PC or run before login. Do not reboot during family play. [Scope](g3-signin-startup-2026-09-25.html).
 - **Unattended renewal is unresolved.** Keep USB available. The last checked Apple development profile expires **October 1, 2026**; installed signing must be checked before updating. The successful iPhone USB refresh did not prove Wi-Fi renewal.
-- VPS details can wait until reliability and deployment gates are ready. The owned VPS remains the intended future normal server; offline play and required iPad hosting are still in scope.
+- VPS details can wait until reliability and deployment gates are ready. The owned VPS remains the intended future normal server; offline solo stays available and mobile devices remain clients.
 
 ## What is already recorded
 
@@ -40,4 +42,4 @@ While you are away, the [hosting preparation track](g4-hosting-and-animation-pre
 - One older-iPad checkpoint/outage/cold-reopen/reunion sequence worked, with the two original solo files unchanged. The later all-device failure report remains authoritative for the open issue. [Scoped recovery observations](evidence/ipad91-2026-09-25/ipad7-recovery-session.json).
 - Earlier Windows and Android-emulator recovery/sustained tests remain valid within their recorded scope. They do not replace actual Wi-Fi-off, A10 frame-time, thermal, touch or renewed-installation qualification. [Build 91 outage tests](g3-outage-failures-2026-09-25.html) · [Emulator](g3-android-recovery-2026-09-25.html) · [Ten-minute recovery run](g3-sustained-recovery-play-2026-09-25.html).
 
-**Still in the main plan:** sustained four-device performance, Android native 16 KB qualification, both iPads hosting with automatic handoff/recovery, server-authoritative reunion with separate local saves, bedrooms and the remaining game content. G3 is not closed. Do not delete an app or reset its data to troubleshoot.
+**Still in the main plan:** sustained four-device performance, Android native 16 KB qualification, server-authoritative reunion with separate local saves, bedrooms and the remaining game content. G3 is not closed. Do not delete an app or reset its data to troubleshoot.

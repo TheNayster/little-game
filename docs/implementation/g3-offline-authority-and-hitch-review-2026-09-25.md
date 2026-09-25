@@ -1,5 +1,8 @@
 # Offline play, server authority and the remaining walking hitch
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 September 25, 2026 · G3-REC-05 · NET-02 / AUTO-01 / JOIN-01 / FAMILY-01 / TRAVEL-01
 
 ## Current product decision
@@ -142,3 +145,4 @@ The new native regression reproduces the old behavior on build 95 against an old
 Test-tool corrections were required and retained: Android polling now waits for the **currently selected** local adventure instead of a historical continuation event after warm resume; the first run failed that stale-event assertion, then all six groups passed with the corrected observation. Emulator backup paths were shortened after `adb pull` hit Windows path length limits; the subsequent verified update preserved saved bytes. Neither correction alters gameplay or bypasses an install/data check.
 
 **Next:** sign and install 98 in place, qualify the transition on iPad 7, then update the newer iPad and phones and run the focused four-player checks. Keep the smaller previously measured network-work spike and sustained device performance open. G3 is not complete, G4 iPad hosting/automatic switching is not implemented, and G5 rooms/creations/full item policies remain required. No live family server restart or update occurred. [Updated return checklist](return-checklist-ipad-lan-2026-09-24.html).
+<!-- historical-record-end -->

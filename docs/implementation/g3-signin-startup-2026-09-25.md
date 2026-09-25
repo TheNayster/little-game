@@ -1,5 +1,8 @@
 # Optional Windows sign-in startup
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G3-OPS-08 · NET-02 / AUTO-01 · September 25, 2026.**
 
 **Status: isolated Windows and browser acceptance passed.** This extends the parent helper without changing prepared Unity build 91. No startup entry was installed in the actual Windows account's Startup folder, and the live family helper/server, Mac and physical devices were not changed.
@@ -43,3 +46,4 @@ When the user returns, qualify the native Apple build on iPad 7 first, then coor
 After the selected qualified authority and recovery are active, add the real sign-in shortcut if wanted, then verify an actual Windows sign-out/sign-in or reboot. That account-startup test has not been performed. Independent backup/another-account restoration, unattended iPad renewal, physical sustained measurements, parent pairing, required iPad hosting and reconciliation retain their existing gates.
 
 [Return checklist](return-checklist-ipad-lan-2026-09-24.html) · [Current plan](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis).
+<!-- historical-record-end -->

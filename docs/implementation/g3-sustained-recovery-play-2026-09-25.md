@@ -1,5 +1,8 @@
 # Sustained play with recovery build 91
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G3-REC-07 · NET-02 / FAMILY-01 / ITEM-03 · September 25, 2026.**
 
 **Status: five acceptance groups passed within the emulator/Windows scope below.** Prepared game build 91 and the live family deployment are unchanged.
@@ -61,3 +64,4 @@ This is one Windows PC and its local emulator network. It cannot establish physi
 Native Mac compilation/signing and **iPad 7 first** recovery/performance checks remain G3-REC-05. Complete the real-device matrix and controlled server deployment before closing G3; both iPads hosting and automatic recovery, save reconciliation and the complete content goal sheet stay in G4–G7.
 
 [Return checklist](return-checklist-ipad-lan-2026-09-24.html) · [Current plan](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Earlier short Android recovery checks](g3-android-recovery-2026-09-25.html) · [Historical build 85 sustained run](g3-server-soak-2026-09-24.html).
+<!-- historical-record-end -->

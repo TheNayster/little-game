@@ -1,5 +1,8 @@
 # Android release recovery in the project emulator
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G3-REC-06 · FAMILY-01 / NET-02 / AUTO-01 · September 25, 2026 · build 91.**
 
 This is independent Windows work while G3-REC-05 waits for the Mac and iPads. It tests the prepared Android release in the retained project-owned emulator with an isolated PC authority and three Windows siblings. No Mac, phone, iPad or live-family server is updated. The research still requires four mixed devices, independent activities, full offline play and eventual iPad hosting/reconciliation; this task supplies one additional bounded recovery proof.
@@ -47,3 +50,4 @@ All 148 qualified Unity C# files and the prepared APK are unchanged. This milest
 - G4 iPad hosting and automatic host recovery, G5 reconciliation/rooms/item policy, then representative finished content. Preserving a separate local adventure is not automatic merging.
 
 No extra user action is needed while away. [Return checklist](return-checklist-ipad-lan-2026-09-24.html) · [Current plan](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Prepared mobile artifact evidence](g3-mobile-recovery-builds-2026-09-25.html).
+<!-- historical-record-end -->

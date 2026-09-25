@@ -1,5 +1,7 @@
 # Planned host handoff model
 
+> Historical experiment. Device hosting (G4/AUTO-02) was retired by the user on September 25. These tests are retained for evidence and possible dedicated-server recovery reference; they are not the active implementation queue. See [current decisions](../../docs/current-decisions.md).
+
 This executable is a **design experiment**, outside the shipping Unity project.
 It models one cooperative handoff between an existing writer and a prepared
 replica. It does not start a server or alter any family data.

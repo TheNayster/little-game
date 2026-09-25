@@ -1,5 +1,7 @@
 # Package review evidence — 23 September 2026
 
+> Historical research notes. Follow [current decisions](../../current-decisions.md) and the current build guide for scope and installed versions; superseded device-host/merge proposals are not tasks. Original observations below are retained.
+
 This directory contains research evidence, not installed Unity packages or game Assets.
 
 - Official package JSON files record the Unity 6000.3 catalog response and designated release version. The combined summary was regenerated after the Multiplayer Play Mode / Tools checks.

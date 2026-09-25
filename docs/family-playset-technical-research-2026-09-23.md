@@ -2,7 +2,8 @@
 
 **Reviewed September 23, 2026.** This follows the [full feasibility audit](family-playset-feasibility-audit-2026-09-23.html) and addresses the parts that needed stronger evidence. It incorporates your latest preference: the iPads automatically connect to the Windows PC server when the game opens. The other iPad, Android phone, or iPhone joins that same world when opened later.
 
-**Conclusion:** that normal home-play arrangement is a strong fit for a dedicated server. Required iPad hosting and automatic recovery remain in the plan for when the PC is unavailable. Full offline solo remains required; travel connectivity remains optional.
+**Current scope — September 25:** PC/VPS is the sole shared authority; four mobile clients join automatically. Offline solo stays private, and server state wins on reconnect without importing offline edits. G4/AUTO-02 device hosting is retired. [Current decisions](current-decisions.md) control scope; the [build guide](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) records current implementation. Technical sources and candidate comparisons below retain their original research date; this update is not a new external-source verification.
+
 
 **Package-status clarification from the subsequent review:** “released v2.13.3 source” below refers to a published GitHub release. The 6000.3 editor catalog labels that version differently. The [package review](family-playset-package-research-2026-09-23.html#4-networking-stability-a-real-documentation-mismatch) compares it with the editor-release baseline, NGO 2.13.2, and explains why the exact NGO/Transport set still needs qualification. None of this report's source inspection establishes a tested production lockfile.
 
@@ -29,11 +30,11 @@ The PC may connect by Ethernet and the mobile devices by Wi-Fi, provided the rou
 | Another player opens the game | Add their connection and personal view | No |
 | One player leaves the beach for the creek | Change only that player's zone subscription and view | No |
 | One iPad closes while the PC serves | Release its transient interactions; others continue | No |
-| A player changes character | Change appearance while keeping profile, room and activity identity | No |
-| The PC process crashes or becomes unreachable | Recover from replicated state on an eligible iPad | Yes, or start a separate continuation branch during a partition |
-| An iPad is hosting and closes | Remaining eligible device recovers automatically | Yes |
+| The PC/VPS crashes or becomes unreachable | Continue private solo; restore designated server through its own recovery workflow | No |
+| A returning client has offline edits | Load server world, retain private save separately | No |
 
-This keeps ordinary family play much simpler than continuously making the iPads compete to host. An already healthy iPad session should also remain stable when the PC becomes available later; any transfer back is an explicit automatic handoff at a coherent checkpoint.
+No client competes to host. Planned PC→VPS migration retires the old writer before the new one starts; a failed connection never promotes a device.
+A designated dedicated authority keeps client lifecycle independent of the shared world. Planned migration is a parent operation, never automatic device promotion.
 
 ## 2. The selected network path
 
@@ -44,7 +45,7 @@ Use Wi-Fi for mobile devices and either Ethernet or Wi-Fi for the PC. Unity Tran
 | Situation | Selected behavior | Priority |
 | --- | --- | --- |
 | PC reachable on the home network | Automatically join the paired PC's world | Normal required path |
-| PC unavailable, family devices share Wi-Fi | Either iPad can host; others automatically join; recover when authority is lost | Required |
+| PC/VPS unavailable | Independent private solo on each device | Required |
 | No usable shared connection, or child chooses solo | Full local play with saved progress | Required |
 | Phone hotspot or remote connection to home PC | Qualify separately after the core game works | Optional travel feature |
 
@@ -58,13 +59,13 @@ On iPadOS 18, use supported Bonjour/Network framework APIs and declare the servi
 
 **Proposed adapter contract:** advertise and resolve a service; report endpoint changes/loss; stop on suspension; restart on foreground; surface denied permission distinctly from “no server found.” Advertise only compact, non-secret metadata such as protocol version, world identifier and readiness. Authenticate after connection. Re-resolve changing addresses instead of making children enter IP addresses. Bonjour on ordinary LAN must not be confused with Apple's separate peer-to-peer Wi-Fi transport.
 
-Use one connection controller per device. An existing paired family session wins; otherwise prefer a reachable PC, then negotiate among eligible mobile hosts. Ignore stale callbacks using an attempt generation. Retry in the foreground with bounded backoff, rather than repeatedly scanning and reconnecting every frame. A short discovery grace period is a tuning choice, not proof that an unseen peer does not exist.
+Use one client connection controller, authenticate the designated server and ignore stale attempt callbacks. Keep bounded foreground retry work independent of movement and local saves. No mobile host negotiation is needed.
 
 ## 4. What the networking packages actually solve
 
 | Candidate | Verified useful part | Missing or limiting part | Assessment |
 | --- | --- | --- | --- |
-| NGO + Unity Transport | GameObject networking, server/client model and cross-platform IP transport | Exact package status/version qualification, custom LAN discovery, durable world state and LAN host recovery remain work | Retain as the first prototype candidate |
+| NGO + Unity Transport | GameObject networking, server/client model and cross-platform IP transport | Exact package status/version qualification, custom LAN discovery, durable world state and client lifecycle qualification remain work | Retain as the first prototype candidate |
 | Mirror | Actual additive-level sample with per-player scene transitions and scene interest management | No built-in host migration in its documented FAQ; broadcast discovery needs replacement for our chosen route | Useful reference or alternative, not an automatic recovery shortcut |
 | FishNet | Dedicated/listen servers and connection-specific scene management | Its documentation explicitly says host migration is not built in | Viable alternative to measure if NGO hits a demonstrated blocker |
 | Photon Fusion 2 | Documented reconnect and host-migration samples | The demonstrated migration path uses Photon coordination; application state restoration still needs code | Strong reference, but not evidence of a drop-in offline LAN solution |
@@ -83,15 +84,16 @@ Keep Unity 6.3 LTS as the editor branch candidate. Recheck its available patches
 
 Mirror's additive-level portal sends scene messages through **one player's connection**, moves that player's server object into the destination scene, then adds that player back. Its scene interest manager compares actual scene identities. This is concrete evidence for the architectural pattern: one server, different player locations, shared visibility when players meet. [Portal source](https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Examples/AdditiveLevels/Scripts/Portal.cs#L92), [Scene interest source](https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Components/InterestManagement/Scene/SceneInterestManagement.cs)
 
-It is a reference, not our finished scene loader: the example loads its subscenes on the server, uses Physics3D, and explicitly avoids unloading the server's subscene when the local host player travels. Copying the full visual scenes onto an A10 host could defeat our memory plan. NGO requires its own implementation; Mirror API calls cannot simply be pasted into NGO. [Example manager source](https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Examples/AdditiveLevels/Scripts/AdditiveLevelsNetworkManager.cs#L42)
+It is a reference, not our finished scene loader: the example loads its subscenes on the server, uses Physics3D, and explicitly avoids unloading the server's subscene when the local host player travels. Copying all visual scenes onto an A10 client could defeat the memory plan. NGO requires its own implementation; Mirror API calls cannot simply be pasted into NGO. [Example manager source](https://github.com/MirrorNetworking/Mirror/blob/c4f3739966e151f405be1762d33502794fd034ff/Assets/Mirror/Examples/AdditiveLevels/Scripts/AdditiveLevelsNetworkManager.cs#L42)
 
 FishNet's scene documentation supplies another useful constraint: loading by name with stacking enabled creates separate instances; loading the existing handle joins that instance. Connection-scene unload policy also affects whether an empty scene stays loaded. This reinforces the need to distinguish **a world identity** from a loaded scene or display name. [FishNet stacking](https://fish-networking.gitbook.io/docs/guides/features/scene-management/scene-stacking), [Scene load data](https://fish-networking.gitbook.io/docs/guides/features/scene-management/scene-data/sceneloaddata)
 
 **Our proposed implementation:** one ordinary `zoneId` for the creek, one for the playground, and stable separate IDs for each bedroom/secret room. The authority keeps logical state for all of them. Clients load detailed art for their own view. A zone transition has a destination-ready acknowledgement and a current snapshot/revision before the arriving child can manipulate its toys. The sibling's zone and activity do not reload. Separate imagination activities can have explicit instance IDs; a recovery conflict must never create an invisible second ordinary playground.
+The PC/VPS keeps every logical area persistent; clients load detailed art only for their own view. A per-client visual subscription is not a server backup, and a complete recovery replica is not required before offline input works.
+Two replication channels serve different purposes: nearby visual updates keep the screen responsive; compact recovery state supports server disaster recovery. Object visibility is not a substitute for the second channel. [NGO visibility rules](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/object-visibility.html)
 
-Two replication channels serve different purposes: nearby visual updates keep the screen responsive; compact whole-world recovery state allows a successor host to restore offscreen areas. Object visibility is not a substitute for the second channel. [NGO visibility rules](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/object-visibility.html)
-
-## 6. Host recovery needs state outside network objects
+<a id="6-host-recovery-needs-state-outside-network-objects"></a>
+## 6. Server recovery needs state outside network objects
 
 **Released-source finding:** NGO v2.13.3's shutdown path calls `DespawnAndDestroyNetworkObjects`, disposes networking services, and clears the spawn manager. The spawn code destroys ordinary dynamically spawned objects unless a prefab handler controls their destruction. `DontDestroyWithOwner` concerns a departing object's owner; it does not preserve the entire world through a network-manager shutdown. [Shutdown source](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Core/NetworkManager.cs#L1659), [Spawn cleanup](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Spawning/NetworkSpawnManager.cs#L1488), [Owner-disconnect flag](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Core/NetworkObject.cs#L1387)
 
@@ -99,14 +101,14 @@ Two replication channels serve different purposes: nearby visual updates keep th
 
 | Recovery case | Proposed procedure | Limit to prove |
 | --- | --- | --- |
-| Planned transfer | Finish/cancel current atomic operations; send final checkpoint and event tail; successor verifies; transfer authority token; old host retires | Handle a failure at every step without both sides mutating the same connected session |
-| Hard close/power loss | Detect missing authority; use latest complete checkpoint plus ordered events; create continuation branch; rebuild bindings | Cannot recover an action never received by any survivor |
-| Network partition | Each reachable group can continue a separate identified branch | No algorithm makes disconnected live toy interactions globally visible |
-| Old host returns | Authenticate, compare history, preserve conflicts, join the continuing session | Old authority must not overwrite newer connected work |
+| Planned PC→VPS migration | Verify backup/restore and enrollment; retire old writer before enabling new one | Never allow two canonical writers |
+| Server crash | Client continues privately; dedicated-server workflow restarts/restores canonical world | Cannot promise persistence for data never saved |
+| Client loses its route | Private local continuation; bounded retry | No live shared actions across a missing route |
+| Client reconnects | Authenticate and load current server world; retain private saves | Never import/replay offline edits |
 
-Apple gives ordinary apps limited background execution before suspension. Therefore a foreground iPad can host, but a locked/backgrounded iPad cannot be treated as a dependable dedicated server. Handoff callbacks are an optimization; hard-loss recovery must work without them. [Apple background execution](https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time)
+No mobile device is a shared authority. Apple background limits remain relevant to client save/network lifecycle, not a requirement to implement host handoff. [Apple lifecycle](https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time).
 
-A relevant distributed-systems result explains why “just elect another host” is insufficient. Raft requires a communicating majority for continued committed operation. With two fixed voting replicas, one survivor is not a majority. **Our application inference:** strict two-device quorum behavior conflicts with your requirement that either child can keep playing alone. We should use available local continuation with explicit branches and later reconciliation, not call a deterministic device ranking a proven consensus system. [Raft paper, sections 2 and 5](https://raft.github.io/raft.pdf)
+The earlier Raft/host-election inference is retired with device hosting. Independent solo is not a consensus participant and has no promise of merging into shared state. The server stays canonical; a timeout cannot prove it stopped. [Raft reference](https://raft.github.io/raft.pdf).
 
 No exact recovery delay or guaranteed loss window is established. Snapshot intervals, acknowledgement policy, load times and packet-loss detection need measurements. Ordinary departure from the PC-hosted game should not trigger this recovery path at all.
 
@@ -130,15 +132,15 @@ For pouring, update source quantity and destination quantity as one operation. U
 
 An idle return is an authority transaction, not a client countdown teleport. Recheck idleness and revision when it executes. If a child picks the toy up during the warning, cancel the pending return. Check nested container contents for held/protected items. Move protected creations to a valid saved container/workspace before returning equipment; if there is nowhere valid, defer the return instead of deleting work. Late join sees the committed result; a packet retry must not create a replacement plus an original.
 
-For disconnected play, fine-grained merge research supports combining some independent edits, but it does not prove arbitrary game operations can be merged safely. CRDTs are designed to converge; our game's resource rules are an additional requirement. The local-first paper concerns collaborative data structures and applications, not this game's bucket conservation or recipe dependencies. [Ink & Switch local-first research](https://www.inkandswitch.com/essay/local-first/)
+Offline save preservation is separate from shared-world convergence. The earlier local-first/CRDT references are background research, not a requirement to implement automatic game-state merging. [Original local-first reference](https://www.inkandswitch.com/essay/local-first/).
 
-**Proposed reconciliation examples:**
+**Current persistence rules:**
 
-- Child one's bedroom changes and child two's bedroom changes: import disjoint records under the same owner IDs.
-- Two different edits to the same cake: preserve both creations with distinct IDs; do not silently overwrite one.
-- Both offline worlds use the same communal bucket: keep one canonical communal bucket on reunion; retain creative outcomes under the creation policy, not two copies of the communal stock.
-- A poured quantity is already committed: recognize its operation ID; do not reapply it from a stale client journal.
-- Deletion versus modification: retain a tombstone/history and recoverable variant rather than using whole-save “newest timestamp wins.”
+- Connected bedroom edits are server transactions; offline bedroom edits stay private.
+- Private cakes/drawings remain local, without automatic creation import.
+- Rejoin uses the one canonical communal bucket; private copies never upload.
+- Connected retries recognize operation IDs; abandoned/offline requests never replay on rejoin.
+- Preserve versioned private saves separately through updates and server rejoin.
 
 SQLite offers atomic transactions that can protect a compound local save from partial writes, subject to its documented storage assumptions. It does not itself synchronize devices. It is a storage candidate to compare with a small versioned snapshot/journal implementation; a Unity iOS IL2CPP/Android binding still needs qualification. Keep each device's save local rather than sharing one live database file over the network. [SQLite atomic commit](https://www.sqlite.org/atomiccommit.html)
 
@@ -148,34 +150,34 @@ Apple documents that an app's available memory limit can change during its lifec
 
 Unity's Dedicated Server target disables audio and removes graphics-related work/assets. **Design consequence:** cooking timers, hide-and-seek logic, object capabilities and NPC tasks must run without playing audio, rendering a sprite, or receiving local touch input on the server. Store gameplay durations/anchors/collision shapes in logical content data; client speech and animation follow committed events. [Unity 6.3 server optimizations](https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-optimizations.html)
 
-For an iPad host, keep the same logical rules but load detailed art only for its player's current view. Offscreen occupied areas still run necessary logical activities. Empty areas can sleep or advance from saved logical timers where appropriate; that does not mean their items reset. Opening a local book, TV or settings overlay must not set a global pause that stops a sibling's kitchen.
+Each client renders only its current view; PC/VPS runs necessary logical activities in all occupied areas. Local books/video/settings cannot pause siblings. Solo runs installed activities independently.
 
 **Required measurements, not completed tests:**
 
 | Workload | Why it differs |
 | --- | --- |
 | A10 client with PC server | Tests drawing, input, local assets and network presentation |
-| A10 host with four players spread across zones | Adds authority, offscreen activity logic and recovery replication |
+| A10 offline solo | Tests local rules, animation and saving without networking |
 | Four players and many props in one room | Stresses visible characters, sorting, animation and item contention |
-| A10 host opening a narrated book or local video | Adds loading/decoder/audio costs while authority continues |
+| A10 client or solo reading/watching media | Tests loading/decoder/audio costs without pausing siblings |
 | Repeated room changes and character swaps | Reveals retained assets and accumulating references |
 | Late join or recovery during those workloads | Exposes temporary snapshot/loading memory spikes |
 
-Measure frame-time spikes, main-thread stalls, native/managed memory, thermal behavior and save/recovery correctness on release builds. Keep the 30 FPS target, but do not label it achieved from minimum engine requirements. Package samples and editor play mode do not certify an A10-host workload.
+Measure frame-time spikes, main-thread stalls, native/managed memory, thermal behavior and save/recovery correctness on release builds. Keep the 30 FPS target, but do not label it achieved from minimum engine requirements. Package samples and editor play mode do not certify sustained A10 client/solo performance.
 
 ## 9. What changed in confidence and what to build first
 
 | Claim | Evidence level after this pass | Remaining proof |
 | --- | --- | --- |
 | PC-hosted clients can come and go independently | Documented server architecture; clear design fit | Real mixed-device automatic join/leave test |
-| Clients can occupy different areas and meet later | Source-confirmed reference pattern | Our NGO loader, state persistence and A10 host cost |
+| Clients can occupy different areas and meet later | Source-confirmed reference pattern | Our NGO loader, state persistence and A10 client/solo cost |
 | Automatic LAN discovery has native cross-platform building blocks | Official Windows/Apple/Android APIs | Native bridges, permissions, firewall and actual router |
 | A host-election call restores the world | Contradicted by migration docs and NGO cleanup source | Separate model, checkpoints and restoration |
 | An existing pickup template already enforces our toy ownership | Contradicted by inspected Playground script | Authoritative item transactions |
-| Conflicting offline worlds merge automatically without policy | Not established by CRDT/local-first research | Domain rules and reconciliation tests |
-| Four-player A10 hosting meets the desired feel | Still unmeasured | Physical-device workload tests |
+| Conflicting offline worlds merge automatically without policy | Not established by CRDT/local-first research | Separate private saves; no automatic imports |
+| Four-player A10 client performance | Sustained updated-device workload remains open | Physical frame-time and memory tests |
 
-The next implementation should be a small **two-zone proof**: PC server, both iPads, one bucket, one tap, one plant, a saved creation, and independent travel. Demonstrate first child joining, second child arriving later, third/fourth player joining, one child closing, and shared-item contention without affecting anyone else. Then disconnect the PC and qualify either iPad's hosting, orderly switching, hard-loss recovery and reunion. This sequence keeps mobile hosting required while making the normal server path concrete first.
+Continue the existing dedicated-server foundation. Four-device admission and scoped shared play have passed; current 98 continuity and rollout need physical qualification. Isolated character art can advance meanwhile, then G5 rooms/items before integrated content expansion. See the build guide for the actual next task.
 
 A plain prototype is enough to expose these risks; producing six finished worlds before these tests would not make the networking claims better supported. No defensible calendar estimate follows from these sources. Measure the first implemented slice and asset workflow before estimating the complete production schedule.
 
@@ -191,6 +193,6 @@ Selected source was saved under [deep-source-review-2026-09-23](bluey-research/d
 | FishNet development head | `7c4a6448d48ed65b154ebd5615c86fb9001da1cf` | Manifest/license, paired with official scene and migration documentation |
 | Unity Playground | `3d8acd7432ee115f28e05f2b1af39fa783376b4a` | Pickup behavior, project version and license |
 
-Official documentation and primary papers are linked beside the claims they support. Some Apple/Unity pages returned JavaScript shells or fetch errors through one access method; successful indexed documentation, vendor clarifications and pinned code were used where available. A failed fetch is not evidence that a feature is absent. Research does not replace device testing, and proposals such as timers, budgets and merge policy remain explicitly unqualified.
+Official documentation and primary papers are linked beside the claims they support. Some Apple/Unity pages returned JavaScript shells or fetch errors through one access method; successful indexed documentation, vendor clarifications and pinned code were used where available. A failed fetch is not evidence that a feature is absent. Research does not replace device testing, and proposals such as timers and content budgets remain explicitly unqualified.
 
 Only this game's research directory was changed. The unrelated old project and its Unity/Blender connector remain outside this work.

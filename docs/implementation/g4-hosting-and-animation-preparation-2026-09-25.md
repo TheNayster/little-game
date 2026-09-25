@@ -1,5 +1,8 @@
 # Hosting preparation and the first animation study
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **Status, September 25:** the user authorized independent work while build 98 waits for device signing/acceptance, including a small character prototype. Two tracks are now explicit: **device qualification when available**, and **bounded development that does not require those devices**. This permits preparation/prototyping without declaring G3, G4 or G6 complete. No shipping Unity sources, package locks, game saves or running family server were changed by this task.
 
 **Delivered:** an executable planned-host-handoff model with 20 passing groups and 117,649 six-event schedules; a layered character source and interactive animation workshop; a native hosting integration sequence; and room/save contracts to guide the next content work. **Follow-up G4-PREP-02 now passes real-state restoration: seven C# groups and four native Windows groups, including all four original profiles rejoining a replica-derived authority.** [Restoration evidence and limits](g4-real-state-restoration-2026-09-25.html) · [Try the character workshop](character-workshop/index.html) · [Return checklist](return-checklist-ipad-lan-2026-09-24.html) · [Main plan](../family-playset-build-guide-2026-09-23.html).
@@ -34,7 +37,7 @@ If a write reports failure, the process stops being eligible to write until it r
 
 **Limits:** the model assumes authenticated channels, one serialized controller per device, valid complete checkpoint input and atomic storage. It simulates journal commits; it does not test physical disk failure, encryption, sockets or iPad lifecycle. Its checkpoint payload is opaque fixture data; the separate [G4-PREP-02 test](g4-real-state-restoration-2026-09-25.html) now verifies actual record parsing/restoration, without integrating the model into the live transport. The model covers one cooperative transfer, not repeated transfers, hard-loss election or all possible histories. Passing it does not mean iPad hosting is implemented.
 
-## Next native hosting steps that can be developed on Windows
+## Retired native-hosting sequence — do not implement
 
 | Bounded task | Implementation and acceptance |
 | --- | --- |
@@ -45,7 +48,7 @@ If a write reports failure, the process stops being eligible to write until it r
 | **G4-04: automatic reunion and returning hosts** | Existing server authority wins when rejoining it; keep offline work separate. An old mobile host cannot overwrite a continuing session solely because its counter/time is larger. Bind join attempts to lineage and generation; release/cancel held gestures safely. Convergence tests must include 2+2 and 1+1 partitions, then restored communication. |
 | **G4-05: both iPads as hosts** | Only after the native fixture works: run each iPad as host, open Menu/book/video while peers play, leave/force-close the host, rejoin the old host, and measure the A10 with four players in independent areas. Apple foreground/background behavior and memory/frame-time limits require these actual-device checks. |
 
-The next independent implementation task is **G4-01**, beginning with authenticated host identity and separation of authority lifecycle from presentation. Build 98 device checks remain a separate short task when the user returns. Production hosting integration stays gated by its own evidence.
+The former independent task was **G4-01**, now retired, beginning with authenticated host identity and separation of authority lifecycle from presentation. Build 98 device checks remain a separate short task when the user returns. Production hosting integration stays gated by its own evidence.
 
 ## Personal rooms: save and item boundaries reviewed
 
@@ -86,3 +89,4 @@ Production workflow:
 The shipping project remains build 98; server/helper remain 91. Last installed physical clients remain iPad 7 95, iPad 9/iPhone 79 and Samsung 83. No Mac password, phone connection, iPad interaction or new account was needed for this preparation. The [return checklist](return-checklist-ipad-lan-2026-09-24.html) now separates required device actions from the optional art preview and later host checks.
 
 Work continues in small, testable steps: native replacement-state restoration now passes within its recorded scope; authority/identity separation and actual handoff adapters are next. Art can advance through the isolated import proof alongside the device queue. Neither the model, restoration experiment nor browser preview closes a foundation gate or counts as deployed iPad hosting.
+<!-- historical-record-end -->

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "runtime_diff_from_pre_experiment_head": false,
+  "prepared_candidate": 98,
+  "archived_experiment": 99,
+  "archive_manifest_present": true,
+  "abandoned_binary_excluded_from_normal_build_path": true,
+  "physical_devices_contacted": false,
+  "family_server_or_save_modified": false,
+  "scope": "Verified restored source Git hashes and archived experiment path; no new runtime qualification."
+}

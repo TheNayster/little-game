@@ -6,14 +6,15 @@
 - This directory is the new home for the family game described in `docs/bluey-game-research-2026-09-23.md`.
 - `C:\Users\sephi\Desktop\Meeps game` is an unrelated old Unity project. Do not move, copy, merge, or modify that project as part of this game's work unless the user specifically requests it.
 - The desktop Connect Unity + Blender and Connect Little Weeps shortcuts now target this root's launcher. The old project's launcher remains unmodified. Require a fresh acknowledgment of the exact new Unity project path before claiming an editor connection.
-- G1 foundation setup has begun. Read `docs/implementation/g1-status.md` for actual evidence; do not claim the planned game or networking features are implemented.
+- Read the current build guide for implementation status. Dated reports preserve scoped evidence; their old next-step instructions are historical, not the active queue.
 
 ## Game implementation workflow
 
+- Read `docs/current-decisions.md` first. The user explicitly selected PC/VPS-only multiplayer on September 25: clients never host, offline solo stays private, and reconnecting loads the authoritative server world without importing offline edits. G4/AUTO-02 are retired, not pending gates. Do not revive retired scope from old research or experiments.
 - Treat `docs/bluey-game-research-2026-09-23.md` as the feature goal sheet and `docs/family-playset-build-guide-2026-09-23.md` as the default implementation sequence. The user's latest instructions take precedence.
 - Before implementation, read the build guide's current work record and the goal-sheet sections for the task. Follow the active phase and its dependencies; later phases do not remove required features.
 - Keep one bounded implementation task active, record its goal IDs and acceptance evidence, and update the work record with what exists, what passed and the next task. Do not mark a phase complete based only on code/assets being present.
-- Keep platform builds, saved data, shared-world recovery and actual-device qualification in the sequence. Do not silently replace required iPad hosting with PC-only behavior or use the old project's connector as proof this new project is connected.
+- Keep platform builds, saved data, shared-world recovery and actual-device qualification in the sequence. The PC/VPS is the sole shared authority; keep automatic joining, four mixed clients and independent areas. Do not use the old project's connector as proof this new project is connected.
 
 ## Git delivery and project records
 
@@ -24,3 +25,5 @@
 - Push completed, checked commits to this private `origin` and verify the remote branch points to the intended commit. Keep `main` synchronized with completed work through a safe fast-forward or normal integration. Keep incomplete or failing work off `main`; identify it clearly if checkpointed on a development branch.
 - Do not force-push, rewrite shared history, delete branches or discard changes as routine cleanup. Reconcile concurrent updates without overwriting them. Report a genuine push/authentication/conflict blocker instead of claiming the work is uploaded.
 - End meaningful work with a clear status: what changed, relevant validation and any unpushed or unfinished work. This workflow applies while working on the project; it does not imply an unattended background sync service.
+
+- When architecture changes, audit the goal sheet, phase/feature ledgers, return checklist, companion research and generated-page renderers. Run `Tools/Test-PlanConsistency.py` after rendering. Preserve dated evidence without treating its superseded instructions as current requirements.

@@ -1,5 +1,7 @@
 # Complete-state restoration experiment (G4-PREP-02)
 
+> Historical experiment. Device hosting (G4/AUTO-02) was retired by the user on September 25. These tests are retained for evidence and possible dedicated-server recovery reference; they are not the active implementation queue. See [current decisions](../../docs/current-decisions.md).
+
 This tool links the shipping `RecoveryRecord`, `SoloWorld`, `FamilySession` and
 `CheckpointStore` source. It is outside Unity's Assets and does not change build
 98. It proves restoration of real state before mobile authority integration.

@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — trusted family discovery</title><style>
+<title>The Family Playset — G3 — trusted family discovery: Windows proof</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -15,12 +15,16 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 
-.rejoin-review{max-width:980px;margin:42px auto;padding:0 24px}.rejoin-review h1{font-size:clamp(30px,4vw,46px)}.rejoin-review p,.rejoin-review li{line-height:1.65}.rejoin-review code{overflow-wrap:anywhere}.rejoin-review pre{overflow-x:auto}
-</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="g3-family-lan-2026-09-24.md">Editable record</a></nav></header><main class="rejoin-review report"><h1>G3 — trusted family discovery: Windows proof</h1>
+.progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-family-lan-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1 id="g3-trusted-family-discovery-windows-proof">G3 — trusted family discovery: Windows proof</h1>
+<blockquote>
+<p><strong>Historical implementation record — current scope changed September 25.</strong> PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use <a href="../current-decisions.md">current decisions</a>, the <a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">build guide</a> and the <a href="return-checklist-ipad-lan-2026-09-24.html">current return checklist</a>.</p>
+</blockquote>
+<!-- historical-record-start -->
 <p><strong>September 24, 2026 · Shared build 70 · Goal IDs: AUTO-01, JOIN-01, FAMILY-01, NET-02.</strong></p>
 <p>The next foundation is implemented and qualified on Windows: four separately enrolled players find the intended PC authority through native Bonjour and enter an encrypted shared garden without a configured server IP. Wrong credentials, unknown profiles, a duplicate profile, incompatible protocol, another family and an untrusted server certificate do not grant shared-world access. An absent server opens a separate usable solo branch.</p>
 <p>This is a <strong>parent-provisioned Windows proof</strong>, not the finished parent pairing screen or mobile connection system. The two physical iPads were confirmed connected to the Mac, but remain on their previously tested solo build 56. No iPad installation or physical multiplayer pass is claimed. The user's four-window build-68 preview and saved world remain running independently.</p>
-<h2>What changed</h2>
+<h2 id="what-changed">What changed</h2>
 <ul>
 <li>Added separate family, authority, world and player identities. The authority stores four independent credential hashes. Each player enrollment contains only its own random credential and the enrolled certificate authority; it contains no server private key or other players' credentials.</li>
 <li>Added a parent-operated, create-only enrollment tool, <code>Tools/family_pairing.py</code>. It generates the certificates and independent credentials, then protects the records with Windows per-user DPAPI under ignored <code>LocalData/FamilyLAN</code>. It never replaces an existing enrollment or a saved world. This CLI is the current development setup, not the eventual child-facing flow.</li>
@@ -30,7 +34,7 @@
 <li>Added an isolated offline branch for failed joining. Shared checkpoints and the already qualified unpaired solo save are separate. The offline scene has its own camera/audio setup and retains normal touch, narration, saves and settings behavior.</li>
 </ul>
 <p>The existing server/world rules, movement interpolation and exclusive item rules are reused. This change does not create a second set of multiplayer gameplay rules.</p>
-<h2>Evidence</h2>
+<h2 id="evidence">Evidence</h2>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -69,15 +73,15 @@
 </tr>
 </tbody>
 </table></div>
-<h3>A regression test corrected during this work</h3>
+<h3 id="a-regression-test-corrected-during-this-work">A regression test corrected during this work</h3>
 <p>The first shared UI regression on 70 checked the remote bucket after a fixed 150 ms sleep, although remote poses intentionally use the already established 180 ms presentation delay. Its recorded sample showed the correct holder and the bucket approaching the requested position (469.4 versus 480), not a lost pickup. The harness now waits for <strong>both</strong> target coordinates and the correct holder with a 1.5-second deadline. Gameplay timing and tolerances were not relaxed. The <a href="evidence/family-lan-2026-09-24/ui-70-initial-failure.json">initial failure</a> is retained; all 10 cases then passed on the same unchanged build 70.</p>
-<h2>Sources checked before implementation</h2>
+<h2 id="sources-checked-before-implementation">Sources checked before implementation</h2>
 <p>Unity states that connection approval by itself does not protect connection data. That is why the LAN path requires certificate-validated encryption before sending its player credential. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/connection-approval.html">Unity connection approval</a></p>
 <p>The transport exposes <code>UseEncryption</code>, <code>SetClientSecrets</code> and <code>SetServerSecrets</code>. Their implementations were checked in the installed NGO <strong>2.13.2</strong> source, alongside the patched UTP <strong>2.7.4</strong> secure-transport documentation. The online 2.13 API now identifies itself as 2.13.3; reading it did <strong>not</strong> upgrade our pinned packages. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/api/Unity.Netcode.Transports.UTP.UnityTransport.html">UnityTransport API</a></p>
 <p>Apple's DNS-SD header specifies callbacks, network-byte-order ports and the requirement to wait for a readable socket before processing results. The Windows adapter follows that native API and uses nonblocking <code>WSAPoll</code>; it does not implement its own multicast discovery protocol. <a href="https://github.com/apple-oss-distributions/mDNSResponder/blob/main/mDNSShared/dns_sd.h">Apple DNS-SD API</a>, <a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsapoll">Microsoft WSAPoll</a></p>
 <p>Windows DPAPI ordinarily protects data to the same user and computer. This storage adapter is intentionally platform-specific and does not silently downgrade to plaintext if a protected record cannot be opened. <a href="https://learn.microsoft.com/en-us/windows/win32/api/dpapi/nf-dpapi-cryptprotectdata">Microsoft CryptProtectData</a></p>
 <p>Apple's local-network privacy guidance was checked for the next device adapter: declare the local-network explanation and the Bonjour service types used by the app, and test allowed/denied permission behavior on real devices. The Windows result does not qualify those permission flows. <a href="https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy">Apple TN3179</a></p>
-<h2>Remaining limits and next bounded task</h2>
+<h2 id="remaining-limits-and-next-bounded-task">Remaining limits and next bounded task</h2>
 <ol>
 <li><strong>Native iPad client adapter and protected parent enrollment</strong>: iOS Keychain storage, native Bonjour browse/resolve, declared service/permission keys, signed in-place build, then both connected iPads joining the PC. Android requires its own NSD/keystore adapter. None of those is implemented by the Windows DLL wrapper.</li>
 <li><strong>Everyday connection orchestration</strong>: immediate local play while searching, ongoing foreground retries, route/interface changes, alternate endpoints, suspend/resume, and reconnect after an established session drops. This proof searches on launch, waits at most 10 seconds for discovery plus up to 10 for admission, and falls back; it does not continuously seek/rejoin or transfer a healthy session. Relaunch is still explicit in the harness.</li>
@@ -86,10 +90,11 @@
 <li><strong>G4/G5 requirements remain mandatory</strong>: both iPads hosting, automatic host recovery, full recovery replication, safe offline reunion, rooms and item-return rules. A visible client snapshot is still not a complete recovery checkpoint. The new offline branch must not be silently promoted over the shared world.</li>
 </ol>
 <p>The current proof still uses the isolated G3 harness (including its bounded process lifetime and development control/evidence files). It is not a production always-on server installer. Unavailable/corrupt enrollment is a setup error; the eventual unpaired parent setup screen is not implemented. No G1, G2 or G3 gate is declared complete.</p>
-<h2>Reproduce the bounded checks</h2>
+<h2 id="reproduce-the-bounded-checks">Reproduce the bounded checks</h2>
 <p>Run from this game's root in PowerShell. Use a fresh build number/output directory when rebuilding.</p>
 <pre><code class="language-powershell">dotnet run --project Tools/SoloRules.Tests -- LocalData/Verification/new-lan-rules --bonjour
 uv run --with cryptography python Tools/Test-FamilyLAN.py 70
 uv run python Tools/Test-SharedGarden.py 70
 </code></pre>
-<p>The tests start and stop only their own verified binaries with fresh saves/enrollments. They do not use the live four-window preview or normal game saves. The optional create-only parent enrollment command is <code>uv run --with cryptography python Tools/family_pairing.py</code>; its encrypted outputs are local setup material, not Git artifacts.</p></main></body></html>
+<p>The tests start and stop only their own verified binaries with fresh saves/enrollments. They do not use the live four-window preview or normal game saves. The optional create-only parent enrollment command is <code>uv run --with cryptography python Tools/family_pairing.py</code>; its encrypted outputs are local setup material, not Git artifacts.</p>
+<!-- historical-record-end --></main></body></html>

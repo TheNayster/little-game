@@ -1,5 +1,7 @@
 # Build-guide research notes
 
+> Historical research notes. Follow [current decisions](../../current-decisions.md) and the current build guide for scope and installed versions; superseded device-host/merge proposals are not tasks. Original observations below are retained.
+
 Reviewed 23 September 2026 for the separate Little weeps game project.
 
 The main Family Playset document remains the product goal sheet. The new build guide defines an ordered implementation method. Existing architecture, package candidates, native-discovery/host-recovery limitations, item policies and TV bookmarks were carried forward from the goal sheet and its supporting reports; they were not re-certified through implementation.

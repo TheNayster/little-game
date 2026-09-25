@@ -1,5 +1,8 @@
 # Android 16 KB investigation — 23 September 2026
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 G1 task, supporting **FAMILY-01** and **TV-01**. No game content, networking, editor version or native build settings changed.
 
 **Result:** the exact 0.0.11 APK installs and runs in a new Android 15 emulator reporting 16,384-byte pages. Injected taps, local video playback/pause/skip and force-stop/reopen recovery worked. A separate ELF diagnostic finds no declared writable bytes outside RELRO within the page-rounded RELRO ranges of its seven libraries. **This does not close native ARM64 16 KB qualification:** the x86_64 emulator runs this ARM64 APK through `libndk_translation.so`. The original strict inspection and its failed result are preserved.
@@ -62,3 +65,4 @@ uv run python Tools/inspect_android_relro.py Builds/Android/G1-0.0.11/LittleWeep
 ```
 
 Use a new output filename: the diagnostic refuses to overwrite prior evidence. A zero exit means no issues found by this limited geometry diagnostic, not an Android release gate pass.
+<!-- historical-record-end -->

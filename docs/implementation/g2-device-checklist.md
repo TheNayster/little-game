@@ -1,5 +1,8 @@
 # Next G2 device check — when the family is available
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **Older iPad follow-up:** garden 56 was signed for and installed on iPad 7 / observed iPadOS 18.7.10. Developer trust was approved, native launch passed, the user reported repeating the newer iPad's checks successfully, and a native restart retained every save byte and preference at revision 439. Its installed-app enumeration has a separate CoreDevice error; quantified performance, media, child usability and update/renewal gates remain open. [Older iPad evidence and limits](ipad7-garden-2026-09-24.md).
 
 **24 September update:** solo garden **56 is compiled, signed, installed and tested on iPad 9**, with the older build-20 preferences retained exactly. Layout, tap walking, bucket watering, spoken Listen instructions, joystick plus dragging, menu/screen-lock cancellation, exact garden reopening, voice/movement settings persistence and Wi-Fi-off solo play passed. Remaining device qualification, child usability, sustained performance, additional character/activity/hint checks and a future garden-to-garden update remain pending. See the [native update record](ipad-garden-2026-09-24.md). The preparation checklist below is retained for repeatable future updates; do not reinstall 56 simply to repeat already passed steps.
@@ -31,3 +34,4 @@ Observe each child using it briefly without reading instructions to them. Record
 ## Evidence to record
 
 Record device/model/OS, app version/signing route, actual visible results, decoded save before/after, input/audio problems and crash logs if any. Measure memory/frame pacing on iPad 7 in a sustained client test later; the desktop allocation measurement is not mobile performance qualification. Four-player networking and iPad hosting have not been implemented in this garden task.
+<!-- historical-record-end -->

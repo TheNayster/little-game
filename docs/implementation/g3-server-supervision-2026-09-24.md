@@ -1,5 +1,8 @@
 # Bounded server crash recovery — G3-OPS-03
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **NET-02. Implemented and qualified in a disposable Windows world.** An actual server process was terminated; the real supervisor command, using its normal backoff clock, started one replacement from the saved world. All four already-running clients rejoined automatically and could use shared items. The observed crash-to-four-rejoin interval was **19.34 seconds**. This is one local test result, not a guaranteed recovery time or uninterrupted simulation during server loss.
 
 The actual family's server remains **83**, untouched and running. The helper is **not enabled on that world**. Prepared runtime **85** includes parent occupied-stop and interrupted-recovery guards. Its reviewed Windows network approval/deployment is still pending while the user is away.
@@ -42,3 +45,4 @@ uv run python Tools/Server-Supervisor.py --family <enrolled-family-id> --build 8
 The per-family `supervisor-state.json` reports checked time, status, message and attempts. Intent/accounting remain private under `LocalData`, are excluded from backup reconstruction, and are not server credentials. The parent browser's Start/Stop endpoints preserve this preference, but the current browser does not launch or supervise the helper itself. A parent-facing activation/status integration and boot/service deployment remain explicit follow-up work.
 
 **Next bounded task: G3-OPS-04, a measured longer four-client Windows run.** Exercise movement, area changes, item interactions and save/rejoin under a real clock, record process memory/observations, and distinguish desktop evidence from pending sustained A10/iPad and mixed-device measurements. Independent backup destination, portable enrollment, VPS readiness and mandatory G4 iPad hosting remain in sequence.
+<!-- historical-record-end -->

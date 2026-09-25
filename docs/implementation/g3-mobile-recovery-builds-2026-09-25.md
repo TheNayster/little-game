@@ -1,5 +1,8 @@
 # Mobile recovery builds prepared on Windows
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G3-REC-04 · NET-02 / AUTO-01 · September 25, 2026 · build 91.** A fresh family-signed Android release and matching iPad/iPhone Xcode export are prepared. Both contain the recovery code already tested in Windows 91. **Nothing was installed, and the Mac, physical devices and family authority were not accessed or changed.** Last recorded deployments remain PC/Samsung 83 and iPads/iPhone 79.
 
 ## What is ready
@@ -35,3 +38,4 @@ The existing [bounded geometry diagnostic](evidence/mobile-recovery-builds-2026-
 Physical acceptance includes initial server-absent launch, complete recovery checkpoints, actual background/lock and cold resume, local interaction during an outage, saving before reunion, reopening the preserved adventure, current controls/reset cues and measured sustained mixed-device performance. Treat the previous physical passes as history, not evidence that build 91 already passed them. Checkpoints and separate adventures remain prerequisites; **G4 iPad hosting and G5 reconciliation/rooms/item policy remain required**. Unattended renewal and an independent, portable backup/restore also remain open. VPS deployment stays later.
 
 [Main plan](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Return checklist](return-checklist-ipad-lan-2026-09-24.html)
+<!-- historical-record-end -->

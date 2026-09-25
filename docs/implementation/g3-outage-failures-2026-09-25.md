@@ -1,5 +1,8 @@
 # Outage failure checks without physical devices
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G3-REC-03 · NET-02 / AUTO-01 · September 25, 2026 · Windows build 91.** The four planned failure areas now have native Windows evidence. The new build fixes one defect: when saving unresolved actions fails during disconnect, their original IDs and payload are retained in memory and the same archive is retried. The queue is cancelled without replaying those actions.
 
 ## What changed and what passed
@@ -41,3 +44,4 @@ An unresolved action is **not an accepted-event journal**. If the app is killed 
 **Next: G3-REC-04 — prepare coordinated mobile recovery artifacts on Windows**, retaining app identities, signing and saves. Android release and iOS export preparation can proceed without physical devices. Native iOS compilation/signing and physical acceptance are separate steps; do not install or qualify unseen devices by inference. Test the older iPad first when the user is home, followed by the newer iPad and both phones. Keep server activation, independent backup and unattended renewal tracked; both iPads hosting stays G4 and reconciliation/rooms/item policy stays G5.
 
 [Current build plan](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Short return checklist](return-checklist-ipad-lan-2026-09-24.html)
+<!-- historical-record-end -->

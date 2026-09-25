@@ -2,7 +2,7 @@
 
 Deep research and proposed interaction design • September 23, 2026
 
-**Audit update:** the current plan has six worlds, up to four mixed-device players, independent location travel, required iPad hosting and automatic host switching. Only travel-network multiplayer is optional; full solo play remains required. See the [complete feasibility audit](family-playset-feasibility-audit-2026-09-23.html).
+**Current scope — September 25:** PC/VPS is the sole shared authority; four mobile clients join automatically. Offline solo stays private, and server state wins on reconnect without importing offline edits. G4/AUTO-02 device hosting is retired. [Current decisions](current-decisions.md) control scope; the [build guide](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) records current implementation. Technical sources and candidate comparisons below retain their original research date; this update is not a new external-source verification.
 
 **Recommendation: one Bluey world, with two ways to play.** Give your three-year-old a close-up **Simple Play** view with large objects, direct touch, and forgiving automatic assistance. Give your six-year-old an **Explore & Stories** view with wider rooms, more combinations, and optional longer quests. Both use the same characters, items, rules, and saved world, including when the iPads play together.
 

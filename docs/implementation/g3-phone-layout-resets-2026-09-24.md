@@ -1,5 +1,8 @@
 # G3 correction — wider phone play and repeatable garden activities
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **User-directed scope: FAMILY-01, ACT-01, ITEM-03, ITEM-02.** This follows the four-device build 79 check. The user reported excessive side space on Samsung/iPhone while both iPads looked good, and asked for timers because items and quests were not resetting. This is a narrow correction to the existing garden fixtures. The full G5 catalog, personal possessions, creations, rooms, containers and return policies remain separate work. Arrival-only cue cancellation and authored spoken return hints also remain in that broader policy; this fixture protects actual held/use interactions.
 
 ## Implemented in build 82
@@ -39,3 +42,4 @@ The regenerated guide/reports passed local link, anchor and image checks. All 35
 ## Deployment update
 
 On September 24 the user authorized updates after everyone left the server. The PC authority and Samsung now run build 83, which includes this correction. The native Android screen was inspected and automatic family joining/save preservation were checked. iPhone/iPads remain on 79. See the [applied deployment record](g3-persistent-server-2026-09-24.html).
+<!-- historical-record-end -->

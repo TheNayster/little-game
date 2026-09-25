@@ -1,5 +1,8 @@
 # G1 iPad update — build 20 installed, saved video position retained
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 23 September 2026, local time. Task: the iPad 9 in-place foundation update and media/save checks, supporting FAMILY-01 / TV-01. The phase plan still requires both iPads to pass G1 before dependent G2 work.
 
 ## Current result — 16 → 20 update passed
@@ -47,3 +50,4 @@ The user ran this helper and replied **ready**. Its successful exit was checked 
 
 1. Begin the agreed Windows automatic-refresh setup and verify enrollment, actual renewal and save retention. The native build/update/media fixture checks on iPad 9 are complete; they do not qualify the finished game or prove automatic renewal.
 2. Qualify the older iPad 7 when it is available. G1 remains open; all multiplayer/content phases remain planned.
+<!-- historical-record-end -->

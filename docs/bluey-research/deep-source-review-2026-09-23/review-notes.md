@@ -1,5 +1,7 @@
 # Technical source review — September 23, 2026
 
+> Historical research notes. Follow [current decisions](../../current-decisions.md) and the current build guide for scope and installed versions; superseded device-host/merge proposals are not tasks. Original observations below are retained.
+
 These are cached public source files for the [technical research](../../family-playset-technical-research-2026-09-23.html). They are not installed Unity packages or implemented game features.
 
 - [Development/reference source manifest](inspected-source-files.json): 17 files, with source URLs, exact revisions and SHA-256 hashes.

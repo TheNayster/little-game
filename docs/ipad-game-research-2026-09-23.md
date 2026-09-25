@@ -2,7 +2,7 @@
 
 **Audit and project boundary:** [the current feasibility audit](family-playset-feasibility-audit-2026-09-23.html) and main guide control this game's requirements. Its home is `C:\Users\sephi\Desktop\Little weeps game`. Sections 5 and 13 below preserve historical observations about the unrelated old `Meeps game` project and its connector setup; they are not evidence that the new game exists or is connected. Do not open, migrate, import, or modify that old project for this game without a separate explicit request.
 
-**Latest priority clarification:** iPad hosting, automatic joining and automatic host switching remain required. Only multiplayer connectivity while traveling is optional/lower priority. Complete solo play without PC or internet remains required.
+**Current scope — September 25:** PC/VPS is the sole shared authority; four mobile clients join automatically. Offline solo stays private, and server state wins on reconnect without importing offline edits. G4/AUTO-02 device hosting is retired. [Current decisions](current-decisions.md) control scope; the [build guide](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) records current implementation. Technical sources and candidate comparisons below retain their original research date; this update is not a new external-source verification.
 
 **Remote-host expansion:** the PC may also serve 1–4 family players away from home through a planned private internet route. [Main guide section 49](bluey-game-research-2026-09-23.html#49-reaching-your-home-pc-from-a-road-trip) compares Tailscale with Relay and requires testing VPN startup, renewal-helper coexistence, cellular loss, and preserved offline saves. No connection software or server configuration was changed.
 

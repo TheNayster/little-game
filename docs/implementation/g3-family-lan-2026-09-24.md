@@ -1,5 +1,8 @@
 # G3 — trusted family discovery: Windows proof
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **September 24, 2026 · Shared build 70 · Goal IDs: AUTO-01, JOIN-01, FAMILY-01, NET-02.**
 
 The next foundation is implemented and qualified on Windows: four separately enrolled players find the intended PC authority through native Bonjour and enter an encrypted shared garden without a configured server IP. Wrong credentials, unknown profiles, a duplicate profile, incompatible protocol, another family and an untrusted server certificate do not grant shared-world access. An absent server opens a separate usable solo branch.
@@ -66,3 +69,4 @@ uv run python Tools/Test-SharedGarden.py 70
 ```
 
 The tests start and stop only their own verified binaries with fresh saves/enrollments. They do not use the live four-window preview or normal game saves. The optional create-only parent enrollment command is `uv run --with cryptography python Tools/family_pairing.py`; its encrypted outputs are local setup material, not Git artifacts.
+<!-- historical-record-end -->

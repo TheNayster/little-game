@@ -1,5 +1,8 @@
 # Build 91 — native Apple build and older iPad update
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **G3-REC-05 · NET-02 / AUTO-01 · September 25, 2026. Physical qualification is in progress.**
 
 The prepared build 91 has compiled and linked on the M1 Pro Mac, passed signature/profile/native-bridge checks, and updated the older iPad 7 in place. Its existing Keychain identity automatically rejoined the current build 83 family server. The user confirms walking, bucket filling/watering, Listen and full-screen visibility all pass on 91. The server was subsequently updated to 91. Latest physical reports expose offline-control and walking defects; acceptance remains open as detailed below.
@@ -29,3 +32,4 @@ The older iPad received a verified complete checkpoint containing four players, 
 ## Next
 
 [Focused research and replacement build 93](g3-offline-recovery-and-motion-2026-09-25.html) cover per-frame walking, canceled-touch/menu recovery, missing checkpoints and exact solo retention. Candidate 92 was not installed. Complete replacement validation and a retained update on iPad 7 first, then test actual Wi-Fi loss, repeated transitions and offline walking before wider deployment. Follow the [short return checklist](return-checklist-ipad-lan-2026-09-24.html). Keep G3 open; G4 iPad hosting, G5 reconciliation, independent recovery, renewal and sustained measurements are still required.
+<!-- historical-record-end -->

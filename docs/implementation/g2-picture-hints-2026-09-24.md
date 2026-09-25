@@ -1,5 +1,8 @@
 # G2 picture hints for existing garden interactions
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 24 September 2026. Bounded **ITEM-02 / ACT-01 / CLEAN-01** work: explain the existing drag interactions visually, including when speech is disabled. No new game area, network behavior or save schema was introduced.
 
 ## Behavior
@@ -35,3 +38,4 @@ The emulator uses Android 15/API 35, x86_64 and ARM64 translation with 16,384-by
 The Android system and Bluetooth processes logged startup failures before the game's first launch; the emulator recovered and the scoped game checks completed afterward. [Timing context](evidence/solo-hints-2026-09-24/runtime-context.txt). This is not evidence of long-session or emulator-system stability. The app was closed, storage synced and only the owned emulator process stopped; its data remains available.
 
 No Mac, iPad, iPhone or physical Android phone was accessed. The emulator ran without audio output. Human voice quality, physical touch, child comprehension and older-iPad performance remain open. Follow the [device checklist](g2-device-checklist.md) next, starting with iPad 9 and then iPad 7. Keep G1/G2 gates open and avoid producing more rooms before this interaction design receives device/child feedback.
+<!-- historical-record-end -->

@@ -1,5 +1,8 @@
 # G1 — paused-video progress stability
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 TV-01 / FAMILY-01. Windows-only work, 23 September 2026 local time. No Mac, mobile device, signing or wireless changes.
 
 ## Result
@@ -32,3 +35,4 @@ Unity describes `VideoPlayer.time` as presentation time of the currently availab
 ## Next bounded work
 
 The user explicitly requested continued Windows-only progress while sleeping, including after the available foundation checks. Begin a separate G2 solo-rules prototype with placeholder graphics and isolated saves. This is provisional Windows development alongside outstanding G1 device qualification, not a G1/G2 gate pass or permission to produce final content. Preserve the unchanged G1 scene and mobile installations.
+<!-- historical-record-end -->

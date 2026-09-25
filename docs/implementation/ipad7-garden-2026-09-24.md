@@ -1,5 +1,8 @@
 # Older iPad garden — first play/restart checks passed, inventory diagnostic open
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 Bounded task: install the verified solo garden export 56 on the family's iPad 7 and begin actual-device checks. This supports FAMILY-01's device baseline and the G2 control, interaction and saved-play foundation. It does not qualify the full multiplayer game or complete G1/G2.
 
 ## Device setup
@@ -29,3 +32,4 @@ The actual save passed its header/hash integrity check at **revision 439**: blue
 The bounded first-install/play/restart work is recorded with the installed-app inventory limitation above. Sustained quantitative performance, child usability, extra character/activity/hint checks, native media coverage, garden-to-garden updates, renewal and multiplayer/hosting still have their own gates. Neither G1 nor G2 is complete. The next bounded Windows coding task remains independent logical areas and per-player travel.
 
 Raw inventory, native logs and verification outputs stay under this game's Mac `Logs/ipad7-garden-56-20260924` and `Logs/g2-ios-0.0.56-ipad7-*` paths. Signing keys and passwords remain on the Mac. The unrelated old project is untouched.
+<!-- historical-record-end -->

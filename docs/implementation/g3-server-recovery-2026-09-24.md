@@ -1,5 +1,8 @@
 # Server backup and restore — G3-OPS-02
 
+> **Historical implementation record — current scope changed September 25.** PC/VPS is the sole shared authority; clients continue private solo if disconnected and load server state on rejoin. G4/AUTO-02 device hosting and automatic offline imports are removed. The dated results below remain evidence, but their old “next”, “required” and device-version statements are not the active plan. Use [current decisions](../current-decisions.md), the [build guide](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and the [current return checklist](return-checklist-ipad-lan-2026-09-24.html).
+
+<!-- historical-record-start -->
 **Goal IDs: NET-02 / TRAVEL-01.** This milestone implements local, same-Windows-user recovery of the enrolled shared world. It does not complete independent disaster recovery or move the server to the VPS. The actual family authority stays on **83**, with its existing save and process preserved. **85** prepares the previous guarded parent stop plus a native interrupted-restore startup guard; Windows approval for that executable is still needed.
 
 ## Recovery behavior
@@ -55,3 +58,4 @@ Protected enrollment is still Windows current-user DPAPI data. Microsoft documen
 An independent destination and a deliberate portable credential backup/migration must be selected and tested before independent recovery is complete. Certificate rotation, automatic backup scheduling/retention, a parent restore UI, hardware power-failure qualification and media/signing backups remain separate work. Current tools require the installed .NET SDK and Python/cryptography environment. No shared-world branching/merging or iPad host migration is supplied by this local recovery tool.
 
 **Next bounded task: G3-OPS-03, bounded crash supervision and an isolated crash/rejoin test.** Respect deliberate parent stops, prevent duplicate authorities and restart loops, and leave corrupt saves/interrupted restores blocked. Sustained device/outage checks, VPS readiness and mandatory G4 iPad hosting/recovery remain in the [main build guide](../family-playset-build-guide-2026-09-23.html#9-first-implementation-work-queue).
+<!-- historical-record-end -->
