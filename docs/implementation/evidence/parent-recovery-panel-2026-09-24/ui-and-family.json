@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "isolatedBrowserActions": [
+    "start",
+    "backup",
+    "enable-recovery",
+    "pause-recovery",
+    "stop"
+  ],
+  "layoutVisuallyInspected": true,
+  "liveFamilyBuild": 83,
+  "liveFamilyProcessPreserved": true,
+  "liveFamilyCheckpointByteIdenticalToBackup": true,
+  "backupRevision": 1866,
+  "liveRecoveryEnabled": false,
+  "preparedBuild": 85,
+  "adminApprovalPending": true,
+  "devicesAccessed": false,
+  "independentRecoveryQualified": false
+}

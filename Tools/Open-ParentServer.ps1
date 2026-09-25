@@ -20,7 +20,7 @@ function Get-ReadyDashboard {
 $dashboard = Get-ReadyDashboard
 if (-not $dashboard) {
     $uv = (Get-Command uv -ErrorAction Stop).Source
-    $arguments = @('run','python',('"' + (Join-Path $PSScriptRoot 'Parent-Server.py') + '"'),'--family',$settings.family,'--build',"$($settings.build)",'--no-browser')
+    $arguments = @('run','--with','cryptography','python',('"' + (Join-Path $PSScriptRoot 'Parent-Server.py') + '"'),'--family',$settings.family,'--build',"$($settings.build)",'--no-browser')
     Start-Process -FilePath $uv -ArgumentList $arguments -WorkingDirectory $root -WindowStyle Hidden -RedirectStandardOutput (Join-Path $folder 'dashboard.log') -RedirectStandardError (Join-Path $folder 'dashboard-error.log') | Out-Null
     $deadline = [DateTime]::UtcNow.AddSeconds(25)
     while (-not $dashboard -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 300; $dashboard = Get-ReadyDashboard }

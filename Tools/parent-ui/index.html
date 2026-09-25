@@ -11,6 +11,12 @@
 <p id="feedback" role="status" aria-live="polite"></p>
 <p class="fine" id="checked">Status has not been checked yet.</p>
 </section>
+<section class="panel care" aria-label="World backup and recovery">
+<h2>Look after their world</h2>
+<div class="metrics"><article><p>Local backup</p><strong id="backup-state">Checking…</strong><small id="backup-detail">A separate copy of the saved family world.</small></article><article><p>Automatic crash recovery</p><strong id="recovery-state">Checking…</strong><small id="recovery-detail">Checking the recovery helper.</small></article></div>
+<div class="actions"><button id="backup" disabled>Back up world</button><button id="recovery-enable" class="secondary" disabled>Enable recovery</button><button id="recovery-pause" class="secondary" disabled>Pause recovery</button></div>
+<p class="fine care-note">Backups here stay on this PC. Independent backup still needs setup. Pausing recovery leaves current players connected.</p>
+</section>
 <section class="notes"><article><h3>Let them keep playing</h3><p>Stop is protected while someone is connected. The server checks again before it stops, so a new arrival is protected too.</p></article><article><h3>Close this page anytime</h3><p>The game server keeps running. Keep the PC awake and connected while it hosts your family.</p></article></section>
-<footer>These controls check the server on this PC. Device connections and internet access are separate checks. Local backup and crash-recovery tools are prepared; automatic restart needs separate activation.</footer>
+<footer>The recovery helper runs with this control service, even when you close the browser page. It is not a Windows boot service. Keep the PC awake and connected; device routes and independent backups need their own checks.</footer>
 </main></body></html>

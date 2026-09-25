@@ -8,6 +8,7 @@ import secrets
 import webbrowser
 
 from parent_server import ParentServer, OperationError
+from parent_operations import ParentOperations
 from shared_garden_runtime import ROOT, write
 
 
@@ -16,6 +17,7 @@ class ParentHTTP(ThreadingHTTPServer):
     def __init__(self, controller, port=0):
         super().__init__(('127.0.0.1', port), Handler)
         self.controller = controller
+        self.operations = ParentOperations(controller)
         self.token = secrets.token_urlsafe(32)
         self.authority = f'127.0.0.1:{self.server_port}'
         self.origin = 'http://' + self.authority
@@ -23,6 +25,15 @@ class ParentHTTP(ThreadingHTTPServer):
     @property
     def url(self):
         return self.origin + '/#' + self.token
+
+    def status(self):
+        native = self.controller.snapshot()
+        native.update(self.operations.snapshot(native))
+        return native
+
+    def server_close(self):
+        self.operations.close()
+        super().server_close()
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -65,7 +76,7 @@ class Handler(BaseHTTPRequestHandler):
             name, kind = assets[self.path]
             self.reply(200, (Path(__file__).parent / 'parent-ui' / name).read_bytes(), kind)
         elif self.path == '/api/status':
-            self.reply(200, self.server.controller.snapshot())
+            self.reply(200, self.server.status())
         else:
             self.reply(404, dict(error='Not found.'))
 
@@ -83,8 +94,15 @@ class Handler(BaseHTTPRequestHandler):
                 result = self.server.controller.start()
             elif self.path == '/api/stop':
                 result = self.server.controller.stop(data.get('instanceId'))
+            elif self.path == '/api/backup':
+                result = self.server.operations.backup()
+            elif self.path == '/api/recovery-enable':
+                result = self.server.operations.enable()
+            elif self.path == '/api/recovery-pause':
+                result = self.server.operations.pause()
             else:
                 self.reply(404, dict(error='Not found.')); return
+            result['status'] = self.server.status()
             self.reply(200, result)
         except (ValueError, TypeError):
             self.reply(400, dict(error='Invalid request.'))

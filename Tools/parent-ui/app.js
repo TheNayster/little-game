@@ -15,7 +15,11 @@ async function api(path, body) {
     return data;
   } finally { clearTimeout(timeout); }
 }
-function buttons() { $('start').disabled = busy || !latest?.canStart; $('stop').disabled = busy || !latest?.canStop; $('refresh').disabled = busy || polling; }
+function buttons() { $('start').disabled = busy || !latest?.canStart; $('stop').disabled = busy || !latest?.canStop; $('refresh').disabled = busy || polling;
+  $('backup').disabled = busy || !latest?.canBackup;
+  $('recovery-enable').disabled = busy || !latest?.recovery?.canEnable;
+  $('recovery-pause').disabled = busy || !latest?.recovery?.canPause;
+}
 function show(data) {
   latest = data;
   $('state').textContent = {ready:'Ready for play', stopped:'Server stopped', unreachable:'Status unavailable'}[data.state] || 'Checking status…';
@@ -26,6 +30,10 @@ function show(data) {
   $('save').textContent = data.save.state === 'verified' ? new Date(data.save.savedAt).toLocaleTimeString([], {hour:'numeric',minute:'2-digit',second:'2-digit'}) : data.save.state === 'missing' ? 'No save yet' : 'Needs attention';
   $('save-detail').textContent = data.save.state === 'verified' ? new Date(data.save.savedAt).toLocaleDateString() + ' · Saved file verified' : data.save.state === 'missing' ? 'The server will load or create this enrolled world.' : 'Save verification unavailable. No reset will be attempted.';
   $('checked').textContent = 'Checked ' + new Date(data.checkedAt).toLocaleTimeString() + ' · Refreshes automatically';
+  $('backup-state').textContent = {none:'No backup yet',verified:'Verified',changed:'Needs attention',unavailable:'Unavailable'}[data.backup?.state] || 'Unavailable';
+  $('backup-detail').textContent = data.backup?.state === 'verified' ? 'Saved ' + new Date(data.backup.verifiedAt).toLocaleString() + ' · On this PC' : 'Create a verified copy without interrupting play.';
+  $('recovery-state').textContent = {off:'Off',healthy:'Watching',paused:'Paused after stop',waiting:'Waiting to retry',restarting:'Restarting',recovered:'Recovered',blocked:'Needs attention',checking:'Checking…','needs-attention':'Needs attention'}[data.recovery?.status] || 'Unavailable';
+  $('recovery-detail').textContent = data.recovery?.message || 'Reopen the updated parent shortcut.';
   buttons();
 }
 function feedback(text, error=false) { $('feedback').textContent = text; $('feedback').className = error ? 'error' : ''; }
@@ -47,4 +55,12 @@ async function action(kind) {
 $('start').addEventListener('click', () => action('start'));
 $('stop').addEventListener('click', () => action('stop'));
 $('refresh').addEventListener('click', refresh);
+async function care(kind) {
+  if (busy || !latest) return;
+  busy = true; buttons(); feedback(kind === 'backup' ? 'Saving and verifying a separate backup…' : 'Updating the recovery helper…');
+  try { const result = await api(kind, {}); show(result.status); feedback({'backup-verified':'Backup verified and saved on this PC.','recovery-enabled':'Automatic crash recovery enabled.','recovery-paused':'Automatic recovery paused. Current players can keep playing.'}[result.result] || 'Done.'); }
+  catch (error) { feedback(error.message, true); }
+  finally { busy = false; buttons(); await refresh(); }
+}
+for (const kind of ['backup','recovery-enable','recovery-pause']) $(kind).addEventListener('click', () => care(kind));
 refresh(); setInterval(refresh, 3000);
