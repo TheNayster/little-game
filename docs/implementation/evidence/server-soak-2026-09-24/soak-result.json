@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "build": 85,
+  "utc": "2026-09-25T04:13:08.073716+00:00",
+  "checks": [
+    {
+      "check": "four clients remain usable across real-clock movement and repeated independent travel, with one departure/rejoin leaving siblings connected",
+      "passed": true
+    },
+    {
+      "check": "flower rearms and borrowed bucket returns using normal runtime idle timers without a test clock",
+      "passed": true
+    },
+    {
+      "check": "remote canvas interpolation meets the existing motion thresholds before and after the long run",
+      "passed": true
+    },
+    {
+      "check": "observed private memory stays within the declared desktop smoke budget; this is not a mobile memory budget or leak-free proof",
+      "passed": true
+    },
+    {
+      "check": "complete long-run checkpoint survives clean restart exactly; no selected unhandled-error signatures found",
+      "passed": true
+    }
+  ],
+  "requestedSeconds": 600,
+  "measuredSeconds": 600.03,
+  "sampleCount": 75,
+  "cycles": 75,
+  "flowerResetObservedSeconds": 64.0,
+  "bucketReturnObservedSeconds": 184.0,
+  "memory": {
+    "server": {
+      "firstMiB": 185.86,
+      "lastMiB": 186.87,
+      "peakMiB": 186.87,
+      "growthAfterFirstMinuteMiB": 0.51
+    },
+    "player-1": {
+      "firstMiB": 709.57,
+      "lastMiB": 709.23,
+      "peakMiB": 709.57,
+      "growthAfterFirstMinuteMiB": -0.2
+    },
+    "player-2": {
+      "firstMiB": 713.48,
+      "lastMiB": 713.15,
+      "peakMiB": 713.48,
+      "growthAfterFirstMinuteMiB": -0.19
+    },
+    "player-3": {
+      "firstMiB": 708.3,
+      "lastMiB": 708.11,
+      "peakMiB": 708.34,
+      "growthAfterFirstMinuteMiB": 0.04
+    },
+    "player-4": {
+      "firstMiB": 708.27,
+      "lastMiB": 709.43,
+      "peakMiB": 709.94,
+      "growthAfterFirstMinuteMiB": 1.47
+    }
+  },
+  "motionTraces": [
+    {
+      "sampleCount": 161,
+      "medianFrameMs": 16.63,
+      "visualMovingFrameFraction": 1.0,
+      "rawMovingFrameFraction": 0.329,
+      "p95VisualSpeed": 239.74,
+      "p95RawSnapSpeed": 759.68,
+      "worstBackwardStep": 3.379,
+      "p95VisualLagBehindReceivedSeconds": 0.213
+    },
+    {
+      "sampleCount": 161,
+      "medianFrameMs": 16.67,
+      "visualMovingFrameFraction": 1.0,
+      "rawMovingFrameFraction": 0.329,
+      "p95VisualSpeed": 244.93,
+      "p95RawSnapSpeed": 748.94,
+      "worstBackwardStep": 3.432,
+      "p95VisualLagBehindReceivedSeconds": 0.212
+    }
+  ],
+  "scope": "Single Windows PC, dedicated authority and four native Windows clients over local discovery/transport. Real time, no impaired Wi-Fi, mobile thermal/frame-time or two-hour guarantee. Player-4 memory spans a deliberate client restart."
+}

@@ -25,7 +25,7 @@ The user requested less phone side space and timers for unused items/completed q
 
 ## Next Windows task
 
-**Completed while away: local backup/restore.** Prepared server 85 adds an interrupted-recovery guard to the parent controls. A separate four-player world passed restore/rollback and failure checks; your actual server 83 was only backed up and remains running. **Also completed:** isolated crash recovery with four original clients rejoining, plus bounded retries and parent-stop protection. It is not enabled on the actual family world. **Next: a sustained Windows run.** [Supervision record](g3-server-supervision-2026-09-24.html). [Recovery record](g3-server-recovery-2026-09-24.html).
+**Completed while away: local backup/restore.** Prepared server 85 adds an interrupted-recovery guard to the parent controls. A separate four-player world passed restore/rollback and failure checks; your actual server 83 was only backed up and remains running. **Also completed:** isolated crash recovery with four original clients rejoining, plus bounded retries and parent-stop protection. It is not enabled on the actual family world. **Also passed:** ten-minute four-client Windows movement/travel/timer/rejoin and save run. **Next: parent-page backup/recovery integration.** [Sustained run](g3-server-soak-2026-09-24.html). [Supervision record](g3-server-supervision-2026-09-24.html). [Recovery record](g3-server-recovery-2026-09-24.html).
 
 When you return:
 

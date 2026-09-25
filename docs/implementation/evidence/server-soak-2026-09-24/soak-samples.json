@@ -1,0 +1,2927 @@
+[
+  {
+    "seconds": 0.0,
+    "revision": 11,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 185.86,
+        "workingSetMiB": 119.82
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.57,
+        "workingSetMiB": 456.03
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.48,
+        "workingSetMiB": 455.75
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.3,
+        "workingSetMiB": 455.65
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.27,
+        "workingSetMiB": 454.67
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 15,
+      "motionPackets": 1190,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 25.448046700000006
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 146120
+  },
+  {
+    "seconds": 8.0,
+    "revision": 11,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 185.79,
+        "workingSetMiB": 120.79
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.53,
+        "workingSetMiB": 456.02
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.48,
+        "workingSetMiB": 455.87
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.3,
+        "workingSetMiB": 455.65
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.27,
+        "workingSetMiB": 454.8
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 20,
+      "motionPackets": 1838,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 33.5491106
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 224848
+  },
+  {
+    "seconds": 16.0,
+    "revision": 11,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 185.79,
+        "workingSetMiB": 121.67
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.53,
+        "workingSetMiB": 456.14
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.44,
+        "workingSetMiB": 455.98
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.27,
+        "workingSetMiB": 455.64
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.27,
+        "workingSetMiB": 454.92
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 27,
+      "motionPackets": 2490,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 41.7011167
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 308512
+  },
+  {
+    "seconds": 24.0,
+    "revision": 11,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 185.79,
+        "workingSetMiB": 121.67
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.53,
+        "workingSetMiB": 456.14
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.44,
+        "workingSetMiB": 455.98
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.27,
+        "workingSetMiB": 455.64
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.23,
+        "workingSetMiB": 454.91
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 33,
+      "motionPackets": 3130,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 49.701789999999995
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 390072
+  },
+  {
+    "seconds": 32.0,
+    "revision": 13,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.39,
+        "workingSetMiB": 121.68
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.53,
+        "workingSetMiB": 456.36
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.44,
+        "workingSetMiB": 456.26
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.34,
+        "workingSetMiB": 456.26
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.23,
+        "workingSetMiB": 456.27
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 40,
+      "motionPackets": 3858,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 58.8031605
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 483816
+  },
+  {
+    "seconds": 40.0,
+    "revision": 13,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.66
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.25,
+        "workingSetMiB": 456.14
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.15,
+        "workingSetMiB": 456.07
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.34,
+        "workingSetMiB": 456.26
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.23,
+        "workingSetMiB": 456.3
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 45,
+      "motionPackets": 4422,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 65.85440849999999
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 553448
+  },
+  {
+    "seconds": 48.0,
+    "revision": 13,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.66
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.25,
+        "workingSetMiB": 456.14
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.16,
+        "workingSetMiB": 456.07
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.07,
+        "workingSetMiB": 456.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.95,
+        "workingSetMiB": 456.07
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 51,
+      "motionPackets": 5066,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 73.9053122
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 635616
+  },
+  {
+    "seconds": 56.0,
+    "revision": 13,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.66
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.25,
+        "workingSetMiB": 456.14
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.16,
+        "workingSetMiB": 456.07
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.07,
+        "workingSetMiB": 456.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.96,
+        "workingSetMiB": 456.08
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 57,
+      "motionPackets": 5710,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 81.95673529999999
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 716720
+  },
+  {
+    "seconds": 64.0,
+    "revision": 15,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.67
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.38
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.34,
+        "workingSetMiB": 456.27
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.07,
+        "workingSetMiB": 456.06
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.96,
+        "workingSetMiB": 456.14
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 64,
+      "motionPackets": 6362,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 90.1079814
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 800680
+  },
+  {
+    "seconds": 72.0,
+    "revision": 15,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.67
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.38
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.34,
+        "workingSetMiB": 456.27
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.07,
+        "workingSetMiB": 456.11
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.95,
+        "workingSetMiB": 456.21
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 69,
+      "motionPackets": 7014,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 98.2582689
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 882600
+  },
+  {
+    "seconds": 80.0,
+    "revision": 15,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.67
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.38
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.34,
+        "workingSetMiB": 456.28
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.06,
+        "workingSetMiB": 456.12
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.95,
+        "workingSetMiB": 456.21
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 75,
+      "motionPackets": 7662,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 106.358481
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 965400
+  },
+  {
+    "seconds": 88.0,
+    "revision": 15,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.68
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.25,
+        "workingSetMiB": 456.24
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.34,
+        "workingSetMiB": 456.28
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.06,
+        "workingSetMiB": 456.12
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.95,
+        "workingSetMiB": 456.21
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 81,
+      "motionPackets": 8226,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 113.4095437
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1046656
+  },
+  {
+    "seconds": 96.0,
+    "revision": 17,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.69
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.31,
+        "workingSetMiB": 456.25
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.22,
+        "workingSetMiB": 456.17
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.12,
+        "workingSetMiB": 456.14
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.02,
+        "workingSetMiB": 456.74
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 88,
+      "motionPackets": 8946,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 122.4120598
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1140368
+  },
+  {
+    "seconds": 104.0,
+    "revision": 17,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.71
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.31,
+        "workingSetMiB": 456.25
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.22,
+        "workingSetMiB": 456.17
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.12,
+        "workingSetMiB": 456.21
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.02,
+        "workingSetMiB": 456.8
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 93,
+      "motionPackets": 9514,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 129.5125982
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1210872
+  },
+  {
+    "seconds": 112.0,
+    "revision": 17,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.71
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.23
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.22,
+        "workingSetMiB": 456.17
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.12,
+        "workingSetMiB": 456.21
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.02,
+        "workingSetMiB": 456.8
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 98,
+      "motionPackets": 10170,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 137.7128362
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1294920
+  },
+  {
+    "seconds": 120.0,
+    "revision": 17,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.71
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.29
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.19,
+        "workingSetMiB": 456.27
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.19
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.02,
+        "workingSetMiB": 456.81
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 104,
+      "motionPackets": 10826,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 145.8983972
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1377448
+  },
+  {
+    "seconds": 128.0,
+    "revision": 17,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.71
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.41
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.19,
+        "workingSetMiB": 456.27
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.19
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.78
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 110,
+      "motionPackets": 11466,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 153.90091990000002
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1462128
+  },
+  {
+    "seconds": 136.0,
+    "revision": 17,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.75
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.42
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.19,
+        "workingSetMiB": 456.27
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.25
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.78
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 116,
+      "motionPackets": 12114,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 162.0020809
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1545744
+  },
+  {
+    "seconds": 144.0,
+    "revision": 17,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.75
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.42
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.19,
+        "workingSetMiB": 456.28
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.26
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.78
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 122,
+      "motionPackets": 12758,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 170.05589640000002
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1629536
+  },
+  {
+    "seconds": 152.0,
+    "revision": 17,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.75
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.43
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.19,
+        "workingSetMiB": 456.28
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.26
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.77
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 128,
+      "motionPackets": 13406,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 178.15824890000002
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1711648
+  },
+  {
+    "seconds": 160.0,
+    "revision": 19,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.44
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.19,
+        "workingSetMiB": 456.27
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.52
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.94
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 136,
+      "motionPackets": 14130,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 187.2094551
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1807136
+  },
+  {
+    "seconds": 168.0,
+    "revision": 19,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.44
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.19,
+        "workingSetMiB": 456.27
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.52
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.94
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 140,
+      "motionPackets": 14690,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 194.21117710000001
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1878968
+  },
+  {
+    "seconds": 176.0,
+    "revision": 19,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.25,
+        "workingSetMiB": 456.49
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.19,
+        "workingSetMiB": 456.27
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.52
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.94
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 146,
+      "motionPackets": 15330,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 202.21286070000002
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 1961456
+  },
+  {
+    "seconds": 184.0,
+    "revision": 21,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.7
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.38,
+        "workingSetMiB": 456.46
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.52
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.99
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 153,
+      "motionPackets": 15974,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 210.26469840000001
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 2044952
+  },
+  {
+    "seconds": 192.0,
+    "revision": 21,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.7
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.38,
+        "workingSetMiB": 456.46
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.52
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 456.99
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 158,
+      "motionPackets": 16546,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 217.399155
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 2129312
+  },
+  {
+    "seconds": 200.0,
+    "revision": 21,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.7
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.38,
+        "workingSetMiB": 456.47
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.52
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 457.0
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 164,
+      "motionPackets": 17194,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 225.49979430000002
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 2212104
+  },
+  {
+    "seconds": 208.0,
+    "revision": 21,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.77
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.38,
+        "workingSetMiB": 456.48
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.52
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 457.0
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 170,
+      "motionPackets": 17838,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 233.5517866
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 2285432
+  },
+  {
+    "seconds": 216.0,
+    "revision": 21,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.38,
+        "workingSetMiB": 456.54
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.54
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 457.01
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 176,
+      "motionPackets": 18486,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 241.6522691
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 2367480
+  },
+  {
+    "seconds": 224.01,
+    "revision": 23,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.29
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.55
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 457.02
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 183,
+      "motionPackets": 19206,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 250.65430410000002
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 2463272
+  },
+  {
+    "seconds": 232.01,
+    "revision": 23,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.36,
+        "workingSetMiB": 121.81
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.29
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.55
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 707.98,
+        "workingSetMiB": 457.02
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 188,
+      "motionPackets": 19778,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 257.8051312
+    },
+    "maxFrameGapSeconds": 0.02535540000000225,
+    "receivedDataBytes": 2534848
+  },
+  {
+    "seconds": 240.01,
+    "revision": 23,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.22
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.54
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 708.88,
+        "workingSetMiB": 453.06
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 199,
+      "motionPackets": 20728,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 270.8626061
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 2663632
+  },
+  {
+    "seconds": 248.01,
+    "revision": 23,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.22
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.09,
+        "workingSetMiB": 456.53
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.94,
+        "workingSetMiB": 454.19
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 200,
+      "motionPackets": 20972,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 273.9116719
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 2693248
+  },
+  {
+    "seconds": 256.01,
+    "revision": 23,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.22
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.09,
+        "workingSetMiB": 456.53
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.0,
+        "workingSetMiB": 456.55
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.94,
+        "workingSetMiB": 454.31
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 206,
+      "motionPackets": 21624,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 282.0626473
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 2774616
+  },
+  {
+    "seconds": 264.01,
+    "revision": 23,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.22
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.03,
+        "workingSetMiB": 456.46
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.0,
+        "workingSetMiB": 456.55
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.94,
+        "workingSetMiB": 454.43
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 212,
+      "motionPackets": 22268,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 290.09836759999996
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 2854768
+  },
+  {
+    "seconds": 272.01,
+    "revision": 23,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.22
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.06,
+        "workingSetMiB": 456.48
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.02,
+        "workingSetMiB": 456.57
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.9,
+        "workingSetMiB": 454.55
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 218,
+      "motionPackets": 22912,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 298.149641
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 2936992
+  },
+  {
+    "seconds": 280.01,
+    "revision": 23,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.79
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.02,
+        "workingSetMiB": 456.69
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.9,
+        "workingSetMiB": 454.55
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 224,
+      "motionPackets": 23552,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 306.151529
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3017728
+  },
+  {
+    "seconds": 288.01,
+    "revision": 25,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.79
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.71,
+        "workingSetMiB": 455.43
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 232,
+      "motionPackets": 24280,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 315.2524213
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3112000
+  },
+  {
+    "seconds": 296.01,
+    "revision": 25,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.79
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.52,
+        "workingSetMiB": 455.24
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 236,
+      "motionPackets": 24844,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 322.30402949999996
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3182160
+  },
+  {
+    "seconds": 304.01,
+    "revision": 25,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.79
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 455.2
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 242,
+      "motionPackets": 25492,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 330.40495269999997
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3263648
+  },
+  {
+    "seconds": 312.01,
+    "revision": 25,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.79
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.44,
+        "workingSetMiB": 455.21
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 248,
+      "motionPackets": 26052,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 337.40656279999996
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3344776
+  },
+  {
+    "seconds": 320.01,
+    "revision": 25,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.79
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 455.19
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 254,
+      "motionPackets": 26696,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 345.45835969999996
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3427096
+  },
+  {
+    "seconds": 328.01,
+    "revision": 25,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.8
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 455.19
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 260,
+      "motionPackets": 27340,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 353.5096858
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3507904
+  },
+  {
+    "seconds": 336.01,
+    "revision": 25,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.8
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 455.25
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 266,
+      "motionPackets": 27992,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 361.6617984
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3590088
+  },
+  {
+    "seconds": 344.01,
+    "revision": 25,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.91
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.8
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 455.31
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 272,
+      "motionPackets": 28636,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 369.7125537
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3671120
+  },
+  {
+    "seconds": 352.01,
+    "revision": 27,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.91
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.8
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.01
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 455.97
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 279,
+      "motionPackets": 29368,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 378.8633935
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3764416
+  },
+  {
+    "seconds": 360.01,
+    "revision": 27,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.91
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.8
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.02
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.5,
+        "workingSetMiB": 455.98
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 284,
+      "motionPackets": 29940,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 385.9985362
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3823632
+  },
+  {
+    "seconds": 368.01,
+    "revision": 27,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.41
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.91
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.8
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.02
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.5,
+        "workingSetMiB": 455.98
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 290,
+      "motionPackets": 30592,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 394.1493314
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3904704
+  },
+  {
+    "seconds": 376.01,
+    "revision": 27,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.28,
+        "workingSetMiB": 456.97
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.18,
+        "workingSetMiB": 456.8
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.02
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 455.96
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 296,
+      "motionPackets": 31244,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 402.3012283
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 3985272
+  },
+  {
+    "seconds": 384.01,
+    "revision": 27,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.93
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.77
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.15,
+        "workingSetMiB": 457.01
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 456.03
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 302,
+      "motionPackets": 31812,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 409.4015573
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4068856
+  },
+  {
+    "seconds": 392.01,
+    "revision": 27,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.93
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.97
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 456.03
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 308,
+      "motionPackets": 32464,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 417.5527752
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4149768
+  },
+  {
+    "seconds": 400.01,
+    "revision": 27,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.93
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.97
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 456.04
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 314,
+      "motionPackets": 33108,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 425.6051524
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4233320
+  },
+  {
+    "seconds": 408.01,
+    "revision": 27,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.97
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 456.04
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 320,
+      "motionPackets": 33752,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 433.6575381
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4315072
+  },
+  {
+    "seconds": 416.01,
+    "revision": 29,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.98
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.87
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.97
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 456.09
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 327,
+      "motionPackets": 34480,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 442.7586233
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4408960
+  },
+  {
+    "seconds": 424.01,
+    "revision": 29,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.98
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.87
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.97
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 456.09
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 332,
+      "motionPackets": 35052,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 449.90928019999996
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4478448
+  },
+  {
+    "seconds": 432.01,
+    "revision": 29,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.98
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 456.09
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 338,
+      "motionPackets": 35696,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 457.96115729999997
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4560736
+  },
+  {
+    "seconds": 440.01,
+    "revision": 29,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.98
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.46,
+        "workingSetMiB": 456.09
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 344,
+      "motionPackets": 36348,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 466.11164829999996
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4641816
+  },
+  {
+    "seconds": 448.01,
+    "revision": 29,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.18,
+        "workingSetMiB": 456.98
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.09,
+        "workingSetMiB": 456.84
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.37,
+        "workingSetMiB": 456.08
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 350,
+      "motionPackets": 37004,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 474.312393
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4725312
+  },
+  {
+    "seconds": 456.01,
+    "revision": 29,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.1
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 356,
+      "motionPackets": 37644,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 482.3129052
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4806536
+  },
+  {
+    "seconds": 464.01,
+    "revision": 29,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.05
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.11
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 362,
+      "motionPackets": 38216,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 489.4643742
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4889696
+  },
+  {
+    "seconds": 472.01,
+    "revision": 29,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.05
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.11
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 368,
+      "motionPackets": 38868,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 497.5987002
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 4970544
+  },
+  {
+    "seconds": 480.01,
+    "revision": 31,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.09
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.12
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 375,
+      "motionPackets": 39592,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 506.64970259999996
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5065224
+  },
+  {
+    "seconds": 488.01,
+    "revision": 31,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.09
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.12
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 380,
+      "motionPackets": 40152,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 513.6512794
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5134216
+  },
+  {
+    "seconds": 496.01,
+    "revision": 31,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.09
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.12
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 386,
+      "motionPackets": 40796,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 521.7024664
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5215544
+  },
+  {
+    "seconds": 504.01,
+    "revision": 31,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 457.0
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.09
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.11
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 392,
+      "motionPackets": 41444,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 529.8050295
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5295560
+  },
+  {
+    "seconds": 512.01,
+    "revision": 31,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.11
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.11
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 398,
+      "motionPackets": 42092,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 537.9057152
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5376552
+  },
+  {
+    "seconds": 520.01,
+    "revision": 31,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.85
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.06,
+        "workingSetMiB": 457.09
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.11
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 404,
+      "motionPackets": 42740,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 546.0077046
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5455528
+  },
+  {
+    "seconds": 528.01,
+    "revision": 31,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.06,
+        "workingSetMiB": 457.21
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.12
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 410,
+      "motionPackets": 43380,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 554.0091353
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5536496
+  },
+  {
+    "seconds": 536.01,
+    "revision": 31,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.06,
+        "workingSetMiB": 457.21
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.4,
+        "workingSetMiB": 456.12
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 416,
+      "motionPackets": 44028,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 562.1104093
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5615984
+  },
+  {
+    "seconds": 544.01,
+    "revision": 33,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.23
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.4
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 424,
+      "motionPackets": 44752,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 571.1615137
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5706920
+  },
+  {
+    "seconds": 552.03,
+    "revision": 33,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.23
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.4
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 428,
+      "motionPackets": 45316,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 578.2122765
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5774568
+  },
+  {
+    "seconds": 560.03,
+    "revision": 33,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.23
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.4
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 434,
+      "motionPackets": 45964,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 586.2995366
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5854440
+  },
+  {
+    "seconds": 568.03,
+    "revision": 33,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.81,
+        "workingSetMiB": 122.4
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.21,
+        "workingSetMiB": 456.99
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.22
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.4
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 439,
+      "motionPackets": 46528,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 593.3516500000001
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 5932704
+  },
+  {
+    "seconds": 576.03,
+    "revision": 33,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.45
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.23,
+        "workingSetMiB": 457.02
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.12,
+        "workingSetMiB": 456.86
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.09,
+        "workingSetMiB": 457.21
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.4
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 446,
+      "motionPackets": 47180,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 601.5023877
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 6014440
+  },
+  {
+    "seconds": 584.03,
+    "revision": 33,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.45
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.23,
+        "workingSetMiB": 457.02
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.15,
+        "workingSetMiB": 456.89
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.11,
+        "workingSetMiB": 457.24
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.4
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 452,
+      "motionPackets": 47824,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 609.5545464
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 6093784
+  },
+  {
+    "seconds": 592.03,
+    "revision": 33,
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.87,
+        "workingSetMiB": 122.48
+      },
+      {
+        "role": "player-1",
+        "privateMiB": 709.23,
+        "workingSetMiB": 457.02
+      },
+      {
+        "role": "player-2",
+        "privateMiB": 713.15,
+        "workingSetMiB": 456.88
+      },
+      {
+        "role": "player-3",
+        "privateMiB": 708.11,
+        "workingSetMiB": 457.24
+      },
+      {
+        "role": "player-4",
+        "privateMiB": 709.43,
+        "workingSetMiB": 456.41
+      }
+    ],
+    "motion": {
+      "checkpointWrites": 458,
+      "motionPackets": 48468,
+      "diagnosticWriteConflicts": 0,
+      "seconds": 617.6057440000001
+    },
+    "maxFrameGapSeconds": 0.0309589000000301,
+    "receivedDataBytes": 6174992
+  }
+]
