@@ -1,0 +1,9 @@
+{
+  "scope": "Release Android 91 retained emulator test world only; fresh-process admission and shared-presented event required before baseline. Ordinary taps plus Home/warm return.",
+  "retainedSaves": 7,
+  "result": {
+    "startup": [],
+    "sharedPlay": []
+  },
+  "physicalDevicesAccessed": false
+}

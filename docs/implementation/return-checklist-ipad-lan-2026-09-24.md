@@ -2,7 +2,7 @@
 
 **Updated September 25 — no action is needed while you are away.** Windows 91 has passed the isolated outage failure matrix and related regressions. Matching Android 91 and the iPad/iPhone 91 Xcode export are now [prepared on Windows](g3-mobile-recovery-builds-2026-09-25.html). Native Apple compilation/signing and all physical updates/tests remain pending. The last recorded deployed versions above have not changed. Android's separate 16 KB qualification issue remains open.
 
-**Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. The project Android emulator also passed a retained 79 → 91 update and [six recovery checks with three Windows players](g3-android-recovery-2026-09-25.html). The [parent page also gained protected-backup download and file checking](g3-parent-portable-backups-2026-09-25.html), tested with a separate four-player family. Your live world and physical devices were not changed, and no family passphrase was created.
+**Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. The project Android emulator also passed a retained 79 → 91 update and [six recovery checks with three Windows players](g3-android-recovery-2026-09-25.html). The [parent page also gained protected-backup download and file checking](g3-parent-portable-backups-2026-09-25.html), tested with a separate four-player family. The emulator and three Windows players also passed a [ten-minute build 91 recovery run](g3-sustained-recovery-play-2026-09-25.html), including normal item resets and saved-adventure preservation. Your live world and physical devices were not changed, and no family passphrase was created.
 
 ## Your to-do list when you are home
 
@@ -64,6 +64,8 @@ Completed while away, using separate test worlds:
 - [Android release recovery in the emulator](g3-android-recovery-2026-09-25.html): retained update, checkpoint/item clocks, Android warm/cold lifecycle, local outage play, safe reunion and two distinct adventures pass with three Windows siblings. No phone/iPad was updated.
 
 - [Parent portable-backup controls](g3-parent-portable-backups-2026-09-25.html): six HTTP/native cases plus actual browser download/file checking and safe errors pass. Existing backup/recovery controls also pass their four regression groups. The actual helper will be relaunched deliberately in the return session.
+
+- [Ten-minute mixed emulator/Windows recovery run](g3-sustained-recovery-play-2026-09-25.html) on 91: five acceptance groups cover movement/travel, normal resets, full durable checkpoints, Android Home/warm return, remote motion, diagnostic memory and seven retained local saves. Actual iPad performance and physical mixed play remain open.
 
 **Next: G3-REC-05 native Apple compile/signing and iPad-first recovery qualification.** Prepared artifacts are ready for this later session. Physical qualification waits for you; iPad hosting and reconciliation remain required.
 

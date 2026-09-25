@@ -1,0 +1,3302 @@
+[
+  {
+    "seconds": 0.0,
+    "revision": 320,
+    "androidX": 821.4285278320312,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "eae8687d878e59e1822fed9e3d71471af74325445b78e52e59a81c708b563aa8",
+      "receivedChunks": 32,
+      "bytes": 23350,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 16,
+      "revision": 315,
+      "writeMilliseconds": 19.5987,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.86
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.06
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.2
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.83
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 22,
+      "motionPackets": 1606,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 28.358596
+    },
+    "receivedDataBytes": 212888
+  },
+  {
+    "seconds": 8.0,
+    "revision": 320,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "fcbb4edda7bf3a947c149dd512d533b0167801830c45bc898ea0b1ca310ed8bf",
+      "receivedChunks": 40,
+      "bytes": 23466,
+      "receipts": 128,
+      "timers": 2,
+      "checkpoint": 23,
+      "revision": 320,
+      "writeMilliseconds": 19.319100000000002,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.8
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.02
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.16
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.83
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 25,
+      "motionPackets": 2254,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 36.459692200000006
+    },
+    "receivedDataBytes": 298424
+  },
+  {
+    "seconds": 16.0,
+    "revision": 321,
+    "androidX": 108.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "4836a4b0a0dfc8a502d123a13fa5088545a2189fb3f28b50388e3b1de26224c4",
+      "receivedChunks": 48,
+      "bytes": 23466,
+      "receipts": 128,
+      "timers": 2,
+      "checkpoint": 27,
+      "revision": 320,
+      "writeMilliseconds": 18.720200000000002,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.8
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.02
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.16
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.93
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 32,
+      "motionPackets": 2898,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 44.51320160000001
+    },
+    "receivedDataBytes": 386248
+  },
+  {
+    "seconds": 24.01,
+    "revision": 321,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "8165b398d357b8ca3268107ded00ae78f28fd805b4ab64beaaaac6be85872ad0",
+      "receivedChunks": 64,
+      "bytes": 23453,
+      "receipts": 128,
+      "timers": 2,
+      "checkpoint": 36,
+      "revision": 321,
+      "writeMilliseconds": 20.9845,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.8
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.02
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.16
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.93
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 36,
+      "motionPackets": 3466,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 51.61479580000001
+    },
+    "receivedDataBytes": 477520
+  },
+  {
+    "seconds": 32.01,
+    "revision": 321,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "84a9d217a28b96aed6e686bbd6e202f44c36b3ec6e8476ddffd81be7208cc62e",
+      "receivedChunks": 72,
+      "bytes": 23475,
+      "receipts": 128,
+      "timers": 2,
+      "checkpoint": 42,
+      "revision": 321,
+      "writeMilliseconds": 15.0997,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.77
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.02
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 44,
+      "motionPackets": 4190,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 60.668244400000006
+    },
+    "receivedDataBytes": 563240
+  },
+  {
+    "seconds": 40.01,
+    "revision": 321,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "cdde0e2aa5448c6e81a1f34dd4a60139bd6ea7c58aa613810f1621f4a51267ea",
+      "receivedChunks": 80,
+      "bytes": 23477,
+      "receipts": 128,
+      "timers": 2,
+      "checkpoint": 45,
+      "revision": 321,
+      "writeMilliseconds": 17.3675,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.77
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.82
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.88
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 49,
+      "motionPackets": 4762,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 67.8032016
+    },
+    "receivedDataBytes": 647712
+  },
+  {
+    "seconds": 48.01,
+    "revision": 321,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "b37a6727e20a8a01970d2f0bbf347229f48b9581e12cc1289852a13750ec437f",
+      "receivedChunks": 96,
+      "bytes": 23459,
+      "receipts": 128,
+      "timers": 2,
+      "checkpoint": 54,
+      "revision": 321,
+      "writeMilliseconds": 16.5727,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.77
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.88
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.88
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.65
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 55,
+      "motionPackets": 5410,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 75.9058276
+    },
+    "receivedDataBytes": 737664
+  },
+  {
+    "seconds": 56.03,
+    "revision": 322,
+    "androidX": 872.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "6e6b3cf012b5b19b5cdd058b1e8817f74100dc6ddce490d3a5c7ab4fa7617496",
+      "receivedChunks": 104,
+      "bytes": 23449,
+      "receipts": 128,
+      "timers": 2,
+      "checkpoint": 60,
+      "revision": 321,
+      "writeMilliseconds": 14.4954,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.77
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.88
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.88
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.65
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 61,
+      "motionPackets": 6058,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 84.0083643
+    },
+    "receivedDataBytes": 824608
+  },
+  {
+    "seconds": 64.03,
+    "revision": 324,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "5c29cae4a78d902ebc604e2d7f2ff0c173d965b08a11d92a6272e17d200b5895",
+      "receivedChunks": 112,
+      "bytes": 23438,
+      "receipts": 128,
+      "timers": 2,
+      "checkpoint": 63,
+      "revision": 322,
+      "writeMilliseconds": 19.9971,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.77
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.84
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 68,
+      "motionPackets": 6702,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 92.05967489999999
+    },
+    "receivedDataBytes": 912984
+  },
+  {
+    "seconds": 72.03,
+    "revision": 324,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "9d27511c44ad1a327b96b5b679bcdc1086c5878a085d9a205ebe42fd4c2c6ebc",
+      "receivedChunks": 128,
+      "bytes": 23400,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 73,
+      "revision": 324,
+      "writeMilliseconds": 18.5756,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.77
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.84
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 74,
+      "motionPackets": 7346,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 100.1124251
+    },
+    "receivedDataBytes": 1004768
+  },
+  {
+    "seconds": 80.03,
+    "revision": 324,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "7029fd3da24024d34fcf6d622d76c54f318372dde4c6ff74a54a2ad12dbd4c21",
+      "receivedChunks": 136,
+      "bytes": 23405,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 78,
+      "revision": 324,
+      "writeMilliseconds": 14.2095,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.77
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.84
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 80,
+      "motionPackets": 7986,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 108.1154124
+    },
+    "receivedDataBytes": 1095736
+  },
+  {
+    "seconds": 88.03,
+    "revision": 324,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "2303f2e16c8afc85b32bb9f396e205b995c446c200ca3b5481cf36e123966dd6",
+      "receivedChunks": 144,
+      "bytes": 23424,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 82,
+      "revision": 324,
+      "writeMilliseconds": 21.3858,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 186.77
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.84
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 86,
+      "motionPackets": 8630,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 116.16817499999999
+    },
+    "receivedDataBytes": 1184656
+  },
+  {
+    "seconds": 96.03,
+    "revision": 325,
+    "androidX": 108.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "079793b60a725a9426aa13cac72cd564b4f6c4a3f9b5c8f64fd8d1a008d4fcb2",
+      "receivedChunks": 160,
+      "bytes": 23429,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 91,
+      "revision": 324,
+      "writeMilliseconds": 14.8748,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.07
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.95
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.9
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 92,
+      "motionPackets": 9282,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 124.3025052
+    },
+    "receivedDataBytes": 1276848
+  },
+  {
+    "seconds": 104.03,
+    "revision": 325,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "ab06abace782af42de9cb51a710fe8212695f8148ce5adf9bc4f0b4f3cb2e005",
+      "receivedChunks": 168,
+      "bytes": 23411,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 96,
+      "revision": 325,
+      "writeMilliseconds": 16.8778,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.94
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.95
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.9
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 98,
+      "motionPackets": 9930,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 132.40534879999998
+    },
+    "receivedDataBytes": 1361288
+  },
+  {
+    "seconds": 112.03,
+    "revision": 325,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "c1fdc2e0b6fdd019963e0be4df90a8c4cde38e1f36a9c1a3e29594c09477f7ba",
+      "receivedChunks": 184,
+      "bytes": 23423,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 103,
+      "revision": 325,
+      "writeMilliseconds": 15.4524,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.71
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 104,
+      "motionPackets": 10578,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 140.50634219999998
+    },
+    "receivedDataBytes": 1446264
+  },
+  {
+    "seconds": 120.03,
+    "revision": 325,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "07f1e29dc92c28a487d28dab2119903d286ec081cc1407756063cad5d266e2f6",
+      "receivedChunks": 192,
+      "bytes": 23413,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 109,
+      "revision": 325,
+      "writeMilliseconds": 12.254800000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 110,
+      "motionPackets": 11218,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 148.50749359999998
+    },
+    "receivedDataBytes": 1536864
+  },
+  {
+    "seconds": 128.03,
+    "revision": 325,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "43997bf4ef463117f164bbfc68bb1bc9f8c44da9bd56137f89c7f9dbdc5883c4",
+      "receivedChunks": 200,
+      "bytes": 23414,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 113,
+      "revision": 325,
+      "writeMilliseconds": 17.5328,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 116,
+      "motionPackets": 11858,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 156.5118096
+    },
+    "receivedDataBytes": 1623648
+  },
+  {
+    "seconds": 136.03,
+    "revision": 326,
+    "androidX": 872.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "8dd835fb63588d6c36ca33069eac2aa93796caba63022c25b9cde171e1793558",
+      "receivedChunks": 216,
+      "bytes": 23413,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 121,
+      "revision": 325,
+      "writeMilliseconds": 22.373,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 123,
+      "motionPackets": 12498,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 164.5145815
+    },
+    "receivedDataBytes": 1712968
+  },
+  {
+    "seconds": 144.03,
+    "revision": 326,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "de572075757dba6ed5ba3e7fbd3d00f252e3db35aa1fa453f802c9ab141cf2e7",
+      "receivedChunks": 224,
+      "bytes": 23410,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 126,
+      "revision": 326,
+      "writeMilliseconds": 12.067,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 128,
+      "motionPackets": 13142,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 172.5679922
+    },
+    "receivedDataBytes": 1803360
+  },
+  {
+    "seconds": 152.03,
+    "revision": 326,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "f5903af7638da6ee13228a21f7e2d62a424cc7ff8a408536102511a125413a93",
+      "receivedChunks": 240,
+      "bytes": 23416,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 133,
+      "revision": 326,
+      "writeMilliseconds": 14.5736,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 134,
+      "motionPackets": 13714,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 179.7030663
+    },
+    "receivedDataBytes": 1891368
+  },
+  {
+    "seconds": 160.03,
+    "revision": 326,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "03a27627eaa511b00d3bb825353ca5b25613bcd20181433835b1e9f6e9a2eb46",
+      "receivedChunks": 248,
+      "bytes": 23452,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 139,
+      "revision": 326,
+      "writeMilliseconds": 13.897400000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 140,
+      "motionPackets": 14354,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 187.70553479999998
+    },
+    "receivedDataBytes": 1983632
+  },
+  {
+    "seconds": 168.03,
+    "revision": 326,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "69c9a52f2e9d00a4f5f6fcb8720c6a909711b4abe5f51ed643d2820ef03953b3",
+      "receivedChunks": 264,
+      "bytes": 23423,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 146,
+      "revision": 326,
+      "writeMilliseconds": 13.9669,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 146,
+      "motionPackets": 14994,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 195.70728569999997
+    },
+    "receivedDataBytes": 2073672
+  },
+  {
+    "seconds": 176.03,
+    "revision": 327,
+    "androidX": 115.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "17f65d342e952a6d5976f5dcccb9eac8b369dd400057fe8f96f71a0d38760d33",
+      "receivedChunks": 272,
+      "bytes": 23452,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 151,
+      "revision": 326,
+      "writeMilliseconds": 17.1055,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.88
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 153,
+      "motionPackets": 15718,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 204.75993379999997
+    },
+    "receivedDataBytes": 2164488
+  },
+  {
+    "seconds": 184.03,
+    "revision": 329,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "48c4347ee410fcaadb024eb202b7aee1a81465ea8549520695f8e0d9100249a6",
+      "receivedChunks": 280,
+      "bytes": 23437,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 155,
+      "revision": 327,
+      "writeMilliseconds": 16.933600000000002,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.03
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 159,
+      "motionPackets": 16278,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 211.7622213
+    },
+    "receivedDataBytes": 2251440
+  },
+  {
+    "seconds": 192.03,
+    "revision": 329,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "8d6fc250917949fc70a8275401dce53a6becf08cdcab5a23d86c833674c4951f",
+      "receivedChunks": 296,
+      "bytes": 23398,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 164,
+      "revision": 329,
+      "writeMilliseconds": 12.1942,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.03
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 165,
+      "motionPackets": 16930,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 219.91332719999997
+    },
+    "receivedDataBytes": 2339792
+  },
+  {
+    "seconds": 200.03,
+    "revision": 329,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "6d6fc30e97b1e28dad0879a525bb40324d73447ed0ba026ee5c144ca682f1f8a",
+      "receivedChunks": 304,
+      "bytes": 23350,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 170,
+      "revision": 329,
+      "writeMilliseconds": 16.7844,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.03
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 171,
+      "motionPackets": 17582,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 228.06471979999998
+    },
+    "receivedDataBytes": 2422264
+  },
+  {
+    "seconds": 208.03,
+    "revision": 329,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "3b089641f5408efeae3d8c35f895140e3dc42805091e0bf4306e101bcb38ff1e",
+      "receivedChunks": 320,
+      "bytes": 23398,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 177,
+      "revision": 329,
+      "writeMilliseconds": 18.437900000000003,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.03
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 177,
+      "motionPackets": 18226,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 236.11805529999998
+    },
+    "receivedDataBytes": 2500536
+  },
+  {
+    "seconds": 216.05,
+    "revision": 330,
+    "androidX": 858.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "0198a519422e8e03c110afa8385503a002901e46631e903f955189a849fcb8c4",
+      "receivedChunks": 328,
+      "bytes": 23362,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 182,
+      "revision": 329,
+      "writeMilliseconds": 13.921700000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.03
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 183,
+      "motionPackets": 18878,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 244.2528434
+    },
+    "receivedDataBytes": 2601816
+  },
+  {
+    "seconds": 224.05,
+    "revision": 330,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "502eb5bd7fd40f54eddd176f8532e116c00a5e9dcbb5be48430189c467aff9e7",
+      "receivedChunks": 336,
+      "bytes": 23365,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 187,
+      "revision": 330,
+      "writeMilliseconds": 16.0927,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.03
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.85
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 189,
+      "motionPackets": 19526,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 252.35496329999998
+    },
+    "receivedDataBytes": 2679104
+  },
+  {
+    "seconds": 232.05,
+    "revision": 330,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "78776b404234bf3be5948f5202ea31aee0f337502ad8ad3480d4753b8415fd0e",
+      "receivedChunks": 352,
+      "bytes": 23353,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 194,
+      "revision": 330,
+      "writeMilliseconds": 13.321800000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 187.61
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.84
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.85
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.68
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 195,
+      "motionPackets": 20170,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 260.40903870000005
+    },
+    "receivedDataBytes": 2768632
+  },
+  {
+    "seconds": 240.05,
+    "revision": 331,
+    "androidX": 94.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "7c460717cecb3f82ec4f500998ac5bc037a2ed1154a903dd7800d2221801d06e",
+      "receivedChunks": 360,
+      "bytes": 23401,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 200,
+      "revision": 330,
+      "writeMilliseconds": 16.0274,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.07
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.84
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.85
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 207,
+      "motionPackets": 21237,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 274.56146930000006
+    },
+    "receivedDataBytes": 2927320
+  },
+  {
+    "seconds": 248.05,
+    "revision": 331,
+    "androidX": 94.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "d424cacfb0160aa06fb4d48565b26bbf90aecd2115df3b93b49b6a3e6b060155",
+      "receivedChunks": 368,
+      "bytes": 23361,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 207,
+      "revision": 331,
+      "writeMilliseconds": 18.006,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.07
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.84
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.85
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 208,
+      "motionPackets": 21388,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 276.5617804000001
+    },
+    "receivedDataBytes": 2939496
+  },
+  {
+    "seconds": 256.05,
+    "revision": 332,
+    "androidX": 115.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "573454f86946d52eb3d326885001f76bf21d5e1492cccd28fadc0f0cbf98df9e",
+      "receivedChunks": 376,
+      "bytes": 23384,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 213,
+      "revision": 331,
+      "writeMilliseconds": 16.608,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.07
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.84
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.85
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.71
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 215,
+      "motionPackets": 22036,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 284.6629975000001
+    },
+    "receivedDataBytes": 3031328
+  },
+  {
+    "seconds": 264.05,
+    "revision": 332,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "2c5538267e9d1c37daf41728f3fe0868cd409473295b894057c5b9d760e7a373",
+      "receivedChunks": 384,
+      "bytes": 23374,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 216,
+      "revision": 332,
+      "writeMilliseconds": 12.911900000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.07
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.84
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.85
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.71
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 219,
+      "motionPackets": 22596,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 291.6656154000001
+    },
+    "receivedDataBytes": 3117128
+  },
+  {
+    "seconds": 272.05,
+    "revision": 332,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "99d26d14c7931a42d117de3aabbba6c9174dc6cea1605709ea4dc2f7f5a3ad4f",
+      "receivedChunks": 400,
+      "bytes": 23372,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 225,
+      "revision": 332,
+      "writeMilliseconds": 14.9282,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 708.84
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.85
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 226,
+      "motionPackets": 23240,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 299.71872750000006
+    },
+    "receivedDataBytes": 3206312
+  },
+  {
+    "seconds": 280.05,
+    "revision": 332,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "a2ddb2bf4b71506733938c418bdf97bd3e5b0ec9ee78d880864b67f49f0c7b0a",
+      "receivedChunks": 408,
+      "bytes": 23373,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 229,
+      "revision": 332,
+      "writeMilliseconds": 15.744900000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.03
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 232,
+      "motionPackets": 23892,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 307.8530704000001
+    },
+    "receivedDataBytes": 3293648
+  },
+  {
+    "seconds": 288.05,
+    "revision": 332,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "3f1da6be569c9387e52089ccedb03f81a407d438df3d5f93fbf1076a95063b8c",
+      "receivedChunks": 424,
+      "bytes": 23398,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 237,
+      "revision": 332,
+      "writeMilliseconds": 18.4147,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 238,
+      "motionPackets": 24532,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 315.8553704000001
+    },
+    "receivedDataBytes": 3380512
+  },
+  {
+    "seconds": 296.05,
+    "revision": 333,
+    "androidX": 879.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "a029f69dea56636f27dd4f82f442be02b58a6cb5da4069b72c9d6b0caabfdafb",
+      "receivedChunks": 432,
+      "bytes": 23385,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 242,
+      "revision": 332,
+      "writeMilliseconds": 13.9197,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 244,
+      "motionPackets": 25180,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 323.9565800000001
+    },
+    "receivedDataBytes": 3467904
+  },
+  {
+    "seconds": 304.05,
+    "revision": 333,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "4cc0675fda7df9559da98e08eb671ee3679d529aa1b579e349d6a3b0cfda52ff",
+      "receivedChunks": 448,
+      "bytes": 23374,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 249,
+      "revision": 333,
+      "writeMilliseconds": 14.532100000000002,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 250,
+      "motionPackets": 25824,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 332.0081448000001
+    },
+    "receivedDataBytes": 3557760
+  },
+  {
+    "seconds": 312.05,
+    "revision": 333,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "c11268938e3899e317e6295da50d83e9ed54d594914e9a74320c7743bee5b629",
+      "receivedChunks": 456,
+      "bytes": 23363,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 255,
+      "revision": 333,
+      "writeMilliseconds": 18.471600000000002,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 256,
+      "motionPackets": 26464,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 340.01121300000005
+    },
+    "receivedDataBytes": 3645192
+  },
+  {
+    "seconds": 320.05,
+    "revision": 333,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "039dd5b0277c5e25f8a6bd0f30da4807962a3ea94ef3a7a4efd0b0947cdda211",
+      "receivedChunks": 464,
+      "bytes": 23364,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 258,
+      "revision": 333,
+      "writeMilliseconds": 17.735500000000002,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 262,
+      "motionPackets": 27108,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 348.0624832000001
+    },
+    "receivedDataBytes": 3735816
+  },
+  {
+    "seconds": 328.05,
+    "revision": 333,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "2c174a855d0c6b55ce1600648a5826ba753e6006e5c5fdfb9e2b7166f2e7623e",
+      "receivedChunks": 480,
+      "bytes": 23363,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 267,
+      "revision": 333,
+      "writeMilliseconds": 16.3956,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 268,
+      "motionPackets": 27752,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 356.11523980000004
+    },
+    "receivedDataBytes": 3824816
+  },
+  {
+    "seconds": 336.05,
+    "revision": 334,
+    "androidX": 115.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "e56efbd94fc13dd5505098528e2cf1b20b1604892f1c6f7719786df33c0333cb",
+      "receivedChunks": 488,
+      "bytes": 23362,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 272,
+      "revision": 333,
+      "writeMilliseconds": 13.5595,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 274,
+      "motionPackets": 28392,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 364.11696980000005
+    },
+    "receivedDataBytes": 3911528
+  },
+  {
+    "seconds": 344.05,
+    "revision": 334,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "a661da65eb15150a10c0c030b7ce5e0422e9b17386f0a7d14cbe8f6ef2f1632e",
+      "receivedChunks": 504,
+      "bytes": 23352,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 279,
+      "revision": 334,
+      "writeMilliseconds": 21.8582,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 280,
+      "motionPackets": 29036,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 372.1534341000001
+    },
+    "receivedDataBytes": 4002768
+  },
+  {
+    "seconds": 352.05,
+    "revision": 334,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "81af792d8083df001a407fd720f4df2ea83b65ed5d794cc52eb473d04b0995c9",
+      "receivedChunks": 512,
+      "bytes": 23400,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 285,
+      "revision": 334,
+      "writeMilliseconds": 15.677200000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 286,
+      "motionPackets": 29676,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 380.1556864000001
+    },
+    "receivedDataBytes": 4089704
+  },
+  {
+    "seconds": 360.05,
+    "revision": 334,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "6f1ba6d6e88c35cc4aeb6440927db0fbcfe1fb3b2f0f4b6d6cbdaaa0cde622ea",
+      "receivedChunks": 520,
+      "bytes": 23399,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 289,
+      "revision": 334,
+      "writeMilliseconds": 15.981200000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 292,
+      "motionPackets": 30328,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 388.3066292000001
+    },
+    "receivedDataBytes": 4163648
+  },
+  {
+    "seconds": 368.05,
+    "revision": 334,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "09d48ac461311f61b637c0e501d9c9a94e65a2d54c78316afbf523f2c42989d4",
+      "receivedChunks": 536,
+      "bytes": 23400,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 297,
+      "revision": 334,
+      "writeMilliseconds": 15.6088,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.25
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.09
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 298,
+      "motionPackets": 30972,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 396.35915630000005
+    },
+    "receivedDataBytes": 4254272
+  },
+  {
+    "seconds": 376.05,
+    "revision": 335,
+    "androidX": 879.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "0d6bbbfa76d36b4c9824c0708fbea50023cffa333aa684626c0b6348d31e7b2f",
+      "receivedChunks": 544,
+      "bytes": 23364,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 303,
+      "revision": 334,
+      "writeMilliseconds": 17.710800000000003,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.98
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.8
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 305,
+      "motionPackets": 31620,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 404.47211560000005
+    },
+    "receivedDataBytes": 4350088
+  },
+  {
+    "seconds": 384.05,
+    "revision": 335,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "7ddb339108d3608f40ad209afea52d061ed20b34508bf6cc939a24f3f2b83382",
+      "receivedChunks": 552,
+      "bytes": 23366,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 307,
+      "revision": 335,
+      "writeMilliseconds": 15.4532,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 310,
+      "motionPackets": 32268,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 412.56369680000006
+    },
+    "receivedDataBytes": 4428528
+  },
+  {
+    "seconds": 392.05,
+    "revision": 335,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "6868ee3bb62d3e3a651258aeb2d9d0711e49c7caa9c7fd2ecca46e7cc58fcce7",
+      "receivedChunks": 568,
+      "bytes": 23353,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 315,
+      "revision": 335,
+      "writeMilliseconds": 16.3439,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 316,
+      "motionPackets": 32908,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 420.56629360000005
+    },
+    "receivedDataBytes": 4519088
+  },
+  {
+    "seconds": 400.03,
+    "revision": 335,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "09d2986facb7f5cf624ab9d63c8719308a097df7294b7a2871226b204dc85d8d",
+      "receivedChunks": 576,
+      "bytes": 23364,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 320,
+      "revision": 335,
+      "writeMilliseconds": 19.103,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 321,
+      "motionPackets": 33472,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 427.6022113000001
+    },
+    "receivedDataBytes": 4607008
+  },
+  {
+    "seconds": 408.03,
+    "revision": 335,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "68724829cf671b39460b225856fab43d996230a56da6ecb26e3e4f8d58c11975",
+      "receivedChunks": 592,
+      "bytes": 23365,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 327,
+      "revision": 335,
+      "writeMilliseconds": 24.1563,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 327,
+      "motionPackets": 34112,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 435.60663330000006
+    },
+    "receivedDataBytes": 4695496
+  },
+  {
+    "seconds": 416.03,
+    "revision": 336,
+    "androidX": 108.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "e05f9ec180a1f6462f307db1e3cf9d879d42efe3faf81ebf99bdbfea94065b8a",
+      "receivedChunks": 600,
+      "bytes": 23401,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 333,
+      "revision": 335,
+      "writeMilliseconds": 14.2149,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 335,
+      "motionPackets": 34836,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 444.66048580000006
+    },
+    "receivedDataBytes": 4795824
+  },
+  {
+    "seconds": 424.03,
+    "revision": 336,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "c4035bbd74918a1d94071596e3f57e634c35a2e0b859d0e838a02c13b722c96e",
+      "receivedChunks": 608,
+      "bytes": 23389,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 338,
+      "revision": 336,
+      "writeMilliseconds": 15.6942,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 339,
+      "motionPackets": 35396,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 451.66269550000004
+    },
+    "receivedDataBytes": 4871032
+  },
+  {
+    "seconds": 432.03,
+    "revision": 336,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "b00231cfd688f6f48c694943ebf8439c9814a40f946855460c07a117575df609",
+      "receivedChunks": 616,
+      "bytes": 23366,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 342,
+      "revision": 336,
+      "writeMilliseconds": 13.6232,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 346,
+      "motionPackets": 36040,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 459.71622400000007
+    },
+    "receivedDataBytes": 4958808
+  },
+  {
+    "seconds": 440.03,
+    "revision": 336,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "be0b888fe3174adcfac97e8e5e2bfffd867401a2ae1a808738ade13d5bc1f5a4",
+      "receivedChunks": 632,
+      "bytes": 23390,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 351,
+      "revision": 336,
+      "writeMilliseconds": 11.3407,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.04
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 352,
+      "motionPackets": 36688,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 467.81853450000006
+    },
+    "receivedDataBytes": 5048200
+  },
+  {
+    "seconds": 448.03,
+    "revision": 336,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "42b3b0be2f66772892ac055465a65d46b8a1dd20617fc66d0a46d7beb7c6d5c6",
+      "receivedChunks": 640,
+      "bytes": 23393,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 355,
+      "revision": 336,
+      "writeMilliseconds": 12.620000000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.0
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.88
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.75
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 358,
+      "motionPackets": 37340,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 475.9534576000001
+    },
+    "receivedDataBytes": 5136440
+  },
+  {
+    "seconds": 456.03,
+    "revision": 337,
+    "androidX": 872.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "965b2a2e3dad402cf8d5d35e09aa16e8afffd52444284293cf63b85cbf1b758e",
+      "receivedChunks": 656,
+      "bytes": 23354,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 363,
+      "revision": 336,
+      "writeMilliseconds": 15.0439,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 364,
+      "motionPackets": 37984,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 484.0062434000001
+    },
+    "receivedDataBytes": 5225760
+  },
+  {
+    "seconds": 464.03,
+    "revision": 337,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "3ca1c92a29ac18f91899391cf0c86a495f721466eb24b2e301ae46bd7d0c599b",
+      "receivedChunks": 664,
+      "bytes": 23391,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 369,
+      "revision": 337,
+      "writeMilliseconds": 15.4192,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 370,
+      "motionPackets": 38632,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 492.10801890000005
+    },
+    "receivedDataBytes": 5312280
+  },
+  {
+    "seconds": 472.03,
+    "revision": 337,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "b519477057c605126928787054f9038bc579cc5d6d9b541217fd3c25814913e0",
+      "receivedChunks": 680,
+      "bytes": 23355,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 376,
+      "revision": 337,
+      "writeMilliseconds": 17.003500000000003,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 376,
+      "motionPackets": 39280,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 500.20880460000006
+    },
+    "receivedDataBytes": 5402072
+  },
+  {
+    "seconds": 480.03,
+    "revision": 337,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "c0e9249b615aaf5c491498778dce21bf7dfcd818f9225a7d82025d37a97d2ee2",
+      "receivedChunks": 688,
+      "bytes": 23390,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 381,
+      "revision": 337,
+      "writeMilliseconds": 15.66,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 382,
+      "motionPackets": 39920,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 508.2102990000001
+    },
+    "receivedDataBytes": 5491496
+  },
+  {
+    "seconds": 488.03,
+    "revision": 337,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "0e766c2f3794a0572173adb7f1bb7fe26b62847dc09d8b5ab169c0dfb9b49579",
+      "receivedChunks": 696,
+      "bytes": 23390,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 385,
+      "revision": 337,
+      "writeMilliseconds": 17.5451,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 388,
+      "motionPackets": 40564,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 516.262423
+    },
+    "receivedDataBytes": 5581232
+  },
+  {
+    "seconds": 496.03,
+    "revision": 338,
+    "androidX": 108.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "9340b3bddd962aa2b13f706097d9a4d93b566fa4866a716c195188f0a0dbbff3",
+      "receivedChunks": 712,
+      "bytes": 23390,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 393,
+      "revision": 337,
+      "writeMilliseconds": 14.898900000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 394,
+      "motionPackets": 41204,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 524.2642001
+    },
+    "receivedDataBytes": 5669552
+  },
+  {
+    "seconds": 504.03,
+    "revision": 338,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "dca4ba48943eefc4ad495ca833bb17076eef2d5e3b301d4fabfe4e155e006a40",
+      "receivedChunks": 720,
+      "bytes": 23391,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 398,
+      "revision": 338,
+      "writeMilliseconds": 15.2902,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 400,
+      "motionPackets": 41852,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 532.3657448
+    },
+    "receivedDataBytes": 5755112
+  },
+  {
+    "seconds": 512.03,
+    "revision": 338,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "ef37c441c287234be261ccb50c0dad6d672c556ed167c93e6c80d5653be2037d",
+      "receivedChunks": 736,
+      "bytes": 23404,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 405,
+      "revision": 338,
+      "writeMilliseconds": 17.1155,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 406,
+      "motionPackets": 42496,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 540.4024752
+    },
+    "receivedDataBytes": 5841400
+  },
+  {
+    "seconds": 520.03,
+    "revision": 338,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "98f25e3b8ec36b84a273d6519657d6b92d3755f735c3595a9fd9352b12b763ff",
+      "receivedChunks": 744,
+      "bytes": 23368,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 411,
+      "revision": 338,
+      "writeMilliseconds": 17.251,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 412,
+      "motionPackets": 43136,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 548.4062935000001
+    },
+    "receivedDataBytes": 5930328
+  },
+  {
+    "seconds": 528.03,
+    "revision": 338,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "f058b828d0e50ded5b3da03c439a3a4fd20bd601ef8611c5e49ef3ba0be41cc1",
+      "receivedChunks": 752,
+      "bytes": 23368,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 414,
+      "revision": 338,
+      "writeMilliseconds": 15.1934,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 418,
+      "motionPackets": 43780,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 556.4584846
+    },
+    "receivedDataBytes": 6017864
+  },
+  {
+    "seconds": 536.03,
+    "revision": 339,
+    "androidX": 865.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "62bd105bda825d9e152a46063d5e7073021ba6507331f086fe5a00e109878571",
+      "receivedChunks": 768,
+      "bytes": 23368,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 423,
+      "revision": 338,
+      "writeMilliseconds": 12.5988,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 425,
+      "motionPackets": 44428,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 564.5598243000001
+    },
+    "receivedDataBytes": 6106800
+  },
+  {
+    "seconds": 544.03,
+    "revision": 339,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "287e120f5705983978455a57b0f7cd4a59c2acb7d46033524e94be1afdd5cbf3",
+      "receivedChunks": 776,
+      "bytes": 23357,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 427,
+      "revision": 339,
+      "writeMilliseconds": 17.2586,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 430,
+      "motionPackets": 45076,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 572.6621839000001
+    },
+    "receivedDataBytes": 6194192
+  },
+  {
+    "seconds": 552.05,
+    "revision": 339,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "cdc29073e559e99332bab2b08a3eaf42a489c56bce2cc8b246034f91215daef3",
+      "receivedChunks": 792,
+      "bytes": 23357,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 435,
+      "revision": 339,
+      "writeMilliseconds": 14.344600000000002,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 436,
+      "motionPackets": 45656,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 579.9126011
+    },
+    "receivedDataBytes": 6279896
+  },
+  {
+    "seconds": 560.05,
+    "revision": 339,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "174648818ff2bd8ba7a54f94d9d25e4fc4d776a0119e78f276e7a6ea7098e039",
+      "receivedChunks": 800,
+      "bytes": 23392,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 441,
+      "revision": 339,
+      "writeMilliseconds": 16.058400000000002,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 442,
+      "motionPackets": 46296,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 587.9138865
+    },
+    "receivedDataBytes": 6370416
+  },
+  {
+    "seconds": 568.05,
+    "revision": 339,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "8616ae12599932ea2a5870581e2c0268e601b145b2044a897e8a4da095867d29",
+      "receivedChunks": 808,
+      "bytes": 23392,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 445,
+      "revision": 339,
+      "writeMilliseconds": 11.5753,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.18
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.1
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 448,
+      "motionPackets": 46940,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 595.9645853
+    },
+    "receivedDataBytes": 6452768
+  },
+  {
+    "seconds": 576.05,
+    "revision": 340,
+    "androidX": 108.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "3a04873375718a9c3d596472103b777e10835fa3c18bffd58c58539be5611aa8",
+      "receivedChunks": 816,
+      "bytes": 23357,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 450,
+      "revision": 339,
+      "writeMilliseconds": 15.972900000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.24
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.12
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.91
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.74
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 454,
+      "motionPackets": 47588,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 604.0672893
+    },
+    "receivedDataBytes": 6537520
+  },
+  {
+    "seconds": 584.05,
+    "revision": 340,
+    "androidX": 900.0,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "7197c0f0715a346f47c7f42b2bbcc2f7797873b0d6080694e88da392c9441c9b",
+      "receivedChunks": 824,
+      "bytes": 23397,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 455,
+      "revision": 340,
+      "writeMilliseconds": 14.098500000000001,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.24
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.12
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.94
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.77
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 460,
+      "motionPackets": 48232,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 612.1038958
+    },
+    "receivedDataBytes": 6623848
+  },
+  {
+    "seconds": 592.06,
+    "revision": 340,
+    "androidX": 80.35713195800781,
+    "recovery": {
+      "status": "durable",
+      "epoch": "92803fb3c8274452973802d38d41ccb7",
+      "hash": "2570afe7d244a9508d9d8df81199376847aae5b1b5714a3c853096b946f5fc22",
+      "receivedChunks": 840,
+      "bytes": 23406,
+      "receipts": 128,
+      "timers": 0,
+      "checkpoint": 465,
+      "revision": 340,
+      "writeMilliseconds": 11.6807,
+      "peers": []
+    },
+    "memory": [
+      {
+        "role": "server",
+        "privateMiB": 188.24
+      },
+      {
+        "role": "windows-1",
+        "privateMiB": 709.12
+      },
+      {
+        "role": "windows-2",
+        "privateMiB": 708.94
+      },
+      {
+        "role": "windows-3",
+        "privateMiB": 709.77
+      }
+    ],
+    "serverMaxFrameGapSeconds": 0.034994600000000986,
+    "serverMotion": {
+      "checkpointWrites": 466,
+      "motionPackets": 48872,
+      "diagnosticWriteConflicts": 1,
+      "seconds": 620.1063285
+    },
+    "receivedDataBytes": 6713848
+  }
+]

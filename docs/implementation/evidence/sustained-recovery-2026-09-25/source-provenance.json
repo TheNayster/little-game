@@ -1,0 +1,25 @@
+{
+  "baseline": "a82854a8e5e7469bb04cb7039725d5f14ada0d2b",
+  "gameBuild": 91,
+  "gameSourceChanged": false,
+  "files": [
+    {
+      "path": "Tools/Test-AndroidRecoverySoak.py",
+      "sha256": "3af38439375c68c80d1a71fca1529ae6bbba05d867e968a32b13d006f1256f69"
+    },
+    {
+      "path": "Tools/Test-SmoothMovement.py",
+      "sha256": "bf4ee3086e2889f0dff7592223ff72807bc020add119b71e61d8a46f38fac52f"
+    },
+    {
+      "path": "Tools/recovery_fixture.py",
+      "sha256": "980219d230f1e383302f46cc58a95b38bde9e3ab0165cb3ca352813beb510e55"
+    }
+  ],
+  "unityCSharpFilesUnchanged": 148,
+  "sourceManifests": {
+    "Builds/AndroidSigned/G3-0.0.91/source-manifest.json": "7842695acbbc3c71c8c3af42ab2bee266f83b4c8760ce1b2163c4a65c0d98ec1",
+    "Builds/NetworkProbe/G3-0.0.91/source-manifest.json": "088929007067fe7b7c1257d2afb9376f2a9824311648b55d0d4731eddc4fb058"
+  },
+  "manifestCSharpFilesUnchanged": 153
+}

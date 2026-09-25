@@ -1,0 +1,13 @@
+{
+  "firstTimedRun": {
+    "completeAcceptance": false,
+    "durationSeconds": 600.05,
+    "passedGroups": 4,
+    "failedCheck": "Byte equality of local saves between cold-start baseline and after shared run",
+    "missingEvidence": "Pre-start raw saves were not retained; cannot reconstruct the exact original before/after delta.",
+    "investigation": "Selected adventure current/backup differed only in idleTimers. Source advances local timers before joining. This is consistent with a baseline timing issue, not conclusive reconstruction of that failed run."
+  },
+  "correction": "Retain startup/joined/final snapshots; require a new Android process and confirmed shared presentation; compare joined/final exactly. Record startup differences separately.",
+  "focusedProbe": "First scratch probe mistakenly read the previous process event; it is not acceptance. Corrected fresh-session probe found seven byte-identical local saves through shared movement/Home/warm return.",
+  "gameSourceChanged": false
+}

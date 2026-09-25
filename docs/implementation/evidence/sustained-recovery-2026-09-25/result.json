@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "build": 91,
+  "apkSha256": "1e8f7af73d04dcd35eb3dd8fdd6f5527d26e101bec9165c5bd7de1f79eceef4f",
+  "utc": "2026-09-25T16:31:20.194312+00:00",
+  "checks": [
+    {
+      "check": "ten real minutes of four-player movement and independent travel, plus actual Android Home/warm return, preserve the same authority and active siblings",
+      "passed": true
+    },
+    {
+      "check": "normal flower and borrowed-bucket timers complete while Android repeatedly commits full 128-receipt recovery checkpoints",
+      "passed": true
+    },
+    {
+      "check": "remote Windows canvas movement passes existing interpolation thresholds before and after the mixed-platform run",
+      "passed": true
+    },
+    {
+      "check": "desktop private memory and emulated Android PSS remain inside explicit 1 GiB / 256 MiB growth smoke limits; these are not A10 budgets",
+      "passed": true
+    },
+    {
+      "check": "final full replica covers completed play; solo/adventures remain byte-identical since shared admission and stopped authority save survives restart exactly",
+      "passed": true
+    }
+  ],
+  "requestedSeconds": 600,
+  "measuredSeconds": 600.06,
+  "cycles": 75,
+  "flowerResetSeconds": 65.73,
+  "bucketReturnSeconds": 185.0,
+  "durableAndroidCheckpoints": 75,
+  "maxObservedCheckpointGapSeconds": 14.843,
+  "motionTraces": [
+    {
+      "sampleCount": 161,
+      "medianFrameMs": 16.68,
+      "visualMovingFrameFraction": 1.0,
+      "rawMovingFrameFraction": 0.329,
+      "p95VisualSpeed": 257.42,
+      "p95RawSnapSpeed": 740.17,
+      "worstBackwardStep": 3.225,
+      "p95VisualLagBehindReceivedSeconds": 0.229
+    },
+    {
+      "sampleCount": 161,
+      "medianFrameMs": 16.69,
+      "visualMovingFrameFraction": 1.0,
+      "rawMovingFrameFraction": 0.329,
+      "p95VisualSpeed": 247.03,
+      "p95RawSnapSpeed": 758.12,
+      "worstBackwardStep": 3.179,
+      "p95VisualLagBehindReceivedSeconds": 0.213
+    }
+  ],
+  "memory": {
+    "server": {
+      "firstMiB": 186.86,
+      "lastMiB": 188.24,
+      "peakMiB": 188.25,
+      "growthAfterMinuteMiB": 1.47
+    },
+    "windows-1": {
+      "firstMiB": 709.06,
+      "lastMiB": 709.12,
+      "peakMiB": 709.12,
+      "growthAfterMinuteMiB": 0.05
+    },
+    "windows-2": {
+      "firstMiB": 709.2,
+      "lastMiB": 708.94,
+      "peakMiB": 709.2,
+      "growthAfterMinuteMiB": -0.13
+    },
+    "windows-3": {
+      "firstMiB": 709.83,
+      "lastMiB": 709.77,
+      "peakMiB": 709.93,
+      "growthAfterMinuteMiB": -0.07
+    },
+    "android-emulator": {
+      "firstPssMiB": 454.15,
+      "lastPssMiB": 472.46,
+      "peakPssMiB": 475.99,
+      "growthAfterMinuteMiB": 12.39
+    }
+  },
+  "retainedLocalSaves": 7,
+  "startupLocalChanges": [],
+  "localPreservationBaseline": "fresh confirmed shared presentation",
+  "error": null,
+  "scope": "One Windows PC; Android API35 16 KB x86_64 emulator with ARM translation plus three native Windows clients. No impaired Wi-Fi, physical input/audio/thermal/A10 frame-time, native ARM64 16 KB, iPad host or two-hour uptime qualification."
+}

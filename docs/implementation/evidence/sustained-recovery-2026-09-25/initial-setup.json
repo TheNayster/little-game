@@ -1,0 +1,7 @@
+{
+  "stage": "Initial setup aborted during harness review",
+  "completedRun": false,
+  "reason": "The final Android replica reader reused a schema-2 authority-only decoder. Recovery envelopes use a different payload schema.",
+  "correction": "Use checksum-verified generic envelope decoding for the recovery record, then validate its completed snapshot.",
+  "scope": "No game-source defect or successful timed result claimed from this initial setup. Only owned test processes were stopped."
+}
