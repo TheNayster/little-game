@@ -7,7 +7,14 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE = "family-playset-build-guide-2026-09-23"
 md = markdown.Markdown(extensions=["tables", "fenced_code", "toc"],
     extension_configs={"toc": {"toc_depth": "2-2"}})
-body = md.convert((ROOT / f"{BASE}.md").read_text(encoding="utf-8"))
+source = (ROOT / f"{BASE}.md").read_text(encoding="utf-8")
+body = md.convert(source)
+# Keep the prominent status banner tied to the maintained work record, so an
+# older hardcoded deployment/next-step claim cannot survive a plan update.
+summary = re.search(r"^\*\*Current build summary:\*\* (.+)$", source, re.M)
+if summary is None:
+    raise ValueError("The build guide needs its current build summary.")
+status_banner = markdown.markdown(summary.group(0))
 body = re.sub(r"<h1.*?</h1>", "", body, count=1, flags=re.S)
 body = body.replace("<table>", '<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>')
 body = body.replace("</table>", "</table></div>")
@@ -23,7 +30,7 @@ page = '''<!doctype html>
 </style></head><body>
 <header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Build guide navigation"><a href="bluey-game-research-2026-09-23.html">Goal sheet</a><a href="#8-ordered-phases-and-completion-gates">Build order</a><a href="#9-first-implementation-work-queue">Next tasks</a><a href="#18-current-work-record-and-research-basis">Current status</a><a href="#19-implementation-audit-and-remaining-work">Audit &amp; remaining work</a></nav></header>
 <main class="wrap" id="top"><div class="build-intro"><p class="eyebrow">Ground-up production guide · Audited 24 September 2026</p><h1>One clear build order.<br>A foundation for the whole game.</h1><p class="intro">The Family Playset is our goal sheet. This guide turns it into a practical sequence: prove the foundations, finish a representative playable area, expand the content, and deliver reliable updates to the family's devices.</p></div>
-<div class="build-status"><span>35 feature IDs mapped</span><span>10 ordered phases</span><span>4 physical clients connected</span><span class="next">G1 / G2 / G3 gates open</span></div>
+<div class="build-status"><span>35 feature IDs mapped</span><span>10 ordered phases</span><span>4-device admission verified</span><span class="next">G1 / G2 / G3 gates open</span></div>
 <ol class="build-roadmap" aria-label="Production sequence">
 <li><a href="#7-android-ios-and-pc-build-pipeline"><small>G1</small><strong>Establish the project</strong><span>Builds, devices, saves and updates.</span></a></li>
 <li><a href="#8-ordered-phases-and-completion-gates"><small>G2–G5</small><strong>Prove shared play</strong><span>Touch, world rules, hosting and recovery.</span></a></li>
@@ -31,7 +38,7 @@ page = '''<!doctype html>
 <li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
-<div class="build-callout"><p><strong>All four family devices have joined build 79.</strong></p><p>Both iPads, Samsung and iPhone are connected to the same PC authority. Two-iPad movement, shared bucket handling, independent travel and rejoining have passed their recorded checks; the user confirms the phones' basic controls work and the children are playing on the iPads. The solo round trip also passed on the tested iPad. G1/G2/G3 remain partial. Build 82 prepares the requested wider phone layout and idle/repeat garden timers; <a href="implementation/g3-phone-layout-resets-2026-09-24.html">view the change and preview</a>. Deployment waits until the children finish. Next: replace the Windows qualification runner's two-hour lifetime with an explicit persistent home-server mode, tested separately and applied after the children finish. Sustained measurements, remaining device checks, everyday recovery/setup, iPad hosting, personal rooms and full content remain ahead. <a href="implementation/g3-phones-79-2026-09-24.html">Four-device evidence</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Remaining checks</a> · <a href="#19-implementation-audit-and-remaining-work">Implementation audit</a> · <a href="#9-first-implementation-work-queue">Next tasks in order</a></p></div>
+<div class="build-callout">''' + status_banner + '''<p><a href="#19-implementation-audit-and-remaining-work">Audit and remaining work</a> · <a href="#9-first-implementation-work-queue">Next task and acceptance</a> · <a href="implementation/g3-persistent-server-2026-09-24.html">Build 83 evidence</a></p></div>
 <div class="report-layout"><aside class="contents"><h3>In this build guide</h3>''' + md.toc + '''</aside><article class="report">''' + body + '''</article></div>
 <footer class="footer"><p>Production research dated September 23; implementation audit updated September 24. The architecture and gates are our project method. Completed checks link to dated evidence; the original audit itself made no app changes; later implementation results have separate records.</p><a href="family-playset-build-guide-2026-09-23.md">Editable build guide</a><a href="bluey-game-research-2026-09-23.html">Feature goal sheet</a><a href="family-playset-package-research-2026-09-23.html">Package research</a></footer></main></body></html>'''
 (ROOT / f"{BASE}.html").write_text(page, encoding="utf-8")

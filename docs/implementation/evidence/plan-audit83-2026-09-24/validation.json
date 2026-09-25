@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "date": "2026-09-24",
+  "scope": "Documentation validation only; no game tests, device/server contact or external-source revalidation.",
+  "renderedPagesChecked": 3,
+  "localLinksAnchorsAndImagesChecked": 302,
+  "topLevelFeatureIds": 35,
+  "researchChapters": 55,
+  "featureAcceptanceTableUnchanged": true,
+  "allSnapshotHashesMatch": true,
+  "rendererSyntaxValid": true,
+  "sourceDrivenStatusBannerVerified": true
+}

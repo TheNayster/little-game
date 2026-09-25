@@ -1,4 +1,4 @@
-# Current checks — all four devices are on build 79
+# Current checks — server/Android 83; Apple clients 79
 
 Both iPads have been **updated in place and launched**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Mac signing is complete; there is no need to run the signing window again. [Current installation evidence](g3-ipad-79-2026-09-24.html).
 
@@ -24,6 +24,8 @@ The previous unpaired solo garden, paired-device solo draft and server world are
 The user requested less phone side space and timers for unused items/completed quests. [Build 82](g3-phone-layout-resets-2026-09-24.html) widens the phone floor, keeps tablet geometry, returns idle bucket/sponge after 180 + 5 seconds and rearms completed flower/puddle after 60 + 5 seconds. Held tools stay protected. Windows, signed Android and unsigned native iOS builds pass, together with scoped regressions. Apple signing/installation remains. The later [server and Samsung 83 update](g3-persistent-server-2026-09-24.html) is now applied after user authorization: the authority has active timers and no home-session cutoff, Android has the wider layout/cues, and its native screenshot was inspected. iPhone/iPads remain 79 and their updates still await availability.
 
 ## Next Windows task
+
+**G3-OPS-01: parent server status and safe start/stop.** The [main guide](../family-playset-build-guide-2026-09-23.html#9-first-implementation-work-queue) owns the current task scope and isolated-world acceptance. Restore/crash recovery and sustained/device tests follow separately; do not stop the live world for this audit.
 
 [Persistent server 83](g3-persistent-server-2026-09-24.html) is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Sign-in startup/status, long-duration soak and broader lifecycle acceptance remain open.
 
