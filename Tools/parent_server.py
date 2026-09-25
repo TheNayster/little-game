@@ -74,10 +74,10 @@ def checkpoint_bytes(path):
 
 
 @contextmanager
-def operation_lock(folder):
+def operation_lock(folder, name='parent-operations.lock'):
     # Serialize operations across tabs AND separate controller processes. The
     # game's authority.lock remains the final single-writer guard for its save.
-    with (folder / 'parent-operations.lock').open('a+b') as file:
+    with (folder / name).open('a+b') as file:
         if file.tell() == 0:
             file.write(b'0'); file.flush()
         file.seek(0)
@@ -204,13 +204,32 @@ class ParentServer:
         permission = read(ROOT / f'LocalData/Verification/server-firewall-{self.build}.json')
         return bool(permission and permission.get('passed') is True and permission.get('build') == self.build)
 
-    def start(self):
+    def save_intent(self, automatic_restart):
+        value = dict(revision=uuid.uuid4().hex, automaticRestart=automatic_restart)
+        staged = self.root / ('server-intent-' + value['revision'] + '.pending')
+        with staged.open('x', encoding='utf-8') as output:
+            json.dump(value, output); output.flush(); os.fsync(output.fileno())
+        staged.replace(self.root / 'server-intent.json')
+        return value
+
+    def pause_recovery(self):
         with self.mutex, operation_lock(self.root):
+            self.save_intent(False)
+            return dict(result='automatic-recovery-paused', status=self.snapshot())
+
+    def start(self, expected_intent=None):
+        with self.mutex, operation_lock(self.root):
+            # Recheck inside the same lock as parent Stop. A supervisor which
+            # observed an old desire to run cannot undo a later deliberate stop.
+            if expected_intent is not None and (expected_intent.get('automaticRestart') is not True or read(self.root / 'server-intent.json') != expected_intent):
+                raise OperationError('Parent restart preference changed. Automatic start cancelled.')
             state = self.snapshot()
             if state['state'] == 'ready':
+                if expected_intent is None: self.save_intent(True)
                 return dict(result='already-running', status=state)
             if not state['canStart']:
                 raise OperationError('Start is blocked until server and save status can be verified.')
+            if expected_intent is None: self.save_intent(True)
             # Preserve the selected world and protected enrollment. This helper
             # verifies every build artifact and the native persistent-mode ack.
             result = subprocess.run([sys.executable, str(ROOT / 'Tools/Start-FamilyLAN.py'),
@@ -233,9 +252,12 @@ class ParentServer:
                 raise OperationError('Someone is playing. Leave the server running until everyone has left.')
             request_id = uuid.uuid4().hex
             out = self.root / expected_instance
+            previous_intent = read(self.root / 'server-intent.json')
+            self.save_intent(False)
             write(out / 'parent-control.json', dict(requestId=request_id, instanceId=expected_instance, kind='stop-if-empty'))
             response = wait(lambda: (r if (r := read(out / 'parent-response.json')) and r.get('requestId') == request_id and r.get('instanceId') == expected_instance else None), 'guarded stop acknowledgement', 12)
             if response['result'] != 'stopping':
+                self.save_intent(bool(previous_intent and previous_intent.get('automaticRestart')))
                 raise OperationError('The server refused to stop because its state changed or a player joined. Family play continues.')
             state = wait(lambda: (s if (s := self.snapshot())['state'] == 'stopped' else None), 'clean server exit', 20)
             stopped = read(out / 'status.json')

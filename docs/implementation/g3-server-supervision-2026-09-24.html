@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — When you return</title><style>
+<title>The Family Playset — Bounded server crash recovery</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -16,45 +16,56 @@
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
-</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="return-checklist-ipad-lan-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1>Current checks — server/Android 83; Apple clients 79</h1>
-<p>Both iPads have been <strong>updated in place and launched</strong>. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Mac signing is complete; there is no need to run the signing window again. <a href="g3-ipad-79-2026-09-24.html">Current installation evidence</a>.</p>
-<p><strong>Both iPads, Samsung and iPhone have joined the same PC shared world.</strong> Native discovery and admission are verified, and the user confirms all devices work. After everyone left, the user authorized the PC server and Samsung update to 83. Those updates are complete; iPads/iPhone remain 79. <a href="g3-phones-79-2026-09-24.html">Four-device record</a>.</p>
-<h2>iPad progress — further hands-on checks paused at user request</h2>
-<ol>
-<li><strong>Done: both apps open, local-network permission allowed, both joined.</strong> No further iPad action is currently requested.</li>
-<li><strong>Done by user report: smooth two-way movement and one shared bucket.</strong> Both iPads show the other player moving; the bucket can only be held by one player, then dropped and picked up by the other. <a href="evidence/ipad79-2026-09-24/movement-bucket-feedback.json">Recorded feedback</a>.</li>
-<li><strong>Done by user report: independent areas and reunion.</strong> One player visited Creek while the other kept playing in Garden; they saw each other again on reunion. <a href="evidence/ipad79-2026-09-24/independent-travel-feedback.json">Recorded feedback</a>. Shared-build joystick plus dragging, Listen, remembered settings and full-screen layout still need their separate check.</li>
-<li><strong>Done: leave and return on both iPads.</strong> The user confirms locking/unlocking and also closing/reopening while the sibling continues; movement and bucket pickup work afterward. Native reads confirm retained identities and automatic rejoin from new app processes to the same PC authority. <a href="evidence/ipad79-2026-09-24/lock-cold-rejoin.json">Evidence</a>.</li>
-<li><strong>Passed on the tested iPad: saved solo round trip.</strong> The user confirmed easy family rejoin with server positions and restoration of the solo toy position when returning to Play by myself. <a href="evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json">Feedback</a>. Which iPad was used and repetition on both were not specified. Further iPad time is paused. Initial joining after a server-absent start and remaining multi-touch/layout/voice/settings checks remain deferred.</li>
-</ol>
-<p>The previous unpaired solo garden, paired-device solo draft and server world are separate. The update preserves the old save; it does not merge it into the family garden. Offline reconciliation and automatic prolonged-outage local recovery still need their planned work.</p>
-<h2>Phone milestone — completed within the recorded scope</h2>
-<ol>
-<li><strong>Done: Samsung 15 → 79 in place.</strong> Original signing identity, installed APK hash, native enrollment/discovery and automatic family admission verified. Full layout, walking, bucket fill/pour and Listen passed by user report. Accessible files were backed up; exact private foundation-preference retention was not independently read back.</li>
-<li><strong>Done: iPhone 20 → 79 in place and all four connected.</strong> USB Sideloadly update completed, native version matched and all three prior preference values remained. The fourth identity was consumed into Keychain and joined automatically. User reports the full layout, walking, bucket drag and Listen work. Server evidence confirms four distinct physical clients together. This does not complete sustained four-device gameplay/lifecycle acceptance.</li>
-</ol>
-<h2>Phone layout and resets — Android/server 83 applied</h2>
-<p>The user requested less phone side space and timers for unused items/completed quests. <a href="g3-phone-layout-resets-2026-09-24.html">Build 82</a> widens the phone floor, keeps tablet geometry, returns idle bucket/sponge after 180 + 5 seconds and rearms completed flower/puddle after 60 + 5 seconds. Held tools stay protected. Windows, signed Android and unsigned native iOS builds pass, together with scoped regressions. Apple signing/installation remains. The later <a href="g3-persistent-server-2026-09-24.html">server and Samsung 83 update</a> is now applied after user authorization: the authority has active timers and no home-session cutoff, Android has the wider layout/cues, and its native screenshot was inspected. iPhone/iPads remain 79 and their updates still await availability.</p>
-<h2>Next Windows task</h2>
-<p><strong>Completed while away: local backup/restore.</strong> Prepared server 85 adds an interrupted-recovery guard to the parent controls. A separate four-player world passed restore/rollback and failure checks; your actual server 83 was only backed up and remains running. <strong>Also completed:</strong> isolated crash recovery with four original clients rejoining, plus bounded retries and parent-stop protection. It is not enabled on the actual family world. <strong>Next: a sustained Windows run.</strong> <a href="g3-server-supervision-2026-09-24.html">Supervision record</a>. <a href="g3-server-recovery-2026-09-24.html">Recovery record</a>.</p>
-<p>When you return:</p>
-<ol>
-<li>Approve the reviewed Windows network setup for prepared server 85, then update it during an empty session and activate the qualified recovery helper. No prompt is being left waiting overnight.</li>
-<li>Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.</li>
-<li>Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.</li>
-<li>Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. No repeat of the already-passed smoke checks is needed.</li>
-</ol>
-<p><a href="g3-persistent-server-2026-09-24.html">Persistent server 83</a> is deployed after Windows approval. The original save/enrollment is preserved, and Samsung updated in place and automatically joined. The native screenshot shows the wider layout. Both original local save files are byte-identical; the paired branch retained items/identity while recording walking commands. No Apple device was accessed. Sign-in startup/status, long-duration soak and broader lifecycle acceptance remain open.</p>
-<h2>Deferred hands-on checks — no action requested now</h2>
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-server-supervision-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1>Bounded server crash recovery — G3-OPS-03</h1>
+<p><strong>NET-02. Implemented and qualified in a disposable Windows world.</strong> An actual server process was terminated; the real supervisor command, using its normal backoff clock, started one replacement from the saved world. All four already-running clients rejoined automatically and could use shared items. The observed crash-to-four-rejoin interval was <strong>19.34 seconds</strong>. This is one local test result, not a guaranteed recovery time or uninterrupted simulation during server loss.</p>
+<p>The actual family's server remains <strong>83</strong>, untouched and running. The helper is <strong>not enabled on that world</strong>. Prepared runtime <strong>85</strong> includes parent occupied-stop and interrupted-recovery guards. Its reviewed Windows network approval/deployment is still pending while the user is away.</p>
+<h2>Policy</h2>
 <ul>
-<li>When devices are available for testing, finish detailed Samsung/iPhone shared-item, independent-area and lifecycle checks; repeat solo restoration per device as needed.</li>
-<li>Exercise a server-absent initial launch followed by late joining, remaining current-build iPad multi-touch/settings checks, and sustained four-device frame-time/memory measurements.</li>
-<li>Report any actual play issue as it occurs; already-passed controls do not need routine repetition.</li>
+<li><code>Tools/Server-Supervisor.py</code> watches one explicitly selected enrolled world. It never kills a process, resets a save, creates replacement enrollment or silently adopts a different build.</li>
+<li>Parent Start records an atomic, flushed restart preference. Parent Stop turns it off before issuing the guarded stop. A refusal restores the previous preference; an uncertain stop leaves automatic recovery paused for review. Backup restore/rollback also pause it.</li>
+<li>Automatic starts recheck the exact preference revision inside the same operation lock as parent actions. A supervisor working from stale information cannot undo a later parent Stop/Pause.</li>
+<li>Confirmed process exit with a verified checkpoint and configured executable triggers a delayed retry. Three attempts are allowed, with increasing delays. Accounting persists across helper recreation; repeated failure requires parent inspection. Ten healthy minutes reset the failure count. The native save lock and controller lock retain one writer, and a separate supervisor lock permits only one helper per family.</li>
+<li>Missing/corrupt checkpoints, incomplete restores, uncertain process identity/heartbeat and unprepared network permission block automatic startup. An existing but unresponsive process needs diagnosis; it is not forcibly killed.</li>
+<li>Closing or pausing the helper leaves current players alone. <code>--pause</code> disables future automatic starts without disconnecting anyone.</li>
 </ul>
-<h2>Still tracked</h2>
-<ul>
-<li>Unattended app renewal on both iPads is unproven; the earlier iPhone USB renewal did not qualify Wi-Fi renewal. The current development profile expires October 1, 2026.</li>
-<li>Sustained performance on the older A10 iPad and observing the children use the controls remain open.</li>
-<li>Both iPads hosting, host switching/recovery, full offline reconciliation and the remaining game content are still in the main plan.</li>
-</ul>
-<p>These checks will be handled one short step at a time. Do not delete the app or reset its data to troubleshoot a connection.</p></main></body></html>
+<h2>Evidence</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Qualification</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Actual process loss</td>
+<td>Real supervisor CLI/backoff and four native Windows clients. One replacement authority, same world/player/item/receipt state, original client processes rejoin, later interaction works. <a href="evidence/server-supervision-2026-09-24/native-85.json">Six qualification groups</a>.</td>
+</tr>
+<tr>
+<td>Parent intent</td>
+<td>Guarded stop remains stopped; stale automatic intent rejected; second supervisor process cannot acquire the helper lock.</td>
+</tr>
+<tr>
+<td>Restart limits</td>
+<td>Three failed starts exhaust persistent accounting. Synthetic timeout check confirms launcher timeouts use the same bounded policy. <a href="evidence/server-supervision-2026-09-24/timeout-85.json">Timeout evidence</a>.</td>
+</tr>
+<tr>
+<td>Save/recovery boundaries</td>
+<td>Corrupt/missing saves, pending recovery and uncertain process state block restarts. Restore leaves supervision paused.</td>
+</tr>
+<tr>
+<td>Parent-control regression</td>
+<td>All ten real HTTP/native parent checks pass on 85, including four-player occupied-stop refusal, exact checkpoint restart and stale-instance protection. <a href="evidence/server-supervision-2026-09-24/parent-85.json">Regression evidence</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Failure-budget and ten-minute policy boundaries use an injected clock. The primary native crash/rejoin measurement uses real elapsed time and the actual supervisor process. No physical-device recovery, real ten-minute soak, PC reboot/logoff/service operation, hung-process recovery or VPS behavior is established by this milestone.</p>
+<h2>Activation and deployment</h2>
+<p>This helper is a local process, not an installed Windows service or boot task. It needs the signed-in Windows identity that can unlock the protected enrollment. Do not count it as “recovers after reboot” or “works after logout.” After controlled 85 deployment and a deliberate parent Start, run the following through the project’s hidden-process launcher context:</p>
+<pre><code class="language-powershell">uv run python Tools/Server-Supervisor.py --family &lt;enrolled-family-id&gt; --build 85
+</code></pre>
+<p>An already-running legacy world is not adopted or upgraded. For a pause:</p>
+<pre><code class="language-powershell">uv run python Tools/Server-Supervisor.py --family &lt;enrolled-family-id&gt; --build 85 --pause
+</code></pre>
+<p>The per-family <code>supervisor-state.json</code> reports checked time, status, message and attempts. Intent/accounting remain private under <code>LocalData</code>, are excluded from backup reconstruction, and are not server credentials. The parent browser's Start/Stop endpoints preserve this preference, but the current browser does not launch or supervise the helper itself. A parent-facing activation/status integration and boot/service deployment remain explicit follow-up work.</p>
+<p><strong>Next bounded task: G3-OPS-04, a measured longer four-client Windows run.</strong> Exercise movement, area changes, item interactions and save/rejoin under a real clock, record process memory/observations, and distinguish desktop evidence from pending sustained A10/iPad and mixed-device measurements. Independent backup destination, portable enrollment, VPS readiness and mandatory G4 iPad hosting remain in sequence.</p></main></body></html>

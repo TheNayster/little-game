@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "attempts": 3,
+  "helperRecreationPreservesLimit": true,
+  "scope": "Injected launcher timeouts and policy clock; no native authority or family world modified."
+}

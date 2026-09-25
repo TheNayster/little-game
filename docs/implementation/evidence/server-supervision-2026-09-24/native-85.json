@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "build": 85,
+  "utc": "2026-09-25T03:57:36.537293+00:00",
+  "checks": [
+    {
+      "check": "actual native authority termination recovers one enrolled server and all four existing clients rejoin with identities/items/receipts preserved and usable interactions",
+      "passed": true
+    },
+    {
+      "check": "parent guarded Stop persists paused recovery and the helper leaves the stopped world alone",
+      "passed": true
+    },
+    {
+      "check": "stale restart intent is refused inside parent-operation lock and a duplicate supervisor process exits",
+      "passed": true
+    },
+    {
+      "check": "three failed launches exhaust a persistent retry budget; recreating the helper cannot bypass it; explicit parent Start renews intent",
+      "passed": true
+    },
+    {
+      "check": "corrupt/missing saves, pending recovery and uncertain process health block automatic restart instead of resetting progress or killing a process",
+      "passed": true
+    },
+    {
+      "check": "restore disables automatic restart; manual start resumes it; ten healthy minutes reset the retry budget at the simulated policy boundary",
+      "passed": true
+    }
+  ],
+  "measuredCrashToFourRejoinSeconds": 19.34,
+  "nativeCrashBackoffClockAccelerated": false,
+  "policyBoundaryClockAccelerated": true,
+  "scope": "Isolated Windows process-crash with actual supervisor CLI/backoff and four native clients. Failed-retry/healthy-time policy boundaries use an injected clock; not a ten-minute soak, OS boot/service, physical-device or live-family deployment test."
+}

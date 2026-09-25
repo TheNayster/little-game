@@ -25,11 +25,11 @@ The user requested less phone side space and timers for unused items/completed q
 
 ## Next Windows task
 
-**Completed while away: local backup/restore.** Prepared server 85 adds an interrupted-recovery guard to the parent controls. A separate four-player world passed restore/rollback and failure checks; your actual server 83 was only backed up and remains running. **Next: bounded crash supervision.** [Recovery record](g3-server-recovery-2026-09-24.html).
+**Completed while away: local backup/restore.** Prepared server 85 adds an interrupted-recovery guard to the parent controls. A separate four-player world passed restore/rollback and failure checks; your actual server 83 was only backed up and remains running. **Also completed:** isolated crash recovery with four original clients rejoining, plus bounded retries and parent-stop protection. It is not enabled on the actual family world. **Next: a sustained Windows run.** [Supervision record](g3-server-supervision-2026-09-24.html). [Recovery record](g3-server-recovery-2026-09-24.html).
 
 When you return:
 
-1. Approve the reviewed Windows network setup for prepared server 85, then update it during an empty session. No prompt is being left waiting overnight.
+1. Approve the reviewed Windows network setup for prepared server 85, then update it during an empty session and activate the qualified recovery helper. No prompt is being left waiting overnight.
 2. Choose an independent backup destination and arrange portable credential recovery; current bundles are tied to this Windows account.
 3. Provide the VPS connection/OS details when convenient. Deployment stays behind server reliability.
 4. Keep the deferred Apple cue/layout, automatic renewal and sustained device checks below on the list. No repeat of the already-passed smoke checks is needed.

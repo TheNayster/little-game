@@ -244,6 +244,7 @@ class Recovery:
                 current = file_bytes(folder / 'world.save') if (folder / 'world.save').exists() else None
                 check((digest(current) if current is not None else 'missing') == expected_current_sha256,
                       'The current save changed. Inspect it before choosing a restore.')
+                self.controller.save_intent(False)
                 # Keep exact preimages, including a corrupt save if this is a
                 # repair. Checksums permit rollback without claiming it is valid.
                 previous = {name: encoded(file_bytes(folder / name)) if (folder / name).exists() else None for name in SAVES}
@@ -289,6 +290,7 @@ class Recovery:
                     retained = {n: encoded(file_bytes(folder / n)) if (folder / n).exists() else None for n in SAVES}
                     durable(target / ('before-rollback-' + uuid.uuid4().hex + '.json'), json_bytes(retained))
                     durable(self.marker, json_bytes(dict(job=job, beforeSha256=digest(raw))))
+                self.controller.save_intent(False)
                 for name, value in files.items():
                     if value is None:
                         if (folder / name).exists(): (folder / name).unlink()

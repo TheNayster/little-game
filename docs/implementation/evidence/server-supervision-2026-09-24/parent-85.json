@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "build": 85,
+  "utc": "2026-09-25T03:57:34.337428+00:00",
+  "checks": [
+    {
+      "check": "local HTTP status/actions require the session capability and same-origin request",
+      "passed": true
+    },
+    {
+      "check": "production start stays locked until the selected executable network setup is recorded",
+      "passed": true
+    },
+    {
+      "check": "save status reads permit atomic checkpoint replacement while the observer handle is open",
+      "passed": true
+    },
+    {
+      "check": "stopped enrolled world starts as a fresh ready persistent server with a verified checkpoint",
+      "passed": true
+    },
+    {
+      "check": "repeated start and cross-controller operation lock preserve one process and enrolled identity",
+      "passed": true
+    },
+    {
+      "check": "PID mismatch and stale heartbeat lock controls instead of claiming ready or starting a duplicate",
+      "passed": true
+    },
+    {
+      "check": "four native clients keep playing after both API and authoritative occupied-stop refusal",
+      "passed": true
+    },
+    {
+      "check": "empty stop is acknowledged, exits cleanly and preserves the full checkpoint including receipts",
+      "passed": true
+    },
+    {
+      "check": "unverified checkpoint blocks parent start without overwriting progress",
+      "passed": true
+    },
+    {
+      "check": "restart restores exact saved state and a stale page cannot stop the replacement instance",
+      "passed": true
+    }
+  ],
+  "scope": "Isolated Windows authority, four native Windows clients and real HTTP operations. No physical devices or live family authority changed; not independent backup restore, crash supervision or VPS qualification."
+}
