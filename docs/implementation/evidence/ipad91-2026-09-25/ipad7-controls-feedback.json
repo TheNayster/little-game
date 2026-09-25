@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "build": 91,
+  "device": "iPad 7 A2197",
+  "source": "user report",
+  "userReply": "yup all passed",
+  "utc": "2026-09-25T18:39:22.949008+00:00",
+  "checks": [
+    "Walking",
+    "Bucket drag to tap and plant",
+    "Listen with voice enabled",
+    "Full screen visible"
+  ],
+  "scope": "Physical controls and visible layout on 91 connected to server 83. Recovery, lifecycle and sustained performance are separate."
+}

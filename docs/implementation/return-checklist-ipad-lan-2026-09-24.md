@@ -1,6 +1,6 @@
 # Current checks — older iPad 91; server/Android 83; newer iPad/iPhone 79
 
-**Current return session, September 25:** native Apple build/signing and the older iPad 79 → 91 update passed. All 263 saved-document files and existing preferences were preserved, and the iPad automatically rejoined the original server. [Update evidence](g3-ipad91-qualification-2026-09-25.html). The next immediate action is the short physical controls check on that iPad. The server and other devices have not been updated in this session.
+**Current return session, September 25:** native Apple build/signing and the older iPad 79 → 91 update passed. All 263 saved-document files and existing preferences were preserved, and the iPad automatically rejoined the original server. [Update evidence](g3-ipad91-qualification-2026-09-25.html). The user also confirmed all four physical controls/layout checks passed. The immediate action is **Menu → Play by myself** on that iPad so the prepared server update can run with nobody connected. The server and other devices have not been updated in this session.
 
 **Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. The project Android emulator also passed a retained 79 → 91 update and [six recovery checks with three Windows players](g3-android-recovery-2026-09-25.html). The [parent page also gained protected-backup download and file checking](g3-parent-portable-backups-2026-09-25.html), tested with a separate four-player family. The emulator and three Windows players also passed a [ten-minute build 91 recovery run](g3-sustained-recovery-play-2026-09-25.html), including normal item resets and saved-adventure preservation. The [optional Windows sign-in helper](g3-signin-startup-2026-09-25.html) also passes isolated native/browser checks, including recovery of four original players and preserved Stop/Pause choices. Your actual Startup folder, live world and physical devices were not changed, and no family passphrase was created.
 
@@ -8,11 +8,11 @@
 
 **Current steps. No passwords or verification codes need to be sent in chat.**
 
-1. **Older iPad:** keep it connected to the Mac and unlocked. On build **0.0.91**, check walking, dragging the bucket to the tap/plant, Listen and full-screen visibility. Reply to the pending controls check, then leave the app open.
+1. **Older iPad:** your build 91 walking, bucket, Listen and full-screen checks passed. Choose **Menu → Play by myself**, keep it connected to the Mac and unlocked, and leave it in solo. Windows has already approved the new server's local-network rule. I will update the empty server, then ask you to rejoin for recovery checks.
 2. **Next devices:** have the newer **iPad 9 / A2602** and its USB cable ready after we finish the older-iPad checks. Android and iPhone follow. Tell me if anyone else starts playing before we coordinate a server update. No old signing shortcut needs to be rerun.
 3. **Choose a backup destination:** an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. The portable encrypted backup/reconstruction tool now passes isolated Windows tests. We still need a real copy on that destination and a restore on another Windows account/computer. Once I relaunch the updated parent helper, use **Download protected backup**, move the downloaded file to your chosen destination, then use **Check backup file** on that copy. Choose and save the passphrase privately; do not send it here. That file check does not replace the later restore test. [The new controls](g3-parent-portable-backups-2026-09-25.html).
 
-**After the older iPad controls check, we will do these together:**
+**Next, we will do these together:**
 
 - On the older iPad first, check offline start, local play during an outage, closing/reopening, and family reunion with the local adventure still available. I will arrange the recovery check and give exact short steps without interrupting other players; do not shut down the family server yourself to simulate a failure.
 - Repeat the relevant recovery checks on the newer iPad, then Samsung and iPhone. Check actual lock/background behavior, four-player movement and the updated phone layout/reset cues. Existing successful smoke tests stay recorded.

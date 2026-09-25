@@ -1,0 +1,17 @@
+{
+  "utc": "2026-09-25T18:43:18.453195+00:00",
+  "candidateBuild": 91,
+  "candidateFilesVerified": 351,
+  "currentServerBuild": 83,
+  "serverUpdated": false,
+  "firewallReadOnlyVerified": true,
+  "firewallScope": {
+    "protocol": "UDP",
+    "remoteAddress": "LocalSubnet",
+    "exactCandidateExecutable": true
+  },
+  "preUpdateBackupVerified": true,
+  "preUpdateBackupRevision": 1886,
+  "preUpdateBackupSha256": "2a9ecbad9a4e17eceafe881e40b3827c2abc3623224e5c26a1375aef6e102b7b",
+  "waitingFor": "Older iPad to leave shared play; occupied session remains running."
+}
