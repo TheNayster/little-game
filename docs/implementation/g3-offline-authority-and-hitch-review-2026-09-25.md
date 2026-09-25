@@ -41,7 +41,11 @@ There are **21,363 app CPU samples**, including **6,962 main-thread samples**. S
 
 ## Qualification
 
-Installed: iPad 7 **93**, iPad 9/iPhone **79**, Samsung **83**, authority/helper **91**. Preparing 94 is not a device update.
+Installed: iPad 7 **94**, iPad 9/iPhone **79**, Samsung **83**, authority/helper **91**. The 94 update succeeded. iPadOS initially denied launch with its signature/entitlements/profile-trust security message; the user reported that internet was required. A subsequent USB inspection verifies the actual **0.0.94** runtime, paired enrollment and loaded local adventure. The initial launch block has cleared; physical walking and repeated offline-launch acceptance remain pending.
+
+Apple's [provisioning update documentation](https://developer.apple.com/help/account/provisioning-profiles/provisioning-profile-updates) describes first-launch PPQ certificate verification for development/ad-hoc apps on qualifying teams. This check happens before game code runs. Its portal-based offline-profile option is not established as available to our free Personal Team. Do not promise that editing gameplay removes Apple's signing checks, or that a successful running offline session proves every future offline cold launch. Check initial verification with internet after installation, then separately qualify Wi-Fi loss and offline cold reopening. [Personal Team expiry rules](https://developer.apple.com/help/account/basics/about-your-developer-account) remain a separate deployment constraint.
+
+The 93 → 94 update followed a verified 299-file backup. Of 298 Documents files, 297 were byte-identical, including all ten world-save files; every existing preference was retained. The only changed document was the old app's live connection diagnostic: elapsed time, data age and one appended reconnect event. That exact difference was reviewed without reinstalling or resetting anything. [Signed update evidence](evidence/offline94-2026-09-25/ipad94-update.json).
 
 Required checks: native held-touch/menu/missing-replica loss, foreground resume, unchanged server authority on reunion, retained iPad update, real Wi-Fi loss without reopening, and measured A10 offline walking. Then qualify newer iPad and phones, repeated loss/reunion and sustained mixed play. Keep G3-REC-05 open.
 
@@ -52,6 +56,6 @@ Required checks: native held-touch/menu/missing-replica loss, foreground resume,
 - [Five failure-boundary groups](evidence/offline94-2026-09-25/failure-boundaries94.json) pass. Known-loss foreground resume took **0.156 seconds**. Missing acknowledgment was not replayed; save failure did not interrupt siblings.
 - [Six four-client continuation groups](evidence/offline94-2026-09-25/continuation94.json) pass. Offline-first play, cold reopen, separate saves, server-authoritative reunion and repeated outages retain their tested behavior.
 - [Offline native Windows movement](evidence/offline94-2026-09-25/movement94.json) advances every sampled moving frame for both controls at a 60 fps target. This does not resolve the reported physical hitch.
-- [Native iOS Release compilation/linking](evidence/offline94-2026-09-25/ios94-native.json) passes with all six Apple bridge symbols. Mac signing is awaiting the local keychain step; **94 is not installed yet**.
+- [Native iOS Release compilation/linking](evidence/offline94-2026-09-25/ios94-native.json) passes with all six Apple bridge symbols. Signing, in-place installation and runtime 94 identity now pass. The walking hitch remains unresolved pending a physical timing capture.
 
 The exported Windows timing capture contains 1,614 frames, 673 moving offline frames and 14 measured saves, demonstrating that the new diagnostic covers the walking/save interval. Its timing values are not substituted for measurements on A10. The [93 feedback](evidence/offline94-2026-09-25/ipad93-feedback.json) and [scoped physical CPU profile](evidence/offline94-2026-09-25/ipad93-profile-summary.json) remain recorded separately.

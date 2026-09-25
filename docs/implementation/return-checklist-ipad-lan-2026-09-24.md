@@ -1,13 +1,13 @@
 # Your next checks — offline controls and walking
 
-**Current installed versions:** iPad 7 **93**, iPad 9/iPhone **79**, Samsung **83**, PC server and parent helper **91**. The PC world/enrollment are preserved and automatic recovery is enabled/healthy. Actual Windows sign-in startup is still Off.
+**Current installed versions:** iPad 7 **94** (runtime verified), iPad 9/iPhone **79**, Samsung **83**, PC server and parent helper **91**. The PC world/enrollment are preserved and automatic recovery is enabled/healthy. Actual Windows sign-in startup is still Off.
 
 **Latest 93 feedback:** the older iPad now continues without reopening, but its 10+ second wait and periodic offline walking jerk remain unacceptable. Object dragging was already smooth. [New research, server-authority clarification and 94 preparation](g3-offline-authority-and-hitch-review-2026-09-25.html). Other devices still need the replacement.
 
 ## Next, one short step at a time
 
-1. **Older iPad is updated:** build **93** is installed and natively verified, with saves/preferences/enrollment preserved. Keep it connected by USB. Signing is complete; do not rerun the signing shortcut or reinstall.
-2. **Wait for the verified replacement:** 94 removes the extra wait and records frame/work timings. Once installed, check Wi-Fi loss without closing the app, walk offline using both controls, then open Menu to export the capture. No need to repeat the unchanged 93 test now. The captured timing must guide the remaining hitch fix.
+1. **Completed:** build **94** installed with all ten world-save files and existing preferences unchanged. The initial Apple verification block cleared; USB inspection verifies runtime 94 and the local adventure. Keep USB connected. Do not rerun signing or reinstall.
+2. **Current test:** with Wi-Fi off, walk using both controls for about 45 seconds, then open Menu to export frame/work timings. Report whether the jerk recurs and leave Menu open. The captured timing must guide the hitch fix. Wi-Fi-loss timing without reopening and a separate offline cold reopen still need physical qualification.
 3. **Then repeat the tricky cases:** Wi-Fi off using Control Center; a finger held on the joystick or bucket; Menu open during the loss; and background/return. These are separate cases, so I will give short individual instructions. Recovery should not require restarting the app. Rejoining must keep offline progress saved separately from the family world.
 4. **Check saved offline play once:** Menu → Saved adventures → Adventure 1 means the separate offline copy created during the outage, not a quest. Check the moved toy remains there after reunion and after a cold reopen. The original **My solo play** save must also remain separate. This menu check has not yet been physically confirmed.
 5. **Newer iPad, then phones:** after the older iPad passes, update iPad 9, Samsung and iPhone in place and repeat the targeted outage/movement checks. Already-passed ordinary controls, speech and layout do not need a full repeat unless a change affects them. Report which build/device shows any remaining hitch.
