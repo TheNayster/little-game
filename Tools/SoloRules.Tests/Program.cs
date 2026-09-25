@@ -20,6 +20,58 @@ static class Program
         root = Path.GetFullPath(args.Length == 1 || nativeBonjour ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory and optional --bonjour."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        Test("idle tools return the same instance after grace and cue without changing players or receipts",()=>{
+            var w=SoloWorld.Create("first","second");Fill(w);
+            var original=w.Snapshot();Advance(w,179);Check(!Toy(w,"bucket-1").resetPending && Toy(w,"bucket-1").water==3);
+            Advance(w,1);Check(Toy(w,"bucket-1").resetPending);Advance(w,4);Check(Toy(w,"bucket-1").water==3);
+            Advance(w,1);var t=Toy(w,"bucket-1");Check(t.x==360 && t.y==130 && t.water==0 && !t.resetPending && t.holder=="");
+            Check(w.Snapshot().toys.Select(t=>t.id).SequenceEqual(original.toys.Select(t=>t.id)));
+            Check(JsonSerializer.Serialize(original.players,Json)==JsonSerializer.Serialize(w.Snapshot().players,Json));
+            Check(JsonSerializer.Serialize(original.receipts,Json)==JsonSerializer.Serialize(w.Snapshot().receipts,Json));
+            var revision=w.Revision;Advance(w,200);Check(w.Revision==revision);
+        });
+        Test("picking up during the return cue cancels it and a held tool never expires",()=>{
+            var w=SoloWorld.Create("first","second");Fill(w);Advance(w,183);
+            Good(w,SoloAction.Grab,"bucket-1",actor:"second");Advance(w,250);
+            Check(Toy(w,"bucket-1").holder=="second" && Toy(w,"bucket-1").water==3 && !Toy(w,"bucket-1").resetPending);
+            Good(w,SoloAction.CancelGrab,"bucket-1",actor:"second");Advance(w,184);Check(Toy(w,"bucket-1").water==3);Advance(w,1);Check(Toy(w,"bucket-1").water==0);
+        });
+        Test("completed garden activities rearm and work again without clearing partial progress",()=>{
+            var w=SoloWorld.Create("first");Fill(w);Good(w,SoloAction.Grab,"bucket-1");Good(w,SoloAction.Drop,"bucket-1","plant-1",x:810,y:330);
+            for(var i=0;i<3;i++){Good(w,SoloAction.Grab,"sponge-1");Good(w,SoloAction.Drop,"sponge-1","puddle-1",x:680,y:140);}
+            Good(w,SoloAction.StartActivity,value:"cleanup");Advance(w,59);Check(Toy(w,"plant-1").water==3 && Toy(w,"puddle-1").water==0);
+            Advance(w,1);Check(Toy(w,"plant-1").resetPending && Toy(w,"puddle-1").resetPending);
+            Advance(w,5);Check(Toy(w,"plant-1").water==0 && Toy(w,"puddle-1").water==3 && w.ReadPlayer("first").activity=="cleanup");
+            Good(w,SoloAction.Grab,"sponge-1");Good(w,SoloAction.Drop,"sponge-1","puddle-1",x:680,y:140);Advance(w,200);
+            Check(Toy(w,"puddle-1").water==2 && !Toy(w,"sponge-1").wet);
+            Fill(w);Good(w,SoloAction.Grab,"bucket-1");Good(w,SoloAction.Drop,"bucket-1","plant-1",x:810,y:330);Check(Toy(w,"plant-1").water==3);
+        });
+        Test("another child's matching held tool protects a completed station but not unrelated areas",()=>{
+            var w=SoloWorld.WithAreas(SoloWorld.Create("first","second"));Fill(w);Good(w,SoloAction.Grab,"bucket-1");Good(w,SoloAction.Drop,"bucket-1","plant-1",x:810,y:330);
+            Advance(w,63);Good(w,SoloAction.Grab,"bucket-1",actor:"second");Advance(w,100);Check(Toy(w,"plant-1").water==3 && !Toy(w,"plant-1").resetPending);
+            Good(w,SoloAction.Travel,value:"creek",actor:"second");Good(w,SoloAction.Grab,"bucket-creek",actor:"second");Advance(w,65);
+            Check(Toy(w,"plant-1").water==0 && Toy(w,"bucket-creek").holder=="second" && w.ReadPlayer("second").zone=="creek");
+        });
+        Test("idle elapsed time survives restore and the entire family's absence pauses it",()=>{
+            var w=SoloWorld.Create("first");Fill(w);Advance(w,100);var saved=Encode(w.Snapshot());
+            var restored=SoloWorld.Restore(Decode(saved));var session=new FamilySession(restored);
+            for(var i=0;i<300;i++)Check(!session.AdvanceIdle(1,out _));Check(Encode(restored.Snapshot())==saved);
+            session.Attach(1,"first",out _);for(var i=0;i<84;i++)session.AdvanceIdle(1,out _);Check(Toy(restored,"bucket-1").water==3);
+            session.AdvanceIdle(1,out _);Check(Toy(restored,"bucket-1").water==0 && session.View().idleTimers.Length==0);
+        });
+        Test("idle revision protects pending commands and replay cannot undo a committed return",()=>{
+            var w=SoloWorld.Create("first");Fill(w);Advance(w,179);var old=Command(w,SoloAction.Grab,"bucket-1");Advance(w,6);
+            Check(!w.Apply(old).Accepted);var c=Command(w,SoloAction.Grab,"bucket-1");Check(w.Apply(c).Accepted);var revision=w.Revision;
+            Check(w.Apply(c).Duplicate && w.Revision==revision && Toy(w,"bucket-1").holder=="first");
+        });
+        Test("legacy saves retain placements and progress while invalid timer records are rejected",()=>{
+            var w=SoloWorld.Create("first");Fill(w);var s=w.Snapshot();s.idleTimers=null;
+            var restored=SoloWorld.Restore(s);Check(Toy(restored,"bucket-1").water==3 && restored.Snapshot().idleTimers.Length==0);
+            s.idleTimers=new[]{new GardenIdleTimer{item="bucket-1",seconds=double.NaN}};Throws(()=>SoloWorld.Validate(s));
+            s.idleTimers=new[]{new GardenIdleTimer{item="missing",seconds=5}};Throws(()=>SoloWorld.Validate(s));
+            s.idleTimers=new[]{new GardenIdleTimer{item="tap-1",seconds=5}};Throws(()=>SoloWorld.Validate(s));
+            Throws(()=>w.AdvanceIdle(100,out _));Throws(()=>w.AdvanceIdle(-1,out _));Throws(()=>w.AdvanceIdle(double.NaN,out _));
+        });
         Test("family admission rejects another family authority world profile or credential",()=>{
             var family=Guid.NewGuid().ToString("N");var authority=Guid.NewGuid().ToString("N");var world=Guid.NewGuid().ToString("N");
             var secret=new string('a',64);var roster=Enumerable.Range(0,4).Select(i=>new FamilyMember{profile=Guid.NewGuid().ToString("N"),credentialHash=FamilyPairing.Hash(secret)}).ToArray();
@@ -395,6 +447,7 @@ static class Program
     {var p=w.Snapshot().players.FirstOrDefault(p=>p.id==actor);return new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=actor,expectedRevision=w.Revision,zone=p?.zone??"garden",visit=p?.visit??0,action=action,item=item,target=target,value=value,x=x,y=y};}
     static void Good(SoloWorld w,SoloAction action,string item="",string target="",string value="",float x=0,float y=0,string actor="first"){var r=w.Apply(Command(w,action,item,target,value,x,y,actor));Check(r.Accepted);}
     static SoloToy Toy(SoloWorld w,string id)=>w.Snapshot().toys.Single(t=>t.id==id);
+    static void Advance(SoloWorld w,int seconds){for(var i=0;i<seconds;i++)w.AdvanceIdle(1,out _);}
     static void Fill(SoloWorld w){Good(w,SoloAction.Grab,"bucket-1");Good(w,SoloAction.Drop,"bucket-1","tap-1",x:150,y:340);}
     static string Encode(SoloSnapshot s)=>JsonSerializer.Serialize(s,Json);
     static SoloSnapshot Decode(string s)=>JsonSerializer.Deserialize<SoloSnapshot>(s,Json);

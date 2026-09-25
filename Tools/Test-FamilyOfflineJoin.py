@@ -49,7 +49,11 @@ def main():
     def settle(v):wait(lambda:not inspect(v)['pending'],'settled transaction')
     def local(v):
         import json
-        return json.loads(Path(inspect(v)['savePath']).read_text().split('\n',2)[2])
+        data=json.loads(Path(inspect(v)['savePath']).read_text().split('\n',2)[2])
+        # Eligible play now advances housekeeping clocks even without moving an
+        # item. Compare retained gameplay here; timer persistence has its own tests.
+        data.pop('idleTimers',None)
+        return data
     def item(view,name):return next(t for t in view['toys'] if t['id']==name)
     def mode(v,label):v.input('button',text='Menu');v.input('button',text=label)
     try:
@@ -87,6 +91,8 @@ def main():
 
         for cycle in range(3):
             mode(first,'Play by myself');wait(lambda:not shared(first),'return to saved solo')
+            layout=first.input('resize',x=1560,y=720)
+            require(layout['controlsInSafeArea'] and layout['boardLayoutWidth']>1500,'Solo phone layout after switching')
             wait(lambda:len(server.state()['connected'])==3,'solo choice releases family slot')
             require(local(first)==original and inspect(first)['visiblePlayers']==1,'Saved local branch lost')
             time.sleep(2);require(not shared(first) and first.status()['status']=='solo-selected','Explicit solo choice ignored')
@@ -94,9 +100,11 @@ def main():
             mode(first,'Find my family');wait(lambda:shared(first),'menu rejoins current family',30)
             wait(lambda:len(server.state()['connected'])==4,'four back')
             e=inspect(first)
+            layout=first.input('resize',x=1024,y=768)
+            require(layout['controlsInSafeArea'] and abs(layout['boardLayoutWidth']-1120)<.1,'Shared tablet layout after switching')
             require(e['canvases']==1 and e['narrators']==1 and e['audioSources']==1,'Presentation/audio leaked across switches')
             require(local(first)==original and not e['pending'] and not e['dragging'],'Local save/input changed')
-        passed('three solo/family round trips preserve the draft, leave siblings playing and keep one canvas/narrator/audio source')
+        passed('three solo/family round trips preserve gameplay, resize phone/tablet layouts and keep one canvas/narrator/audio source')
 
         mode(first,'Play by myself');wait(lambda:not shared(first),'local before offline pause')
         mode(first,'Find my family');first.input('network-pause');time.sleep(3)

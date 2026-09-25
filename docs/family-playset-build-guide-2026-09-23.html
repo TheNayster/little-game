@@ -31,7 +31,7 @@
 <li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
-<div class="build-callout"><p><strong>All four family devices have joined build 79.</strong></p><p>Both iPads, Samsung and iPhone are connected to the same PC authority. Two-iPad movement, shared bucket handling, independent travel and rejoining have passed their recorded checks; the user confirms the phones' basic controls work and the children are playing on the iPads. The solo round trip also passed on the tested iPad. G1/G2/G3 remain partial. Next: replace the Windows qualification runner's two-hour lifetime with an explicit persistent home-server mode, tested separately and applied after the children finish. Sustained measurements, remaining device checks, everyday recovery/setup, iPad hosting, personal rooms and full content remain ahead. <a href="implementation/g3-phones-79-2026-09-24.html">Four-device evidence</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Remaining checks</a> · <a href="#19-implementation-audit-and-remaining-work">Implementation audit</a> · <a href="#9-first-implementation-work-queue">Next tasks in order</a></p></div>
+<div class="build-callout"><p><strong>All four family devices have joined build 79.</strong></p><p>Both iPads, Samsung and iPhone are connected to the same PC authority. Two-iPad movement, shared bucket handling, independent travel and rejoining have passed their recorded checks; the user confirms the phones' basic controls work and the children are playing on the iPads. The solo round trip also passed on the tested iPad. G1/G2/G3 remain partial. Build 82 prepares the requested wider phone layout and idle/repeat garden timers; <a href="implementation/g3-phone-layout-resets-2026-09-24.html">view the change and preview</a>. Deployment waits until the children finish. Next: replace the Windows qualification runner's two-hour lifetime with an explicit persistent home-server mode, tested separately and applied after the children finish. Sustained measurements, remaining device checks, everyday recovery/setup, iPad hosting, personal rooms and full content remain ahead. <a href="implementation/g3-phones-79-2026-09-24.html">Four-device evidence</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Remaining checks</a> · <a href="#19-implementation-audit-and-remaining-work">Implementation audit</a> · <a href="#9-first-implementation-work-queue">Next tasks in order</a></p></div>
 <div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
 <ul>
 <li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
@@ -443,6 +443,7 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <h2 id="9-first-implementation-work-queue">9. First implementation work queue</h2>
 <p><strong>Current queue, audited September 24.</strong> The original startup work is largely present: separate project/repository, recorded tool versions, stable app identities, named build profiles, repeatable builders, native device launches, and scoped save/update proofs. Automatic renewal and independent backup/restore remain open. Section 19 separates completed checks from full gate completion; older implementation records retain their dated evidence.</p>
 <p>Complete one bounded task at a time. Each row below will take multiple tasks; it is a dependency order, not permission to start them all together.</p>
+<p><strong>Current user-directed correction before queue item 1:</strong> widen the phone play area without changing the iPad geometry, and add idle/repeat timers to the existing garden fixtures. This advances a narrow part of ITEM-03 at the user's request; the full G5 world policy remains in sequence. <a href="implementation/g3-phone-layout-resets-2026-09-24.html">Record</a>.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
 <thead>
 <tr>
@@ -945,15 +946,15 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td><strong>G3 phone update/admission milestone complete within its recorded scope.</strong> All four devices are connected; the user reports working controls and children playing on the iPads. Further test requests and live restarts are deferred during their play. <a href="implementation/g3-phones-79-2026-09-24.html">Phone and four-device record</a>.</td>
+<td><strong>User-directed G3 correction: wider phone layout and repeatable garden play (FAMILY-01, ACT-01, ITEM-03).</strong> Build 81 passed real-time reset/replication. Final 82 passed phone/tablet layout checks, 10 shared-control regressions and 7 offline/rejoin checks including resized solo/family cycles. Windows, signed Android and unsigned native iOS builds passed. Apple signing/installation and live deployment await availability. Live devices/server remain on 79 while the children play. <a href="implementation/g3-phone-layout-resets-2026-09-24.html">Change record</a>.</td>
 </tr>
 <tr>
 <td>Latest completed engineering task</td>
-<td>Extended the Android installer for a selected G3 artifact/endpoint, exercised the in-place Samsung update, and added trusted-USB iPhone enrollment with backup/retention/version checks. iPhone update, retained preferences, Keychain consumption and native admission passed; server records all four distinct mobile profiles on the same authority.</td>
+<td><strong>Build 82 prepared:</strong> wide phones use about 94% of the safe width; tablet geometry stays unchanged. Garden tool returns and completed-activity repeats use saved authority timers with held-item protection. Core rules, real-time 81 timers, final 82 shared/rejoin/layout regressions and platform builds passed. <a href="implementation/g3-phone-layout-resets-2026-09-24.html">Evidence</a>. Live deployment is pending; devices remain on 79.</td>
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td><strong>Persistent PC home-server mode (NET-02), with isolated restart/save/rejoin checks.</strong> The current qualification runner has a two-hour lifetime. Build and validate its replacement separately; deploy after the children finish, preserving the live world. Then continue remaining device/lifecycle and G3 prolonged-outage recovery/parent setup checks. Required iPad hosting/recovery remains G4. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Checklist</a>.</td>
+<td>Apply the prepared phone/timer correction after the family finishes, preserving saves; check native phone safe areas. Then <strong>persistent PC home-server mode (NET-02), with isolated restart/save/rejoin checks.</strong> The current qualification runner has a two-hour lifetime. Build and validate its replacement separately; deploy after the children finish, preserving the live world. Then continue remaining device/lifecycle and G3 prolonged-outage recovery/parent setup checks. Required iPad hosting/recovery remains G4. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Checklist</a>.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -1062,6 +1063,11 @@ Status: pending
 <td>Sustained four-device performance, every activity/lifecycle, detailed phone ownership/travel, unattended renewal or always-on PC operation</td>
 </tr>
 <tr>
+<td>Wider phone floor and idle/repeat garden timers (staged update)</td>
+<td>Build 82 layout/shared/rejoin checks plus identical 81 timer authority tested in real time. Tools: 180s + 5s cue; completed stations: 60s + 5s cue. Held tools are protected. <a href="implementation/g3-phone-layout-resets-2026-09-24.html">Record</a></td>
+<td>Live deployment, native phone/notch checks, full personal-item/container/creation policy or host migration</td>
+</tr>
+<tr>
 <td>Smoother remote movement under the tested conditions</td>
 <td>Shared 68: <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-normal.json">normal</a>, <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-1.json">delayed-motion run 1</a>, <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-2.json">run 2</a></td>
 <td>Sustained mobile FPS, real Wi-Fi impairment or larger-world performance. Tests impair received motion only.</td>
@@ -1120,8 +1126,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>G5 — durable family world</strong></td>
-<td><strong>Not built beyond checkpoint/identity primitives</strong></td>
-<td>Owned rooms, creations, portable item/container policies, idle returns, stock, edit history and branch/reunion.</td>
+<td><strong>Garden-only idle-return primitive staged in 82; the full system remains open</strong></td>
+<td>Owned rooms, creations, portable item/container policies, return protection/cues, stock, edit history and branch/reunion.</td>
 </tr>
 <tr>
 <td><strong>G6 — finished slice</strong></td>
@@ -1218,8 +1224,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>ACT-01</strong></td>
-<td><strong>Partial:</strong> optional garden/cleanup prompts; free exit</td>
-<td>Picture picker, reusable invitations/membership/checkpoints and nonblocking join/switch for all activities. G6/G7.</td>
+<td><strong>Partial:</strong> optional garden/cleanup prompts and free exit; staged build 82 rearms completed fixtures without clearing partial progress</td>
+<td>Deploy/qualify repeat play; picture picker, reusable invitations/membership/checkpoints and nonblocking join/switch for all activities. G6/G7.</td>
 </tr>
 <tr>
 <td><strong>COOK-01</strong></td>
@@ -1303,8 +1309,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>ITEM-03</strong></td>
-<td><strong>Not built:</strong> no inactivity return timer</td>
-<td>Typed loans, home anchors, activity-aware timers, return cues and atomic recovery-safe returns. G5.</td>
+<td><strong>Partial, staged:</strong> garden bucket/sponge idle returns use one authority, saved clocks, a five-second cue and held-item protection; the completed flower/puddle can repeat</td>
+<td>Deploy/qualify on devices, then full typed loans, home anchors, personal/creation protection, containers, spoken cue and host-recovery behavior. The garden fixture does not complete G5.</td>
 </tr>
 <tr>
 <td><strong>STOCK-01</strong></td>
@@ -1450,7 +1456,7 @@ Status: pending
 <li>Recorded the successful <strong>four-window human check</strong> without calling it physical-device acceptance.</li>
 <li>Removed the incorrect claim that two owned bedrooms already had test fixtures; no bedroom implementation exists yet.</li>
 <li>Replaced the stale initial setup queue and G1-only headline with the actual G1/G2/G3 position, preserving open gates.</li>
-<li>Distinguished the test TV and Creek fixture from completed content; marked auto-join/host switching and idle item returns as unbuilt.</li>
+<li>The original audit distinguished the test TV/Creek from completed content. Later records now show automatic joining and staged garden idle returns; host switching and the full personal-world policy remain unbuilt.</li>
 <li>Recorded known Android/Mac versions, corrected the two iPads' OS mapping from device evidence, and clarified that Windows exports to Xcode on the Mac.</li>
 <li>Separated the original research findings and proposed package choices from current installed code and dated qualification. Historical reports remain evidence, not a second competing plan.</li>
 </ul></article></div>

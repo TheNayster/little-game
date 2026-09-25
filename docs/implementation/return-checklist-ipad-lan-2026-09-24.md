@@ -19,6 +19,10 @@ The previous unpaired solo garden, paired-device solo draft and server world are
 6. **Done: Samsung 15 → 79 in place.** Original signing identity, installed APK hash, native enrollment/discovery and automatic family admission verified. Full layout, walking, bucket fill/pour and Listen passed by user report. Accessible files were backed up; exact private foundation-preference retention was not independently read back.
 7. **Done: iPhone 20 → 79 in place and all four connected.** USB Sideloadly update completed, native version matched and all three prior preference values remained. The fourth identity was consumed into Keychain and joined automatically. User reports the full layout, walking, bucket drag and Listen work. Server evidence confirms four distinct physical clients together. This does not complete sustained four-device gameplay/lifecycle acceptance.
 
+## Prepared correction — build 82
+
+The user requested less phone side space and timers for unused items/completed quests. [Build 82](g3-phone-layout-resets-2026-09-24.html) widens the phone floor, keeps tablet geometry, returns idle bucket/sponge after 180 + 5 seconds and rearms completed flower/puddle after 60 + 5 seconds. Held tools stay protected. Windows, signed Android and unsigned native iOS builds pass, together with scoped regressions. Apple signing/installation remains. Live deployment and phone/notch acceptance wait until the children finish playing. Shared timers need the authority update; phone layout needs the client update. No current device was interrupted.
+
 ## Next Windows task
 
 The temporary qualification server exits after two hours. Provide a persistent home-server mode, keep automated probe timeouts, preserve its saved world and single-writer lock, and prove stop/restart/rejoin on isolated data. A live replacement needs a controlled restart after the children finish playing. Do not interrupt them to apply it.

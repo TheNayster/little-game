@@ -42,11 +42,17 @@ namespace LittleWeeps.Core
             return true;
         }
         public SoloSnapshot Checkpoint()=>world.Snapshot();
+        public bool AdvanceIdle(double seconds,out bool visibleChange)
+        {
+            visibleChange=false;
+            // An empty family world does not age items while everybody is away.
+            return connections.Count>0 && world.AdvanceIdle(seconds,out visibleChange);
+        }
         // A client view is not a successor/recovery checkpoint: receipts stay on
         // the authority. Full recovery replication is a later, separate contract.
         public SoloSnapshot View()
         {
-            var state=world.Snapshot();state.receipts=Array.Empty<SoloReceipt>();return state;
+            var state=world.Snapshot();state.receipts=Array.Empty<SoloReceipt>();state.idleTimers=Array.Empty<GardenIdleTimer>();return state;
         }
     }
 }

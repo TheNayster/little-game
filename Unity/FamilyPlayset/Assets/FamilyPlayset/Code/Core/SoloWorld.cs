@@ -23,7 +23,14 @@ namespace LittleWeeps.Core
         public float x, y;
         public int water;
         public bool wet;
+        public bool resetPending;
         public SoloToy Copy() => (SoloToy)MemberwiseClone();
+    }
+    [Serializable] public sealed class GardenIdleTimer
+    {
+        public string item;
+        public double seconds;
+        public GardenIdleTimer Copy() => (GardenIdleTimer)MemberwiseClone();
     }
     [Serializable] public sealed class SoloReceipt
     {
@@ -39,6 +46,9 @@ namespace LittleWeeps.Core
         public SoloPlayer[] players;
         public SoloToy[] toys;
         public SoloReceipt[] receipts = Array.Empty<SoloReceipt>();
+        // Additive, optional maintenance metadata. Old saves begin a fresh grace
+        // period; item IDs, contents, placements and receipts are unchanged.
+        public GardenIdleTimer[] idleTimers = Array.Empty<GardenIdleTimer>();
     }
     [Serializable] public sealed class SoloCommand
     {
@@ -67,6 +77,7 @@ namespace LittleWeeps.Core
     public sealed class SoloWorld
     {
         public const float Width = 1000, Height = 500, InteractionRadius = 90;
+        public const double ToolIdleSeconds=180, ActivityIdleSeconds=60, ResetCueSeconds=5;
         private readonly SoloSnapshot state;
         public long Revision => state.revision;
         private SoloWorld(SoloSnapshot snapshot) { state = snapshot; }
@@ -89,7 +100,8 @@ namespace LittleWeeps.Core
             // A pointer lease never survives closing the app or a recovered save.
             if (copy.toys.Any(t => !string.IsNullOrEmpty(t.holder)))
             {
-                foreach (var toy in copy.toys) toy.holder = "";
+                foreach (var toy in copy.toys.Where(t=>!string.IsNullOrEmpty(t.holder)))
+                {toy.holder = "";toy.resetPending=false;copy.idleTimers=copy.idleTimers.Where(c=>c.item!=toy.id).ToArray();}
                 copy.revision++;
             }
             return new SoloWorld(copy);
@@ -148,7 +160,8 @@ namespace LittleWeeps.Core
         private static SoloSnapshot Clone(SoloSnapshot s)
         {
             var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId,
-                players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray() };
+                players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
+                idleTimers=(s.idleTimers??Array.Empty<GardenIdleTimer>()).Select(t=>t.Copy()).ToArray() };
             foreach(var p in copy.players)p.zone=AreaOf(p.zone);
             foreach(var t in copy.toys)t.zone=AreaOf(t.zone);
             return copy;
@@ -180,8 +193,69 @@ namespace LittleWeeps.Core
             foreach (var r in s.receipts)
                 if (r == null || !Id(r.requestId) || !ids.Add(r.requestId) || string.IsNullOrEmpty(r.fingerprint) || r.fingerprint.Length > 1024 ||
                     string.IsNullOrEmpty(r.outcome) || r.outcome.Length > 128 || r.revision < 1 || r.revision > s.revision) throw new InvalidOperationException("Invalid command receipt.");
+            ids.Clear();
+            if(s.idleTimers!=null && s.idleTimers.Length>s.toys.Length)throw new InvalidOperationException("Too many idle timers.");
+            foreach(var timer in s.idleTimers??Array.Empty<GardenIdleTimer>())
+                if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
+                    double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
+                    throw new InvalidOperationException("Invalid idle timer.");
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":KnownArea(zone);
+        private void Touch(SoloToy toy)
+        {
+            if(toy==null)return;
+            toy.resetPending=false;state.idleTimers=state.idleTimers.Where(t=>t.item!=toy.id).ToArray();
+        }
+        private bool IdleEligible(SoloToy toy)
+        {
+            if(!string.IsNullOrEmpty(toy.holder))return false;
+            if(toy.kind==ToyKind.Bucket)return toy.x!=360 || toy.y!=130 || toy.water!=0;
+            if(toy.kind==ToyKind.Sponge)return toy.x!=560 || toy.y!=120 || toy.wet;
+            if(toy.kind==ToyKind.Plant || toy.kind==ToyKind.Puddle)
+            {
+                var tool=toy.kind==ToyKind.Plant?ToyKind.Bucket:ToyKind.Sponge;
+                if(state.toys.Any(t=>t.zone==toy.zone && t.kind==tool && !string.IsNullOrEmpty(t.holder)))return false;
+                return toy.kind==ToyKind.Plant?toy.water==3:toy.water==0;
+            }
+            return false;
+        }
+        // Only the authority advances eligible PLAY time. No wall-clock catch-up,
+        // client timers, room wipes or new item instances. This deliberately covers
+        // the garden fixture only; personal toys/creations need their later policy.
+        public bool AdvanceIdle(double seconds,out bool visibleChange)
+        {
+            if(double.IsNaN(seconds) || double.IsInfinity(seconds) || seconds<0 || seconds>1)throw new ArgumentOutOfRangeException(nameof(seconds));
+            visibleChange=false;if(seconds==0)return false;
+            if(state.revision>=long.MaxValue-1)throw new InvalidOperationException("World revision limit reached.");
+            var changed=false;
+            foreach(var toy in state.toys)
+            {
+                var timer=state.idleTimers.FirstOrDefault(t=>t.item==toy.id);
+                if(!IdleEligible(toy))
+                {
+                    if(timer!=null || toy.resetPending){visibleChange|=toy.resetPending;Touch(toy);changed=true;}
+                    continue;
+                }
+                if(timer==null){timer=new GardenIdleTimer{item=toy.id};state.idleTimers=state.idleTimers.Concat(new[]{timer}).ToArray();}
+                timer.seconds+=seconds;changed=true;
+                var grace=toy.kind==ToyKind.Bucket || toy.kind==ToyKind.Sponge?ToolIdleSeconds:ActivityIdleSeconds;
+                if(timer.seconds>=grace+ResetCueSeconds)
+                {
+                    // Eligibility was rechecked this tick, including another
+                    // player's hold. Preserve the exact shared object identity.
+                    if(toy.kind==ToyKind.Bucket){toy.x=360;toy.y=130;toy.water=0;}
+                    if(toy.kind==ToyKind.Sponge){toy.x=560;toy.y=120;toy.wet=false;}
+                    if(toy.kind==ToyKind.Plant)toy.water=0;
+                    if(toy.kind==ToyKind.Puddle)toy.water=3;
+                    Touch(toy);visibleChange=true;
+                }
+                else if(timer.seconds>=grace && !toy.resetPending){toy.resetPending=true;visibleChange=true;}
+            }
+            // Clock checkpoints do not invalidate an in-flight command every
+            // frame. Only a visible authoritative transition advances revision.
+            if(visibleChange)state.revision++;
+            return changed;
+        }
         public SoloResult Apply(SoloCommand c)
         {
             SoloResult Reject(string reason) => new SoloResult(false, reason, Revision);
@@ -208,7 +282,7 @@ namespace LittleWeeps.Core
                     // These are essential station tools. Settle a live hold at
                     // its rack, preserving water; no new instance is spawned.
                     foreach(var held in state.toys.Where(t=>t.holder==c.actor))
-                    {held.holder="";held.x=held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Bucket?130:120;}
+                    {held.holder="";held.x=held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Bucket?130:120;Touch(held);}
                     player.zone=c.value;player.visit++;player.x=420;player.y=100;player.activity="";outcome="area-entered";break;
                 case SoloAction.Move: player.x = c.x; player.y = c.y; break;
                 case SoloAction.ChangeAvatar:
@@ -221,10 +295,12 @@ namespace LittleWeeps.Core
                 case SoloAction.Grab:
                     if (item == null || item.kind != ToyKind.Bucket && item.kind != ToyKind.Sponge) return Reject("not-movable");
                     if (!string.IsNullOrEmpty(item.holder) || state.toys.Any(t => t.holder == c.actor)) return Reject("already-held");
-                    item.holder = c.actor; break;
+                    item.holder = c.actor;Touch(item);
+                    foreach(var station in state.toys.Where(t=>t.zone==item.zone && (item.kind==ToyKind.Bucket && t.kind==ToyKind.Plant || item.kind==ToyKind.Sponge && t.kind==ToyKind.Puddle)))Touch(station);
+                    break;
                 case SoloAction.CancelGrab:
                     if (item == null || item.holder != c.actor) return Reject("not-holder");
-                    item.holder = ""; break;
+                    item.holder = "";Touch(item);break;
                 case SoloAction.Drop:
                     if (item == null || item.holder != c.actor) return Reject("not-holder");
                     var target = state.toys.FirstOrDefault(t => t.id == c.target);
@@ -244,7 +320,7 @@ namespace LittleWeeps.Core
                     // its illustration remains readable and the prop is reachable.
                     if (outcome == "bucket-filled" || outcome == "plant-watered" || outcome == "no-water-transferred" || outcome == "puddle-cleaned")
                         item.y = Math.Max(35, c.y - 70);
-                    item.holder = ""; break;
+                    item.holder = "";Touch(item);Touch(target);break;
                 default: return Reject("unknown-action");
             }
             state.revision++;

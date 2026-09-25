@@ -30,6 +30,8 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
         private readonly Dictionary<string, Image> targetRings = new Dictionary<string, Image>();
         private readonly Dictionary<string, GameObject> targetArrows = new Dictionary<string, GameObject>();
+        private readonly Dictionary<string,GameObject> resetCues=new Dictionary<string,GameObject>();
+        private readonly Dictionary<RectTransform,Vector2> layoutPositions=new Dictionary<RectTransform,Vector2>();
         private CheckpointStore store;
         private SoloWorld localWorld;
         private Action familyModeAction;
@@ -68,6 +70,7 @@ namespace LittleWeeps.Client
             // Disable old children now so deferred Destroy cannot receive input.
             foreach(Transform child in safe){child.gameObject.SetActive(false);Destroy(child.gameObject);}
             Surfaces.Clear();toys.Clear();fills.Clear();targetRings.Clear();targetArrows.Clear();
+            resetCues.Clear();layoutPositions.Clear();
             friends.Clear();holders.Clear();travelButtons.Clear();fence.Clear();
             Board=null;avatar=null;menu=null;connecting=null;dragging=null;requestedArea=null;travelSubmitted=false;
             grabConfirmed=false;gestureEnded=false;gestureCancelled=false;dropSubmitted=false;renderedSequence=-1;
@@ -116,6 +119,7 @@ namespace LittleWeeps.Client
         public SoloToy[] ReadToys()=>AllToys().Where(t=>SoloWorld.AreaOf(t.zone)==CurrentArea).ToArray();
         private bool HasWorld=>World!=null || shared?.View!=null;
         private float nextSave, nextMovement, lastMovement;
+        private bool applicationPaused;
         private float lastSharedMovement;
         private Rect lastSafeArea;
         private static readonly Color Ink = new Color(.15f,.25f,.29f), Cream = new Color(.98f,.96f,.88f);
@@ -260,7 +264,7 @@ namespace LittleWeeps.Client
             saveLabel=Label(safe,"Local solo prototype · placeholder art",15,new Vector2(0,-380),new Vector2(1130,28));
             menu=Panel(safe,"Pause panel",Vector2.zero,new Vector2(1190,760),new Color(.97f,.97f,.91f,.98f),true).gameObject;
             Label(menu.transform,"Take your time",42,new Vector2(0,230),new Vector2(760,100));
-            Label(menu.transform,"Your toys stay where you put them.\nYou can always leave an activity.",25,new Vector2(0,140),new Vector2(800,80));
+            Label(menu.transform,"Unused garden tools go back after a while.\nYou can always leave an activity.",25,new Vector2(0,140),new Vector2(800,80));
             voiceLabel=Button(menu.transform,"Voice on",new Vector2(0,35),new Vector2(350,75),ToggleVoice,new Color(.77f,.88f,.96f));
             voiceLabel.transform.parent.name="Voice setting";
             voiceLabel.rectTransform.anchoredPosition=new Vector2(20,0);voiceLabel.rectTransform.sizeDelta=new Vector2(250,75);
@@ -277,6 +281,10 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
+            // Session switches destroy the old (already disabled) children at
+            // frame end; do not retain them for later orientation/layout changes.
+            foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
+            ApplyResponsiveLayout();
         }
         public SoloResult Command(SoloAction action,string item="",string target="",string value="",float x=0,float y=0)
         {
@@ -482,12 +490,14 @@ namespace LittleWeeps.Client
                 else shared.Walk(WalkMode.Stop);
                 return;
             }
-            if(!HasWorld || MenuOpen || TravelPending)return;
+            if(!HasWorld || MenuOpen || TravelPending || applicationPaused)return;
             // Minimized Windows players may update much faster than presentation.
             // Bound command creation independently of render frequency.
             var now=Time.realtimeSinceStartup;
             if(now<nextMovement)return;
             var delta=Mathf.Clamp(now-lastMovement,0,.1f);lastMovement=now;nextMovement=now+1f/30;
+            if(World.AdvanceIdle(delta,out var maintenanceVisible))dirty=true;
+            if(maintenanceVisible)Render();
             if(shared!=null)delta=Mathf.Clamp(now-lastSharedMovement,0,.1f);
             var p=ReadPlayer(Actor);var current=new Vector2(p.x,p.y);var next=current;
             if(JoystickMode)next+=stickDirection*(210*delta);
@@ -510,7 +520,7 @@ namespace LittleWeeps.Client
             if(Narration!=null)Destroy(Narration);
             foreach(var sprite in new[]{rounded,circle,hintRing})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}
         }
-        private void OnApplicationPause(bool paused){if(paused){CancelPointers();SaveNow();}}
+        private void OnApplicationPause(bool paused){applicationPaused=paused;lastMovement=Time.realtimeSinceStartup;if(paused){CancelPointers();SaveNow();}}
         private void OnApplicationFocus(bool focused){if(!focused && HasWorld){CancelPointers();SaveNow();}}
         private void OnApplicationQuit(){if(HasWorld){CancelPointers();SaveNow();}}
         private Vector2 ToBoard(float x,float y)=>new Vector2((x/SoloWorld.Width-.5f)*Board.rect.width,(y/SoloWorld.Height-.5f)*Board.rect.height);
@@ -546,6 +556,7 @@ namespace LittleWeeps.Client
                 if(t.kind==ToyKind.Bucket)fills[t.id].rectTransform.sizeDelta=new Vector2(58,5+13*t.water);
                 if(t.kind==ToyKind.Plant)fills[t.id].gameObject.SetActive(t.water==3);
                 if(t.kind==ToyKind.Puddle)fills[t.id].rectTransform.localScale=Vector3.one*(t.water/3f);
+                if(resetCues.TryGetValue(t.id,out var cue))cue.SetActive(t.resetPending);
             }
             if(shared!=null)RenderFriends();
             // Larger y is farther back on the illustrated floor plane.
@@ -577,6 +588,16 @@ namespace LittleWeeps.Client
             if(t.kind==ToyKind.Plant){Panel(root,"Stem",new Vector2(0,23),new Vector2(10,79),new Color(.27f,.51f,.29f));Panel(root,"Leaf",new Vector2(-19,32),new Vector2(40,20),new Color(.38f,.66f,.33f),false,true);Panel(root,"Pot",new Vector2(0,-22),new Vector2(76,54),new Color(.8f,.43f,.3f));fills[t.id]=Panel(root,"Bloom",new Vector2(0,64),new Vector2(68,68),new Color(.96f,.52f,.61f),false,true);Panel(fills[t.id].transform,"Pollen",Vector2.zero,new Vector2(26,26),new Color(1,.84f,.35f),false,true);}
             if(t.kind==ToyKind.Puddle)fills[t.id]=Panel(root,"Puddle",Vector2.zero,new Vector2(126,49),new Color(.41f,.73f,.86f),false,true);
             Label(root,t.kind.ToString(),18,new Vector2(0,-70),new Vector2(135,32));
+            if(t.kind!=ToyKind.Tap)
+            {
+                var cue=Panel(root,"Idle return cue",new Vector2(0,115),new Vector2(160,36),Cream).gameObject;
+                // A picture plus plain text; never a ticking challenge/failure timer.
+                var picture=Panel(cue.transform,"Return picture",new Vector2(-59,0),new Vector2(26,26),new Color(.87f,.72f,.33f),false,true);
+                Panel(picture.transform,"Arrow stem",new Vector2(0,1),new Vector2(15,4),Ink);
+                var arrow=Panel(picture.transform,"Arrow tip",new Vector2(-5,4),new Vector2(10,4),Ink);arrow.rectTransform.localRotation=Quaternion.Euler(0,0,45);
+                Label(cue.transform,t.kind==ToyKind.Bucket || t.kind==ToyKind.Sponge?"Back soon":"Again soon",16,new Vector2(15,0),new Vector2(120,32));
+                cue.SetActive(false);resetCues[t.id]=cue;
+            }
         }
         private void DrawAvatar()
         {var visual=CreateAvatar("Pup");avatar=visual.root;head=visual.head;body=visual.body;}
@@ -628,6 +649,39 @@ namespace LittleWeeps.Client
             {var distance=Vector2.Distance(new Vector2(x,y),new Vector2(47.5f,47.5f));texture.SetPixel(x,y,new Color(1,1,1,Mathf.Clamp01(47-distance)*Mathf.Clamp01(distance-41)));}
             texture.Apply();return Sprite.Create(texture,new Rect(0,0,96,96),new Vector2(.5f,.5f));
         }
-        private void UpdateSafeArea(){lastSafeArea=Screen.safeArea;safe.anchorMin=new Vector2(lastSafeArea.xMin/Screen.width,lastSafeArea.yMin/Screen.height);safe.anchorMax=new Vector2(lastSafeArea.xMax/Screen.width,lastSafeArea.yMax/Screen.height);safe.offsetMin=safe.offsetMax=Vector2.zero;}
+        private void ApplyResponsiveLayout()
+        {
+            if(Board==null)return;
+            Canvas.ForceUpdateCanvases();
+            // Expand the floor and distribute controls on long landscape phones.
+            // Do not stretch the whole canvas: that distorts faces/text and changes
+            // the already-qualified tablet layout. World coordinates stay fixed.
+            var wide=safe.rect.width/safe.rect.height>1.85f;
+            var width=wide?Mathf.Max(1120,safe.rect.width-96):1120;
+            var spread=width/1120;
+            foreach(var pair in layoutPositions)pair.Key.anchoredPosition=new Vector2(pair.Value.x*spread,pair.Value.y);
+            Board.sizeDelta=new Vector2(width,500);
+            ((RectTransform)Board.Find("Sky")).sizeDelta=new Vector2(width-4,216);
+            floorPath.rectTransform.sizeDelta=new Vector2(width-70,70);
+            var cell=(width-40)/7;
+            for(var i=0;i<fence.Count;i++)
+            {
+                var rect=(RectTransform)fence[i].transform;
+                rect.anchoredPosition=new Vector2(wide?-width/2+20+cell*(i+.5f):-465+i*155,80);
+                rect.sizeDelta=new Vector2(wide?cell-12:142,65);
+            }
+            stick.anchoredPosition=new Vector2(-width/2+83,-193);
+            activity.rectTransform.sizeDelta=new Vector2(width+10,44);
+            message.rectTransform.sizeDelta=new Vector2(width-170,40);
+            saveLabel.rectTransform.sizeDelta=new Vector2(width+10,28);
+            ((RectTransform)menu.transform).sizeDelta=new Vector2(width+70,760);
+            if(avatar!=null)Render();
+        }
+        private void UpdateSafeArea()
+        {
+            lastSafeArea=Screen.safeArea;safe.anchorMin=new Vector2(lastSafeArea.xMin/Screen.width,lastSafeArea.yMin/Screen.height);
+            safe.anchorMax=new Vector2(lastSafeArea.xMax/Screen.width,lastSafeArea.yMax/Screen.height);safe.offsetMin=safe.offsetMax=Vector2.zero;
+            ApplyResponsiveLayout();
+        }
     }
 }

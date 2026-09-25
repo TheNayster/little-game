@@ -1,0 +1,45 @@
+{
+  "windows": {
+    "currentCSharpFilesMatched": 36,
+    "builds": [
+      {
+        "role": "Server",
+        "version": "0.0.82",
+        "result": "Succeeded",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": true
+      },
+      {
+        "role": "Client",
+        "version": "0.0.82",
+        "result": "Succeeded",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": false
+      }
+    ]
+  },
+  "android": {
+    "currentCSharpFilesMatched": 36,
+    "version": "0.0.82",
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "development": false
+  },
+  "iosExport": {
+    "currentCSharpFilesMatched": 36,
+    "version": "0.0.82",
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "development": false,
+    "nativeCompileAndLinkPassed": true,
+    "signed": false,
+    "preparedUnsignedIpaSha256": "4e9f975a8e11f94b6d09b92fe2314cfd95e61740305f7a6bf8b3b6ed0bfab912"
+  },
+  "timerRulesAndAuthorityIdenticalToRealTime81Check": true,
+  "build": 82,
+  "deployed": false
+}

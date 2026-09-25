@@ -52,6 +52,8 @@ namespace LittleWeeps.NetworkProbe
         private double motionClock,accumulator,nextMotionSend,lastPositionSave,nextMotionEvidence;
         private long motionSequence,seenMotionSequence;
         private bool positionDirty;
+        private bool maintenanceDirty;
+        private double lastMaintenanceSave;
         private int checkpointWrites,motionPackets,diagnosticWriteConflicts;
         private readonly Dictionary<string,double> positionTimes=new Dictionary<string,double>();
         private readonly Dictionary<string,long> inputAcks=new Dictionary<string,long>();
@@ -505,7 +507,11 @@ namespace LittleWeeps.NetworkProbe
                 foreach(var pending in delayedFrames.Where(v=>v.due<=now).OrderBy(v=>v.due).ToArray()){delayedFrames.Remove(pending);ApplyMotion(pending.frame);}
                 return;
             }
-            accumulator+=Math.Min(.1,Math.Max(0,now-motionClock));motionClock=now;var moved=false;var stepped=false;
+            var elapsed=Math.Min(.1,Math.Max(0,now-motionClock));
+            accumulator+=elapsed;motionClock=now;var moved=false;var stepped=false;
+            maintenanceDirty|=session.AdvanceIdle(elapsed,out var maintenanceVisible);
+            if(maintenanceVisible){SaveAuthority();Publish();}
+            else if(maintenanceDirty && now-lastMaintenanceSave>=5)SaveAuthority();
             while(accumulator>=1.0/30){stepped=true;moved|=movement.Tick(now,1f/30);accumulator-=1.0/30;}
             positionDirty|=moved;
             if(positionDirty && ((stepped && !moved) || now-lastPositionSave>=1))SaveAuthority();
@@ -581,7 +587,7 @@ namespace LittleWeeps.NetworkProbe
             }
             catch(Exception e){Fail(e);}
         }
-        private void SaveAuthority(){store.Save(JsonUtility.ToJson(session.Checkpoint()));checkpointWrites++;positionDirty=false;lastPositionSave=Time.realtimeSinceStartupAsDouble;}
+        private void SaveAuthority(){store.Save(JsonUtility.ToJson(session.Checkpoint()));checkpointWrites++;positionDirty=false;maintenanceDirty=false;lastPositionSave=lastMaintenanceSave=Time.realtimeSinceStartupAsDouble;}
         private void TraceConnection(string phase,ulong peer,string detail)
         {
             if(connectionTrace.Count>=256)connectionTrace.RemoveAt(0);
@@ -629,7 +635,7 @@ namespace LittleWeeps.NetworkProbe
         {ConnectionStatus=status;if(output!=null)WriteJson(Path.Combine(output,"status.json"),new Status{role=config.role,runId=config.runId,instanceId=config.instanceId,build=Application.version,status=status,reason=reason,pid=System.Diagnostics.Process.GetCurrentProcess().Id});}
         private void Fail(Exception error)
         {failed=true;Debug.LogException(error);WriteStatus("failed",error.Message);Application.Quit(1);}
-        private void Stop(){if(config.role=="server" && positionDirty)SaveAuthority();stopping=true;network.Shutdown();WriteStatus("stopped","");Application.Quit(0);}
+        private void Stop(){if(config.role=="server" && (positionDirty || maintenanceDirty))SaveAuthority();stopping=true;network.Shutdown();WriteStatus("stopped","");Application.Quit(0);}
         private void OnApplicationPause(bool paused)
         {
 #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
@@ -651,6 +657,6 @@ namespace LittleWeeps.NetworkProbe
             if(config==null || !config.verifyGarden)throw new InvalidOperationException("Verification config required.");
             SetFamilyForeground(foreground);
         }
-        private void OnApplicationQuit(){if(!failed && config?.role=="server" && positionDirty)SaveAuthority();stopping=true;discovery?.Dispose();if(network!=null)network.Shutdown();authorityLock?.Dispose();}
+        private void OnApplicationQuit(){if(!failed && config?.role=="server" && (positionDirty || maintenanceDirty))SaveAuthority();stopping=true;discovery?.Dispose();if(network!=null)network.Shutdown();authorityLock?.Dispose();}
     }
 }

@@ -24,6 +24,7 @@ namespace LittleWeeps.NetworkProbe
         private InputDevice[] hostPointers;
         private int serial;
         private bool working,down;
+        private bool evidencePending;
         private string failure;
         private Vector2 mousePoint;
         private string traceActor;
@@ -37,6 +38,7 @@ namespace LittleWeeps.NetworkProbe
         {
             public int serial,visiblePlayers,canvases,narrators,audioSources;public bool passed,ready,pending,connected,menuOpen,shared;
             public string error,build,actor,feedback,dragging,zone,savePath;public PlayerView[] players;public ToyView[] toys;
+            public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
         private void OnDisable()=>Application.logMessageReceived-=Log;
@@ -53,6 +55,7 @@ namespace LittleWeeps.NetworkProbe
         private void Update()
         {
             if(working || probe==null)return;
+            if(evidencePending){Write();return;}
             var path=Path.Combine(probe.Output,"garden-control.json");if(!File.Exists(path))return;
             try
             {
@@ -76,7 +79,12 @@ namespace LittleWeeps.NetworkProbe
             try
             {
                 if(!screen.Ready && step.action!="inspect")throw new InvalidOperationException("Garden is not ready.");
-                if(step.action=="press" || step.action=="move" || step.action=="release")
+                if(step.action=="resize")
+                {
+                    if(step.x<640 || step.x>2200 || step.y<400 || step.y>1400)throw new InvalidOperationException("Invalid test resolution.");
+                    Screen.SetResolution((int)step.x,(int)step.y,FullScreenMode.Windowed);await Task.Delay(600);Canvas.ForceUpdateCanvases();
+                }
+                else if(step.action=="press" || step.action=="move" || step.action=="release")
                 {
                     mousePoint=Point(step);if(step.action=="press")down=true;if(step.action=="release")down=false;
                     InputSystem.QueueStateEvent(mouse,new MouseState{position=mousePoint}.WithButton(MouseButton.Left,down));
@@ -149,6 +157,12 @@ namespace LittleWeeps.NetworkProbe
         }
         private Vector2 BoardPosition(RectTransform rect)
         {var p=screen.Board.InverseTransformPoint(rect.position);return new Vector2((p.x/screen.Board.rect.width+.5f)*1000,(p.y/screen.Board.rect.height+.5f)*500);}
+        private Rect Bounds(RectTransform rect)
+        {
+            var corners=new Vector3[4];rect.GetWorldCorners(corners);
+            var a=RectTransformUtility.WorldToScreenPoint(null,corners[0]);var b=RectTransformUtility.WorldToScreenPoint(null,corners[2]);
+            return Rect.MinMaxRect(a.x,a.y,b.x,b.y);
+        }
         private void Write()
         {
             var evidence=new Evidence{serial=serial,passed=string.IsNullOrEmpty(failure),error=failure??"",build=Application.version,actor=probe.Settings.profile,ready=screen.Ready,connected=probe.ConnectedToServer,
@@ -157,6 +171,10 @@ namespace LittleWeeps.NetworkProbe
                 narrators=FindObjectsByType<SoloNarration>(FindObjectsSortMode.None).Length,audioSources=FindObjectsByType<AudioSource>(FindObjectsSortMode.None).Length};
             if(screen.Ready)
             {
+                evidence.screenWidth=Screen.width;evidence.screenHeight=Screen.height;evidence.safeArea=Screen.safeArea;
+                evidence.boardBounds=Bounds(screen.Board);evidence.boardLayoutWidth=screen.Board.rect.width;
+                evidence.controlsInSafeArea=FindObjectsByType<Button>(FindObjectsSortMode.None).All(b=>
+                {var r=Bounds((RectTransform)b.transform);return r.xMin>=Screen.safeArea.xMin-2 && r.yMin>=Screen.safeArea.yMin-2 && r.xMax<=Screen.safeArea.xMax+2 && r.yMax<=Screen.safeArea.yMax+2;});
                 evidence.players=(screen.Shared?probe.Latest.view.players:screen.World.Snapshot().players).Select(p=>
                 {
                     var rect=screen.Board.Find(p.id==screen.Actor?"Pup":"Friend-"+p.id) as RectTransform;
@@ -169,7 +187,17 @@ namespace LittleWeeps.NetworkProbe
                 }).ToArray();
             }
             var path=Path.Combine(probe.Output,"garden-evidence.json");var temp=path+".pending";
-            File.WriteAllText(temp,JsonUtility.ToJson(evidence,true));if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);
+            try
+            {
+                File.WriteAllText(temp,JsonUtility.ToJson(evidence,true));if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);
+                evidencePending=false;
+            }
+            catch(IOException e) when((e.HResult&0xffff)==32 || (e.HResult&0xffff)==33)
+            {
+                // The Windows test reader can briefly deny atomic replacement.
+                // Retry only this observation next frame, never the input action.
+                evidencePending=true;
+            }
         }
         private void OnDestroy()
         {

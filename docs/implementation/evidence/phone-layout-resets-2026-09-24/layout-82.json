@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "build": 82,
+  "utc": "2026-09-25T02:08:32.659271+00:00",
+  "checks": [
+    {
+      "check": "wide phone floor uses over 92 percent of safe width; tablet geometry remains 1120",
+      "passed": true,
+      "layouts": [
+        {
+          "name": "tablet",
+          "width": 1024,
+          "height": 768,
+          "boardFraction": 0.875,
+          "controlsInSafeArea": true,
+          "boardLayoutWidth": 1120.0
+        },
+        {
+          "name": "phone",
+          "width": 1560,
+          "height": 720,
+          "boardFraction": 0.9446154472155449,
+          "controlsInSafeArea": true,
+          "boardLayoutWidth": 1637.3333740234375
+        },
+        {
+          "name": "phone-short",
+          "width": 1280,
+          "height": 600,
+          "boardFraction": 0.94375,
+          "controlsInSafeArea": true,
+          "boardLayoutWidth": 1610.6666259765625
+        },
+        {
+          "name": "tablet-return",
+          "width": 1024,
+          "height": 768,
+          "boardFraction": 0.875,
+          "controlsInSafeArea": true,
+          "boardLayoutWidth": 1120.0
+        }
+      ]
+    }
+  ],
+  "scope": "Layout only; no timer retest in this run.",
+  "physicalDevicesAccessed": false,
+  "existingSaveOrLiveServerModified": false
+}

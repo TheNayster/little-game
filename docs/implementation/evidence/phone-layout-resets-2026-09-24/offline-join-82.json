@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "build": 82,
+  "utc": "2026-09-25T02:07:16.548784+00:00",
+  "checks": [
+    {
+      "check": "paired cold launch is playable while discovery runs and remains playable after its first timeout",
+      "passed": true
+    },
+    {
+      "check": "server starting later is found in the same process; a held local toy delays the presentation switch",
+      "passed": true
+    },
+    {
+      "check": "menu and failed durable checkpoint block the switch; recovery joins automatically without overwriting either world",
+      "passed": true
+    },
+    {
+      "check": "three solo/family round trips preserve gameplay, resize phone/tablet layouts and keep one canvas/narrator/audio source",
+      "passed": true
+    },
+    {
+      "check": "foreground adapter stops local discovery/admission while suspended and resumes without restarting play",
+      "passed": true
+    },
+    {
+      "check": "app close/reopen defaults to automatic family discovery and the saved solo branch remains accessible",
+      "passed": true
+    },
+    {
+      "check": "explicit rejection stops retry attempts while keeping saved offline play usable",
+      "passed": true
+    }
+  ],
+  "scope": "Native Windows Bonjour/DTLS and actual UI input. Foreground adapter is simulated; no physical mobile, host migration or offline merge claim."
+}
