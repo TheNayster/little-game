@@ -13,6 +13,49 @@ static partial class Program
         DecodeAdventure<ContinuationRecord>,value=>JsonSerializer.Serialize(value,Json),DecodeAdventure<ContinuationSelection>,value=>JsonSerializer.Serialize(value,Json));
     static void ContinuationTests()
     {
+        Test("visible local fork preserves latest area pose item progress without a recovery checkpoint or source mutation",()=>{
+            var basis=RecoveryFixture();var library=Library("visible-origin",basis);
+            var latest=SoloWorld.Restore(basis.snapshot);
+            Good(latest,SoloAction.Travel,value:"garden",actor:"second");
+            Good(latest,SoloAction.Travel,value:"creek",actor:"second");
+            Good(latest,SoloAction.Move,x:805,y:160,actor:"second");
+            Good(latest,SoloAction.Grab,"bucket-creek",actor:"second");
+            var visible=latest.Snapshot();visible.players.Single(p=>p.id=="second").x=819;
+            var toy=visible.toys.Single(t=>t.id=="bucket-creek");toy.x=710;toy.y=230;toy.water=2;
+            var origin=new LocalViewOrigin{family=basis.family,authority=basis.authority,world=basis.world,epoch=basis.epoch,snapshot=visible};
+            var before=JsonSerializer.Serialize(origin,Json);var record=library.CreateVisible(origin);
+            Check(record.version==2 && record.basis==null && record.origin.snapshot.receipts.Length==visible.receipts.Length);
+            var player=record.snapshot.players.Single(p=>p.id=="second");var local=record.snapshot.toys.Single(t=>t.id=="bucket-creek");
+            Check(player.zone=="creek" && player.x==819 && player.y==160 && local.x==710 && local.y==230 && local.water==2 && local.holder=="");
+            Check(record.snapshot.toys.All(t=>t.holder=="") && JsonSerializer.Serialize(origin,Json)==before);
+            visible.players[0].x++;Check(JsonSerializer.Serialize(record.origin,Json)==before);
+            library.Select(record.id);Check(Library("visible-origin",basis).Load(record.id).snapshot.players.Single(p=>p.id=="second").x==819);
+        });
+        Test("visible origins reject wrong family invalid view future versions and changed provenance without replacing saves",()=>{
+            var basis=RecoveryFixture();var library=Library("visible-invalid",basis);
+            var origin=new LocalViewOrigin{family=basis.family,authority=basis.authority,world=basis.world,epoch=basis.epoch,snapshot=basis.snapshot};
+            var record=library.CreateVisible(origin);var path=library.PathFor(record.id);var bytes=File.ReadAllBytes(path);
+            var altered=DecodeAdventure<ContinuationRecord>(JsonSerializer.Serialize(record,Json));altered.origin.snapshot.players[0].x++;
+            Throws(()=>library.Save(altered,altered.snapshot));Check(bytes.SequenceEqual(File.ReadAllBytes(path)));
+            origin.family=Guid.NewGuid().ToString("N");Throws(()=>library.CreateVisible(origin));origin.family=basis.family;
+            origin.snapshot=SoloWorld.CopySnapshot(basis.snapshot);origin.snapshot.players[0].x=float.NaN;Throws(()=>library.CreateVisible(origin));
+            record.version=3;File.WriteAllText(path,Envelope(JsonSerializer.Serialize(record,Json)));Throws(()=>library.Load(record.id));
+        });
+        Test("legacy checkpoint adventures and newer visible adventures coexist without upgrading older saves",()=>{
+            var basis=RecoveryFixture();var library=Library("visible-legacy",basis);var old=library.Create(basis);var bytes=File.ReadAllBytes(library.PathFor(old.id));
+            var newer=library.CreateVisible(new LocalViewOrigin{family=basis.family,authority=basis.authority,world=basis.world,epoch=basis.epoch,snapshot=basis.snapshot});
+            library.Select(newer.id);library.Select(old.id);Check(library.Load(old.id).version==1 && library.Load(newer.id).version==2);
+            Check(bytes.SequenceEqual(File.ReadAllBytes(library.PathFor(old.id))) && library.Branches().Length==2);
+        });
+        Test("inline serializer empty optional objects are selected by version without accepting a forged recovery record",()=>{
+            var basis=RecoveryFixture();var library=Library("visible-inline",basis);var old=library.Create(basis);
+            old.origin=new LocalViewOrigin();library.Save(old,old.snapshot);
+            var newer=library.CreateVisible(new LocalViewOrigin{family=basis.family,authority=basis.authority,world=basis.world,epoch=basis.epoch,snapshot=basis.snapshot});
+            // Model Unity's inline null expansion before the first persisted write.
+            var copy=DecodeAdventure<ContinuationRecord>(JsonSerializer.Serialize(newer,Json));copy.id=Guid.NewGuid().ToString("N");
+            copy.snapshot.worldId=copy.id;copy.basis=new RecoveryRecord();library.Save(copy,copy.snapshot);Check(library.Load(copy.id).version==2);
+            copy.basis=basis;Throws(()=>library.Save(copy,copy.snapshot));
+        });
         Test("known disconnection permits local play immediately on foreground or resume",()=>{
             var clock=new OutageClock();Check(clock.Tick(0,true,true));
             Check(!clock.Tick(.01,true,false));Check(!clock.Tick(.02,false,true));
@@ -59,8 +102,8 @@ static partial class Program
         });
         Test("future adventure format blocks rather than replacing it with a backup",()=>{
             var basis=RecoveryFixture();var library=Library("adventure-future",basis);var record=library.Create(basis);library.Select(record.id);var path=library.PathFor(record.id);
-            library.Save(record,record.snapshot);record.version=2;File.WriteAllText(path,Envelope(JsonSerializer.Serialize(record,Json)));
-            Throws(()=>library.Load(record.id));Throws(()=>Library("adventure-future",basis));Check(File.ReadAllText(path).Contains("\"version\": 2"));
+            library.Save(record,record.snapshot);record.version=3;File.WriteAllText(path,Envelope(JsonSerializer.Serialize(record,Json)));
+            Throws(()=>library.Load(record.id));Throws(()=>Library("adventure-future",basis));Check(File.ReadAllText(path).Contains("\"version\": 3"));
         });
         Test("selection recovers damaged JSON from backup but a future selection version blocks",()=>{
             var basis=RecoveryFixture();var library=Library("adventure-pointer",basis);var record=library.Create(basis);library.Select(record.id);library.Select("");

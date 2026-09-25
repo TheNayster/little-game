@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "build": 98,
+  "utc": "2026-09-25T21:09:00.317028+00:00",
+  "checks": [
+    {
+      "control": "tap",
+      "passed": true,
+      "samples": 153,
+      "movingFrameFraction": 1.0,
+      "meanSpeed": 209.95770948769035,
+      "p95Speed": 233.33354241132935,
+      "worstBackwardStep": 3.4998779296875,
+      "medianFrameMs": 16.65030000000023
+    },
+    {
+      "control": "joystick",
+      "passed": true,
+      "samples": 153,
+      "movingFrameFraction": 1.0,
+      "meanSpeed": 210.12302928049283,
+      "p95Speed": 231.58709450059789,
+      "worstBackwardStep": 3.4998779296875,
+      "medianFrameMs": 16.6372999999993
+    }
+  ],
+  "error": null,
+  "observeOnly": false,
+  "requestedFrameRate": 60,
+  "harnessSha256": "0e0364f9ebb3f925eec1a78b159b4380292a5afcee59da26179cdcda38ef9da1",
+  "scope": "Native Windows canvas/input in one isolated offline adventure; not measured A10 smoothness."
+}

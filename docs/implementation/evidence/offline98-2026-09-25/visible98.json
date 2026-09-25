@@ -1,0 +1,30 @@
+[
+  {
+    "build": 98,
+    "scenario": "no-checkpoint",
+    "passed": true,
+    "error": null,
+    "observations": {
+      "lossToLocalSeconds": 2.578,
+      "visiblePoseRetained": true,
+      "heldToyRetainedAndReleased": true,
+      "coldReopenAndAuthoritativeReunion": true
+    },
+    "utc": "2026-09-25T21:04:23.526879+00:00",
+    "scope": "Native Windows UGUI, real isolated authority loss, held pointer, old-server/no-replica, cold reopen and no-upload reunion. Physical mobile qualification remains separate."
+  },
+  {
+    "build": 98,
+    "scenario": "current",
+    "passed": true,
+    "error": null,
+    "observations": {
+      "lossToLocalSeconds": 2.672,
+      "visiblePoseRetained": true,
+      "heldToyRetainedAndReleased": true,
+      "coldReopenAndAuthoritativeReunion": true
+    },
+    "utc": "2026-09-25T21:03:56.420139+00:00",
+    "scope": "Native Windows UGUI, real isolated authority loss, held pointer, old-server/no-replica, cold reopen and no-upload reunion. Physical mobile qualification remains separate."
+  }
+]

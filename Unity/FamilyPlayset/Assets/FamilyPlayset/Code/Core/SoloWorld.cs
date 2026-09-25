@@ -121,6 +121,7 @@ namespace LittleWeeps.Core
         public static string AreaOf(string zone)=>string.IsNullOrEmpty(zone)?"garden":zone;
         public static bool KnownArea(string zone)=>zone=="garden" || zone=="creek";
         public SoloSnapshot Snapshot() => Clone(state);
+        public static SoloSnapshot CopySnapshot(SoloSnapshot snapshot){Validate(snapshot);return Clone(snapshot);}
         // Called by server/local walking authorities. Position is
         // recoverable/coalesced state, not an inventory transaction or receipt.
         internal bool SetWalkingPosition(string actor,string zone,long visit,float x,float y)

@@ -28,7 +28,8 @@ def main():
         return subprocess.check_output(base + list(command), stderr=subprocess.PIPE, timeout=90)
     require(adb('emu', 'avd', 'name').decode().splitlines()[0] == AVD, 'Wrong emulator')
     require(adb('shell', 'getprop', 'sys.boot_completed').strip() == b'1', 'Emulator is not ready')
-    evidence = ROOT / 'LocalData/Verification' / ('emulator-update-' + uuid.uuid4().hex)
+    # Keep adb pull paths below the Windows path limit as adventure paths grow.
+    evidence = ROOT / 'LocalData/Verification' / ('eupd-' + uuid.uuid4().hex)
     evidence.mkdir()
     def sha(raw): return hashlib.sha256(raw).hexdigest()
     def artifact(build):

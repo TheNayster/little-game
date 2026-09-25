@@ -59,7 +59,7 @@ namespace LittleWeeps.Client
             if(!TryDeselectAdventure())return false;
             var savedAdventure=continuation!=null;
             if(continuation==null)localWorld=World;
-            continuation=null;SavePath=soloSavePath;ResetPresentation();World=null;shared=session;Actor=session.Actor;
+            continuation=null;pendingContinuation=null;SavePath=soloSavePath;ResetPresentation();World=null;shared=session;Actor=session.Actor;
             InitializeShared();message.text=savedAdventure?"Your adventure is in Menu → Saved adventures. You're with family now!":"Your solo play is saved. You're playing with family now!";
             return true;
         }
@@ -557,7 +557,7 @@ namespace LittleWeeps.Client
         private void LateUpdate()
         {
             RecordPlayFrame();
-            if(shared==null || !Ready)return;
+            if(shared==null || !Ready || !shared.Connected)return;
             var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
             foreach(var friend in friends)
             {if(!friend.Value.root.gameObject.activeSelf)continue;var p=shared.VisualPosition(friend.Key);friend.Value.root.anchoredPosition=ToBoard(p.x,p.y);}
@@ -580,6 +580,7 @@ namespace LittleWeeps.Client
             foreach(var pair in travelButtons)pair.Value.interactable=(shared==null || shared.Connected) && (pair.Key!=zone || TravelPending);
             foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(SoloWorld.AreaOf(toy.zone)==zone);
             var toyStates=ReadToys();var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
+            renderedArea=p.zone;renderedVisit=p.visit;
             head.color=p.avatar=="blue-pup"?new Color(.35f,.65f,.85f):new Color(.94f,.58f,.31f);body.color=head.color;
             foreach(var t in toyStates){if(t.id!=dragging)toys[t.id].anchoredPosition=ToBoard(t.x,t.y);
                 if(shared!=null)

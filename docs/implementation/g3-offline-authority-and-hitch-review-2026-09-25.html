@@ -114,4 +114,67 @@
 <p>The user reports <strong>“menu open its way smoother!”</strong> on the older iPad. Its 20:34:31 UTC recording contains 2,407 frames across local/shared/local play. The final offline segment begins at the last recorded shared-to-local transition, lasts 19.17 seconds, and contains 1,117 moving intervals (18.74 seconds). It has <strong>zero walking gaps of at least 50 ms</strong>; the largest is <strong>28.57 ms</strong>. Main-thread save work during that walking segment has a <strong>0.185 ms median and 2.881 ms maximum</strong>, versus the earlier 94 capture's 52.87 ms median and 79.66 ms maximum. This supports the save-stall repair on A10. It measures main-thread cost, not total worker disk-write duration. <a href="evidence/offline95-2026-09-25/ipad95-walking-comparison.json">Full scoped comparison</a>.</p>
 <p>The full recording is retained in the comparison, including two earlier outliers. One continuous walking gap is <strong>52.05 ms</strong>, following <strong>48.16 ms of network-update work</strong> and no save; its exact network sub-operation still needs attribution. Another gap is <strong>1.99 seconds</strong> at a moving-to-stationary boundary with no position change. The capture lacks explicit lifecycle markers, so its cause is not established and it is not silently removed from full-capture statistics. The final Menu save costs 27.18 ms while stationary. These are not evidence of universally hitch-free play.</p>
 <p>The user then confirmed that, with Wi-Fi still off, closing and reopening the app <strong>opened successfully, retained toy positions, and allowed smooth walking</strong>. A subsequent read-only USB inspection verifies runtime 95 in a new process, paired enrollment, local availability and readable checksummed saves, with both original solo files still present. This is a scoped offline cold-launch/save pass after online developer verification, not a guarantee against future Apple signing checks. <a href="evidence/offline95-2026-09-25/ipad95-cold-reopen.json">Cold-reopen evidence</a>.</p>
-<p><strong>Current acceptance:</strong> the measured periodic save hitch is substantially improved and this device's offline reopening passes. G3-REC-05 remains open. Next fix the separate rewind to an older checkpoint at Wi-Fi loss, using the last validated visible state as the private local starting point; never upload that fork to the server. Retain the smaller network-work spike for focused attribution and qualify the final changes on the newer iPad and phones before broader acceptance.</p></main></body></html>
+<p><strong>Current acceptance:</strong> the measured periodic save hitch is substantially improved and this device's offline reopening passes. G3-REC-05 remains open. Next fix the separate rewind to an older checkpoint at Wi-Fi loss, using the last validated visible state as the private local starting point; never upload that fork to the server. Retain the smaller network-work spike for focused attribution and qualify the final changes on the newer iPad and phones before broader acceptance.</p>
+<h2>Next repair in progress: continue the visible local world</h2>
+<p>The user authorized unattended engineering and replacement preparation after the 95 pass. Before editing, the current disconnect/save paths and <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/terms-concepts/client-server.html">Unity client/server authority</a> were reviewed again. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/advanced-topics/client-anticipation.html">Unity client anticipation</a> distinguishes visual state from authoritative state; that distinction matters at this boundary. Online documentation currently serves NGO 2.13.3; installed 2.13.2 remains pinned.</p>
+<p>Application design: capture the latest validated received state and the local character/held prop positions actually displayed before disconnect callbacks clear interpolation and cancel input. Store a version-2 <strong>private view origin</strong>, explicitly separate from <code>RecoveryRecord</code>; no fake server checkpoint, receipt replay or upload. A first disconnect can therefore continue even before a full recovery replica arrives. Existing version-1 adventures remain readable, immutable origins remain checked, and the original solo saves stay separate. Use a fresh private identity for each outage and release stale holds. Clear abandoned transition selection when rejoining, so a later outage cannot reopen an earlier pending branch. The full shared checkpoint and mobile host-election requirements remain unchanged.</p>
+<p>This is the game's design based on the authority/visual-state distinction and user requirements, not a feature Unity automatically provides. Acceptance requires native latest-room/pose/held-item continuity, no-replica loss, cold reopening, old-save compatibility, failure handling and server-authoritative reunion. Runtime device installation/acceptance will be recorded separately. Candidate build 96 is an engineering test; final matched platform artifacts will use a later build number.</p>
+<p>The new native regression reproduces the old behavior on build 95 against an older server without recovery replication: the Creek visit rewinds to an earlier solo area. Candidate 96 exposed a serializer mismatch before deployment. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/script-serialization-rules.html">Unity serialization rules</a> explain that inline custom classes cannot represent null and may become empty objects. The record version now selects the active origin; empty unused fields are accepted, but a v2 private view cannot claim a real recovery checkpoint. Provenance comparisons use the active format only. A specific regression covers this alongside legacy-save compatibility. Candidates 96/97 are engineering intermediates; build 98 is the current replacement candidate. No mobile device has received these candidates.</p>
+<h2>Build 98 results and return handoff</h2>
+<p><strong>Implemented and tested:</strong> disconnect now captures the latest received view and the displayed local character/held-object positions before pointer cancellation and interpolation cleanup. The private local branch retains the current area and item contents; stale holds are released. It does not load an older checkpoint or claim server-recovery authority. New outage records use version 2; existing version-1 adventures and solo files remain readable and separate. Reunion saves local work separately and loads the server world. These changes include the 95 background writer.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Evidence</th>
+<th>Result and limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/rewind95-baseline.json">Build 95 regression baseline</a></td>
+<td>Reproduces Creek-to-old-solo rewind when a full checkpoint is unavailable.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/core98.json">76 core/storage checks</a></td>
+<td>Pass, including latest view/room/pose/content preservation, stale-hold release, origin immutability, old/new save coexistence and inline-serializer empty objects.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/visible98.json">Two native visible-state cases</a></td>
+<td>Pass with current and older/no-replica servers. Actual transport loss while dragging retains the visible pose and toy, cold reopen succeeds and reunion never uploads the local drop. Local presentation starts about 2.6–2.7 seconds after authority termination in these Windows runs; physical Wi-Fi timing is not claimed.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/handoff98.json">Three held-touch/menu/no-checkpoint cases</a></td>
+<td>Pass; no application ten-second wait or forced restart.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/failure-boundaries98.json">Five failure-boundary groups</a> and <a href="evidence/offline98-2026-09-25/continuation98.json">six four-client groups</a></td>
+<td>Pass, including blocked save/selection, unknown acknowledgment, sibling continuity, repeated outages and retained original solo saves.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/movement98.json">Tap and joystick movement</a></td>
+<td>Every sampled moving frame advances at the 60 fps Windows target. Not a new A10 performance measurement.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/source-parity98.json">Matching source</a></td>
+<td>410 runtime/package files match across Windows, signed Android and Apple export. Later test-tool fixes do not change the runtime payload.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/android98-update.json">Android emulator update</a> and <a href="evidence/offline98-2026-09-25/android98-recovery.json">six recovery groups</a></td>
+<td>Exact signed 91 → 98 update, saves retained, Keystore admission with three Windows siblings, actual Home/resume, local play, cold restart and authoritative reunion all pass. This x86_64 AVD uses ARM translation.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/android98-artifact.json">Android artifact inspection</a></td>
+<td>Identity/signature, ZIP and ELF LOAD alignment pass. The existing strict 16 KB RELRO gate still fails; native ARM64 16 KB compatibility is not certified.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/ios98-native.json">Apple native compile/link</a></td>
+<td>Pass with all six native bridge symbols and iPad/iPhone device families.</td>
+</tr>
+<tr>
+<td><a href="evidence/offline98-2026-09-25/deployment98-status.json">Physical deployment status</a></td>
+<td>No physical 98 installation yet. Unattended Mac signing fails at codesign with <code>errSecInternalComponent</code>; the prepared desktop helper targets iPad 7. Samsung's saved ADB address is unreachable. User/device setup remains on the return checklist.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Test-tool corrections were required and retained: Android polling now waits for the <strong>currently selected</strong> local adventure instead of a historical continuation event after warm resume; the first run failed that stale-event assertion, then all six groups passed with the corrected observation. Emulator backup paths were shortened after <code>adb pull</code> hit Windows path length limits; the subsequent verified update preserved saved bytes. Neither correction alters gameplay or bypasses an install/data check.</p>
+<p><strong>Next:</strong> sign and install 98 in place, qualify the transition on iPad 7, then update the newer iPad and phones and run the focused four-player checks. Keep the smaller previously measured network-work spike and sustained device performance open. G3 is not complete, G4 iPad hosting/automatic switching is not implemented, and G5 rooms/creations/full item policies remain required. No live family server restart or update occurred. <a href="return-checklist-ipad-lan-2026-09-24.html">Updated return checklist</a>.</p></main></body></html>

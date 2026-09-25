@@ -270,7 +270,7 @@ namespace LittleWeeps.NetworkProbe
                 WriteStatus("solo-selected","");TraceConnection("local-restored",0,"");
             }
             else if(!localOnly && ConnectedToServer && !familyScreen.Shared && familyScreen.TryJoinFamily(familyGarden))
-            {presentationStarted=true;TraceConnection("shared-presented",0,"local-checkpoint-preserved");}
+            {localStart=null;presentationStarted=true;TraceConnection("shared-presented",0,"local-checkpoint-preserved");}
             else if(localReady && familyScreen.RecoveringDisconnected)TryLocalContinuation();
         }
         private void TickDiscovery()
@@ -310,6 +310,7 @@ namespace LittleWeeps.NetworkProbe
         private void BeginReconnect(string reason)
         {
             if(config.role!="client" || pairing==null || stopping || failed || retryPending || reconnectBlocked)return;
+            RememberVisibleLocalStart();
             clientReady=false;retryPending=true;ResetRecoveryTransfer();
             // Empty reason is ordinary transport loss. Explicit authentication
             // or compatibility rejection needs parent action, not an attack loop.

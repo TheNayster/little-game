@@ -1,0 +1,21 @@
+{
+  "build": 98,
+  "physicalInstalled": false,
+  "appleNativeCompilePassed": true,
+  "appleSigningPassed": false,
+  "appleSigningExit": 65,
+  "appleSigningError": "CodeSign UnityFramework.framework: errSecInternalComponent",
+  "macHelper": "Finish-Little-Weeps-98.command",
+  "helperTarget": "iPad 7",
+  "androidFamilySigned": true,
+  "androidEmulatorInstalledAndPassed": true,
+  "physicalSamsungReachable": false,
+  "physicalInstalledVersions": {
+    "ipad7": 95,
+    "ipad9": 79,
+    "iphone": 79,
+    "samsung": 83
+  },
+  "serverAndHelperVersion": 91,
+  "scope": "Unattended signing attempt failed before installation. No keychain unlock or password requested remotely. Mac helper awaits the user; Samsung last-known ADB endpoint timed out. No production server changes."
+}

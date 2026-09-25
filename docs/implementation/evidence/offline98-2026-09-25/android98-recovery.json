@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "build": 98,
+  "utc": "2026-09-25T21:11:45.018011+00:00",
+  "apkSha256": "20e8a8d22161613cf4b56077315f75611342ec3bee4e10b74227489155dfd04e",
+  "checks": [
+    {
+      "check": "retained Keystore identity joins three Windows siblings; ordinary walking/dragging works and Android durably stores both areas, four players, 128 receipts and an active item timer",
+      "passed": true
+    },
+    {
+      "check": "real Android Home/foreground cycle preserves the process and enrollment; three siblings continue and resumed checkpoint includes their changes",
+      "passed": true
+    },
+    {
+      "check": "abrupt fixture-authority loss automatically opens an Android local adventure from its received view, releases stale holds and saves ordinary drag input",
+      "passed": true
+    },
+    {
+      "check": "force-stop and cold offline launch reopen the same changed adventure; existing toy placement and new touch edits survive",
+      "passed": true
+    },
+    {
+      "check": "reunion waits for the open menu, preserves local changes separately, and saved-adventure/original-solo controls work while siblings continue",
+      "passed": true
+    },
+    {
+      "check": "another outage creates a distinct adventure from the newer authority while keeping the earlier adventure byte for byte",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "replica": {
+      "status": "durable",
+      "epoch": "91210d9a286147578d1c81df7b7f7525",
+      "hash": "9a3bc8d97594478802c920d94ff548420e0e3c73e7b00a65bc6833507d817c5a",
+      "receivedChunks": 24,
+      "bytes": 23459,
+      "receipts": 128,
+      "timers": 1,
+      "checkpoint": 9,
+      "revision": 354,
+      "writeMilliseconds": 18.2453,
+      "peers": []
+    },
+    "outageToLocalSeconds": 2.406
+  },
+  "scope": "Retained Android API35 16 KB x86_64 AVD using ARM translation and three native Windows clients. Isolated test authority only; no physical device, native ARM64 16 KB, iPad hosting, automatic branch merge or live family deployment qualification."
+}

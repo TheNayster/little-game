@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build": 98,
+  "runtimePackageFiles": 410,
+  "targets": [
+    "Windows client/server",
+    "Android signed",
+    "Apple export"
+  ],
+  "scope": "Exact matching runtime/package source hashes across three build manifests and current files; platform settings and test tools are separate."
+}

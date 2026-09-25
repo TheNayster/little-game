@@ -48,7 +48,7 @@ def main():
             require(local_at - start < 5, 'Authority loss kept local play unavailable for five seconds')
             require(disconnected_at is not None and local_at - disconnected_at < 2,
                     'Known disconnection still imposed a local-play delay')
-            require(bool(state['adventure']) == (scenario != 'no-checkpoint'), 'Wrong local save selected')
+            require(bool(state['adventure']), 'A received view must continue privately even without a full checkpoint')
             if scenario == 'open-menu':
                 require(state['menuOpen'], 'Recovery unexpectedly closed the menu')
                 c.input('button', text='Back to play')
@@ -61,8 +61,7 @@ def main():
                 world=saved.get('snapshot',saved)
                 return any(t['id']=='bucket-1' and abs(t['x']-720)<.1 and not t['holder'] for t in world['toys'])
             wait(saved_drop, 'offline drag actually saved', 10)
-            if scenario != 'no-checkpoint':
-                require(checkpoint_bytes(solo)[0] == original, 'Handoff overwrote original solo')
+            require(checkpoint_bytes(solo)[0] == original, 'Handoff overwrote original solo')
             f.controller.start()
             wait(lambda: inspect()['shared'] and inspect()['connected'], 'automatic reunion', 55)
         except Exception as exc:

@@ -11,13 +11,21 @@ namespace LittleWeeps.Adapters
         public string id, actor;
         public long createdUtcTicks;
         public RecoveryRecord basis;
+        public LocalViewOrigin origin;
+        public SoloSnapshot snapshot;
+    }
+    // A private local fork is not a complete server recovery checkpoint. It may
+    // contain visible anticipation, but can never be used to elect a shared host.
+    [Serializable] public sealed class LocalViewOrigin
+    {
+        public string family,authority,world,epoch;
         public SoloSnapshot snapshot;
     }
     [Serializable] public sealed class ContinuationSelection
     { public int version=1; public string branch=""; }
 
-    // Each outage gets its own file. The immutable common base is retained for
-    // later reconciliation; this store never writes back to the shared world.
+    // Each outage gets its own file. Retain its immutable origin for provenance;
+    // this store never writes back to the shared world or the recovery replica.
     public sealed class ContinuationLibrary
     {
         private readonly string root, family, authority, world, actor;
@@ -53,15 +61,41 @@ namespace LittleWeeps.Adapters
         }
         private void Validate(ContinuationRecord record)
         {
-            if(record?.version>1 || record?.snapshot?.schema>2)throw new NotSupportedException("Newer adventure format.");
-            if(record==null || record.version!=1 || !FamilyPairing.Id(record.id) || record.actor!=actor || record.createdUtcTicks<=0 || record.basis==null)
+            if(record?.version>2 || record?.snapshot?.schema>2)throw new NotSupportedException("Newer adventure format.");
+            if(record==null || (record.version!=1 && record.version!=2) || !FamilyPairing.Id(record.id) || record.actor!=actor || record.createdUtcTicks<=0)
                 throw new InvalidDataException("Invalid adventure identity.");
-            record.basis.Validate(family,authority,world);SoloWorld.Validate(record.snapshot);
-            if(record.snapshot.schema!=2 || record.snapshot.worldId!=record.id || record.snapshot.revision<record.basis.snapshot.revision ||
+            SoloSnapshot source;
+            if(record.version==1)
+            {
+                // Unity inline class serialization expands null fields to empty
+                // objects. Version, not reference-nullness, selects the format.
+                if(record.basis==null || record.origin!=null &&
+                    (!string.IsNullOrEmpty(record.origin.family) || !string.IsNullOrEmpty(record.origin.authority) ||
+                     !string.IsNullOrEmpty(record.origin.world) || !string.IsNullOrEmpty(record.origin.epoch)))
+                    throw new InvalidDataException("Invalid checkpoint adventure.");
+                record.basis.Validate(family,authority,world);source=record.basis.snapshot;
+            }
+            else
+            {
+                if(record.basis!=null && (record.basis.version!=0 || record.basis.protocol!=0 || record.basis.content!=0 || record.basis.checkpoint!=0 ||
+                    !string.IsNullOrEmpty(record.basis.family) || !string.IsNullOrEmpty(record.basis.authority) ||
+                    !string.IsNullOrEmpty(record.basis.world) || !string.IsNullOrEmpty(record.basis.epoch)))
+                    throw new InvalidDataException("Local view cannot claim a recovery checkpoint.");
+                ValidateOrigin(record.origin);source=record.origin.snapshot;
+            }
+            SoloWorld.Validate(record.snapshot);
+            if(record.snapshot.schema!=2 || record.snapshot.worldId!=record.id || record.snapshot.revision<source.revision ||
                 !record.snapshot.players.Any(p=>p.id==actor) ||
-                !record.snapshot.players.Select(p=>p.id).SequenceEqual(record.basis.snapshot.players.Select(p=>p.id)) ||
-                !record.snapshot.toys.Select(t=>t.id).SequenceEqual(record.basis.snapshot.toys.Select(t=>t.id)))
+                !record.snapshot.players.Select(p=>p.id).SequenceEqual(source.players.Select(p=>p.id)) ||
+                !record.snapshot.toys.Select(t=>t.id).SequenceEqual(source.toys.Select(t=>t.id)))
                 throw new InvalidDataException("Adventure lineage mismatch.");
+        }
+        private void ValidateOrigin(LocalViewOrigin origin)
+        {
+            if(origin==null || origin.family!=family || origin.authority!=authority || origin.world!=world || !FamilyPairing.Id(origin.epoch))
+                throw new InvalidDataException("Local view identity mismatch.");
+            SoloWorld.Validate(origin.snapshot);
+            if(origin.snapshot.schema!=2 || !origin.snapshot.players.Any(p=>p.id==actor))throw new InvalidDataException("Incomplete local view.");
         }
         private bool Valid(string text)
         {
@@ -99,22 +133,33 @@ namespace LittleWeeps.Adapters
             foreach(var player in state.players.Where(p=>p.id!=actor))player.activity="";
             record.snapshot=state;Validate(record);Save(record,state);return record;
         }
+        public ContinuationRecord CreateVisible(LocalViewOrigin origin)
+        {
+            ValidateOrigin(origin);
+            var record=decode(encode(new ContinuationRecord{version=2,id=Guid.NewGuid().ToString("N"),actor=actor,
+                createdUtcTicks=DateTime.UtcNow.Ticks,origin=origin,snapshot=origin.snapshot}));
+            var state=SoloWorld.Restore(record.snapshot).Snapshot();state.worldId=record.id;
+            foreach(var player in state.players.Where(p=>p.id!=actor))player.activity="";
+            record.snapshot=state;Validate(record);Save(record,state);return record;
+        }
         public void Save(ContinuationRecord record,SoloSnapshot snapshot)
         {
             // No serialization round-trip of a discarded previous snapshot.
             // Callers own the detached snapshot; the immutable basis is shared.
             var next=new ContinuationRecord{version=record.version,id=record.id,actor=record.actor,
-                createdUtcTicks=record.createdUtcTicks,basis=record.basis,snapshot=snapshot};Validate(next);
+                createdUtcTicks=record.createdUtcTicks,basis=record.basis,origin=record.origin,snapshot=snapshot};Validate(next);
             var store=Store(record.id);var old=store.Load();RequireReadable(old.Status);
             if(old.Payload!=null)
             {
                 var previous=decode(old.Payload);
-                if(previous.id!=next.id || previous.createdUtcTicks!=next.createdUtcTicks || next.snapshot.revision<previous.snapshot.revision ||
-                    encode(new ContinuationRecord{basis=previous.basis})!=encode(new ContinuationRecord{basis=next.basis}))
+                if(previous.version!=next.version || previous.id!=next.id || previous.createdUtcTicks!=next.createdUtcTicks || next.snapshot.revision<previous.snapshot.revision ||
+                    OriginIdentity(previous)!=OriginIdentity(next))
                     throw new InvalidDataException("Cannot replace an adventure base or roll it back.");
             }
             var payload=encode(next);store.Save(payload);
             if(store.Load().Payload!=payload)throw new IOException("Adventure write not verified.");record.snapshot=snapshot;
         }
+        private string OriginIdentity(ContinuationRecord record)=>record.version==1?
+            encode(new ContinuationRecord{basis=record.basis}):encode(new ContinuationRecord{version=2,origin=record.origin});
     }
 }

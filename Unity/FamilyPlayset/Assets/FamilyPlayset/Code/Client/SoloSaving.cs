@@ -34,7 +34,7 @@ namespace LittleWeeps.Client
                 var snapshot=World.Snapshot();var targetStore=store;var library=adventures;
                 var record=continuation==null?null:new ContinuationRecord{
                     version=continuation.version,id=continuation.id,actor=continuation.actor,
-                    createdUtcTicks=continuation.createdUtcTicks,basis=continuation.basis,snapshot=snapshot};
+                    createdUtcTicks=continuation.createdUtcTicks,basis=continuation.basis,origin=continuation.origin,snapshot=snapshot};
                 // The basis is immutable after creation. The detached record's
                 // snapshot is owned exclusively by this commit.
                 localSave.Start(()=>{if(record!=null)library.Save(record,snapshot);else targetStore.Save(JsonUtility.ToJson(snapshot));});

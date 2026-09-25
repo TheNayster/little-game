@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "utc": "2026-09-25T21:08:53.012309+00:00",
+  "previousBuild": 91,
+  "build": 98,
+  "previousApkSha256": "1e8f7af73d04dcd35eb3dd8fdd6f5527d26e101bec9165c5bd7de1f79eceef4f",
+  "apkSha256": "20e8a8d22161613cf4b56077315f75611342ec3bee4e10b74227489155dfd04e",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "installedArtifactMatched": true,
+  "operation": "adb install -r",
+  "avd": "LittleWeeps_G3_AndroidLAN",
+  "physicalDeviceTouched": false,
+  "scope": "Installation and pre-launch external-save retention only. UI, Keystore admission and recovery verified separately.",
+  "preservedSaveCount": 4
+}

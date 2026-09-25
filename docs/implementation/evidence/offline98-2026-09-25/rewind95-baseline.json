@@ -1,0 +1,11 @@
+{
+  "build": 95,
+  "scenario": "no-checkpoint",
+  "passed": false,
+  "error": "Loss rewound the current area to a previous solo/checkpoint area",
+  "observations": {
+    "lossToLocalSeconds": 2.515
+  },
+  "utc": "2026-09-25T20:58:02.289266+00:00",
+  "scope": "Native Windows UGUI, real isolated authority loss, held pointer, old-server/no-replica, cold reopen and no-upload reunion. Physical mobile qualification remains separate."
+}

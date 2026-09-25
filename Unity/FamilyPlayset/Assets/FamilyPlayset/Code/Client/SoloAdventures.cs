@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using LittleWeeps.Adapters;
 using LittleWeeps.Core;
 using UnityEngine;
@@ -22,13 +23,38 @@ namespace LittleWeeps.Client
             if(adventures==null || adventures.Selected=="")return;
             TryOpenAdventure(adventures.Selected);
         }
-        public bool TryContinue(RecoveryRecord basis)
+        // Capture once before disconnect callbacks cancel drags and clear motion
+        // history. UI coordinates describe the last displayed frame, not a new
+        // transaction; they are used only in this private local world.
+        private string renderedArea;
+        private long renderedVisit;
+        public SoloSnapshot CaptureVisibleLocalStart()
+        {
+            if(!Shared || !Ready)return null;
+            var snapshot=SoloWorld.CopySnapshot(shared.View);
+            var own=snapshot.players.First(p=>p.id==Actor);
+            if(renderedArea==own.zone && renderedVisit==own.visit && Board.rect.width>0 && Board.rect.height>0)
+            {
+                Vector2 Point(RectTransform rect)=>new Vector2((rect.anchoredPosition.x/Board.rect.width+.5f)*SoloWorld.Width,
+                    (rect.anchoredPosition.y/Board.rect.height+.5f)*SoloWorld.Height);
+                var position=Point(avatar);
+                if(SoloWorld.Position(position.x,position.y)){own.x=position.x;own.y=position.y;}
+                foreach(var toy in snapshot.toys.Where(t=>t.zone==own.zone && !string.IsNullOrEmpty(t.holder)))
+                    if(toys.TryGetValue(toy.id,out var rect) && rect.gameObject.activeSelf)
+                    {
+                        var point=Point(rect);
+                        if(SoloWorld.Position(point.x,point.y)){toy.x=point.x;toy.y=point.y;}
+                    }
+            }
+            SoloWorld.Validate(snapshot);return snapshot;
+        }
+        public bool TryContinue(LocalViewOrigin origin)
         {
             if(adventures==null || !CanChangeSession || (MenuOpen && !RecoveringDisconnected) || (!Shared && continuation!=null))return false;
             try
             {
                 if(World!=null && !TrySaveNow())return false;
-                if(pendingContinuation==null)pendingContinuation=adventures.Create(basis).id;
+                if(pendingContinuation==null)pendingContinuation=adventures.CreateVisible(origin).id;
                 if(!TryOpenAdventure(pendingContinuation))return false;
                 pendingContinuation=null;return true;
             }

@@ -99,7 +99,9 @@ def main():
     def local_new(previous=''):
         def current():
             e = app_file('continuation-evidence.json') or {}
-            return e['branch'] if e.get('status') == 'local-continuation' and e.get('branch') != previous else None
+            # A prior foreground transition can leave historical evidence after
+            # reunion. Require the currently selected branch, not a stale event.
+            return e['branch'] if e.get('status') == 'local-continuation' and e.get('branch') != previous and selected()==e.get('branch') else None
         return wait(current, 'Android automatic local adventure', 65)
     def kill_test_authority():
         native = f.controller.processes()
@@ -157,13 +159,13 @@ def main():
         kill_test_authority(); lost=time.monotonic(); clients[1].input('release',role='sponge-creek')
         branch=local_new(); observations['outageToLocalSeconds']=round(time.monotonic()-lost,3)
         path=branch_path(branch); record=payload(path)
-        require(record['actor']==actor and record['basis']['world']==TEST_WORLD and selected()==branch
+        require(record['actor']==actor and record['origin']['world']==TEST_WORLD and selected()==branch
                 and all(not v['holder'] for v in record['snapshot']['toys']), 'Wrong recovery lineage or stuck hold')
         drag(record['snapshot'],'bucket-1',730,210)
         wait(lambda:abs(toy(payload(path)['snapshot'])['x']-730)<2,'Android local drop saves',20)
         screen('local-outage-play')
         require(raw(original)==original_before and raw(solo)==solo_before,'Outage changed existing solo saves')
-        passed('abrupt fixture-authority loss automatically opens an Android local adventure from the complete checkpoint, releases stale holds and saves ordinary drag input')
+        passed('abrupt fixture-authority loss automatically opens an Android local adventure from its received view, releases stale holds and saves ordinary drag input')
 
         adb('shell','am','force-stop',PACKAGE); launch()
         wait(lambda: (app_file('status.json') or {}).get('pid')!=int(pid),'new Android process',30)
@@ -178,10 +180,10 @@ def main():
         passed('force-stop and cold offline launch reopen the same changed adventure; existing toy placement and new touch edits survive')
 
         menu();screen('menu-before-reunion'); before_presented=events('shared-presented')
-        basis=payload(path)['basis']; f.controller.start(); connected()
+        basis=payload(path)['origin']; f.controller.start(); connected()
         require(events('shared-presented')==before_presented,'Reunion interrupted open menu')
         tap(640,490);wait(lambda:events('shared-presented')>before_presented,'safe family presentation',25)
-        require(payload(path)['basis']==basis and abs(toy(payload(path)['snapshot'])['x']-730)<2,'Reunion overwrote adventure')
+        require(payload(path)['origin']==basis and abs(toy(payload(path)['snapshot'])['x']-730)<2,'Reunion overwrote adventure')
         require(abs(toy(state()['view'])['x']-730)>2,'Local drop silently replaced authority item')
         screen('safe-family-reunion')
         menu();tap(860,690);screen('saved-adventures-menu');tap(640,295)
@@ -198,7 +200,7 @@ def main():
         passed('reunion waits for the open menu, preserves local changes separately, and saved-adventure/original-solo controls work while siblings continue')
 
         kill_test_authority(); again=local_new(previous=branch)
-        require(again!=branch and raw(path)==retained and payload(branch_path(again))['basis']['epoch']==previous_epoch,
+        require(again!=branch and raw(path)==retained and payload(branch_path(again))['origin']['epoch']==previous_epoch,
                 'Second outage replaced earlier work or used wrong base')
         screen('second-distinct-adventure')
         passed('another outage creates a distinct adventure from the newer authority while keeping the earlier adventure byte for byte')

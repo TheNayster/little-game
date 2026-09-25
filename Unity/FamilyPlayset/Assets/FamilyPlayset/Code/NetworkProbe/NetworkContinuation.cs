@@ -11,6 +11,16 @@ namespace LittleWeeps.NetworkProbe
         private readonly OutageClock outageClock=new OutageClock();
         private string requestedAdventure;
         private double nextContinuationAttempt;
+        private LocalViewOrigin localStart;
+        private void RememberVisibleLocalStart()
+        {
+            if(localStart!=null || familyScreen==null || !familyScreen.Shared || Latest==null)return;
+            var snapshot=familyScreen.CaptureVisibleLocalStart();
+            if(snapshot==null)return;
+            localStart=new LocalViewOrigin{family=pairing.familyId,authority=pairing.authorityId,
+                world=config.runId,epoch=Latest.epoch,snapshot=snapshot};
+            nextContinuationAttempt=0;
+        }
         [Serializable] private sealed class InterruptedActions
         {public int version=1;public string family,authority,world,profile,epoch;public SoloCommand[] commands;}
         private sealed class PendingArchive {public string path,payload;}
@@ -64,22 +74,20 @@ namespace LittleWeeps.NetworkProbe
             nextContinuationAttempt=Time.realtimeSinceStartupAsDouble+5;
             try
             {
-                var basis=OpenRecoveryReplica().Last;
-                // Never invent a shared checkpoint from a rendered view. An
-                // older server or interrupted initial transfer may leave none:
-                // restore the existing solo world while discovery keeps trying.
-                if(basis==null)
+                // A private continuation starts from the last received/displayed
+                // view. It never requires or impersonates a host-recovery replica.
+                if(localStart==null)
                 {
                     var returned=familyScreen.RecoveringDisconnected && familyScreen.TryReturnToLocal();
-                    WriteJson(Path.Combine(output,"continuation-evidence.json"),new ContinuationEvidence{status=returned?"solo-without-checkpoint":"no-checkpoint"});
+                    WriteJson(Path.Combine(output,"continuation-evidence.json"),new ContinuationEvidence{status=returned?"solo-without-view":"no-view"});
                     return;
                 }
-                if(familyScreen.TryContinue(basis))
+                if(familyScreen.TryContinue(localStart))
                 {
                     presentationStarted=true;
                     WriteJson(Path.Combine(output,"continuation-evidence.json"),new ContinuationEvidence{status="local-continuation",branch=familyScreen.AdventureId,
-                        baseEpoch=basis.epoch,baseCheckpoint=basis.checkpoint,baseRevision=basis.snapshot.revision});
-                    TraceConnection("local-continuation",0,"verified-checkpoint");
+                        baseEpoch=localStart.epoch,baseCheckpoint=0,baseRevision=localStart.snapshot.revision});
+                    TraceConnection("local-continuation",0,"private-visible-state");
                 }
             }
             catch(Exception e)

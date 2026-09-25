@@ -55,7 +55,7 @@ def main():
             require(r['actor']==c.profile and r['snapshot']['worldId']==r['id'],'Actor or branch identity mismatch')
             require(len(r['snapshot']['toys'])==10 and len(r['snapshot']['players'])==4,'Incomplete local world')
             require(all(not t['holder'] for t in r['snapshot']['toys']),'Stale remote hold survived')
-            require(r['basis']['world']==f.run_id,'Lost common base')
+            require(r['origin']['world']==f.run_id,'Lost common base')
         require(payload(solo)==original_solo,'Outage replaced the old solo draft')
         passed('four native clients automatically continue after server loss with unique saved branches, both areas and released item holds')
         # Exercise a non-first roster actor in both areas through real UI input.
@@ -65,7 +65,7 @@ def main():
         second.input('button',text='Creek');wait(lambda:inspect(second)['zone']=='creek','local travel back')
         first=clients[0];drag(first,'bucket-1',730,220)
         saved=save(first,lambda r:abs(toy(r['snapshot'],'bucket-1')['x']-730)<.1)
-        branch_id=saved['id'];base=saved['basis'];first.input('press',role='bucket-1')
+        branch_id=saved['id'];base=saved['origin'];first.input('press',role='bucket-1')
         save(first,lambda r:toy(r['snapshot'],'bucket-1')['holder']==first.profile)
         first.process.kill();first.process.wait(timeout=10)
         clients[0]=first=f.launch(1);resumed=local(first)
@@ -80,7 +80,7 @@ def main():
         wait(lambda:inspect(first)['connected'],'client rediscovers restarted authority',55)
         require(not inspect(first)['shared'],'Reunion interrupted a held gesture')
         shared(second);first.input('release',x=650,y=210);shared(first)
-        archived=payload(paths[0]);require(archived['basis']==base,'Reunion modified common base')
+        archived=payload(paths[0]);require(archived['origin']==base,'Reunion modified common base')
         require(abs(toy(archived['snapshot'],'bucket-1')['x']-650)<.1 and not toy(archived['snapshot'],'bucket-1')['holder'],'Reunion discarded local drop')
         live=read(f.controller.processes()[0]['output']/'view.json')['view']
         require(toy(live,'bucket-1')['x']!=650,'Local branch silently overwrote authority')
@@ -105,7 +105,7 @@ def main():
         retained=checkpoint_bytes(paths[0])[0];psutil.Process(native['pid']).terminate()
         again=local(first)
         require(again['adventure']!=branch_id and checkpoint_bytes(paths[0])[0]==retained,'Second outage reused or replaced the prior adventure')
-        require(payload(Path(again['savePath']))['basis']['epoch']==current_epoch,'Second outage used wrong authority base')
+        require(payload(Path(again['savePath']))['origin']['epoch']==current_epoch,'Second outage used wrong authority base')
         passed('a second outage creates a new branch from the recovered authority and preserves the earlier adventure byte for byte')
         success=True
     finally:
