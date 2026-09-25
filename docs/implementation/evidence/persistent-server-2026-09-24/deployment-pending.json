@@ -1,0 +1,11 @@
+{
+  "build": 83,
+  "ready": true,
+  "deployed": false,
+  "blocker": "Windows administrator prompt canceled; new executable inbound rules remain blocked",
+  "oldServer": "expired with no connected players",
+  "savedWorldChecksumVerified": true,
+  "players": 4,
+  "toys": 10,
+  "revision": 1849
+}

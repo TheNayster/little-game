@@ -70,7 +70,7 @@ namespace LittleWeeps.NetworkProbe
         private FileStream authorityLock;
         private long sequence,seenSequence;
         private int controlSerial;
-        private float nextControl,started;
+        private double nextControl,started;
         private bool failed,stopping;
         private readonly Dictionary<string,DragPose> poses=new Dictionary<string,DragPose>();
         public State Latest {get;private set;}
@@ -87,7 +87,8 @@ namespace LittleWeeps.NetworkProbe
             public string runId,instanceId,role,profile,token,pairingPath;
             public int port,protocol=Protocol,content=Content;
             public Slot[] slots;
-            public bool presentation,verifyGarden,interactive;
+            public bool presentation,verifyGarden,interactive,persistentServer;
+            public double testLifetimeOffsetSeconds;
             public int testMotionDelayMs,testMotionJitterMs,testMotionDropEvery;
         }
         [Serializable] private sealed class Hello {public string runId,profile,token,family,authority;public int protocol,content;}
@@ -104,11 +105,11 @@ namespace LittleWeeps.NetworkProbe
             public string[] connected;
             public DragPose[] poses;
         }
-        [Serializable] private sealed class Status {public string role,runId,instanceId,build,status,reason;public int pid;}
+        [Serializable] private sealed class Status {public string role,runId,instanceId,build,status,reason;public int pid;public bool persistentServer;}
 
         private void Start()
         {
-            Application.runInBackground=true;Application.targetFrameRate=60;started=Time.realtimeSinceStartup;
+            Application.runInBackground=true;Application.targetFrameRate=60;started=Time.realtimeSinceStartupAsDouble;
             try
             {
 #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
@@ -143,6 +144,12 @@ namespace LittleWeeps.NetworkProbe
                 }
 #endif
                 output=Path.Combine(root,config.instanceId);Directory.CreateDirectory(output);
+                if(config.persistentServer && (pairing==null || config.role!="server" || !config.interactive))
+                    throw new InvalidDataException("Persistent hosting requires an enrolled interactive authority.");
+                if(double.IsNaN(config.testLifetimeOffsetSeconds) || double.IsInfinity(config.testLifetimeOffsetSeconds) ||
+                    config.testLifetimeOffsetSeconds<0 || config.testLifetimeOffsetSeconds>86400 ||
+                    (config.testLifetimeOffsetSeconds!=0 && !config.verifyGarden))
+                    throw new InvalidDataException("Lifetime offset requires an isolated verification config.");
                 File.WriteAllText(Path.Combine(root,"latest-instance.txt"),config.instanceId);
                 var go=new GameObject("Loopback Network",typeof(NetworkManager),typeof(UnityTransport));
                 network=go.GetComponent<NetworkManager>();transport=go.GetComponent<UnityTransport>();
@@ -564,9 +571,12 @@ namespace LittleWeeps.NetworkProbe
             UpdateConnectionEvidence();
             try{TickMovement(Time.realtimeSinceStartupAsDouble);}catch(Exception e){Fail(e);return;}
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
-            if(Time.realtimeSinceStartup-started>(config.interactive?7200:240)){Fail(new TimeoutException("Isolated probe lifetime exceeded."));return;}
+            // Only explicit home hosting opts out; automated probes keep their
+            // deadlines. The offset exercises this exact branch without a two-hour test.
+            if(SessionLifetime.Expired(Time.realtimeSinceStartupAsDouble-started+config.testLifetimeOffsetSeconds,config.interactive,config.persistentServer))
+            {Fail(new TimeoutException("Isolated probe lifetime exceeded."));return;}
 #endif
-            if(Time.realtimeSinceStartup<nextControl)return;nextControl=Time.realtimeSinceStartup+.04f;
+            if(Time.realtimeSinceStartupAsDouble<nextControl)return;nextControl=Time.realtimeSinceStartupAsDouble+.04;
             try
             {
 #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
@@ -632,7 +642,7 @@ namespace LittleWeeps.NetworkProbe
             }
         }
         private void WriteStatus(string status,string reason)
-        {ConnectionStatus=status;if(output!=null)WriteJson(Path.Combine(output,"status.json"),new Status{role=config.role,runId=config.runId,instanceId=config.instanceId,build=Application.version,status=status,reason=reason,pid=System.Diagnostics.Process.GetCurrentProcess().Id});}
+        {ConnectionStatus=status;if(output!=null)WriteJson(Path.Combine(output,"status.json"),new Status{role=config.role,runId=config.runId,instanceId=config.instanceId,build=Application.version,status=status,reason=reason,pid=System.Diagnostics.Process.GetCurrentProcess().Id,persistentServer=config.persistentServer});}
         private void Fail(Exception error)
         {failed=true;Debug.LogException(error);WriteStatus("failed",error.Message);Application.Quit(1);}
         private void Stop(){if(config.role=="server" && (positionDirty || maintenanceDirty))SaveAuthority();stopping=true;network.Shutdown();WriteStatus("stopped","");Application.Quit(0);}

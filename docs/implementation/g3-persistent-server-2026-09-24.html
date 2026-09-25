@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — Wider phones and repeatable garden play</title><style>
+<title>The Family Playset — Persistent home server</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -16,31 +16,50 @@
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
-</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-phone-layout-resets-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1>G3 correction — wider phone play and repeatable garden activities</h1>
-<p><strong>User-directed scope: FAMILY-01, ACT-01, ITEM-03, ITEM-02.</strong> This follows the four-device build 79 check. The user reported excessive side space on Samsung/iPhone while both iPads looked good, and asked for timers because items and quests were not resetting. This is a narrow correction to the existing garden fixtures. The full G5 catalog, personal possessions, creations, rooms, containers and return policies remain separate work. Arrival-only cue cancellation and authored spoken return hints also remain in that broader policy; this fixture protects actual held/use interactions.</p>
-<h2>Implemented in build 82</h2>
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-persistent-server-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1>Persistent home server — build 83</h1>
+<p>Goal <strong>NET-02</strong>, G3. User request: explain the two-hour cutoff and make normal home hosting keep running during family play.</p>
+<h2>Why it stopped</h2>
+<p>The Windows networking prototype shared one lifetime check between automated probes (240 seconds) and interactive sessions (7,200 seconds). <code>Start-FamilyLAN.py</code> launched the family authority as an interactive session, so the laboratory deadline also stopped the home server. This was a test-runner limit, not a Unity, iPad, multiplayer or licensing requirement. The phone/timer correction in build 82 did not change it.</p>
+<h2>What changed</h2>
 <ul>
-<li>On wide landscape safe areas (aspect ratio above 1.85), expand the board and scenery horizontally and distribute the controls. Keep character, prop and text proportions, fixed world coordinates, notch-safe placement and the existing tablet geometry.</li>
-<li>The same unused bucket/sponge returns to its home position after <strong>three minutes</strong>, preceded by a <strong>five-second picture/text cue</strong>. A returned bucket empties and a returned sponge dries. No additional item is spawned.</li>
-<li>A fully watered flower or completely cleaned puddle becomes available again after <strong>one minute of eligible inactivity plus the five-second cue</strong>. Partial progress is preserved. Completion and rearming do not remove a player from their chosen activity.</li>
-<li>Holding a tool protects it; holding the relevant tool protects its completed station in that area. Picking up during a cue cancels it. Meaningful item interactions start a new grace period. Merely walking or changing avatars does not keep every prop alive.</li>
-<li>One authority owns the shared clocks and commits visible changes before publishing. Solo uses the same rules. Clocks are saved, pause when nobody is connected, and do not catch up from a device wall clock. Solo pauses its clocks while its menu/app is paused.</li>
+<li>Normal enrolled home-server launches now explicitly request <strong>persistent hosting</strong>, and verify that the server acknowledged it. There is no time limit or empty-player shutdown in that mode.</li>
+<li>Automated probes retain their original deadlines. Persistent mode requires an enrolled, interactive authority; a client or unpaired test cannot silently opt into it.</li>
+<li>With nobody connected, garden activity timers pause while the server remains available. This is separate from process lifetime.</li>
+<li>The existing single-writer save lock, durable checkpoints and controlled quit path remain. A second authority cannot open the active save.</li>
+<li><code>Restart-FamilyServer.py</code> refuses to replace an occupied server, checks process identity, stops an idle server cleanly, backs up its save/enrollment locally, verifies the checkpoint and compares all existing saved fields after restoration. It never uninstalls clients or creates new family identities.</li>
+<li>A reviewed administrator helper grants only the selected server executable inbound UDP from <strong>LocalSubnet</strong>. It disables only the matching build's first-run block rules. It does not turn off Windows Firewall, change other apps' rules or open a router port.</li>
 </ul>
-<p>Clock metadata is additive and optional: earlier saves start fresh grace periods while preserving their IDs, contents, placements, progress and receipts. The current timer policy only recognizes the existing garden tools and repeatable station fixtures. It must not be generalized to saved plants, personal decorations or creations without the later content policy. Shared clock checkpointing is bounded to five seconds when otherwise idle; an abrupt loss can restore that most recent saved elapsed time. Host transfer/recovery remains G4.</p>
-<h2>Qualification record</h2>
-<ul>
-<li><a href="evidence/phone-layout-resets-2026-09-24/core-51.json">Core rules</a>: <strong>51 checks passed</strong>, including seven new maintenance cases covering timing, cue cancellation, held-item protection, another player's station protection, independent areas, saved elapsed time, absence, stale/replayed commands and older saves.</li>
-<li>First Windows build <strong>80</strong> passed responsive layout checks but its test recorder encountered a transient Windows file replacement conflict. Build <strong>81</strong> retries that observation next frame, without replaying the user's game action. Build 80 is not selected for delivery.</li>
-<li>Build <strong>81</strong> passed <a href="evidence/phone-layout-resets-2026-09-24/full-timers-81.json">six real-time layout/reset checks</a>, with no accelerated clock: the tool cue appeared at about 180 seconds and the return followed five seconds later. Another player's held Creek bucket survived, and a second watering round succeeded.</li>
-<li>Both staggered-update directions passed <a href="evidence/phone-layout-resets-2026-09-24/compatibility-81.json">basic 79/81 compatibility</a>. Older clients do not display the new cue; older servers do not run timers.</li>
-<li>Final <strong>82</strong> additionally excludes disabled old UI objects during a solo/family layout rebuild. It passed <a href="evidence/phone-layout-resets-2026-09-24/shared-82.json">ten shared-control checks</a> and <a href="evidence/phone-layout-resets-2026-09-24/offline-join-82.json">seven offline/rejoin checks</a>, including three solo/family cycles with phone/tablet resizing. The retained-gameplay comparison excludes idle-clock metadata that is now expected to advance; clock retention is covered separately by the core tests.</li>
-<li><a href="evidence/phone-layout-resets-2026-09-24/layout-82.json">Final 82 layout checks</a>: the floor occupies <strong>94.46%</strong> of the safe width at 1560 x 720 and <strong>94.38%</strong> at 1280 x 600. All visible controls stay inside the reported safe area. Both tablet checks retain the original 1120-unit board width. These are actual Unity Windows renders at phone/tablet aspect ratios, not native phone/notch acceptance.</li>
-<li>Windows server/client and the signed Android release <strong>82</strong> built without errors or warnings; the matching iOS export and <a href="evidence/phone-layout-resets-2026-09-24/ios-native-82.json">Mac native compile/link</a> passed. Apple-generated warnings are retained; the unsigned app supports iPhone/iPad, has the correct app identity and links the native family bridge. An unsigned IPA is packaged/hash-verified for subsequent Sideloadly signing; it is not installed. <a href="evidence/phone-layout-resets-2026-09-24/builds-82.json">Build/source record</a>. All compiled C# sources match current files. The core world, session and network authority files are byte-identical to the full real-time 81 timer check; the final layout-only fix does not change their timer rules.</li>
-</ul>
-<h2>Final phone preview</h2>
-<p><img alt="Build 82 at a phone aspect ratio" src="evidence/phone-layout-resets-2026-09-24/phone-82.png" /></p>
-<p><a href="evidence/phone-layout-resets-2026-09-24/tablet-82.png">Tablet comparison</a> · <a href="evidence/phone-layout-resets-2026-09-24/tool-cue-81.png">Tool return cue</a></p>
-<h2>Delivery and remaining work</h2>
-<p>The children's shared build 79 session has not been restarted or replaced. Timers take effect in shared play only after the PC authority is updated. Phone layout changes require updated clients. A controlled deployment and actual phone/notch checks remain separate from desktop aspect-ratio checks. The user was asked whether play has finished; deployment is pending their availability. The same app identities and existing saves must be retained.</p>
-<p>This build 82 correction did not remove the two-hour runner limit. The later <a href="g3-persistent-server-2026-09-24.html">build 83 persistence task</a> implements and tests that removal; deployment is awaiting Windows permission. Neither task completes G3/G5. Broader per-device lifecycle, sustained performance, parent setup, iPad hosting/recovery and content remain in the main guide.</p>
-<p>The regenerated guide/reports passed local link, anchor and image checks. All 35 goal IDs remain mapped. Python helpers parse, <code>git diff --check</code> passes after removing Unity-generated YAML whitespace, and only the app version/build counters changed in project settings.</p></main></body></html>
+<p>The PC must remain powered on, awake and connected. This does not yet install a Windows sign-in task, service or crash supervisor, and does not implement required iPad hosting. "Persistent" means the server no longer exits on a test timer; it is not a guarantee against operating-system shutdowns or power loss.</p>
+<h2>Evidence</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core rules</td>
+<td><strong>52 passed</strong>, including exact timed-test boundaries and persistent lifetime values through 30 days. <a href="evidence/persistent-server-2026-09-24/core-52.json">Results</a>.</td>
+</tr>
+<tr>
+<td>Windows build</td>
+<td>Client and dedicated server <strong>0.0.83</strong> built successfully with zero build errors. <a href="evidence/persistent-server-2026-09-24/windows-build-83.json">Summary</a>.</td>
+</tr>
+<tr>
+<td>Runtime lifetime and recovery</td>
+<td><strong>6 checks passed</strong>: timed probes still expire; persistent runtime crosses the former boundary while empty; four players join and interact; a duplicate writer is refused; controlled restart preserves state and all four client processes rejoin; the last departure leaves an available unchanged world. <a href="evidence/persistent-server-2026-09-24/native-lifecycle-83.json">Results</a>.</td>
+</tr>
+<tr>
+<td>Staggered client updates</td>
+<td><strong>83 server / 79 client</strong> and <strong>79 server / 83 client</strong> pass admission, pickup, filling and shared state. <a href="evidence/persistent-server-2026-09-24/compatibility-83.json">Results</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The native cutoff test supplies an explicit verification-only elapsed offset to the same lifetime branch. It is <strong>not a real two-hour soak</strong>. The production launcher supplies no offset. No new physical-device restart/soak acceptance is claimed. Build 83 includes build 82's garden timers; older 79 clients can interact with that state but do not display the new return cue. Their wider phone layout still requires a client update.</p>
+<h2>Deployment status</h2>
+<p><strong>Prepared, not yet applied.</strong> Windows currently blocks inbound network access for the new executable. The administrator approval prompt was canceled; no firewall change was applied. The original build 79 server reached its existing limit at approximately 9:26 PM CDT on September 24 with <strong>zero connected players</strong>. Its save checksum was verified and a separate local backup preserves all four players, ten objects and existing progress. <a href="evidence/persistent-server-2026-09-24/deployment-pending.json">Pending deployment record</a>. Build 83's normal deployment must wait for the Windows permission, then use the original family and preserve its checkpoint.</p>
+<p>The helper and idle-replacement workflow are prepared. The native launcher/restart behavior is tested above; the full production replacement script still requires an actual approved deployment. Automatic startup after PC restart, long-duration measurements and physical-device rejoin confirmation remain open. G1/G2/G3 are not declared complete.</p>
+<h2>Next</h2>
+<p>Approve the scoped Windows firewall helper, start build 83 against the saved family using the idle-replacement tool, and verify the restored save and mobile reconnects. Then update phone clients for the prepared layout/return cues, continue the device/lifecycle checklist, and add parent-facing start/stop/status and sign-in startup. Keep the full goal sheet and required G4 iPad hosting/recovery unchanged.</p></main></body></html>

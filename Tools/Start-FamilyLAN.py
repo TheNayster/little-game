@@ -1,4 +1,4 @@
-"""Start a verified Windows LAN proof using a previously parent-created family."""
+"""Start a verified home server (no time limit) or player for an enrolled family."""
 import argparse
 import hashlib
 import json
@@ -27,6 +27,7 @@ def main():
         file=(folder/entry['path']).resolve()
         require(file.is_relative_to(folder.resolve()) and hashlib.sha256(file.read_bytes()).hexdigest()==entry['sha256'],'Artifact changed')
     role='server' if args.player==0 else 'client';identity=uuid.uuid4().hex
+    require(role!='server' or args.build>=83,'Persistent home hosting requires build 83 or later; older builds retain the test deadline')
     if role=='server':
         # Fail before opening a save if an explicitly requested port is busy.
         # The game still checks bind errors and holds its own authority lock.
@@ -36,7 +37,7 @@ def main():
     elif args.port==0:args.port=1025
     paired=root/('authority.pairing' if role=='server' else f'player-{args.player}.pairing');require(paired.is_file(),'Missing protected enrollment')
     config=dict(runId=world,instanceId=identity,role=role,port=args.port,protocol=3,content=3,
-                pairingPath=str(paired),presentation=True,interactive=True)
+                pairingPath=str(paired),presentation=True,interactive=True,persistentServer=role=='server')
     output=root/identity;output.mkdir();path=root/(identity+'.config.json');write(path,config)
     exe=folder/('Server' if role=='server' else 'Client')/'LittleWeepsNetwork.exe'
     command=[str(exe),'-familyNetworkConfig',str(path),'-logFile',str(output/'player.log')]
@@ -47,14 +48,16 @@ def main():
     write(output/'launcher.json',dict(pid=process.pid,role=role,build=args.build,instanceId=identity,worldId=world))
     def ready():
         state=read(output/'status.json')
-        if state:require(state['status']!='failed','Game startup failed; see its local status file')
+        if state:
+            require(state['status']!='failed','Game startup failed; see its local status file')
+            if role=='server' and state['status']=='listening':require(state.get('persistentServer') is True,'Server did not acknowledge persistent mode')
         return state and state['status'] in ('listening','connected','solo-available')
     try:wait(ready,'family '+role,seconds=35)
     except Exception:
         if process.poll() is None:
             write(output/'control.json',dict(serial=1,kind='quit'))
         raise
-    write(root/('latest-server.json' if role=='server' else f'latest-player-{args.player}.json'),dict(instanceId=identity,pid=process.pid,port=args.port,build=args.build))
+    write(root/('latest-server.json' if role=='server' else f'latest-player-{args.player}.json'),dict(instanceId=identity,pid=process.pid,port=args.port,build=args.build,persistentServer=role=='server'))
     print(json.dumps(dict(role=role,build=args.build,worldId=world,pid=process.pid,status=read(output/'status.json')['status'],output=str(output))))
 
 

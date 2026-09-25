@@ -5,7 +5,7 @@ import markdown
 
 root=Path(__file__).resolve().parent.parent
 style=re.search(r'<style>(.*?)</style>',(root/'bluey-game-research-2026-09-23.html').read_text(encoding='utf-8'),re.S).group(1)
-for base,title in [('g3-ipad-lan-2026-09-24','iPad preparation and automatic rejoin'),('g3-android-lan-2026-09-24','Android automatic family connection'),('g3-offline-join-2026-09-24','Automatic joining from solo play'),('g3-ipad-79-2026-09-24','Both iPads on family build 79'),('g3-phones-79-2026-09-24','Samsung and iPhone family build 79'),('g3-phone-layout-resets-2026-09-24','Wider phones and repeatable garden play'),('return-checklist-ipad-lan-2026-09-24','When you return')]:
+for base,title in [('g3-ipad-lan-2026-09-24','iPad preparation and automatic rejoin'),('g3-android-lan-2026-09-24','Android automatic family connection'),('g3-offline-join-2026-09-24','Automatic joining from solo play'),('g3-ipad-79-2026-09-24','Both iPads on family build 79'),('g3-phones-79-2026-09-24','Samsung and iPhone family build 79'),('g3-phone-layout-resets-2026-09-24','Wider phones and repeatable garden play'),('g3-persistent-server-2026-09-24','Persistent home server'),('return-checklist-ipad-lan-2026-09-24','When you return')]:
     source=root/'implementation'/f'{base}.md'
     body=markdown.markdown(source.read_text(encoding='utf-8'),extensions=['tables','fenced_code'])
     body=body.replace('<table>','<div class="table-scroll"><table>').replace('</table>','</table></div>')

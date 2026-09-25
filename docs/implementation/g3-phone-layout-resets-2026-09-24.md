@@ -32,6 +32,6 @@ Clock metadata is additive and optional: earlier saves start fresh grace periods
 
 The children's shared build 79 session has not been restarted or replaced. Timers take effect in shared play only after the PC authority is updated. Phone layout changes require updated clients. A controlled deployment and actual phone/notch checks remain separate from desktop aspect-ratio checks. The user was asked whether play has finished; deployment is pending their availability. The same app identities and existing saves must be retained.
 
-The persistent PC-server task remains next: the current qualification runner still has its two-hour limit. This correction does not claim to remove it or complete G3/G5. Broader per-device lifecycle, sustained performance, parent setup, iPad hosting/recovery and content remain in the main guide.
+This build 82 correction did not remove the two-hour runner limit. The later [build 83 persistence task](g3-persistent-server-2026-09-24.html) implements and tests that removal; deployment is awaiting Windows permission. Neither task completes G3/G5. Broader per-device lifecycle, sustained performance, parent setup, iPad hosting/recovery and content remain in the main guide.
 
 The regenerated guide/reports passed local link, anchor and image checks. All 35 goal IDs remain mapped. Python helpers parse, `git diff --check` passes after removing Unity-generated YAML whitespace, and only the app version/build counters changed in project settings.

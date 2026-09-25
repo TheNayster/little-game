@@ -58,7 +58,7 @@
 </aside><article class="report">
 <p><strong>Production guide · September 23, 2026 · Implementation audit updated September 24, 2026</strong></p>
 <p><strong>Purpose:</strong> build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.</p>
-<p><strong>Current position:</strong> <strong>The foundation follows the goal sheet; the full game is still being built.</strong> Both iPads, Samsung and iPhone now run family build 79 and have connected together to the same PC authority. The user confirms working controls and the children are playing on the iPads. Two-iPad movement, shared bucket handling, independent travel and rejoining have scoped physical evidence. G1/G2/G3 remain partial: sustained device measurements, everyday recovery/setup, persistent PC operation, iPad hosting, durable personal rooms and content remain ahead. <a href="#19-implementation-audit-and-remaining-work">Completed work, all 35 feature statuses and remaining gates</a> · <a href="#9-first-implementation-work-queue">Next tasks in order</a>.</p>
+<p><strong>Current position:</strong> <strong>The foundation follows the goal sheet; the full game is still being built.</strong> Both iPads, Samsung and iPhone now run family build 79 and have connected together to the same PC authority. The user confirmed working controls. Persistent server 83 is tested but awaits Windows permission; the old server reached its deadline while empty and is now stopped, with its save preserved. Two-iPad movement, shared bucket handling, independent travel and rejoining have scoped physical evidence. G1/G2/G3 remain partial: sustained device measurements, everyday recovery/setup, deployment of persistent PC hosting, iPad hosting, durable personal rooms and content remain ahead. <a href="#19-implementation-audit-and-remaining-work">Completed work, all 35 feature statuses and remaining gates</a> · <a href="#9-first-implementation-work-queue">Next tasks in order</a>.</p>
 <p><a href="bluey-game-research-2026-09-23.html">Open the feature goal sheet</a> · <a href="family-playset-package-research-2026-09-23.html">Package research</a> · <a href="family-playset-technical-research-2026-09-23.html">Technical evidence</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
 <h2 id="1-two-documents-with-different-jobs">1. Two documents with different jobs</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
@@ -455,8 +455,8 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <tbody>
 <tr>
 <td><strong>1 — next bounded task</strong></td>
-<td><strong>G3 persistent PC home-server mode (NET-02).</strong> Four physical mobile clients have joined build 79, but the current interactive Windows qualification runner exits after 7,200 seconds. Provide an explicit persistent home-server mode while retaining automated probe timeouts.</td>
-<td>Preserve the existing authority lock and checkpoints; verify persistence beyond the former deadline, controlled stop/restart, safe duplicate-start refusal and client rejoin using isolated data. Prepare the replacement without touching the children's session; apply it after play finishes. <a href="implementation/g3-phones-79-2026-09-24.html">Latest mobile evidence</a>.</td>
+<td><strong>Apply tested G3 persistent PC home-server build 83 (NET-02).</strong> The code removes the home-server cutoff while retaining timed probes. Windows administrator approval for the new executable was canceled; deployment is pending. The old idle server reached its original deadline at about 9:26 PM CDT.</td>
+<td>Approve scoped local-network access, preserve the original save/enrollment, deploy, and verify physical reconnects. Six isolated runtime/restart checks and 52 core checks passed; no real two-hour soak or sign-in startup is claimed. <a href="implementation/g3-persistent-server-2026-09-24.html">Persistent server record</a>.</td>
 </tr>
 <tr>
 <td>2</td>
@@ -946,15 +946,15 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td><strong>User-directed G3 correction: wider phone layout and repeatable garden play (FAMILY-01, ACT-01, ITEM-03).</strong> Build 81 passed real-time reset/replication. Final 82 passed phone/tablet layout checks, 10 shared-control regressions and 7 offline/rejoin checks including resized solo/family cycles. Windows, signed Android and unsigned native iOS builds passed. Apple signing/installation and live deployment await availability. Live devices/server remain on 79 while the children play. <a href="implementation/g3-phone-layout-resets-2026-09-24.html">Change record</a>.</td>
+<td><strong>G3 persistent home server (NET-02), build 83 prepared.</strong> Explicit persistent mode has no lifetime cutoff; timed probes retain deadlines. Native four-client lifetime/restart and duplicate-writer checks pass. Windows permission was canceled, so production deployment awaits approval. The former build 79 server expired while empty at about 9:26 PM CDT; its world is retained. <a href="implementation/g3-persistent-server-2026-09-24.html">Record</a>.</td>
 </tr>
 <tr>
 <td>Latest completed engineering task</td>
-<td><strong>Build 82 prepared:</strong> wide phones use about 94% of the safe width; tablet geometry stays unchanged. Garden tool returns and completed-activity repeats use saved authority timers with held-item protection. Core rules, real-time 81 timers, final 82 shared/rejoin/layout regressions and platform builds passed. <a href="implementation/g3-phone-layout-resets-2026-09-24.html">Evidence</a>. Live deployment is pending; devices remain on 79.</td>
+<td><strong>Build 83 persistence correction tested:</strong> 52 core checks, six native lifetime/recovery cases, and mixed 79/83 compatibility pass. Includes prepared build 82 phone layout and garden timers; installed devices remain 79. Persistent mode is prepared, not deployed. <a href="implementation/g3-persistent-server-2026-09-24.html">Persistence evidence</a> · <a href="implementation/g3-phone-layout-resets-2026-09-24.html">Phone/timer evidence</a>.</td>
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td>Apply the prepared phone/timer correction after the family finishes, preserving saves; check native phone safe areas. Then <strong>persistent PC home-server mode (NET-02), with isolated restart/save/rejoin checks.</strong> The current qualification runner has a two-hour lifetime. Build and validate its replacement separately; deploy after the children finish, preserving the live world. Then continue remaining device/lifecycle and G3 prolonged-outage recovery/parent setup checks. Required iPad hosting/recovery remains G4. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Checklist</a>.</td>
+<td>Approve the reviewed Windows firewall helper, apply persistent server 83 to the original saved family, verify saved state and mobile rejoin, then apply prepared phone client updates and check native safe areas. Parent-facing server startup/status, sign-in startup, a real sustained run, and remaining G3 device/lifecycle/outage checks remain. Required iPad hosting/recovery remains G4. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Checklist</a>.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -1185,7 +1185,7 @@ Status: pending
 <tr>
 <td><strong>Windows</strong></td>
 <td>Live preview <strong>68</strong> remains; <strong>79</strong> passes 7 offline-join, 11 LAN, 7 reconnect and 10 garden cases. PC authority now admits all four physical mobile clients. <a href="implementation/g3-offline-join-2026-09-24.html">Automated evidence</a> · <a href="implementation/g3-phones-79-2026-09-24.html">Physical evidence</a></td>
-<td>Remove the qualification runner's two-hour limit in a persistent mode; controlled shutdown/restart, prolonged-outage automatic solo recovery, parent setup and alternate/IPv6 endpoints.</td>
+<td>Deploy tested persistent server 83 after Windows approval; real sustained run, sign-in startup/status, prolonged-outage automatic solo recovery, parent setup and alternate/IPv6 endpoints.</td>
 </tr>
 <tr>
 <td><strong>Android emulator</strong></td>
@@ -1324,8 +1324,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>NET-02</strong></td>
-<td><strong>Partial:</strong> PC authority admits four physical clients; both iPads pass reported lock/return and native cold rejoin with sibling continuity</td>
-<td>Persistent home-server mode (current Windows runner exits after two hours), phone lifecycle, later activities and longer outages. G3.</td>
+<td><strong>Partial:</strong> four physical clients admitted by PC authority; both iPads have scoped lifecycle/rejoin evidence. Persistent mode in build 83 passes isolated lifetime/restart/empty/duplicate-writer checks; approved deployment pending.</td>
+<td>Windows permission and live deployment, physical reconnect/soak, sign-in startup/status, phone lifecycle, later activities and longer outages. G3.</td>
 </tr>
 <tr>
 <td><strong>REMOTE-01</strong></td>
@@ -1447,7 +1447,7 @@ Status: pending
 <p><strong>Media and offline mode still live in separate fixtures.</strong> <code>FoundationVideo.cs</code> has one local test clip; <code>SoloScreen.cs</code> runs the garden. Build 79 safely switches between the paired local garden and the shared world while preserving separate saves. Media overlays and automatic prolonged-outage local recovery remain open; Menu can already restore the separate solo draft.</p>
 </li>
 <li>
-<p><strong>The Windows authority is still a bounded qualification runner.</strong> <code>NetworkProbe.cs</code> exits an interactive Windows run after 7,200 seconds; the mobile clients do not share that timeout. Concurrent four-device admission does not establish always-on hosting. Add an explicit persistent home-server mode, preserve automated probe deadlines and checkpoint/lock behavior, and qualify controlled restart/rejoin before replacing the live session.</p>
+<p><strong>Persistent hosting is tested but deployment needs Windows approval.</strong> Build 83 explicitly removes the home-server lifetime cutoff and retains timed probes, checkpoint/lock behavior and controlled restart/rejoin. Six native cases and 52 core checks pass; the cutoff test uses a verification-only elapsed offset, not a real two-hour soak. The old empty server expired at its deadline. New firewall permission was canceled; use the reviewed helper and preserved family save to deploy. Sign-in startup and a crash supervisor are not installed. <a href="implementation/g3-persistent-server-2026-09-24.html">Evidence</a>.</p>
 </li>
 </ol>
 <p>These are bounded prototype choices and explicit unfinished work, not reasons to restart from scratch. Preserve the tested rules, saves and movement; qualify the next dependency before expanding content.</p>

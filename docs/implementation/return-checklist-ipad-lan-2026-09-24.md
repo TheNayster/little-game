@@ -25,7 +25,7 @@ The user requested less phone side space and timers for unused items/completed q
 
 ## Next Windows task
 
-The temporary qualification server exits after two hours. Provide a persistent home-server mode, keep automated probe timeouts, preserve its saved world and single-writer lock, and prove stop/restart/rejoin on isolated data. A live replacement needs a controlled restart after the children finish playing. Do not interrupt them to apply it.
+[Persistent server 83](g3-persistent-server-2026-09-24.html) is built and tested: no home-server lifetime limit, timed probes retained, four-client restart/save/rejoin and duplicate-writer checks passed. Windows administrator approval was canceled, so deployment is pending. The old build 79 server reached its deadline at about 9:26 PM CDT with nobody connected; the save is intact. Approve the scoped firewall helper, apply the original family save, and verify mobile reconnects. Sign-in startup, long-duration soak and native deployment acceptance remain open.
 
 ## Deferred hands-on checks — no action requested now
 

@@ -20,6 +20,14 @@ static class Program
         root = Path.GetFullPath(args.Length == 1 || nativeBonjour ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory and optional --bonjour."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        Test("home authority has no lifetime cutoff while isolated probes retain exact deadlines",()=>{
+            foreach(var elapsed in new[]{0d,240d,241d,7200d,7201d,86400d,2592000d})
+                Check(!SessionLifetime.Expired(elapsed,true,true));
+            Check(!SessionLifetime.Expired(7200,true,false) && SessionLifetime.Expired(7200.001,true,false));
+            Check(!SessionLifetime.Expired(240,false,false) && SessionLifetime.Expired(240.001,false,false));
+            Throws(()=>SessionLifetime.Expired(double.NaN,true,true));
+            Throws(()=>SessionLifetime.Expired(-1,true,true));
+        });
         Test("idle tools return the same instance after grace and cue without changing players or receipts",()=>{
             var w=SoloWorld.Create("first","second");Fill(w);
             var original=w.Snapshot();Advance(w,179);Check(!Toy(w,"bucket-1").resetPending && Toy(w,"bucket-1").water==3);

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "build": 83,
+  "utc": "2026-09-25T02:23:33.681264+00:00",
+  "checks": [
+    {
+      "serverBuild": 83,
+      "clientBuild": 79,
+      "passed": true,
+      "runId": "f42c13fc1ac8454aa6c56b5dc9429d3c"
+    },
+    {
+      "serverBuild": 79,
+      "clientBuild": 83,
+      "passed": true,
+      "runId": "54b2f72b44364dec968fd0ce673aa6c8"
+    }
+  ],
+  "scope": "Wire compatibility and basic interaction; older clients do not display the new reset cue. Older servers do not implement timers.",
+  "physicalDevicesAccessed": false
+}

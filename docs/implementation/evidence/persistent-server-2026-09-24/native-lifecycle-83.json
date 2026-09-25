@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "build": 83,
+  "utc": "2026-09-25T02:23:09.436640+00:00",
+  "checks": [
+    {
+      "check": "both automated and interactive test deadlines still expire through the native runtime branch",
+      "passed": true
+    },
+    {
+      "check": "persistent native authority crosses the simulated 7200-second boundary and stays available with no players",
+      "passed": true
+    },
+    {
+      "check": "four enrolled players join beyond the former boundary and can move shared items and travel independently",
+      "passed": true
+    },
+    {
+      "check": "a second authority is refused by the save lock without disturbing four connected clients",
+      "passed": true
+    },
+    {
+      "check": "controlled stop flushes the world; the normal launcher restores it in persistent mode and all four existing clients rejoin",
+      "passed": true
+    },
+    {
+      "check": "last player leaving pauses world activity without shutting down the home server",
+      "passed": true
+    }
+  ],
+  "scope": "Native Windows four-client test; lifetime boundary uses an explicit verification-only elapsed offset. Not a two-hour wall-clock soak or physical-device restart acceptance."
+}
