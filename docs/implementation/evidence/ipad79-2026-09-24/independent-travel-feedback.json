@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "recordedUtc": "2026-09-25T01:15:55.906238+00:00",
+  "build": "0.0.79",
+  "devices": [
+    "iPad 7 A2197",
+    "iPad 9 A2602"
+  ],
+  "authority": "Windows PC family server",
+  "goalIds": [
+    "WORLD-01",
+    "WORLD-02"
+  ],
+  "evidenceType": "User-reported physical check",
+  "requestedCheck": "Send one player to Creek while the other continues playing in Garden, then reunite them. Each player should remain uninterrupted and see the other after reunion.",
+  "userReply": "Yup did that worked",
+  "result": "User confirms independent Garden/Creek travel, continuing play in the other area and seeing each other after reunion.",
+  "limits": [
+    "Two physical iPads in the current two-area fixture only.",
+    "Does not qualify the full six worlds, later activities, four physical players or mobile hosting.",
+    "Lock/return, cold restart, late joining, shared-build multi-touch and saved solo return remain pending."
+  ]
+}
