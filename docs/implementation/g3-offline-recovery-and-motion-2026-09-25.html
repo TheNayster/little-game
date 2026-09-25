@@ -1,0 +1,151 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Family Playset — Offline controls and smooth walking</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;background:radial-gradient(circle at center,#fff 0 28%,#eef3ee 28% 29%,transparent 29%)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid transparent;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+
+.progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-offline-recovery-and-motion-2026-09-25.md">Editable record</a></nav></header><main class="progress-report report"><h1>Offline controls and walking: research, fixes and qualification</h1>
+<p>September 25, 2026 · G3-REC-05 · goals NET-02 / AUTO-01 / JOIN-01 / FAMILY-01.</p>
+<p><strong>Follow-up after the 93 device test:</strong> the older iPad continued without reopening, but its 10+ second delay and periodic walking jerk remain open. The user clarified server-authoritative reunion without merging offline changes. <a href="g3-offline-authority-and-hitch-review-2026-09-25.html">Current research and build 94</a> supersedes the pending-feedback and ten-second policy below; this report retains the 93 investigation and evidence.</p>
+<h2>The reported problem</h2>
+<p>The latest physical report is <strong>all four devices stop accepting controls after Wi-Fi is turned off until the app is closed and reopened; offline walking then looks choppy, while connected play is smooth</strong>. Turning Wi-Fi back on reconnects successfully. This remains a physical qualification blocker. Earlier one-off iPad 7 recovery successes do not override that report. <a href="evidence/ipad91-2026-09-25/all-device-offline-feedback.json">Exact feedback</a>.</p>
+<p>Installed during those tests: iPad 7 build 91, iPad 9/iPhone 79, Samsung 83, PC authority 91. The older clients lack the newer continuation implementation, but that does not explain away the reported build 91 failure. No replacement is qualified on a device simply because it builds.</p>
+<h2>Research completed before the replacement edits</h2>
+<p>The provisional 92 walking changes preceded the user's research-first instruction. Further editing stopped while the following primary documentation and the installed package source were reviewed. Implementation then resumed with isolated reproductions. No provisional 92 device installation was performed.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Primary source reviewed</th>
+<th>Finding</th>
+<th>Decision for this game</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/time-per-frame-updates.html">Unity per-frame updates</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Time-unscaledDeltaTime.html">unscaledDeltaTime</a></td>
+<td>Motion must use elapsed time, with updates aligned to rendering.</td>
+<td>Advance local walking each rendered frame using bounded unscaled delta time. Keep transactional item actions and durable saves separate.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Application-targetFrameRate.html">Mobile targetFrameRate</a></td>
+<td>iOS/Android use the application target, ignoring vSyncCount; the achievable rate depends on refresh divisors and workload. Desktop software caps can have their own pacing artifacts.</td>
+<td>Use a consistent 60 fps target and test motion at both 30 and 60. A target is not a measured device guarantee. The previous two initializers requested different rates, so the physical old rate cannot be inferred from one assignment.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/Packages/com.unity.transport@2.7/api/Unity.Networking.Transport.NetworkConfigParameter.html">Transport 2.7 timeout configuration</a></td>
+<td>Inactivity detection emits a disconnect; heartbeats prevent an otherwise quiet connection timing out.</td>
+<td>Retain 2,500 ms disconnect/400 ms heartbeat configuration. A transport timeout does not itself restore the local game presentation.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/components/core/networkmanager.html">NGO NetworkManager lifecycle</a></td>
+<td>Shutdown is asynchronous. Unexpected disconnections must be handled by the application.</td>
+<td>Retain the durable world outside network objects, archive uncertain requests, and let discovery retry without keeping input dependent on a dead authority. Check shutdown completion before starting another client.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.20/manual/device-background-focus-changes.html">Input System focus changes</a>, <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.20/manual/background-behavior.html">background behavior</a></td>
+<td>Mobile input is tied to foreground state. Resuming synchronizes or resets device state; canceled input must not remain an active gesture.</td>
+<td>Cancel game-owned gestures at connection/lifecycle boundaries. A finger still physically pressed may delay joining live play, but must not indefinitely block recovery from already-canceled shared input. Do not globally reset every input device as a workaround.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/MonoBehaviour.OnApplicationPause.html">OnApplicationPause</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Application-internetReachability.html">internetReachability</a></td>
+<td>Pause/focus callbacks vary by platform; a reported network interface does not prove a route to this server.</td>
+<td>Exercise background/resume separately from server loss. Keep transport/application evidence authoritative; do not treat cellular connectivity or a Wi-Fi icon as proof the family server is reachable.</td>
+</tr>
+<tr>
+<td><a href="https://unity.com/how-to/unity-ui-optimization-tips">Unity UI optimization</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/performance-managed-memory-introduction.html">managed memory</a></td>
+<td>Canvas rebuilds and allocations can contribute CPU/GC cost.</td>
+<td>Avoid full-screen rendering and transaction-receipt creation for each local walking step. Measure remaining allocation/canvas cost rather than importing another networking package.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/profiler-file-access-module.html">Unity File Access Profiler</a>, <a href="https://developer.apple.com/documentation/xcode/improving-app-responsiveness">Apple responsiveness</a>, <a href="https://developer.apple.com/documentation/xcode/reducing-disk-writes">Apple disk writes</a></td>
+<td>File operations can occupy the main thread; unnecessary writes increase cost.</td>
+<td>Preserve atomic checksummed saves and read-back verification. Avoid rewriting unchanged solo saves. Profile actual offline autosave cost before designing a background writer; never remove durability to hide a hitch.</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/documentation/xcode/analyzing-the-performance-of-your-metal-app">Apple game performance analysis</a>, <a href="https://developer.android.com/games/sdk/frame-pacing">Android frame pacing</a></td>
+<td>Frame timing needs platform measurements; Android pacing is integrated with supported Unity versions.</td>
+<td>Qualify the A10 iPad first, then the remaining devices. A Windows motion trace is useful regression evidence, not an iPad frame-time or thermal measurement.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Version scope: Unity 6000.3.24f1, Input System 1.20.0, installed NGO 2.13.2 and embedded Transport 2.7.4 patch 1. The online NGO 2.13 documentation currently resolves to 2.13.3; the relevant shutdown/disconnect behavior was also checked in the installed 2.13.2 package documentation. No package upgrade is part of this fix.</p>
+<h2>Findings in our code and tests</h2>
+<p><strong>Confirmed cadence defect:</strong> the offline controller used a <code>now + 1/30</code> deadline and skipped rendering frames before that deadline. A native Windows 91 reproduction advanced the character in about 33–35% of observed frames, bunching movement despite an average walking speed near the intended 210 units/second. Objects being dragged did not use that gate. This explains a code-level difference between smooth dragging/networked presentation and uneven local walking; it is not a claim that we have measured every device's frame timings.</p>
+<p><strong>Confirmed blocked transition:</strong> native UGUI touch held across isolated authority loss keeps the old session on screen beyond the recovery threshold in candidate 92. The shared input is canceled, but the session-switch guard still checks raw pressed fingers. An open menu also excludes automatic recovery, and missing complete checkpoints return without detaching a previously shared presentation. These are distinct paths to a dead shared screen. Our earlier tests released the held input before checking recovery and therefore missed that condition.</p>
+<p><strong>Save regression explained:</strong> the failed candidate 92 cold-resume test retained all toys, players and revision, but an unnecessary load/serialize/save changed an idle timer from <code>3.1677519013883284</code> to <code>3.167751901388329</code>. The retained main and backup files differ in this timer precision. The fix keeps clean solo saves untouched, while restored interrupted holds still count as changes that must be saved. The exact-preservation assertion remains in place; it is not replaced with a permissive comparison.</p>
+<p><strong>Still hypotheses:</strong> a physical lifecycle event, sustained file-I/O stalls, or another device-specific input problem could contribute. Recovery checkpoint writes of 25–40 ms were sampled on the older iPad; those are not offline-autosave measurements. Do not claim async saving, a faster server, a new transport, or a fixed update rate would cure the remaining physical issue without measurements.</p>
+<h2>Replacement behavior</h2>
+<ol>
+<li>Walk locally every rendered frame using the same speed and bounds as shared motion. Only avatar position/depth change during walking; ordinary item rules still use acknowledged transactions.</li>
+<li>After the existing ten foreground seconds of disconnection, canceled shared gestures cannot hold recovery hostage. Live reunion still waits for real local gestures, pending commands and a successful save.</li>
+<li>Preserve an open menu during recovery. Returning to play then operates the local world.</li>
+<li>If there is a complete verified checkpoint, create a separate saved offline adventure. If none exists, reopen the existing solo world while reconnect attempts continue. Never fabricate a complete world from an incomplete network view.</li>
+<li>Keep the family authority's world canonical when reunited. Retain offline work separately, do not replay uncertain pours, and do not overwrite the original solo save just by opening an adventure.</li>
+</ol>
+<h2>Acceptance and current limits</h2>
+<p>Candidate 92 is superseded, not deployed. <strong>Replacement 93 passes Windows qualification, native iOS compilation/signing and a retained iPad 7 update.</strong> The older iPad runtime reports 0.0.93 and has rejoined with a durable full checkpoint. Human Wi-Fi-loss/movement checks remain pending. Keep <strong>G3-REC-05 open</strong> until actual Wi-Fi-off tests pass on the replacement devices. <a href="evidence/offline93-2026-09-25/qualification93.json">Qualification summary</a>.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Measured check</th>
+<th>Result / evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Offline 91 baseline</td>
+<td>Tap 34.9% / joystick 33.1% of moving frames advanced; <a href="evidence/offline93-2026-09-25/motion91-baseline.json">failing cadence reproduction</a>.</td>
+</tr>
+<tr>
+<td>Offline 93, 30 fps target</td>
+<td>Both controls advanced on every sampled moving frame; mean speeds 210.28 / 210.14 units/s. <a href="evidence/offline93-2026-09-25/motion93-30fps.json">Metrics</a>.</td>
+</tr>
+<tr>
+<td>Offline 93, 60 fps target</td>
+<td>Both controls advanced on every sampled moving frame; mean speeds 210.09 / 210.14 units/s. <a href="evidence/offline93-2026-09-25/motion93-60fps.json">Metrics</a>.</td>
+</tr>
+<tr>
+<td>Held touch, menu, no complete checkpoint</td>
+<td>All three <a href="evidence/offline93-2026-09-25/handoff92.json">baseline 92 cases fail</a>; all three <a href="evidence/offline93-2026-09-25/handoff93.json">replacement 93 cases pass</a>, including durable local interaction and automatic reunion. No-checkpoint case uses authority 85.</td>
+</tr>
+<tr>
+<td>Save preservation and recovery</td>
+<td><a href="evidence/offline93-2026-09-25/core93.json">69 core/storage checks</a>, <a href="evidence/offline93-2026-09-25/continuation93.json">six four-client continuation groups</a> and <a href="evidence/offline93-2026-09-25/failure-regressions93.json">five failure-boundary groups</a> pass. The <a href="evidence/offline93-2026-09-25/save92-diagnosis.json">92 decimal rewrite diagnosis</a> remains recorded.</td>
+</tr>
+<tr>
+<td>Four-player shared movement</td>
+<td>Every sampled moving frame advanced; p95 visual speed 250.82 units/s, p95 visual lag behind received state 0.207 seconds. Menu stopped authority walking. <a href="evidence/offline93-2026-09-25/shared-four93.json">Native canvas regression</a>. This lag metric is not end-to-end network latency.</td>
+</tr>
+<tr>
+<td>iOS Release compilation/linking</td>
+<td>Verified 3,093 export files before/after transfer; native compile/link and six bridge symbols pass. Signing/install not implied. <a href="evidence/offline93-2026-09-25/ios93-native.json">Native check</a> · <a href="evidence/offline93-2026-09-25/artifacts93.json">Build artifact hashes</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>All movement metrics above come from isolated native Windows clients, not physical phones/tablets. The tests used separate enrolled worlds and did not kill or reset the live family server.</p>
+<ul>
+<li>Core walking/state/storage rules, exact solo retention and interrupted-hold recovery.</li>
+<li>Native offline tap and joystick walking at 30 and 60 fps targets; verify continuous canvas movement, speed, stopping and menu cancellation.</li>
+<li>Held touch, open menu, and older authority without full replicas; recover without killing the app and automatically rejoin.</li>
+<li>Four-client continuation, cold reopen, repeated outage and distinct adventures, denied writes, uncertain acknowledged outcomes and lifecycle-adapter regression tests.</li>
+<li>On iPad 7 first: Wi-Fi off in Settings and Control Center, held joystick/bucket, menu open, background/resume, repeat off/on, local movement and saved work. Then iPad 9, Samsung and iPhone with exact build numbers recorded.</li>
+<li>Measure A10 frame timing, save cost and sustained behavior if visible stutter remains. Do not close the physical report based on desktop evidence alone.</li>
+</ul>
+<p>This work preserves the full goal sheet: four mixed-device players, independent travel, item ownership, required future iPad hosting/handoff and explicit reunion rules. It does not implement G4 host election or G5 merging.</p>
+<h2>Actual deployment of the replacement</h2>
+<p>The older iPad <strong>91 → 93</strong> update is installed and launched. A <strong>292-file</strong> backup was verified on Mac and Windows first. Installation retained <strong>eight world-save/backup files and every prior preference</strong>. The installer's stricter all-document comparison stopped because one running-process connection log updated four timing/network counters between backup and installation: <strong>290 of 291 Documents files were byte-identical</strong>. The exact observed log difference was reviewed; no other document changed, no second installation occurred and no data was reset. <a href="evidence/offline93-2026-09-25/ios93-signed.json">Signed build</a> · <a href="evidence/offline93-2026-09-25/ipad7-update93.json">Retention review</a>.</p>
+<p>The actual app reports <strong>0.0.93</strong>, retained Keychain pairing, successful family admission, and a durable complete checkpoint with 128 receipts; the previous offline adventure is still present. Its one sampled checkpoint write was 14.5921 ms, not a sustained performance measurement. <a href="evidence/offline93-2026-09-25/ipad7-initial93.json">Runtime evidence</a>.</p>
+<p>Android 93 is prepared with the existing family signature; identity/signature and ZIP/LOAD alignment pass. <strong>Strict 16 KB RELRO still fails</strong>, as before; no phone installation or native 16 KB qualification is claimed. <a href="evidence/offline93-2026-09-25/android93-inspection.json">Artifact check</a>. <strong>169 runtime/plugin/package source files match across the Windows, iOS and Android builds and the current checkout.</strong> <a href="evidence/offline93-2026-09-25/source-parity93.json">Source parity</a>.</p>
+<p>The family authority/helper stays on 91 with healthy recovery. iPad 9/iPhone remain 79 and Samsung remains 83. Physical acceptance and coordinated remaining client updates follow; do not infer their older applications contain these fixes.</p></main></body></html>

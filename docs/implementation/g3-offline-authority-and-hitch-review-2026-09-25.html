@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — Older iPad build 91 qualification</title><style>
+<title>The Family Playset — Offline authority and walking diagnosis</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -16,27 +16,73 @@
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
-</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-ipad91-qualification-2026-09-25.md">Editable record</a></nav></header><main class="progress-report report"><h1>Build 91 — native Apple build and older iPad update</h1>
-<p><strong>G3-REC-05 · NET-02 / AUTO-01 · September 25, 2026. Physical qualification is in progress.</strong></p>
-<p>The prepared build 91 has compiled and linked on the M1 Pro Mac, passed signature/profile/native-bridge checks, and updated the older iPad 7 in place. Its existing Keychain identity automatically rejoined the current build 83 family server. The user confirms walking, bucket filling/watering, Listen and full-screen visibility all pass on 91. The server was subsequently updated to 91. Latest physical reports expose offline-control and walking defects; acceptance remains open as detailed below.</p>
-<h2>Completed so far</h2>
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g3-offline-authority-and-hitch-review-2026-09-25.md">Editable record</a></nav></header><main class="progress-report report"><h1>Offline play, server authority and the remaining walking hitch</h1>
+<p>September 25, 2026 · G3-REC-05 · NET-02 / AUTO-01 / JOIN-01 / FAMILY-01 / TRAVEL-01</p>
+<h2>Current product decision</h2>
+<p>The user clarified that offline play may differ from online play. <strong>The server's world wins on reconnection.</strong> A local outage does not prove that the server failed: other children may still be playing there. Offline movement, toys and activities run locally without server acknowledgments. Rejoining downloads the current server world and does not upload or replay offline actions. Existing solo saves and saved adventures remain on their device.</p>
+<p>This supersedes earlier requirements for automatic merging of arbitrary offline edits, including bedroom edits, into the server world. Connected bedroom synchronization, full solo content, four-player mixed-device play, independent travel and required iPad hosting remain in scope. Recovering a shared host from a complete checkpoint is a separate G4 responsibility.</p>
+<h2>Primary research reviewed before editing</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Finding and application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/terms-concepts/client-server.html">Unity client/server topology</a></td>
+<td>The server has ultimate authority. Family play uses its current world; local divergence does not become shared truth.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/components/core/networkmanager.html#disconnecting-and-shutting-down">NGO disconnect/shutdown lifecycle</a></td>
+<td>Disconnect callbacks expose loss and network subsystems stop during shutdown. Use ordinary Unity lifecycle for local presentation. Wait for network shutdown before starting another connection, not before local controls.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/Packages/com.unity.transport@2.7/api/Unity.Networking.Transport.NetworkConfigParameter.html">Transport timeout configuration</a></td>
+<td>Heartbeats/inactivity timeouts detect silent loss. Preserve the existing 2.5-second transport timeout; remove the additional ten-second application wait. Detection still takes time.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Application-internetReachability.html">Unity reachability</a></td>
+<td>An available interface does not prove a route to this server. Cellular availability or a Wi-Fi icon cannot override authenticated transport state.</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/documentation/xcode/improving-app-responsiveness">Apple responsiveness</a>, <a href="https://developer.apple.com/documentation/xcode/understanding-user-interface-responsiveness/">hangs versus hitches</a></td>
+<td>Busy or blocked main-thread work can miss rendering deadlines. Correlate actual frame gaps with work; CPU samples alone do not establish disk waiting or a visible jerk's cause.</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/documentation/foundation/improving-performance-and-stability-when-accessing-the-file-system">Apple filesystem performance</a>, <a href="https://developer.apple.com/documentation/xcode/reducing-disk-writes">disk writes</a></td>
+<td>Repeated serialization, atomic replacement and forced synchronization can increase cost. Overlapping writers are unsafe. Measure our single-writer path; do not replace it blindly with concurrent tasks.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/JsonUtility.ToJson.html">Unity JsonUtility background-thread contract</a></td>
+<td>Background serialization supports data that is not concurrently modified. Diagnostic exports copy plain samples, then serialize on a worker. No live Unity objects or world state are passed to it.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/6000.3/Documentation/Manual/profiler-file-access-module.html">Unity File Access Profiler</a></td>
+<td>File duration, frame and thread context support attribution. Measure save/network work against subsequent frame gaps before choosing a hitch repair.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Scope: Unity 6000.3.24f1, installed NGO 2.13.2, Transport 2.7.4 patch 1. Online NGO 2.13 currently serves 2.13.3; no package update is part of this task. Unity does not prescribe this game's offline merge policy. Removing the extra wait follows the user's requirement and the documented separation of networking from local presentation.</p>
+<h2>Confirmed code and physical observations</h2>
+<p>Build <strong>93</strong> on iPad 7 continued offline without reopening, but controls returned only after <strong>10+ seconds</strong>. The user reports smoother motion between jerks roughly every two seconds, with both tap and joystick. Dragged objects were already smooth.</p>
+<p><code>OutageClock.DelaySeconds=10</code> imposed a foreground wait after loss. It was an application policy, not a reconciliation requirement. <strong>94 source removes this wait.</strong> Already-local play stays local while discovery runs; a disconnected shared presentation triggers continuation. Foreground resume can continue immediately after known loss. Native checks must still measure loading and total detection-to-play latency.</p>
+<p>The implemented reunion path never replays offline changes to the server. It saves the local branch separately, then presents the current server state.</p>
+<h2>Actual iPad profile and limits</h2>
+<p>The PID-attached recording failed. A second all-process Time Profiler recording completed after the SSH timeout: <strong>35.772590 seconds</strong>, iPad 7 / iPadOS 18.7.10, LittleWeeps PID 1022 / build 93. Analysis filters to this app. Its UnityFramework dSYM UUID matches the captured binary: <code>38467A64-ACBD-3CEC-ACA1-168C10DCAD4B</code>.</p>
+<p>There are <strong>21,363 app CPU samples</strong>, including <strong>6,962 main-thread samples</strong>. Symbols identify rendering, local Update/idle work, network diagnostics and Bonjour discovery. No sampled stack names contain save/checkpoint functions. <strong>This recording does not establish autosaving as the cause.</strong> It lacks synchronized walking input and file-wait measurements; inclusive stack counts overlap and are not frame timings.</p>
+<p>94 adds bounded in-memory frame history: gap, local/shared state, walking state, position, collection counter, save duration and network-update duration. Export happens on Menu/pause or an isolated test request, using detached data on a worker. It adds no recurring diagnostic file write during walking. A frame's gap covers the preceding interval: work in frame N must be compared to the gap entering N+1. This measures the issue; <strong>the hitch is not yet claimed fixed</strong>.</p>
+<h2>Qualification</h2>
+<p>Installed: iPad 7 <strong>93</strong>, iPad 9/iPhone <strong>79</strong>, Samsung <strong>83</strong>, authority/helper <strong>91</strong>. Preparing 94 is not a device update.</p>
+<p>Required checks: native held-touch/menu/missing-replica loss, foreground resume, unchanged server authority on reunion, retained iPad update, real Wi-Fi loss without reopening, and measured A10 offline walking. Then qualify newer iPad and phones, repeated loss/reunion and sustained mixed play. Keep G3-REC-05 open.</p>
+<h3>Build 94 completed engineering checks</h3>
 <ul>
-<li>The Mac's changed local address was resolved through its saved hostname and authenticated against the existing pinned SSH host identity. macOS 26.3.1 and Xcode 26.6 were observed. The older iPad is connected by USB, with Developer Mode enabled and iPadOS 18.7.10.</li>
-<li>All <strong>3,094 export files</strong> were rechecked on Windows and again after transfer. The Mac performed one native Release build with the existing development team; no Unity game code or project identity changed.</li>
-<li>Native compile/link and <code>codesign --verify --deep --strict</code> passed. All six required discovery/enrollment bridge functions are linked. The app retains its bundle identity, iOS 15 minimum and support for iPad/iPhone. The profile covers the older iPad and currently expires <strong>October 1, 2026</strong>. Unity-generated build warnings remain; no build error was reported.</li>
-<li>Before installation, <strong>264 backed-up files</strong> were copied to both Mac and Windows and hash-verified. During the in-place <strong>79 → 91</strong> update, all <strong>263 existing Documents files</strong> remained byte-identical and all existing preference values were retained. No app uninstall, save reset or enrollment replacement occurred.</li>
-<li>
-<p>The exact app launched and its device-written runtime status identifies <strong>0.0.91</strong>. Keychain status is <code>paired</code>; native discovery, admission and first shared presentation succeeded against the original family server. The sampled transport receive-error count is zero. CoreDevice's previously recorded app-inventory error on this iPad remains; installation, exact-bundle launch and runtime evidence provide the build confirmation.</p>
-</li>
-<li>
-<p>The user replied <strong>“yup all passed”</strong> to the older-iPad walking, bucket-to-tap/plant, Listen and full-screen checks. This is physical controls/layout feedback on 91, not recovery or a measured performance run. <a href="evidence/ipad91-2026-09-25/ipad7-controls-feedback.json">Feedback</a>.</p>
-</li>
+<li><a href="evidence/offline94-2026-09-25/core94.json">69 core/storage checks</a> pass, including immediate foreground eligibility and unchanged transaction rules.</li>
+<li><a href="evidence/offline94-2026-09-25/handoff94.json">Three native handoff cases</a> pass. Each asserts less than five seconds from authority exit to local presentation and less than two seconds from observed disconnection. These are Windows bounds, not physical iPad timings.</li>
+<li><a href="evidence/offline94-2026-09-25/failure-boundaries94.json">Five failure-boundary groups</a> pass. Known-loss foreground resume took <strong>0.156 seconds</strong>. Missing acknowledgment was not replayed; save failure did not interrupt siblings.</li>
+<li><a href="evidence/offline94-2026-09-25/continuation94.json">Six four-client continuation groups</a> pass. Offline-first play, cold reopen, separate saves, server-authoritative reunion and repeated outages retain their tested behavior.</li>
+<li><a href="evidence/offline94-2026-09-25/movement94.json">Offline native Windows movement</a> advances every sampled moving frame for both controls at a 60 fps target. This does not resolve the reported physical hitch.</li>
+<li><a href="evidence/offline94-2026-09-25/ios94-native.json">Native iOS Release compilation/linking</a> passes with all six Apple bridge symbols. Mac signing is awaiting the local keychain step; <strong>94 is not installed yet</strong>.</li>
 </ul>
-<h2>Evidence and scope</h2>
-<p><a href="evidence/ipad91-2026-09-25/signed-build.json">Native signing</a> · <a href="evidence/ipad91-2026-09-25/ipad7-update.json">Verified backup and update</a> · <a href="evidence/ipad91-2026-09-25/ipad7-initial-connection.json">Initial connection</a>.</p>
-<p>The server now runs <strong>91</strong>, deployed in an empty session with all old world fields, four player records and ten items retained. The parent helper now selects 91 and reports automatic recovery enabled/healthy; sign-in startup remains Off. <a href="evidence/ipad91-2026-09-25/server91-deployment.json">Server deployment</a> · <a href="evidence/ipad91-2026-09-25/parent91-activation.json">Parent activation</a>.</p>
-<h2>Physical recovery observations and latest blockers</h2>
-<p>The older iPad received a verified complete checkpoint containing four players, ten items, both areas, 128 receipts and idle clocks. In one Wi-Fi-off attempt the user reported controls working after about ten seconds; the new offline adventure saved moved objects. Cold reopening with Wi-Fi off retained the same adventure and controls. Re-enabling Wi-Fi rejoined the family. Both original solo files remained byte-identical across those reads. The saved adventure retained its identity/common base; the user kept playing between snapshots, so exact cold-read-to-reunion byte equality is not claimed. The menu reopening step remains unconfirmed. <a href="evidence/ipad91-2026-09-25/ipad7-recovery-session.json">Scoped evidence</a>.</p>
-<p><strong>The later report supersedes any overall recovery pass:</strong> all four devices freeze after Wi-Fi loss until reopening, all are choppy offline, all are smooth online and rejoin when Wi-Fi returns. These remain physical blockers, including on build 91. <a href="evidence/ipad91-2026-09-25/all-device-offline-feedback.json">Exact feedback</a>.</p>
-<h2>Next</h2>
-<p><a href="g3-offline-recovery-and-motion-2026-09-25.html">Focused research and replacement build 93</a> cover per-frame walking, canceled-touch/menu recovery, missing checkpoints and exact solo retention. Candidate 92 was not installed. Complete replacement validation and a retained update on iPad 7 first, then test actual Wi-Fi loss, repeated transitions and offline walking before wider deployment. Follow the <a href="return-checklist-ipad-lan-2026-09-24.html">short return checklist</a>. Keep G3 open; G4 iPad hosting, G5 reconciliation, independent recovery, renewal and sustained measurements are still required.</p></main></body></html>
+<p>The exported Windows timing capture contains 1,614 frames, 673 moving offline frames and 14 measured saves, demonstrating that the new diagnostic covers the walking/save interval. Its timing values are not substituted for measurements on A10. The <a href="evidence/offline94-2026-09-25/ipad93-feedback.json">93 feedback</a> and <a href="evidence/offline94-2026-09-25/ipad93-profile-summary.json">scoped physical CPU profile</a> remain recorded separately.</p></main></body></html>

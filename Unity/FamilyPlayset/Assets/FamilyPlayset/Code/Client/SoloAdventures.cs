@@ -24,7 +24,7 @@ namespace LittleWeeps.Client
         }
         public bool TryContinue(RecoveryRecord basis)
         {
-            if(adventures==null || !CanChangeSession || MenuOpen || (!Shared && continuation!=null))return false;
+            if(adventures==null || !CanChangeSession || (MenuOpen && !RecoveringDisconnected) || (!Shared && continuation!=null))return false;
             try
             {
                 if(World!=null && !TrySaveNow())return false;
@@ -45,8 +45,10 @@ namespace LittleWeeps.Client
                 // displayed authority. Failed disk writes leave current play intact.
                 adventures.Save(record,restored.Snapshot());adventures.Select(id);
                 if(World!=null && continuation==null)localWorld=World;
-                ResetPresentation();shared=null;continuation=record;World=restored;Actor=record.actor;SavePath=adventures.PathFor(id);
+                var keepMenu=MenuOpen;
+                ResetPresentation();shared=null;continuation=record;World=restored;Actor=record.actor;SavePath=adventures.PathFor(id);dirty=false;
                 BuildScreen();Render();lastLocalAction=Time.realtimeSinceStartup;
+                if(keepMenu)SetMenu(true);
                 message.text="Keep playing here. This adventure saves separately from family play.";return true;
             }
             catch(Exception e){Debug.LogWarning("Open adventure: "+e.Message);message.text="That adventure needs a grown-up's help. Your other play is safe.";return false;}

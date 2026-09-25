@@ -59,14 +59,21 @@ namespace LittleWeeps.NetworkProbe
         }
         private void TryLocalContinuation()
         {
-            if(localOnly || reconnectBlocked || familyScreen.AdventureId!="" || !familyScreen.CanChangeSession || familyScreen.MenuOpen || Time.realtimeSinceStartupAsDouble<nextContinuationAttempt)return;
+            if(localOnly || reconnectBlocked || familyScreen.AdventureId!="" || !familyScreen.CanChangeSession ||
+                (familyScreen.MenuOpen && !familyScreen.RecoveringDisconnected) || Time.realtimeSinceStartupAsDouble<nextContinuationAttempt)return;
             nextContinuationAttempt=Time.realtimeSinceStartupAsDouble+5;
             try
             {
                 var basis=OpenRecoveryReplica().Last;
-                // An old-server rendered view is not a complete checkpoint. A
-                // new install with none keeps ordinary solo play available.
-                if(basis==null){WriteJson(Path.Combine(output,"continuation-evidence.json"),new ContinuationEvidence{status="no-checkpoint"});return;}
+                // Never invent a shared checkpoint from a rendered view. An
+                // older server or interrupted initial transfer may leave none:
+                // restore the existing solo world while discovery keeps trying.
+                if(basis==null)
+                {
+                    var returned=familyScreen.RecoveringDisconnected && familyScreen.TryReturnToLocal();
+                    WriteJson(Path.Combine(output,"continuation-evidence.json"),new ContinuationEvidence{status=returned?"solo-without-checkpoint":"no-checkpoint"});
+                    return;
+                }
                 if(familyScreen.TryContinue(basis))
                 {
                     presentationStarted=true;

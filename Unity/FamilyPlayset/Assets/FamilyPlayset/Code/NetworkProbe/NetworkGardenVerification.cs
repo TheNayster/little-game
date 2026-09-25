@@ -79,7 +79,13 @@ namespace LittleWeeps.NetworkProbe
             try
             {
                 if(!screen.Ready && step.action!="inspect")throw new InvalidOperationException("Garden is not ready.");
-                if(step.action=="resize")
+                if(step.action=="performance")await screen.ExportPlayPerformance();
+                else if(step.action=="frameRate")
+                {
+                    if(step.x!=30 && step.x!=60)throw new InvalidOperationException("Unsupported test frame rate.");
+                    QualitySettings.vSyncCount=0;Application.targetFrameRate=(int)step.x;
+                }
+                else if(step.action=="resize")
                 {
                     if(step.x<640 || step.x>2200 || step.y<400 || step.y>1400)throw new InvalidOperationException("Invalid test resolution.");
                     Screen.SetResolution((int)step.x,(int)step.y,FullScreenMode.Windowed);await Task.Delay(600);Canvas.ForceUpdateCanvases();
@@ -153,7 +159,7 @@ namespace LittleWeeps.NetworkProbe
         private void LateUpdate()
         {
             if(traceActor==null || !screen.Ready || motionTrace.Count>=1800)return;
-            var p=probe.Latest.view.players.First(v=>v.id==traceActor);
+            var p=screen.ReadPlayer(traceActor);
             var rect=screen.Board.Find(traceActor==screen.Actor?"Pup":"Friend-"+traceActor) as RectTransform;
             if(rect!=null && rect.gameObject.activeSelf)motionTrace.Add(new MotionSample{time=Time.realtimeSinceStartupAsDouble,visual=BoardPosition(rect),authority=new Vector2(p.x,p.y)});
         }

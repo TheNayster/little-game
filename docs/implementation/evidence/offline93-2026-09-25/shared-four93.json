@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "build": 93,
+  "runId": "ffd0a1308b954dab9ab68845e8a2c919",
+  "utc": "2026-09-25T19:19:31.581243+00:00",
+  "players": 4,
+  "concurrentWalkers": 4,
+  "harnessHashes": {
+    "Test-SmoothMovement.py": "bf4ee3086e2889f0dff7592223ff72807bc020add119b71e61d8a46f38fac52f",
+    "shared_garden_runtime.py": "5039b0e314380706756cb4fa6242dc3041166805ff9149b7f7e9f4c20a7b9e12"
+  },
+  "conditions": {},
+  "impairmentScope": "Client receive-side motion stream only; not whole-network impairment.",
+  "checks": [
+    {
+      "check": "continuous local and remote canvas motion",
+      "passed": true,
+      "local": {
+        "sampleCount": 162,
+        "medianFrameMs": 16.69,
+        "visualMovingFrameFraction": 1.0,
+        "rawMovingFrameFraction": 0.327,
+        "p95VisualSpeed": 240.9,
+        "p95RawSnapSpeed": 766.48,
+        "worstBackwardStep": 3.12,
+        "p95VisualLagBehindReceivedSeconds": 0.018
+      },
+      "remote": {
+        "sampleCount": 161,
+        "medianFrameMs": 16.67,
+        "visualMovingFrameFraction": 1.0,
+        "rawMovingFrameFraction": 0.329,
+        "p95VisualSpeed": 250.82,
+        "p95RawSnapSpeed": 743.68,
+        "worstBackwardStep": 3.352,
+        "p95VisualLagBehindReceivedSeconds": 0.207
+      },
+      "walkSeconds": 4.203,
+      "checkpointWritesDuringWalk": 6,
+      "concurrentAuthoritativePositions": [
+        {
+          "id": "player-1",
+          "avatar": "orange-pup",
+          "activity": "",
+          "zone": "garden",
+          "visit": 0,
+          "x": 176.94027709960938,
+          "y": 70.1048812866211
+        },
+        {
+          "id": "player-2",
+          "avatar": "blue-pup",
+          "activity": "",
+          "zone": "garden",
+          "visit": 0,
+          "x": 206.16915893554688,
+          "y": 166.92919921875
+        },
+        {
+          "id": "player-3",
+          "avatar": "blue-pup",
+          "activity": "",
+          "zone": "garden",
+          "visit": 0,
+          "x": 279.4575500488281,
+          "y": 159.178955078125
+        },
+        {
+          "id": "player-4",
+          "avatar": "blue-pup",
+          "activity": "",
+          "zone": "garden",
+          "visit": 0,
+          "x": 243.24951171875,
+          "y": 162.1865692138672
+        }
+      ],
+      "recoveryChunksDuringTrace": 28,
+      "receiptStress": true
+    },
+    {
+      "check": "menu cancels continuous joystick input and it remains stopped",
+      "passed": true
+    },
+    {
+      "check": "locked diagnostic observation does not stop authoritative play",
+      "passed": true
+    },
+    {
+      "check": "stopped positions survive server restart exactly",
+      "passed": true
+    }
+  ],
+  "comparison": "Smoothed native canvas vs raw authoritative snap positions sampled on the same render frames; not a historical-build benchmark.",
+  "physicalDevicesAccessed": false
+}

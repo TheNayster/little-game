@@ -1,0 +1,10 @@
+{
+  "build": 93,
+  "device": "iPad 7",
+  "source": "User physical report",
+  "controlsRecoveredWithoutReopening": true,
+  "waitReported": "10+ seconds",
+  "walking": "smoother between jerks approximately every two seconds; both controls",
+  "objects": "Dragging was already smooth",
+  "physicalIssueResolved": false
+}

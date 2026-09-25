@@ -132,13 +132,11 @@ def main():
 
         resumed = time.monotonic()
         fourth.input('network-resume')
-        time.sleep(6)
-        require(not inspect(fourth)['adventure'], 'Background elapsed time leaked into foreground threshold')
         local(fourth)
         foreground_seconds = time.monotonic() - resumed
-        require(foreground_seconds >= 9.5, 'Local transition skipped the foreground threshold')
+        require(foreground_seconds < 2, 'Known loss still adds an input-lock delay on foreground resume')
         observations['foregroundSecondsAfterResume'] = round(foreground_seconds, 3)
-        passed('native lifecycle adapter ignores background outage time and waits for observed foreground time before continuing locally')
+        passed('native lifecycle adapter leaves background presentation alone and enables local play within two seconds of foreground resume')
 
         # Deny replacement of the active local branch while it has a new drop.
         # Other clients rejoin the authority; this client must retain live local

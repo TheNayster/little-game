@@ -39,18 +39,22 @@ namespace LittleWeeps.Client
         private float lastLocalAction, nextTransitionSave;
         private GameObject ownedCanvas, ownedEvents;
         public void ConfigureFamilyMode(Action changeMode,bool muted=false) { familyModeAction=changeMode;familyTestMuted=muted; }
+        public bool RecoveringDisconnected => Shared && !shared.Connected;
         public bool CanChangeSession => Ready && dragging==null && !ActionPending && !TravelPending &&
             !destination.HasValue && stickDirection.sqrMagnitude<.0001f && !Surfaces.Values.Any(s=>s.Pressed) &&
-            !UnityEngine.InputSystem.InputSystem.devices.Any(d=>
+            // Lost-session gestures were canceled. A finger still resting on
+            // glass must not veto recovery; joining live play still waits for it.
+            (RecoveringDisconnected || !UnityEngine.InputSystem.InputSystem.devices.Any(d=>
                 d is UnityEngine.InputSystem.Mouse m && m.leftButton.isPressed ||
-                d is UnityEngine.InputSystem.Touchscreen t && t.touches.Any(p=>p.press.isPressed));
+                d is UnityEngine.InputSystem.Touchscreen t && t.touches.Any(p=>p.press.isPressed)));
         public bool TryJoinFamily(IGardenSession session)
         {
             if(Shared || !CanChangeSession || MenuOpen || Time.realtimeSinceStartup-lastLocalAction<1 ||
                 Time.realtimeSinceStartup<nextTransitionSave || !session.Connected || session.View==null)return false;
             nextTransitionSave=Time.realtimeSinceStartup+2;
             // Never replace the only live copy with a server snapshot. Commit the
-            // separate device branch before showing shared play; G5 owns merging.
+            // separate device branch before showing the server's current world.
+            // Offline edits are never uploaded or replayed on this transition.
             if(!TrySaveNow())return false;
             if(!TryDeselectAdventure())return false;
             var savedAdventure=continuation!=null;
@@ -64,9 +68,11 @@ namespace LittleWeeps.Client
             if(localWorld==null || !CanChangeSession)return false;
             if(!Shared && continuation==null)return TryDeselectAdventure();
             if(World!=null && !TrySaveNow() || !TryDeselectAdventure())return false;
+            var keepMenu=MenuOpen;
             continuation=null;SavePath=soloSavePath;
             ResetPresentation();shared=null;World=localWorld;Actor=offlineActor ?? World.Snapshot().players[0].id;
             BuildScreen();Render();message.text="Your saved solo play. Menu lets you find your family again.";
+            if(keepMenu)SetMenu(true);
             return true;
         }
         private void ResetPresentation()
@@ -124,14 +130,13 @@ namespace LittleWeeps.Client
         private SoloToy[] AllToys()=>shared==null?World.ReadToys():shared.View.toys.Select(t=>t.Copy()).ToArray();
         public SoloToy[] ReadToys()=>AllToys().Where(t=>SoloWorld.AreaOf(t.zone)==CurrentArea).ToArray();
         private bool HasWorld=>World!=null || shared?.View!=null;
-        private float nextSave, nextMovement, lastMovement;
+        private float nextSave;
         private bool applicationPaused;
-        private float lastSharedMovement;
         private Rect lastSafeArea;
         private static readonly Color Ink = new Color(.15f,.25f,.29f), Cream = new Color(.98f,.96f,.88f);
         private void Start()
         {
-            Application.targetFrameRate = 30; Application.runInBackground = true;
+            Application.targetFrameRate = 60; Application.runInBackground = true;
             if(!ReadVerificationArgs())
             {Debug.LogError("Invalid solo verification arguments; normal saved play was not opened.");Application.Quit(2);return;}
             font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -161,7 +166,12 @@ namespace LittleWeeps.Client
                 var loaded = store.Load(); LoadedStatus = loaded.Status;
                 if (loaded.Status == CheckpointStatus.Corrupt || loaded.Status == CheckpointStatus.Unsupported)
                     throw new InvalidDataException("Existing save needs recovery or a compatible version.");
-                World = loaded.Status == CheckpointStatus.Missing ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(loaded.Payload));
+                var snapshot=loaded.Status==CheckpointStatus.Missing?null:JsonUtility.FromJson<SoloSnapshot>(loaded.Payload);
+                World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
+                // Restore releases interrupted item holds; persist that change.
+                // Otherwise merely opening another saved adventure must not
+                // rewrite an untouched solo payload (including precise timers).
+                dirty=snapshot==null || snapshot.toys.Any(t=>!string.IsNullOrEmpty(t.holder));
                 Actor = World.Snapshot().players[0].id;
             }
             catch (Exception e)
@@ -377,7 +387,7 @@ namespace LittleWeeps.Client
             listenLabel.text=Narration.VoiceEnabled?"Listen":"Voice off";
             listenLabel.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
         }
-        public void SetMenu(bool open) { lastLocalAction=Time.realtimeSinceStartup;if(open){CancelPointers();Narration.Stop();SaveNow();} menu.SetActive(open); }
+        public void SetMenu(bool open) { lastLocalAction=Time.realtimeSinceStartup;if(open){CancelPointers();Narration.Stop();SaveNow();ExportPlayPerformance();} menu.SetActive(open); }
         public void Listen(){var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
         { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return new Vector2((local.x/Board.rect.width+.5f)*SoloWorld.Width,(local.y/Board.rect.height+.5f)*SoloWorld.Height); }
@@ -503,19 +513,21 @@ namespace LittleWeeps.Client
                 return;
             }
             if(!HasWorld || MenuOpen || TravelPending || applicationPaused)return;
-            // Minimized Windows players may update much faster than presentation.
-            // Bound command creation independently of render frequency.
+            // A wall-clock 30 Hz gate skipped render frames even at a 30 fps
+            // target. Advance local motion every frame, without transaction
+            // receipt churn; save cadence stays separate from visual motion.
             var now=Time.realtimeSinceStartup;
-            if(now<nextMovement)return;
-            var delta=Mathf.Clamp(now-lastMovement,0,.1f);lastMovement=now;nextMovement=now+1f/30;
+            var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible))dirty=true;
             if(maintenanceVisible)Render();
-            if(shared!=null)delta=Mathf.Clamp(now-lastSharedMovement,0,.1f);
-            var p=ReadPlayer(Actor);var current=new Vector2(p.x,p.y);var next=current;
-            if(JoystickMode)next+=stickDirection*(210*delta);
-            else if(destination.HasValue){next=Vector2.MoveTowards(current,destination.Value,210*delta);if(Vector2.Distance(shared==null?next:current,destination.Value)<1)destination=null;}
-            next.x=Mathf.Clamp(next.x,40,960);next.y=Mathf.Clamp(next.y,35,455);
-            if(Vector2.Distance(current,next)>.01f && (shared==null || !shared.Busy)){lastSharedMovement=now;Command(SoloAction.Move,x:next.x,y:next.y);}
+            var mode=JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=JoystickMode?stickDirection:destination??Vector2.zero;
+            if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
+            {
+                dirty=true;lastLocalAction=now;
+                var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);SortDepth();
+                if(!JoystickMode && destination.HasValue && Vector2.Distance(new Vector2(p.x,p.y),destination.Value)<1)destination=null;
+            }
             if(dirty && Time.realtimeSinceStartup>=nextSave){SaveNow();nextSave=Time.realtimeSinceStartup+1;}
         }
         public void SaveNow()
@@ -523,8 +535,11 @@ namespace LittleWeeps.Client
         public bool TrySaveNow()
         {
             if(World==null || store==null)return false;
+            if(!dirty)return true;
+            var saveStarted=System.Diagnostics.Stopwatch.GetTimestamp();
             try{if(continuation!=null)adventures.Save(continuation,World.Snapshot());else store.Save(JsonUtility.ToJson(World.Snapshot()));dirty=false;if(saveLabel!=null)saveLabel.text=continuation!=null?"Your adventure is saved on this device":"Saved on this device · solo prototype · "+Application.version;return true;}
             catch(Exception e){if(saveLabel!=null)saveLabel.text="Couldn't save yet. Please ask a grown-up.";Debug.LogWarning("Solo checkpoint: "+e.Message);return false;}
+            finally{RecordSaveWork(saveStarted);}
         }
         private void OnDestroy()
         {
@@ -532,17 +547,22 @@ namespace LittleWeeps.Client
             if(Narration!=null)Destroy(Narration);
             foreach(var sprite in new[]{rounded,circle,hintRing})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}
         }
-        private void OnApplicationPause(bool paused){applicationPaused=paused;lastMovement=Time.realtimeSinceStartup;if(paused){CancelPointers();SaveNow();}}
+        private void OnApplicationPause(bool paused){applicationPaused=paused;if(paused){CancelPointers();SaveNow();ExportPlayPerformance();}}
         private void OnApplicationFocus(bool focused){if(!focused && HasWorld){CancelPointers();SaveNow();}}
         private void OnApplicationQuit(){if(HasWorld){CancelPointers();SaveNow();}}
         private Vector2 ToBoard(float x,float y)=>new Vector2((x/SoloWorld.Width-.5f)*Board.rect.width,(y/SoloWorld.Height-.5f)*Board.rect.height);
         private void LateUpdate()
         {
+            RecordPlayFrame();
             if(shared==null || !Ready)return;
             var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
             foreach(var friend in friends)
             {if(!friend.Value.root.gameObject.activeSelf)continue;var p=shared.VisualPosition(friend.Key);friend.Value.root.anchoredPosition=ToBoard(p.x,p.y);}
             foreach(var t in ReadToys())if(t.id!=dragging && !string.IsNullOrEmpty(t.holder) && shared.TryPreview(t.id,out var p))toys[t.id].anchoredPosition=ToBoard(p.x,p.y);
+            SortDepth();
+        }
+        private void SortDepth()
+        {
             foreach(var rect in toys.Where(pair=>pair.Key!=dragging && pair.Value.gameObject.activeSelf).Select(pair=>pair.Value).Concat(new[]{avatar}).Concat(friends.Values.Where(v=>v.root.gameObject.activeSelf).Select(v=>v.root)).OrderByDescending(r=>r.anchoredPosition.y))rect.SetAsLastSibling();
             if(dragging!=null)toys[dragging].SetAsLastSibling();
         }
@@ -572,8 +592,7 @@ namespace LittleWeeps.Client
             }
             if(shared!=null)RenderFriends();
             // Larger y is farther back on the illustrated floor plane.
-            foreach(var rect in toys.Where(pair=>pair.Key!=dragging).Select(pair=>pair.Value).Concat(new[]{avatar}).Concat(friends.Values.Select(v=>v.root)).OrderByDescending(r=>r.anchoredPosition.y))rect.SetAsLastSibling();
-            if(dragging!=null)toys[dragging].SetAsLastSibling();
+            SortDepth();
             activity.text=p.activity==""?"Free play · walk, drag, discover":p.activity=="garden"?(toyStates.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(toyStates.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");
         }
         private void DrawToy(SoloToy t)

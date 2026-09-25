@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "utc": "2026-09-25T18:45:45.032232+00:00",
+  "previousBuild": 83,
+  "build": 91,
+  "emptySessionVerified": true,
+  "worldFieldsPreserved": true,
+  "playerRecords": 4,
+  "items": 10,
+  "persistentServer": true,
+  "protectedBackupVerified": true,
+  "exactLocalSubnetFirewallVerified": true,
+  "olderIpadRejoined": true,
+  "physicalFeedback": "Yes\u2014rejoined and controls work",
+  "otherDevicesUpdated": false
+}

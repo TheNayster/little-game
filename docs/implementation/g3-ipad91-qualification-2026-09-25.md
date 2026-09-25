@@ -2,7 +2,7 @@
 
 **G3-REC-05 · NET-02 / AUTO-01 · September 25, 2026. Physical qualification is in progress.**
 
-The prepared build 91 has compiled and linked on the M1 Pro Mac, passed signature/profile/native-bridge checks, and updated the older iPad 7 in place. Its existing Keychain identity automatically rejoined the current build 83 family server. The user confirms walking, bucket filling/watering, Listen and full-screen visibility all pass on 91. Recovery with a matching server, lifecycle and sustained performance remain separate checks.
+The prepared build 91 has compiled and linked on the M1 Pro Mac, passed signature/profile/native-bridge checks, and updated the older iPad 7 in place. Its existing Keychain identity automatically rejoined the current build 83 family server. The user confirms walking, bucket filling/watering, Listen and full-screen visibility all pass on 91. The server was subsequently updated to 91. Latest physical reports expose offline-control and walking defects; acceptance remains open as detailed below.
 
 ## Completed so far
 
@@ -18,8 +18,14 @@ The prepared build 91 has compiled and linked on the M1 Pro Mac, passed signatur
 
 [Native signing](evidence/ipad91-2026-09-25/signed-build.json) · [Verified backup and update](evidence/ipad91-2026-09-25/ipad7-update.json) · [Initial connection](evidence/ipad91-2026-09-25/ipad7-initial-connection.json).
 
-The server still runs **83**. Initial compatibility and connection do not prove the newer recovery-checkpoint feature: that needs a matching qualified authority. Intentional server-loss tests will not be run against active family play. The newer iPad, Samsung and iPhone have not been updated in this step.
+The server now runs **91**, deployed in an empty session with all old world fields, four player records and ten items retained. The parent helper now selects 91 and reports automatic recovery enabled/healthy; sign-in startup remains Off. [Server deployment](evidence/ipad91-2026-09-25/server91-deployment.json) · [Parent activation](evidence/ipad91-2026-09-25/parent91-activation.json).
+
+## Physical recovery observations and latest blockers
+
+The older iPad received a verified complete checkpoint containing four players, ten items, both areas, 128 receipts and idle clocks. In one Wi-Fi-off attempt the user reported controls working after about ten seconds; the new offline adventure saved moved objects. Cold reopening with Wi-Fi off retained the same adventure and controls. Re-enabling Wi-Fi rejoined the family. Both original solo files remained byte-identical across those reads. The saved adventure retained its identity/common base; the user kept playing between snapshots, so exact cold-read-to-reunion byte equality is not claimed. The menu reopening step remains unconfirmed. [Scoped evidence](evidence/ipad91-2026-09-25/ipad7-recovery-session.json).
+
+**The later report supersedes any overall recovery pass:** all four devices freeze after Wi-Fi loss until reopening, all are choppy offline, all are smooth online and rejoin when Wi-Fi returns. These remain physical blockers, including on build 91. [Exact feedback](evidence/ipad91-2026-09-25/all-device-offline-feedback.json).
 
 ## Next
 
-The older-iPad controls check is complete. Build 91's 351 Windows files and the existing world backup are verified, and Windows has granted the reviewed exact-executable UDP/LocalSubnet permission. The current server remains 83 while the older iPad is in shared play. Once it selects **Menu → Play by myself**, update the empty server, preserve its world/enrollment and qualify recovery. [Preparation](evidence/ipad91-2026-09-25/server91-preparation.json). Keep both iPads' host roles, full reconciliation, independent backup/restore, automatic renewal and sustained A10 measurements open. Use the [return checklist](return-checklist-ipad-lan-2026-09-24.html) for the next user steps and the [main plan](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) for phase order.
+[Focused research and replacement build 93](g3-offline-recovery-and-motion-2026-09-25.html) cover per-frame walking, canceled-touch/menu recovery, missing checkpoints and exact solo retention. Candidate 92 was not installed. Complete replacement validation and a retained update on iPad 7 first, then test actual Wi-Fi loss, repeated transitions and offline walking before wider deployment. Follow the [short return checklist](return-checklist-ipad-lan-2026-09-24.html). Keep G3 open; G4 iPad hosting, G5 reconciliation, independent recovery, renewal and sustained measurements are still required.

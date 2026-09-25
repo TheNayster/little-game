@@ -1,0 +1,27 @@
+{
+  "build": 93,
+  "label": "ipad7",
+  "installed": true,
+  "reinstalledDuringReview": false,
+  "signedArtifactVerified": true,
+  "documentsCompared": 291,
+  "documentsUnchanged": 290,
+  "changedDiagnostics": [
+    {
+      "kind": "existing connection diagnostics",
+      "fields": [
+        "lastDataAge",
+        "receivedDataBytes",
+        "receivedDataEvents",
+        "seconds"
+      ],
+      "beforeSha256": "6075c2cfcea36dc7e1153134bfc6f25de53bb8746892c1a2c24a723a5b8637d7",
+      "afterSha256": "9423c9c2cdee7f241426c9848f9f7a15fedf9ae3f967a161cc03a227e6a40262"
+    }
+  ],
+  "worldSaveFilesPreserved": 8,
+  "allExistingPreferencesPreserved": true,
+  "scope": "Existing installer succeeded, then stopped on one live diagnostic counter file. Reviewed only that observed difference; all other documents and preferences match. No second installation or save reset.",
+  "previousBuild": 91,
+  "backedUpFilesVerifiedOnMacAndWindows": 292
+}

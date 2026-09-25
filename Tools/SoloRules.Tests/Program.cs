@@ -22,6 +22,31 @@ static partial class Program
         Directory.CreateDirectory(root);
         RecoveryTests();
         ContinuationTests();
+        Test("local walking advances on irregular render frames and preserves transaction receipts",()=>{
+            foreach(var twoAreas in new[]{false,true})
+            {
+                var w=SoloWorld.Create("first","second");if(twoAreas)w=SoloWorld.WithAreas(w);
+                Good(w,SoloAction.Grab,"bucket-1");var before=w.Snapshot();var start=w.ReadPlayer("first");
+                float elapsed=0;
+                for(var i=0;i<60;i++)
+                {var dt=i%2==0?.016f:.017f;elapsed+=dt;Check(Walking.AdvanceLocal(w,"first",WalkMode.Direction,1,0,dt));}
+                var p=w.ReadPlayer("first");Check(Math.Abs(p.x-start.x-210*elapsed)<.01f && p.y==start.y);
+                Check(w.Revision==before.revision && JsonSerializer.Serialize(w.Snapshot().receipts,Json)==JsonSerializer.Serialize(before.receipts,Json));
+                Check(JsonSerializer.Serialize(w.ReadToys(),Json)==JsonSerializer.Serialize(before.toys,Json));
+                var stopped=p.x;Check(!Walking.AdvanceLocal(w,"first",WalkMode.Stop,0,0,.05f) && w.ReadPlayer("first").x==stopped);
+                Check(SoloWorld.Restore(w.Snapshot()).ReadPlayer("first").x==stopped);
+            }
+        });
+        Test("local destination walking stops exactly and rejects invalid deltas without mutation",()=>{
+            var w=SoloWorld.Create("first");var p=w.ReadPlayer("first");var target=p.x+1;
+            Check(Walking.AdvanceLocal(w,"first",WalkMode.Destination,target,p.y,.033f));
+            Check(w.ReadPlayer("first").x==target && !Walking.AdvanceLocal(w,"first",WalkMode.Destination,target,p.y,.033f));
+            var before=JsonSerializer.Serialize(w.Snapshot(),Json);
+            foreach(var dt in new[]{-.01f,float.NaN,float.PositiveInfinity,.2f})Throws(()=>Walking.AdvanceLocal(w,"first",WalkMode.Direction,1,0,dt));
+            Throws(()=>Walking.AdvanceLocal(w,"first",WalkMode.Direction,float.NaN,0,.02f));
+            Throws(()=>Walking.AdvanceLocal(w,"first",(WalkMode)99,0,0,.02f));
+            Check(JsonSerializer.Serialize(w.Snapshot(),Json)==before);
+        });
         Test("home authority has no lifetime cutoff while isolated probes retain exact deadlines",()=>{
             foreach(var elapsed in new[]{0d,240d,241d,7200d,7201d,86400d,2592000d})
                 Check(!SessionLifetime.Expired(elapsed,true,true));

@@ -1,0 +1,22 @@
+{
+  "build": 92,
+  "testPassed": false,
+  "changedFields": [
+    "idleTimers"
+  ],
+  "before": [
+    {
+      "item": "bucket-1",
+      "seconds": 3.1677519013883284
+    }
+  ],
+  "after": [
+    {
+      "item": "bucket-1",
+      "seconds": 3.167751901388329
+    }
+  ],
+  "otherFieldsEqual": true,
+  "scope": "Retained failed-fixture main/backup; unnecessary untouched-solo rewrite changed double precision. Assertions unchanged in passing replacement 93 suite.",
+  "deployed": false
+}

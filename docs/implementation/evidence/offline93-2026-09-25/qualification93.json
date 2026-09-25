@@ -1,0 +1,26 @@
+{
+  "build": 93,
+  "utc": "2026-09-25T19:22:25.371556+00:00",
+  "windowsChecksPassed": true,
+  "physicalWifiOffPassed": false,
+  "coreChecks": 69,
+  "handoffScenarios": 3,
+  "continuationGroups": 6,
+  "failureGroups": 5,
+  "localMotionTargets": [
+    30,
+    60
+  ],
+  "fourPlayerSharedMotionPassed": true,
+  "iosNativeCompileLinkPassed": true,
+  "devicesUpdated": [
+    "ipad7"
+  ],
+  "familyServerBuild": 91,
+  "scope": "Research-backed client repair and Windows qualification. Actual device update, Wi-Fi loss, sustained frame timing, G4 hosting and G5 merging remain open.",
+  "iosSigningPassed": true,
+  "ipad7Build": 93,
+  "ipad7SaveRetentionPassed": true,
+  "androidArtifactBuilt": true,
+  "androidStrict16KbPassed": false
+}

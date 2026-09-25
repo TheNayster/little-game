@@ -1,0 +1,20 @@
+{
+  "build": 93,
+  "device": "iPad 7",
+  "os": "18.7.10",
+  "durationSeconds": 35.77259,
+  "template": "Time Profiler",
+  "appCpuSamples": 21363,
+  "mainThreadSamples": 6962,
+  "symbolUuid": "38467A64-ACBD-3CEC-ACA1-168C10DCAD4B",
+  "symbolMatch": true,
+  "appOnlyAnalysis": true,
+  "saveOrCheckpointSymbolSampled": false,
+  "hitchRootCauseEstablished": false,
+  "limits": [
+    "CPU sampling does not measure blocked IO duration",
+    "Walking interval was not synchronized with the capture",
+    "Inclusive counts overlap"
+  ],
+  "rawXmlSha256": "a812a04dfcab84b209458acd5f5d16ed16bbd9dc67b195d4db8e965659a5c90e"
+}

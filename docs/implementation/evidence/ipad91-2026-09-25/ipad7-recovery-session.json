@@ -1,0 +1,55 @@
+{
+  "passedWithinScope": true,
+  "build": 91,
+  "serverBuild": 91,
+  "utc": "2026-09-25T18:58:49.552959+00:00",
+  "checkpoint": {
+    "status": "durable",
+    "players": 4,
+    "items": 10,
+    "areas": [
+      "creek",
+      "garden"
+    ],
+    "receipts": 128,
+    "idleTimers": 2,
+    "bytes": 24076,
+    "sampledWriteMilliseconds": [
+      32.196000000000005,
+      40.074400000000004,
+      25.0209
+    ]
+  },
+  "offline": {
+    "realWifiOff": true,
+    "userObservedControlDelaySecondsApproximate": 10,
+    "automaticAdventureCreated": true,
+    "walkAndToyProgressSaved": true,
+    "originalSoloFilesPreserved": 2
+  },
+  "coldReopen": {
+    "newProcessVerified": true,
+    "sameAdventureIdentity": true,
+    "walkingAndDraggingConfirmedByUser": true
+  },
+  "reunion": {
+    "connected": true,
+    "adventureRetainedWithSameIdentity": true,
+    "exactBoundaryBytesProven": false,
+    "userContinuedPlayingBetweenReads": true,
+    "commonBaseUnchanged": true,
+    "newCompleteCheckpoint": true,
+    "originalSoloFilesPreserved": 2,
+    "menuReopeningPhysicallyConfirmed": false
+  },
+  "performance": {
+    "accepted": false,
+    "userReportedChoppyOfflineWalking": true,
+    "connectedPlayLaterReportedSmooth": true,
+    "allDevicesReportedSmoothOnline": true,
+    "allDevicesReportedChoppyOffline": true,
+    "latestAllDeviceWifiLossFreezeStillOpen": true,
+    "measuredSustainedA10Performance": false
+  },
+  "scope": "Earlier scoped older-iPad Wi-Fi loss, cold reopen and reunion. Later all-device freeze and offline walking reports supersede any overall recovery acceptance. Not an overall G3 pass, iPad hosting or reconciliation."
+}

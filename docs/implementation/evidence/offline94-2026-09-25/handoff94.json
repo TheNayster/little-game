@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "build": 94,
+      "scenario": "held-touch",
+      "passed": true,
+      "error": null,
+      "utc": "2026-09-25T19:46:32.105402+00:00",
+      "observeOnly": false,
+      "scope": "Isolated Windows DTLS authority loss and real UGUI touch. Not physical Wi-Fi loss."
+    },
+    {
+      "build": 94,
+      "scenario": "open-menu",
+      "passed": true,
+      "error": null,
+      "utc": "2026-09-25T19:46:47.114732+00:00",
+      "observeOnly": false,
+      "scope": "Isolated Windows DTLS authority loss and real UGUI touch. Not physical Wi-Fi loss."
+    },
+    {
+      "build": 94,
+      "scenario": "no-checkpoint",
+      "passed": true,
+      "error": null,
+      "utc": "2026-09-25T19:47:01.527760+00:00",
+      "observeOnly": false,
+      "scope": "Isolated Windows DTLS authority loss and real UGUI touch. Not physical Wi-Fi loss."
+    }
+  ],
+  "assertedBounds": {
+    "authorityExitToLocalLessThanSeconds": 5,
+    "knownLossToLocalLessThanSeconds": 2
+  }
+}

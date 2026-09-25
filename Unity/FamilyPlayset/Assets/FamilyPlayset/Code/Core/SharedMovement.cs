@@ -21,6 +21,18 @@ namespace LittleWeeps.Core
     public static class Walking
     {
         public const float Speed=210;
+        // Local play owns its world, so it can apply continuous motion each
+        // displayed frame without manufacturing inventory receipts. Shared
+        // clients must continue to submit input to MovementAuthority instead.
+        public static bool AdvanceLocal(SoloWorld world,string actor,WalkMode mode,float x,float y,float dt)
+        {
+            if(world==null || !Enum.IsDefined(typeof(WalkMode),mode) || float.IsNaN(dt) || float.IsInfinity(dt) || dt<0 || dt>.1f ||
+                float.IsNaN(x) || float.IsInfinity(x) || float.IsNaN(y) || float.IsInfinity(y) || Math.Abs(x)>1000 || Math.Abs(y)>1000)
+                throw new ArgumentException("Invalid local walking step.");
+            var p=world.ReadPlayer(actor);
+            var next=Step(p.x,p.y,new WalkInput{mode=mode,x=x,y=y},dt);
+            return world.SetWalkingPosition(p.id,p.zone,p.visit,next.X,next.Y);
+        }
         public static WalkPoint Step(float x,float y,WalkInput input,float dt)
         {
             if(input==null || input.mode==WalkMode.Stop || dt<=0)return new WalkPoint(x,y);

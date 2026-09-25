@@ -253,7 +253,7 @@ namespace LittleWeeps.NetworkProbe
         private void TickPresentation()
         {
             if(familyScreen==null)return;
-            var prolonged=outageClock.Tick(Time.realtimeSinceStartupAsDouble,!applicationPaused,!ConnectedToServer && !localOnly && !reconnectBlocked);
+            var localReady=outageClock.Tick(Time.realtimeSinceStartupAsDouble,!applicationPaused,!ConnectedToServer && !localOnly && !reconnectBlocked);
             if(applicationPaused)return;
             if(requestedAdventure!=null)
             {
@@ -271,7 +271,7 @@ namespace LittleWeeps.NetworkProbe
             }
             else if(!localOnly && ConnectedToServer && !familyScreen.Shared && familyScreen.TryJoinFamily(familyGarden))
             {presentationStarted=true;TraceConnection("shared-presented",0,"local-checkpoint-preserved");}
-            else if(prolonged)TryLocalContinuation();
+            else if(localReady && familyScreen.RecoveringDisconnected)TryLocalContinuation();
         }
         private void TickDiscovery()
         {
@@ -586,6 +586,12 @@ namespace LittleWeeps.NetworkProbe
             var bytes=new byte[count];reader.ReadBytesSafe(ref bytes,count);return Utf8.GetString(bytes);
         }
         private void Update()
+        {
+            var started=System.Diagnostics.Stopwatch.GetTimestamp();
+            try{UpdateNetwork();}
+            finally{if(familyScreen!=null)familyScreen.RecordNetworkWork(started);}
+        }
+        private void UpdateNetwork()
         {
             if(config==null || output==null || failed || stopping)return;
             TickInterruptedArchives();

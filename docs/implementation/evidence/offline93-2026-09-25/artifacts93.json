@@ -1,0 +1,54 @@
+{
+  "build": 93,
+  "utc": "2026-09-25T19:22:25.371556+00:00",
+  "artifacts": {
+    "windows": {
+      "summary": {
+        "utc": "2026-09-25T19:13:33.7055718Z",
+        "contract": 4,
+        "gardenPresentation": true,
+        "builds": [
+          {
+            "role": "Server",
+            "version": "0.0.93",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+            "result": "Succeeded",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": true
+          },
+          {
+            "role": "Client",
+            "version": "0.0.93",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+            "result": "Succeeded",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": false
+          }
+        ]
+      },
+      "sourceManifestSha256": "5c67901f2a142307cea5c4979be2e07ceb60285bc6851b0ab6ae7e1bd9469308",
+      "artifactManifestSha256": "beba359e52370ec86c5c588843490260e144945d1f51a43b4f7d527afa29c1bf"
+    },
+    "ios": {
+      "summary": {
+        "version": "0.0.93",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/iPad Family LAN.asset",
+        "result": "Succeeded",
+        "utc": "2026-09-25T19:16:23.4075894Z",
+        "platform": "iOS",
+        "signing": "Unsigned Xcode export; native compile/sign and physical networking pending",
+        "development": false,
+        "errors": 0,
+        "warnings": 0
+      },
+      "sourceManifestSha256": "c928b0b2a29d794467f3ebf97d884193e792d6fb641acd028ebb280dc9505084",
+      "artifactManifestSha256": "1aa5a741a9f5464a51a82c808f616eac993ecb9ffffc758b05745eaee50a9ab4"
+    }
+  },
+  "installed": false
+}

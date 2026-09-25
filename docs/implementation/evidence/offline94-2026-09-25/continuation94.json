@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "build": 94,
+  "utc": "2026-09-25T19:53:36.421624+00:00",
+  "checks": [
+    {
+      "check": "offline first launch remains playable without inventing a shared checkpoint",
+      "passed": true
+    },
+    {
+      "check": "four native clients automatically continue after server loss with unique saved branches, both areas and released item holds",
+      "passed": true
+    },
+    {
+      "check": "local interactions and travel use the correct profile; cold restart resumes the changed adventure while the older solo save remains intact",
+      "passed": true
+    },
+    {
+      "check": "automatic reunion waits for gesture completion, saves local changes separately and leaves the authoritative family world intact",
+      "passed": true
+    },
+    {
+      "check": "in-game saved-adventure and solo selection restore their distinct progress without disrupting a connected sibling",
+      "passed": true
+    },
+    {
+      "check": "a second outage creates a new branch from the recovered authority and preserves the earlier adventure byte for byte",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "allFourContinuationSecondsAfterKill": 2.719
+  },
+  "scope": "Four native Windows clients, isolated DTLS authority crash/restart, input and storage. No family server, mobile qualification, host election or divergent-world merging."
+}

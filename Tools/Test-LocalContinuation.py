@@ -35,7 +35,9 @@ def main():
         save(first,lambda v:abs(toy(v,'bucket-1')['x']-240)<.1)
         original_solo=payload(solo)
         passed('offline first launch remains playable without inventing a shared checkpoint')
-        f.controller.start();shared(first);original_solo=payload(solo);clients=[first]+[f.join(i) for i in range(2,5)]
+        f.controller.start();shared(first);original_solo=payload(solo)
+        write(f.path/'original-solo-before-outage.json',original_solo)
+        clients=[first]+[f.join(i) for i in range(2,5)]
         clients[1].input('button',text='Creek')
         wait(lambda:(v:=inspect(clients[1]))['zone']=='creek' and not v['pending'],'second actor at creek')
         clients[1].input('press',role='sponge-creek')
@@ -70,6 +72,7 @@ def main():
         require(resumed['adventure']==branch_id and abs(toy(payload(Path(resumed['savePath']))['snapshot'],'bucket-1')['x']-730)<.1,'Cold launch lost adventure')
         require(not toy(payload(Path(resumed['savePath']))['snapshot'],'bucket-1')['holder'],'Cold launch retained crashed pointer hold')
         first.input('capture');wait(lambda:(first.out/'garden.png').exists(),'continuation screenshot')
+        write(f.path/'original-solo-after-cold-resume.json',payload(solo))
         require(payload(solo)==original_solo,'Cold resume touched old solo')
         passed('local interactions and travel use the correct profile; cold restart resumes the changed adventure while the older solo save remains intact')
         # Reunion waits for a real pointer gesture and saves it before binding.

@@ -121,7 +121,7 @@ namespace LittleWeeps.Core
         public static string AreaOf(string zone)=>string.IsNullOrEmpty(zone)?"garden":zone;
         public static bool KnownArea(string zone)=>zone=="garden" || zone=="creek";
         public SoloSnapshot Snapshot() => Clone(state);
-        // Called only by the fixed-step server movement authority. Position is
+        // Called by server/local walking authorities. Position is
         // recoverable/coalesced state, not an inventory transaction or receipt.
         internal bool SetWalkingPosition(string actor,string zone,long visit,float x,float y)
         {

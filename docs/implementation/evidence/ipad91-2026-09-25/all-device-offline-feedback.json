@@ -1,0 +1,22 @@
+{
+  "utc": "2026-09-25T19:02:51.940000+00:00",
+  "source": "User physical testing",
+  "lastRecordedBuilds": {
+    "ipad7": 91,
+    "ipad9": 79,
+    "iphone": 79,
+    "samsung": 83,
+    "server": 91
+  },
+  "latestReport": {
+    "wifiLoss": "All four devices stopped responding to all controls until app was closed and reopened.",
+    "offlineMovement": "Walking is choppy offline; tap and joystick affected.",
+    "reunion": "All four reconnect after Wi-Fi is restored; movement on the server is smooth."
+  },
+  "earlierScopedResult": "An earlier iPad7/91 attempt resumed controls after approximately 10 seconds and retained an offline adventure after cold reopen. This does not override the later all-device failure report.",
+  "openBlockers": [
+    "Automatic recovery after Wi-Fi loss is not reliably accepted on physical devices.",
+    "Offline walking smoothness is not accepted on physical devices."
+  ],
+  "recoveryReliablyQualified": false
+}

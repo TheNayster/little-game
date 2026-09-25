@@ -13,13 +13,11 @@ static partial class Program
         DecodeAdventure<ContinuationRecord>,value=>JsonSerializer.Serialize(value,Json),DecodeAdventure<ContinuationSelection>,value=>JsonSerializer.Serialize(value,Json));
     static void ContinuationTests()
     {
-        Test("outage clock counts ten observed foreground seconds and resets on reunion",()=>{
-            var clock=new OutageClock();Check(!clock.Tick(0,true,true));
-            for(var i=1;i<40;i++)Check(!clock.Tick(i*.25,true,true));
-            Check(clock.Tick(10,true,true));Check(!clock.Tick(11,true,false));
-            clock.Tick(12,false,true);Check(!clock.Tick(1000,true,true));
-            for(var i=1;i<40;i++)Check(!clock.Tick(1000+i*.25,true,true));
-            Check(clock.Tick(1010,true,true));Throws(()=>clock.Tick(double.NaN,true,true));
+        Test("known disconnection permits local play immediately on foreground or resume",()=>{
+            var clock=new OutageClock();Check(clock.Tick(0,true,true));
+            Check(!clock.Tick(.01,true,false));Check(!clock.Tick(.02,false,true));
+            Check(clock.Tick(1000,true,true));Check(!clock.Tick(1000.01,true,false));
+            Check(clock.Tick(1000.02,true,true));Throws(()=>clock.Tick(double.NaN,true,true));
         });
         Test("outage branch keeps immutable base receipts clocks four players and both areas while releasing stale holds",()=>{
             var basis=RecoveryFixture();var original=RecoveryBytes(basis);var library=Library("adventure-base",basis);var record=library.Create(basis);

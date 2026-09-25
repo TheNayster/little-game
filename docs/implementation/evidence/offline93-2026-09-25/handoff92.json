@@ -1,0 +1,33 @@
+{
+  "build": 92,
+  "passed": false,
+  "checks": [
+    {
+      "build": 92,
+      "scenario": "held-touch",
+      "passed": false,
+      "error": "Controls remain bound to a disconnected authority",
+      "utc": "2026-09-25T19:11:23.632157+00:00",
+      "observeOnly": true,
+      "scope": "Isolated Windows DTLS authority loss and real UGUI touch. Not physical Wi-Fi loss."
+    },
+    {
+      "build": 92,
+      "scenario": "open-menu",
+      "passed": false,
+      "error": "Controls remain bound to a disconnected authority",
+      "utc": "2026-09-25T19:11:52.789846+00:00",
+      "observeOnly": true,
+      "scope": "Isolated Windows DTLS authority loss and real UGUI touch. Not physical Wi-Fi loss."
+    },
+    {
+      "build": 92,
+      "scenario": "no-checkpoint",
+      "passed": false,
+      "error": "Controls remain bound to a disconnected authority",
+      "utc": "2026-09-25T19:14:54.000625+00:00",
+      "observeOnly": true,
+      "scope": "Isolated Windows DTLS authority loss and real UGUI touch. Not physical Wi-Fi loss."
+    }
+  ]
+}

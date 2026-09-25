@@ -1,0 +1,12 @@
+{
+  "build": 93,
+  "utc": "2026-09-25T19:26:15.818865+00:00",
+  "retainedEnrollment": true,
+  "connected": true,
+  "durableRecoveryCheckpoint": true,
+  "checkpointBytes": 23917,
+  "receiptCount": 128,
+  "sampledCheckpointWriteMs": 14.5921,
+  "retainedAdventureCount": 1,
+  "scope": "Native installed version, admission, durable recovery receipt and retained adventure availability. Human Wi-Fi-off and smoothness acceptance still pending."
+}
