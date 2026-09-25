@@ -18,7 +18,7 @@
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
 </style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g4-hosting-and-animation-preparation-2026-09-25.md">Editable record</a></nav></header><main class="progress-report report"><h1>Hosting preparation and the first animation study</h1>
 <p><strong>Status, September 25:</strong> the user authorized independent work while build 98 waits for device signing/acceptance, including a small character prototype. Two tracks are now explicit: <strong>device qualification when available</strong>, and <strong>bounded development that does not require those devices</strong>. This permits preparation/prototyping without declaring G3, G4 or G6 complete. No shipping Unity sources, package locks, game saves or running family server were changed by this task.</p>
-<p><strong>Delivered:</strong> an executable planned-host-handoff model with 20 passing groups and 117,649 six-event schedules; a layered character source and interactive animation workshop; a native hosting integration sequence; and room/save contracts to guide the next content work. <a href="character-workshop/index.html">Try the character workshop</a> · <a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a> · <a href="../family-playset-build-guide-2026-09-23.html">Main plan</a>.</p>
+<p><strong>Delivered:</strong> an executable planned-host-handoff model with 20 passing groups and 117,649 six-event schedules; a layered character source and interactive animation workshop; a native hosting integration sequence; and room/save contracts to guide the next content work. <strong>Follow-up G4-PREP-02 now passes real-state restoration: seven C# groups and four native Windows groups, including all four original profiles rejoining a replica-derived authority.</strong> <a href="g4-real-state-restoration-2026-09-25.html">Restoration evidence and limits</a> · <a href="character-workshop/index.html">Try the character workshop</a> · <a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a> · <a href="../family-playset-build-guide-2026-09-23.html">Main plan</a>.</p>
 <h2>Research applied to this work</h2>
 <div class="table-scroll"><table>
 <thead>
@@ -69,7 +69,7 @@
 </ol>
 <p>If a write reports failure, the process stops being eligible to write until it rereads its journal. This handles the case where data reached storage but the caller did not receive success. Before any grant, the source may cancel and resume; after a grant, it cannot safely do so unilaterally.</p>
 <p><strong>Evidence:</strong> <a href="evidence/hosting-prep-2026-09-25/model-results.json">20 model groups</a>, including 117,649 enumerated six-event schedules and 705,894 checked transitions. Cases cover duplicates/reordering, lost messages, restarts, before/after-commit failures, forged identities, damaged or incomplete state, wrong epochs, background eligibility, restore failure, and the absence of a fabricated grant on hard loss.</p>
-<p><strong>Limits:</strong> the model assumes authenticated channels, one serialized controller per device, valid complete checkpoint input and atomic storage. It simulates journal commits; it does not test physical disk failure, encryption, sockets or iPad lifecycle. Its checkpoint payload is opaque fixture data, so real <code>RecoveryRecord</code> parsing/restoration remains a separate test. It models one cooperative transfer, not repeated transfers, hard-loss election or all possible histories. Passing this model does not mean iPad hosting is implemented.</p>
+<p><strong>Limits:</strong> the model assumes authenticated channels, one serialized controller per device, valid complete checkpoint input and atomic storage. It simulates journal commits; it does not test physical disk failure, encryption, sockets or iPad lifecycle. Its checkpoint payload is opaque fixture data; the separate <a href="g4-real-state-restoration-2026-09-25.html">G4-PREP-02 test</a> now verifies actual record parsing/restoration, without integrating the model into the live transport. The model covers one cooperative transfer, not repeated transfers, hard-loss election or all possible histories. Passing it does not mean iPad hosting is implemented.</p>
 <h2>Next native hosting steps that can be developed on Windows</h2>
 <div class="table-scroll"><table>
 <thead>
@@ -80,8 +80,8 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>G4-PREP-02: restore real state into a replacement authority</strong></td>
-<td>Use the actual <code>RecoveryRecord</code> and <code>FamilySession</code> in an isolated Windows fixture. Preserve both areas, players, object IDs/contents, receipts and idle clocks; clear stale temporary holds. Reuse old operation IDs to prove pours cannot duplicate. Test incomplete, damaged and future-version rejection. A private v2 adventure is never eligible input.</td>
+<td><strong>G4-PREP-02: complete within Windows scope</strong></td>
+<td>Actual <code>RecoveryRecord</code>/<code>FamilySession</code> restoration passes seven C# and four native groups. Both areas, players, item contents, receipts and idle clocks survive; stale holds clear; old pour replay is idempotent. Invalid/future/private inputs refuse. Source stop and credential reuse are explicit test operations, not automatic mobile hosting. <a href="g4-real-state-restoration-2026-09-25.html">Evidence</a>.</td>
 </tr>
 <tr>
 <td><strong>G4-01: isolate authority lifecycle from client presentation</strong></td>
@@ -105,7 +105,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>The next independent implementation task is <strong>G4-PREP-02</strong>, not another full foundation restart. Build 98 device checks remain a separate short task when the user returns. Production hosting integration stays gated by its own evidence.</p>
+<p>The next independent implementation task is <strong>G4-01</strong>, beginning with authenticated host identity and separation of authority lifecycle from presentation. Build 98 device checks remain a separate short task when the user returns. Production hosting integration stays gated by its own evidence.</p>
 <h2>Personal rooms: save and item boundaries reviewed</h2>
 <p>Goal IDs: <strong>ROOM-01, ITEM-03, WORLD-01</strong>. This is a design review, not implemented bedrooms. The current <code>SoloWorld</code> validators still assume the prototype's two areas and five/ten toys. Adding rooms first requires versioned content definitions and a deliberate save migration; simply appending room names or spawning furniture would leave validation and recovery inconsistent.</p>
 <div class="table-scroll"><table>
@@ -159,4 +159,4 @@
 <p><strong>Next art task:</strong> the isolated Unity character-view/rig import proof, followed by one likeness review. No need to repeat 98 networking acceptance just to look at a character study. Full room/activity production still follows its save/ownership prerequisites.</p>
 <h2>Scope and handoff</h2>
 <p>The shipping project remains build 98; server/helper remain 91. Last installed physical clients remain iPad 7 95, iPad 9/iPhone 79 and Samsung 83. No Mac password, phone connection, iPad interaction or new account was needed for this preparation. The <a href="return-checklist-ipad-lan-2026-09-24.html">return checklist</a> now separates required device actions from the optional art preview and later host checks.</p>
-<p>Work continues in small, testable steps: native replacement-state restoration next, then actual handoff adapters; art can advance through the isolated import proof alongside the device queue. Neither the model nor the browser preview closes a foundation gate or counts as a deployed game feature.</p></main></body></html>
+<p>Work continues in small, testable steps: native replacement-state restoration now passes within its recorded scope; authority/identity separation and actual handoff adapters are next. Art can advance through the isolated import proof alongside the device queue. Neither the model, restoration experiment nor browser preview closes a foundation gate or counts as deployed iPad hosting.</p></main></body></html>

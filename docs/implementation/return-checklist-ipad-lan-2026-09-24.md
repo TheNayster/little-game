@@ -22,7 +22,7 @@ The family server does **not** need another update for these client-side fixes. 
 
 [Open the character workshop](character-workshop/index.html) and try **Idle, Walk, Wave and Carry & walk**, then turn the character left/right. This is the first layered animation study; the final Bluey artwork and Unity integration are still ahead. Feedback can wait until you return.
 
-While you are away, the [hosting preparation track](g4-hosting-and-animation-preparation-2026-09-25.html) can continue on Windows. The planned-handoff model and animation study are complete within their recorded scope. Next is restoring real saved world state into an isolated replacement authority. You do not need to complete this checklist before that independent work proceeds.
+While you are away, the [hosting preparation track](g4-hosting-and-animation-preparation-2026-09-25.html) can continue on Windows. The planned-handoff model and animation study are complete within their recorded scope. **Real saved-state restoration now also passes: four Windows players rejoined a replacement authority with both areas and item states preserved.** [Checks and limits](g4-real-state-restoration-2026-09-25.html). Next is separating host identity/lifecycle from the local player's view, before automatic mobile handoff. No new user action was added; you do not need to complete this checklist before that independent work proceeds.
 
 ## Parent setup still needed later
 

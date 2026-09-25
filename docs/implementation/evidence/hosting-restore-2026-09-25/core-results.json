@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "utc": "2026-09-25T21:53:49.0416685Z",
+  "checks": [
+    {
+      "name": "complete two-area state, partial bucket, completed actions and 128 receipts restore; stale holds clear once",
+      "passed": true
+    },
+    {
+      "name": "four fresh connections resume; repeated pour is duplicate and conflicting reuse is refused without mutation",
+      "passed": true
+    },
+    {
+      "name": "idle clocks survive but do not advance while empty; restored activity resets only after remaining active time",
+      "passed": true
+    },
+    {
+      "name": "wrong lineage, epoch, serial, revision, roster or pinned hash cannot publish an authority",
+      "passed": true
+    },
+    {
+      "name": "missing arrays or defaulted nested fields, duplicate fields, private adventure, client view and malformed states refuse",
+      "passed": true
+    },
+    {
+      "name": "future formats, truncated or damaged envelopes and oversized records refuse without older-backup substitution",
+      "passed": true
+    },
+    {
+      "name": "existing destination, interrupted publication and concurrent creator keep previous data untouched",
+      "passed": true
+    }
+  ],
+  "scope": "Production C# RecoveryRecord, SoloWorld, FamilySession and CheckpointStore on Windows/.NET; isolated restore staging only. Not Unity transport, mobile authority or authenticated host grants."
+}

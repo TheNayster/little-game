@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "build": 98,
+  "sourceFilesChecked": 410,
+  "changed": [],
+  "scope": "Current game code and package files match the native build-98 source manifest; no shipping runtime or package edits in this task."
+}

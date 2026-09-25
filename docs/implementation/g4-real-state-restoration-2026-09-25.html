@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — When you return</title><style>
+<title>The Family Playset — Replacement host state restoration</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -16,37 +16,62 @@
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 
 .progress-report{max-width:980px;margin:42px auto;padding:0 24px}.progress-report h1{font-size:clamp(30px,4vw,46px)}.progress-report p,.progress-report li{line-height:1.65}.progress-report code{overflow-wrap:anywhere}.progress-report pre{overflow-x:auto}
-</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="return-checklist-ipad-lan-2026-09-24.md">Editable record</a></nav></header><main class="progress-report report"><h1>Your next checks — offline controls and walking</h1>
-<p><strong>Current installed versions:</strong> iPad 7 <strong>95</strong> (actual runtime verified), iPad 9/iPhone <strong>79</strong>, Samsung <strong>83</strong>, PC server and parent helper <strong>91</strong>. The PC world/enrollment are preserved and automatic recovery is enabled/healthy. Actual Windows sign-in startup is still Off.</p>
-<p><strong>Latest 95 feedback:</strong> the older iPad is “way smoother.” The final offline walking segment confirms removal of the large periodic save stalls; offline cold reopening retains toys and smooth controls. Earlier network/lifecycle-boundary spikes remain recorded. The old-checkpoint transition jump is repaired in 98 engineering tests, awaiting physical acceptance. <a href="g3-offline-authority-and-hitch-review-2026-09-25.html">Measurements and current repair</a>. Other devices still need the replacement.</p>
-<h2>When you get back</h2>
-<p><strong>Build 98 is prepared and passes the Windows and Android-emulator checks.</strong> The transition repair and smooth-saving fix are included. Apple native compilation passes, but unattended signing failed with <code>errSecInternalComponent</code>. Physical devices still have the versions above. <a href="g3-offline-authority-and-hitch-review-2026-09-25.html">Full result and limits</a>.</p>
-<ol>
-<li><strong>Make the Mac available and connect the older iPad</strong>, unlocked on its Home Screen. On the Mac desktop, open <strong>Finish-Little-Weeps-98.command</strong> and enter the Mac password there if asked; approve codesign access if prompted. Tell me when the build finishes, so I can verify and install it over the existing app. Do not send your password. The helper targets the older iPad.</li>
-<li><strong>One focused older-iPad check after installation:</strong> while connected, walk to the Creek, move a toy, then turn Wi-Fi off. The character, area and toy should stay where you were seeing them; controls should recover without closing the app. Briefly try both walking controls, then close/reopen offline and check the toy. On reconnection the server's current world must win.</li>
-<li><strong>Connect the newer iPad next</strong>, then make the Samsung and iPhone available for in-place updates. The Samsung can use USB debugging or its current wireless-debugging address; the iPhone can use the established USB route. No uninstall or reset is needed. The Samsung's last saved address did not connect while you were away; send its current address or use USB when you return. I will install/verify these updates in place.</li>
-<li><strong>A short four-player check:</strong> all four join, walk in separate areas, reunite, and one player leaves while the others continue. Repeat a brief offline/rejoin check on each updated device; no need to redo every old foundation test.</li>
-<li><strong>Later, after implementation:</strong> both iPads hosting and automatic switching still need their own test session. That feature is not ready to test yet. I will add the exact steps when it is.</li>
-</ol>
-<p><strong>Already passed on build 95 / older iPad:</strong> significantly smoother offline walking, offline cold reopening, retained toys, and readable saves with the two original solo files unchanged. Do not repeat those as unfinished 95 checks. The next check targets the new transition behavior.</p>
-<p>The family server does <strong>not</strong> need another update for these client-side fixes. Do not stop it to simulate an outage. Test-device Wi-Fi loss lets other players continue.</p>
-<h2>Optional fun preview — no device setup</h2>
-<p><a href="character-workshop/index.html">Open the character workshop</a> and try <strong>Idle, Walk, Wave and Carry &amp; walk</strong>, then turn the character left/right. This is the first layered animation study; the final Bluey artwork and Unity integration are still ahead. Feedback can wait until you return.</p>
-<p>While you are away, the <a href="g4-hosting-and-animation-preparation-2026-09-25.html">hosting preparation track</a> can continue on Windows. The planned-handoff model and animation study are complete within their recorded scope. <strong>Real saved-state restoration now also passes: four Windows players rejoined a replacement authority with both areas and item states preserved.</strong> <a href="g4-real-state-restoration-2026-09-25.html">Checks and limits</a>. Next is separating host identity/lifecycle from the local player's view, before automatic mobile handoff. No new user action was added; you do not need to complete this checklist before that independent work proceeds.</p>
-<h2>Parent setup still needed later</h2>
-<ul>
-<li>Choose an <strong>independent backup destination</strong> such as an external drive or another computer. The parent helper now has protected-backup download/file checking. Choose/store its passphrase privately. An actual off-PC copy and another-account/computer restore remain unproven. <a href="g3-parent-portable-backups-2026-09-25.html">Backup controls</a>.</li>
-<li>If you want automatic helper launch when this Windows account signs in, we still need to enable <strong>Add sign-in startup</strong> and test an actual sign-out/sign-in or reboot. This does not wake the PC or run before login. Do not reboot during family play. <a href="g3-signin-startup-2026-09-25.html">Scope</a>.</li>
-<li><strong>Unattended renewal is unresolved.</strong> Keep USB available. The last checked Apple development profile expires <strong>October 1, 2026</strong>; installed signing must be checked before updating. The successful iPhone USB refresh did not prove Wi-Fi renewal.</li>
-<li>VPS details can wait until reliability and deployment gates are ready. The owned VPS remains the intended future normal server; offline play and required iPad hosting are still in scope.</li>
-</ul>
-<h2>What is already recorded</h2>
-<ul>
-<li>Four distinct physical devices joined the same family server. Both iPads passed scoped movement, single-bucket ownership, separate-area travel and leave/rejoin checks. <a href="g3-ipad-79-2026-09-24.html">Original iPad feedback</a> · <a href="g3-phones-79-2026-09-24.html">Four-device milestone</a>.</li>
-<li>The tested iPad's solo toy position returned when switching back to solo; seeing server positions while connected was correct. <a href="evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json">Feedback</a>.</li>
-<li>Earlier iPad 7 <strong>79 → 91</strong> preserved all 263 Documents files and existing preferences. The later <strong>91 → 93</strong> update also preserves all saves/preferences; its one changed connection log was reviewed. Native 93 identity/admission and full checkpoint receipt were verified; the newer 95 physical results above supersede that build's pending status. <a href="g3-ipad91-qualification-2026-09-25.html">Update</a>.</li>
-<li>Server <strong>83 → 91</strong> preserved every old world field, four player records and ten items after a verified backup. Helper <strong>91</strong> recovery is enabled/healthy without disrupting the authority. No live crash or actual sign-in test was injected. <a href="evidence/ipad91-2026-09-25/server91-deployment.json">Deployment</a> · <a href="evidence/ipad91-2026-09-25/parent91-activation.json">Helper</a>.</li>
-<li>One older-iPad checkpoint/outage/cold-reopen/reunion sequence worked, with the two original solo files unchanged. The later all-device failure report remains authoritative for the open issue. <a href="evidence/ipad91-2026-09-25/ipad7-recovery-session.json">Scoped recovery observations</a>.</li>
-<li>Earlier Windows and Android-emulator recovery/sustained tests remain valid within their recorded scope. They do not replace actual Wi-Fi-off, A10 frame-time, thermal, touch or renewed-installation qualification. <a href="g3-outage-failures-2026-09-25.html">Build 91 outage tests</a> · <a href="g3-android-recovery-2026-09-25.html">Emulator</a> · <a href="g3-sustained-recovery-play-2026-09-25.html">Ten-minute recovery run</a>.</li>
-</ul>
-<p><strong>Still in the main plan:</strong> sustained four-device performance, Android native 16 KB qualification, both iPads hosting with automatic handoff/recovery, server-authoritative reunion with separate local saves, bedrooms and the remaining game content. G3 is not closed. Do not delete an app or reset its data to troubleshoot.</p></main></body></html>
+</style></head><body><header class="topbar"><a class="brand" href="../bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a><a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a><a href="g4-real-state-restoration-2026-09-25.md">Editable record</a></nav></header><main class="progress-report report"><h1>A replacement host restores the real shared world</h1>
+<p><strong>G4-PREP-02 is complete within Windows experiment scope.</strong> A fresh native build-98 authority now has a verified test path from a client's actual complete recovery record. Four original player profiles rejoin it, with both areas and their item state preserved. This closes the next hosting prerequisite; automatic iPad hosting is still ahead.</p>
+<p>Goal IDs: <strong>AUTO-02, NET-02, FAMILY-01, WORLD-01</strong>. Reviewed against goal-sheet sections 45, 46 and 50 and the <a href="g4-hosting-and-animation-preparation-2026-09-25.html">hosting preparation sequence</a>. The user's current server-wins rule remains authoritative: private offline edits are saved separately and never automatically uploaded into the family world.</p>
+<p><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Main plan</a> · <a href="return-checklist-ipad-lan-2026-09-24.html">Return checklist</a> · <a href="character-workshop/index.html">Character workshop</a>.</p>
+<h2>What changed</h2>
+<p><code>Tools/HostingRestore.Tests/</code> links the existing production <code>RecoveryRecord</code>, <code>SoloWorld</code>, <code>FamilySession</code> and <code>CheckpointStore</code> code into a Windows test tool. <code>Tools/Test-ReplacementAuthority.py</code> drives real Unity server/client processes in a disposable enrolled family. No shipping Unity code, packages, prepared build 98, physical app or real family save was changed.</p>
+<p>The test captures a <strong>client's durable complete replica</strong>, including 128 retained command receipts and idle clocks. It retains the original test server directory, then constructs a new authority directory from that replica alone. It does not obtain replacement world state from the old server save.</p>
+<p>The import pins the selected family, authority, world, epoch, snapshot-world identity, roster, checkpoint serial, revision and payload hash. It validates complete JSON fields as well as the actual game's rules. This matters because default-valued C# fields could otherwise make an omitted receipts/timers property look empty. This strict importer is a lab tool; a shipping mobile import boundary is not yet implemented.</p>
+<p>Restoring releases stale pointer holds once. The restored revision advances once when a hold existed; item IDs, contents, player positions/areas/activities, retained receipts and unaffected idle clocks remain. Connections start empty and reconnect by stable profile identity, not old transport IDs. Publication creates a new directory after verification; it refuses to replace an existing destination.</p>
+<h2>Evidence</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result and exact scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="evidence/hosting-restore-2026-09-25/core-results.json">Production C# rules/storage</a></td>
+<td><strong>7 groups pass.</strong> Two areas, four players, ten items, partially filled bucket, completed plant/cleanup, 128 receipts, stale-hold release, restored connections and operation replay. Empty worlds pause clocks; occupied play resumes the remaining idle interval.</td>
+</tr>
+<tr>
+<td>Malformed and conflicting inputs</td>
+<td>Those groups reject wrong family/authority/world/epoch/roster/order/hash; missing/duplicate/unsupported fields; invalid water/timers; private/view formats; future versions; damaged/truncated/oversized envelopes. A valid backup cannot silently replace the explicitly selected input.</td>
+</tr>
+<tr>
+<td>Publication failures</td>
+<td>Existing destination, injected interruption before publication and concurrent destination creation refuse replacement. Unpublished stages are retained. This is not physical power-loss qualification.</td>
+</tr>
+<tr>
+<td><a href="evidence/hosting-restore-2026-09-25/native-results.json">Native Unity transport and storage</a></td>
+<td><strong>4 groups pass on 98.</strong> Actual multi-chunk client record, fresh native authority, all four original enrolled profiles, both areas, retained action history and idle clocks. New interactions and replacement-epoch replication work after restoration.</td>
+</tr>
+<tr>
+<td>Duplicate watering over transport</td>
+<td>Reusing the accepted request returns its retained duplicate result without mutating the world; changing that request under the same ID is rejected. Coverage is the current 128-receipt window, not unlimited history.</td>
+</tr>
+<tr>
+<td>Actual private adventure</td>
+<td>A generated version-2 offline adventure is rejected as authority input. Its gameplay and provenance survive reopening/reunion, and subsequent shared operations leave its saved bytes unchanged.</td>
+</tr>
+<tr>
+<td><a href="evidence/hosting-restore-2026-09-25/source-match.json">Prepared build consistency</a></td>
+<td><strong>410 runtime/package files</strong> still match the native build-98 source manifest. No replacement device build is required for this test-only work.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The first native run passed restoration and duplicate-operation checks, then exposed an overstrict test comparison: it treated a private save's advancing idle timers as an overwrite. Inspection found timer-only changes in those offline saves; the local lifecycle code saves on exit/reopen. The corrected check pins an immutable copy for import refusal, compares gameplay/provenance across reopening, allows forward elapsed local clocks, then compares exact bytes after reunion. The complete rerun passes. No gameplay patch was made to satisfy that test.</p>
+<p>Private raw runs remain in ignored LocalData. The linked records contain counts, results and scope only, without enrollment credentials or saved family content. All disposable native processes were closed after the test.</p>
+<h2>Research and limits applied</h2>
+<p>The previous <a href="g4-hosting-and-animation-preparation-2026-09-25.html">primary-source review</a> established that host selection and synchronized-state transfer are separate responsibilities. This task verifies the second prerequisite using our actual game code instead of assuming a host-migration checkbox transfers everything. <a href="https://docs.unity.com/en-us/mps-sdk/session-host-migration">Unity session host migration</a>.</p>
+<p>The source was explicitly stopped before the replacement started. The experiment reused that disposable family's PC authority credentials. It therefore does <strong>not</strong> establish mobile host permissions, automatic election, source retirement over a live transport, hard-loss fencing, or safe partition convergence. A selected replica may trail the latest live source state; planned handoff still requires the final frozen checkpoint and its acknowledged identity.</p>
+<p>A valid checksum and selected-record metadata do not themselves authorize a device to host. G4-01 must introduce authenticated mobile host identity/capabilities and endpoint changes without distributing the PC's private key. G4-02 then connects the <a href="g4-hosting-and-animation-preparation-2026-09-25.html">planned-transfer model</a> to actual journals/messages and repeated transfers.</p>
+<p>Neither this Windows result nor the model replaces Apple lifecycle and A10 performance checks. Both iPads must eventually host with peers playing in independent areas, including while the host opens an in-game menu/book/video and when its app backgrounds or closes. Apple's background execution remains bounded. <a href="https://developer.apple.com/documentation/uikit/extending-your-app-s-background-execution-time">Apple background execution</a>.</p>
+<h2>Next work and the user's checklist</h2>
+<p><strong>Next independent task: G4-01 — separate authority lifecycle and authenticated host identity from the local player's presentation.</strong> Begin with the existing protected enrollment/discovery contracts and a bounded Windows adapter proof. Then wire cooperative transfer, hard-loss branch selection and reunion in the recorded order. Do not simply change <code>StartClient</code> to <code>StartHost</code> or promote a private adventure.</p>
+<p>The optional isolated Unity character-view/import proof remains available as the next art task. Its browser <a href="character-workshop/index.html">animation study</a> is ready for review now; final Bluey artwork and in-game rig integration remain unfinished.</p>
+<p>The return checklist still has the same focused physical work: sign/install prepared <strong>98</strong>, test the older iPad's visible-state continuity and offline movement, update the other devices in place, then perform a short four-player check. Last verified installed clients remain iPad 7 <strong>95</strong>, iPad 9/iPhone <strong>79</strong>, Samsung <strong>83</strong>; last deployed server/helper <strong>91</strong>. No new user action was added by this restoration task, and no live-server availability check is claimed here.</p></main></body></html>

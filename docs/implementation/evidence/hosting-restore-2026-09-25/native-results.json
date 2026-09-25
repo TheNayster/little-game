@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "build": 98,
+  "utc": "2026-09-25T21:58:32.391839+00:00",
+  "checks": [
+    {
+      "check": "actual enrolled client durably stores a multi-chunk world with both areas, four profiles, ten objects, completed actions, idle clocks and 128 receipts",
+      "passed": true
+    },
+    {
+      "check": "source stopped and retained; client replica alone restores exact world with one hold-release revision; actual private adventure refuses promotion",
+      "passed": true
+    },
+    {
+      "check": "fresh native authority loads replica-derived world; four original enrolled profiles rejoin; retained pour is idempotent and altered reuse is rejected over transport",
+      "passed": true
+    },
+    {
+      "check": "both areas accept new movement and item actions, stale hold is reusable, object IDs stay unique and all four clients durably replicate the new authority epoch",
+      "passed": true
+    }
+  ],
+  "observations": {
+    "replicaBytes": 22823,
+    "receipts": 128,
+    "players": 4,
+    "objects": 10,
+    "timers": 5
+  },
+  "scope": "Isolated Windows dedicated authority plus four Windows clients over enrolled transport. Source stopped explicitly; same lab PC authority credentials reused. No live family, mobile authority capabilities, election, automatic handoff, partition fencing, or device qualification."
+}
