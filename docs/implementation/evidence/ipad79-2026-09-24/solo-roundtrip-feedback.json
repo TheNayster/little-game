@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "recordedUtc": "2026-09-25T01:23:57.845469+00:00",
+  "build": "0.0.79",
+  "goalIds": [
+    "JOIN-01",
+    "TRAVEL-01"
+  ],
+  "evidenceType": "User-reported physical iPad check",
+  "deviceCoverage": "Tested iPad; user did not identify which device or confirm repeating on both. Further iPad time paused at user request.",
+  "requestedCheck": "Play by myself, move a toy, Find my family, then Play by myself again.",
+  "results": {
+    "familyRejoin": "User reports easy rejoining; the shared scene used server positions.",
+    "soloRestoration": "Yes\u2014the solo position returns",
+    "sharedStatePolicy": "User explicitly approves server positions taking precedence while joined; local toy moves must not overwrite the active shared scene."
+  },
+  "limits": [
+    "Per-device repetition on both iPads is not established.",
+    "Server-unavailable initial joining, remaining physical touch/settings and four-device qualification remain open.",
+    "This does not establish offline branch merging or durable save restoration after every termination."
+  ]
+}

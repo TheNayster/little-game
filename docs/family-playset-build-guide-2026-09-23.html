@@ -23,7 +23,7 @@
 </style></head><body>
 <header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Build guide navigation"><a href="bluey-game-research-2026-09-23.html">Goal sheet</a><a href="#8-ordered-phases-and-completion-gates">Build order</a><a href="#9-first-implementation-work-queue">Next tasks</a><a href="#18-current-work-record-and-research-basis">Current status</a><a href="#19-implementation-audit-and-remaining-work">Audit &amp; remaining work</a></nav></header>
 <main class="wrap" id="top"><div class="build-intro"><p class="eyebrow">Ground-up production guide · Audited 24 September 2026</p><h1>One clear build order.<br>A foundation for the whole game.</h1><p class="intro">The Family Playset is our goal sheet. This guide turns it into a practical sequence: prove the foundations, finish a representative playable area, expand the content, and deliver reliable updates to the family's devices.</p></div>
-<div class="build-status"><span>35 feature IDs mapped</span><span>10 ordered phases</span><span>4-window play check passed</span><span class="next">G1 / G2 / G3 gates open</span></div>
+<div class="build-status"><span>35 feature IDs mapped</span><span>10 ordered phases</span><span>4 physical clients connected</span><span class="next">G1 / G2 / G3 gates open</span></div>
 <ol class="build-roadmap" aria-label="Production sequence">
 <li><a href="#7-android-ios-and-pc-build-pipeline"><small>G1</small><strong>Establish the project</strong><span>Builds, devices, saves and updates.</span></a></li>
 <li><a href="#8-ordered-phases-and-completion-gates"><small>G2–G5</small><strong>Prove shared play</strong><span>Touch, world rules, hosting and recovery.</span></a></li>
@@ -31,7 +31,7 @@
 <li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
-<div class="build-callout"><p><strong>The foundations follow the plan. Here is what is done and what is still ahead.</strong></p><p>The user confirmed four Windows players on shared build 68 are working well. Both iPads have passed solo garden checks on 56. Everyday mobile joining, iPad hosting/recovery, personal rooms, item returns and full content remain open. Build 79 adds safe automatic joining from solo play and access to the preserved solo draft; Windows and Android-release emulator checks passed. Both iPads now have signed family build 79 with their original saves/settings preserved and separate Keychain identities. Both now automatically join the PC with native discovery, authenticated admission and matching shared-world snapshots. The user confirms smooth two-way movement, shared bucket handling and independent Garden/Creek travel with reunion on both iPads. Both also pass lock/return by user report and automatic cold rejoin with retained identities. Next: saved solo round trips, remaining touch/settings and server-unavailable late joining. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Your return checklist →</a> <a href="#19-implementation-audit-and-remaining-work">Read the implementation audit →</a> <a href="#9-first-implementation-work-queue">Next tasks in order →</a></p></div>
+<div class="build-callout"><p><strong>All four family devices have joined build 79.</strong></p><p>Both iPads, Samsung and iPhone are connected to the same PC authority. Two-iPad movement, shared bucket handling, independent travel and rejoining have passed their recorded checks; the user confirms the phones' basic controls work and the children are playing on the iPads. The solo round trip also passed on the tested iPad. G1/G2/G3 remain partial. Next: replace the Windows qualification runner's two-hour lifetime with an explicit persistent home-server mode, tested separately and applied after the children finish. Sustained measurements, remaining device checks, everyday recovery/setup, iPad hosting, personal rooms and full content remain ahead. <a href="implementation/g3-phones-79-2026-09-24.html">Four-device evidence</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Remaining checks</a> · <a href="#19-implementation-audit-and-remaining-work">Implementation audit</a> · <a href="#9-first-implementation-work-queue">Next tasks in order</a></p></div>
 <div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
 <ul>
 <li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
@@ -58,7 +58,7 @@
 </aside><article class="report">
 <p><strong>Production guide · September 23, 2026 · Implementation audit updated September 24, 2026</strong></p>
 <p><strong>Purpose:</strong> build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.</p>
-<p><strong>Current position:</strong> <strong>The foundation follows the goal sheet; the full game is still being built.</strong> Windows shared 68 passed the four-window play check: the user reported “working great!” Both iPads have passed the solo garden checks on 56. G1/G2/G3 have partial evidence; automatic device joining, iPad hosting/recovery, durable personal rooms and the content batches remain ahead. <a href="#19-implementation-audit-and-remaining-work">Completed work, all 35 feature statuses and remaining gates</a> · <a href="#9-first-implementation-work-queue">Next tasks in order</a>.</p>
+<p><strong>Current position:</strong> <strong>The foundation follows the goal sheet; the full game is still being built.</strong> Both iPads, Samsung and iPhone now run family build 79 and have connected together to the same PC authority. The user confirms working controls and the children are playing on the iPads. Two-iPad movement, shared bucket handling, independent travel and rejoining have scoped physical evidence. G1/G2/G3 remain partial: sustained device measurements, everyday recovery/setup, persistent PC operation, iPad hosting, durable personal rooms and content remain ahead. <a href="#19-implementation-audit-and-remaining-work">Completed work, all 35 feature statuses and remaining gates</a> · <a href="#9-first-implementation-work-queue">Next tasks in order</a>.</p>
 <p><a href="bluey-game-research-2026-09-23.html">Open the feature goal sheet</a> · <a href="family-playset-package-research-2026-09-23.html">Package research</a> · <a href="family-playset-technical-research-2026-09-23.html">Technical evidence</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
 <h2 id="1-two-documents-with-different-jobs">1. Two documents with different jobs</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
@@ -454,13 +454,13 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <tbody>
 <tr>
 <td><strong>1 — next bounded task</strong></td>
-<td><strong>Qualify physical G3 play on both iPads, now updated to 79.</strong> Signing, verified backups, in-place installation, launch and separate Keychain enrollment passed. Both pass native discovery, authenticated admission and shared presentation; smooth movement and bucket exclusivity/release now pass by user report. Independent travel and reunion now pass by user report too; lock/return and cold reopening now pass on both. Saved solo round trips are the current check.</td>
-<td>Verify both join the PC, then check physical movement, ownership, travel, permission/lifecycle, safe initial joining and saved solo return. <a href="implementation/g3-offline-join-2026-09-24.html">Latest implementation</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Actions when you return</a>.</td>
+<td><strong>G3 persistent PC home-server mode (NET-02).</strong> Four physical mobile clients have joined build 79, but the current interactive Windows qualification runner exits after 7,200 seconds. Provide an explicit persistent home-server mode while retaining automated probe timeouts.</td>
+<td>Preserve the existing authority lock and checkpoints; verify persistence beyond the former deadline, controlled stop/restart, safe duplicate-start refusal and client rejoin using isolated data. Prepare the replacement without touching the children's session; apply it after play finishes. <a href="implementation/g3-phones-79-2026-09-24.html">Latest mobile evidence</a>.</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Complete G3 everyday joining and qualify the mixed-device matrix</td>
-<td>Build 79 safe initial joining and saved solo return pass on Windows and the Android release emulator. Still qualify both iPads first, then Samsung/iPhone: permissions/backgrounding, four actual players, travel and ownership. Prolonged-loss automatic solo flow, parent setup/status UI and route changes remain open. <a href="implementation/g3-offline-join-2026-09-24.html">Evidence</a>.</td>
+<td>Complete G3 everyday joining and qualify the remaining mixed-device matrix</td>
+<td>Both iPads pass native admission, movement/bucket/travel and scoped leave/rejoin; the tested iPad also restores its solo position. Phones now pass native admission and reported basic controls; all four were concurrently connected. Still check detailed phone lifecycle/ownership/travel, per-device solo coverage, server-absent initial joining, sustained measurements, prolonged-loss automatic solo flow, parent setup/status UI and route changes. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Current checklist</a>.</td>
 </tr>
 <tr>
 <td>3</td>
@@ -484,7 +484,7 @@ Offline solo, iPad host and PC server use the same world-rule code.
 </tr>
 </tbody>
 </table></div>
-<p><strong>Foundation checks to close alongside that sequence:</strong> complete free renewal on both iPads and observe an actual unattended refresh; choose an independent backup destination and prove a restore; finish native Android 16 KB qualification; update the phones from their foundation fixtures to the current gameplay build; measure sustained frame times/memory on the A10. G2 also needs child usability, assistance styles and authored movement/interaction contracts before its gate closes. These are tracked work, not a reason to repeat already-passed smoke checks every session.</p>
+<p><strong>Foundation checks to close alongside that sequence:</strong> complete free renewal on both iPads and observe an actual unattended refresh; choose an independent backup destination and prove a restore; finish native Android 16 KB qualification; complete remaining current-build phone acceptance; measure sustained frame times/memory on the A10. Both phone updates to 79 have passed. G2 also needs structured child usability, assistance styles and authored movement/interaction contracts before its gate closes. The user reports children are playing; that alone is not an observed usability study. These are tracked work, not a reason to repeat already-passed smoke checks every session.</p>
 <p><strong>Later, optional:</strong> road-trip co-op, remote PC access and AR. Full offline solo, ordinary-network automatic joining, both iPads hosting and host recovery remain required. Bluetooth remains removed.</p>
 <h2 id="10-the-working-method-that-prevents-jumping-around">10. The working method that prevents jumping around</h2>
 <p>Use a lightweight board: <strong>Backlog → Ready → In progress → Verification → Done</strong>, plus <strong>Blocked</strong> with the exact missing input or failing check. Keep one main implementation task in progress. A small independent task may proceed during a build/long observation only if it does not bypass a dependency or mix unrelated changes.</p>
@@ -933,7 +933,7 @@ Status: pending
 </tr>
 <tr>
 <td>Implementation state</td>
-<td>Both iPads now have family 79, installed in place after verified backups. Original garden documents and preferences were preserved; each app launched and stored a separate Keychain identity. Both now pass native Bonjour discovery, authenticated admission and matching shared-world presentation. The user confirms smooth two-way movement and shared bucket pickup/release, independent Garden/Creek travel, reunion and lock/return. Native cold rejoin retains both identities and the original PC authority; solo-return/remaining touch checks are in progress. Windows/Android-emulator 79 checks passed. Preview 68 is preserved.</td>
+<td>All four physical clients run family 79 and were concurrently connected to the original PC authority. Both iPads retain their earlier saves/settings and pass native admission, reported movement/bucket/travel/lock-return plus native cold rejoin. Solo restoration passed on the tested iPad; repetition on both is unspecified. Samsung 15 → 79 and iPhone 20 → 79 updated in place, enrolled distinct profiles and pass native admission plus reported layout/walking/bucket/Listen. Three old iPhone preferences were retained; exact private Android preference retention was not read back. Windows/Android-emulator proofs and preview 68 are preserved.</td>
 </tr>
 <tr>
 <td>Current research deliverable</td>
@@ -941,19 +941,19 @@ Status: pending
 </tr>
 <tr>
 <td>Current phase position</td>
-<td>G3 Windows proof under the user's authorized overlap; G1/G2 exit checks remain open. No G1/G2/G3 gate is declared complete. <a href="#phase-gates-done-versus-open">Gate-by-gate ledger</a>.</td>
+<td>G3 now has concurrent four-physical-device admission and scoped play feedback; G1/G2/G3 exit checks remain open. No gate is declared complete. <a href="#phase-gates-done-versus-open">Gate-by-gate ledger</a>.</td>
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td><strong>G3 physical iPad 79 qualification — in progress.</strong> Signing, installation, retained saves/preferences, launch and Keychain enrollment are verified on both. Both opened with permission and automatically joined the PC authority. Physical movement, bucket pickup/release, independent travel and reunion passed by user report; lock/return and cold rejoin now pass on both. Saved solo round trips are the current check. <a href="implementation/g3-ipad-79-2026-09-24.html">Current record</a>.</td>
+<td><strong>G3 phone update/admission milestone complete within its recorded scope.</strong> All four devices are connected; the user reports working controls and children playing on the iPads. Further test requests and live restarts are deferred during their play. <a href="implementation/g3-phones-79-2026-09-24.html">Phone and four-device record</a>.</td>
 </tr>
 <tr>
 <td>Latest completed engineering task</td>
-<td>Windows/Android 79 safe initial joining passed its recorded tests. The same iOS export compiled/signed on the Mac, updated both iPads from 56, retained existing documents/settings and enrolled separate profiles. Installation is not physical multiplayer qualification.</td>
+<td>Extended the Android installer for a selected G3 artifact/endpoint, exercised the in-place Samsung update, and added trusted-USB iPhone enrollment with backup/retention/version checks. iPhone update, retained preferences, Keychain consumption and native admission passed; server records all four distinct mobile profiles on the same authority.</td>
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td><strong>Complete physical two-player checks on the connected iPads</strong>, then Samsung/iPhone and four devices. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Current checklist</a>. G3 prolonged-outage local recovery/parent setup remain open; required iPad hosting/recovery remains G4.</td>
+<td><strong>Persistent PC home-server mode (NET-02), with isolated restart/save/rejoin checks.</strong> The current qualification runner has a two-hour lifetime. Build and validate its replacement separately; deploy after the children finish, preserving the live world. Then continue remaining device/lifecycle and G3 prolonged-outage recovery/parent setup checks. Required iPad hosting/recovery remains G4. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Checklist</a>.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -1052,6 +1052,16 @@ Status: pending
 <td>A measured same-process suspension timeline, prolonged outages, every activity, four physical devices or host recovery</td>
 </tr>
 <tr>
+<td>Physical solo/family/solo round trip on the tested iPad</td>
+<td>Build 79: user confirms server positions on rejoin and the earlier solo toy position on solo return. <a href="implementation/evidence/ipad79-2026-09-24/solo-roundtrip-feedback.json">Feedback</a></td>
+<td>Which iPad was tested, repetition on both, initial server-unavailable late joining or offline reconciliation</td>
+</tr>
+<tr>
+<td>Both phones updated and all four physical mobile profiles admitted</td>
+<td>Build 79: Samsung same-signer exact-APK update, iPhone native installed-version and retained preferences; each passed native discovery/admission and user-reported basic controls. Original PC authority lists both iPads, Samsung and iPhone together. <a href="implementation/g3-phones-79-2026-09-24.html">Evidence</a></td>
+<td>Sustained four-device performance, every activity/lifecycle, detailed phone ownership/travel, unattended renewal or always-on PC operation</td>
+</tr>
+<tr>
 <td>Smoother remote movement under the tested conditions</td>
 <td>Shared 68: <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-normal.json">normal</a>, <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-1.json">delayed-motion run 1</a>, <a href="implementation/evidence/rejoin-recovery-2026-09-24/motion-68-impaired-2.json">run 2</a></td>
 <td>Sustained mobile FPS, real Wi-Fi impairment or larger-world performance. Tests impair received motion only.</td>
@@ -1100,8 +1110,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>G3 — PC shared world</strong></td>
-<td><strong>Partial; Windows/Android emulator 79 proofs plus native two-iPad admission</strong></td>
-<td>Physical play/lifecycle, parent setup UI, prolonged-outage automatic solo flow, four physical devices and sustained measurements.</td>
+<td><strong>Partial; automated proofs plus all four physical mobile clients admitted and scoped play feedback</strong></td>
+<td>Persistent PC operation, remaining device lifecycle/ownership/travel, parent setup UI, prolonged-outage automatic solo flow and sustained measurements.</td>
 </tr>
 <tr>
 <td><strong>G4 — iPad hosting</strong></td>
@@ -1158,23 +1168,23 @@ Status: pending
 </tr>
 <tr>
 <td><strong>Samsung SM-S948U1, Android 16/API 36, 4 KB pages</strong></td>
-<td>Family-signed foundation <strong>15</strong>; 14 → 15 retained tap count/bookmark; physical touch/media worked. <a href="implementation/android-signing-and-phone-2026-09-23.md">Record</a></td>
-<td>Current garden, four-device play, native discovery/lifecycle, phone layout and native 16 KB qualification. A 4 KB phone pass is not a 16 KB pass.</td>
+<td><strong>Family 79:</strong> same-signer 15 → 79, installed APK hash matched, Keystore/native NSD admission passed. Reported full layout, walk, bucket fill/pour and Listen passed; part of four-device admission. Accessible files backed up; exact private old preference retention not read back. <a href="implementation/g3-phones-79-2026-09-24.html">Record</a></td>
+<td>Detailed shared ownership/travel, lifecycle, solo round trips, sustained performance and native ARM64 16 KB. A 4 KB pass is not a 16 KB pass.</td>
 </tr>
 <tr>
 <td><strong>iPhone A2484, iOS 26.6.1</strong></td>
-<td>Foundation <strong>20</strong>, successful Sideloadly USB installation/manual refresh; retained <strong>1 tap and Saved 11.1s</strong> after controlled restart. <a href="implementation/ipad-refresh-2026-09-23.md">Record</a></td>
-<td>Garden/shared build, fourth mobile player and reliable unattended renewal. Wireless refresh remains unresolved.</td>
+<td><strong>Family 79:</strong> USB Sideloadly 20 → 79, native version verified, all three previous preference values retained, Keychain/native Bonjour admission passed as fourth client. Reported full layout, walk, bucket drag and Listen passed. <a href="implementation/g3-phones-79-2026-09-24.html">Record</a></td>
+<td>Detailed shared ownership/travel, lifecycle, solo round trips and reliable unattended renewal. Wireless refresh remains unresolved.</td>
 </tr>
 <tr>
 <td><strong>Windows</strong></td>
-<td>Live preview <strong>68</strong> remains; isolated <strong>79</strong> passes 7 offline-join, 11 LAN, 7 reconnect and 10 garden cases, and plays with Android release 79. <a href="implementation/g3-offline-join-2026-09-24.html">Evidence</a></td>
-<td>Four physical peers, prolonged-outage automatic solo recovery, parent setup, alternate/IPv6 endpoints and production operations.</td>
+<td>Live preview <strong>68</strong> remains; <strong>79</strong> passes 7 offline-join, 11 LAN, 7 reconnect and 10 garden cases. PC authority now admits all four physical mobile clients. <a href="implementation/g3-offline-join-2026-09-24.html">Automated evidence</a> · <a href="implementation/g3-phones-79-2026-09-24.html">Physical evidence</a></td>
+<td>Remove the qualification runner's two-hour limit in a persistent mode; controlled shutdown/restart, prolonged-outage automatic solo recovery, parent setup and alternate/IPv6 endpoints.</td>
 </tr>
 <tr>
 <td><strong>Android emulator</strong></td>
 <td>Family-signed release <strong>79</strong>, API 35 / 16 KB x86_64 with ARM translation: native late-join/menu deferral, saved solo return, real background/foreground, cold rejoin and unchanged saves across 78 → 79. Earlier native/gameplay evidence remains. <a href="implementation/g3-offline-join-2026-09-24.html">Latest record</a></td>
-<td>Physical Samsung/iPhone/iPads, legacy Android adapter, sustained performance and native ARM64 16 KB qualification.</td>
+<td>Legacy Android adapter, sustained performance and native ARM64 16 KB qualification. Physical device results are recorded separately above.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1203,8 +1213,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>FAMILY-01</strong></td>
-<td><strong>Partial:</strong> four Windows clients and Android emulator cross-play have proofs; both physical iPads now discover and join the same PC authority</td>
-<td>Four physical mixed devices, parent setup/automatic admission, phone layouts and A10 load/recovery. G3/G4.</td>
+<td><strong>Partial:</strong> both iPads, Samsung and iPhone have concurrent native admission on build 79; reported iPad shared play and phone basic controls/layout pass</td>
+<td>Sustained four-device play/lifecycle, parent setup and A10 load/recovery; both iPads hosting. G3/G4.</td>
 </tr>
 <tr>
 <td><strong>ACT-01</strong></td>
@@ -1308,8 +1318,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>NET-02</strong></td>
-<td><strong>Partial:</strong> PC authority remains when Windows clients close; both physical iPads pass user-reported lock/return and native cold rejoin</td>
-<td>Repeat across later activities and longer outages; operational home server. Two-iPad garden lock/close/rejoin now has scoped evidence. G3.</td>
+<td><strong>Partial:</strong> PC authority admits four physical clients; both iPads pass reported lock/return and native cold rejoin with sibling continuity</td>
+<td>Persistent home-server mode (current Windows runner exits after two hours), phone lifecycle, later activities and longer outages. G3.</td>
 </tr>
 <tr>
 <td><strong>REMOTE-01</strong></td>
@@ -1338,8 +1348,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>AUTO-01</strong></td>
-<td><strong>Partial:</strong> build 79 keeps discovering while solo is playable, safely joins later and preserves an accessible local draft; Windows/native Android-emulator checks pass; both physical iPads pass native discovery/admission</td>
-<td>Remaining phone discovery/storage/permissions, physical iPad lifecycle/late joining, parent UI, route changes and prolonged-outage local recovery. G3.</td>
+<td><strong>Partial:</strong> build 79 safe late joining and solo draft pass on Windows/Android emulator; both iPads, Samsung and iPhone pass protected enrollment and native discovery/admission</td>
+<td>Server-absent physical initial joining, remaining mobile lifecycle/route changes, parent UI and prolonged-outage local recovery. G3.</td>
 </tr>
 <tr>
 <td><strong>AUTO-02</strong></td>
@@ -1427,7 +1437,12 @@ Status: pending
 <li><strong>Client snapshots are not complete recovery copies.</strong> Current views omit action receipts; clients do not persist the full authority checkpoint. <code>CheckpointStore.cs</code> supplies checksums and backup/pending recovery for one writer, not peer election, a complete operation history or branch merging. Walking checkpoints are approximately one second apart plus stops; hard loss can restore the last durable position rather than the last rendered frame.</li>
 <li><strong>Area independence is implemented before streaming optimization.</strong> The server sends full small-world snapshots and clients filter the displayed area. Final content needs area interest, loading/memory ownership and lightweight offscreen activity/NPC simulation; do not render all six worlds on the A10.</li>
 <li><strong>Station-tool return on travel is a narrow policy.</strong> It prevents carrying this area's test bucket away, but does not implement portable toys, borrowed containers, inactivity returns or protected creations. Add category-specific behavior before claiming general cross-area carrying or tidy bedrooms.</li>
-<li><strong>Media and offline mode still live in separate fixtures.</strong> <code>FoundationVideo.cs</code> has one local test clip; <code>SoloScreen.cs</code> runs the garden. Build 79 safely switches between the paired local garden and the shared world while preserving separate saves. Media overlays and automatic prolonged-outage local recovery remain open; Menu can already restore the separate solo draft.</li>
+<li>
+<p><strong>Media and offline mode still live in separate fixtures.</strong> <code>FoundationVideo.cs</code> has one local test clip; <code>SoloScreen.cs</code> runs the garden. Build 79 safely switches between the paired local garden and the shared world while preserving separate saves. Media overlays and automatic prolonged-outage local recovery remain open; Menu can already restore the separate solo draft.</p>
+</li>
+<li>
+<p><strong>The Windows authority is still a bounded qualification runner.</strong> <code>NetworkProbe.cs</code> exits an interactive Windows run after 7,200 seconds; the mobile clients do not share that timeout. Concurrent four-device admission does not establish always-on hosting. Add an explicit persistent home-server mode, preserve automated probe deadlines and checkpoint/lock behavior, and qualify controlled restart/rejoin before replacing the live session.</p>
+</li>
 </ol>
 <p>These are bounded prototype choices and explicit unfinished work, not reasons to restart from scratch. Preserve the tested rules, saves and movement; qualify the next dependency before expanding content.</p>
 <h3 id="documentation-corrections-made-by-this-audit">Documentation corrections made by this audit</h3>

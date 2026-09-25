@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "recordedUtc": "2026-09-25T01:43:30.901093+00:00",
+  "iphoneSampleUtc": "2026-09-25T01:37:55.701066+00:00",
+  "serverSampleUtc": "2026-09-25T01:38:26.489695+00:00",
+  "goalIds": [
+    "FAMILY-01",
+    "AUTO-01",
+    "JOIN-01",
+    "ITEM-02",
+    "NET-02"
+  ],
+  "build": "0.0.79",
+  "iphone": {
+    "enrollment": "paired",
+    "inboxConsumed": true,
+    "nativeDiscovery": "Bonjour IPv4",
+    "connected": true,
+    "receiveError": 0,
+    "sharedPresentation": true,
+    "localCheckpointPreserved": true,
+    "events": [
+      {
+        "utc": "2026-09-25T01:36:38.9415850Z",
+        "phase": "reconnect-scheduled",
+        "detail": "1"
+      },
+      {
+        "utc": "2026-09-25T01:36:41.1799820Z",
+        "phase": "discovered",
+        "detail": "native-bonjour-ipv4"
+      },
+      {
+        "utc": "2026-09-25T01:36:41.3814430Z",
+        "phase": "transport-Connect",
+        "detail": ""
+      },
+      {
+        "utc": "2026-09-25T01:36:41.4509890Z",
+        "phase": "connected",
+        "detail": ""
+      },
+      {
+        "utc": "2026-09-25T01:36:41.4565450Z",
+        "phase": "first-snapshot",
+        "detail": "86287"
+      },
+      {
+        "utc": "2026-09-25T01:36:41.4848550Z",
+        "phase": "shared-presented",
+        "detail": "local-checkpoint-preserved"
+      }
+    ]
+  },
+  "server": {
+    "instance": "e226f88fa6454c98a905bc4062b2b192",
+    "status": "listening",
+    "sameAuthorityEpochAsIPadChecks": "97f1a0b593b541b4bc25c8f4aace065e",
+    "connectedProfiles": 4,
+    "devices": [
+      "iPad 7 A2197",
+      "iPad 9 A2602",
+      "Samsung SM-S948U1",
+      "iPhone 13 Pro Max A2484"
+    ],
+    "receiveError": 0,
+    "snapshotRevision": 279,
+    "qualificationLifetimeSeconds": 7200,
+    "sampledUptimeSeconds": 4324.3877247049895
+  },
+  "userRequestedCheck": [
+    "Full iPhone layout visible",
+    "Walking",
+    "Bucket dragging",
+    "Listen audible"
+  ],
+  "userReply": "yes all devices are working my kids are playing on the ipad",
+  "scope": "All four distinct physical mobile identities admitted concurrently to the existing PC authority; user-reported phone controls and children playing on iPads.",
+  "limits": [
+    "No sustained four-device frame-time, latency or memory benchmark.",
+    "Detailed four-device lifecycle, simultaneous item contention and every activity are not qualified by this sample.",
+    "Existing server is a temporary qualification runner with a two-hour lifetime. Always-on operation still needs implementation and a controlled restart.",
+    "No iPad hosting, host migration, prolonged-outage automatic solo recovery or unattended signing renewal is established."
+  ]
+}

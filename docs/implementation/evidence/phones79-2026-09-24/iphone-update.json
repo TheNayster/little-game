@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "recordedUtc": "2026-09-25T01:37:30.281623+00:00",
+  "device": "iPhone 13 Pro Max A2484",
+  "previousBuild": 20,
+  "installedBuild": 79,
+  "bundle": "com.littleweeps.familyplayset",
+  "inputIpaSha256": "9096270dfdee8daab2eab80ae31d8710909d16d32573f5be15caa1eda0fb7c7b",
+  "inputNativeSignatureVerified": true,
+  "supportsIPhoneAndIPad": true,
+  "sideloadlyResult": "Done / 100%; native installed-version check in enrollment tool confirmed 0.0.79 / 79.",
+  "sameAppleTeamAndBundleId": true,
+  "automaticBundleId": false,
+  "customEntitlements": false,
+  "tweakInjection": false,
+  "infoPlistOverrides": 0,
+  "inPlaceUpdate": true,
+  "backupFiles": 1,
+  "previousPreferenceValuesRetained": true,
+  "previousPreferenceCount": 3,
+  "enrollment": "Fourth client staged through trusted USB; later paired, inbox consumed and shared admission verified in four-mobile-admission.json.",
+  "limits": [
+    "Installation and retained preferences were checked before enrollment. Subsequent launch/admission and user-reported controls have separate evidence.",
+    "This manual USB update does not establish unattended renewal."
+  ],
+  "followupEvidence": "four-mobile-admission.json"
+}

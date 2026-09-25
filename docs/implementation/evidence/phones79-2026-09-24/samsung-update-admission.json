@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "recordedUtc": "2026-09-25T01:36:10.920371+00:00",
+  "goalIds": [
+    "FAMILY-01",
+    "AUTO-01",
+    "JOIN-01",
+    "ITEM-02"
+  ],
+  "device": "Samsung SM-S948U1",
+  "build": 79,
+  "previousBuild": 15,
+  "release": true,
+  "installedApkSha256": "57e54422a4665dadf64749d78aa79e25daebcc27ab9c517fa949294927e655f6",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "pageBytes": 4096,
+  "inPlaceUpdate": true,
+  "exactInstalledArtifactMatched": true,
+  "currentProductionSourcesMatched": true,
+  "enrollment": "paired",
+  "inboxConsumed": true,
+  "discovery": "Android native NSD",
+  "sharedPresentation": true,
+  "authorityMatchesOriginalPC": true,
+  "profilesInSampledRoster": 3,
+  "receiveError": 0,
+  "userReportedChecks": [
+    "Whole phone layout visible",
+    "Walking",
+    "Bucket fill and pour at tap/plant",
+    "Listen audible"
+  ],
+  "userReply": "yes",
+  "retentionScope": "Existing package updated with the same signer and install -r. Accessible external files backed up before update. The foundation stored preferences privately; exact prior tap/bookmark retention was not independently read back on Android. No uninstall/reset.",
+  "limits": [
+    "This phone has 4 KB pages, so it does not qualify native ARM64 16 KB.",
+    "Three profiles admitted is not a four-person physical gameplay or sustained performance result.",
+    "Physical Android lifecycle, solo restoration and cross-phone motion/item checks remain open."
+  ]
+}

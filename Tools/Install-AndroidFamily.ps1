@@ -1,11 +1,15 @@
 [CmdletBinding()]
-param([Parameter(Mandatory)][ValidateRange(1,9999)][int]$BuildNumber)
+param(
+    [Parameter(Mandatory)][ValidateRange(1,9999)][int]$BuildNumber,
+    [ValidateSet('G1','G3')][string]$BuildProfile='G1',
+    [ValidatePattern('^[a-zA-Z0-9_.:\-]+$')][string]$Serial
+)
 $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
 $device=Get-Content -LiteralPath (Join-Path $root 'LocalData\android-device.json') -Raw | ConvertFrom-Json
 $pin=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'android-family-signing.json') -Raw | ConvertFrom-Json
 $toolchain=Get-Content -LiteralPath (Join-Path $root 'LocalData\android-toolchain.json') -Raw | ConvertFrom-Json
-$folder=Join-Path $root "Builds\AndroidSigned\G1-0.0.$BuildNumber"
+$folder=Join-Path $root "Builds\AndroidSigned\$BuildProfile-0.0.$BuildNumber"
 $apk=Join-Path $folder 'LittleWeeps.apk'
 $summary=Get-Content -LiteralPath (Join-Path $folder 'build-summary.json') -Raw | ConvertFrom-Json
 if ($summary.result -ne 'Succeeded' -or $summary.platform -ne 'Android' -or $summary.development -or $summary.version -ne "0.0.$BuildNumber") { throw 'Expected a matching successful non-development Android build.' }
@@ -13,9 +17,10 @@ $hash=(Get-FileHash -LiteralPath $apk -Algorithm SHA256).Hash.ToLowerInvariant()
 $manifest=@(Get-Content -LiteralPath (Join-Path $folder 'artifact-manifest.json') -Raw | ConvertFrom-Json)
 if (@($manifest | Where-Object { $_.path -eq 'LittleWeeps.apk' -and $_.sha256 -eq $hash }).Count -ne 1) { throw 'Signed artifact does not match its manifest.' }
 $adb=$device.adb
-$serial=$device.endpoint
+$serial=if ($Serial) { $Serial } else { $device.endpoint }
 # Unity may restart ADB while building. Reuse the existing pairing and endpoint.
-& $adb connect $serial | Out-Host
+# USB and Bonjour serials already identify a connected transport; only connect IP endpoints.
+if ($serial -match '^\d{1,3}(\.\d{1,3}){3}:\d+$') { & $adb connect $serial | Out-Host }
 function Invoke-Phone([string[]]$Arguments) {
     $value=@(& $adb -s $serial @Arguments 2>&1)
     if ($LASTEXITCODE -ne 0) { throw "ADB failed: $($value -join ' ')" }
