@@ -1,27 +1,28 @@
-# When you return — iPad multiplayer checks
+# Next checks — both iPads are on build 79
 
-This checklist follows G3 in the main build guide. Both iPads still have their tested solo **56**; their apps and saves have not been replaced. **Family build 79** is the latest candidate. Windows and Android-emulator checks now cover automatic joining from solo and returning to a preserved solo draft. The iPad 79 export transferred and compiled natively on the Mac after correcting its changed network address. The older iPad backup is verified; signing/install/enrollment and physical checks remain pending. [Latest engineering report](g3-offline-join-2026-09-24.html).
+Both iPads have been **updated in place and launched**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Mac signing is complete; there is no need to run the signing window again. [Current installation evidence](g3-ipad-79-2026-09-24.html).
 
-## Items that need you in person
+The PC family server is running. The last read showed both apps paused with `foreground-required` and no players admitted yet. These remaining steps verify actual multiplayer, rather than just installation.
 
-1. **Finish signing on the Mac.** The new **Finish-Little-Weeps-79.command** Terminal window is open. Enter the Mac password locally if asked and approve codesign key access. Keep the window open and report its result; do not send the password. The older 74 helper does not include the new joining behavior.
-2. **Keep both iPads connected and unlocked.** Leave them on the Home Screen while Codex verifies signing/device coverage, backs up their current saves and updates each app in place. Codex will provision separate player identities and start the PC authority. Do not delete the existing app.
-3. **Allow the game's local-network prompt on each iPad** when it appears. Both devices and the PC should be on home Wi-Fi. Tell Codex what appears if the prompt is absent or play stays solo; there is no need to hunt through settings before a prompt actually appears.
-4. **Two-player play check, after Codex confirms both joined.** Walk on one iPad while watching the other. Hold the bucket on one; the other should see it being held and be unable to take it. Move one player to Creek while the other stays in Garden, then meet again. Check joystick plus dragging, Listen, remembered settings and full-screen layout.
-5. **Real leave/return check.** Lock one iPad while the other keeps walking and using toys. Unlock and return: the first should automatically rejoin and receive current progress, without a stuck drag or moving the sibling. Then repeat with the other iPad. Codex will guide one short check at a time and inspect the records.
-6. **Save/offline and late-join checks.** Codex will compare the old save/preferences before/after updating. Open with the server absent and play solo; start the server while holding a toy or keeping Menu open. It should wait for a safe moment, then join automatically. Menu → Play by myself should restore the separate solo draft; Find my family rejoins. Test closing/reopening and permission-denied behavior. Automatic merging and prolonged-outage local recovery remain future work.
+## Start here
 
-Mac helper: `/Users/nayster/Desktop/Finish-Little-Weeps-79.command` — now prepared and open. Mac native compile/link passed; signing and installation have not yet been claimed. Xcode could access the older iPad; the newer iPad still needs its connection re-established before its backup/update.
+1. **Open Little Weeps on both iPads.** Choose **Allow** if the game asks to find devices on the local network. Keep both games open and unlocked on home Wi-Fi. Tell Codex “both open,” or give the wording of any blocking message. Codex will check native admission and the current shared world.
+2. **After Codex confirms both joined:** move one character while watching the other iPad, then reverse it. Hold the bucket on one; the other should see it held and be unable to take it. Drop it and let the other player pick it up.
+3. **Independent areas and touch:** send one player to Creek while the other stays in Garden, then meet again. Try joystick plus dragging, Listen, remembered settings and full-screen layout.
+4. **Leave and return:** lock one iPad while the other keeps walking/using toys. Unlock and return; it should rejoin without a stuck drag or interrupting the sibling. Repeat with the other device. Codex will inspect the current state alongside these observations.
+5. **Saved solo and late joining:** with Codex coordinating the PC, open while the server is absent and play solo. Start the server while a toy is held or Menu is open; switching should wait for a safe moment. Menu → Play by myself restores the separate solo draft; Find my family rejoins. Finally check a cold app restart, retained enrollment and saved settings.
+
+The previous unpaired solo garden, paired-device solo draft and server world are separate. The update preserves the old save; it does not merge it into the family garden. Offline reconciliation and automatic prolonged-outage local recovery still need their planned work.
 
 ## Android and the fourth player — after the iPad checks
 
-7. **Have the Samsung available on home Wi-Fi.** Android family release **79** is built and signed with the original family key. Codex will verify the installed app/signature and back up accessible saved data before an in-place update. If wireless debugging needs pairing again, enter the code at that time. No phone action is needed while you are away.
-8. **Repeat a short mixed-device check:** both iPads plus Android, then add the iPhone for four players. Test movement, independent areas, shared bucket ownership, lock/return and saved settings. Android-emulator/three-Windows play already passed, but the actual Samsung, phone layout and four physical devices still need testing. [Android work and evidence](g3-android-lan-2026-09-24.html).
+6. **Have the Samsung available on home Wi-Fi.** Family release **79** is built with the original signing key. Codex will verify the installed app/signature and preserve accessible data before an in-place update. Wireless ADB may need pairing again at that time.
+7. **Check both iPads plus Android, then add the iPhone.** Repeat movement, independent areas, shared ownership, lock/return and settings with four physical players. Android-emulator/three-Windows qualification has passed; it does not replace the actual-device checks.
 
-## Existing release items, not prerequisites for this code work
+## Still tracked
 
-- Unattended app renewal on both iPads is still unproven; the earlier iPhone USB renewal did not qualify Wi-Fi renewal.
+- Unattended app renewal on both iPads is unproven; the earlier iPhone USB renewal did not qualify Wi-Fi renewal. The current development profile expires October 1, 2026.
 - Sustained performance on the older A10 iPad and observing the children use the controls remain open.
-- Four actual devices still requires the Android phone and iPhone in addition to both iPads.
+- Both iPads hosting, host switching/recovery, full offline reconciliation and the remaining game content are still in the main plan.
 
-These are return-home actions, not requests to interrupt your time away. The Mac password, device permissions and physical touch/lifecycle checks cannot be counted as passed by an automated Windows test.
+These checks will be handled one short step at a time. Do not delete the app or reset its data to troubleshoot a connection.

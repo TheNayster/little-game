@@ -1,6 +1,6 @@
 # G3 — automatic joining from saved solo play
 
-**Build 79; September 24, 2026. Implemented and qualified on Windows and the project Android emulator.** A paired child can play the garden immediately while discovery runs. If the PC appears later, the same app receives a trusted shared snapshot and switches at a safe moment. The child's solo play remains saved separately and can be opened again from Menu. G3 remains partial; neither iPad has received this build.
+**Build 79; September 24, 2026. Implemented and qualified on Windows and the project Android emulator.** A paired child can play the garden immediately while discovery runs. If the PC appears later, the same app receives a trusted shared snapshot and switches at a safe moment. The child's solo play remains saved separately and can be opened again from Menu. G3 remains partial. Both iPads have since received the signed update; [physical qualification is tracked separately](g3-ipad-79-2026-09-24.html).
 
 This bounded task follows **AUTO-01, JOIN-01, FAMILY-01, NET-02 and TRAVEL-01**, particularly goal-sheet sections 44–45, and G3 in the [build guide](../family-playset-build-guide-2026-09-23.html#9-first-implementation-work-queue). It changes session startup and presentation, not the game requirements or networking framework.
 

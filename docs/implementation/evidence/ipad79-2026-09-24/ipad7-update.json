@@ -1,0 +1,12 @@
+{
+  "build": 79,
+  "label": "ipad7",
+  "installed": true,
+  "signedArtifactVerified": true,
+  "documentsPreserved": 2,
+  "allExistingPreferencesPreserved": true,
+  "inventoryAvailable": false,
+  "launchSucceeded": true,
+  "launchedPid": 786,
+  "note": "Initial launch command options were misplaced; corrected launch only, no reinstall. Existing CoreDevice app-inventory error remains."
+}

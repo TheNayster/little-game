@@ -1,0 +1,17 @@
+{
+  "build": 79,
+  "signedVerified": true,
+  "bundle": "com.littleweeps.familyplayset",
+  "applicationIdentifier": "6QF59C684U.com.littleweeps.familyplayset",
+  "minimumOS": "15.0",
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "profileExpires": "2026-10-01T17:41:17Z",
+  "ipad9Covered": true,
+  "ipad7Covered": true,
+  "filesHashed": 39,
+  "app": "/Users/nayster/Developer/LittleWeeps/Builds/G3-0.0.79/DerivedData/Build/Products/Release-iphoneos/LittleWeeps.app",
+  "installed": false
+}

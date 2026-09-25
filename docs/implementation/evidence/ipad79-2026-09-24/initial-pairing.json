@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "devices": [
+    {
+      "label": "ipad7",
+      "enrollment": "paired",
+      "inboxConsumed": true,
+      "build": "0.0.79",
+      "status": "solo-available",
+      "reason": "foreground-required"
+    },
+    {
+      "label": "ipad9",
+      "enrollment": "paired",
+      "inboxConsumed": true,
+      "build": "0.0.79",
+      "status": "solo-available",
+      "reason": "foreground-required"
+    }
+  ],
+  "scope": "Device Keychain enrollment and exact runtime build. Shared admission/play pending foreground permission."
+}
