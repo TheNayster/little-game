@@ -1,15 +1,17 @@
 [CmdletBinding()]
 param([Parameter(Mandatory)][ValidateRange(1,9999)][int]$BuildNumber,
-      [ValidateSet('DebugProbe','Family')][string]$Signing='DebugProbe', [switch]$SoloPrototype)
+      [ValidateSet('DebugProbe','Family')][string]$Signing='DebugProbe', [switch]$SoloPrototype, [switch]$FamilyLan)
 $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
 if ($SoloPrototype -and $Signing -ne 'DebugProbe') { throw 'Solo emulator probes use their explicit debug signing identity.' }
+if ($FamilyLan -and ($SoloPrototype -or $Signing -ne 'Family')) { throw 'Family LAN inspection requires its pinned family-signed release.' }
 $artifactKind=if ($SoloPrototype) { 'AndroidSolo' } elseif ($Signing -eq 'Family') { 'AndroidSigned' } else { 'Android' }
-$gate=if ($SoloPrototype) { 'G2' } else { 'G1' }
+$gate=if ($FamilyLan) { 'G3' } elseif ($SoloPrototype) { 'G2' } else { 'G1' }
 $apkName=if ($SoloPrototype) { 'LittleWeepsSolo.apk' } else { 'LittleWeeps.apk' }
 $folder=Join-Path $root "Builds\$artifactKind\$gate-0.0.$BuildNumber"
 $summary=Get-Content -LiteralPath (Join-Path $folder 'build-summary.json') -Raw | ConvertFrom-Json
 if ($summary.result -ne 'Succeeded' -or $summary.development -or $summary.platform -ne 'Android' -or $summary.version -ne "0.0.$BuildNumber") { throw 'A matching non-development Android build is required.' }
+if ($FamilyLan -and $summary.profile -ne 'Assets/BuildProfiles/Android Family LAN.asset') { throw 'Unexpected family LAN build profile.' }
 $manifest=@(Get-Content -LiteralPath (Join-Path $folder 'artifact-manifest.json') -Raw | ConvertFrom-Json)
 if (!($manifest | Where-Object path -eq $apkName)) { throw 'APK is missing from build artifact evidence.' }
 foreach ($file in $manifest) {

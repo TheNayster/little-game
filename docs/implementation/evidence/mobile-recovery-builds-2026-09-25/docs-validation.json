@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "utc": "2026-09-25T14:05:43.534161+00:00",
+  "localLinksAndAnchorsChecked": 355,
+  "featureIds": 35,
+  "goalChapters": 55,
+  "planSections": 19,
+  "goalTrackerUnchangedFrom": "722c13d",
+  "runtimeSourcesUnchanged": 148,
+  "androidStrictFailureAccuratelyRetained": true,
+  "appleNativeAndPhysicalGatesRemainOpen": true,
+  "pythonSyntaxPassed": true,
+  "externalResearchRepeated": false
+}

@@ -1,16 +1,26 @@
 # Current checks — server/Android 83; Apple clients 79
 
-**No action is needed while you are away.** Windows 91 has passed the isolated outage failure matrix and related regressions. Your last recorded family server/phone/iPad deployments remain the versions above; the new Windows work does not update those devices.
+**Updated September 25 — no action is needed while you are away.** Windows 91 has passed the isolated outage failure matrix and related regressions. Matching Android 91 and the iPad/iPhone 91 Xcode export are now [prepared on Windows](g3-mobile-recovery-builds-2026-09-25.html). Native Apple compilation/signing and all physical updates/tests remain pending. The last recorded deployed versions above have not changed. Android's separate 16 KB qualification issue remains open.
 
-## Short list for when you are home
+## Your to-do list when you are home
 
-1. Make the Mac and older iPad available for the coordinated recovery update **after the new mobile artifacts are prepared**. Keep the iPad connected, unlocked and on home Wi-Fi during that session. Any native signing prompt will be handled then; none is waiting on you now.
-2. Test the older iPad's new recovery behavior first: start with the server absent, keep playing locally, close/reopen, and return to family play with that local work still accessible. Then qualify the newer iPad and phones, including actual lock/background behavior and four-device performance. Existing successful smoke tests stay recorded.
-3. Schedule an empty family-server session for the matching qualified update and guarded recovery activation. Choose an independent backup destination as part of that setup. The current parent page still selects operations build 85 and recovery is Off; preparation is not deployment.
+**Start with these setup items. No passwords or verification codes need to be sent in chat.**
+
+1. **Mac and older iPad:** turn on the Mac, leave it awake on home Wi-Fi, connect the older **iPad 7 / A2197** by USB and unlock it. Keep Little Weeps closed on the iPad's Home Screen for the update. The newer **iPad 9 / A2602** comes next; having its cable ready helps.
+2. **Tell me the devices are ready and whether anyone is playing.** I will verify backups, signing, installed versions and the prepared candidate before an in-place update. If a Mac password or signing prompt appears during that session, enter it on the Mac. Nothing needs to be approved while you are away.
+3. **Choose a backup destination:** an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. Portable credential recovery and a tested restore remain part of that work; choosing a folder alone does not finish them.
+
+**After I install and launch the checked candidate, we will do these together:**
+
+- On the older iPad first, check offline start, local play during an outage, closing/reopening, and family reunion with the local adventure still available. I will arrange the isolated test server and give the exact short steps; do not shut down the family server yourself to simulate a failure.
+- Repeat the relevant recovery checks on the newer iPad, then Samsung and iPhone. Check actual lock/background behavior, four-player movement and the updated phone layout/reset cues. Existing successful smoke tests stay recorded.
+- Update the family authority and enable its qualified recovery controls during an **empty session**. The current parent page still selects operations build 85 and recovery is Off. I will handle the matching build and backups; approve a Windows prompt only if the reviewed setup actually needs one.
+
+**Still pending:** reliable unattended renewal on both iPads. Keep the USB cables available; Wi-Fi refresh has not passed. The last recorded development profile expires October 1, so we will check the installed profile before updating.
 
 VPS details can wait until the reliability and deployment gates are ready. There is no need to reconnect devices or troubleshoot anything remotely right now.
 
-Both iPads have been **updated in place and launched**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Mac signing is complete; there is no need to run the signing window again. [Current installation evidence](g3-ipad-79-2026-09-24.html).
+Both iPads were **updated in place and launched on 79**. Their earlier garden saves and settings were preserved, verified backups are on both computers, and each iPad has its own Keychain family identity. Signing for that earlier build is complete. The new 91 candidate needs its own verified native build/signing session; do not rerun an old signing shortcut. [Earlier installation evidence](g3-ipad-79-2026-09-24.html).
 
 **Both iPads, Samsung and iPhone have joined the same PC shared world.** Native discovery and admission are verified, and the user confirms all devices work. After everyone left, the user authorized the PC server and Samsung update to 83. Those updates are complete; iPads/iPhone remain 79. [Four-device record](g3-phones-79-2026-09-24.html).
 
@@ -45,8 +55,9 @@ Completed while away, using separate test worlds:
 
 - [Automatic local continuation and saved adventures](g3-local-continuation-2026-09-25.html) in Windows 90: four-client outage/restart, preserved solo progress, reopenable adventures and safe automatic reunion pass. No devices were updated.
 - [Outage failure checks](g3-outage-failures-2026-09-25.html) in Windows 91: accepted actions with missing completion, denied archive/selection/branch writes, observed foreground timing and rejected admission pass. Unresolved archives retry safely after disk access returns; they never replay actions. Related continuation, movement, compatibility and restore regressions pass.
+- [Matching mobile artifact preparation](g3-mobile-recovery-builds-2026-09-25.html): family-signed Android 91 and iPad/iPhone 91 export built and source/bridge-checked on Windows. Android's strict 16 KB failure is retained; no mobile runtime or native Mac build is claimed.
 
-**Next implementation: G3-REC-04 coordinated mobile build preparation on Windows**, then native signing and iPad-first device qualification. The artifact preparation can proceed while you are away; physical qualification waits for you. iPad hosting and reconciliation remain required.
+**Next: G3-REC-05 native Apple compile/signing and iPad-first recovery qualification.** Prepared artifacts are ready for this later session. Physical qualification waits for you; iPad hosting and reconciliation remain required.
 
 When you return:
 

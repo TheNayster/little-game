@@ -1,0 +1,47 @@
+{
+  "utc": "2026-09-25T14:04:51.067990+00:00",
+  "task": "G3-REC-04",
+  "goals": [
+    "NET-02",
+    "AUTO-01"
+  ],
+  "build": 91,
+  "preparationComplete": true,
+  "mobileReleaseQualified": false,
+  "androidStrict16KbPassed": false,
+  "nativeIOSCompilePassed": false,
+  "baseCommit": "722c13d8a9093d4649c878c9d56ba8d33c38aee9",
+  "runtimeCodeChanged": false,
+  "macAccessed": false,
+  "physicalDevicesAccessed": false,
+  "familyAuthorityAccessed": false,
+  "familyAuthorityUpdated": false,
+  "devicesInstalled": false,
+  "actualFamilySavesChanged": false,
+  "lastRecordedDeployments": {
+    "pc": 83,
+    "samsung": 83,
+    "ipad7": 79,
+    "ipad9": 79,
+    "iphone": 79
+  },
+  "manifestHashes": {
+    "Builds/AndroidSigned/G3-0.0.91/source-manifest.json": "7842695acbbc3c71c8c3af42ab2bee266f83b4c8760ce1b2163c4a65c0d98ec1",
+    "Builds/AndroidSigned/G3-0.0.91/artifact-manifest.json": "4fe467871525f499509cb211d32f3514f62e9b730e1789dd81d1a3c0a9f2b9a4",
+    "Builds/iOSFamilyLAN/G3-0.0.91/source-manifest.json": "2bcc73866118889820e33eb8edb1d323d3340d2242ecd4ffa7850e0f8b11ebf3",
+    "Builds/iOSFamilyLAN/G3-0.0.91/artifact-manifest.json": "15c5522256de7513b92a578225ffa973bcfa12a793efa8de100ef4f5a8e55734",
+    "Builds/NetworkProbe/G3-0.0.91/source-manifest.json": "088929007067fe7b7c1257d2afb9376f2a9824311648b55d0d4731eddc4fb058",
+    "Builds/NetworkProbe/G3-0.0.91/artifact-manifest.json": "0d26146ab1a5b507d9267efc68ab5f98dad1411d34d4cc822b4ccaad727131b9"
+  },
+  "helperHashes": {
+    "Tools/Test-AndroidArtifact.ps1": "961b57dcdbc01ac6860a4f3ca406ff48d0448788b9bdcb3f9ff30c75ab959716",
+    "Tools/Test-FamilyMobileArtifacts.py": "ece02fc229dbaa50439791444243bf8b371b9b1bd6253dd2e1a86d601258d1cf",
+    "Tools/Build-AndroidLAN.ps1": "51eef555ef41993f7c3afc4be8a86050ed5cd43431dde66e282591a518117645",
+    "Tools/Build-AndroidFamily.ps1": "e8bba020ee2dc30c53b96787f631058e3b5de3a12ae9d3e12c0218f14c0875df",
+    "Tools/Build-iPadFamilyLAN.ps1": "481eefd6bffce8df105279148d4c6e4a0056aaaa4f419fa753859515965231c4",
+    "Tools/inspect_android_relro.py": "526f58fba7396b4649d289fc3550679046d0f1982c1d0b21aba587570f6eb6f8"
+  },
+  "next": "G3-REC-05 native Apple compile/sign and iPad-first physical recovery qualification; controlled deployment with backups",
+  "strictFailureDisposition": "Retained five-library RELRO failure; limited geometry diagnosis does not waive the gate. Native ARM64 16 KB remains open.",
+  "generatedArtifactsInGit": false
+}

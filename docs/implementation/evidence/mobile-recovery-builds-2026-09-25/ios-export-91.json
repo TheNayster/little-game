@@ -1,0 +1,13 @@
+{
+  "version": "0.0.91",
+  "unity": "6000.3.24f1",
+  "profile": "Assets/BuildProfiles/iPad Family LAN.asset",
+  "output": "Builds/iOSFamilyLAN/G3-0.0.91/Xcode",
+  "result": "Succeeded",
+  "utc": "2026-09-25T14:00:19.5348294Z",
+  "platform": "iOS",
+  "signing": "Unsigned Xcode export; native compile/sign and physical networking pending",
+  "development": false,
+  "errors": 0,
+  "warnings": 0
+}

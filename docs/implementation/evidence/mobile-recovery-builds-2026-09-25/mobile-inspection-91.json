@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "utc": "2026-09-25T14:00:44.346112+00:00",
+  "build": 91,
+  "windowsBuild": 91,
+  "sourceCommits": [
+    "22ff77256bc0564b4da22eaf091aec5a8c97929e",
+    "722c13d8a9093d4649c878c9d56ba8d33c38aee9",
+    "722c13d8a9093d4649c878c9d56ba8d33c38aee9"
+  ],
+  "currentCSharpFilesMatched": 148,
+  "bridgesAndPackageLocksMatch": true,
+  "unity": "6000.3.24f1",
+  "identity": "com.littleweeps.familyplayset",
+  "android": {
+    "artifactFilesVerified": 1,
+    "apkSha256": "1e8f7af73d04dcd35eb3dd8fdd6f5527d26e101bec9165c5bd7de1f79eceef4f",
+    "nativeBridgeClassesPresent": true,
+    "signingCertificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+    "signatureVerification": "Run Test-AndroidArtifact.ps1 separately; signing log also retained",
+    "payloadUnchanged": true,
+    "installed": false,
+    "page16KbRuntimeTested": false
+  },
+  "ios": {
+    "artifactFilesVerified": 3094,
+    "minimumIOS": "15.0",
+    "deviceFamilies": [
+      "iPhone",
+      "iPad"
+    ],
+    "orientations": [
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "bonjourServices": [
+      "_lw-playset._udp"
+    ],
+    "nativeBridgeSourceAndARC": true,
+    "il2cppRecoveryCodeGenerated": true,
+    "nativeCompileAndLinkPassed": false,
+    "signed": false,
+    "installed": false
+  },
+  "physicalDevicesAccessed": false,
+  "macAccessed": false,
+  "familyServerUpdated": false,
+  "limitation": "Windows artifact preparation only. Separate Android static/runtime gates, Mac native compile/sign and physical save/recovery qualification remain open."
+}
