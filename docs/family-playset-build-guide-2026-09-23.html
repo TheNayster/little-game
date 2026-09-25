@@ -456,7 +456,7 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <tr>
 <td><strong>1 — next bounded task</strong></td>
 <td><strong>G3 everyday server operation and remaining device qualification (NET-02).</strong> Persistent build 83 is deployed, the original world is preserved, and Samsung 79 → 83 automatically joined with its existing identity.</td>
-<td>Parent-facing start/stop/status and sign-in startup, real sustained operation, remaining mobile lifecycle/outage checks; apply prepared Apple client improvements when available. <a href="implementation/g3-persistent-server-2026-09-24.html">Deployment evidence</a>.</td>
+<td>Parent-facing start/stop/status, verified restore/restart and real sustained operation; remaining mobile lifecycle/outage checks. Keep this groundwork reusable for the planned VPS; a local sign-in helper is temporary convenience. Apply Apple client improvements when available. <a href="implementation/g3-persistent-server-2026-09-24.html">Deployment evidence</a>.</td>
 </tr>
 <tr>
 <td>2</td>
@@ -486,7 +486,7 @@ Offline solo, iPad host and PC server use the same world-rule code.
 </tbody>
 </table></div>
 <p><strong>Foundation checks to close alongside that sequence:</strong> complete free renewal on both iPads and observe an actual unattended refresh; choose an independent backup destination and prove a restore; finish native Android 16 KB qualification; complete remaining current-build phone acceptance; measure sustained frame times/memory on the A10. Both phone updates to 79 have passed. G2 also needs structured child usability, assistance styles and authored movement/interaction contracts before its gate closes. The user reports children are playing; that alone is not an observed usability study. These are tracked work, not a reason to repeat already-passed smoke checks every session.</p>
-<p><strong>Later, optional:</strong> road-trip co-op, remote PC access and AR. Full offline solo, ordinary-network automatic joining, both iPads hosting and host recovery remain required. Bluetooth remains removed.</p>
+<p><strong>Future hosting decision:</strong> the owned VPS is the preferred shared-world deployment target after the server reliability gate. Prepare remote client endpoints and a controlled world/credential migration as a separate milestone; this need not wait for all game content. Travel co-op still depends on internet and stays lower priority than core reliability; AR remains optional. Full offline solo, ordinary-network automatic joining, both iPads hosting and host recovery remain required. Bluetooth remains removed. <a href="implementation/vps-hosting-plan-2026-09-24.html">VPS plan</a>.</p>
 <h2 id="10-the-working-method-that-prevents-jumping-around">10. The working method that prevents jumping around</h2>
 <p>Use a lightweight board: <strong>Backlog → Ready → In progress → Verification → Done</strong>, plus <strong>Blocked</strong> with the exact missing input or failing check. Keep one main implementation task in progress. A small independent task may proceed during a build/long observation only if it does not bypass a dependency or mix unrelated changes.</p>
 <h3 id="before-coding-ready-means-specific">Before coding: ready means specific</h3>
@@ -724,7 +724,7 @@ Status: pending
 <li>PC startup, world backup and restore are documented and tested; native logs/symbols can identify a failure.</li>
 </ul>
 <p>Keep backups for world/profile records, imported media manifests/files where needed, source assets and signing material. Test one restore into a separate test location. A copy that has never been restored is not evidence of a working recovery procedure.</p>
-<p>The normal server runs privately on the home network. External PC access/hotspot qualification remains a later option. The core implementation does not require public hosting, cloud accounts for the children, or internet access to generate ordinary speech.</p>
+<p>The current server runs on the home network. After reliability qualification, the owned VPS is the preferred future shared host, with parent-provisioned remote endpoints and verified migration. Select direct authenticated/encrypted access or a private route based on actual VPS/network tests. Local solo content and ordinary speech do not require internet; do not give children a server-setup flow. <a href="implementation/vps-hosting-plan-2026-09-24.html">Hosting decision</a>.</p>
 <h2 id="16-risks-decisions-and-change-control">16. Risks, decisions and change control</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
 <thead>
@@ -886,9 +886,9 @@ Status: pending
 <td>G7 offline coverage for every solo-capable feature</td>
 </tr>
 <tr>
-<td>REMOTE-01 — optional away-from-home PC connection</td>
-<td>Existing research retained</td>
-<td>G9 separate optional qualification; does not gate travel solo</td>
+<td>REMOTE-01 — owned VPS as future shared host</td>
+<td>Owned VPS plan after G3 server reliability gate; remote endpoint and world/credential migration</td>
+<td>Separate VPS deployment qualification when the server is ready; preserves G4/G5 and offline solo; does not wait on every G7 activity</td>
 </tr>
 <tr>
 <td>Controls, menus, six-world wheel, speech and settings</td>
@@ -926,7 +926,7 @@ Status: pending
 <tbody>
 <tr>
 <td>Goal sheet</td>
-<td>Main Family Playset research, 54 sections, including the latest TV bookmark clarification</td>
+<td>Main Family Playset research, 55 sections, including owned VPS hosting after server readiness</td>
 </tr>
 <tr>
 <td>Production guide</td>
@@ -938,7 +938,7 @@ Status: pending
 </tr>
 <tr>
 <td>Current research deliverable</td>
-<td>G0 guide, coverage map and source review; document validation recorded separately</td>
+<td>G0 guide, coverage map and source review, plus the source/code-backed owned-VPS decision. <a href="implementation/vps-hosting-plan-2026-09-24.html">VPS plan</a>. Documentation only this turn; no runtime or host changes.</td>
 </tr>
 <tr>
 <td>Current phase position</td>
@@ -954,7 +954,7 @@ Status: pending
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td>Continue parent-facing server startup/status, sign-in startup, a real sustained run and remaining G3 device/lifecycle/outage checks. Update Apple clients for prepared layout/reset cues when available, without disturbing play. Required iPad hosting/recovery remains G4. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Checklist</a>.</td>
+<td>Continue parent-facing server startup/status, save/restore, a real sustained run and remaining G3 device/lifecycle/outage checks. Make operational readiness reusable for the owned VPS; Windows sign-in startup is a local convenience. After the reliability gate, schedule the VPS milestone and remote-endpoint clients. Update Apple clients when available. Required iPad hosting/recovery remains G4. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Checklist</a>.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -1329,8 +1329,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>REMOTE-01</strong></td>
-<td><strong>Optional later; not built</strong></td>
-<td>Private away-from-home route if pursued; failure never blocks offline solo. G9.</td>
+<td><strong>Planned, not built:</strong> owned VPS is the preferred future shared host after server readiness</td>
+<td>Confirm host OS/resources; remote endpoint/platform/vault adapters, one-writer migration, startup/recovery/restore and mixed-device internet qualification. Offline solo and G4 iPad hosting/recovery remain. <a href="implementation/vps-hosting-plan-2026-09-24.html">Plan</a>.</td>
 </tr>
 <tr>
 <td><strong>ROOM-01</strong></td>

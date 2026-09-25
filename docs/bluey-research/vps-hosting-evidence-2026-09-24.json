@@ -1,0 +1,36 @@
+{
+  "date": "2026-09-24",
+  "kind": "Documentation/code review only; no VPS or runtime changes",
+  "sources": [
+    {
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-build.html",
+      "supports": "Platform-specific dedicated server build and required module"
+    },
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc6762",
+      "supports": "Multicast DNS discovery is local-link"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/dpapi/nf-dpapi-cryptprotectdata",
+      "supports": "DPAPI user/machine dependency requires credential reprotection for host migration"
+    },
+    {
+      "url": "https://tailscale.com/docs/reference/connection-types",
+      "supports": "Direct and relayed connectivity are distinct paths requiring qualification"
+    }
+  ],
+  "localReview": [
+    "NetworkProbe.cs: Start, CreateDiscovery, TickDiscovery, StartAuthority",
+    "WindowsPairingVault.cs: Read",
+    "IFamilyDiscovery.cs: FamilyEndpoint",
+    "WindowsBonjour.cs",
+    "com.unity.transport/Documentation~/client-server-secure.md"
+  ],
+  "pending": [
+    "VPS OS/version",
+    "CPU architecture and resource plan",
+    "network route and host access",
+    "all deployment implementation and acceptance"
+  ],
+  "userFollowUp": "User says the owned VPS has adequate capacity and will provide details later. No need to repeat the request; current work is not blocked."
+}
