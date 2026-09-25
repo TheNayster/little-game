@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "downloadBytes": 25428,
+  "downloadSha256": "8ff249dfdfaae730ede28f15b85d8a26c6126b37c423bed169483ef52260c3f7",
+  "build": 91,
+  "revision": 9,
+  "profiles": 4,
+  "checks": [
+    "Browser download produced actual encrypted file",
+    "Actual downloaded file selected and verified through browser",
+    "Wrong passphrase displayed a safe error",
+    "Password DOM fields empty after success and failure",
+    "Four test players remained connected"
+  ],
+  "scope": "Synthetic family and test passphrase only; no actual family backup or independent recovery proof."
+}

@@ -1,0 +1,8 @@
+{
+  "test": "Test-ParentPortable.py",
+  "passed": false,
+  "stage": "rerun after local-backup indicator fix",
+  "assertion": "Verification leaked data or edited world",
+  "diagnosis": "Live byte comparison races ordinary idle-timer checkpoints. Adjacent retained checkpoints had revision 8 and identical gameplay fields, with idleTimers alone advancing.",
+  "correction": "Compare live gameplay fields, then perform a separate exact-byte verification after stopping the isolated authority."
+}

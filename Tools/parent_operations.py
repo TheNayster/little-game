@@ -88,10 +88,13 @@ class ParentOperations:
     def backup(self):
         with self.mutex:
             result = Recovery(self.controller.family, self.controller.build).backup()
-            metadata = dict(name=Path(result['path']).name, sha256=result['sha256'],
-                            verifiedAt=datetime.now(timezone.utc).isoformat())
-            self._preferences(backup=metadata)
+            self.remember_backup(result)
             return dict(result='backup-verified')
+
+    def remember_backup(self, result):
+        metadata = dict(name=Path(result['path']).name, sha256=result['sha256'],
+                        verifiedAt=datetime.now(timezone.utc).isoformat())
+        self._preferences(backup=metadata)
 
     def enable(self):
         with self.mutex:

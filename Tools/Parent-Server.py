@@ -9,6 +9,8 @@ import webbrowser
 
 from parent_server import ParentServer, OperationError
 from parent_operations import ParentOperations
+from parent_portable import ParentPortable, REQUEST_LIMIT
+from portable_recovery import FILE_LIMIT
 from shared_garden_runtime import ROOT, write
 
 
@@ -18,6 +20,7 @@ class ParentHTTP(ThreadingHTTPServer):
         super().__init__(('127.0.0.1', port), Handler)
         self.controller = controller
         self.operations = ParentOperations(controller)
+        self.portable = ParentPortable(controller, self.operations.remember_backup)
         self.token = secrets.token_urlsafe(32)
         self.authority = f'127.0.0.1:{self.server_port}'
         self.origin = 'http://' + self.authority
@@ -29,6 +32,7 @@ class ParentHTTP(ThreadingHTTPServer):
     def status(self):
         native = self.controller.snapshot()
         native.update(self.operations.snapshot(native))
+        native['portable'] = dict(available=True, maxBytes=FILE_LIMIT)
         return native
 
     def server_close(self):
@@ -48,6 +52,8 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Referrer-Policy', 'no-referrer')
+        if content_type == 'application/octet-stream':
+            self.send_header('Content-Disposition', 'attachment; filename="Little-Weeps-family.lwportable"')
         self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'")
         self.end_headers()
         try:
@@ -85,12 +91,18 @@ class Handler(BaseHTTPRequestHandler):
             return
         try:
             length = int(self.headers.get('Content-Length', '0'))
-            if not 0 < length <= 2048 or self.headers.get('Content-Type') != 'application/json':
+            limit = REQUEST_LIMIT if self.path == '/api/portable-verify' else 16384 if self.path == '/api/portable-export' else 2048
+            if not 0 < length <= limit or self.headers.get('Content-Type') != 'application/json':
                 self.reply(400, dict(error='Invalid request.')); return
+            self.connection.settimeout(15)
             data = json.loads(self.rfile.read(length))
             if not isinstance(data, dict):
                 raise ValueError('Expected object')
-            if self.path == '/api/start':
+            if self.path == '/api/portable-export':
+                self.reply(200, self.server.portable.export(data), 'application/octet-stream'); return
+            elif self.path == '/api/portable-verify':
+                self.reply(200, self.server.portable.verify(data)); return
+            elif self.path == '/api/start':
                 result = self.server.controller.start()
             elif self.path == '/api/stop':
                 result = self.server.controller.stop(data.get('instanceId'))

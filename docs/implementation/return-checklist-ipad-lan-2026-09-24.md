@@ -2,7 +2,7 @@
 
 **Updated September 25 — no action is needed while you are away.** Windows 91 has passed the isolated outage failure matrix and related regressions. Matching Android 91 and the iPad/iPhone 91 Xcode export are now [prepared on Windows](g3-mobile-recovery-builds-2026-09-25.html). Native Apple compilation/signing and all physical updates/tests remain pending. The last recorded deployed versions above have not changed. Android's separate 16 KB qualification issue remains open.
 
-**Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. The project Android emulator also passed a retained 79 → 91 update and [six recovery checks with three Windows players](g3-android-recovery-2026-09-25.html). Your live world and physical devices were not changed, and no family passphrase was created.
+**Completed while you were away:** password-protected portable server recovery passed with a separate test family and all four original test players. The project Android emulator also passed a retained 79 → 91 update and [six recovery checks with three Windows players](g3-android-recovery-2026-09-25.html). The [parent page also gained protected-backup download and file checking](g3-parent-portable-backups-2026-09-25.html), tested with a separate four-player family. Your live world and physical devices were not changed, and no family passphrase was created.
 
 ## Your to-do list when you are home
 
@@ -10,7 +10,7 @@
 
 1. **Mac and older iPad:** turn on the Mac, leave it awake on home Wi-Fi, connect the older **iPad 7 / A2197** by USB and unlock it. Keep Little Weeps closed on the iPad's Home Screen for the update. The newer **iPad 9 / A2602** comes next; having its cable ready helps.
 2. **Tell me the devices are ready and whether anyone is playing.** I will verify backups, signing, installed versions and the prepared candidate before an in-place update. If a Mac password or signing prompt appears during that session, enter it on the Mac. Nothing needs to be approved while you are away.
-3. **Choose a backup destination:** an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. The portable encrypted backup/reconstruction tool now passes isolated Windows tests. We still need a real copy on that destination and a restore on another Windows account/computer. Choose and save its passphrase privately when we export it; do not send it here. [What is ready and what remains](g3-portable-recovery-2026-09-25.html).
+3. **Choose a backup destination:** an external drive or another computer, separate from this PC's current game folder. Send the destination when convenient. The portable encrypted backup/reconstruction tool now passes isolated Windows tests. We still need a real copy on that destination and a restore on another Windows account/computer. Once I relaunch the updated parent helper, use **Download protected backup**, move the downloaded file to your chosen destination, then use **Check backup file** on that copy. Choose and save the passphrase privately; do not send it here. That file check does not replace the later restore test. [The new controls](g3-parent-portable-backups-2026-09-25.html).
 
 **After I install and launch the checked candidate, we will do these together:**
 
@@ -62,6 +62,8 @@ Completed while away, using separate test worlds:
 - [Portable encrypted server recovery](g3-portable-recovery-2026-09-25.html): six isolated portable groups and six local-recovery regressions pass; four original test clients rejoin the recovered world. Actual off-PC storage and second-account/computer recovery still need qualification.
 
 - [Android release recovery in the emulator](g3-android-recovery-2026-09-25.html): retained update, checkpoint/item clocks, Android warm/cold lifecycle, local outage play, safe reunion and two distinct adventures pass with three Windows siblings. No phone/iPad was updated.
+
+- [Parent portable-backup controls](g3-parent-portable-backups-2026-09-25.html): six HTTP/native cases plus actual browser download/file checking and safe errors pass. Existing backup/recovery controls also pass their four regression groups. The actual helper will be relaunched deliberately in the return session.
 
 **Next: G3-REC-05 native Apple compile/signing and iPad-first recovery qualification.** Prepared artifacts are ready for this later session. Physical qualification waits for you; iPad hosting and reconciliation remain required.
 

@@ -129,6 +129,15 @@ def verify(path, password):
     return summary(bundle, body)
 
 
+def verify_bytes(raw, password):
+    """Read-only verification for a bounded upload; never write decrypted data."""
+    try:
+        bundle, _, _, body = validate_payload(open_sealed(raw, password))
+        return summary(bundle, body)
+    except Exception:
+        raise OperationError('Portable backup could not be verified. Check the passphrase and backup file; nothing was restored.') from None
+
+
 def recover_missing(path, password, expected_family, build, fault=None):
     bundle, files, records, body = load(path, password)
     check(bundle['world'] == canonical(expected_family), 'Wrong family selected for reconstruction.')

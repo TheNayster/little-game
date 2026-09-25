@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "build": 91,
+  "utc": "2026-09-25T15:24:16.674202+00:00",
+  "checks": [
+    {
+      "check": "authenticated binary download preserves the complete two-area four-player world and enrollment without stopping play; ciphertext and no-store attachment headers verified",
+      "passed": true
+    },
+    {
+      "check": "selected encrypted-file upload verifies the expected family using only safe metadata; world is unchanged and all four clients remain usable",
+      "passed": true
+    },
+    {
+      "check": "wrong passwords, damaged/empty/malformed files, another family and invalid export passphrases are rejected without restoration or secret-bearing errors",
+      "passed": true
+    },
+    {
+      "check": "missing session, foreign origin, oversized and invalid bodies, GET mutations and restore routes are refused",
+      "passed": true
+    },
+    {
+      "check": "one protected operation at a time bounds KDF memory; competing export/check requests fail promptly while status remains responsive",
+      "passed": true
+    },
+    {
+      "check": "a new helper verifies without disturbing the live authority or players; a stopped-world check leaves the exact checkpoint bytes unchanged",
+      "passed": true
+    }
+  ],
+  "scope": "Isolated Windows HTTP/native test world only. Does not establish off-PC storage, another-account recovery, physical-device acceptance or actual parent-helper deployment."
+}

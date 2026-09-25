@@ -1,0 +1,40 @@
+{
+  "sourceBaseline": "f8e6dd6f2ca472f96e87e1b8b771c70a761c0b27",
+  "gameSourceChanged": false,
+  "gameBuild": 91,
+  "cryptography": "50.0.1",
+  "files": [
+    {
+      "path": "Tools/Parent-Server.py",
+      "sha256": "9ee93a7344cf8b237b9120cca3082de41659817f60a891dbb280e84c09e69c16"
+    },
+    {
+      "path": "Tools/parent_portable.py",
+      "sha256": "4ad916426f0bad87aed874c9088104d2e2070bfbe21c46f6f854900311f609b3"
+    },
+    {
+      "path": "Tools/parent_operations.py",
+      "sha256": "e17cf4eff9f7affd68a90fe2d025e964c0dd02fe6acd96c45f059b0d61bee7f3"
+    },
+    {
+      "path": "Tools/portable_recovery.py",
+      "sha256": "4987c7aaa2364f87c04d955dfa9d0c3f2b5158e2c5215643d0b30bfae4280b21"
+    },
+    {
+      "path": "Tools/Test-ParentPortable.py",
+      "sha256": "c8681eda2fd4ec098b9b7f10ba675a79de9350b90e91735cbb389306bd2ee789"
+    },
+    {
+      "path": "Tools/parent-ui/index.html",
+      "sha256": "ff16e5e4de881841aee53623ae587fd81904e0efed0c3ddb7497956a6d9d8415"
+    },
+    {
+      "path": "Tools/parent-ui/app.js",
+      "sha256": "05b92a83c8138ae2cdd22f99adaf5c0aeb55c63b5ad55c722f23c15a2b1f5264"
+    },
+    {
+      "path": "Tools/parent-ui/style.css",
+      "sha256": "8ea75526c4d109707068588459d728cd6fdbe4742b570ab1dfb99c792ed9c0e3"
+    }
+  ]
+}

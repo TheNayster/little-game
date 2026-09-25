@@ -15,7 +15,30 @@
 <h2>Look after their world</h2>
 <div class="metrics"><article><p>Local backup</p><strong id="backup-state">Checking…</strong><small id="backup-detail">A separate copy of the saved family world.</small></article><article><p>Automatic crash recovery</p><strong id="recovery-state">Checking…</strong><small id="recovery-detail">Checking the recovery helper.</small></article></div>
 <div class="actions"><button id="backup" disabled>Back up world</button><button id="recovery-enable" class="secondary" disabled>Enable recovery</button><button id="recovery-pause" class="secondary" disabled>Pause recovery</button></div>
-<p class="fine care-note">Backups here stay on this PC. Independent backup still needs setup. Pausing recovery leaves current players connected.</p>
+<p class="fine care-note">Local backups stay on this PC. Use a protected copy below for separate storage. Pausing recovery leaves current players connected.</p>
+</section>
+<section class="panel care" aria-label="Protected portable backups">
+<h2>Keep a copy somewhere else</h2>
+<p>Download a password-protected copy of the family world. Store it on another drive or computer, and keep its passphrase separately. The passphrase is required to open it.</p>
+<p id="portable-availability" class="fine">Checking backup controls…</p>
+<details><summary>Download a protected backup</summary>
+<form id="portable-export-form" class="backup-form">
+<label for="export-password">New backup passphrase <span>16–1024 characters, without spaces at either end</span></label>
+<input id="export-password" type="password" minlength="16" maxlength="1024" required autocomplete="new-password" spellcheck="false">
+<label for="export-confirmation">Repeat passphrase</label>
+<input id="export-confirmation" type="password" minlength="16" maxlength="1024" required autocomplete="new-password" spellcheck="false">
+<button id="portable-export" disabled>Download protected backup</button>
+<p class="fine">The download starts in your browser. Move the file to your chosen backup location, then check that copy below.</p>
+</form></details>
+<details><summary>Check a backup file</summary>
+<form id="portable-verify-form" class="backup-form">
+<label for="verify-file">Protected backup file</label><input id="verify-file" type="file" accept=".lwportable" required>
+<label for="verify-password">Backup passphrase</label>
+<input id="verify-password" type="password" minlength="16" maxlength="1024" required autocomplete="off" spellcheck="false">
+<button id="portable-verify" class="secondary" disabled>Check backup file</button>
+<p class="fine">This checks the selected file without restoring anything. A successful check does not replace a recovery test on another computer.</p>
+</form></details>
+<p id="portable-feedback" role="status" aria-live="polite"></p>
 </section>
 <section class="notes"><article><h3>Let them keep playing</h3><p>Stop is protected while someone is connected. The server checks again before it stops, so a new arrival is protected too.</p></article><article><h3>Close this page anytime</h3><p>The game server keeps running. Keep the PC awake and connected while it hosts your family.</p></article></section>
 <footer>The recovery helper runs with this control service, even when you close the browser page. It is not a Windows boot service. Keep the PC awake and connected; device routes and independent backups need their own checks.</footer>
