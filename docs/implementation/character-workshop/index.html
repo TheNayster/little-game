@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Little Weeps · Character workshop</title>
+<link rel="stylesheet" href="workshop.css"></head>
+<body>
+<header><a class="brand" href="../../family-playset-build-guide-2026-09-23.html">LITTLE WEEPS <span>/ THE WORKSHOP</span></a><a href="../return-checklist-ipad-lan-2026-09-24.html">Your return checklist ↗</a></header>
+<main>
+<div class="intro"><div><p class="eyebrow">FIRST ANIMATION STUDY · 01</p><h1>A little more life.</h1><p>Walking feet, a friendly wave, and a bucket that follows the hand.</p></div><span class="tag">Separate prototype</span></div>
+<div class="workspace">
+<section class="stage" aria-label="Animated character preview">
+<div class="scene-label"><span class="live-dot"></span> <span id="state-label">Walking</span></div>
+<div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+<div class="fence"></div><div class="hill h1"></div><div class="hill h2"></div>
+<div class="sprout s1">✳</div><div class="sprout s2">✳</div>
+<div class="floor-line"></div><div class="character" id="character" aria-label="Blue puppy animation"></div>
+<div class="stage-bottom"><span>BLUE PUP <b>· layered rig study</b></span><button id="pause" aria-pressed="false">Pause motion</button></div>
+<p id="load-error" hidden>Preview artwork could not load. Open this page through the project’s local website.</p>
+</section>
+<aside>
+<p class="eyebrow">TRY A LITTLE PLAY</p><h2>Choose a motion</h2>
+<div class="motions" role="group" aria-label="Motion">
+<button data-motion="idle" aria-pressed="false"><span>☀</span>Idle</button>
+<button data-motion="walk" aria-pressed="true"><span>↝</span>Walk</button>
+<button data-motion="wave" aria-pressed="false"><span>✋</span>Wave</button>
+<button data-motion="carry" aria-pressed="false"><span>◡</span>Carry & walk</button>
+</div>
+<label class="slider-label" for="pace">Walking pace <output id="pace-label">1.0×</output></label>
+<input id="pace" type="range" min="0.4" max="1.6" step="0.1" value="1">
+<div class="direction" role="group" aria-label="Facing direction"><button data-facing="left" aria-pressed="false">← Face left</button><button data-facing="right" aria-pressed="true">Face right →</button></div>
+<label class="toggle"><input type="checkbox" id="show-rig">Show attachment points</label>
+<div class="note"><strong>The same character. New artwork later.</strong><p>This tests separate moving pieces and a hand attachment. The final Bluey artwork, production rig and game integration are still ahead.</p></div>
+<a class="source-link" href="blue-pup-rig.svg" download>Download the layered SVG ↗</a>
+</aside>
+</div>
+<div class="details"><article><span>01</span><h3>Feet stay separate</h3><p>The game moves the character. The animation adds the steps, so it cannot change network movement.</p></article><article><span>02</span><h3>A prop follows its hand</h3><p>The bucket stays attached through walking and turning. Its contents and ownership still belong to the game rules.</p></article><article><span>03</span><h3>Built to swap artwork</h3><p>Named pieces and anchors become a reusable checklist for the child characters and larger parent rigs.</p></article></div>
+<footer>Browser motion study · no game saves, server connections or device updates · <a href="../g4-hosting-and-animation-preparation-2026-09-25.html">Work record and next steps</a></footer>
+</main><script src="workshop.js"></script></body></html>

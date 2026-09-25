@@ -1,0 +1,19 @@
+{
+  "utc": "2026-09-25T21:46:22.457197+00:00",
+  "passed": true,
+  "scope": "Layered SVG contract and actual browser UI inspection; no Unity or physical device animation qualification.",
+  "declaredLayers": 15,
+  "checks": [
+    "Every declared layer and pivot names an existing unique SVG element",
+    "Four motion selections change the visible state; bucket is visible only in carry mode",
+    "Facing controls mirror the character; pause/resume and pace controls update",
+    "Attachment guides are visible and follow the animated pose in visual inspection",
+    "Narrow 390px layout inspected; observed document content width 375px, no horizontal overflow",
+    "Normal viewport restored and interactive preview left open"
+  ],
+  "limitations": [
+    "The SVG is a rig study, not approved final character art",
+    "No Unity import, production SpriteSkin/Animator, physical A10 performance or network integration tested",
+    "Browser DOM bridge does not expose getScreenCTM, so no pixel-precision attachment assertion is claimed"
+  ]
+}

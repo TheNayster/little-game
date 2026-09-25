@@ -23,6 +23,8 @@ LocalData/
 *.csproj
 !Tools/SoloRules.Tests/SoloRules.Tests.csproj
 !Tools/RecoveryValidator/RecoveryValidator.csproj
+!Tools/HostingModel.Tests/HostingModel.Tests.csproj
+Tools/HostingModel.Tests/bin/
 Tools/RecoveryValidator/bin/
 *.lwbackup
 *.lwportable

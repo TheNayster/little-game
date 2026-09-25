@@ -59,6 +59,7 @@
 <p><strong>Production guide · September 23, 2026 · Implementation audit updated September 25, 2026</strong></p>
 <p><strong>Latest requirement correction:</strong> the server remains authoritative; offline play can differ. Reunion loads its current world while retaining local saves separately. Automatic import/merge of offline edits is no longer required. This supersedes earlier G5 reconciliation/merge wording in historical records below; G5 still covers durable rooms, creations, items and server-authoritative reunion. Required iPad hosting remains G4. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Research and current repair</a>.</p>
 <p><strong>Active G3-REC-05:</strong> build <strong>98</strong> implements the visible-state transition repair and includes the 95 smooth-saving fix. It passes 76 rules/storage checks, native Windows recovery/movement regressions, six Android-emulator recovery groups and Apple native compilation. Physical updates remain pending: unattended Mac signing returned <code>errSecInternalComponent</code>, and the Samsung's saved ADB address is unreachable. Installed versions remain <strong>iPad 7 95, iPad 9/iPhone 79, Samsung 83</strong>. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Research and results</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Your return checklist</a>.</p>
+<p><strong>Independent work authorized while devices wait:</strong> G4-PREP-01 planned-handoff model and ART-PREP-01 layered character workshop are now complete within prototype scope. The model passes fault/retry/restart checks; the art preview offers idle/walk/wave/carry and attachment controls. Neither is installed in the game. <strong>Next independent task: G4-PREP-02, restore actual complete world state into an isolated replacement authority.</strong> Build 98 signing/device checks stay on the separate return list. <a href="implementation/g4-hosting-and-animation-preparation-2026-09-25.html">Hosting/art work record</a> · <a href="implementation/character-workshop/index.html">Try the character workshop</a>.</p>
 <p><strong>Purpose:</strong> build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.</p>
 <p><strong>Current position:</strong> <strong>Aligned foundations; G3-REC-05 remains active.</strong> Server <strong>91</strong> and parent helper <strong>91</strong> retain the family world/enrollment; automatic recovery is enabled/healthy and actual sign-in startup remains Off. The older iPad has physically verified smoother offline walking and successful offline cold reopening on 95. The separate transition rewind is repaired and tested in 98, awaiting physical acceptance; the smaller network-work spike and sustained device performance remain open. G1/G2/G3 remain partial. Required iPad hosting, durable rooms and game content remain in G4–G7. Server-authoritative reunion retains offline edits separately. <a href="#19-implementation-audit-and-remaining-work">All 35 feature statuses</a>.</p>
 <p><a href="bluey-game-research-2026-09-23.html">Open the feature goal sheet</a> · <a href="family-playset-package-research-2026-09-23.html">Package research</a> · <a href="family-playset-technical-research-2026-09-23.html">Technical evidence</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
@@ -356,6 +357,7 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <p>Start verifying the agreed free iPad renewal process in G1 and let its real renewal-cycle observation run alongside later development. It must pass before unattended family deployment. Automatic refresh reduces manual reinstall work; it does not make free provisioning permanent. The existing <a href="family-playset-feasibility-audit-2026-09-23.html#3-the-limits-that-must-remain-honest">installation audit</a> remains applicable.</p>
 <h2 id="8-ordered-phases-and-completion-gates">8. Ordered phases and completion gates</h2>
 <p><strong>Default dependency chain:</strong> G0 → G1 → G2 → G3 → G4 → G5 → G6 → G7 → G8 → G9. Each phase may contain several small work sessions. Begin the next dependent phase when the current exit checks pass. A long-running signing-renewal observation may overlap, but its unresolved result remains recorded.</p>
+<p><strong>September 25 user-authorized overlap:</strong> while physical build 98 qualification waits, independent hosting design/tests and one small character/animation prototype may proceed. This does not authorize claiming missing mobile gates passed or batch-producing the full game. Continue one bounded implementation task at a time, with its own evidence.</p>
 <p><strong>Actual sequence so far:</strong> the user authorized provisional Windows G2/G3 work while device and renewal checks remained open. Both iPads subsequently passed the solo garden checks. This overlap produced useful evidence; it did not close G1, G2 or G3. The current gate ledger is in section 19. Do not begin broad content production while required mobile hosting/recovery remains unproven.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
 <thead>
@@ -456,6 +458,11 @@ Offline solo, iPad host and PC server use the same world-rule code.
 </thead>
 <tbody>
 <tr>
+<td><strong>Independent track while devices wait</strong></td>
+<td><strong>G4-PREP-01 and ART-PREP-01 complete in prototype scope; next G4-PREP-02</strong></td>
+<td>Restore actual complete recovery state into a replacement authority in an isolated Windows test; preserve both areas, receipts, item contents and idle clocks. The <a href="implementation/character-workshop/index.html">character workshop</a> can be reviewed separately. No shipping code or prepared 98 artifacts changed in this preparation.</td>
+</tr>
+<tr>
 <td><strong>1 — active bounded task</strong></td>
 <td><strong>G3-REC-05: repair and qualify offline recovery/movement (NET-02 / AUTO-01 / JOIN-01).</strong></td>
 <td>95 smooth walking and offline cold reopening pass on iPad 7. <strong>98 transition repair is implemented and passes Windows/emulator tests; Apple native compile passes.</strong> Finish local Mac signing, verify/install 98 in place, qualify visible-state continuity on iPad 7, then update iPad 9 and phones. Keep repeated off/on, held input/menu, cold reopen/reunion and sustained movement as scoped acceptance checks. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Results</a>.</td>
@@ -505,6 +512,7 @@ Offline solo, iPad host and PC server use the same world-rule code.
 <p><strong>Device follow-up when available:</strong> update the Apple clients for return cues and the iPhone's wider layout, preserve their identities/saves, and check tablet geometry remains unchanged. Authority 91 retains the shared timers introduced in 83 for older 79 clients; those clients do not display the new cue, and their offline solo fixtures still use their older code. Phone 83 has a native layout/admission/save check, but no new human multitouch/audio acceptance. Native ARM64 16 KB remains a separate Android portability check; the family's actual Samsung uses 4 KB pages and already runs the release.</p>
 <p><strong>Future hosting decision:</strong> the owned VPS is the preferred shared-world deployment target after the server reliability gate. Prepare remote client endpoints and a controlled world/credential migration as a separate milestone; this need not wait for all game content. Travel co-op still depends on internet and stays lower priority than core reliability; AR remains optional. Full offline solo, ordinary-network automatic joining, both iPads hosting and host recovery remain required. Bluetooth remains removed. <a href="implementation/vps-hosting-plan-2026-09-24.html">VPS plan</a>.</p>
 <h2 id="10-the-working-method-that-prevents-jumping-around">10. The working method that prevents jumping around</h2>
+<p><strong>Independent work authorized while devices wait:</strong> G4-PREP-01 planned-handoff model and ART-PREP-01 layered character workshop are now complete within prototype scope. The model passes fault/retry/restart checks; the art preview offers idle/walk/wave/carry and attachment controls. Neither is installed in the game. <strong>Next independent task: G4-PREP-02, restore actual complete world state into an isolated replacement authority.</strong> Build 98 signing/device checks stay on the separate return list. <a href="implementation/g4-hosting-and-animation-preparation-2026-09-25.html">Hosting/art work record</a> · <a href="implementation/character-workshop/index.html">Try the character workshop</a>.</p>
 <p><strong>Active task — G3-REC-05:</strong> <strong>98 engineering implementation is complete within scope; physical qualification is pending.</strong> It starts a private local world from the latest received view plus the displayed local pose/held-item positions, preserving prior solo/adventure saves. It includes 95's measured save-stall repair. Windows and Android-emulator recovery/movement checks pass; Apple native compilation passes. Unattended signing failed at codesign, and the Samsung was unreachable. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Research, results and deployment limits</a>. Next: the return checklist's local signing step, iPad 7 transition check and retained updates to the remaining devices. Server/helper 91 are unchanged; neither G3 nor iPad hosting is complete.</p>
 <p><strong>Completed independent task — G3-OPS-08:</strong> optional current-user Windows sign-in startup (NET-02 / AUTO-01) is implemented and passes isolated native/browser acceptance. Checked shortcut creation/removal, serialized helper reuse, saved Stop/Pause and four-player recovery pass; an isolated launch-environment defect was caught and fixed before deployment. <a href="implementation/g3-signin-startup-2026-09-25.html">Evidence and limits</a>. That isolated task did not change the live family. Server/helper 91 have subsequently been deployed; real sign-in startup activation and Windows sign-in/reboot still need a controlled session. <strong>Next device task remains G3-REC-05</strong>, native Apple compilation/signing and iPad 7 first.</p>
 <p><strong>Completed independent task — G3-REC-07:</strong> Build 91 passed 600.06 real seconds with the release Android emulator and three Windows clients: 75 movement/travel cycles, normal flower/bucket returns, Android Home/warm return, 75 observed durable full checkpoints, stable diagnostic memory and remote interpolation, seven local saves preserved since shared admission and exact stopped-server restart. <a href="implementation/g3-sustained-recovery-play-2026-09-25.html">Measured result, corrected save baseline and limits</a>. This advances NET-02 / FAMILY-01 / ITEM-03 without changing the live family or physical devices. <strong>Next device task stays G3-REC-05</strong>, native Apple compile/signing and iPad 7 first recovery/performance qualification; hosting and reconciliation remain required.</p>
@@ -971,7 +979,7 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td><strong>G3-REC-05:</strong> 95's older-iPad walking/cold-reopen checks passed. <strong>98 visible-state repair and platform preparation pass their engineering checks</strong>, with physical signing/install/acceptance pending. The smaller network-work spike remains for attribution. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Research, measurements and exact scope</a>.</td>
+<td><strong>Device track: G3-REC-05</strong>, build 98 signing/install/qualification pending. <strong>Independent track: G4-PREP-01 and ART-PREP-01 complete in model/browser scope</strong>; next G4-PREP-02 real recovery-state restoration fixture. <a href="implementation/g4-hosting-and-animation-preparation-2026-09-25.html">Work and limits</a>.</td>
 </tr>
 <tr>
 <td>Latest completed engineering task</td>
@@ -1161,8 +1169,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>G4 — iPad hosting</strong></td>
-<td><strong>Hosting not built; complete replicas and local continuation prerequisites qualified on Windows 90</strong></td>
-<td>Qualify replicas on both iPads, then both host roles, election, event tails, handoff, abrupt loss, resume/partition and returning-host convergence. Saved adventures do not elect or replace an authority.</td>
+<td><strong>Hosting not built.</strong> Planned-transfer model passes simulated failure/retry/restart checks; complete recovery replicas already exist. <a href="implementation/g4-hosting-and-animation-preparation-2026-09-25.html">Preparation evidence</a>.</td>
+<td>Native restore/authority adapters, authenticated mobile capability, real handoff/election/branch convergence, then both iPads hosting and sustained foreground/background/media tests.</td>
 </tr>
 <tr>
 <td><strong>G5 — durable family world</strong></td>
@@ -1171,8 +1179,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>G6 — finished slice</strong></td>
-<td><strong>Not started as a polished integrated slice</strong></td>
-<td>Authored art/rigs, child-facing UI, NPC/activity framework and the representative examples in section 8, with child and device acceptance.</td>
+<td><strong>Not started as a polished integrated slice.</strong> One isolated layered character/animation study is available by user-authorized overlap.</td>
+<td>Final likeness/rig import, Unity CharacterView boundary, child-facing UI, NPC/activity framework and integrated examples, with child and device acceptance.</td>
 </tr>
 <tr>
 <td><strong>G7 — content batches</strong></td>
@@ -1250,8 +1258,8 @@ Status: pending
 <tbody>
 <tr>
 <td><strong>CHAR-01</strong></td>
-<td><strong>Partial:</strong> switch between two placeholder skins while preserving identity and held prop</td>
-<td>Complete roster/rigs; switching during every activity on mobile. G2/G3 → G6/G7.</td>
+<td><strong>Partial:</strong> two in-game placeholder skins preserve identity/prop. A separate layered animation study now demonstrates idle/walk/wave/carry, facing and hand attachment; not game integration.</td>
+<td>Final artwork, Unity rig/view integration, full roster and switching during every activity on mobile. G2/G3 → G6/G7.</td>
 </tr>
 <tr>
 <td><strong>CHAR-02</strong></td>
@@ -1400,8 +1408,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>AUTO-02</strong></td>
-<td><strong>Host migration not built:</strong> complete replicas and separate local continuation are qualified on Windows 90</td>
-<td>Both iPads host, mobile checkpoint/event-tail qualification, election/handoff/hard-loss/partition/resume/reunion. G4/G5.</td>
+<td><strong>Host migration not built:</strong> complete recovery replicas exist; planned-transfer model now passes scoped simulated failures and exhaustive short event schedules.</td>
+<td>Actual state restoration and authority adapters, both iPads host, election/handoff/hard-loss/partition/resume/reunion. G4/G5.</td>
 </tr>
 <tr>
 <td><strong>OUT-01</strong></td>
@@ -1436,7 +1444,7 @@ Status: pending
 <tbody>
 <tr>
 <td><strong>2D illustrated dollhouse</strong></td>
-<td>Procedural canvas shapes prove interaction. Final drawn perspective, sprite rigs, authored floor polygons, depth/occlusion, furniture anchors and animation are still needed. G2 contracts → G6.</td>
+<td>Procedural canvas shapes prove interaction; isolated layered vector study starts animation/attachment preparation. Final drawn perspective, production sprites/rigs, authored floor polygons, depth/occlusion, furniture anchors and Unity integration remain. G2 contracts → G6.</td>
 </tr>
 <tr>
 <td><strong>3-year-old and 6-year-old assistance</strong></td>

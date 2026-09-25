@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "goalChapters": 55,
+  "planSections": 19,
+  "featureIds": 35,
+  "localLinksChecked": 468,
+  "pages": [
+    "bluey-game-research-2026-09-23.html",
+    "family-playset-build-guide-2026-09-23.html",
+    "implementation/return-checklist-ipad-lan-2026-09-24.html",
+    "implementation/g3-ipad91-qualification-2026-09-25.html",
+    "implementation/g3-offline-recovery-and-motion-2026-09-25.html",
+    "implementation/g3-offline-authority-and-hitch-review-2026-09-25.html",
+    "implementation/g4-hosting-and-animation-preparation-2026-09-25.html",
+    "implementation/character-workshop/index.html"
+  ],
+  "errors": [],
+  "scope": "Local rendered documentation links, anchors, chapter coverage and feature ledger; not fresh external-source research."
+}

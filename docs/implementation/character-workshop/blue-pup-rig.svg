@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 500" role="img" aria-labelledby="title desc">
+  <title id="title">Blue pup — layered animation study</title>
+  <desc id="desc">A blue cartoon puppy with separate head, arms, feet and tail. Prototype artwork for testing animation anchors.</desc>
+  <defs>
+    <linearGradient id="bucketFill" x2="0" y2="1"><stop stop-color="#ffcf6d"/><stop offset="1" stop-color="#eead46"/></linearGradient>
+  </defs>
+  <ellipse id="ground-shadow" cx="220" cy="454" rx="81" ry="14" fill="#547767" opacity=".17"/>
+  <g id="facing-root">
+    <g id="tail" fill="#5c94b2" stroke="#334f65" stroke-width="3.5" stroke-linejoin="round">
+      <path d="M277 345 C312 347 338 322 350 303 C362 348 334 377 284 382Z"/>
+      <path d="M336 334 Q348 319 350 303 Q360 331 349 349Z" fill="#384f70" stroke="none"/>
+    </g>
+    <g id="arm-far" fill="#375474" stroke="#334f65" stroke-width="3.5"><path d="M163 264 Q138 275 128 321 Q124 340 139 344 Q153 347 158 328 L183 289Z"/></g>
+    <g id="foot-far" fill="#375474" stroke="#334f65" stroke-width="3.5"><path d="M172 376 L199 378 L197 429 Q209 433 207 444 Q204 452 166 450 Q154 449 155 440 L165 427Z"/></g>
+    <g id="foot-near" fill="#76aac4" stroke="#334f65" stroke-width="3.5"><path d="M234 376 L263 375 L266 431 Q284 434 280 445 Q277 453 239 451 Q228 450 231 439 L235 426Z"/></g>
+    <g id="body" stroke="#334f65" stroke-width="3.5" stroke-linejoin="round">
+      <path d="M171 239 Q220 220 267 240 Q289 284 283 385 Q277 410 219 411 Q164 410 157 385 Q150 299 171 239Z" fill="#78afca"/>
+      <path d="M187 264 Q220 250 252 267 L258 366 Q254 391 224 392 Q189 392 183 371Z" fill="#c4dfea" stroke="none"/>
+      <path d="M165 273 Q167 250 177 245 L185 328 Q162 337 157 315Z" fill="#486e91" stroke="none"/>
+      <path d="M265 340 Q280 329 284 350 L284 378 Q270 389 265 374Z" fill="#5284a6" stroke="none"/>
+    </g>
+    <g id="head">
+      <g stroke="#334f65" stroke-width="3.5" stroke-linejoin="round">
+        <path d="M157 154 L147 53 Q164 51 200 132Z" fill="#375474"/>
+        <path d="M165 118 L160 78 L183 126Z" fill="#83afc4" stroke="none"/>
+        <path d="M247 131 Q265 77 284 54 L291 161Z" fill="#375474"/>
+        <path d="M268 128 L280 88 L281 137Z" fill="#83afc4" stroke="none"/>
+        <path d="M160 132 Q210 116 276 133 Q293 139 296 174 L297 245 Q294 283 226 288 Q157 286 143 257 L141 180 Q141 142 160 132Z" fill="#7db3ce"/>
+        <path d="M149 156 Q169 135 193 145 Q204 173 192 211 Q173 230 144 214 L141 180Z" fill="#456c90" stroke="none"/>
+        <path d="M246 142 Q276 139 288 164 Q288 187 277 201 Q259 202 246 189Z" fill="#94c3d7" stroke="none"/>
+        <path d="M176 215 Q188 201 208 213 Q224 221 238 213 Q261 200 279 219 Q297 244 274 262 Q253 278 222 277 Q187 277 171 261 Q157 244 176 215Z" fill="#d4e8ed" stroke="none"/>
+      </g>
+      <g id="eyes-open" fill="#fff9eb">
+        <ellipse cx="195" cy="196" rx="18" ry="29"/><ellipse cx="252" cy="195" rx="18" ry="29"/>
+        <ellipse cx="199" cy="201" rx="7.5" ry="14" fill="#283f51"/><ellipse cx="255" cy="200" rx="7.5" ry="14" fill="#283f51"/>
+        <circle cx="202" cy="196" r="2.4" fill="white"/><circle cx="258" cy="195" r="2.4" fill="white"/>
+      </g>
+      <g id="eyes-closed" display="none" fill="none" stroke="#334f65" stroke-width="4.5" stroke-linecap="round"><path d="M183 199 Q195 192 207 198"/><path d="M240 198 Q253 191 264 197"/></g>
+      <g stroke="#334f65" stroke-width="4" stroke-linecap="round" fill="none"><path d="M183 159 Q194 152 203 157"/><path d="M241 157 Q253 151 262 157"/></g>
+      <path d="M207 231 Q221 222 238 230 Q242 241 223 244 Q204 241 207 231Z" fill="#293f50"/>
+      <path id="mouth" d="M204 253 Q222 267 244 251" fill="none" stroke="#334f65" stroke-width="3.5" stroke-linecap="round"/>
+      <ellipse cx="181" cy="245" rx="9" ry="5" fill="#a6cdda" opacity=".8"/>
+    </g>
+    <g id="arm-near" fill="#80b5cd" stroke="#334f65" stroke-width="3.5">
+      <path d="M268 266 Q281 265 288 280 L307 326 Q313 342 300 348 Q285 353 279 337 L257 292 Q251 274 268 266Z"/>
+      <g id="hand-anchor" transform="translate(299 335)">
+        <g id="held-prop" display="none" stroke="#a66d2c" stroke-width="3.5" stroke-linejoin="round">
+          <path d="M-6 29 Q-7-20 21-19 Q47-18 47 30" fill="none"/>
+          <path d="M-13 22 L54 22 L48 79 Q22 91-7 79Z" fill="url(#bucketFill)"/>
+          <ellipse cx="20" cy="23" rx="33" ry="8" fill="#ffd889"/>
+          <ellipse cx="20" cy="24" rx="26" ry="5" fill="#75bdcf" stroke="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="rig-guides" display="none" fill="#f16d55" stroke="#fff" stroke-width="2">
+      <path d="M220 405 L220 267 L220 239 M220 267 L170 278 L139 333 M220 267 L272 280 L299 335 M220 405 L183 410 L177 447 M220 405 L249 410 L253 449" fill="none" stroke="#d15446" stroke-dasharray="5 5"/>
+      <circle cx="220" cy="239" r="6"/><circle cx="272" cy="280" r="6"/><circle cx="170" cy="278" r="6"/>
+      <circle cx="183" cy="410" r="6"/><circle cx="249" cy="410" r="6"/><circle cx="299" cy="335" r="6"/>
+    </g>
+  </g>
+</svg>

@@ -18,6 +18,12 @@
 
 The family server does **not** need another update for these client-side fixes. Do not stop it to simulate an outage. Test-device Wi-Fi loss lets other players continue.
 
+## Optional fun preview — no device setup
+
+[Open the character workshop](character-workshop/index.html) and try **Idle, Walk, Wave and Carry & walk**, then turn the character left/right. This is the first layered animation study; the final Bluey artwork and Unity integration are still ahead. Feedback can wait until you return.
+
+While you are away, the [hosting preparation track](g4-hosting-and-animation-preparation-2026-09-25.html) can continue on Windows. The planned-handoff model and animation study are complete within their recorded scope. Next is restoring real saved world state into an isolated replacement authority. You do not need to complete this checklist before that independent work proceeds.
+
 ## Parent setup still needed later
 
 - Choose an **independent backup destination** such as an external drive or another computer. The parent helper now has protected-backup download/file checking. Choose/store its passphrase privately. An actual off-PC copy and another-account/computer restore remain unproven. [Backup controls](g3-parent-portable-backups-2026-09-25.html).

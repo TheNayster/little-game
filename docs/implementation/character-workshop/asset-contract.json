@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "assetId": "blue-pup-rig-study-01",
+  "status": "browser-prototype-not-production-bluey-art",
+  "goalIds": ["CHAR-01", "ITEM-02"],
+  "source": "blue-pup-rig.svg",
+  "coordinates": {"width": 440, "height": 500, "rootGround": [220, 454]},
+  "layers": ["ground-shadow", "facing-root", "tail", "arm-far", "foot-far", "foot-near", "body", "head", "eyes-open", "eyes-closed", "mouth", "arm-near", "hand-anchor", "held-prop", "rig-guides"],
+  "pivots": {"head": [220, 252], "arm-near": [272, 280], "arm-far": [170, 278], "foot-far": [183, 395], "foot-near": [249, 395], "tail": [280, 364]},
+  "handAnchor": {"parent": "arm-near", "position": [299, 335]},
+  "motions": ["idle", "walk", "wave", "carry"],
+  "options": ["face-left", "face-right", "pace", "pause", "show-rig"],
+  "runtimeRules": {
+    "animationWritesWorldPosition": false,
+    "propOwnershipFromAnimation": false,
+    "networkBoneReplication": false,
+    "rootMotion": false,
+    "gameSaveAccess": false
+  },
+  "notYetImplemented": ["Unity SpriteSkin or Animator integration", "authored front-back and three-quarter views", "production Bluey likeness", "sitting and mouth-visemes", "left-right directional occlusion", "foot-planting refinement", "A10 device profiling"]
+}

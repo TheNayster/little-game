@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "utc": "2026-09-25T21:45:02.1273439+00:00",
+  "checks": [
+    {
+      "name": "planned handoff keeps one writer; exact checkpoint retained; restore required",
+      "passed": true
+    },
+    {
+      "name": "late duplicate ready and grant are idempotent; source cannot cancel after grant",
+      "passed": true
+    },
+    {
+      "name": "cancel before grant permits old writer; a late ready cannot resurrect transfer",
+      "passed": true
+    },
+    {
+      "name": "lost ready or grant can be retried after process restart without restoring old writer",
+      "passed": true
+    },
+    {
+      "name": "unknown, foreign, damaged, old-epoch and private-view offers cannot stage",
+      "passed": true
+    },
+    {
+      "name": "grant must bind exact target, sender, checkpoint and staged generation",
+      "passed": true
+    },
+    {
+      "name": "grant before ready/staging is refused",
+      "passed": true
+    },
+    {
+      "name": "background app is not eligible; failed world restore cannot advertise a writer",
+      "passed": true
+    },
+    {
+      "name": "prepare: BeforeCommit does not allow two writers and can recover from durable state",
+      "passed": true
+    },
+    {
+      "name": "prepare: AfterCommit does not allow two writers and can recover from durable state",
+      "passed": true
+    },
+    {
+      "name": "stage: BeforeCommit does not allow two writers and can recover from durable state",
+      "passed": true
+    },
+    {
+      "name": "stage: AfterCommit does not allow two writers and can recover from durable state",
+      "passed": true
+    },
+    {
+      "name": "fence: BeforeCommit does not allow two writers and can recover from durable state",
+      "passed": true
+    },
+    {
+      "name": "fence: AfterCommit does not allow two writers and can recover from durable state",
+      "passed": true
+    },
+    {
+      "name": "accept: BeforeCommit does not allow two writers and can recover from durable state",
+      "passed": true
+    },
+    {
+      "name": "accept: AfterCommit does not allow two writers and can recover from durable state",
+      "passed": true
+    },
+    {
+      "name": "hard loss has no fabricated grant; private offline play is a separate mechanism",
+      "passed": true
+    },
+    {
+      "name": "cancel: BeforeCommit cannot issue a late grant or permit two writers",
+      "passed": true
+    },
+    {
+      "name": "cancel: AfterCommit cannot issue a late grant or permit two writers",
+      "passed": true
+    },
+    {
+      "name": "exhaustive six-event schedules preserve at most one planned-handoff writer",
+      "passed": true
+    }
+  ],
+  "schedules": 117649,
+  "transitions": 705894,
+  "scope": "Isolated executable planned-handoff model with simulated atomic journals/authenticated sender identities. Not sockets, cryptographic authentication, real disk fault injection, hard-loss election, iPad hosting or mobile qualification."
+}
