@@ -106,7 +106,7 @@
         5,
         32
       ],
-      "description": "Authored legal floors, obstacles, room doors and stairs; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature.",
+      "description": "Authored legal floors, obstacles, room doors and working two-way stairs to an upstairs landing; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature.",
       "evidence": "layout",
       "extraSource": ""
     },
@@ -447,7 +447,7 @@
         3,
         32
       ],
-      "description": "One continuous property is walkable. Full branch rooms, doors/stairs and all room functions are still required; selecting Home while there retains position.",
+      "description": "One continuous property is walkable. An upstairs landing/hall, four bedrooms, working stairs and other room functions are still required; selecting Home while there retains position.",
       "evidence": "scene",
       "extraSource": ""
     },
@@ -865,7 +865,7 @@
       "chapters": [
         32
       ],
-      "description": "Required: one bedroom for each of four player profiles, including parents, with four-person visits. Only earlier isolated two-child ownership/style rules have evidence; four-room UI/network/save integration remains unbuilt. Preserve existing room identities and data.",
+      "description": "Required: one upstairs bedroom for each of four player profiles, including parents, with four-person visits; shared hall and working stairs come first. Only earlier isolated two-child ownership/style rules have evidence; four-room UI/network/save integration remains unbuilt. Preserve existing room identities and data.",
       "evidence": "ledger",
       "extraSource": ""
     },

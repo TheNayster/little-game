@@ -1,0 +1,161 @@
+{
+  "date": "2026-09-26",
+  "baselineCommit": "f0ce483bcf0985287b47eb3ddaf6a314613778e8",
+  "scope": "Current project requirements, focused read-only integration inspection, existing artwork inspection and official vendor research. No exhaustive code audit, gameplay or device testing. Local hashes describe the files at documentation generation, including updated plans.",
+  "externalSources": [
+    {
+      "title": "NGO 2.13 scene behavior",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/scenemanagement/using-networkscenemanager.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "Unity navigation links",
+      "url": "https://docs.unity3d.com/Packages/com.unity.ai.navigation@2.0/manual/NavMeshLink.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "CustomMessagingManager API",
+      "url": "https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/api/Unity.Netcode.CustomMessagingManager.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "Apple game input guidance",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10085/",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "JSON serialization",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/json-serialization.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "serialization rules",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/script-serialization-rules.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "uGUI 2.0 Canvas rendering",
+      "url": "https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/UICanvas.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "LoadAsync",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Resources.LoadAsync.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "UnloadAsset",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Resources.UnloadAsset.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "TextureImporter.isReadable",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/ScriptReference/TextureImporter-isReadable.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "Unity texture compression",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/texture-compression-fundamentals.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    },
+    {
+      "title": "Memory Profiler module",
+      "url": "https://docs.unity3d.com/6000.3/Documentation/Manual/ProfilerMemory.html",
+      "retrieved": "2026-09-26",
+      "kind": "Official primary documentation",
+      "use": "Supports the adjacent report paragraph; project recommendations are separately identified."
+    }
+  ],
+  "localReferences": [
+    {
+      "path": "docs/home-world-feature-tracker.html",
+      "sha256": "d96c486e1afd50194107ecbb3043cb4a745aaae01b222f468b3dc5fcbb568604"
+    },
+    {
+      "path": "docs/current-decisions.md",
+      "sha256": "37bc4fb3e812d31c62a5dc97115ca57b1837114e742f1d736f5054667d1557c1"
+    },
+    {
+      "path": "docs/bluey-game-research-2026-09-23.html",
+      "sha256": "526f9ef48b0a6f19e4bbcb90d6b3e0dda05b1ec6849779d1a5e13d85b5695cc5"
+    },
+    {
+      "path": "docs/implementation/upstairs-bedrooms-research-2026-09-26.html",
+      "sha256": "2410cc2b30a18b8175731f6015d0a0654a2749da5e67b36817ef487019d8143c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-living.png",
+      "sha256": "2d9cee13de43db066c7628f736e91e775e0021dcf4173f9ea0fc2627a5cbf64d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
+      "sha256": "e2875fcca70e9a5e728d19da2366965f48a7c6a965a96edc07ae58232742f52f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs",
+      "sha256": "d6d96763ec7ee0eea80c7d2e6f1de18f51fe0ccf217c54fda33b0f46a7f1e6af"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs",
+      "sha256": "1a44a7b31e038eef44e06871d634f30b49b2dfede862af21e7cc533f5cf4e419"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
+      "sha256": "3161e796d42252057c055052ebdcc6de70f2c3a075e52b36430629a15eaaebb5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs",
+      "sha256": "b48c9d544737ba67945121afd21b8933fe98e3901bcd5b3261c4c28dd12f242c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilyPairing.cs",
+      "sha256": "48f513301f588fb8b6e8ab69330366b408efb2199d3f2eaa69dfd233e7dbfc20"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs",
+      "sha256": "4fe3593348ba40140cc72cb3ba5b041fc2cf11c8905852abe8664baa44522810"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/IGardenSession.cs",
+      "sha256": "66746003fae5e6b305e742424be3a9a26f986fd27099dd68253a6b7721536ec6"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/HomeArtPart.cs",
+      "sha256": "788dbb7c5f7dc5652d26857c5bb52cd1cd1782fd363df6657b021130c6425484"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSaving.cs",
+      "sha256": "10fb1c294608b8604d60d37f995c4e76f1c9bd320192dc246c33f29c3b309ea4"
+    },
+    {
+      "path": "docs/implementation/home-scene-layer-research-2026-09-26.html",
+      "sha256": "312be615bfc761e2f994eb86095a74714c0761ab8b0f258e8c52f18b40ce3a6c"
+    },
+    {
+      "path": "SourceArt/Home/README.md",
+      "sha256": "30443e75853fa60e9c75a5e13d66fbdbbf5e0aa6942c4b9f4cc1744483af09f2"
+    }
+  ]
+}

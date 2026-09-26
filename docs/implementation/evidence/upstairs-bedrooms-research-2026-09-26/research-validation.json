@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "scope": "Research traceability, unchanged implementation status, documentation-only scope and retained Home coverage. No gameplay, build, device, or browser visual qualification.",
+  "officialExternalSources": 12,
+  "homeTrackerEntries": 218,
+  "bedrooms": 4,
+  "secretRooms": 4,
+  "globalInventoryEntries": 330,
+  "completedGameplayChecks": 0,
+  "implementationStatusesUnchanged": true,
+  "errors": []
+}

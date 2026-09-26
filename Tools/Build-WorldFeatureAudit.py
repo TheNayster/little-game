@@ -71,7 +71,7 @@ G-02|all|Play and presentation|Independent worlds, cameras and local loading|par
 G-03|all|Play and presentation|Bluey-style illustrated dollhouse|part|1,2,5|Detailed wide scenery, readable outlines, perspective floors, foreground occlusion and recognizable characters. Scenic shells and initial home layers exist; art alone does not make furniture usable.|layers
 G-04|all|Play and presentation|One visible object per usable object|part|5,51|Separate room architecture, rear/front furniture, supports and movable props. Sofa, trampoline and shed have integrated layers; kitchen and remaining furniture still need this treatment.|layers
 G-05|all|Controls and menus|Joystick and tap-to-walk|play|5,48|Independent device preference, floor movement, stop on release and safe cancellation. Current floor bounds are not a complete furniture-aware pathfinding system.|solo
-G-06|all|Controls and menus|Walk around furniture and through doors|plan|5,32|Authored legal floors, obstacles, room doors and stairs; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature.|layout
+G-06|all|Controls and menus|Walk around furniture and through doors|plan|5,32|Authored legal floors, obstacles, room doors and working two-way stairs to an upstairs landing; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature.|layout
 G-07|all|Controls and menus|Family circle, horizontal characters, vertical places, down arrow|play|3,17|Lower-right circle avoids the joystick; the tray keeps the avatar visible above it. One Heeler Home entry; the Creek stays available. Only Bluey and Bingo currently appear as playable choices.|nav
 G-08|all|Controls and menus|Local loading and safe travel failure|part|3,12,50|Prepare destination art and accepted world state before enabling input; retry/back on failure without moving siblings. Existing scenic travel works; new room/story loaders need coverage.|scene
 G-09|all|Controls and menus|Generous touch targets and gesture ownership|part|2,5,48|Large picture targets, safe areas, pointer ownership, drag versus walking separation and cancellation on menus/lock. Broad physical child-usability qualification remains open.|solo
@@ -94,7 +94,7 @@ G-25|all|Shared objects|Borrowed tools return automatically|part|51|Current buck
 G-26|all|Shared objects|Enough tools and places for four|part|31,47,51|Four sofa/trampoline places exist in unchanged artwork. Other stations must offer four-person participation and essential tool stock; the single prototype bucket is not sufficient.|keepy
 G-27|all|Shared objects|Protect personal creations and prevent hoarding|plan|32,51|Separate fixed stock, essential tools, bounded loans, personal items, creations, supplies and effects. Count nested loans; preserve art/food and offer recoverable toy-box storage.|ledger
 G-28|all|Shared objects|Reusable reactions and reversible changes|part|2,6,19,30|Visible empty/full, dirty/clean, growth and valid rejection exist in the small water loop. Add material transforms, serving reactions, paint removal, undo and stable custom creations.|core
-H-01|home|Rooms and furniture|Connected house, veranda and backyard|part|3,32|One continuous property is walkable. Full branch rooms, doors/stairs and all room functions are still required; selecting Home while there retains position.|scene
+H-01|home|Rooms and furniture|Connected house, veranda and backyard|part|3,32|One continuous property is walkable. An upstairs landing/hall, four bedrooms, working stairs and other room functions are still required; selecting Home while there retains position.|scene
 H-02|home|Rooms and furniture|Living-room sofa for four|play|5,47|Four close places, seated poses, foreground masking, avatar switch and independent exits. Available in 130/132; installed iPads/server 128 retain two places.|keepy
 H-03|home|Rooms and furniture|Living-room radio and automatic dancing|play|1,5|Radio on plays music and nearby idle characters dance; movement and other actions take priority. Local mute is independent of shared power.|home
 H-04|home|Rooms and furniture|Chairs, benches, cushions and resting spots|plan|4,5,32|Correct seated/resting poses, holding a small item, easy exits and different cast sizes. The implemented sofa does not establish all furniture support.|ledger
@@ -124,7 +124,7 @@ H-27|home|Dinosaur play|Named animated toys with connected uses|plan|26,28|Carry
 H-28|home|Dinosaur play|Dinosaur Discovery Mat|plan|28|Uncover toy, brush, hear name, optionally wash and arrange its world. Bypass digging if wanted; toys and creations survive independent departures.|ledger
 H-29|home|Science|Discovery bench and free experiments|plan|30|Eight listed stations with immediate repeatable reactions, prediction pictures, generous assistance and no required order. First proposed slice: float tub, magnets and colored light.|ledger
 H-30|home|Science|Shared experiments and saved creations|plan|30,31,47|Up to four participants with independent controls/trays, local narration and safe resets. Keep finished plants, boats or arrangements; simulation and explanations must agree.|ledger
-H-31|home|Bedrooms|Four persistent player-owned bedrooms|dev|32|Required: one bedroom for each of four player profiles, including parents, with four-person visits. Only earlier isolated two-child ownership/style rules have evidence; four-room UI/network/save integration remains unbuilt. Preserve existing room identities and data.|ledger
+H-31|home|Bedrooms|Four persistent player-owned bedrooms|dev|32|Required: one upstairs bedroom for each of four player profiles, including parents, with four-person visits; shared hall and working stairs come first. Only earlier isolated two-child ownership/style rules have evidence; four-room UI/network/save integration remains unbuilt. Preserve existing room identities and data.|ledger
 H-32|home|Bedrooms|Decorating, visits and undo|plan|32|Beds, rugs, shelves, toy baskets, cushions, pictures, decoration drawers, wall/bedding/lamp/plush choices; owner edits, optional Decorate together, safe paths and undo.|ledger
 H-33|home|Bedrooms|Personal toy box and creation gallery|plan|28,32,51|Separate personal catalog, every dinosaur type, bounded loose props, put-one-away/take-one-out and recoverable displays. Never delete the oldest toy or a saved creation.|ledger
 H-34|home|Bedrooms|Gentle tidy help and visitor protection|plan|32,51|Owner's Help tidy stores loose personal toys and eligible loans; leave installed displays, held objects and other rooms alone. Visitors cannot erase a room.|ledger
@@ -279,7 +279,7 @@ def refs(f):
 
 INTRO='''# Little Weeps — all-world feature audit
 
-September 26, 2026 · implementation findings retained from main source **8a315ca** and build/device evidence. Four-bedroom/four-secret-room scope corrected later the same day by user request; this correction is documentation only, not a fresh code audit. See the [Home feature tracker](home-world-feature-tracker.md).
+September 26, 2026 · implementation findings retained from main source **8a315ca** and build/device evidence. Four-bedroom/four-secret-room scope corrected later the same day by user request; this correction is documentation only, not a fresh code audit. See the [Home feature tracker](home-world-feature-tracker.md). The later [upstairs research](implementation/upstairs-bedrooms-research-2026-09-26.html) updates the work order and specifications only; it does not upgrade implementation statuses.
 
 This is the consolidated feature checklist from the **55-chapter Family Playset research**, current decisions, build plan, Bluey interaction study and Toca/Piknik object catalog. It preserves the full requested game while separating what works now from what remains to build. Catalog variants and overlapping invitations are listed individually for coverage; their count is **not** a count of unique game engines or a completion percentage.
 
@@ -375,10 +375,10 @@ Still open for later content decisions: Spanish dialect; final extra cast priori
 
 ## Recommended next sequence from the existing plan
 
-1. Continue the Home kitchen foundation: clean architecture, real supports/interiors and aligned doors, then one complete food/serving/cleanup loop before expanding to all 15 recipes.
-2. Finish reusable item/room persistence for four owned bedrooms/four secret rooms, four-person tool stock and creation protection; these support bedrooms, kitchen and later worlds.
-3. Build Home content in bounded, tested slices using the [Home tracker](home-world-feature-tracker.md), retaining every requirement. Other worlds remain scenic.
-4. Qualify/install the coordinated content-6 family rollout when devices are available; this physical gate remains open and does not block independent Home documentation/content work.
+1. Follow the latest request and [upstairs research](implementation/upstairs-bedrooms-research-2026-09-26.html): working stairs and landing first, then four owned upstairs bedrooms with usable furniture, storage, permissions and tested persistence. Research is complete; implementation has not started.
+2. Build the four optional secret rooms after the bedroom stage, retaining their independent identity, visits and safe exits.
+3. Continue the complete Home backlog, including kitchen supports/interiors and cooking/serving/cleanup before all 15 recipes, using the [Home tracker](home-world-feature-tracker.md). Other worlds remain scenic.
+4. Qualify the actual candidate and coordinated compatible server/client rollout when devices are available. Recovery and physical gates remain open; a future content/schema change needs its own qualification.
 
 ## Audit method and evidence boundary
 
