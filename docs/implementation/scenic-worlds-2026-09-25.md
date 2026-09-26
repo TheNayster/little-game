@@ -2,7 +2,7 @@
 
 **Native Windows 110 and signed Android 110 · September 25, 2026.** All six destinations now open as long illustrated levels. Home and Backyard share one continuous property. This milestone implements scenery and exploration; new furniture, trampoline, storage and other object interactions remain for the house-focused work next.
 
-The screenshots below are captured from the actual Windows release player at phone proportions, with the existing layered Bluey character. They are not image-generation mockups. The user has not yet reviewed this new scenery on a physical device.
+The screenshots below are captured from the actual Windows release player at phone proportions, with the existing layered Bluey character. They are not image-generation mockups. Android 110 has since been installed and its Creek scenery checked on the phone; user visual approval remains pending.
 
 ## What is built
 
@@ -60,16 +60,28 @@ Major travel shows the destination screen until gestures settle, applicable save
 - **81 core checks pass**, including five new scenic checks: additive save upgrade; six arrivals and long bounds; continuous Home/Garden walking; invalid coordinates/aliases; schema-3 recovery. [Results](evidence/scenic-worlds-2026-09-25/rules.json).
 - **Seven native acceptance groups pass**: existing bucket filling; six touch-selected destinations and sibling/item continuity; all twelve installed panorama segments; real tap walking beyond the old 1000-unit limit; joystick crossing between house and yard without a new visit; independent panning and safe phone/tablet controls; offline save and cold reopening inside Home. [Results](evidence/scenic-worlds-2026-09-25/result.json).
 - **Windows 110 server/client release builds pass**. [Build summary](evidence/scenic-worlds-2026-09-25/windows-build.json).
-- **Android 110 ARM64 release builds and family signing pass**. [Build summary](evidence/scenic-worlds-2026-09-25/android-build.json). It is prepared, not installed on the phone.
+- **Android 110 ARM64 release builds and family signing pass**. [Build summary](evidence/scenic-worlds-2026-09-25/android-build.json). It is now installed in place on the Samsung; see the phone delivery below.
 - Native captures were inspected for scenery presence, character placement, open walking space and menu layout. Visual approval still belongs to the user. Earlier compile/harness cleanup issues were fixed before the final successful build/test run; they are not device failures.
 
 ## Persistence and compatibility
 
 Schema 3 adds the scenic bounds and areas while retaining world/profile IDs, coordinates, avatar IDs, ten existing Garden/Creek props, water and receipt history. Old schema 1/2 saves remain readable and upgrade additively. Home is a Garden arrival shortcut at negative x; it does not clone the house or its objects. Crossing the boundary on foot preserves the visit and held item. Traveling via the menu follows the existing station-tool settlement policy.
 
-The network protocol remains 3; scenic content is **4**, advertised and checked at admission. Existing deployed content-3 clients/server cannot use the new areas, so deployment needs a coordinated server/client update with verified backups. This task did not install devices or replace the live family authority. The recorded deployment remains server/helper 91, Samsung 107 and Apple clients 101. Server backup tooling still caps qualified writer builds at 91; do not raise that gate or deploy the new authority without its recovery qualification.
+The network protocol remains 3; scenic content is **4**, advertised and checked at admission. Existing deployed content-3 clients/server cannot use the new areas, so deployment needs a coordinated server/client update with verified backups. The follow-up phone delivery installed Samsung 110. Server/helper 91 and Apple clients 101 remain unchanged. The phone can use the scenic worlds in solo; shared play awaits matching versions. Server backup tooling still caps qualified writer builds at 91; do not raise that gate or deploy the new authority without its recovery qualification.
 
 The unfinished `codex/saved-bedrooms` checkpoint used experimental room schema 3 before this milestone. It was never integrated or deployed. Its eventual integration must rebase onto the scenic schema and use a later explicit version; copying that old schema-3 implementation over these saves is not an acceptable merge.
+
+## Android phone delivery
+
+The user's supplied wireless endpoint was used to update the Samsung **107 → 110** with `adb install -r`. The installed APK matches the signed artifact SHA-256, the pinned family certificate is unchanged, and the exact Little Weeps package launched successfully. Current Android source was checked against the build manifest: 645 files match byte-for-byte and 11 differ only by Git newline normalization. Two unrelated Windows build profiles are excluded.
+
+All **19 existing save/enrollment files** remain, **17 byte-identical**. Both solo world identities, every original player/toy identity and receipt history are retained. The active schema-2 world upgraded to schema 3; current walking coordinates, one water value, idle timers and revision advanced while the game ran. The untouched older solo save remains identical. Local private backups retain the full before/after data; the repository evidence contains only aggregate checks.
+
+The phone visibly renders the Creek, Bluey, existing props and separated joystick/family-circle controls. The process remained alive with no crash markers in the scoped launch log. This is a delivery/launch check, not sustained performance or four-device qualification. Server 91/Apple 101 remain content 3; Android 110 is content 4, so this phone currently tests the worlds in solo.
+
+[Installation](evidence/scenic-worlds-2026-09-25/android110/installation.json) · [Retained saves and visible checks](evidence/scenic-worlds-2026-09-25/android110/phone-verification.json) · [Source correspondence](evidence/scenic-worlds-2026-09-25/android110/source-verification.json).
+
+![Creek running on the Samsung after the update](evidence/scenic-worlds-2026-09-25/android110/phone-creek.png)
 
 ## Scope and next work
 

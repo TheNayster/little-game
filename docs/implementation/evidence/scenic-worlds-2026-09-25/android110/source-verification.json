@@ -1,0 +1,8 @@
+{
+  "build": 110,
+  "currentCommit": "ec0b284108b2287b4bf86f703627196047113cde",
+  "exactHashMatches": 645,
+  "newlineOnlyMatches": 11,
+  "androidSourceContentMatchesBuiltSource": true,
+  "excluded": "Two Windows build profile assets; not used by the Android build."
+}

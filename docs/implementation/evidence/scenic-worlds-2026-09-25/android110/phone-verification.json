@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "fromBuild": 107,
+  "toBuild": 110,
+  "existingSaveEnrollmentFilesRetained": 19,
+  "byteIdenticalFiles": 17,
+  "soloWorldChecks": [
+    {
+      "worldIdentityRetained": true,
+      "allOriginalPlayerAndToyIdsRetained": true,
+      "playerCount": 1,
+      "toyCount": 5,
+      "receiptsUnchanged": true,
+      "previousSchema": 1,
+      "currentSchema": 1,
+      "changedRecordFields": {
+        "players": [],
+        "toys": []
+      }
+    },
+    {
+      "worldIdentityRetained": true,
+      "allOriginalPlayerAndToyIdsRetained": true,
+      "playerCount": 1,
+      "toyCount": 10,
+      "receiptsUnchanged": true,
+      "previousSchema": 2,
+      "currentSchema": 3,
+      "changedRecordFields": {
+        "players": [
+          "x",
+          "y"
+        ],
+        "toys": [
+          "water"
+        ]
+      }
+    }
+  ],
+  "visibleCreekSceneryVerified": true,
+  "visibleControlsVerified": true,
+  "processAliveAfterLaunch": true,
+  "crashMarkersInScopedLaunchLog": 0,
+  "userVisualApprovalPending": true,
+  "sharedPlayCompatibleWithDeployedServer": false,
+  "scope": "In-place physical Android update and launch. Current player position and one water value changed while the game ran; idle timers/revision also advanced. No save/world, character, item or receipt identities were lost. Sustained performance and mixed-device play are not qualified."
+}
