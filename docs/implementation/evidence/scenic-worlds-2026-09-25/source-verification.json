@@ -1,0 +1,14 @@
+[
+  {
+    "platform": "Windows",
+    "build": 110,
+    "gameCodeAndSceneryFiles": 167,
+    "currentSourceMatchesBuiltSource": true
+  },
+  {
+    "platform": "Android",
+    "build": 110,
+    "gameCodeAndSceneryFiles": 167,
+    "currentSourceMatchesBuiltSource": true
+  }
+]

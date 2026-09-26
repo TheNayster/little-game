@@ -1,0 +1,195 @@
+{
+  "serial": 20,
+  "visiblePlayers": 2,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 1,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.110",
+  "actor": "player-1",
+  "feedback": "Welcome to the garden. Your friends can join you here!",
+  "dragging": "",
+  "zone": "garden",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "position": {
+        "x": 420.0,
+        "y": 100.0
+      },
+      "visible": true
+    },
+    {
+      "id": "player-2",
+      "position": {
+        "x": 460.0,
+        "y": 100.0
+      },
+      "visible": true
+    },
+    {
+      "id": "player-3",
+      "position": {
+        "x": 640.0000610351562,
+        "y": 100.0
+      },
+      "visible": false
+    },
+    {
+      "id": "player-4",
+      "position": {
+        "x": 820.0,
+        "y": 100.0
+      },
+      "visible": false
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "label": "Player 2 has it",
+      "position": {
+        "x": 149.99996948242188,
+        "y": 269.9999694824219
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "sponge-1",
+      "label": "",
+      "position": {
+        "x": 560.0,
+        "y": 120.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "tap-1",
+      "label": "",
+      "position": {
+        "x": 150.0,
+        "y": 340.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plant-1",
+      "label": "",
+      "position": {
+        "x": 810.0,
+        "y": 330.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "puddle-1",
+      "label": "",
+      "position": {
+        "x": 680.0,
+        "y": 140.00003051757812
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 1280,
+  "screenHeight": 591,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -2.108901389874518e-05,
+    "y": 7.62939453125e-06,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardLayoutWidth": 1732.6566162109375,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "character": "bluey",
+  "characterLayers": 11,
+  "controls": [
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 980.8062744140625,
+        "y": 526.728759765625,
+        "width": 155.137451171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 31.76620101928711,
+        "y": 506.7825012207031,
+        "width": 62.054996490478516,
+        "height": 62.055023193359375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1170.6650390625,
+        "y": 31.766263961791992,
+        "width": 88.64990234375,
+        "height": 88.64999389648438
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1147.0250244140625,
+        "y": 526.728759765625,
+        "width": 118.199951171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "garden",
+  "loadingFailure": "",
+  "travelStages": [
+    "loading-screen",
+    "gestures-settled",
+    "travel-requested",
+    "authority-confirmed",
+    "scenery-ready",
+    "destination-presented",
+    "ready"
+  ],
+  "sceneryReady": true,
+  "place": "garden",
+  "cameraX": 420.0,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "garden-shed",
+    "garden-tree",
+    "home-kitchen"
+  ]
+}

@@ -1,4 +1,5 @@
 using System;
+using LittleWeeps.Core;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -116,7 +117,7 @@ namespace LittleWeeps.Client
         }
         private void BuildWorldBubble(int index)
         {
-            var id=WorldIds[index];var ready=id=="garden" || id=="creek";
+            var id=WorldIds[index];var ready=true;
             var group=Rect(worldContent,"World "+id,Vector2.zero,new Vector2(280,212));worldBubbles.Add(group);
             group.anchorMin=group.anchorMax=new Vector2(.5f,1);
             group.anchoredPosition=new Vector2(0,-90-index*212);
@@ -154,7 +155,7 @@ namespace LittleWeeps.Client
             if(!HasWorld)return;
             var selected=ReadPlayer(Actor).avatar;
             foreach(var pair in avatarMarkers)pair.Value.gameObject.SetActive(pair.Key==selected);
-            foreach(var pair in worldBadges)if(pair.Key=="garden" || pair.Key=="creek")pair.Value.text=pair.Key==CurrentArea?"You're here":"Let's play";
+            foreach(var pair in worldBadges)pair.Value.text=pair.Key==CurrentPlace?"You're here":"Let's play";
         }
         private void AnimateNavigation()
         {
@@ -164,8 +165,8 @@ namespace LittleWeeps.Client
         private void LayoutNavigation()
         {
             if(worlds==null)return;
-            worldButton.anchoredPosition=new Vector2(-safe.rect.width/2+90,343);
-            familyCircle.anchoredPosition=new Vector2(Board.rect.width/2-64,-223);
+            worldButton.anchoredPosition=new Vector2(-safe.rect.width/2+85,safe.rect.height/2-72);
+            familyCircle.anchoredPosition=new Vector2(safe.rect.width/2-88,-safe.rect.height/2+103);
             worldScroll.StopMovement();worldScroll.verticalNormalizedPosition=1;
             characterScroll.StopMovement();characterScroll.horizontalNormalizedPosition=0;
         }

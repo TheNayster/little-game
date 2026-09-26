@@ -12,7 +12,7 @@ try
         new JsonSerializerOptions { IncludeFields = true });
     SoloWorld.Validate(world);
     var profiles = input.RootElement.GetProperty("profiles").EnumerateArray().Select(p => p.GetString()).OrderBy(p => p);
-    if (world.schema != 2 || !world.players.Select(p => p.id).OrderBy(p => p).SequenceEqual(profiles))
+    if ((world.schema != 2 && world.schema != WorldLayout.Schema) || !world.players.Select(p => p.id).OrderBy(p => p).SequenceEqual(profiles))
         throw new Exception("Unsupported shared world or mismatched players.");
     Console.WriteLine("VALID");
 }

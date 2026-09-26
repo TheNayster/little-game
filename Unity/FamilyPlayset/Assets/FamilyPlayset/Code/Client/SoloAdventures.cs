@@ -35,15 +35,14 @@ namespace LittleWeeps.Client
             var own=snapshot.players.First(p=>p.id==Actor);
             if(renderedArea==own.zone && renderedVisit==own.visit && Board.rect.width>0 && Board.rect.height>0)
             {
-                Vector2 Point(RectTransform rect)=>new Vector2((rect.anchoredPosition.x/Board.rect.width+.5f)*SoloWorld.Width,
-                    (rect.anchoredPosition.y/Board.rect.height+.5f)*SoloWorld.Height);
+                Vector2 Point(RectTransform rect)=>FromBoard(rect.anchoredPosition);
                 var position=Point(avatar);
-                if(SoloWorld.Position(position.x,position.y)){own.x=position.x;own.y=position.y;}
+                if(WorldLayout.Position(own.zone,snapshot.schema,position.x,position.y)){own.x=position.x;own.y=position.y;}
                 foreach(var toy in snapshot.toys.Where(t=>t.zone==own.zone && !string.IsNullOrEmpty(t.holder)))
                     if(toys.TryGetValue(toy.id,out var rect) && rect.gameObject.activeSelf)
                     {
                         var point=Point(rect);
-                        if(SoloWorld.Position(point.x,point.y)){toy.x=point.x;toy.y=point.y;}
+                        if(WorldLayout.Position(toy.zone,snapshot.schema,point.x,point.y)){toy.x=point.x;toy.y=point.y;}
                     }
             }
             SoloWorld.Validate(snapshot);return snapshot;
@@ -66,7 +65,7 @@ namespace LittleWeeps.Client
             try
             {
                 if(World!=null && !TrySaveNow())return false;
-                var record=adventures.Load(id);var restored=SoloWorld.Restore(record.snapshot);
+                var record=adventures.Load(id);var restored=SoloWorld.WithScenery(SoloWorld.Restore(record.snapshot));
                 // Release all old pointer leases and commit before changing the
                 // displayed authority. Failed disk writes leave current play intact.
                 adventures.Save(record,restored.Snapshot());adventures.Select(id);

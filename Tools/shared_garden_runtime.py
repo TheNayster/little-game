@@ -59,7 +59,8 @@ class Run:
         self.build, self.interactive = build, interactive
         self.folder = ROOT / f'Builds/NetworkProbe/G3-0.0.{build}'
         summary = read(self.folder / 'build-summary.json')
-        require(summary and summary['contract'] in (2, 3, 4) and summary['gardenPresentation'], 'Playable garden build required')
+        require(summary and summary['contract'] in (2, 3, 4, 5) and summary['gardenPresentation'], 'Playable garden build required')
+        self.content = 4 if summary["contract"] >= 5 else (3 if summary["contract"] >= 4 else 2 if summary["contract"] >= 3 else 1)
         self.protocol = 3 if summary['contract'] >= 4 else 2 if summary['contract'] >= 3 else 1
         self.motion_conditions = motion_conditions or {}
         require(len(summary['builds']) == 2, 'Both binaries required')
@@ -113,7 +114,7 @@ class Instance:
         self.out.mkdir()
         cfg = dict(runId=run.run_id, instanceId=self.identity, role=role, profile=profile,
                    token=next((s['token'] for s in run.slots if s['profile'] == profile), ''),
-                   protocol=run.protocol, content=run.protocol, port=run.port, slots=run.slots if role == 'server' else [],
+                   protocol=run.protocol, content=run.content, port=run.port, slots=run.slots if role == 'server' else [],
                    presentation=True, verifyGarden=role == 'client' and not run.interactive, interactive=run.interactive)
         if role == 'client' and not run.interactive: cfg.update(run.motion_conditions)
         config = run.path / (self.identity + '.config.json'); write(config, cfg)

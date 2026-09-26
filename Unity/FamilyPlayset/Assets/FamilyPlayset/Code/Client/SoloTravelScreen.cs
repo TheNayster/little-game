@@ -50,11 +50,11 @@ namespace LittleWeeps.Client
         }
         private void BeginWorldTravel(string target)
         {
-            if(WorldLoading || !HasWorld || !SoloWorld.KnownArea(target))return;
+            if(WorldLoading || !HasWorld || !WorldLayout.Destination(target))return;
             CancelPointers();Narration.Stop();CloseNavigation();menu.SetActive(false);
             loadingDestination=target;travelFailure=null;travelStages.Clear();travelStages.Add("loading-screen");
             destinationPicture.sprite=Resources.Load<Sprite>("WorldMenu/"+target);
-            destinationTitle.text="Off to "+(target=="creek"?"the Creek":"the Garden")+"!";
+            destinationTitle.text="Off to "+WorldNames[Array.IndexOf(WorldIds,target)]+"!";
             loadingCaption.text="Getting your place ready…";loadingBack.SetActive(false);
             foreach(var dot in loadingDots)dot.gameObject.SetActive(true);
             loadingScreen.gameObject.SetActive(true);loadingScreen.SetAsLastSibling();familyCircle.gameObject.SetActive(false);stick.gameObject.SetActive(false);
@@ -81,7 +81,7 @@ namespace LittleWeeps.Client
                 travelStages.Add("departure-saved");
             }
             Travel(target);travelStages.Add("travel-requested");
-            while(TravelPending || shared!=null && shared.Busy || CurrentArea!=target)
+            while(TravelPending || shared!=null && shared.Busy || CurrentPlace!=target)
             {
                 if(!CanKeepLoading(deadline,generation))yield break;
                 yield return null;
@@ -93,8 +93,14 @@ namespace LittleWeeps.Client
                 if(!TrySaveNow()){FailTravel("Your new place couldn't be saved yet. Please ask a grown-up.");yield break;}
                 travelStages.Add("arrival-saved");
             }
-            // Both prototype areas already have installed views. Future scenic
-            // loaders must finish here before this final presentation barrier.
+            // Assets are prepared only around this player's camera.
+            TickScenery();
+            while(!SceneryReady)
+            {
+                if(!CanKeepLoading(deadline,generation))yield break;
+                yield return null;
+            }
+            travelStages.Add("scenery-ready");
             Render();Canvas.ForceUpdateCanvases();yield return null;
             if(!CanKeepLoading(deadline,generation))yield break;
             travelStages.Add("destination-presented");

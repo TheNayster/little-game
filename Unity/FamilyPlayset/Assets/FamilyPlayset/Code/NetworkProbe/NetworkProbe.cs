@@ -17,7 +17,7 @@ namespace LittleWeeps.NetworkProbe
     // enrollment enables the separate Windows LAN proof; never widen the lab bind.
     public sealed partial class NetworkProbe : MonoBehaviour
     {
-        private const int Protocol=3, Content=3, MaxWireBytes=16384;
+        private const int Protocol=3, Content=WorldLayout.Content, MaxWireBytes=16384;
         private const string WalkMessage="littleweeps.walk.v1", MotionMessage="littleweeps.motion.v1";
         private const string CommandMessage="littleweeps.probe.command.v1", StateMessage="littleweeps.probe.state.v1", PoseMessage="littleweeps.probe.pose.v1";
         private static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
@@ -334,7 +334,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithAreas(world);
+            world=SoloWorld.WithScenery(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -522,7 +522,7 @@ namespace LittleWeeps.NetworkProbe
             seenMotionSequence=frame.sequence;
             foreach(var sample in frame.players)
             {
-                if(sample==null || !SoloWorld.Position(sample.x,sample.y))throw new InvalidDataException("Invalid motion point.");
+                if(sample==null || !WorldLayout.Position(sample.zone,Latest.view.schema,sample.x,sample.y))throw new InvalidDataException("Invalid motion point.");
                 var p=Latest.view.players.FirstOrDefault(v=>v.id==sample.actor);
                 if(p==null || p.zone!=sample.zone || p.visit!=sample.visit || frame.time<=PositionTime(p.id))continue;
                 p.x=sample.x;p.y=sample.y;positionTimes[p.id]=frame.time;inputAcks[p.id]=sample.input;
@@ -562,7 +562,8 @@ namespace LittleWeeps.NetworkProbe
             try
             {
                 var pose=JsonUtility.FromJson<DragPose>(Read(reader));
-                if(pose==null || pose.item==null || !SoloWorld.Position(pose.x,pose.y) || !session.TryPlayer(sender,out var actor) ||
+                var view=session.View();
+                if(pose==null || pose.item==null || !WorldLayout.Position(view.toys.FirstOrDefault(t=>t.id==pose.item)?.zone,view.schema,pose.x,pose.y) || !session.TryPlayer(sender,out var actor) ||
                     actor!=pose.actor || !poses.TryGetValue(pose.item,out var current) || current.actor!=actor ||
                     current.lease!=pose.lease || pose.tick<=current.tick)return;
                 current.x=pose.x;current.y=pose.y;current.tick=pose.tick;Publish();
@@ -686,7 +687,7 @@ namespace LittleWeeps.NetworkProbe
         }
         private static bool ValidSave(string payload)
         {
-            try{var saved=JsonUtility.FromJson<SoloSnapshot>(payload);if(saved!=null && saved.schema>2)throw new NotSupportedException("Newer schema.");SoloWorld.Validate(saved);return true;}
+            try{var saved=JsonUtility.FromJson<SoloSnapshot>(payload);if(saved!=null && saved.schema>WorldLayout.Schema)throw new NotSupportedException("Newer schema.");SoloWorld.Validate(saved);return true;}
             catch(ArgumentException){return false;}catch(InvalidOperationException){return false;}
         }
         private void WriteJson<T>(string path,T value)

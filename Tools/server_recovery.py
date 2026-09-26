@@ -81,7 +81,7 @@ def checkpoint(raw):
     header, checksum, payload = raw.decode('utf-8-sig').split('\n', 2)
     check(header == 'LITTLEWEEPS-SOLO-1' and digest(payload.encode()) == checksum, 'Checkpoint checksum mismatch.')
     value = json.loads(payload)
-    check(value.get('schema') == 2, 'Unsupported checkpoint version.')
+    check(value.get('schema') in (2, 3), 'Unsupported checkpoint version.')
     return value
 
 

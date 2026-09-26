@@ -14,13 +14,13 @@ namespace LittleWeeps.Core
 
         public void Validate(string expectedFamily, string expectedAuthority, string expectedWorld)
         {
-            if(version > 1 || protocol > 3 || content > 3 || snapshot?.schema > 2)
+            if(version > 1 || protocol > 3 || content > WorldLayout.Content || snapshot?.schema > WorldLayout.Schema)
                 throw new NotSupportedException("Newer recovery format.");
-            if(version != 1 || protocol != 3 || content != 3 || family != expectedFamily || authority != expectedAuthority ||
+            if(version != 1 || protocol != 3 || (content != 3 && content != WorldLayout.Content) || family != expectedFamily || authority != expectedAuthority ||
                 world != expectedWorld || !FamilyPairing.Id(epoch) || checkpoint < 1 || checkpoint == long.MaxValue)
                 throw new InvalidDataException("Recovery identity or version mismatch.");
             SoloWorld.Validate(snapshot);
-            if(snapshot.schema != 2 || snapshot.players.Length != 4 || snapshot.idleTimers == null)
+            if(snapshot.schema != (content==3?2:WorldLayout.Schema) || snapshot.players.Length != 4 || snapshot.idleTimers == null)
                 throw new InvalidDataException("Incomplete shared recovery state.");
         }
 

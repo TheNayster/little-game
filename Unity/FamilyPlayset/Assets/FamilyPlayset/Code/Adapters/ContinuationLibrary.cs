@@ -61,7 +61,7 @@ namespace LittleWeeps.Adapters
         }
         private void Validate(ContinuationRecord record)
         {
-            if(record?.version>2 || record?.snapshot?.schema>2)throw new NotSupportedException("Newer adventure format.");
+            if(record?.version>2 || record?.snapshot?.schema>WorldLayout.Schema)throw new NotSupportedException("Newer adventure format.");
             if(record==null || (record.version!=1 && record.version!=2) || !FamilyPairing.Id(record.id) || record.actor!=actor || record.createdUtcTicks<=0)
                 throw new InvalidDataException("Invalid adventure identity.");
             SoloSnapshot source;
@@ -84,7 +84,7 @@ namespace LittleWeeps.Adapters
                 ValidateOrigin(record.origin);source=record.origin.snapshot;
             }
             SoloWorld.Validate(record.snapshot);
-            if(record.snapshot.schema!=2 || record.snapshot.worldId!=record.id || record.snapshot.revision<source.revision ||
+            if(record.snapshot.schema<2 || record.snapshot.worldId!=record.id || record.snapshot.revision<source.revision ||
                 !record.snapshot.players.Any(p=>p.id==actor) ||
                 !record.snapshot.players.Select(p=>p.id).SequenceEqual(source.players.Select(p=>p.id)) ||
                 !record.snapshot.toys.Select(t=>t.id).SequenceEqual(source.toys.Select(t=>t.id)))
@@ -95,7 +95,7 @@ namespace LittleWeeps.Adapters
             if(origin==null || origin.family!=family || origin.authority!=authority || origin.world!=world || !FamilyPairing.Id(origin.epoch))
                 throw new InvalidDataException("Local view identity mismatch.");
             SoloWorld.Validate(origin.snapshot);
-            if(origin.snapshot.schema!=2 || !origin.snapshot.players.Any(p=>p.id==actor))throw new InvalidDataException("Incomplete local view.");
+            if(origin.snapshot.schema<2 || !origin.snapshot.players.Any(p=>p.id==actor))throw new InvalidDataException("Incomplete local view.");
         }
         private bool Valid(string text)
         {

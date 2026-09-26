@@ -1,0 +1,249 @@
+{
+  "serial": 309,
+  "visiblePlayers": 2,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 1,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": true,
+  "shared": true,
+  "error": "",
+  "build": "0.0.110",
+  "actor": "player-1",
+  "feedback": "Welcome to the garden. Your friends can join you here!",
+  "dragging": "",
+  "zone": "garden",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "position": {
+        "x": -60.18195343017578,
+        "y": 180.00001525878906
+      },
+      "visible": true
+    },
+    {
+      "id": "player-2",
+      "position": {
+        "x": 460.0,
+        "y": 99.99996185302734
+      },
+      "visible": true
+    },
+    {
+      "id": "player-3",
+      "position": {
+        "x": 640.0,
+        "y": 99.99996185302734
+      },
+      "visible": false
+    },
+    {
+      "id": "player-4",
+      "position": {
+        "x": 820.0,
+        "y": 99.99996185302734
+      },
+      "visible": false
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "label": "Player 2 has it",
+      "position": {
+        "x": 149.9999237060547,
+        "y": 270.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "sponge-1",
+      "label": "",
+      "position": {
+        "x": 560.0,
+        "y": 119.99996948242188
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "tap-1",
+      "label": "",
+      "position": {
+        "x": 150.00003051757812,
+        "y": 340.0000305175781
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plant-1",
+      "label": "",
+      "position": {
+        "x": 810.0,
+        "y": 330.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "puddle-1",
+      "label": "",
+      "position": {
+        "x": 680.0,
+        "y": 140.0
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -7.62939453125e-06,
+    "y": -5.7220458984375e-06,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": true,
+  "charactersOpen": true,
+  "joystickVisible": false,
+  "fullCharactersInTray": true,
+  "character": "bluey",
+  "characterLayers": 11,
+  "controls": [
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 700.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "World Heeler Home",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 832.0,
+        "y": 581.6000366210938,
+        "width": 136.0,
+        "height": 136.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Bingo",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 386.3999938964844,
+        "y": 3.199998378753662,
+        "width": 168.00003051757812,
+        "height": 233.60000610351562
+      },
+      "enabled": true
+    },
+    {
+      "name": "Bluey",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 170.39999389648438,
+        "y": 3.199998378753662,
+        "width": 168.0,
+        "height": 233.60000610351562
+      },
+      "enabled": true
+    },
+    {
+      "name": "World Garden",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 832.0,
+        "y": 412.0000305175781,
+        "width": 136.0,
+        "height": 136.00003051757812
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Close characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 24.800004959106445,
+        "y": 228.0,
+        "width": 89.60000610351562,
+        "height": 88.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "World Playground & Park",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 832.0,
+        "y": 251.1999969482422,
+        "width": 136.0,
+        "height": 127.20002746582031
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "garden",
+  "loadingFailure": "",
+  "travelStages": [
+    "loading-screen",
+    "gestures-settled",
+    "travel-requested",
+    "authority-confirmed",
+    "scenery-ready",
+    "destination-presented",
+    "ready"
+  ],
+  "sceneryReady": true,
+  "place": "home",
+  "cameraX": 770.439453125,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "garden-tree",
+    "home-kitchen"
+  ]
+}

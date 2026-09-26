@@ -1,0 +1,13 @@
+{
+    "version": "0.0.110",
+    "unity": "6000.3.24f1",
+    "profile": "Assets/BuildProfiles/Android Family LAN.asset",
+    "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\AndroidFamilyLAN\\G3-0.0.110\\LittleWeeps.apk",
+    "result": "Succeeded",
+    "utc": "2026-09-26T03:33:38.6044867Z",
+    "platform": "Android",
+    "signing": "Unity intermediate; must be signed with the pinned family key before device installation",
+    "development": false,
+    "errors": 0,
+    "warnings": 0
+}

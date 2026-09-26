@@ -24,7 +24,7 @@ namespace LittleWeeps.Client
         public RectTransform Board { get; private set; }
         public bool JoystickMode { get; private set; }
         public SoloNarration Narration {get;private set;}
-        public bool MenuOpen => menu != null && menu.activeSelf || CharactersOpen || WorldLoading;
+        public bool MenuOpen => menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
         public readonly Dictionary<string, SoloPointerSurface> Surfaces = new Dictionary<string, SoloPointerSurface>();
         private readonly Dictionary<string, RectTransform> toys = new Dictionary<string, RectTransform>();
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
@@ -77,7 +77,7 @@ namespace LittleWeeps.Client
         }
         private void ResetPresentation()
         {
-            CancelPointers();Narration?.Stop();
+            CancelPointers();Narration?.Stop();ResetScenery();
             // Keep one canvas, event system and narration source across switches.
             // Disable old children now so deferred Destroy cannot receive input.
             foreach(Transform child in safe){child.gameObject.SetActive(false);Destroy(child.gameObject);}
@@ -173,11 +173,11 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithAreas(World);
+                World = SoloWorld.WithScenery(World);
                 // Restore releases interrupted item holds; persist that change.
                 // Otherwise merely opening another saved adventure must not
                 // rewrite an untouched solo payload (including precise timers).
-                dirty=snapshot==null || snapshot.schema<2 || snapshot.toys.Any(t=>!string.IsNullOrEmpty(t.holder));
+                dirty=snapshot==null || snapshot.schema<WorldLayout.Schema || snapshot.toys.Any(t=>!string.IsNullOrEmpty(t.holder));
                 Actor = World.Snapshot().players[0].id;
             }
             catch (Exception e)
@@ -223,7 +223,7 @@ namespace LittleWeeps.Client
             try
             {
                 var snapshot = JsonUtility.FromJson<SoloSnapshot>(payload);
-                if (snapshot != null && snapshot.schema > 2) throw new NotSupportedException("Newer solo save schema.");
+                if (snapshot != null && snapshot.schema > WorldLayout.Schema) throw new NotSupportedException("Newer solo save schema.");
                 SoloWorld.Validate(snapshot); return true;
             }
             catch (ArgumentException) { return false; }
@@ -298,7 +298,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();
+            BuildNavigation();BuildScenery();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -325,16 +325,16 @@ namespace LittleWeeps.Client
         public void ChooseAvatar(string id) { if(HasWorld && !TravelPending) Command(SoloAction.ChangeAvatar,value:id); }
         public void Travel(string zone)
         {
-            if(HasWorld && shared==null && SoloWorld.KnownArea(zone))
+            if(HasWorld && shared==null && WorldLayout.Destination(zone))
             {
-                if(zone==CurrentArea)return;
+                if(zone==CurrentPlace)return;
                 CancelPointers();Narration.Stop();
                 var result=Command(SoloAction.Travel,value:zone);
                 if(WorldLoading && !result.Accepted)travelFailure=result.Outcome;
                 message.text=result.Accepted?"Welcome to the "+zone+". Keep exploring!":Friendly(result.Outcome);
                 return;
             }
-            if(shared==null || !shared.Connected || !SoloWorld.KnownArea(zone))return;
+            if(shared==null || !shared.Connected || !WorldLayout.Destination(zone))return;
             requestedArea=zone;CancelPointers();Narration.Stop();
             message.text="Going to the "+zone+"…";
             Render();
@@ -342,7 +342,7 @@ namespace LittleWeeps.Client
         private void FinishTravel()
         {
             if(requestedArea==null || travelSubmitted || shared.Busy || dragging!=null)return;
-            if(requestedArea==CurrentArea){requestedArea=null;message.text="Keep exploring the "+CurrentArea+".";Render();return;}
+            if(requestedArea==CurrentPlace){requestedArea=null;message.text="Keep exploring the "+CurrentArea+".";Render();return;}
             var target=requestedArea;travelSubmitted=true;
             SubmitShared(SoloAction.Travel,"","",target,0,0,result=>
             {
@@ -355,7 +355,7 @@ namespace LittleWeeps.Client
         }
         public void StartActivity(string id)
         {
-            if(!HasWorld || TravelPending)return;
+            if(!HasWorld || TravelPending || id!="" && CurrentArea!="garden" && CurrentArea!="creek")return;
             if(shared!=null)
             {
                 SubmitShared(id==""?SoloAction.LeaveActivity:SoloAction.StartActivity,"","",id,0,0,result=>
@@ -397,12 +397,12 @@ namespace LittleWeeps.Client
         public void SetMenu(bool open) { if(WorldLoading)return;lastLocalAction=Time.realtimeSinceStartup;if(open){CloseNavigation();CancelPointers();Narration.Stop();SaveNow();ExportPlayPerformance();} menu.SetActive(open);if(open)menu.transform.SetAsLastSibling();stick.gameObject.SetActive(JoystickMode && !MenuOpen); }
         public void Listen(){var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
-        { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return new Vector2((local.x/Board.rect.width+.5f)*SoloWorld.Width,(local.y/Board.rect.height+.5f)*SoloWorld.Height); }
-        public Vector2 ScreenPoint(float x,float y) => RectTransformUtility.WorldToScreenPoint(null,Board.TransformPoint(new Vector3((x/SoloWorld.Width-.5f)*Board.rect.width,(y/SoloWorld.Height-.5f)*Board.rect.height,0)));
+        { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return FromBoard(local); }
+        public Vector2 ScreenPoint(float x,float y) => RectTransformUtility.WorldToScreenPoint(null,Board.TransformPoint(ToBoard(x,y)));
         public bool BeginPointer(string role,Vector2 screen)
         {
             if(!HasWorld || MenuOpen || TravelPending || (shared!=null && !shared.Connected))return false;
-            if(role=="ground") {if(JoystickMode)return false;var point=BoardPoint(screen);destination=new Vector2(Mathf.Clamp(point.x,40,960),Mathf.Clamp(point.y,35,455));return true;}
+            if(role=="ground")return BeginGround(screen);
             if(role=="stick") {if(!JoystickMode)return false;MovePointer(role,screen);return true;}
             if(shared!=null)return BeginSharedDrag(role,screen);
             if(dragging!=null || !Command(SoloAction.Grab,role).Accepted)return false;
@@ -410,16 +410,18 @@ namespace LittleWeeps.Client
         }
         public void MovePointer(string role,Vector2 screen)
         {
-            if(role=="stick") {RectTransformUtility.ScreenPointToLocalPointInRectangle(stick,screen,null,out var point);stickDirection=Vector2.ClampMagnitude(point/55,1);stickKnob.anchoredPosition=stickDirection*40;}
-            else if(role==dragging && !gestureEnded) {var point=BoardPoint(screen);dragPoint=point;toys[role].anchoredPosition=ToBoard(point.x,point.y);toys[role].SetAsLastSibling();UpdateTargetHints(point);if(grabConfirmed && SoloWorld.Position(point.x,point.y))shared?.Preview(role,point);}
+            if(role=="ground"){MoveGround(screen);return;}
+            if(role=="stick") {manualCamera=false;RectTransformUtility.ScreenPointToLocalPointInRectangle(stick,screen,null,out var point);stickDirection=Vector2.ClampMagnitude(point/55,1);stickKnob.anchoredPosition=stickDirection*40;}
+            else if(role==dragging && !gestureEnded) {var point=BoardPoint(screen);dragPoint=point;toys[role].anchoredPosition=ToBoard(point.x,point.y);toys[role].SetAsLastSibling();UpdateTargetHints(point);if(grabConfirmed && ScenePosition(point.x,point.y))shared?.Preview(role,point);}
         }
         public void EndPointer(string role,Vector2 screen)
         {
+            if(role=="ground"){EndGround(screen);return;}
             if(role=="stick"){stickDirection=Vector2.zero;stickKnob.anchoredPosition=Vector2.zero;return;}
             if(role!=dragging)return;
-            if(shared!=null){dragPoint=BoardPoint(screen);gestureEnded=true;gestureCancelled=!SoloWorld.Position(dragPoint.x,dragPoint.y);FinishSharedDrag();return;}
+            if(shared!=null){dragPoint=BoardPoint(screen);gestureEnded=true;gestureCancelled=!ScenePosition(dragPoint.x,dragPoint.y);FinishSharedDrag();return;}
             var point=BoardPoint(screen);
-            if(!SoloWorld.Position(point.x,point.y)){CancelPointer(role);return;}
+            if(!ScenePosition(point.x,point.y)){CancelPointer(role);return;}
             var target=ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle)
                 .OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),point)).First();
             var id=Vector2.Distance(new Vector2(target.x,target.y),point)<=SoloWorld.InteractionRadius?target.id:"";
@@ -430,6 +432,7 @@ namespace LittleWeeps.Client
         }
         public void CancelPointer(string role)
         {
+            if(role=="ground")groundPan=false;
             if(role=="stick"){stickDirection=Vector2.zero;if(stickKnob!=null)stickKnob.anchoredPosition=Vector2.zero;}
             if(role==dragging)
             {
@@ -553,6 +556,7 @@ namespace LittleWeeps.Client
         private void OnDestroy()
         {
             if(HasWorld)SaveNow();else FinishBackgroundSave(true);
+            ResetScenery(true);
             if(ownedCanvas!=null)Destroy(ownedCanvas);if(ownedEvents!=null)Destroy(ownedEvents);
             if(Narration!=null)Destroy(Narration);
             foreach(var sprite in new[]{rounded,circle,hintRing,pictureRim})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}
@@ -560,13 +564,13 @@ namespace LittleWeeps.Client
         private void OnApplicationPause(bool paused){applicationPaused=paused;if(paused){CancelPointers();SaveNow();ExportPlayPerformance();}}
         private void OnApplicationFocus(bool focused){if(!focused && HasWorld){CancelPointers();SaveNow();}}
         private void OnApplicationQuit(){if(HasWorld){CancelPointers();SaveNow();}}
-        private Vector2 ToBoard(float x,float y)=>new Vector2((x/SoloWorld.Width-.5f)*Board.rect.width,(y/SoloWorld.Height-.5f)*Board.rect.height);
+        private Vector2 ToBoard(float x,float y)=>new Vector2((x-cameraX)*sceneScale,(y*.45f-250)*sceneScale);
         private void LateUpdate()
         {
             RecordPlayFrame();
             if(!Ready)return;
             AnimateNavigation();
-            AnimateTravelScreen();
+            AnimateTravelScreen();TickScenery();
             if(shared!=null && shared.Connected)
             {
                 var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
@@ -599,7 +603,7 @@ namespace LittleWeeps.Client
             areaLabel.text=(shared==null?(creek?"Creek":"Garden")+" play lab":Actor.Replace("player-","Player ")+" · "+(creek?"Creek":"Garden"))+" / "+Application.version;
             Board.GetComponent<Image>().color=creek?new Color(.7f,.85f,.71f):new Color(.76f,.89f,.72f);
             floorPath.color=creek?new Color(.37f,.72f,.87f):new Color(.9f,.81f,.64f);
-            foreach(var part in fence)part.SetActive(!creek);
+            foreach(var part in fence)part.SetActive(false);
             foreach(var pair in travelButtons)pair.Value.interactable=(shared==null || shared.Connected) && (pair.Key!=zone || TravelPending);
             foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(SoloWorld.AreaOf(toy.zone)==zone);
             var toyStates=ReadToys();var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
@@ -641,12 +645,12 @@ namespace LittleWeeps.Client
                 targetArrows.Add(t.id,arrow.gameObject);arrow.gameObject.SetActive(false);
             }
             if(hit.raycastTarget)Surface(root,t.id);
-            if(t.kind==ToyKind.Bucket){Panel(root,"Handle",new Vector2(0,27),new Vector2(65,50),Ink,false,true);Panel(root,"Handle hole",new Vector2(0,29),new Vector2(52,40),new Color(.76f,.89f,.72f),false,true);Panel(root,"Bucket",Vector2.zero,new Vector2(80,70),new Color(.98f,.67f,.28f));fills[t.id]=Panel(root,"Water",new Vector2(0,3),new Vector2(58,10),new Color(.32f,.68f,.91f));}
+            if(t.kind==ToyKind.Bucket){var handle=Panel(root,"Handle",new Vector2(0,27),new Vector2(65,50),Ink,false,true);handle.sprite=hintRing;Panel(root,"Bucket",Vector2.zero,new Vector2(80,70),new Color(.98f,.67f,.28f));fills[t.id]=Panel(root,"Water",new Vector2(0,3),new Vector2(58,10),new Color(.32f,.68f,.91f));}
             if(t.kind==ToyKind.Sponge){Panel(root,"Sponge",Vector2.zero,new Vector2(92,53),new Color(1,.87f,.39f));for(var i=0;i<4;i++)Panel(root,"Hole",new Vector2(-27+i*18,(i%2)*15-8),new Vector2(8,8),new Color(.78f,.58f,.25f),false,true);}
             if(t.kind==ToyKind.Tap){Panel(root,"Tap pipe",new Vector2(-14,5),new Vector2(28,100),new Color(.47f,.61f,.68f));Panel(root,"Spout",new Vector2(14,40),new Vector2(74,26),new Color(.59f,.71f,.76f));Panel(root,"Handle",new Vector2(-14,66),new Vector2(67,18),new Color(.29f,.5f,.61f));Panel(root,"Drop",new Vector2(40,6),new Vector2(20,28),new Color(.29f,.65f,.88f),false,true);}
             if(t.kind==ToyKind.Plant){Panel(root,"Stem",new Vector2(0,23),new Vector2(10,79),new Color(.27f,.51f,.29f));Panel(root,"Leaf",new Vector2(-19,32),new Vector2(40,20),new Color(.38f,.66f,.33f),false,true);Panel(root,"Pot",new Vector2(0,-22),new Vector2(76,54),new Color(.8f,.43f,.3f));fills[t.id]=Panel(root,"Bloom",new Vector2(0,64),new Vector2(68,68),new Color(.96f,.52f,.61f),false,true);Panel(fills[t.id].transform,"Pollen",Vector2.zero,new Vector2(26,26),new Color(1,.84f,.35f),false,true);}
             if(t.kind==ToyKind.Puddle)fills[t.id]=Panel(root,"Puddle",Vector2.zero,new Vector2(126,49),new Color(.41f,.73f,.86f),false,true);
-            Label(root,t.kind.ToString(),18,new Vector2(0,-70),new Vector2(135,32));
+            // Scene props use their pictures; instructions live in the optional activity menu.
             if(t.kind!=ToyKind.Tap)
             {
                 var cue=Panel(root,"Idle return cue",new Vector2(0,115),new Vector2(160,36),Cream).gameObject;
@@ -672,7 +676,7 @@ namespace LittleWeeps.Client
                 if(!friends.TryGetValue(player.id,out var visual))
                 {
                     visual=CreateAvatar("Friend-"+player.id);friends.Add(player.id,visual);
-                    Label(visual.root,player.id.Replace("player-","Player "),16,new Vector2(0,-66),new Vector2(110,28));
+                    // Personal profile identifiers are not labels in the play scene.
                 }
                 visual.root.gameObject.SetActive(shared.Players.Contains(player.id) && SoloWorld.AreaOf(player.zone)==CurrentArea);
                 visual.root.anchoredPosition=ToBoard(player.x,player.y);
@@ -705,28 +709,12 @@ namespace LittleWeeps.Client
         {
             if(Board==null)return;
             Canvas.ForceUpdateCanvases();
-            // Expand the floor and distribute controls on long landscape phones.
-            // Do not stretch the whole canvas: that distorts faces/text and changes
-            // the already-qualified tablet layout. World coordinates stay fixed.
-            var wide=safe.rect.width/safe.rect.height>1.85f;
-            var width=wide?Mathf.Max(1120,safe.rect.width-96):1120;
-            var spread=width/1120;
-            foreach(var pair in layoutPositions)pair.Key.anchoredPosition=new Vector2(pair.Value.x*spread,pair.Value.y);
-            Board.sizeDelta=new Vector2(width,500);
-            ((RectTransform)Board.Find("Sky")).sizeDelta=new Vector2(width-4,216);
-            floorPath.rectTransform.sizeDelta=new Vector2(width-70,70);
-            var cell=(width-40)/7;
-            for(var i=0;i<fence.Count;i++)
-            {
-                var rect=(RectTransform)fence[i].transform;
-                rect.anchoredPosition=new Vector2(wide?-width/2+20+cell*(i+.5f):-465+i*155,80);
-                rect.sizeDelta=new Vector2(wide?cell-12:142,65);
-            }
-            stick.anchoredPosition=new Vector2(-width/2+80,-223);
-            activity.rectTransform.sizeDelta=new Vector2(width+10,44);
-            message.rectTransform.sizeDelta=new Vector2(width-170,40);
-            saveLabel.rectTransform.sizeDelta=new Vector2(width+10,28);
-            ((RectTransform)menu.transform).sizeDelta=new Vector2(width+70,760);
+            Board.anchoredPosition=Vector2.zero;Board.sizeDelta=safe.rect.size;
+            sceneScale=safe.rect.height/WorldLayout.SceneHeight;
+            stick.anchoredPosition=new Vector2(-safe.rect.width/2+102,-safe.rect.height/2+110);
+            movementLabel.transform.parent.GetComponent<RectTransform>().anchoredPosition=new Vector2(safe.rect.width/2-300,safe.rect.height/2-55);
+            safe.Find("Menu").GetComponent<RectTransform>().anchoredPosition=new Vector2(safe.rect.width/2-100,safe.rect.height/2-55);
+            ((RectTransform)menu.transform).sizeDelta=safe.rect.size;
             LayoutNavigation();
             if(avatar!=null)Render();
         }

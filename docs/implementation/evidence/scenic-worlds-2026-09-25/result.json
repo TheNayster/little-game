@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "build": 110,
+  "checks": [
+    {
+      "check": "existing bucket interaction works through the scenic coordinate mapping",
+      "passed": true
+    },
+    {
+      "check": "six touch-selected destinations with scenery readiness, bounded assets, sibling and item continuity",
+      "passed": true
+    },
+    {
+      "check": "all twelve installed panorama segments render in the real release player",
+      "passed": true
+    },
+    {
+      "check": "real tap walking reaches a destination beyond the old 1000-unit board",
+      "passed": true
+    },
+    {
+      "check": "joystick crosses house and backyard as one continuous property without changing visit or siblings",
+      "passed": true
+    },
+    {
+      "check": "independent touch camera panning and phone/tablet controls remain inside safe area",
+      "passed": true
+    },
+    {
+      "check": "offline travel saves schema 3 with negative home position and reopens in the same property",
+      "passed": true
+    }
+  ],
+  "evidence": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\SharedGarden\\8083448eabd24595b7048021836fa5ef\\scenery",
+  "physicalDevicesAccessed": false,
+  "liveFamilyServerAccessed": false
+}

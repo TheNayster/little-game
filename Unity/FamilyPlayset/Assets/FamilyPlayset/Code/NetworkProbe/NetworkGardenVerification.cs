@@ -42,6 +42,7 @@ namespace LittleWeeps.NetworkProbe
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
             public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray;public string character;public int characterLayers;public ControlView[] controls;
             public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
+            public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
         private void OnDisable()=>Application.logMessageReceived-=Log;
@@ -72,6 +73,7 @@ namespace LittleWeeps.NetworkProbe
         }
         private Vector2 Point(Step step)
         {
+            if(step.role=="screen")return new Vector2(step.x,step.y);
             if(string.IsNullOrEmpty(step.role))return screen.ScreenPoint(step.x,step.y);
             if(step.role.StartsWith("ui:"))
             {
@@ -168,11 +170,11 @@ namespace LittleWeeps.NetworkProbe
         {
             if(traceActor==null || !screen.Ready || motionTrace.Count>=1800)return;
             var p=screen.ReadPlayer(traceActor);
-            var rect=screen.Board.Find(traceActor==screen.Actor?"Pup":"Friend-"+traceActor) as RectTransform;
+            var rect=screen.Board.Find(traceActor==screen.Actor?"Player character":"Friend-"+traceActor) as RectTransform;
             if(rect!=null && rect.gameObject.activeSelf)motionTrace.Add(new MotionSample{time=Time.realtimeSinceStartupAsDouble,visual=BoardPosition(rect),authority=new Vector2(p.x,p.y)});
         }
         private Vector2 BoardPosition(RectTransform rect)
-        {var p=screen.Board.InverseTransformPoint(rect.position);return new Vector2((p.x/screen.Board.rect.width+.5f)*1000,(p.y/screen.Board.rect.height+.5f)*500);}
+        {return screen.WorldPoint(RectTransformUtility.WorldToScreenPoint(null,rect.position));}
         private Rect Bounds(RectTransform rect)
         {
             var corners=new Vector3[4];rect.GetWorldCorners(corners);
@@ -191,6 +193,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.worldsOpen=screen.WorldsOpen;evidence.charactersOpen=screen.CharactersOpen;evidence.character=screen.DisplayedCharacterId;evidence.characterLayers=screen.DisplayedCharacterLayers;
                 evidence.joystickVisible=screen.Surfaces["stick"].gameObject.activeInHierarchy;
                 evidence.worldLoading=screen.WorldLoading;evidence.loadingDestination=screen.LoadingDestination;evidence.loadingFailure=screen.LoadingFailure;evidence.travelStages=screen.TravelStages;
+                evidence.sceneryReady=screen.SceneryReady;evidence.place=screen.CurrentPlace;evidence.cameraX=screen.CameraX;evidence.pendingScenery=screen.PendingScenery;evidence.residentScenery=screen.ResidentScenery;
                 evidence.fullCharactersInTray=screen.CharactersOpen && FindObjectsByType<GameCharacterVisual>(FindObjectsSortMode.None)
                     .Where(v=>v.GetComponentsInParent<RectMask2D>().Any(m=>m.name=="Cast viewport")).All(v=>
                     {
@@ -212,7 +215,7 @@ namespace LittleWeeps.NetworkProbe
                 {var r=c.bounds;return r.xMin>=Screen.safeArea.xMin-2 && r.yMin>=Screen.safeArea.yMin-2 && r.xMax<=Screen.safeArea.xMax+2 && r.yMax<=Screen.safeArea.yMax+2;});
                 evidence.players=(screen.Shared?probe.Latest.view.players:screen.World.Snapshot().players).Select(p=>
                 {
-                    var rect=screen.Board.Find(p.id==screen.Actor?"Pup":"Friend-"+p.id) as RectTransform;
+                    var rect=screen.Board.Find(p.id==screen.Actor?"Player character":"Friend-"+p.id) as RectTransform;
                     return new PlayerView{id=p.id,visible=rect!=null && rect.gameObject.activeSelf,position=rect==null?Vector2.zero:BoardPosition(rect)};
                 }).ToArray();
                 evidence.toys=screen.ReadToys().Select(t=>

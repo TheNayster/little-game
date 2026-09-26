@@ -91,7 +91,7 @@ static partial class Program
             foreach(var kind in new[]{"schema","protocol","content"}){
                 var r=RecoveryFixture();var path=Path.Combine(root,"replica-future-"+kind,"world.save");var replica=Replica(path,r);
                 CommitRecovery(replica,r);r.checkpoint++;CommitRecovery(replica,r);
-                if(kind=="schema")r.snapshot.schema=3;else if(kind=="protocol")r.protocol=4;else r.content=4;
+                if(kind=="schema")r.snapshot.schema=WorldLayout.Schema+1;else if(kind=="protocol")r.protocol=4;else r.content=WorldLayout.Content+1;
                 var future=Envelope(Encoding.UTF8.GetString(RecoveryBytes(r)));File.WriteAllText(path,future);
                 Throws(()=>Replica(path,r));Check(File.ReadAllText(path)==future);
             }

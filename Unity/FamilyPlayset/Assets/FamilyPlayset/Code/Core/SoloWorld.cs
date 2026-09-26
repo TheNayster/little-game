@@ -80,6 +80,7 @@ namespace LittleWeeps.Core
         public const double ToolIdleSeconds=180, ActivityIdleSeconds=60, ResetCueSeconds=5;
         private readonly SoloSnapshot state;
         public long Revision => state.revision;
+        public int Schema => state.schema;
         private SoloWorld(SoloSnapshot snapshot) { state = snapshot; }
         public static SoloWorld Create(params string[] playerIds)
         {
@@ -111,7 +112,7 @@ namespace LittleWeeps.Core
         public static SoloWorld WithAreas(SoloWorld world)
         {
             var copy=world.Snapshot();
-            if(copy.schema==2)return world;
+            if(copy.schema>=2)return world;
             copy.schema=2;
             var creek=Create("template").ReadToys();
             foreach(var toy in creek){toy.zone="creek";toy.id=toy.kind.ToString().ToLowerInvariant()+"-creek";}
@@ -119,7 +120,14 @@ namespace LittleWeeps.Core
             Validate(copy);return new SoloWorld(copy);
         }
         public static string AreaOf(string zone)=>string.IsNullOrEmpty(zone)?"garden":zone;
-        public static bool KnownArea(string zone)=>zone=="garden" || zone=="creek";
+        public static SoloWorld WithScenery(SoloWorld world)
+        {
+            world=WithAreas(world);
+            if(world.Schema>=WorldLayout.Schema)return world;
+            var copy=world.Snapshot();copy.schema=WorldLayout.Schema;copy.revision++;
+            Validate(copy);return new SoloWorld(copy);
+        }
+        public static bool KnownArea(string zone)=>WorldLayout.Area(zone);
         public SoloSnapshot Snapshot() => Clone(state);
         public static SoloSnapshot CopySnapshot(SoloSnapshot snapshot){Validate(snapshot);return Clone(snapshot);}
         // Called by server/local walking authorities. Position is
@@ -127,7 +135,7 @@ namespace LittleWeeps.Core
         internal bool SetWalkingPosition(string actor,string zone,long visit,float x,float y)
         {
             var p=state.players.FirstOrDefault(v=>v.id==actor);
-            if(p==null || p.zone!=zone || p.visit!=visit || !Position(x,y))return false;
+            if(p==null || p.zone!=zone || p.visit!=visit || !WorldLayout.Position(zone,state.schema,x,y))return false;
             if(p.x==x && p.y==y)return false;p.x=x;p.y=y;return true;
         }
         // Presentation reads do not need the durable command receipt history.
@@ -173,18 +181,18 @@ namespace LittleWeeps.Core
         private static bool Activity(string s) => s == "" || s == "garden" || s == "cleanup";
         public static void Validate(SoloSnapshot s)
         {
-            if (s == null || s.schema < 1 || s.schema > 2) throw new InvalidOperationException("Unsupported solo save schema.");
+            if (s == null || s.schema < 1 || s.schema > WorldLayout.Schema) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
                 s.toys == null || s.toys.Length != (s.schema==1?5:10) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
             var ids = new HashSet<string>();
             foreach (var p in s.players)
-                if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !Position(p.x, p.y) ||
+                if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !WorldLayout.Position(AreaOf(p.zone),s.schema,p.x,p.y) ||
                     !ValidArea(p.zone,s.schema) || p.visit<0 || p.visit==long.MaxValue || (s.schema==1 && p.visit!=0)) throw new InvalidOperationException("Invalid player record.");
             ids.Clear();
             foreach (var t in s.toys)
-                if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || !ValidArea(t.zone,s.schema) ||
+                if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || !ValidArea(t.zone,s.schema) || (AreaOf(t.zone)!="garden" && AreaOf(t.zone)!="creek") ||
                     t.id != t.kind.ToString().ToLowerInvariant() + (AreaOf(t.zone)=="garden"?"-1":"-creek") ||
-                    !Position(t.x, t.y) || t.water < 0 || t.water > 3 ||
+                    !WorldLayout.Position(AreaOf(t.zone),s.schema,t.x,t.y) || t.water < 0 || t.water > 3 ||
                     ((t.kind == ToyKind.Tap || t.kind == ToyKind.Sponge) && t.water != 0) ||
                     (t.kind != ToyKind.Sponge && t.wet) ||
                     (!string.IsNullOrEmpty(t.holder) && (t.kind != ToyKind.Bucket && t.kind != ToyKind.Sponge || !s.players.Any(p => p.id == t.holder && AreaOf(p.zone)==AreaOf(t.zone)))))
@@ -201,7 +209,7 @@ namespace LittleWeeps.Core
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
         }
-        private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":KnownArea(zone);
+        private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
         {
             if(toy==null)return;
@@ -262,7 +270,7 @@ namespace LittleWeeps.Core
             SoloResult Reject(string reason) => new SoloResult(false, reason, Revision);
             if (c == null || !Id(c.requestId) || !Id(c.actor) || !Enum.IsDefined(typeof(SoloAction), c.action) ||
                 c.item == null || c.target == null || c.value == null || c.item.Length > 128 || c.target.Length > 128 || c.value.Length > 128 ||
-                c.item.Contains("|") || c.target.Contains("|") || c.value.Contains("|") || !KnownArea(c.zone) || c.visit<0 || !Position(c.x, c.y)) return Reject("invalid-command");
+                c.item.Contains("|") || c.target.Contains("|") || c.value.Contains("|") || !ValidArea(c.zone,state.schema) || c.visit<0 || !WorldLayout.Position(c.zone,state.schema,c.x,c.y)) return Reject("invalid-command");
             var previous = state.receipts.FirstOrDefault(r => r.requestId == c.requestId);
             if (previous != null) return previous.fingerprint == c.Fingerprint() ? new SoloResult(true, previous.outcome, previous.revision, true) : Reject("request-id-reused");
             var player = state.players.FirstOrDefault(p => p.id == c.actor);
@@ -277,19 +285,20 @@ namespace LittleWeeps.Core
             switch (c.action)
             {
                 case SoloAction.Travel:
-                    if(state.schema!=2 || !KnownArea(c.value))return Reject("unknown-area");
-                    if(c.value==player.zone)return Reject("already-there");
+                    if(state.schema<2 || !(state.schema>=WorldLayout.Schema?WorldLayout.Destination(c.value):c.value=="garden" || c.value=="creek"))return Reject("unknown-area");
+                    if(c.value==WorldLayout.Place(player))return Reject("already-there");
                     if(player.visit>=long.MaxValue-1)return Reject("visit-limit");
                     // These are essential station tools. Settle a live hold at
                     // its rack, preserving water; no new instance is spawned.
                     foreach(var held in state.toys.Where(t=>t.holder==c.actor))
                     {held.holder="";held.x=held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Bucket?130:120;Touch(held);}
-                    player.zone=c.value;player.visit++;player.x=420;player.y=100;player.activity="";outcome="area-entered";break;
+                    player.zone=WorldLayout.Canonical(c.value);player.visit++;player.x=WorldLayout.ArrivalX(c.value);player.y=100;player.activity="";outcome="area-entered";break;
                 case SoloAction.Move: player.x = c.x; player.y = c.y; break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
                     player.avatar = c.value; break;
                 case SoloAction.StartActivity:
+                    if(player.zone!="garden" && player.zone!="creek")return Reject("unknown-activity");
                     if (!Activity(c.value) || c.value == "") return Reject("unknown-activity");
                     player.activity = c.value; break;
                 case SoloAction.LeaveActivity: player.activity = ""; break;

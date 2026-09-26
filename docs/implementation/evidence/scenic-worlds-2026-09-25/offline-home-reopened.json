@@ -1,0 +1,162 @@
+{
+  "serial": 2,
+  "visiblePlayers": 1,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 1,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": false,
+  "menuOpen": false,
+  "shared": false,
+  "error": "",
+  "build": "0.0.110",
+  "actor": "077f08470db1450a8b2f5019fba1912a",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "garden",
+  "savePath": "C:/Users/sephi/AppData/LocalLow/Little Weeps/Little Weeps\\SoloPrototype\\paired-65f202070ede4999871fe2e2bc7a4b4a-077f08470db1450a8b2f5019fba1912a\\world.save",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "077f08470db1450a8b2f5019fba1912a",
+      "position": {
+        "x": -4380.0,
+        "y": 99.99996185302734
+      },
+      "visible": true
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "label": "",
+      "position": {
+        "x": 359.99981689453125,
+        "y": 129.99998474121094
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "sponge-1",
+      "label": "",
+      "position": {
+        "x": 560.0004272460938,
+        "y": 120.00000762939453
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "tap-1",
+      "label": "",
+      "position": {
+        "x": 149.9998016357422,
+        "y": 339.9999694824219
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plant-1",
+      "label": "",
+      "position": {
+        "x": 809.9998168945312,
+        "y": 330.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "puddle-1",
+      "label": "",
+      "position": {
+        "x": 680.0004272460938,
+        "y": 140.0
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 960,
+  "screenHeight": 640,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 960.0,
+    "height": 640.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 7.62939453125e-06,
+    "width": 960.0,
+    "height": 640.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "character": "bluey",
+  "characterLayers": 11,
+  "controls": [
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 825.0,
+        "y": 574.75,
+        "width": 120.0,
+        "height": 48.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 656.25,
+        "y": 574.75,
+        "width": 157.5,
+        "height": 48.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 32.25,
+        "y": 554.5,
+        "width": 63.0,
+        "height": 63.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 849.0,
+        "y": 32.25,
+        "width": 90.0,
+        "height": 90.0
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "sceneryReady": true,
+  "place": "home",
+  "cameraX": -4200.0,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "home-kitchen",
+    "home-living"
+  ]
+}

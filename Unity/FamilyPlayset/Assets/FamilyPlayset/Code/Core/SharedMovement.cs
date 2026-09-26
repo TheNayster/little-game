@@ -27,13 +27,13 @@ namespace LittleWeeps.Core
         public static bool AdvanceLocal(SoloWorld world,string actor,WalkMode mode,float x,float y,float dt)
         {
             if(world==null || !Enum.IsDefined(typeof(WalkMode),mode) || float.IsNaN(dt) || float.IsInfinity(dt) || dt<0 || dt>.1f ||
-                float.IsNaN(x) || float.IsInfinity(x) || float.IsNaN(y) || float.IsInfinity(y) || Math.Abs(x)>1000 || Math.Abs(y)>1000)
+                float.IsNaN(x) || float.IsInfinity(x) || float.IsNaN(y) || float.IsInfinity(y) || Math.Abs(x)>4800 || Math.Abs(y)>1000)
                 throw new ArgumentException("Invalid local walking step.");
             var p=world.ReadPlayer(actor);
-            var next=Step(p.x,p.y,new WalkInput{mode=mode,x=x,y=y},dt);
+            var next=Step(p.x,p.y,new WalkInput{mode=mode,x=x,y=y},dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
             return world.SetWalkingPosition(p.id,p.zone,p.visit,next.X,next.Y);
         }
-        public static WalkPoint Step(float x,float y,WalkInput input,float dt)
+        public static WalkPoint Step(float x,float y,WalkInput input,float dt,float minX=40,float maxX=960)
         {
             if(input==null || input.mode==WalkMode.Stop || dt<=0)return new WalkPoint(x,y);
             var dx=input.mode==WalkMode.Direction?input.x:input.x-x;
@@ -41,7 +41,7 @@ namespace LittleWeeps.Core
             var length=(float)Math.Sqrt(dx*dx+dy*dy);
             var distance=input.mode==WalkMode.Direction?Math.Min(1,length)*Speed*dt:Math.Min(length,Speed*dt);
             if(length>0){x+=dx/length*distance;y+=dy/length*distance;}
-            return new WalkPoint(Math.Max(40,Math.Min(960,x)),Math.Max(35,Math.Min(455,y)));
+            return new WalkPoint(Math.Max(minX,Math.Min(maxX,x)),Math.Max(35,Math.Min(455,y)));
         }
     }
     // A separate continuous-motion lane. Transactions still use world revisions
@@ -58,7 +58,7 @@ namespace LittleWeeps.Core
         {
             if(input==null || !session.TryPlayer(connection,out var actor) || input.actor!=actor || input.sequence<=0 ||
                 !Enum.IsDefined(typeof(WalkMode),input.mode) || float.IsNaN(input.x) || float.IsNaN(input.y) ||
-                float.IsInfinity(input.x) || float.IsInfinity(input.y) || Math.Abs(input.x)>1000 || Math.Abs(input.y)>1000)return false;
+                float.IsInfinity(input.x) || float.IsInfinity(input.y) || Math.Abs(input.x)>4800 || Math.Abs(input.y)>1000)return false;
             var p=world.ReadPlayer(actor);
             if(input.zone!=p.zone || input.visit!=p.visit)return false;
             if(controls.TryGetValue(actor,out var prior) && prior.connection==connection && input.sequence<=prior.input.sequence)return false;
@@ -74,7 +74,7 @@ namespace LittleWeeps.Core
                 if(!session.TryPlayer(c.connection,out var actor) || actor!=pair.Key || p.zone!=c.input.zone || p.visit!=c.input.visit)
                 {controls.Remove(pair.Key);continue;}
                 if(now-c.received>InputTimeout)continue;
-                var next=Walking.Step(p.x,p.y,c.input,dt);
+                var next=Walking.Step(p.x,p.y,c.input,dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
                 moved|=world.SetWalkingPosition(p.id,p.zone,p.visit,next.X,next.Y);
             }
             return moved;

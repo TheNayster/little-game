@@ -47,7 +47,7 @@ namespace LittleWeeps.EditorTools
             }
             File.WriteAllText(Path.Combine(folder,"build-summary.json"),JsonUtility.ToJson(new Manifest{utc=DateTime.UtcNow.ToString("O"),builds=records.ToArray()},true));
         }
-        [Serializable] private sealed class Manifest{public string utc;public int contract=4;public bool gardenPresentation=true;public Evidence[] builds;}
+        [Serializable] private sealed class Manifest{public string utc;public int contract=5;public bool gardenPresentation=true;public Evidence[] builds;}
         [Serializable] private sealed class Evidence{public string role,version,unity,profile,result,output;public int errors,warnings;public bool dedicatedServer;}
     }
 }
