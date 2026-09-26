@@ -1,5 +1,7 @@
 # Little Weeps — Home world feature tracker
 
+**Android preview 136 — September 26:** Samsung was updated in place from 130 to the fresh signed release containing the researched stairs/landing. All 16 saved records remain; 15 are byte-identical and one received the expected schema/balloon migration. [Preview and retained-save evidence](implementation/upstairs-foundation-2026-09-26.html#android-preview-136). Four bedroom doors/interiors are not implemented. The user is reviewing this preview before further development. PC server/iPads remain recorded at 128; iPhone at 101; none were updated.
+
 Updated September 26, 2026. Maintained completion checklist for the connected house and backyard.
 
 **Latest user requirement: this is a four-player game, including the personal rooms. Provide four player-owned bedrooms and four optional secret rooms, one set per persistent family player profile.** Parent players receive the same room, storage, creation and preference capabilities as child players. The previous two-child-room limit is superseded.
