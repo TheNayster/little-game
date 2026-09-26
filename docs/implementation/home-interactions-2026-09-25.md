@@ -27,7 +27,7 @@ The whole house/backyard remains the existing continuous property. No feature wo
 
 Home adds **schema 4 / content 5 / protocol 3**, preserving prior IDs, water, positions, receipts and timer data. Schema 1→2→3 upgrades remain distinct and readable. Existing content-3/schema-2 and content-4/schema-3 recovery records remain accepted. The older unfinished bedroom experiment is not merged; its schema assumptions need a separate rebase.
 
-The live family server and installed Android remain build 110 while the family tests. Apple updates stay deferred as requested. This new content requires a coordinated server/client update and recovery qualification before family rollout. Build 110 remains the newest writer in the production recovery allowlist; this report does not qualify a new production writer or imply an installation occurred.
+At this milestone the live family server and installed Android remained build 110 while the family tested. Apple updates stay deferred as requested. This new content requires a coordinated server/client update and recovery qualification before family rollout. Build 110 remains the newest writer in the production recovery allowlist; this milestone did not qualify a new production writer or install a device. **September 26 follow-up:** [fresh Android 115 is installed](android-home-update-2026-09-26.html) with prior item data retained and home presentation verified; it currently plays solo. Server/helper 110 and deferred Apple 101 remain unchanged. [WALK-01](walk-animation-research-2026-09-26.html) now precedes further kitchen/bedroom implementation following the user's walking-appearance clarification.
 
 ## Validation
 

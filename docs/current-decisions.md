@@ -66,7 +66,7 @@ Unattended Apple renewal, independent backup/restore, sustained device performan
 
 ## Home work now underway
 
-The user asked to begin the home details/features after reviewing the Family Playset and Bluey research. [HOME-01](implementation/home-interactions-2026-09-25.html) is the first bounded G5/G6 slice: seating, trampoline use, radio-driven dancing and durable shed storage in the connected property. Windows 114 passes scoped native checks. The full room/activity backlog stays in the report and goal sheet; kitchen interactions and bedroom persistence are next. Other worlds remain scenic. The live family remains on 110, Apple updates stay deferred, and content-5 delivery requires coordinated server/client and recovery checks. No phase gate is declared complete.
+The user asked to begin the home details/features after reviewing the Family Playset and Bluey research. [HOME-01](implementation/home-interactions-2026-09-25.html) is the first bounded G5/G6 slice: seating, trampoline use, radio-driven dancing and durable shed storage in the connected property. Windows 114 passes scoped native checks; fresh Android 115 is installed with existing toy data retained and the home visible. The server/helper remains 110; phone currently plays solo, and Apple updates stay deferred. Content-5 shared delivery requires coordinated server/client and recovery checks. The full room/activity backlog stays in the report and goal sheet; kitchen and bedrooms follow the walking-art pass below. Other worlds remain scenic. No phase gate is declared complete.
 
 ## Where to continue
 
@@ -76,3 +76,7 @@ The user asked to begin the home details/features after reviewing the Family Pla
 - [Architecture audit](implementation/pc-vps-plan-audit-2026-09-25.html): scope, corrections and verification of this decision.
 
 Dated implementation reports preserve what happened. Their old “next” instructions and superseded requirements are historical; follow the current records above.
+
+## Walking appearance — September 26 clarification
+
+The user means the character looks rigid and uptight while walking. Prioritize **WALK-01**, a pose/art pass with bent knees, clear foot lift/contact, modest weight shift, relaxed arms and restrained tail/ear follow-through. Keep Bluey/Bingo recognizable and preserve the accepted joystick/control behavior. Do not substitute network/camera/physics tuning for this visual correction. The [deep research and implementation specification](implementation/walk-animation-research-2026-09-26.html) is complete; the gait is not implemented or visually accepted yet. Compare old/new inside the real home at the same travel speed before returning to kitchen/bedroom feature work.

@@ -1,0 +1,278 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Little Weeps — relaxed walking</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;border-radius:24px;background:radial-gradient(ellipse at 25% 45%,#ffffffb5 0 15%,transparent 16%),radial-gradient(ellipse at 75% 50%,#ffffffb5 0 20%,transparent 21%),linear-gradient(#62c0ed,#b8edfa)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid white;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+.wheel .scene-note{position:absolute;top:25%;left:7%;width:48%;font-size:17px}.place-rail{position:absolute;right:0;top:0;bottom:23%;width:39%;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 8px;background:#cbecf7;border-left:4px solid white}.place-rail .stage{position:relative;transform:none!important;left:auto;top:auto;width:126px;min-height:126px;flex-shrink:0}.cast-diagram{position:absolute;left:0;right:0;bottom:0;height:23%;background:#b8e2f7;border-top:4px solid white;display:flex;align-items:center;padding:18px;font-weight:700;font-size:16px}
+main{max-width:1100px;margin:40px auto;padding:20px}table{min-width:680px;width:100%;border-collapse:collapse}td,th{padding:12px;border-bottom:1px solid #c9dadf;text-align:left}code{overflow-wrap:anywhere}.table-scroll{overflow-x:auto}p,li{line-height:1.65}</style></head><body><main><p><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Current build plan</a> · <a href="walk-animation-research-2026-09-26.md">Editable source</a></p><h1 id="making-bluey-and-bingo-look-relaxed-while-walking">Making Bluey and Bingo look relaxed while walking</h1>
+<p>September 26, 2026 · <strong>WALK-RESEARCH-01</strong> · CHAR-01, WORLD-01/02; G6 character presentation. Research and implementation specification, <strong>not an implemented animation fix</strong>. <a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Current plan</a>.</p>
+<h2 id="the-users-clarification-sets-the-scope">The user's clarification sets the scope</h2>
+<p>The problem is <strong>how the character looks while walking</strong>: “super up tight not fluid.” Prioritize the character performance: bent limbs, convincing steps, weight changes, relaxed arms and follow-through. The current joystick placement was accepted. Changing controls, walking speed, server tick rate or camera damping is not the requested solution.</p>
+<p>Recommendation: author a compact, pose-driven 2D walk for the existing recognizable Bluey/Bingo artwork, with feet that support the body and subtle overlapping motion. Keep gameplay position under the existing controller. Start with a visual comparison inside the actual home at the same walking speed. More exaggerated bobbing alone would make the same rigid puppet bounce up and down.</p>
+<h2 id="what-is-established-and-what-is-still-unknown">What is established and what is still unknown</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<thead>
+<tr>
+<th>Evidence</th>
+<th>What it establishes</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User's eight Bluey: Let's Play! screenshots and explicit feedback</td>
+<td>Required appearance, character proportions, illustrated playset and an objection to rigid walking</td>
+<td>Still images cannot establish gait timing, stride lengths or Budge's internal rig/physics</td>
+</tr>
+<tr>
+<td>Official Bluey app announcement</td>
+<td>The mobile reference is Budge's open-ended house/backyard play app</td>
+<td>It does not document the engine's animation/controller implementation</td>
+</tr>
+<tr>
+<td>Current C# and art adapter, committed at e912eff plus build 115 version settings</td>
+<td>Exact current gait, rig hierarchy and presentation behavior below</td>
+<td>Code inspection identifies likely causes; it does not quantify perceptual improvement</td>
+</tr>
+<tr>
+<td>Animator-authored tutorials and Unity documentation</td>
+<td>Established ways to construct and blend walks, pose limbs and manage presentation</td>
+<td>Their sample timings and human proportions are not Bluey's specifications</td>
+</tr>
+<tr>
+<td>Existing movement/recovery evidence</td>
+<td>Earlier network interpolation was tested separately</td>
+<td>Those tests do not prove that the character's walk looks natural</td>
+</tr>
+</tbody>
+</table></div>
+<p>The <a href="https://www.bluey.tv/blog/bluey-lets-play-mobile-app-is-available-now/">official app description</a> supports the playset context. No proprietary animation files were extracted; no new hands-on or frame-by-frame analysis of Budge gameplay is claimed. Exact commercial cadence and animation technology remain unverified. Use the supplied images and existing <a href="../bluey-research/character-references.json">character reference catalog</a> to preserve appearance while we author our own performance.</p>
+<h2 id="why-our-current-walk-looks-stiff">Why our current walk looks stiff</h2>
+<p>Paths below are relative to <code>Unity/FamilyPlayset/Assets/FamilyPlayset/Code/</code>. Findings apply to the source used for Android 115; the family server is still 110.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<thead>
+<tr>
+<th>Confirmed implementation</th>
+<th>Likely visible effect</th>
+<th>Intended correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Client/GameCharacterVisual.cs:33–61</code>: separate UGUI Images; one far/near arm and one far/near foot/leg joint, with no elbow or knee chain</td>
+<td>Whole limbs swing like rigid cutouts; no relaxed bend during the passing step</td>
+<td>Prepare bent-leg/arm drawings or segmented limbs with covered joints; author actual contact and passing shapes</td>
+</tr>
+<tr>
+<td><code>Client/CharacterView.cs:37–49</code>: fixed sinusoidal limb rotations, at most 19° leg swing; body and head receive exactly the same small vertical offset</td>
+<td>Limited weight transfer; upper body appears braced while limbs tick back and forth</td>
+<td>Pose the supporting side, body lean and arm arcs as a coordinated action</td>
+</tr>
+<tr>
+<td><code>Client/CharacterView.cs:41</code>: instant horizontal mirror</td>
+<td>Direction reversals can look like a cardboard cutout flipping</td>
+<td>Short visual turn/settle, preserving character markings and the gameplay root</td>
+</tr>
+<tr>
+<td><code>Client/CharacterMotion.cs:30–39</code>: raw displayed displacement drives speed and facing; &gt;0.01 horizontal displacement changes facing</td>
+<td>Small corrections can change the pose or orientation near a stop</td>
+<td>Presentation hysteresis and explicit discontinuity handling; no new controller delay</td>
+</tr>
+<tr>
+<td><code>Client/CharacterView.cs:37–39</code>: cadence and swing amplitude both shrink with speed</td>
+<td>At a half-speed input the cycle is slower and the swing is smaller, without a corresponding stance/contact model</td>
+<td>Use a measured stride and a defined slow-walk treatment; calibrate foot travel to root travel</td>
+</tr>
+<tr>
+<td><code>Client/CharacterView.cs:43–59</code>: no stance foot lock or lifted-foot trajectory</td>
+<td>Feet may skate, rotate through the floor or fail to sell weight</td>
+<td>Grounded stance interval plus a clear lifted return arc</td>
+</tr>
+<tr>
+<td>Per-pose transforms are assigned directly; walking becomes zero swing on stopping</td>
+<td>Sudden arm/leg reset and a rigid final stance</td>
+<td>Brief pose blend and a supported final step; preserve responsive stopping</td>
+</tr>
+<tr>
+<td>Head stays unrotated to protect the continuous box silhouette</td>
+<td>This guard prevents a disconnected face, but whole-body performance is very limited</td>
+<td>Preserve that guard until artwork supports a connected deformation; do not loosen the head independently</td>
+</tr>
+</tbody>
+</table></div>
+<p>At full speed the current cycle is 1.35 cycles/second and gameplay speed is 210 floor units/second: <strong>about 155.6 floor units per full cycle</strong>. This is arithmetic from our code, not a measurement of the commercial game. The authored stance travel must match the character's actual scale and this translation, or cadence must be recalibrated. Simply increasing joint angles does not establish contact.</p>
+<h2 id="research-findings-that-matter-for-this-walk">Research findings that matter for this walk</h2>
+<p><strong>Build the walk from meaningful poses.</strong> Jason Martinsen demonstrates contact, weight absorption, passing and rise poses, then cleans foot sliding and limb curves before adding detail. That offers a better starting point than independent sine waves. His human rig is a teaching example; our broad torso and short legs need their own drawings. <a href="https://www.animationmentor.com/blog/tutorial-animating-human-walk-cycle/">Animator's walk construction tutorial</a>.</p>
+<p><strong>Different parts should not start and stop together.</strong> Drew Adams identifies synchronized torso/head movement as a cause of stiffness and demonstrates how trailing motion adds fluidity. For Bluey/Bingo, apply restrained overlap to arms, wrists, tail and suitable ear art. Keep the facial block visually connected; do not transplant a human spine's twisting range. <a href="https://www.animationmentor.com/blog/follow-through-and-overlapping-action-the-12-basic-principles-of-animation/">Animator's overlap and follow-through explanation</a>.</p>
+<p><strong>Bingo needs her own tuning.</strong> Nathaniel Seymour's large/small character demonstration treats proportions and timing as part of performance, with motion progressing through a limb instead of moving it as one piece. Our proposal is a shorter, slightly quicker step for Bingo where her size calls for it, calibrated to the same allowed travel speed. Shared rig conventions need not mean identical animation curves. <a href="https://www.animationmentor.com/blog/tutorial-animating-big-and-small-characters/">Animator's size and movement study</a>.</p>
+<p><strong>Blend at corresponding foot phases.</strong> Unity documents that walk/run contacts should line up in normalized time when clips blend. Preserve the supporting foot while changing pace or pose; a blend between arbitrary phases can still slide. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/class-BlendTree.html">Unity blend trees</a>. Unity also supports timed and interruptible state transitions; the existing code-driven view can adopt the same explicit transition contract without requiring an Animator migration first. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/class-Transition.html">Unity transitions</a>.</p>
+<h2 id="proposed-walk-performance-sheet">Proposed walk performance sheet</h2>
+<p>This is our first art/animation proposal, not a claim about Budge's exact poses. Author eight principal poses plus a repeated endpoint, then smooth the curves and inspect intermediate silhouettes. Eight key poses do <strong>not</strong> mean the game should render at eight frames per second.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<thead>
+<tr>
+<th>Part of the step</th>
+<th>Feet and legs</th>
+<th>Body and arms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contact</td>
+<td>Leading foot arrives; trailing foot finishes support; knees are soft</td>
+<td>Weight begins moving toward the new supporting side; opposite arm leads gently</td>
+</tr>
+<tr>
+<td>Absorb</td>
+<td>New supporting knee bends modestly; rear heel/foot prepares to lift</td>
+<td>Body settles a little rather than remaining bolted upright</td>
+</tr>
+<tr>
+<td>Pass</td>
+<td>Free knee bends so the foot clears the ground and passes the supporting leg</td>
+<td>Body travels over support; elbows remain relaxed</td>
+</tr>
+<tr>
+<td>Rise</td>
+<td>Supporting leg lengthens without a locked knee; free foot reaches forward</td>
+<td>Body rises slightly; wrists and tail catch up after the main motion</td>
+</tr>
+<tr>
+<td>Opposite step</td>
+<td>Repeat with the other supporting side</td>
+<td>Maintain continuity across the loop, avoiding a synchronized snap</td>
+</tr>
+</tbody>
+</table></div>
+<p>Keep the feet broad and readable at phone size. A stance foot holds its ground contact while the gameplay root moves above it; the swing foot travels on a shallow arc. Do not force both feet to remain planted while the body translates. Store contact in the local world/floor space and project it consistently with the existing <code>y * 0.45</code> depth convention. Do not estimate gait from screen movement after camera panning.</p>
+<p>Use a small side-to-side weight shift, a relaxed arm arc and a mild forward attitude. Preserve the long rectangular torso, muzzle placement and clean outline. Tail overlap should follow the step rhythm with a delay; an unrelated constant wiggle adds activity without explaining weight. Ear motion is optional and tiny, requiring separate ear art or a safe deformation zone first. Keep blinking independent; continuous head bob or random wobble is not required.</p>
+<p><strong>Initial tuning candidates, subject to visual review:</strong> supporting-knee bend 8–15°, passing-knee bend 20–35°, torso sway around 1–2°, vertical travel around 1–2% of character height, arm swing around 8–15°, visual start/stop blend 0.10–0.18 seconds. These values are proposals, not tested settings or source recommendations. Test silhouettes before tuning angles; cartoon replacement drawings may work better than literal joint rotation. Keep full-speed travel at the current 210 floor units/second for the first comparison so animation quality is the variable under review.</p>
+<h3 id="starting-stopping-turning-and-carrying">Starting, stopping, turning and carrying</h3>
+<p>Start from the nearer foot's supported pose rather than restarting every walk at an arbitrary clock position. On release, stop the gameplay root as currently specified and settle the visual into a nearby supported idle; do not add a long skating stop. A reversal can reorient the silhouette through a brief authored turn while the controller remains responsive. Very short taps still need a small readable step.</p>
+<p>Keep the same stride phase when feasible across idle/walk/carry transitions. Carrying changes the holding arm and body balance while the legs continue walking. The actual held prop remains owned by the existing item system; any hand alignment is presentation only. A visual pose must never duplicate a bucket or change its contents. Reset stance contacts and blend history on travel, teleport, rejoin or character replacement; never drag an old planted foot across the map.</p>
+<h2 id="rig-and-implementation-choice">Rig and implementation choice</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Strength</th>
+<th>Cost / fit</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keep rotating current whole limbs</td>
+<td>Smallest edit</td>
+<td>Cannot produce genuine knee/elbow shapes; more bob does not solve the underlying silhouette</td>
+<td>Insufficient as the finished correction</td>
+</tr>
+<tr>
+<td>Pose drawings plus layered joint curves in the current view</td>
+<td>Works with the game's UGUI rendering; lets us protect Bluey/Bingo outlines</td>
+<td>Needs new bend/contact drawings and a small authored-pose data format</td>
+<td><strong>First bounded implementation</strong></td>
+</tr>
+<tr>
+<td>SpriteRenderer + weighted SpriteSkin + 2D IK</td>
+<td>Continuous deformation and useful foot/hand targets</td>
+<td>Requires renderer/depth/masking integration and mobile profiling; not a component that can be added directly to the existing Images</td>
+<td>Separate spike only if the layered result cannot meet acceptance</td>
+</tr>
+<tr>
+<td>Fully drawn sprite-sheet walk</td>
+<td>Strong silhouette control</td>
+<td>More drawings for views, carry variants and character sizes; hand anchors need per-frame data</td>
+<td>Useful alternative for problem poses, not mandatory for the whole cast now</td>
+</tr>
+<tr>
+<td>Dynamic ragdoll / physics-driven body</td>
+<td>Emergent collisions and motion</td>
+<td>Poor match for predictable, readable dollhouse walking</td>
+<td>Not proposed for the normal walk</td>
+</tr>
+</tbody>
+</table></div>
+<p>The project currently installs Unity 6000.3.24f1, UGUI 2.0.0 and 2D Sprite 1.0.0; <strong>2D Animation is not installed in the manifest</strong>. Unity's SpriteSkin operates on a SpriteRenderer and weighted bones. Its 2D IK includes a two-bone limb solver, but adding an IK package cannot bend an unprepared whole-leg image. <a href="https://docs.unity3d.com/Packages/com.unity.2d.animation@13.0/manual/SpriteSkin.html">SpriteSkin requirements</a>, <a href="https://docs.unity3d.com/Packages/com.unity.2d.animation@13.0/manual/2DIK.html">2D IK</a>. Version 13 documentation is a researched candidate, not an installed or qualified dependency. No paid package is needed for the first pass.</p>
+<p>Prepare editable layered art with joint overlap coverage and alternate bent silhouettes, shared pivot conventions, separate face layers, and stable hand/ground anchors. Keep the current approved prototype likeness. Blender is available for pose/blockout assistance, but this correction does not require turning the cast into 3D models or replacing the renderer before showing an improvement.</p>
+<h2 id="the-first-bounded-implementation-walk-01">The first bounded implementation: WALK-01</h2>
+<ol>
+<li>Record the unchanged walk in the actual home at fixed speed: Bluey/Bingo, left/right, slow/full movement, starts/stops, reversals and carrying. Capture the feet and the whole silhouette, with a fixed-camera comparison first.</li>
+<li>Make a pose sheet using the existing character art, with enough bend and overlapping coverage for the proposed gait. Author the main contact/absorb/pass/rise shapes before adding tail/ear detail.</li>
+<li>Add a read-only walk-pose sampler behind <code>CharacterView</code>; keep <code>GameCharacterVisual</code>, avatar IDs, root position, UI controls and save/authority contracts intact. Both characters share pose semantics but can have separate curves and stride calibration.</li>
+<li>Tie gait phase to ordinary locomotion distance with explicit resets/exclusion for discontinuities. Suppress tiny facing/pose changes near rest. Preserve foot phase through short blends; avoid hiding root correction errors by making the feet race.</li>
+<li>Add restrained arm/wrist and tail follow-through, then start/stop and turn poses. Verify the body/face remains connected in both directions and during existing home actions.</li>
+<li>Show a same-speed before/after loop in the real home. Integrate and validate on Android first; qualify the older iPad when the deferred device update is available. Keep technical checks and the user's visual acceptance separate.</li>
+</ol>
+<p><strong>WALK-01 excludes:</strong> controller acceleration changes, joystick redesign, network buffer retuning, a new physics engine, new world activities and the wider cast. Resume kitchen/bedroom feature work afterward. Home sitting, trampoline and dance polish can reuse the resulting pose/transition tools in a separate bounded pass.</p>
+<h2 id="acceptance-and-evidence-to-collect">Acceptance and evidence to collect</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Proposed acceptance / evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Look and personality</td>
+<td>Same-speed comparison reads as a relaxed walk for both characters; preserved face/torso silhouette; user accepts the appearance</td>
+</tr>
+<tr>
+<td>Feet and joints</td>
+<td>No exposed gaps, snapping knees or conspicuous foot sliding at 0.25× playback; measure stance-foot drift against a proposed 2% of character-height tolerance in world-projected space</td>
+</tr>
+<tr>
+<td>Normal inputs</td>
+<td>Tiny taps, continuous walk, half input, diagonals, both directions, repeated stops and fast reversals remain responsive</td>
+</tr>
+<tr>
+<td>Frame rates</td>
+<td>Compare 30, 60 and supported high-refresh rendering with equal travel distance; similar pose at equal travel phase; no cadence dependency on refresh rate</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>Compare locked and following camera; camera panning while idle must not trigger a walk or turn</td>
+</tr>
+<tr>
+<td>Held props and home</td>
+<td>One real prop stays owned once; contact/hand presentation remains readable; walking away from a sofa/trampoline cancels the activity correctly; radio dance yields to walking</td>
+</tr>
+<tr>
+<td>Family play</td>
+<td>Two local views, then four mixed devices when available; remote gait stays coherent through start/stop, area changes and snapshot corrections; no bone streaming or ownership changes</td>
+</tr>
+<tr>
+<td>Discontinuities</td>
+<td>Teleport/travel, pause/resume, avatar switch and reconnect clear visual history; no giant stride, old foot anchor or pose stuck from the previous room</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Record frame-time p50/p95/p99, animation CPU, allocations and draw/layout work on Android and A10 iPad; target stable 60 FPS where sustainable, with an explicit stable-30 fallback if needed</td>
+</tr>
+</tbody>
+</table></div>
+<p>These are <strong>future acceptance criteria</strong>, not results from this research session. The latest phone check proves build 115 opened and retained existing item data; it does not qualify the improved gait because that gait has not been implemented.</p>
+<h2 id="physics-and-smoothness-supporting-research-deferred-from-walk-01">Physics and smoothness: supporting research, deferred from WALK-01</h2>
+<p>The initial request used “physics and movement”; the later clarification narrows the immediate job to walking appearance. Retain these findings without widening that job:</p>
+<ul>
+<li><strong>Simulation and rendering:</strong> current walking is custom C# position logic, not a Rigidbody2D solver. Fixed simulation steps with render interpolation help cadence under variable frame times; they do not author a natural limb performance. Long-frame clamps in current client presentation deserve separate profiling. <a href="https://gafferongames.com/post/fix_your_timestep/">Fiedler: timestep and interpolation</a>.</li>
+<li><strong>Network motion:</strong> the current code already uses 30 Hz authority, approximately 20 Hz position sends, a 180 ms remote history buffer and immediate local visual anticipation. Keep those separate from gait quality. More buffering increases presentation delay. <a href="https://gafferongames.com/post/snapshot_interpolation/">Fiedler: snapshot interpolation</a>. Unity also distinguishes visual anticipation from full rollback/replay prediction. Our current adapter is custom; it does not become an AnticipatedNetworkTransform automatically. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/api/Unity.Netcode.Components.AnticipatedNetworkTransform.html">Unity anticipation API</a>.</li>
+<li><strong>Selective physics:</strong> later loose balls can use controlled dynamics, while sitting, storage and trampoline occupancy remain explicit interactions. Unity's MovePosition is intended for kinematic Rigidbody2D motion and executes through the physics update; it is not a general smoothing switch for RectTransforms. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Rigidbody2D.MovePosition.html">Unity MovePosition</a>. Box2D distinguishes body types and recommends fixed simulation steps; its 3.1 substep guidance must not be copied as if Unity exposed the same engine version/API. <a href="https://box2d.org/documentation/md_simulation.html">Box2D simulation</a>.</li>
+<li><strong>Secondary settling:</strong> a damped spring is useful for a small visual trailing offset. Critical damping settles without oscillation; underdamping can suit a restrained tail response. It cannot supply missing contact poses or artwork. <a href="https://www.ryanjuckett.com/damped-springs/">Juckett: damped springs</a>.</li>
+<li><strong>Mobile smoothness:</strong> Unity mobile frame targets and Android frame pacing affect when finished frames appear. Measure actual devices before changing them; a 60 FPS target alone is not a guarantee. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Application-targetFrameRate.html">Unity targetFrameRate</a>, <a href="https://developer.android.com/games/sdk/frame-pacing">Android frame pacing</a>.</li>
+<li><strong>Later action polish:</strong> the present trampoline is a repeating sine-height curve, and its landing/launch needs a separately authored compression, flight and recovery sequence. The current radio loop advances notes every 0.375 seconds while the dance oscillates at 1.6 Hz; those clocks are not beat-locked. A later home animation pass should use explicit action phases and an audio-derived beat phase. Neither changes the first walking-art task.</li>
+</ul>
+<h2 id="delivery-record">Delivery record</h2>
+<p>Primary sources above were accessed September 26, 2026. Source inspection establishes the current implementation; all proposed gait parameters, artwork, foot constraints and visual acceptance tests remain pending. Research, goal sheet and plan are updated together. No runtime movement, input, networking or physics code was changed in this research pass.</p>
+<p>The separately requested <a href="android-home-update-2026-09-26.html">Android update</a> installed fresh release 115 while research was underway. That update delivers the prior home features, not WALK-01. Family server/helper 110 and Apple 101 remain unchanged; content-5 shared delivery still requires coordinated qualification.</p></main></body></html>

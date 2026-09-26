@@ -237,6 +237,8 @@ Start the technical test with Bluey and Bingo, then add Muffin and Socks to chec
 
 Dougie's official description says he is deaf and communicates through Auslan. Preserve that characterization with appropriate visual communication and a spoken companion/guide for instructions, rather than requiring the child to read. [Official Dougie description](https://www.bluey.tv/characters/dougie/)
 
+**Walking appearance clarification, September 26:** the user specifically means the walk looks rigid and uptight. [Deep animation research and WALK-01](implementation/walk-animation-research-2026-09-26.html) prioritizes actual bent-limb/contact poses, foot clearance, subtle weight shifts, relaxed arm movement and follow-through while preserving the recognizable artwork. This is the next visual pass before more home feature work; accepted controls and root walking speed stay unchanged for comparison. Research is complete; the improved gait is not implemented.
+
 ### Where Blender fits
 
 The chosen illustrated style does not require modeling every character in 3D. Use layered 2D artwork exported to transparent PNG sprites; retain editable vector or layered source files. Blender remains useful for blocking out a room's perspective, rendering a prop as flat artwork, or an eventual AR presentation. Unity handles the actual interactions, menus, animation, sound, saves, and iPad application.

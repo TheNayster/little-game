@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "build": 115,
+  "previousBuild": 110,
+  "package": "com.littleweeps.familyplayset",
+  "operation": "adb install -r",
+  "currentUnitySourceFilesMatched": 675,
+  "installedApkHashMatched": true,
+  "apkSha256": "126ab18440aada0b6b6ef418b2dc149759f089583dfdfd35f2c4520244086a16",
+  "signatureMatchedPinnedFamilyKey": true,
+  "launchSucceeded": true,
+  "homeSceneVisuallyChecked": true,
+  "saveRetention": [
+    {
+      "branchType": "legacy-local",
+      "schemaBefore": 1,
+      "schemaAfter": 1,
+      "sameWorldId": true,
+      "priorToyCount": 5,
+      "priorToyIdsRetained": true,
+      "priorToyFieldsRetained": true,
+      "priorPlayerIdsRetained": true,
+      "newActionOutcomes": []
+    },
+    {
+      "branchType": "paired-solo",
+      "schemaBefore": 3,
+      "schemaAfter": 4,
+      "sameWorldId": true,
+      "priorToyCount": 10,
+      "priorToyIdsRetained": true,
+      "priorToyFieldsRetained": true,
+      "priorPlayerIdsRetained": true,
+      "newActionOutcomes": [
+        "home-changed",
+        "home-changed",
+        "home-changed",
+        "home-changed",
+        "home-changed",
+        "home-changed"
+      ]
+    }
+  ],
+  "phoneMode": "solo-available",
+  "serverBuildUnchanged": 110,
+  "appleBuildUnchanged": 101,
+  "movementPolishImplemented": false,
+  "native16KbQualified": false
+}
