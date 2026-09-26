@@ -20,7 +20,7 @@ namespace LittleWeeps.Core
     }
     public static class Walking
     {
-        public const float Speed=210;
+        public const float Speed=420;
         // Local play owns its world, so it can apply continuous motion each
         // displayed frame without manufacturing inventory receipts. Shared
         // clients must continue to submit input to MovementAuthority instead.

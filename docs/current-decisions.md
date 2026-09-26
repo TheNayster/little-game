@@ -1,5 +1,7 @@
 # Current project decisions
 
+**Latest movement update — September 26:** [Faster travel 125](implementation/movement-speed-2026-09-26.html#build-125-faster-again-after-phone-feedback) moves both characters at 420 floor units/second: twice the original speed and 33% faster than 124, following the user's phone feedback. The accepted 123 artwork and full-input animation cadence are retained. All 92 core checks pass at 420. Android 125 is installed with matching APK/signature, visible Home and all eight saved records retained. ART-HOME-02 remains the next content task; Apple/server updates stay deferred.
+
 **Approved September 25, 2026:** “Lets stick with pc/vps.” This record resolves the earlier requirement for iPad hosting. Read it before the goal sheet, build guide or a dated research report. A later explicit user decision takes precedence; update all three records together when scope changes.
 
 ## Multiplayer and offline authority
@@ -52,7 +54,7 @@ Keep all six content regions, including Creek, with house/backyard combined into
 
 **Latest character implementation:** [Selected-sheet revision 123](implementation/selected-sheet-characters-2026-09-26.html) is installed on Samsung with eight saved records unchanged. The user liked 122's appearance but found the arms/legs too active; 123 adds smaller walking poses and 25% lower cadence while preserving the other action artwork. Native walk/home/navigation checks pass. The [renewed mechanics research](implementation/walk-animation-research-2026-09-26.html#third-investigation-how-the-body-should-move-after-build-122) records arm/leg opposition, weight transfer, overlap and foot-contact limits. The user reports 123 looks much better; this quieter prototype walk is accepted for continuing home work. Precise foot-contact polish and physical A10 qualification remain open.
 
-**Last verified deployment:** server/helper **110**, Samsung **123**, iPad 7/iPad 9/iPhone **101**. [Selected-style revision 123](implementation/selected-sheet-characters-2026-09-26.html) is installed with exact APK/signature verification and all eight saved records byte-identical across the update. The user has now reviewed 123 and reports the movement looks much better. The server remains content 4 and the phone content 5, currently solo. Apple updates remain deferred; coordinated shared delivery and physical rejoin remain open.
+**Last verified deployment:** server/helper **110**, Samsung **125**, iPad 7/iPad 9/iPhone **101**. [Faster travel 125](implementation/movement-speed-2026-09-26.html) is installed with exact APK/signature verification, visible Home and all eight saved records retained. The user accepted the quieter 123 walk; 125 keeps its artwork/cadence while increasing travel speed. The phone remains content 5 and solo pending coordinated shared delivery; Apple updates stay deferred.
 
 Build 95's smoother offline walking and offline reopening passed on the older iPad. The build 98 continuity repair included in 101 still needs focused physical outage/rejoin acceptance. The Android 101 character/Creek check is scoped evidence, not sustained mixed-device performance.
 

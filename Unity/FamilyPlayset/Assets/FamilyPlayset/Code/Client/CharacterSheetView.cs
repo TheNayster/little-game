@@ -12,8 +12,9 @@ namespace LittleWeeps.Client
         private RectTransform facing, picture, shadow;
         private RawImage image;
         private float time, cycle;
-        // A calmer two-step cadence; gameplay movement speed is unchanged.
-        public const float WalkStride = 160;
+        // Match the requested 2x travel increase while preserving the
+        // quieter step rhythm the user accepted in build 123.
+        public const float WalkStride = 320;
         public CharacterFrame Frame { get; private set; }
         public int FrameIndex { get; private set; }
         public float WalkPhase => cycle;

@@ -1,0 +1,10 @@
+{
+  "build": 125,
+  "sourceBaseCommit": "f392f3cf241e16bc618668f434efe48709702956",
+  "verifiedUnitySourceFiles": 747,
+  "allMatchedBeforeInstall": true,
+  "sourceChanges": {
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterSheetView.cs": "eb5c2dfdf0b439f2475f0fbcd3421c4a31ce173611dd44fe788f52d1b6f79bb1",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs": "c25dfc78d8fbfd53dffe934e96f73f8b5e3a9ee2ce3304dc04e51b65245b85d0"
+  }
+}

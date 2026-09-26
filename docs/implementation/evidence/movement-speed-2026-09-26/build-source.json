@@ -1,0 +1,11 @@
+{
+  "build": 124,
+  "sourceBaseCommit": "f392f3cf241e16bc618668f434efe48709702956",
+  "verifiedUnitySourceFiles": 747,
+  "allMatchedBeforeInstall": true,
+  "sourceChanges": {
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterSheetView.cs": "d05d121398a0a07bbf381d14252657ffa58382dcee5a39b2b8981de79912c6c2",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs": "777c77714b38af332b6b50cabf0395a4f9a3fe256790a9f767b0badec8f15919"
+  },
+  "note": "Later edits affect verification harness/documentation only. Unity-generated trailing whitespace is normalized after verification; runtime source and artwork are unchanged."
+}

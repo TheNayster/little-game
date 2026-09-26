@@ -1,5 +1,7 @@
 # A Bluey playset for your family
 
+**Latest movement update — September 26:** [Faster travel 125](implementation/movement-speed-2026-09-26.html#build-125-faster-again-after-phone-feedback) moves both characters at 420 floor units/second: twice the original speed and 33% faster than 124, following the user's phone feedback. The accepted 123 artwork and full-input animation cadence are retained. All 92 core checks pass at 420. Android 125 is installed with matching APK/signature, visible Home and all eight saved records retained. ART-HOME-02 remains the next content task; Apple/server updates stay deferred.
+
 Feature goal sheet and supporting research • September 23, 2026
 
 **Current scope — September 25:** PC/VPS multiplayer and independent offline solo. Devices never host the shared world. Server state wins on reconnect; offline edits stay local. G4/AUTO-02 are retired. [Current decisions](current-decisions.md) override historical proposals; the [build guide](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) records implementation status.
@@ -10,7 +12,7 @@ Feature goal sheet and supporting research • September 23, 2026
 
 **Latest character implementation:** [Selected-sheet revision 123](implementation/selected-sheet-characters-2026-09-26.html) is installed on Samsung with eight saved records unchanged. The user liked 122's appearance but found the arms/legs too active; 123 adds smaller walking poses and 25% lower cadence while preserving the other action artwork. Native walk/home/navigation checks pass. The [renewed mechanics research](implementation/walk-animation-research-2026-09-26.html#third-investigation-how-the-body-should-move-after-build-122) records arm/leg opposition, weight transfer, overlap and foot-contact limits. The user reports 123 looks much better; this quieter prototype walk is accepted for continuing home work. Precise foot-contact polish and physical A10 qualification remain open.
 
-**Current recorded versions:** server/helper **110**, Samsung **123**, both iPads and iPhone **101**. [Selected-style revision 123](implementation/selected-sheet-characters-2026-09-26.html) is installed with exact APK/signature verification and all eight saved records byte-identical across the update. The user has now reviewed 123 and reports the movement looks much better. The phone currently plays solo on content 5; coordinated shared delivery is pending and Apple updates stay deferred.
+**Current recorded versions:** server/helper **110**, Samsung **125**, both iPads and iPhone **101**. [Faster travel 125](implementation/movement-speed-2026-09-26.html) is installed with exact APK/signature verification, visible Home and all eight saved records retained. The phone currently plays solo on content 5; coordinated shared delivery is pending and Apple updates stay deferred.
 
 **Physical evidence:** four mobile clients have joined the same family world. Both iPads passed scoped shared controls, ownership, travel and rejoin checks. The older iPad passed smoother offline walking and cold reopening on 95. Updated-device sustained play is still open.
 

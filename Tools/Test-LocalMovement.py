@@ -12,7 +12,7 @@ from shared_garden_runtime import read, write, wait, require
 
 def measure(samples):
     pairs = [(a, b) for a, b in zip(samples, samples[1:])
-             if 200 < a['visual']['x'] < 740 and 200 < b['visual']['x'] < 740]
+             if 200 < a['visual']['x'] < 700 and 200 < b['visual']['x'] < 700]
     require(len(pairs) >= 20, 'Insufficient moving canvas samples')
     dt = [b['time'] - a['time'] for a, b in pairs]
     dx = [b['visual']['x'] - a['visual']['x'] for a, b in pairs]
@@ -28,6 +28,7 @@ def main():
     parser.add_argument('build', type=int)
     parser.add_argument('--observe', action='store_true', help='Record a failing baseline without claiming a pass')
     parser.add_argument('--fps', type=int, choices=(30, 60), help='Explicit test frame target; requires build 92 or later')
+    parser.add_argument('--expected-speed', type=float, default=210, help='Requested gameplay speed for this build')
     args = parser.parse_args()
     fixture = RecoveryFixture(args.build); checks = []; error = None
     def inspect(): return client.input('inspect')
@@ -50,23 +51,30 @@ def main():
             walk_to(110, 220)
             client.input('traceStart', role=client.profile)
             if mode == 'tap':
-                client.input('press', x=860, y=220); client.input('release', x=860, y=220)
+                # Keep the destination inside the current scenic camera's
+                # viewport; the old lab's x=860 target is now off-screen.
+                client.input('press', x=780, y=220); client.input('release', x=780, y=220)
             else:
                 client.input('button', text='Tap to walk')
                 client.input('press', role='stick', x=62, y=0)
-            wait(lambda: point()['x'] > 800, mode+' walk', 15)
+            wait(lambda: point()['x'] > 750, mode+' walk', 15)
             if mode == 'joystick': client.input('release', role='stick', x=62, y=0)
             client.input('traceStop')
             trace = read(client.out/'motion-trace.json')
             write(fixture.path/(mode+'-motion.json'), trace)
             metrics = measure(trace['samples'])
-            passed = (metrics['movingFrameFraction'] > .9 and 190 < metrics['meanSpeed'] < 230
-                      and metrics['p95Speed'] < 260 and metrics['worstBackwardStep'] > -.1)
+            passed = (metrics['movingFrameFraction'] > .9 and args.expected_speed * (190/210) < metrics['meanSpeed'] < args.expected_speed * (230/210)
+                      and metrics['p95Speed'] < args.expected_speed * (260/210) and metrics['worstBackwardStep'] > -.1)
             checks.append(dict(control=mode, passed=passed, **metrics))
             print(mode, checks[-1], flush=True)
         client.input('button', text='Menu')
+        require(inspect()['menuOpen'], 'Menu did not open')
         stopped = point(); time.sleep(.3)
-        require(point() == stopped, 'Menu failed to cancel local walking')
+        after = point()
+        # Scenic world-to-canvas projection introduces subpixel float noise
+        # while the camera settles, even when the character has stopped.
+        require(math.hypot(after['x']-stopped['x'], after['y']-stopped['y']) < .01,
+                'Menu failed to cancel local walking')
     except Exception as exc:
         error = str(exc)
         raise
@@ -74,7 +82,7 @@ def main():
         fixture.cleanup()
         passed = error is None and len(checks) == 2 and all(c['passed'] for c in checks)
         result = dict(passed=passed, build=args.build, utc=datetime.now(timezone.utc).isoformat(),
-                      checks=checks, error=error, observeOnly=args.observe, requestedFrameRate=args.fps,
+                      checks=checks, error=error, observeOnly=args.observe, requestedFrameRate=args.fps, expectedSpeed=args.expected_speed,
                       harnessSha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                       scope='Native Windows canvas/input in one isolated offline adventure; not measured A10 smoothness.')
         write(fixture.path/'local-motion-result.json', result)

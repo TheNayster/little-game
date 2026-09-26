@@ -33,7 +33,7 @@ static partial class Program
                 float elapsed=0;
                 for(var i=0;i<60;i++)
                 {var dt=i%2==0?.016f:.017f;elapsed+=dt;Check(Walking.AdvanceLocal(w,"first",WalkMode.Direction,1,0,dt));}
-                var p=w.ReadPlayer("first");Check(Math.Abs(p.x-start.x-210*elapsed)<.01f && p.y==start.y);
+                var p=w.ReadPlayer("first");Check(Math.Abs(p.x-start.x-420*elapsed)<.01f && p.y==start.y);
                 Check(w.Revision==before.revision && JsonSerializer.Serialize(w.Snapshot().receipts,Json)==JsonSerializer.Serialize(before.receipts,Json));
                 Check(JsonSerializer.Serialize(w.ReadToys(),Json)==JsonSerializer.Serialize(before.toys,Json));
                 var stopped=p.x;Check(!Walking.AdvanceLocal(w,"first",WalkMode.Stop,0,0,.05f) && w.ReadPlayer("first").x==stopped);
@@ -153,7 +153,7 @@ static partial class Program
             var revision=w.Revision;var receiptCount=w.Snapshot().receipts.Length;var start=w.ReadPlayer("first").x;
             for(var i=1;i<=30;i++)
             {Check(m.Accept(1,new WalkInput{actor="first",zone="garden",sequence=i,mode=WalkMode.Direction,x=1},i/30.0));m.Tick(i/30.0,1f/30);}
-            Check(Math.Abs(w.ReadPlayer("first").x-start-210)<.01 && w.Revision==revision && w.Snapshot().receipts.Length==receiptCount);
+            Check(Math.Abs(w.ReadPlayer("first").x-start-420)<.01 && w.Revision==revision && w.Snapshot().receipts.Length==receiptCount);
             Good(w,SoloAction.Grab,"bucket-1",actor:"second");Check(Toy(w,"bucket-1").holder=="second");
         });
         Test("walking rejects forged old and previous-visit inputs then times out safely",()=>{
@@ -161,7 +161,7 @@ static partial class Program
             var input=new WalkInput{actor="first",zone="garden",sequence=4,mode=WalkMode.Direction,x=1,y=1};
             Check(!m.Accept(2,input,0));Check(m.Accept(1,input,0));Check(!m.Accept(1,input,0));input.actor="second";input.sequence=5;Check(!m.Accept(1,input,0));
             var before=w.ReadPlayer("first");m.Tick(.1,1f/30);var after=w.ReadPlayer("first");
-            Check(Math.Abs(Math.Sqrt(Math.Pow(after.x-before.x,2)+Math.Pow(after.y-before.y,2))-7)<.001);
+            Check(Math.Abs(Math.Sqrt(Math.Pow(after.x-before.x,2)+Math.Pow(after.y-before.y,2))-14)<.001);
             Check(!m.Tick(.5,1f/30));Good(w,SoloAction.Travel,value:"creek");input.actor="first";Check(!m.Accept(1,input,.6));
             var entered=Encode(w.Snapshot());Check(!m.Tick(.6,1f/30) && Encode(w.Snapshot())==entered);
         });
