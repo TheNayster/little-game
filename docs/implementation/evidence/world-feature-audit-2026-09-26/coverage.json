@@ -684,15 +684,15 @@
   "sources": [
     {
       "path": "docs/bluey-game-research-2026-09-23.md",
-      "sha256": "d512bd485fb0e7938b2b601d2e77e213943024f9b9857b1892b4d2ae7c27a6e2"
+      "sha256": "af2bf9f9f8b8b13645121d86471acc1011122be8173849bf83fc669d01ce9eab"
     },
     {
       "path": "docs/current-decisions.md",
-      "sha256": "04f2e4dc27240fdb7df0de4fe336a724fc002ffd510bfe9c6eb8ebbcf7b02a67"
+      "sha256": "6914476308fcc97a8673e5c26b3387d711c0ed7d904dae17ecfac059223abee1"
     },
     {
       "path": "docs/family-playset-build-guide-2026-09-23.md",
-      "sha256": "23f6323dc454422a174153868f6de6260077241dc65248292129dd0328fab364"
+      "sha256": "a03437a098ef348b1fadac05e2a356da7863bb0198187ebe263bd4bc6d7ed5f6"
     },
     {
       "path": "docs/bluey-lets-play-reference-study-2026-09-25.md",

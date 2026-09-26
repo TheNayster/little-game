@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "scope": "Home documentation coverage and four-profile room requirements; no runtime/device or browser visual qualification",
+  "catalogItems": 197,
+  "homeYardItems": 149,
+  "individualBedrooms": 4,
+  "individualSecretRooms": 4,
+  "acceptanceChecks": 13,
+  "totalChecklistItems": 218,
+  "completedGameplayItems": 0,
+  "homeShowCards": 30,
+  "fullWorldInventoryEntries": 330,
+  "errors": []
+}

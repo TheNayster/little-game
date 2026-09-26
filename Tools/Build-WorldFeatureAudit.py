@@ -124,11 +124,11 @@ H-27|home|Dinosaur play|Named animated toys with connected uses|plan|26,28|Carry
 H-28|home|Dinosaur play|Dinosaur Discovery Mat|plan|28|Uncover toy, brush, hear name, optionally wash and arrange its world. Bypass digging if wanted; toys and creations survive independent departures.|ledger
 H-29|home|Science|Discovery bench and free experiments|plan|30|Eight listed stations with immediate repeatable reactions, prediction pictures, generous assistance and no required order. First proposed slice: float tub, magnets and colored light.|ledger
 H-30|home|Science|Shared experiments and saved creations|plan|30,31,47|Up to four participants with independent controls/trays, local narration and safe resets. Keep finished plants, boats or arrangements; simulation and explanations must agree.|ledger
-H-31|home|Bedrooms|Two persistent child-owned bedrooms|dev|32|Early isolated ownership/style rules exist outside the shipped game. No integrated room UI/network/save rollout. Bedroom ownership follows profile, never selected avatar.|ledger
+H-31|home|Bedrooms|Four persistent player-owned bedrooms|dev|32|Required: one bedroom for each of four player profiles, including parents, with four-person visits. Only earlier isolated two-child ownership/style rules have evidence; four-room UI/network/save integration remains unbuilt. Preserve existing room identities and data.|ledger
 H-32|home|Bedrooms|Decorating, visits and undo|plan|32|Beds, rugs, shelves, toy baskets, cushions, pictures, decoration drawers, wall/bedding/lamp/plush choices; owner edits, optional Decorate together, safe paths and undo.|ledger
 H-33|home|Bedrooms|Personal toy box and creation gallery|plan|28,32,51|Separate personal catalog, every dinosaur type, bounded loose props, put-one-away/take-one-out and recoverable displays. Never delete the oldest toy or a saved creation.|ledger
 H-34|home|Bedrooms|Gentle tidy help and visitor protection|plan|32,51|Owner's Help tidy stores loose personal toys and eligible loans; leave installed displays, held objects and other rooms alone. Visitors cannot erase a room.|ledger
-H-35|home|Secret rooms|Two optional mini-door secret rooms|plan|33|Create an entrance per child, visit either existing room, move/archive doors without deleting contents and keep a visible exit plus return-home picture.|ledger
+H-35|home|Secret rooms|Four optional mini-door secret rooms|plan|33|One secret-room option per player profile, linked to its owned bedroom. All four can visit any existing room; move/archive doors without deleting contents or stranding visitors. Optional use, required four-profile support.|ledger
 H-36|home|Secret rooms|Plush collection and quiet play|plan|33|Dinosaur, dog, cat, bunny, bear and sea-animal plushies, cuddle pillow, rug, cushions, blanket fort and shelf; carry, pile, tuck in, picnic, read and sit together.|ledger
 H-37|home|Secret rooms|Stars, aurora and local calm controls|plan|33|Deep-blue sky, slow green/purple aurora, sparse star twinkles, brightness/music/effect controls and a still reduced-motion version. Optional factual aurora narration.|ledger
 H-38|home|Secret rooms|Independent visits and no surprise search|plan|32,33,34|Persistent layouts and shared visits; leaving never removes another visitor's room. Chill spaces leave normal hiding rounds; including them in a larger search is optional later.|ledger
@@ -279,7 +279,7 @@ def refs(f):
 
 INTRO='''# Little Weeps — all-world feature audit
 
-September 26, 2026 · audited against main source **8a315ca** and retained build/device evidence.
+September 26, 2026 · implementation findings retained from main source **8a315ca** and build/device evidence. Four-bedroom/four-secret-room scope corrected later the same day by user request; this correction is documentation only, not a fresh code audit. See the [Home feature tracker](home-world-feature-tracker.md).
 
 This is the consolidated feature checklist from the **55-chapter Family Playset research**, current decisions, build plan, Bluey interaction study and Toca/Piknik object catalog. It preserves the full requested game while separating what works now from what remains to build. Catalog variants and overlapping invitations are listed individually for coverage; their count is **not** a count of unique game engines or a completion percentage.
 
@@ -312,7 +312,7 @@ This is the consolidated feature checklist from the **55-chapter Family Playset 
 
 | Destination / content region | Exists now | Main remaining content |
 | --- | --- | --- |
-| Heeler Home — house | Continuous scenic house; layered sofa, radio/dancing | Full kitchen/15 recipes, five cleanup games, parents/hiding, books/TV, 20 dinosaur types, eight science stations, two bedrooms and two secret rooms |
+| Heeler Home — house | Continuous scenic house; layered sofa, radio/dancing | Full kitchen/15 recipes, five cleanup games, parents/hiding, books/TV, 20 dinosaur types, eight science stations, four player-owned bedrooms and four secret rooms |
 | Heeler Home — backyard | Connected long yard; water fixture, trampoline, radio, shed; balloon in newer builds | Pond fishing, sand/mud, swing, pool, hose/can/plant expansion, wagon, richer storage and show activities |
 | Playground & Park | Long walkable scenery | All 12 equipment/game activities and shared supporting props |
 | The Creek | Long scenery plus inherited garden-rule water fixture | All 10 distinct creek activities, including fishing, boats, crossings and nature play |
@@ -362,7 +362,7 @@ OUTRO='''
 | Finding | Resolution |
 | --- | --- |
 | Six-region content was confused with six menu entries | Five destination buttons; Home includes backyard. No region removed. |
-| Older two-player examples and furniture capacities | All future shared activities support four. Sofa/trampoline four-place implementation is only in the newer builds. Future rides/rods need enough participation space; no forced long queues. |
+| Older two-player examples, room counts and furniture capacities | Four profile-owned bedrooms and four optional secret rooms; all future shared activities support four. Sofa/trampoline four-place implementation is only in the newer builds. Future rides/rods need enough participation space; no forced long queues. |
 | Character pictures or scenery mistaken for features | Mark playable rigs separately; painted objects remain scenery until interactions/state/content exist. |
 | Show catalog labeled entirely research-only | Keepy Uppy is now implemented; the other 31 catalog cards remain planned. |
 | Old device versions in dated feature rows | Use the deployment snapshot at the top, with dated evidence kept historical. Do not claim that build 132 is installed. |
@@ -375,10 +375,10 @@ Still open for later content decisions: Spanish dialect; final extra cast priori
 
 ## Recommended next sequence from the existing plan
 
-1. Install/test the pending balloon build when the phone is reachable; qualify a coordinated content-6 family rollout before promising the new minigame on both iPads together.
-2. Continue the Home kitchen foundation: clean architecture, real supports/interiors and aligned doors, then one complete food/serving/cleanup loop before expanding to all 15 recipes.
-3. Finish reusable item/room persistence, four-person tool stock and creation protection; these support bedrooms, kitchen and later worlds.
-4. Build Home content in bounded, tested slices while retaining every listed requirement. Other worlds remain scenic until the user changes that priority.
+1. Continue the Home kitchen foundation: clean architecture, real supports/interiors and aligned doors, then one complete food/serving/cleanup loop before expanding to all 15 recipes.
+2. Finish reusable item/room persistence for four owned bedrooms/four secret rooms, four-person tool stock and creation protection; these support bedrooms, kitchen and later worlds.
+3. Build Home content in bounded, tested slices using the [Home tracker](home-world-feature-tracker.md), retaining every requirement. Other worlds remain scenic.
+4. Qualify/install the coordinated content-6 family rollout when devices are available; this physical gate remains open and does not block independent Home documentation/content work.
 
 ## Audit method and evidence boundary
 

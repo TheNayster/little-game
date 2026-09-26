@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Weeps — Home world feature tracker</title><style>
+:root{color-scheme:light;--ink:#213d40;--line:#cddbd5;--paper:#fffcf4;--accent:#14645e}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,sans-serif}a{color:var(--accent);text-underline-offset:3px}header{padding:28px max(22px,calc((100vw - 1440px)/2));background:#e6f0e9;border-bottom:1px solid var(--line)}header p{margin:0}.layout{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:280px minmax(0,1fr);gap:38px;padding:30px 24px}nav{align-self:start;position:sticky;top:20px;max-height:92vh;overflow:auto;font-size:14px}nav ul{list-style:none;padding-left:0}nav li{margin:9px 0}article{min-width:0}h1{font-size:clamp(30px,4vw,44px);line-height:1.12;margin:0 0 20px}h2{font-size:25px;line-height:1.25;margin:42px 0 20px;padding-top:16px;border-top:2px solid var(--line)}p{margin:14px 0}ul{padding-left:24px}li{margin:12px 0}.task{list-style:none;margin:12px 0 12px -24px;padding:16px 18px;background:white;border:1px solid var(--line);border-radius:10px;overflow-wrap:anywhere}.task input{width:17px;height:17px;vertical-align:middle;margin:0 9px 3px 0}.task strong{color:#164d49}.task em{font-size:13px;font-style:normal;padding:2px 6px;background:#f3edd7;border-radius:4px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;vertical-align:top;padding:12px;border:1px solid var(--line);overflow-wrap:anywhere}th{background:#e6f0e9}code{overflow-wrap:anywhere;background:#f0eee5;padding:2px 4px}footer{border-top:1px solid var(--line);padding:28px;text-align:center}@media(max-width:850px){.layout{display:block;padding:22px 16px}nav{position:static;max-height:none;border-bottom:1px solid var(--line);margin-bottom:26px}nav .toc ul{columns:2;column-gap:24px}table{font-size:12px}td,th{padding:8px}}@media(max-width:480px){nav .toc ul{columns:1}}@media print{body{font-size:11pt;background:white}header,nav,footer{display:none}.layout{display:block;padding:0}.task{break-inside:avoid}h2{break-after:avoid}a{color:inherit}input{opacity:1}table{font-size:9pt}}
+</style></head><body><header><p><strong>HOME WORLD · FOUR FAMILY PLAYERS</strong><br>Four bedrooms · Four secret rooms · Complete feature checklist<br>Read-only companion. <a href="home-world-feature-tracker.md">Edit the Markdown checklist</a> to record progress.</p></header><div class="layout"><nav aria-label="Tracker sections"><strong>In this tracker</strong><div class="toc">
+<ul>
+<li><a href="#how-to-use-this-file">How to use this file</a></li>
+<li><a href="#four-player-rules-applying-to-every-item">Four-player rules applying to every item</a></li>
+<li><a href="#current-implementation-and-evidence-boundary">Current implementation and evidence boundary</a></li>
+<li><a href="#individual-room-register">Individual room register</a></li>
+<li><a href="#shared-home-presentation-controls-and-free-play">Shared Home presentation, controls and free play</a></li>
+<li><a href="#connected-rooms-and-living-room-furniture">Connected rooms and living-room furniture</a></li>
+<li><a href="#bathroom-laundry-and-dressing">Bathroom, laundry and dressing</a></li>
+<li><a href="#kitchen-dining-and-all-15-recipes">Kitchen, dining and all 15 recipes</a></li>
+<li><a href="#four-bedrooms-ownership-decorating-and-personal-storage">Four bedrooms: ownership, decorating and personal storage</a></li>
+<li><a href="#four-secret-plush-rooms-and-calm-play">Four secret plush rooms and calm play</a></li>
+<li><a href="#reading-nook-and-six-eight-page-dinosaur-books">Reading nook and six eight-page dinosaur books</a></li>
+<li><a href="#home-tv-and-local-family-videos">Home TV and local family videos</a></li>
+<li><a href="#dinosaur-toys-discovery-mat-and-invitations">Dinosaur toys, discovery mat and invitations</a></li>
+<li><a href="#science-corner-eight-experiments">Science corner: eight experiments</a></li>
+<li><a href="#bandit-chilli-and-hide-and-seek">Bandit, Chilli and hide-and-seek</a></li>
+<li><a href="#backyard-garden-shed-rides-and-fishpond">Backyard, garden, shed, rides and fishpond</a></li>
+<li><a href="#five-cleanup-games">Five cleanup games</a></li>
+<li><a href="#show-inspired-home-and-backyard-activities">Show-inspired Home and backyard activities</a></li>
+<li><a href="#six-home-starter-invitations">Six Home starter invitations</a></li>
+<li><a href="#reusable-objects-containers-stock-and-creation-protection">Reusable objects, containers, stock and creation protection</a></li>
+<li><a href="#optional-and-later-extensions-retained-not-completion-gates">Optional and later extensions — retained, not completion gates</a></li>
+<li><a href="#home-completion-and-four-player-acceptance">Home completion and four-player acceptance</a></li>
+<li><a href="#implementation-order-and-progress-log">Implementation order and progress log</a></li>
+<li><a href="#research-map">Research map</a></li>
+</ul>
+</div>
+</nav><article><h1 id="little-weeps-home-world-feature-tracker">Little Weeps — Home world feature tracker</h1>
+<p>Updated September 26, 2026. Maintained completion checklist for the connected house and backyard.</p>
+<p><strong>Latest user requirement: this is a four-player game, including the personal rooms. Provide four player-owned bedrooms and four optional secret rooms, one set per persistent family player profile.</strong> Parent players receive the same room, storage, creation and preference capabilities as child players. The previous two-child-room limit is superseded.</p>
+<p><a href="home-world-feature-tracker.html">Readable HTML companion</a> · <a href="current-decisions.md">Current decisions</a> · <a href="bluey-game-research-2026-09-23.html">Full research</a> · <a href="all-world-features-audit-2026-09-26.html">All-world inventory</a> · <a href="family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build work record</a></p>
+<h2 id="how-to-use-this-file">How to use this file</h2>
+<p>This Markdown file is the maintained Home checklist. Change an item from <code>- [ ]</code> to <code>- [x]</code> only after its complete acceptance requirements pass, and add the build/date/evidence to the delivery log. A prototype is not a completed feature. Record the current status and remaining gap beside an item when progress is partial. Optional ideas stay separate and do not block required Home completion.</p>
+<p>Existing audit IDs (H, Y, PIZ, CAK, MEAL, SCI, BK, TOY, DISC, CLEAN-GAME, SHOW, QUEST, G and OBJECT) remain traceable to the world inventory. HOME-BED, HOME-SECRET and HOME-QA identify the additional individual room and final qualification checks here; they do not replace master goal IDs. Catalog variants and overlapping invitations are intentional; do not calculate a game completion percentage from row counts.</p>
+<p>When implementation changes, maintain this tracker, the build record and the matching documentation catalog in <code>Tools/Build-WorldFeatureAudit.py</code>; regenerate its report. Editing only a generated inventory will be overwritten. Regenerate this file's HTML companion after editing the Markdown; HTML is a readable copy, not a separate source of status.</p>
+<h2 id="four-player-rules-applying-to-every-item">Four-player rules applying to every item</h2>
+<ul>
+<li>Support 1–4 human players; solo play and drop-in participation remain possible. Starting an activity never requires all four to be present.</li>
+<li>Four stable player profiles each own a bedroom and can create a secret room. Ownership follows the profile, never an avatar, device, player slot or join order. All players may choose the same available character.</li>
+<li>All four may occupy any one bedroom/secret room together, or occupy four different rooms independently. Every room needs safe arrivals/exits and usable places for all four. Visiting never creates a private duplicate of someone else's shared room.</li>
+<li>Every shared activity supports four independent participants, with sufficient tools/work positions where needed. Pair-role examples describe possible cooperation, not a two-player maximum. Four players do not mean four copies of every communal object: each actual object still has one holder/location.</li>
+<li>Kitchen worktops, dining, reading, science, fishing, hiding and garden activities must accommodate four; no global kitchen lock or forced spectator-only role. Preserve four sofa/trampoline places within their existing artwork.</li>
+<li>A player moving, leaving, reading, watching TV, changing avatar or disconnecting must not stop, evict or reset the other three. Local media, assistance, audio and reduced-motion settings stay independent for all four profiles.</li>
+<li>Shared authority stays on PC/VPS. Offline saves remain private; reconnection loads the server world without importing offline edits. Preserve enrollment, existing room IDs, items and creations through updates and room expansion.</li>
+<li>Keep one Heeler Home destination: house, kitchen/dining, veranda and backyard through the far shed form a connected property; doors/stairs lead to room branches. Other worlds remain scenic while Home is developed.</li>
+<li>Preserve accepted Bluey/Bingo artwork, calmer movement, controls, chooser, existing fixtures and Keepy Uppy. New furniture must be integrated into the illustrated scene with real surfaces/interiors and correct front/rear overlap.</li>
+</ul>
+<h2 id="current-implementation-and-evidence-boundary">Current implementation and evidence boundary</h2>
+<p>This tracker was assembled from the maintained research, feature inventory and retained implementation reports. No runtime code audit, gameplay test, build, install or live server/device check was performed for this documentation task.</p>
+<p>Recorded prototypes include the basic water/plant/sponge loop, sofa seating, trampoline, radio/dancing, four-slot shed storage and Keepy Uppy. Full rooms, cooking, books, TV library, dinosaurs, science and hiding remain unfinished. The older isolated bedroom rules and single-clip video fixture are development evidence, not integrated Home features.</p>
+<p>Last recorded deployment: Samsung 130; PC server/helper and both iPads 128; iPhone 101. Four sofa/trampoline spots are in 130/132; deployed 128 retains two. Candidate 132 has Windows/Android build and scoped core/native evidence, but is uninstalled and lacks its own separate rollout recovery qualification. These are historical records, not a current connection check. Integrated Home visual acceptance and sustained A10/mixed-device qualification remain open.</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planned</td>
+<td>Required behavior is specified but not established as integrated and playable.</td>
+</tr>
+<tr>
+<td>Development only</td>
+<td>Isolated technical work exists; the full Home feature is unbuilt.</td>
+</tr>
+<tr>
+<td>Scenery only</td>
+<td>Artwork/walking exists; usable objects or activities remain.</td>
+</tr>
+<tr>
+<td>Partial</td>
+<td>Some required behavior exists; remaining work is described.</td>
+</tr>
+<tr>
+<td>Playable prototype</td>
+<td>Scoped behavior has retained evidence; complete Home/device acceptance is still open.</td>
+</tr>
+<tr>
+<td>Complete</td>
+<td>All applicable feature, four-player, save, visual and device checks have linked evidence. No item starts with this status.</td>
+</tr>
+<tr>
+<td>Optional idea</td>
+<td>Preserved candidate, outside required Home completion unless selected later.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="individual-room-register">Individual room register</h2>
+<p>Each bedroom requires its owner's persistent layout, bed, rug, shelves, toy basket/chest, reading cushion, pictures, lamp/bedding/decor choices, decoration permissions and undo. Each secret room requires its own persistent plush layout, safe star-door entrance/exit, fort/reading furniture and calm sky. All eight rooms need four-person visits and independent travel. A shared art set may be reused; saved layouts and ownership must remain separate.</p>
+<p>These are profile labels, not requested player names or fixed device assignments. If prior room records exist, keep their identities/owners/contents and add missing records through migration. Merely joining as a visitor must never allocate or reassign an owned room.</p>
+<ul>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-BED-A — Player A bedroom</strong> — Planned. Verify owner decoration, storage, visits by all four and save/reopen.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-BED-B — Player B bedroom</strong> — Planned. Verify independent ownership/layout and four-person visits.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-BED-C — Player C bedroom</strong> — Planned. Add without replacing existing rooms or enrollment; verify the same full functionality.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-BED-D — Player D bedroom</strong> — Planned. Add without replacing existing rooms or enrollment; verify the same full functionality.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-SECRET-A — Player A secret room</strong> — Planned. Optional creation from A's bedroom; persistent identity, four visitors and reliable exit.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-SECRET-B — Player B secret room</strong> — Planned. Separate saved contents; four visitors and reliable exit.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-SECRET-C — Player C secret room</strong> — Planned. Same complete plush/sky/reading experience; preserve state when entrance moves or is archived.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-SECRET-D — Player D secret room</strong> — Planned. Same complete plush/sky/reading experience; no duplicate room per visitor.</li>
+</ul>
+<h2 id="shared-home-presentation-controls-and-free-play">Shared Home presentation, controls and free play</h2>
+<p>All four profiles can independently choose Simple Play or Explore &amp; Stories. Keep joystick/tap walking, direct object manipulation, generous snapping, picture controls and tap alternatives to difficult gestures. English and installed prerecorded audio come first; Spanish remains a later language expansion.</p>
+<ul>
+<li>
+<p>[ ] <strong>G-01 — Four independent family players</strong> — <em>Partial</em>. One person per device; any arrival/departure changes only that player. Four-device admission exists; full content and sustained mixed-device acceptance remain open. Sources: <a href="bluey-game-research-2026-09-23.html#1-your-requirements-now-recorded">§1</a> · <a href="bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play">§31</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a> · <a href="bluey-game-research-2026-09-23.html#48-android-build-phone-layout-and-four-player-acceptance">§48</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-02 — Independent worlds, cameras and local loading</strong> — <em>Partial</em>. Five destination entries cover six content regions. Each player travels alone, joining existing objects and players. Long scenic travel works; bedroom/story branches remain planned. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play">§31</a> · <a href="bluey-game-research-2026-09-23.html#50-one-shared-world-independent-travel-and-shared-items">§50</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-03 — Bluey-style illustrated dollhouse</strong> — <em>Partial</em>. Detailed wide scenery, readable outlines, perspective floors, foreground occlusion and recognizable characters. Scenic shells and initial home layers exist; art alone does not make furniture usable. Sources: <a href="bluey-game-research-2026-09-23.html#1-your-requirements-now-recorded">§1</a> · <a href="bluey-game-research-2026-09-23.html#2-what-makes-this-kind-of-game-work">§2</a> · <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-04 — One visible object per usable object</strong> — <em>Partial</em>. Separate room architecture, rear/front furniture, supports and movable props. Sofa, trampoline and shed have integrated layers; kitchen and remaining furniture still need this treatment. Sources: <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-05 — Joystick and tap-to-walk</strong> — <em>Playable prototype</em>. Independent device preference, floor movement, stop on release and safe cancellation. Current floor bounds are not a complete furniture-aware pathfinding system. Sources: <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#48-android-build-phone-layout-and-four-player-acceptance">§48</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-06 — Walk around furniture and through doors</strong> — <em>Planned</em>. Authored legal floors, obstacles, room doors and stairs; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature. Sources: <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-07 — Family circle, horizontal characters, vertical places, down arrow</strong> — <em>Playable prototype</em>. Lower-right circle avoids the joystick; the tray keeps the avatar visible above it. One Heeler Home entry; the Creek stays available. Only Bluey and Bingo currently appear as playable choices. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#17-changing-characters-without-stopping-the-game">§17</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-08 — Local loading and safe travel failure</strong> — <em>Partial</em>. Prepare destination art and accepted world state before enabling input; retry/back on failure without moving siblings. Existing scenic travel works; new room/story loaders need coverage. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#12-performance-and-crashes-on-the-older-ipad">§12</a> · <a href="bluey-game-research-2026-09-23.html#50-one-shared-world-independent-travel-and-shared-items">§50</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-09 — Generous touch targets and gesture ownership</strong> — <em>Partial</em>. Large picture targets, safe areas, pointer ownership, drag versus walking separation and cancellation on menus/lock. Broad physical child-usability qualification remains open. Sources: <a href="bluey-game-research-2026-09-23.html#2-what-makes-this-kind-of-game-work">§2</a> · <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#48-android-build-phone-layout-and-four-player-acceptance">§48</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-10 — Simple Play and Explore &amp; Stories</strong> — <em>Planned</em>. Per-child and per-skill assistance, ready setups, broad snapping, demonstrations, tap alternatives and deeper sequences. No age-based character/content locks. Sources: <a href="bluey-game-research-2026-09-23.html#2-what-makes-this-kind-of-game-work">§2</a> · <a href="bluey-game-research-2026-09-23.html#18-quests-that-are-easy-to-start-and-easy-to-leave">§18</a> · <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a> · <a href="bluey-game-research-2026-09-23.html#41-daycare-learning-short-playful-and-spoken">§41</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-11 — Free play and optional invitations</strong> — <em>Partial</em>. Objects work without quests. Current flower/cleanup prompts can be left and repeated; the complete picture picker, nearby invitations and resumable activities remain planned. Sources: <a href="bluey-game-research-2026-09-23.html#2-what-makes-this-kind-of-game-work">§2</a> · <a href="bluey-game-research-2026-09-23.html#18-quests-that-are-easy-to-start-and-easy-to-leave">§18</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-12 — Activity picker, replay, switch, all done, resume</strong> — <em>Planned</em>. Picture cards, spoken invitation, listen again, personal start/park/resume and independent shared participation. Leaving does not erase food, art or other players' work. Sources: <a href="bluey-game-research-2026-09-23.html#18-quests-that-are-easy-to-start-and-easy-to-leave">§18</a> · <a href="bluey-game-research-2026-09-23.html#24-integration-build-sequence-and-acceptance-for-the-new-features">§24</a> · <a href="bluey-game-research-2026-09-23.html#43-building-saving-and-testing-the-outdoor-and-daycare-expansion">§43</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-13 — No forced progress gates</strong> — <em>Partial</em>. All released worlds, favorite characters and toys stay accessible; no required chores, reading, win/loss or elimination wait. Apply this to every future activity. Sources: <a href="bluey-game-research-2026-09-23.html#1-your-requirements-now-recorded">§1</a> · <a href="bluey-game-research-2026-09-23.html#2-what-makes-this-kind-of-game-work">§2</a> · <a href="bluey-game-research-2026-09-23.html#18-quests-that-are-easy-to-start-and-easy-to-leave">§18</a> · <a href="bluey-game-research-2026-09-23.html#42-the-imagination-mat-nine-stories-that-become-playable-worlds">§42</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-14 — English voices and speaking characters</strong> — <em>Partial</em>. Local reviewed prompts, reactions, names, greetings and mouth animation. A small English hint set exists; full cast voices and complete English content do not. Sources: <a href="bluey-game-research-2026-09-23.html#8-spoken-english-and-spanish-using-your-pc-and-comfyui">§8</a> · <a href="bluey-game-research-2026-09-23.html#17-changing-characters-without-stopping-the-game">§17</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-16 — One foreground voice, music ducking and replay</strong> — <em>Partial</em>. Coalesce repeated requests, cancel stale speech and keep visual hints when muted. Existing hint narration is limited; book/TV/lesson arbitration remains planned. Sources: <a href="bluey-game-research-2026-09-23.html#8-spoken-english-and-spanish-using-your-pc-and-comfyui">§8</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a> · <a href="bluey-game-research-2026-09-23.html#27-tv-corner-and-local-video-library">§27</a> · <a href="bluey-game-research-2026-09-23.html#41-daycare-learning-short-playful-and-spoken">§41</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-17 — Separate voice, music, effects and calm settings</strong> — <em>Partial</em>. Voice and home-music toggles exist. Full independent volume controls, assistance, language, reduced motion and media settings remain planned. Sources: <a href="bluey-game-research-2026-09-23.html#11-menus-settings-saves-and-recovery">§11</a> · <a href="bluey-game-research-2026-09-23.html#33-secret-plush-rooms-with-stars-and-northern-lights">§33</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-18 — Switch any available avatar without losing identity</strong> — <em>Partial</em>. Bluey/Bingo switching keeps profile and current supported state; all players may choose the same favorite. Full roster, parent avatars and all future role/grip cases remain open. Sources: <a href="bluey-game-research-2026-09-23.html#4-character-roster-and-pictures">§4</a> · <a href="bluey-game-research-2026-09-23.html#17-changing-characters-without-stopping-the-game">§17</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-19 — Player badges distinct from NPC roles</strong> — <em>Partial</em>. Duplicate favorites need persistent readable symbol/color markers. Human Bandit/Chilli must not seize or remove an NPC seeker. Current player identity exists; parent/NPC roles are not built. Sources: <a href="bluey-game-research-2026-09-23.html#4-character-roster-and-pictures">§4</a> · <a href="bluey-game-research-2026-09-23.html#17-changing-characters-without-stopping-the-game">§17</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-20 — Natural movement and context poses</strong> — <em>Partial</em>. Accepted Bluey/Bingo sheets support walking, idle, sitting, bounce, dance and balloon tap. Finish turns/back views, grip/contact and special actions for every cast member. Sources: <a href="bluey-game-research-2026-09-23.html#4-character-roster-and-pictures">§4</a> · <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#17-changing-characters-without-stopping-the-game">§17</a>.</p>
+</li>
+</ul>
+<h2 id="connected-rooms-and-living-room-furniture">Connected rooms and living-room furniture</h2>
+<p>House/hall → kitchen/dining → veranda → backyard → far shed stays one property. Doors/stairs branch to four bedrooms, their four secret rooms and other rooms. Classify reachable objects as usable now, planned usable or intentional decoration; do not bake planned movable furniture into the background. Retain usable hall/under-stair seating and a reading nook/play area.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-01 — Connected house, veranda and backyard</strong> — <em>Partial</em>. One continuous property is walkable. Full branch rooms, doors/stairs and all room functions are still required; selecting Home while there retains position. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-02 — Living-room sofa for four</strong> — <em>Playable prototype</em>. Four close places, seated poses, foreground masking, avatar switch and independent exits. Available in 130/132; installed iPads/server 128 retain two places. Sources: <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-03 — Living-room radio and automatic dancing</strong> — <em>Playable prototype</em>. Radio on plays music and nearby idle characters dance; movement and other actions take priority. Local mute is independent of shared power. Sources: <a href="bluey-game-research-2026-09-23.html#1-your-requirements-now-recorded">§1</a> · <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-04 — Chairs, benches, cushions and resting spots</strong> — <em>Planned</em>. Correct seated/resting poses, holding a small item, easy exits and different cast sizes. The implemented sofa does not establish all furniture support. Sources: <a href="bluey-game-research-2026-09-23.html#4-character-roster-and-pictures">§4</a> · <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-05 — Cupboards, drawers, lights and lamps</strong> — <em>Planned</em>. Open and close real storage; lights change visibly; contents retain identity and can be retrieved. Painted cabinets and lamps are currently scenery. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#11-menus-settings-saves-and-recovery">§11</a> · <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+</ul>
+<h2 id="bathroom-laundry-and-dressing">Bathroom, laundry and dressing</h2>
+<p>Provide real bath/splash space with front-water masking, towels, storage, washable items, dressing and bedtime connections. The laundry activity below adds wash/hang/dry/return state; an empty illustrated bathroom is insufficient.</p>
+<ul>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>H-06 — Bathroom and laundry spaces</strong> — <em>Planned</em>. Bath/splash interaction with front water masking, towels, storage, dressing and bedtime connections. This room expansion is listed in the home layout record. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#21-five-cleanup-games-that-remain-playful">§21</a>.</li>
+</ul>
+<h2 id="kitchen-dining-and-all-15-recipes">Kitchen, dining and all 15 recipes</h2>
+<p>Four players can prepare, decorate, plate, eat/serve and wash independently. Include real appliance interiors, ingredient storage, four dining places and suitable work positions/tools. Make / Decorate / Serve supports free creation, optional orders and ready-made bases. Recipe variants need distinct assembly/appearance, not five recolors. Food, portions and decorations persist as real objects; transformations consume ingredients once, and heating settles safely when a player leaves.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-07 — Interactive kitchen architecture</strong> — <em>Planned</em>. Fridge, cupboards, sink, oven, worktop, ingredient storage and dining surfaces with aligned doors and interiors; separate interactive art before food production. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-08 — Make, decorate and serve</strong> — <em>Planned</em>. Spread, chop, pour, mix, shape, heat, decorate, slice, plate, carry, taste and wash. Use large controls, tap alternatives and optional ready-made bases. Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-09 — Free recipes and persistent food creations</strong> — <em>Planned</em>. Mix-and-match toppings, picture orders, preserved decorations/portions, picnic packing and a creation album. Unexpected ingredients remain play, not failure. Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-10 — Four-player preparation and safe ovens</strong> — <em>Planned</em>. Separate trays/tools or shared accepted contributions; no whole-kitchen lock. Leave/rejoin safely and stop at a ready state without burning food while children explore. Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a> · <a href="bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play">§31</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-11 — Drinks, fruit, blender and pretend café</strong> — <em>Planned</em>. Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>PIZ-01 — Cheese pizza</strong> — <em>Planned</em>. Spread red sauce, scatter cheese, bake, slice; visible stretchy cheese Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>PIZ-02 — Pepperoni pizza</strong> — <em>Planned</em>. Add large round pepperoni pieces; slices keep their toppings Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>PIZ-03 — Garden vegetable pizza</strong> — <em>Planned</em>. Choose capsicum, mushroom, and tomato pieces; colorful arrangement Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>PIZ-04 — Ham and pineapple pizza</strong> — <em>Planned</em>. Alternate chunky pink and yellow toppings; no exact pattern required Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>PIZ-05 — Silly-face pizza</strong> — <em>Planned</em>. Make eyes, a nose, and a smile from toppings; photograph the creation in the in-game album Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CAK-01 — Duck cake</strong> — <em>Planned</em>. Assemble simple body/head pieces, add beak, eyes, icing, and popcorn-style feathers Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CAK-02 — Chocolate layer cake</strong> — <em>Planned</em>. Stack cake layers, spread icing, add chocolate decorations Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CAK-03 — Strawberry heart cake</strong> — <em>Planned</em>. Fill a heart mould, add pink icing and strawberries Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CAK-04 — Rainbow cake</strong> — <em>Planned</em>. Choose colored batter layers and rainbow decorations Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CAK-05 — Carrot cake</strong> — <em>Planned</em>. Stir orange pieces into batter, add pale icing and a tiny carrot decoration Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>MEAL-01 — Burger plate</strong> — <em>Planned</em>. Stack bun, filling, cheese, and salad; add a side and serve Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>MEAL-02 — Spaghetti and sauce</strong> — <em>Planned</em>. Add pasta to a pot, stir sauce, serve into a bowl, sprinkle cheese Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>MEAL-03 — Vegetable soup</strong> — <em>Planned</em>. Drop chopped vegetables into broth, stir, ladle into cups/bowls Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>MEAL-04 — Pancake breakfast</strong> — <em>Planned</em>. Pour batter, tap/drag to flip with assistance, stack, add fruit Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>MEAL-05 — Rice and vegetable bowl</strong> — <em>Planned</em>. Stir colorful vegetables, scoop rice, combine and decorate the plate Sources: <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+</ul>
+<h2 id="four-bedrooms-ownership-decorating-and-personal-storage">Four bedrooms: ownership, decorating and personal storage</h2>
+<p>Apply every feature to profiles A–D, including adult players. Owner-only permanent decoration by default, optional Decorate together, safe placement/undo, visits and independent personal supply. Connected edits update the shared room; disconnected edits remain private. Complete all four individual room checks above.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-31 — Four persistent player-owned bedrooms</strong> — <em>Development only</em>. One bedroom for each of four player profiles, including parents. Only earlier isolated two-child ownership/style rules have evidence; four-room screen/network/save integration is unbuilt. Preserve existing room IDs/data and add missing rooms safely. Sources: <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-32 — Decorating, visits and undo</strong> — <em>Planned</em>. Beds, rugs, shelves, toy baskets, cushions, pictures, decoration drawers, wall/bedding/lamp/plush choices; owner edits, optional Decorate together, safe paths and undo. Sources: <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-33 — Personal toy box and creation gallery</strong> — <em>Planned</em>. Separate personal catalog, every dinosaur type, bounded loose props, put-one-away/take-one-out and recoverable displays. Never delete the oldest toy or a saved creation. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a> · <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-34 — Gentle tidy help and visitor protection</strong> — <em>Planned</em>. Owner's Help tidy stores loose personal toys and eligible loans; leave installed displays, held objects and other rooms alone. Visitors cannot erase a room. Sources: <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+</ul>
+<h2 id="four-secret-plush-rooms-and-calm-play">Four secret plush rooms and calm play</h2>
+<p>Each bedroom can create its own star-door room. Include plush animals, cuddle pillow, rug, enough seating/play space for four, blanket fort, books, deep-blue sky and slow green/purple aurora. Local brightness, music/effects and still reduced-motion options. No password/quest gate, required cleanup, timer or surprise search. Entering withdraws only that player from ordinary hiding; changing the entrance preserves the room and occupants.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-35 — Four optional mini-door secret rooms</strong> — <em>Planned</em>. One secret-room option per player profile, linked to its bedroom. All four may visit any existing room. Move/archive entrances without deleting contents or stranding occupants. Optional creation/use; required four-profile support. Sources: <a href="bluey-game-research-2026-09-23.html#33-secret-plush-rooms-with-stars-and-northern-lights">§33</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-36 — Plush collection and quiet play</strong> — <em>Planned</em>. Dinosaur, dog, cat, bunny, bear and sea-animal plushies, cuddle pillow, rug, cushions, blanket fort and shelf; carry, pile, tuck in, picnic, read and sit together. Sources: <a href="bluey-game-research-2026-09-23.html#33-secret-plush-rooms-with-stars-and-northern-lights">§33</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-37 — Stars, aurora and local calm controls</strong> — <em>Planned</em>. Deep-blue sky, slow green/purple aurora, sparse star twinkles, brightness/music/effect controls and a still reduced-motion version. Optional factual aurora narration. Sources: <a href="bluey-game-research-2026-09-23.html#33-secret-plush-rooms-with-stars-and-northern-lights">§33</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-38 — Independent visits and no surprise search</strong> — <em>Planned</em>. Persistent layouts and shared visits; leaving never removes another visitor's room. Chill spaces leave normal hiding rounds; including them in a larger search is optional later. Sources: <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a> · <a href="bluey-game-research-2026-09-23.html#33-secret-plush-rooms-with-stars-and-northern-lights">§33</a> · <a href="bluey-game-research-2026-09-23.html#34-hide-and-seek-with-enterable-furniture-and-gentle-clues">§34</a>.</p>
+</li>
+</ul>
+<h2 id="reading-nook-and-six-eight-page-dinosaur-books">Reading nook and six eight-page dinosaur books</h2>
+<p>Eight pages per book is the production target. Explicit Play begins narration; pickup alone does not. Provide landscape pages, interactive pictures/names, pause/replay, page arrows, optional automatic turns and close. All four may read the same title on different pages independently; moving the physical book never removes another player's access. Preserve separate profile bookmarks and keep the rest of the world running.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-18 — Reading nook and physical book props</strong> — <em>Planned</em>. Low shelves, rug, cushions and book basket. Tap/open versus drag/move must be distinct; access to the same title stays independent for every player. Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-19 — Interactive narrated reader</strong> — <em>Planned</em>. Large Play/Pause, replay, page arrows, close, optional automatic/manual turns and saved page. Opening alone does not start narration; relevant hotspots animate and say names. Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-20 — Independent bookmarks and narration</strong> — <em>Planned</em>. Each profile keeps pages and narration locally; names pause/resume only valid current narration. Muting, closing, changing pages or network state cannot restart old speech. Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a> · <a href="bluey-game-research-2026-09-23.html#29-building-and-testing-books-tv-and-dinosaurs">§29</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>BK-01 — Hello, Dinosaurs!</strong> — <em>Planned</em>. 8 pages proposed. Cover, six dinosaur introductions, and a goodbye/play page; say names and reveal one recognizable feature per dinosaur Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>BK-02 — The Dinosaur Toy Picnic</strong> — <em>Planned</em>. 8 pages proposed. The children's toy dinosaurs set out cups and pretend food; tap to unfold a blanket, rock a cup, or lift a toy's head Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>BK-03 — Where Is Little Dino?</strong> — <em>Planned</em>. 8 pages proposed. A toy hides around the room; tap a curtain or cushion to reveal it; narration and page turns continue even without finding it Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>BK-04 — Dinosaur Cleanup Day</strong> — <em>Planned</em>. 8 pages proposed. Wash muddy toys, wipe a shelf, and put toys to bed; each page offers one short cleaning effect Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>BK-05 — Big Dino, Little Dino</strong> — <em>Planned</em>. 8 pages proposed. Compare large and small illustrated toys and matching footprints; describe toy sizes rather than inventing scientific measurements Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>BK-06 — Goodnight, Dinosaur Toys</strong> — <em>Planned</em>. 8 pages proposed. A quiet bedtime story: tuck in a toy, dim a lamp, watch a slow blink; gentle movement and optional sound effects Sources: <a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">§25</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a>.</p>
+</li>
+</ul>
+<h2 id="home-tv-and-local-family-videos">Home TV and local family videos</h2>
+<p>Import ordinary video files through parent controls without rebuilding. Offline thumbnail library; play/pause, seek, ±10 seconds, previous/next, continue/restart/replay, correct aspect ratio and durable per-profile/per-clip resume. Four independent local viewing sessions must not force a shared playback cursor or pause other players. Handle cancellation, missing files, duplicates and app backgrounding safely. Personal Media/TV files stay out of Git. Synchronized viewing is a later optional idea below.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-21 — TV and thumbnail library in the house</strong> — <em>Planned</em>. TV/remote opens local cards with titles, duration and posters; no web search/feed needed. Media/TV folder preparation is not an importer or playable TV. Sources: <a href="bluey-game-research-2026-09-23.html#27-tv-corner-and-local-video-library">§27</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-22 — Playback controls and persistent resume</strong> — <em>Development only</em>. Single-clip foundation proves play/pause, seeking and a profile bookmark. Integrate library, per-video Continue/Restart, skip, previous/next, finish choices and durable lifecycle checkpoints. Sources: <a href="bluey-game-research-2026-09-23.html#27-tv-corner-and-local-video-library">§27</a> · <a href="bluey-game-research-2026-09-23.html#29-building-and-testing-books-tv-and-dinosaurs">§29</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-23 — Parent media import and retained library</strong> — <em>Planned</em>. Import normal files through Files; validate space/format, preserve current library on cancellation, detect duplicates and retain local media/bookmarks through updates. Sources: <a href="bluey-game-research-2026-09-23.html#27-tv-corner-and-local-video-library">§27</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-24 — Independent offline playback</strong> — <em>Planned</em>. One local decoder per device, correct aspect ratio, retry/back on missing clips, independent siblings, paused return after lock. Physical target media acceptance remains required. Sources: <a href="bluey-game-research-2026-09-23.html#27-tv-corner-and-local-video-library">§27</a> · <a href="bluey-game-research-2026-09-23.html#35-road-trip-play-hotspot-co-op-and-coming-home">§35</a>.</p>
+</li>
+</ul>
+<h2 id="dinosaur-toys-discovery-mat-and-invitations">Dinosaur toys, discovery mat and invitations</h2>
+<p>Keep all 20 named types accessible through the toy catalog without requiring all to animate at once or requiring quest unlocks. Four players can uncover, brush, identify, wash, carry and arrange toys independently. Deliberately selected separate toy copies have separate IDs; never duplicate one held toy. Preserve nests, footprints, arrangements, spoken names and links to books.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-26 — Twenty-type accessible toy shelf</strong> — <em>Planned</em>. Picture categories, roughly six visible at a time, all types available without quests and deliberate duplicate-toy choice. Twenty definitions do not mean unlimited active toys. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-27 — Named animated toys with connected uses</strong> — <em>Planned</em>. Carry, place, rotate/flip, stack/store, footprints/dust, brushing, washing, nests and book links. Same reviewed name ID across books and toys. Sources: <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a> · <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-28 — Dinosaur Discovery Mat</strong> — <em>Planned</em>. Uncover toy, brush, hear name, optionally wash and arrange its world. Bypass digging if wanted; toys and creations survive independent departures. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-01 — Tyrannosaurus, labeled T. rex for the child</strong> — <em>Planned</em>. Take two little stomping steps; optional soft pretend roar Production batch: First six. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-02 — Triceratops</strong> — <em>Planned</em>. Nod; highlight its three horns while counting Production batch: First six. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-03 — Stegosaurus</strong> — <em>Planned</em>. Rock gently; highlight the back plates Production batch: First six. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-04 — Brachiosaurus</strong> — <em>Planned</em>. Lift its long neck toward a pretend leaf Production batch: First six. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-05 — Diplodocus</strong> — <em>Planned</em>. Slowly sway its long tail Production batch: First six. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-06 — Ankylosaurus</strong> — <em>Planned</em>. Turn to show its tail club; shuffle into a toy shelter Production batch: First six. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-07 — Parasaurolophus</strong> — <em>Planned</em>. Tilt its head and follow a tapped toy path Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-08 — Iguanodon</strong> — <em>Planned</em>. Take a step and nudge a lightweight play block Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-09 — Spinosaurus</strong> — <em>Planned</em>. Sway beside the pretend pond and leave toy footprints Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-10 — Allosaurus</strong> — <em>Planned</em>. Follow a short drawn trail Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-11 — Velociraptor</strong> — <em>Planned</em>. Peek out from behind a play rock Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-12 — Deinonychus</strong> — <em>Planned</em>. Step onto a low block platform Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-13 — Carnotaurus</strong> — <em>Planned</em>. Turn toward a tapped picture marker Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-14 — Styracosaurus</strong> — <em>Planned</em>. Tilt its head for a close look Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-15 — Pachycephalosaurus</strong> — <em>Planned</em>. Nod and roll a foam play ball Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-16 — Coelophysis</strong> — <em>Planned</em>. Make a short, gentle tiptoe animation Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-17 — Plateosaurus</strong> — <em>Planned</em>. Reach toward a pretend feeding tray Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-18 — Maiasaura</strong> — <em>Planned</em>. Settle beside a smaller toy in a cushion nest Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-19 — Oviraptor</strong> — <em>Planned</em>. Bob its head and inspect a toy basket Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>TOY-20 — Therizinosaurus</strong> — <em>Planned</em>. Slowly raise its illustrated arms, then settle Production batch: Expansion. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>DISC-01 — Find a dinosaur</strong> — <em>Planned</em>. Simple play: Tap a mound; brush once; hear the name Deeper play: One child digs, the other brushes or carries the toy to the mat Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>DISC-02 — Dinosaur wash day</strong> — <em>Planned</em>. Simple play: Drag a ready sponge across a muddy toy Deeper play: Fill the basin, wash, rinse, and arrange several clean toys together Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>DISC-03 — Build a dinosaur world</strong> — <em>Planned</em>. Simple play: Place a rock and a plant with generous snapping Deeper play: Make shelters and paths, add toys, and invent a story; no mandatory layout Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>DISC-04 — Who's hiding?</strong> — <em>Planned</em>. Simple play: Tap an obvious toy silhouette behind a bush Deeper play: One child hides a toy among designated mat props; the other looks; this reuses discovery rules without replacing avatar hide-and-seek Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>DISC-05 — Dinosaur parade and bedtime</strong> — <em>Planned</em>. Simple play: Tap a toy to make it take a few steps into a basket Deeper play: Arrange an order, lead the toys along a short path, then tuck them into cushion nests Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+</ul>
+<h2 id="science-corner-eight-experiments">Science corner: eight experiments</h2>
+<p>All eight support four participants through independent controls, tools or sample trays, with safe resets. Preserve finished plants, boats and arrangements. Free experimentation and optional picture prompts come before quizzes or mandatory sequences; simplified explanations must agree with the illustrated behavior.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-29 — Discovery bench and free experiments</strong> — <em>Planned</em>. Eight listed stations with immediate repeatable reactions, prediction pictures, generous assistance and no required order. First proposed slice: float tub, magnets and colored light. Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-30 — Shared experiments and saved creations</strong> — <em>Planned</em>. Up to four participants with independent controls/trays, local narration and safe resets. Keep finished plants, boats or arrangements; simulation and explanations must agree. Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a> · <a href="bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play">§31</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SCI-01 — Floaty boat tub</strong> — <em>Planned</em>. Simple play: Drop a wooden block, smooth stone, or toy boat into a shallow illustrated tub Explore together: Add cargo to the boat; one child loads while the other changes the cargo; remove cargo and try again Factual constraint: Floating depends on the object and displaced water, not simply “big/heavy sinks.” Use a finite set of reviewed props Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SCI-02 — Magnet treasure trail</strong> — <em>Planned</em>. Simple play: Drag a large magnet wand near iron/steel toy pieces and watch them follow Explore together: Guide a magnetic toy along a path; try wood/plastic pieces; turn a second bar magnet to compare push and pull Factual constraint: Ordinary magnets do not visibly attract every metal or every object. Magnetic poles need consistent behavior Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SCI-03 — Ramp and roll</strong> — <em>Planned</em>. Simple play: Tap to release a ball down a ready-built ramp into a wide basket Explore together: Change ramp height and surface; one child adjusts, the other releases; keep both toys otherwise identical when comparing Factual constraint: Slope and friction change motion; do not use “heavier always rolls faster” as the rule Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SCI-04 — Color-light garden</strong> — <em>Planned</em>. Simple play: Switch on red, green, and blue lamps to light up a pretend flower screen Explore together: Move overlapping light spots or turn lamps off together; make picture-requested colors if wanted Factual constraint: This is colored light: red plus green makes yellow; all three can make white. Paint mixing uses different rules Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SCI-05 — Dinosaur shadow theatre</strong> — <em>Planned</em>. Simple play: Move one toy between a lamp and screen; its shadow follows Explore together: Move the toy closer to the light/screen, switch toys, and make a tiny story together Factual constraint: An opaque object blocks light; preserve consistent source/object/screen geometry Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SCI-06 — Bubble workshop</strong> — <em>Planned</em>. Simple play: Tap a fan button to blow bubbles, then tap to pop them Explore together: Try different wand outlines and air strength; one child operates the fan, the other catches bubbles Factual constraint: Free soap bubbles tend toward a round shape; a square wand does not make permanent square floating bubbles Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SCI-07 — Sound-and-wiggle board</strong> — <em>Planned</em>. Simple play: Pluck a large illustrated string and see it vibrate Explore together: Adjust a clearly marked length or tension control; take turns making high/low sounds Factual constraint: Vibration produces sound; change one relevant parameter at a time and separate pitch from loudness Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SCI-08 — Little seed window</strong> — <em>Planned</em>. Simple play: Place a seed, add water, and press a fast-forward sun picture Explore together: Compare two prepared pots, watch simplified growth stages, decorate the pots, and move a grown plant to a bedroom Factual constraint: Growth is deliberately sped up; plants need more than water alone, and soil is not the only possible growing medium Sources: <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+</ul>
+<h2 id="bandit-chilli-and-hide-and-seek">Bandit, Chilli and hide-and-seek</h2>
+<p>NPC parents are separate actors from a human using their avatar. An NPC seeker supports up to four human hiders; a human seeker leaves up to three human hiders, all with meaningful participation and independent readiness. Provide enough valid hiding capacity, bounded fair searches, optional audio/visual clues, concealed carried props/labels and Come out at all times. No elimination or forced wait. Parent routines preserve personal creations and relinquish busy roles safely.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-12 — Bandit and Chilli's ambient routines</strong> — <em>Planned</em>. Roam, read, garden, prepare food and tidy eligible ambient props; requests interrupt safely, but never steal a busy seeker or destroy a child's work. Sources: <a href="bluey-game-research-2026-09-23.html#22-hide-and-seek-and-parents-with-everyday-routines">§22</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-13 — Parent-seeker hide-and-seek</strong> — <em>Planned</em>. Invite a parent, prepare individually, hide, hear a friendly search, be found and continue playing. All joined hiders can leave freely; no elimination screen. Sources: <a href="bluey-game-research-2026-09-23.html#22-hide-and-seek-and-parents-with-everyday-routines">§22</a> · <a href="bluey-game-research-2026-09-23.html#34-hide-and-seek-with-enterable-furniture-and-gentle-clues">§34</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-14 — Child/human seeker and role changes</strong> — <em>Planned</em>. Picture role choice, independent hider preparation, swap roles, and an NPC replacement if the human seeker leaves. Character choice never changes the role. Sources: <a href="bluey-game-research-2026-09-23.html#22-hide-and-seek-and-parents-with-everyday-routines">§22</a> · <a href="bluey-game-research-2026-09-23.html#34-hide-and-seek-with-enterable-furniture-and-gentle-clues">§34</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-15 — Enterable hiding furniture</strong> — <em>Planned</em>. Designated closets, oversized drawers, tents and curtain alcoves with entry/exit anchors, capacity, cutaways and a persistent Come out control. Sources: <a href="bluey-game-research-2026-09-23.html#34-hide-and-seek-with-enterable-furniture-and-gentle-clues">§34</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-16 — Fair clues and bounded search</strong> — <em>Planned</em>. Optional 5–10 second giggle/rattle or visual hint, manual/off settings and roughly 30 seconds per ready hider. Test routes; do not find by secret coordinates. Sources: <a href="bluey-game-research-2026-09-23.html#34-hide-and-seek-with-enterable-furniture-and-gentle-clues">§34</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>H-17 — Concealment and mid-round joins</strong> — <em>Planned</em>. Hide carried props, labels, hitboxes and unrelated positional audio from seeker. Late joiners prepare without resetting others; avatar swaps preserve hiding. Sources: <a href="bluey-game-research-2026-09-23.html#22-hide-and-seek-and-parents-with-everyday-routines">§22</a> · <a href="bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play">§31</a> · <a href="bluey-game-research-2026-09-23.html#34-hide-and-seek-with-enterable-furniture-and-gentle-clues">§34</a>.</p>
+</li>
+</ul>
+<h2 id="backyard-garden-shed-rides-and-fishpond">Backyard, garden, shed, rides and fishpond</h2>
+<p>Preserve the existing trampoline, radio, shed, water loop and shared backyard Keepy Uppy. Add swing, wading pool, wagon/cargo, toy cars, hose/watering can, pots/planting, sand/mud creations and expanded shed hooks/shelves/bins. All four can take part in each activity; author safe places/roles and sufficient equipment rather than stretching existing artwork. Fishing includes five proposed fish designs, forgiving casts/reels, a bounded observation bowl, discovery album and catch-and-release without deadlines.</p>
+<ul>
+<li>
+<p>[ ] <strong>Y-01 — Long backyard connected to the house</strong> — <em>Scenery only</em>. Walk from the house through veranda/tree/trampoline scenery to the rear shed with local camera panning. Illustrated swing/pool/toys do not imply functioning interactions. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-02 — Tap, bucket, plant and sponge loop</strong> — <em>Playable prototype</em>. Drag to fill, pour to water/grow, and clean the puddle. Water/holder/state save, repeat and synchronize. This is the small prototype, not full garden inventory. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-03 — Hose, watering can, multiple plants and pots</strong> — <em>Planned</em>. Seed/soil/pot relations, filling, pouring, growth and movable decorated plants. Extend source capacity rules without replacing the existing loop. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-04 — Sandpit and mud play</strong> — <em>Planned</em>. Fill/dampen/lift moulds, decorate saved sand creations and make pretend mud pizzas; allow rebuild and recovery without failure. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-05 — Trampoline for four</strong> — <em>Playable prototype</em>. Four close spots, bounce poses, mat reaction, shadows, local front/rear layers and independent exits. 130/132 have four; deployed iPads/server 128 have two. Sources: <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-06 — Garden radio and automatic dancing</strong> — <em>Playable prototype</em>. Shared power, local music mute and nearby idle dancing with movement/use taking priority. Sources: <a href="bluey-game-research-2026-09-23.html#1-your-requirements-now-recorded">§1</a> · <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-07 — Shed open, store, close and retrieve</strong> — <em>Playable prototype</em>. Four fixed storage targets preserve actual bucket/sponge/ball identities and contents through close, travel and reopen. Larger hooks/bins/interiors remain to expand. Sources: <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-08 — Expanded shed shelves, hooks and bins</strong> — <em>Planned</em>. Clear readable tool, watering and toy storage zones, capacities, compatible surfaces and safer nested storage; not merely painted storage scenery. Sources: <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-09 — Tree swing and hanging/resting seats</strong> — <em>Planned</em>. Authored seat/rope grips, readable arc, safe entry/exit and four-person activity design. Current painted swing is not a usable ride. Sources: <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-10 — Wading pool and splash play</strong> — <em>Planned</em>. Shallow valid play zone, front-water occlusion, paddling/splashing response and easy exits. Existing pool art alone is decoration. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-11 — Wagon, toy car and cargo</strong> — <em>Planned</em>. Load, carry/roll, unload and wash compatible toys with retained cargo. Handholding and other advanced responses need their own implementation. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-12 — Backyard fishpond catch-and-release</strong> — <em>Planned</em>. Toy rods, visible fish, forgiving cast/reel, observation bowl and release; five proposed fish designs and picture discovery album. Four usable roles/tools, exclusive catch identity. Sources: <a href="bluey-game-research-2026-09-23.html#20-the-water-feature-and-fishing-mini-game">§20</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>Y-13 — Fishing cancellation and discovery</strong> — <em>Planned</em>. No missed-bite penalty or deadline; a full bowl offers release/another spot. Leaving releases unfinished catches; completed discoveries remain. Sources: <a href="bluey-game-research-2026-09-23.html#20-the-water-feature-and-fishing-mini-game">§20</a> · <a href="bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play">§31</a>.</p>
+</li>
+</ul>
+<h2 id="five-cleanup-games">Five cleanup games</h2>
+<p>Each game supports four independent helpers. Scope cleanup to eligible mess/props; never take held items, erase decorations or demolish intentional creations. Provide four usable tools/working positions where needed. Laundry changes only the participating player's own worn accessories through that player's action.</p>
+<ul>
+<li>
+<p>[ ] <strong>CLEAN-GAME-01 — Toy tidy / Daddy Robot helpers</strong> — <em>Planned</em>. Simple play: Put any loose activity toy in a big basket Deeper play: Sort by picture; one collects while the other operates the helper basket Preserve: Tag the session's loose props; never collect a held toy or an intentional construction Sources: <a href="bluey-game-research-2026-09-23.html#21-five-cleanup-games-that-remain-playful">§21</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CLEAN-GAME-02 — Dishwashing bubbles</strong> — <em>Planned</em>. Simple play: Rub a plate with a sponge; broad strokes make it clean Deeper play: Wash, rinse, and rack several dishes; split jobs Preserve: Dirt amount and wetness are bounded states; a completed dish stays clean Sources: <a href="bluey-game-research-2026-09-23.html#21-five-cleanup-games-that-remain-playful">§21</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CLEAN-GAME-03 — Puddle and muddy-footprint cleanup</strong> — <em>Partial</em>. Simple play: Drag a mop through large patches Deeper play: Follow a trail together; squeeze the mop into its bucket Preserve: Use masks/patches with capped counts; cleaning cannot duplicate water Current sponge/puddle loop is only a subset; mop and muddy trails are not built. Sources: <a href="bluey-game-research-2026-09-23.html#21-five-cleanup-games-that-remain-playful">§21</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CLEAN-GAME-04 — Laundry and dress-up basket</strong> — <em>Planned</em>. Simple play: Put large clothes pictures into matching shape baskets Deeper play: Wash, hang, dry, and return accessories; both can arrange a line Preserve: Clothing is an object with dry/wet/clean states; undressing a player requires that player's action Sources: <a href="bluey-game-research-2026-09-23.html#21-five-cleanup-games-that-remain-playful">§21</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>CLEAN-GAME-05 — Garden helpers / Bin Night</strong> — <em>Planned</em>. Simple play: Collect leaves or clearly marked toy litter Deeper play: Use picture-coded destinations, water a newly cleared patch Preserve: Recognize generated cleanup props separately from the sibling's sandcastle, shell art, or boat Sources: <a href="bluey-game-research-2026-09-23.html#21-five-cleanup-games-that-remain-playful">§21</a>.</p>
+</li>
+</ul>
+<h2 id="show-inspired-home-and-backyard-activities">Show-inspired Home and backyard activities</h2>
+<p>Thirty of the 32 project-wide show cards have suggested Home/backyard locations. Their locations are organizational, and some overlap cooking, cleanup or furniture systems; they are not thirty completed independent engines. Every card supports up to four with flexible roles and independent exits. Keepy Uppy remains one shared red backyard balloon, free-handed standing auto-returns, rest/tap restart, and no score/win/loss.</p>
+<ul>
+<li>
+<p>[ ] <strong>SHOW-01 — Hide and Seek</strong> — <em>Planned</em>. Simple play: Tap a hiding place while a parent seeks Deeper play: Both hide, or alternate child seeker/hider roles Reuse / original priority: Cover, perception, roles; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-02 — Daddy Robot</strong> — <em>Planned</em>. Simple play: Feed a toy to a large helper basket Deeper play: One collects; one directs the robot to picture destinations Reuse / original priority: Cleaning, parent role, pickup; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-03 — Hotel</strong> — <em>Planned</em>. Simple play: Put a pillow on a guest bed; ring a bell Deeper play: Reception, room setup, and snack delivery; freely exchange jobs Reuse / original priority: Stations, customer reactions; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-04 — Shops</strong> — <em>Planned</em>. Simple play: Drag an item across a big scanner for a satisfying beep Deeper play: One shops while the other scans and bags; roles never block starting Reuse / original priority: Containers, scanning, role play; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-05 — Taxi</strong> — <em>Planned</em>. Simple play: Tap a destination picture; an assisted taxi follows a safe route Deeper play: Driver, passenger, and mechanic activities; let either child change roles Reuse / original priority: Authored routes, seated anchors; <strong>C</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-06 — Trains</strong> — <em>Planned</em>. Simple play: Tap a station to ride and ring the bell Deeper play: Choose stops, deliver passengers, and set up destination play areas Reuse / original priority: Route graph, passenger attachment; <strong>C</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-07 — Hospital</strong> — <em>Planned</em>. Simple play: Tap a toy scanner and place a bandage sticker Deeper play: One scans, one offers toy treatments; the patient gives funny reactions Reuse / original priority: Tool targets, character states; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-08 — Grannies</strong> — <em>Planned</em>. Simple play: Put on glasses and a blanket, then choose a dance Deeper play: Both invent a granny scene and tidy pretend spilled beans afterward Reuse / original priority: Wearables, poses, spill cleanup; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-09 — Pizza Girls</strong> — <em>Planned</em>. Simple play: Decorate a base and serve to a nearby parent Deeper play: One prepares; the other delivers; add a toy-car mechanic later Reuse / original priority: Recipe, delivery, optional vehicle; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-10 — Duck Cake</strong> — <em>Planned</em>. Simple play: Decorate a ready-shaped duck Deeper play: Assemble, ice, decorate, serve, and optionally clean together Reuse / original priority: Cooking, decoration, cleanup; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-11 — BBQ</strong> — <em>Planned</em>. Simple play: Put large colorful ingredients in a bowl Deeper play: One gathers, one mixes and sets the table; no urgent customer demands Reuse / original priority: Gathering, mixing, serving; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-12 — Fancy Restaurant</strong> — <em>Planned</em>. Simple play: Place one plate and serve a creation Deeper play: Make a menu, prepare food, and take turns as chef and server Reuse / original priority: Shared kitchen, guest reservations; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-13 — Burger Shop</strong> — <em>Planned</em>. Simple play: Stack three large burger pieces Deeper play: Assemble different picture orders while the other child plates or washes Reuse / original priority: Layering, order hints, washing; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-14 — Pavlova</strong> — <em>Planned</em>. Simple play: Add fruit and decorations to a dessert Deeper play: Run adjacent café counters and serve each other, without a winner requirement Reuse / original priority: Decoration and customer reactions; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-15 — Cubby</strong> — <em>Planned</em>. Simple play: Snap a cushion or blanket into a broad target Deeper play: Build connected nooks, furnish them, and place a toy inside Reuse / original priority: Stable sockets, saved constructions; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-16 — Rug Island</strong> — <em>Planned</em>. Simple play: Arrange oversized pretend sticks as food or a shelter Deeper play: Build a shared island and act out fishing/foraging with a parent Reuse / original priority: Prop arrangement, pretend variants; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-17 — The Magic Xylophone</strong> — <em>Planned</em>. Simple play: Tap a note to freeze/unfreeze a willing parent in a funny pose Deeper play: One plays, the other adds a hat or chooses a pose; share turns Reuse / original priority: Temporary effects, NPC role; <strong>A</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-18 — Feather Wand</strong> — <em>Planned</em>. Simple play: Tap a prop and watch a parent struggle comically Deeper play: Change heavy/light states to arrange a silly obstacle scene Reuse / original priority: Temporary state, reactions; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-19 — Asparagus</strong> — <em>Planned</em>. Simple play: Choose an animal picture; a parent imitates it Deeper play: Both build a pretend zoo and switch animal roles Reuse / original priority: Animation/voice variants, reversible effects; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-20 — Musical Statues</strong> — <em>Planned</em>. Simple play: Tap to dance; automatically settle into a pose when music pauses Deeper play: Choose poses and respond to a generous visual/audio stop cue together Reuse / original priority: Shared clock, animation, audio; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-21 — Dance Mode</strong> — <em>Planned</em>. Simple play: Big dance picture triggers a funny parent routine Deeper play: Take turns selecting moves or build a short joint routine Reuse / original priority: Parent role, queued reactions; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-22 — Pass the Parcel</strong> — <em>Planned</em>. Simple play: Assisted passing, followed by a big unwrap gesture Deeper play: Children choose wrapping and pass to each other or NPCs; no elimination Reuse / original priority: Container layers, turn transfer; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-24 — Ragdoll</strong> — <em>Planned</em>. Simple play: Drag a large handle to help Dad onto a cushion Deeper play: Alternate gentle pushes along a short shared route Reuse / original priority: Authored floppy poses, joint contribution; <strong>C</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-25 — Keepy Uppy</strong> — <em>Playable prototype</em>. Tap the resting backyard balloon; higher toss, faster fall and sideways drift; standing free-handed players beneath it raise an arm automatically. One balloon for all four, home only, no score/win/loss; landing rests until tapped. Core/native 132 checks pass; Android still has 130. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-27 — Postman — Ground's Lava</strong> — <em>Planned</em>. Simple play: Tap big cushions; automatic safe hops Deeper play: One arranges a route, the other crosses; either can leave freely Reuse / original priority: Safe nodes, placement constraints; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-28 — Postman — letter delivery</strong> — <em>Planned</em>. Simple play: Deliver a picture card to a nearby mailbox Deeper play: Decorate, fold, and send letters to each other or a parent Reuse / original priority: Craft transform, delivery, simple flight; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-29 — Obstacle Course</strong> — <em>Planned</em>. Simple play: Follow three broad stations without a timer Deeper play: Build routes and take turns; personal timing is optional Reuse / original priority: Authored movement stations; <strong>C</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-30 — Obstacle Course — Memory Snap</strong> — <em>Planned</em>. Simple play: Match two large face-up pictures Deeper play: Use a few face-down pairs and cooperate on a shared board Reuse / original priority: Card matching, turn-optional input; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-31 — Rain</strong> — <em>Planned</em>. Simple play: Drop a broad barrier into a shallow channel Deeper play: Arrange channels and barriers together, then clean muddy tracks Reuse / original priority: Bounded flow graph, water visuals; <strong>C</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-32 — Bin Night</strong> — <em>Planned</em>. Simple play: Put a marked cleanup prop in a picture bin Deeper play: Collect, sort, and wheel bins with a parent Reuse / original priority: Cleanup tags, route and container; <strong>B</strong>. Suggested first location; portable game families may later appear elsewhere. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+</ul>
+<h2 id="six-home-starter-invitations">Six Home starter invitations</h2>
+<p>Tea time, cosy corner, breakfast helpers, thirsty flower, balloon fun and sand surprise are optional suggestions. A sample request for two cups or three plants is a recipe/example, not a two-player limit; all four can contribute or choose different activities.</p>
+<ul>
+<li>
+<p>[ ] <strong>QUEST-01 — Tea time</strong> — <em>Planned</em>. Simple play: Put a cup on the highlighted table spot Explorer version: Place two cups, pour pretend tea, bring a snack Reusable rule: Snap surface + container. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>QUEST-02 — Cosy corner</strong> — <em>Planned</em>. Simple play: Place a cushion on the mat Explorer version: Arrange cushions, add a blanket, put a toy inside Reusable rule: Placement + grouped recipe. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>QUEST-03 — Breakfast helpers</strong> — <em>Planned</em>. Simple play: Put fruit on a plate Explorer version: Fill two plates and deliver them to the table Reusable rule: Container + delivery. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>QUEST-04 — Thirsty flower</strong> — <em>Partial</em>. Simple play: Pour a ready-filled bucket on a flower Explorer version: Fill the bucket and water three plants Reusable rule: Fill + pour + growth. Current fixture waters one plant; the three-plant sequence remains planned. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>QUEST-05 — Balloon fun</strong> — <em>Playable prototype</em>. Fulfilled in the current Keepy Uppy direction: direct balloon tap, automatic raised-arm returns and free play. The earlier target-guidance suggestion is deferred; it is not part of build 132. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>QUEST-06 — Sand surprise</strong> — <em>Planned</em>. Simple play: Press a filled mould Explorer version: Fill the mould, dampen sand, lift it, decorate Reusable rule: Material state + recipe. Sources: <a href="bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">§3</a>.</p>
+</li>
+</ul>
+<h2 id="reusable-objects-containers-stock-and-creation-protection">Reusable objects, containers, stock and creation protection</h2>
+<p>Objects interact with other compatible objects: plates carry decorated food, cups sit on tables, baskets carry toys, cupboards/sheds hide and reveal real contents, wagons move cargo and cushions stack into forts. Each object has one stable identity/location; preserve contents through room unloading, travel, restart and updates. Prevent container cycles and hidden duplicates. Four essential tools/positions where needed, bounded loans, separate personal supplies and safe automatic returns prevent hoarding without erasing creations. Personal storage/creation galleries apply to all four profiles.</p>
+<ul>
+<li>
+<p>[ ] <strong>G-21 — Drag, carry, release and one holder</strong> — <em>Partial</em>. Current bucket/sponge/ball ownership is authoritative. Expand correct hand anchors, handovers, portable cross-world props and safe rejected placement to the full object catalog. Sources: <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#50-one-shared-world-independent-travel-and-shared-items">§50</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-22 — Capacity-limited fill and pour</strong> — <em>Partial</em>. Bucket/tap/plant transfer exists. Extend consistent quantities and cancellation to cups, basins, recipes, watering cans, sand and all compatible targets. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-23 — Supported placement, stacking and moving supports</strong> — <em>Planned</em>. Tables, trays, shelves and stable stacks need visible valid targets; moving a support must carry or safely settle its dependents. Ground dragging is not a general surface system. Sources: <a href="bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction">§5</a> · <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-24 — Containers and durable nested contents</strong> — <em>Partial</em>. Four fixed shed slots retain items. Portable baskets, bags, drawers, cupboards, capacities, nested depth/cycle rules and carried contents remain planned. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-25 — Borrowed tools return automatically</strong> — <em>Partial</em>. Current bucket/sponge have saved eligible idle clocks and return cues, including in shed storage. General typed loans, spoken returns and safe creation separation remain open. Sources: <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-26 — Enough tools and places for four</strong> — <em>Partial</em>. Four sofa/trampoline places exist in unchanged artwork. Other stations must offer four-person participation and essential tool stock; the single prototype bucket is not sufficient. Sources: <a href="bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play">§31</a> · <a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">§47</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-27 — Protect personal creations and prevent hoarding</strong> — <em>Planned</em>. Separate fixed stock, essential tools, bounded loans, personal items, creations, supplies and effects. Count nested loans; preserve art/food and offer recoverable toy-box storage. Sources: <a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">§32</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-28 — Reusable reactions and reversible changes</strong> — <em>Partial</em>. Visible empty/full, dirty/clean, growth and valid rejection exist in the small water loop. Add material transforms, serving reactions, paint removal, undo and stable custom creations. Sources: <a href="bluey-game-research-2026-09-23.html#2-what-makes-this-kind-of-game-work">§2</a> · <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">§19</a> · <a href="bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner">§30</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-01 — Bucket</strong> — <em>Partial</em>. Main use: Fill and pour. Compatible uses: Water plants, fill tray, wet sand, carry small toys. Feedback/recovery: Visible fill level, slosh, bounded spill; refill at tap. Only a narrower prototype interaction exists; this complete object family is not finished. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-02 — Sponge</strong> — <em>Partial</em>. Main use: Wipe puddles. Compatible uses: Wash toy, clean plate, squeeze water into a container. Feedback/recovery: Foam and shrinking dirt patch; reusable after squeezing. Only a narrower prototype interaction exists; this complete object family is not finished. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-03 — Cup</strong> — <em>Planned</em>. Main use: Hold a drink. Compatible uses: Pour into another cup, serve, stack empty cups. Feedback/recovery: Liquid color/level, character sip, safe placement. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-04 — Fruit</strong> — <em>Planned</em>. Main use: Prepare food. Compatible uses: Slice, blend, plate, picnic, offer to a character. Feedback/recovery: Different prepared states; replenish from visible fruit supply. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-05 — Blender</strong> — <em>Planned</em>. Main use: Transform ingredients. Compatible uses: Mix colors/flavors, make foam, fill cups. Feedback/recovery: Visible mixture, short motor sound, stop/start button. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-06 — Plate / tray</strong> — <em>Planned</em>. Main use: Arrange items. Compatible uses: Carry a snack group, hold loose shells, wash after use. Feedback/recovery: Stable slots or surface placement; objects remain recoverable. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-07 — Plant pot</strong> — <em>Partial</em>. Main use: Hold a plant. Compatible uses: Add seed, water, decorate, move to table. Feedback/recovery: Growth stage and color; optional replant action. Only a narrower prototype interaction exists; this complete object family is not finished. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-08 — Water tray</strong> — <em>Planned</em>. Main use: Hold shallow water. Compatible uses: Float boat, test toy buoyancy, scoop water. Feedback/recovery: Waterline and gentle bob; drain or refill. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-09 — Paper boat</strong> — <em>Planned</em>. Main use: Float. Compatible uses: Add a leaf passenger, decorate, carry to creek. Feedback/recovery: Attached passenger and bounded path; retrieve at shore. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-10 — Sand mould</strong> — <em>Planned</em>. Main use: Make a castle. Compatible uses: Try dry/wet sand, add shells, rebuild. Feedback/recovery: Formed shape, crumble/wash animation; refill. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-11 — Shell</strong> — <em>Planned</em>. Main use: Decorate. Compatible uses: Sort, place in tray, tap like a tiny instrument. Feedback/recovery: Distinct clack and placement; no single required pattern. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-12 — Ball</strong> — <em>Partial</em>. Main use: Roll and bounce. Compatible uses: Basket, ramp, water tray, gentle character catch. Feedback/recovery: Readable bounce and sound; rescue if out of reach. Only a narrower prototype interaction exists; this complete object family is not finished. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-13 — Toy car</strong> — <em>Planned</em>. Main use: Roll. Compatible uses: Ramp, wash, pretend garage, carry in basket. Feedback/recovery: Wheels and dirt state; no vehicle-driving skill required. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-14 — Ramp / plank</strong> — <em>Planned</em>. Main use: Make a path. Compatible uses: Roll ball/car, bridge a small gap. Feedback/recovery: Preview support points; simple valid snapping. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-15 — Cushion / blanket</strong> — <em>Planned</em>. Main use: Build a cosy spot. Compatible uses: Stack, seat a character, make a fort. Feedback/recovery: Stable placement and seated pose; dismantle easily. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-16 — Brush / washable paint</strong> — <em>Planned</em>. Main use: Decorate. Compatible uses: Paint pot, toy surface, paper boat. Feedback/recovery: Continuous stroke or stamped patches; sponge removes paint. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-17 — Hat / accessory</strong> — <em>Planned</em>. Main use: Dress up. Compatible uses: Swap, place on hook, pretend role-play. Feedback/recovery: Clear attachment and character reaction; remove by dragging. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-18 — Toy drum / bell</strong> — <em>Planned</em>. Main use: Make sound. Compatible uses: Musical call-and-response, rhythm play. Feedback/recovery: Immediate sound with overlap limits; no score required. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-19 — Picnic basket</strong> — <em>Planned</em>. Main use: Carry a set. Compatible uses: Pack snacks, collect toys, deliver to blanket. Feedback/recovery: Visible contents and capacity cue; easy extraction. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OBJECT-20 — Tap / drawer / light switch</strong> — <em>Partial</em>. Main use: Change environment. Compatible uses: Fill source, reveal props, adjust room mood. Feedback/recovery: Mechanical animation plus obvious new state; easy toggle. Only a narrower prototype interaction exists; this complete object family is not finished. Sources: <a href="bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant">§6</a> · <a href="bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">§51</a>.</p>
+</li>
+</ul>
+<h2 id="optional-and-later-extensions-retained-not-completion-gates">Optional and later extensions — retained, not completion gates</h2>
+<p>Watch-together/autoplay TV, hair styling, extra prehistoric animals/fossils and Pirates remain separate candidates. Spanish is a planned later language expansion; English Home content comes first. Ordinary dress-up/accessories and the committed show cards remain required where listed above. Other-world activities, full cast expansion and optional AR remain in the all-world plan; this tracker does not remove them.</p>
+<ul>
+<li>
+<p>[ ] <strong>H-25 — Watch together or autoplay-next</strong> — <em>Optional idea</em>. Explicitly later than the first local TV version; invitations and matching clip IDs would be needed for shared viewing. Sources: <a href="bluey-game-research-2026-09-23.html#27-tv-corner-and-local-video-library">§27</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OPTION-HAIR — Hair styling and extra dress-up transformations</strong> — <em>Optional idea</em>. Reversible styling appears in the commercial-reference study. Treat hair tools as a candidate requiring selection, not proof of an implemented salon. Required show dress-up and accessories remain in their own entries. Sources: <a href="bluey-game-research-2026-09-23.html#4-character-roster-and-pictures">§4</a> · <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>OPTION-FOSSIL — Fossils and other prehistoric animals</strong> — <em>Optional idea</em>. Later fossil assembly requires reviewed anatomy. Flying/marine prehistoric reptiles would use a separate category; they are not part of the 20 dinosaur-type commitment. Sources: <a href="bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game">§28</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>SHOW-EXTRA — Pirates swing-ship adventure</strong> — <em>Optional idea</em>. Additional researched candidate outside the 32-card selection: steering and spotting picture landmarks; needs bespoke swing/character work. Sources: <a href="bluey-game-research-2026-09-23.html#23-show-games-and-activities-catalog">§23</a>.</p>
+</li>
+<li>
+<p>[ ] <strong>G-15 — Spanish and separate local language choices</strong> — <em>Planned</em>. Reviewed recordings, natural translations and Spanish-specific sounds/rhymes. Dialect remains a content decision; prototype translations are not a completed mode. Sources: <a href="bluey-game-research-2026-09-23.html#8-spoken-english-and-spanish-using-your-pc-and-comfyui">§8</a> · <a href="bluey-game-research-2026-09-23.html#26-dinosaur-books-and-spoken-names">§26</a> · <a href="bluey-game-research-2026-09-23.html#41-daycare-learning-short-playful-and-spoken">§41</a>.</p>
+</li>
+</ul>
+<h2 id="home-completion-and-four-player-acceptance">Home completion and four-player acceptance</h2>
+<p>All checks below remain open. Passing a source/native check does not establish physical performance, visible data retention or user visual acceptance. Record exact builds and evidence. Use disposable test worlds; do not disturb the live family world to qualify new features.</p>
+<ul>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-01 — Eight distinct owned rooms</strong> — Four bedrooms plus four independently creatable secret rooms retain their owners, decorations and items across save/reopen, reconnect and avatar/device changes. Repeated joins never create extra rooms.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-02 — Four together and four apart</strong> — Visit every room with all four players; then use four separate rooms simultaneously. One leaves or closes the app; the other three continue. Verify valid individual arrival/exit positions and retained held items.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-03 — Four-profile migration</strong> — Load supported older saves/enrollment, preserve existing room/object IDs and contents, add missing profile-owned rooms once, and repeat the migration safely. No reset, deletion, owner reassignment or import of offline edits.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-04 — Every shared Home activity with four</strong> — Check four participants, enough usable tools/positions, independent join/leave, late join, safe reset and role transfer where applicable. Check solo use too; no requirement for a second or fourth participant to start.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-05 — Simultaneous object operations</strong> — Competing grabs, drops, storage closes, recipe transforms and repeated commands produce one accepted result; no duplicates, lost ingredients, hidden originals or stuck hands.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-06 — Storage and personal creations</strong> — Fill/decorate/store, close, travel, reopen, restart and retrieve the same items with contents intact. Return a borrowed carrier without losing personal food/art/toys. Verify nesting/stock limits and all four personal galleries.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-07 — Kitchen completeness</strong> — All 15 distinct recipes work through appropriate preparation, cooking, decoration, portions, serving and washing. Four cooks can share the space; leaving mid-bake is safe. Drinks/blender/free creation also work.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-08 — Independent books, TV and preferences</strong> — Four profiles can use different local pages/videos/bookmarks and assistance/audio/calm settings. Close/background/relaunch preserves progress and does not restart unwanted audio or pause others.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-09 — Private offline continuity and recovery</strong> — Cold launch without network, connection loss, app lifecycle interruptions and rejoin preserve local work separately; shared rejoin loads the authoritative server state without stale rollback or offline merging.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-10 — Visual and touch acceptance</strong> — Inspect phone and 4:3 tablet layouts, room seams, integrated furniture, correct body/item contact/cover layers, unobscured controls, reachability and large touch targets. Obtain user visual acceptance; no duplicated painted objects or inert controls presented as finished.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-11 — Older iPad and mixed-device performance</strong> — Sustained A10 iPad play with four mixed clients, room travel, storage, effects and local media. Record frame-time/memory/lifecycle results rather than inferring them from a Windows test.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-12 — Coordinated release and retained data</strong> — Qualify the actual new build's backup/restore and compatible server/client rollout, fresh signed artifacts, in-place updates, launch and visible retained records/creations/enrollment. Do not count candidate 131 recovery as candidate 132 or future-build qualification.</li>
+<li class="task"><input type="checkbox" disabled aria-label="Not complete"> <strong>HOME-QA-13 — Full feature and evidence review</strong> — Every required item above has its remaining gap closed and links to relevant current evidence; optional/later ideas remain explicit. Update the world inventory/build guide without claiming other worlds or all release gates are complete.</li>
+</ul>
+<h2 id="implementation-order-and-progress-log">Implementation order and progress log</h2>
+<p>Keep one bounded slice active at a time, while retaining this entire scope. The next implementation begins with integrated room/kitchen supports, appliance interiors, aligned doors and reusable item/room persistence for four profiles. Prove one complete cooking/serving/cleanup loop, then expand recipes and rooms from reliable foundations. Other Home activity families follow in tested slices; unavailable physical devices do not block independent preparation, but physical completion checks remain open.</p>
+<p>No implementation slice started in this documentation task. Do not build or install solely because this file was created.</p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Work / IDs</th>
+<th>Result / evidence</th>
+<th>Remaining work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-09-26</td>
+<td>Four-player room scope; complete Home tracker</td>
+<td>Documentation only. Four bedrooms/four secret rooms recorded; named catalogs and prototypes carried forward. <a href="implementation/evidence/home-tracker-2026-09-26/docs-validation.json">Document validation</a> · <a href="implementation/evidence/home-tracker-2026-09-26/tracker-validation.json">Tracker coverage</a>.</td>
+<td>All individual rooms and final Home acceptance checks remain open; no game build, deployment or new gameplay qualification.</td>
+</tr>
+</tbody>
+</table>
+<p>For each future slice add: affected IDs, resulting behavior, source revision/build, relevant evidence links, physical/visual acceptance separately, remaining limitations and the next bounded slice. Preserve older scoped evidence rather than silently replacing it with a completion claim.</p>
+<h2 id="research-map">Research map</h2>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Authoritative reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest four-player room decision</td>
+<td><a href="current-decisions.md">Current decisions</a></td>
+</tr>
+<tr>
+<td>Full named feature inventory and statuses</td>
+<td><a href="all-world-features-audit-2026-09-26.html">All-world feature audit</a></td>
+</tr>
+<tr>
+<td>Kitchen / fishpond / cleanup / parents / show games</td>
+<td><a href="bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">Goal sheet chapters 19–24</a></td>
+</tr>
+<tr>
+<td>Books / TV / dinosaurs / science</td>
+<td><a href="bluey-game-research-2026-09-23.html#25-reading-nook-and-interactive-books">Goal sheet chapters 25–30</a></td>
+</tr>
+<tr>
+<td>Independent participation / four bedrooms / secret rooms / hiding</td>
+<td><a href="bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates">Goal sheet chapters 31–34</a></td>
+</tr>
+<tr>
+<td>Four-player capacity / travel / item returns and clutter</td>
+<td><a href="bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android">Goal sheet chapters 47–51</a></td>
+</tr>
+<tr>
+<td>Character use, item combinations, shed and radio</td>
+<td><a href="bluey-lets-play-reference-study-2026-09-25.html#18-characterobject-interaction-specification">Interaction reference</a></td>
+</tr>
+<tr>
+<td>Simple/Explore modes and reusable object catalog</td>
+<td><a href="toca-piknik-interaction-research-2026-09-23.html">Toca/Piknik supplement</a></td>
+</tr>
+<tr>
+<td>Integrated furniture, room layers and supports</td>
+<td><a href="implementation/home-scene-layer-research-2026-09-26.html">Home scene-layer research</a></td>
+</tr>
+<tr>
+<td>Development order and recorded deployment</td>
+<td><a href="family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build guide</a></td>
+</tr>
+</tbody>
+</table>
+<p>Older references may describe two-child examples, historical seat counts or the superseded two-bedroom limit. The four-profile rules at the top and latest current decisions take precedence; historical evidence is not rewritten as four-player qualification.</p></article></div><footer>Documentation and retained evidence only. No new gameplay, builds or deployment in this update.</footer></body></html>

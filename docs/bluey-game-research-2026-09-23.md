@@ -1,5 +1,8 @@
 # A Bluey playset for your family
 
+**Four personal rooms for four players — September 26, latest user correction:** Home must provide **four persistent player-owned bedrooms and four optional secret rooms**, one of each per family player profile, including parent players. This supersedes the earlier two-child-room limit. All four can visit any room together or use separate rooms; joining, leaving or changing avatar never creates, reassigns or deletes an owned room. Each profile has its own decorations, personal storage, creations, book/video bookmarks and local assistance/preferences. Every Home activity, station, dining/reading area and arrival/exit arrangement must support four independent participants with enough tools/places where needed. Secret-room creation/use is optional for the player; supporting all four is required scope. Preserve any existing room identities/data and add missing rooms through tested migration. The [Home world feature tracker](home-world-feature-tracker.md) records the complete backlog, individual room checks, status and acceptance evidence. This is a documentation/scope correction, not a game implementation or deployment. Home development is the active priority; physical rollout qualification remains pending until devices are available.
+
+
 **Current home implementation:** [Build 128](implementation/integrated-home-2026-09-26.html) is installed on Samsung with all eight saved records retained. Clean living-room/tree/shed bases remove the painted duplicates; one layered sofa, trampoline and shed now draw occupants and contents at the correct local depth. Six native home groups pass, including stored-item visibility and offline reopen. Kitchen supports/interiors and the wider house inventory remain next. Server/helper and both iPads now also run 128; iPhone remains 101. See the current family rollout below. User visual acceptance of the new scene composition remains open.
 
 **Accepted movement:** 420 floor units/second, **2 times the original speed**, remains the shared default for every current and future character. The user tested build 125 and clarified “Lots better.” Keep its calmer artwork and animation cadence; avatar size/selection must never override gameplay speed. [Movement evidence](implementation/movement-speed-2026-09-26.html).
@@ -83,7 +86,7 @@ Open the companion **[illustrated research guide](bluey-game-research-2026-09-23
 | Cooking | Kitchen activities with at least five pizzas, five cakes, and five meals; free creation and shared preparation |
 | Fishing | Catch-and-release game at the Heeler backyard fishpond from Tradies and a creek variant |
 | Cleanup | Five playful cleaning/sorting activities; cleanup never gates access to another game |
-| Hide-and-seek | Parent searches for both children first; child hides / child seeks also planned; each child controls an in-game avatar |
+| Hide-and-seek | NPC parent can seek up to four human hiders; human-seeker mode supports the other three; each participant controls an independent in-game avatar |
 | Parents | Bandit and Chilli are playable choices for everyone; separate NPC actors handle roaming and requested activities without taking player control |
 | Show activities | 32 researched episode-derived activity ideas, with easier and deeper cooperative adaptations |
 | Books | Pick up a book in a house reading nook to open illustrated pages; Play starts spoken narration; tap pictures for small relevant animations and spoken dinosaur names |
@@ -91,8 +94,8 @@ Open the companion **[illustrated research guide](bluey-game-research-2026-09-23
 | Dinosaurs | A dedicated dinosaur discovery mini-game and a toy-room collection targeting 20 different dinosaurs; all types accessible without quest unlocks |
 | Science | A house science corner with eight proposed touch experiments; simple cause and effect first, optional deeper play |
 | Drop-in play | Start alone; family members join or leave without resetting activities; any client may close during PC-hosted home play |
-| Personal bedrooms | Confirmed: two separate rooms, each child's own decoration; changes synchronize to both iPads when connected |
-| Secret rooms | One optional mini-door room per child; both children may visit either; plush toys, stars, and slow northern lights |
+| Personal bedrooms | Confirmed: four separate player-owned bedrooms, one per family profile; connected edits appear to all relevant clients |
+| Secret rooms | Four optional mini-door rooms, one per player profile; all four players may visit any room; plush toys, stars and slow northern lights |
 | Hiding detail | Enter designated closets and oversized drawers; optional giggle/rattle hints after 5–10 seconds; parent seeks by default and aims to find each ready hider within about 30 seconds |
 | Travel | Every solo-capable feature works without PC or internet; travel multiplayer/hotspot/remote connectivity is an optional later want; preserve local progress |
 | Remote home host | Confirmed: PC is basically always on and may host for away-from-home players; prototype a private route, saved endpoint, automatic joining, and outage fallback |
@@ -162,7 +165,7 @@ All six content regions remain available through five unlocked destinations: Hee
 
 | Location | Free-play activities | Why it belongs |
 | --- | --- | --- |
-| **Heeler Home** | Kitchen, cleanup, hide-and-seek, roaming parents, books, TV, dinosaur toys, science corner, two bedrooms, and two optional secret plush rooms | Shared pretend play and independent rooms; science, cooking, toys, and household activities reuse compatible props |
+| **Heeler Home** | Kitchen, cleanup, hide-and-seek, roaming parents, books, TV, dinosaur toys, science corner, four player-owned bedrooms, and four optional secret plush rooms | Shared pretend play and independent rooms; science, cooking, toys, and household activities reuse compatible props |
 | **Backyard Garden** | Tap, buckets, plants, sandpit, fishpond fishing, balloons, hiding places | Water interactions, fishing, and cooperative outdoor games |
 | **Playground & Park** | Working playground equipment, tag, hiding, riding, shadows, picnics; 12 activities in section 39 | Large, obvious actions and shared activities |
 | **The Creek** | Rock collecting/stacking, fishing, log crossing, boats, nature play; 10 activities in section 38 | Gentle discovery and simple water-related combinations |
@@ -564,11 +567,11 @@ Added September 23, 2026, following the Toca/Piknik research. This is the main r
 | CHAR-02 | Everyone may choose any available character | Include Bandit and Chilli; no adult/child restrictions or exclusive favorites; separate player avatars from NPC jobs | All four may switch, including duplicate Bandits, without losing roles, props, or NPC-led activities |
 | FAMILY-01 | Up to four mixed-device family players | iPad, iPhone, and Android share automatic LAN discovery; separate profiles, one authority, independent cameras/activities | Third/fourth join and leave; slots, recovery, phone UI, older-iPad load, and offline saves pass on real devices |
 | ACT-01 | Easy, optional quests | Large activity-picture button, nearby station invitations, one-tap start; leave or switch freely | No quest blocks movement, another activity, or the sibling's play |
-| COOK-01 | At least five types of each requested food | Five pizzas, five cakes, five meals; recipes and free creations share the kitchen | All 15 can be prepared, carried, served, saved, and used by both players |
-| FISH-01 | Fishing at the house water feature | Backyard fishpond; assisted catch, inspect, release; optional picture matching | Two rods cannot duplicate the same fish; exiting always returns unfinished catches |
+| COOK-01 | At least five types of each requested food | Five pizzas, five cakes, five meals; recipes and free creations share the kitchen | All 15 can be prepared, carried, served, saved and used by four independent players |
+| FISH-01 | Fishing at the house water feature | Backyard fishpond; assisted catch, inspect, release; optional picture matching | Four usable roles/tools; competing rods cannot duplicate one fish; exiting returns only that player's unfinished catches |
 | CLEAN-01 | Cleanup mini-games | Toys, dishes, spills, laundry, and garden sorting | Cleaning is satisfying and optional; nobody loses their creations |
-| HIDE-01 | A parent finds both children | Bandit or Chilli seeks; each child independently chooses a hiding spot | Fair search, useful hints, no eliminated child waiting helplessly |
-| HIDE-02 | One child hides and the other finds them | Choose hide/seek roles; hide the hider's position on the seeker's iPad | Seeker cannot reveal the hider via nameplates, touch targets, or character changes |
+| HIDE-01 | An NPC parent finds up to four players | Bandit or Chilli seeks; each player independently chooses a hiding spot and readiness | Fair search, useful hints, independent departures and no eliminated player waiting helplessly |
+| HIDE-02 | A human seeker finds up to three other players | Choose hide/seek roles; hide each hider's position on the seeker's device | Seeker cannot reveal hiders via nameplates, touch targets, or character changes |
 | NPC-01 | Parents behave naturally between activities | Walk, read, garden, prepare food, tidy designated props; interruptible requests | Parents respond to play requests and never become permanently reserved |
 | CAT-01 | A substantial show-based activity backlog | 32 entries in section 23, linked to official episode sources | Each selected activity receives art/audio, cancellation rules, and device tests |
 | BOOK-01 | Pick up and explore narrated books | House reading nook; full-screen illustrated pages; Play/Pause, page arrows, spoken names, small animations; six proposed starter titles | First eight-page book and remaining approved books work offline, with understandable controls and no overlapping speech |
@@ -583,10 +586,10 @@ Added September 23, 2026, following the Toca/Piknik research. This is the main r
 | ITEM-03 | Automatically return unused borrowed props | Typed return policy, home anchor, inactivity check, brief return cue, one server transaction | Held/active items stay; unused loans return across all devices without duplicate objects, lost creations, or room reset |
 | STOCK-01 | Keep every area playable | Fixed shared furnishings, protected essential station tools, bounded loan stock, one essential tool of each type per player at a station | One child cannot remove the working equipment from all areas or hide every tool inside bags |
 | ROOM-02 | Bedrooms remain usable | Separate personal catalog, bounded loose props, clear exits, recoverable toy storage and creation shelf | All planned dinosaur types remain available; limits do not delete decorations or creations; visitors cannot clear a child's room |
-| NET-02 | Either iPad may close without stopping the other | Dedicated authority runs the family world: PC now, owned VPS after qualified migration; clients hold no required server role | Either iPad closes or locks while the other continues with valid object state |
+| NET-02 | Any client may close without stopping the others | Dedicated authority runs the family world: PC now, owned VPS after qualified migration; clients hold no required server role | Any one of four clients closes or locks while the remaining three continue with valid object state |
 | REMOTE-01 | Owned VPS after server reliability is ready | Authenticated endpoint, server build, recovery and controlled world/credential migration | Four mixed clients from home/internet; one canonical writer; offline solo on route loss |
-| ROOM-01 | Two separate child-owned bedrooms; connected edits appear on both clients | Durable room IDs, permissions, protected creations; offline copies remain local and never overwrite server rooms | Decorate, visit, save/reopen and rejoin without changing ownership, duplicating shared rooms or losing private saves |
-| SECRET-01 | Mini-door chill rooms | One optional secret room per child, shared visits, plush toys, stars, northern lights | Both can occupy either room; portals, exits, saves, and older-iPad effects pass |
+| ROOM-01 | Four separate player-owned bedrooms; connected edits appear on all relevant clients | Durable room IDs, permissions, protected creations; offline copies remain local and never overwrite server rooms | Decorate, visit, save/reopen and rejoin without changing ownership, duplicating shared rooms or losing private saves |
+| SECRET-01 | Four mini-door chill rooms | One optional secret room per player profile, shared visits, plush toys, stars, northern lights | All four can occupy any room; portals, exits, independent saves and older-iPad effects pass |
 | HIDE-03 | Enterable furniture and gentle clues | Closets/oversized drawers; configurable 5–10-second clues; parent search around 30 seconds | No trapped avatars, hidden-role leaks, waiting for the next round, or unreachable required finds |
 | TRAVEL-01 | Full offline solo on trips; optional internet/hotspot connection to PC/VPS | Installed content and local saves; server wins on rejoin, with local work retained separately | Cold offline launch and installed solo activities pass; route loss/rejoin retains local saves; remote multiplayer qualifies separately |
 | AUTO-01 | Automatic family discovery and joining | Foreground native Bonjour/DNS-SD discovery on Apple, Android, and Windows; paired devices, one stable authority; no child Host/Join steps | Either launch order and simultaneous launch work; permissions and offline fallback handled |
@@ -695,7 +698,7 @@ For Explore & Stories, add the full ingredient sequence, partial mixing/pouring,
 
 Use a large **Make / Decorate / Serve** picture strip, not a long recipe paragraph. The whole creation stays interactive when finished: carry pizza slices on a plate, offer cake to a parent, pack a meal for a picnic, and wash the dishes afterward. Parent customers can react and thank the child, but must not demand cleanup as payment or gate the next recipe. Nothing burns irreversibly while a child explores something else. End heating at a stable ready state and stop relevant effects if the item is removed.
 
-Two-player roles should be flexible: one adds toppings while the other prepares plates; one mixes while the other decorates a finished cake. Either can change jobs at any moment. Give each child their own bowl/tray when needed. On the same pizza, accept sequential topping placements from both devices; reserve the specific portion/tool transaction rather than locking the whole kitchen for one player.
+Roles for up to four players should be flexible; the following pairs are examples, not a capacity limit: one adds toppings while the other prepares plates; one mixes while the other decorates a finished cake. Either can change jobs at any moment. Provide up to four independent bowls/trays, work positions and essential tools when needed; no player can lock the whole kitchen. On the same pizza, accept sequential topping placements from both devices; reserve the specific portion/tool transaction rather than locking the whole kitchen for one player.
 
 ### Reusable cooking model
 
@@ -752,7 +755,9 @@ Give each mess patch/object a stable ID and remaining amount. The host applies c
 
 **Updated requirements:** section 34 adds enterable closets/drawers, configurable 5–10-second clues, a roughly 30-second parent search per ready hider, and immediate mid-round joining. It takes precedence over the earlier outline below where more specific.
 
-### First mode: Bandit or Chilli finds both children
+<a id="first-mode-bandit-or-chilli-finds-both-children"></a>
+
+### First mode: Bandit or Chilli finds up to four players
 
 The show’s **Hide and Seek** has the family hiding while Bluey counts and searches; distraction is part of the story. Our parent-seeker mode adapts the roles to let both children cooperate. [Official Hide and Seek episode](https://www.bluey.tv/watch/season-1/hide-and-seek/)
 
@@ -954,7 +959,7 @@ The play and close controls need consistent locations, generous spacing, and lar
 
 ### Sharing the house without sharing a playback cursor
 
-The physical book prop has a world object ID; its readable content has a separate book ID. Moving a book does not erase the other child's access to its pages. Both children may read the same title independently, on different pages, or one may read while the other cooks. A local reading panel must not pause the LAN host or set global game time to zero.
+The physical book prop has a world object ID; its readable content has a separate book ID. Moving a book does not erase another player's access to its pages. All four players may read the same title independently on different pages, or mix reading with other activities. A local reading panel must not pause the PC/VPS world or set global game time to zero.
 
 Give a reading avatar a seated/reading pose where practical; book opening should not wait for a long walk to a chair. Release the reader's temporary activity reservations using the existing leave/park rules. In hide-and-seek, opening a book withdraws that child from the round; the parent can keep seeking the remaining child. Closing the book returns control without restoring a stale role or a stuck movement touch.
 
@@ -1133,7 +1138,7 @@ Food is pretend play in the first toy version. If later teaching diets, use revi
 
 In Simple Play, one broad swipe or tap reveals a toy; brushes snap generously to it; naming is automatic after the reveal but replayable. There is no timer, failure sound, required reading, or hunt through a long inventory. Explore & Stories can use several brushing strokes, more scenery pieces, and optional requests from a parent character. Assistance changes the required input, not which toys are available.
 
-| Optional invitation | Simple Play | Explore & Stories / two children |
+| Optional invitation | Simple Play | Explore & Stories / up to four players |
 | --- | --- | --- |
 | **Find a dinosaur** | Tap a mound; brush once; hear the name | One child digs, the other brushes or carries the toy to the mat |
 | **Dinosaur wash day** | Drag a ready sponge across a muddy toy | Fill the basin, wash, rinse, and arrange several clean toys together |
@@ -1182,7 +1187,7 @@ The older iPad remains the performance baseline as client and solo player, inclu
 | Open book and wait | No story narration until Play; saved page is visible and usable |
 | Tap a name repeatedly during narration, then Pause | One intelligible voice; no long queue and no delayed restart after Pause |
 | Turn pages or close during an audio/art load | Only the current view can become active; no stale picture or speech appears |
-| Both children open the same book | Independent pages, language, and controls; neither takes the book away from the other |
+| All four players open the same book | Independent pages, bookmarks, language and controls; moving the prop does not remove another player's access |
 | Book, TV or menu opens | Foreground media is local; PC/VPS world continues for siblings; offline solo stays usable. Do not set a global shared-world pause. |
 | Switch avatar after reading or carrying a dinosaur | Bookmark, player identity, toy instance, and held state remain correct |
 | Both children grab or wash the same toy | One valid ownership/state transition; no duplicated item or conflicting dirt value |
@@ -1227,7 +1232,7 @@ Give each station three immediate actions before adding an optional quest. For e
 
 The younger child's mode begins with a working setup and broad snap targets; the older child can assemble or adjust it. Spoken invitations are one short line at a time, with an obvious replay icon. Optional prediction choices use pictures, followed by an observation rather than a wrong-answer buzzer. Timers measure the simulation internally; they do not grade the child.
 
-Two children can manipulate different controls or use two copies of a tool. Never require two simultaneous fingers, a second player, blowing into the microphone, or camera recognition. A shared reset must not wipe a sibling's held object or result: provide personal sample trays or reset only an unused station. A finished plant, decorated boat, or sound sequence can become a saved play object.
+Up to four players can manipulate independent controls or use four separate tools/sample trays where needed. Never require two simultaneous fingers, a second player, blowing into the microphone, or camera recognition. A shared reset must not wipe a sibling's held object or result: provide personal sample trays or reset only an unused station. A finished plant, decorated boat, or sound sequence can become a saved play object.
 
 ### A lightweight simulation that stays consistent
 
@@ -1286,11 +1291,13 @@ Persist accepted changes with a versioned journal/checkpoint and backups. Stop o
 
 The PC still has to stay awake and reachable for the shared home session. A PC/network failure is a separate failure mode from a child leaving; local continuation and saved-state recovery cover it. Research does not make an outage incapable of causing a brief synchronization transition. Travel behavior is specified in section 35.
 
-## 32. Two personal bedrooms with shared updates
+<a id="32-two-personal-bedrooms-with-shared-updates"></a>
 
-**Confirmed interpretation:** two separate bedrooms, one belonging to each child. Decorating one room updates the representation of that room on both iPads; it does not make both bedrooms identical. Use child profiles, not the chosen Bluey avatar, so changing from Bingo to Rusty never changes which room belongs to that child.
+## 32. Four personal bedrooms with shared updates
 
-Start each room with a bed, rug, low shelf, toy basket, reading cushion, wall-picture slots, and a decoration drawer. Offer picture choices for walls, bedding, rugs, lamps, and plush toys. Both children may visit either bedroom, including when its owner is in another room. Their avatars need not remain beside each other to keep networking active.
+**Latest user correction, September 26:** four separate bedrooms, one belonging to each of the four family player profiles, including parent players. Decorating a room updates that same room for connected visitors; it never makes all four bedrooms identical. Ownership follows the stable player profile, not the chosen avatar, device or connection order. See the [Home tracker](home-world-feature-tracker.md) for individual room and four-player acceptance checks. Earlier two-child-room limits are superseded.
+
+Start each room with a bed, rug, low shelf, toy basket, reading cushion, wall-picture slots, and a decoration drawer. Offer picture choices for walls, bedding, rugs, lamps, and plush toys. All four players may visit any bedroom together or separately, including when its owner is elsewhere or disconnected. Every bedroom needs four-person occupancy, usable seats/play space and safe arrivals/exits. Their avatars need not remain beside each other to keep networking active.
 
 ### Ownership, visiting, and decorating
 
@@ -1301,9 +1308,9 @@ Use forgiving placement: clear legal surfaces, large snap areas, and an immediat
 | Identity/state | Example | Rule |
 | --- | --- | --- |
 | Family world ID | One home world | Stable across app updates and server restarts |
-| Child profile ID | Child A / Child B | Stable across device reconnects and character swaps |
-| Room ID | `bedroom-A`, `bedroom-B` | Same identity on PC and both iPads |
-| Room owner | Child A owns bedroom-A | Ownership of decoration is separate from network/server authority |
+| Player profile ID | Player A / B / C / D | Stable across device reconnects and character swaps; parent profiles also own rooms |
+| Room ID | `bedroom-A`, `bedroom-B`, `bedroom-C`, `bedroom-D` (illustrative IDs) | Four persistent identities shared by the authority and clients; preserve existing IDs/data when adding missing rooms |
+| Room owner | Player A owns bedroom-A | Ownership of decoration is separate from network/server authority |
 | Prop instance ID | A particular blue plush dinosaur | Moving it changes one instance; it must not appear twice |
 | Accepted room revision | Monotonically ordered change number | Determines what a reconnecting iPad is missing |
 | Decoration transaction | Move shelf, change bedding, add picture | Validate, commit once, replicate, and make reversible where practical |
@@ -1316,11 +1323,11 @@ Treat a room as a logical world zone, not as a command to reload everybody's Uni
 
 For later larger locations, load presentation content asynchronously and manage network object visibility deliberately. Unity's built-in network scene loading commonly synchronizes scenes across clients, so an ordinary global Single scene load is unsuitable for “one child enters their secret room while the other keeps cooking.” Client-specific content loading requires its own design and tests. [Unity scene-management behavior](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.5/manual/basics/scenemanagement/using-networkscenemanager.html)
 
-A room change is a small transaction: request target room/door → load local view and current state → reserve valid arrival anchor → commit the player's room/location → fade locally. If loading fails or the child cancels, keep them in the original room. Two visitors arriving together receive separate nearby anchors. Preserve their held toy unless an explicit activity rule requires setting it down.
+A room change is a small transaction: request target room/door → load local view and current state → reserve valid arrival anchor → commit the player's room/location → fade locally. If loading fails or the child cancels, keep them in the original room. Up to four players arriving together receive distinct safe nearby anchors; leaving never evicts another occupant. Preserve their held toy unless an explicit activity rule requires setting it down.
 
 ### Offline room changes and return-home sync
 
-Each iPad keeps a usable cached home layout and its child's editable private travel save. Live changes cannot reach the other iPad without a connection. Rejoining loads the current server room while retaining offline work separately; do not label a disconnected edit “synced.”
+Each device keeps a usable cached home layout and its player profile's editable private travel save. Live changes cannot reach the other iPad without a connection. Rejoining loads the current server room while retaining offline work separately; do not label a disconnected edit “synced.”
 
 Connected bedroom edits are validated and saved by the PC/VPS, then sent to the other clients. Disconnected bedroom work is saved privately. Rejoining always loads the server room; do not merge room journals or ask children to resolve shared-world conflicts.
 
@@ -1328,13 +1335,13 @@ Automatic saving should be frequent enough to preserve finished changes without 
 
 ## 33. Secret plush rooms with stars and northern lights
 
-**Proposed layout: each bedroom can have a little star-marked door leading to that child's own cozy secret room. Both children may enter either secret room, together or separately.** These are playful hidden spaces, with no password, quest unlock, or exclusion rule. They are an addition to our game house, not a claim about a room shown in the television series.
+**Updated four-player layout: each of the four bedrooms can have a little star-marked door leading to its owner's own cozy secret room. All four players may enter any existing secret room, together or separately.** These are playful hidden spaces, with no password, quest unlock, or exclusion rule. They are an addition to our game house, not a claim about a room shown in the television series.
 
-Give each child a simple **Make a secret room** picture choice. Choose a mini-door style and place it in a validated bedroom wall slot; create the room the first time and remember it. Moving the doorway later changes the entrance position, not the room's contents or identity. Removing the decorative doorway should archive the entrance, never erase the hidden room or strand its occupants. Keep an always-available return-home picture and a visible interior exit.
+Give each of the four player profiles a simple **Make a secret room** picture choice. This choice is optional to use, but the four-room capability is required. Choose a mini-door style and place it in a validated bedroom wall slot; create the room the first time and remember it. Moving the doorway later changes the entrance position, not the room's contents or identity. Removing the decorative doorway should archive the entrance, never erase the hidden room or strand its occupants. Keep an always-available return-home picture and a visible interior exit.
 
 ### What goes inside
 
-- A soft-looking central rug, two cushions/beanbags, a small blanket fort, and a low reading shelf.
+- A soft-looking central rug, four usable cushion/beanbag places, a small blanket fort, and a low reading shelf; maintain clear entry/exit space for all four visitors.
 - A generous plush collection: dinosaur plushies, dogs, cats, bunnies, bears, sea animals, and a big cuddle pillow. Reuse toy interaction rules for carrying, piling, sitting beside, and tucking them in.
 - A deep-blue illustrated sky across the upper part of the room, with stars and slowly moving green/purple aurora ribbons.
 - Gentle local controls for sky brightness, aurora movement, music, and effects. Tapping a star can create one brief twinkle; dragging a plush must not trigger constant sounds.
@@ -1344,11 +1351,11 @@ Use a northern-lights-inspired fantasy ceiling/projection, not an attempt to rep
 
 ### Room identity and performance
 
-`secret-A` and `secret-B` are persistent room IDs, each linked to the correct bedroom door. A visitor entering A's door must arrive in A's existing room, not a new room generated on their own device. Both clients receive current plush positions, furniture, and shared decoration settings. Brightness/reduced-motion preferences may remain local to each child.
+`secret-A`, `secret-B`, `secret-C` and `secret-D` are illustrative persistent room IDs, each linked to the correct profile-owned bedroom door. Preserve existing room identities and contents when introducing the additional rooms; never recreate all rooms on join. A visitor entering A's door must arrive in A's existing room, not a new room generated on their own device. All relevant connected clients receive current plush positions, furniture, and shared decoration settings. Every secret room accommodates four visitors with clear exits and sufficient places to sit/play. Brightness/reduced-motion preferences may remain local to each child.
 
 Begin with a painted sky texture, a small number of soft aurora layers, and sparse pooled twinkles. Animate texture coordinates or simple 2D shapes rather than volumetric lights, expensive bloom, a live video sky, or thousands of transparent particles. Reuse one room-art set with independent saved layouts. Profile transparency overdraw on the A10; when reduced motion is selected, retain a still aurora so the room remains attractive.
 
-Keep the camera steady and the exit visible. If one child leaves, the room and toys stay in place for the visitor. If both leave, save the room and stop unnecessary local animation. The PC retains its logical room state. The same room must also load from local data during offline road-trip play.
+Keep the camera steady and the exit visible. If any player leaves, the room and toys stay in place for all remaining visitors. When the last visitor leaves, save the room and stop unnecessary local animation. The PC retains its logical room state. The same room must also load from local data during offline road-trip play.
 
 **Default relationship with hide-and-seek:** secret rooms are chill spaces outside the short parent-search arena. Entering one leaves the active hiding round without stopping the sibling's search. A later explicitly selected “search secret rooms too” mode may include their doors and parent routes, but it needs its own timing tests; don't silently turn a quiet room into an unpredictable hiding-game destination.
 
@@ -1356,7 +1363,7 @@ Keep the camera steady and the exit visible. If one child leaves, the room and t
 
 The official episode provides the family hide-and-seek premise; our parent roles, furniture mechanics, clue timing, and late joining are game designs. [Bluey: Hide and Seek](https://www.bluey.tv/watch/season-1/hide-and-seek/)
 
-**Default: Bandit or Chilli seeks, both children may hide, and each child can enter a designated closet, oversized play drawer, tent, curtain alcove, or other clearly fitting spot.** Child-seeker mode remains a picture-selectable alternative. The parent's job is a short, friendly search, not winning against a preschooler.
+**Default: Bandit or Chilli seeks, up to four players may hide, and each child can enter a designated closet, oversized play drawer, tent, curtain alcove, or other clearly fitting spot.** Child-seeker mode remains a picture-selectable alternative. The parent's job is a short, friendly search, not winning against a preschooler.
 
 ### Settings that mean separate things
 
@@ -1502,10 +1509,10 @@ Keep this as part of the existing free deployment workflow, not a requirement to
 | Batch | Deliverable | Evidence needed to call it complete |
 | --- | --- | --- |
 | Local rules and PC family server | Same world logic in solo and dedicated builds; client-independent world lifetime | Start with either child, join late, close either iPad, and recover PC failure without corrupting saves |
-| Independent rooms | Two bedrooms, per-player room/camera, persistent objects | Decorate/visit concurrently; changing one room never reloads or overwrites the other |
+| Independent rooms | Four player-owned bedrooms and four optional secret rooms, per-player room/camera, persistent objects | Decorate/visit concurrently; changing one room never reloads or overwrites the other |
 | Science prototype | Float tub, magnet trail, color lights; then five more stations | Readable cause and effect, solo usability, late joining, tool-release recovery |
-| Secret rooms | Two persistent destinations, mini doors, plush play, sky/aurora | Both children visit either room; exits always work; reduced-motion and A10 rendering pass |
-| Revised hide-and-seek | Enterable furniture, default parent, selectable clues, per-child timers | Inspect/find visibility is correct; mid-search joins work; valid stationary hiders meet measured pacing |
+| Secret rooms | Four persistent profile-owned destinations, mini doors, plush play, sky/aurora | All four players can visit any room together or separately; exits always work; reduced-motion and A10 rendering pass |
+| Revised hide-and-seek | Enterable furniture, NPC parent or human seeker, selectable clues, per-player timers and four-person participation | Inspect/find visibility is correct; mid-search joins work; valid stationary hiders meet measured pacing |
 | Full travel mode | All installed content and solo/NPC activities work without PC/network | Cold-launch offline checklist passes on both iPads; no hidden cloud dependency |
 | Optional remote connection | Use the designated PC/VPS over a usable internet route | Qualify after remote deployment; no device hosting |
 | Rejoin and save preservation | Current server world plus retained private saves | No offline imports, duplicated communal items or lost private creations |
@@ -1519,13 +1526,13 @@ Establish reusable rules before producing dozens of rooms/science variants. Cont
 | Start a home game with only either iPad connected | Child plays immediately; no wait for a sibling |
 | Join while a ball rolls, boat sinks, cake bakes, or parent searches | Arriving client sees current state; existing player gets no scene restart or forced pause |
 | Leave/close/lock either iPad during each activity at home | PC retains creations, releases only departing holds/roles, and lets remaining child continue |
-| Both children choose different rooms or locations | Independent cameras/content; neither is dragged along or asked to stop |
+| All four players choose different rooms or locations | Independent cameras/content; nobody is dragged along or asked to stop |
 | Two children move the same bedroom prop | One valid reservation/commit; understandable feedback; no teleporting tug of war |
 | Room owner leaves while sibling is visiting | Room persists, visitor can play and exit, no disappearing floor or furniture |
 | Move or hide a secret doorway while someone is inside | Destination persists; return-home/exit remains valid |
-| Reconnect after decorating different bedrooms offline | Both sets of owner edits survive and appear on both devices |
-| Reconnect two conflicting edits to one object | Preserve both drafts; no silent latest-clock-wins loss |
-| Re-send a travel journal or import both cached copies of one session | Accepted operations/creations are not duplicated |
+| Reconnect after decorating different bedrooms offline | All four profiles keep their offline work privately; shared play loads the authoritative server rooms without importing those edits |
+| Reconnect after conflicting private edits to one object | Each profile's offline work stays in its private save; shared play loads the server object without merging or overwriting it |
+| Reconnect with cached offline operations | Never replay/import offline operations; repeated shared commands cannot duplicate objects or creations |
 | Enter/exit a drawer while changing avatar or holding a plush | Correct pose, visibility, carried state, and exit anchor on both iPads |
 | Enable/disable clues; mute sound; join halfway through a search | Deliberate cues follow settings; no stale giggles or hidden-nameplate leakage |
 | Hold still in every legal hiding spot | Measure Ready-to-Found timing near the proposed 30-second target, with successful navigation |
@@ -1968,7 +1975,7 @@ Independent character/art preparation may continue while device checks wait. G5 
 
 **Yes: three or four people can play together, including Android mixed with iOS/iPadOS.** Plan for **1–4 human players**, one per device, with the two children's iPads as the required baseline and parent phones joining the same world. Your Android phone is a supported design direction, not merely a fallback behind the iPhone; its model is confirmed as Samsung Galaxy S26 Ultra (SM-S948U1), while its installed Android version and physical-device qualification remain pending. Unity's current Netcode for GameObjects documentation lists both iOS and Android as supported platforms. This establishes engine support, not certification of our unbuilt game. [Unity NGO supported platforms](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/index.html)
 
-This expands the earlier two-player design. Two-child examples throughout the guide remain useful examples, but are no longer the maximum player count. Keep the two existing personal bedrooms and secret rooms; adding a visitor does not duplicate or reassign either child's space.
+This expands the earlier two-player design. Pair examples remain useful scenarios, never capacity limits. **Latest room correction, September 26:** provide four personal bedrooms and four optional secret rooms, one set per persistent player profile, including parents. Add missing rooms without replacing existing identities or contents. A visitor uses the owner's existing room; joining, leaving or choosing the same avatar never duplicates or reassigns rooms. All Home activities, tools, independent media sessions and local settings support all four profiles. The [Home tracker](home-world-feature-tracker.md) is the maintained Home completion checklist.
 
 | Family combination | Proposed support | Connection |
 | --- | --- | --- |
@@ -2173,7 +2180,7 @@ On reconnection, join the server’s current world. Keep local work separately; 
 
 Entering a location joins the **existing shared location**, not a fresh private copy. Being in the same area does not require identical camera framing; ordinary furniture occlusion and intentional hide-and-seek concealment still apply. A visit arrives at a safe entrance, not on top of the other avatar or inside their hiding place. The location bubble browser always supports independent travel; a friend portrait is an optional shortcut, never a required invitation or permission step.
 
-Both children and parent visitors may enter either personal bedroom or secret room. Decoration ownership protects permanent edits; it does not lock visitors out. For imagination stories, a visit targets the actual running story instance. “Visit their Space game” must not secretly create a different spaceship. A deliberate new story can have a distinct instance, with a clear picture-based choice when more than one is running. Leaving an optional bounded mini-game ends only that player's participation; it does not restrict travel.
+All four players, including parents, may enter any of the four personal bedrooms or four created secret rooms. Each has their own profile-owned rooms; decoration ownership protects permanent edits without locking visitors out. For imagination stories, a visit targets the actual running story instance. “Visit their Space game” must not secretly create a different spaceship. A deliberate new story can have a distinct instance, with a clear picture-based choice when more than one is running. Leaving an optional bounded mini-game ends only that player's participation; it does not restrict travel.
 
 ### Keep world state separate from loaded artwork
 

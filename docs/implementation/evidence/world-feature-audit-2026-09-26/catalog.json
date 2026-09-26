@@ -860,12 +860,12 @@
       "id": "H-31",
       "world": "home",
       "group": "Bedrooms",
-      "title": "Two persistent child-owned bedrooms",
+      "title": "Four persistent player-owned bedrooms",
       "status": "dev",
       "chapters": [
         32
       ],
-      "description": "Early isolated ownership/style rules exist outside the shipped game. No integrated room UI/network/save rollout. Bedroom ownership follows profile, never selected avatar.",
+      "description": "Required: one bedroom for each of four player profiles, including parents, with four-person visits. Only earlier isolated two-child ownership/style rules have evidence; four-room UI/network/save integration remains unbuilt. Preserve existing room identities and data.",
       "evidence": "ledger",
       "extraSource": ""
     },
@@ -915,12 +915,12 @@
       "id": "H-35",
       "world": "home",
       "group": "Secret rooms",
-      "title": "Two optional mini-door secret rooms",
+      "title": "Four optional mini-door secret rooms",
       "status": "plan",
       "chapters": [
         33
       ],
-      "description": "Create an entrance per child, visit either existing room, move/archive doors without deleting contents and keep a visible exit plus return-home picture.",
+      "description": "One secret-room option per player profile, linked to its owned bedroom. All four can visit any existing room; move/archive doors without deleting contents or stranding visitors. Optional use, required four-profile support.",
       "evidence": "ledger",
       "extraSource": ""
     },
