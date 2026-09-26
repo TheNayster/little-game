@@ -265,9 +265,11 @@ namespace LittleWeeps.Client
             floorPath=Panel(Board,"Path",new Vector2(0,-156),new Vector2(1050,70),new Color(.9f,.81f,.64f));
             foreach(var toy in AllToys()) DrawToy(toy);
             DrawAvatar();
-            stick=Panel(safe,"Walk joystick",new Vector2(-477,-193),new Vector2(146,146),new Color(1,1,1,.8f),true,true).rectTransform;
+            stick=Panel(safe,"Walk joystick",new Vector2(-480,-223),new Vector2(146,146),new Color(1,1,1,.9f),true,true).rectTransform;
+            Panel(stick,"Joystick face",Vector2.zero,new Vector2(134,134),new Color(.55f,.82f,.94f,.85f),false,true);
             Surface(stick,"stick");
-            stickKnob=Panel(stick,"Thumb",Vector2.zero,new Vector2(65,65),new Color(.34f,.55f,.62f),false,true).rectTransform;
+            stickKnob=Panel(stick,"Thumb",Vector2.zero,new Vector2(65,65),Color.white,false,true).rectTransform;
+            Panel(stickKnob,"Thumb face",Vector2.zero,new Vector2(55,55),new Color(.28f,.65f,.83f),false,true);
             stick.gameObject.SetActive(JoystickMode);
             activity=Label(safe,"",24,new Vector2(0,-312),new Vector2(1130,44));
             message=Label(safe,"Drag the bucket to the tap, then to the plant.",21,new Vector2(-85,-354),new Vector2(950,40));
@@ -720,7 +722,7 @@ namespace LittleWeeps.Client
                 rect.anchoredPosition=new Vector2(wide?-width/2+20+cell*(i+.5f):-465+i*155,80);
                 rect.sizeDelta=new Vector2(wide?cell-12:142,65);
             }
-            stick.anchoredPosition=new Vector2(-width/2+222,-193);
+            stick.anchoredPosition=new Vector2(-width/2+80,-223);
             activity.rectTransform.sizeDelta=new Vector2(width+10,44);
             message.rectTransform.sizeDelta=new Vector2(width-170,40);
             saveLabel.rectTransform.sizeDelta=new Vector2(width+10,28);

@@ -1,0 +1,18 @@
+{
+  "utc": "2026-09-26T02:52:05.8115447Z",
+  "operation": "updated",
+  "version": "0.0.105",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "3756d71e7bf47bbdfcfb2d3490e8ce1fdef784773d6f0f43a9d169e026793fa1",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 101,
+  "previousApkSha256": "ed0b648bf578f0328f4481b3e1d1936413d3f1a044a5981c7440cf816fffb8ef",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "pid": "14188",
+  "visibleUiAndSaveRetentionVerified": false,
+  "native16KbQualified": false
+}

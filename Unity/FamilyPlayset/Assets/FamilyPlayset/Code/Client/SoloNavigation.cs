@@ -65,7 +65,7 @@ namespace LittleWeeps.Client
             var roof=Plain(house,"Roof",new Vector2(0,9),new Vector2(33,33),Color.white);
             roof.rectTransform.localRotation=Quaternion.Euler(0,0,45);
             Plain(house,"Door",new Vector2(0,-15),new Vector2(11,23),new Color(.33f,.76f,.94f));
-            familyCircle=RoundControl(safe,"Characters",new Vector2(-505,-224),120,()=>ShowCharacters(true)).rectTransform;
+            familyCircle=RoundControl(safe,"Characters",new Vector2(505,-224),120,()=>ShowCharacters(true)).rectTransform;
             var face=Panel(familyCircle,"Family portrait",Vector2.zero,Vector2.one*106,new Color(.77f,.91f,1),false,true);
             face.gameObject.AddComponent<Mask>().showMaskGraphic=true;
             PickerCharacter(face.transform,"blue-pup",new Vector2(-19,-24),.61f);
@@ -165,7 +165,7 @@ namespace LittleWeeps.Client
         {
             if(worlds==null)return;
             worldButton.anchoredPosition=new Vector2(-safe.rect.width/2+90,343);
-            familyCircle.anchoredPosition=new Vector2(-Board.rect.width/2+64,-223);
+            familyCircle.anchoredPosition=new Vector2(Board.rect.width/2-64,-223);
             worldScroll.StopMovement();worldScroll.verticalNormalizedPosition=1;
             characterScroll.StopMovement();characterScroll.horizontalNormalizedPosition=0;
         }

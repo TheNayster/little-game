@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "fromBuild": 101,
+  "toBuild": 105,
+  "installedApkHashMatched": true,
+  "signaturesMatchPinnedFamilyKey": true,
+  "updateMode": "adb install -r --user 0",
+  "existingSaveEnrollmentFilesRetained": 15,
+  "byteIdenticalFiles": 10,
+  "soloWorldChecks": [
+    {
+      "kind": "family",
+      "worldIdentityRetained": true,
+      "playerRecordsUnchanged": true,
+      "toyRecordsUnchanged": true,
+      "changedFields": []
+    },
+    {
+      "kind": "paired",
+      "worldIdentityRetained": true,
+      "playerRecordsUnchanged": true,
+      "toyRecordsUnchanged": true,
+      "changedFields": [
+        "idleTimers"
+      ]
+    }
+  ],
+  "unchangedPrivateContinuations": 3,
+  "nativeRuntime": "0.0.105",
+  "familyConnection": "connected",
+  "combinedChooserVisuallyVerified": true,
+  "userPlayingDuringObservation": true,
+  "limits": "Physical Android install, menu and scoped save retention. No new iPad/iPhone rollout or sustained performance qualification."
+}

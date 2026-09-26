@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "fromBuild": 106,
+  "toBuild": 107,
+  "existingSaveEnrollmentFilesRetained": 17,
+  "byteIdenticalFiles": 12,
+  "soloWorldChecks": [
+    {
+      "worldIdentityRetained": true,
+      "playerRecordsUnchanged": true,
+      "toyRecordsUnchanged": true,
+      "changedFields": []
+    },
+    {
+      "worldIdentityRetained": true,
+      "playerRecordsUnchanged": true,
+      "toyRecordsUnchanged": true,
+      "changedFields": [
+        "idleTimers"
+      ]
+    }
+  ],
+  "visibleControlsVerified": true,
+  "userAccepted": true,
+  "scope": "Placement/appearance and in-place phone delivery; movement code unchanged; no new sustained performance claim."
+}

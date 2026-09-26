@@ -46,6 +46,28 @@ The loading capture deliberately drops the test acknowledgement so the real wait
 
 Both prototype area views are already resident. **105 does not implement scenic asset streaming, unloading or an older-iPad memory budget.** The thumbnail artwork is not a finished playable world. Only two characters exist, so wider layouts do not yet need to scroll the cast to reveal additional characters. Phone and tablet captures are Windows viewport checks, not physical mobile qualification.
 
-The deployed family server/helper remains **91** and all four mobile clients **101**. No mobile rollout, enrollment changes, family-save edits or live-server restart occurred. The incomplete saved-bedroom branch remains separate.
+At completion of the native menu work, the family server/helper remained **91** and all four mobile clients **101**. That task made no mobile rollout, enrollment changes, family-save edits or live-server restart. The subsequent Android update is recorded below. The incomplete saved-bedroom branch remains separate.
 
 Next: build the six long, attractive walkable scenic shells, with no new other-world activities; then concentrate on the connected house/backyard, rooms and interactions. Add measured destination asset loading/release behind this transition before qualifying the full scenic worlds. Preserve independent cameras, durable world state and the older iPad performance requirement.
+
+## Requested Android update — 101 → 105
+
+A fresh non-development ARM64 family-signed Android **105** was built from the current menu source and installed over **101** with `adb install -r --user 0`. Both signing identities match the pinned family key; the installed APK was pulled back and its hash matches the exact fresh artifact. Native 105 launched, connected to the existing family world, and the combined chooser was opened and visually verified on the Samsung. The user was playing during observation.
+
+All **15** previous save/enrollment files remain, with **10 byte-identical** immediately after launch. Both original solo world identities and all their player/toy records are unchanged; the paired solo save updated only its idle timers. All **three private continuation world saves** are byte-identical. Shared recovery files refreshed on connection; no saved data was cleared or enrollment replaced. [Phone verification](evidence/combined-chooser-2026-09-25/android105/phone-verification.json) · [Installed artifact](evidence/combined-chooser-2026-09-25/android105/installation.json) · [Build](evidence/combined-chooser-2026-09-25/android105/build-summary.json).
+
+![Combined chooser on the updated Samsung](evidence/combined-chooser-2026-09-25/android105/phone-chooser.png)
+
+Current deployment: Samsung **105**, iPad 7/iPad 9/iPhone **101**, family server/helper **91**. This is a scoped phone update and menu/save check; sustained performance and the remaining physical-device acceptance are still open.
+
+## Phone control placement — builds 106 and 107
+
+The user’s phone screenshots showed the family circle crowding the left joystick. **106** moved the circle to the lower-right. The user then requested a joystick placement/appearance correction: **107** moves it farther left and slightly down, opposite the family circle, and adds matching blue-and-white styling. The joystick hit area, input calculations and movement behaviour are unchanged.
+
+Both fresh family-signed release updates passed certificate matching, in-place installation, exact installed APK read-back and launch. The actual phone screenshot confirms the final placement. The user replied **“perfect!”** after 107. A follow-up automated drag was skipped when the phone had switched back to chat; no test touch was sent to another app. No new movement-regression result is claimed.
+
+All **17** existing save/enrollment files were retained through 107, **12 byte-identical** after launch. Both original solo world identities and their complete player/toy records remain unchanged; only the paired save’s idle timers refreshed. [106 delivery](evidence/combined-chooser-2026-09-25/android106/installation.json) · [107 delivery](evidence/combined-chooser-2026-09-25/android107/installation.json) · [107 retained-state evidence](evidence/combined-chooser-2026-09-25/android107/phone-verification.json).
+
+![Final phone control placement, accepted by the user](evidence/combined-chooser-2026-09-25/android107/phone-controls.png)
+
+Current deployment: Samsung **107**, both iPads and iPhone **101**, family server/helper **91**. Next is the user-requested six-world scenery pass.
