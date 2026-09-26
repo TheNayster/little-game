@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 500" role="img" aria-labelledby="title desc">
+  <title id="title">Bingo — layered sideways walking study</title>
+  <desc id="desc">Left-facing profile with a narrow side torso, projecting muzzle, one visible eye, overlapping shoulders and hips, forward toes and a trailing tail. Uses the existing character palette. Mirrored for rightward travel; this is a prototype direction study, not an approved full turnaround.</desc>
+  <ellipse id="ground-shadow" cx="220" cy="454" rx="64" ry="10" fill="#345042" opacity=".14"/>
+  <g id="tail" stroke="#7b401b" stroke-width="2.8" stroke-linejoin="round">
+    <path d="M267 325 Q301 333 321 361 Q342 391 326 402 Q321 414 311 407 Q305 419 296 407 Q279 388 269 368Z" fill="#fff7d6"/>
+    <path d="M268 326 Q295 332 310 348 Q300 365 280 366 L269 352Z" fill="#f9b170" stroke="none"/>
+  </g>
+  <g id="arm-far" stroke="#c9c394" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M184 252 Q196 246 201 263 L199 307 L192 333 Q186 349 174 342 Q166 337 171 323 L178 294 L177 266Z" fill="#cf8c50"/>
+    <path d="M175 310 L196 316 L192 333 Q186 349 174 342 Q166 337 171 323Z" fill="#fff7d6"/>
+    <path d="M179 329 L175 339 M186 332 L182 344" fill="none" stroke-width="2"/>
+  </g>
+  <g id="foot-far" stroke="#c9c394" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M200 347 L230 347 L230 413 Q238 432 231 445 Q225 452 192 450 Q178 449 179 437 Q180 426 202 418Z" fill="#cf8c50"/>
+    <path d="M202 410 L230 411 L230 413 Q238 432 231 445 Q225 452 192 450 Q178 449 179 437 Q180 426 202 418Z" fill="#fff7d6"/>
+    <path d="M192 430 Q186 438 190 449 M203 429 Q198 438 202 450" fill="none" stroke-width="2"/>
+  </g>
+  <g id="foot-near" stroke="#c9c394" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M215 347 L247 347 L248 415 Q256 434 248 445 Q242 453 211 451 Q195 450 195 439 Q195 427 217 419Z" fill="#f9b170"/>
+    <path d="M217 411 L248 412 L248 415 Q256 434 248 445 Q242 453 211 451 Q195 450 195 439 Q195 427 217 419Z" fill="#fff7d6"/>
+    <path d="M208 431 Q202 439 207 450 M220 430 Q215 440 219 451" fill="none" stroke-width="2"/>
+  </g>
+  <g id="body">
+    <path d="M202 131 Q181 132 181 155 L182 338 Q182 365 202 368 L258 368 Q279 367 279 338 L279 158 Q279 134 261 132Z" fill="#f9b170" stroke="#c9c394" stroke-width="2.8"/>
+    <path d="M183 280 Q200 281 206 299 L207 368 L201 368 Q181 364 182 339Z" fill="#fff7d6"/>
+  </g>
+  <g id="head">
+    <g stroke="#7b401b" stroke-width="2.8" stroke-linejoin="round">
+      <path d="M186 151 L188 70 Q189 55 197 63 L225 134Z" fill="#e58034"/>
+      <path d="M220 140 L242 54 Q246 43 252 55 L277 151Z" fill="#e58034"/>
+      <path d="M194 119 L195 84 L214 127Z" fill="#fff7d6" stroke="none"/>
+      <path d="M234 125 L245 82 Q248 74 252 87 L264 131Z" fill="#fff7d6" stroke="none"/>
+    </g>
+    <path d="M203 132 L259 133 Q278 135 279 158 L279 231 Q255 245 230 233 L214 204 L195 161Z" fill="#e58034"/>
+    <path d="M184 153 Q194 142 200 138 L206 178 L193 214 L182 211Z" fill="#fff7d6"/>
+    <path id="eyebrows" d="M184 131 Q180 118 193 113 Q208 106 218 115 Q225 125 214 129 Q201 126 193 138 Q187 143 184 131Z" fill="#fff7d6" stroke="#c9c394" stroke-width="2.4"/>
+    <g id="eyes-open" stroke="#252426" stroke-width="2.8">
+      <ellipse cx="205" cy="184" rx="25" ry="36" fill="white"/>
+      <ellipse cx="195" cy="188" rx="8" ry="15" fill="#252426" stroke="none"/>
+    </g>
+    <g id="eyes-closed" display="none" fill="none" stroke="#252426" stroke-width="3.2" stroke-linecap="round">
+      <path d="M184 187 Q204 199 225 187"/>
+    </g>
+    <g id="muzzle" stroke-linejoin="round">
+      <path d="M185 207 Q164 204 148 216 Q139 223 145 242 Q149 261 177 270 Q205 279 224 261 Q234 252 226 239 Q212 231 207 215Z" fill="#fff7d6"/>
+      <path d="M149 239 Q157 263 184 263 Q202 264 215 251" fill="none" stroke="#c9c394" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M178 262 Q199 265 215 251 Q216 263 205 268 Q190 274 179 267Z" fill="white" stroke="#7c8589" stroke-width="1.8"/>
+      <path d="M143 213 Q155 207 172 214 Q180 219 173 230 L159 242 Q153 246 148 238 L139 225 Q135 217 143 213Z" fill="#49372a" stroke="#262020" stroke-width="2.8"/>
+      <ellipse cx="153" cy="218" rx="10" ry="3.5" fill="#ffddae"/>
+    </g>
+  </g>
+  <g id="arm-near" stroke="#c9c394" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M242 252 Q253 245 262 257 Q268 264 264 281 L254 316 L252 334 Q249 349 237 346 Q225 344 228 329 L231 307 L235 279 Q231 260 242 252Z" fill="#f9b170"/>
+    <path d="M230 315 L255 318 L252 334 Q249 349 237 346 Q225 344 228 329Z" fill="#fff7d6"/>
+    <path d="M237 331 L234 344 M245 334 L242 346" fill="none" stroke-width="2"/>
+    <g id="hand-anchor" transform="translate(241 336)">
+      <g id="held-prop" display="none" stroke="#a66d2c" stroke-width="2.8" stroke-linejoin="round">
+        <path d="M-6 25 Q-7-18 17-17 Q40-16 41 25" fill="none"/>
+        <path d="M-12 20 L48 20 L42 71 Q18 82-7 71Z" fill="#f6bf52"/>
+        <ellipse cx="18" cy="20" rx="30" ry="7" fill="#ffd889"/>
+        <ellipse cx="18" cy="21" rx="24" ry="4" fill="#75bdcf" stroke="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

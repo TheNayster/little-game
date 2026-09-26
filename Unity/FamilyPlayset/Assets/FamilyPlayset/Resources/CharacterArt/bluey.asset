@@ -114,3 +114,100 @@ MonoBehaviour:
     height: 97
     pivotX: 323
     pivotY: 333
+  profileLayers:
+  - name: ground-shadow
+    sprite: {fileID: 8728231918820932540, guid: 99ca4be97d12adf4fa201b1f9a864e4b, type: 3}
+    left: 156
+    top: 444
+    width: 128
+    height: 20
+    pivotX: 220
+    pivotY: 454
+  - name: tail
+    sprite: {fileID: -6254662425824378823, guid: 382d51f5d2342534ca3fc24882e39526, type: 3}
+    left: 265
+    top: 323
+    width: 70
+    height: 92
+    pivotX: 271
+    pivotY: 337
+  - name: arm-far
+    sprite: {fileID: 4068575031807192720, guid: de48447cb31875a4f96371ec6e4a6f78, type: 3}
+    left: 167
+    top: 249
+    width: 36
+    height: 97
+    pivotX: 190
+    pivotY: 260
+  - name: foot-far
+    sprite: {fileID: -7174183662345756920, guid: 455816ef012fd944e82cbf611e4fe51c, type: 3}
+    left: 177
+    top: 345
+    width: 59
+    height: 107
+    pivotX: 216
+    pivotY: 352
+  - name: foot-near
+    sprite: {fileID: -4867008803294310186, guid: fca626ff6176d2840a1418fe4fc96f31, type: 3}
+    left: 193
+    top: 345
+    width: 61
+    height: 108
+    pivotX: 232
+    pivotY: 352
+  - name: body
+    sprite: {fileID: -1880120661550918566, guid: 5c7abb4dcfe0acc458d4ec587fbb0524, type: 3}
+    left: 179
+    top: 129
+    width: 102
+    height: 241
+    pivotX: 220
+    pivotY: 454
+  - name: head
+    sprite: {fileID: 6943535168657398750, guid: c5340923b2375f24185fbaf21056348a, type: 3}
+    left: 181
+    top: 47
+    width: 98
+    height: 192
+    pivotX: 220
+    pivotY: 250
+  - name: eyes-open
+    sprite: {fileID: 2494401406956161095, guid: ed765602958a28b479a34fbc892f3b38, type: 3}
+    left: 178
+    top: 146
+    width: 54
+    height: 76
+    pivotX: 220
+    pivotY: 250
+  - name: eyes-closed
+    sprite: {fileID: 3538280395980919369, guid: fda87f6b65a0a0c48ab1863c565b6b16, type: 3}
+    left: 182
+    top: 185
+    width: 45
+    height: 10
+    pivotX: 220
+    pivotY: 250
+  - name: muzzle
+    sprite: {fileID: 5254905245062674008, guid: 47fd956e51abc02419db957ab91079fa, type: 3}
+    left: 136
+    top: 206
+    width: 94
+    height: 67
+    pivotX: 220
+    pivotY: 250
+  - name: arm-near
+    sprite: {fileID: 2878312142416865765, guid: 3dac967259a7a9440b9f9dc5db8bde22, type: 3}
+    left: 226
+    top: 248
+    width: 41
+    height: 100
+    pivotX: 250
+    pivotY: 260
+  - name: held-prop
+    sprite: {fileID: -281167491472552147, guid: 2f0cc8f7457c89c41ac4d0083023637a, type: 3}
+    left: 227
+    top: 317
+    width: 64
+    height: 97
+    pivotX: 241
+    pivotY: 336

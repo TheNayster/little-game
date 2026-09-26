@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "build": "0.0.119",
+  "trials": [
+    {
+      "character": "bluey",
+      "fps": 30,
+      "plantedPairs": 42,
+      "faceLeft": false,
+      "phase": 0.5000000596046448,
+      "maxStanceDrift": 0.0,
+      "footLift": 8.100006103515625
+    },
+    {
+      "character": "bluey",
+      "fps": 60,
+      "plantedPairs": 91,
+      "faceLeft": false,
+      "phase": 0.49999862909317017,
+      "maxStanceDrift": 0.0,
+      "footLift": 8.100006103515625
+    },
+    {
+      "character": "bluey",
+      "fps": 120,
+      "plantedPairs": 188,
+      "faceLeft": false,
+      "phase": 0.500000536441803,
+      "maxStanceDrift": 0.0,
+      "footLift": 8.100006103515625
+    },
+    {
+      "character": "bluey",
+      "fps": 30,
+      "plantedPairs": 42,
+      "faceLeft": true,
+      "phase": 0.5000000596046448,
+      "maxStanceDrift": 0.0,
+      "footLift": 8.100006103515625
+    },
+    {
+      "character": "bluey",
+      "fps": 60,
+      "plantedPairs": 91,
+      "faceLeft": true,
+      "phase": 0.49999862909317017,
+      "maxStanceDrift": 0.0,
+      "footLift": 8.100006103515625
+    },
+    {
+      "character": "bluey",
+      "fps": 120,
+      "plantedPairs": 188,
+      "faceLeft": true,
+      "phase": 0.500000536441803,
+      "maxStanceDrift": 0.0,
+      "footLift": 8.100006103515625
+    },
+    {
+      "character": "bingo",
+      "fps": 30,
+      "plantedPairs": 42,
+      "faceLeft": false,
+      "phase": 0.5000000596046448,
+      "maxStanceDrift": 0.0,
+      "footLift": 6.641998291015625
+    },
+    {
+      "character": "bingo",
+      "fps": 60,
+      "plantedPairs": 91,
+      "faceLeft": false,
+      "phase": 0.49999862909317017,
+      "maxStanceDrift": 0.0,
+      "footLift": 6.641998291015625
+    },
+    {
+      "character": "bingo",
+      "fps": 120,
+      "plantedPairs": 188,
+      "faceLeft": false,
+      "phase": 0.500000536441803,
+      "maxStanceDrift": 0.0009765625,
+      "footLift": 6.641998291015625
+    },
+    {
+      "character": "bingo",
+      "fps": 30,
+      "plantedPairs": 42,
+      "faceLeft": true,
+      "phase": 0.5000000596046448,
+      "maxStanceDrift": 0.0,
+      "footLift": 6.641998291015625
+    },
+    {
+      "character": "bingo",
+      "fps": 60,
+      "plantedPairs": 91,
+      "faceLeft": true,
+      "phase": 0.49999862909317017,
+      "maxStanceDrift": 0.0,
+      "footLift": 6.641998291015625
+    },
+    {
+      "character": "bingo",
+      "fps": 120,
+      "plantedPairs": 188,
+      "faceLeft": true,
+      "phase": 0.500000536441803,
+      "maxStanceDrift": 0.0009765625,
+      "footLift": 6.641998291015625
+    }
+  ],
+  "checks": [
+    "Bluey/Bingo left/right profile artwork with one visible rig",
+    "30/60/120 FPS equal-distance phase and planted-foot contact",
+    "stop/carry preserves gameplay root and restores frontal idle",
+    "travel/teleport clears gait",
+    "tiny correction facing hysteresis and deliberate reversal"
+  ]
+}

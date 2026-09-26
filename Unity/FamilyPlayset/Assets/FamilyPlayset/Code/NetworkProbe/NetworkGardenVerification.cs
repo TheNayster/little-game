@@ -177,8 +177,7 @@ namespace LittleWeeps.NetworkProbe
                     var moving=f>=15 && f<155;var left=f>=90;
                     foreach(var visual in cast)
                     {
-                        var view=visual.GetComponentInChildren<CharacterView>();
-                        view.Present(new CharacterFrame(moving?CharacterPose.Walk:CharacterPose.Idle,moving?Core.Walking.Speed:0,left,
+                        visual.PresentFrame(new CharacterFrame(moving?CharacterPose.Walk:CharacterPose.Idle,moving?Core.Walking.Speed:0,left,
                             travel:moving?new Vector2((left?-1:1)*Core.Walking.Speed*dt,0):Vector2.zero),dt);
                     }
                     Canvas.ForceUpdateCanvases();yield return null;

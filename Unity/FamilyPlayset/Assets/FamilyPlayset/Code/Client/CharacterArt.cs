@@ -10,6 +10,7 @@ namespace LittleWeeps.Client
         public string characterId, displayName;
         public float scale, groundX, groundY;
         public Layer[] layers;
+        public Layer[] profileLayers;
         [Serializable] public sealed class Layer
         {
             public string name;

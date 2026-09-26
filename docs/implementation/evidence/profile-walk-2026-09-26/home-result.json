@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "build": 119,
+  "checks": [
+    {
+      "check": "two occupied sofa seats, same-seat rejection and seated character change through native UI",
+      "passed": true
+    },
+    {
+      "check": "radio plays original audio, idle character dances, movement overrides and device mute preserves shared power",
+      "passed": true
+    },
+    {
+      "check": "backyard bounce poses run while sibling remains seated; joystick safely exits",
+      "passed": true
+    },
+    {
+      "check": "real touch shed open/store/close/travel/retrieve retains one full bucket and one ball; phone/tablet render",
+      "passed": true
+    },
+    {
+      "check": "schema-4 offline save/reopen retains radio and property, safely releases interrupted seat",
+      "passed": true
+    }
+  ],
+  "evidence": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\SharedGarden\\9c05290471a146b7b961add537169fae\\home",
+  "liveFamilyServerAccessed": false,
+  "physicalDevicesAccessed": false
+}

@@ -28,14 +28,21 @@ def main():
     contract = json.loads((SOURCE / "character-contract.json").read_text())
     for character in contract["characters"]:
         export_character(args, contract, character)
+        export_character(args, contract, character, profile=True)
 
 
-def export_character(args, contract, character):
-    source = SOURCE / character["source"]
+def export_character(args, contract, character, profile=False):
+    source = SOURCE / character["profileSource" if profile else "source"]
     output = OUTPUT / character["id"]
+    if profile:
+        output = output / "profile"
+    pivots = contract["profilePivots" if profile else "pivots"]
+    hand = contract["profileHandAnchor" if profile else "handAnchor"]
     original = ET.parse(source).getroot()
     nodes = {node.get("id"): node for node in original.iter() if node.get("id")}
     temporary = ROOT / "LocalData/CharacterWorkshop/export" / character["id"]
+    if profile:
+        temporary = temporary / "profile"
     temporary.mkdir(parents=True, exist_ok=True)
     output.mkdir(parents=True, exist_ok=True)
     names = ["ground-shadow", "tail", "arm-far", "foot-far", "foot-near",
@@ -55,7 +62,7 @@ def export_character(args, contract, character):
         if name == "arm-near":
             node.remove(next(child for child in node if child.get("id") == "hand-anchor"))
         if name == "held-prop":
-            node.set("transform", "translate(%s %s)" % tuple(contract["handAnchor"]["position"]))
+            node.set("transform", "translate(%s %s)" % tuple(hand["position"]))
         svg.append(node)
         path = temporary / (name + ".svg")
         ET.ElementTree(svg).write(path, encoding="utf-8", xml_declaration=True)
@@ -82,11 +89,11 @@ const sharp=require('sharp'), fs=require('fs');
     for layer in layers:
         layer["sha256"] = hashlib.sha256((output / (layer["name"] + ".png")).read_bytes()).hexdigest()
         name = layer["name"]
-        pivot = contract["pivots"].get(name, contract["coordinates"]["rootGround"])
+        pivot = pivots.get(name, contract["coordinates"]["rootGround"])
         if name in ("eyes-open", "eyes-closed", "muzzle"):
-            pivot = contract["pivots"]["head"]
+            pivot = pivots["head"]
         if name == "held-prop":
-            pivot = contract["handAnchor"]["position"]
+            pivot = hand["position"]
         layer["pivotX"], layer["pivotY"] = pivot
     manifest = {"schema": 2, "assetId": character["id"], "displayName": character["name"], "scale": character["scale"], "source": source.relative_to(ROOT).as_posix(),
                 "sourceSha256": hashlib.sha256(source.read_bytes()).hexdigest(), "pixelsPerUnit": 100,

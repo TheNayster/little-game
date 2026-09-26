@@ -29,17 +29,36 @@ namespace LittleWeeps.EditorTools
                 if (art == null) { art = ScriptableObject.CreateInstance<CharacterArt>(); AssetDatabase.CreateAsset(art, path); }
                 art.characterId = id; art.displayName = manifest.displayName; art.scale = manifest.scale;
                 art.groundX = manifest.groundX; art.groundY = manifest.groundY;
-                art.layers = manifest.layers.Select(layer => {
+                art.layers = LoadLayers(directory,manifest);
+                var profileDirectory=directory+"/profile";
+                var profile=JsonUtility.FromJson<Manifest>(File.ReadAllText(profileDirectory+"/import-manifest.json"));
+                CheckHash(Path.Combine(projectRoot,profile.source),profile.sourceSha256);
+                CheckHash(Path.Combine(projectRoot,profile.contract),profile.contractSha256);
+                art.profileLayers=LoadLayers(profileDirectory,profile);
+                EditorUtility.SetDirty(art);
+            }
+            AssetDatabase.SaveAssets();
+        }
+        private static CharacterArt.Layer[] LoadLayers(string directory,Manifest manifest)
+        {
+            return manifest.layers.Select(layer => {
                     var spritePath = directory + "/" + layer.name + ".png";
                     CheckHash(spritePath, layer.sha256);
+                    var importer=(TextureImporter)AssetImporter.GetAtPath(spritePath);
+                    if(importer.textureType!=TextureImporterType.Sprite)
+                    {
+                        importer.textureType=TextureImporterType.Sprite;importer.spriteImportMode=SpriteImportMode.Single;
+                        importer.spritePixelsPerUnit=100;importer.mipmapEnabled=false;importer.alphaIsTransparency=true;
+                        importer.isReadable=false;importer.npotScale=TextureImporterNPOTScale.None;
+                        importer.textureCompression=TextureImporterCompression.Uncompressed;
+                        importer.filterMode=FilterMode.Bilinear;importer.wrapMode=TextureWrapMode.Clamp;
+                        importer.SaveAndReimport();
+                    }
                     var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
                     if (sprite == null) throw new BuildFailedException("Missing sprite: " + spritePath);
                     return new CharacterArt.Layer { name = layer.name, sprite = sprite, left = layer.left, top = layer.top,
                         width = layer.width, height = layer.height, pivotX = layer.pivotX, pivotY = layer.pivotY };
                 }).ToArray();
-                EditorUtility.SetDirty(art);
-            }
-            AssetDatabase.SaveAssets();
         }
         private static void CheckHash(string path, string expected)
         {

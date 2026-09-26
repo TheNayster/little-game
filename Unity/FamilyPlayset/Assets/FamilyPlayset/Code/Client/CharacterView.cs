@@ -15,6 +15,7 @@ namespace LittleWeeps.Client
         public Graphic eyesOpenGraphic, eyesClosedGraphic;
         public bool showExampleProp = true;
         public bool sourceFacesLeft;
+        public bool profileArtwork;
         public SortingGroup sorting;
         public float floorUnitsPerArtUnit=40;
         private Vector3 bodyRest, headRest, farRest, nearRest, footFarRest, footNearRest;
@@ -103,7 +104,7 @@ namespace LittleWeeps.Client
                 // The standing drawing has widely separated frontal hips.
                 // Bring them onto the side-view walking lane for horizontal
                 // travel; otherwise the long stride draws an X through both legs.
-                var lane=Mathf.Abs(travelDirection.x)*.30f*walkWeight;
+                var lane=profileArtwork?0:Mathf.Abs(travelDirection.x)*.30f*walkWeight;
                 PoseFoot(footFar,farLegBend,footFarRest+new Vector3(lane,.025f*walkWeight,0),CharacterWalk.Sample(cycle),projected,hip,strideLength);
                 PoseFoot(footNear,nearLegBend,footNearRest+new Vector3(-lane,-.025f*walkWeight,0),CharacterWalk.Sample(cycle+.5f),projected,hip,strideLength);
                 farArmBend?.Pose(new Vector2(0,.025f)*walkWeight,-.02f*walkWeight);

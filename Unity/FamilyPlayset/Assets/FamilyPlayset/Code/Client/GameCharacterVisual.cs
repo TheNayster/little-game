@@ -11,10 +11,14 @@ namespace LittleWeeps.Client
     {
         private readonly CharacterMotion motion = new CharacterMotion();
         private CharacterView view;
+        private CharacterView frontView,profileView;
+        private bool sideWalking;
         private string useKey="";private float useAge;
         public string CharacterId => view == null ? "" : view.characterId;
         public CharacterFrame Frame => view == null ? default : view.Frame;
         public int LayerCount => view == null ? 0 : view.GetComponentsInChildren<Image>(true).Length;
+        public CharacterView ActiveView=>view;
+        public bool ProfileVisible=>view!=null && view.profileArtwork;
 
         public void Select(string savedAvatar)
         {
@@ -23,17 +27,27 @@ namespace LittleWeeps.Client
             var art = Resources.Load<CharacterArt>("CharacterArt/" + id);
             if (art == null) throw new InvalidOperationException("Missing built character artwork: " + id);
             var prior = Frame;
-            if (view != null) { view.gameObject.SetActive(false); Destroy(view.gameObject); }
-            var visual = Joint(art.displayName, transform, new Vector2(0, -45));
+            if(frontView!=null){frontView.gameObject.SetActive(false);Destroy(frontView.gameObject);}
+            if(profileView!=null){profileView.gameObject.SetActive(false);Destroy(profileView.gameObject);}
+            frontView=BuildView(art,false);profileView=BuildView(art,true);
+            sideWalking=false;PresentFrame(prior,0);
+        }
+
+        private CharacterView BuildView(CharacterArt art,bool profile)
+        {
+            var layers=profile?art.profileLayers:art.layers;
+            if(layers==null || layers.Length==0)throw new InvalidOperationException("Missing directional character artwork: "+art.characterId);
+            var visual = Joint(art.displayName+(profile?" profile":" front"), transform, new Vector2(0, -45));
             visual.localScale = Vector3.one * (40 * art.scale);
-            view = visual.gameObject.AddComponent<CharacterView>();
-            view.characterId = id; view.displayName = art.displayName;
+            var view = visual.gameObject.AddComponent<CharacterView>();
+            view.characterId = art.characterId; view.displayName = art.displayName;
+            view.profileArtwork=profile;
             view.floorUnitsPerArtUnit=40*art.scale;
             view.sourceFacesLeft=true;
             view.showExampleProp = false;
             view.facing = Joint("Facing", visual, Vector2.zero);
             var joints = new Dictionary<string, Transform>();
-            foreach (var layer in art.layers)
+            foreach (var layer in layers)
             {
                 var parent = view.facing;
                 var position = new Vector2((layer.pivotX - art.groundX) / 100, (art.groundY - layer.pivotY) / 100);
@@ -62,12 +76,27 @@ namespace LittleWeeps.Client
             view.footFar = joints["foot-far"]; view.footNear = joints["foot-near"];
             view.heldProp = joints["held-prop"];
             view.shadow=joints["ground-shadow"];view.shadow.SetParent(visual,false);view.shadow.SetAsFirstSibling();
-            view.Present(prior, 0);
+            view.Present(default, 0);
+            return view;
+        }
+
+        public void PresentFrame(CharacterFrame frame,float dt)
+        {
+            if(frontView==null)return;
+            // Both lightweight rigs keep the same phase and blink clock. Only
+            // the selected one renders; changing drawings never restarts a step.
+            frontView.Present(frame,dt);profileView.Present(frame,dt);
+            var locomotion=frame.Pose==CharacterPose.Walk || frame.Pose==CharacterPose.Carry || frame.Pose==CharacterPose.Idle;
+            if(!locomotion || frame.ResetMotion || profileView.WalkWeight==0)sideWalking=false;
+            else if(frame.Speed>1)
+                sideWalking=frame.Travel.sqrMagnitude<.00001f || Mathf.Abs(frame.Travel.normalized.x)>.25f;
+            view=sideWalking?profileView:frontView;
+            frontView.gameObject.SetActive(!sideWalking);profileView.gameObject.SetActive(sideWalking);
         }
 
         public void Present(Vector2 displayedPosition, string continuity, bool held, float dt)
         {
-            if (view != null) view.Present(motion.Observe(displayedPosition, continuity, held, false, dt), dt);
+            if (view != null) PresentFrame(motion.Observe(displayedPosition, continuity, held, false, dt), dt);
         }
 
         public void PresentHome(Vector2 point,string continuity,bool held,float dt,Core.SoloPlayer player,Core.HomeState home)
@@ -84,7 +113,7 @@ namespace LittleWeeps.Client
             else if(frame.Pose==CharacterPose.Idle && player.activity=="" && Core.HomeLayout.RadioNear(home,player))
                 frame=new CharacterFrame(CharacterPose.Dance,0,frame.FaceLeft);
             if(!Core.HomeLayout.Usable(player.fixture))useKey="";
-            view.Present(frame,dt);
+            PresentFrame(frame,dt);
         }
 
         private static RectTransform Joint(string name, Transform parent, Vector2 position)

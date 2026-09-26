@@ -32,7 +32,7 @@ namespace LittleWeeps.NetworkProbe
                     try
                     {
                         var adapter=go.AddComponent<GameCharacterVisual>();adapter.Select(id);
-                        var view=go.GetComponentInChildren<CharacterView>();
+                        var view=adapter.ActiveView;
                         Check(2*Core.Walking.Speed/CharacterWalk.Stride<=3.6f,"walk cadence became a frantic run");
                         var step=1f/fps;var point=Vector2.zero;var direction=left?-1:1;
                         adapter.Present(point,"walk-check",false,step);
@@ -43,6 +43,9 @@ namespace LittleWeeps.NetworkProbe
                         {
                             point.x+=direction*Core.Walking.Speed*step;rect.anchoredPosition=new Vector2(10000+point.x,0);
                             adapter.Present(point,"walk-check",false,step);
+                            view=adapter.ActiveView;
+                            Check(adapter.ProfileVisible,"horizontal walking kept the frontal drawing");
+                            Check(go.GetComponentsInChildren<CharacterView>().Length==1,"two directional drawings are visible");
                             var far=view.FarContact;var near=view.NearContact;var phase=view.WalkPhase;
                             if(i>fps/3 && phase>previousPhase && phase<.49f && previousPhase>.01f)
                             {trial.maxStanceDrift=Mathf.Max(trial.maxStanceDrift,Vector3.Distance(priorFar,far));trial.plantedPairs++;}
@@ -62,7 +65,9 @@ namespace LittleWeeps.NetworkProbe
                         Check(Mathf.Abs(Mathf.DeltaAngle(expected*360,trial.phase*360))<.08f,"render rate changed gait phase");
                         var root=rect.anchoredPosition;
                         for(var i=0;i<fps/3;i++)adapter.Present(point,"walk-check",true,step);
+                        view=adapter.ActiveView;
                         Check(view.WalkWeight==0 && rect.anchoredPosition==root,"stop moved root or failed to settle");
+                        Check(!adapter.ProfileVisible,"idle failed to return to frontal art");
                         point.x+=1500;adapter.Present(point,"walk-check",false,step);
                         Check(view.WalkPhase==0 && view.WalkWeight==0,"teleport produced a giant step");
                         adapter.Present(point,"new-room",false,step);
@@ -77,7 +82,7 @@ namespace LittleWeeps.NetworkProbe
             for(var i=0;i<12;i++)Check(motion.Observe(new Vector2(-4+(i%2)*.03f,0),"stable",false,false,.02f).FaceLeft,"small correction flipped facing");
             Check(!motion.Observe(new Vector2(0,0),"stable",false,false,.02f).FaceLeft,"intentional reversal ignored");
             result.passed=true;
-            result.checks=new[]{"Bluey/Bingo left/right stance contact and lifted feet","30/60/120 FPS equal-distance phase","stop/carry preserves gameplay root","travel/teleport clears gait","tiny correction facing hysteresis and deliberate reversal"};
+            result.checks=new[]{"Bluey/Bingo left/right profile artwork with one visible rig","30/60/120 FPS equal-distance phase and planted-foot contact","stop/carry preserves gameplay root and restores frontal idle","travel/teleport clears gait","tiny correction facing hysteresis and deliberate reversal"};
             File.WriteAllText(Path.Combine(output,"walk-checks.json"),JsonUtility.ToJson(result,true));
         }
     }
