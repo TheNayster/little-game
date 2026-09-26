@@ -35,7 +35,7 @@ namespace LittleWeeps.Core
     }
     public sealed partial class SoloWorld
     {
-        public static bool Carryable(ToyKind kind)=>kind==ToyKind.Bucket || kind==ToyKind.Sponge || kind==ToyKind.Ball;
+        public static bool Carryable(ToyKind kind)=>kind==ToyKind.Bucket || kind==ToyKind.Sponge || kind==ToyKind.Ball || BedroomFurniture.Personal(kind);
         public HomeState ReadHome()=>state.home?.Copy();
         public static SoloWorld WithHome(SoloWorld world)
         {
@@ -73,13 +73,22 @@ namespace LittleWeeps.Core
             if(s.home==null || s.toys.Count(t=>t.kind==ToyKind.Ball)!=1 || !s.toys.Any(t=>t.id=="ball-1" && t.kind==ToyKind.Ball && (t.zone=="garden" || s.schema>=HomeRooms.Schema && HomeRooms.Internal(t.zone))))throw new InvalidOperationException("Missing home state or fixed home toy.");
             foreach(var p in s.players)
                 if(double.IsNaN(p.useSeconds) || double.IsInfinity(p.useSeconds) || p.useSeconds<0 || p.useSeconds>86400 ||
-                    (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:!HomeLayout.Usable(p.fixture) || p.zone!="garden" ||
-                     p.x!=HomeLayout.X(p.fixture) || p.y!=HomeLayout.Y(p.fixture) || s.toys.Any(t=>t.holder==p.id)))
+                    (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:
+                     (BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || BedroomLayout.Index(p.zone)<0 ||
+                      p.x!=BedroomFurniture.SeatX(p.fixture,s.bedrooms.Single(r=>r.id==p.zone).layout) || p.y!=BedroomFurniture.SeatY(p.fixture):
+                      !HomeLayout.Usable(p.fixture) || p.zone!="garden" || p.x!=HomeLayout.X(p.fixture) || p.y!=HomeLayout.Y(p.fixture)) || s.toys.Any(t=>t.holder==p.id)))
                     throw new InvalidOperationException("Invalid home occupancy.");
-            if(s.players.Where(p=>!string.IsNullOrEmpty(p.fixture)).GroupBy(p=>p.fixture).Any(g=>g.Count()>1))
+            if(s.players.Where(p=>!string.IsNullOrEmpty(p.fixture)).GroupBy(p=>p.zone+"/"+p.fixture).Any(g=>g.Count()>1))
                 throw new InvalidOperationException("Home slot has two occupants.");
             foreach(var t in s.toys.Where(t=>!string.IsNullOrEmpty(t.container)))
             {
+                var bedroomSlot=BedroomFurniture.Slot(t.zone,t.container);
+                if(bedroomSlot>=0)
+                {
+                    var room=s.bedrooms.Single(r=>r.id==t.zone);
+                    if(s.schema<BedroomFurniture.Schema || !Carryable(t.kind) || t.holder!="" || t.x!=BedroomFurniture.StorageX(room.layout,bedroomSlot) || t.y!=BedroomFurniture.StorageY(bedroomSlot))throw new InvalidOperationException("Invalid bedroom support.");
+                    continue;
+                }
                 var slot=HomeLayout.StorageSlot(t.container);
                 if(slot<0 || t.zone!="garden" || !Carryable(t.kind) || !string.IsNullOrEmpty(t.holder) ||
                     t.x!=HomeLayout.StorageX(slot) || t.y!=HomeLayout.StorageY(slot))throw new InvalidOperationException("Invalid storage parent.");
@@ -90,6 +99,7 @@ namespace LittleWeeps.Core
         // Returns a rejection without mutation, or commits a validated action.
         private string ApplyHome(SoloCommand c,SoloPlayer player)
         {
+            if(BedroomLayout.Index(player.zone)>=0)return ApplyBedroomFixture(c,player);
             if(state.home==null || player.zone!="garden")return "wrong-area";
             if(c.action==SoloAction.LeaveFixture){ClearFixture(player);return null;}
             if(c.action==SoloAction.UseFixture)

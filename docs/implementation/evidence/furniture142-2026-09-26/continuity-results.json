@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 142,
+  "previousBuild": 137,
+  "checks": [
+    "Schema 7 to 8 adds bounded furniture state and 16 toys; prior world, all 11 items, owners, fixtures, balloon, receipts and enrollment remain unchanged",
+    "Latest furniture continues privately after outage; local decor/items survive cold reopen with safe lease release; reconnect loads shared furniture without importing offline edits or duplicating stock"
+  ],
+  "liveFamilyTouched": false
+}

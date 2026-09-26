@@ -97,7 +97,10 @@ namespace LittleWeeps.Client
             picture.pivot = new Vector2((drawing.ground.x - crop.x) / crop.width,
                 (crop.yMax - drawing.ground.y) / crop.height);
             picture.sizeDelta = crop.size * (180 / (walking ? art.walkReferenceHeight : art.referenceHeight));
-            facing.anchoredPosition = offset;
+            var resting=frame.Pose==CharacterPose.Rest;
+            facing.localRotation=Quaternion.Euler(0,0,resting?90:0);
+            facing.anchoredPosition = resting?new Vector2(-65,210):offset;
+            shadow.gameObject.SetActive(!resting);
             facing.localScale = new Vector3((frame.FaceLeft ? -1 : 1) * scale.x, scale.y, 1);
             shadow.anchoredPosition = new Vector2(0, frame.Pose == CharacterPose.Bounce ? 84 : frame.Pose == CharacterPose.Sit ? 52 : 0);
             shadow.localScale = frame.Pose == CharacterPose.Bounce ? Vector3.one * Mathf.Lerp(1, .6f, Mathf.Clamp01((offset.y - 84) / 108)) : Vector3.one;

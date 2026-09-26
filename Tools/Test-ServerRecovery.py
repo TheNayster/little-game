@@ -75,6 +75,13 @@ def main():
             time.sleep(.5);clients[2].input('touchButton',text='Enter bedroom 3')
             wait(lambda:next(p for p in clients[2].state()['view']['players'] if p['id']==clients[2].profile)['zone']=='home-bedroom-3','Recovery bedroom arrival')
         if contract >= 7:
+            if contract >= 10:
+                room=next(r for r in clients[2].state()['view']['bedrooms'] if r['id']=='home-bedroom-3')
+                for action,values in [(14,dict(target='theme',value='3:'+str(room['roomRevision']))),
+                    (10,dict(target='bedroom-chest',value='on')),(2,dict(item='home-bedroom-3-toy-0')),
+                    (3,dict(item='home-bedroom-3-toy-0',target='home-bedroom-3/chest-0',x=1545,y=300)),
+                    (10,dict(target='bedroom-chest',value='off'))]:
+                    require(command(clients[2],action,**values)['accepted'],'Furniture recovery fixture failed')
             require(command(clients[0],5,value='keepy-uppy')['accepted'],'Recovery balloon toss failed')
             require(command(clients[0],7,value='park')['accepted'],'Recovery departure failed')
             if contract < 8:
@@ -106,6 +113,7 @@ def main():
             require(restored['home']==original['home'] and restored['home']['livingRadio'] and next(t for t in restored['toys'] if t['id']=='ball-1')['container']=='shed-2','Home storage/radio recovery differs')
         if contract >= 7:require(native_equivalent(restored['keepy'],original['keepy']) and restored['keepy']['phase']==1,'Paused in-flight balloon recovery differs')
         if contract >= 9:require(restored['bedrooms']==original['bedrooms'] and len(restored['bedrooms'])==4,'Bedroom ownership recovery differs')
+        if contract >= 10:require(restored['bedrooms'][2]['theme']==3 and next(t for t in restored['toys'] if t['id']=='home-bedroom-3-toy-0')['container']=='home-bedroom-3/chest-0','Furniture decoration/storage recovery differs')
         require(len(state['connected']) == 4, 'Saved enrollment did not reconnect')
         fixture.stop()
         recovery.rollback(result['rollbackJob'], digest(save.read_bytes()))

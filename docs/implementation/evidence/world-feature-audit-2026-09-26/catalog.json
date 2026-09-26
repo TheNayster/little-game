@@ -23,6 +23,22 @@
         "H-32"
       ],
       "evidence": "docs/implementation/bedroom-rooms-2026-09-26.md"
+    },
+    {
+      "build": 142,
+      "baselineCommit": "d4ed2bb",
+      "entries": [
+        "G-02",
+        "G-06",
+        "H-01",
+        "H-04",
+        "H-05",
+        "H-31",
+        "H-32",
+        "H-33",
+        "H-34"
+      ],
+      "evidence": "docs/implementation/bedroom-furniture-2026-09-26.md"
     }
   ],
   "worlds": {
@@ -73,8 +89,8 @@
         31,
         50
       ],
-      "description": "Independent local world/room views, loading and four owned bedroom destinations now work in candidate 137. Furnished rooms and broader activity integration remain required.",
-      "evidence": "bedrooms",
+      "description": "Four independent world/room views and four owned furnished bedrooms now work in candidate 142. Broader activities and mixed-device qualification remain required.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -130,8 +146,8 @@
         5,
         32
       ],
-      "description": "Working stairs and four hall/bedroom routes have scoped native evidence. Furniture-aware routing and final furnished-room geometry remain unfinished.",
-      "evidence": "bedrooms",
+      "description": "Working stairs/doors plus two authored bedroom arrangements and a clear front walk corridor. Arbitrary placement and wider house routing remain unfinished.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -471,8 +487,8 @@
         3,
         32
       ],
-      "description": "Connected downstairs property, working stairs/landing and four owned upstairs room shells with real doors. Kitchen, bathroom/laundry, veranda functions and finished bedrooms remain required.",
-      "evidence": "bedrooms",
+      "description": "Connected downstairs property, working stairs/landing and four owned furnished bedrooms. Kitchen, bathroom/laundry, veranda functions and broader room content remain required.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -508,14 +524,14 @@
       "world": "home",
       "group": "Rooms and furniture",
       "title": "Chairs, benches, cushions and resting spots",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         4,
         5,
         32
       ],
-      "description": "Correct seated/resting poses, holding a small item, easy exits and different cast sizes. The implemented sofa does not establish all furniture support.",
-      "evidence": "ledger",
+      "description": "Beds and four independent bedroom cushions now work, with layered rest/sit poses. Broader seating, held-item seating and final cast/device qualification remain required.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -523,15 +539,15 @@
       "world": "home",
       "group": "Rooms and furniture",
       "title": "Cupboards, drawers, lights and lamps",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         6,
         11,
         32,
         51
       ],
-      "description": "Open and close real storage; lights change visibly; contents retain identity and can be retrieved. Painted cabinets and lamps are currently scenery.",
-      "evidence": "layers",
+      "description": "Bedroom lamps switch and eight-slot chests open/close around real retained items; shelves have four supports. Wider cupboards/drawers and appliance systems remain required.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -889,8 +905,8 @@
       "chapters": [
         32
       ],
-      "description": "Four distinct rooms with saved profile ownership, working doors and screen/network/private-save/recovery integration in candidate 137. Furnishings, storage, decoration and physical acceptance remain open.",
-      "evidence": "bedrooms",
+      "description": "Four saved profile-owned rooms now include usable furniture, real storage and bounded personal toys in candidate 142. Broader catalog, richer decor and physical qualification remain open.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -902,8 +918,8 @@
       "chapters": [
         32
       ],
-      "description": "Four-player visits work in candidate 137, including owner departure without evicting guests. Beds, rugs, shelves, baskets, cushions, pictures, decoration choices, owner edits, Decorate together, safe furnished paths and undo remain unbuilt.",
-      "evidence": "bedrooms",
+      "description": "Owner decoration, optional Together, two safe arrangements and actor-scoped single-operation undo now work with four visitors. Richer picture choices/free placement and final visual/device acceptance remain open.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -911,14 +927,14 @@
       "world": "home",
       "group": "Bedrooms",
       "title": "Personal toy box and creation gallery",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         28,
         32,
         51
       ],
-      "description": "Separate personal catalog, every dinosaur type, bounded loose props, put-one-away/take-one-out and recoverable displays. Never delete the oldest toy or a saved creation.",
-      "evidence": "ledger",
+      "description": "Each room has four persistent starter toys, an eight-slot chest and four shelf supports. The full dinosaur/personal catalog, put-one-away/take-one-out and creation gallery remain required.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -926,13 +942,13 @@
       "world": "home",
       "group": "Bedrooms",
       "title": "Gentle tidy help and visitor protection",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         32,
         51
       ],
-      "description": "Owner's Help tidy stores loose personal toys and eligible loans; leave installed displays, held objects and other rooms alone. Visitors cannot erase a room.",
-      "evidence": "ledger",
+      "description": "Owner tidy stores only their own loose unheld personal toys, preserving displays, visitors and other rooms. Borrowed-tool return remains separate; broader loan/creation integration remains open.",
+      "evidence": "furniture",
       "extraSource": ""
     },
     {
@@ -944,7 +960,7 @@
       "chapters": [
         33
       ],
-      "description": "One secret-room option per player profile, linked to its owned bedroom. All four can visit any existing room; move/archive doors without deleting contents or stranding visitors. Optional use, required four-profile support.",
+      "description": "One secret-room option per profile, linked to its bedroom by a small far-back door, revealed locally on approach with a star glow, sparkles and shimmer. All four can visit any existing room; move/archive doors without deleting contents or stranding visitors. Optional use, required four-profile support.",
       "evidence": "ledger",
       "extraSource": ""
     },

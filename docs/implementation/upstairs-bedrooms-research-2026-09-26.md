@@ -219,7 +219,9 @@ During art production, create a clean architectural base first, then furniture p
 
 ## 14. Secret-room construction and systems, for the next stage
 
-Each bedroom may gain one little star-marked entrance. The secret room is an optional persistent instance owned by the same profile, not a randomized new room on every entry. Reuse the bedroom room/door/item contracts, adding only entrance lifecycle and calm presentation. Every secret room supports four visitors and a shared saved layout.
+Each bedroom may gain one little star-marked entrance **at the far back of the room, away from the main entrance**, per the user's latest correction. It stays hidden until the local character approaches, then gently reveals with a glowing star, bounded sparkles and shimmer. Use separate enter/leave proximity thresholds to prevent flicker; no collision/input target while hidden, and no teleport on proximity alone. Each viewer's reveal is local and independent. Reduced-motion keeps a quiet static glow. Reserve a clear far-end wall and approach area in both authored furniture layouts; do not put the secret door beside the hallway door. The interior exit stays visible regardless of reveal or owner presence.
+
+The secret room is an optional persistent instance owned by the same profile, not a randomized new room on every entry. Reuse the bedroom room/door/item contracts, adding only entrance lifecycle and calm presentation. Every secret room supports four visitors and a shared saved layout.
 
 ### Creation, entrance changes and reliable exit
 

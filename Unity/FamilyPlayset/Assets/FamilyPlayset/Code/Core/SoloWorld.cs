@@ -5,8 +5,8 @@ using System.Linq;
 
 namespace LittleWeeps.Core
 {
-    public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor }
+    public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball, Plush, Block }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor, DecorateRoom }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
@@ -20,7 +20,7 @@ namespace LittleWeeps.Core
     }
     [Serializable] public sealed class SoloToy
     {
-        public string id, holder = "", container = "";
+        public string id, holder = "", container = "", personalRoom = "";
         public string zone = "garden";
         public ToyKind kind;
         public float x, y;
@@ -146,6 +146,10 @@ namespace LittleWeeps.Core
         {
             var p=state.players.FirstOrDefault(v=>v.id==actor);
             if(p==null || p.stairs>0 || p.zone!=zone || p.visit!=visit || !WorldLayout.Position(zone,state.schema,x,y))return false;
+            // Stopping on a mattress must retain its occupancy. Apply the floor
+            // corridor only when walking changes the requested point.
+            if(p.x==x && p.y==y)return false;
+            if(state.schema>=BedroomFurniture.Schema && BedroomLayout.Index(zone)>=0){var floor=BedroomFurniture.Floor(x,y);x=floor.X;y=floor.Y;}
             if(p.x==x && p.y==y)return false;
             if(!string.IsNullOrEmpty(p.fixture)){ClearFixture(p);state.revision++;}
             p.x=x;p.y=y;return true;
@@ -196,7 +200,7 @@ namespace LittleWeeps.Core
         {
             if (s == null || s.schema < 1 || s.schema > WorldLayout.Schema) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
-                s.toys == null || s.toys.Length != (s.schema==1?5:s.schema<4?10:11) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
+                s.toys == null || s.toys.Length != (s.schema==1?5:s.schema<4?10:s.schema<BedroomFurniture.Schema?11:27) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
             var ids = new HashSet<string>();
             foreach (var p in s.players)
                 if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !WorldLayout.Position(AreaOf(p.zone),s.schema,p.x,p.y) ||
@@ -220,7 +224,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateHome(s);ValidateKeepy(s);ValidateBedrooms(s);
+            ValidateHome(s);ValidateKeepy(s);ValidateBedrooms(s);ValidateFurnishings(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -306,6 +310,8 @@ namespace LittleWeeps.Core
                     player.stairs=0;break;
                 case SoloAction.EnterDoor:
                     var doorError=EnterDoor(player,c.target);if(doorError!=null)return Reject(doorError);outcome="room-entered";break;
+                case SoloAction.DecorateRoom:
+                    var decorError=DecorateBedroom(c,player);if(decorError!=null)return Reject(decorError);outcome="room-decorated";break;
                 case SoloAction.Travel:
                     if(state.schema<2 || !(state.schema>=WorldLayout.ScenerySchema?WorldLayout.Destination(c.value):c.value=="garden" || c.value=="creek"))return Reject("unknown-area");
                     if(c.value==WorldLayout.Place(player))return Reject("already-there");
@@ -313,9 +319,11 @@ namespace LittleWeeps.Core
                     // These are essential station tools. Settle a live hold at
                     // its rack, preserving water; no new instance is spawned.
                     foreach(var held in state.toys.Where(t=>t.holder==c.actor))
-                    {held.holder="";if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
+                    {held.holder="";if(BedroomFurniture.Personal(held.kind)){held.x=player.x;held.y=Math.Max(35,Math.Min(250,player.y-65));Touch(held);continue;}if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
                     ClearFixture(player);player.zone=WorldLayout.Canonical(c.value);player.visit++;player.x=WorldLayout.ArrivalX(c.value);player.y=100;player.activity="";outcome="area-entered";break;
-                case SoloAction.Move: ClearFixture(player);player.x = c.x; player.y = c.y; break;
+                case SoloAction.Move:
+                    ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && BedroomLayout.Index(player.zone)>=0?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
+                    player.x=floorPoint.X;player.y=floorPoint.Y;break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
                     player.avatar = c.value; break;
@@ -328,7 +336,7 @@ namespace LittleWeeps.Core
                 case SoloAction.Grab:
                     if (item == null || !Carryable(item.kind)) return Reject("not-movable");
                     if (!string.IsNullOrEmpty(item.holder) || state.toys.Any(t => t.holder == c.actor)) return Reject("already-held");
-                    if(!string.IsNullOrEmpty(item.container) && state.home?.shedOpen!=true)return Reject("storage-closed");
+                    if(!StorageOpen(item))return Reject("storage-closed");
                     ClearFixture(player);item.container="";item.holder = c.actor;Touch(item);
                     foreach(var station in state.toys.Where(t=>t.zone==item.zone && (item.kind==ToyKind.Bucket && t.kind==ToyKind.Plant || item.kind==ToyKind.Sponge && t.kind==ToyKind.Puddle)))Touch(station);
                     break;
@@ -337,6 +345,8 @@ namespace LittleWeeps.Core
                     item.holder = "";Touch(item);break;
                 case SoloAction.Drop:
                     if (item == null || item.holder != c.actor) return Reject("not-holder");
+                    var bedroomSlot=BedroomFurniture.Slot(player.zone,c.target);
+                    if(bedroomSlot>=0){var stored=StoreInBedroom(c,player,item,bedroomSlot);if(stored!=null)return Reject(stored);outcome="item-stored";break;}
                     var slot=HomeLayout.StorageSlot(c.target);
                     if(slot>=0)
                     {

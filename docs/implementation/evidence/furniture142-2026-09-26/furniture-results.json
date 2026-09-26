@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build": 142,
+  "checks": [
+    "four independent real bed buttons and rest poses; bounded stock and phone/tablet compositions",
+    "four simultaneous cushion occupants; competing seat refuses and owner departure preserves three guests",
+    "real plush drag enters chest; close hides and protects it; reopen/retrieve onto shelf keeps exact identity; lamp switches",
+    "owner-only decoration, optional together permission, reversible arrangements and actor-scoped undo keep visitors and items",
+    "owner puts bounded loose toys away; owners and stock identities survive all visits and edits"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTouched": false
+}

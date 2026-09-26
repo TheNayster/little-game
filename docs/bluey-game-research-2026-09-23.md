@@ -1305,6 +1305,8 @@ The PC still has to stay awake and reachable for the shared home session. A PC/n
 
 ## 32. Four personal bedrooms with shared updates
 
+**Current implementation:** [BED-3 candidate 142](implementation/bedroom-furniture-2026-09-26.html) provides usable bedroom furniture, bounded personal toys/storage, owner decoration/Together/undo and tested save rules. The full chapter remains the goal: richer picture choices, catalogs, creation displays, reader integration and physical qualification are not complete.
+
 **Upstairs layout and sequence, latest user direction:** all four bedrooms are on a new second floor. Make the existing living-room stairs usable in both directions, with a real landing/hall and four bedroom doors. Each player can travel independently while the others remain anywhere in Home. Finish this bedroom stage before the four secret rooms. See the [deep implementation research](implementation/upstairs-bedrooms-research-2026-09-26.html); its recommendations and acceptance cases are not implemented features.
 
 **Latest user correction, September 26:** four separate bedrooms, one belonging to each of the four family player profiles, including parent players. Decorating a room updates that same room for connected visitors; it never makes all four bedrooms identical. Ownership follows the stable player profile, not the chosen avatar, device or connection order. See the [Home tracker](home-world-feature-tracker.md) for individual room and four-player acceptance checks. Earlier two-child-room limits are superseded.
@@ -1346,6 +1348,8 @@ Connected bedroom edits are validated and saved by the PC/VPS, then sent to the 
 Automatic saving should be frequent enough to preserve finished changes without rewriting the entire world on every drag frame. Record committed drops/style choices, create periodic compact snapshots, and validate migration when the game adds new furniture definitions. Test this on real interrupted writes and out-of-order reconnections, not only a normal save/load cycle.
 
 ## 33. Secret plush rooms with stars and northern lights
+
+**Latest entrance requirement, September 26:** the mini-door belongs at the **far back of each bedroom, away from the main entrance**. It is hidden until that player's character gets close, then appears with a glowing star, gentle sparkles and shimmer. Proximity reveals the entrance locally for each of the four players; entering still requires a deliberate tap. Use a calm static reveal when reduced motion is enabled, keep the approach clear of furniture, and keep the interior exit always visible. This replaces any entrance-near-the-hall interpretation; the secret rooms remain the next stage after bedroom furnishings.
 
 **Updated four-player layout: each of the four bedrooms can have a little star-marked door leading to its owner's own cozy secret room. All four players may enter any existing secret room, together or separately.** These are playful hidden spaces, with no password, quest unlock, or exclusion rule. They are an addition to our game house, not a claim about a room shown in the television series.
 

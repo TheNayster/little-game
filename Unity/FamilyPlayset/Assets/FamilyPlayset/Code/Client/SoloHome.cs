@@ -64,7 +64,7 @@ namespace LittleWeeps.Client
             {
                 if(!result.Accepted)
                 {
-                    homeFeedback.text=result.Outcome=="fixture-busy"?"That spot is busy. Try another spot!":"Try that again.";
+                    homeFeedback.text=result.Outcome=="fixture-busy"?"That spot is busy. Try another spot!":result.Outcome=="owner-only"?"Only the room owner can change that.":result.Outcome=="room-changed"?"The room changed. Try again.":result.Outcome=="storage-full"?"That storage is full. Your toys are safe.":"Try that again.";
                     homeFeedbackUntil=Time.unscaledTime+2.5f;
                 }
                 Render();
@@ -162,7 +162,7 @@ namespace LittleWeeps.Client
                 notes.gameObject.SetActive(place=="living"?home.livingRadio:home.gardenRadio);
                 ((RectTransform)notes).anchoredPosition=new Vector2(0,84+Mathf.Sin(Time.unscaledTime*3)*8);
             }
-            foreach(var t in AllToys())toys[t.id].gameObject.SetActive(t.zone==CurrentArea && (string.IsNullOrEmpty(t.container) || home.shedOpen));
+            foreach(var t in AllToys())toys[t.id].gameObject.SetActive(VisibleToy(t));
             var own=ReadPlayer(Actor);
             var audible=!applicationPaused && !musicMuted && (!Shared || shared.Connected) && HomeLayout.RadioNear(home,own);
             if(homeMusic!=null)

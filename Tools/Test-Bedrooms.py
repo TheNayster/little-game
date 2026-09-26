@@ -76,12 +76,12 @@ def main():
         record('owner can leave for another world and disconnect while three visitors continue in the same saved room')
         exit(b);room(b,0)
         require(next(t for t in world()['toys'] if t['id']=='ball-1')['zone']=='home-bedroom-1','Room item lost on revisit')
-        require(world()['bedrooms']==owners and len(world()['toys'])==11,'Visit duplicated rooms or stock')
+        require(world()['bedrooms']==owners and len(world()['toys'])==(27 if world()['schema']>=8 else 11),'Visit duplicated rooms or stock')
         record('leaving and revisiting uses the existing room and retained item without allocating a duplicate')
         passed=True
     finally:
         run.close();write(folder/'result.json',dict(passed=passed,build=args.build,checks=checks,profileIdLength=32,liveFamilyTouched=False,
-            limits='Windows native destinations/ownership pass. Rooms are architectural shells; furnishing/decor/storage and physical device acceptance remain next.'))
+            limits='Windows native destinations/ownership pass. Furniture/decor/storage have separate tests; physical device qualification remains separate.'))
         print('RESULT '+str(folder/'result.json'),flush=True)
 
 if __name__=='__main__':main()

@@ -334,7 +334,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithBedrooms(world);
+            world=SoloWorld.WithFurnishedRooms(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -530,8 +530,13 @@ namespace LittleWeeps.NetworkProbe
                 if(p==null || p.zone!=sample.zone || p.visit!=sample.visit || frame.time<=PositionTime(p.id))continue;
                 // Leaving an authored slot is also conveyed by the motion lane.
                 // A position frame can arrive before the reliable state update.
-                if(!string.IsNullOrEmpty(p.fixture) && (sample.x!=HomeLayout.X(p.fixture) || sample.y!=HomeLayout.Y(p.fixture)))
-                {p.fixture="";p.useSeconds=0;}
+                if(!string.IsNullOrEmpty(p.fixture))
+                {
+                    var bedroom=BedroomFurniture.Seat(p.fixture)?Latest.view.bedrooms.FirstOrDefault(r=>r.id==p.zone):null;
+                    var supportX=bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):HomeLayout.X(p.fixture);
+                    var supportY=bedroom!=null?BedroomFurniture.SeatY(p.fixture):HomeLayout.Y(p.fixture);
+                    if(sample.x!=supportX || sample.y!=supportY){p.fixture="";p.useSeconds=0;}
+                }
                 if(!KeepyRules.Finite(sample.stairs) || sample.stairs<0 || sample.stairs>=HomeRooms.StairDuration)throw new InvalidDataException("Invalid stair sample.");
                 p.x=sample.x;p.y=sample.y;p.stairs=sample.stairs;positionTimes[p.id]=frame.time;inputAcks[p.id]=sample.input;
             }

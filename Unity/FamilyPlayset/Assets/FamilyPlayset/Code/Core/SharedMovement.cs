@@ -32,7 +32,7 @@ namespace LittleWeeps.Core
                 float.IsNaN(x) || float.IsInfinity(x) || float.IsNaN(y) || float.IsInfinity(y) || Math.Abs(x)>4800 || Math.Abs(y)>1000)
                 throw new ArgumentException("Invalid local walking step.");
             var p=world.ReadPlayer(actor);
-            var next=Step(p.x,p.y,new WalkInput{mode=mode,x=x,y=y},dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
+            var next=Step(p.x,p.y,BedroomFurniture.Route(p,new WalkInput{mode=mode,x=x,y=y},world.Schema),dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
             return world.SetWalkingPosition(p.id,p.zone,p.visit,next.X,next.Y);
         }
         public static WalkPoint Step(float x,float y,WalkInput input,float dt,float minX=40,float maxX=960)
@@ -76,7 +76,7 @@ namespace LittleWeeps.Core
                 if(!session.TryPlayer(c.connection,out var actor) || actor!=pair.Key || p.zone!=c.input.zone || p.visit!=c.input.visit)
                 {controls.Remove(pair.Key);continue;}
                 if(now-c.received>InputTimeout)continue;
-                var next=Walking.Step(p.x,p.y,c.input,dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
+                var next=Walking.Step(p.x,p.y,BedroomFurniture.Route(p,c.input,world.Schema),dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
                 moved|=world.SetWalkingPosition(p.id,p.zone,p.visit,next.X,next.Y);
             }
             return moved;

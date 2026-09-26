@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "build": 142,
+  "utc": "2026-09-26T23:38:25.914130+00:00",
+  "checks": [
+    {
+      "check": "live backup verifies protected enrollment and full multi-area/four-player checkpoint; active restore refuses without interrupting play",
+      "passed": true
+    },
+    {
+      "check": "stale decision refused; exact checkpoint restored; four original enrolled clients rejoin; rollback restores all previous save paths",
+      "passed": true
+    },
+    {
+      "check": "10 corrupt, incompatible, wrong-family/enrollment, invalid-state and unsafe-file-name backups refuse before touching usable saves",
+      "passed": true
+    },
+    {
+      "check": "interruption after replacing primary blocks parent, launcher and direct native startup; explicit rollback restores all old bytes and permits restart",
+      "passed": true
+    },
+    {
+      "check": "corrupt current primary can be repaired while exact damaged originals remain recoverable; repaired world starts normally",
+      "passed": true
+    },
+    {
+      "check": "missing entire test world reconstructed from the bundle with byte-identical protected enrollment; original four players admitted; existing-directory replacement refused",
+      "passed": true
+    }
+  ],
+  "scope": "Separate enrolled Windows world and four native Windows clients; same-user DPAPI backup/restore. No family world restoration, physical-device, independent-storage or cross-machine recovery claim."
+}

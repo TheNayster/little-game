@@ -1,0 +1,71 @@
+{
+  "mode": "Built-in image_gen",
+  "date": "2026-09-26",
+  "reference": "SourceArt/Home/Bedrooms/bedroom-base-source.png",
+  "assets": [
+    {
+      "id": "bed",
+      "prompt": "Use case: illustration-story. Asset type: separate transparent PNG interactive dollhouse furniture sprite. Match the attached accepted bedroom image for warm 2D Bluey-inspired illustrated style only: confident brown outlines, softly rounded shapes, warm timber, flat gentle sunny shading, shallow front-facing perspective looking slightly down. NOT an edit of the room. Output ONLY the requested object, fully isolated on a genuinely transparent background, no room, ground, text, logos, characters or extra objects. Fill most of canvas with 5% safe padding. All edges and legs visible. No cast shadow outside the object. A cozy child's SINGLE bed in horizontal side view, pillow and rounded wooden headboard on LEFT, small low footboard RIGHT. Warm honey timber frame. Pale cream pillow, simple soft blue quilt tucked over mattress, quilt hangs over visible long front edge. Mattress top visible as a broad shallow trapezoid, head of pillow left. Clean generous broad mattress area where a reclining character can be drawn, no toys or patterns. Landscape 3:2.",
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-7638858f-69d0-4ca9-ab91-584220c0e48b.png",
+      "source": "SourceArt/Home/Bedrooms/Furniture/bed.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/bed.png",
+      "sha256": "5a5d7b57f7a1bed148aca7fde7ec504505244f6346ee158d8cff8e76c187f1d5"
+    },
+    {
+      "id": "shelf",
+      "prompt": "Use case: illustration-story. Asset type: separate transparent PNG interactive dollhouse furniture sprite. Match the attached accepted bedroom image for warm 2D Bluey-inspired illustrated style only: confident brown outlines, softly rounded shapes, warm timber, flat gentle sunny shading, shallow front-facing perspective looking slightly down. NOT an edit of the room. Output ONLY the requested object, fully isolated on a genuinely transparent background, no room, ground, text, logos, characters or extra objects. Fill most of canvas with 5% safe padding. All edges and legs visible. No cast shadow outside the object. A low honey-timber open toy shelf, wide rectangular cubby unit with two roomy side-by-side EMPTY open cubbies and a broad flat usable top shelf. Clearly visible back panels, interior bottom support ledges and slim front bottom lip. No doors, no books, no toys, no basket. Flat front-on view with slight top view. Landscape 3:2.",
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-5eab6ee4-566d-481c-98cb-35f7f7be4358.png",
+      "source": "SourceArt/Home/Bedrooms/Furniture/shelf.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/shelf.png",
+      "sha256": "af75decb5ab218a1c2a357a972480029bbd567b625e77c0bc94f5c1431bdbc67"
+    },
+    {
+      "id": "chest-open",
+      "prompt": "Use case: illustration-story. Asset type: separate transparent PNG interactive dollhouse furniture sprite. Match the attached accepted bedroom image for warm 2D Bluey-inspired illustrated style only: confident brown outlines, softly rounded shapes, warm timber, flat gentle sunny shading, shallow front-facing perspective looking slightly down. NOT an edit of the room. Output ONLY the requested object, fully isolated on a genuinely transparent background, no room, ground, text, logos, characters or extra objects. Fill most of canvas with 5% safe padding. All edges and legs visible. No cast shadow outside the object. A simple broad honey-timber toy chest with a pale aqua front panel and a small rounded cream handle. Hinged lid is fully OPEN up at the rear; deep EMPTY dark warm-brown interior clearly visible. Front rim is low enough to see stored toys. Softly rounded corners, two short feet. No toys, contents, lock, words or ornament. Landscape 3:2.",
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-6ede9929-d52a-4514-95bf-9fbfd85ad434.png",
+      "source": "SourceArt/Home/Bedrooms/Furniture/chest-open.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/chest-open.png",
+      "sha256": "1be64725f1973b477d71d708dc17bbc8e443e08563390dd1c66f442c629d2b44"
+    },
+    {
+      "id": "cushion",
+      "prompt": "Use case: illustration-story. Asset type: separate transparent PNG interactive dollhouse furniture sprite. Match the attached accepted bedroom image for warm 2D Bluey-inspired illustrated style only: confident brown outlines, softly rounded shapes, warm timber, flat gentle sunny shading, shallow front-facing perspective looking slightly down. NOT an edit of the room. Output ONLY the requested object, fully isolated on a genuinely transparent background, no room, ground, text, logos, characters or extra objects. Fill most of canvas with 5% safe padding. All edges and legs visible. No cast shadow outside the object. One cozy generous round sage-green floor reading cushion, softly plump, simple cream piping and slight center dip. Seen from front slightly above, wide shallow ellipse. No chair back, feet, book, character, floor or shadow. Landscape 3:2.",
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-ce6af45d-859e-4075-8ca3-bd30e32132bd.png",
+      "source": "SourceArt/Home/Bedrooms/Furniture/cushion.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/cushion.png",
+      "sha256": "0252928824132bc40737619b4ae1d2c05f5346b63fd4b2bb80f5a77c45f11bb6"
+    },
+    {
+      "id": "rug",
+      "prompt": "Use case: illustration-story. Asset type: separate transparent PNG interactive dollhouse furniture sprite. Match the attached accepted bedroom image for warm 2D Bluey-inspired illustrated style only: confident brown outlines, softly rounded shapes, warm timber, flat gentle sunny shading, shallow front-facing perspective looking slightly down. NOT an edit of the room. Output ONLY the requested object, fully isolated on a genuinely transparent background, no room, ground, text, logos, characters or extra objects. Fill most of canvas with 5% safe padding. All edges and legs visible. No cast shadow outside the object. One broad oval woven bedroom play rug with a cream center, soft terracotta outer rim and a muted turquoise thin concentric border. Front slightly top-down dollhouse perspective: wide flattened oval, horizontal long axis. Subtle illustrated weave, no toys or symbols. Landscape 3:2.",
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-7a47f519-37d4-4cc6-b581-e23d7ea6e921.png",
+      "source": "SourceArt/Home/Bedrooms/Furniture/rug.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/rug.png",
+      "sha256": "a98bbd4b59d3a0e31b45456f92e9ec8baeef2b740474bb25daf5fbc3d0da275a"
+    },
+    {
+      "id": "lamp",
+      "prompt": "Use case: illustration-story. Asset type: separate transparent PNG interactive dollhouse furniture sprite. Match the attached accepted bedroom image for warm 2D Bluey-inspired illustrated style only: confident brown outlines, softly rounded shapes, warm timber, flat gentle sunny shading, shallow front-facing perspective looking slightly down. NOT an edit of the room. Output ONLY the requested object, fully isolated on a genuinely transparent background, no room, ground, text, logos, characters or extra objects. Fill most of canvas with 5% safe padding. All edges and legs visible. No cast shadow outside the object. One small friendly honey-timber bedside table lamp, circular warm wooden pedestal base, short thick rounded stem, broad pale cream slightly tapered lampshade with neat soft-blue scalloped edging. Off state, no rays or glow, no table and no electrical cord. Compact centered silhouette, portrait 2:3.",
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-71f0de3c-3e05-4d29-88d6-cd80b13d75f2.png",
+      "source": "SourceArt/Home/Bedrooms/Furniture/lamp.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/lamp.png",
+      "sha256": "ac320213df07cbd8074b609950a4d1c88c22aa5ee4ed8dafbd892dfe3d669bae"
+    },
+    {
+      "id": "chest-closed",
+      "prompt": "Use case: precise-object-edit. Close ONLY the lid of this toy chest. Preserve the exact 1536x1024 canvas, the chest lower body position, its front panel, feet, handle, width, colors, brown outline style and transparent background. The front/body must stay in precisely the same pixels so the open and closed sprites align in a game. Rotate the hinged upper lid down onto the top to cover the empty interior; do not reposition or rescale the body. Above the closed lid becomes fully transparent. No other objects, text, scene, ground or cast shadows. Keep a genuinely transparent background.",
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-d4ae3656-85b2-4508-b378-35c8d41201d9.png",
+      "source": "SourceArt/Home/Bedrooms/Furniture/chest-closed.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/chest-closed.png",
+      "sha256": "0a3eb41d2fc471a617ce89b0a1258bd7f10c74539cc5f1d61c35892c7caecc62"
+    },
+    {
+      "id": "plush",
+      "prompt": "Use case: illustration-story. Asset type: one transparent toy sprite for the accepted bedroom game. Draw one small cuddly sage-green stegosaurus plush toy, recognizable soft dinosaur with rounded body, four stubby feet, friendly cream belly, four soft pastel orange plates along its back, tiny round black eyes and gentle smile. Side view facing RIGHT, short tail pointing LEFT. Flat warm 2D children's dollhouse illustration with confident rounded brown outlines, slight soft shading, matching the attached room style. This is a soft bedroom toy, not a player character. Only the complete plush isolated on genuinely transparent background, no room, floor, ground shadow, lettering, logo or other objects. Landscape3:2, 5% padding.",
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-7de7c316-642d-492c-ab63-618710d013b9.png",
+      "source": "SourceArt/Home/Bedrooms/Furniture/plush.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/plush.png",
+      "sha256": "54777a9bd1358f6b781455bae06760544ac187159deabb7c9aca181066f09f91"
+    }
+  ]
+}

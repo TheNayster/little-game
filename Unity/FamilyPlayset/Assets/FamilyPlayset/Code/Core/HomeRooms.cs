@@ -25,7 +25,11 @@ namespace LittleWeeps.Core
     [Serializable] public sealed class BedroomState
     {
         public string id, owner;
-        public BedroomState Copy()=>(BedroomState)MemberwiseClone();
+        public int theme,layout,undoBefore,undoAfter;
+        public long roomRevision;
+        public bool chestOpen,lampOn,decorateTogether;
+        public string undoKind="",undoActor="";
+        public BedroomState Copy(){var copy=(BedroomState)MemberwiseClone();copy.undoKind=copy.undoKind??"";copy.undoActor=copy.undoActor??"";return copy;}
     }
     public static class BedroomLayout
     {
@@ -124,6 +128,7 @@ namespace LittleWeeps.Core
         }
         private static bool ValidToyLocation(SoloToy t,int schema)
         {
+            if(BedroomFurniture.Personal(t.kind))return schema>=BedroomFurniture.Schema && BedroomLayout.Index(t.personalRoom)>=0 && HomeRooms.Property(t.zone);
             var origin=t.id==t.kind.ToString().ToLowerInvariant()+"-1"?"garden":
                 t.id==t.kind.ToString().ToLowerInvariant()+"-creek"?"creek":"";
             return origin!="" && (AreaOf(t.zone)==origin || schema>=HomeRooms.Schema && origin=="garden" &&

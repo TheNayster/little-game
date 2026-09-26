@@ -65,7 +65,7 @@ namespace LittleWeeps.Client
             try
             {
                 if(World!=null && !TrySaveNow())return false;
-                var record=adventures.Load(id);var restored=SoloWorld.WithBedrooms(SoloWorld.Restore(record.snapshot));
+                var record=adventures.Load(id);var restored=SoloWorld.WithFurnishedRooms(SoloWorld.Restore(record.snapshot));
                 // Release all old pointer leases and commit before changing the
                 // displayed authority. Failed disk writes leave current play intact.
                 adventures.Save(record,restored.Snapshot());adventures.Select(id);

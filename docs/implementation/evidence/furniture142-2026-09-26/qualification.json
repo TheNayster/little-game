@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "build": 142,
+  "coreChecks": 138,
+  "nativeGroups": 40,
+  "suites": [
+    {
+      "suite": "furniture",
+      "groups": 5,
+      "source": "LocalData/SharedGarden/1500442288594b7b9e4d8929db7a8436/furniture/result.json",
+      "passed": true
+    },
+    {
+      "suite": "continuity",
+      "groups": 2,
+      "source": "LocalData/FamilyLAN/b654b93b39a041598d2b18365d9903cb/furniture-continuity.json",
+      "passed": true
+    },
+    {
+      "suite": "recovery",
+      "groups": 6,
+      "source": "LocalData/FamilyLAN/3c691b82e61b45568e6b183ead03e317/recovery-result.json",
+      "passed": true
+    },
+    {
+      "suite": "home",
+      "groups": 6,
+      "source": "LocalData/SharedGarden/23ca0c0e4ac940b4b35aa7ffb0dd42cf/home/result.json",
+      "passed": true
+    },
+    {
+      "suite": "navigation",
+      "groups": 4,
+      "source": "LocalData/SharedGarden/b6d5a8d38c24493bb4b3d4a116ccd28e/home-navigation/result.json",
+      "passed": true
+    },
+    {
+      "suite": "keepy",
+      "groups": 10,
+      "source": "LocalData/SharedGarden/1e29bc648ac7483c9b13b2a897fbb35e/keepy/result.json",
+      "passed": true
+    },
+    {
+      "suite": "stairs",
+      "groups": 7,
+      "source": "LocalData\\SharedGarden\\5de166e3cdbd4c2caa6a78a9c1faf31c\\upstairs\\result.json",
+      "passed": true
+    }
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTouched": false,
+  "visuals": "Agent inspected native phone/tablet captures; user acceptance and A10/mixed-device qualification remain open."
+}

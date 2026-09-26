@@ -77,7 +77,7 @@ namespace LittleWeeps.Client
         }
         private void ResetPresentation()
         {
-            CancelPointers();CancelStairApproach();ResetBedrooms();stairControl=null;stairFront=null;stairVisuals.Clear();Narration?.Stop();ResetScenery();ResetHome();
+            CancelPointers();CancelStairApproach();ResetBedrooms();ResetBedroomFurniture();stairControl=null;stairFront=null;stairVisuals.Clear();Narration?.Stop();ResetScenery();ResetHome();
             // Keep one canvas, event system and narration source across switches.
             // Disable old children now so deferred Destroy cannot receive input.
             foreach(Transform child in safe){child.gameObject.SetActive(false);Destroy(child.gameObject);}
@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithBedrooms(World);
+                World = SoloWorld.WithFurnishedRooms(World);
                 // Restore releases interrupted item holds; persist that change.
                 // Otherwise merely opening another saved adventure must not
                 // rewrite an untouched solo payload (including precise timers).
@@ -298,7 +298,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -422,13 +422,13 @@ namespace LittleWeeps.Client
             if(role=="ground"){EndGround(screen);return;}
             if(role=="stick"){stickDirection=Vector2.zero;stickKnob.anchoredPosition=Vector2.zero;return;}
             if(role!=dragging)return;
-            if(shared!=null){dragPoint=BoardPoint(screen);gestureEnded=true;gestureCancelled=!ScenePosition(dragPoint.x,dragPoint.y);FinishSharedDrag();return;}
-            var point=BoardPoint(screen);
+            if(shared!=null){dragPoint=BedroomDropPoint(BoardPoint(screen));gestureEnded=true;gestureCancelled=!ScenePosition(dragPoint.x,dragPoint.y);FinishSharedDrag();return;}
+            var point=BedroomDropPoint(BoardPoint(screen));
             if(!ScenePosition(point.x,point.y)){CancelPointer(role);return;}
             var target=ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle)
                 .OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),point)).FirstOrDefault();
             var id=target!=null && Vector2.Distance(new Vector2(target.x,target.y),point)<=SoloWorld.InteractionRadius?target.id:"";
-            var homeTarget=HomeDropTarget(point);if(homeTarget!="")id=homeTarget;
+            var homeTarget=bedroomDragTarget!=""?bedroomDragTarget:HomeDropTarget(point);if(homeTarget!="")id=homeTarget;
             var result=Command(SoloAction.Drop,role,id,x:point.x,y:point.y);
             if(!result.Accepted)Command(SoloAction.CancelGrab,role);
             dragging=null;HideTargetHints();Render();
@@ -468,7 +468,7 @@ namespace LittleWeeps.Client
             {
                 var nearest=ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle).OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),dragPoint)).FirstOrDefault();
                 if(nearest!=null && Vector2.Distance(new Vector2(nearest.x,nearest.y),dragPoint)<=SoloWorld.InteractionRadius)target=nearest.id;
-                var homeTarget=HomeDropTarget(dragPoint);if(homeTarget!="")target=homeTarget;
+                var homeTarget=bedroomDragTarget!=""?bedroomDragTarget:HomeDropTarget(dragPoint);if(homeTarget!="")target=homeTarget;
             }
             var cancelled=gestureCancelled;
             message.text=cancelled?"Putting it back…":"Finishing your move…";
@@ -598,7 +598,7 @@ namespace LittleWeeps.Client
                 visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
             }
             PresentRooms();
-            PresentBedrooms();
+            PresentBedrooms();PresentBedroomFurniture();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
         }
@@ -616,10 +616,12 @@ namespace LittleWeeps.Client
                 var player=HasWorld?ReadPlayer(id):null;
                 if(player!=null && player.stairs>0){Add(root,ToBoard(HomeRooms.EntryX(player.zone),HomeRooms.EntryY(player.zone)).y,1,id);return;}
                 var fixture=player?.fixture??"";
+                if(BedroomFurniture.Seat(fixture) && FurnishedRoom!=null){var key=fixture==BedroomFurniture.Bed?"bed":"cushion-"+BedroomFurniture.CushionIndex(fixture);if(bedroomFurniture.TryGetValue(key,out var furniture)){Add(root,furniture.anchoredPosition.y,1,id);return;}}
                 var home=HomeLayout.Seat(fixture)?"Home sofa":HomeLayout.Bounce(fixture)?"Home trampoline":"";
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
+            AddBedroomDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);
@@ -628,7 +630,9 @@ namespace LittleWeeps.Client
             foreach(var toy in ReadToys())
             {
                 if(toy.id==dragging)continue;var rect=toys[toy.id];
-                if(!string.IsNullOrEmpty(toy.container) && homeObjects.TryGetValue("Home shed",out var shed))Add(rect,shed.root.anchoredPosition.y,1,toy.id);
+                var roomSlot=BedroomFurniture.Slot(toy.zone,toy.container);
+                if(roomSlot>=0 && FurnishedRoom!=null && bedroomFurniture.TryGetValue(roomSlot<8?"chest":"shelf",out var roomSupport))Add(rect,roomSupport.anchoredPosition.y,1,toy.id);
+                else if(HomeLayout.StorageSlot(toy.container)>=0 && homeObjects.TryGetValue("Home shed",out var shed))Add(rect,shed.root.anchoredPosition.y,1,toy.id);
                 else Add(rect,rect.anchoredPosition.y,3,toy.id);
             }
             if(stairFront!=null && HomeRooms.Property(CurrentArea))Add(stairFront.rectTransform,ToBoard(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)).y,2,"stair-cover");
@@ -651,13 +655,12 @@ namespace LittleWeeps.Client
             // Network-driven renders can occur before LateUpdate. Enforce closed
             // container visibility here too, so hidden props never re-enter the
             // UI raycast list for the remainder of that frame.
-            foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(SoloWorld.AreaOf(toy.zone)==zone &&
-                (string.IsNullOrEmpty(toy.container) || Home!=null && Home.shedOpen));
+            foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(VisibleToy(toy));
             var toyStates=ReadToys();var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
             renderedArea=p.zone;renderedVisit=p.visit;
             characterVisual.Select(p.avatar);
             RenderNavigation();
-            foreach(var t in toyStates){if(t.id!=dragging)toys[t.id].anchoredPosition=ToBoard(t.x,t.y);
+            foreach(var t in toyStates){if(t.id!=dragging)toys[t.id].anchoredPosition=FurnitureToyPoint(t);
                 if(shared!=null)
                 {
                     if(t.id!=dragging && !string.IsNullOrEmpty(t.holder) && shared.TryPreview(t.id,out var preview))toys[t.id].anchoredPosition=ToBoard(preview.x,preview.y);
@@ -697,9 +700,11 @@ namespace LittleWeeps.Client
             if(t.kind==ToyKind.Tap){Panel(root,"Tap pipe",new Vector2(-14,5),new Vector2(28,100),new Color(.47f,.61f,.68f));Panel(root,"Spout",new Vector2(14,40),new Vector2(74,26),new Color(.59f,.71f,.76f));Panel(root,"Handle",new Vector2(-14,66),new Vector2(67,18),new Color(.29f,.5f,.61f));Panel(root,"Drop",new Vector2(40,6),new Vector2(20,28),new Color(.29f,.65f,.88f),false,true);}
             if(t.kind==ToyKind.Plant){Panel(root,"Stem",new Vector2(0,23),new Vector2(10,79),new Color(.27f,.51f,.29f));Panel(root,"Leaf",new Vector2(-19,32),new Vector2(40,20),new Color(.38f,.66f,.33f),false,true);Panel(root,"Pot",new Vector2(0,-22),new Vector2(76,54),new Color(.8f,.43f,.3f));fills[t.id]=Panel(root,"Bloom",new Vector2(0,64),new Vector2(68,68),new Color(.96f,.52f,.61f),false,true);Panel(fills[t.id].transform,"Pollen",Vector2.zero,new Vector2(26,26),new Color(1,.84f,.35f),false,true);}
             if(t.kind==ToyKind.Ball){Panel(root,"Ball outline",Vector2.zero,new Vector2(86,86),Ink,false,true);Panel(root,"Ball",Vector2.zero,new Vector2(80,80),new Color(.97f,.66f,.29f),false,true);Panel(root,"Ball stripe",Vector2.zero,new Vector2(24,78),new Color(.35f,.76f,.84f),false,true);}
+            if(t.kind==ToyKind.Plush)HomePicture(root,"Plush dinosaur",Vector2.zero,new Vector2(110,74),BedroomSprite("plush"));
+            if(t.kind==ToyKind.Block){Panel(root,"Soft block edge",Vector2.zero,new Vector2(77,72),Ink);Panel(root,"Soft block",Vector2.zero,new Vector2(69,64),new Color(.78f,.88f,.94f));Panel(root,"Block circle",Vector2.zero,new Vector2(35,35),new Color(.96f,.75f,.39f),false,true);}
             if(t.kind==ToyKind.Puddle)fills[t.id]=Panel(root,"Puddle",Vector2.zero,new Vector2(126,49),new Color(.41f,.73f,.86f),false,true);
             // Scene props use their pictures; instructions live in the optional activity menu.
-            if(t.kind!=ToyKind.Tap && t.kind!=ToyKind.Ball)
+            if(t.kind!=ToyKind.Tap && t.kind!=ToyKind.Ball && !BedroomFurniture.Personal(t.kind))
             {
                 var cue=Panel(root,"Idle return cue",new Vector2(0,115),new Vector2(160,36),Cream).gameObject;
                 // A picture plus plain text; never a ticking challenge/failure timer.
