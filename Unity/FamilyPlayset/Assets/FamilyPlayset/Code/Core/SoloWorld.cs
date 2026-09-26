@@ -5,8 +5,8 @@ using System.Linq;
 
 namespace LittleWeeps.Core
 {
-    public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel }
+    public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Bed, Rug, Shelf, Basket, Cushion, Picture, Lamp, Plush }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, Decorate, DecorateTogether }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
@@ -18,6 +18,7 @@ namespace LittleWeeps.Core
     [Serializable] public sealed class SoloToy
     {
         public string id, holder = "";
+        public string home = "";
         public string zone = "garden";
         public ToyKind kind;
         public float x, y;
@@ -45,6 +46,7 @@ namespace LittleWeeps.Core
         public string worldId;
         public SoloPlayer[] players;
         public SoloToy[] toys;
+        public BedroomState[] bedrooms = Array.Empty<BedroomState>();
         public SoloReceipt[] receipts = Array.Empty<SoloReceipt>();
         // Additive, optional maintenance metadata. Old saves begin a fresh grace
         // period; item IDs, contents, placements and receipts are unchanged.
@@ -74,7 +76,7 @@ namespace LittleWeeps.Core
 
     // A small authority for the solo prototype. Presentation never directly mutates it.
     // Network admission, rate limits and cross-device reconciliation belong to later gates.
-    public sealed class SoloWorld
+    public sealed partial class SoloWorld
     {
         public const float Width = 1000, Height = 500, InteractionRadius = 90;
         public const double ToolIdleSeconds=180, ActivityIdleSeconds=60, ResetCueSeconds=5;
@@ -111,7 +113,7 @@ namespace LittleWeeps.Core
         public static SoloWorld WithAreas(SoloWorld world)
         {
             var copy=world.Snapshot();
-            if(copy.schema==2)return world;
+            if(copy.schema>=2)return world;
             copy.schema=2;
             var creek=Create("template").ReadToys();
             foreach(var toy in creek){toy.zone="creek";toy.id=toy.kind.ToString().ToLowerInvariant()+"-creek";}
@@ -119,7 +121,7 @@ namespace LittleWeeps.Core
             Validate(copy);return new SoloWorld(copy);
         }
         public static string AreaOf(string zone)=>string.IsNullOrEmpty(zone)?"garden":zone;
-        public static bool KnownArea(string zone)=>zone=="garden" || zone=="creek";
+        public static bool KnownArea(string zone)=>zone=="garden" || zone=="creek" || IsBedroom(zone);
         public SoloSnapshot Snapshot() => Clone(state);
         public static SoloSnapshot CopySnapshot(SoloSnapshot snapshot){Validate(snapshot);return Clone(snapshot);}
         // Called by server/local walking authorities. Position is
@@ -162,6 +164,7 @@ namespace LittleWeeps.Core
         {
             var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId,
                 players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
+                bedrooms=(s.bedrooms??Array.Empty<BedroomState>()).Select(r=>r.Copy()).ToArray(),
                 idleTimers=(s.idleTimers??Array.Empty<GardenIdleTimer>()).Select(t=>t.Copy()).ToArray() };
             foreach(var p in copy.players)p.zone=AreaOf(p.zone);
             foreach(var t in copy.toys)t.zone=AreaOf(t.zone);
@@ -173,22 +176,23 @@ namespace LittleWeeps.Core
         private static bool Activity(string s) => s == "" || s == "garden" || s == "cleanup";
         public static void Validate(SoloSnapshot s)
         {
-            if (s == null || s.schema < 1 || s.schema > 2) throw new InvalidOperationException("Unsupported solo save schema.");
+            if (s == null || s.schema < 1 || s.schema > 3) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
-                s.toys == null || s.toys.Length != (s.schema==1?5:10) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
+                s.toys == null || s.toys.Length != (s.schema==1?5:s.schema==2?10:26) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
             var ids = new HashSet<string>();
             foreach (var p in s.players)
                 if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !Position(p.x, p.y) ||
                     !ValidArea(p.zone,s.schema) || p.visit<0 || p.visit==long.MaxValue || (s.schema==1 && p.visit!=0)) throw new InvalidOperationException("Invalid player record.");
             ids.Clear();
             foreach (var t in s.toys)
-                if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || !ValidArea(t.zone,s.schema) ||
-                    t.id != t.kind.ToString().ToLowerInvariant() + (AreaOf(t.zone)=="garden"?"-1":"-creek") ||
+                if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || (Personal(t.kind) && s.schema<3) || !ValidArea(t.zone,s.schema) ||
+                    (!Personal(t.kind) && (t.id != t.kind.ToString().ToLowerInvariant() + (AreaOf(t.zone)=="garden"?"-1":"-creek") || IsBedroom(t.zone) || !string.IsNullOrEmpty(t.home))) ||
                     !Position(t.x, t.y) || t.water < 0 || t.water > 3 ||
                     ((t.kind == ToyKind.Tap || t.kind == ToyKind.Sponge) && t.water != 0) ||
                     (t.kind != ToyKind.Sponge && t.wet) ||
-                    (!string.IsNullOrEmpty(t.holder) && (t.kind != ToyKind.Bucket && t.kind != ToyKind.Sponge || !s.players.Any(p => p.id == t.holder && AreaOf(p.zone)==AreaOf(t.zone)))))
+                    (!string.IsNullOrEmpty(t.holder) && (!Movable(t.kind) || !s.players.Any(p => p.id == t.holder && AreaOf(p.zone)==AreaOf(t.zone)))))
                     throw new InvalidOperationException("Invalid toy record.");
+            ValidateBedrooms(s);
             if (s.toys.Where(t => !string.IsNullOrEmpty(t.holder)).GroupBy(t => t.holder).Any(g => g.Count() > 1)) throw new InvalidOperationException("One player cannot hold two toys.");
             ids.Clear();
             foreach (var r in s.receipts)
@@ -197,11 +201,11 @@ namespace LittleWeeps.Core
             ids.Clear();
             if(s.idleTimers!=null && s.idleTimers.Length>s.toys.Length)throw new InvalidOperationException("Too many idle timers.");
             foreach(var timer in s.idleTimers??Array.Empty<GardenIdleTimer>())
-                if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
+                if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap && !Personal(t.kind)) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
         }
-        private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":KnownArea(zone);
+        private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
         {
             if(toy==null)return;
@@ -277,14 +281,27 @@ namespace LittleWeeps.Core
             switch (c.action)
             {
                 case SoloAction.Travel:
-                    if(state.schema!=2 || !KnownArea(c.value))return Reject("unknown-area");
+                    if(state.schema<2 || !ValidArea(c.value,state.schema))return Reject("unknown-area");
                     if(c.value==player.zone)return Reject("already-there");
                     if(player.visit>=long.MaxValue-1)return Reject("visit-limit");
                     // These are essential station tools. Settle a live hold at
                     // its rack, preserving water; no new instance is spawned.
                     foreach(var held in state.toys.Where(t=>t.holder==c.actor))
-                    {held.holder="";held.x=held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Bucket?130:120;Touch(held);}
+                    {held.holder="";if(!Personal(held.kind)){held.x=held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Bucket?130:120;}Touch(held);}
                     player.zone=c.value;player.visit++;player.x=420;player.y=100;player.activity="";outcome="area-entered";break;
+                case SoloAction.DecorateTogether:
+                    var sharedRoom=state.bedrooms.FirstOrDefault(r=>r.id==player.zone);
+                    if(sharedRoom==null || sharedRoom.owner!=c.actor)return Reject("room-owner-only");
+                    if(c.value!="on" && c.value!="off")return Reject("invalid-style");
+                    // Settle visitor drags before revoking their edit permission.
+                    if(c.value=="off")foreach(var held in state.toys.Where(t=>t.zone==player.zone && Personal(t.kind) && t.kind!=ToyKind.Plush && t.holder!=c.actor))held.holder="";
+                    sharedRoom.decorateTogether=c.value=="on";outcome="room-sharing-changed";break;
+                case SoloAction.Decorate:
+                    var room=state.bedrooms.FirstOrDefault(r=>r.id==player.zone);
+                    if(room==null || !CanDecorate(c.actor,player.zone))return Reject("room-owner-only");
+                    if(!int.TryParse(c.value,out var style) || style<0 || style>3)return Reject("invalid-style");
+                    if(c.target=="wall")room.wall=style;else if(c.target=="bedding")room.bedding=style;else return Reject("invalid-style");
+                    outcome="room-decorated";break;
                 case SoloAction.Move: player.x = c.x; player.y = c.y; break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
@@ -294,8 +311,9 @@ namespace LittleWeeps.Core
                     player.activity = c.value; break;
                 case SoloAction.LeaveActivity: player.activity = ""; break;
                 case SoloAction.Grab:
-                    if (item == null || item.kind != ToyKind.Bucket && item.kind != ToyKind.Sponge) return Reject("not-movable");
+                    if (item == null || !Movable(item.kind)) return Reject("not-movable");
                     if (!string.IsNullOrEmpty(item.holder) || state.toys.Any(t => t.holder == c.actor)) return Reject("already-held");
+                    if(Personal(item.kind) && item.kind!=ToyKind.Plush && !CanDecorate(c.actor,player.zone))return Reject("room-owner-only");
                     item.holder = c.actor;Touch(item);
                     foreach(var station in state.toys.Where(t=>t.zone==item.zone && (item.kind==ToyKind.Bucket && t.kind==ToyKind.Plant || item.kind==ToyKind.Sponge && t.kind==ToyKind.Puddle)))Touch(station);
                     break;
@@ -304,6 +322,8 @@ namespace LittleWeeps.Core
                     item.holder = "";Touch(item);break;
                 case SoloAction.Drop:
                     if (item == null || item.holder != c.actor) return Reject("not-holder");
+                    if(Personal(item.kind) && (!BedroomPlacement(item.kind,c.x,c.y) || c.target!=""))return Reject("room-placement");
+                    if(Personal(item.kind) && item.kind!=ToyKind.Plush && !CanDecorate(c.actor,player.zone))return Reject("room-owner-only");
                     var target = state.toys.FirstOrDefault(t => t.id == c.target);
                     if (c.target != "" && (target == null || target == item || target.zone!=player.zone)) return Reject("invalid-target");
                     if (target != null && ((target.x - c.x) * (target.x - c.x) + (target.y - c.y) * (target.y - c.y) > InteractionRadius * InteractionRadius)) return Reject("target-too-far");

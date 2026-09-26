@@ -20,6 +20,7 @@ static partial class Program
         root = Path.GetFullPath(args.Length == 1 || nativeBonjour ? args[0] : throw new ArgumentException("Pass a new isolated evidence directory and optional --bonjour."));
         if (Directory.Exists(root)) throw new IOException("Evidence directory already exists.");
         Directory.CreateDirectory(root);
+        BedroomTests();
         RecoveryTests();
         ContinuationTests();
         BackgroundSaveTests();
