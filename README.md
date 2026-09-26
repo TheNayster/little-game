@@ -43,3 +43,5 @@ Use the desktop **Connect Little Weeps** shortcut, or run `Connect-GameTools.ps1
 The unrelated old Unity project remains at `C:\Users\sephi\Desktop\Meeps game`. Its assets, packages, project settings, Git history, and original tool script remain there. No old game files were imported. The desktop shortcut now uses this game's separate launcher. Future work for this game belongs in this folder.
 
 **Latest character correction:** [Side-view walking 119](docs/implementation/profile-walk-2026-09-26.html) gives Bluey/Bingo profile bodies facing left/right and front poses at rest. Native animation/home/chooser checks pass. Android 119 is installed with saved records retained; visible phone check awaits unlock. The layered home-scene correction remains next.
+
+**Latest visual direction:** the user selected the [earlier Bluey movement sheet](SourceArt/Characters/SelectedReference/README.md). The exact PNG is recovered; prepare its native animation proof and integration before resuming home scene cleanup. Installed build 119 is unchanged by this source recovery.

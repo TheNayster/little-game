@@ -1,0 +1,26 @@
+{
+  "selectionDate": "2026-09-26",
+  "status": "user-selected visual reference; animation integration pending",
+  "originalFilename": "exec-3dd33745-45ab-4cc6-b22d-727a0bd6be47.png",
+  "sha256": "17e936f99b5aa791e60497067cc5228aca976f73f5f51e5740212a4c6b524fcb",
+  "width": 1254,
+  "height": 1254,
+  "copiedWithoutPixelChanges": true,
+  "userFeedback": "It actually shows all movements looks amazing",
+  "visiblePoseFamilies": [
+    "idle",
+    "blink",
+    "wave",
+    "walking variants"
+  ],
+  "notYetQualified": [
+    "complete gait cycle",
+    "frame alignment and ground pivots",
+    "clean alpha edges in game",
+    "per-frame hand anchors",
+    "sit/dance/bounce poses",
+    "matching Bingo artwork",
+    "native/mobile runtime integration"
+  ],
+  "installedBuildUnchanged": 119
+}

@@ -87,3 +87,8 @@ The user means the character looks rigid and uptight while walking. **116 was vi
 ## Scene composition — September 26 correction
 
 **Scene composition correction — September 26:** the user identified duplicated painted and interactive furniture. [New research and asset contract](implementation/home-scene-layer-research-2026-09-26.html) audits all four home/backyard panoramas and the actual uGUI drawing order. **ART-HOME-02 comes before more kitchen features:** author clean room bases and one layered placement per usable object, beginning with the living room/sofa, then trampoline/shed and kitchen surfaces/interiors. Preserve seat/storage identities, saves, the combined chooser and the full home backlog. Research is complete; these art/runtime corrections are not implemented or installed. Walking 119 adds the requested side-view body; user visual acceptance remains open.
+
+
+## Selected character artwork — latest user correction
+
+**Character artwork selection — September 26:** the user explicitly prefers the earlier [selected Bluey movement sheet](../SourceArt/Characters/SelectedReference/README.md) over the current redraws. The exact original PNG is recovered and preserved. Use its likeness, proportions and pose style as the character target. The sheet contains idle/blink, wave and walking variants; frame alignment, a complete walk cycle, alpha cleanup review, hand anchors, other action poses and matching Bingo artwork still need preparation. This selection does not mean the sprite sheet is already in build 119. Prioritize a native proof using this artwork and then game integration before returning to ART-HOME-02.
