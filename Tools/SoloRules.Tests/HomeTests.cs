@@ -29,6 +29,19 @@ static partial class Program
             Good(w,SoloAction.UseFixture,target:"sofa-right",actor:"second");Good(w,SoloAction.ChangeAvatar,value:"orange-pup");
             Check(w.ReadPlayer("first").fixture=="sofa-left" && w.ReadPlayer("second").fixture=="sofa-right");
         });
+        Test("four players fit both original-size fixtures; release affects only their own spot",()=>{
+            var ids=new[]{"first","second","third","fourth"};
+            var w=SoloWorld.WithKeepyUppy(SoloWorld.Create(ids));
+            foreach(var group in new[]{HomeLayout.SofaSlots,HomeLayout.TrampolineSlots})
+            {
+                for(var i=0;i<4;i++)Good(w,SoloAction.UseFixture,target:group[i],actor:ids[i]);
+                Check(w.Snapshot().players.Select(p=>p.fixture).Distinct().Count()==4);
+                Check(w.Snapshot().players.Max(p=>p.x)-w.Snapshot().players.Min(p=>p.x)<=220);
+                Good(w,SoloAction.LeaveFixture,actor:"second");
+                Check(w.Snapshot().players.Count(p=>p.fixture!="")==3);
+                SoloWorld.Validate(w.Snapshot());
+            }
+        });
         Test("ride entry settles a held full bucket and walking releases only that player's slot",()=>{
             var w=SoloWorld.WithHome(SoloWorld.Create("first","second"));Fill(w);Good(w,SoloAction.Grab,"bucket-1");
             Good(w,SoloAction.UseFixture,target:"trampoline-left");Good(w,SoloAction.UseFixture,target:"sofa-right",actor:"second");

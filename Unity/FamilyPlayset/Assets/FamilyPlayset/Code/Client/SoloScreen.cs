@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithHome(World);
+                World = SoloWorld.WithKeepyUppy(World);
                 // Restore releases interrupted item holds; persist that change.
                 // Otherwise merely opening another saved adventure must not
                 // rewrite an untouched solo payload (including precise timers).
@@ -298,7 +298,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -355,14 +355,17 @@ namespace LittleWeeps.Client
         }
         public void StartActivity(string id)
         {
+            if(id==KeepyRules.Activity && CurrentArea!="garden")return;
             if(!HasWorld || TravelPending || id!="" && CurrentArea!="garden" && CurrentArea!="creek")return;
             if(shared!=null)
             {
                 SubmitShared(id==""?SoloAction.LeaveActivity:SoloAction.StartActivity,"","",id,0,0,result=>
-                {if(result.Accepted){Narration.Speak(id==""?"freeplay":id);message.text="Pick any toy. You can leave this activity any time.";}else message.text=Friendly(result.Outcome);Render();});
+                {if(result.Accepted){if(id!=KeepyRules.Activity)Narration.Speak(id==""?"freeplay":id);message.text=id==KeepyRules.Activity?"Move under the balloon to tap it up!":"Pick any toy. You can leave this activity any time.";}else message.text=Friendly(result.Outcome);Render();});
                 return;
             }
-            Command(id==""?SoloAction.LeaveActivity:SoloAction.StartActivity,value:id);
+            var result=Command(id==""?SoloAction.LeaveActivity:SoloAction.StartActivity,value:id);
+            if(!result.Accepted){message.text=Friendly(result.Outcome);return;}
+            if(id==KeepyRules.Activity){message.text="Move under the balloon to tap it up!";return;}
             Narration.Speak(id==""?"freeplay":id);
             message.text=id==""?"All your toys still work. Explore!":id=="garden"?"Fill your bucket at the tap. Give the flower a drink!":"Drag the sponge over the puddle to soak it up.";
         }
@@ -531,7 +534,7 @@ namespace LittleWeeps.Client
             // receipt churn; save cadence stays separate from visual motion.
             var now=Time.realtimeSinceStartup;
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
-            if(World.AdvanceIdle(delta,out var maintenanceVisible))dirty=true;
+            if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
             var mode=JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
             var input=JoystickMode?stickDirection:destination??Vector2.zero;
@@ -572,7 +575,7 @@ namespace LittleWeeps.Client
             RecordPlayFrame();
             if(!Ready)return;
             AnimateNavigation();
-            AnimateTravelScreen();TickScenery();TickHome();
+            AnimateTravelScreen();TickScenery();TickHome();TickKeepy();
             if(shared!=null && shared.Connected)
             {
                 var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
@@ -588,7 +591,7 @@ namespace LittleWeeps.Client
             {
                 var player=ReadPlayer(id);
                 var point=shared!=null && shared.Connected?shared.VisualPosition(id):new Vector2(player.x,player.y);
-                visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime,player,Home);
+                visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
             }
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
@@ -622,6 +625,7 @@ namespace LittleWeeps.Client
             }
             Player(Actor,avatar);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Player(friend.Key,friend.Value.root);
+            if(keepyRoot!=null && Keepy!=null)Add(keepyRoot,ToBoard(Keepy.x,Keepy.y).y,4,"keepy-balloon");
             depthOrder.Sort((a,b)=>{var depth=b.ground.CompareTo(a.ground);if(depth!=0)return depth;var part=a.part.CompareTo(b.part);return part!=0?part:string.CompareOrdinal(a.key,b.key);});
             foreach(var entry in depthOrder)entry.root.SetAsLastSibling();
             if(dragging!=null)toys[dragging].SetAsLastSibling();

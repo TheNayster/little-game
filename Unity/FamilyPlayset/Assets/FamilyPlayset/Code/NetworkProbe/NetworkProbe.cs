@@ -64,7 +64,7 @@ namespace LittleWeeps.NetworkProbe
         public long InputAck(string actor)=>inputAcks.TryGetValue(actor,out var ack)?ack:0;
         public event Action MotionReceived;
         [Serializable] public sealed class MovingPlayer {public string actor,zone;public long visit,input;public float x,y;}
-        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;}
+        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;}
         [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public double seconds;}
         private CheckpointStore store;
         private FileStream authorityLock;
@@ -334,7 +334,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithHome(world);
+            world=SoloWorld.WithKeepyUppy(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -444,6 +444,7 @@ namespace LittleWeeps.NetworkProbe
             {network.DisconnectClient(sender,"invalid-message");}
             catch(Exception e){Fail(e);}
         }
+        private double keepyTime;
         private void ReceiveState(ulong sender,FastBufferReader reader)
         {
             if(config.role!="client" || sender!=NetworkManager.ServerClientId || failed || applicationPaused || retryPending || localOnly || !network.IsConnectedClient)return;
@@ -470,6 +471,8 @@ namespace LittleWeeps.NetworkProbe
                         TraceConnection("first-snapshot",sender,state.sequence.ToString());
                         clientReady=true;retryPending=false;reconnectAttempts=0;WriteStatus("connected","");
                     }
+                    if(Latest!=null && Latest.epoch==state.epoch && keepyTime>state.time)state.view.keepy=Latest.view.keepy?.Copy();
+                    else keepyTime=state.time;
                     seenSequence=state.sequence;Latest=state;WriteJson(Path.Combine(output,"view.json"),state);
                 }
                 Received?.Invoke(state);
@@ -531,6 +534,11 @@ namespace LittleWeeps.NetworkProbe
                 {p.fixture="";p.useSeconds=0;}
                 p.x=sample.x;p.y=sample.y;positionTimes[p.id]=frame.time;inputAcks[p.id]=sample.input;
             }
+            if(frame.time>keepyTime && frame.keepy!=null)
+            {
+                SoloWorld.ValidateKeepy(new SoloSnapshot{schema=WorldLayout.Schema,players=Latest.view.players,keepy=frame.keepy});
+                Latest.view.keepy=frame.keepy;keepyTime=frame.time;
+            }
             MotionReceived?.Invoke();
             WriteJson(Path.Combine(output,"view.json"),Latest);
         }
@@ -556,7 +564,7 @@ namespace LittleWeeps.NetworkProbe
             // Positions describe the completed simulation step, not the later
             // packet-send instant. Otherwise 30 Hz simulation sampled at 20 Hz
             // creates an artificial alternating fast/slow interpolation speed.
-            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,input=movement.Acknowledged(p.id)}).ToArray()};
+            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,input=movement.Acknowledged(p.id)}).ToArray()};
             foreach(var peer in network.ConnectedClientsIds){Send(MotionMessage,peer,frame,NetworkDelivery.UnreliableSequenced);motionPackets++;}
             // Diagnostics are deliberately not durable checkpoints.
             WriteJson(Path.Combine(output,"view.json"),Current());

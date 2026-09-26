@@ -25,7 +25,7 @@ main{max-width:1100px;margin:40px auto;padding:20px}table{min-width:680px;width:
 <video controls loop muted playsinline style="width:100%;max-width:1000px" src="evidence/selected-sheet-2026-09-26/walking-122.mp4"></video>
 
 <p><a href="evidence/selected-sheet-2026-09-26/walking-122.mp4">Three-second native preview</a>. This is a fixed-time 180-frame preview covering start, rightward walk, leftward reversal and stopping, not measured device frame rate. Frame samples and real-home captures were inspected. Appearance and animation quality still need the user's review.</p>
-<p><img alt="Bluey and Bingo walking with the selected appearance" src="evidence/selected-sheet-2026-09-26/walk-right.png" /></p>
+<p><img style="max-width:100%;height:auto" alt="Bluey and Bingo walking with the selected appearance" src="evidence/selected-sheet-2026-09-26/walk-right.png" /></p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
 <thead>
 <tr>
@@ -60,7 +60,7 @@ main{max-width:1100px;margin:40px auto;padding:20px}table{min-width:680px;width:
 </tr>
 </tbody>
 </table></div>
-<p><img alt="Bingo and Bluey using their seated drawings" src="evidence/selected-sheet-2026-09-26/seated.png" /></p>
+<p><img style="max-width:100%;height:auto" alt="Bingo and Bluey using their seated drawings" src="evidence/selected-sheet-2026-09-26/seated.png" /></p>
 <p>Commands: <code>Tools/Build-NetworkProbe.ps1 -BuildNumber 122</code>; <code>uv run --offline --with cryptography python Tools/Test-WalkAnimation.py 122</code>, <code>Tools/Test-HomeWorld.py 122</code>, <code>Tools/Test-HomeNavigation.py 122</code>; <code>Tools/Build-AndroidLAN.ps1 -BuildNumber 122</code>.</p>
 <p>The tests use isolated temporary worlds, never the live family world. Raw runs: <code>LocalData/SharedGarden/34e95665b5e84d4780d6e5d29d7ced48/walk</code>, <code>7934102e09ec4c16935cdde432e2467b/home</code>, <code>3e594edebff04419868290ef67d5fed8/home-navigation</code>. Build 120 caught and rejected a rectangle-deserialization error before producing a usable player; 121 supplied the first visual proof, and 122 corrects frame registration. Only the final qualified build is for delivery.</p>
 <h2 id="delivery-and-remaining-work">Delivery and remaining work</h2>

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "previousBuild": 128,
+  "build": 130,
+  "checks": [
+    {
+      "check": "128 upgrade adds only balloon defaults, schema and one revision; four original profiles rejoin",
+      "passed": true
+    },
+    {
+      "check": "updated backup verifies; restored legacy checkpoint upgrades identically",
+      "passed": true
+    }
+  ],
+  "liveFamilyServerAccessed": false
+}

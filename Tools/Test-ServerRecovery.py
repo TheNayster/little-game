@@ -51,16 +51,22 @@ def main():
                 (3,dict(item='ball-1',target='shed-2',x=3465,y=160)),(10,dict(target='shed',value='off')),
                 (10,dict(target='radio-living',value='on'))]:
                 require(command(clients[0],action,**values)['accepted'],'Home recovery fixture command failed')
+        if contract >= 7:
+            require(command(clients[0],5,value='keepy-uppy')['accepted'],'Recovery balloon toss failed')
+            require(command(clients[0],7,value='park')['accepted'],'Recovery departure failed')
+            require(command(clients[2],7,value='park')['accepted'],'Recovery home pause failed')
         live = recovery.backup(); bundle, files, body = unpack(Path(live['path']))
-        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
-        if scenic: require(body['schema'] == (4 if contract >= 6 else 3) and any(p['x'] < 0 for p in body['players']), 'Scenic coordinates missing from backup')
+        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'park', 'creek', 'beach'} if contract >= 7 else {'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
+        if scenic: require(body['schema'] == (5 if contract >= 7 else 4 if contract >= 6 else 3) and (body['keepy']['x'] < 0 if contract >= 7 else any(p['x'] < 0 for p in body['players'])), 'Scenic coordinates missing from backup')
         original_instance = server.snapshot()['instanceId']
         refused(lambda: recovery.restore(Path(live['path']), digest(save.read_bytes())))
         require(server.snapshot()['instanceId'] == original_instance and server.snapshot()['players'] == 4, 'Backup/restore attempt interrupted play')
         passed('live backup verifies protected enrollment and full multi-area/four-player checkpoint; active restore refuses without interrupting play')
         fixture.stop(); baseline = recovery.backup(); baseline_path = Path(baseline['path'])
         baseline_bytes = save.read_bytes()
-        server.start(); client = fixture.join(1); drop(client, 410, 200); fixture.stop()
+        server.start(); client = fixture.join(1)
+        if contract >= 7:travel(client,'garden')
+        drop(client, 410, 200); fixture.stop()
         before = saved(); require(before['world.save'] != baseline_bytes, 'Test did not change the world')
         refused(lambda: recovery.restore(baseline_path, 'stale-save-hash'))
         require(saved() == before, 'Stale restore changed files')
@@ -74,6 +80,7 @@ def main():
         require(restored['players'] == original['players'] and restored['toys'] == original['toys'] and restored['receipts'] == original['receipts'], 'Native identity/item/receipt restore differs')
         if contract >= 6:
             require(restored['home']==original['home'] and restored['home']['livingRadio'] and next(t for t in restored['toys'] if t['id']=='ball-1')['container']=='shed-2','Home storage/radio recovery differs')
+        if contract >= 7:require(restored['keepy']==original['keepy'] and restored['keepy']['phase']==1,'Paused in-flight balloon recovery differs')
         require(len(state['connected']) == 4, 'Saved enrollment did not reconnect')
         fixture.stop()
         recovery.rollback(result['rollbackJob'], digest(save.read_bytes()))
@@ -90,7 +97,7 @@ def main():
         v = deepcopy(source); invalid = deepcopy(original); invalid['toys'][0]['water'] = 100
         payload = json.dumps(invalid); raw = ('LITTLEWEEPS-SOLO-1\n' + digest(payload.encode()) + '\n' + payload).encode()
         v['files']['world.save'] = encoded(raw); cases.append(('invalid-game-state', v))
-        v = deepcopy(source); invalid = deepcopy(original); invalid['schema'] = 5
+        v = deepcopy(source); invalid = deepcopy(original); invalid['schema'] = 6 if contract >= 7 else 5
         payload = json.dumps(invalid); v['files']['world.save'] = encoded(('LITTLEWEEPS-SOLO-1\n' + digest(payload.encode()) + '\n' + payload).encode()); cases.append(('future-schema', v))
         for name, value in cases:
             path = invalid_dir / (name + '.lwbackup'); path.write_text(json.dumps(value), encoding='utf-8')

@@ -46,6 +46,7 @@ namespace LittleWeeps.Core
         public long revision;
         public string worldId;
         public HomeState home;
+        public KeepyState keepy;
         public SoloPlayer[] players;
         public SoloToy[] toys;
         public SoloReceipt[] receipts = Array.Empty<SoloReceipt>();
@@ -175,7 +176,7 @@ namespace LittleWeeps.Core
         }
         private static SoloSnapshot Clone(SoloSnapshot s)
         {
-            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, home=s.home?.Copy(),
+            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, home=s.home?.Copy(),keepy=s.keepy?.Copy(),
                 players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
                 idleTimers=(s.idleTimers??Array.Empty<GardenIdleTimer>()).Select(t=>t.Copy()).ToArray() };
             foreach(var p in copy.players)p.zone=AreaOf(p.zone);
@@ -215,7 +216,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateHome(s);
+            ValidateHome(s);ValidateKeepy(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -239,12 +240,13 @@ namespace LittleWeeps.Core
         // Only the authority advances eligible PLAY time. No wall-clock catch-up,
         // client timers, room wipes or new item instances. This deliberately covers
         // the garden fixture only; personal toys/creations need their later policy.
-        public bool AdvanceIdle(double seconds,out bool visibleChange)
+        public bool AdvanceIdle(double seconds,out bool visibleChange,string[] activePlayers=null)
         {
             if(double.IsNaN(seconds) || double.IsInfinity(seconds) || seconds<0 || seconds>1)throw new ArgumentOutOfRangeException(nameof(seconds));
             visibleChange=false;if(seconds==0)return false;
             if(state.revision>=long.MaxValue-1)throw new InvalidOperationException("World revision limit reached.");
             var changed=AdvanceHome(seconds);
+            changed|=AdvanceKeepy(seconds,activePlayers);
             foreach(var toy in state.toys)
             {
                 var timer=state.idleTimers.FirstOrDefault(t=>t.item==toy.id);
@@ -307,8 +309,9 @@ namespace LittleWeeps.Core
                     player.avatar = c.value; break;
                 case SoloAction.StartActivity:
                     if(player.zone!="garden" && player.zone!="creek")return Reject("unknown-activity");
-                    if (!Activity(c.value) || c.value == "") return Reject("unknown-activity");
-                    ClearFixture(player);player.activity = c.value; break;
+                    if ((!Activity(c.value) && c.value!=KeepyRules.Activity) || c.value == "") return Reject("unknown-activity");
+                    if(c.value==KeepyRules.Activity){var keepyError=StartKeepy(player);if(keepyError!=null)return Reject(keepyError);}
+                    else {ClearFixture(player);player.activity = c.value;} break;
                 case SoloAction.LeaveActivity: player.activity = ""; break;
                 case SoloAction.Grab:
                     if (item == null || !Carryable(item.kind)) return Reject("not-movable");

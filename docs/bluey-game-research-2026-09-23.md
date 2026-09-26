@@ -848,7 +848,7 @@ Temporary magic effects must not freeze the sibling's controls indefinitely. Tar
 
 | ID / official episode | Show reference | Simple Play | Explore & Stories / playing together | Reusable system / priority |
 | --- | --- | --- | --- | --- |
-| SHOW-25 [Keepy Uppy](https://www.bluey.tv/watch/season-1/keepy-uppy/) | The family keeps a balloon off the ground | Large slow balloon, broad tap region, gentle automatic rescue | Both bat the same balloon or guide it through broad targets | Host-authoritative ball motion; **A** |
+| SHOW-25 [Keepy Uppy](https://www.bluey.tv/watch/season-1/keepy-uppy/) | The family keeps a balloon off the ground | Tap the resting balloon to start; automatic raised-arm return when underneath; floor rest and another tap, no score/win/loss | All four bat the same balloon; Home only initially | PC-authoritative flight; SHOW-25 first requested minigame; [implementation](implementation/keepy-uppy-2026-09-26.html) |
 | SHOW-26 [Shadowlands](https://www.bluey.tv/watch/season-1/shadowlands/) | Children move between shadows and avoid sunny grass | Tap a large nearby shadow and auto-walk there | Choose a route together; later add slowly moving shade | Valid zones, guided routes; **C** |
 | SHOW-27 [Postman](https://www.bluey.tv/watch/season-2/postman/) — Ground's Lava | The sisters avoid touching the floor | Tap big cushions; automatic safe hops | One arranges a route, the other crosses; either can leave freely | Safe nodes, placement constraints; **B** |
 | SHOW-28 [Postman](https://www.bluey.tv/watch/season-2/postman/) — letter delivery | A letter becomes a paper plane to reach Mum | Deliver a picture card to a nearby mailbox | Decorate, fold, and send letters to each other or a parent | Craft transform, delivery, simple flight; **B** |
@@ -863,7 +863,7 @@ The [activity source and design catalog](bluey-research/activity-research-eviden
 
 A useful additional candidate is [Pirates](https://www.bluey.tv/watch/season-1/pirates/), which supplies a swing-ship adventure with parent roles. A gentle adaptation could have one child steer while the other spots picture landmarks. This needs more bespoke character animation and camera comfort testing than the earliest activities.
 
-Keep the first implementation selection focused: the requested kitchen/cleanup/fishing/parent-seeker activities, then Keepy Uppy, Shops, and Magic Xylophone as contrasting tests of the shared systems. Do not build all 32 before children can try a finished small area. Unfinished ideas stay visible here as planned backlog, not as dead buttons in the children's app.
+**September 26 order update:** the user selected Keepy Uppy as the first home minigame. Finish and qualify its four-player free play before returning to kitchen/cleanup/fishing/parent-seeker activities, Shops and Magic Xylophone. All new shared features support four players; the sofa and trampoline use four closer spots without enlarging their artwork. Do not build all 32 before children can try a finished small area. Unfinished ideas stay visible here as planned backlog, not as dead buttons in the children's app.
 
 ## 24. Integration, build sequence, and acceptance for the new features
 
@@ -2005,7 +2005,7 @@ Make parent profiles distinct from Child A and Child B. If a parent uses the And
 | Sandcastles, rock stacks, science, dinosaur toys | Multiple work surfaces, shared contributions, generous placement targets, and no global lock while one person holds a tool |
 | Hide-and-seek | Human parent can choose seeker while children hide; default NPC seeker still works; dynamic participant list and per-hider preparation/clues; retest the roughly 30-second search target for the actual arena |
 | Tag | One designated seeker and a set of joined runners; clear role changes; NPC replacement if the seeker leaves; unjoined players remain outside the game |
-| Playground rides | Seats remain real capacities: add parallel equipment or optional helper roles; do not pack four avatars into a two-seat seesaw or require a long queue |
+| Playground rides | Every shared activity supports four participants. For the existing sofa and trampoline, use four close spots within the unchanged artwork, as explicitly requested September 26. Future constrained rides need a four-player design without long queues. |
 | Daycare and imagination | Up to four independent roles/locations or simultaneous lightweight sessions; duplicate useful roles and NPC fallback where necessary; no rigid two-player story script |
 | Books, TV, spoken lessons | Each person's playback remains local; joining a fourth player does not interrupt the children's narration |
 | Bedrooms and secret rooms | Visitors share existing rooms; owner decoration rules remain; parents receive no automatic power to erase a child's layout |

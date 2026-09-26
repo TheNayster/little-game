@@ -30,7 +30,7 @@ verified=[]
 for save in saves:
     raw=save.read_bytes();header,digest,payload=raw.split(b'\n',2)
     assert header==b'LITTLEWEEPS-SOLO-1' and hashlib.sha256(payload).hexdigest().encode()==digest,'Save checksum failed'
-    world=json.loads(payload);assert world['schema'] in (1,2,3,4) and world['players'] and world['toys'],'Unexpected solo save'
+    world=json.loads(payload);assert world['schema'] in (1,2,3,4,5) and world['players'] and world['toys'],'Unexpected solo save'
     verified.append(dict(path=save.relative_to(out).as_posix(),revision=world['revision'],schema=world['schema']))
 preferences=plistlib.loads((out/'preferences.plist').read_bytes());assert isinstance(preferences,dict)
 files=[dict(path=str(f.relative_to(out)),sha256=hashlib.sha256(f.read_bytes()).hexdigest()) for f in out.rglob('*') if f.is_file() and not f.name.endswith(('.copy.log','.copy.json'))]

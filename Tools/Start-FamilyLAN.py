@@ -37,7 +37,7 @@ def main():
             probe.bind(('0.0.0.0',args.port));args.port=probe.getsockname()[1]
     elif args.port==0:args.port=1025
     paired=root/('authority.pairing' if role=='server' else f'player-{args.player}.pairing');require(paired.is_file(),'Missing protected enrollment')
-    config=dict(runId=world,instanceId=identity,role=role,port=args.port,protocol=3,content=5 if summary["contract"]>=6 else 4 if summary["contract"]>=5 else 3,
+    config=dict(runId=world,instanceId=identity,role=role,port=args.port,protocol=3,content=6 if summary["contract"]>=7 else 5 if summary["contract"]>=6 else 4 if summary["contract"]>=5 else 3,
                 pairingPath=str(paired),presentation=True,interactive=True,persistentServer=role=='server')
     output=root/identity;output.mkdir();path=root/(identity+'.config.json');write(path,config)
     exe=folder/('Server' if role=='server' else 'Client')/'LittleWeepsNetwork.exe'

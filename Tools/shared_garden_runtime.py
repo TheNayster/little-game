@@ -59,8 +59,8 @@ class Run:
         self.build, self.interactive = build, interactive
         self.folder = ROOT / f'Builds/NetworkProbe/G3-0.0.{build}'
         summary = read(self.folder / 'build-summary.json')
-        require(summary and summary['contract'] in (2, 3, 4, 5, 6) and summary['gardenPresentation'], 'Playable garden build required')
-        self.content = 5 if summary["contract"] >= 6 else 4 if summary["contract"] >= 5 else (3 if summary["contract"] >= 4 else 2 if summary["contract"] >= 3 else 1)
+        require(summary and summary['contract'] in (2, 3, 4, 5, 6, 7) and summary['gardenPresentation'], 'Playable garden build required')
+        self.content = 6 if summary["contract"] >= 7 else 5 if summary["contract"] >= 6 else 4 if summary["contract"] >= 5 else (3 if summary["contract"] >= 4 else 2 if summary["contract"] >= 3 else 1)
         self.protocol = 3 if summary['contract'] >= 4 else 2 if summary['contract'] >= 3 else 1
         self.motion_conditions = motion_conditions or {}
         require(len(summary['builds']) == 2, 'Both binaries required')

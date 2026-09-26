@@ -14,10 +14,18 @@ namespace LittleWeeps.Core
     {
         public const float SofaX=-3960, SofaY=200, TrampolineX=1650, TrampolineY=220;
         public const float ShedX=3550, ShedY=300;
-        public static bool Seat(string id)=>id=="sofa-left" || id=="sofa-right";
-        public static bool Bounce(string id)=>id=="trampoline-left" || id=="trampoline-right";
+        // Preserve the original outer anchors and fit two closer places between
+        // them. Furniture art and its front/rear depth masks stay the same size.
+        public static readonly string[] SofaSlots={"sofa-left","sofa-middle-left","sofa-middle-right","sofa-right"};
+        public static readonly string[] TrampolineSlots={"trampoline-left","trampoline-middle-left","trampoline-middle-right","trampoline-right"};
+        public static bool Seat(string id)=>Array.IndexOf(SofaSlots,id)>=0;
+        public static bool Bounce(string id)=>Array.IndexOf(TrampolineSlots,id)>=0;
         public static bool Usable(string id)=>Seat(id) || Bounce(id);
-        public static float X(string id)=>Seat(id)?SofaX+(id=="sofa-left"?-100:100):TrampolineX+(id=="trampoline-left"?-110:110);
+        public static float X(string id)
+        {
+            var seated=Seat(id);var index=Array.IndexOf(seated?SofaSlots:TrampolineSlots,id);
+            return (seated?SofaX:TrampolineX)+(index*2/3f-1)*(seated?100:110);
+        }
         public static float Y(string id)=>Seat(id)?SofaY:TrampolineY;
         public static int StorageSlot(string id)=>id=="shed-0"?0:id=="shed-1"?1:id=="shed-2"?2:id=="shed-3"?3:-1;
         public static float StorageX(int slot)=>ShedX+(slot%2==0?-85:85);

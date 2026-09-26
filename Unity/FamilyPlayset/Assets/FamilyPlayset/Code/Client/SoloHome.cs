@@ -64,7 +64,7 @@ namespace LittleWeeps.Client
             {
                 if(!result.Accepted)
                 {
-                    homeFeedback.text=result.Outcome=="fixture-busy"?"That spot is busy. Try the other one!":"Try that again.";
+                    homeFeedback.text=result.Outcome=="fixture-busy"?"That spot is busy. Try another spot!":"Try that again.";
                     homeFeedbackUntil=Time.unscaledTime+2.5f;
                 }
                 Render();
@@ -82,14 +82,21 @@ namespace LittleWeeps.Client
             var sofaSprite=HomeSprite("home-seat");
             HomePicture(sofa,"Sofa rear and seats",new Vector2(0,30),new Vector2(570,285),sofaSprite);
             HomeFront("Home sofa","sofa-front",new Vector2(0,30),new Vector2(570,285),sofaSprite);
-            HomeHit(sofa,"Sit left",new Vector2(-100,45),new Vector2(185,220),()=>UseHome("sofa-left"));
-            HomeHit(sofa,"Sit right",new Vector2(100,45),new Vector2(185,220),()=>UseHome("sofa-right"));
+            var slotNames=new[]{"left","middle left","middle right","right"};
+            for(var i=0;i<HomeLayout.SofaSlots.Length;i++)
+            {
+                var slot=HomeLayout.SofaSlots[i];
+                HomeHit(sofa,"Sit "+slotNames[i],new Vector2(HomeLayout.X(slot)-HomeLayout.SofaX,45),new Vector2(66,220),()=>UseHome(slot));
+            }
             var trampoline=HomeObject("Home trampoline",HomeLayout.TrampolineX,HomeLayout.TrampolineY);
             var trampolineSprite=HomeSprite("home-trampoline");
             HomePicture(trampoline,"Trampoline rear and mat",new Vector2(0,25),new Vector2(560,280),trampolineSprite);
             HomeFront("Home trampoline","trampoline-front",new Vector2(0,25),new Vector2(560,280),trampolineSprite);
-            HomeHit(trampoline,"Bounce left",new Vector2(-110,60),new Vector2(200,195),()=>UseHome("trampoline-left"));
-            HomeHit(trampoline,"Bounce right",new Vector2(110,60),new Vector2(200,195),()=>UseHome("trampoline-right"));
+            for(var i=0;i<HomeLayout.TrampolineSlots.Length;i++)
+            {
+                var slot=HomeLayout.TrampolineSlots[i];
+                HomeHit(trampoline,"Bounce "+slotNames[i],new Vector2(HomeLayout.X(slot)-HomeLayout.TrampolineX,60),new Vector2(73,195),()=>UseHome(slot));
+            }
             var radioSprite=HomeSprite("home-radio");
             foreach(var name in new[]{"living","garden"})
             {

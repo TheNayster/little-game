@@ -9,6 +9,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="SceneryTests.cs" />
     <Compile Include="HomeTests.cs" />
+    <Compile Include="KeepyTests.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs" Link="WorldLayout.cs" />
     <Compile Include="RecoveryTests.cs" />
     <Compile Include="ContinuationTests.cs" />
@@ -25,6 +26,7 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/WindowsPairingVault.cs" Link="WindowsPairingVault.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs" Link="SoloWorld.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs" Link="HomeWorld.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs" Link="KeepyUppy.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs" Link="FamilySession.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/GardenCommandQueue.cs" Link="GardenCommandQueue.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs" Link="SharedMovement.cs" />

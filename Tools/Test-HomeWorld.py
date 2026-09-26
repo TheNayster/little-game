@@ -123,10 +123,10 @@ def main():
         wait(lambda:solo.input('inspect')['home']['livingRadio'],'offline radio on')
         solo.input('touchButton',text='Sit left');wait(lambda:solo.input('inspect')['homePose']=='Sit','offline sit')
         solo.input('touchButton',text='Menu');save_path=Path(solo.input('inspect')['savePath']);solo.close()
-        saved=json.loads(save_path.read_bytes().split(b'\n',2)[2]);require(saved['schema']==4 and saved['home']['livingRadio'],'Home save missing')
+        saved=json.loads(save_path.read_bytes().split(b'\n',2)[2]);require(saved['schema']==(5 if args.build>=129 else 4) and saved['home']['livingRadio'],'Home save missing')
         reopened=fixture.launch(1);s=ready(reopened);require(not s['shared'] and s['home']['livingRadio'],'Offline home state lost')
         require(s['homePose']!='Sit','Recovered temporary seat lease');capture(reopened,folder,'offline-home-reopened')
-        passed('schema-4 offline save/reopen retains radio and property, safely releases interrupted seat')
+        passed('versioned offline save/reopen retains radio and property, safely releases interrupted seat')
         write(folder/'result.json',dict(passed=True,build=args.build,checks=checks,evidence=str(folder),liveFamilyServerAccessed=False,physicalDevicesAccessed=False))
         print('RESULT '+str(folder/'result.json'),flush=True)
     finally:

@@ -80,6 +80,8 @@ namespace LittleWeeps.Client
                 index = (int)(beat * 2) % 2 == 0 ? 14 : 15;
                 offset.y = Mathf.Abs(Mathf.Sin(beat * Mathf.PI * 2)) * 3;
             }
+            else if (frame.Pose == CharacterPose.BalloonTap)
+            {index=frame.UseSeconds<.22f?2:3;offset.y=Mathf.Sin(Mathf.Clamp01(frame.UseSeconds/.38f)*Mathf.PI)*2;}
             else if (frame.Pose == CharacterPose.Wave) index = 2 + (int)(time * 4) % 2;
             else if (frame.Pose == CharacterPose.Carry && !moving) index = 13;
             FrameIndex = index;

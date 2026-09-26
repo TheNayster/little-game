@@ -6,7 +6,7 @@ namespace LittleWeeps.Core
     // its coordinates left of the original garden preserves every saved prop.
     public static class WorldLayout
     {
-        public const int Schema=4, ScenerySchema=3, Content=5;
+        public const int Schema=5, ScenerySchema=3, Content=6;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare";
         public static bool Destination(string id)=>id=="home" || Area(id);

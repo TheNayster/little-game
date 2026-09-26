@@ -48,7 +48,7 @@ namespace LittleWeeps.Core
         {
             visibleChange=false;
             // An empty family world does not age items while everybody is away.
-            return connections.Count>0 && world.AdvanceIdle(seconds,out visibleChange);
+            return connections.Count>0 && world.AdvanceIdle(seconds,out visibleChange,ConnectedPlayers);
         }
         // A client view is not a successor/recovery checkpoint: receipts stay on
         // the authority. Full recovery replication is a later, separate contract.

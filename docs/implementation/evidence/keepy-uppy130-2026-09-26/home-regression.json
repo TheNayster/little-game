@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "build": 130,
+  "checks": [
+    {
+      "check": "layered sofa surrounds both sitters; front/behind passerby keeps sibling at support depth; phone/tablet composition",
+      "passed": true
+    },
+    {
+      "check": "two occupied sofa seats, same-seat rejection and seated character change through native UI",
+      "passed": true
+    },
+    {
+      "check": "radio plays original audio, idle character dances, movement overrides and device mute preserves shared power",
+      "passed": true
+    },
+    {
+      "check": "backyard bounce poses run while sibling remains seated; joystick safely exits",
+      "passed": true
+    },
+    {
+      "check": "real touch shed open/store/close/travel/retrieve retains one full bucket and one ball; phone/tablet render",
+      "passed": true
+    },
+    {
+      "check": "versioned offline save/reopen retains radio and property, safely releases interrupted seat",
+      "passed": true
+    }
+  ],
+  "liveFamilyServerAccessed": false,
+  "physicalDevicesAccessed": false
+}

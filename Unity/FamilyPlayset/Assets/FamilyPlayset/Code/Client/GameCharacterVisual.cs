@@ -41,7 +41,7 @@ namespace LittleWeeps.Client
             if (view != null) PresentFrame(motion.Observe(displayedPosition, continuity, held, false, dt), dt);
         }
 
-        public void PresentHome(Vector2 point,string continuity,bool held,float dt,Core.SoloPlayer player,Core.HomeState home)
+        public void PresentHome(Vector2 point,string continuity,bool held,float dt,Core.SoloPlayer player,Core.HomeState home,Core.KeepyState balloon=null)
         {
             if(view==null)return;
             var frame=motion.Observe(point,continuity,held,false,dt);
@@ -54,6 +54,14 @@ namespace LittleWeeps.Client
             }
             else if(frame.Pose==CharacterPose.Idle && player.activity=="" && Core.HomeLayout.RadioNear(home,player))
                 frame=new CharacterFrame(CharacterPose.Dance,0,frame.FaceLeft);
+            if(!held && string.IsNullOrEmpty(player.fixture) && player.zone=="garden" && balloon!=null && balloon.phase==1)
+            {
+                var struck=balloon.lastHitter==player.id && balloon.hitAge<.38;
+                var reaching=Core.KeepyRules.Under(player,balloon) && balloon.vz<0 &&
+                    balloon.height<Core.KeepyRules.HandHeight(player.avatar)+Core.KeepyRules.Radius+55;
+                if(struck || reaching)frame=new CharacterFrame(CharacterPose.BalloonTap,frame.Speed,
+                    struck?balloon.hitLeft:balloon.x<player.x,struck?(float)balloon.hitAge:0,frame.Travel,frame.ResetMotion);
+            }
             if(!Core.HomeLayout.Usable(player.fixture))useKey="";
             PresentFrame(frame,dt);
         }

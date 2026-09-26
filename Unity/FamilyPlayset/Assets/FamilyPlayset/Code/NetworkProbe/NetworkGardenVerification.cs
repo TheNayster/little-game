@@ -44,6 +44,7 @@ namespace LittleWeeps.NetworkProbe
             public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray,activeCharacterVisible;public string character;public int characterLayers;public ControlView[] controls;
             public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
             public float homePoseAge;public string homePose;public bool homeMusicPlaying,musicMuted;public LittleWeeps.Core.HomeState home;
+            public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
@@ -244,6 +245,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.worldLoading=screen.WorldLoading;evidence.loadingDestination=screen.LoadingDestination;evidence.loadingFailure=screen.LoadingFailure;evidence.travelStages=screen.TravelStages;
                 evidence.homePoseAge=screen.HomePoseAge;evidence.homePose=screen.HomePose;evidence.homeMusicPlaying=screen.HomeMusicPlaying;evidence.musicMuted=screen.MusicMuted;evidence.home=screen.Home;
                 evidence.sceneryReady=screen.SceneryReady;evidence.place=screen.CurrentPlace;evidence.cameraX=screen.CameraX;evidence.pendingScenery=screen.PendingScenery;evidence.residentScenery=screen.ResidentScenery;
+                evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();
                 evidence.fullCharactersInTray=screen.CharactersOpen && FindObjectsByType<GameCharacterVisual>(FindObjectsSortMode.None)
                     .Where(v=>v.GetComponentsInParent<RectMask2D>().Any(m=>m.name=="Cast viewport")).All(v=>
