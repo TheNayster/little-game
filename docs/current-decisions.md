@@ -1,6 +1,6 @@
 # Current project decisions
 
-**Latest movement update — September 26:** [Faster travel 125](implementation/movement-speed-2026-09-26.html#build-125-faster-again-after-phone-feedback) moves both characters at 420 floor units/second: twice the original speed and 33% faster than 124, following the user's phone feedback. The accepted 123 artwork and full-input animation cadence are retained. All 92 core checks pass at 420. Android 125 is installed with matching APK/signature, visible Home and all eight saved records retained. ART-HOME-02 remains the next content task; Apple/server updates stay deferred.
+**Latest movement update — September 26:** [Faster travel 125](implementation/movement-speed-2026-09-26.html#build-125-faster-again-after-phone-feedback) moves both characters at 420 floor units/second: twice the original speed and 33% faster than 124, following the user's phone feedback. The user tested 125 and reported “Loads better”; keep this speed. The accepted 123 artwork and full-input animation cadence are retained. All 92 core checks pass at 420. Android 125 is installed with matching APK/signature, visible Home and all eight saved records retained. ART-HOME-02 remains the next content task; Apple/server updates stay deferred.
 
 **Approved September 25, 2026:** “Lets stick with pc/vps.” This record resolves the earlier requirement for iPad hosting. Read it before the goal sheet, build guide or a dated research report. A later explicit user decision takes precedence; update all three records together when scope changes.
 
