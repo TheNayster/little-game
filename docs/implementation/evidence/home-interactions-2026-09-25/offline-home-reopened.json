@@ -1,0 +1,213 @@
+{
+  "serial": 2,
+  "visiblePlayers": 1,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 2,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": false,
+  "menuOpen": false,
+  "shared": false,
+  "error": "",
+  "build": "0.0.114",
+  "actor": "45e83028883443669016ab8b22dd4d2d",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "garden",
+  "savePath": "C:/Users/sephi/AppData/LocalLow/Little Weeps/Little Weeps\\SoloPrototype\\paired-d13158dcd45d46dd810419bbe15fc9b8-45e83028883443669016ab8b22dd4d2d\\world.save",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "45e83028883443669016ab8b22dd4d2d",
+      "position": {
+        "x": -4060.0,
+        "y": 199.99996948242188
+      },
+      "visible": true
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "label": "",
+      "position": {
+        "x": 360.0005798339844,
+        "y": 129.99998474121094
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "sponge-1",
+      "label": "",
+      "position": {
+        "x": 559.9998168945312,
+        "y": 120.00000762939453
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "tap-1",
+      "label": "",
+      "position": {
+        "x": 150.00054931640625,
+        "y": 339.9999694824219
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plant-1",
+      "label": "",
+      "position": {
+        "x": 810.0006103515625,
+        "y": 330.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "puddle-1",
+      "label": "",
+      "position": {
+        "x": 679.9998168945312,
+        "y": 140.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ball-1",
+      "label": "",
+      "position": {
+        "x": 3350.0,
+        "y": 129.99998474121094
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 960,
+  "screenHeight": 640,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 960.0,
+    "height": 640.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 7.62939453125e-06,
+    "width": 960.0,
+    "height": 640.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "character": "bluey",
+  "characterLayers": 11,
+  "controls": [
+    {
+      "name": "Sit left",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 406.0,
+        "y": 140.0,
+        "width": 148.0,
+        "height": 176.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sit right",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 566.0,
+        "y": 140.0,
+        "width": 148.0,
+        "height": 176.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 825.0,
+        "y": 574.75,
+        "width": 120.0,
+        "height": 48.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 656.25,
+        "y": 574.75,
+        "width": 157.5,
+        "height": 48.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 32.25,
+        "y": 554.5,
+        "width": 63.0,
+        "height": 63.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 849.0,
+        "y": 32.25,
+        "width": 90.0,
+        "height": 90.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Radio living power",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 133.20001220703125,
+        "width": 80.0,
+        "height": 96.0
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.0,
+  "homePose": "Dance",
+  "homeMusicPlaying": true,
+  "musicMuted": false,
+  "home": {
+    "livingRadio": true,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "sceneryReady": true,
+  "place": "home",
+  "cameraX": -4060.0,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "home-kitchen",
+    "home-living"
+  ]
+}

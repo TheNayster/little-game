@@ -2,15 +2,15 @@ using UnityEngine;
 
 namespace LittleWeeps.Client
 {
-    public enum CharacterPose { Idle, Walk, Wave, Carry }
+    public enum CharacterPose { Idle, Walk, Wave, Carry, Sit, Bounce, Dance }
 
     public readonly struct CharacterFrame
     {
         public readonly CharacterPose Pose;
-        public readonly float Speed;
+        public readonly float Speed, UseSeconds;
         public readonly bool FaceLeft;
-        public CharacterFrame(CharacterPose pose, float speed, bool faceLeft)
-        { Pose = pose; Speed = speed; FaceLeft = faceLeft; }
+        public CharacterFrame(CharacterPose pose, float speed, bool faceLeft, float useSeconds=0)
+        { Pose = pose; Speed = speed; FaceLeft = faceLeft; UseSeconds=useSeconds; }
     }
 
     // Read-only presentation input. Feed existing displayed movement in game

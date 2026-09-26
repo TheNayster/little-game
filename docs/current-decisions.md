@@ -64,6 +64,10 @@ The installed project uses Unity **6000.3.24f1**, NGO **2.13.2**, Transport **2.
 
 Unattended Apple renewal, independent backup/restore, sustained device performance and Android native 16 KB qualification remain unresolved gates within their proper release scope. VPS details can wait. They must not be described as finished, or prevent isolated art/content preparation that does not depend on them.
 
+## Home work now underway
+
+The user asked to begin the home details/features after reviewing the Family Playset and Bluey research. [HOME-01](implementation/home-interactions-2026-09-25.html) is the first bounded G5/G6 slice: seating, trampoline use, radio-driven dancing and durable shed storage in the connected property. Windows 114 passes scoped native checks. The full room/activity backlog stays in the report and goal sheet; kitchen interactions and bedroom persistence are next. Other worlds remain scenic. The live family remains on 110, Apple updates stay deferred, and content-5 delivery requires coordinated server/client and recovery checks. No phase gate is declared complete.
+
 ## Where to continue
 
 - [Goal sheet](bluey-game-research-2026-09-23.html): the intended game.

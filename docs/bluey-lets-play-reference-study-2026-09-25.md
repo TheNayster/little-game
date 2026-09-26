@@ -452,3 +452,12 @@ This is a comprehensive design/research pass across the major feature families, 
 ## 22. Delivery status
 
 Completed here: source-backed research across locations, cast, activities, art, menus, sound and interaction behavior; eight-image reference archive; detailed sit/bounce/dance and other character–object contracts; item–item combinations and shed/container storage rules; and alignment of the maintained goal sheet/build queue. The picture menu and tray are the next bounded implementation task. Client 101 and server/helper 91 remain the last verified deployed versions; this research pass did not replace the running family game.
+
+
+## 21. Home interaction implementation — September 25
+
+The user's request to begin detailed home work is implemented as **HOME-01**, following sections 18–20 above and the Family Playset goal sheet. [Playable behavior, screenshots and room layout](implementation/home-interactions-2026-09-25.html): two sofa seats, two trampoline spots, real radio music with automatic idle dancing, local music mute and four-slot open/close shed storage. Bluey/Bingo keep the existing layered artwork. Windows 114 passes 92 core checks and five native acceptance groups; this is not full house completion or physical visual approval.
+
+The tests specifically preserve a full bucket and loose ball through shed placement, closure, travel and retrieval; offline home cold reopen preserves radio state while safely releasing temporary seats. Borrowed garden tools retain their saved idle-return policy even when stored. The home ball is protected; full personal inventory and nested portable containers remain future work. Schema 4/content 5 adds state without regenerating legacy items.
+
+Next room work is kitchen fridge/cupboards and durable food assembly/serving, then bedroom persistence. Keep the complete house and activity backlog in the linked layout; other worlds remain scenic. The installed family stays on 110 and Apple delivery remains deferred while this home release is prepared.

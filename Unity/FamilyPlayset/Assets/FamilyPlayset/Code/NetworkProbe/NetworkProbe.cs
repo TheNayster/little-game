@@ -334,7 +334,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithScenery(world);
+            world=SoloWorld.WithHome(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -426,7 +426,7 @@ namespace LittleWeeps.NetworkProbe
                     request.command==null || request.command.requestId!=request.requestId?new SoloResult(false,"invalid-command",session.Checkpoint().revision):session.Submit(sender,request.command);
                 if(result.Accepted && !result.Duplicate)
                 {
-                    if(request.command.action==SoloAction.Travel || request.command.action==SoloAction.Move)movement.Forget(request.command.actor);
+                    if(request.command.action==SoloAction.Travel || request.command.action==SoloAction.Move || request.command.action==SoloAction.UseFixture)movement.Forget(request.command.actor);
                     SaveAuthority();
                     if(request.command.action==SoloAction.Grab)
                     {
@@ -525,6 +525,10 @@ namespace LittleWeeps.NetworkProbe
                 if(sample==null || !WorldLayout.Position(sample.zone,Latest.view.schema,sample.x,sample.y))throw new InvalidDataException("Invalid motion point.");
                 var p=Latest.view.players.FirstOrDefault(v=>v.id==sample.actor);
                 if(p==null || p.zone!=sample.zone || p.visit!=sample.visit || frame.time<=PositionTime(p.id))continue;
+                // Leaving an authored slot is also conveyed by the motion lane.
+                // A position frame can arrive before the reliable state update.
+                if(!string.IsNullOrEmpty(p.fixture) && (sample.x!=HomeLayout.X(p.fixture) || sample.y!=HomeLayout.Y(p.fixture)))
+                {p.fixture="";p.useSeconds=0;}
                 p.x=sample.x;p.y=sample.y;positionTimes[p.id]=frame.time;inputAcks[p.id]=sample.input;
             }
             MotionReceived?.Invoke();
@@ -542,7 +546,9 @@ namespace LittleWeeps.NetworkProbe
             maintenanceDirty|=session.AdvanceIdle(elapsed,out var maintenanceVisible);
             if(maintenanceVisible){SaveAuthority();Publish();}
             else if(maintenanceDirty && now-lastMaintenanceSave>=5)SaveAuthority();
+            var beforeWalkingRevision=session.Revision;
             while(accumulator>=1.0/30){stepped=true;moved|=movement.Tick(now,1f/30);accumulator-=1.0/30;}
+            if(session.Revision!=beforeWalkingRevision){SaveAuthority();Publish();}
             positionDirty|=moved;
             if(positionDirty && ((stepped && !moved) || now-lastPositionSave>=1))SaveAuthority();
             if(now<nextMotionSend)return;nextMotionSend=Math.Max(nextMotionSend+.05,now);

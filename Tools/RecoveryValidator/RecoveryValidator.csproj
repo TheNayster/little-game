@@ -7,5 +7,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs" Link="WorldLayout.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs" Link="SoloWorld.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs" Link="HomeWorld.cs" />
   </ItemGroup>
 </Project>

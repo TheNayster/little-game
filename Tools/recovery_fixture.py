@@ -32,7 +32,7 @@ class RecoveryFixture:
             probe.bind(('127.0.0.1', 0)); port = probe.getsockname()[1]
         config = self.path / (v.identity + '.config.json')
         write(config, dict(runId=self.run_id, instanceId=v.identity, role=v.role, port=port,
-              protocol=3, content=4 if read(ROOT / f'Builds/NetworkProbe/G3-0.0.{self.build}/build-summary.json')["contract"] >= 5 else 3, pairingPath=str(pairing_path or self.path / (f'player-{index}.pairing' if index else 'authority.pairing')),
+              protocol=3, content=5 if read(ROOT / f'Builds/NetworkProbe/G3-0.0.{self.build}/build-summary.json')["contract"] >= 6 else 4 if read(ROOT / f'Builds/NetworkProbe/G3-0.0.{self.build}/build-summary.json')["contract"] >= 5 else 3, pairingPath=str(pairing_path or self.path / (f'player-{index}.pairing' if index else 'authority.pairing')),
               presentation=True, verifyGarden=True, interactive=True, persistentServer=not index))
         exe = ROOT / f'Builds/NetworkProbe/G3-0.0.{self.build}' / ('Client' if index else 'Server') / 'LittleWeepsNetwork.exe'
         args = [str(exe), '-familyNetworkConfig', str(config), '-logFile', str(v.out / 'player.log')]

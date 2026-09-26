@@ -641,6 +641,8 @@ Leaving must cancel pending callbacks, release held reservations, stop obsolete 
 
 A one-room experiment may initially show both children together, but it is only an incomplete prototype. Independent cross-location co-op is required: choosing a destination moves only that player and leaves everyone else's activity running. Prove two independent zones early, before broad content production; see sections 50 and 52.
 
+**September 25 home implementation:** [HOME-01 and room-by-room layout](implementation/home-interactions-2026-09-25.html) adds interactive seating, trampoline poses, radio/music/dancing and shed storage as the first property slice. Windows 114 passes 92 core checks and five native groups. This starts the home feature build; every room, recipe, personal-bedroom and activity goal below remains required. Devices/server remain on the recorded family version until coordinated delivery.
+
 ## 19. Kitchen: five pizzas, five cakes, five meals
 
 Interpret the request as **three food families with at least five distinct recipes each: 15 minimum**, plus mix-and-match creation. Every recipe below is proposed game content. The show supports the themes: pretend pizza making and delivery in [Pizza Girls](https://www.bluey.tv/watch/season-3/pizza-girls/), the birthday bake in [Duck Cake](https://www.bluey.tv/watch/season-2/duck-cake/), restaurant roles in [Fancy Restaurant](https://www.bluey.tv/watch/season-2/fancy-restaurant/), and kitchen café play in [Pavlova](https://www.bluey.tv/watch/season-3/pavlova/). It does not establish this whole proposed menu as canonical food.

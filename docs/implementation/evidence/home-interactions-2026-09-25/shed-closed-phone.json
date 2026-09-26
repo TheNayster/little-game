@@ -1,0 +1,223 @@
+{
+  "serial": 73,
+  "visiblePlayers": 2,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 2,
+  "passed": true,
+  "ready": true,
+  "pending": true,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.114",
+  "actor": "player-1",
+  "feedback": "What shall we play next?",
+  "dragging": "",
+  "zone": "garden",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "72b527b2094d4e05a22cc73c15afd7ef",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "position": {
+        "x": 3550.0,
+        "y": 179.99996948242188
+      },
+      "visible": true
+    },
+    {
+      "id": "player-2",
+      "position": {
+        "x": -3860.0,
+        "y": 200.0
+      },
+      "visible": true
+    },
+    {
+      "id": "player-3",
+      "position": {
+        "x": 640.00048828125,
+        "y": 100.0
+      },
+      "visible": false
+    },
+    {
+      "id": "player-4",
+      "position": {
+        "x": 820.00048828125,
+        "y": 100.0
+      },
+      "visible": false
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "label": "",
+      "position": {
+        "x": 3465.0,
+        "y": 430.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "sponge-1",
+      "label": "",
+      "position": {
+        "x": 560.00244140625,
+        "y": 120.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "tap-1",
+      "label": "",
+      "position": {
+        "x": 150.00244140625,
+        "y": 340.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plant-1",
+      "label": "",
+      "position": {
+        "x": 810.00244140625,
+        "y": 330.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "puddle-1",
+      "label": "",
+      "position": {
+        "x": 680.00244140625,
+        "y": 140.00003051757812
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ball-1",
+      "label": "",
+      "position": {
+        "x": 3635.0,
+        "y": 160.0
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 1280,
+  "screenHeight": 591,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -2.108901389874518e-05,
+    "y": 7.62939453125e-06,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardLayoutWidth": 1732.6566162109375,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": true,
+  "fullCharactersInTray": false,
+  "character": "bingo",
+  "characterLayers": 11,
+  "controls": [
+    {
+      "name": "Shed doors",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 671.7063598632812,
+        "y": 273.3374938964844,
+        "width": 243.7874755859375,
+        "height": 66.48748779296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 980.8062744140625,
+        "y": 526.728759765625,
+        "width": 155.137451171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1147.0250244140625,
+        "y": 526.728759765625,
+        "width": 118.199951171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 31.76620101928711,
+        "y": 506.7825012207031,
+        "width": 62.054996490478516,
+        "height": 62.055023193359375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1170.6650390625,
+        "y": 31.766263961791992,
+        "width": 88.64990234375,
+        "height": 88.64999389648438
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "garden",
+  "loadingFailure": "",
+  "travelStages": [
+    "loading-screen",
+    "gestures-settled",
+    "travel-requested",
+    "authority-confirmed",
+    "scenery-ready",
+    "destination-presented",
+    "ready"
+  ],
+  "homePoseAge": 0.0,
+  "homePose": "Idle",
+  "homeMusicPlaying": false,
+  "musicMuted": true,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "sceneryReady": true,
+  "place": "garden",
+  "cameraX": 3342.0810546875,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "garden-shed",
+    "garden-tree"
+  ]
+}

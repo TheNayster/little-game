@@ -5,19 +5,21 @@ using System.Linq;
 
 namespace LittleWeeps.Core
 {
-    public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel }
+    public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
         public string zone = "garden";
         public long visit;
+        public string fixture = "";
+        public double useSeconds;
         public float x = 420, y = 200;
         public SoloPlayer Copy() => (SoloPlayer)MemberwiseClone();
     }
     [Serializable] public sealed class SoloToy
     {
-        public string id, holder = "";
+        public string id, holder = "", container = "";
         public string zone = "garden";
         public ToyKind kind;
         public float x, y;
@@ -43,6 +45,7 @@ namespace LittleWeeps.Core
         public int schema = 1;
         public long revision;
         public string worldId;
+        public HomeState home;
         public SoloPlayer[] players;
         public SoloToy[] toys;
         public SoloReceipt[] receipts = Array.Empty<SoloReceipt>();
@@ -74,7 +77,7 @@ namespace LittleWeeps.Core
 
     // A small authority for the solo prototype. Presentation never directly mutates it.
     // Network admission, rate limits and cross-device reconciliation belong to later gates.
-    public sealed class SoloWorld
+    public sealed partial class SoloWorld
     {
         public const float Width = 1000, Height = 500, InteractionRadius = 90;
         public const double ToolIdleSeconds=180, ActivityIdleSeconds=60, ResetCueSeconds=5;
@@ -105,6 +108,8 @@ namespace LittleWeeps.Core
                 {toy.holder = "";toy.resetPending=false;copy.idleTimers=copy.idleTimers.Where(c=>c.item!=toy.id).ToArray();}
                 copy.revision++;
             }
+            if(copy.players.Any(p=>!string.IsNullOrEmpty(p.fixture)))
+            {foreach(var p in copy.players)ClearFixture(p);copy.revision++;}
             return new SoloWorld(copy);
         }
         // Additive area upgrade for shared and local play. Existing
@@ -123,8 +128,8 @@ namespace LittleWeeps.Core
         public static SoloWorld WithScenery(SoloWorld world)
         {
             world=WithAreas(world);
-            if(world.Schema>=WorldLayout.Schema)return world;
-            var copy=world.Snapshot();copy.schema=WorldLayout.Schema;copy.revision++;
+            if(world.Schema>=WorldLayout.ScenerySchema)return world;
+            var copy=world.Snapshot();copy.schema=WorldLayout.ScenerySchema;copy.revision++;
             Validate(copy);return new SoloWorld(copy);
         }
         public static bool KnownArea(string zone)=>WorldLayout.Area(zone);
@@ -136,7 +141,9 @@ namespace LittleWeeps.Core
         {
             var p=state.players.FirstOrDefault(v=>v.id==actor);
             if(p==null || p.zone!=zone || p.visit!=visit || !WorldLayout.Position(zone,state.schema,x,y))return false;
-            if(p.x==x && p.y==y)return false;p.x=x;p.y=y;return true;
+            if(p.x==x && p.y==y)return false;
+            if(!string.IsNullOrEmpty(p.fixture)){ClearFixture(p);state.revision++;}
+            p.x=x;p.y=y;return true;
         }
         // Presentation reads do not need the durable command receipt history.
         // Return detached copies so a view cannot mutate the authority.
@@ -168,7 +175,7 @@ namespace LittleWeeps.Core
         }
         private static SoloSnapshot Clone(SoloSnapshot s)
         {
-            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId,
+            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, home=s.home?.Copy(),
                 players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
                 idleTimers=(s.idleTimers??Array.Empty<GardenIdleTimer>()).Select(t=>t.Copy()).ToArray() };
             foreach(var p in copy.players)p.zone=AreaOf(p.zone);
@@ -183,7 +190,7 @@ namespace LittleWeeps.Core
         {
             if (s == null || s.schema < 1 || s.schema > WorldLayout.Schema) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
-                s.toys == null || s.toys.Length != (s.schema==1?5:10) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
+                s.toys == null || s.toys.Length != (s.schema==1?5:s.schema<4?10:11) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
             var ids = new HashSet<string>();
             foreach (var p in s.players)
                 if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !WorldLayout.Position(AreaOf(p.zone),s.schema,p.x,p.y) ||
@@ -193,9 +200,9 @@ namespace LittleWeeps.Core
                 if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || !ValidArea(t.zone,s.schema) || (AreaOf(t.zone)!="garden" && AreaOf(t.zone)!="creek") ||
                     t.id != t.kind.ToString().ToLowerInvariant() + (AreaOf(t.zone)=="garden"?"-1":"-creek") ||
                     !WorldLayout.Position(AreaOf(t.zone),s.schema,t.x,t.y) || t.water < 0 || t.water > 3 ||
-                    ((t.kind == ToyKind.Tap || t.kind == ToyKind.Sponge) && t.water != 0) ||
+                    ((t.kind == ToyKind.Tap || t.kind == ToyKind.Sponge || t.kind == ToyKind.Ball) && t.water != 0) ||
                     (t.kind != ToyKind.Sponge && t.wet) ||
-                    (!string.IsNullOrEmpty(t.holder) && (t.kind != ToyKind.Bucket && t.kind != ToyKind.Sponge || !s.players.Any(p => p.id == t.holder && AreaOf(p.zone)==AreaOf(t.zone)))))
+                    (!string.IsNullOrEmpty(t.holder) && (!Carryable(t.kind) || !s.players.Any(p => p.id == t.holder && AreaOf(p.zone)==AreaOf(t.zone)))))
                     throw new InvalidOperationException("Invalid toy record.");
             if (s.toys.Where(t => !string.IsNullOrEmpty(t.holder)).GroupBy(t => t.holder).Any(g => g.Count() > 1)) throw new InvalidOperationException("One player cannot hold two toys.");
             ids.Clear();
@@ -208,6 +215,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
+            ValidateHome(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -236,7 +244,7 @@ namespace LittleWeeps.Core
             if(double.IsNaN(seconds) || double.IsInfinity(seconds) || seconds<0 || seconds>1)throw new ArgumentOutOfRangeException(nameof(seconds));
             visibleChange=false;if(seconds==0)return false;
             if(state.revision>=long.MaxValue-1)throw new InvalidOperationException("World revision limit reached.");
-            var changed=false;
+            var changed=AdvanceHome(seconds);
             foreach(var toy in state.toys)
             {
                 var timer=state.idleTimers.FirstOrDefault(t=>t.item==toy.id);
@@ -252,8 +260,8 @@ namespace LittleWeeps.Core
                 {
                     // Eligibility was rechecked this tick, including another
                     // player's hold. Preserve the exact shared object identity.
-                    if(toy.kind==ToyKind.Bucket){toy.x=360;toy.y=130;toy.water=0;}
-                    if(toy.kind==ToyKind.Sponge){toy.x=560;toy.y=120;toy.wet=false;}
+                    if(toy.kind==ToyKind.Bucket){toy.container="";toy.x=360;toy.y=130;toy.water=0;}
+                    if(toy.kind==ToyKind.Sponge){toy.container="";toy.x=560;toy.y=120;toy.wet=false;}
                     if(toy.kind==ToyKind.Plant)toy.water=0;
                     if(toy.kind==ToyKind.Puddle)toy.water=3;
                     Touch(toy);visibleChange=true;
@@ -285,27 +293,28 @@ namespace LittleWeeps.Core
             switch (c.action)
             {
                 case SoloAction.Travel:
-                    if(state.schema<2 || !(state.schema>=WorldLayout.Schema?WorldLayout.Destination(c.value):c.value=="garden" || c.value=="creek"))return Reject("unknown-area");
+                    if(state.schema<2 || !(state.schema>=WorldLayout.ScenerySchema?WorldLayout.Destination(c.value):c.value=="garden" || c.value=="creek"))return Reject("unknown-area");
                     if(c.value==WorldLayout.Place(player))return Reject("already-there");
                     if(player.visit>=long.MaxValue-1)return Reject("visit-limit");
                     // These are essential station tools. Settle a live hold at
                     // its rack, preserving water; no new instance is spawned.
                     foreach(var held in state.toys.Where(t=>t.holder==c.actor))
-                    {held.holder="";held.x=held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Bucket?130:120;Touch(held);}
-                    player.zone=WorldLayout.Canonical(c.value);player.visit++;player.x=WorldLayout.ArrivalX(c.value);player.y=100;player.activity="";outcome="area-entered";break;
-                case SoloAction.Move: player.x = c.x; player.y = c.y; break;
+                    {held.holder="";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
+                    ClearFixture(player);player.zone=WorldLayout.Canonical(c.value);player.visit++;player.x=WorldLayout.ArrivalX(c.value);player.y=100;player.activity="";outcome="area-entered";break;
+                case SoloAction.Move: ClearFixture(player);player.x = c.x; player.y = c.y; break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
                     player.avatar = c.value; break;
                 case SoloAction.StartActivity:
                     if(player.zone!="garden" && player.zone!="creek")return Reject("unknown-activity");
                     if (!Activity(c.value) || c.value == "") return Reject("unknown-activity");
-                    player.activity = c.value; break;
+                    ClearFixture(player);player.activity = c.value; break;
                 case SoloAction.LeaveActivity: player.activity = ""; break;
                 case SoloAction.Grab:
-                    if (item == null || item.kind != ToyKind.Bucket && item.kind != ToyKind.Sponge) return Reject("not-movable");
+                    if (item == null || !Carryable(item.kind)) return Reject("not-movable");
                     if (!string.IsNullOrEmpty(item.holder) || state.toys.Any(t => t.holder == c.actor)) return Reject("already-held");
-                    item.holder = c.actor;Touch(item);
+                    if(!string.IsNullOrEmpty(item.container) && state.home?.shedOpen!=true)return Reject("storage-closed");
+                    ClearFixture(player);item.container="";item.holder = c.actor;Touch(item);
                     foreach(var station in state.toys.Where(t=>t.zone==item.zone && (item.kind==ToyKind.Bucket && t.kind==ToyKind.Plant || item.kind==ToyKind.Sponge && t.kind==ToyKind.Puddle)))Touch(station);
                     break;
                 case SoloAction.CancelGrab:
@@ -313,6 +322,15 @@ namespace LittleWeeps.Core
                     item.holder = "";Touch(item);break;
                 case SoloAction.Drop:
                     if (item == null || item.holder != c.actor) return Reject("not-holder");
+                    var slot=HomeLayout.StorageSlot(c.target);
+                    if(slot>=0)
+                    {
+                        if(state.home==null || player.zone!="garden" || !state.home.shedOpen)return Reject("storage-closed");
+                        if(state.toys.Any(t=>t.container==c.target))return Reject("storage-full");
+                        if(Math.Abs(c.x-HomeLayout.StorageX(slot))>120 || Math.Abs(c.y-HomeLayout.StorageY(slot))>120)return Reject("target-too-far");
+                        item.container=c.target;item.x=HomeLayout.StorageX(slot);item.y=HomeLayout.StorageY(slot);
+                        item.holder="";Touch(item);outcome="item-stored";break;
+                    }
                     var target = state.toys.FirstOrDefault(t => t.id == c.target);
                     if (c.target != "" && (target == null || target == item || target.zone!=player.zone)) return Reject("invalid-target");
                     if (target != null && ((target.x - c.x) * (target.x - c.x) + (target.y - c.y) * (target.y - c.y) > InteractionRadius * InteractionRadius)) return Reject("target-too-far");
@@ -331,6 +349,10 @@ namespace LittleWeeps.Core
                     if (outcome == "bucket-filled" || outcome == "plant-watered" || outcome == "no-water-transferred" || outcome == "puddle-cleaned")
                         item.y = Math.Max(35, c.y - 70);
                     item.holder = "";Touch(item);Touch(target);break;
+                case SoloAction.UseFixture:
+                case SoloAction.LeaveFixture:
+                case SoloAction.SetFixture:
+                    var error=ApplyHome(c,player);if(error!=null)return Reject(error);outcome="home-changed";break;
                 default: return Reject("unknown-action");
             }
             state.revision++;

@@ -22,7 +22,8 @@ def main():
         require(args.qualify_build and fixture.controller.isolated, 'Candidate recovery requires an isolated qualification run')
         server_recovery.MAX_QUALIFIED_BUILD = args.build
         server_recovery.QUALIFIED_BUILDS = server_recovery.QUALIFIED_BUILDS | {args.build}
-    scenic = read(ROOT / f'Builds/NetworkProbe/G3-0.0.{args.build}/build-summary.json')['contract'] >= 5
+    contract = read(ROOT / f'Builds/NetworkProbe/G3-0.0.{args.build}/build-summary.json')['contract']
+    scenic = contract >= 5
     recovery = Recovery(fixture.run_id, args.build)
     checks = []; success = False; server = fixture.controller
     save = fixture.path / 'server-world/world.save'
@@ -44,9 +45,15 @@ def main():
             travel(clients[1], 'creek'); travel(clients[2], 'home'); travel(clients[3], 'beach')
         else:
             clients[1].input('button', text='Creek'); wait(lambda: not clients[1].input('inspect')['pending'], 'travel')
+        if contract >= 6:
+            command = runpy.run_path(str(ROOT / 'Tools/Test-HomeWorld.py'))['command']
+            for action, values in [(10,dict(target='shed',value='on')),(2,dict(item='ball-1')),
+                (3,dict(item='ball-1',target='shed-2',x=3465,y=160)),(10,dict(target='shed',value='off')),
+                (10,dict(target='radio-living',value='on'))]:
+                require(command(clients[0],action,**values)['accepted'],'Home recovery fixture command failed')
         live = recovery.backup(); bundle, files, body = unpack(Path(live['path']))
         require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
-        if scenic: require(body['schema'] == 3 and any(p['x'] < 0 for p in body['players']), 'Scenic coordinates missing from backup')
+        if scenic: require(body['schema'] == (4 if contract >= 6 else 3) and any(p['x'] < 0 for p in body['players']), 'Scenic coordinates missing from backup')
         original_instance = server.snapshot()['instanceId']
         refused(lambda: recovery.restore(Path(live['path']), digest(save.read_bytes())))
         require(server.snapshot()['instanceId'] == original_instance and server.snapshot()['players'] == 4, 'Backup/restore attempt interrupted play')
@@ -65,6 +72,8 @@ def main():
         state = read(fixture.path / server.snapshot()['instanceId'] / 'view.json')
         restored = checkpoint(save.read_bytes()); original = checkpoint(baseline_bytes)
         require(restored['players'] == original['players'] and restored['toys'] == original['toys'] and restored['receipts'] == original['receipts'], 'Native identity/item/receipt restore differs')
+        if contract >= 6:
+            require(restored['home']==original['home'] and restored['home']['livingRadio'] and next(t for t in restored['toys'] if t['id']=='ball-1')['container']=='shed-2','Home storage/radio recovery differs')
         require(len(state['connected']) == 4, 'Saved enrollment did not reconnect')
         fixture.stop()
         recovery.rollback(result['rollbackJob'], digest(save.read_bytes()))
@@ -81,7 +90,7 @@ def main():
         v = deepcopy(source); invalid = deepcopy(original); invalid['toys'][0]['water'] = 100
         payload = json.dumps(invalid); raw = ('LITTLEWEEPS-SOLO-1\n' + digest(payload.encode()) + '\n' + payload).encode()
         v['files']['world.save'] = encoded(raw); cases.append(('invalid-game-state', v))
-        v = deepcopy(source); invalid['schema'] = 4
+        v = deepcopy(source); invalid = deepcopy(original); invalid['schema'] = 5
         payload = json.dumps(invalid); v['files']['world.save'] = encoded(('LITTLEWEEPS-SOLO-1\n' + digest(payload.encode()) + '\n' + payload).encode()); cases.append(('future-schema', v))
         for name, value in cases:
             path = invalid_dir / (name + '.lwbackup'); path.write_text(json.dumps(value), encoding='utf-8')

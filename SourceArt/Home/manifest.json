@@ -1,0 +1,80 @@
+{
+  "generator": "Built-in image_gen",
+  "date": "2026-09-25",
+  "generationHistory": [
+  {
+    "id": "home-radio",
+    "prompt": "Create one production game sprite, genuinely transparent background. A small teal and dark-navy portable cassette boombox like the backyard radio in Bluey: Let's Play!, front view with very slight visible top, two dark round speakers, chunky carry handle, one obvious coral power button, friendly rounded corners. Clean flat 2D preschool TV cartoon illustration, muted pastel teal, navy outlines, simple warm highlights, no painterly texture, no words, no music notes, no cast, no ground, no shadow outside object. Single object centered, fills 85% image width, landscape composition. Crisp readable at small size. The image will be an interactive radio in a personal Bluey house game.",
+    "reference": null,
+    "output": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-92c32a7a-8fcd-4bbb-a2a8-eb263d6ca437.png"
+  },
+  {
+    "id": "home-seat",
+    "prompt": "Create one isolated interactive furniture sprite for a personal Bluey house game on a genuinely transparent background. A small welcoming coral-orange two-cushion sofa, seen directly from front with a shallow view of its seat surface. Style very close to the clean flat 2D Bluey TV/Budge Let's Play dollhouse interiors: soft pastel coral upholstery, dark warm brown fine outlines, rounded simple shapes, four short wooden feet, one pale yellow little cushion far at the left corner. Wide open seat center where Bluey and Bingo will sit; NO characters, no room, no floor, no text, no background, no outer drop shadow. Sofa only, centered, fills 90% width, landscape composition. Separate-looking seat edge readable. Must be clean cartoon art, not realistic or painterly.",
+    "reference": null,
+    "output": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-59996813-f9cd-40a0-9660-769167dea5da.png"
+  },
+  {
+    "id": "home-trampoline",
+    "prompt": "Create one isolated trampoline game sprite for a personal Bluey backyard game, genuine transparent background. Front-facing shallow perspective oval children's trampoline, broad dark navy elastic mat, thick turquoise padded oval rim, four green sturdy short legs, tiny silver two-rung step attached front left. NO enclosure net, NO poles above the mat, NO characters. Clean flat 2D Bluey TV/Budge Let's Play style, confident dark blue outlines, pastel cyan and green, simple flat shading. Entire trampoline fully visible and centered with clear open mat where a character will bounce, very wide landscape composition fills 90% width, no words, no room, no ground, no external drop shadow. Avoid 3D realism.",
+    "reference": null,
+    "output": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-ced21258-7ede-4aa0-8606-84307edc2845.png"
+  },
+  {
+    "id": "home-shed",
+    "prompt": "Create one standalone garden storage cabinet / little shed sprite, with genuinely transparent background, for a personal Bluey Let's Play inspired 2D dollhouse game. Front view of an OPEN mint-green wooden garden shed with cream trim, simple teal gable roof and dark blue-grey outlines. Broad unobstructed rectangular interior with warm pale timber backing, one horizontal shelf at half height and an empty lower floor storage zone. Two slim open doors extend outward to the left and right so all interior space is visible. The shelf and floor are EMPTY, no tools, no toys, no characters, no text. Friendly clean flat 2D preschool Bluey TV cartoon colors, no painterly texture, no perspective distortion, no background/ground/shadow outside shed. Single complete object centered, fills 85% canvas, landscape composition. This is an interactive storage layer that will show actual movable objects inside.",
+    "reference": null,
+    "output": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-e6c8f089-d6b2-49ea-974e-579c92646532.png"
+  },
+  {
+    "id": "home-radio-clean",
+    "prompt": "Remove ALL dark teal glow/haze and shadows outside the boombox. Keep exactly the same radio design, scale, framing and cartoon colors. Object should be fully opaque; everything outside the hard clean outline must be fully transparent alpha. No vignette, no backdrop. Clean game cutout.",
+    "reference": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-92c32a7a-8fcd-4bbb-a2a8-eb263d6ca437.png",
+    "output": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-b837b4a0-546e-4f31-ab27-09425f98cf0a.png"
+  },
+  {
+    "id": "home-shed-clean",
+    "prompt": "Remove ALL dark teal glow/haze/shadow outside the open shed. Keep exactly the same open shed design, size, framing, shelf and colors. Shed fully opaque; everything outside its clean outline fully transparent alpha. Flat cartoon cutout, no vignette/background.",
+    "reference": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-e6c8f089-d6b2-49ea-974e-579c92646532.png",
+    "output": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-42e558aa-0366-4732-ba3c-0c0eb79609e0.png"
+  },
+  {
+    "id": "home-shed-closed",
+    "prompt": "Create the CLOSED state of this exact shed, same framing and scale, roof/outerstructure does not move. Close the two mint-green wooden doors over the entire interior and shelf, with simple central silver latch handle. Closed doors fit inside cream frame (open door wings disappear to transparent space). Make colors and outline match. Remove all glow/haze/backdrop outside shed; shed fully opaque, outside fully transparent alpha. Clean flat cartoon cutout. No extra things.",
+    "reference": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-e6c8f089-d6b2-49ea-974e-579c92646532.png",
+    "output": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-22ea5cb9-e90c-4c86-87cf-27af801dbae5.png"
+  }
+],
+  "assets": [
+    {
+      "id": "home-seat",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-59996813-f9cd-40a0-9660-769167dea5da.png",
+      "prompt": "Create one isolated interactive furniture sprite for a personal Bluey house game on a genuinely transparent background. A small welcoming coral-orange two-cushion sofa, seen directly from front with a shallow view of its seat surface. Style very close to the clean flat 2D Bluey TV/Budge Let's Play dollhouse interiors: soft pastel coral upholstery, dark warm brown fine outlines, rounded simple shapes, four short wooden feet, one pale yellow little cushion far at the left corner. Wide open seat center where Bluey and Bingo will sit; NO characters, no room, no floor, no text, no background, no outer drop shadow. Sofa only, centered, fills 90% width, landscape composition. Separate-looking seat edge readable. Must be clean cartoon art, not realistic or painterly.",
+      "reference": null
+    },
+    {
+      "id": "home-trampoline",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-ced21258-7ede-4aa0-8606-84307edc2845.png",
+      "prompt": "Create one isolated trampoline game sprite for a personal Bluey backyard game, genuine transparent background. Front-facing shallow perspective oval children's trampoline, broad dark navy elastic mat, thick turquoise padded oval rim, four green sturdy short legs, tiny silver two-rung step attached front left. NO enclosure net, NO poles above the mat, NO characters. Clean flat 2D Bluey TV/Budge Let's Play style, confident dark blue outlines, pastel cyan and green, simple flat shading. Entire trampoline fully visible and centered with clear open mat where a character will bounce, very wide landscape composition fills 90% width, no words, no room, no ground, no external drop shadow. Avoid 3D realism.",
+      "reference": null
+    },
+    {
+      "id": "home-radio",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-b837b4a0-546e-4f31-ab27-09425f98cf0a.png",
+      "prompt": "Remove ALL dark teal glow/haze and shadows outside the boombox. Keep exactly the same radio design, scale, framing and cartoon colors. Object should be fully opaque; everything outside the hard clean outline must be fully transparent alpha. No vignette, no backdrop. Clean game cutout.",
+      "reference": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-92c32a7a-8fcd-4bbb-a2a8-eb263d6ca437.png"
+    },
+    {
+      "id": "home-shed",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-42e558aa-0366-4732-ba3c-0c0eb79609e0.png",
+      "prompt": "Remove ALL dark teal glow/haze/shadow outside the open shed. Keep exactly the same open shed design, size, framing, shelf and colors. Shed fully opaque; everything outside its clean outline fully transparent alpha. Flat cartoon cutout, no vignette/background.",
+      "reference": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-e6c8f089-d6b2-49ea-974e-579c92646532.png"
+    },
+    {
+      "id": "home-shed-closed",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-22ea5cb9-e90c-4c86-87cf-27af801dbae5.png",
+      "prompt": "Create the CLOSED state of this exact shed, same framing and scale, roof/outerstructure does not move. Close the two mint-green wooden doors over the entire interior and shelf, with simple central silver latch handle. Closed doors fit inside cream frame (open door wings disappear to transparent space). Make colors and outline match. Remove all glow/haze/backdrop outside shed; shed fully opaque, outside fully transparent alpha. Clean flat cartoon cutout. No extra things.",
+      "reference": "C:\\Users\\sephi\\.codex\\generated_images\\01a0daca-9c9f-7de0-8c43-524c38ca4f98\\exec-e6c8f089-d6b2-49ea-974e-579c92646532.png"
+    }
+  ]
+}
