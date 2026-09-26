@@ -16,7 +16,7 @@ def main():
         for i in range(1,5):f.join(i)
         f.stop();old=Recovery(f.run_id,128).backup();before=checkpoint(save.read_bytes())
         expected=deepcopy(before);expected.update(schema=5,revision=before['revision']+1,
-            keepy=dict(phase=0,round=0,hitSerial=0,x=-4240,y=180,height=28,vx=0,vz=0,centerX=0,elapsed=0,remainder=0,hitAge=10,lastHitter='',hitLeft=False))
+            keepy=dict(phase=0,round=0,hitSerial=0,x=760 if args.build>=131 else -4240,y=150 if args.build>=131 else 180,height=28,vx=0,vz=0,centerX=760 if args.build>=131 else 0,elapsed=0,remainder=0,hitAge=10,lastHitter='',hitLeft=False))
         keys={x.name:x.read_bytes() for x in f.path.glob('*.pairing')}
         f.build=args.build;f.controller=ParentServer(f.run_id,args.build);f.controller.start()
         require(checkpoint(save.read_bytes())==expected,'Upgrade changed existing home state')

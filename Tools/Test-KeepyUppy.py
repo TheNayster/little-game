@@ -14,8 +14,8 @@ home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
 ready,travel,capture,command=home.ready,home.travel,home.capture,home.command
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('build',type=int);args=parser.parse_args()
-    run=Run(args.build);folder=run.path/'keepy';folder.mkdir();checks=[];fixture=None
+    parser=argparse.ArgumentParser();parser.add_argument('build',type=int);parser.add_argument('--balloon-only',action='store_true');args=parser.parse_args()
+    run=Run(args.build);folder=run.path/'keepy';folder.mkdir();checks=[];fixture=None;flight=None
     print('EVIDENCE '+str(folder),flush=True)
     def passed(name):checks.append(dict(check=name,passed=True));print('PASS '+name,flush=True)
     try:
@@ -24,23 +24,28 @@ def main():
         travel(a,'home');travel(b,'home')
         clients=[a,b,c,d]
         for guest in (c,d):travel(guest,'home')
-        for place,names,slots,label in [
-            ('home',['Sit left','Sit middle left','Sit middle right','Sit right'],['sofa-left','sofa-middle-left','sofa-middle-right','sofa-right'],'sofa'),
-            ('garden',['Bounce left','Bounce middle left','Bounce middle right','Bounce right'],['trampoline-left','trampoline-middle-left','trampoline-middle-right','trampoline-right'],'trampoline')]:
-            for i,client in enumerate(clients):
-                travel(client,place)
-                if place=='garden':
-                    require(command(client,0,x=1650,y=100)['accepted'],'Trampoline approach failed');time.sleep(.8)
-                if i%2:require(command(client,1,value='orange-pup')['accepted'],'Bingo selection failed')
-                client.input('touchButton',text=names[i])
-                wait(lambda:next(p for p in server.state()['view']['players'] if p['id']==client.profile)['fixture']==slots[i],'four-player fixture')
-            time.sleep(.6);capture(a,folder,'four-'+label+'-phone')
-            require(len({p['fixture'] for p in server.state()['view']['players']})==4,'Missing fourth spot')
-            a.input('resize',x=1024,y=768);ready(a);capture(a,folder,'four-'+label+'-tablet')
-            a.input('resize',x=1280,y=591);ready(a)
-            for client in clients:require(command(client,9)['accepted'],'Fixture exit failed')
-            passed('four real clients use four '+label+' spots through touch, original object size, phone/tablet')
-        for client in clients:travel(client,'home')
+        if not args.balloon_only:
+            for place,names,slots,label in [
+                ('home',['Sit left','Sit middle left','Sit middle right','Sit right'],['sofa-left','sofa-middle-left','sofa-middle-right','sofa-right'],'sofa'),
+                ('garden',['Bounce left','Bounce middle left','Bounce middle right','Bounce right'],['trampoline-left','trampoline-middle-left','trampoline-middle-right','trampoline-right'],'trampoline')]:
+                for i,client in enumerate(clients):
+                    travel(client,place)
+                    if place=='garden':
+                        require(command(client,0,x=1650,y=100)['accepted'],'Trampoline approach failed');time.sleep(.8)
+                    if i%2:require(command(client,1,value='orange-pup')['accepted'],'Bingo selection failed')
+                    client.input('touchButton',text=names[i])
+                    wait(lambda:next(p for p in server.state()['view']['players'] if p['id']==client.profile)['fixture']==slots[i],'four-player fixture')
+                time.sleep(.6);capture(a,folder,'four-'+label+'-phone')
+                require(len({p['fixture'] for p in server.state()['view']['players']})==4,'Missing fourth spot')
+                a.input('resize',x=1024,y=768);ready(a);capture(a,folder,'four-'+label+'-tablet')
+                a.input('resize',x=1280,y=591);ready(a)
+                for client in clients:require(command(client,9)['accepted'],'Fixture exit failed')
+                passed('four real clients use four '+label+' spots through touch, original object size, phone/tablet')
+        play_place='garden' if args.build>=131 else 'home'
+        for client in clients:
+            travel(client,play_place)
+            if args.build>=131:require(command(client,0,x=420,y=100)['accepted'],'Yard approach failed')
+        time.sleep(.8)
         def balloon():return server.state()['view']['keepy']
         require(balloon()['phase']==0 and balloon()['round']==0,'Balloon started without a tap')
         capture(a,folder,'resting-balloon-phone')
@@ -49,9 +54,18 @@ def main():
         one=balloon()['height'];time.sleep(.4)
         require(abs(b.input('inspect')['keepy']['height']-one)>10,'Sibling does not receive ongoing flight')
         capture(a,folder,'balloon-toss-phone');passed('real balloon touch starts upward flight; sibling sees motion without sending commands')
+        if args.build>=131:
+            sample=balloon();peak=sample['height'];apex=sample['elapsed']
+            while sample['phase']==1:
+                if sample['height']>peak:peak=sample['height'];apex=sample['elapsed']
+                time.sleep(.02);sample=balloon()
+            flight=dict(peak=peak,flightSeconds=sample['elapsed'],fallSeconds=sample['elapsed']-apex)
+            require(peak>285 and sample['elapsed']<(2.3 if args.build>=132 else 3) and sample['x']>760,'Higher/faster outdoor toss failed')
+            if args.build>=132:require(flight['fallSeconds']<1.05,'Descent still too slow')
+            passed('higher outdoor toss drifts sideways and lands quickly; descent duration measured separately')
         for hitter in clients:
             for other in clients:
-                require(command(other,0,x=-3500,y=480)['accepted'],'Clear hit area failed')
+                require(command(other,0,x=1050 if args.build>=131 else -3500,y=480)['accepted'],'Clear hit area failed')
             before=balloon()['hitSerial'];limit=time.monotonic()+9
             while time.monotonic()<limit and balloon()['hitSerial']==before:
                 v=balloon();require(command(hitter,0,x=v['x'],y=v['y'])['accepted'],'Follow hitter failed')
@@ -74,8 +88,8 @@ def main():
             wait(lambda:b.input('inspect')['keepy']['hitSerial']>=before+2,'shared hits')
             passed(label+' automatically raises arm and returns falling balloon; both clients agree on taps')
         a.input('resize',x=1024,y=768);ready(a);capture(a,folder,'balloon-tablet')
-        require(command(a,0,x=-3500,y=480)['accepted'],'Depth placement failed')
-        require(command(b,0,x=-3500,y=480)['accepted'],'Sibling depth failed')
+        require(command(a,0,x=1050 if args.build>=131 else -3500,y=480)['accepted'],'Depth placement failed')
+        require(command(b,0,x=1050 if args.build>=131 else -3500,y=480)['accepted'],'Sibling depth failed')
         wait(lambda:balloon()['phase']==0,'floor rest',12);rest=dict(balloon());time.sleep(1)
         require(balloon()==rest,'Balloon restarted itself')
         capture(a,folder,'rest-after-landing-tablet')
@@ -93,14 +107,14 @@ def main():
         require(not any(c['name']=='Play Keepy Uppy' for c in a.input('inspect')['controls']),'Balloon in creek')
         travel(a,'home');wait(lambda:balloon()['elapsed']>paused['elapsed'],'home resumes')
         passed('tap starts another toss; balloon stays home and pauses when everyone leaves; return resumes')
-        fixture=RecoveryFixture(args.build);solo=fixture.launch(1);ready(solo);travel(solo,'home')
+        fixture=RecoveryFixture(args.build);solo=fixture.launch(1);ready(solo);travel(solo,play_place)
         solo.input('touchButton',text='Play Keepy Uppy');wait(lambda:solo.input('inspect')['keepy']['phase']==1,'solo toss')
         solo.input('touchButton',text='Menu');save=Path(solo.input('inspect')['savePath']);solo.close()
         saved=json.loads(save.read_bytes().split(b'\n',2)[2]);require(saved['schema']==5 and saved['keepy']['round']==1,'Missing solo balloon save')
         reopened=fixture.launch(1);s=ready(reopened)
         require(not s['shared'] and s['keepy']['round']==1,'Private solo balloon lost')
         passed('offline touch starts same game; schema-5 balloon survives close/reopen in private solo')
-        write(folder/'result.json',dict(passed=True,build=args.build,checks=checks,liveFamilyServerAccessed=False,physicalDevicesAccessed=False))
+        write(folder/'result.json',dict(passed=True,build=args.build,checks=checks,flight=flight,liveFamilyServerAccessed=False,physicalDevicesAccessed=False))
         print('RESULT '+str(folder/'result.json'),flush=True)
     finally:
         try:

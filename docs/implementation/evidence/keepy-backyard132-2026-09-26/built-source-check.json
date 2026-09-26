@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "platform": "Windows",
+      "build": 132,
+      "runtimeSources": 72,
+      "allRuntimeSourcesMatch": true
+    },
+    {
+      "platform": "Android",
+      "build": 132,
+      "runtimeSources": 72,
+      "allRuntimeSourcesMatch": true
+    }
+  ]
+}

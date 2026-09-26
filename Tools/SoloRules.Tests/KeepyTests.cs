@@ -25,6 +25,36 @@ static partial class Program
             Check(JsonSerializer.Serialize(before.receipts,Json)==JsonSerializer.Serialize(after.receipts,Json));
             Check(after.home.livingRadio && ReferenceEquals(w,SoloWorld.WithKeepyUppy(w)));
         });
+        Test("existing indoor balloon moves outside once without moving players or props",()=>{
+            var old=KeepyWorld().Snapshot();old.keepy.x=-4150;old.keepy.centerX=-4240;old.keepy.y=180;
+            old.keepy.phase=1;old.keepy.vz=140;old.keepy.height=180;old.keepy.round=3;old.keepy.hitSerial=9;
+            var w=SoloWorld.WithKeepyUppy(SoloWorld.Restore(old));var updated=w.Snapshot();
+            Check(updated.schema==old.schema && updated.revision==old.revision+1);
+            Check(updated.keepy.x==KeepyRules.SpawnX && updated.keepy.y==KeepyRules.SpawnY && updated.keepy.phase==0);
+            Check(updated.keepy.round==3 && updated.keepy.hitSerial==9);
+            Check(JsonSerializer.Serialize(old.players,Json)==JsonSerializer.Serialize(updated.players,Json));
+            Check(JsonSerializer.Serialize(old.toys,Json)==JsonSerializer.Serialize(updated.toys,Json));
+            Check(JsonSerializer.Serialize(old.home,Json)==JsonSerializer.Serialize(updated.home,Json));
+            Check(JsonSerializer.Serialize(old.receipts,Json)==JsonSerializer.Serialize(updated.receipts,Json));
+            Check(ReferenceEquals(w,SoloWorld.WithKeepyUppy(w)));
+        });
+        Test("backyard toss is higher, quicker and visibly drifts; completed flight stays outdoors",()=>{
+            var w=KeepyWorld();Good(w,SoloAction.Move,x:-4000,y:100);
+            Good(w,SoloAction.StartActivity,value:KeepyRules.Activity);
+            float peak=0;double floorTime=0,apexTime=0;float drift=0;
+            for(var i=0;i<300;i++)
+            {
+                w.AdvanceIdle(1.0/60,out _,new[]{"first"});var b=w.ReadKeepy();
+                if(b.height>peak){peak=b.height;apexTime=(i+1)/60.0;}
+                if(i==59)drift=b.x-KeepyRules.SpawnX;
+                Check(b.x>=0);SoloWorld.Validate(w.Snapshot());
+                if(b.phase==0){floorTime=(i+1)/60.0;break;}
+            }
+            // Build 130 measured about 203 units and 3.43 seconds for this toss.
+            Check(peak>290 && peak<325 && floorTime>1.9 && floorTime<2.2 && drift>100);
+            // Measure falling separately: a taller toss must not disguise a slow descent.
+            Check(floorTime-apexTime>.7 && floorTime-apexTime<.95);
+        });
         Test("keepy belongs only to home; tapping preserves current activity, position and held item",()=>{
             var w=KeepyWorld();Good(w,SoloAction.Travel,value:"creek");var before=JsonSerializer.Serialize(w.Snapshot(),Json);
             Check(!w.Apply(Command(w,SoloAction.StartActivity,value:KeepyRules.Activity)).Accepted);
@@ -39,7 +69,7 @@ static partial class Program
             {
                 var w=KeepyWorld();Good(w,SoloAction.ChangeAvatar,value:avatar);Good(w,SoloAction.StartActivity,value:KeepyRules.Activity);
                 TickKeepy(w,18,follow:true);var b=w.ReadKeepy();
-                Check(b.phase==1 && b.hitSerial>=4 && b.hitSerial<=9 && b.lastHitter=="first" && b.x!=-4240);
+                Check(b.phase==1 && b.hitSerial>=4 && b.hitSerial<=12 && b.lastHitter=="first" && b.x!=KeepyRules.SpawnX);
                 Check(Walking.Speed==420);SoloWorld.Validate(w.Snapshot());
             }
         });
@@ -52,7 +82,7 @@ static partial class Program
             TickKeepy(w,.3,follow:true);Check(w.ReadKeepy().hitSerial==1);
         });
         Test("wrong floor depth and inactive characters cannot hit; ground rest has no automatic restart",()=>{
-            var w=KeepyWorld();Good(w,SoloAction.StartActivity,value:KeepyRules.Activity);Good(w,SoloAction.Move,x:-4240,y:500);
+            var w=KeepyWorld();Good(w,SoloAction.StartActivity,value:KeepyRules.Activity);Good(w,SoloAction.Move,x:KeepyRules.SpawnX,y:500);
             TickKeepy(w,8);Check(w.ReadKeepy().phase==0 && w.ReadKeepy().hitSerial==0);var b=w.ReadKeepy();
             TickKeepy(w,3);Check(w.ReadKeepy().round==b.round && w.ReadKeepy().phase==0);
             Good(w,SoloAction.StartActivity,value:KeepyRules.Activity);Check(w.ReadKeepy().phase==1 && w.ReadKeepy().round==b.round+1);

@@ -14,6 +14,15 @@ from server_recovery import Recovery, OperationError, encoded, digest, unpack, c
 from shared_garden_runtime import ROOT, read, write, wait, require
 
 
+def native_equivalent(a,b,key=''):
+    # Restored FILE bytes remain exact (asserted before launch). Unity's JSON
+    # round-trip may alter the last bit of a double clock, not gameplay state.
+    if isinstance(a,dict):return isinstance(b,dict) and a.keys()==b.keys() and all(native_equivalent(v,b[k],k) for k,v in a.items())
+    if isinstance(a,list):return isinstance(b,list) and len(a)==len(b) and all(native_equivalent(x,y) for x,y in zip(a,b))
+    if key in ('elapsed','remainder','hitAge','seconds','useSeconds') and isinstance(a,(float,int)) and isinstance(b,(float,int)):
+        return abs(a-b)<=1e-9
+    return a==b
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('build', type=int)
     parser.add_argument('--qualify-build', action='store_true', help='Test a candidate only inside this disposable enrolled family; does not change the production recovery gate.')
@@ -57,7 +66,7 @@ def main():
             require(command(clients[2],7,value='park')['accepted'],'Recovery home pause failed')
         live = recovery.backup(); bundle, files, body = unpack(Path(live['path']))
         require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'park', 'creek', 'beach'} if contract >= 7 else {'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
-        if scenic: require(body['schema'] == (5 if contract >= 7 else 4 if contract >= 6 else 3) and (body['keepy']['x'] < 0 if contract >= 7 else any(p['x'] < 0 for p in body['players'])), 'Scenic coordinates missing from backup')
+        if scenic: require(body['schema'] == (5 if contract >= 7 else 4 if contract >= 6 else 3) and ((body['keepy']['x'] >= 0 if args.build>=131 else body['keepy']['x'] < 0) if contract >= 7 else any(p['x'] < 0 for p in body['players'])), 'Scenic coordinates missing from backup')
         original_instance = server.snapshot()['instanceId']
         refused(lambda: recovery.restore(Path(live['path']), digest(save.read_bytes())))
         require(server.snapshot()['instanceId'] == original_instance and server.snapshot()['players'] == 4, 'Backup/restore attempt interrupted play')
@@ -73,14 +82,14 @@ def main():
         result = recovery.restore(baseline_path, digest(before['world.save']))
         require(save.read_bytes() == baseline_bytes and not recovery.marker.exists(), 'Restore differs')
         server.start()
-        require(checkpoint(save.read_bytes()) == checkpoint(baseline_bytes), 'Native load changed released checkpoint')
+        require(native_equivalent(checkpoint(save.read_bytes()),checkpoint(baseline_bytes)), 'Native load changed released checkpoint')
         clients = [fixture.join(i) for i in range(1, 5)]
         state = read(fixture.path / server.snapshot()['instanceId'] / 'view.json')
         restored = checkpoint(save.read_bytes()); original = checkpoint(baseline_bytes)
         require(restored['players'] == original['players'] and restored['toys'] == original['toys'] and restored['receipts'] == original['receipts'], 'Native identity/item/receipt restore differs')
         if contract >= 6:
             require(restored['home']==original['home'] and restored['home']['livingRadio'] and next(t for t in restored['toys'] if t['id']=='ball-1')['container']=='shed-2','Home storage/radio recovery differs')
-        if contract >= 7:require(restored['keepy']==original['keepy'] and restored['keepy']['phase']==1,'Paused in-flight balloon recovery differs')
+        if contract >= 7:require(native_equivalent(restored['keepy'],original['keepy']) and restored['keepy']['phase']==1,'Paused in-flight balloon recovery differs')
         require(len(state['connected']) == 4, 'Saved enrollment did not reconnect')
         fixture.stop()
         recovery.rollback(result['rollbackJob'], digest(save.read_bytes()))

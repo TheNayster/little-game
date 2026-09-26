@@ -6,6 +6,20 @@ The home now has a red balloon that starts Keepy Uppy when tapped. It tosses upw
 
 The sofa and trampoline each now have four closer spots within the same artwork and dimensions. The original outside spots retain their saved anchors. The two added spots sit between them. Moving, changing areas or disconnecting releases only that player's spot. All future shared activities are explicitly designed for four players in `AGENTS.md` and the current decisions.
 
+## Backyard tuning — user feedback after Android 130
+
+The user requested an outdoor spawn, a higher toss, faster sideways motion and specifically a faster **fall**. Candidate **132** starts on the backyard lawn at (760, 150). Existing indoor balloon saves move to that spot once; player, prop, home and receipt data stays intact. Outdoor saved flights stay at their existing position. Horizontal bounds keep the balloon in the backyard.
+
+The launch peaks near **302** height units versus **203** in build 130. Its descent from the apex takes about **0.85 seconds** and the whole untouched toss takes **2.08 seconds**. Build 131's earlier draft fell for 1.45 seconds and stayed airborne for 2.68 seconds; it was never installed on the phone. Build 132 retains the taller upward arc and increases downward acceleration after the apex. A fall-speed cap preserves existing save validation limits. This is deliberate game tuning, not a claim of physically measured balloon motion.
+
+Sideways motion also accelerates: initial horizontal velocity is 85 simulation units (136 per real second), and character returns use 105–150 (168–240 per real second). Contact cooldown and the saved play clock remain real-time values. The existing schema-5/content-6 fields and validation bounds are unchanged. The four-player automatic returns and floor rest/tap-to-restart behavior remain.
+
+**105 core checks pass**, including indoor-save relocation, four-player contacts and measured peak, whole-flight and separate descent durations. [Build 132 core evidence](evidence/keepy-backyard132-2026-09-26/core-rules.json). **Eight native release play groups pass**, including each of four players returning the shared balloon, both arm animations, offline reopen and a separately timed faster descent. [132 native evidence](evidence/keepy-backyard132-2026-09-26/native-play.json). Windows and signed Android 132 releases build successfully; runtime sources match both artifacts. [Built-source evidence](evidence/keepy-backyard132-2026-09-26/built-source-check.json). Android installation is pending the disconnected phone; installed Samsung remains 130.
+
+![Higher balloon in the backyard](evidence/keepy-backyard132-2026-09-26/backyard-toss-phone.png)
+
+The superseded build 131 passed eight native play groups and six isolated recovery groups. Its recovery harness now tolerates only 1e-9 clock differences after Unity JSON conversion; restored file bytes, enrollment and all other gameplay fields still require exact equality. [131 native evidence](evidence/keepy-backyard131-2026-09-26/native-play.json) · [131 recovery evidence](evidence/keepy-backyard131-2026-09-26/recovery.json). Build 131 is qualified for recovery; 132 has not repeated that separate rollout qualification. Neither build has replaced the live family server or Apple apps.
+
 ## Research and design decisions
 
 The official Bluey rules describe an air-filled balloon, kept off the ground using body taps. They normally end play on a ground contact. The user's requested version deliberately uses floor rest and another tap, without a loss or score. This is our variant, not a claim that Budge's app follows these exact rules. [Official Bluey Keepy Uppy rules](https://www.bluey.tv/play/how-to-play-keepy-uppy/).

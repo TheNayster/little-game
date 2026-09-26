@@ -28,7 +28,8 @@ LIMIT = 3 * 1024 * 1024
 # 110 and 128 passed native multi-area restore/rollback/re-enrollment acceptance.
 # 128 preserves home switches/storage; 130 also passed exact paused-balloon
 # schema-5 recovery, interrupted restore and all four enrolled clients rejoining.
-QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130}
+# 131 repeats those checks for the outdoor spawn; 132 awaits rollout qualification.
+QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131}
 MAX_QUALIFIED_BUILD = max(QUALIFIED_BUILDS)
 
 
