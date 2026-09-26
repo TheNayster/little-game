@@ -49,3 +49,9 @@ All native tests used disposable loopback worlds or separately enrolled test fam
 **BED-4:** qualify furnished-room visuals, multiplayer, migration/recovery and available devices. Four secret rooms follow the bedroom stage, using independent persistent identities, optional entrances, reliable exits and the researched local calm settings. Kitchen and the wider Home backlog remain required.
 
 This pass does not complete furniture-aware routing, decor permissions, personal storage, secret rooms, physical A10 memory/frame times, sustained mixed-device play, physical room-touch acceptance or coordinated deployment. The Android 136 acceptance does not qualify candidate 137.
+
+## Android rooms preview 138 and acceptance
+
+At the user’s request, fresh signed non-development Android 138 was installed in place over 136. Signing identity and exact installed bytes were verified; the existing hallway and new ownership labels were visible. All 16 primary saved records remain: 15 byte-identical and one additive schema 6→7 room migration, retaining the existing world, profile, objects, fixtures and receipts. The user moved in the hall after launch, so its saved x/y differs normally. [Update evidence](evidence/bedrooms138-2026-09-26/android-update.json).
+
+The user reported “I i liked!!” and requested furniture plus the small secret-door plan. This records user acceptance of the room preview; automated physical door traversal was not established. No server or Apple device was updated. BED-3 furniture is next; secret rooms follow.

@@ -1,5 +1,7 @@
 # Little Weeps — Home world feature tracker
 
+**Android rooms preview 138 — September 26:** Samsung was updated in place from 136 to fresh signed build **138**, containing the four-room BED-2 source. All **16 saves remain**, 15 byte-identical; the active world gained four persistent bedroom records. The user liked the preview and requested furniture next. [Update evidence](implementation/evidence/bedrooms138-2026-09-26/android-update.json). Rooms remain unfurnished. Server/iPads remain recorded at 128; iPhone at 101.
+
 **Four owned upstairs rooms — September 26, BED-2:** Windows candidate **137** connects all four hall doors to distinct persistent rooms, assigns owners by saved profile ID, preserves carried objects and supports independent four-player visits. [Implementation, evidence and limits](implementation/bedroom-rooms-2026-09-26.html). The rooms are architectural shells; **BED-3 usable furniture, personal storage, decoration permissions and undo is next**. Four optional secret rooms follow the bedroom stage. The user accepted the Android 136 stairs preview (“works great”); candidate 137 has not been installed on a phone, iPad or family server.
 
 **Android preview 136 — September 26:** Samsung was updated in place from 130 to the fresh signed release containing the researched stairs/landing. All 16 saved records remain; 15 are byte-identical and one received the expected schema/balloon migration. [Preview and retained-save evidence](implementation/upstairs-foundation-2026-09-26.html#android-preview-136). Bedroom doors/interiors are not implemented in installed 136. The user accepted its stairs/landing (“works great”) and requested starting the rooms; newer BED-2 source is recorded above. PC server/iPads remain recorded at 128; iPhone at 101; none were updated.
@@ -38,7 +40,7 @@ This tracker was initially assembled from the maintained research, feature inven
 
 Recorded prototypes include the basic water/plant/sponge loop, sofa seating, trampoline, radio/dancing, four-slot shed storage and Keepy Uppy. Full rooms, cooking, books, TV library, dinosaurs, science and hiding remain unfinished. Four owned room shells/doors now have integrated BED-2 evidence; their furniture/storage/decor remain unfinished. The single-clip video fixture is still development evidence, not a completed Home TV.
 
-Last recorded deployment: Samsung 136; PC server/helper and both iPads 128; iPhone 101. Four sofa/trampoline spots are in 130/132; deployed 128 retains two. The newer Windows candidate 137 adds bedroom doors/identity and scoped recovery evidence; it is not deployed. Earlier 132 artifact evidence remains historical. These are historical records, not a current connection check. Integrated Home visual acceptance and sustained A10/mixed-device qualification remain open.
+Last recorded deployment: Samsung 138; PC server/helper and both iPads 128; iPhone 101. Four sofa/trampoline spots are in 130/132; deployed 128 retains two. The newer Windows candidate 137 adds bedroom doors/identity and scoped recovery evidence; it is not deployed. Earlier 132 artifact evidence remains historical. These are historical records, not a current connection check. Integrated Home visual acceptance and sustained A10/mixed-device qualification remain open.
 
 | Status | Meaning |
 | --- | --- |
