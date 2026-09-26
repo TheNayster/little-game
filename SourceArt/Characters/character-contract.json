@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "status": "reference-matched-layered-art-for-Unity-review",
+  "goalIds": ["CHAR-01", "ITEM-02"],
+  "coordinates": {"width": 440, "height": 500, "rootGround": [220, 454]},
+  "pivots": {"head": [220, 250], "body": [220, 454], "arm-near": [287, 260], "arm-far": [150, 260], "foot-far": [188, 352], "foot-near": [254, 352], "tail": [281, 337]},
+  "handAnchor": {"parent": "arm-near", "position": [323, 333]},
+  "characters": [
+    {"id": "bluey", "name": "Bluey", "source": "bluey.svg", "scale": 1.0, "referencePage": "https://www.bluey.tv/characters/bluey/", "referencePortrait": "https://www.bluey.tv/wp-content/uploads/2023/07/Bluey.png"},
+    {"id": "bingo", "name": "Bingo", "source": "bingo.svg", "scale": 0.82, "referencePage": "https://www.bluey.tv/characters/bingo/", "referencePortrait": "https://www.bluey.tv/wp-content/uploads/2023/07/B2.png"}
+  ],
+  "requirements": ["recognizable official character silhouette and face markings", "flat colours and consistent outlines", "continuous box-shaped body without a separate round puppy head", "separate layered limbs and hand anchor", "feet anchored to the floor", "idle, walk, wave and carry", "read-only movement presentation", "preserve player identity and held-item state when visuals change"],
+  "remainingProductionWork": ["individually authored side/back views rather than mirrored front study", "reach/use, talking and seated poses", "full roster", "game-scene integration", "physical A10 profiling", "user and child visual acceptance"]
+}

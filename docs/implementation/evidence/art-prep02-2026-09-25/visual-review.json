@@ -1,0 +1,27 @@
+{
+  "build": "art-prep02-006",
+  "reviewer": "Codex visual inspection; not user approval",
+  "status": "technical and visible-control review passed; final likeness acceptance open",
+  "nativeWindow": "Little Weeps Character Workshop",
+  "checks": [
+    "Distinct Bluey and Bingo visible in the native workshop",
+    "Carry & walk visibly attaches the bucket to the selected character",
+    "Pause stops position and animation",
+    "Selecting Bingo while paused keeps the floor position and carry choice, removes bucket from the Bluey companion",
+    "Facing Left mirrors Bingo and keeps the carried bucket attached",
+    "Show hand anchor overlays the hand attachment marker"
+  ],
+  "cameraRendersInspected": [
+    "bluey-wave.png",
+    "bluey-walk.png",
+    "bingo-wave.png",
+    "bingo-carry-left.png"
+  ],
+  "otherEvidence": "Build 005 Bluey idle and Bingo carry camera images also inspected; build 006 uses identical artwork. Native 006 window confirms both idle artwork and carry controls.",
+  "limits": [
+    "No user or child likeness approval",
+    "Mirrored front study; directional/asymmetric production views remain",
+    "No physical iPad or sustained performance test",
+    "No game session, real profile or network inventory integration"
+  ]
+}

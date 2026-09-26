@@ -25,6 +25,8 @@ English comes first; Spanish remains planned. Ordinary play uses installed conte
 
 ## Evidence and build order
 
+**Character correction, September 25:** the user rejected the generic blue-pup Unity workshop because it does not resemble the actual characters. ART-PREP-02 remains open. Its animation-mechanics checks do not accept its artwork. Follow goal-sheet section 4, the official character-reference catalog and the Toca/Piknik requirement to keep the recognizable 2D Bluey style. Start with Bluey and Bingo, retain editable layered source art, and treat generated images as drafts rather than approved assets. The corrected Bluey/Bingo release workshop now passes 29 scoped checks; user visual acceptance remains open. [Preview and evidence](implementation/art-prep02-unity-character-2026-09-25.html). Review the appearance before advancing to G5.
+
 **Last verified deployment:** PC server/helper 91; iPad 7 build 95; iPad 9 and iPhone 79; Samsung 83. These are recorded versions, not a claim that devices or the server were contacted during this audit. **Prepared client candidate: 98**, with Windows, Android-emulator and native Apple compilation evidence; physical installation/acceptance is pending. The unfinished device-host 99 experiment is archived locally and excluded from deployment.
 
 Build 95's smoother offline walking and offline reopening passed on the older iPad. Build 98's no-rewind transition still needs the focused physical check and rollout. Four-device admission and scoped shared play already passed; sustained updated-device performance is still open.
@@ -32,7 +34,7 @@ Build 95's smoother offline walking and offline reopening passed on the older iP
 The installed project uses Unity **6000.3.24f1**, NGO **2.13.2**, Transport **2.7.4**, Input System **1.20.0**, URP **17.3.0** and uGUI **2.0.0**. The manifest and lockfile are the installation source of truth. Older package tables are research candidates, not upgrade instructions.
 
 1. Finish G3's focused 98 device/offline/rejoin qualification when devices and the user are available.
-2. Meanwhile, **ART-PREP-02** can integrate the existing layered character study into an isolated Unity view with idle/walk/wave/carry states and a hand anchor. Keep authority and saves unchanged; use existing movement data. This does not require device hosting or completion of every deployment task.
+2. Meanwhile, **ART-PREP-02** has separate Bluey/Bingo layered sources and isolated Unity prefabs with idle/walk/wave/carry, hand attachment and state-preserving selection. Technical checks pass; visual acceptance remains open. Keep authority and saves unchanged; this does not require device hosting or completion of every deployment task.
 3. **G5** establishes versioned bedroom, creation and reusable item contracts, safe idle returns and separate local/server persistence. It includes no offline merge engine.
 4. **G6** finishes one polished home/backyard slice, then **G7** expands the content. Retain the remaining G1–G3, G5 and G8–G9 release checks; no G4 gate exists.
 

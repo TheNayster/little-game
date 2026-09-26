@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "baseCommit": "150639d3975f19f3ce7d92d2e16471be9c46f04a",
+  "existingTrackedUnityChanges": [],
+  "sourceFilesVerified": 599,
+  "editableSourceArtIncluded": true,
+  "familySettingsUnchanged": true,
+  "familyVersion": "0.0.98",
+  "scope": "New isolated workshop only. No device, live server, saved-world or enrollment operation was performed."
+}

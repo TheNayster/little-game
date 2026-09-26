@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 500" role="img" aria-labelledby="title desc">
+  <title id="title">Bluey — layered character source</title>
+  <desc id="desc">Reference: Bluey's official character portrait. Flat colours, continuous box-shaped body, navy eye patches, pale blue eyebrows and paws, yellow muzzle and inner ears. Editable character layers for the family game.</desc>
+  <ellipse id="ground-shadow" cx="220" cy="454" rx="79" ry="11" fill="#345042" opacity=".14"/>
+  <g id="tail" stroke="#23232b" stroke-width="2.8" stroke-linejoin="round">
+    <path d="M272 324 Q306 339 319 380 Q329 415 314 421 Q311 432 301 427 Q294 438 287 425 Q274 411 270 383Z" fill="#41415f"/>
+    <path d="M272 324 Q295 335 308 354 Q304 377 278 377 L270 365Z" fill="#8dc6e9" stroke="none"/>
+    <path d="M279 342 Q296 350 300 367 Q288 373 275 371Z" fill="#a2d1ed" stroke="none"/>
+  </g>
+  <g id="arm-far" stroke="#729fb9" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M151 249 Q139 245 132 260 L108 321 Q102 338 114 344 Q128 350 137 334 L164 277Z" fill="#8dc6e9"/>
+    <path d="M115 302 L143 316 L137 334 Q128 350 114 344 Q102 338 108 321Z" fill="#d4eafa"/>
+    <path d="M117 327 Q112 339 118 342 M127 330 Q122 343 129 341" fill="none" stroke-width="2"/>
+  </g>
+  <g id="foot-far" stroke="#729fb9" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M168 349 L209 349 L204 416 Q222 427 216 441 Q212 452 176 450 Q151 449 153 436 Q154 425 163 416Z" fill="#8dc6e9"/>
+    <path d="M168 353 L209 353 L208 369 L167 368Z" fill="#699ebe" stroke="none"/>
+    <path d="M164 409 L204 410 L204 416 Q222 427 216 441 Q212 452 176 450 Q151 449 153 436 Q154 425 163 416Z" fill="#d4eafa"/>
+    <path d="M176 427 Q170 434 173 448 M198 428 Q205 436 201 450" fill="none" stroke-width="2"/>
+  </g>
+  <g id="foot-near" stroke="#729fb9" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M234 349 L274 350 L279 416 Q292 425 292 437 Q294 451 259 451 Q233 450 234 438 Q234 425 241 417Z" fill="#8dc6e9"/>
+    <path d="M234 353 L274 354 L276 371 L237 370Z" fill="#699ebe" stroke="none"/>
+    <path d="M239 410 L278 411 L279 416 Q292 425 292 437 Q294 451 259 451 Q233 450 234 438 Q234 425 241 417Z" fill="#d4eafa"/>
+    <path d="M251 429 Q244 436 247 450 M273 428 Q281 436 278 448" fill="none" stroke-width="2"/>
+  </g>
+  <g id="body">
+    <path d="M165 130 Q148 132 146 153 L145 330 Q146 364 173 367 Q220 372 265 367 Q293 365 294 330 L295 157 Q294 134 275 131Z" fill="#8dc6e9" stroke="#729fb9" stroke-width="2.8"/>
+    <path d="M184 288 Q215 279 249 288 Q266 292 267 315 L267 367 Q220 373 174 367 L174 315 Q173 295 184 288Z" fill="#d4eafa"/>
+    <path d="M146 268 Q157 262 157 279 Q157 291 145 293Z M145 300 Q154 301 155 317 Q158 336 147 340Z M293 291 Q282 290 281 307 Q282 321 294 322Z" fill="#41415f"/>
+  </g>
+  <g id="head">
+    <g stroke="#222229" stroke-width="2.8" stroke-linejoin="round">
+      <path d="M150 152 L172 53 Q175 43 180 52 L216 134Z" fill="#41415f"/>
+      <path d="M231 134 L253 54 Q257 43 262 53 L292 152Z" fill="#41415f"/>
+      <path d="M166 120 L176 82 Q179 73 183 83 L202 126Z" fill="#eed078" stroke="none"/>
+      <path d="M246 126 L255 83 Q258 73 263 84 L278 126Z" fill="#eed078" stroke="none"/>
+      <path d="M146 157 Q146 132 165 130 L192 130 L208 169 L200 228 Q179 244 145 228Z" fill="#41415f"/>
+      <path d="M260 131 L275 132 Q294 134 295 157 L294 237 Q260 234 241 218 L237 168Z" fill="#41415f"/>
+    </g>
+    <g id="eyebrows" fill="#d4eafa" stroke="#729fb9" stroke-width="2.4">
+      <path d="M159 128 Q155 116 168 111 Q184 105 194 111 Q201 122 190 126 Q176 125 171 133 Q163 140 159 128Z"/>
+      <path d="M240 116 Q246 106 263 114 Q282 122 277 136 Q271 144 263 136 Q255 128 246 129 Q235 127 240 116Z"/>
+    </g>
+    <g id="eyes-open" fill="white" stroke="#252426" stroke-width="2.8">
+      <ellipse cx="185" cy="185" rx="27" ry="36"/>
+      <ellipse cx="252" cy="190" rx="27" ry="36"/>
+      <ellipse cx="192" cy="190" rx="8" ry="15" fill="#252426" stroke="none"/>
+      <ellipse cx="254" cy="192" rx="8" ry="15" fill="#252426" stroke="none"/>
+    </g>
+    <g id="eyes-closed" display="none" fill="none" stroke="#252426" stroke-width="3.2" stroke-linecap="round">
+      <path d="M164 188 Q185 201 206 188 M231 194 Q252 207 273 194"/>
+    </g>
+    <g id="muzzle">
+      <path d="M176 191 Q196 188 224 194 Q223 217 242 229 Q270 237 268 258 Q263 278 233 278 L207 274 L207 265 Q187 260 183 242Z" fill="#eed078"/>
+      <path d="M180 194 Q175 203 185 240 Q187 260 206 262 Q224 265 237 251 Q246 239 254 248 Q264 260 247 270 Q233 278 208 272" fill="none" stroke="#836426" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M208 264 Q226 267 241 253 Q248 244 253 252 Q258 261 244 267 Q228 274 208 270Z" fill="white" stroke="#7c8589" stroke-width="1.8"/>
+      <path d="M185 191 Q203 187 220 194 Q228 201 218 214 L205 230 Q200 236 194 227 L181 208 Q175 197 185 191Z" fill="#2a2b43" stroke="#17171b" stroke-width="2.8"/>
+      <ellipse cx="199" cy="197" rx="12" ry="4" fill="#8c8d9e"/>
+    </g>
+  </g>
+  <g id="arm-near" stroke="#729fb9" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M281 248 Q295 244 302 259 L331 319 Q340 337 326 344 Q314 350 305 334 L274 275Z" fill="#8dc6e9"/>
+    <path d="M297 316 L324 302 L331 319 Q340 337 326 344 Q314 350 305 334Z" fill="#d4eafa"/>
+    <path d="M322 327 Q329 335 325 343 M314 332 Q320 341 316 343" fill="none" stroke-width="2"/>
+    <g id="hand-anchor" transform="translate(323 333)">
+      <g id="held-prop" display="none" stroke="#a66d2c" stroke-width="2.8" stroke-linejoin="round">
+        <path d="M-6 25 Q-7-18 17-17 Q40-16 41 25" fill="none"/>
+        <path d="M-12 20 L48 20 L42 71 Q18 82-7 71Z" fill="#f6bf52"/>
+        <ellipse cx="18" cy="20" rx="30" ry="7" fill="#ffd889"/>
+        <ellipse cx="18" cy="21" rx="24" ry="4" fill="#75bdcf" stroke="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

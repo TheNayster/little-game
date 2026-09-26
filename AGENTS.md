@@ -14,6 +14,7 @@
 - Treat `docs/bluey-game-research-2026-09-23.md` as the feature goal sheet and `docs/family-playset-build-guide-2026-09-23.md` as the default implementation sequence. The user's latest instructions take precedence.
 - Before implementation, read the build guide's current work record and the goal-sheet sections for the task. Follow the active phase and its dependencies; later phases do not remove required features.
 - Keep one bounded implementation task active, record its goal IDs and acceptance evidence, and update the work record with what exists, what passed and the next task. Do not mark a phase complete based only on code/assets being present.
+- Character art must follow the existing official reference catalog and the recognizable 2D Bluey style in the goal sheet and Toca/Piknik supplement. The user rejected the generic blue-pup workshop on September 25. Animation/compilation checks do not establish visual acceptance. Use Bluey and Bingo for the first character test, preserve editable layered sources, and do not replace the requested cast with generic lookalikes or describe generated drafts as approved.
 - Keep platform builds, saved data, shared-world recovery and actual-device qualification in the sequence. The PC/VPS is the sole shared authority; keep automatic joining, four mixed clients and independent areas. Do not use the old project's connector as proof this new project is connected.
 
 ## Git delivery and project records
