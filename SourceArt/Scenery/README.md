@@ -1,5 +1,7 @@
 # Scenic world panoramas
 
+**September 26 correction:** the original scenic milestone below supplied flattened visual shells. The home now needs the [layered scene contract](../../docs/implementation/home-scene-layer-research-2026-09-26.html). Do not add usable duplicates of painted furniture. Rebuild its clean bases and coordinated object parts in the order recorded in the [home inventory](../Home/scene-layer-plan.json). Build 118 combines house/backyard into one menu destination; the six content regions below remain, with five destination entries. Other worlds stay scenic.
+
 SCENIC-01 builds the user's six long, walkable destinations before adding more activities. The twelve 3:1 PNGs are newly generated production backgrounds, guided by the user's Bluey: Let's Play! screenshots and the maintained [reference study](../../docs/bluey-lets-play-reference-study-2026-09-25.md). They were made with the built-in image-generation tool. They are implementation drafts awaiting the user's visual review, not official game assets or finished interaction layers.
 
 [manifest.json](manifest.json) records each exact prompt and original generated file. The imported copies live in `Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/`. Source files are 2172 × 724; runtime panels keep a 3:1 composition, with a narrow overlap to soften section joins. No source screenshot was imported as a playable background. One defective beach output was rejected and regenerated before integration.

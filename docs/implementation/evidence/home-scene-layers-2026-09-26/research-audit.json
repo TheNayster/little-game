@@ -1,0 +1,121 @@
+{
+  "date": "2026-09-26",
+  "baselineCommit": "14ba3a034a70346c6df62f2751cc41bfa18ef38e",
+  "scope": "Research, local code/asset inspection and revised production specification. No game/art/runtime/save/device mutations.",
+  "localFiles": [
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs",
+      "sha256": "6b166bf19d598e732320b5076e370fed99e5b67080f2ab550c47d3eb4262fb8c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloHome.cs",
+      "sha256": "7d4fb241b9b82157d835d13f2e4a17041a4458be20942e53ce1d3409b175d809"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
+      "sha256": "5a2d088e776d3380af8fac354e9b4b8561bed8e9852f409b20aa20b0499ba1e0"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs",
+      "sha256": "7ef6ffe29de31be57fd5fc27a4cb5b418f0ca90ac14045ea3a1bfc92f44e8229"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/SceneryImport.cs",
+      "sha256": "1663acee36fefc0ce79a91c79ab1a2f0a24ea8391b6813784acf93d5ae25c8e9"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Packages/manifest.json",
+      "sha256": "2f28cfa90e43aef239d7c7394c937e22bdd286a82c7ea793203e5d7464ac69f4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/ProjectVersion.txt",
+      "sha256": "7a43a06dfe51c4e3933c5a7848320925ce96e667f8c7736557d13a02007e9860"
+    },
+    {
+      "path": "SourceArt/Scenery/manifest.json",
+      "sha256": "6fe1a1dfa6ca9bc6d910c060856e2a3e152a28cc01812f07047f39e8f09917d8"
+    },
+    {
+      "path": "SourceArt/Home/manifest.json",
+      "sha256": "a9cf7e6bf4cece270ad4a673e1f8cd570935ed706e3b4453781d1a2436eba010"
+    },
+    {
+      "path": "docs/implementation/evidence/walk-animation-2026-09-26/phone-chooser.png",
+      "sha256": "d404414daaa9c80aa33db611db073b89502ac0a523d8ee0c094ac823d23a306c"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-living.png",
+      "sha256": "9fa58925212892bcc7f550d894e9ea369c9651187593753ec4865ef5717792a6"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-kitchen.png",
+      "sha256": "fdf4a279502c549de77915d56ffa69016f00c30e276fc8425956a42b4503d788"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/garden-tree.png",
+      "sha256": "2900ce5fb80b5d85bc4adaf1deb120d7bd55ade8ad2c157380c19a4e48f892f4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/garden-shed.png",
+      "sha256": "9cc9b58fdcaeceeb555d826157e1e09c4122d07220fbb4bee23b719bdd192bde"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://budgestudios.com/en/apps/detail/bluey-lets-play/",
+      "finding": "Official product scope; no internal scene architecture",
+      "checked": "2026-09-26"
+    },
+    {
+      "url": "https://apps.apple.com/us/app/bluey-lets-play/id1669091583?platform=ipad",
+      "finding": "Official developer description of touch/drag and kitchen, trampoline, swing play",
+      "checked": "2026-09-26"
+    },
+    {
+      "url": "https://www.bluey.tv/blog/bluey-lets-play-mobile-app-is-available-now/",
+      "finding": "Official room-based food, toy and music interaction announcement",
+      "checked": "2026-09-26"
+    },
+    {
+      "url": "https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/UICanvas.html",
+      "finding": "Canvas hierarchy drawing order; applicable to installed uGUI",
+      "checked": "2026-09-26"
+    },
+    {
+      "url": "https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/script-Mask.html",
+      "finding": "Child clipping and stencil behavior, not gameplay permission",
+      "checked": "2026-09-26"
+    },
+    {
+      "url": "https://docs.unity.com/en-us/engine/6000.3/manual/unity2d/sprite/sort-sprites/sort-sprites",
+      "finding": "SpriteRenderer sort criteria and external atomic Sorting Groups; alternative renderer only",
+      "checked": "2026-09-26"
+    },
+    {
+      "url": "https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@12.0/manual/PSD-importer-properties.html",
+      "finding": "Individual versus merged layers, source arrangement; optional uninstalled package",
+      "checked": "2026-09-26"
+    },
+    {
+      "url": "https://unity.com/how-to/unity-ui-optimization-tips",
+      "finding": "Canvas rebuild, noninteractive raycast and overdraw considerations",
+      "checked": "2026-09-26"
+    }
+  ],
+  "proposedInventory": {
+    "rooms": 4,
+    "entries": 15,
+    "status": "Proposed authoring inventory; not runtime data or completed assets"
+  },
+  "findings": [
+    "Flattened furniture duplicated by separately placed HOME-01 fixture art",
+    "Whole-root sorting plus always-on-top occupants cannot model local furniture overlap",
+    "Original upper-scene-furniture/lower-walking-strip art prompts caused an integration mismatch"
+  ],
+  "next": "ART-HOME-02 living-room clean plate and coordinated sofa parts; runtime implementation and user visual approval pending",
+  "limits": [
+    "No extracted reference game assets or hands-on Budge gameplay inspection",
+    "Reference screenshots establish composition, not proprietary layer structure",
+    "No A10 runtime or deployment qualification this pass"
+  ]
+}

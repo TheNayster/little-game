@@ -1,0 +1,407 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Little Weeps — one coherent playable home</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;border-radius:24px;background:radial-gradient(ellipse at 25% 45%,#ffffffb5 0 15%,transparent 16%),radial-gradient(ellipse at 75% 50%,#ffffffb5 0 20%,transparent 21%),linear-gradient(#62c0ed,#b8edfa)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid white;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+.wheel .scene-note{position:absolute;top:25%;left:7%;width:48%;font-size:17px}.place-rail{position:absolute;right:0;top:0;bottom:23%;width:39%;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 8px;background:#cbecf7;border-left:4px solid white}.place-rail .stage{position:relative;transform:none!important;left:auto;top:auto;width:126px;min-height:126px;flex-shrink:0}.cast-diagram{position:absolute;left:0;right:0;bottom:0;height:23%;background:#b8e2f7;border-top:4px solid white;display:flex;align-items:center;padding:18px;font-weight:700;font-size:16px}
+
+main{max-width:1080px;margin:36px auto;padding:24px}h1{font-size:clamp(32px,5vw,54px);line-height:1.15}h2{margin-top:42px}p,li{line-height:1.65}table{min-width:620px;width:100%;border-collapse:collapse}td,th{padding:12px;border-bottom:1px solid #c9dadf;text-align:left;vertical-align:top}.table-scroll{overflow-x:auto}img{display:block;width:100%;height:auto;border-radius:12px}code{overflow-wrap:anywhere}.toc{padding:16px 24px;background:#edf5f5;border-radius:12px}.toc ul{columns:2;padding-left:20px}.toc li{break-inside:avoid;margin-bottom:6px}@media(max-width:640px){main{padding:16px;margin:12px auto}.toc ul{columns:1}}@media print{main{margin:0;padding:0}.toc{display:none}h2{break-after:avoid}img{max-height:320px;object-fit:contain}}
+</style></head><body><main><p><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build plan</a> · <a href="home-scene-layer-research-2026-09-26.md">Editable research</a></p><h1 id="home-scenery-furniture-and-usable-objects">Home scenery, furniture and usable objects</h1>
+<p><strong>Research and source audit: September 26, 2026. Status: research and production specification, not an installed game fix.</strong> This responds to the user's report that a painted couch is duplicated by a second interactive couch. It applies to the connected Heeler Home and backyard. Other worlds remain scenic, with their future activities retained in the goal sheet.</p>
+<p><strong>Decision:</strong> compose the room once. Give each usable object one logical identity and one coordinated set of visible parts. Build the architecture behind it, including the wall/floor it conceals. Render characters and contents between the object's parts where needed. Do not add another copy of furniture in the walking strip.</p>
+<p><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Current build plan</a> · <a href="../bluey-lets-play-reference-study-2026-09-25.html">Reference screenshots and interaction study</a> · <a href="../../SourceArt/Home/scene-layer-plan.json">Editable art inventory</a></p>
+<div class="toc">
+<ul>
+<li><a href="#1-what-the-reference-establishes">1. What the reference establishes</a></li>
+<li><a href="#2-what-is-wrong-in-our-current-home">2. What is wrong in our current home</a></li>
+<li><a href="#3-separate-by-behavior-not-by-whether-something-looks-like-background">3. Separate by behavior, not by whether something looks like background</a></li>
+<li><a href="#4-the-layered-room-contract">4. The layered room contract</a></li>
+<li><a href="#5-apply-the-contract-to-every-home-station">5. Apply the contract to every home station</a></li>
+<li><a href="#6-drawing-order-in-this-actual-unity-project">6. Drawing order in this actual Unity project</a></li>
+<li><a href="#7-covers-masks-and-believable-contact">7. Covers, masks and believable contact</a></li>
+<li><a href="#8-touch-interaction-must-match-what-is-visible">8. Touch interaction must match what is visible</a></li>
+<li><a href="#9-how-items-fit-on-and-inside-other-items">9. How items fit on and inside other items</a></li>
+<li><a href="#10-make-the-layers-look-like-one-bluey-style-scene">10. Make the layers look like one Bluey-style scene</a></li>
+<li><a href="#11-asset-production-and-export-workflow">11. Asset production and export workflow</a></li>
+<li><a href="#12-memory-and-frame-time-implications">12. Memory and frame-time implications</a></li>
+<li><a href="#13-state-migration-and-shared-play">13. State, migration and shared play</a></li>
+<li><a href="#14-ordered-implementation-plan">14. Ordered implementation plan</a></li>
+<li><a href="#15-acceptance-that-would-have-caught-this-error">15. Acceptance that would have caught this error</a></li>
+<li><a href="#16-research-outcome-and-remaining-work">16. Research outcome and remaining work</a></li>
+</ul>
+</div>
+<h2 id="1-what-the-reference-establishes">1. What the reference establishes</h2>
+<p>The user's kitchen and backyard screenshots show one continuous illustrated setting. Counters, furniture, toys and characters share a consistent view, scale and palette. Objects occupy the room and garden rather than being collected into a separate activity strip below a complete painting. The kitchen objects sit on visible surfaces; the trampoline has a rear and a front; the shed belongs to the same lawn as the nearby tools. These are observations of the supplied images, not measurements of Budge's internal scene files.</p>
+<p>Budge describes the app as exploration and imaginative play in Bluey's house. Its official store description identifies direct touch/drag interaction and specific uses including cooking, a backyard pizza oven, trampoline bouncing and swinging. This supports an environment built around usable things; promotional language about interacting with everything does not prove that every painted leaf, wall mark or cupboard is individually movable. <a href="https://budgestudios.com/en/apps/detail/bluey-lets-play/">Budge product page</a>, <a href="https://apps.apple.com/us/app/bluey-lets-play/id1669091583?platform=ipad">Budge's App Store listing</a>.</p>
+<p>The official Bluey announcement also describes room exploration, food, toys and music, and kitchen/backyard activities. It supports integrating actions into the illustrated setting. It does not disclose the renderer, number of layers, hit shapes, physics system or memory strategy. <a href="https://www.bluey.tv/blog/bluey-lets-play-mobile-app-is-available-now/">Official app announcement</a>.</p>
+<p><strong>Evidence boundary:</strong> no commercial game files were extracted and no hands-on reference session was performed in this research pass. Exact shed-door movement, seat masking and individual object pickup behavior in Budge's app remain unverified. The architecture below is our proposed way to achieve the user's observed result. It is not a reverse-engineered description of that app.</p>
+<h2 id="2-what-is-wrong-in-our-current-home">2. What is wrong in our current home</h2>
+<p><img alt="Current native home showing a painted rear sofa and a separate usable foreground sofa" src="evidence/walk-animation-2026-09-26/phone-chooser.png" /></p>
+<p><em>Existing native evidence from revision 118. This is the actual duplicate composition, not a proposed replacement.</em></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scene research table"><table>
+<thead>
+<tr>
+<th>Local evidence inspected</th>
+<th>Finding</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Resources/Scenery/home-living.png</code></td>
+<td>Sofa, cushions, coffee table, books, plants, shelving and under-stair seat are flattened into the room</td>
+<td>Moving or changing those things cannot expose a correct background</td>
+</tr>
+<tr>
+<td><code>garden-tree.png</code> and <code>garden-shed.png</code></td>
+<td>A trampoline and a complete closed shed are already painted in</td>
+<td>Adding the separate HOME-01 fixtures repeats the same categories of furniture</td>
+</tr>
+<tr>
+<td><code>SourceArt/Scenery/manifest.json</code></td>
+<td>Original prompts deliberately put furniture in the upper scene and reserved the lower 38% for walking</td>
+<td>This created a scenery-first layout with a separate foreground play strip; it is the wrong foundation for an integrated usable home</td>
+</tr>
+<tr>
+<td><code>SoloScenery.cs</code></td>
+<td>Loads flattened panels behind the gameplay objects</td>
+<td>A panel cannot place its painted sofa arm in front of a seated character</td>
+</tr>
+<tr>
+<td><code>SoloHome.BuildHome()</code></td>
+<td>Draws complete independent sofa, trampoline and shed images</td>
+<td>These fixtures are visually unrelated placements on top of an already furnished painting</td>
+</tr>
+<tr>
+<td><code>SoloScreen.SortDepth()</code></td>
+<td>Sorts whole roots by projected y, then sends fixture users and stored items to the end of the hierarchy</td>
+<td>Sitting and storage become always-on-top exceptions instead of correct overlap</td>
+</tr>
+<tr>
+<td><code>HomeLayout</code></td>
+<td>Shared seat and storage anchors already exist</td>
+<td>Keep those rules and identities; changing artwork does not justify rebuilding saves</td>
+</tr>
+</tbody>
+</table></div>
+<p>The original Home art README explicitly allowed decorative baked furniture plus foreground fixtures. That prototype shortcut is now superseded. The error is partly art direction and partly scene structure; merely changing sofa color, shrinking it or adding more animation will not resolve it.</p>
+<h2 id="3-separate-by-behavior-not-by-whether-something-looks-like-background">3. Separate by behavior, not by whether something looks like background</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scene research table"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+<th>Production rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Permanent scenery</td>
+<td>Sky, distant hills, wall paint, floorboards</td>
+<td>May be baked together when it never changes or needs to cover a moving object</td>
+</tr>
+<tr>
+<td>Fixed usable fixture</td>
+<td>Sofa, sink, counter, TV, trampoline</td>
+<td>Separate visual parts wherever use, state or overlap requires it; fixed does not mean decorative</td>
+</tr>
+<tr>
+<td>Movable prop</td>
+<td>Ball, cup, book, cushion, garden tool</td>
+<td>Its complete appearance and attached shadow leave the original position when it moves</td>
+</tr>
+<tr>
+<td>Container or support</td>
+<td>Shed, fridge, drawer, table, shelf, basket</td>
+<td>Own the usable surface/interior, contents anchors and cover parts; contents remain real items</td>
+</tr>
+<tr>
+<td>Foreground cover</td>
+<td>Sofa arm, counter lip, front trampoline frame, tree trunk edge</td>
+<td>Separate only where an actor/item can pass behind it; it is not automatically a global top layer</td>
+</tr>
+<tr>
+<td>Effect</td>
+<td>Water stream, music notes, splash, steam</td>
+<td>Separate temporary presentation tied to an object's state and position</td>
+</tr>
+</tbody>
+</table></div>
+<p>A fixed wall switch could use one painted base plus a hit target and a small state overlay if its outline never changes and nothing passes behind it. A sofa used for sitting needs more structure. A leaf in a distant tree does not need a GameObject. Avoid both extremes: one flattened interactive room and thousands of unnecessary decorative objects.</p>
+<p>Every prominent, reachable home object gets an inventory entry marked <strong>usable now</strong>, <strong>planned usable</strong>, or <strong>intentional decoration</strong>. Planned usable objects can remain inactive during staged development, but must not be painted permanently into the new base. This prevents the next round of duplicate cups, books and appliances.</p>
+<h2 id="4-the-layered-room-contract">4. The layered room contract</h2>
+<p>The base illustration is a <strong>clean plate</strong>: the room with separable furniture and props removed, and the hidden wall, floor and trim drawn correctly. It is not an empty replacement room with a different perspective.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scene research table"><table>
+<thead>
+<tr>
+<th>Back to front within a sofa interaction</th>
+<th>Visible part</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Clean wall/floor and fixed room decoration</td>
+<td>Remains complete with the sofa hidden</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sofa contact shadow</td>
+<td>Grounds the same sofa at its actual location</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Sofa back and seat surfaces</td>
+<td>Provide the cushion/support behind the sitter</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Seated character</td>
+<td>Pelvis contacts the cushion; the feet and arms use authored poses</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Relevant front arms/edge</td>
+<td>Cover only the parts meant to be behind them</td>
+</tr>
+<tr>
+<td>6</td>
+<td>A character walking closer to the viewer</td>
+<td>Can pass in front of the entire sofa assembly</td>
+</tr>
+</tbody>
+</table></div>
+<p>This is a local relationship, not six global layers applied to all objects. A person walking behind the sofa belongs before its back, while the sitter belongs within it. A nearby table may have its own local relationship. If two shapes require contradictory ordering, split the cover shape further or adjust the authored walking region; changing a global y offset cannot solve every overlap.</p>
+<p><strong>One object is not necessarily one sprite.</strong> The sofa can have a shadow, rear, seat, front arms and movable cushions while still being one sofa. Its seat occupancy is separate from the number of render parts. Doors and contents follow the same principle.</p>
+<h2 id="5-apply-the-contract-to-every-home-station">5. Apply the contract to every home station</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scene research table"><table>
+<thead>
+<tr>
+<th>Station</th>
+<th>Separate artwork</th>
+<th>Contact and state</th>
+<th>Failure to reject</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Living-room sofa</td>
+<td>Rear/body, seats, front arms, contact shadow; loose cushions when enabled</td>
+<td>Two existing seat slots; poses sized for Bluey/Bingo; stand/leave exits clear of furniture</td>
+<td>Second couch, floating hips, character always above arms</td>
+</tr>
+<tr>
+<td>Coffee table</td>
+<td>Top/support, front edge/legs where overlap requires, shadow; books/plant separate if usable</td>
+<td>Surface polygon/height and item resting anchors</td>
+<td>Plate sinks into the floor plane or book remains painted after pickup</td>
+</tr>
+<tr>
+<td>Reading shelf and under-stair bench</td>
+<td>Empty shelves/cubbies, lips, bench surfaces; usable books/baskets/cushions separate</td>
+<td>Shelf slots and bench seats; distant decorative spines may remain explicitly static</td>
+<td>Painted contents plus draggable copies</td>
+</tr>
+<tr>
+<td>Kitchen counter/sink</td>
+<td>Cabinet structure, worktop, front lip, basin rim/interior, faucet state/effects</td>
+<td>Countertop support differs from floor support; water appears at the faucet and lands in the basin/container</td>
+<td>Cups at foot level, water drawn over every foreground object</td>
+</tr>
+<tr>
+<td>Fridge/cupboards/oven</td>
+<td>Interior, shelves, frame and independently authored door states</td>
+<td>Closed hides contents and disables their pickup; open exposes the same item instances</td>
+<td>New food spawned on every opening, food drawn through closed doors</td>
+</tr>
+<tr>
+<td>Dining table and chairs</td>
+<td>Table planes/occluders and chair rear/front parts; plates separate</td>
+<td>Seat pelvis/feet and table serving positions agree</td>
+<td>A chair-looking backdrop plus a second chair to sit on</td>
+</tr>
+<tr>
+<td>Radio</td>
+<td>One body per actual radio, power detail and notes</td>
+<td>Preserve living and garden radio state; sound/dance use those same placed radios</td>
+<td>Painted off-radio under an unrelated playing duplicate</td>
+</tr>
+<tr>
+<td>Trampoline</td>
+<td>Rear net/posts, mat/support, front frame/net; local shadow</td>
+<td>Existing two user slots; mat compression follows landings, feet align at contact</td>
+<td>Jumping in front of a full trampoline picture or over a second mat</td>
+</tr>
+<tr>
+<td>Shed</td>
+<td>Empty interior, shelf supports, shell/frame, door states/parts, real stored items</td>
+<td>Preserve <code>shed-0</code> through <code>shed-3</code>; cover and input follow open state</td>
+<td>Decorative closed shed plus usable shed; tools visible/selectable through a closed door</td>
+</tr>
+<tr>
+<td>Garden tap and plant</td>
+<td>Faucet, stream, plant pot/soil/growth; compatible tools separate</td>
+<td>Water origin, bucket mouth and soil target align</td>
+<td>Painted watering can remains when the usable one is moved</td>
+</tr>
+<tr>
+<td>Swing/pool/sandpit/fruit tree</td>
+<td>Separable seats/ropes, near rims, surfaces and usable fruit as those features arrive</td>
+<td>Author contact/cover parts before enabling behavior</td>
+<td>Converting a painted feature by placing a second copy in front</td>
+</tr>
+</tbody>
+</table></div>
+<p>This is a staged asset inventory, not a promise that every listed station already works. Kitchen, books, TV, science, dinosaur play, bedrooms and secret rooms remain in the full house backlog.</p>
+<h2 id="6-drawing-order-in-this-actual-unity-project">6. Drawing order in this actual Unity project</h2>
+<p>The installed project is Unity <strong>6000.3.24f1</strong> with uGUI <strong>2.0.0</strong>. Its playset currently uses <code>RawImage</code>, <code>Image</code> and <code>RectTransform</code>. Unity documents that Canvas children draw in hierarchy order. Consequently, adding a SpriteRenderer Sorting Group or Sprite Mask to the present UI objects is not a direct fix. <a href="https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/UICanvas.html">Unity Canvas drawing order</a>.</p>
+<p><strong>Bounded implementation choice:</strong> first correct one living-room composition in the existing renderer. Keep logical fixture roots for state, but submit their independently ordered visual parts to the same world presentation sequence as the characters. A nested sofa subtree is drawn as a contiguous subtree; an external actor cannot simply be inserted between its children without presentation reparenting or separate render-part roots. Keep semantic ownership independent of the Transform hierarchy.</p>
+<p>Build a stable draw list from the floor/support anchor, the object's cover regions and local relationships. Preserve each character's internal body-part order. Use the ground contact anchor for walking and bouncing depth, not the animated head/feet height. Keep an occupant between that fixture's back and front pieces, then allow a closer passerby to cover the whole fixture. For two occupants, use stable slot ordering with authored non-overlapping seat positions. Stable object/part IDs break ties so equal-depth parts do not flicker.</p>
+<p>Replace the blanket fixture-user and stored-item <code>SetAsLastSibling</code> rules. During dragging, a temporary lift above the world can aid readability, but dropping must restore the chosen support/container relationship. HUD and chooser stay above world rendering; the camera remains independent for each player.</p>
+<p>Unity's SpriteRenderer sorting system is a viable later alternative: it supports sorting layers, order, distance/sort points and groups. A Sorting Group is externally ordered as a unit, so grouping a whole sofa still does not automatically allow an external sitter between its rear and front. A renderer migration would need its own measured prototype; it is not required just to remove the duplicated sofa. <a href="https://docs.unity.com/en-us/engine/6000.3/manual/unity2d/sprite/sort-sprites/sort-sprites">Unity 6.3 2D rendering order</a>.</p>
+<h2 id="7-covers-masks-and-believable-contact">7. Covers, masks and believable contact</h2>
+<p>Prefer a correctly shaped front sprite for a sofa arm or cupboard frame. Use clipping where the geometry needs it, such as keeping shelf contents inside an opening. uGUI's Mask clips child graphics to a parent shape using the stencil buffer. It does not invent a seat pose, physical interior or correct gameplay permissions. <a href="https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/script-Mask.html">Unity UI Mask</a>.</p>
+<p>Each fixture needs separate anchors for ground placement, seat/support contact and action entry/exit. A chair's root or the center of its image is not a suitable pelvis anchor. The same applies to a hand on a radio, a cup on a counter and feet touching a trampoline mat. Author Bluey and Bingo contact poses against the actual sized furniture. Cover shapes must preserve readable hands/faces and avoid cutting off a whole character merely to hide a bad pose.</p>
+<p>Use a soft contact shadow at the correct supporting surface. A carried cup's shadow must not remain painted on the floor. A bouncing character's ground shadow remains on the mat while its body rises; draw-order depth also remains tied to that mat. Reserve squash/compression for parts that can deform—the mat, cushion or pose—not the entire rigid fixture. These are proposed animation/art constraints, not an assertion about Budge's animation system.</p>
+<h2 id="8-touch-interaction-must-match-what-is-visible">8. Touch interaction must match what is visible</h2>
+<p>Display layers, touch shapes, walking obstacles and storage regions serve different purposes. Author them separately but from the same object layout. A transparent rectangle around a large irregular object must not steal taps intended for a nearby cup. An arm may cover part of a sitter without needing its own input handler.</p>
+<p>Keep decorative art non-raycastable. A fixture's deliberate interaction regions select its seat, handle or control; a front-to-back resolver rejects covered/closed contents. Enlarge tiny controls within sensible limits for touch, without crossing unrelated objects. A stored tool becomes a pickup candidate only when it is exposed. Do not rely on a visual mask alone to enforce this.</p>
+<p>The chooser must continue using the unobscured world viewport from revision 118. Changing room art cannot reintroduce the character hidden behind the tray. Dragging a prop over the chooser must not pick a place; camera pan, walking, object dragging and fixture taps retain exclusive pointer ownership. <a href="walk-animation-2026-09-26.html">Existing chooser evidence</a>.</p>
+<h2 id="9-how-items-fit-on-and-inside-other-items">9. How items fit on and inside other items</h2>
+<p>The world needs <strong>support relationships</strong>, not only x/y coordinates. A cup can be on the floor, on a counter, in a cupboard, on a plate or held by a character. The same cup changes its supporting coordinate space and drawing relationship, not its identity.</p>
+<p>For future reusable containers, keep an item ID, parent/support ID, local position or slot, holder, contents/creation data and durable state. Validate that an item has one location/holder and that container nesting cannot create a cycle. A visual can be absent while its state persists. Closing the shed or unloading a distant room must not delete its contents. Reopening creates views for the existing records, not new items.</p>
+<p>Current HOME-01 already has fixed shed slots and authoritative occupancy; preserve these during the first visual pass. Generic nesting and portable containers remain later G5 work. Physics should assist a brief drop/bounce when useful; it should not be responsible for keeping saved plates or cups stable across devices. A valid release resolves to an authored support or a safe floor point. Shared authority decides ownership and final placement; each client draws that result.</p>
+<h2 id="10-make-the-layers-look-like-one-bluey-style-scene">10. Make the layers look like one Bluey-style scene</h2>
+<p>The supplied screenshots guide a clean, shallow side view, softly colored outlines, broad flat color shapes, restrained shading and clear silhouettes. These are visual observations. Our panoramas have more painted texture and very large empty foreground strips; matching the reference requires composition changes as well as more details.</p>
+<p>Author a room layout with the existing character model sheet visible at intended phone/tablet scale. Choose wall/floor junction, seat heights, worktop height and door proportions together. Keep one palette, outline treatment, view angle, shadow direction and level of detail across base and props. Separately generated assets need matching to this master; a common text prompt alone is insufficient.</p>
+<p>Provide quiet readable ground around hands, feet and movable props, but distribute playable furniture through the room. Do not force all usable objects below a fully furnished decorative room. Avoid making every interactive object glow or giving it a heavy outline; discovery comes from recognizable affordances and small responses. Decoration can be detailed without competing with a character's silhouette.</p>
+<p>For the connected house/backyard, author the doorway/veranda seam as a shared transition with consistent floor level and trim. The current overlapping panorama fade only softens edges; it cannot reconcile two independently drawn doorways or floor perspectives. Keep scenery-only distant hills behind the property, while nearby posts or trunks may need separate cover parts.</p>
+<h2 id="11-asset-production-and-export-workflow">11. Asset production and export workflow</h2>
+<ol>
+<li><strong>Inventory before painting.</strong> Mark every reachable object as fixed, movable, container/support, cover, effect or decoration; record what remains planned. Use the <a href="../../SourceArt/Home/scene-layer-plan.json">home inventory</a>.</li>
+<li><strong>Compose with characters.</strong> Arrange a single sofa, table and shelf against the existing Bluey/Bingo scale. Draw seat/support and walk regions on an authoring overlay.</li>
+<li><strong>Create the clean plate.</strong> Remove separable furniture and redraw what it hides. A crop of the existing couch cannot reconstruct the wall behind it. Removing a prop includes its baked shadow and reflections.</li>
+<li><strong>Build an editable master.</strong> Keep named layers/groups and complete hidden geometry. If raster generation assists, edit against the same master/reference; inspect the result before accepting it. Do not regenerate the whole room independently for every prop.</li>
+<li><strong>Export coordinated parts.</strong> Keep shared source coordinates, named part IDs, transparent padding/pivots and export offsets. Tightly cropped files are fine when their original offsets are retained. Open/closed states keep the same frame/hinge alignment.</li>
+<li><strong>Compose a preview before integration.</strong> Toggle furniture/props off, expose interiors and place both characters at each contact anchor. Check transparent edges over light and dark surfaces. The assembled room should match the master without duplicate silhouettes or outlines.</li>
+<li><strong>Import and place once.</strong> Bind parts to the existing fixture and item identities. Update render placement together with hit/support metadata. Keep source, prompts and provenance in the art manifest.</li>
+</ol>
+<p>Unity's PSD Importer can import individual source layers and preserve positions/hierarchy in generated prefabs; merged import intentionally flattens them. This is an optional authoring route, not an installed dependency in this project. Its documented rig/prefab route also has package prerequisites. For the first bounded uGUI pass, transparent PNG parts plus explicit offsets are sufficient. <a href="https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@12.0/manual/PSD-importer-properties.html">Unity PSD Importer 12.0 properties</a>.</p>
+<p>Blender can help block out proportions or consistent orthographic furniture views, but final layered 2D art and contact points still need authoring. Full 3D physics or a renderer rewrite is not a prerequisite for this correction.</p>
+<h2 id="12-memory-and-frame-time-implications">12. Memory and frame-time implications</h2>
+<p>More layers are not free. Transparent overlapping areas increase work; many moving UI elements can increase Canvas rebuild cost. Unity recommends separating Canvases by update behavior, disabling unnecessary raycast targets and avoiding excessive overlapping UI. Apply those principles within legal drawing boundaries: separating rear furniture and actors into incompatible Canvases can break the very ordering being fixed. Do not create one Canvas per prop by default. <a href="https://unity.com/how-to/unity-ui-optimization-tips">Unity UI optimization guidance</a>.</p>
+<p>Keep static distant scenery combined. Crop dynamic parts with stored offsets instead of exporting a full-room transparent texture for every spoon. Pack related small props by room/use when profiling supports it; a single all-house atlas can keep otherwise distant art resident. Shared references must release only when no visible/preloaded room still uses them.</p>
+<p>Current panorama residency is capped at three loaded/requested panels; that does <strong>not</strong> cap future prop texture residency. Add a room-level resident-byte budget covering bases, fixtures, atlas pages and temporary transitions, while retaining all game state outside the art cache. Mobile scenery already uses ASTC 6×6, no mipmaps and no readable CPU copy. Validate prop imports separately rather than assuming they inherit the scenery importer.</p>
+<p>For scale only: one current 2172×724 RGBA32 image is about <strong>6.0 MiB</strong> before mipmaps or extra copies. ASTC 6×6 block payload at that size is about <strong>0.67 MiB</strong>; actual runtime allocation may differ with import resizing, padding, format support and driver overhead. Neither number is a measured whole-game budget. Measure resident textures, p95/p99 frame times, Canvas rebuilds, batches and overdraw on the A10 iPad before declaring this architecture qualified.</p>
+<h2 id="13-state-migration-and-shared-play">13. State, migration and shared play</h2>
+<p>The first living-room art correction should preserve canonical <code>garden</code>, all existing toy IDs and saved state, <code>sofa-left/right</code>, <code>trampoline-left/right</code>, the two radio fields and <code>shed-0..3</code>. There is one Home + backyard destination. Views can be streamed independently for each player without recreating shared objects.</p>
+<p>If aligning art requires moving authoritative anchors, treat that as a versioned content/layout change: migrate affected fixture positions deliberately and verify stored items and safe exits. Do not silently change <code>HomeLayout</code> constants, reset a save, or generate replacement tools. Prefer fitting the first new art to existing anchors to keep the correction bounded.</p>
+<p>At research completion Samsung remains <strong>118</strong>, server/helper <strong>110</strong>, Apple devices <strong>101</strong>. Phone content 5 currently plays solo; matching shared rollout is pending and Apple updates remain deferred. Research completion is not deployment. Future shared acceptance uses isolated matching clients/server first, with original family saves retained.</p>
+<h2 id="14-ordered-implementation-plan">14. Ordered implementation plan</h2>
+<p><strong>ART-HOME-02</strong> is a bounded task label under existing CHAR-01, WORLD-01/02, ITEM-02/03 and G5/G6 presentation, not a new top-level feature ID.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scene research table"><table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Deliverable</th>
+<th>Exit evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A — living room first</td>
+<td>Clean living-room base; one coordinated sofa; correct two-seat overlap; table/shelf inventory; stable render-part ordering</td>
+<td>One sofa in assembled scene; empty plate with no ghost; Bluey and Bingo seated; nearer and farther walkers; phone and 4:3 composition</td>
+</tr>
+<tr>
+<td>B — current backyard fixtures</td>
+<td>Clean tree/shed bases; one trampoline with front/rear parts; one shed with exposed interior and preserved four-slot contents</td>
+<td>Bounce contact/occlusion; open/closed/storage loop; no duplicate shed/trampoline or painted tools under moved copies</td>
+</tr>
+<tr>
+<td>C — kitchen foundation</td>
+<td>Clean architecture; fridge/cupboard interiors/doors; counter/table/chair support layout before food gameplay</td>
+<td>Empty and stocked states, correct surface placement, no duplicate food or appliances</td>
+</tr>
+<tr>
+<td>D — next home features</td>
+<td>Kitchen food/serving and durable creations, then bedroom schema integration</td>
+<td>Existing goal-sheet behavior plus the visual/interaction acceptance below</td>
+</tr>
+</tbody>
+</table></div>
+<p>Preserve the accepted joystick, combined chooser and recognizable character art. Walking 118 remains awaiting user visual acceptance; this scene correction does not close that feedback. Other worlds retain attractive scenic shells and long walking space. Do not expand their features during home work.</p>
+<h2 id="15-acceptance-that-would-have-caught-this-error">15. Acceptance that would have caught this error</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scene research table"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Required visible/technical result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hide every separable object in the editor</td>
+<td>Complete clean plate; no painted duplicate or leftover shadow underneath</td>
+</tr>
+<tr>
+<td>Move every enabled portable prop</td>
+<td>Original position is empty; only one live item and one rendered placement</td>
+</tr>
+<tr>
+<td>Sit Bluey and Bingo in each seat</td>
+<td>Hips/feet meet authored supports, appropriate front arms overlap, hands and faces remain legible</td>
+</tr>
+<tr>
+<td>Walk another character behind and in front</td>
+<td>Correct local ordering; sitter does not become globally topmost</td>
+</tr>
+<tr>
+<td>Bounce with another player nearby</td>
+<td>Feet meet the mat; rear/front net/frame surround the jumper; nearby passerby depth remains stable</td>
+</tr>
+<tr>
+<td>Open, store, close, reopen and retrieve</td>
+<td>Same item ID and contents; no visible or selectable hidden item through closed doors</td>
+</tr>
+<tr>
+<td>Place on floor, table and shelf</td>
+<td>Correct support height and edge overlap; no floor-depth shortcut for shelf contents</td>
+</tr>
+<tr>
+<td>Pan across room seams and open chooser</td>
+<td>No duplicated doorway, floor step or edge smear; active character stays visible above tray</td>
+</tr>
+<tr>
+<td>Save/reopen, leave/revisit and isolated shared rejoin</td>
+<td>No recreated prop, lost creation, reset container or changed player identity</td>
+</tr>
+<tr>
+<td>Wide phone and 4:3 tablet</td>
+<td>Coherent scale, reachable targets and readable character silhouettes</td>
+</tr>
+<tr>
+<td>A10 sustained profile</td>
+<td>Recorded texture residency and frame-time evidence; no inferred pass from a Samsung screenshot</td>
+</tr>
+<tr>
+<td>User visual review of a complete interaction clip</td>
+<td>Explicitly separate aesthetic acceptance from automated rule checks</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="16-research-outcome-and-remaining-work">16. Research outcome and remaining work</h2>
+<p>This pass inspected all four home/backyard panoramas, the recorded live composition, source prompts, fixture creation, drawing order, storage/seat rules and installed package versions. It checked the primary sources linked above and produced the concrete layered-art inventory and revised task order. The goal sheet, current decisions and build plan are updated together.</p>
+<p>No runtime code, panorama, fixture image, installed app, family server or save was changed in this research pass. The duplication remains in build 118 until ART-HOME-02 is implemented. The first visual proof must be one integrated living room with one sofa, not another batch of isolated furniture illustrations.</p>
+<p><a href="evidence/home-scene-layers-2026-09-26/research-audit.json">Source/asset audit</a> · <a href="evidence/home-scene-layers-2026-09-26/docs-validation.json">Document consistency</a> · <a href="evidence/home-scene-layers-2026-09-26/render-validation.json">Research page render checks</a>. These validate the research deliverable, not the future game correction.</p></main></body></html>

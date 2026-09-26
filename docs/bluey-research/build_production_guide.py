@@ -35,7 +35,7 @@ page = '''<!doctype html>
 <li><a href="#7-android-ios-and-pc-build-pipeline"><small>G1</small><strong>Establish the project</strong><span>Builds, devices, saves and updates.</span></a></li>
 <li><a href="#8-ordered-phases-and-completion-gates"><small>G2–G5</small><strong>Prove shared play</strong><span>Touch, server play and persistent rooms.</span></a></li>
 <li><a href="#g6-the-representative-finished-slice"><small>G6</small><strong>Finish one slice</strong><span>Real art, voices, activities and child testing.</span></a></li>
-<li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
+<li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six content regions, five destinations and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
 <div class="build-callout">''' + status_banner + '''<p><a href="#19-implementation-audit-and-remaining-work">Audit and remaining work</a> · <a href="#9-first-implementation-work-queue">Next task and acceptance</a> · <a href="implementation/g3-outage-failures-2026-09-25.html">Windows 91 evidence</a> · <a href="implementation/g3-mobile-recovery-builds-2026-09-25.html">Historical mobile 91 preparation</a> · <a href="implementation/g3-persistent-server-2026-09-24.html">Server lifetime proof (83)</a></p></div>

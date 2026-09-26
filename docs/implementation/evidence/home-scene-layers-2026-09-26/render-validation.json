@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "width": 1280,
+      "bodyWidth": 1280,
+      "headings": 16,
+      "tocEntries": 16,
+      "brokenImages": []
+    },
+    {
+      "width": 390,
+      "bodyWidth": 390,
+      "headings": 16,
+      "tocEntries": 16,
+      "brokenImages": []
+    }
+  ],
+  "errors": [],
+  "scope": "Static research HTML render; no game/device checks"
+}

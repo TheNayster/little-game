@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "date": "2026-09-26",
+  "status": "Proposed authoring inventory; not runtime data or completed assets",
+  "task": "ART-HOME-02",
+  "research": "../../docs/implementation/home-scene-layer-research-2026-09-26.md",
+  "area": "garden",
+  "menuDestination": "Heeler Home — House + backyard",
+  "rules": [
+    "One logical fixture/item has one visible placement, composed from as many parts as necessary.",
+    "Clean plates contain architecture and intentional decoration; separable objects and their shadows are absent.",
+    "Author render parts, contact anchors, hit shapes, walking constraints and contents/support regions together.",
+    "Use shared source coordinates and export offsets; actual offsets require an approved assembled layout.",
+    "Keep semantic ownership separate from render hierarchy, with local rear/occupant/front relationships.",
+    "Art streaming never destroys logical state. Do not reset or respawn saved items during visual migration."
+  ],
+  "preserve": {
+    "fixtures": ["sofa-left", "sofa-right", "trampoline-left", "trampoline-right"],
+    "storage": ["shed-0", "shed-1", "shed-2", "shed-3"],
+    "homeStateFields": ["livingRadio", "gardenRadio", "shedOpen"],
+    "currentAnchors": {
+      "sofa": {"x": -3960, "y": 200},
+      "trampoline": {"x": 1650, "y": 220},
+      "shed": {"x": 3550, "y": 300},
+      "radio-living": {"x": -3480, "y": 170},
+      "radio-garden": {"x": 1230, "y": 170}
+    },
+    "migrationRule": "Prefer fitting first-pass art to existing anchors. Any authoritative anchor movement requires explicit versioned layout/save treatment."
+  },
+  "rooms": [
+    {
+      "base": "home-living",
+      "priority": "A",
+      "keepInCleanPlate": ["wall and floor", "window and distant view", "fixed wall decoration", "non-occluding stair architecture"],
+      "objects": [
+        {"id": "sofa", "behavior": "usable now", "parts": ["contact shadow", "back and body", "seat surfaces", "front arms"], "anchors": ["sofa-left", "sofa-right", "safe exits"], "removeFromBase": "painted sofa, usable cushions and attached shadows", "proof": "Both characters sit within the sofa; a closer passerby renders in front."},
+        {"id": "coffee-table", "behavior": "planned usable", "parts": ["top and support", "front edge or legs where needed", "shadow"], "anchors": ["support polygon and height"], "removeFromBase": "table, planned movable books/plant and their shadows", "proof": "Removing a book exposes an empty tabletop."},
+        {"id": "reading-shelf", "behavior": "planned usable", "parts": ["empty shelf carcass", "shelf lips", "individual usable books and baskets"], "anchors": ["contents slots"], "removeFromBase": "shelf and selected usable contents", "proof": "Usable contents appear once; explicitly decorative spines remain static."},
+        {"id": "under-stair-seat", "behavior": "planned usable", "parts": ["seat rear", "support", "front edge", "loose cushions"], "anchors": ["seat contacts", "storage slots"], "removeFromBase": "bench and planned usable contents", "proof": "No second bench is added when its interaction is enabled."},
+        {"id": "radio-living", "behavior": "usable now", "parts": ["body", "power detail", "music effect"], "anchors": ["control hit region", "support"], "removeFromBase": "any duplicate radio at this intended placement", "proof": "The visible radio owns the existing livingRadio state."}
+      ]
+    },
+    {
+      "base": "garden-tree",
+      "priority": "B",
+      "keepInCleanPlate": ["sky and distant hills", "lawn", "distant foliage", "non-intersecting canopy"],
+      "objects": [
+        {"id": "trampoline", "behavior": "usable now", "parts": ["rear net and posts", "mat and support", "front frame and net", "shadow"], "anchors": ["trampoline-left", "trampoline-right", "entry and exit"], "removeFromBase": "entire painted trampoline and its shadow", "proof": "One mat; feet contact it; front and rear parts surround jumpers."},
+        {"id": "radio-garden", "behavior": "usable now", "parts": ["body", "power detail", "music effect"], "anchors": ["control hit region", "support"], "removeFromBase": "any duplicate radio at this intended placement", "proof": "The visible radio owns the existing gardenRadio state."},
+        {"id": "swing-pool-tree-seat", "behavior": "planned usable", "parts": ["swing seat and ropes", "pool rear and near rim", "tree-seat contacts and occluding trunk portions"], "anchors": ["future interaction contacts"], "removeFromBase": "these features as each is split into authored layers", "proof": "Reserve one composed placement per feature; no future foreground duplicates."}
+      ]
+    },
+    {
+      "base": "garden-shed",
+      "priority": "B",
+      "keepInCleanPlate": ["sky", "lawn", "distant fences and foliage", "non-usable distant decoration"],
+      "objects": [
+        {"id": "shed", "behavior": "usable now", "parts": ["empty interior", "shelf supports", "shell and frame", "door parts or aligned states", "shadow"], "anchors": ["shed-0", "shed-1", "shed-2", "shed-3", "door hit region"], "removeFromBase": "complete painted shed, usable tools in front and associated shadows", "proof": "Same four stored items survive closed/open; contents cannot be selected while closed."},
+        {"id": "garden-water-tools", "behavior": "usable now with planned extensions", "parts": ["tap", "water stream", "separate compatible tools", "plant pot and growth"], "anchors": ["stream origin", "bucket mouth", "soil target"], "removeFromBase": "painted copies of each enabled usable tool", "proof": "Moving a tool leaves no image of it behind."},
+        {"id": "fruit-tree-and-pond", "behavior": "planned usable", "parts": ["future pickable fruit", "trunk cover portions", "pond near rim and surface"], "anchors": ["future pickup and water contacts"], "removeFromBase": "only parts requiring state or overlap when enabled", "proof": "Retain complete hidden foliage/water behind removable parts."}
+      ]
+    },
+    {
+      "base": "home-kitchen",
+      "priority": "C",
+      "keepInCleanPlate": ["walls and backsplash", "floor", "window and exterior view", "fixed trim", "non-occluding veranda structure"],
+      "objects": [
+        {"id": "counter-sink", "behavior": "planned usable", "parts": ["cabinet structure", "worktop", "front lip", "basin interior and rim", "faucet", "water effect"], "anchors": ["worktop support region", "sink region", "water origin"], "removeFromBase": "counter fixture and all planned usable counter props", "proof": "One sink/counter; cup rests on the worktop, not the floor plane."},
+        {"id": "fridge-cupboards-oven", "behavior": "planned usable", "parts": ["empty interiors", "shelves", "frames", "aligned open/closed door parts"], "anchors": ["hinges or state registration", "contents slots", "door controls"], "removeFromBase": "painted appliance/cupboard doors and usable contents", "proof": "Opening reveals existing food; closing covers it and blocks pickup."},
+        {"id": "dining-table-chairs", "behavior": "planned usable", "parts": ["table surfaces and front edges", "chair rears and fronts", "contact shadows", "separate plates and food"], "anchors": ["seat contacts", "serving regions", "safe exits"], "removeFromBase": "table/chairs and planned usable tableware", "proof": "Seated characters fit the table and one copy of each chair."},
+        {"id": "veranda-transition", "behavior": "navigation", "parts": ["aligned doorway opening", "near frame/post where needed"], "anchors": ["shared floor level", "walk boundary"], "removeFromBase": "conflicting duplicate doorway at the panorama seam", "proof": "Living/kitchen/veranda/lawn remain one coherent property while panning."}
+      ]
+    }
+  ],
+  "acceptance": ["empty clean plate", "one visible fixture", "no pickup ghosts", "correct contacts and occlusion", "hidden contents not selectable", "save/state preservation", "phone and 4:3 composition", "A10 profiling", "user visual review"]
+}

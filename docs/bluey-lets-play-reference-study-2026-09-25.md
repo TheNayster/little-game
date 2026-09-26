@@ -4,6 +4,8 @@
 
 The target is Budge's **Bluey: Let's Play!** mobile playset. The user clarified that this should be the base experience, followed by their more ambitious private family version, and explicitly included character interactions such as trampoline jumping, sitting and dancing. The most consequential change is to make the illustrated environment occupy the screen, with picture controls for entering worlds and choosing characters. A recognisable character placed on the current test board is only the beginning of that presentation.
 
+**Scene composition correction — September 26:** the user identified duplicated painted and interactive furniture. [New research and asset contract](implementation/home-scene-layer-research-2026-09-26.html) audits all four home/backyard panoramas and the actual uGUI drawing order. **ART-HOME-02 comes before more kitchen features:** author clean room bases and one layered placement per usable object, beginning with the living room/sofa, then trampoline/shed and kitchen surfaces/interiors. Preserve seat/storage identities, saves, the combined chooser and the full home backlog. Research is complete; these art/runtime corrections are not implemented or installed. Walking 118 still awaits user visual acceptance.
+
 [TOC]
 
 ## 1. What is now a firm requirement
@@ -460,8 +462,15 @@ The user's request to begin detailed home work is implemented as **HOME-01**, fo
 
 The tests specifically preserve a full bucket and loose ball through shed placement, closure, travel and retrieval; offline home cold reopen preserves radio state while safely releasing temporary seats. Borrowed garden tools retain their saved idle-return policy even when stored. The home ball is protected; full personal inventory and nested portable containers remain future work. Schema 4/content 5 adds state without regenerating legacy items.
 
-Room work remains kitchen fridge/cupboards and durable food assembly/serving, then bedroom persistence, after the walking-art pass below. Keep the complete house/activity backlog; other worlds remain scenic. The current Android contains the home pass and currently plays solo; the server remains 110 and Apple delivery remains deferred.
+Room work remains kitchen fridge/cupboards and durable food assembly/serving, then bedroom persistence, after the scene-layer correction in section 25. Keep the complete house/activity backlog; other worlds remain scenic. The current Android contains the home pass and currently plays solo; the server remains 110 and Apple delivery remains deferred.
 
 ## 24. Walking appearance — September 26
 
 The user clarified that “movement” means the character looks uptight while walking, then rejected the first 116 correction as worse. [Expanded research](implementation/walk-animation-research-2026-09-26.html) separates the reference evidence from our measurable implementation failures. [Revision 118](implementation/walk-animation-2026-09-26.html) corrects cadence, source-facing direction, arm phase and crossing legs and adds a complete-cycle preview. It also presents Home/Backyard as one destination and keeps the active character visible above the tray. Native walk, chooser and home regression checks pass; visual acceptance remains open.
+
+
+## 25. Background, furniture and item layers — September 26
+
+**Scene composition correction — September 26:** the user identified duplicated painted and interactive furniture. [New research and asset contract](implementation/home-scene-layer-research-2026-09-26.html) audits all four home/backyard panoramas and the actual uGUI drawing order. **ART-HOME-02 comes before more kitchen features:** author clean room bases and one layered placement per usable object, beginning with the living room/sofa, then trampoline/shed and kitchen surfaces/interiors. Preserve seat/storage identities, saves, the combined chooser and the full home backlog. Research is complete; these art/runtime corrections are not implemented or installed. Walking 118 still awaits user visual acceptance.
+
+The previous scenic-first composition baked sofas, appliances, a trampoline and shed into complete panoramas. HOME-01 then added separate usable fixtures. That shortcut is superseded. A fixed usable object may comprise several visual parts: rear, support surface, occupant/content placement, front cover and state effects. Movable items must leave no painted copy or shadow behind. Hidden contents retain identity but lose visibility/pickup while covered. The research distinguishes observed reference composition, official feature descriptions, local implementation findings and our proposed architecture; it does not claim access to Budge’s internal scene files.

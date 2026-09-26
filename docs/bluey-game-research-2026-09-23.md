@@ -8,7 +8,7 @@ Feature goal sheet and supporting research • September 23, 2026
 
 **How we will build it:** this page is the feature goal sheet; the [ground-up build guide](family-playset-build-guide-2026-09-23.html) is the implementation sequence. Its ledger retains all 55 chapters and 35 feature IDs, including retired AUTO-02. G1/G2/G3 remain partial. Device hosting is removed by the September 25 decision; rooms, creations and the full game content remain ahead.
 
-**Current recorded versions:** server/helper 91; Samsung 107, both iPads and iPhone 101. [Samsung 107](implementation/combined-chooser-2026-09-25.html#phone-control-placement-builds-106-and-107) has installed-artifact, menu and retained-save evidence; the Apple menu rollout remains pending. The [build guide](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) and [return checklist](implementation/return-checklist-ipad-lan-2026-09-24.html) retain the remaining device qualification work.
+**Current recorded versions:** server/helper **110**, Samsung **118**, both iPads and iPhone **101**. [Android 118 delivery](implementation/walk-animation-2026-09-26.html) preserves existing saves. The phone currently plays solo on content 5; coordinated shared delivery is pending and Apple updates stay deferred. See the [current build record](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) for qualification and next work.
 
 **Physical evidence:** four mobile clients have joined the same family world. Both iPads passed scoped shared controls, ownership, travel and rejoin checks. The older iPad passed smoother offline walking and cold reopening on 95. Updated-device sustained play is still open.
 
@@ -55,6 +55,8 @@ Open the companion **[illustrated research guide](bluey-game-research-2026-09-23
 **Visual and menu direction, September 25:** the user supplied eight screenshots of Budge’s Bluey: Let’s Play! and explicitly selected its illustrated scene presentation, sky/cloud world bubbles and lower-left family circle → full-body character tray → down-arrow close control. The later combined-menu decision below places the same scene circles vertically beside the horizontal cast, with a loading screen before world entry. This supersedes the separate browser, rotating-wheel and small portrait-drawer proposals. The [reference study](bluey-lets-play-reference-study-2026-09-25.html) records official-source findings, all eight images, input/animation requirements and the next navigation task. All six worlds and existing family features remain required.
 
 **Base experience and character–item behavior:** the user wants the commercial mobile playset as the foundation for a cooler private family version. The [broader catalog and interaction specification](bluey-lets-play-reference-study-2026-09-25.html#18-characterobject-interaction-specification) cover games, locations, cast, audio and character actions. Sitting, trampoline jumping and dancing are explicit priorities: use correct poses, contact points, expressions and clear exits. Four-device play and the original enhancements remain required; no public release or monetization is planned.
+
+**Scene composition correction — September 26:** the user identified duplicated painted and interactive furniture. [New research and asset contract](implementation/home-scene-layer-research-2026-09-26.html) audits all four home/backyard panoramas and the actual uGUI drawing order. **ART-HOME-02 comes before more kitchen features:** author clean room bases and one layered placement per usable object, beginning with the living room/sofa, then trampoline/shed and kitchen surfaces/interiors. Preserve seat/storage identities, saves, the combined chooser and the full home backlog. Research is complete; these art/runtime corrections are not implemented or installed. Walking 118 still awaits user visual acceptance.
 
 ## 1. Your requirements, now recorded
 
@@ -148,9 +150,9 @@ Proposed application to this game:
 
 For early testing, use roughly 15–90 seconds for a simple invitation and 2–5 minutes for a longer sequence. These are design targets, not research-established limits for every child.
 
-## 3. Six worlds and eighteen starter quest ideas
+## 3. Six content regions, five destinations and eighteen starter quest ideas
 
-All six locations should be unlocked. Completing a quest can add a sticker or a celebratory animation, but should not block another area or remove a favorite toy. Each location needs satisfying free play even when no quest is active.
+All six content regions remain available through five unlocked destinations: Heeler Home includes its backyard; the others are Park, Creek, Beach and Daycare. Completing a quest can add a sticker or a celebratory animation, but should not block another area or remove a favorite toy. Each location needs satisfying free play even when no quest is active.
 
 | Location | Free-play activities | Why it belongs |
 | --- | --- | --- |
@@ -162,7 +164,7 @@ All six locations should be unlocked. Completing a quest can add a sticker or a 
 | **Daycare** | Teacher-led invitations, all-roster friend board, learning stations, imagination mat, quiet and free-play areas | Connects activities from all worlds while preserving personal choice |
 
 
-**Connected house and backyard — user clarification, September 25:** Home and Backyard are entrances into one continuous family property, from the front of the house through its fully usable rooms, kitchen/dining area and veranda to the far backyard and shed. Sideways exploration should feel like one long dollhouse level; doors/stairs connect bedroom and other room branches without returning to the world menu. Retain cooking, living/TV, reading, science/dinosaur play, personal bedrooms, secret rooms, garden equipment, radio/dancing and durable shed storage. The two bubbles are arrival shortcuts into the same persistent property, not duplicate houses or independent copies of its items. Each player has an independent camera and can remain indoors while another explores outside. Art/room chunks may load around the camera for the older iPad, but crossing between them must preserve object IDs, held items, container contents and authority. This is the required G5/G6 layout, not a claim that the full property is implemented by the menu milestone.
+**Connected house and backyard — user clarification, September 25:** Home and Backyard are entrances into one continuous family property, from the front of the house through its fully usable rooms, kitchen/dining area and veranda to the far backyard and shed. Sideways exploration should feel like one long dollhouse level; doors/stairs connect bedroom and other room branches without returning to the world menu. Retain cooking, living/TV, reading, science/dinosaur play, personal bedrooms, secret rooms, garden equipment, radio/dancing and durable shed storage. Use one Heeler Home bubble for the house and backyard, as implemented in revision 118; selecting it within the property retains the current location. The earlier two-bubble proposal is superseded. Each player has an independent camera and can remain indoors while another explores outside. Art/room chunks may load around the camera for the older iPad, but crossing between them must preserve object IDs, held items, container contents and authority. This is the required G5/G6 layout, not a claim that the full property is implemented by the menu milestone.
 
 
 **World-art sequence — latest user direction:** first build attractive Bluey-style walkable scenery for all six worlds. Add no new activity features to the other worlds yet. After those visual shells, concentrate sustained room and interaction development on Bluey's connected house/backyard property. Keep existing functioning play and the full feature backlog; defer other-world feature implementation rather than delete it.
@@ -170,7 +172,7 @@ All six locations should be unlocked. Completing a quest can add a sticker or a 
 
 **Combined chooser — latest user decision, September 25:** the lower-right family circle opens one menu (moved away from the left joystick after the user’s phone test), with full-body characters browsing horizontally along the bottom and circular place thumbnails browsing vertically down the side. The down arrow closes both. Tapping an available place opens a loading screen on that device, prepares the destination and its current state, then enables play only when ready. This supersedes the separate full-screen staggered world browser as our navigation layout; R6 still guides the circular scene artwork. No second Play button is required. Browsing either axis must not accidentally select an entry. Other players continue independently.
 
-**Long worlds and loading:** all six scenic destinations are implemented in [SCENIC-01 / native Windows 110](implementation/scenic-worlds-2026-09-25.html), with twelve panoramas, local walking/panning cameras and a maximum of three loaded/requested background textures. Home and Backyard share one continuous persistent property, presented as one Heeler Home menu destination in revision 118. Major-world travel waits for shared acknowledgement, applicable saves and visible texture readiness; distant art is released. Physical iPad memory/frame-time qualification and mobile rollout remain pending. Separate loading controls working memory, not installed storage. The implementation uses Unity Resources loading; Addressables is not installed.
+**Long worlds and loading:** all six scenic destinations are implemented in [SCENIC-01 / native Windows 110](implementation/scenic-worlds-2026-09-25.html), with twelve panoramas, local walking/panning cameras and a maximum of three loaded/requested background textures. Home and Backyard share one continuous persistent property, presented as one Heeler Home menu destination in revision 118. Major-world travel waits for shared acknowledgement, applicable saves and visible texture readiness; distant art is released. Physical iPad memory/frame-time qualification and Apple rollout remain pending; Android 118 contains the scenic home. Separate loading controls working memory, not installed storage. The implementation uses Unity Resources loading; Addressables is not installed.
 
 These locations and quest scripts are proposed original game content. They are not a claim that any particular episode or commercial game contains these exact objectives.
 
@@ -197,7 +199,7 @@ These locations and quest scripts are proposed original game content. They are n
 
 Keep water shallow and stylized, and use forgiving animation rather than precarious physics for slides, swings, and boats. A toy can fall or spill without making the child lose progress. Every quest should be restartable, skippable, and repeatable.
 
-### The six-world picture-bubble browser
+### The combined character and five-destination chooser
 
 **Updated navigation decision, September 25:** one family-circle/down-arrow chooser combines horizontal full-body characters with vertical scene-filled world circles. Selecting a usable world opens a local loading screen until ready. This supersedes the separate staggered browser, central preview and second Play button. The [reference study](bluey-lets-play-reference-study-2026-09-25.html#5-main-world-menu-contract) records the contract; [native 105 evidence](implementation/combined-chooser-2026-09-25.html) qualifies the prototype on Windows.
 
@@ -266,6 +268,8 @@ Use simple authored floor polygons and a small path graph or grid for tap walkin
 In both modes, cancel held touches cleanly when the app backgrounds, a menu opens, a stage unloads, or the connection drops. Changing movement mode should stop the old route and reset the stick. Support simultaneous walking and dragging if it tests well, while ensuring the entire basic loop can be completed one finger at a time.
 
 ### Drawn perspective without a complicated 3D world
+
+**Layering requirement:** the user identified duplicated painted and interactive furniture. [New research and asset contract](implementation/home-scene-layer-research-2026-09-26.html) audits all four home/backyard panoramas and the actual uGUI drawing order. **ART-HOME-02 comes before more kitchen features:** author clean room bases and one layered placement per usable object, beginning with the living room/sofa, then trampoline/shed and kitchen surfaces/interiors. Preserve seat/storage identities, saves, the combined chooser and the full home backlog. Research is complete; these art/runtime corrections are not implemented or installed. Walking 118 still awaits user visual acceptance.
 
 Keep characters and props in world space, with an orthographic camera. Sort each character's complete sprite group by its foot position. Split backgrounds into floor, rear furniture, and foreground occluder layers so a character can appear behind a sofa or in front of a counter. Keep UI menus in a separate canvas.
 
@@ -444,7 +448,7 @@ For fifteen short quests, a compact definition can contain: ID, stage, invitatio
 
 ## 11. Menus, settings, saves, and recovery
 
-Suggested flow, revised by section 44: **Start → remembered character/profile → six-world bubble browser or last room → play**, with family discovery and connection happening automatically. Remember the child's last character and assistance preferences. A parent can help with initial Wi-Fi permission and installation, while everyday play remains picture-led.
+Suggested flow, revised by section 44: **Start → remembered character/profile → five-destination combined chooser or last room → play**, with family discovery and connection happening automatically. Remember the child's last character and assistance preferences. A parent can help with initial Wi-Fi permission and installation, while everyday play remains picture-led.
 
 Settings should include music, effects, and speech volume; English/Spanish; joystick/tap movement; joystick side and size; assistance level; captions/picture hints; reduced motion; and return to menu. Put reset-world and saved-game management behind a deliberate parent action. Essential instructions still need visual cues when speech volume is zero.
 
@@ -517,7 +521,7 @@ Also watch each child play without coaching for a short session. Record where th
 | 1. Core interaction experiment | Plain shapes in one backyard, both input modes, bucket/tap/plant | Reliable drag and pour on the A10 |
 | 2. Two-iPad experiment | Direct LAN session, shared bucket ownership, synchronized plant | Both devices see the same results; interruption recovery works |
 | 3. Illustrated, speaking slice | Bluey/Bingo, finished backyard art sample, English dialogue and mouth animation | One complete inviting activity that both children can use |
-| 4. Product shell | Character chooser, six-world bubble menu, settings, local saves | Relaunch restores state; navigation needs no reading |
+| 4. Product shell | Combined character/five-destination chooser, settings, local saves | Relaunch restores state; navigation needs no reading |
 | 5. Content expansion | Expand to all six locations, activity families, and broader character roster | Every area supports free play and the same object rules; required networking gates in section 52 pass before broad production |
 | 6. Spanish completion | Reviewed translated lines and recordings; per-device language choice | No missing core Spanish instruction; mixed-language co-op works |
 | 7. Family release | Performance/crash checks and in-place installation | Both exact iPads pass release checks and automatic renewal verification |
@@ -576,11 +580,11 @@ Added September 23, 2026, following the Toca/Piknik research. This is the main r
 | AUTO-01 | Automatic family discovery and joining | Foreground native Bonjour/DNS-SD discovery on Apple, Android, and Windows; paired devices, one stable authority; no child Host/Join steps | Either launch order and simultaneous launch work; permissions and offline fallback handled |
 | AUTO-02 | **Retired by user decision, September 25: device hosting and automatic host switching** | No implementation or device-test gate; identifier retained for traceability | Removed, not completed |
 | OUT-01 | Beach, creek, and park play | 32 outdoor activity designs, including working equipment, tag, hiding, collecting, construction, and water play | Each has touch, solo, co-op, cancellation, save, and device acceptance |
-| DAY-01 | Daycare as the sixth world | All child characters available across zones; Calypso routine; optional day with 2–3 saved rotating invitations | Late join and skip do not reroll or interrupt the sibling; all six worlds remain accessible |
+| DAY-01 | Daycare as the sixth world | All child characters available across zones; Calypso routine; optional day with 2–3 saved rotating invitations | Late join and skip do not reroll or interrupt the sibling; all six content regions remain accessible through five destinations |
 | LEARN-01 | Spoken playful learning | 12 reading, math, music, social, and science stations; independent assistance | Both children can understand and respond without reading; English complete offline; Spanish reviewed separately |
 | IMG-01 | Nine imagination stories | Picture mat, spoken role cards, transformed story zones, NPC role substitutes | All nine support solo and shared play, role/character changes, independent exit, and saved progress |
 
-The expanded tracker covers all 55 chapters and 35 feature IDs. AUTO-02 is explicitly retired; AUTO-01 automatic PC/VPS connection remains required. The six-world content inventory is unchanged.
+The expanded tracker covers all 55 chapters and 35 feature IDs. AUTO-02 is explicitly retired; AUTO-01 automatic PC/VPS connection remains required. The six-region content inventory is unchanged; house/backyard use one of five menu destinations.
 
 ## 17. Changing characters without stopping the game
 
@@ -916,7 +920,7 @@ Add play observations: can the younger child change character and start a differ
 
 **Yes: picking up a house book can open a full-screen, talking, interactive picture book.** Build this as a reusable Unity book reader. Each book supplies pages, artwork, recorded narration, and a few interactive picture regions. This suits the existing illustrated style and can run offline; a live AI model is unnecessary on the iPads.
 
-Place a low, face-out bookshelf, rug, cushions, and a dinosaur book basket in the house. The reading nook, TV, and dinosaur mat belong inside Heeler Home, so the six-world bubble browser stays intact. The proposed furniture arrangement is our game layout, not a claim about the exact floor plan in the show.
+Place a low, face-out bookshelf, rug, cushions, and a dinosaur book basket in the house. The reading nook, TV, and dinosaur mat belong inside Heeler Home, so the five-destination chooser stays intact. The proposed furniture arrangement is our game layout, not a claim about the exact floor plan in the show.
 
 ### From shelf to story
 
@@ -1866,7 +1870,7 @@ Retain the full requested backlog even while prototyping only representative act
 
 | Test | Required result |
 | --- | --- |
-| Select all six world circles with touch | Correct location; no tiny targets, overlap, or quest unlock required |
+| Select all five destination circles with touch | Correct location; no tiny targets, overlap, or quest unlock required |
 | Three-year-old enters beach, creek, park, and daycare | Makes an object respond and leaves an activity without reading or adult menu navigation |
 | Mix assistance modes during the same activity | Shared object facts agree; each child receives appropriate local hints and controls |
 | Simultaneously grab one shell, catch one fish, place one tower piece, or claim one seat | One authoritative result; useful alternative; no duplicate object or stolen completed creation |
