@@ -25,6 +25,13 @@ def swipe(client,up=True):
     time.sleep(.2);client.input('touch-end',role='screen',x=x,y=b,finger=52);time.sleep(.25)
 
 def travel(client,place):
+    state=client.input('inspect')
+    if int(state['build'].split('.')[-1])>=117 and place in ('home','garden'):
+        # Legacy home interaction fixtures need a particular end of the one
+        # property. This is explicit fixture setup, NOT a second menu destination.
+        # Test-HomeNavigation.py separately exercises the real five-place chooser.
+        client.input('fixtureTravel',text=place)
+        return wait(lambda:(s if (s:=ready(client))['place']==place else None),'property fixture arrival')
     client.input('touchButton',text='Characters')
     name=NAMES[place]
     # Home/Garden are toward the top. Later destinations are below them.

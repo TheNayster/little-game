@@ -720,8 +720,7 @@ namespace LittleWeeps.Client
         {
             if(Board==null)return;
             Canvas.ForceUpdateCanvases();
-            Board.anchoredPosition=Vector2.zero;Board.sizeDelta=safe.rect.size;
-            sceneScale=safe.rect.height/WorldLayout.SceneHeight;
+            LayoutWorldViewport();
             stick.anchoredPosition=new Vector2(-safe.rect.width/2+102,-safe.rect.height/2+110);
             movementLabel.transform.parent.GetComponent<RectTransform>().anchoredPosition=new Vector2(safe.rect.width/2-300,safe.rect.height/2-55);
             safe.Find("Menu").GetComponent<RectTransform>().anchoredPosition=new Vector2(safe.rect.width/2-100,safe.rect.height/2-55);

@@ -2,6 +2,38 @@
 
 September 26, 2026 · **WALK-RESEARCH-01** · CHAR-01, WORLD-01/02; G6 character presentation. Research and implementation specification, **not an implemented animation fix**. [Current plan](../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis).
 
+**User review supersedes the first technical result:** Android 116 was installed and passed engineering checks, but the user reported its walking looked much worse. It is **visually rejected**, not an accepted milestone. The [revision record](walk-animation-2026-09-26.html) tracks the replacement. The original diagnosis below records pre-116 behavior; the second investigation follows immediately.
+
+## Second investigation after the rejected walk
+
+The user also asked for a single Heeler Home/backyard destination and a chooser that leaves the active character visible. These are presentation changes to the same persistent property; they do not authorize resetting a world or moving the player merely to open a menu.
+
+### What the second source review establishes
+
+| Primary source | Finding | Application and limit |
+| --- | --- | --- |
+| [Bluey animation director Beth Harvey](https://www.bluey.tv/blog/beth-harvey-animation-director/) | Character rigs are checked for model fidelity and suitability; rough keys and in-betweens receive separate review. | Passing rig mathematics is not evidence of a good performance. Review the full cycle and intermediate silhouettes. This interview does not expose Budge's mobile rig. |
+| [Animation director Harvey Newman's walk construction](https://anim.works/walk-cycle/) | Contact/down/passing/up poses, supporting weight, opposite arm/leg motion and delayed arms form a coherent performance. Typical human examples span roughly 8–16 frames per step at 24 FPS. | A useful cadence sanity check, not an exact Bluey timing prescription. Short stylized limbs at a fixed gameplay speed require a deliberate compromise. |
+| [Adobe's 2D walk guide](https://www.adobe.com/uk/creativecloud/animation/discover/animation-walk-cycle.html) | Crossover, body weight, bent legs and repeated revision matter as much as adding frames. | Inspect both characters across the whole loop, rather than accepting a few nice-looking stills. |
+| [Alejandro Garcia on animation timing and spacing](https://www.animatorisland.com/physics-in-animation-how-important-is-it/) | Timing and frame spacing determine apparent speed; reference is used to understand motion. | Keep root speed fixed and measure step frequency independently. Adding smooth interpolation cannot rescue an excessively fast step rhythm. |
+| [Official Bluey app announcement](https://www.bluey.tv/blog/bluey-lets-play-mobile-app-is-available-now/) and [Budge's game page](https://budgestudios.com/en/apps/detail/bluey-lets-play/) | Establish the intended house/playset reference and interaction setting. | These pages do not provide a locomotion timing specification. Their text and the user's still images cannot establish exact frame-by-frame Budge walking. No such measurement is claimed. |
+
+### Specific failures found in our 116 code
+
+1. **Cadence:** a full stride of 84 floor units at speed 210 creates 2.5 cycles, or **5 steps per second**. Scaling that stride by Bingo's 0.82 art size creates **6.10 steps per second**. The frame-rate test passed while this hurried performance remained wrong.
+2. **Facing:** the source SVG's nose is left of its torso center and its tail is on the right. The original presentation assumed right-facing art, reversing the intended facing direction. This also affects whether the lean reads as forward or backward.
+3. **Arm phase:** legs reach their front/back contact positions at normalized phase 0/0.5, while the sine-driven arm swing peaks at 0.25/0.75. Opposite arm and leg contacts need a shared pose phase with a small delay, not an unrelated quarter-cycle offset.
+4. **Too many continuous waves:** an oscillating torso lean, relatively high foot lift, arm mesh bending and large tail motion were all added at once. Combined with excessive cadence they changed the performance much more than the still captures suggested.
+5. **Verification gap:** the contact-point test measured a useful engineering property but did not assess timing, facing, limb silhouette or the user's perception. Selected snapshots were insufficient to approve the motion.
+
+### Replacement specification
+
+Keep the original facial/body artwork. Use the correct source-facing direction, one 120-unit full stride for both characters (**3.5 steps/second at full gameplay speed**), lower passing-foot lift, restrained knee curvature, and a small forward lean. Author pelvis height around contact/down/passing/up values. Counter-swing the arms from the foot contact phase with a short delay, and reduce tail overlap. These are project tuning choices informed by the sources, not measured settings from the reference app. Preserve the accepted joystick and gameplay speed.
+
+Verify the complete motion with a deterministic 180-frame native preview at 60 samples/second: starts, full walking, direction reversal and stops, with both characters side by side. This is explicitly an in-place rig preview, not a claimed physical-device FPS benchmark. Also repeat actual in-home walking and item interactions. Visual acceptance remains open until the user is satisfied; a second failed review means revise the performance again.
+
+For navigation, display five destination bubbles with one Heeler Home entry labeled **House + backyard**. Selecting it while already anywhere on the property resumes play without travel or teleport. Opening the chooser fits the real scene above the character shelf and left of the world rail, focuses on the active character, and restores the prior camera on close. Saved positions, items and other players must remain unchanged. Check bottom-edge Bluey/Bingo at phone and iPad aspect ratios.
+
 ## The user's clarification sets the scope
 
 The problem is **how the character looks while walking**: “super up tight not fluid.” Prioritize the character performance: bent limbs, convincing steps, weight changes, relaxed arms and follow-through. The current joystick placement was accepted. Changing controls, walking speed, server tick rate or camera damping is not the requested solution.

@@ -1,7 +1,7 @@
 # /// script
 # dependencies = ["markdown"]
 # ///
-"""Render the walking research and its intervening Android delivery record."""
+"""Render walking research, implementation and the Android delivery record."""
 from pathlib import Path
 import re
 import markdown
@@ -10,6 +10,7 @@ docs = Path(__file__).resolve().parents[1] / 'docs'
 style = re.search(r'<style>(.*?)</style>', (docs / 'bluey-game-research-2026-09-23.html').read_text(encoding='utf-8'), re.S).group(1)
 for name, title in [
     ('walk-animation-research-2026-09-26', 'Little Weeps — relaxed walking'),
+    ('walk-animation-2026-09-26', 'Little Weeps — walking and chooser revision 118'),
     ('android-home-update-2026-09-26', 'Little Weeps — Android home update'),
 ]:
     source = docs / 'implementation' / (name + '.md')

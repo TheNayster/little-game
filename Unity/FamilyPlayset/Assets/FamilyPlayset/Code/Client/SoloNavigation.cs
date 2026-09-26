@@ -15,8 +15,10 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Image> avatarMarkers = new Dictionary<string, Image>();
         private readonly List<GameCharacterVisual> pickerCharacters = new List<GameCharacterVisual>();
         private readonly Dictionary<string, Text> worldBadges = new Dictionary<string, Text>();
-        private static readonly string[] WorldIds = { "home", "garden", "park", "creek", "beach", "daycare" };
-        private static readonly string[] WorldNames = { "Heeler Home", "Backyard Garden", "Playground & Park", "The Creek", "The Beach", "Daycare" };
+        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare" };
+        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare" };
+        private float navigationCamera;
+        private bool navigationManualCamera;
         public bool WorldsOpen => CharactersOpen;
         public bool CharactersOpen => characterTray != null && characterTray.gameObject.activeSelf;
 
@@ -133,6 +135,7 @@ namespace LittleWeeps.Client
             var rim=Panel(border.transform,"White picture edge",Vector2.zero,Vector2.one*170,Color.white,false,true);
             rim.sprite=pictureRim;
             var label=Label(group,WorldNames[index],21,new Vector2(0,-99),new Vector2(280,36));label.fontStyle=FontStyle.Bold;
+            if(id=="home")Label(group,"House + backyard",15,new Vector2(0,-122),new Vector2(280,25));
             var badge=Panel(group,"Destination status",new Vector2(0,-68),new Vector2(146,29),ready?new Color(.98f,.91f,.6f):new Color(.95f,.98f,1));
             var text=Label(badge.transform,ready?"Let's play":"Coming later",16,Vector2.zero,new Vector2(146,29));worldBadges.Add(id,text);
         }
@@ -141,13 +144,17 @@ namespace LittleWeeps.Client
         {
             if(WorldLoading)return;
             lastLocalAction=Time.realtimeSinceStartup;
-            if(open){CancelPointers();Narration.Stop();menu.SetActive(false);characterTray.SetAsLastSibling();}
+            if(open && !CharactersOpen)
+            {navigationCamera=cameraX;navigationManualCamera=manualCamera;CancelPointers();Narration.Stop();menu.SetActive(false);characterTray.SetAsLastSibling();}
+            if(!open && CharactersOpen){cameraX=navigationCamera;manualCamera=navigationManualCamera;}
             characterTray.gameObject.SetActive(open);stick.gameObject.SetActive(JoystickMode && !MenuOpen);familyCircle.gameObject.SetActive(!MenuOpen);
+            LayoutWorldViewport();
             RenderNavigation();
         }
         private void CloseNavigation()
         {
-            if(characterTray!=null)characterTray.gameObject.SetActive(false);
+            if(CharactersOpen){cameraX=navigationCamera;manualCamera=navigationManualCamera;characterTray.gameObject.SetActive(false);}
+            LayoutWorldViewport();
             if(familyCircle!=null)familyCircle.gameObject.SetActive(true);
         }
         private void RenderNavigation()
@@ -155,7 +162,7 @@ namespace LittleWeeps.Client
             if(!HasWorld)return;
             var selected=ReadPlayer(Actor).avatar;
             foreach(var pair in avatarMarkers)pair.Value.gameObject.SetActive(pair.Key==selected);
-            foreach(var pair in worldBadges)pair.Value.text=pair.Key==CurrentPlace?"You're here":"Let's play";
+            foreach(var pair in worldBadges)pair.Value.text=WorldLayout.Canonical(pair.Key)==CurrentArea?"You're here":"Let's play";
         }
         private void AnimateNavigation()
         {

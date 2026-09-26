@@ -29,7 +29,8 @@ namespace LittleWeeps.NetworkProbe
         private Vector2 mousePoint;
         private string traceActor;
         private readonly List<MotionSample> motionTrace=new List<MotionSample>();
-        [Serializable] private sealed class MotionSample {public double time;public Vector2 visual,authority;}
+        [Serializable] private sealed class MotionSample
+        {public double time;public Vector2 visual,authority,farFoot,nearFoot;public float phase,weight;public bool faceLeft;public string pose;}
         [Serializable] private sealed class MotionEvidence {public string actor,build;public MotionSample[] samples;}
         [Serializable] private sealed class Step {public int serial;public string action,role,text;public float x,y;public int finger=11;}
         [Serializable] private sealed class PlayerView {public string id;public Vector2 position;public bool visible;}
@@ -40,7 +41,7 @@ namespace LittleWeeps.NetworkProbe
             public int serial,visiblePlayers,canvases,narrators,audioSources;public bool passed,ready,pending,connected,menuOpen,shared;
             public string error,build,actor,feedback,dragging,zone,savePath,adventure,pendingRequest;public int pendingArchives;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
-            public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray;public string character;public int characterLayers;public ControlView[] controls;
+            public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray,activeCharacterVisible;public string character;public int characterLayers;public ControlView[] controls;
             public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
             public float homePoseAge;public string homePose;public bool homeMusicPlaying,musicMuted;public LittleWeeps.Core.HomeState home;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;
@@ -127,6 +128,9 @@ namespace LittleWeeps.NetworkProbe
                     }
                 }
                 else if(step.action=="traceStart"){traceActor=step.role;motionTrace.Clear();}
+                else if(step.action=="walkChecks")WalkAnimationVerification.Run(screen.Board,probe.Output);
+                else if(step.action=="walkFilm")StartCoroutine(WalkFilm());
+                else if(step.action=="fixtureTravel")screen.Travel(step.text);
                 else if(step.action=="traceStop")
                 {
                     File.WriteAllText(Path.Combine(probe.Output,"motion-trace.json"),JsonUtility.ToJson(new MotionEvidence{actor=traceActor,build=Application.version,samples=motionTrace.ToArray()},true));traceActor=null;
@@ -147,6 +151,45 @@ namespace LittleWeeps.NetworkProbe
             // Hidden Windows players do not have a capturable swap-chain image.
             // Render the actual live canvas to an offscreen target in this player.
             yield return null;
+            CaptureFrame(Path.Combine(probe.Output,"garden.png"));
+        }
+        private IEnumerator WalkFilm()
+        {
+            var folder=Path.Combine(probe.Output,"walk-film");Directory.CreateDirectory(folder);
+            var stage=new GameObject("Walk review stage",typeof(RectTransform),typeof(Image));
+            var rect=stage.GetComponent<RectTransform>();rect.SetParent(screen.Board.parent,false);
+            rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.offsetMin=rect.offsetMax=Vector2.zero;
+            stage.GetComponent<Image>().color=new Color(.83f,.94f,.89f);
+            var cast=new List<GameCharacterVisual>();
+            for(var i=0;i<2;i++)
+            {
+                var go=new GameObject("Review character",typeof(RectTransform));go.transform.SetParent(rect,false);
+                go.transform.localPosition=new Vector3(i==0?-240:240,-80,0);go.transform.localScale=Vector3.one*2.3f;
+                var visual=go.AddComponent<GameCharacterVisual>();visual.Select(i==0?"blue-pup":"orange-pup");cast.Add(visual);
+            }
+            try
+            {
+                const float dt=1f/60;
+                // A fixed-time complete sequence, not snapshots labelled as a
+                // real-time movie. Review both silhouettes at the same cadence.
+                for(var f=0;f<180;f++)
+                {
+                    var moving=f>=15 && f<155;var left=f>=90;
+                    foreach(var visual in cast)
+                    {
+                        var view=visual.GetComponentInChildren<CharacterView>();
+                        view.Present(new CharacterFrame(moving?CharacterPose.Walk:CharacterPose.Idle,moving?Core.Walking.Speed:0,left,
+                            travel:moving?new Vector2((left?-1:1)*Core.Walking.Speed*dt,0):Vector2.zero),dt);
+                    }
+                    Canvas.ForceUpdateCanvases();yield return null;
+                    CaptureFrame(Path.Combine(folder,f.ToString("D3")+".png"));
+                }
+                File.WriteAllText(Path.Combine(folder,"complete.json"),"{\"fps\":60,\"frames\":180,\"fixedTimePreview\":true}");
+            }
+            finally{stage.SetActive(false);Destroy(stage);}
+        }
+        private void CaptureFrame(string path)
+        {
             var canvas=screen.Board.GetComponentInParent<Canvas>();
             var oldMode=canvas.renderMode;var oldCamera=canvas.worldCamera;var oldDistance=canvas.planeDistance;
             var go=new GameObject("Verification capture",typeof(Camera));var camera=go.GetComponent<Camera>();
@@ -159,7 +202,7 @@ namespace LittleWeeps.NetworkProbe
                 canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=10;
                 Canvas.ForceUpdateCanvases();camera.Render();RenderTexture.active=target;
                 image=new Texture2D(Screen.width,Screen.height,TextureFormat.RGB24,false);image.ReadPixels(new Rect(0,0,Screen.width,Screen.height),0,0);image.Apply();
-                File.WriteAllBytes(Path.Combine(probe.Output,"garden.png"),image.EncodeToPNG());
+                File.WriteAllBytes(path,image.EncodeToPNG());
             }
             finally
             {
@@ -172,7 +215,14 @@ namespace LittleWeeps.NetworkProbe
             if(traceActor==null || !screen.Ready || motionTrace.Count>=1800)return;
             var p=screen.ReadPlayer(traceActor);
             var rect=screen.Board.Find(traceActor==screen.Actor?"Player character":"Friend-"+traceActor) as RectTransform;
-            if(rect!=null && rect.gameObject.activeSelf)motionTrace.Add(new MotionSample{time=Time.realtimeSinceStartupAsDouble,visual=BoardPosition(rect),authority=new Vector2(p.x,p.y)});
+            if(rect!=null && rect.gameObject.activeSelf)
+            {
+                var character=rect.GetComponentInChildren<CharacterView>();
+                motionTrace.Add(new MotionSample{time=Time.realtimeSinceStartupAsDouble,visual=BoardPosition(rect),authority=new Vector2(p.x,p.y),
+                    farFoot=screen.WorldPoint(RectTransformUtility.WorldToScreenPoint(null,character.FarContact)),
+                    nearFoot=screen.WorldPoint(RectTransformUtility.WorldToScreenPoint(null,character.NearContact)),
+                    phase=character.WalkPhase,weight=character.WalkWeight,faceLeft=character.Frame.FaceLeft,pose=character.Frame.Pose.ToString()});
+            }
         }
         private Vector2 BoardPosition(RectTransform rect)
         {return screen.WorldPoint(RectTransformUtility.WorldToScreenPoint(null,rect.position));}
@@ -204,6 +254,9 @@ namespace LittleWeeps.NetworkProbe
                         {var r=Bounds(i.rectTransform);return r.xMin>=clip.xMin-2 && r.xMax<=clip.xMax+2 && r.yMin>=clip.yMin-2 && r.yMax<=clip.yMax+2;});
                     });
                 evidence.boardBounds=Bounds(screen.Board);evidence.boardLayoutWidth=screen.Board.rect.width;
+                var active=screen.Board.Find("Player character").GetComponentInChildren<GameCharacterVisual>();
+                evidence.activeCharacterVisible=active.GetComponentsInChildren<Image>().Where(i=>i.enabled).All(i=>
+                {var r=Bounds(i.rectTransform);var clip=evidence.boardBounds;return r.xMin>=clip.xMin-2 && r.xMax<=clip.xMax+2 && r.yMin>=clip.yMin-2 && r.yMax<=clip.yMax+2;});
                 // Scrollable content can extend past the viewport. Check the
                 // actual clipped targets, not invisible offscreen layout boxes.
                 evidence.controls=FindObjectsByType<Button>(FindObjectsSortMode.None).Select(b=>

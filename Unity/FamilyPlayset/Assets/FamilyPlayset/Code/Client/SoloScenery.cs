@@ -42,6 +42,15 @@ namespace LittleWeeps.Client
         public bool SceneryReady=>sceneryRoot!=null && VisibleTiles().All(t=>scenicImages.ContainsKey(t.id));
         private bool ScenePosition(float x,float y)=>WorldLayout.Position(CurrentArea,SceneSchema,x,y);
         private Vector2 FromBoard(Vector2 point)=>new Vector2(point.x/sceneScale+cameraX,(point.y/sceneScale+250)/.45f);
+        private void LayoutWorldViewport()
+        {
+            if(Board==null)return;
+            // Frame the real scene inside the remaining space. A character at
+            // the bottom keeps their world position but is visible above the tray.
+            Board.sizeDelta=safe.rect.size-(CharactersOpen?new Vector2(310,300):Vector2.zero);
+            Board.anchoredPosition=CharactersOpen?new Vector2(-155,150):Vector2.zero;
+            sceneScale=Board.rect.height/WorldLayout.SceneHeight;
+        }
         private void BuildScenery()
         {
             Board.anchoredPosition=Vector2.zero;Board.sizeDelta=safe.rect.size;
@@ -77,11 +86,13 @@ namespace LittleWeeps.Client
         private void TickScenery()
         {
             if(sceneryRoot==null)return;
-            var player=ReadPlayer(Actor);sceneScale=safe.rect.height/WorldLayout.SceneHeight;
+            LayoutWorldViewport();
+            var player=ReadPlayer(Actor);
             var position=shared!=null && shared.Connected?shared.VisualPosition(Actor):new Vector2(player.x,player.y);
             if(cameraArea!=player.zone || cameraVisit!=player.visit)
             {cameraArea=player.zone;cameraVisit=player.visit;cameraX=position.x;manualCamera=false;}
-            if(!manualCamera)
+            if(CharactersOpen)cameraX=position.x;
+            else if(!manualCamera)
             {
                 var dead=Board.rect.width/sceneScale*.12f;
                 var target=position.x-Mathf.Clamp(position.x-cameraX,-dead,dead);

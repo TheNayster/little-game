@@ -28,6 +28,8 @@ namespace LittleWeeps.Client
             visual.localScale = Vector3.one * (40 * art.scale);
             view = visual.gameObject.AddComponent<CharacterView>();
             view.characterId = id; view.displayName = art.displayName;
+            view.floorUnitsPerArtUnit=40*art.scale;
+            view.sourceFacesLeft=true;
             view.showExampleProp = false;
             view.facing = Joint("Facing", visual, Vector2.zero);
             var joints = new Dictionary<string, Transform>();
@@ -50,6 +52,8 @@ namespace LittleWeeps.Client
                 picture.sizeDelta = new Vector2(layer.width / 100, layer.height / 100);
                 var graphic = picture.gameObject.AddComponent<Image>();
                 graphic.sprite = layer.sprite; graphic.raycastTarget = false;
+                if(layer.name.StartsWith("foot-") || layer.name.StartsWith("arm-"))
+                    picture.gameObject.AddComponent<CharacterLimbBend>().Configure(layer.name.StartsWith("foot-")?.67f:.73f);
                 if (layer.name == "eyes-open") view.eyesOpenGraphic = graphic;
                 if (layer.name == "eyes-closed") view.eyesClosedGraphic = graphic;
             }

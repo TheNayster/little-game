@@ -1,0 +1,59 @@
+{
+  "version": "0.0.118",
+  "operation": "updated",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "9d2f4762271ef5500554500d52b8bfb8f15891a8aad576398e279be37983a80c",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 116,
+  "installedApkHashMatched": true,
+  "pageBytes": 4096,
+  "launchCommandSucceeded": true,
+  "native16KbQualified": false,
+  "visibleHomeVerified": true,
+  "phoneScreenshotShowsWalking": true,
+  "userVisualAcceptance": false,
+  "retainedSavedWorlds": [
+    {
+      "schema": 1,
+      "worldIdRetained": true,
+      "toyCount": 5,
+      "allToyFieldsRetained": true,
+      "homeStateRetained": true,
+      "playerCountRetained": true,
+      "changedPlayerFields": []
+    },
+    {
+      "schema": 4,
+      "worldIdRetained": true,
+      "toyCount": 11,
+      "allToyFieldsRetained": true,
+      "homeStateRetained": true,
+      "playerCountRetained": true,
+      "changedPlayerFields": [
+        "x",
+        "y"
+      ]
+    }
+  ],
+  "sourceVerification": {
+    "android": {
+      "checkedFiles": 681,
+      "differences": []
+    },
+    "windows": {
+      "checkedFiles": 681,
+      "differences": [
+        "Unity/FamilyPlayset/ProjectSettings/ProjectSettings.asset"
+      ]
+    }
+  },
+  "liveServerChanged": false,
+  "appleDevicesChanged": false,
+  "postBuildWhitespaceOnlyNormalization": [
+    "Unity/FamilyPlayset/Assets/BuildProfiles/PC Server Network Probe.asset",
+    "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Network Probe.asset",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterLimbBend.cs.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterWalk.cs.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/WalkAnimationVerification.cs.meta"
+  ]
+}
