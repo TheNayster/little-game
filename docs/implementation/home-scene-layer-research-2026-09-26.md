@@ -1,5 +1,7 @@
 # Home scenery, furniture and usable objects
 
+**Implementation update:** the [first integrated sofa/trampoline/shed pass](integrated-home-2026-09-26.html) now follows this research. The dated findings below describe the preceding defect and remain the broader production contract; the full kitchen/house inventory is not complete.
+
 **Research and source audit: September 26, 2026. Status: research and production specification, not an installed game fix.** This responds to the user's report that a painted couch is duplicated by a second interactive couch. It applies to the connected Heeler Home and backyard. Other worlds remain scenic, with their future activities retained in the goal sheet.
 
 **Decision:** compose the room once. Give each usable object one logical identity and one coordinated set of visible parts. Build the architecture behind it, including the wall/floor it conceals. Render characters and contents between the object's parts where needed. Do not add another copy of furniture in the walking strip.

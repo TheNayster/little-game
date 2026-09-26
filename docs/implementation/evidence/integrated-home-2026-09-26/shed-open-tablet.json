@@ -1,0 +1,36 @@
+{
+  "build": "0.0.128",
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "controlsInSafeArea": true,
+  "homePose": "Idle",
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": true
+  },
+  "homeDrawOrder": [
+    "Illustrated world",
+    "tap-1",
+    "plant-1",
+    "Home shed",
+    "ball-1",
+    "Home shed front",
+    "Home trampoline",
+    "Home trampoline front",
+    "Home sofa",
+    "Friend-player-2",
+    "Home sofa front",
+    "bucket-1",
+    "Player character",
+    "Radio garden",
+    "Radio living",
+    "puddle-1",
+    "sponge-1"
+  ],
+  "residentScenery": [
+    "garden-shed",
+    "garden-tree"
+  ],
+  "pendingScenery": 0
+}

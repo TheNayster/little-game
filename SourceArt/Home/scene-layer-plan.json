@@ -1,8 +1,11 @@
 {
   "version": 1,
   "date": "2026-09-26",
-  "status": "Proposed authoring inventory; not runtime data or completed assets",
+  "status": "First sofa/trampoline/shed clean plates and front-part geometry implemented; other entries staged; see native/device evidence",
   "task": "ART-HOME-02",
+  "implementation": "../../docs/implementation/integrated-home-2026-09-26.md",
+  "compositionSource": "composition-2026-09-26.json",
+  "runtimeLayerGeometry": "../../Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/HomeArt/layer-layout.json",
   "research": "../../docs/implementation/home-scene-layer-research-2026-09-26.md",
   "area": "garden",
   "menuDestination": "Heeler Home — House + backyard",

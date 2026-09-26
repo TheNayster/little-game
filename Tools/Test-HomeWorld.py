@@ -42,7 +42,23 @@ def main():
         time.sleep(.5);require(a.input('inspect')['homePose']=='Sit','Missing seated pose');capture(a,folder,'sofa-two-children-phone')
         require(command(a,1,value='orange-pup')['accepted'],'Character swap failed');time.sleep(.5)
         require(player(a)['fixture']=='sofa-left' and a.input('inspect')['character']=='bingo','Character swap lost seat')
-        capture(a,folder,'bingo-seated-phone');passed('two occupied sofa seats, same-seat rejection and seated character change through native UI')
+        capture(a,folder,'bingo-seated-phone')
+        if args.build>=126:
+            def order(client):return client.input('inspect')['homeDrawOrder']
+            def between(names,back,occupant,front):
+                require(names.index(back)<names.index(occupant)<names.index(front),'Incorrect fixture occupant/cover order: '+occupant)
+            names=order(a)
+            for occupant in ('Player character','Friend-player-2'):between(names,'Home sofa',occupant,'Home sofa front')
+            a.input('resize',x=1024,y=768);ready(a);capture(a,folder,'sofa-two-children-tablet')
+            a.input('resize',x=1280,y=591);ready(a)
+            for y,label in ((120,'front'),(360,'behind')):
+                require(command(a,0,x=-3960,y=y)['accepted'],'Passerby placement failed');time.sleep(.4)
+                names=order(a);between(names,'Home sofa','Friend-player-2','Home sofa front')
+                require(names.index('Player character')>names.index('Home sofa front') if label=='front' else names.index('Player character')<names.index('Home sofa'),'Walking depth is incorrect')
+                capture(a,folder,'sofa-passerby-'+label)
+            a.input('touchButton',text='Sit left');wait(lambda:player(a)['fixture']=='sofa-left','return to seat')
+            passed('layered sofa surrounds both sitters; front/behind passerby keeps sibling at support depth; phone/tablet composition')
+        passed('two occupied sofa seats, same-seat rejection and seated character change through native UI')
         a.input('touchButton',text='Sit left');wait(lambda:player(a)['fixture']=='','stand up')
         require(command(a,0,x=-3480,y=150)['accepted'],'Position failed');time.sleep(.8)
         a.input('touchButton',text='Radio living power');wait(lambda:server.state()['view']['home']['livingRadio'],'radio switch')
@@ -63,6 +79,7 @@ def main():
         ages=[]
         for i in range(3):ages.append(capture(a,folder,'trampoline-'+str(i))['homePoseAge']);time.sleep(.2)
         require(ages[-1]>ages[0]+.2,'Shared bounce animation stalled')
+        if args.build>=126:between(order(a),'Home trampoline','Player character','Home trampoline front')
         a.input('touchButton',text='Tap to walk');a.input('touch-begin',role='stick',x=45,finger=21)
         wait(lambda:player(a)['fixture']=='','walk exits trampoline')
         wait(lambda:a.input('inspect')['homePose']=='Walk','walking clears the client bounce pose')
@@ -83,7 +100,10 @@ def main():
         require(toy('bucket-1')['water']==3,'Stored bucket lost water')
         a.input('touch-begin',role='ball-1',finger=23);a.input('touch-move',x=3635,y=160,finger=23);a.input('touch-end',x=3635,y=160,finger=23)
         wait(lambda:toy('ball-1')['container']=='shed-3','store ball');settled(a);capture(a,folder,'shed-stored-open-phone')
+        if args.build>=126:
+            for item in ('bucket-1','ball-1'):between(order(a),'Home shed',item,'Home shed front')
         a.input('touchButton',text='Shed doors');wait(lambda:not server.state()['view']['home']['shedOpen'],'close shed');capture(a,folder,'shed-closed-phone')
+        if args.build>=126:require(all(item not in order(a) for item in ('bucket-1','ball-1')),'Closed shed exposes stored items')
         travel(a,'creek');travel(a,'garden');command(a,0,x=3550,y=180);time.sleep(.8)
         a.input('touchButton',text='Shed doors');wait(lambda:server.state()['view']['home']['shedOpen'],'reopen shed')
         a.input('touch-begin',role='bucket-1',finger=24);a.input('touch-move',x=3290,y=200,finger=24);a.input('touch-end',x=3290,y=200,finger=24)

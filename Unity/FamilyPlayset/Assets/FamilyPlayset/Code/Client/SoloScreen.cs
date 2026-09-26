@@ -593,17 +593,37 @@ namespace LittleWeeps.Client
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
         }
+        private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
         {
-            foreach(var rect in toys.Where(pair=>pair.Key!=dragging && pair.Value.gameObject.activeSelf).Select(pair=>pair.Value).Concat(homeObjects.Values.Where(v=>v.root.gameObject.activeSelf).Select(v=>v.root)).Concat(new[]{avatar}).Concat(friends.Values.Where(v=>v.root.gameObject.activeSelf).Select(v=>v.root)).OrderByDescending(r=>r.anchoredPosition.y))rect.SetAsLastSibling();
-            // Slot users and visible stored props are deliberately in front of their
-            // furnishing. The authored foot/seat offsets provide a stable contact.
-            if(HasWorld)
+            depthOrder.Clear();
+            void Add(RectTransform root,float ground,int part,string key)
+            {if(root!=null && root.gameObject.activeSelf)depthOrder.Add((root,ground,part,key));}
+            // Occupants and stored objects use their support's ground plane,
+            // not their animated height. A closer walker still covers the whole
+            // assembly; no fixture user or stored prop is globally topmost.
+            void Player(string id,RectTransform root)
             {
-                if(!string.IsNullOrEmpty(ReadPlayer(Actor).fixture))avatar.SetAsLastSibling();
-                foreach(var f in friends)if(f.Value.root.gameObject.activeSelf && !string.IsNullOrEmpty(ReadPlayer(f.Key).fixture))f.Value.root.SetAsLastSibling();
-                foreach(var t in ReadToys())if(!string.IsNullOrEmpty(t.container) && toys[t.id].gameObject.activeSelf)toys[t.id].SetAsLastSibling();
+                var fixture=HasWorld?ReadPlayer(id).fixture:"";
+                var home=HomeLayout.Seat(fixture)?"Home sofa":HomeLayout.Bounce(fixture)?"Home trampoline":"";
+                if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
+                else Add(root,root.anchoredPosition.y,3,id);
             }
+            foreach(var pair in homeObjects)
+            {
+                var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);
+                if(homeFronts.TryGetValue(pair.Key,out var front))Add(front,root.anchoredPosition.y,2,pair.Key);
+            }
+            foreach(var toy in ReadToys())
+            {
+                if(toy.id==dragging)continue;var rect=toys[toy.id];
+                if(!string.IsNullOrEmpty(toy.container) && homeObjects.TryGetValue("Home shed",out var shed))Add(rect,shed.root.anchoredPosition.y,1,toy.id);
+                else Add(rect,rect.anchoredPosition.y,3,toy.id);
+            }
+            Player(Actor,avatar);
+            foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Player(friend.Key,friend.Value.root);
+            depthOrder.Sort((a,b)=>{var depth=b.ground.CompareTo(a.ground);if(depth!=0)return depth;var part=a.part.CompareTo(b.part);return part!=0?part:string.CompareOrdinal(a.key,b.key);});
+            foreach(var entry in depthOrder)entry.root.SetAsLastSibling();
             if(dragging!=null)toys[dragging].SetAsLastSibling();
         }
         private void Render()
@@ -615,7 +635,11 @@ namespace LittleWeeps.Client
             floorPath.color=creek?new Color(.37f,.72f,.87f):new Color(.9f,.81f,.64f);
             foreach(var part in fence)part.SetActive(false);
             foreach(var pair in travelButtons)pair.Value.interactable=(shared==null || shared.Connected) && (pair.Key!=zone || TravelPending);
-            foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(SoloWorld.AreaOf(toy.zone)==zone);
+            // Network-driven renders can occur before LateUpdate. Enforce closed
+            // container visibility here too, so hidden props never re-enter the
+            // UI raycast list for the remainder of that frame.
+            foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(SoloWorld.AreaOf(toy.zone)==zone &&
+                (string.IsNullOrEmpty(toy.container) || Home!=null && Home.shedOpen));
             var toyStates=ReadToys();var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
             renderedArea=p.zone;renderedVisit=p.visit;
             characterVisual.Select(p.avatar);

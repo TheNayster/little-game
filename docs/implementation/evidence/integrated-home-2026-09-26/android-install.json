@@ -1,0 +1,71 @@
+{
+  "utc": "2026-09-26T16:45:42.6051336Z",
+  "operation": "updated",
+  "version": "0.0.128",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "ded17d9c8d706dfa1a2ec082f658c5d909c633e0322d2bfd31983f93de58c8f2",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 125,
+  "previousApkSha256": "6c26da9d95c86c2a23186259aed40e745374e4c43a384761977ff48faeb7ff18",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "visibleUiAndSaveRetentionVerified": true,
+  "native16KbQualified": false,
+  "visibleScene": "Bluey walking in the connected home kitchen with joystick and character chooser; changed fixtures reviewed in native screenshots",
+  "retainedSaveRecords": [
+    {
+      "group": "solo",
+      "byteIdentical": true,
+      "beforeSha256": "3fc4cd5a5af19076bbfe4f6f772b7f038949c69c0e5ea7205f3e8aca62e5fb2b",
+      "afterSha256": "3fc4cd5a5af19076bbfe4f6f772b7f038949c69c0e5ea7205f3e8aca62e5fb2b"
+    },
+    {
+      "group": "solo",
+      "byteIdentical": false,
+      "beforeSha256": "7194f05575060fb5ebe6411fbeed002fb49dfd7d34e37df2477d90aaedb591c6",
+      "afterSha256": "2bbf86c5ed6922bac5cc18ef3f4404efb8ff1cf9a388345ce2569e9b77f0c8a5",
+      "revisionAdvancedBy": 0,
+      "allContentExceptPositionAndCommandHistoryIdentical": true
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "beforeSha256": "1ffe2c467865b596879fe32f2b826c11d3ee8ebcc6223aa928231d7edf7cfd4d",
+      "afterSha256": "1ffe2c467865b596879fe32f2b826c11d3ee8ebcc6223aa928231d7edf7cfd4d"
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "beforeSha256": "f5dd3df9ca19108cfe6d6d04fb4bbc5975d13edf77594709ae2a712c949d7a78",
+      "afterSha256": "f5dd3df9ca19108cfe6d6d04fb4bbc5975d13edf77594709ae2a712c949d7a78"
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "beforeSha256": "ca3ea5678a3f04c2161095a2cc4e578eb3ef9afbafb20270b51c99db4cbff706",
+      "afterSha256": "ca3ea5678a3f04c2161095a2cc4e578eb3ef9afbafb20270b51c99db4cbff706"
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "beforeSha256": "2703a0ad01ef41f30cf078ca2bc900c8f39be0ef696863cb378781fbbb15028b",
+      "afterSha256": "2703a0ad01ef41f30cf078ca2bc900c8f39be0ef696863cb378781fbbb15028b"
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "beforeSha256": "58b5d4d4dfaefd6e4a0a07f3352e890cfdb0703bd480f95ce892b466e78c3bb3",
+      "afterSha256": "58b5d4d4dfaefd6e4a0a07f3352e890cfdb0703bd480f95ce892b466e78c3bb3"
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "beforeSha256": "c0e327fe7f271b6d75b6ca72b10f1d6d32b5b7798dc320fac37390af0b52247b",
+      "afterSha256": "c0e327fe7f271b6d75b6ca72b10f1d6d32b5b7798dc320fac37390af0b52247b"
+    }
+  ],
+  "fixtureVisualAcceptancePending": true
+}

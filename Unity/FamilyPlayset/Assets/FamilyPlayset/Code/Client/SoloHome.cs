@@ -14,6 +14,9 @@ namespace LittleWeeps.Client
         private readonly List<Texture2D> homeTextures=new List<Texture2D>();
         private readonly List<Image> storageHints=new List<Image>();
         private Image shedPicture;
+        private readonly Dictionary<string,RectTransform> homeFronts=new Dictionary<string,RectTransform>();
+        private HomeArtPart.Layout homeLayerLayout;
+        private HomeArtPart shedFront;
         private Sprite shedOpenSprite,shedClosedSprite;
         private AudioSource homeMusic;
         private Text musicSetting,homeFeedback;
@@ -41,6 +44,15 @@ namespace LittleWeeps.Client
         {
             var pic=Rect(parent,id,pos,size).gameObject.AddComponent<Image>();pic.sprite=sprite;pic.raycastTarget=false;return pic;
         }
+        private HomeArtPart HomeFront(string fixture,string partId,Vector2 pos,Vector2 size,Sprite sprite)
+        {
+            var obj=homeObjects[fixture];
+            var root=Rect(Board,fixture+" front",ToBoard(obj.x,obj.y),Vector2.zero);
+            homeFronts.Add(fixture,root);
+            var part=Rect(root,partId,pos,size).gameObject.AddComponent<HomeArtPart>();
+            part.Configure(sprite.texture,homeLayerLayout.parts.Single(p=>p.id==partId).polygons);
+            return part;
+        }
         private void HomeHit(Transform parent,string id,Vector2 pos,Vector2 size,Action action)
         {
             var hit=Plain(parent,id,pos,size,Color.clear,true);hit.canvasRenderer.cullTransparentMesh=false;
@@ -65,12 +77,17 @@ namespace LittleWeeps.Client
         private void BuildHome()
         {
             if(Home==null)return;
+            homeLayerLayout=JsonUtility.FromJson<HomeArtPart.Layout>(Resources.Load<TextAsset>("HomeArt/layer-layout").text);
             var sofa=HomeObject("Home sofa",HomeLayout.SofaX,HomeLayout.SofaY);
-            HomePicture(sofa,"Sofa",new Vector2(0,30),new Vector2(570,285),HomeSprite("home-seat"));
+            var sofaSprite=HomeSprite("home-seat");
+            HomePicture(sofa,"Sofa rear and seats",new Vector2(0,30),new Vector2(570,285),sofaSprite);
+            HomeFront("Home sofa","sofa-front",new Vector2(0,30),new Vector2(570,285),sofaSprite);
             HomeHit(sofa,"Sit left",new Vector2(-100,45),new Vector2(185,220),()=>UseHome("sofa-left"));
             HomeHit(sofa,"Sit right",new Vector2(100,45),new Vector2(185,220),()=>UseHome("sofa-right"));
             var trampoline=HomeObject("Home trampoline",HomeLayout.TrampolineX,HomeLayout.TrampolineY);
-            HomePicture(trampoline,"Trampoline",new Vector2(0,25),new Vector2(560,280),HomeSprite("home-trampoline"));
+            var trampolineSprite=HomeSprite("home-trampoline");
+            HomePicture(trampoline,"Trampoline rear and mat",new Vector2(0,25),new Vector2(560,280),trampolineSprite);
+            HomeFront("Home trampoline","trampoline-front",new Vector2(0,25),new Vector2(560,280),trampolineSprite);
             HomeHit(trampoline,"Bounce left",new Vector2(-110,60),new Vector2(200,195),()=>UseHome("trampoline-left"));
             HomeHit(trampoline,"Bounce right",new Vector2(110,60),new Vector2(200,195),()=>UseHome("trampoline-right"));
             var radioSprite=HomeSprite("home-radio");
@@ -85,6 +102,7 @@ namespace LittleWeeps.Client
             var shed=HomeObject("Home shed",HomeLayout.ShedX,HomeLayout.ShedY);
             shedOpenSprite=HomeSprite("home-shed");shedClosedSprite=HomeSprite("home-shed-closed");
             shedPicture=HomePicture(shed,"Shed",new Vector2(0,25),new Vector2(560,373),shedClosedSprite);
+            shedFront=HomeFront("Home shed","shed-front",new Vector2(0,25),new Vector2(560,373),shedOpenSprite);
             HomeHit(shed,"Shed doors",new Vector2(0,130),new Vector2(330,90),()=>HomeAction(SoloAction.SetFixture,"shed",Home.shedOpen?"off":"on"));
             // The handle remains reachable when the interior has stored toys.
             var latch=Panel(shed,"Door handle",new Vector2(0,130),new Vector2(58,22),new Color(.69f,.8f,.82f));
@@ -111,7 +129,7 @@ namespace LittleWeeps.Client
             if(homeMusic!=null){homeMusic.Stop();Destroy(homeMusic);homeMusic=null;}
             foreach(var sprite in homeSprites)Destroy(sprite);
             foreach(var texture in homeTextures)Resources.UnloadAsset(texture);
-            homeSprites.Clear();homeTextures.Clear();homeObjects.Clear();storageHints.Clear();shedPicture=null;
+            homeSprites.Clear();homeTextures.Clear();homeObjects.Clear();homeFronts.Clear();storageHints.Clear();shedPicture=null;shedFront=null;homeLayerLayout=null;
         }
         private void TickHome()
         {
@@ -119,16 +137,15 @@ namespace LittleWeeps.Client
             var visible=CurrentArea=="garden";
             foreach(var pair in homeObjects)
             {var obj=pair.Value;obj.root.gameObject.SetActive(visible);obj.root.anchoredPosition=ToBoard(obj.x,obj.y);obj.root.localScale=Vector3.one*sceneScale;}
-            shedPicture.sprite=home.shedOpen?shedOpenSprite:shedClosedSprite;
-            var bounce=ReadPlayer(Actor).fixture;var bounceAge=HomePoseAge;
-            if(!HomeLayout.Bounce(bounce))
+            foreach(var pair in homeFronts)
             {
-                var friend=friends.FirstOrDefault(f=>HomeLayout.Bounce(ReadPlayer(f.Key).fixture));
-                if(friend.Value.view!=null){bounce=ReadPlayer(friend.Key).fixture;bounceAge=friend.Value.view.Frame.UseSeconds;}
+                var obj=homeObjects[pair.Key];pair.Value.gameObject.SetActive(visible);
+                pair.Value.anchoredPosition=obj.root.anchoredPosition;pair.Value.localScale=obj.root.localScale;
             }
-            var mat=homeObjects["Home trampoline"].root.Find("Trampoline");
-            var compression=HomeLayout.Bounce(bounce)?1-Mathf.Abs(Mathf.Sin(Mathf.PI*Mathf.Repeat(Mathf.Max(0,bounceAge-.3f)/1.05f,1))):0;
-            mat.localScale=new Vector3(1,1-.035f*compression,1);
+            shedPicture.sprite=home.shedOpen?shedOpenSprite:shedClosedSprite;
+            shedFront.gameObject.SetActive(home.shedOpen);
+            // Keep rigid frames and their front/rear registration fixed. Bounce
+            // motion belongs to the character; mat-only deformation is future art.
             var items=ReadToys();
             for(var i=0;i<storageHints.Count;i++)
                 storageHints[i].gameObject.SetActive(home.shedOpen && dragging!=null && !items.Any(t=>t.container=="shed-"+i));

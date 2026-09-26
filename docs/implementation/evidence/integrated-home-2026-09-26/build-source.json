@@ -1,0 +1,19 @@
+{
+  "build": 128,
+  "sourceBaseCommit": "b845327ad2292cd7c101fa7b5d237a6f09d04daf",
+  "unitySourceArtSettingsFiles": 751,
+  "allMatchedBeforeInstall": true,
+  "gameplaySpeed": 420,
+  "speedAppliesTo": "Every current and future character",
+  "runtimeChanges": {
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/HomeArtPart.cs": "788dbb7c5f7dc5652d26857c5bb52cd1cd1782fd363df6657b021130c6425484",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloHome.cs": "1c080374514d03b29336cb235392bc49f93d988ef64475ad0f20f00d153ff116",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs": "1a44a7b31e038eef44e06871d634f30b49b2dfede862af21e7cc533f5cf4e419",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs": "8d22716151a8fa5edc7b95a8333e04a5db861acc07ffb69d43ff8f9877d7deba",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs": "5413aa9b458cc7644d8625a36a2037a812ab293fc012f0d45877a012fb42bff4",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/HomeArt/layer-layout.json": "dbca18d465a4768ebda9563a59ec7ed8b2bf2230e01bb31c977f82801c4a4d97",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/garden-shed.png": "49cddc2e653dfbd33d1c01d43db8085cfb73f819d224496d7957f851f82a0fa3",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/garden-tree.png": "e9efa04fc8adffa8450e350073cfc03c00c4d01ab1047ef02d6e620ca6519b62",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-living.png": "2d9cee13de43db066c7628f736e91e775e0021dcf4173f9ea0fc2627a5cbf64d"
+  }
+}

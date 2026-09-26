@@ -1,0 +1,27 @@
+{
+  "task": "ART-HOME-02",
+  "date": "2026-09-26",
+  "generator": "Built-in image_gen",
+  "scope": "First integrated sofa/trampoline/shed pass; other planned furniture remains staged.",
+  "layers": "../../Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/HomeArt/layer-layout.json",
+  "assets": [
+    {
+      "id": "home-living",
+      "prompt": "Use case: precise-object-edit. Edit target: this exact 2172x724 wide living-room panorama for a personal Bluey dollhouse game. Create the clean room plate needed behind a separately rendered interactive sofa. REMOVE the entire orange sofa at left including all cushions, the coffee table and its plant/books, the blue oval rug, and all shadows cast by these removed things. Reconstruct the yellow vertical-panel wall, white baseboard and terracotta floorboards naturally behind them, with the same perspective and floor-line alignment. Keep the window, wall pictures, left potted plant, side table/lamp, bookcase, stairs, under-stair bench, door and right cabinet EXACTLY in the existing locations and scale. Those other features are outside this edit. Do not replace removed furniture with anything, do not add a couch or character. Preserve the 3:1 panoramic framing, full image extent, Bluey-style soft outlines, lighting, palette and all four edge pixels/scene joins as closely as possible. No text, no labels, no UI, no new room design. Opaque background.",
+      "output": "C:/Users/sephi/.codex/generated_images/01a0daca-9c9f-7de0-8c43-524c38ca4f98/exec-96750bbb-20c1-4c3c-bdad-e115b6cf10d8.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-living.png"
+    },
+    {
+      "id": "garden-tree",
+      "prompt": "Use case: precise-object-edit. Edit this exact 2172x724 panoramic Bluey-style backyard into a clean background plate. Remove ONLY the entire trampoline: all turquoise mat/rim, green legs/steps, tall green posts and all translucent blue enclosure mesh, plus the shadow cast by it. Reconstruct the grass, flower bed, hedge and distant view naturally where it stood. Keep tree canopy and branches, lanterns/lights, hammock, circular wooden tree bench, house/veranda, swing, pool, sky and all other decoration fixed in precisely their original locations. Do not add a new trampoline or any new object or character. Preserve the original 3:1 canvas, lighting, soft cartoon outlines, color palette, perspective and scenery along every edge; this must still join the existing neighboring level panels. The usable trampoline will be composed as separate live layers later. Opaque panorama, no text/UI.",
+      "output": "C:/Users/sephi/.codex/generated_images/01a0daca-9c9f-7de0-8c43-524c38ca4f98/exec-5e593613-1fb0-4e88-8c2b-b867a86ebdc1.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/garden-tree.png"
+    },
+    {
+      "id": "garden-shed",
+      "prompt": "Use case: precise-object-edit. This exact panoramic image is the edit target. Produce a clean Bluey backyard background plate by removing the complete mint shed, its roof/door/window, tap and watering can, all freestanding potted plants in front of it, and the rake/shovel beside it. Remove their cast shadows too. Reconstruct uninterrupted flower-bed foliage, distant hedge/hills and a short stretch of light timber garden fence, with lawn in front, naturally filling the gap. Keep the fruit tree and stump on the left, big tree on the right, stone pond, right fence, sky and all surrounding landscape unchanged in location/scale. NO replacement shed, no tools or new structures in the cleaned gap; the real usable shed will be drawn separately. Preserve the 2172x724 3:1 framing, perspective, daylight, same soft pastel flat cartoon style and all edge joins. No characters, text, UI or labels. Opaque panorama.",
+      "output": "C:/Users/sephi/.codex/generated_images/01a0daca-9c9f-7de0-8c43-524c38ca4f98/exec-4d31c5d5-0f20-41cf-bfc6-39150ad99a26.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/garden-shed.png"
+    }
+  ]
+}

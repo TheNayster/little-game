@@ -138,7 +138,14 @@ namespace LittleWeeps.Client
         }
         private void ResetScenery(bool disposing=false)
         {
-            foreach(var pair in scenicImages){var texture=pair.Value.texture;pair.Value.texture=null;if(texture!=null)Resources.UnloadAsset(texture);}
+            foreach(var pair in scenicImages)
+            {
+                // Unity can destroy the canvas children before this owner's
+                // OnDestroy during player shutdown. Do not dirty a dead Graphic.
+                if(pair.Value==null)continue;
+                var texture=pair.Value.texture;pair.Value.texture=null;
+                if(texture!=null)Resources.UnloadAsset(texture);
+            }
             // Keep pending requests across screen resets and reconcile them in
             // TickScenery. Unloading a late request while a new screen loads the
             // same asset would invalidate the new screen's texture reference.

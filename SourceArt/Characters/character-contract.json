@@ -1,5 +1,12 @@
 {
   "schema": 2,
+  "sharedMovement": {
+    "speed": 420,
+    "relativeToOriginal": 2,
+    "appliesTo": "Every current and future character",
+    "rule": "Character selection, artwork size and animation do not override shared gameplay speed. Change only on explicit user request.",
+    "acceptedBuild": 125
+  },
   "status": "front-and-profile-layered-art-for-Unity-review",
   "goalIds": [
     "CHAR-01",
