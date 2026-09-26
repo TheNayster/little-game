@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using LittleWeeps.Client;
 using UnityEditor;
@@ -16,63 +15,85 @@ namespace LittleWeeps.EditorTools
         public void OnPreprocessBuild(BuildReport report)
         {
             const string destination = "Assets/FamilyPlayset/Resources/CharacterArt";
+            const string importedContract = "Assets/FamilyPlayset/Art/Characters/animation-contract.json";
             Directory.CreateDirectory(destination); AssetDatabase.Refresh();
-            var projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, "../../.."));
-            foreach (var id in new[] { "bluey", "bingo" })
+            var root = Path.GetFullPath(Path.Combine(Application.dataPath, "../../.."));
+            var sourceContract = Path.Combine(root, "SourceArt/Characters/AnimationSheets/animation-contract.json");
+            if (Hash(sourceContract) != Hash(importedContract)) throw new BuildFailedException("Reimport changed character sheet contract.");
+            var manifest = JsonUtility.FromJson<Manifest>(File.ReadAllText(importedContract));
+            foreach (var character in manifest.characters)
             {
-                var directory = "Assets/FamilyPlayset/Art/Characters/" + id;
-                var manifest = JsonUtility.FromJson<Manifest>(File.ReadAllText(directory + "/import-manifest.json"));
-                CheckHash(Path.Combine(projectRoot, manifest.source), manifest.sourceSha256);
-                CheckHash(Path.Combine(projectRoot, manifest.contract), manifest.contractSha256);
-                var path = destination + "/" + id + ".asset";
+                var directory = "Assets/FamilyPlayset/Art/Characters/" + character.id;
+                var sheetPath = directory + "/actions.png";
+                if (Hash(Path.Combine(root, character.source)) != character.sourceSha256 || Hash(sheetPath) != character.sourceSha256)
+                    throw new BuildFailedException("Reimport changed character sheet: " + character.id);
+                var importer = (TextureImporter)AssetImporter.GetAtPath(sheetPath);
+                importer.textureType = TextureImporterType.Default;
+                importer.mipmapEnabled = false; importer.alphaIsTransparency = true;
+                importer.isReadable = false; importer.npotScale = TextureImporterNPOTScale.None;
+                importer.textureCompression = TextureImporterCompression.Uncompressed;
+                importer.maxTextureSize = 2048; importer.filterMode = FilterMode.Bilinear;
+                importer.wrapMode = TextureWrapMode.Clamp; importer.SaveAndReimport();
+                var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(sheetPath);
+                if (texture.width != character.width || texture.height != character.height || character.frames.Length != 16)
+                    throw new BuildFailedException("Character sheet layout changed: " + character.id);
+                foreach (var frame in character.frames)
+                    if (frame.pixels.width <= 0 || frame.pixels.height <= 0 || frame.pixels.Value.xMin < 0 || frame.pixels.Value.yMin < 0 ||
+                        frame.pixels.Value.xMax > texture.width || frame.pixels.Value.yMax > texture.height)
+                        throw new BuildFailedException("Invalid sheet rectangle: " + frame.name);
+                var walk = character.walk;
+                var walkPath = directory + "/gentle-walk.png";
+                if (walk == null || Hash(Path.Combine(root, walk.source)) != walk.sourceSha256 || Hash(walkPath) != walk.sourceSha256)
+                    throw new BuildFailedException("Reimport changed walking sheet: " + character.id);
+                var walkImporter = (TextureImporter)AssetImporter.GetAtPath(walkPath);
+                walkImporter.textureType = TextureImporterType.Default;
+                walkImporter.mipmapEnabled = false; walkImporter.alphaIsTransparency = true;
+                walkImporter.isReadable = false; walkImporter.npotScale = TextureImporterNPOTScale.None;
+                walkImporter.textureCompression = TextureImporterCompression.Uncompressed;
+                walkImporter.maxTextureSize = 2048; walkImporter.filterMode = FilterMode.Bilinear;
+                walkImporter.wrapMode = TextureWrapMode.Clamp; walkImporter.SaveAndReimport();
+                var walkTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(walkPath);
+                if (walkTexture.width != walk.width || walkTexture.height != walk.height || walk.frames.Length != 8 || walk.referenceHeight <= 0)
+                    throw new BuildFailedException("Walking sheet layout changed: " + character.id);
+                foreach (var frame in walk.frames)
+                    if (frame.pixels.width <= 0 || frame.pixels.height <= 0 || frame.pixels.Value.xMin < 0 || frame.pixels.Value.yMin < 0 ||
+                        frame.pixels.Value.xMax > walkTexture.width || frame.pixels.Value.yMax > walkTexture.height)
+                        throw new BuildFailedException("Invalid walk rectangle: " + frame.name);
+                var path = destination + "/" + character.id + ".asset";
                 var art = AssetDatabase.LoadAssetAtPath<CharacterArt>(path);
                 if (art == null) { art = ScriptableObject.CreateInstance<CharacterArt>(); AssetDatabase.CreateAsset(art, path); }
-                art.characterId = id; art.displayName = manifest.displayName; art.scale = manifest.scale;
-                art.groundX = manifest.groundX; art.groundY = manifest.groundY;
-                art.layers = LoadLayers(directory,manifest);
-                var profileDirectory=directory+"/profile";
-                var profile=JsonUtility.FromJson<Manifest>(File.ReadAllText(profileDirectory+"/import-manifest.json"));
-                CheckHash(Path.Combine(projectRoot,profile.source),profile.sourceSha256);
-                CheckHash(Path.Combine(projectRoot,profile.contract),profile.contractSha256);
-                art.profileLayers=LoadLayers(profileDirectory,profile);
+                art.characterId = character.id; art.displayName = character.displayName;
+                art.scale = character.scale; art.sheet = texture; art.frames = character.frames;
+                art.sheetSha256 = character.sourceSha256; art.referenceHeight = character.referenceHeight;
+                art.walkSheet = walkTexture; art.walkFrames = walk.frames;
+                art.walkSheetSha256 = walk.sourceSha256; art.walkReferenceHeight = walk.referenceHeight;
+                art.shadowSprite = AssetDatabase.LoadAssetAtPath<Sprite>(directory + "/ground-shadow.png");
+                // Keep old studies editable without preloading their textures.
+                art.layers = null; art.profileLayers = null;
                 EditorUtility.SetDirty(art);
             }
             AssetDatabase.SaveAssets();
         }
-        private static CharacterArt.Layer[] LoadLayers(string directory,Manifest manifest)
-        {
-            return manifest.layers.Select(layer => {
-                    var spritePath = directory + "/" + layer.name + ".png";
-                    CheckHash(spritePath, layer.sha256);
-                    var importer=(TextureImporter)AssetImporter.GetAtPath(spritePath);
-                    if(importer.textureType!=TextureImporterType.Sprite)
-                    {
-                        importer.textureType=TextureImporterType.Sprite;importer.spriteImportMode=SpriteImportMode.Single;
-                        importer.spritePixelsPerUnit=100;importer.mipmapEnabled=false;importer.alphaIsTransparency=true;
-                        importer.isReadable=false;importer.npotScale=TextureImporterNPOTScale.None;
-                        importer.textureCompression=TextureImporterCompression.Uncompressed;
-                        importer.filterMode=FilterMode.Bilinear;importer.wrapMode=TextureWrapMode.Clamp;
-                        importer.SaveAndReimport();
-                    }
-                    var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
-                    if (sprite == null) throw new BuildFailedException("Missing sprite: " + spritePath);
-                    return new CharacterArt.Layer { name = layer.name, sprite = sprite, left = layer.left, top = layer.top,
-                        width = layer.width, height = layer.height, pivotX = layer.pivotX, pivotY = layer.pivotY };
-                }).ToArray();
-        }
-        private static void CheckHash(string path, string expected)
+        private static string Hash(string path)
         {
             using var hash = SHA256.Create();
-            var actual = BitConverter.ToString(hash.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();
-            if (actual != expected) throw new BuildFailedException("Re-export changed character source: " + path);
+            return BitConverter.ToString(hash.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();
         }
-        [Serializable] private sealed class Manifest
+        [Serializable] private sealed class Manifest { public Character[] characters; }
+        [Serializable] private sealed class Character
         {
-            public string displayName, source, sourceSha256, contract, contractSha256;
-            public float scale, groundX, groundY;
-            public Layer[] layers;
+            public string id, displayName, source, sourceSha256;
+            public int width, height;
+            public float scale, referenceHeight;
+            public CharacterArt.SheetFrame[] frames;
+            public WalkSheet walk;
         }
-        [Serializable] private sealed class Layer
-        { public string name, sha256; public float left, top, width, height, pivotX, pivotY; }
+        [Serializable] private sealed class WalkSheet
+        {
+            public string source, sourceSha256;
+            public int width, height;
+            public float referenceHeight;
+            public CharacterArt.SheetFrame[] frames;
+        }
     }
 }

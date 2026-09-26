@@ -30,7 +30,7 @@ namespace LittleWeeps.NetworkProbe
         private string traceActor;
         private readonly List<MotionSample> motionTrace=new List<MotionSample>();
         [Serializable] private sealed class MotionSample
-        {public double time;public Vector2 visual,authority,farFoot,nearFoot;public float phase,weight;public bool faceLeft;public string pose;}
+        {public double time;public Vector2 visual,authority,ground;public float phase,weight;public int drawing;public bool faceLeft;public string pose;}
         [Serializable] private sealed class MotionEvidence {public string actor,build;public MotionSample[] samples;}
         [Serializable] private sealed class Step {public int serial;public string action,role,text;public float x,y;public int finger=11;}
         [Serializable] private sealed class PlayerView {public string id;public Vector2 position;public bool visible;}
@@ -216,10 +216,9 @@ namespace LittleWeeps.NetworkProbe
             var rect=screen.Board.Find(traceActor==screen.Actor?"Player character":"Friend-"+traceActor) as RectTransform;
             if(rect!=null && rect.gameObject.activeSelf)
             {
-                var character=rect.GetComponentInChildren<CharacterView>();
+                var character=rect.GetComponentInChildren<CharacterSheetView>();
                 motionTrace.Add(new MotionSample{time=Time.realtimeSinceStartupAsDouble,visual=BoardPosition(rect),authority=new Vector2(p.x,p.y),
-                    farFoot=screen.WorldPoint(RectTransformUtility.WorldToScreenPoint(null,character.FarContact)),
-                    nearFoot=screen.WorldPoint(RectTransformUtility.WorldToScreenPoint(null,character.NearContact)),
+                    ground=screen.WorldPoint(RectTransformUtility.WorldToScreenPoint(null,character.Ground)),drawing=character.FrameIndex,
                     phase=character.WalkPhase,weight=character.WalkWeight,faceLeft=character.Frame.FaceLeft,pose=character.Frame.Pose.ToString()});
             }
         }
@@ -249,12 +248,12 @@ namespace LittleWeeps.NetworkProbe
                     .Where(v=>v.GetComponentsInParent<RectMask2D>().Any(m=>m.name=="Cast viewport")).All(v=>
                     {
                         var clip=Bounds((RectTransform)v.GetComponentInParent<RectMask2D>().transform);
-                        return v.GetComponentsInChildren<Image>().Where(i=>i.enabled).All(i=>
+                        return v.GetComponentsInChildren<Graphic>().Where(i=>i.enabled).All(i=>
                         {var r=Bounds(i.rectTransform);return r.xMin>=clip.xMin-2 && r.xMax<=clip.xMax+2 && r.yMin>=clip.yMin-2 && r.yMax<=clip.yMax+2;});
                     });
                 evidence.boardBounds=Bounds(screen.Board);evidence.boardLayoutWidth=screen.Board.rect.width;
                 var active=screen.Board.Find("Player character").GetComponentInChildren<GameCharacterVisual>();
-                evidence.activeCharacterVisible=active.GetComponentsInChildren<Image>().Where(i=>i.enabled).All(i=>
+                evidence.activeCharacterVisible=active.GetComponentsInChildren<Graphic>().Where(i=>i.enabled).All(i=>
                 {var r=Bounds(i.rectTransform);var clip=evidence.boardBounds;return r.xMin>=clip.xMin-2 && r.xMax<=clip.xMax+2 && r.yMin>=clip.yMin-2 && r.yMax<=clip.yMax+2;});
                 // Scrollable content can extend past the viewport. Check the
                 // actual clipped targets, not invisible offscreen layout boxes.

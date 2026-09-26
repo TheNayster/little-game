@@ -17,197 +17,182 @@ MonoBehaviour:
   scale: 1
   groundX: 220
   groundY: 454
-  layers:
-  - name: ground-shadow
-    sprite: {fileID: 21300000, guid: 5338f1d8709692643a1ffeecf8bf8262, type: 3}
-    left: 141
-    top: 443
-    width: 158
-    height: 22
-    pivotX: 220
-    pivotY: 454
-  - name: tail
-    sprite: {fileID: 21300000, guid: d2211ea19941c8242a640ec8425b0263, type: 3}
-    left: 268
-    top: 322
-    width: 57
-    height: 112
-    pivotX: 281
-    pivotY: 337
-  - name: arm-far
-    sprite: {fileID: 21300000, guid: 9fe33227275644f4fa8aaf136d5f54ed, type: 3}
-    left: 104
-    top: 246
-    width: 62
-    height: 101
-    pivotX: 150
-    pivotY: 260
-  - name: foot-far
-    sprite: {fileID: 21300000, guid: 0a7a6cbf68f7cc645bd0d7e1ee84f772, type: 3}
-    left: 151
-    top: 347
-    width: 68
-    height: 105
-    pivotX: 188
-    pivotY: 352
-  - name: foot-near
-    sprite: {fileID: 21300000, guid: a2e611ee403225a4b95846902fe5f32e, type: 3}
-    left: 232
-    top: 347
-    width: 62
-    height: 106
-    pivotX: 254
-    pivotY: 352
-  - name: body
-    sprite: {fileID: 21300000, guid: a248e24438a3d44489053b1b1626c8f0, type: 3}
-    left: 143
-    top: 128
-    width: 154
-    height: 243
-    pivotX: 220
-    pivotY: 454
-  - name: head
-    sprite: {fileID: 21300000, guid: d9f5962e449569742aeea3e809a40c94, type: 3}
-    left: 143
-    top: 46
-    width: 154
-    height: 193
-    pivotX: 220
-    pivotY: 250
-  - name: eyes-open
-    sprite: {fileID: 21300000, guid: d3810caad7fd5ea44819cf3aae372928, type: 3}
-    left: 156
-    top: 147
-    width: 125
-    height: 81
-    pivotX: 220
-    pivotY: 250
-  - name: eyes-closed
-    sprite: {fileID: 21300000, guid: 92373697a132e71449be6c8761309345, type: 3}
-    left: 162
-    top: 186
-    width: 113
-    height: 17
-    pivotX: 220
-    pivotY: 250
-  - name: muzzle
-    sprite: {fileID: 21300000, guid: 0a1c5c0fe0260f64e8038c302caf9229, type: 3}
-    left: 176
-    top: 188
-    width: 93
-    height: 90
-    pivotX: 220
-    pivotY: 250
-  - name: arm-near
-    sprite: {fileID: 21300000, guid: 162a52b2862403441a90e3c332cf0c64, type: 3}
-    left: 272
-    top: 245
-    width: 64
-    height: 102
-    pivotX: 287
-    pivotY: 260
-  - name: held-prop
-    sprite: {fileID: 21300000, guid: d8318a60e4e074742bb8c5d6769aa7dd, type: 3}
-    left: 309
-    top: 314
-    width: 64
-    height: 97
-    pivotX: 323
-    pivotY: 333
-  profileLayers:
-  - name: ground-shadow
-    sprite: {fileID: 8728231918820932540, guid: 99ca4be97d12adf4fa201b1f9a864e4b, type: 3}
-    left: 156
-    top: 444
-    width: 128
-    height: 20
-    pivotX: 220
-    pivotY: 454
-  - name: tail
-    sprite: {fileID: -6254662425824378823, guid: 382d51f5d2342534ca3fc24882e39526, type: 3}
-    left: 265
-    top: 323
-    width: 70
-    height: 92
-    pivotX: 271
-    pivotY: 337
-  - name: arm-far
-    sprite: {fileID: 4068575031807192720, guid: de48447cb31875a4f96371ec6e4a6f78, type: 3}
-    left: 167
-    top: 249
-    width: 36
-    height: 97
-    pivotX: 190
-    pivotY: 260
-  - name: foot-far
-    sprite: {fileID: -7174183662345756920, guid: 455816ef012fd944e82cbf611e4fe51c, type: 3}
-    left: 177
-    top: 345
-    width: 59
-    height: 107
-    pivotX: 216
-    pivotY: 352
-  - name: foot-near
-    sprite: {fileID: -4867008803294310186, guid: fca626ff6176d2840a1418fe4fc96f31, type: 3}
-    left: 193
-    top: 345
-    width: 61
-    height: 108
-    pivotX: 232
-    pivotY: 352
-  - name: body
-    sprite: {fileID: -1880120661550918566, guid: 5c7abb4dcfe0acc458d4ec587fbb0524, type: 3}
-    left: 179
-    top: 129
-    width: 102
-    height: 241
-    pivotX: 220
-    pivotY: 454
-  - name: head
-    sprite: {fileID: 6943535168657398750, guid: c5340923b2375f24185fbaf21056348a, type: 3}
-    left: 181
-    top: 47
-    width: 98
-    height: 192
-    pivotX: 220
-    pivotY: 250
-  - name: eyes-open
-    sprite: {fileID: 2494401406956161095, guid: ed765602958a28b479a34fbc892f3b38, type: 3}
-    left: 178
-    top: 146
-    width: 54
-    height: 76
-    pivotX: 220
-    pivotY: 250
-  - name: eyes-closed
-    sprite: {fileID: 3538280395980919369, guid: fda87f6b65a0a0c48ab1863c565b6b16, type: 3}
-    left: 182
-    top: 185
-    width: 45
-    height: 10
-    pivotX: 220
-    pivotY: 250
-  - name: muzzle
-    sprite: {fileID: 5254905245062674008, guid: 47fd956e51abc02419db957ab91079fa, type: 3}
-    left: 136
-    top: 206
-    width: 94
-    height: 67
-    pivotX: 220
-    pivotY: 250
-  - name: arm-near
-    sprite: {fileID: 2878312142416865765, guid: 3dac967259a7a9440b9f9dc5db8bde22, type: 3}
-    left: 226
-    top: 248
-    width: 41
-    height: 100
-    pivotX: 250
-    pivotY: 260
-  - name: held-prop
-    sprite: {fileID: -281167491472552147, guid: 2f0cc8f7457c89c41ac4d0083023637a, type: 3}
-    left: 227
-    top: 317
-    width: 64
-    height: 97
-    pivotX: 241
-    pivotY: 336
+  layers: []
+  profileLayers: []
+  sheet: {fileID: 2800000, guid: a87ee0529ef112442a283bd730777d72, type: 3}
+  walkSheet: {fileID: 2800000, guid: ef4f0bf410a853e40931ae5b55eb2894, type: 3}
+  shadowSprite: {fileID: 21300000, guid: 5338f1d8709692643a1ffeecf8bf8262, type: 3}
+  sheetSha256: 9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224
+  walkSheetSha256: 0d099b0a36bd05b7d501ec5d62c0bab36225e72e064450f13e4c2d81f5bf5a04
+  referenceHeight: 295
+  walkReferenceHeight: 394
+  frames:
+  - name: idle
+    pixels:
+      x: 85
+      y: 6
+      width: 171
+      height: 299
+    ground: {x: 186, y: 303}
+  - name: blink
+    pixels:
+      x: 384
+      y: 6
+      width: 169
+      height: 299
+    ground: {x: 483.5, y: 303}
+  - name: wave-a
+    pixels:
+      x: 688
+      y: 5
+      width: 208
+      height: 300
+    ground: {x: 788, y: 303}
+  - name: wave-b
+    pixels:
+      x: 994
+      y: 6
+      width: 215
+      height: 299
+    ground: {x: 1093.5, y: 303}
+  - name: walk-0
+    pixels:
+      x: 72
+      y: 314
+      width: 210
+      height: 309
+    ground: {x: 186, y: 621}
+  - name: walk-1
+    pixels:
+      x: 392
+      y: 316
+      width: 199
+      height: 306
+    ground: {x: 494.5, y: 620}
+  - name: walk-2
+    pixels:
+      x: 687
+      y: 314
+      width: 177
+      height: 307
+    ground: {x: 796, y: 619}
+  - name: walk-3
+    pixels:
+      x: 987
+      y: 314
+      width: 205
+      height: 309
+    ground: {x: 1101, y: 621}
+  - name: walk-4
+    pixels:
+      x: 77
+      y: 628
+      width: 201
+      height: 309
+    ground: {x: 183, y: 935}
+  - name: walk-5
+    pixels:
+      x: 378
+      y: 630
+      width: 196
+      height: 302
+    ground: {x: 486.5, y: 930}
+  - name: walk-6
+    pixels:
+      x: 685
+      y: 628
+      width: 177
+      height: 303
+    ground: {x: 791.5, y: 929}
+  - name: walk-7
+    pixels:
+      x: 994
+      y: 628
+      width: 201
+      height: 304
+    ground: {x: 1099, y: 930}
+  - name: sit
+    pixels:
+      x: 69
+      y: 967
+      width: 194
+      height: 263
+    ground: {x: 174, y: 1228}
+  - name: carry
+    pixels:
+      x: 385
+      y: 940
+      width: 186
+      height: 295
+    ground: {x: 492.5, y: 1233}
+  - name: dance-a
+    pixels:
+      x: 675
+      y: 940
+      width: 230
+      height: 294
+    ground: {x: 805.5, y: 1232}
+  - name: dance-b
+    pixels:
+      x: 981
+      y: 940
+      width: 223
+      height: 294
+    ground: {x: 1071, y: 1232}
+  walkFrames:
+  - name: walk-0
+    pixels:
+      x: 96
+      y: 39
+      width: 243
+      height: 398
+    ground: {x: 239.5, y: 435}
+  - name: walk-1
+    pixels:
+      x: 542
+      y: 39
+      width: 239
+      height: 397
+    ground: {x: 683.5, y: 434}
+  - name: walk-2
+    pixels:
+      x: 985
+      y: 39
+      width: 238
+      height: 398
+    ground: {x: 1125.5, y: 435}
+  - name: walk-3
+    pixels:
+      x: 1427
+      y: 39
+      width: 238
+      height: 397
+    ground: {x: 1569, y: 434}
+  - name: walk-4
+    pixels:
+      x: 97
+      y: 483
+      width: 240
+      height: 389
+    ground: {x: 238, y: 870}
+  - name: walk-5
+    pixels:
+      x: 541
+      y: 483
+      width: 239
+      height: 389
+    ground: {x: 682, y: 870}
+  - name: walk-6
+    pixels:
+      x: 985
+      y: 483
+      width: 238
+      height: 386
+    ground: {x: 1124.5, y: 867}
+  - name: walk-7
+    pixels:
+      x: 1428
+      y: 483
+      width: 242
+      height: 391
+    ground: {x: 1568.5, y: 872}

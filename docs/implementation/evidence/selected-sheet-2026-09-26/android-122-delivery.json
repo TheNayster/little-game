@@ -1,0 +1,77 @@
+{
+  "utc": "2026-09-26T15:40:16.7591125Z",
+  "operation": "updated",
+  "version": "0.0.122",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "71168cf8998830f7114eefb3648aaf8ef40dfd1847fcdf3ea5127a3de4120a80",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 119,
+  "previousApkSha256": "d083429c66e2347bf08f64efef402cc04436929f1269c3e52143fa537d76749f",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "visibleUiAndSaveRetentionVerified": false,
+  "native16KbQualified": false,
+  "saveRecords": [
+    {
+      "group": "solo",
+      "byteIdentical": true,
+      "objectsRetained": true,
+      "homeRetained": true,
+      "worldIdentityRetained": true
+    },
+    {
+      "group": "solo",
+      "byteIdentical": false,
+      "objectsRetained": true,
+      "homeRetained": true,
+      "worldIdentityRetained": true
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "objectsRetained": true,
+      "homeRetained": true,
+      "worldIdentityRetained": true
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "objectsRetained": true,
+      "homeRetained": true,
+      "worldIdentityRetained": true
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "objectsRetained": true,
+      "homeRetained": true,
+      "worldIdentityRetained": true
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "objectsRetained": true,
+      "homeRetained": true,
+      "worldIdentityRetained": true
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "objectsRetained": true,
+      "homeRetained": true,
+      "worldIdentityRetained": true
+    },
+    {
+      "group": "adventures",
+      "byteIdentical": true,
+      "objectsRetained": true,
+      "homeRetained": true,
+      "worldIdentityRetained": true
+    }
+  ],
+  "userVisualFeedback": "Looks way better but the arms and legs move way to much",
+  "visualEvidence": "User opened and reviewed build 122; subsequent screenshot shows chat rather than game."
+}

@@ -1,0 +1,10 @@
+{
+  "build": 123,
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "0ae7451eb68d07d40602751dfcdcb4584e3255bfa107a810f666ad91c18f0177",
+  "bytes": 58807481,
+  "freshRelease": true,
+  "development": false,
+  "manifestEntriesVerified": 892,
+  "sourceMismatches": []
+}

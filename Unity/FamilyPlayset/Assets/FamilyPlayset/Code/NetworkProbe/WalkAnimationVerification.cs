@@ -7,71 +7,66 @@ using UnityEngine.UI;
 
 namespace LittleWeeps.NetworkProbe
 {
-    // Invoked only by the isolated release-player verification channel. Uses
-    // the real character adapter/art at several render rates, not a mock rig.
+    // Test the actual sheet player, not obsolete hidden procedural limbs.
     public static class WalkAnimationVerification
     {
         [Serializable] private sealed class Result
-        {public bool passed;public string build;public List<Trial> trials=new List<Trial>();public string[] checks;}
+        { public bool passed; public string build; public List<Trial> trials=new List<Trial>(); public string[] checks; }
         [Serializable] private sealed class Trial
-        {public string character;public int fps,plantedPairs;public bool faceLeft;public float phase,maxStanceDrift,footLift;}
+        { public string character,sourceHash,walkSourceHash; public int fps,distinctWalkFrames; public bool faceLeft; public float phase; }
         public static void Run(Transform parent,string output)
         {
             var result=new Result{build=Application.version};
-            void Check(bool yes,string message){if(!yes)throw new InvalidOperationException("Walk check: "+message);}
+            void Check(bool yes,string message){if(!yes)throw new InvalidOperationException("Sheet walk check: "+message);}
             foreach(var id in new[]{"blue-pup","orange-pup"})foreach(var left in new[]{false,true})
             {
                 float expected=-1;
                 foreach(var fps in new[]{30,60,120})
                 {
-                    var go=new GameObject("Isolated walk check",typeof(RectTransform));
-                    go.transform.SetParent(parent,false);
-                    // Keep the fixture out of the visible play area; world state
-                    // and the actual player character are never moved by it.
+                    var go=new GameObject("Isolated sheet check",typeof(RectTransform));go.transform.SetParent(parent,false);
                     var rect=(RectTransform)go.transform;rect.anchoredPosition=new Vector2(10000,0);
                     try
                     {
                         var adapter=go.AddComponent<GameCharacterVisual>();adapter.Select(id);
                         var view=adapter.ActiveView;
-                        Check(2*Core.Walking.Speed/CharacterWalk.Stride<=3.6f,"walk cadence became a frantic run");
-                        var step=1f/fps;var point=Vector2.zero;var direction=left?-1:1;
-                        adapter.Present(point,"walk-check",false,step);
-                        var priorFar=view.FarContact;var priorNear=view.NearContact;var previousPhase=0f;
-                        var trial=new Trial{character=view.characterId,fps=fps,faceLeft=left};
-                        var floorY=priorFar.y;
+                        Check(view.FrameCount==16 && view.SourceHash.Length==64,"missing prepared artwork");
+                        Check(go.GetComponentsInChildren<CharacterView>().Length==0,"legacy redraw still visible");
+                        Check(go.GetComponentsInChildren<RawImage>().Length==1,"sheet drawing absent or duplicated");
+                        var step=1f/fps;var point=Vector2.zero;var direction=left?-1:1;var seen=new HashSet<int>();
+                        adapter.Present(point,"sheet-check",false,step);
                         for(var i=0;i<fps*2;i++)
                         {
                             point.x+=direction*Core.Walking.Speed*step;rect.anchoredPosition=new Vector2(10000+point.x,0);
-                            adapter.Present(point,"walk-check",false,step);
-                            view=adapter.ActiveView;
-                            Check(adapter.ProfileVisible,"horizontal walking kept the frontal drawing");
-                            Check(go.GetComponentsInChildren<CharacterView>().Length==1,"two directional drawings are visible");
-                            var far=view.FarContact;var near=view.NearContact;var phase=view.WalkPhase;
-                            if(i>fps/3 && phase>previousPhase && phase<.49f && previousPhase>.01f)
-                            {trial.maxStanceDrift=Mathf.Max(trial.maxStanceDrift,Vector3.Distance(priorFar,far));trial.plantedPairs++;}
-                            if(i>fps/3 && phase>previousPhase && phase>.51f && previousPhase>.51f)
-                            {trial.maxStanceDrift=Mathf.Max(trial.maxStanceDrift,Vector3.Distance(priorNear,near));trial.plantedPairs++;}
-                            trial.footLift=Mathf.Max(trial.footLift,far.y-floorY,near.y-floorY);
-                            priorFar=far;priorNear=near;previousPhase=phase;
+                            var root=rect.anchoredPosition;adapter.Present(point,"sheet-check",false,step);
+                            Check(rect.anchoredPosition==root,"animation changed player coordinates");
+                            Check(view.FrameIndex>=4 && view.FrameIndex<12,"wrong walk drawing");seen.Add(view.FrameIndex);
+                            Check(view.IsWalkDrawing && view.WalkSourceHash.Length==64,"old exaggerated walk is still active");
+                            Check(left?view.FacingSign<0:view.FacingSign>0,"art faces away from travel");
                         }
-                        trial.phase=view.WalkPhase;
-                        var noseDirection=view.facing.TransformVector(Vector3.left).x;
-                        Check(left?noseDirection<0:noseDirection>0,"artwork faces away from travel");
-                        // Parent screen scale is allowed; the test drift is in
-                        // native canvas world coordinates with identical roots.
-                        Check(trial.plantedPairs>20 && trial.maxStanceDrift<.02f,"stance foot slid");
-                        Check(trial.footLift>3,"no visible foot clearance");
+                        var trial=new Trial{character=view.CharacterId,sourceHash=view.SourceHash,walkSourceHash=view.WalkSourceHash,fps=fps,faceLeft=left,
+                            phase=view.WalkPhase,distinctWalkFrames=seen.Count};
+                        Check(seen.Count==8,"walk omitted authored frames");
                         if(expected<0)expected=trial.phase;
                         Check(Mathf.Abs(Mathf.DeltaAngle(expected*360,trial.phase*360))<.08f,"render rate changed gait phase");
-                        var root=rect.anchoredPosition;
-                        for(var i=0;i<fps/3;i++)adapter.Present(point,"walk-check",true,step);
-                        view=adapter.ActiveView;
-                        Check(view.WalkWeight==0 && rect.anchoredPosition==root,"stop moved root or failed to settle");
-                        Check(!adapter.ProfileVisible,"idle failed to return to frontal art");
-                        point.x+=1500;adapter.Present(point,"walk-check",false,step);
-                        Check(view.WalkPhase==0 && view.WalkWeight==0,"teleport produced a giant step");
-                        adapter.Present(point,"new-room",false,step);
-                        Check(view.WalkWeight==0,"travel retained old stance");
+                        adapter.Present(point,"sheet-check",true,step);
+                        Check(view.FrameIndex==13 && view.WalkWeight==0,"stopped carry lost its pose");
+                        Check(!view.IsWalkDrawing,"carry did not restore original action artwork");
+                        adapter.Present(point,"sheet-check",false,step);
+                        Check(view.FrameIndex<2,"stop failed to return to idle");
+                        point.x+=1500;adapter.Present(point,"sheet-check",false,step);
+                        Check(view.WalkPhase==0 && view.WalkWeight==0,"teleport produced a false walk");
+                        foreach(var pose in new[]{CharacterPose.Sit,CharacterPose.Bounce,CharacterPose.Dance,CharacterPose.Wave})
+                        {
+                            adapter.PresentFrame(new CharacterFrame(pose,0,left,.7f),step);
+                            var correct=pose==CharacterPose.Sit?view.FrameIndex==12:pose==CharacterPose.Dance?view.FrameIndex>=14:
+                                pose==CharacterPose.Wave?view.FrameIndex==2 || view.FrameIndex==3:view.FrameIndex==0 || view.FrameIndex==2;
+                            Check(correct,"home action lost selected sheet artwork");
+                            Check(!view.IsWalkDrawing,"home action incorrectly uses walk atlas");
+                        }
+                        var savedRoot=rect.anchoredPosition;
+                        adapter.Select(id=="blue-pup"?"orange-pup":"blue-pup");
+                        Check(rect.anchoredPosition==savedRoot && adapter.Frame.Pose==CharacterPose.Wave,"switch lost current action or root");
+                        Check(go.GetComponentsInChildren<RawImage>().Length==1,"switch rendered both characters");
                         result.trials.Add(trial);
                     }
                     finally{go.SetActive(false);UnityEngine.Object.Destroy(go);}
@@ -82,7 +77,10 @@ namespace LittleWeeps.NetworkProbe
             for(var i=0;i<12;i++)Check(motion.Observe(new Vector2(-4+(i%2)*.03f,0),"stable",false,false,.02f).FaceLeft,"small correction flipped facing");
             Check(!motion.Observe(new Vector2(0,0),"stable",false,false,.02f).FaceLeft,"intentional reversal ignored");
             result.passed=true;
-            result.checks=new[]{"Bluey/Bingo left/right profile artwork with one visible rig","30/60/120 FPS equal-distance phase and planted-foot contact","stop/carry preserves gameplay root and restores frontal idle","travel/teleport clears gait","tiny correction facing hysteresis and deliberate reversal"};
+            result.checks=new[]{"selected Bluey/Bingo sheets render with no legacy redraw","all eight walk frames in both directions at 30/60/120 FPS",
+                "equal distance retains phase and animation never changes player root","idle/carry/sit/bounce/dance/wave use prepared frames",
+                "switch preserves action, coordinates and one visible drawing","teleport reset and facing hysteresis",
+                "relaxed walk atlas only while moving, original home poses retained"};
             File.WriteAllText(Path.Combine(output,"walk-checks.json"),JsonUtility.ToJson(result,true));
         }
     }

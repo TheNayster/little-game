@@ -22,7 +22,7 @@ def main():
             client.input('resize',x=1280,y=720);home.ready(client);home.travel(client,'home')
         if not args.baseline:
             a.input('walkChecks');rig=read(a.out/'walk-checks.json');require(rig and rig['passed'],'Native rig checks missing');write(folder/'rig-checks.json',rig)
-            checks.append('native rig: contact, clearance, 30/60/120 fps, stops, travel and facing')
+            checks.append('native sheet player: eight frames, 30/60/120 fps, home poses, switches, stops, travel and facing' if args.build>=120 else 'native rig: contact, clearance, 30/60/120 fps, stops, travel and facing')
             if args.build>=117:
                 a.input('walkFilm');wait(lambda:(a.out/'walk-film/complete.json').exists(),'complete animation preview',120)
                 shutil.copytree(a.out/'walk-film',folder/'film')

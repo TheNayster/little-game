@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build": 123,
+  "baseline": false,
+  "checks": [
+    "native sheet player: eight frames, 30/60/120 fps, home poses, switches, stops, travel and facing",
+    "180-frame native fixed-time preview: both characters, starts/stops and reversal",
+    "bluey actual home walking, reversal and stopped poses; local/remote traces",
+    "bingo actual home walking, reversal and stopped poses; local/remote traces",
+    "half-speed carrying walk preserves the one real bucket holder"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTouched": false
+}

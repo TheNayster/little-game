@@ -4,6 +4,39 @@ September 26, 2026 · **WALK-RESEARCH-01** · CHAR-01, WORLD-01/02; G6 character
 
 **User review supersedes the first technical result:** Android 116 was installed and passed engineering checks, but the user reported its walking looked much worse. It is **visually rejected**, not an accepted milestone. The [revision record](walk-animation-2026-09-26.html) tracks the replacement. The original diagnosis below records pre-116 behavior; the second investigation follows immediately.
 
+## Third investigation: how the body should move, after build 122
+
+**New phone feedback:** the selected-sheet characters look much better, but the arms and legs move too much. The user explicitly requested another online study of body-part motion. This review is about performance, not joystick placement, network smoothing or adding general-purpose physics. Sources were checked on September 26, 2026. Human biped teaching examples provide mechanics; applying them to these short-legged cartoon characters is our design judgment, not measured Budge animation data.
+
+### The connected movement to author
+
+| Part | Motion to aim for | What to avoid in this game | Source |
+| --- | --- | --- | --- |
+| Feet and legs | Alternate the supporting leg. Contact, settle/down, pass the free leg, push/rise, then opposite contact. The free knee bends enough to clear the floor. | Repeating the same forward leg; two floating feet during ordinary walking; large crossed-leg kicks. | [Toon Boom walk analysis](https://learn.toonboom.com/modules/walk-cycle-animation/topic/walk-analysis1) |
+| Hips and weight | Transfer weight over the supporting foot, dip slightly after contact, then rise toward the next step. | A torso gliding at exactly one height, or a large added bounce unrelated to the foot phase. | [Jason Martinsen's walk construction](https://www.animationmentor.com/blog/tutorial-animating-human-walk-cycle/) |
+| Chest and shoulders | Respond gently against the pelvis rotation. Keep these blocky characters recognizable; imply the turn in drawings rather than twisting a flat face texture. | Whole torso/head swinging like a rigid board or rubber tube. | [Harvey Newman's walk construction](https://anim.works/walk-cycle/) |
+| Arms | Right leg forward goes with left arm forward; reverse for the other step. Hands remain low beside the body for this relaxed performance. | Same-side arm/leg marching, raised fists or symmetrical pumping. | [CUNY 2D animation course](https://openlab.bmcc.cuny.edu/mmp260/week-7/), [Newman](https://anim.works/walk-cycle/) |
+| Elbows and hands | A relaxed bend; the hand trails the upper arm slightly and eases through reversals. | Independent large sine waves or every joint reversing on the same instant. | [Drew Adams on overlap](https://www.animationmentor.com/blog/follow-through-and-overlapping-action-the-12-basic-principles-of-animation/) |
+| Head, ears and tail | Head stays comparatively steady; small secondary parts may trail the body and settle. Magnitude must suit the force of the action. | Head pecking, long tail swishes or exaggerated ear flapping on every tiny step. | [Newman](https://anim.works/walk-cycle/), [Adams](https://www.animationmentor.com/blog/follow-through-and-overlapping-action-the-12-basic-principles-of-animation/) |
+
+A cycle includes **both** steps. Eight image slots alone are not proof of eight correct phases. Compare the near and far leg explicitly at half-cycle separation and look at the poses between contacts. Toon Boom's production guidance recommends blocking torso/legs before polishing secondary movement; detailed clean artwork cannot compensate for poor underlying motion. [Rough animation workflow](https://docs.toonboom.com/help/harmony-24/essentials/paperless-animation/create-rough-animation.html).
+
+### Timing and travel must agree
+
+The current controller moves at 210 floor units/second. Build 122 uses 120 units per complete two-step cycle: 1.75 cycles or **3.5 steps/second** at full input. A trial of 160 units gives **2.625 steps/second**, 25% fewer pose changes for the same distance. These are calculations from our code, not reference-app measurements. The new trial keeps gameplay speed and the joystick unchanged.
+
+**This introduces a tradeoff:** a smaller drawn step and slower cycle cannot simultaneously maintain the same travel speed with exact foot planting. For a planted foot, `worldFoot = playerRoot + drawnFootOffset`; its change must be approximately zero over the support interval. Slowing an arbitrary atlas may look quieter while increasing sliding. Final contact calibration must use the drawn support-foot path, not the frame count or a guessed stride constant. Pereira's own implementation illustrates synchronizing playback with known animation travel speed; its 3D blend-tree recipe is not directly copied into our uGUI view. [Speed synchronization](https://marcospereira.me/2023/12/02/unity-foot-sliding/).
+
+Unity documents matching corresponding foot contacts when blending locomotion clips. That supports a phase-aware transition requirement; merely adding a crossfade to differently posed raster drawings can produce ghost limbs. Our game uses one RawImage and code-driven frame selection, not an Animator blend tree. [Unity 6000.3 blend trees](https://docs.unity3d.com/6000.3/Documentation/Manual/class-BlendTree.html).
+
+### Findings in the actual assets and bounded correction
+
+Build 122 improved likeness, as the user confirmed. Inspection shows broad arm positions, relatively long crossing steps and repeated leg silhouettes. Its automated test correctly proves that eight indices are played; it does **not** prove opposite limbs, accurate weight transfer, overlap or planted contact. Retain that distinction in all delivery records.
+
+Prepare separate, restrained walking atlases for Bluey and Bingo so the liked idle, blink, wave, sitting and dancing pictures remain untouched. Review the smaller hand sweep and shorter steps at actual phone scale and at slow speed, then inspect both movement directions and idle boundaries. A 160-unit cadence is a deliberately calmer prototype trial, not a biomechanically complete repair. Exact wrist overlap, per-foot contact registration and start/stop transitional drawings remain separate visual criteria.
+
+Acceptance requires two kinds of evidence: engineering checks for correct atlas selection, direction, phase, roots, actions and saves; and visual review for limb relationships, amplitude, stable proportions, loop seams and support. An attractive still or passing playback test never establishes the second. Track the user's next response before calling this finished animation. [Implementation and latest delivery](selected-sheet-characters-2026-09-26.html).
+
 ## Second investigation after the rejected walk
 
 The user also asked for a single Heeler Home/backyard destination and a chooser that leaves the active character visible. These are presentation changes to the same persistent property; they do not authorize resetting a world or moving the player merely to open a menu.

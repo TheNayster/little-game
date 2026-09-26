@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "build": "0.0.123",
+  "trials": [
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "walkSourceHash": "0d099b0a36bd05b7d501ec5d62c0bab36225e72e064450f13e4c2d81f5bf5a04",
+      "fps": 30,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.6249995827674866
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "walkSourceHash": "0d099b0a36bd05b7d501ec5d62c0bab36225e72e064450f13e4c2d81f5bf5a04",
+      "fps": 60,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.6250009536743164
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "walkSourceHash": "0d099b0a36bd05b7d501ec5d62c0bab36225e72e064450f13e4c2d81f5bf5a04",
+      "fps": 120,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.625001847743988
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "walkSourceHash": "0d099b0a36bd05b7d501ec5d62c0bab36225e72e064450f13e4c2d81f5bf5a04",
+      "fps": 30,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.6249995827674866
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "walkSourceHash": "0d099b0a36bd05b7d501ec5d62c0bab36225e72e064450f13e4c2d81f5bf5a04",
+      "fps": 60,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.6250009536743164
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "walkSourceHash": "0d099b0a36bd05b7d501ec5d62c0bab36225e72e064450f13e4c2d81f5bf5a04",
+      "fps": 120,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.625001847743988
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "walkSourceHash": "dae2acaaaf435a86a57e1fbafa269a3e28e98b7969cda0f7f9c332f7c4d10d26",
+      "fps": 30,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.6249995827674866
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "walkSourceHash": "dae2acaaaf435a86a57e1fbafa269a3e28e98b7969cda0f7f9c332f7c4d10d26",
+      "fps": 60,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.6250009536743164
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "walkSourceHash": "dae2acaaaf435a86a57e1fbafa269a3e28e98b7969cda0f7f9c332f7c4d10d26",
+      "fps": 120,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.625001847743988
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "walkSourceHash": "dae2acaaaf435a86a57e1fbafa269a3e28e98b7969cda0f7f9c332f7c4d10d26",
+      "fps": 30,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.6249995827674866
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "walkSourceHash": "dae2acaaaf435a86a57e1fbafa269a3e28e98b7969cda0f7f9c332f7c4d10d26",
+      "fps": 60,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.6250009536743164
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "walkSourceHash": "dae2acaaaf435a86a57e1fbafa269a3e28e98b7969cda0f7f9c332f7c4d10d26",
+      "fps": 120,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.625001847743988
+    }
+  ],
+  "checks": [
+    "selected Bluey/Bingo sheets render with no legacy redraw",
+    "all eight walk frames in both directions at 30/60/120 FPS",
+    "equal distance retains phase and animation never changes player root",
+    "idle/carry/sit/bounce/dance/wave use prepared frames",
+    "switch preserves action, coordinates and one visible drawing",
+    "teleport reset and facing hysteresis",
+    "relaxed walk atlas only while moving, original home poses retained"
+  ]
+}

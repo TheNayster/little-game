@@ -1,0 +1,110 @@
+using System;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace LittleWeeps.Client
+{
+    // Plays the selected raster drawings without deforming their face or body.
+    // Movement and saves remain owned by the existing player controller.
+    public sealed class CharacterSheetView : MonoBehaviour
+    {
+        private CharacterArt art;
+        private RectTransform facing, picture, shadow;
+        private RawImage image;
+        private float time, cycle;
+        // A calmer two-step cadence; gameplay movement speed is unchanged.
+        public const float WalkStride = 160;
+        public CharacterFrame Frame { get; private set; }
+        public int FrameIndex { get; private set; }
+        public float WalkPhase => cycle;
+        public float WalkWeight => Frame.Speed > 1 && (Frame.Pose == CharacterPose.Walk || Frame.Pose == CharacterPose.Carry) ? 1 : 0;
+        public string CharacterId => art.characterId;
+        public string SourceHash => art.sheetSha256;
+        public string WalkSourceHash => art.walkSheetSha256;
+        public bool IsWalkDrawing => image.texture == art.walkSheet;
+        public float FacingSign => facing.localScale.x;
+        public int FrameCount => art.frames.Length;
+        public Vector3 Ground => transform.position;
+
+        public void Configure(CharacterArt source, CharacterSheetView prior)
+        {
+            art = source;
+            if (art.sheet == null || art.frames == null || art.frames.Length != 16 || art.referenceHeight <= 0)
+                throw new InvalidOperationException("Missing prepared character sheet: " + art.characterId);
+            if (art.walkSheet == null || art.walkFrames == null || art.walkFrames.Length != 8 || art.walkReferenceHeight <= 0)
+                throw new InvalidOperationException("Missing relaxed walking sheet: " + art.characterId);
+            if (prior != null) { time = prior.time; cycle = prior.cycle; }
+            transform.localScale = Vector3.one * art.scale;
+            shadow = Rect("Ground shadow", transform);
+            shadow.sizeDelta = new Vector2(76, 11);
+            var shade = shadow.gameObject.AddComponent<Image>();
+            shade.sprite = art.shadowSprite; shade.raycastTarget = false;
+            facing = Rect("Facing", transform);
+            picture = Rect("Selected character drawing", facing);
+            image = picture.gameObject.AddComponent<RawImage>();
+            image.texture = art.sheet; image.raycastTarget = false;
+        }
+
+        public void Present(CharacterFrame frame, float dt)
+        {
+            Frame = frame; dt = Mathf.Clamp(dt, 0, .1f); time += dt;
+            var moving = frame.Speed > 1 && (frame.Pose == CharacterPose.Walk || frame.Pose == CharacterPose.Carry);
+            if (frame.ResetMotion) cycle = 0;
+            else if (moving)
+            {
+                var distance = frame.Travel.magnitude;
+                if (distance == 0) distance = frame.Speed * dt;
+                cycle = Mathf.Repeat(cycle + distance / WalkStride, 1);
+            }
+            var blink = time % 4.3f > 4.14f;
+            var index = moving ? 4 + Mathf.Min(7, Mathf.FloorToInt(cycle * 8)) : blink ? 1 : 0;
+            var offset = Vector2.zero;
+            var scale = Vector2.one;
+            if (frame.Pose == CharacterPose.Sit)
+            {
+                index = 12;
+                offset.y = 60 * Mathf.SmoothStep(0, 1, frame.UseSeconds / .32f);
+            }
+            else if (frame.Pose == CharacterPose.Bounce)
+            {
+                var phase = Mathf.Repeat(Mathf.Max(0, frame.UseSeconds - .3f) / 1.05f, 1);
+                var height = Mathf.Sin(Mathf.PI * phase);
+                index = height > .45f ? 2 : 0;
+                offset.y = 84 + height * 108;
+                scale = new Vector2(1 + .045f * (1 - height), 1 - .06f * (1 - height));
+            }
+            else if (frame.Pose == CharacterPose.Dance)
+            {
+                var beat = time * 1.6f;
+                index = (int)(beat * 2) % 2 == 0 ? 14 : 15;
+                offset.y = Mathf.Abs(Mathf.Sin(beat * Mathf.PI * 2)) * 3;
+            }
+            else if (frame.Pose == CharacterPose.Wave) index = 2 + (int)(time * 4) % 2;
+            else if (frame.Pose == CharacterPose.Carry && !moving) index = 13;
+            FrameIndex = index;
+            // Only walking changes atlas. Keep the already accepted appearance
+            // for idle and home actions rather than regenerating those poses.
+            var walking = index >= 4 && index < 12;
+            var texture = walking ? art.walkSheet : art.sheet;
+            image.texture = texture;
+            var drawing = walking ? art.walkFrames[index - 4] : art.frames[index];
+            var crop = drawing.pixels.Value;
+            image.uvRect = new Rect(crop.x / texture.width, 1 - crop.yMax / texture.height,
+                crop.width / texture.width, crop.height / texture.height);
+            picture.pivot = new Vector2((drawing.ground.x - crop.x) / crop.width,
+                (crop.yMax - drawing.ground.y) / crop.height);
+            picture.sizeDelta = crop.size * (180 / (walking ? art.walkReferenceHeight : art.referenceHeight));
+            facing.anchoredPosition = offset;
+            facing.localScale = new Vector3((frame.FaceLeft ? -1 : 1) * scale.x, scale.y, 1);
+            shadow.anchoredPosition = new Vector2(0, frame.Pose == CharacterPose.Bounce ? 84 : frame.Pose == CharacterPose.Sit ? 52 : 0);
+            shadow.localScale = frame.Pose == CharacterPose.Bounce ? Vector3.one * Mathf.Lerp(1, .6f, Mathf.Clamp01((offset.y - 84) / 108)) : Vector3.one;
+        }
+
+        private static RectTransform Rect(string name, Transform parent)
+        {
+            var rect = new GameObject(name, typeof(RectTransform)).GetComponent<RectTransform>();
+            rect.SetParent(parent, false); rect.sizeDelta = Vector2.zero;
+            return rect;
+        }
+    }
+}

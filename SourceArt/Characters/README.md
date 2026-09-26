@@ -13,7 +13,7 @@ These layered SVGs are newly authored character studies guided by the official p
 | Goal sheet section 17 / CHAR-01: changing characters preserves player state | Workshop swaps visual children without changing the movement root, position, facing or carried presentation. | Integration with real player/profile/activity/ownership state and device tests. |
 | Build guide: keep one bounded task with evidence | Isolated native workshop; no game session or save operations. Evidence report links exact build and runtime checks. | G5 contracts after character review; G6 home/backyard slice and A10 qualification. |
 
-References: [Bluey](https://www.bluey.tv/characters/bluey/), [Bingo](https://www.bluey.tv/characters/bingo/), [goal sheet](../../docs/bluey-game-research-2026-09-23.md), [interaction research](../../docs/toca-piknik-interaction-research-2026-09-23.md), [build guide](../../docs/family-playset-build-guide-2026-09-23.md). The official reference portraits are inspection material. The previously unused generated atlas is now recovered in [SelectedReference](SelectedReference/README.md) because the user explicitly prefers it; it is not yet imported into Unity.
+References: [Bluey](https://www.bluey.tv/characters/bluey/), [Bingo](https://www.bluey.tv/characters/bingo/), [goal sheet](../../docs/bluey-game-research-2026-09-23.md), [interaction research](../../docs/toca-piknik-interaction-research-2026-09-23.md), [build guide](../../docs/family-playset-build-guide-2026-09-23.md). The official reference portraits are inspection material. The previously unused generated atlas is now recovered in [SelectedReference](SelectedReference/README.md) because the user explicitly prefers it; its [prepared Bluey/Bingo adaptation](AnimationSheets/README.md) is integrated in game build 122.
 
 `character-contract.json` defines the export. Run `Tools/Export-CharacterStudy.py` with Node and its `sharp` dependency, then build and verify a fresh workshop. Do not flatten the sources or describe passing motion checks as visual approval.
 
@@ -25,4 +25,4 @@ References: [Bluey](https://www.bluey.tv/characters/bluey/), [Bingo](https://www
 
 ## Latest visual selection
 
-The user prefers the [recovered movement sheet](SelectedReference/README.md). Treat its recognizable appearance as the target for the next animation proof. The front/profile SVG rigs remain the currently installed implementation, not an override of this visual choice.
+The user prefers the [recovered movement sheet](SelectedReference/README.md). The [prepared Bluey/Bingo sheets](AnimationSheets/README.md) now replace the SVG rigs in the actual game and chooser in build 122. Native checks and the signed release pass. The user liked the 122 appearance; 123 adds quieter walk atlases and is installed with saves retained. Phone-screen review awaits unlock.

@@ -1,0 +1,110 @@
+{
+  "passed": true,
+  "build": "0.0.122",
+  "trials": [
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "fps": 30,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.5000000596046448
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "fps": 60,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.49999862909317017
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "fps": 120,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.500000536441803
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "fps": 30,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.5000000596046448
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "fps": 60,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.49999862909317017
+    },
+    {
+      "character": "bluey",
+      "sourceHash": "9fb429fa617b6b72f92bb59e1908bbb9db8cd4fb1c9afcd00b5024de0c740224",
+      "fps": 120,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.500000536441803
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "fps": 30,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.5000000596046448
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "fps": 60,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.49999862909317017
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "fps": 120,
+      "distinctWalkFrames": 8,
+      "faceLeft": false,
+      "phase": 0.500000536441803
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "fps": 30,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.5000000596046448
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "fps": 60,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.49999862909317017
+    },
+    {
+      "character": "bingo",
+      "sourceHash": "63a88022a9d0439ce5e57b4a1683d22c83a2531ae8e313fd61326e46a031464f",
+      "fps": 120,
+      "distinctWalkFrames": 8,
+      "faceLeft": true,
+      "phase": 0.500000536441803
+    }
+  ],
+  "checks": [
+    "selected Bluey/Bingo sheets render with no legacy redraw",
+    "all eight walk frames in both directions at 30/60/120 FPS",
+    "equal distance retains phase and animation never changes player root",
+    "idle/carry/sit/bounce/dance/wave use prepared frames",
+    "switch preserves action, coordinates and one visible drawing",
+    "teleport reset and facing hysteresis"
+  ]
+}

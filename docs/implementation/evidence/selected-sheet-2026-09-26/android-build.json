@@ -1,0 +1,17 @@
+{
+  "version": "0.0.122",
+  "unity": "6000.3.24f1",
+  "profile": "Assets/BuildProfiles/Android Family LAN.asset",
+  "result": "Succeeded",
+  "utc": "2026-09-26T15:35:24.9193023Z",
+  "platform": "Android",
+  "signing": "Pinned Little Weeps family key; externally signed unchanged Unity payload",
+  "development": false,
+  "errors": 0,
+  "warnings": 0,
+  "sourceEntriesMatchedBeforeDocsCleanup": 888,
+  "apkSha256": "71168cf8998830f7114eefb3648aaf8ef40dfd1847fcdf3ea5127a3de4120a80",
+  "installed": true,
+  "deliveryRecord": "android-122-delivery.json",
+  "supersededBy": 123
+}
