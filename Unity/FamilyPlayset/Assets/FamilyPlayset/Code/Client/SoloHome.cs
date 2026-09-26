@@ -185,6 +185,7 @@ namespace LittleWeeps.Client
         private void SettleHomeUse()
         {
             CancelStairApproach();
+            CancelDoorApproach();
             if(Ready && ReadPlayer(Actor).stairs>0)Command(SoloAction.CancelStairs);
             if(Ready && !string.IsNullOrEmpty(ReadPlayer(Actor).fixture))Command(SoloAction.LeaveFixture);
             if(homeMusic!=null)homeMusic.Stop();

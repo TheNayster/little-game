@@ -11,6 +11,7 @@
     <Compile Include="HomeTests.cs" />
     <Compile Include="KeepyTests.cs" />
     <Compile Include="RoomTests.cs" />
+    <Compile Include="BedroomTests.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeRooms.cs" Link="HomeRooms.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs" Link="WorldLayout.cs" />
     <Compile Include="RecoveryTests.cs" />

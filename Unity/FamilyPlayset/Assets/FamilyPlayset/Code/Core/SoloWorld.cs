@@ -6,7 +6,7 @@ using System.Linq;
 namespace LittleWeeps.Core
 {
     public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
@@ -48,6 +48,7 @@ namespace LittleWeeps.Core
         public string worldId;
         public HomeState home;
         public KeepyState keepy;
+        public BedroomState[] bedrooms=Array.Empty<BedroomState>();
         public SoloPlayer[] players;
         public SoloToy[] toys;
         public SoloReceipt[] receipts = Array.Empty<SoloReceipt>();
@@ -181,6 +182,7 @@ namespace LittleWeeps.Core
         {
             var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, home=s.home?.Copy(),keepy=s.keepy?.Copy(),
                 players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
+                bedrooms=(s.bedrooms??Array.Empty<BedroomState>()).Select(r=>r.Copy()).ToArray(),
                 idleTimers=(s.idleTimers??Array.Empty<GardenIdleTimer>()).Select(t=>t.Copy()).ToArray() };
             foreach(var p in copy.players)p.zone=AreaOf(p.zone);
             foreach(var t in copy.toys)t.zone=AreaOf(t.zone);
@@ -218,7 +220,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateHome(s);ValidateKeepy(s);
+            ValidateHome(s);ValidateKeepy(s);ValidateBedrooms(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -302,6 +304,8 @@ namespace LittleWeeps.Core
                     var stairError=BeginStairs(player);if(stairError!=null)return Reject(stairError);outcome="stairs-started";break;
                 case SoloAction.CancelStairs:
                     player.stairs=0;break;
+                case SoloAction.EnterDoor:
+                    var doorError=EnterDoor(player,c.target);if(doorError!=null)return Reject(doorError);outcome="room-entered";break;
                 case SoloAction.Travel:
                     if(state.schema<2 || !(state.schema>=WorldLayout.ScenerySchema?WorldLayout.Destination(c.value):c.value=="garden" || c.value=="creek"))return Reject("unknown-area");
                     if(c.value==WorldLayout.Place(player))return Reject("already-there");

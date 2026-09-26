@@ -25,6 +25,7 @@ static partial class Program
         HomeTests();
         KeepyTests();
         RoomTests();
+        BedroomTests();
         ContinuationTests();
         BackgroundSaveTests();
         Test("local walking advances on irregular render frames and preserves transaction receipts",()=>{

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "build": 137,
+  "checks": [
+    "four real door buttons enter four distinct owned bedrooms independently with bounded local art",
+    "carried ball keeps one identity through stairs and room door; real pickup/drop works inside",
+    "same favorite avatar on all four profiles preserves owners; Home chooser stays in current bedroom",
+    "all four can gather inside any owned bedroom with distinct safe arrival anchors",
+    "owner can leave for another world and disconnect while three visitors continue in the same saved room",
+    "leaving and revisiting uses the existing room and retained item without allocating a duplicate"
+  ],
+  "profileIdLength": 32,
+  "liveFamilyTouched": false,
+  "limits": "Windows native destinations/ownership pass. Rooms are architectural shells; furnishing/decor/storage and physical device acceptance remain next."
+}

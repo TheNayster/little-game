@@ -31,7 +31,8 @@ namespace LittleWeeps.Client
         }
         public void RequestStairs()
         {
-            if(!Ready || MenuOpen || TravelPending || WorldLoading || StairBusy || !HomeRooms.Property(CurrentArea))return;
+            if(!Ready || MenuOpen || TravelPending || WorldLoading || StairBusy || doorSubmitted || !HomeRooms.StairArea(CurrentArea))return;
+            CancelDoorApproach();
             stairSource=CurrentArea;stairApproach=true;stairDeadline=Time.realtimeSinceStartup+30;
             manualCamera=false;destination=new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea));
         }
@@ -82,7 +83,7 @@ namespace LittleWeeps.Client
         private void PresentRooms()
         {
             if(stairControl==null || !Ready)return;
-            var own=ReadPlayer(Actor);var property=HomeRooms.Property(CurrentArea);
+            var own=ReadPlayer(Actor);var property=HomeRooms.StairArea(CurrentArea);
             stairControl.gameObject.SetActive(property && own.stairs==0 && !WorldLoading);
             if(property)
             {

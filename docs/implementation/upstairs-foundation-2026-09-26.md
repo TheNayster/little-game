@@ -56,3 +56,7 @@ Outstanding qualification includes physical A10 memory/frame times, sustained mi
 The user requested a phone preview before continuing development. Fresh signed non-development Android **136** contains the candidate-135 gameplay source and was installed in place over **130** on Samsung SM-S948U1. The installer verified both signing identities and the exact installed APK bytes, then launched Little Weeps. All **16** primary saved records remain: **15 byte-identical**, with the active world receiving schema 6/stair defaults and the expected earlier indoor-balloon migration. The existing players, props, fixtures and receipts were preserved. The upstairs location is recorded in the phone save after the user preview. [Installation and retention evidence](evidence/upstairs136-2026-09-26/android-update.json).
 
 Bedroom doors remain scenery; the user was told that the four interiors and working doors are next. No further room development was performed during this preview. Server and Apple devices were not updated; physical A10, sustained mixed-device and broad lifecycle acceptance remain open. This preview is not recorded as visual approval.
+
+## Later user acceptance and bedroom continuation
+
+After the Android 136 preview, the user reported “works great” and requested “Start on the rooms!” The stairs/landing preview is accepted for continuing development. This is not physical multiplayer/A10 qualification. [BED-2 candidate 137](bedroom-rooms-2026-09-26.html) subsequently implements the four doors and owned room shells; it has not been deployed to the phone.

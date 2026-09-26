@@ -32,7 +32,8 @@ def main():
         require(args.qualify_build and fixture.controller.isolated, 'Candidate recovery requires an isolated qualification run')
         server_recovery.MAX_QUALIFIED_BUILD = args.build
         server_recovery.QUALIFIED_BUILDS = server_recovery.QUALIFIED_BUILDS | {args.build}
-    contract = read(ROOT / f'Builds/NetworkProbe/G3-0.0.{args.build}/build-summary.json')['contract']
+    summary = read(ROOT / f'Builds/NetworkProbe/G3-0.0.{args.build}/build-summary.json')
+    contract = summary['contract']
     scenic = contract >= 5
     recovery = Recovery(fixture.run_id, args.build)
     checks = []; success = False; server = fixture.controller
@@ -69,14 +70,18 @@ def main():
             clients[2].input('inspect')
             clients[2].input('touchButton',text='Stair entry')
             wait(lambda:next(p for p in clients[2].state()['view']['players'] if p['id']==clients[2].profile)['zone']=='home-upstairs','Recovery upstairs arrival')
+        if contract >= 9:
+            require(command(clients[2],0,x=1601,y=420)['accepted'],'Bedroom recovery entry')
+            time.sleep(.5);clients[2].input('touchButton',text='Enter bedroom 3')
+            wait(lambda:next(p for p in clients[2].state()['view']['players'] if p['id']==clients[2].profile)['zone']=='home-bedroom-3','Recovery bedroom arrival')
         if contract >= 7:
             require(command(clients[0],5,value='keepy-uppy')['accepted'],'Recovery balloon toss failed')
             require(command(clients[0],7,value='park')['accepted'],'Recovery departure failed')
             if contract < 8:
                 require(command(clients[2],7,value='park')['accepted'],'Recovery home pause failed')
         live = recovery.backup(); bundle, files, body = unpack(Path(live['path']))
-        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'park', 'creek', 'beach', 'home-upstairs'} if contract >= 8 else {'park', 'creek', 'beach'} if contract >= 7 else {'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
-        if scenic: require(body['schema'] == (6 if contract >= 8 else 5 if contract >= 7 else 4 if contract >= 6 else 3) and ((body['keepy']['x'] >= 0 if args.build>=131 else body['keepy']['x'] < 0) if contract >= 7 else any(p['x'] < 0 for p in body['players'])), 'Scenic coordinates missing from backup')
+        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'park', 'creek', 'beach', 'home-bedroom-3'} if contract >= 9 else {'park', 'creek', 'beach', 'home-upstairs'} if contract >= 8 else {'park', 'creek', 'beach'} if contract >= 7 else {'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
+        if scenic: require(body['schema'] == (summary['schema'] if contract >= 8 else 5 if contract >= 7 else 4 if contract >= 6 else 3) and ((body['keepy']['x'] >= 0 if args.build>=131 else body['keepy']['x'] < 0) if contract >= 7 else any(p['x'] < 0 for p in body['players'])), 'Scenic coordinates missing from backup')
         original_instance = server.snapshot()['instanceId']
         refused(lambda: recovery.restore(Path(live['path']), digest(save.read_bytes())))
         require(server.snapshot()['instanceId'] == original_instance and server.snapshot()['players'] == 4, 'Backup/restore attempt interrupted play')
@@ -100,6 +105,7 @@ def main():
         if contract >= 6:
             require(restored['home']==original['home'] and restored['home']['livingRadio'] and next(t for t in restored['toys'] if t['id']=='ball-1')['container']=='shed-2','Home storage/radio recovery differs')
         if contract >= 7:require(native_equivalent(restored['keepy'],original['keepy']) and restored['keepy']['phase']==1,'Paused in-flight balloon recovery differs')
+        if contract >= 9:require(restored['bedrooms']==original['bedrooms'] and len(restored['bedrooms'])==4,'Bedroom ownership recovery differs')
         require(len(state['connected']) == 4, 'Saved enrollment did not reconnect')
         fixture.stop()
         recovery.rollback(result['rollbackJob'], digest(save.read_bytes()))

@@ -12,4 +12,4 @@ The home ball uses the existing native UI shape system. No extracted commercial 
 
 ## Upstairs foundation — September 26
 
-The [upstairs art/source record](Upstairs/README.md) supplies the first working stair/landing slice. Four bedroom door facades are prepared; the personal bedroom interiors and secret rooms remain subsequent work.
+The [upstairs art/source record](Upstairs/README.md) supplies the first working stair/landing slice. The user accepted its Android 136 preview. [BED-2 bedroom bases](Bedrooms/README.md) now supply four distinct owned room shells with working doors in Windows candidate 137. Separate usable furniture/storage/decor is next; secret rooms follow the bedroom stage.

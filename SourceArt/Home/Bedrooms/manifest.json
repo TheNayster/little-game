@@ -1,0 +1,14 @@
+{
+  "date": "2026-09-26",
+  "generator": "Built-in image_gen",
+  "prompt": "Use case: illustration-story. Asset type: finished architecture panorama for an interactive 2D family dollhouse game. Create one beautiful bedroom ARCHITECTURAL BASE matching the attached upstairs hall style: Bluey-inspired Australian family home, confident rounded brown linework, warm cream vertical timber wall boards, cream trim, coral timber floor, gentle sunny daylight, clean illustrated shallow front-facing perspective. Extra-wide exact 3:1 composition, 2048x683 if possible. The bedroom is a generous wide personal room with space for four visitors, no characters. At the far LEFT (center x about 230 of 2048) is one ordinary full-height pale aqua closed exit door in a cream frame, door bottom at y390 and top at y40, clearly visible handle; never put a second door. A wide low sunny window across the upper RIGHT wall, sill around y260, looks onto green Australian trees and blue sky. Keep the wall/floor junction horizontal at y390. The whole lower 43% is clear continuous coral plank walking floor. Leave broad EMPTY wall and floor areas from x600 through x1900 for future separately drawn interactive bed, shelf, chest and cushions. NO furniture, bed, shelves, baskets, rugs, lamps, pictures, toys, books, characters, words, stars, secret entrances, interface, watermark or painted shadows of furniture. Architectural timber wall detail, window frame, daylight and perspective should feel complete and welcoming; do not add interactive objects to fill empty space. Reference image is the accepted upstairs hallway for style only, not an edit target. Output one wide room image.",
+  "reference": "SourceArt/Home/Upstairs/upstairs-hall-source.png",
+  "source": "SourceArt/Home/Bedrooms/bedroom-base-source.png",
+  "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-bedroom.png",
+  "size": [
+    2048,
+    683
+  ],
+  "status": "Architectural base shared by four separately owned persistent rooms. Furniture is a separate next slice.",
+  "sha256": "5d64de98dd623b0823f5db5c4994f8b1fb7f312167c9b1b4916d1f77ecbb8e3d"
+}

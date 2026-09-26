@@ -11,6 +11,18 @@
         "H-01"
       ],
       "evidence": "docs/implementation/upstairs-foundation-2026-09-26.md"
+    },
+    {
+      "build": 137,
+      "baselineCommit": "ae0043512f1782d4aec58316ca76b8964eee6b3a",
+      "entries": [
+        "G-02",
+        "G-06",
+        "H-01",
+        "H-31",
+        "H-32"
+      ],
+      "evidence": "docs/implementation/bedroom-rooms-2026-09-26.md"
     }
   ],
   "worlds": {
@@ -61,8 +73,8 @@
         31,
         50
       ],
-      "description": "Five destination entries cover six content regions. Each player travels alone, joining existing objects and players. Long scenic travel and the upstairs stair/landing prototype work; bedroom/story interiors remain planned.",
-      "evidence": "rooms",
+      "description": "Independent local world/room views, loading and four owned bedroom destinations now work in candidate 137. Furnished rooms and broader activity integration remain required.",
+      "evidence": "bedrooms",
       "extraSource": ""
     },
     {
@@ -118,8 +130,8 @@
         5,
         32
       ],
-      "description": "Working two-way stairs and an upstairs landing now have scoped native evidence. Authored room doors, furniture-aware routing and bedroom geometry remain unbuilt; broad floor bounds do not complete navigation.",
-      "evidence": "rooms",
+      "description": "Working stairs and four hall/bedroom routes have scoped native evidence. Furniture-aware routing and final furnished-room geometry remain unfinished.",
+      "evidence": "bedrooms",
       "extraSource": ""
     },
     {
@@ -459,8 +471,8 @@
         3,
         32
       ],
-      "description": "The connected downstairs property now has working stairs and an upstairs landing/hall prototype. Four bedroom interiors/doors and remaining room functions are still required; selecting Home while there retains position.",
-      "evidence": "rooms",
+      "description": "Connected downstairs property, working stairs/landing and four owned upstairs room shells with real doors. Kitchen, bathroom/laundry, veranda functions and finished bedrooms remain required.",
+      "evidence": "bedrooms",
       "extraSource": ""
     },
     {
@@ -873,12 +885,12 @@
       "world": "home",
       "group": "Bedrooms",
       "title": "Four persistent player-owned bedrooms",
-      "status": "dev",
+      "status": "part",
       "chapters": [
         32
       ],
-      "description": "Required: one upstairs bedroom for each of four player profiles, including parents, with four-person visits; shared hall and working stairs come first. Only earlier isolated two-child ownership/style rules have evidence; four-room UI/network/save integration remains unbuilt. Preserve existing room identities and data.",
-      "evidence": "ledger",
+      "description": "Four distinct rooms with saved profile ownership, working doors and screen/network/private-save/recovery integration in candidate 137. Furnishings, storage, decoration and physical acceptance remain open.",
+      "evidence": "bedrooms",
       "extraSource": ""
     },
     {
@@ -886,12 +898,12 @@
       "world": "home",
       "group": "Bedrooms",
       "title": "Decorating, visits and undo",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         32
       ],
-      "description": "Beds, rugs, shelves, toy baskets, cushions, pictures, decoration drawers, wall/bedding/lamp/plush choices; owner edits, optional Decorate together, safe paths and undo.",
-      "evidence": "ledger",
+      "description": "Four-player visits work in candidate 137, including owner departure without evicting guests. Beds, rugs, shelves, baskets, cushions, pictures, decoration choices, owner edits, Decorate together, safe furnished paths and undo remain unbuilt.",
+      "evidence": "bedrooms",
       "extraSource": ""
     },
     {

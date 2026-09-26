@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 137,
+  "previousBuild": 135,
+  "checks": [
+    "Schema 6 to 7 adds four persistent owners once; complete prior world, fixtures, balloon, receipts and enrollment remain unchanged",
+    "Authority loss inside bedroom preserves latest room and ownership privately; offline item/room progress saves separately; rejoin restores shared room without importing local edits"
+  ],
+  "liveFamilyTouched": false
+}

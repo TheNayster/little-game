@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Four owned upstairs rooms</title><style>
+:root{color-scheme:light;--ink:#213d40;--line:#cddbd5;--paper:#fffcf4;--accent:#14645e}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,sans-serif}a{color:var(--accent);text-underline-offset:3px}header{padding:28px max(22px,calc((100vw - 1440px)/2));background:#e6f0e9;border-bottom:1px solid var(--line)}header p{margin:0}.layout{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:280px minmax(0,1fr);gap:38px;padding:30px 24px}nav{align-self:start;position:sticky;top:20px;max-height:92vh;overflow:auto;font-size:14px}nav ul{list-style:none;padding-left:0}nav li{margin:9px 0}article{min-width:0}h1{font-size:clamp(30px,4vw,44px);line-height:1.12;margin:0 0 20px}h2{font-size:25px;line-height:1.25;margin:42px 0 20px;padding-top:16px;border-top:2px solid var(--line)}p{margin:14px 0}ul{padding-left:24px}li{margin:12px 0}.task{list-style:none;margin:12px 0 12px -24px;padding:16px 18px;background:white;border:1px solid var(--line);border-radius:10px;overflow-wrap:anywhere}.task input{width:17px;height:17px;vertical-align:middle;margin:0 9px 3px 0}.task strong{color:#164d49}.task em{font-size:13px;font-style:normal;padding:2px 6px;background:#f3edd7;border-radius:4px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;vertical-align:top;padding:12px;border:1px solid var(--line);overflow-wrap:anywhere}th{background:#e6f0e9}code{overflow-wrap:anywhere;background:#f0eee5;padding:2px 4px}footer{border-top:1px solid var(--line);padding:28px;text-align:center}@media(max-width:850px){.layout{display:block;padding:22px 16px}nav{position:static;max-height:none;border-bottom:1px solid var(--line);margin-bottom:26px}nav .toc ul{columns:2;column-gap:24px}table{font-size:12px}td,th{padding:8px}}@media(max-width:480px){nav .toc ul{columns:1}}@media print{body{font-size:11pt;background:white}header,nav,footer{display:none}.layout{display:block;padding:0}.task{break-inside:avoid}h2{break-after:avoid}a{color:inherit}input{opacity:1}table{font-size:9pt}}
+
+pre{overflow:auto;padding:18px;background:#edf2eb;font:13px/1.5 monospace}pre code{padding:0;background:none}h3{margin-top:28px}p,li{overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}
+pre{overflow:auto;padding:18px;background:#edf2eb;font:13px/1.5 monospace}pre code{padding:0;background:none}h3{margin-top:28px}p,li{overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}
+pre{overflow:auto;padding:18px;background:#edf2eb;font:13px/1.5 monospace}pre code{padding:0;background:none}h3{margin-top:28px}p,li{overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}</style></head><body><header><p>Updated September 26, 2026 · <a href="bedroom-rooms-2026-09-26.md">Markdown source</a></p></header><div class="layout"><nav aria-label="Document sections"><div class="toc">
+<ul>
+<li><a href="#what-works">What works</a></li>
+<li><a href="#research-applied-to-the-systems">Research applied to the systems</a></li>
+<li><a href="#validation">Validation</a></li>
+<li><a href="#what-comes-next">What comes next</a></li>
+</ul>
+</div>
+</nav><article><h1 id="four-owned-upstairs-rooms-doors-and-persistence">Four owned upstairs rooms — doors and persistence</h1>
+<p>September 26, 2026. <strong>BED-2 implemented in Windows candidate 137. The rooms are architectural shells; usable furnishings and decoration are the next bounded task.</strong> Goal coverage: WORLD-01/02, ROOM-01; inventory G-02/G-06/H-01/H-31/H-32. No complete bedroom or Home checkbox is closed.</p>
+<p>The user accepted the Android 136 stairs/landing preview (“works great”) and requested that work begin on the rooms. That acceptance applies to the existing stairs preview, not this newer room artwork or to physical multiplayer/performance qualification.</p>
+<p><a href="upstairs-bedrooms-research-2026-09-26.html">Construction and systems research</a> · <a href="../home-world-feature-tracker.html">Home feature tracker</a> · <a href="../../SourceArt/Home/Bedrooms/README.md">Art and exact generation prompt</a></p>
+<h2 id="what-works">What works</h2>
+<p>Tap any upstairs bedroom door. The character approaches it while the local room art prepares, then enters that room. Tap the ordinary door at the left inside to return to the matching hall doorway. Four separated arrival positions accommodate visitors. The four rooms share an illustrated architectural base but have separate persistent identities and owners. Door plaques identify “Your room” for its owner; other rooms use room numbers.</p>
+<p>Every enrolled family profile, including parent profiles, owns one of the four rooms. Ownership is assigned once from the existing persisted roster during migration and saved explicitly by profile ID. Changing avatar, arriving first, visiting or disconnecting does not change it. A private world with only one known profile has one owned room and three guest rooms; it does not invent additional family profiles. Visiting does not allocate a room.</p>
+<p>All four players can occupy separate rooms, gather in a room, or remain elsewhere independently. The owner leaving or disconnecting leaves visitors in place. Selecting Heeler Home while in a bedroom keeps the current location. Compatible held objects keep their identities across stairs and doors; a dropped Home ball persists in its actual room. Existing borrowed bucket/sponge return rules still apply. This slice does not create personal storage or new toy stock.</p>
+<h2 id="research-applied-to-the-systems">Research applied to the systems</h2>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Implemented response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Room instances must outlive their visuals and visitors.</td>
+<td>Four flat <code>BedroomState</code> records contain stable room IDs and owner profile IDs in the authoritative snapshot and private saves. Validation rejects missing, duplicate or unknown ownership/room records.</td>
+</tr>
+<tr>
+<td>Internal travel must preserve carried items.</td>
+<td><code>EnterDoor</code> validates the exact hall/bedroom route and source proximity, transfers actor and held items together, and advances the visit generation. Replays retain receipts; late commands cannot act in the former room.</td>
+</tr>
+<tr>
+<td>Local room preparation must not stop siblings.</td>
+<td>Only the traveling client prepares the destination image and walks to the door. The server commits a valid endpoint; no global scene reload or room lock is used. Cancelled/failed approaches leave the actor at a valid location.</td>
+</tr>
+<tr>
+<td>A room needs reliable exits and four-person visits.</td>
+<td>Each room returns to its own hall door with separated arrival anchors. Bedroom routes cannot act as stairs or top-level destinations.</td>
+</tr>
+<tr>
+<td>Art loading must remain bounded on older devices.</td>
+<td>All four room instances reuse one resource texture within the existing maximum of three resident/requested scenery textures. No Addressables package or extra scene manager is introduced.</td>
+</tr>
+<tr>
+<td>Existing saves and offline authority rules must survive.</td>
+<td>Additive schema 6→7 migration preserves the previous world, objects, fixtures, balloon and command receipts. Content 8/build contract 9 identify compatibility explicitly. Private continuation keeps local room edits separate; rejoin loads the PC authority.</td>
+</tr>
+<tr>
+<td>Interactive furniture must be separate from the background.</td>
+<td>Built-in imagegen produced an empty architectural base matched to the accepted hall. Future furnishings have clear floor/wall space and will be usable layered objects.</td>
+</tr>
+</tbody>
+</table>
+<p>The established private adventure and recovery adapters now accept the room schema. Recovery metadata maps contract 9 to schema 7/content 8 and continues rejecting snapshots newer than their source/destination build. The production recovery allowlist has not been expanded; candidate qualification uses isolated test families only.</p>
+<h2 id="validation">Validation</h2>
+<p>Windows release client/server candidate <strong>137</strong>, Unity 6000.3.24f1, compiled with zero errors and warnings. <a href="evidence/bedrooms137-2026-09-26/build-validation.json">Build/source/artifact verification</a> identifies the exact tested candidate. No Android or Apple build/install was performed in this slice.</p>
+<ul>
+<li><strong>125 core checks passed</strong>, including ten new ownership, migration, route, item, malformed-state, recovery and private-save checks. <a href="evidence/bedrooms137-2026-09-26/core-results.json">Core results</a>.</li>
+<li><strong>Six native bedroom groups passed:</strong> actual door buttons, four separate rooms, carry/pickup/drop, same-avatar ownership, a four-person visit, owner departure/disconnect and retained objects on revisit. These groups combine related assertions; they are not six complete bedroom features.</li>
+<li><strong>Two native continuity groups passed:</strong> exact migration from build 135 with retained enrollment, and authority loss inside a room followed by separate private progress and authoritative rejoin.</li>
+<li><strong>41 native groups passed in total:</strong> six bedroom, two continuity, six server recovery, seven stairs, six Home, four navigation and ten Keepy Uppy groups. Individual outcomes are in the <a href="evidence/bedrooms137-2026-09-26/qualification.json">qualification record</a>.</li>
+<li><a href="evidence/bedrooms137-2026-09-26/docs-validation.json">Documentation checks</a> and <a href="evidence/bedrooms137-2026-09-26/tracker-validation.json">tracker coverage</a> retain all 218 Home checks and 330 all-world catalog entries.</li>
+</ul>
+<p>Inspected native captures: <a href="evidence/bedrooms137-2026-09-26/four-owned-doors-phone.png">hall door plaques at phone dimensions</a>, <a href="evidence/bedrooms137-2026-09-26/bedroom-phone.png">room and exit at phone dimensions</a>, <a href="evidence/bedrooms137-2026-09-26/four-bedroom-visitors-tablet.png">four visitors at tablet dimensions</a>. These are Windows captures, not physical-device screenshots. The native four-room test exercises each door separately and gathers all four in room 1; core rules also cover shared room visits.</p>
+<p>All native tests used disposable loopback worlds or separately enrolled test families. No live family world, enrollment or device was modified. Samsung remains recorded at <strong>136</strong>, with stairs/landing but no working bedroom interiors; server/iPads remain recorded at <strong>128</strong>, iPhone at <strong>101</strong>. These are retained deployment records, not a fresh live connection check.</p>
+<h2 id="what-comes-next">What comes next</h2>
+<p><strong>BED-3:</strong> furnish all four rooms with usable beds, rugs, shelves, personal chest/baskets, reading cushions and pictures; implement owner decoration, optional Decorate together, safe placement and undo. Preserve these four room IDs and owners while expanding their saved state. Books and the complete dinosaur/personal toy catalogs remain explicit dependencies rather than implied completed content.</p>
+<p><strong>BED-4:</strong> qualify furnished-room visuals, multiplayer, migration/recovery and available devices. Four secret rooms follow the bedroom stage, using independent persistent identities, optional entrances, reliable exits and the researched local calm settings. Kitchen and the wider Home backlog remain required.</p>
+<p>This pass does not complete furniture-aware routing, decor permissions, personal storage, secret rooms, physical A10 memory/frame times, sustained mixed-device play, physical room-touch acceptance or coordinated deployment. The Android 136 acceptance does not qualify candidate 137.</p></article></div></body></html>

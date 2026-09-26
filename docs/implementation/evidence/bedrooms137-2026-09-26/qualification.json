@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "build": 137,
+  "coreChecks": 125,
+  "coreEvidence": "core-results.json",
+  "nativeGroups": 41,
+  "native": [
+    {
+      "suite": "bedroom",
+      "groups": 6,
+      "passed": true,
+      "evidence": "bedroom-results.json"
+    },
+    {
+      "suite": "continuity",
+      "groups": 2,
+      "passed": true,
+      "evidence": "continuity-results.json"
+    },
+    {
+      "suite": "recovery",
+      "groups": 6,
+      "passed": true,
+      "evidence": "recovery-results.json"
+    },
+    {
+      "suite": "stairs",
+      "groups": 7,
+      "passed": true,
+      "evidence": "stairs-results.json"
+    },
+    {
+      "suite": "home",
+      "groups": 6,
+      "passed": true,
+      "evidence": "home-results.json"
+    },
+    {
+      "suite": "navigation",
+      "groups": 4,
+      "passed": true,
+      "evidence": "navigation-results.json"
+    },
+    {
+      "suite": "keepy",
+      "groups": 10,
+      "passed": true,
+      "evidence": "keepy-results.json"
+    }
+  ],
+  "artCapturesInspected": [
+    "four-owned-doors-phone.png",
+    "bedroom-phone.png",
+    "four-bedroom-visitors-tablet.png"
+  ],
+  "harnessNotes": [
+    "First Home regression attempt lacked the cryptography test dependency; rerun with the declared dependency passed all six groups. No gameplay source changed for that rerun."
+  ],
+  "liveFamilyTouched": false,
+  "deploymentPerformed": false,
+  "limits": "Windows room destinations, ownership and continuity only. Unfurnished rooms. Physical A10/mixed-device/room-touch/visual acceptance and coordinated rollout remain open. Phone 136 retains the accepted stair/landing preview."
+}

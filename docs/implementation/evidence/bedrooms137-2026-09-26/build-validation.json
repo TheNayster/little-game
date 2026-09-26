@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "build": 137,
+  "summary": {
+    "utc": "2026-09-26T22:26:55.1651801Z",
+    "contract": 9,
+    "content": 8,
+    "schema": 7,
+    "gardenPresentation": true,
+    "builds": [
+      {
+        "role": "Server",
+        "version": "0.0.137",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+        "result": "Succeeded",
+        "output": "Builds/NetworkProbe/G3-0.0.137/Server/LittleWeepsNetwork.exe",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": true
+      },
+      {
+        "role": "Client",
+        "version": "0.0.137",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+        "result": "Succeeded",
+        "output": "Builds/NetworkProbe/G3-0.0.137/Client/LittleWeepsNetwork.exe",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": false
+      }
+    ]
+  },
+  "buildSourceBaseline": "ae0043512f1782d4aec58316ca76b8964eee6b3a",
+  "runtimeFilesCompared": 374,
+  "runtimeSourceExactMatch": true,
+  "artifactFilesCompared": 351,
+  "artifactExactMatch": true,
+  "sourceManifestSha256": "2add99223c747b0a6c75cf6c1cd506e5c5fbc8bc3790871f5817a16bcabf35e7",
+  "artifactManifestSha256": "c8066337b8098eece173aed10a75a45e54d4a42c549086feb41fe1d2c6575ba2",
+  "roomArtSha256": "5d64de98dd623b0823f5db5c4994f8b1fb7f312167c9b1b4916d1f77ecbb8e3d",
+  "whitespaceOnlyRestored": [
+    "Unity/FamilyPlayset/Assets/BuildProfiles/PC Server Network Probe.asset",
+    "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Network Probe.asset",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bingo/actions.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bingo/gentle-walk.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bluey/actions.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bluey/gentle-walk.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-upstairs.png.meta"
+  ],
+  "excludedFromRuntimeComparison": "Importer .meta and build-profile files: only verified trailing-whitespace normalization after build. Test/helper Python and documentation are qualified separately.",
+  "deploymentPerformed": false,
+  "limits": "Windows release only; physical devices and furnished-room acceptance remain open."
+}

@@ -17,6 +17,8 @@ namespace LittleWeeps.Client
             public SceneTile(string id,string area,float start){this.id=id;this.area=area;this.start=start;}
         }
         private static readonly SceneTile[] SceneTiles={
+            new SceneTile("home-bedroom",BedroomLayout.Id(0),0),new SceneTile("home-bedroom",BedroomLayout.Id(1),0),
+            new SceneTile("home-bedroom",BedroomLayout.Id(2),0),new SceneTile("home-bedroom",BedroomLayout.Id(3),0),
             new SceneTile("home-upstairs",HomeRooms.Landing,0),
             new SceneTile("home-living","garden",-4800),new SceneTile("home-kitchen","garden",-2400),
             new SceneTile("garden-tree","garden",0),new SceneTile("garden-shed","garden",2400),
@@ -104,7 +106,7 @@ namespace LittleWeeps.Client
             // At most two visible 3:1 panoramas plus one adjacent prefetch.
             // Distant areas are released, while persistent world records remain.
             var neighbor=SceneTiles.Where(t=>t.area==CurrentArea && !wanted.Contains(t)).OrderBy(t=>Mathf.Abs(t.start+1200-cameraX)).FirstOrDefault();
-            var stairTile=SceneTiles.FirstOrDefault(t=>t.id==StairPreload);
+            var stairTile=SceneTiles.FirstOrDefault(t=>t.id==(DoorPreload??StairPreload));
             if(stairTile!=null && !wanted.Contains(stairTile) && wanted.Count<3)wanted.Add(stairTile);
             else if(neighbor!=null && wanted.Count<3)wanted.Add(neighbor);
             foreach(var pair in scenicRequests.ToArray())if(pair.Value.isDone)
