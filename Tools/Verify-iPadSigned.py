@@ -10,7 +10,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build', type=int)
     parser.add_argument('--device', required=True)
-    parser.add_argument('--label', choices=('ipad7', 'ipad9'), required=True)
+    parser.add_argument('--label', choices=('ipad7', 'ipad9', 'iphone'), required=True)
     args = parser.parse_args()
     assert 71 <= args.build <= 9999
     assert re.fullmatch(r'[A-Za-z0-9-]{20,64}', args.device)
@@ -64,7 +64,7 @@ previous=out/'signed-verification.json'
 manifest=folder/'signed-artifact-manifest.json'
 if previous.exists() and manifest.exists() and json.loads(manifest.read_text())==files:
     old=json.loads(previous.read_text())
-    for label in ('ipad7','ipad9'):
+    for label in ('ipad7','ipad9','iphone'):
         if old.get(label+'Covered') is True:record[label+'Covered']=True
 manifest.write_text(json.dumps(files,indent=2)+'\n')
 previous.write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record))

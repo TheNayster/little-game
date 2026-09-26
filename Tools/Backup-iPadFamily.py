@@ -6,7 +6,7 @@ from mac_connection import ROOT,SSH,OPTIONS,HOST,SCP
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--device',required=True)
-    p.add_argument('--label',choices=('ipad7','ipad9'),required=True);p.add_argument('--build',type=int,required=True)
+    p.add_argument('--label',choices=('ipad7','ipad9','iphone'),required=True);p.add_argument('--build',type=int,required=True)
     args=p.parse_args();assert re.fullmatch(r'[A-Za-z0-9-]{20,64}',args.device) and 56<=args.build<=9999
     data=dict(device=args.device,label=args.label,build=args.build)
     code='data='+repr(data)+'\n'+r'''
@@ -20,14 +20,20 @@ for source,dest in [('Documents','Documents'),('Library/Preferences/'+bundle+'.p
         '--domain-identifier',bundle,'--source',source,'--destination',str(out/dest),'--timeout','40','--json-output',str(out/(dest+'.copy.json'))],capture_output=True,text=True)
     (out/(dest+'.copy.log')).write_text(r.stdout+r.stderr)
     assert r.returncode==0,'App data copy failed; no update may proceed'
-save=out/'Documents/SoloPrototype/family-local/world.save'
-raw=save.read_bytes();header,digest,payload=raw.split(b'\n',2)
-assert header==b'LITTLEWEEPS-SOLO-1' and hashlib.sha256(payload).hexdigest().encode()==digest,'Save checksum failed'
-world=json.loads(payload);assert world['schema']==1 and world['players'] and world['toys'],'Unexpected solo save'
+# An enrolled phone can have only its paired solo branch, without ever opening
+# family-local. Verify every existing solo world instead of requiring that name.
+saves=sorted((out/'Documents/SoloPrototype').glob('*/world.save'))
+assert saves,'No existing solo worlds found; inspect the backup before updating'
+verified=[]
+for save in saves:
+    raw=save.read_bytes();header,digest,payload=raw.split(b'\n',2)
+    assert header==b'LITTLEWEEPS-SOLO-1' and hashlib.sha256(payload).hexdigest().encode()==digest,'Save checksum failed'
+    world=json.loads(payload);assert world['schema'] in (1,2) and world['players'] and world['toys'],'Unexpected solo save'
+    verified.append(dict(path=save.relative_to(out).as_posix(),revision=world['revision'],schema=world['schema']))
 preferences=plistlib.loads((out/'preferences.plist').read_bytes());assert isinstance(preferences,dict)
 files=[dict(path=str(f.relative_to(out)),sha256=hashlib.sha256(f.read_bytes()).hexdigest()) for f in out.rglob('*') if f.is_file() and not f.name.endswith(('.copy.log','.copy.json'))]
 record=dict(passed=True,forBuild=data['build'],label=data['label'],device=data['device'],remoteBackup=str(out),files=files,
-    savedWorldRevision=world['revision'],settings={k:v for k,v in preferences.items() if k.startswith('solo.prototype.')})
+    savedWorldRevision=verified[0]['revision'],verifiedSoloWorlds=verified,settings={k:v for k,v in preferences.items() if k.startswith('solo.prototype.')})
 (out/'backup.json').write_text(json.dumps(record,indent=2));print(json.dumps(record))
 '''
     r=subprocess.run([str(SSH),*OPTIONS,HOST,'python3 -'],input=code,text=True,capture_output=True,timeout=100)

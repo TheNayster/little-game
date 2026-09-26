@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5cc53ca3900a148bf90546814953d9, type: 3}
+  m_Name: bluey
+  m_EditorClassIdentifier: LittleWeeps.Client::LittleWeeps.Client.CharacterArt
+  characterId: bluey
+  displayName: Bluey
+  scale: 1
+  groundX: 220
+  groundY: 454
+  layers:
+  - name: ground-shadow
+    sprite: {fileID: 21300000, guid: 5338f1d8709692643a1ffeecf8bf8262, type: 3}
+    left: 141
+    top: 443
+    width: 158
+    height: 22
+    pivotX: 220
+    pivotY: 454
+  - name: tail
+    sprite: {fileID: 21300000, guid: d2211ea19941c8242a640ec8425b0263, type: 3}
+    left: 268
+    top: 322
+    width: 57
+    height: 112
+    pivotX: 281
+    pivotY: 337
+  - name: arm-far
+    sprite: {fileID: 21300000, guid: 9fe33227275644f4fa8aaf136d5f54ed, type: 3}
+    left: 104
+    top: 246
+    width: 62
+    height: 101
+    pivotX: 150
+    pivotY: 260
+  - name: foot-far
+    sprite: {fileID: 21300000, guid: 0a7a6cbf68f7cc645bd0d7e1ee84f772, type: 3}
+    left: 151
+    top: 347
+    width: 68
+    height: 105
+    pivotX: 188
+    pivotY: 352
+  - name: foot-near
+    sprite: {fileID: 21300000, guid: a2e611ee403225a4b95846902fe5f32e, type: 3}
+    left: 232
+    top: 347
+    width: 62
+    height: 106
+    pivotX: 254
+    pivotY: 352
+  - name: body
+    sprite: {fileID: 21300000, guid: a248e24438a3d44489053b1b1626c8f0, type: 3}
+    left: 143
+    top: 128
+    width: 154
+    height: 243
+    pivotX: 220
+    pivotY: 454
+  - name: head
+    sprite: {fileID: 21300000, guid: d9f5962e449569742aeea3e809a40c94, type: 3}
+    left: 143
+    top: 46
+    width: 154
+    height: 193
+    pivotX: 220
+    pivotY: 250
+  - name: eyes-open
+    sprite: {fileID: 21300000, guid: d3810caad7fd5ea44819cf3aae372928, type: 3}
+    left: 156
+    top: 147
+    width: 125
+    height: 81
+    pivotX: 220
+    pivotY: 250
+  - name: eyes-closed
+    sprite: {fileID: 21300000, guid: 92373697a132e71449be6c8761309345, type: 3}
+    left: 162
+    top: 186
+    width: 113
+    height: 17
+    pivotX: 220
+    pivotY: 250
+  - name: muzzle
+    sprite: {fileID: 21300000, guid: 0a1c5c0fe0260f64e8038c302caf9229, type: 3}
+    left: 176
+    top: 188
+    width: 93
+    height: 90
+    pivotX: 220
+    pivotY: 250
+  - name: arm-near
+    sprite: {fileID: 21300000, guid: 162a52b2862403441a90e3c332cf0c64, type: 3}
+    left: 272
+    top: 245
+    width: 64
+    height: 102
+    pivotX: 287
+    pivotY: 260
+  - name: held-prop
+    sprite: {fileID: 21300000, guid: d8318a60e4e074742bb8c5d6769aa7dd, type: 3}
+    left: 309
+    top: 314
+    width: 64
+    height: 97
+    pivotX: 323
+    pivotY: 333

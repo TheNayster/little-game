@@ -1,0 +1,14 @@
+{
+  "build": 101,
+  "label": "ipad9",
+  "installed": true,
+  "signedArtifactVerified": true,
+  "documentsPreserved": 1096,
+  "allExistingPreferencesPreserved": true,
+  "runtimeBuild": "0.0.101",
+  "enrollment": "paired",
+  "savedSoloWorlds": 2,
+  "savedAdventures": 0,
+  "launchVerified": true,
+  "verification": "Read-only post-launch runtime record and checksum-validated saved worlds. No remote screen inspection claimed."
+}

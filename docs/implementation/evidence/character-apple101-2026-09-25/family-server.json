@@ -1,0 +1,14 @@
+{
+  "build": 91,
+  "wasStopped": true,
+  "startedWithExistingWorld": true,
+  "priorCheckpointRevision": 1906,
+  "startupCheckpointRevision": 1906,
+  "savedStateVerified": true,
+  "state": "ready",
+  "players": 4,
+  "checkedAt": "2026-09-26T01:12:00.916573+00:00",
+  "fourPlayerAdmissionObserved": true,
+  "authorityUnchanged": true,
+  "serverBuildUpdated": false
+}

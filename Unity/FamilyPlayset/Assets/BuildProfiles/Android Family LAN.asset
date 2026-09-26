@@ -55,5 +55,5 @@ MonoBehaviour:
         m_BuildType: 2
         m_LinkTimeOptimization: 0
         m_BuildAppBundle: 0
-        m_IPAddressToConnect:
+        m_IPAddressToConnect: 
         m_SymlinkSources: 0

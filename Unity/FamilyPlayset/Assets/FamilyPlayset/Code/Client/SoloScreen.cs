@@ -94,7 +94,9 @@ namespace LittleWeeps.Client
             offlineBranch="paired-"+world+"-"+profile;offlineActor=profile;
         }
         private RectTransform safe, avatar, stickKnob, stick;
-        private Image head, body;
+        private GameCharacterVisual characterVisual;
+        public string DisplayedCharacterId => characterVisual == null ? "" : characterVisual.CharacterId;
+        public int DisplayedCharacterLayers => characterVisual == null ? 0 : characterVisual.LayerCount;
         private Text message, activity, movementLabel, saveLabel, voiceLabel, listenLabel;
         private GameObject voiceSlash;
         private Font font;
@@ -117,7 +119,7 @@ namespace LittleWeeps.Client
         private long renderedSequence=-1;
         private bool grabConfirmed,gestureEnded,gestureCancelled,dropSubmitted,wasConnected;
         private Vector2 dragPoint;
-        private readonly Dictionary<string,(RectTransform root,Image head,Image body)> friends=new Dictionary<string,(RectTransform,Image,Image)>();
+        private readonly Dictionary<string,(RectTransform root,GameCharacterVisual view)> friends=new Dictionary<string,(RectTransform,GameCharacterVisual)>();
         private readonly Dictionary<string,Text> holders=new Dictionary<string,Text>();
         public bool Shared=>shared!=null;
         public bool Ready=>Board!=null && (World!=null || shared?.View!=null);
@@ -168,10 +170,13 @@ namespace LittleWeeps.Client
                     throw new InvalidDataException("Existing save needs recovery or a compatible version.");
                 var snapshot=loaded.Status==CheckpointStatus.Missing?null:JsonUtility.FromJson<SoloSnapshot>(loaded.Payload);
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
+                // The existing additive area upgrade preserves the old garden,
+                // player and receipts while adding the missing Creek station.
+                World = SoloWorld.WithAreas(World);
                 // Restore releases interrupted item holds; persist that change.
                 // Otherwise merely opening another saved adventure must not
                 // rewrite an untouched solo payload (including precise timers).
-                dirty=snapshot==null || snapshot.toys.Any(t=>!string.IsNullOrEmpty(t.holder));
+                dirty=snapshot==null || snapshot.schema<2 || snapshot.toys.Any(t=>!string.IsNullOrEmpty(t.holder));
                 Actor = World.Snapshot().players[0].id;
             }
             catch (Exception e)
@@ -217,7 +222,7 @@ namespace LittleWeeps.Client
             try
             {
                 var snapshot = JsonUtility.FromJson<SoloSnapshot>(payload);
-                if (snapshot != null && snapshot.schema > 1) throw new NotSupportedException("Newer solo save schema.");
+                if (snapshot != null && snapshot.schema > 2) throw new NotSupportedException("Newer solo save schema.");
                 SoloWorld.Validate(snapshot); return true;
             }
             catch (ArgumentException) { return false; }
@@ -242,8 +247,8 @@ namespace LittleWeeps.Client
         {
             Label(safe,"Little Weeps",36,new Vector2(-407,351),new Vector2(330,58));
             areaLabel=Label(safe,"",17,new Vector2(-404,313),new Vector2(350,34));
-            Button(safe,"Blue pup",new Vector2(-95,343),new Vector2(150,64),()=>ChooseAvatar("blue-pup"),new Color(.7f,.87f,.97f));
-            Button(safe,"Orange pup",new Vector2(75,343),new Vector2(160,64),()=>ChooseAvatar("orange-pup"),new Color(1,.81f,.61f));
+            Button(safe,"Bluey",new Vector2(-95,343),new Vector2(150,64),()=>ChooseAvatar("blue-pup"),new Color(.7f,.87f,.97f));
+            Button(safe,"Bingo",new Vector2(75,343),new Vector2(160,64),()=>ChooseAvatar("orange-pup"),new Color(1,.81f,.61f));
             movementLabel=Button(safe,JoystickMode?"Joystick":"Tap to walk",new Vector2(285,343),new Vector2(210,64),ToggleMovement,Cream);
             Button(safe,"Menu",new Vector2(500,343),new Vector2(160,64),()=>SetMenu(true),Cream);
             var garden=Button(safe,"Grow a flower",new Vector2(-380,265),new Vector2(245,48),()=>StartActivity("garden"),new Color(.86f,.93f,.74f));
@@ -254,14 +259,12 @@ namespace LittleWeeps.Client
             cleanup.rectTransform.anchoredPosition=new Vector2(22,0);cleanup.rectTransform.sizeDelta=new Vector2(191,48);
             Panel(cleanup.transform.parent,"Sponge picture",new Vector2(-94,0),new Vector2(34,23),new Color(1,.83f,.28f));
             Button(safe,"Free play",new Vector2(120,265),new Vector2(190,48),()=>StartActivity(""),Cream);
-            if(shared!=null || continuation!=null)
-                foreach(var zone in new[]{"garden","creek"})
+            foreach(var zone in new[]{"garden","creek"})
                 {
                     var place=zone;
                     var button=Button(safe,zone=="garden"?"Garden":"Creek",new Vector2(zone=="garden"?320:505,265),new Vector2(165,56),()=>Travel(place),Cream);
                     travelButtons.Add(zone,button.transform.parent.GetComponent<Button>());
                 }
-            else Label(safe,"Pick any game. Leave any time.",17,new Vector2(413,265),new Vector2(330,42));
             Board=Panel(safe,"Garden",new Vector2(0,-25),new Vector2(1120,500),new Color(.76f,.89f,.72f),true).rectTransform;
             Surface(Board,"ground");
             Panel(Board,"Sky",new Vector2(0,140),new Vector2(1116,216),new Color(.8f,.92f,.96f));
@@ -326,8 +329,14 @@ namespace LittleWeeps.Client
         public void ChooseAvatar(string id) { if(HasWorld && !TravelPending) Command(SoloAction.ChangeAvatar,value:id); }
         public void Travel(string zone)
         {
-            if(continuation!=null && shared==null && SoloWorld.KnownArea(zone))
-            {CancelPointers();Narration.Stop();Command(SoloAction.Travel,value:zone);return;}
+            if(HasWorld && shared==null && SoloWorld.KnownArea(zone))
+            {
+                if(zone==CurrentArea)return;
+                CancelPointers();Narration.Stop();
+                var result=Command(SoloAction.Travel,value:zone);
+                message.text=result.Accepted?"Welcome to the "+zone+". Keep exploring!":Friendly(result.Outcome);
+                return;
+            }
             if(shared==null || !shared.Connected || !SoloWorld.KnownArea(zone))return;
             requestedArea=zone;CancelPointers();Narration.Stop();
             message.text="Going to the "+zone+"…";
@@ -557,12 +566,26 @@ namespace LittleWeeps.Client
         private void LateUpdate()
         {
             RecordPlayFrame();
-            if(shared==null || !Ready || !shared.Connected)return;
-            var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
-            foreach(var friend in friends)
-            {if(!friend.Value.root.gameObject.activeSelf)continue;var p=shared.VisualPosition(friend.Key);friend.Value.root.anchoredPosition=ToBoard(p.x,p.y);}
-            foreach(var t in ReadToys())if(t.id!=dragging && !string.IsNullOrEmpty(t.holder) && shared.TryPreview(t.id,out var p))toys[t.id].anchoredPosition=ToBoard(p.x,p.y);
-            SortDepth();
+            if(!Ready)return;
+            if(shared!=null && shared.Connected)
+            {
+                var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
+                foreach(var friend in friends)
+                {if(!friend.Value.root.gameObject.activeSelf)continue;var p=shared.VisualPosition(friend.Key);friend.Value.root.anchoredPosition=ToBoard(p.x,p.y);}
+                foreach(var t in ReadToys())if(t.id!=dragging && !string.IsNullOrEmpty(t.holder) && shared.TryPreview(t.id,out var p))toys[t.id].anchoredPosition=ToBoard(p.x,p.y);
+                SortDepth();
+            }
+            // Drive animation from the same displayed motion, without changing
+            // authoritative coordinates, inventory, gestures or saved avatar IDs.
+            var items=ReadToys();
+            void Present(string id,GameCharacterVisual visual)
+            {
+                var player=ReadPlayer(id);
+                var point=shared!=null && shared.Connected?shared.VisualPosition(id):new Vector2(player.x,player.y);
+                visual.Present(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime);
+            }
+            Present(Actor,characterVisual);
+            foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
         }
         private void SortDepth()
         {
@@ -573,7 +596,7 @@ namespace LittleWeeps.Client
         {
             if(avatar==null)return;
             var zone=CurrentArea;var creek=zone=="creek";
-            areaLabel.text=(shared==null?"Garden play lab":Actor.Replace("player-","Player ")+" · "+(creek?"Creek":"Garden"))+" / "+Application.version;
+            areaLabel.text=(shared==null?(creek?"Creek":"Garden")+" play lab":Actor.Replace("player-","Player ")+" · "+(creek?"Creek":"Garden"))+" / "+Application.version;
             Board.GetComponent<Image>().color=creek?new Color(.7f,.85f,.71f):new Color(.76f,.89f,.72f);
             floorPath.color=creek?new Color(.37f,.72f,.87f):new Color(.9f,.81f,.64f);
             foreach(var part in fence)part.SetActive(!creek);
@@ -581,7 +604,7 @@ namespace LittleWeeps.Client
             foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(SoloWorld.AreaOf(toy.zone)==zone);
             var toyStates=ReadToys();var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
             renderedArea=p.zone;renderedVisit=p.visit;
-            head.color=p.avatar=="blue-pup"?new Color(.35f,.65f,.85f):new Color(.94f,.58f,.31f);body.color=head.color;
+            characterVisual.Select(p.avatar);
             foreach(var t in toyStates){if(t.id!=dragging)toys[t.id].anchoredPosition=ToBoard(t.x,t.y);
                 if(shared!=null)
                 {
@@ -635,19 +658,11 @@ namespace LittleWeeps.Client
             }
         }
         private void DrawAvatar()
-        {var visual=CreateAvatar("Pup");avatar=visual.root;head=visual.head;body=visual.body;}
-        private (RectTransform root,Image head,Image body) CreateAvatar(string name)
+        {var visual=CreateAvatar("Player character");avatar=visual.root;characterVisual=visual.view;}
+        private (RectTransform root,GameCharacterVisual view) CreateAvatar(string name)
         {
-            var avatar=Rect(Board,name,Vector2.zero,new Vector2(85,136));
-            Panel(avatar,"Shadow",new Vector2(0,-45),new Vector2(92,22),new Color(.27f,.41f,.26f,.3f),false,true);
-            var body=Panel(avatar,"Body",new Vector2(0,-8),new Vector2(61,75),Color.white);
-            var head=Panel(avatar,"Head",new Vector2(0,50),new Vector2(87,72),Color.white);
-            Panel(head.transform,"Ear",new Vector2(-30,43),new Vector2(24,43),new Color(.23f,.38f,.48f));
-            Panel(head.transform,"Ear",new Vector2(30,43),new Vector2(24,43),new Color(.23f,.38f,.48f));
-            Panel(head.transform,"Muzzle",new Vector2(0,-10),new Vector2(67,32),Cream);
-            foreach(var x in new[]{-20,20}){Panel(head.transform,"Eye",new Vector2(x,10),new Vector2(22,27),Color.white,false,true);Panel(head.transform,"Pupil",new Vector2(x,8),new Vector2(9,13),Ink,false,true);}
-            Panel(head.transform,"Nose",new Vector2(0,-9),new Vector2(20,13),Ink,false,true);
-            return(avatar,head,body);
+            var root=Rect(Board,name,Vector2.zero,new Vector2(85,136));
+            return(root,root.gameObject.AddComponent<GameCharacterVisual>());
         }
         private void RenderFriends()
         {
@@ -660,7 +675,7 @@ namespace LittleWeeps.Client
                 }
                 visual.root.gameObject.SetActive(shared.Players.Contains(player.id) && SoloWorld.AreaOf(player.zone)==CurrentArea);
                 visual.root.anchoredPosition=ToBoard(player.x,player.y);
-                visual.head.color=player.avatar=="blue-pup"?new Color(.35f,.65f,.85f):new Color(.94f,.58f,.31f);visual.body.color=visual.head.color;
+                visual.view.Select(player.avatar);
             }
         }
         private void Surface(RectTransform rect,string role){var s=rect.gameObject.AddComponent<SoloPointerSurface>();s.Screen=this;s.Role=role;Surfaces.Add(role,s);}

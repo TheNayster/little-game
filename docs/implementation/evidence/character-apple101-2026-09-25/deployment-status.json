@@ -1,0 +1,63 @@
+{
+  "build": 101,
+  "updateRequested": true,
+  "exportFilesVerified": 3094,
+  "archiveSha256": "f363c30795d3856e080e5eefd14562c5f5d2519cd846edd01f97f708d20708be",
+  "nativeReleaseAttempt": {
+    "xcodeExit": 65,
+    "compilerAndLinkStagesCompleted": true,
+    "signedBuildPassed": false,
+    "failure": "UnityFramework.framework codesign: errSecInternalComponent",
+    "signingHelperPrepared": "Finish-Little-Weeps-101.command",
+    "followupLocalSignedBuildPassed": true,
+    "followupXcodeExit": 0,
+    "profileCoversBothIpads": true,
+    "sixNativeBridgesVerified": true
+  },
+  "backups": [
+    {
+      "label": "ipad7",
+      "passed": true,
+      "filesVerified": 325,
+      "savedWorldRevision": 712,
+      "documentsAndPreferencesCopied": true,
+      "localCopyHashesVerified": true
+    },
+    {
+      "label": "ipad9",
+      "passed": true,
+      "filesVerified": 1097,
+      "savedWorldRevision": 682,
+      "documentsAndPreferencesCopied": true,
+      "localCopyHashesVerified": true
+    },
+    {
+      "label": "iphone",
+      "passed": true,
+      "filesVerified": 37,
+      "savedWorldRevision": 23,
+      "documentsAndPreferencesCopied": true,
+      "localCopyHashesVerified": true
+    }
+  ],
+  "devicesUpdated": [
+    "ipad7",
+    "ipad9",
+    "iphone"
+  ],
+  "iphone": {
+    "macPairedOverUsb": true,
+    "installedBuild": 101,
+    "connectedToOriginalFamily": true,
+    "wirelessUpdatePerformed": false,
+    "wirelessReachabilityCheck": "pending user cable removal",
+    "lastObservedTransport": "wired",
+    "wirelessReachabilityVerified": false
+  },
+  "limits": [
+    "Apple app updates and retained data are verified. Physical screen/animation checks remain user play feedback, not automated screenshots.",
+    "iPhone update used USB; wireless reachability check is separate.",
+    "All app installs were in place. No uninstall/reset/new family identity occurred."
+  ],
+  "allUpdatedAppleRuntimesVerified": true
+}

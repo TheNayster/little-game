@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace LittleWeeps.Client
 {
@@ -10,6 +11,8 @@ namespace LittleWeeps.Client
         public string characterId, displayName;
         public Transform facing, body, head, tail, armFar, armNear, footFar, footNear, handAnchor, heldProp;
         public SpriteRenderer eyesOpen, eyesClosed;
+        public Graphic eyesOpenGraphic, eyesClosedGraphic;
+        public bool showExampleProp = true;
         public SortingGroup sorting;
         private Vector3 bodyRest, headRest, farRest, nearRest;
         private bool initialized;
@@ -49,12 +52,15 @@ namespace LittleWeeps.Client
             var armAngle = frame.Pose == CharacterPose.Wave ? 132 - Mathf.Sin(time * 7) * 14 :
                 frame.Pose == CharacterPose.Carry ? 12 : -swing * .7f;
             armNear.localRotation = Rotation(armAngle);
-            heldProp.gameObject.SetActive(frame.Pose == CharacterPose.Carry);
+            heldProp.gameObject.SetActive(showExampleProp && frame.Pose == CharacterPose.Carry);
             // Counter-rotate inside the mirrored hierarchy; the grip stays on
             // the hand and the bucket stays upright in both facing directions.
             heldProp.localRotation = Rotation(-armAngle);
             var blink = time % 4.3f > 4.14f;
-            eyesOpen.enabled = !blink; eyesClosed.enabled = blink;
+            if (eyesOpen != null) eyesOpen.enabled = !blink;
+            if (eyesClosed != null) eyesClosed.enabled = blink;
+            if (eyesOpenGraphic != null) eyesOpenGraphic.enabled = !blink;
+            if (eyesClosedGraphic != null) eyesClosedGraphic.enabled = blink;
         }
 
         public void SetFloorDepth(float worldY)

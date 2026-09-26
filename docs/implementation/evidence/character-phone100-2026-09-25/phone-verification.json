@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "build": "0.0.100",
+  "previousBuild": "0.0.83",
+  "package": "com.littleweeps.familyplayset",
+  "device": "SM-S948U1",
+  "installedArtifactHashMatched": true,
+  "signaturesMatchedPinnedFamilyCertificate": true,
+  "installMode": "adb install -r --user 0",
+  "visibleGameVersion": "0.0.100",
+  "blueyVisibleInActualGame": true,
+  "blueyBingoButtonsVisible": true,
+  "originalSoloPrimaryAndBackupByteIdentical": true,
+  "activeWorldIdentityRetained": true,
+  "allToyRecordsUnchanged": true,
+  "playerIdentityAvatarActivityAndZoneUnchanged": true,
+  "activeRevisionBefore": 490,
+  "activeRevisionAfter": 492,
+  "savedPlayerPositionChangedDuringUserInput": true,
+  "newReceipts": [
+    "change to orange-pup / Bingo",
+    "change back to blue-pup / Bluey"
+  ],
+  "limits": "User began touching the game during post-install observation. Active files advanced; whole-directory byte identity is not claimed. No iPad, sustained performance, live multiplayer or final artwork acceptance is claimed.",
+  "runtimeNote": "One Android dex-finalizer AssertionError was logged; the same app process continued rendering and receiving touch. No Unity exception was present in the inspected segment. No crash-free/soak claim."
+}

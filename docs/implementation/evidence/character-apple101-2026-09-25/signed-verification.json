@@ -1,0 +1,30 @@
+{
+  "build": 101,
+  "version": "0.0.101",
+  "signedVerified": true,
+  "nativeCompileAndLinkPassed": true,
+  "bundle": "com.littleweeps.familyplayset",
+  "applicationIdentifier": "6QF59C684U.com.littleweeps.familyplayset",
+  "minimumOS": "15.0",
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "profileExpires": "2026-10-01T17:41:17Z",
+  "filesHashed": 39,
+  "app": "/Users/nayster/Developer/LittleWeeps/Builds/G3-0.0.101/DerivedData/Build/Products/Release-iphoneos/LittleWeeps.app",
+  "installed": false,
+  "nativeSymbolsVerified": [
+    "LWFamilyBrowse",
+    "LWFamilyPump",
+    "LWFamilyTake",
+    "LWFamilyStop",
+    "LWPairingAdd",
+    "LWPairingRead"
+  ],
+  "frameworkSha256": "76636f4dde9034d83e1cd1b72fa9ae90062018db7c8feb479a626e170c7a6060",
+  "unityGeneratedWarningsPresent": true,
+  "iphoneCovered": true,
+  "ipad7Covered": true,
+  "ipad9Covered": true
+}

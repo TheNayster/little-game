@@ -1,5 +1,7 @@
 # ART-PREP-02 — Bluey and Bingo Unity workshop
 
+**Later update:** the user requested integration into the real game and accepted the Android prototype on build 100, noting stiff animation. Build 101 restores the solo Creek button. [Current implementation and device evidence](character-phone-switch-2026-09-25.html). The workshop evidence below retains its original scope.
+
 **September 25, 2026 · Goal IDs CHAR-01 / ITEM-02 · Corrected character study implemented and technically verified; visual acceptance and production integration remain open.**
 
 The isolated Unity workshop now uses separate Bluey and Bingo layered artwork guided by the official reference catalog. It replaces the generic blue pup that the user rejected. Both characters support idle/blink, walking, waving, carrying, facing changes and floor-based depth ordering. Switching the selected character preserves the movement root and carried presentation. Passing the checks below does not establish user approval, final likeness, completed ART-PREP-02 or G6.

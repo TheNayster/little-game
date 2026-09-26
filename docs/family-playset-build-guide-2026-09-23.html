@@ -31,7 +31,7 @@
 <li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six worlds, characters and activity batches.</span></a></li>
 <li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
 </ol>
-<div class="build-callout"><p><strong>Current build summary:</strong> last deployed server/helper <strong>91</strong>; last verified clients <strong>iPad 7 95, Samsung 83, iPad 9/iPhone 79</strong>. Prepared <strong>98</strong> repairs the transition rewind and includes smooth offline saving; Windows/emulator checks and Apple compilation pass, signing and physical acceptance remain pending. Sign-in startup is Off; this audit did not contact the live server/devices. <strong>G4/AUTO-02 are retired. Current independent work: ART-PREP-02 Bluey/Bingo visual review; 29 native checks pass.</strong> G5 rooms/items, sustained device performance, Android native 16 KB, independent backup/restore and unattended renewal remain open. <a href="current-decisions.md">Current decisions</a>.</p><p><a href="#19-implementation-audit-and-remaining-work">Audit and remaining work</a> · <a href="#9-first-implementation-work-queue">Next task and acceptance</a> · <a href="implementation/g3-outage-failures-2026-09-25.html">Windows 91 evidence</a> · <a href="implementation/g3-mobile-recovery-builds-2026-09-25.html">Historical mobile 91 preparation</a> · <a href="implementation/g3-persistent-server-2026-09-24.html">Server lifetime proof (83)</a></p></div>
+<div class="build-callout"><p><strong>Current build summary:</strong> server/helper <strong>91</strong>; Samsung, iPad 7, iPad 9 and iPhone <strong>101</strong>. Windows travel/prior-save update/recovery, physical Android visuals, retained Apple updates, native runtime/enrollment and four-player server admission pass within their stated scopes. <a href="implementation/character-phone-switch-2026-09-25.html">Evidence</a>. G5, final character polish and release gates remain open.</p><p><a href="#19-implementation-audit-and-remaining-work">Audit and remaining work</a> · <a href="#9-first-implementation-work-queue">Next task and acceptance</a> · <a href="implementation/g3-outage-failures-2026-09-25.html">Windows 91 evidence</a> · <a href="implementation/g3-mobile-recovery-builds-2026-09-25.html">Historical mobile 91 preparation</a> · <a href="implementation/g3-persistent-server-2026-09-24.html">Server lifetime proof (83)</a></p></div>
 <div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
 <ul>
 <li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
@@ -57,10 +57,10 @@
 </div>
 </aside><article class="report">
 <p><strong>Production guide · September 23, 2026 · Implementation audit updated September 25, 2026</strong></p>
-<p><strong>Current character work — ART-PREP-02 remains open for visual acceptance:</strong> the rejected generic pup has been replaced by separate layered Bluey and Bingo studies based on the official references. Release workshop <code>art-prep02-006</code> passes 29 native checks over 2,880 pose samples, including character switching while carrying. <a href="implementation/art-prep02-unity-character-2026-09-25.html">Corrected preview and evidence</a>. Visual approval, game integration and device qualification remain open; do not advance to G5 on technical checks alone.</p>
+<p><strong>Current character work:</strong> corrected layered Bluey and Bingo replace the game placeholders in <strong>100/101</strong>. The user accepts the prototype appearance and switch; animation stiffness remains polish work. <strong>101</strong> restores ordinary-solo Creek navigation with an additive save upgrade. <a href="implementation/character-phone-switch-2026-09-25.html">Implementation and evidence</a>. G5, G6 and the full roster remain open.</p>
 <p><strong>Current scope — September 25:</strong> PC/VPS multiplayer and independent offline solo. Devices never host the shared world. Server state wins on reconnect; offline edits stay local. G4/AUTO-02 are retired. <a href="current-decisions.md">Current decisions</a> override historical proposals; the <a href="family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">build guide</a> records implementation status.</p>
-<p><strong>Active G3-REC-05:</strong> build <strong>98</strong> implements the visible-state transition repair and includes the 95 smooth-saving fix. It passes 76 rules/storage checks, native Windows recovery/movement regressions, six Android-emulator recovery groups and Apple native compilation. Physical updates remain pending: unattended Mac signing returned <code>errSecInternalComponent</code>, and the Samsung's saved ADB address is unreachable. Installed versions remain <strong>iPad 7 95, iPad 9/iPhone 79, Samsung 83</strong>. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Research and results</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Your return checklist</a>.</p>
-<p><strong>Independent work while devices wait:</strong> ART-PREP-02 now has a native <a href="implementation/art-prep02-unity-character-2026-09-25.html">Bluey and Bingo workshop</a> with editable layered art, idle/walk/wave/carry, facing, hand attachment and state-preserving character selection. Technical checks pass; visual acceptance remains open. The earlier generic browser study is historical and its appearance was rejected. G4/AUTO-02 remain retired. Prepared 98 device checks stay on the <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">return checklist</a>.</p>
+<p><strong>Device rollout complete:</strong> Samsung, both iPads and iPhone now run <strong>101</strong>, with saved data retained and Apple runtime/enrollment verified. The original server <strong>91</strong> is running and all four players joined. <a href="implementation/character-phone-switch-2026-09-25.html">Delivery evidence</a>. Earlier 98 continuity repairs are included; focused physical outage/lifecycle qualification remains distinct.</p>
+<p><strong>Next implementation:</strong> G5 versioned room/creation/item contracts after the requested rollout. Character animation polish remains open. PC/VPS authority and private offline saves remain unchanged; G4/AUTO-02 stay retired.</p>
 <p><strong>Purpose:</strong> build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.</p>
 <p><strong>Current position:</strong> G3-REC-05 physical acceptance is pending for prepared 98. Older iPad 95 passed smoother offline walking and offline cold reopening. Last deployed server/helper is 91; no live availability check occurred in this audit. G1/G2/G3 remain partial. G4 is retired; G5 rooms/items and G6–G7 game content remain. <a href="current-decisions.md">Current decisions</a> and <a href="#19-implementation-audit-and-remaining-work">all 35 feature statuses</a>.</p>
 <p><a href="bluey-game-research-2026-09-23.html">Open the feature goal sheet</a> · <a href="family-playset-package-research-2026-09-23.html">Package research</a> · <a href="family-playset-technical-research-2026-09-23.html">Technical evidence</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
@@ -390,9 +390,9 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 </tr>
 <tr>
 <td><strong>G3 — PC shared world</strong></td>
-<td>PC server, automatic paired joining, two basic areas, four mixed clients</td>
-<td>Four humans on both iPads + Android + iPhone; independent travel; late join; single-holder races; client departure leaves others playing</td>
-<td>Treating a two-client one-room demo as complete multiplayer</td>
+<td>One designated server, four mixed clients, automatic joining, shared ownership and independent areas</td>
+<td>Authoritative shared state survives client leave/rejoin; clients fall back to private solo; sustained mixed-device play and server recovery pass</td>
+<td>Room/content expansion that assumes unproved authority, ownership or reconnect behavior</td>
 </tr>
 <tr>
 <td><strong>G4 — retired by user decision</strong></td>
@@ -513,7 +513,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <p><strong>Device follow-up when available:</strong> update the Apple clients for return cues and the iPhone's wider layout, preserve their identities/saves, and check tablet geometry remains unchanged. Authority 91 retains the shared timers introduced in 83 for older 79 clients; those clients do not display the new cue, and their offline solo fixtures still use their older code. Phone 83 has a native layout/admission/save check, but no new human multitouch/audio acceptance. Native ARM64 16 KB remains a separate Android portability check; the family's actual Samsung uses 4 KB pages and already runs the release.</p>
 <p><strong>Future deployment:</strong> the owned VPS is the preferred shared server after reliability qualification, with controlled world/credential migration and one canonical writer. It need not wait for every activity. Travel multiplayer requires a usable internet route and is optional; offline solo is required. Device hosting and Bluetooth are removed. <a href="implementation/vps-hosting-plan-2026-09-24.html">VPS plan</a>.</p>
 <h2 id="10-the-working-method-that-prevents-jumping-around">10. The working method that prevents jumping around</h2>
-<p><strong>Independent work while devices wait:</strong> ART-PREP-02 now has a native <a href="implementation/art-prep02-unity-character-2026-09-25.html">Bluey and Bingo workshop</a> with editable layered art, idle/walk/wave/carry, facing, hand attachment and state-preserving character selection. Technical checks pass; visual acceptance remains open. The earlier generic browser study is historical and its appearance was rejected. G4/AUTO-02 remain retired. Prepared 98 device checks stay on the <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">return checklist</a>.</p>
+<p><strong>Next implementation:</strong> G5 versioned room/creation/item contracts after the requested rollout. Character animation polish remains open. PC/VPS authority and private offline saves remain unchanged; G4/AUTO-02 stay retired.</p>
 <p><strong>Active task — G3-REC-05:</strong> <strong>98 engineering implementation is complete within scope; physical qualification is pending.</strong> It starts a private local world from the latest received view plus the displayed local pose/held-item positions, preserving prior solo/adventure saves. It includes 95's measured save-stall repair. Windows and Android-emulator recovery/movement checks pass; Apple native compilation passes. Unattended signing failed at codesign, and the Samsung was unreachable. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Research, results and deployment limits</a>. Next: the return checklist's local signing step, iPad 7 transition check and retained updates to the remaining devices. Server/helper 91 are unchanged; G3 remains partial; device hosting is removed.</p>
 <p><strong>Completed independent task — G3-OPS-08:</strong> optional current-user Windows sign-in startup (NET-02 / AUTO-01) is implemented and passes isolated native/browser acceptance. Checked shortcut creation/removal, serialized helper reuse, saved Stop/Pause and four-player recovery pass; an isolated launch-environment defect was caught and fixed before deployment. <a href="implementation/g3-signin-startup-2026-09-25.html">Evidence and limits</a>. That isolated task did not change the live family. Server/helper 91 have subsequently been deployed; real sign-in startup activation and Windows sign-in/reboot still need a controlled session. <strong>Next device task remains G3-REC-05</strong>, native Apple compilation/signing and iPad 7 first.</p>
 <p><strong>Completed independent task — G3-REC-07:</strong> Build 91 passed 600.06 real seconds with the release Android emulator and three Windows clients: 75 movement/travel cycles, normal flower/bucket returns, Android Home/warm return, 75 observed durable full checkpoints, stable diagnostic memory and remote interpolation, seven local saves preserved since shared admission and exact stopped-server restart. <a href="implementation/g3-sustained-recovery-play-2026-09-25.html">Measured result, corrected save baseline and limits</a>. This advances NET-02 / FAMILY-01 / ITEM-03 without changing the live family or physical devices. <strong>Next device task stays G3-REC-05</strong>, native Apple compile/signing and iPad 7 first recovery/performance qualification; server-authoritative rejoin and durable room/item work remain; device hosting and offline merging are removed.</p>
@@ -947,7 +947,7 @@ Status: pending
 <p>The current tracker contains 35 top-level feature IDs. The coverage validator checks that all appear in this map. The full research includes additional detail, proposed counts and acceptance conditions; follow the linked goal-sheet sections when implementing each row rather than treating this summary as a replacement specification.</p>
 <h2 id="18-current-work-record-and-research-basis">18. Current work record and research basis</h2>
 <p><strong>Physical issue history and current qualification, September 25:</strong> the all-device report of frozen Wi-Fi-loss controls and choppy offline walking remains recorded. On iPad 7, 94 removed the long control wait, and 95 subsequently passed smoother walking and offline cold reopening. The user also identified a rewind to older state at the transition. <strong>98 repairs that separate rewind in Windows/emulator tests; no physical 98 install is claimed.</strong> Other devices still run their older builds. Keep G3-REC-05 open for retained updates and focused physical acceptance. <a href="implementation/evidence/ipad91-2026-09-25/all-device-offline-feedback.json">Original feedback</a> · <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Current results</a>.</p>
-<p><strong>Current build summary:</strong> last deployed server/helper <strong>91</strong>; last verified clients <strong>iPad 7 95, Samsung 83, iPad 9/iPhone 79</strong>. Prepared <strong>98</strong> repairs the transition rewind and includes smooth offline saving; Windows/emulator checks and Apple compilation pass, signing and physical acceptance remain pending. Sign-in startup is Off; this audit did not contact the live server/devices. <strong>G4/AUTO-02 are retired. Current independent work: ART-PREP-02 Bluey/Bingo visual review; 29 native checks pass.</strong> G5 rooms/items, sustained device performance, Android native 16 KB, independent backup/restore and unattended renewal remain open. <a href="current-decisions.md">Current decisions</a>.</p>
+<p><strong>Current build summary:</strong> server/helper <strong>91</strong>; Samsung, iPad 7, iPad 9 and iPhone <strong>101</strong>. Windows travel/prior-save update/recovery, physical Android visuals, retained Apple updates, native runtime/enrollment and four-player server admission pass within their stated scopes. <a href="implementation/character-phone-switch-2026-09-25.html">Evidence</a>. G5, final character polish and release gates remain open.</p>
 <p><strong>Device priority:</strong> iPads first, Android second. The A2197 iPad 7 is the minimum performance baseline; A2602 iPad 9 is the other primary play device. Test core controls, layouts, media, saves and client/solo transitions on both. Android and iPhone testing remain part of the mixed-device acceptance gates.</p>
 <p><strong>Earlier solo-device milestone, 24 September (build 56):</strong> the user tried the two Windows player windows and reported positive feedback. The Mac has now compiled/signed <strong>solo garden 56</strong>, and the iPad 9 update from 20 → 56 passed with all original preferences retained. Physical layout, walking, watering, speech, joystick plus dragging, menu/screen-lock cancellation, remembered voice/movement settings and Wi-Fi-off solo play passed. Closing and reopening retained the complete garden snapshot exactly. The older iPad 7 now also runs the garden: repeated checks were reported successful, and an actual restart retained its entire save and preferences. Its separate app-inventory query has a recorded CoreDevice error. Child usability, sustained measured performance and additional feature checks remain open. See the <a href="implementation/ipad-garden-2026-09-24.md">iPad garden evidence</a> and <a href="implementation/return-home-checklist-2026-09-24.md">return-home checklist</a>. Mobile multiplayer was not in that 56 export; subsequent 79/83 family builds and mixed-device evidence are recorded below. G1/G2/G3 are not complete.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
@@ -968,7 +968,7 @@ Status: pending
 </tr>
 <tr>
 <td>Last recorded family/mobile state</td>
-<td>Server/helper 91 deployed with retained enrollment/world. iPad 7 95 passes scoped smoother offline walking and cold reopening; Samsung 83, iPad 9/iPhone 79 await retained updates. Prepared 98 transition continuity still needs physical qualification. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Current ledger</a>. No device or live server was updated by the restoration experiment.</td>
+<td>Server/helper 91 is running; all four physical clients run 101 and joined the original family world. Existing documents/preferences retained on all Apple updates; Android garden records retained. Earlier 95 smoother offline walking/reopening remains scoped evidence.</td>
 </tr>
 <tr>
 <td>Current research deliverable</td>
@@ -980,15 +980,15 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td>Device track G3-REC-05: prepared 98 signing/install/qualification. Independent: ART-PREP-02 corrected Bluey/Bingo preview; visual acceptance remains open. No device-host work is active.</td>
+<td>Requested 101 client rollout complete. Finalize delivery evidence and check wireless iPhone reachability after cable removal; no device-host work.</td>
 </tr>
 <tr>
 <td>Latest completed engineering evidence</td>
-<td>ART-PREP-02 release workshop art-prep02-006: 29 native checks, 2,880 pose samples, two layered characters and visible controls reviewed. <a href="implementation/art-prep02-unity-character-2026-09-25.html">Evidence</a>. Visual approval remains open. Prepared family runtime remains 98.</td>
+<td>Windows 100/101 release character, native input, Creek travel and prior-save update/recovery; Android 100/101 exact installed APK checks; physical Bluey/Bingo and Creek with old garden records retained. <a href="implementation/character-phone-switch-2026-09-25.html">Evidence</a>. User accepts the prototype; stiffness remains open.</td>
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td>Finish ART-PREP-02 visual review before G5 room/item contracts. When devices are available, sign/install 98, check continuity on iPad 7, then update other devices in place. No automatic offline imports.</td>
+<td>G5 persistent room/creation/item contracts. Focused physical continuity/lifecycle and sustained performance checks remain on the user checklist; no offline imports.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -1008,7 +1008,7 @@ Status: pending
 <p>The folder <code>docs/bluey-research/build-guide-review-2026-09-23</code> records the original source URLs, retrieval evidence and selected excerpts. Earlier package recommendations are research candidates; the actual installed baseline and later qualification are recorded in sections 7 and 19. The precise folder structure, task method, phase order, coverage mapping and acceptance gates are <strong>our implementation plan</strong>, not a claim that a vendor or every company prescribes them.</p>
 <p>No calendar promise is made. After G6, use actual asset/task throughput and discovered defect work to estimate subsequent batches. Keep the work record current so the next session starts from evidence and the next dependency, not from memory or whichever feature seems most interesting that day.</p>
 <h2 id="19-implementation-audit-and-remaining-work">19. Implementation audit and remaining work</h2>
-<p><strong>Current scope audit — September 25:</strong> PC/VPS is the sole shared authority. The earlier audit baseline was Windows 90 / deployment 83–79; those figures below are historical evidence, not current status. Use section 18 for current 91/95/98 records. Four-device admission and scoped shared play are proved; updated-device sustained acceptance, rooms/items and full content are still open. G4/AUTO-02 are retired by user decision. <a href="implementation/pc-vps-plan-audit-2026-09-25.html">Full audit</a>.</p>
+<p><strong>Current scope audit — September 25:</strong> PC/VPS is the sole shared authority. Earlier audit baselines below are historical; section 18 and the device ledger carry later character/Creek updates. Four-device admission and scoped shared play are proved; sustained updated-device acceptance, rooms/items and full content remain open. G4/AUTO-02 are retired. <a href="implementation/pc-vps-plan-audit-2026-09-25.html">Full audit</a>.</p>
 <p>The audit maps all <strong>55 research chapters and 35 feature IDs</strong> to implementation work, including requirements outside that table. It compares coverage with focused source inspection, package locks, source-to-build hashes and retained test/user/deployment records. It does <strong>not</strong> rerun game tests, contact devices or the live server, measure current uptime, or freshly revalidate external citations. <a href="implementation/evidence/plan-audit90-2026-09-25/audit.json">Current audit scope, chapter coverage and evidence index</a>. The <a href="implementation/evidence/plan-audit83-2026-09-24/audit.json">build 83 audit</a> and <a href="implementation/evidence/plan-audit-2026-09-24/audit.json">original 54-chapter audit</a> preserve earlier findings; current status is consolidated here. No requirements were removed and no overall percentage is assigned.</p>
 <p><strong>Alignment decision:</strong> preserve four-player cross-platform play, independent areas, shared items, optional quests, all six worlds and full offline solo. Remove device hosting and automatic offline merging from scope. Continue focused G3 qualification while independent art preparation advances; G5 precedes integrated persistent rooms. VPS is a controlled deployment milestone, not an election participant. The existing foundation is retained.</p>
 <p><strong>How to read status:</strong> <strong>Passed proof</strong> means a named, bounded check passed in the stated environment. <strong>Partial</strong> means useful implementation exists but the full requirement is not accepted. <strong>Not built</strong> means research/design only. <strong>Optional later</strong> applies only to explicitly optional work. None of the 35 complete feature requirements is being marked fully accepted today.</p>
@@ -1165,8 +1165,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>G3 — PC shared world</strong></td>
-<td><strong>Partial:</strong> four physical admissions; deployed authority/helper 91 with healthy recovery; iPad 7 <strong>95</strong> passes scoped smoother offline walking/cold reopening. <strong>98</strong> visible-state continuity passes Windows/emulator tests; native Apple compile passes. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Current report</a>.</td>
-<td>98 signing/in-place device updates, physical transition acceptance and sustained mixed play. Off-PC/second-account recovery, parent pairing, mobile partitions and sign-in/reboot remain open.</td>
+<td><strong>Partial:</strong> four physical clients now on 101 admitted to server/helper 91. In-place data retention and native Apple runtime/enrollment pass. The 95 walking fix and 98 continuity engineering checks retain their scopes. <a href="implementation/character-phone-switch-2026-09-25.html">Delivery</a>.</td>
+<td>Focused physical transition acceptance, sustained mixed play, off-PC/second-account restore, pairing/setup UX, mobile partitions and sign-in/reboot.</td>
 </tr>
 <tr>
 <td><strong>G4 — retired</strong></td>
@@ -1213,23 +1213,23 @@ Status: pending
 <tbody>
 <tr>
 <td><strong>iPad 7 A2197, A10, iPadOS 18.7.10</strong></td>
-<td><strong>Family 95:</strong> verified in-place update, all 12 world-save files and existing preferences retained. User reports much smoother offline walking and successful offline cold reopening with toys retained. Final measured local segment has zero moving gaps ≥50 ms; earlier network/boundary outliers are retained separately. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Physical result</a>.</td>
-<td>Install/qualify <strong>98</strong> visible-state continuity; smaller network-work spike, repeated held-touch/menu/lifecycle transitions, sustained A10 measurements and renewal. Mac signing needs the prepared local helper.</td>
+<td><strong>Family 101:</strong> retained in-place 95 → 101, all 324 existing Documents files and preferences identical before launch; user opened after a signing/trust block, runtime 101 and original enrollment verified. Earlier 95 smoother offline movement/reopening remains scoped evidence. <a href="implementation/character-phone-switch-2026-09-25.html">Update</a>.</td>
+<td>Character/Creek touch feedback, focused continuity/lifecycle checks, sustained A10 measurements and renewal.</td>
 </tr>
 <tr>
 <td><strong>iPad 9 A2602, A13, iPadOS 18.6.2</strong></td>
-<td><strong>Family 79:</strong> in-place 56 → 79, documents/settings retained, native inventory/launch, Keychain enrollment and automatic shared admission passed. User confirms smooth movement, shared bucket handling, independent travel/reunion and lock/return on 79; native cold rejoin retains enrollment. Earlier physical solo controls/lifecycle passed on 56. <a href="implementation/g3-ipad-79-2026-09-24.html">Current record</a></td>
-<td>Client update for reset cues, remaining touch/settings and per-device solo/late-join coverage, sustained lifecycle, client reconnect and renewal.</td>
+<td><strong>Family 101:</strong> retained in-place 79 → 101; all 1,096 existing Documents files and preferences preserved; native inventory/launch, runtime 101 and enrollment verified. Joined original server 91. <a href="implementation/character-phone-switch-2026-09-25.html">Update</a>.</td>
+<td>Character/Creek touch feedback, focused solo/late-join/lifecycle and sustained qualification, renewal.</td>
 </tr>
 <tr>
 <td><strong>Samsung SM-S948U1, Android 16/API 36, 4 KB pages</strong></td>
-<td><strong>Family 83:</strong> same-signer 79 → 83, exact installed APK hash verified, existing Keystore enrollment reused, automatic join to persistent PC server and wider native screen inspected. Original local save files unchanged; paired branch retains items/identity with accepted walking progress. Earlier manual controls/voice feedback applies to 79. <a href="implementation/g3-persistent-server-2026-09-24.html">Applied record</a></td>
-<td>Detailed shared ownership/travel, lifecycle, solo round trips, sustained performance and native ARM64 16 KB. A 4 KB pass is not a 16 KB pass.</td>
+<td><strong>Family 101:</strong> retained 83 → 100 → 101 updates with pinned signer and exact installed APK hashes. Real Bluey/Bingo and Creek visually verified; old garden records retained, five Creek tools added once. User accepts the prototype, noting stiffness. <a href="implementation/character-phone-switch-2026-09-25.html">Evidence</a>.</td>
+<td>Animation polish, continuity/lifecycle checks, sustained performance and native ARM64 16 KB.</td>
 </tr>
 <tr>
 <td><strong>iPhone A2484, iOS 26.6.1</strong></td>
-<td><strong>Family 79:</strong> USB Sideloadly 20 → 79, native version verified, all three previous preference values retained, Keychain/native Bonjour admission passed as fourth client. Reported full layout, walk, bucket drag and Listen passed. <a href="implementation/g3-phones-79-2026-09-24.html">Record</a></td>
-<td>Client update for wider layout/reset cues; detailed shared ownership/travel, lifecycle, solo round trips and reliable unattended renewal. Wireless refresh remains unresolved.</td>
+<td><strong>Family 101:</strong> USB Mac update 79 → 101; all 36 existing Documents files and preferences preserved. Original protected player identity restored after the app reported unpaired; runtime 101, paired state and connection to server 91 verified. <a href="implementation/character-phone-switch-2026-09-25.html">Update</a>.</td>
+<td>Wireless reachability after cable removal, touch/lifecycle/solo checks, sustained performance and unattended renewal.</td>
 </tr>
 <tr>
 <td><strong>Windows</strong></td>
@@ -1243,7 +1243,7 @@ Status: pending
 </tr>
 </tbody>
 </table></div>
-<p><strong>Current mobile preparation — 98:</strong> matching signed Android release and iPad/iPhone export are built. Apple native compile/link and six bridges pass. Android identity/signature/ZIP/LOAD checks pass; strict 16 KB RELRO still fails. The retained emulator update and six runtime recovery groups pass. <strong>No physical 98 install:</strong> Mac unattended codesign returned <code>errSecInternalComponent</code>; the desktop <strong>Finish-Little-Weeps-98.command</strong> helper is prepared for iPad 7. Samsung's saved ADB address is unreachable. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Artifact/device evidence</a> · <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Return checklist</a>.</p>
+<p><strong>Current mobile delivery — 101:</strong> all four physical clients updated. Strict Apple signature, all six bridges and all three device profiles verified; retained documents/preferences and native runtimes checked. First Mac signing failed; user-run local helper completed it. The iPhone used USB and its original player identity was restored, without creating a new family/profile. <a href="implementation/character-phone-switch-2026-09-25.html">Evidence</a>. Native ARM64 16 KB and unattended Apple renewal remain open.</p>
 <p>Pinned project: <strong>Unity 6000.3.24f1, NGO 2.13.2, Unity Transport 2.7.4 with local embedded patch 1, Input System 1.20.0, URP 17.3.0 and UGUI 2.0.0</strong>. The transport patch changes one original vendor file, preserves notices and has regression evidence plus scoped native mobile admission/play; sustained mobile load, interruptions and route qualification remain open. Addressables, Localization and 2D Animation remain candidates, not installed/qualified subsystems. Mac inventory is <strong>M1 Pro, macOS 26.3.1, Xcode 26.6</strong>; everyday creation remains on Windows. <code>manifest.json</code>, <code>packages-lock.json</code>, <a href="implementation/ipad-garden-2026-09-24.md">native build evidence</a>.</p>
 <p><strong>Installation gap:</strong> the working manual USB refresh is useful, but unattended wireless renewal is not solved, and neither iPad has a proven Windows renewal cycle. Keep the requirement open before relying on these apps for unattended family use. Git/local backups and signing recovery copies also do not establish an independent off-device backup and successful restore.</p>
 <h3 id="all-35-feature-requirements-implementation-status">All 35 feature requirements: implementation status</h3>
@@ -1259,8 +1259,8 @@ Status: pending
 <tbody>
 <tr>
 <td><strong>CHAR-01</strong></td>
-<td><strong>Partial:</strong> two in-game placeholder skins preserve identity/prop. Separate Bluey/Bingo Unity prefabs demonstrate idle/walk/wave/carry, facing, hand attachment and switching; visual acceptance and game integration remain open.</td>
-<td>Visual acceptance, game-scene view integration, full roster and switching during every activity on mobile. G2/G3 → G6/G7.</td>
+<td><strong>Partial:</strong> layered Bluey/Bingo replace the game placeholders in 100/101, preserving identity and held props. User accepts the Android prototype, noting stiff animation. Native character/input tests and phone screenshots pass.</td>
+<td>Softer animation, independent views, full roster and switching during every activity on mobile. G2/G3 → G6/G7.</td>
 </tr>
 <tr>
 <td><strong>CHAR-02</strong></td>
@@ -1269,8 +1269,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>FAMILY-01</strong></td>
-<td><strong>Partial:</strong> both iPads, Samsung and iPhone were concurrently admitted on 79, with scoped play feedback; PC now 91 / Samsung 83, Android wider native layout inspected</td>
-<td>Sustained four-device play/lifecycle, remaining Apple cue/layout update, parent setup and A10 load/recovery. G3.</td>
+<td><strong>Partial:</strong> both iPads, Samsung and iPhone on 101 joined server 91; saves and original player identities retained</td>
+<td>Sustained mixed-device play/lifecycle, parent setup and A10 load/recovery. G3.</td>
 </tr>
 <tr>
 <td><strong>ACT-01</strong></td>
@@ -1344,8 +1344,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>WORLD-01</strong></td>
-<td><strong>Partial:</strong> four Windows players split/gather across two persistent logical areas; both physical iPads pass independent travel/reunion by user report</td>
-<td>Six worlds, rooms/story zones, production scene loading, full four-device travel qualification and server-area independence. G3–G7.</td>
+<td><strong>Partial:</strong> two persistent logical areas with independent shared travel. Build 101 exposes Creek in ordinary solo, upgrades existing saves additively and retains garden state in native/Android checks.</td>
+<td>Six worlds, rooms/story zones, illustrated scenes, full four-device travel qualification and server-area independence. G3–G7.</td>
 </tr>
 <tr>
 <td><strong>WORLD-02</strong></td>
@@ -1399,8 +1399,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>TRAVEL-01</strong></td>
-<td><strong>Partial:</strong> isolated garden works offline on both iPads; 95 scoped smooth walking/cold reopening passes on iPad 7; 98 starts a private adventure from the visible state in Windows/emulator tests</td>
-<td>Physical 98 acceptance, full solo content/NPC substitutes and return-home server-authoritative reunion. Offline edits stay local. G3/G5/G7.</td>
+<td><strong>Partial:</strong> local Garden/Creek in 101, native prior-save update/recovery and Android Creek pass; older iPad 95 smoother offline walking/cold reopening remains scoped evidence; 98 continuity repair included.</td>
+<td>Focused physical continuity acceptance, full solo content/NPC substitutes and server-authoritative reunion. Offline edits stay local. G3/G5/G7.</td>
 </tr>
 <tr>
 <td><strong>AUTO-01</strong></td>
@@ -1506,8 +1506,8 @@ Status: pending
 <h3 id="immediate-exit-criteria-and-next-handoff">Immediate exit criteria and next handoff</h3>
 <ul>
 <li><strong>Done within Windows scope: G3-REC-03.</strong> The four failure areas pass in five native groups with old saves retained and no replay. Adapter calls and suppressed completions are qualified test mechanisms, not claims of physical suspension or whole-network loss.</li>
-<li><strong>Active: G3-REC-05.</strong> The 95 physical walking fix is accepted within scope; <strong>98 transition repair and matched platform preparation are complete in engineering tests</strong>. Local Mac signing and all physical 98 installations/qualification remain pending. Follow the return checklist: iPad 7 first, then iPad 9 and phones, retaining enrollment/saves. Android-emulator success is not physical touch/performance acceptance; strict native 16 KB remains open. Older G3-REC-04/06/07 results retain their original build/scope.</li>
-<li><strong>Independent current:</strong> ART-PREP-02 corrected Bluey/Bingo workshop is built and technically checked; review likeness before advancing to G5. Keep it isolated from authority/save changes. G4 experiments remain historical evidence.</li>
+<li><strong>Client rollout complete:</strong> all four physical clients run <strong>101</strong> and joined the unchanged server 91. Focused physical continuity/foreground acceptance and sustained mixed play remain open; the earlier 98 engineering repair is included.</li>
+<li><strong>Character prototype accepted:</strong> Bluey/Bingo are in the real game, with positive Android feedback and stiffness still noted. G5 follows the requested rollout; final character polish and full content remain open.</li>
 <li><strong>Close remaining G3 physical acceptance</strong> with focused current-build checks and sustained measurements when devices are available. Keep renewal and independent backup tracked in release scope. G5 rooms/creations/item rules and G6 polished content remain; retired G4 adds no dependency.</li>
 </ul>
 <p>These are bounded prototype choices and explicit unfinished work, not reasons to restart from scratch. Preserve the tested rules, saves and movement; qualify the next dependency before expanding content.</p>

@@ -1,30 +1,19 @@
-# Your next checks — offline controls and walking
+# Your next checks — updated characters, Creek and shared play
 
-**Current architecture:** PC/VPS shared authority; private offline solo; server state on reconnect, without offline imports. This is the current user checklist; older report checklists are historical.
+**Current architecture:** PC/VPS shared authority; private offline solo; server state wins on reconnect without offline imports. Older report checklists are historical.
 
-**Last verified installed versions (no live check during this audit):** iPad 7 **95** (actual runtime verified), iPad 9/iPhone **79**, Samsung **83**, PC server and parent helper **91**. The PC world/enrollment are preserved and automatic recovery was last verified enabled/healthy. Actual Windows sign-in startup is still Off.
+**Current devices:** Samsung, both iPads and iPhone run **101**. All were updated in place; saves/settings and original family identities are retained. The original server/helper **91** is running and all four players joined. The user accepts the character prototype and notes animation stiffness. [Current update and evidence](character-phone-switch-2026-09-25.html).
 
-**Latest 95 feedback:** the older iPad is “way smoother.” The final offline walking segment confirms removal of the large periodic save stalls; offline cold reopening retains toys and smooth controls. Earlier network/lifecycle-boundary spikes remain recorded. The old-checkpoint transition jump is repaired in 98 engineering tests, awaiting physical acceptance. [Measurements and current repair](g3-offline-authority-and-hitch-review-2026-09-25.html). Other devices still need the replacement.
+## Focused play checks
 
-## When you get back
+1. Try Bluey/Bingo, enter Creek and return to Garden on the updated Apple devices. Softer animation remains polish work.
+2. For the inherited continuity repair, move a toy in Creek while connected, then disable Wi-Fi on one test device. Character/area/toy should remain where they were visible; briefly test movement and offline reopening. On reconnection the server's current world wins.
+3. Use separate areas, reunite, then let one player leave while others continue. Sustained performance remains a separate gate.
+4. The iPhone update used USB. Wireless reachability can be checked after unplugging it while it remains unlocked on the Mac's Wi-Fi; unattended renewal is still unqualified.
 
-**Build 98 is prepared and passes the Windows and Android-emulator checks.** The transition repair and smooth-saving fix are included. Apple native compilation passes, but unattended signing failed with `errSecInternalComponent`. Physical devices still have the versions above. [Full result and limits](g3-offline-authority-and-hitch-review-2026-09-25.html).
+The server is already running. Do not stop it to simulate an outage. The older iPad's build 95 smoother walking/offline reopening already passed within its recorded scope; current checks target the newer transition and presentation.
 
-1. **Make the Mac available and connect the older iPad**, unlocked on its Home Screen. On the Mac desktop, open **Finish-Little-Weeps-98.command** and enter the Mac password there if asked; approve codesign access if prompted. Tell me when the build finishes, so I can verify and install it over the existing app. Do not send your password. The helper targets the older iPad.
-2. **One focused older-iPad check after installation:** while connected, walk to the Creek, move a toy, then turn Wi-Fi off. The character, area and toy should stay where you were seeing them; controls should recover without closing the app. Briefly try both walking controls, then close/reopen offline and check the toy. On reconnection the server's current world must win.
-3. **Connect the newer iPad next**, then make the Samsung and iPhone available for in-place updates. The Samsung can use USB debugging or its current wireless-debugging address; the iPhone can use the established USB route. No uninstall or reset is needed. The Samsung's last saved address did not connect while you were away; send its current address or use USB when you return. I will install/verify these updates in place.
-4. **A short four-player check:** all four join, walk in separate areas, reunite, and one player leaves while the others continue. Repeat a brief offline/rejoin check on each updated device; no need to redo every old foundation test.
-**Removed from your list:** iPad hosting and automatic switching tests. You selected PC/VPS-only shared play; no device-host setup is needed.
-
-**Already passed on build 95 / older iPad:** significantly smoother offline walking, offline cold reopening, retained toys, and readable saves with the two original solo files unchanged. Do not repeat those as unfinished 95 checks. The next check targets the new transition behavior.
-
-The family server does **not** need another update for these client-side fixes. Do not stop it to simulate an outage. Test-device Wi-Fi loss lets other players continue.
-
-## Optional fun preview — no device setup
-
-[Open the character workshop](character-workshop/index.html) and try **Idle, Walk, Wave and Carry & walk**, then turn the character left/right. This is the first layered animation study; the final Bluey artwork and Unity integration are still ahead. Feedback can wait until you return.
-
-**Independent next work:** ART-PREP-02 imports the existing layered study into an isolated Unity character view with idle/walk/wave/carry and a hand anchor. G5 persistent rooms/item contracts follow. These can be prepared without device-host work or extra user setup. G4 experiments are historical; unfinished host-99 work is archived. [Current decisions](../current-decisions.md).
+**Next implementation:** G5 persistent rooms, creations and reusable item contracts. The actual game contains the corrected Bluey/Bingo artwork and ordinary-solo Creek. G4 device hosting is retired.
 
 ## Parent setup still needed later
 

@@ -48,5 +48,5 @@ MonoBehaviour:
         m_AdaptivePerformanceEnabled: 0
         m_iOSXcodeBuildConfig: 1
         m_SymlinkSources: 0
-        m_PreferredXcode:
+        m_PreferredXcode: 
         m_SymlinkTrampoline: 0

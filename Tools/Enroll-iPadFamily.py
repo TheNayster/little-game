@@ -1,5 +1,5 @@
 """Parent USB enrollment into the installed iPad client's create-only Keychain store."""
-import argparse,json,subprocess,uuid
+import argparse,hashlib,json,subprocess,uuid
 from pathlib import Path
 from family_pairing import read_record
 from mac_connection import ROOT,SSH,OPTIONS,HOST
@@ -7,13 +7,29 @@ from mac_connection import ROOT,SSH,OPTIONS,HOST
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--build',type=int,required=True)
-    p.add_argument('--label',choices=('ipad7','ipad9'),required=True);p.add_argument('--family',required=True)
+    p.add_argument('--label',choices=('ipad7','ipad9','iphone'),required=True);p.add_argument('--family',required=True)
+    p.add_argument('--restore-backup',type=Path,help='Verify the original client identity against its retained pre-update backup')
     p.add_argument('--player',type=int,choices=range(1,5),required=True);args=p.parse_args()
     assert uuid.UUID(args.family).hex==args.family
     installed=json.loads((ROOT/f'LocalData/ios-{args.build}-{args.label}-installed.json').read_text(encoding='utf-8'))
     assert installed['installed'] and installed['signedArtifactVerified'] and installed['build']==args.build
     pair=read_record(ROOT/'LocalData/FamilyLAN'/args.family/f'player-{args.player}.pairing')
     assert pair['role']=='client' and pair['worldId']==args.family and not pair.get('privateKey') and not pair.get('members')
+    if args.restore_backup:
+        # A signing-route change can leave the previous Keychain group unreadable.
+        # Restore only the protected original player matching this device's save.
+        backup=args.restore_backup.resolve()
+        assert backup.is_relative_to((ROOT/'LocalData/iPadBackups').resolve())
+        before=json.loads((backup/'backup.json').read_text(encoding='utf-8'))
+        assert before['passed'] and before['device']==installed['device'] and before['forBuild']==args.build
+        for entry in before['files']:
+            file=(backup/entry['path']).resolve()
+            assert file.is_relative_to(backup) and hashlib.sha256(file.read_bytes()).hexdigest()==entry['sha256']
+        save=backup/'Documents/SoloPrototype'/('paired-'+pair['worldId']+'-'+pair['profile'])/'world.save'
+        raw=save.read_bytes();header,digest,payload=raw.split(b'\n',2)
+        assert header==b'LITTLEWEEPS-SOLO-1' and hashlib.sha256(payload).hexdigest().encode()==digest
+        assert any(player['id']==pair['profile'] for player in json.loads(payload)['players'])
+        assert (backup/'Documents/FamilyLAN/enrollment-status.txt').read_text().strip()=='paired'
     data=dict(build=args.build,label=args.label,device=installed['device'],pair=pair)
     # The secret travels over SSH stdin, never an argument, Windows file, log,
     # source asset or public advertisement. The Mac staging directory is private.

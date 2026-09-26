@@ -106,7 +106,7 @@ namespace LittleWeeps.Core
             }
             return new SoloWorld(copy);
         }
-        // Explicit shared-save upgrade. Solo saves stay at schema 1. Existing
+        // Additive area upgrade for shared and local play. Existing
         // identities, placements, progress and receipts are never regenerated.
         public static SoloWorld WithAreas(SoloWorld world)
         {

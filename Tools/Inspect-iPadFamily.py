@@ -9,7 +9,7 @@ from mac_connection import ROOT, SSH, OPTIONS, HOST
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--build', type=int, required=True)
-    parser.add_argument('--label', choices=('ipad7', 'ipad9'), required=True)
+    parser.add_argument('--label', choices=('ipad7', 'ipad9', 'iphone'), required=True)
     parser.add_argument('--phase', required=True)
     args = parser.parse_args()
     assert 71 <= args.build <= 9999 and re.fullmatch(r'[a-z0-9-]{1,48}', args.phase)

@@ -1,0 +1,28 @@
+{
+  "build": 101,
+  "label": "iphone",
+  "installed": true,
+  "installedInventoryVersion": "0.0.101",
+  "signedArtifactVerified": true,
+  "documentsPreserved": 36,
+  "allExistingPreferencesPreserved": true,
+  "runtimeBuild": "0.0.101",
+  "enrollment": "paired",
+  "familyStatus": "connected",
+  "launchVerified": true,
+  "savedSoloWorlds": 2,
+  "originalPlayerIdentityVerified": true,
+  "originalFamilyWorldVerified": true,
+  "identityRestore": {
+    "required": true,
+    "observedAfterUpdate": "unpaired after changing from Sideloadly to the Mac signing route",
+    "originalCredentialRestaged": true,
+    "matchedProtectedCredentialToPreUpdateSave": true,
+    "newIdentityCreated": false,
+    "createOnlyKeychainAdd": true,
+    "pairedAndConnectedAfterRestore": true,
+    "enrollmentInboxConsumed": true
+  },
+  "installationTransport": "USB",
+  "wirelessUpdatePerformed": false
+}

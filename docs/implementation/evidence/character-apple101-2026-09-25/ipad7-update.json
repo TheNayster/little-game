@@ -1,0 +1,15 @@
+{
+  "build": 101,
+  "label": "ipad7",
+  "installed": true,
+  "signedArtifactVerified": true,
+  "documentsPreserved": 324,
+  "allExistingPreferencesPreserved": true,
+  "runtimeBuild": "0.0.101",
+  "enrollment": "paired",
+  "savedSoloWorlds": 2,
+  "savedAdventures": 5,
+  "launchVerified": true,
+  "verification": "Read-only post-launch runtime record and checksum-validated saved worlds. No remote screen inspection claimed.",
+  "initialLaunchBlock": "iPadOS signing/trust message; user subsequently opened the app and runtime 101 verified."
+}

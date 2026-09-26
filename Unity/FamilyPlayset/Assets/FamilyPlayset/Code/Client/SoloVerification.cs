@@ -99,6 +99,7 @@ namespace LittleWeeps.Client
                 else if(screen.VerifyMode=="seed")
                 {
                     Check(screen.LoadedStatus==CheckpointStatus.Missing,"Seed must use fresh storage.");
+                    Check(screen.DisplayedCharacterId=="bluey" && screen.DisplayedCharacterLayers==11,"Bluey artwork is missing from the real game canvas.");
                     // Ground raycasts reach the movement surface, not an overlaid control.
                     var target=screen.ScreenPoint(480,80);Check(Hit(target)==screen.Surfaces["ground"].gameObject,"Ground raycast blocked.");
                     Down("ground",10,target);Up("ground",10,target);
@@ -114,6 +115,7 @@ namespace LittleWeeps.Client
                     Check(Toy("bucket-1").holder==screen.Actor,"A second pointer stole the gesture.");
                     screen.ChooseAvatar("orange-pup");
                     Check(Player().avatar=="orange-pup" && Toy("bucket-1").holder==screen.Actor,"Avatar switch lost the held prop.");
+                    Check(screen.DisplayedCharacterId=="bingo" && screen.DisplayedCharacterLayers==11,"Bingo artwork did not replace Bluey in the real game.");
                     await Wait(()=>Player().x>start+30,"Joystick while dragging");
                     Up("stick",20,stickPoint);Drop("bucket-1",21,"tap-1");
                     Check(Toy("bucket-1").water==3,"Drag did not fill bucket.");result.joystickAndDrag=true;result.pointerExclusivity=true;
@@ -128,6 +130,15 @@ namespace LittleWeeps.Client
                     screen.SetMenu(false);Down("sponge-1",40,ToyPoint("sponge-1"));
                     screen.SendMessage("OnApplicationFocus",false);Check(Toy("sponge-1").holder=="","Focus loss did not cancel drag.");
                     result.cancellation=true;
+                    var savedGarden=screen.ReadToys().Select(t=>JsonUtility.ToJson(t)).ToArray();
+                    var creekButton=FindObjectsByType<Button>(FindObjectsSortMode.None).Single(b=>b.name=="Creek");
+                    Check(creekButton.interactable,"Creek button missing or disabled in ordinary solo play.");
+                    creekButton.onClick.Invoke();
+                    Check(screen.CurrentArea=="creek" && screen.ReadToys().Length==5 && screen.ReadToys().All(t=>t.zone=="creek"),"Creek button did not open its existing area and toys.");
+                    Check(screen.DisplayedCharacterId=="bingo","Travel reset the selected character.");
+                    FindObjectsByType<Button>(FindObjectsSortMode.None).Single(b=>b.name=="Garden").onClick.Invoke();
+                    Check(screen.CurrentArea=="garden" && screen.ReadToys().Select(t=>JsonUtility.ToJson(t)).SequenceEqual(savedGarden),"Creek round trip changed the saved garden.");
+                    Check(screen.World.Snapshot().schema==2 && screen.World.Snapshot().toys.Length==10,"Local area upgrade duplicated or lost toys.");
                     screen.SaveNow();screen.SaveNow(); // Both committed and previous-good contain the acceptance baseline.
                 }
                 else
