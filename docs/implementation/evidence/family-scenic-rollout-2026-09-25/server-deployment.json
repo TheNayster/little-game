@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "previousBuild": 91,
+  "build": 110,
+  "helperBuild": 110,
+  "preUpgradeBackupVerified": true,
+  "postUpgradeBackupVerified": true,
+  "worldIdentityRetained": true,
+  "allPlayerAndToyIdsRetained": true,
+  "playerCount": 4,
+  "toyCount": 10,
+  "exactSchemaOnlyUpgradeObserved": true,
+  "persistentServer": true
+}

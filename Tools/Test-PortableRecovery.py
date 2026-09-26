@@ -8,6 +8,7 @@ import secrets
 import subprocess
 import sys
 import uuid
+import runpy
 from unittest.mock import patch
 
 import portable_recovery as portable
@@ -35,7 +36,10 @@ def main():
     try:
         fixture.controller.start(); clients = [fixture.join(i) for i in range(1, 5)]
         clients[0].input('press', role='bucket-1'); clients[0].input('release', x=720, y=180)
-        clients[1].input('button', text='Creek')
+        if read(ROOT / f'Builds/NetworkProbe/G3-0.0.{args.build}/build-summary.json')['contract'] >= 5:
+            runpy.run_path(str(ROOT / 'Tools/Test-ScenicWorlds.py'))['travel'](clients[1], 'creek')
+        else:
+            clients[1].input('button', text='Creek')
         wait(lambda: all(not c.input('inspect')['pending'] for c in clients), 'settled two-area actions')
         live = recovery.backup(job)
         active = fixture.controller.snapshot()

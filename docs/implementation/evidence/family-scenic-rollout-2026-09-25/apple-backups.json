@@ -1,0 +1,18 @@
+[
+  {
+    "label": "ipad7",
+    "forBuild": 110,
+    "passed": true,
+    "filesVerified": 535,
+    "soloWorlds": 2,
+    "copiedToMacAndWindows": true
+  },
+  {
+    "label": "iphone",
+    "forBuild": 110,
+    "passed": true,
+    "filesVerified": 46,
+    "soloWorlds": 2,
+    "copiedToMacAndWindows": true
+  }
+]

@@ -15,7 +15,7 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 
 from family_pairing import protect, unprotect
-from server_recovery import (ENROLLMENT, FILES, LIMIT, MAX_QUALIFIED_BUILD,
+from server_recovery import (ENROLLMENT, FILES, LIMIT, QUALIFIED_BUILDS,
                              OperationError, canonical, check, decoded, digest,
                              durable, encoded, file_bytes, json_bytes,
                              publish_missing, unpack, validate_enrollment_records,
@@ -71,7 +71,7 @@ def validate_payload(payload):
     check(set(bundle) == FIELDS and bundle['format'] == 'little-weeps-portable-payload'
           and type(bundle['version']) is int and bundle['version'] == 1
           and type(bundle['protocol']) is int and bundle['protocol'] == 3
-          and type(bundle['build']) is int and 83 <= bundle['build'] <= MAX_QUALIFIED_BUILD,
+          and type(bundle['build']) is int and bundle['build'] in QUALIFIED_BUILDS,
           'Unsupported portable backup/build version.')
     canonical(bundle['world']); canonical(bundle['id'])
     check(set(bundle['files']) == set(FILES), 'Unexpected or missing portable file.')
@@ -141,7 +141,7 @@ def verify_bytes(raw, password):
 def recover_missing(path, password, expected_family, build, fault=None):
     bundle, files, records, body = load(path, password)
     check(bundle['world'] == canonical(expected_family), 'Wrong family selected for reconstruction.')
-    check(type(build) is int and bundle['build'] <= build <= MAX_QUALIFIED_BUILD,
+    check(type(build) is int and bundle['build'] <= build and build in QUALIFIED_BUILDS,
           'Select a qualified destination build at least as new as the backup.')
     # Rewrap with THIS Windows user's DPAPI. Original machine blobs are neither
     # required nor copied. Plaintext records are never written as recovery files.

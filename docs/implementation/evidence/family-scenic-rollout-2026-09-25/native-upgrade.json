@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "previousBuild": 91,
+  "build": 110,
+  "checks": [
+    {
+      "check": "91 to 110 changes only schema and one revision; every original gameplay field and protected enrollment byte retained",
+      "passed": true
+    },
+    {
+      "check": "Four original enrolled clients rejoin 110; new backup verifies; legacy 91 backup restores and upgrades identically",
+      "passed": true
+    }
+  ],
+  "scope": "Disposable enrolled Windows family; no real family files used"
+}

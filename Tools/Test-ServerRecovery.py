@@ -7,14 +7,22 @@ from pathlib import Path
 import subprocess
 import sys
 import uuid
+import runpy
+import server_recovery
 from recovery_fixture import RecoveryFixture
-from server_recovery import Recovery, OperationError, encoded, digest, unpack, checkpoint, recover_missing, ENROLLMENT, FILES, SAVES, MAX_QUALIFIED_BUILD
+from server_recovery import Recovery, OperationError, encoded, digest, unpack, checkpoint, recover_missing, ENROLLMENT, FILES, SAVES
 from shared_garden_runtime import ROOT, read, write, wait, require
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('build', type=int)
+    parser.add_argument('--qualify-build', action='store_true', help='Test a candidate only inside this disposable enrolled family; does not change the production recovery gate.')
     args = parser.parse_args(); fixture = RecoveryFixture(args.build)
+    if args.build not in server_recovery.QUALIFIED_BUILDS:
+        require(args.qualify_build and fixture.controller.isolated, 'Candidate recovery requires an isolated qualification run')
+        server_recovery.MAX_QUALIFIED_BUILD = args.build
+        server_recovery.QUALIFIED_BUILDS = server_recovery.QUALIFIED_BUILDS | {args.build}
+    scenic = read(ROOT / f'Builds/NetworkProbe/G3-0.0.{args.build}/build-summary.json')['contract'] >= 5
     recovery = Recovery(fixture.run_id, args.build)
     checks = []; success = False; server = fixture.controller
     save = fixture.path / 'server-world/world.save'
@@ -31,13 +39,18 @@ def main():
     try:
         server.start(); clients = [fixture.join(i) for i in range(1, 5)]
         drop(clients[0], 730, 160)
-        clients[1].input('button', text='Creek'); wait(lambda: not clients[1].input('inspect')['pending'], 'travel')
+        if scenic:
+            travel = runpy.run_path(str(ROOT / 'Tools/Test-ScenicWorlds.py'))['travel']
+            travel(clients[1], 'creek'); travel(clients[2], 'home'); travel(clients[3], 'beach')
+        else:
+            clients[1].input('button', text='Creek'); wait(lambda: not clients[1].input('inspect')['pending'], 'travel')
         live = recovery.backup(); bundle, files, body = unpack(Path(live['path']))
-        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == {'garden', 'creek'}, 'Incomplete backup')
+        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
+        if scenic: require(body['schema'] == 3 and any(p['x'] < 0 for p in body['players']), 'Scenic coordinates missing from backup')
         original_instance = server.snapshot()['instanceId']
         refused(lambda: recovery.restore(Path(live['path']), digest(save.read_bytes())))
         require(server.snapshot()['instanceId'] == original_instance and server.snapshot()['players'] == 4, 'Backup/restore attempt interrupted play')
-        passed('live backup verifies all protected enrollment and full two-area/four-player checkpoint; active restore refuses without interrupting play')
+        passed('live backup verifies protected enrollment and full multi-area/four-player checkpoint; active restore refuses without interrupting play')
         fixture.stop(); baseline = recovery.backup(); baseline_path = Path(baseline['path'])
         baseline_bytes = save.read_bytes()
         server.start(); client = fixture.join(1); drop(client, 410, 200); fixture.stop()
@@ -61,14 +74,14 @@ def main():
         cases = []
         v = deepcopy(source); v['files']['world.save']['sha256'] = '0' * 64; cases.append(('checksum', v))
         v = deepcopy(source); v['version'] = 2; cases.append(('format', v))
-        v = deepcopy(source); v['build'] = MAX_QUALIFIED_BUILD + 1; cases.append(('future-build', v))
+        v = deepcopy(source); v['build'] = server_recovery.MAX_QUALIFIED_BUILD + 1; cases.append(('future-build', v))
         v = deepcopy(source); v['files']['../world.save'] = v['files'].pop('world.save'); cases.append(('path', v))
         v = deepcopy(source); v['world'] = uuid.uuid4().hex; cases.append(('wrong-family', v))
         v = deepcopy(source); v['files']['player-1.pairing'] = v['files']['player-2.pairing']; cases.append(('wrong-enrollment', v))
         v = deepcopy(source); invalid = deepcopy(original); invalid['toys'][0]['water'] = 100
         payload = json.dumps(invalid); raw = ('LITTLEWEEPS-SOLO-1\n' + digest(payload.encode()) + '\n' + payload).encode()
         v['files']['world.save'] = encoded(raw); cases.append(('invalid-game-state', v))
-        v = deepcopy(source); invalid['schema'] = 3
+        v = deepcopy(source); invalid['schema'] = 4
         payload = json.dumps(invalid); v['files']['world.save'] = encoded(('LITTLEWEEPS-SOLO-1\n' + digest(payload.encode()) + '\n' + payload).encode()); cases.append(('future-schema', v))
         for name, value in cases:
             path = invalid_dir / (name + '.lwbackup'); path.write_text(json.dumps(value), encoding='utf-8')

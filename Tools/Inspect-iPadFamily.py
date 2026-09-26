@@ -11,11 +11,13 @@ def main():
     parser.add_argument('--build', type=int, required=True)
     parser.add_argument('--label', choices=('ipad7', 'ipad9', 'iphone'), required=True)
     parser.add_argument('--phase', required=True)
+    parser.add_argument('--copy-timeout',type=int,default=45)
     args = parser.parse_args()
+    assert 45 <= args.copy_timeout <= 180
     assert 71 <= args.build <= 9999 and re.fullmatch(r'[a-z0-9-]{1,48}', args.phase)
     installed = json.loads((ROOT/f'LocalData/ios-{args.build}-{args.label}-installed.json').read_text())
     assert installed['installed'] and installed['build'] == args.build
-    data = dict(build=args.build, label=args.label, device=installed['device'], phase=args.phase)
+    data = dict(build=args.build, label=args.label, device=installed['device'], phase=args.phase, copyTimeout=args.copy_timeout)
     code = 'data=' + repr(data) + '\n' + r'''
 import hashlib,json,pathlib,subprocess,uuid,datetime
 root=pathlib.Path.home()/'Developer/LittleWeeps'
@@ -23,7 +25,7 @@ out=root/'Logs'/('ipad-family-'+str(data['build']))/(data['label']+'-'+data['pha
 out.mkdir(parents=True)
 command=['xcrun','devicectl','device','copy','from','--device',data['device'],
     '--domain-type','appDataContainer','--domain-identifier','com.littleweeps.familyplayset',
-    '--source','Documents','--destination',str(out/'Documents'),'--timeout','45']
+    '--source','Documents','--destination',str(out/'Documents'),'--timeout',str(data['copyTimeout'])]
 copy=subprocess.run(command,capture_output=True,text=True)
 assert copy.returncode==0,'App documents could not be read; no device changes made'
 docs=out/'Documents';lan=docs/'FamilyLAN'
@@ -50,7 +52,7 @@ record['solo']=[saved(p) for p in (docs/'SoloPrototype').glob('*/world.save')]
 (out/'inspection.json').write_text(json.dumps(record,indent=2));print(json.dumps(record))
 '''
     result = subprocess.run([str(SSH), *OPTIONS, HOST, 'python3 -'], input=code,
-                            text=True, capture_output=True, timeout=75)
+                            text=True, capture_output=True, timeout=args.copy_timeout+30)
     if result.returncode:
         raise RuntimeError(result.stderr + '\nRead-only device inspection incomplete.')
     record = json.loads(result.stdout)

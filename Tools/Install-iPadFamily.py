@@ -6,14 +6,16 @@ from mac_connection import ROOT,SSH,OPTIONS,HOST
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--build',type=int,required=True)
-    p.add_argument('--backup',type=Path,required=True);args=p.parse_args()
+    p.add_argument('--backup',type=Path,required=True)
+    p.add_argument('--device-timeout',type=int,default=60,help='Seconds per device operation; wireless data copies can take longer.')
+    args=p.parse_args();assert 60<=args.device_timeout<=180
     backup=args.backup.resolve();assert backup.is_relative_to((ROOT/'LocalData/iPadBackups').resolve())
     record=json.loads((backup/'backup.json').read_text(encoding='utf-8'))
     assert record['passed'] and record['forBuild']==args.build
     import hashlib
     for e in record['files']:
         f=(backup/e['path']).resolve();assert f.is_relative_to(backup) and hashlib.sha256(f.read_bytes()).hexdigest()==e['sha256']
-    data=dict(build=args.build,backup=record)
+    data=dict(build=args.build,backup=record,deviceTimeout=args.device_timeout)
     code='data='+repr(data)+'\n'+r'''
 import pathlib,subprocess,json,hashlib,plistlib,uuid
 root=pathlib.Path.home()/'Developer/LittleWeeps';build=data['build'];before=data['backup'];device=before['device']
@@ -29,7 +31,7 @@ def run(name,cmd,required=True):
     result=out/(name+'.json')
     # Launch accepts trailing app arguments; options after its bundle ID would
     # be passed into the game instead of being parsed by devicectl.
-    r=subprocess.run(['xcrun','devicectl',*cmd[:3],'--device',device,'--timeout','60','--json-output',str(result),*cmd[3:]],capture_output=True,text=True)
+    r=subprocess.run(['xcrun','devicectl',*cmd[:3],'--device',device,'--timeout',str(data['deviceTimeout']),'--json-output',str(result),*cmd[3:]],capture_output=True,text=True)
     (out/(name+'.log')).write_text(r.stdout+r.stderr)
     if required:assert r.returncode==0,name+' failed; no destructive fallback permitted'
     return json.loads(result.read_text()) if result.exists() else {'error':{'message':'No CoreDevice JSON result'}}
@@ -54,7 +56,7 @@ result=dict(build=build,label=before['label'],device=device,installed=True,signe
     inventoryAvailable='result' in inventory_after,launchResult=launch.get('result',{}),remoteEvidence=str(out),backup=before['remoteBackup'])
 (out/'result.json').write_text(json.dumps(result,indent=2));print(json.dumps(result))
 '''
-    r=subprocess.run([str(SSH),*OPTIONS,HOST,'python3 -'],input=code,text=True,capture_output=True,timeout=300)
+    r=subprocess.run([str(SSH),*OPTIONS,HOST,'python3 -'],input=code,text=True,capture_output=True,timeout=max(300,8*args.device_timeout+30))
     if r.returncode:raise RuntimeError(r.stderr+'\nInspect the install evidence; never uninstall or clear data to retry.')
     result=json.loads(r.stdout);out=ROOT/'LocalData'/('ios-'+str(args.build)+'-'+record['label']+'-installed.json')
     out.write_text(json.dumps(result,indent=2),encoding='utf-8');print(json.dumps(result))
