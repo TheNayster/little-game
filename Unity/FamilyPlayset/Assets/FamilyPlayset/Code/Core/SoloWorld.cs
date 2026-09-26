@@ -6,7 +6,7 @@ using System.Linq;
 namespace LittleWeeps.Core
 {
     public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
@@ -14,6 +14,7 @@ namespace LittleWeeps.Core
         public long visit;
         public string fixture = "";
         public double useSeconds;
+        public double stairs;
         public float x = 420, y = 200;
         public SoloPlayer Copy() => (SoloPlayer)MemberwiseClone();
     }
@@ -111,6 +112,8 @@ namespace LittleWeeps.Core
             }
             if(copy.players.Any(p=>!string.IsNullOrEmpty(p.fixture)))
             {foreach(var p in copy.players)ClearFixture(p);copy.revision++;}
+            if(copy.players.Any(p=>p.stairs>0))
+            {foreach(var p in copy.players)p.stairs=0;copy.revision++;}
             return new SoloWorld(copy);
         }
         // Additive area upgrade for shared and local play. Existing
@@ -141,7 +144,7 @@ namespace LittleWeeps.Core
         internal bool SetWalkingPosition(string actor,string zone,long visit,float x,float y)
         {
             var p=state.players.FirstOrDefault(v=>v.id==actor);
-            if(p==null || p.zone!=zone || p.visit!=visit || !WorldLayout.Position(zone,state.schema,x,y))return false;
+            if(p==null || p.stairs>0 || p.zone!=zone || p.visit!=visit || !WorldLayout.Position(zone,state.schema,x,y))return false;
             if(p.x==x && p.y==y)return false;
             if(!string.IsNullOrEmpty(p.fixture)){ClearFixture(p);state.revision++;}
             p.x=x;p.y=y;return true;
@@ -195,11 +198,10 @@ namespace LittleWeeps.Core
             var ids = new HashSet<string>();
             foreach (var p in s.players)
                 if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !WorldLayout.Position(AreaOf(p.zone),s.schema,p.x,p.y) ||
-                    !ValidArea(p.zone,s.schema) || p.visit<0 || p.visit==long.MaxValue || (s.schema==1 && p.visit!=0)) throw new InvalidOperationException("Invalid player record.");
+                    !ValidArea(p.zone,s.schema) || !HomeRooms.ValidTransit(p) || s.schema<HomeRooms.Schema && p.stairs!=0 || p.visit<0 || p.visit==long.MaxValue || (s.schema==1 && p.visit!=0)) throw new InvalidOperationException("Invalid player record.");
             ids.Clear();
             foreach (var t in s.toys)
-                if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || !ValidArea(t.zone,s.schema) || (AreaOf(t.zone)!="garden" && AreaOf(t.zone)!="creek") ||
-                    t.id != t.kind.ToString().ToLowerInvariant() + (AreaOf(t.zone)=="garden"?"-1":"-creek") ||
+                if (t == null || !ids.Add(t.id ?? "") || !Enum.IsDefined(typeof(ToyKind), t.kind) || !ValidArea(t.zone,s.schema) || !ValidToyLocation(t,s.schema) ||
                     !WorldLayout.Position(AreaOf(t.zone),s.schema,t.x,t.y) || t.water < 0 || t.water > 3 ||
                     ((t.kind == ToyKind.Tap || t.kind == ToyKind.Sponge || t.kind == ToyKind.Ball) && t.water != 0) ||
                     (t.kind != ToyKind.Sponge && t.wet) ||
@@ -227,8 +229,8 @@ namespace LittleWeeps.Core
         private bool IdleEligible(SoloToy toy)
         {
             if(!string.IsNullOrEmpty(toy.holder))return false;
-            if(toy.kind==ToyKind.Bucket)return toy.x!=360 || toy.y!=130 || toy.water!=0;
-            if(toy.kind==ToyKind.Sponge)return toy.x!=560 || toy.y!=120 || toy.wet;
+            if(toy.kind==ToyKind.Bucket)return HomeRooms.Internal(toy.zone) || toy.x!=360 || toy.y!=130 || toy.water!=0;
+            if(toy.kind==ToyKind.Sponge)return HomeRooms.Internal(toy.zone) || toy.x!=560 || toy.y!=120 || toy.wet;
             if(toy.kind==ToyKind.Plant || toy.kind==ToyKind.Puddle)
             {
                 var tool=toy.kind==ToyKind.Plant?ToyKind.Bucket:ToyKind.Sponge;
@@ -247,6 +249,7 @@ namespace LittleWeeps.Core
             if(state.revision>=long.MaxValue-1)throw new InvalidOperationException("World revision limit reached.");
             var changed=AdvanceHome(seconds);
             changed|=AdvanceKeepy(seconds,activePlayers);
+            changed|=AdvanceStairs(seconds,activePlayers,out var roomCommitted);visibleChange|=roomCommitted;
             foreach(var toy in state.toys)
             {
                 var timer=state.idleTimers.FirstOrDefault(t=>t.item==toy.id);
@@ -262,8 +265,8 @@ namespace LittleWeeps.Core
                 {
                     // Eligibility was rechecked this tick, including another
                     // player's hold. Preserve the exact shared object identity.
-                    if(toy.kind==ToyKind.Bucket){toy.container="";toy.x=360;toy.y=130;toy.water=0;}
-                    if(toy.kind==ToyKind.Sponge){toy.container="";toy.x=560;toy.y=120;toy.wet=false;}
+                    if(toy.kind==ToyKind.Bucket){toy.container="";if(HomeRooms.Internal(toy.zone))toy.zone="garden";toy.x=360;toy.y=130;toy.water=0;}
+                    if(toy.kind==ToyKind.Sponge){toy.container="";if(HomeRooms.Internal(toy.zone))toy.zone="garden";toy.x=560;toy.y=120;toy.wet=false;}
                     if(toy.kind==ToyKind.Plant)toy.water=0;
                     if(toy.kind==ToyKind.Puddle)toy.water=3;
                     Touch(toy);visibleChange=true;
@@ -289,11 +292,16 @@ namespace LittleWeeps.Core
             // become valid when a player leaves and later returns to that area.
             if(c.zone!=player.zone || c.visit!=player.visit)return Reject("stale-area");
             if (c.expectedRevision != Revision || Revision >= long.MaxValue - 1) return Reject("stale-revision");
+            if(player.stairs>0 && c.action!=SoloAction.CancelStairs && c.action!=SoloAction.CancelGrab && c.action!=SoloAction.ChangeAvatar)return Reject("on-stairs");
             var item = state.toys.FirstOrDefault(t => t.id == c.item);
             if(item!=null && item.zone!=player.zone)return Reject("wrong-area");
             var outcome = "accepted";
             switch (c.action)
             {
+                case SoloAction.UseStairs:
+                    var stairError=BeginStairs(player);if(stairError!=null)return Reject(stairError);outcome="stairs-started";break;
+                case SoloAction.CancelStairs:
+                    player.stairs=0;break;
                 case SoloAction.Travel:
                     if(state.schema<2 || !(state.schema>=WorldLayout.ScenerySchema?WorldLayout.Destination(c.value):c.value=="garden" || c.value=="creek"))return Reject("unknown-area");
                     if(c.value==WorldLayout.Place(player))return Reject("already-there");
@@ -301,7 +309,7 @@ namespace LittleWeeps.Core
                     // These are essential station tools. Settle a live hold at
                     // its rack, preserving water; no new instance is spawned.
                     foreach(var held in state.toys.Where(t=>t.holder==c.actor))
-                    {held.holder="";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
+                    {held.holder="";if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
                     ClearFixture(player);player.zone=WorldLayout.Canonical(c.value);player.visit++;player.x=WorldLayout.ArrivalX(c.value);player.y=100;player.activity="";outcome="area-entered";break;
                 case SoloAction.Move: ClearFixture(player);player.x = c.x; player.y = c.y; break;
                 case SoloAction.ChangeAvatar:

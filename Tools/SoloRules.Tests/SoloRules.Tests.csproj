@@ -10,6 +10,8 @@
     <Compile Include="SceneryTests.cs" />
     <Compile Include="HomeTests.cs" />
     <Compile Include="KeepyTests.cs" />
+    <Compile Include="RoomTests.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeRooms.cs" Link="HomeRooms.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs" Link="WorldLayout.cs" />
     <Compile Include="RecoveryTests.cs" />
     <Compile Include="ContinuationTests.cs" />

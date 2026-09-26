@@ -162,7 +162,7 @@ namespace LittleWeeps.Client
             if(!HasWorld)return;
             var selected=ReadPlayer(Actor).avatar;
             foreach(var pair in avatarMarkers)pair.Value.gameObject.SetActive(pair.Key==selected);
-            foreach(var pair in worldBadges)pair.Value.text=WorldLayout.Canonical(pair.Key)==CurrentArea?"You're here":"Let's play";
+            foreach(var pair in worldBadges)pair.Value.text=(pair.Key=="home" && HomeRooms.Property(CurrentArea) || WorldLayout.Canonical(pair.Key)==CurrentArea)?"You're here":"Let's play";
         }
         private void AnimateNavigation()
         {

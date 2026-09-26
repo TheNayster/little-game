@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "build": 135,
+  "summary": {
+    "utc": "2026-09-26T20:07:05.2405030Z",
+    "contract": 8,
+    "content": 7,
+    "schema": 6,
+    "gardenPresentation": true,
+    "builds": [
+      {
+        "role": "Server",
+        "version": "0.0.135",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+        "result": "Succeeded",
+        "output": "Builds/NetworkProbe/G3-0.0.135/Server/LittleWeepsNetwork.exe",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": true
+      },
+      {
+        "role": "Client",
+        "version": "0.0.135",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+        "result": "Succeeded",
+        "output": "Builds/NetworkProbe/G3-0.0.135/Client/LittleWeepsNetwork.exe",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": false
+      }
+    ]
+  },
+  "buildSourceBaseline": "b2d41922a4d722e4c941cf1cc1d65b2e61a9f939",
+  "runtimeFilesCompared": 372,
+  "runtimeSourceExactMatch": true,
+  "artifactFilesCompared": 351,
+  "artifactExactMatch": true,
+  "sourceManifestSha256": "441a8c3a69719357b73e15849d10c2ffb2c23eeed9cfe25b77aeacdb716c9158",
+  "artifactManifestSha256": "c8f61e738c59540a944e894b18af832c3d12d537e91acf44ac67d8f369128ef9",
+  "roomArtSha256": "92c1ea5d1957d0b5e3f74fc2ccd87d0314319e185f27a8131a4903ebc1b21e21",
+  "excludedFromRuntimeComparison": "Importer .meta files and build-profile assets: Unity-generated trailing whitespace removed after build; no semantic changes. Test/helper Python and documentation changed after the game build and are qualified separately.",
+  "deploymentPerformed": false,
+  "limits": "Windows release artifacts only. Not Android/iOS or physical-device qualification."
+}

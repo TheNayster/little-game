@@ -87,8 +87,22 @@ def checkpoint(raw):
     header, checksum, payload = raw.decode('utf-8-sig').split('\n', 2)
     check(header == 'LITTLEWEEPS-SOLO-1' and digest(payload.encode()) == checksum, 'Checkpoint checksum mismatch.')
     value = json.loads(payload)
-    check(value.get('schema') in (2, 3, 4, 5), 'Unsupported checkpoint version.')
+    check(value.get('schema') in (2, 3, 4, 5, 6), 'Unsupported checkpoint version.')
     return value
+
+
+def build_schema(build):
+    # Retained backups must remain verifiable without their old build folders.
+    # A newer validator accepting a save does not mean an older writer can load it.
+    legacy = {**dict.fromkeys(range(83, 92), 2), 110: 3, 128: 4, 130: 5, 131: 5}
+    if build in legacy:
+        return legacy[build]
+    summary = read(ROOT / f'Builds/NetworkProbe/G3-0.0.{build}/build-summary.json')
+    contract = summary.get('contract') if summary else None
+    schemas = {4: 2, 5: 3, 6: 4, 7: 5, 8: 6}
+    check(contract in schemas and (contract < 8 or
+          summary.get('schema') == 6 and summary.get('content') == 7), 'Unverified build save compatibility.')
+    return schemas[contract]
 
 
 def validate_enrollment(files, world):
@@ -150,6 +164,7 @@ def unpack(path):
         files = {name: decoded(entry) for name, entry in bundle['files'].items()}
         profiles = validate_enrollment(files, bundle['world'])
         body = validate_world(files['world.save'], profiles)
+        check(body['schema'] <= build_schema(bundle['build']), 'Checkpoint is newer than its declared source build.')
         check(body['worldId'] == bundle['checkpointWorld'] and body['revision'] == bundle['revision'], 'Backup metadata differs from checkpoint.')
         return bundle, files, body
     except OperationError:
@@ -238,6 +253,7 @@ class Recovery:
             latest = read(self.root / 'latest-server.json')
             source_build = candidates[0]['build'] if len(candidates) == 1 else latest['build'] if latest else self.build
             check(len(candidates) <= 1 and source_build in QUALIFIED_BUILDS, 'Unverified source build.')
+            check(body['schema'] <= build_schema(source_build), 'Checkpoint is newer than its source build.')
             bundle = dict(format='little-weeps-server-backup', version=1, id=uuid.uuid4().hex,
                           world=self.family, checkpointWorld=body['worldId'], revision=body['revision'],
                           build=source_build, protocol=3, createdAt=datetime.now(timezone.utc).isoformat(),
@@ -259,6 +275,7 @@ class Recovery:
 
     def restore(self, path, expected_current_sha256, fault=None):
         bundle, files, body = unpack(path)
+        check(body['schema'] <= build_schema(self.build), 'Checkpoint is newer than the selected destination build.')
         self._matching(bundle, files)
         with operation_lock(self.root):
             check(not self.marker.exists(), 'Resolve interrupted recovery first.')

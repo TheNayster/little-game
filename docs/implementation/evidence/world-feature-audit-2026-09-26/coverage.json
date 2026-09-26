@@ -673,9 +673,9 @@
   },
   "inventoryEntries": 330,
   "statusCounts": {
-    "Partial": 39,
+    "Partial": 40,
     "Playable prototype": 12,
-    "Planned": 262,
+    "Planned": 261,
     "Development only": 2,
     "Optional idea": 8,
     "Scenery only": 4,
@@ -684,15 +684,15 @@
   "sources": [
     {
       "path": "docs/bluey-game-research-2026-09-23.md",
-      "sha256": "98b9d76522c4b48b214de6f502843f2d035f2f34ba04cda2d3449076a90551ae"
+      "sha256": "f043253dc956df85e045fa51dbc3bdacacaff6ccdf510d144c73fdd542ac9ada"
     },
     {
       "path": "docs/current-decisions.md",
-      "sha256": "37bc4fb3e812d31c62a5dc97115ca57b1837114e742f1d736f5054667d1557c1"
+      "sha256": "fff5c9aba692563cf1929cddb0f16d854cf7fa528aac60469b3dfbf4bd6e21cb"
     },
     {
       "path": "docs/family-playset-build-guide-2026-09-23.md",
-      "sha256": "b8deddf1c0fa7b2e5e199e516065e50d8344e18660f5b56d2d05a8a1505cb1fe"
+      "sha256": "12107960c95f21db7ee5902d1deb64a4804a56c8d3d569a135531af89c0e2025"
     },
     {
       "path": "docs/bluey-lets-play-reference-study-2026-09-25.md",
@@ -704,15 +704,15 @@
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
-      "sha256": "e2875fcca70e9a5e728d19da2366965f48a7c6a965a96edc07ae58232742f52f"
+      "sha256": "0a654e6e5ca7660270c1044530bf10ae1ff40199639162d180df59bd5af49285"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
-      "sha256": "3161e796d42252057c055052ebdcc6de70f2c3a075e52b36430629a15eaaebb5"
+      "sha256": "bbb3cefff1c4d1c6499d16fc473bea3ac82315aa958f0b4c8d0227b402a85521"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs",
-      "sha256": "15a1d1b47b9b290aec8dc09f1bc4a7e16fbc3f11b7505f2d2cca6b599f689c33"
+      "sha256": "abd7043b53b019bcfa5ccf6047615742babd9c35d844116642e3251b9eb27ea2"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs",
@@ -720,11 +720,11 @@
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs",
-      "sha256": "f61c37bcc20261b26088b5b7c43febf068578417cb936b9fbb3a5b73b3eec1de"
+      "sha256": "7ce918bb9915ae99e2bf880e5990bf4b4272b6df7a58956f153f080844ec3077"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
-      "sha256": "4001553cc5b98eb6a47fe3f260d494574011a370b7b94e3f7ef810fdca407b94"
+      "sha256": "a8d3718eff9e810df79ffa4fb30eae0f7dc5aa8ef80cf0cf79a5702e53416b05"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs",

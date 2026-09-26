@@ -131,7 +131,7 @@ static partial class Program
         Test("keepy malformed clocks, floor points, ownership and future schema refuse",()=>{
             var w=KeepyWorld();
             foreach(var change in new Action<SoloSnapshot>[] {s=>s.keepy.height=float.NaN,s=>s.keepy.vz=999,s=>s.keepy.remainder=1,
-                s=>s.keepy.lastHitter="missing",s=>s.keepy.phase=2,s=>s.schema=6,s=>s.keepy=null,
+                s=>s.keepy.lastHitter="missing",s=>s.keepy.phase=2,s=>s.schema=WorldLayout.Schema+1,s=>s.keepy=null,
                 s=>{s.players[0].activity=KeepyRules.Activity;s.players[0].zone="beach";}})
             {var s=w.Snapshot();change(s);Throws(()=>SoloWorld.Validate(s));}
             var r=RecoveryFixture();r.snapshot=SoloWorld.WithKeepyUppy(SoloWorld.Restore(r.snapshot)).Snapshot();r.content=6;

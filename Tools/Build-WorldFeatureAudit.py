@@ -28,6 +28,7 @@ EVIDENCE = {
  'home':'implementation/home-interactions-2026-09-25.html',
  'layers':'implementation/integrated-home-2026-09-26.html',
  'keepy':'implementation/keepy-uppy-2026-09-26.html',
+ 'rooms':'implementation/upstairs-foundation-2026-09-26.html',
  'walk':'implementation/selected-sheet-characters-2026-09-26.html',
  'solo':'implementation/ipad-garden-2026-09-24.md',
  'family':'implementation/family-home-rollout-2026-09-26.html',
@@ -67,11 +68,11 @@ def add(fid, world, group, title, status, nums, description, evidence='', extra_
 # as individual entries so the inventory cannot silently omit a recipe or activity.
 MANUAL = r'''
 G-01|all|Play and presentation|Four independent family players|part|1,31,47,48|One person per device; any arrival/departure changes only that player. Four-device admission exists; full content and sustained mixed-device acceptance remain open.|family
-G-02|all|Play and presentation|Independent worlds, cameras and local loading|part|3,31,50|Five destination entries cover six content regions. Each player travels alone, joining existing objects and players. Long scenic travel works; bedroom/story branches remain planned.|scene
+G-02|all|Play and presentation|Independent worlds, cameras and local loading|part|3,31,50|Five destination entries cover six content regions. Each player travels alone, joining existing objects and players. Long scenic travel and the upstairs stair/landing prototype work; bedroom/story interiors remain planned.|rooms
 G-03|all|Play and presentation|Bluey-style illustrated dollhouse|part|1,2,5|Detailed wide scenery, readable outlines, perspective floors, foreground occlusion and recognizable characters. Scenic shells and initial home layers exist; art alone does not make furniture usable.|layers
 G-04|all|Play and presentation|One visible object per usable object|part|5,51|Separate room architecture, rear/front furniture, supports and movable props. Sofa, trampoline and shed have integrated layers; kitchen and remaining furniture still need this treatment.|layers
 G-05|all|Controls and menus|Joystick and tap-to-walk|play|5,48|Independent device preference, floor movement, stop on release and safe cancellation. Current floor bounds are not a complete furniture-aware pathfinding system.|solo
-G-06|all|Controls and menus|Walk around furniture and through doors|plan|5,32|Authored legal floors, obstacles, room doors and working two-way stairs to an upstairs landing; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature.|layout
+G-06|all|Controls and menus|Walk around furniture and through doors|part|5,32|Working two-way stairs and an upstairs landing now have scoped native evidence. Authored room doors, furniture-aware routing and bedroom geometry remain unbuilt; broad floor bounds do not complete navigation.|rooms
 G-07|all|Controls and menus|Family circle, horizontal characters, vertical places, down arrow|play|3,17|Lower-right circle avoids the joystick; the tray keeps the avatar visible above it. One Heeler Home entry; the Creek stays available. Only Bluey and Bingo currently appear as playable choices.|nav
 G-08|all|Controls and menus|Local loading and safe travel failure|part|3,12,50|Prepare destination art and accepted world state before enabling input; retry/back on failure without moving siblings. Existing scenic travel works; new room/story loaders need coverage.|scene
 G-09|all|Controls and menus|Generous touch targets and gesture ownership|part|2,5,48|Large picture targets, safe areas, pointer ownership, drag versus walking separation and cancellation on menus/lock. Broad physical child-usability qualification remains open.|solo
@@ -94,7 +95,7 @@ G-25|all|Shared objects|Borrowed tools return automatically|part|51|Current buck
 G-26|all|Shared objects|Enough tools and places for four|part|31,47,51|Four sofa/trampoline places exist in unchanged artwork. Other stations must offer four-person participation and essential tool stock; the single prototype bucket is not sufficient.|keepy
 G-27|all|Shared objects|Protect personal creations and prevent hoarding|plan|32,51|Separate fixed stock, essential tools, bounded loans, personal items, creations, supplies and effects. Count nested loans; preserve art/food and offer recoverable toy-box storage.|ledger
 G-28|all|Shared objects|Reusable reactions and reversible changes|part|2,6,19,30|Visible empty/full, dirty/clean, growth and valid rejection exist in the small water loop. Add material transforms, serving reactions, paint removal, undo and stable custom creations.|core
-H-01|home|Rooms and furniture|Connected house, veranda and backyard|part|3,32|One continuous property is walkable. An upstairs landing/hall, four bedrooms, working stairs and other room functions are still required; selecting Home while there retains position.|scene
+H-01|home|Rooms and furniture|Connected house, veranda and backyard|part|3,32|The connected downstairs property now has working stairs and an upstairs landing/hall prototype. Four bedroom interiors/doors and remaining room functions are still required; selecting Home while there retains position.|rooms
 H-02|home|Rooms and furniture|Living-room sofa for four|play|5,47|Four close places, seated poses, foreground masking, avatar switch and independent exits. Available in 130/132; installed iPads/server 128 retain two places.|keepy
 H-03|home|Rooms and furniture|Living-room radio and automatic dancing|play|1,5|Radio on plays music and nearby idle characters dance; movement and other actions take priority. Local mute is independent of shared power.|home
 H-04|home|Rooms and furniture|Chairs, benches, cushions and resting spots|plan|4,5,32|Correct seated/resting poses, holding a small item, easy exits and different cast sizes. The implemented sofa does not establish all furniture support.|ledger
@@ -279,7 +280,7 @@ def refs(f):
 
 INTRO='''# Little Weeps — all-world feature audit
 
-September 26, 2026 · implementation findings retained from main source **8a315ca** and build/device evidence. Four-bedroom/four-secret-room scope corrected later the same day by user request; this correction is documentation only, not a fresh code audit. See the [Home feature tracker](home-world-feature-tracker.md). The later [upstairs research](implementation/upstairs-bedrooms-research-2026-09-26.html) updates the work order and specifications only; it does not upgrade implementation statuses.
+September 26, 2026 · implementation findings retained from main source **8a315ca** and build/device evidence. Four-bedroom/four-secret-room scope corrected later the same day by user request; this correction is documentation only, not a fresh code audit. See the [Home feature tracker](home-world-feature-tracker.md). The later [upstairs research](implementation/upstairs-bedrooms-research-2026-09-26.html) updates the work order and specifications only; it does not itself upgrade implementation statuses. Subsequent [BED-1 candidate 135 evidence](implementation/upstairs-foundation-2026-09-26.html) updates only the scoped stair/landing entries; bedrooms and secret rooms remain unfinished.
 
 This is the consolidated feature checklist from the **55-chapter Family Playset research**, current decisions, build plan, Bluey interaction study and Toca/Piknik object catalog. It preserves the full requested game while separating what works now from what remains to build. Catalog variants and overlapping invitations are listed individually for coverage; their count is **not** a count of unique game engines or a completion percentage.
 
@@ -290,7 +291,7 @@ This is the consolidated feature checklist from the **55-chapter Family Playset 
 ## What the audit found
 
 - The working game is a **scenic prototype with a growing Home interaction set**. Walking scenery is present across the map. That does not establish working playground equipment, fishing, daycare teaching or hidden rooms.
-- Current Home play includes the water/plant/sponge loop, seating, trampoline use, radio music/automatic dancing, four-slot shed storage, and Keepy Uppy in the newer builds. The wider kitchen, books, TV library, dinosaurs, science, bedrooms, secret rooms and hide-and-seek remain unfinished.
+- Current Home play includes the water/plant/sponge loop, seating, trampoline use, radio music/automatic dancing, four-slot shed storage, Keepy Uppy, and working stairs/upstairs landing in candidate 135. The wider kitchen, books, TV library, dinosaurs, science, bedrooms, secret rooms and hide-and-seek remain unfinished.
 - TV has a separate single-clip technical prototype. Bedroom rules have an isolated development experiment. Neither is an integrated usable feature of the family game.
 - Only **Bluey and Bingo** are playable. Official pictures for the rest of the cast are reference material, not finished rigs. The catalog expands the three Terriers into separate future avatars and retains Pretzel's missing-reference task.
 - Older research text still used six destination bubbles, two rods or two seats, and sometimes implied offline synchronization. The maintained plan now applies five destinations, four-person activity design and private offline saves with server-wins reconnection. Pair examples remain useful scenarios; they are not the capacity limit.
@@ -312,7 +313,7 @@ This is the consolidated feature checklist from the **55-chapter Family Playset 
 
 | Destination / content region | Exists now | Main remaining content |
 | --- | --- | --- |
-| Heeler Home — house | Continuous scenic house; layered sofa, radio/dancing | Full kitchen/15 recipes, five cleanup games, parents/hiding, books/TV, 20 dinosaur types, eight science stations, four player-owned bedrooms and four secret rooms |
+| Heeler Home — house | Continuous scenic house; layered sofa, radio/dancing; candidate-135 stairs and upstairs landing | Full kitchen/15 recipes, five cleanup games, parents/hiding, books/TV, 20 dinosaur types, eight science stations, four player-owned bedrooms and four secret rooms |
 | Heeler Home — backyard | Connected long yard; water fixture, trampoline, radio, shed; balloon in newer builds | Pond fishing, sand/mud, swing, pool, hose/can/plant expansion, wagon, richer storage and show activities |
 | Playground & Park | Long walkable scenery | All 12 equipment/game activities and shared supporting props |
 | The Creek | Long scenery plus inherited garden-rule water fixture | All 10 distinct creek activities, including fishing, boats, crossings and nature play |
@@ -375,7 +376,7 @@ Still open for later content decisions: Spanish dialect; final extra cast priori
 
 ## Recommended next sequence from the existing plan
 
-1. Follow the latest request and [upstairs research](implementation/upstairs-bedrooms-research-2026-09-26.html): working stairs and landing first, then four owned upstairs bedrooms with usable furniture, storage, permissions and tested persistence. Research is complete; implementation has not started.
+1. Follow the latest request and [upstairs research](implementation/upstairs-bedrooms-research-2026-09-26.html): working stairs and landing first, then four owned upstairs bedrooms with usable furniture, storage, permissions and tested persistence. BED-1 stairs/landing is implemented in candidate 135; BED-2 four persistent bedroom destinations is next, followed by furnishings.
 2. Build the four optional secret rooms after the bedroom stage, retaining their independent identity, visits and safe exits.
 3. Continue the complete Home backlog, including kitchen supports/interiors and cooking/serving/cleanup before all 15 recipes, using the [Home tracker](home-world-feature-tracker.md). Other worlds remain scenic.
 4. Qualify the actual candidate and coordinated compatible server/client rollout when devices are available. Recovery and physical gates remain open; a future content/schema change needs its own qualification.
@@ -400,7 +401,7 @@ assert set(TRACK_STATUS)=={r[0] for r in tracker} and len(tracker)==35
 assert set(chapters)==set(range(1,56)) and len(set(f['id'] for f in features))==len(features)
 assert all(f['world'] in WORLD and f['status'] in STATUS for f in features)
 evidence=DOC/'implementation/evidence/world-feature-audit-2026-09-26';evidence.mkdir(parents=True,exist_ok=True)
-(evidence/'catalog.json').write_text(json.dumps(dict(date='2026-09-26',sourceCommit='8a315ca945a899dbefe7687b47ac02a3bf7cd6fd',worlds=WORLD,statuses=STATUS,features=features),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+(evidence/'catalog.json').write_text(json.dumps(dict(date='2026-09-26',sourceCommit='8a315ca945a899dbefe7687b47ac02a3bf7cd6fd',scopedUpdates=[dict(build=135,baselineCommit='b2d41922a4d722e4c941cf1cc1d65b2e61a9f939',entries=['G-02','G-06','H-01'],evidence='docs/implementation/upstairs-foundation-2026-09-26.md')],worlds=WORLD,statuses=STATUS,features=features),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 sources=['docs/bluey-game-research-2026-09-23.md','docs/current-decisions.md','docs/family-playset-build-guide-2026-09-23.md','docs/bluey-lets-play-reference-study-2026-09-25.md','docs/toca-piknik-interaction-research-2026-09-23.md']
 code=['Core/WorldLayout.cs','Core/SoloWorld.cs','Core/HomeWorld.cs','Core/KeepyUppy.cs','Client/SoloNavigation.cs','Client/SoloScreen.cs','Runtime/FoundationVideo.cs']
 sources+=['Unity/FamilyPlayset/Assets/FamilyPlayset/Code/'+p for p in code]

@@ -70,7 +70,7 @@ namespace LittleWeeps.Core
                     s.players.Any(p=>!string.IsNullOrEmpty(p.fixture) || p.useSeconds!=0))throw new InvalidOperationException("Home state requires schema 4.");
                 return;
             }
-            if(s.home==null || s.toys.Count(t=>t.kind==ToyKind.Ball)!=1 || !s.toys.Any(t=>t.id=="ball-1" && t.kind==ToyKind.Ball && t.zone=="garden"))throw new InvalidOperationException("Missing home state or fixed home toy.");
+            if(s.home==null || s.toys.Count(t=>t.kind==ToyKind.Ball)!=1 || !s.toys.Any(t=>t.id=="ball-1" && t.kind==ToyKind.Ball && (t.zone=="garden" || s.schema>=HomeRooms.Schema && HomeRooms.Internal(t.zone))))throw new InvalidOperationException("Missing home state or fixed home toy.");
             foreach(var p in s.players)
                 if(double.IsNaN(p.useSeconds) || double.IsInfinity(p.useSeconds) || p.useSeconds<0 || p.useSeconds>86400 ||
                     (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:!HomeLayout.Usable(p.fixture) || p.zone!="garden" ||

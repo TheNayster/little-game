@@ -33,12 +33,12 @@ namespace LittleWeeps.Client
             if(!Shared || !Ready)return null;
             var snapshot=SoloWorld.CopySnapshot(shared.View);
             var own=snapshot.players.First(p=>p.id==Actor);
-            if(renderedArea==own.zone && renderedVisit==own.visit && Board.rect.width>0 && Board.rect.height>0)
+            if(own.stairs==0 && renderedArea==own.zone && renderedVisit==own.visit && Board.rect.width>0 && Board.rect.height>0)
             {
                 Vector2 Point(RectTransform rect)=>FromBoard(rect.anchoredPosition);
                 var position=Point(avatar);
                 if(WorldLayout.Position(own.zone,snapshot.schema,position.x,position.y)){own.x=position.x;own.y=position.y;}
-                foreach(var toy in snapshot.toys.Where(t=>t.zone==own.zone && !string.IsNullOrEmpty(t.holder)))
+                foreach(var toy in snapshot.toys.Where(t=>t.zone==own.zone && !string.IsNullOrEmpty(t.holder) && snapshot.players.First(p=>p.id==t.holder).stairs==0))
                     if(toys.TryGetValue(toy.id,out var rect) && rect.gameObject.activeSelf)
                     {
                         var point=Point(rect);
@@ -65,7 +65,7 @@ namespace LittleWeeps.Client
             try
             {
                 if(World!=null && !TrySaveNow())return false;
-                var record=adventures.Load(id);var restored=SoloWorld.WithHome(SoloWorld.Restore(record.snapshot));
+                var record=adventures.Load(id);var restored=SoloWorld.WithUpstairs(SoloWorld.Restore(record.snapshot));
                 // Release all old pointer leases and commit before changing the
                 // displayed authority. Failed disk writes leave current play intact.
                 adventures.Save(record,restored.Snapshot());adventures.Select(id);

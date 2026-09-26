@@ -17,6 +17,7 @@ namespace LittleWeeps.Client
             public SceneTile(string id,string area,float start){this.id=id;this.area=area;this.start=start;}
         }
         private static readonly SceneTile[] SceneTiles={
+            new SceneTile("home-upstairs",HomeRooms.Landing,0),
             new SceneTile("home-living","garden",-4800),new SceneTile("home-kitchen","garden",-2400),
             new SceneTile("garden-tree","garden",0),new SceneTile("garden-shed","garden",2400),
             new SceneTile("park-playground","park",0),new SceneTile("park-picnic","park",2400),
@@ -103,7 +104,9 @@ namespace LittleWeeps.Client
             // At most two visible 3:1 panoramas plus one adjacent prefetch.
             // Distant areas are released, while persistent world records remain.
             var neighbor=SceneTiles.Where(t=>t.area==CurrentArea && !wanted.Contains(t)).OrderBy(t=>Mathf.Abs(t.start+1200-cameraX)).FirstOrDefault();
-            if(neighbor!=null && wanted.Count<3)wanted.Add(neighbor);
+            var stairTile=SceneTiles.FirstOrDefault(t=>t.id==StairPreload);
+            if(stairTile!=null && !wanted.Contains(stairTile) && wanted.Count<3)wanted.Add(stairTile);
+            else if(neighbor!=null && wanted.Count<3)wanted.Add(neighbor);
             foreach(var pair in scenicRequests.ToArray())if(pair.Value.isDone)
             {
                 scenicRequests.Remove(pair.Key);var texture=pair.Value.asset as Texture2D;
@@ -120,6 +123,7 @@ namespace LittleWeeps.Client
                 scenicRequests[tile.id]=Resources.LoadAsync<Texture2D>("Scenery/"+tile.id);
             foreach(var tile in wanted.OrderBy(t=>t.start))if(scenicImages.TryGetValue(tile.id,out var image))
             {
+                image.gameObject.SetActive(tile.area==CurrentArea);
                 image.rectTransform.SetAsLastSibling();
                 image.rectTransform.anchoredPosition=new Vector2((tile.start+1200-cameraX)*sceneScale,0);
                 image.rectTransform.sizeDelta=new Vector2((WorldLayout.TileWidth+80)*sceneScale,WorldLayout.SceneHeight*sceneScale);

@@ -54,7 +54,7 @@ namespace LittleWeeps.Client
             // The house and backyard are one property, not two menu trips.
             // Keep legacy garden IDs in saved data and the server protocol.
             if(target=="garden")target="home";
-            if(WorldLayout.Canonical(target)==CurrentArea){ShowCharacters(false);return;}
+            if(target=="home" && HomeRooms.Property(CurrentArea) || WorldLayout.Canonical(target)==CurrentArea){ShowCharacters(false);return;}
             CancelPointers();Narration.Stop();CloseNavigation();menu.SetActive(false);
             loadingDestination=target;travelFailure=null;travelStages.Clear();travelStages.Add("loading-screen");
             destinationPicture.sprite=Resources.Load<Sprite>("WorldMenu/"+target);

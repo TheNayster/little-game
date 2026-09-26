@@ -26,6 +26,7 @@ def command(client,action,**kw):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('build',type=int);args=parser.parse_args()
     run=Run(args.build);folder=run.path/'home';folder.mkdir();checks=[];fixture=None
+    summary=read(run.folder/'build-summary.json');expected_schema=summary.get('schema',5 if summary['contract']>=7 else 4)
     print('EVIDENCE '+str(folder),flush=True)
     def passed(name):checks.append(dict(check=name,passed=True));print('PASS '+name,flush=True)
     try:
@@ -123,7 +124,7 @@ def main():
         wait(lambda:solo.input('inspect')['home']['livingRadio'],'offline radio on')
         solo.input('touchButton',text='Sit left');wait(lambda:solo.input('inspect')['homePose']=='Sit','offline sit')
         solo.input('touchButton',text='Menu');save_path=Path(solo.input('inspect')['savePath']);solo.close()
-        saved=json.loads(save_path.read_bytes().split(b'\n',2)[2]);require(saved['schema']==(5 if args.build>=129 else 4) and saved['home']['livingRadio'],'Home save missing')
+        saved=json.loads(save_path.read_bytes().split(b'\n',2)[2]);require(saved['schema']==expected_schema and saved['home']['livingRadio'],'Home save missing')
         reopened=fixture.launch(1);s=ready(reopened);require(not s['shared'] and s['home']['livingRadio'],'Offline home state lost')
         require(s['homePose']!='Sit','Recovered temporary seat lease');capture(reopened,folder,'offline-home-reopened')
         passed('versioned offline save/reopen retains radio and property, safely releases interrupted seat')

@@ -1,6 +1,18 @@
 {
   "date": "2026-09-26",
   "sourceCommit": "8a315ca945a899dbefe7687b47ac02a3bf7cd6fd",
+  "scopedUpdates": [
+    {
+      "build": 135,
+      "baselineCommit": "b2d41922a4d722e4c941cf1cc1d65b2e61a9f939",
+      "entries": [
+        "G-02",
+        "G-06",
+        "H-01"
+      ],
+      "evidence": "docs/implementation/upstairs-foundation-2026-09-26.md"
+    }
+  ],
   "worlds": {
     "all": "Across all worlds",
     "home": "Heeler Home — house",
@@ -49,8 +61,8 @@
         31,
         50
       ],
-      "description": "Five destination entries cover six content regions. Each player travels alone, joining existing objects and players. Long scenic travel works; bedroom/story branches remain planned.",
-      "evidence": "scene",
+      "description": "Five destination entries cover six content regions. Each player travels alone, joining existing objects and players. Long scenic travel and the upstairs stair/landing prototype work; bedroom/story interiors remain planned.",
+      "evidence": "rooms",
       "extraSource": ""
     },
     {
@@ -101,13 +113,13 @@
       "world": "all",
       "group": "Controls and menus",
       "title": "Walk around furniture and through doors",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         5,
         32
       ],
-      "description": "Authored legal floors, obstacles, room doors and working two-way stairs to an upstairs landing; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature.",
-      "evidence": "layout",
+      "description": "Working two-way stairs and an upstairs landing now have scoped native evidence. Authored room doors, furniture-aware routing and bedroom geometry remain unbuilt; broad floor bounds do not complete navigation.",
+      "evidence": "rooms",
       "extraSource": ""
     },
     {
@@ -447,8 +459,8 @@
         3,
         32
       ],
-      "description": "One continuous property is walkable. An upstairs landing/hall, four bedrooms, working stairs and other room functions are still required; selecting Home while there retains position.",
-      "evidence": "scene",
+      "description": "The connected downstairs property now has working stairs and an upstairs landing/hall prototype. Four bedroom interiors/doors and remaining room functions are still required; selecting Home while there retains position.",
+      "evidence": "rooms",
       "extraSource": ""
     },
     {

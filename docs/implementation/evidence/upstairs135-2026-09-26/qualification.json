@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "status": "Scoped Windows qualification passed",
+  "build": 135,
+  "coreChecks": 115,
+  "completed": [
+    {
+      "name": "continuity",
+      "passed": true,
+      "groups": 2,
+      "evidence": "continuity-results.json"
+    },
+    {
+      "name": "recovery",
+      "passed": true,
+      "groups": 6,
+      "evidence": "recovery-results.json"
+    },
+    {
+      "name": "stairs",
+      "passed": true,
+      "groups": 7,
+      "evidence": "stairs-results.json"
+    },
+    {
+      "name": "home",
+      "passed": true,
+      "groups": 6,
+      "evidence": "home-results.json"
+    },
+    {
+      "name": "navigation",
+      "passed": true,
+      "groups": 4,
+      "evidence": "navigation-results.json"
+    },
+    {
+      "name": "keepy",
+      "passed": true,
+      "groups": 10,
+      "evidence": "keepy-results.json"
+    }
+  ],
+  "nativeGroups": 35,
+  "buildSchemaCompatibilityCases": 8,
+  "stairProfileIdLength": 32,
+  "visualInspection": "Native build-135 phone stair contact, phone landing and four-player tablet landing inspected; user acceptance remains open.",
+  "productionRecoveryAllowlistUnchanged": true,
+  "liveFamilyTouched": false,
+  "devicesTouched": false,
+  "pending": [
+    "Four bedroom interiors and ownership",
+    "Bedroom furnishings and permissions",
+    "Four optional secret rooms",
+    "User visual acceptance",
+    "Physical A10 memory/frame times",
+    "Sustained mixed-device and device lifecycle/outage/rejoin",
+    "Coordinated device/server rollout"
+  ]
+}

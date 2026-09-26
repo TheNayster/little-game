@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 135,
+  "previousBuild": 132,
+  "checks": [
+    "Schema 5 to 6 preserves complete world, props, fixture/balloon state, receipts and enrollment; adds only transit defaults and one revision",
+    "Mid-stair authority loss settles private view safely; offline stairs/item edit save; reconnect loads server world and retains private save separately"
+  ],
+  "liveFamilyTouched": false
+}

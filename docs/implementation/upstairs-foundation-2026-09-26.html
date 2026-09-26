@@ -1,0 +1,80 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Working stairs and upstairs landing</title><style>
+:root{color-scheme:light;--ink:#213d40;--line:#cddbd5;--paper:#fffcf4;--accent:#14645e}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,sans-serif}a{color:var(--accent);text-underline-offset:3px}header{padding:28px max(22px,calc((100vw - 1440px)/2));background:#e6f0e9;border-bottom:1px solid var(--line)}header p{margin:0}.layout{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:280px minmax(0,1fr);gap:38px;padding:30px 24px}nav{align-self:start;position:sticky;top:20px;max-height:92vh;overflow:auto;font-size:14px}nav ul{list-style:none;padding-left:0}nav li{margin:9px 0}article{min-width:0}h1{font-size:clamp(30px,4vw,44px);line-height:1.12;margin:0 0 20px}h2{font-size:25px;line-height:1.25;margin:42px 0 20px;padding-top:16px;border-top:2px solid var(--line)}p{margin:14px 0}ul{padding-left:24px}li{margin:12px 0}.task{list-style:none;margin:12px 0 12px -24px;padding:16px 18px;background:white;border:1px solid var(--line);border-radius:10px;overflow-wrap:anywhere}.task input{width:17px;height:17px;vertical-align:middle;margin:0 9px 3px 0}.task strong{color:#164d49}.task em{font-size:13px;font-style:normal;padding:2px 6px;background:#f3edd7;border-radius:4px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;vertical-align:top;padding:12px;border:1px solid var(--line);overflow-wrap:anywhere}th{background:#e6f0e9}code{overflow-wrap:anywhere;background:#f0eee5;padding:2px 4px}footer{border-top:1px solid var(--line);padding:28px;text-align:center}@media(max-width:850px){.layout{display:block;padding:22px 16px}nav{position:static;max-height:none;border-bottom:1px solid var(--line);margin-bottom:26px}nav .toc ul{columns:2;column-gap:24px}table{font-size:12px}td,th{padding:8px}}@media(max-width:480px){nav .toc ul{columns:1}}@media print{body{font-size:11pt;background:white}header,nav,footer{display:none}.layout{display:block;padding:0}.task{break-inside:avoid}h2{break-after:avoid}a{color:inherit}input{opacity:1}table{font-size:9pt}}
+
+pre{overflow:auto;padding:18px;background:#edf2eb;font:13px/1.5 monospace}pre code{padding:0;background:none}h3{margin-top:28px}p,li{overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}
+pre{overflow:auto;padding:18px;background:#edf2eb;font:13px/1.5 monospace}pre code{padding:0;background:none}h3{margin-top:28px}p,li{overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}
+pre{overflow:auto;padding:18px;background:#edf2eb;font:13px/1.5 monospace}pre code{padding:0;background:none}h3{margin-top:28px}p,li{overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}</style></head><body><header><p><strong>BED-1 · WINDOWS CANDIDATE 135</strong><br><a href="upstairs-foundation-2026-09-26.md">Markdown source</a> · Updated September 26, 2026</p></header><div class="layout"><nav aria-label="Document sections"><strong>In this document</strong><div class="toc">
+<ul>
+<li><a href="#result">Result</a></li>
+<li><a href="#research-applied">Research applied</a></li>
+<li><a href="#validation-and-evidence">Validation and evidence</a></li>
+<li><a href="#limits-and-next-bounded-task">Limits and next bounded task</a></li>
+</ul>
+</div>
+</nav><article><h1 id="working-stairs-and-upstairs-landing-first-bedroom-slice">Working stairs and upstairs landing — first bedroom slice</h1>
+<p>September 26, 2026. <strong>BED-1 prototype implemented; the four bedroom interiors and secret rooms remain unfinished.</strong> This task researched room construction and systems, then used those findings to begin building, as the user requested.</p>
+<p><a href="upstairs-bedrooms-research-2026-09-26.html">Construction/system research</a> · <a href="../home-world-feature-tracker.html">Complete Home tracker</a> · <a href="../../SourceArt/Home/Upstairs/README.md">Art source and prompt</a></p>
+<h2 id="result">Result</h2>
+<p>The existing living-room stairs now lead to an illustrated upstairs landing/hall, and the upstairs stair entrance leads back down. Tap the stair entrance to approach and traverse it, or steer onto the entry with the joystick. Each actor traverses independently; other players remain upstairs, downstairs or in another world. Four separated arrival positions avoid stacking everyone at the same point.</p>
+<p>The hall provides the architectural placement for four future bedroom doors. The doors are scenery in this slice: there are no bedroom interiors, room ownership assignment or bedroom furniture yet. Secret-room creation, entrances, plush play and calm effects remain the subsequent feature stage. No Home completion checkbox is closed merely because this foundation exists.</p>
+<p>Heeler Home remains one destination. Selecting Home while upstairs resumes the current location. Lower house/backyard coordinates, accepted character artwork, controls and existing Home fixtures remain intact. Stair foreground patches reuse the panorama pixels to place characters behind the rails. Phone and tablet native captures were inspected; final animation/contact polish and user visual acceptance remain open.</p>
+<h2 id="research-applied">Research applied</h2>
+<table>
+<thead>
+<tr>
+<th>Research finding</th>
+<th>Implemented response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Existing major travel puts held objects down.</td>
+<td>A separate internal stair transaction preserves compatible held toy identity and transfers its location atomically with the actor.</td>
+</tr>
+<tr>
+<td>Floor-depth Y is not stair elevation.</td>
+<td>The authority retains a valid floor endpoint and per-actor traversal progress. The client maps progress onto the visible stairs with foreground cover.</td>
+</tr>
+<tr>
+<td>Players need independent places.</td>
+<td>Added the internal <code>home-upstairs</code> area, excluded from top-level travel choices. Existing custom authority and local scenery loading remain in use.</td>
+</tr>
+<tr>
+<td>Late commands can cross a doorway incorrectly.</td>
+<td>Stair departure and arrival advance the visit generation; stale movement and actions remain rejected. Repeated accepted requests keep their receipt identity.</td>
+</tr>
+<tr>
+<td>Interruption must not reopen a character in midair.</td>
+<td>Save restoration and departure settle transit at its source endpoint; late cancellation after arrival cannot rewind the committed location.</td>
+</tr>
+<tr>
+<td>Private continuation cannot use animated height as saved floor depth.</td>
+<td>Visible-state capture retains authoritative stair endpoints, and old private adventures migrate through the current installed room schema.</td>
+</tr>
+<tr>
+<td>Loading must remain local and bounded.</td>
+<td>The destination panorama is prepared before traversal; current-room scenery and the target share the three-texture resident/pending limit.</td>
+</tr>
+<tr>
+<td>Persisted room additions require coordinated compatibility.</td>
+<td>Schema 6/content 7 and build contract 8, with explicit schema/content build metadata. Older deployed clients/server remain unchanged.</td>
+</tr>
+</tbody>
+</table>
+<p>The existing borrowed bucket/sponge return policy still applies after they are released upstairs. Major-world departure returns held borrowed stock to its original rack. A dropped Home ball can stay upstairs. Restoration continues the established policy of releasing temporary pointer holds while retaining the actual objects and their locations.</p>
+<h2 id="validation-and-evidence">Validation and evidence</h2>
+<p>Candidate <strong>135</strong> contains the final game changes for this slice. Windows release client and dedicated server compiled successfully. Earlier 133/134 were development candidates used to find and correct test setup, contact/arrival spacing and interrupted-view handling; they are not the final delivery.</p>
+<ul>
+<li><strong>115 core checks passed</strong>, including ten new migration, independent-stair, item, cancellation, recovery and private-continuation checks. <a href="evidence/upstairs135-2026-09-26/core-results.json">Core results</a>.</li>
+<li><strong>35 native groups passed:</strong> seven stair groups, two migration/private-continuation groups, six recovery groups, six Home groups, four navigation groups and ten Keepy Uppy/four-seat groups. Results are linked in the <a href="evidence/upstairs135-2026-09-26/qualification.json">qualification record</a>, separately from pending device/user acceptance.</li>
+<li><a href="evidence/upstairs135-2026-09-26/build-validation.json">Build and runtime-source verification</a> identifies the actual candidate and compares its runtime files with the delivered source. Generated whitespace in unrelated imported assets was removed without semantic changes.</li>
+<li><a href="evidence/upstairs135-2026-09-26/docs-validation.json">Documentation validation</a> checks active plans, catalog coverage and links.</li>
+<li><a href="evidence/upstairs135-2026-09-26/tracker-validation.json">Tracker coverage</a> retains 218 Home checks, including four bedrooms and four secret rooms; no whole-Home completion checkbox was closed.</li>
+</ul>
+<p>Native captures: <a href="evidence/upstairs135-2026-09-26/stairs-up-contact-phone.png">stair contact on phone layout</a>, <a href="evidence/upstairs135-2026-09-26/landing-phone.png">upstairs landing</a>, <a href="evidence/upstairs135-2026-09-26/four-upstairs-and-carried-bucket.png">four players and carried bucket</a>. These are Windows captures at phone/tablet dimensions, not physical-device screenshots.</p>
+<p>Isolated recovery covers an upstairs occupant, exact checkpoint restoration/rollback and four enrolled clients rejoining. A compatibility guard rejects a checkpoint newer than its declared source or selected destination build, even when the current validator understands it. Eight legacy/current build-schema cases also passed. The production recovery allowlist remains unchanged; candidate qualification does not deploy or designate a new family server.</p>
+<p>All native tests use disposable loopback worlds or separately enrolled test families. No live family server, device, save or enrollment was modified. Samsung remains recorded at 130, server/iPads at 128 and iPhone at 101; these deployment records were not freshly checked. No Android/Apple release or installation was performed for this slice.</p>
+<h2 id="limits-and-next-bounded-task">Limits and next bounded task</h2>
+<p>This is a working stair/landing prototype, not four finished bedrooms. Next is <strong>BED-2</strong>: connect the four bedroom doors to four persistent rooms, assign ownership by stable family profile, and preserve room identities across visits/reconnects. Then implement usable beds, shelves, baskets, cushions, personal storage and decor permissions/undo in all four rooms. Full book/dinosaur catalogs remain separately tracked dependencies.</p>
+<p>Secret rooms follow the bedroom stage. Their researched design includes one optional persistent room per profile, idempotent creation, entrances that can move/archive without deleting contents, guaranteed exits, four visitors, shared plush state and local brightness/motion/audio settings.</p>
+<p>Outstanding qualification includes physical A10 memory/frame times, sustained mixed-device play, actual phone/tablet touch acceptance, user visual approval and any eventual coordinated in-place rollout. Native Windows evidence does not close those gates.</p></article></div><footer>First bedroom implementation slice. Bedroom interiors, secret rooms and physical qualification remain open.</footer></body></html>

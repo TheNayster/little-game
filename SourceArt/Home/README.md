@@ -9,3 +9,7 @@ These were introduced as interactive foreground fixtures over the panoramas. **T
 `Tools/Generate-HomeMusic.py` deterministically creates the original 12-second instrumental loop. It uses synthesized sine harmonics, no recordings or commercial game audio. The local Music setting is separate from spoken hints and shared radio power.
 
 The home ball uses the existing native UI shape system. No extracted commercial game asset or new generated character replacement is used.
+
+## Upstairs foundation — September 26
+
+The [upstairs art/source record](Upstairs/README.md) supplies the first working stair/landing slice. Four bedroom door facades are prepared; the personal bedroom interiors and secret rooms remain subsequent work.

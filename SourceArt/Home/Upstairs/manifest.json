@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-26",
+  "tool": "Built-in image_gen",
+  "intent": "New image using accepted living-room style reference",
+  "reference": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-living.png",
+  "source": "SourceArt/Home/Upstairs/upstairs-hall-source.png",
+  "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-upstairs.png",
+  "sha256": "92c1ea5d1957d0b5e3f74fc2ccd87d0314319e185f27a8131a4903ebc1b21e21",
+  "size": [
+    2048,
+    683
+  ],
+  "transparent": false,
+  "prompt": "Use case: illustration-story. Asset type: finished illustrated panorama for a 2D family dollhouse game. Create the UPSTAIRS LANDING AND HALL of the house shown in the reference, matching its recognizable Bluey-inspired Australian home illustration, warm yellow vertical wall boards, coral timber floor, rounded brown linework, soft daylight and simple storybook perspective. This is a new upstairs environment; reference is for style and building continuity, not an edit. Extra-wide 3:1 panoramic composition. A clearly readable top-of-stairs opening at the far LEFT with a timber handrail and white balusters, safe broad floor landing on its right; it leads down toward the lower left, never looks like a trapdoor in the center floor. Across the back wall provide exactly FOUR well-spaced ordinary full-height bedroom doorways with closed pastel doors (pale aqua, muted blue, sage, soft lavender), each in cream timber frames; no words, numbers, signs, character faces, stars or secret doors. Windows and framed simple family drawings may decorate the upper wall but no people. The entire lower 40 percent is clear continuous coral timber walking floor. Four generous doors and a coherent upper-storey hall, same floor/wall perspective as reference. No beds, chairs, shelves, baskets or movable furniture painted into this architectural base: interactive furnishings will be separate later. No interface/buttons/text/watermark. Crisp attractive detailed game-ready environment, not a concept collage. Produce one image only.",
+  "status": "Stair/landing prototype; four door facades, bedroom interiors remain next; no user visual acceptance yet"
+}

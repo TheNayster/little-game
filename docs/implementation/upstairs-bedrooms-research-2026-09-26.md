@@ -1,6 +1,6 @@
 # Upstairs and four bedrooms — implementation research
 
-September 26, 2026. **Research and planning only. Game implementation has not started.**
+September 26, 2026. **Research baseline completed before implementation.** The user subsequently authorized building from it; see the separate [BED-1 implementation and evidence](upstairs-foundation-2026-09-26.html). Findings and proposed later-room systems below are not all implemented.
 
 The user selected this order: make the existing stairs work, add a second floor and finish four personal bedrooms; then build the four optional secret rooms. This supersedes the earlier kitchen-first queue. Kitchen and the complete Home backlog remain required. This report recommends how to implement that request in the existing game; it does not claim a canonical television-house floor plan or completed gameplay.
 

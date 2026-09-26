@@ -6,7 +6,7 @@ Updated September 26, 2026. Maintained completion checklist for the connected ho
 
 [Readable HTML companion](home-world-feature-tracker.html) · [Current decisions](current-decisions.md) · [Full research](bluey-game-research-2026-09-23.html) · [All-world inventory](all-world-features-audit-2026-09-26.html) · [Build work record](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis)
 
-**Active sequence:** working stairs and a second-floor landing, then four fully usable upstairs bedrooms; four optional secret rooms follow. [Deep implementation research](implementation/upstairs-bedrooms-research-2026-09-26.html) is complete. Game implementation has not started. Kitchen and the entire remaining Home backlog are retained.
+**Active sequence:** working stairs and a second-floor landing, then four fully usable upstairs bedrooms; four optional secret rooms follow. [Deep implementation research](implementation/upstairs-bedrooms-research-2026-09-26.html) is complete. The [BED-1 stairs and landing prototype](implementation/upstairs-foundation-2026-09-26.html) is implemented in Windows candidate 135; bedroom interiors/ownership/furnishings remain next. Kitchen and the entire remaining Home backlog are retained.
 
 ## How to use this file
 
@@ -30,7 +30,7 @@ When implementation changes, maintain this tracker, the build record and the mat
 
 ## Current implementation and evidence boundary
 
-This tracker was initially assembled from the maintained research, feature inventory and retained implementation reports. The later upstairs research added focused read-only integration inspection and current official technical sources. Neither documentation task performed a comprehensive runtime code audit, gameplay test, build, install or live server/device check.
+This tracker was initially assembled from the maintained research, feature inventory and retained implementation reports. The later upstairs research added focused read-only integration inspection and current official technical sources. Neither research task performed a comprehensive runtime code audit or device check. Subsequent BED-1 implementation has separate core/native Windows/build evidence in the [stair record](implementation/upstairs-foundation-2026-09-26.html); it does not establish physical-device acceptance.
 
 Recorded prototypes include the basic water/plant/sponge loop, sofa seating, trampoline, radio/dancing, four-slot shed storage and Keepy Uppy. Full rooms, cooking, books, TV library, dinosaurs, science and hiding remain unfinished. The older isolated bedroom rules and single-clip video fixture are development evidence, not integrated Home features.
 
@@ -75,7 +75,7 @@ All four profiles can independently choose Simple Play or Explore & Stories. Kee
 
 - [ ] **G-05 — Joystick and tap-to-walk** — *Playable prototype*. Independent device preference, floor movement, stop on release and safe cancellation. Current floor bounds are not a complete furniture-aware pathfinding system. Sources: [§5](bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction) · [§48](bluey-game-research-2026-09-23.html#48-android-build-phone-layout-and-four-player-acceptance).
 
-- [ ] **G-06 — Walk around furniture and through doors** — *Planned*. Authored legal floors, obstacles, room doors and working two-way stairs to an upstairs landing; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature. Sources: [§5](bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction) · [§32](bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates).
+- [ ] **G-06 — Walk around furniture and through doors** — *Partial*. Working two-way stairs and an upstairs landing now have scoped native evidence. Authored room doors, furniture-aware routing and bedroom geometry remain unbuilt; broad floor bounds do not complete navigation. Sources: [§5](bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction) · [§32](bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates).
 
 - [ ] **G-07 — Family circle, horizontal characters, vertical places, down arrow** — *Playable prototype*. Lower-right circle avoids the joystick; the tray keeps the avatar visible above it. One Heeler Home entry; the Creek stays available. Only Bluey and Bingo currently appear as playable choices. Sources: [§3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [§17](bluey-game-research-2026-09-23.html#17-changing-characters-without-stopping-the-game).
 
@@ -109,7 +109,7 @@ All four profiles can independently choose Simple Play or Explore & Stories. Kee
 House/hall → kitchen/dining → veranda → backyard → far shed stays one property. Doors/stairs branch to four bedrooms, their four secret rooms and other rooms. Classify reachable objects as usable now, planned usable or intentional decoration; do not bake planned movable furniture into the background. Retain usable hall/under-stair seating and a reading nook/play area.
 
 
-- [ ] **H-01 — Connected house, veranda and backyard** — *Partial*. One continuous property is walkable. An upstairs landing/hall, four bedrooms, working stairs and other room functions are still required; selecting Home while there retains position. Sources: [§3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [§32](bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates).
+- [ ] **H-01 — Connected house, veranda and backyard** — *Partial*. The connected downstairs property now has working stairs and an upstairs landing/hall prototype. Four bedroom interiors/doors and remaining room functions are still required; selecting Home while there retains position. Sources: [§3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [§32](bluey-game-research-2026-09-23.html#32-four-personal-bedrooms-with-shared-updates).
 
 - [ ] **H-02 — Living-room sofa for four** — *Playable prototype*. Four close places, seated poses, foreground masking, avatar switch and independent exits. Available in 130/132; installed iPads/server 128 retain two places. Sources: [§5](bluey-game-research-2026-09-23.html#5-touch-movement-and-object-interaction) · [§47](bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android).
 
@@ -587,10 +587,11 @@ Keep one bounded slice active at a time. The latest user request replaces the ea
 
 The [research report](implementation/upstairs-bedrooms-research-2026-09-26.html) specifies acceptance for each slice. No bedroom, secret-room or final Home checkbox is completed by this research. Unavailable physical devices do not block independent preparation; physical qualification remains open.
 
-No implementation slice started in this documentation task. Do not build or install solely because this file was created.
+BED-1 implementation began after the user explicitly authorized building from the completed research. Candidate 135 is a Windows stair/landing prototype. No physical rollout was requested or performed.
 
 | Date | Work / IDs | Result / evidence | Remaining work |
 | --- | --- | --- | --- |
+| 2026-09-26 | BED-1 stairs and landing; G-06, H-01 | Candidate 135 [implementation, evidence and limits](implementation/upstairs-foundation-2026-09-26.html). Core/native tests are separate from physical acceptance. | BED-2 four persistent bedrooms next; furnishings and secret rooms remain unbuilt. No Home completion checkbox closed. |
 | 2026-09-26 | Upstairs and bedroom research; G-06, H-01, H-31–34, HOME-BED-A–D | [Research and sources](implementation/upstairs-bedrooms-research-2026-09-26.html), [documentation checks](implementation/evidence/upstairs-bedrooms-research-2026-09-26/docs-validation.json). Stairs/second floor/four bedrooms now come first; secret rooms follow. | Research only. No game code/art changes, build, install or gameplay qualification. All implementation checks remain open. |
 | 2026-09-26 | Four-player room scope; complete Home tracker | Documentation only. Four bedrooms/four secret rooms recorded; named catalogs and prototypes carried forward. [Document validation](implementation/evidence/home-tracker-2026-09-26/docs-validation.json) · [Tracker coverage](implementation/evidence/home-tracker-2026-09-26/tracker-validation.json). | All individual rooms and final Home acceptance checks remain open; no game build, deployment or new gameplay qualification. |
 

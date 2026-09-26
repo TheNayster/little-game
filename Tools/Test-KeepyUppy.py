@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 import time
 from recovery_fixture import RecoveryFixture
-from shared_garden_runtime import Run, wait, require, write
+from shared_garden_runtime import Run, wait, require, read, write
 spec=importlib.util.spec_from_file_location('home',Path(__file__).with_name('Test-HomeWorld.py'))
 home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
 ready,travel,capture,command=home.ready,home.travel,home.capture,home.command
@@ -16,6 +16,7 @@ ready,travel,capture,command=home.ready,home.travel,home.capture,home.command
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('build',type=int);parser.add_argument('--balloon-only',action='store_true');args=parser.parse_args()
     run=Run(args.build);folder=run.path/'keepy';folder.mkdir();checks=[];fixture=None;flight=None
+    expected_schema=read(run.folder/'build-summary.json').get('schema',5)
     print('EVIDENCE '+str(folder),flush=True)
     def passed(name):checks.append(dict(check=name,passed=True));print('PASS '+name,flush=True)
     try:
@@ -110,10 +111,10 @@ def main():
         fixture=RecoveryFixture(args.build);solo=fixture.launch(1);ready(solo);travel(solo,play_place)
         solo.input('touchButton',text='Play Keepy Uppy');wait(lambda:solo.input('inspect')['keepy']['phase']==1,'solo toss')
         solo.input('touchButton',text='Menu');save=Path(solo.input('inspect')['savePath']);solo.close()
-        saved=json.loads(save.read_bytes().split(b'\n',2)[2]);require(saved['schema']==5 and saved['keepy']['round']==1,'Missing solo balloon save')
+        saved=json.loads(save.read_bytes().split(b'\n',2)[2]);require(saved['schema']==expected_schema and saved['keepy']['round']==1,'Missing solo balloon save')
         reopened=fixture.launch(1);s=ready(reopened)
         require(not s['shared'] and s['keepy']['round']==1,'Private solo balloon lost')
-        passed('offline touch starts same game; schema-5 balloon survives close/reopen in private solo')
+        passed(f'offline touch starts same game; schema-{expected_schema} balloon survives close/reopen in private solo')
         write(folder/'result.json',dict(passed=True,build=args.build,checks=checks,flight=flight,liveFamilyServerAccessed=False,physicalDevicesAccessed=False))
         print('RESULT '+str(folder/'result.json'),flush=True)
     finally:

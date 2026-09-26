@@ -77,7 +77,7 @@ namespace LittleWeeps.Client
         }
         private void ResetPresentation()
         {
-            CancelPointers();Narration?.Stop();ResetScenery();ResetHome();
+            CancelPointers();CancelStairApproach();stairControl=null;stairFront=null;stairVisuals.Clear();Narration?.Stop();ResetScenery();ResetHome();
             // Keep one canvas, event system and narration source across switches.
             // Disable old children now so deferred Destroy cannot receive input.
             foreach(Transform child in safe){child.gameObject.SetActive(false);Destroy(child.gameObject);}
@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithKeepyUppy(World);
+                World = SoloWorld.WithUpstairs(World);
                 // Restore releases interrupted item holds; persist that change.
                 // Otherwise merely opening another saved adventure must not
                 // rewrite an untouched solo payload (including precise timers).
@@ -298,7 +298,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -426,8 +426,8 @@ namespace LittleWeeps.Client
             var point=BoardPoint(screen);
             if(!ScenePosition(point.x,point.y)){CancelPointer(role);return;}
             var target=ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle)
-                .OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),point)).First();
-            var id=Vector2.Distance(new Vector2(target.x,target.y),point)<=SoloWorld.InteractionRadius?target.id:"";
+                .OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),point)).FirstOrDefault();
+            var id=target!=null && Vector2.Distance(new Vector2(target.x,target.y),point)<=SoloWorld.InteractionRadius?target.id:"";
             var homeTarget=HomeDropTarget(point);if(homeTarget!="")id=homeTarget;
             var result=Command(SoloAction.Drop,role,id,x:point.x,y:point.y);
             if(!result.Accepted)Command(SoloAction.CancelGrab,role);
@@ -466,8 +466,8 @@ namespace LittleWeeps.Client
             var item=dragging;var target="";dropSubmitted=true;HideTargetHints();
             if(!gestureCancelled)
             {
-                var nearest=ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle).OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),dragPoint)).First();
-                if(Vector2.Distance(new Vector2(nearest.x,nearest.y),dragPoint)<=SoloWorld.InteractionRadius)target=nearest.id;
+                var nearest=ReadToys().Where(t=>t.kind==ToyKind.Tap || t.kind==ToyKind.Plant || t.kind==ToyKind.Puddle).OrderBy(t=>Vector2.Distance(new Vector2(t.x,t.y),dragPoint)).FirstOrDefault();
+                if(nearest!=null && Vector2.Distance(new Vector2(nearest.x,nearest.y),dragPoint)<=SoloWorld.InteractionRadius)target=nearest.id;
                 var homeTarget=HomeDropTarget(dragPoint);if(homeTarget!="")target=homeTarget;
             }
             var cancelled=gestureCancelled;
@@ -506,6 +506,7 @@ namespace LittleWeeps.Client
         private void Update()
         {
             FinishBackgroundSave(false);
+            if(Ready)CheckStairInput();
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
             if(shared!=null)
             {
@@ -517,7 +518,8 @@ namespace LittleWeeps.Client
                 saveLabel.text=string.Join("   ·   ",shared.View.players.Where(p=>shared.Players.Contains(p.id)).Select(p=>p.id.Replace("player-","Player ")+": "+p.zone))+"   ·   "+shared.Status;
                 if(!shared.Connected)return;
                 FinishTravel();
-                if(MenuOpen || TravelPending)shared.Walk(WalkMode.Stop);
+                if(MenuOpen || TravelPending || StairBusy)shared.Walk(WalkMode.Stop);
+                else if(stairApproach)shared.Walk(WalkMode.Destination,HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea));
                 else if(JoystickMode)shared.Walk(stickDirection.sqrMagnitude>.0001f?WalkMode.Direction:WalkMode.Stop,stickDirection.x,stickDirection.y);
                 else if(destination.HasValue)
                 {
@@ -536,8 +538,8 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
-            var input=JoystickMode?stickDirection:destination??Vector2.zero;
+            var mode=StairBusy?WalkMode.Stop:stairApproach?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
                 dirty=true;lastLocalAction=now;
@@ -591,8 +593,10 @@ namespace LittleWeeps.Client
             {
                 var player=ReadPlayer(id);
                 var point=shared!=null && shared.Connected?shared.VisualPosition(id):new Vector2(player.x,player.y);
+                if(player.stairs>0)point=StairPoint(player);
                 visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
             }
+            PresentRooms();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
         }
@@ -607,7 +611,9 @@ namespace LittleWeeps.Client
             // assembly; no fixture user or stored prop is globally topmost.
             void Player(string id,RectTransform root)
             {
-                var fixture=HasWorld?ReadPlayer(id).fixture:"";
+                var player=HasWorld?ReadPlayer(id):null;
+                if(player!=null && player.stairs>0){Add(root,ToBoard(HomeRooms.EntryX(player.zone),HomeRooms.EntryY(player.zone)).y,1,id);return;}
+                var fixture=player?.fixture??"";
                 var home=HomeLayout.Seat(fixture)?"Home sofa":HomeLayout.Bounce(fixture)?"Home trampoline":"";
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
@@ -623,6 +629,7 @@ namespace LittleWeeps.Client
                 if(!string.IsNullOrEmpty(toy.container) && homeObjects.TryGetValue("Home shed",out var shed))Add(rect,shed.root.anchoredPosition.y,1,toy.id);
                 else Add(rect,rect.anchoredPosition.y,3,toy.id);
             }
+            if(stairFront!=null && HomeRooms.Property(CurrentArea))Add(stairFront.rectTransform,ToBoard(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)).y,2,"stair-cover");
             Player(Actor,avatar);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Player(friend.Key,friend.Value.root);
             if(keepyRoot!=null && Keepy!=null)Add(keepyRoot,ToBoard(Keepy.x,Keepy.y).y,4,"keepy-balloon");

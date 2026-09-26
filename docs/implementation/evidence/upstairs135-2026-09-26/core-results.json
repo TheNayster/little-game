@@ -1,0 +1,580 @@
+{
+  "utc": "2026-09-26T20:02:52.9071216Z",
+  "checks": [
+    {
+      "name": "recovery chunks retain four players both areas 128 receipts idle clocks and a held prop exactly",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "partial duplicate reordered mixed truncated and corrupt transfers never become complete saves",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "recovery size bounds timeout and epoch changes discard incomplete data",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "stale serial revision lineage family authority roster and future formats preserve a good replica",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "equal-revision movement timers ordered by serial and exact reconnect replay is idempotent",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "failed client write is not acknowledged and does not overwrite separate solo progress",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "newer nested recovery schema protocol or content cannot roll back to an older backup",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "scenery upgrade preserves old identities items water receipts and positions",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "all six entrances retain siblings and each scenic world has long walking bounds",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "house and garden boundary is walking in one persistent property",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "scenic saves reject off-map coordinates and aliases as persistent areas",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "scenic recovery retains new areas and negative home positions",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "legacy Unity inline empty home metadata remains compatible",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "home upgrade preserves identities, receipts, water and all prior positions",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "seat slots reject competing children atomically and repeated entry is idempotent",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "four players fit both original-size fixtures; release affects only their own spot",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "ride entry settles a held full bucket and walking releases only that player's slot",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "travel, departure and restoration safely release temporary home occupancy",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "shed keeps exact item and contents through close, travel, reload and retrieval",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "storage close/drop and capacity races reject without losing the held item",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "stored borrowed tools retain return policy; protected home ball stays stored",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "radio state persists independently and proximity does not mutate players",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "home save validation rejects duplicate storage, holders in storage and malformed leases",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "content 5 recovery validates home state and refuses mismatched generation",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "keepy upgrade preserves home, all players, props and receipts",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "existing indoor balloon moves outside once without moving players or props",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "backyard toss is higher, quicker and visibly drifts; completed flight stays outdoors",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "keepy belongs only to home; tapping preserves current activity, position and held item",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "walking under balloon produces repeated single taps with drifting air-filled flight",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "overlapping siblings create one authoritative hit and cannot reset a running round",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "wrong floor depth and inactive characters cannot hit; ground rest has no automatic restart",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "empty home pauses flight; reopen resumes the saved balloon without catch-up",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "detached profiles cannot ghost-hit; connected sibling can play without joining an activity",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "occupied hands and seats do not invent arm contacts",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "fixed balloon steps are independent of render rate and save fractions",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "keepy malformed clocks, floor points, ownership and future schema refuse",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "upstairs migration is additive and repeatable with all four profiles",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "internal stairs require proximity and cannot be reached through world travel",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "four people traverse stairs independently without moving a downstairs sibling",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "stair transfer commits carried items once and rejects late origin commands",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "stair checkpoint restore and detach settle only that actor at source endpoint",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "cancel before commit keeps source while cancel after commit cannot rewind",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "upstairs props stay distinct and major travel returns only held borrowed stock",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "room validators reject fabricated transit and cross-room ownership",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "content 7 recovery retains upstairs items and source-endpoint transit",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "private upstairs continuation preserves local items without mutating shared origin",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "visible local fork preserves latest area pose item progress without a recovery checkpoint or source mutation",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "visible origins reject wrong family invalid view future versions and changed provenance without replacing saves",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "legacy checkpoint adventures and newer visible adventures coexist without upgrading older saves",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "inline serializer empty optional objects are selected by version without accepting a forged recovery record",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "known disconnection permits local play immediately on foreground or resume",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "outage branch keeps immutable base receipts clocks four players and both areas while releasing stale holds",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "two outages retain distinct adventures and selection survives cold restart without touching solo or replica",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "adventure rejects foreign identity altered base revision rollback and path escape without replacing committed work",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "failed adventure save or selection keeps prior progress and can recover from an interrupted pending write",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "future adventure format blocks rather than replacing it with a backup",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "selection recovers damaged JSON from backup but a future selection version blocks",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "unsettled command export preserves request IDs independently and disconnect never replays",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "background save leaves gameplay caller free and permits only one writer",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "failed background commit is observable and retry retains atomic previous good save",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "lifecycle barrier waits for the in-flight write before a later commit",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "local walking advances on irregular render frames and preserves transaction receipts",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "local destination walking stops exactly and rejects invalid deltas without mutation",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "home authority has no lifetime cutoff while isolated probes retain exact deadlines",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "idle tools return the same instance after grace and cue without changing players or receipts",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "picking up during the return cue cancels it and a held tool never expires",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "completed garden activities rearm and work again without clearing partial progress",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "another child's matching held tool protects a completed station but not unrelated areas",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "idle elapsed time survives restore and the entire family's absence pauses it",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "idle revision protects pending commands and replay cannot undo a committed return",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "legacy saves retain placements and progress while invalid timer records are rejected",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "family admission rejects another family authority world profile or credential",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "discovery matching is bounded to enrolled authority family world and versions",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "player enrollment cannot contain authority private material or a malformed identity",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "walking advances at server speed independent of packet count and transactions",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "walking rejects forged old and previous-visit inputs then times out safely",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "stop sequence overrides delayed walking and disconnect cannot move an avatar",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "destination walking lands exactly and floor bounds retain finite positions",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "timestamp interpolation smooths sparse samples and never extrapolates an outage",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "area upgrade preserves existing garden and runs only once",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "travel settles own station tool and never changes the sibling",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "cross-area grabs drops and hints cannot affect remote toys",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "old visit input stays rejected after revision rebase and returning",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "invalid travel changes nothing and empty areas retain progress",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "four-player area saves retain every location and detach releases only its hold",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "client queue waits for acknowledgement before releasing a pending pickup",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "explicit stale rejection rebases but an unknown result keeps its identity",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "queued movement coalesces without replacing a drop and cancellation has priority",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "disconnect settles callbacks once and never sends queued old actions",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "cancellation survives sustained stale responses while ordinary actions stop",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "session admission prevents duplicate and unknown player connections",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "session binds commands to the admitted player",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "departing player releases only their prop and preserves the sibling",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "accepted duplicate stays idempotent after connection replacement",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "one holder; other player cannot steal or release",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "one child holds one prop; unrelated movement and avatar switch survive",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "fill/pour conserves water and duplicate pour does not apply twice",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "duplicate accepted action remains idempotent after restored checkpoint",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "picture hints match actual productive interactions without mutating state",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "stale and invalid commands leave world unchanged",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "remote target drop rejects then cancellation restores original location",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "cleanup works without a quest and activities can be freely switched/left",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "restore releases transient grabs and snapshot mutation cannot change authority",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "invalid snapshots are rejected",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "checkpoint replacement retains previous valid version",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "truncated main recovers backup; next save preserves damaged evidence",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "interrupted staging never displaces the committed checkpoint",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "first-write staged recovery stays recoverable during next save",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "unknown envelope and payload versions never fall back or overwrite",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "checksum mismatch and wholly corrupt saves are never silently reset",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "random legal and rejected actions retain invariants and bounded receipts",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "existing save directory cannot be mistaken for a missing world",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "unreadable primary must not silently roll back to older backup",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "presentation copies cannot mutate player or toy authority",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "presentation reads avoid copying checkpoint command history",
+      "passed": true,
+      "error": ""
+    }
+  ]
+}

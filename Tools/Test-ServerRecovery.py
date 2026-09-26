@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import subprocess
+import time
 import sys
 import uuid
 import runpy
@@ -60,13 +61,22 @@ def main():
                 (3,dict(item='ball-1',target='shed-2',x=3465,y=160)),(10,dict(target='shed',value='off')),
                 (10,dict(target='radio-living',value='on'))]:
                 require(command(clients[0],action,**values)['accepted'],'Home recovery fixture command failed')
+        if contract >= 8:
+            # Prepare the upstairs occupant before tossing: traversal takes longer
+            # than one unattended balloon flight, which this fixture must pause.
+            require(command(clients[2],0,x=-2980,y=420)['accepted'],'Upstairs recovery entry')
+            time.sleep(.5)
+            clients[2].input('inspect')
+            clients[2].input('touchButton',text='Stair entry')
+            wait(lambda:next(p for p in clients[2].state()['view']['players'] if p['id']==clients[2].profile)['zone']=='home-upstairs','Recovery upstairs arrival')
         if contract >= 7:
             require(command(clients[0],5,value='keepy-uppy')['accepted'],'Recovery balloon toss failed')
             require(command(clients[0],7,value='park')['accepted'],'Recovery departure failed')
-            require(command(clients[2],7,value='park')['accepted'],'Recovery home pause failed')
+            if contract < 8:
+                require(command(clients[2],7,value='park')['accepted'],'Recovery home pause failed')
         live = recovery.backup(); bundle, files, body = unpack(Path(live['path']))
-        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'park', 'creek', 'beach'} if contract >= 7 else {'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
-        if scenic: require(body['schema'] == (5 if contract >= 7 else 4 if contract >= 6 else 3) and ((body['keepy']['x'] >= 0 if args.build>=131 else body['keepy']['x'] < 0) if contract >= 7 else any(p['x'] < 0 for p in body['players'])), 'Scenic coordinates missing from backup')
+        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'park', 'creek', 'beach', 'home-upstairs'} if contract >= 8 else {'park', 'creek', 'beach'} if contract >= 7 else {'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
+        if scenic: require(body['schema'] == (6 if contract >= 8 else 5 if contract >= 7 else 4 if contract >= 6 else 3) and ((body['keepy']['x'] >= 0 if args.build>=131 else body['keepy']['x'] < 0) if contract >= 7 else any(p['x'] < 0 for p in body['players'])), 'Scenic coordinates missing from backup')
         original_instance = server.snapshot()['instanceId']
         refused(lambda: recovery.restore(Path(live['path']), digest(save.read_bytes())))
         require(server.snapshot()['instanceId'] == original_instance and server.snapshot()['players'] == 4, 'Backup/restore attempt interrupted play')
@@ -106,15 +116,17 @@ def main():
         v = deepcopy(source); invalid = deepcopy(original); invalid['toys'][0]['water'] = 100
         payload = json.dumps(invalid); raw = ('LITTLEWEEPS-SOLO-1\n' + digest(payload.encode()) + '\n' + payload).encode()
         v['files']['world.save'] = encoded(raw); cases.append(('invalid-game-state', v))
-        v = deepcopy(source); invalid = deepcopy(original); invalid['schema'] = 6 if contract >= 7 else 5
+        v = deepcopy(source); invalid = deepcopy(original); invalid['schema'] = original['schema'] + 1
         payload = json.dumps(invalid); v['files']['world.save'] = encoded(('LITTLEWEEPS-SOLO-1\n' + digest(payload.encode()) + '\n' + payload).encode()); cases.append(('future-schema', v))
+        if contract >= 8:
+            v = deepcopy(source); v['build'] = 131; cases.append(('schema-newer-than-source-build', v))
         for name, value in cases:
             path = invalid_dir / (name + '.lwbackup'); path.write_text(json.dumps(value), encoding='utf-8')
             refused(lambda: recovery.restore(path, digest(save.read_bytes())))
             require(saved() == before and not recovery.marker.exists(), 'Invalid backup damaged usable state: ' + name)
         truncated = invalid_dir / 'truncated.lwbackup'; truncated.write_bytes(b'{"files":')
         refused(lambda: recovery.restore(truncated, digest(save.read_bytes())))
-        passed('nine corrupt, incompatible, wrong-family/enrollment, invalid-state and unsafe-file-name backups refuse before touching usable saves')
+        passed(f'{len(cases)+1} corrupt, incompatible, wrong-family/enrollment, invalid-state and unsafe-file-name backups refuse before touching usable saves')
         def crash(stage):
             if stage == 'world.save': raise RuntimeError('Simulated recovery process interruption')
         try: recovery.restore(baseline_path, digest(save.read_bytes()), fault=crash)

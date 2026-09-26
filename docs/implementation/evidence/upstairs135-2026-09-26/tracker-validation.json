@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "homeTrackerEntries": 218,
+  "globalInventoryEntries": 330,
+  "bedrooms": 4,
+  "secretRooms": 4,
+  "homeAcceptanceChecks": 13,
+  "homeCompletionChecksClosed": 0,
+  "scope": "Full inventory retained; only stair/landing scope advanced. No bedroom or Home completion claim."
+}

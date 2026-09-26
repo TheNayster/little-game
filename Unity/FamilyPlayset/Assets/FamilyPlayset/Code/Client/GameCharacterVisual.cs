@@ -62,6 +62,7 @@ namespace LittleWeeps.Client
                 if(struck || reaching)frame=new CharacterFrame(CharacterPose.BalloonTap,frame.Speed,
                     struck?balloon.hitLeft:balloon.x<player.x,struck?(float)balloon.hitAge:0,frame.Travel,frame.ResetMotion);
             }
+            if(player.stairs>0)frame=new CharacterFrame(held?CharacterPose.Carry:CharacterPose.Walk,Core.Walking.Speed,true,travel:frame.Travel,resetMotion:frame.ResetMotion);
             if(!Core.HomeLayout.Usable(player.fixture))useKey="";
             PresentFrame(frame,dt);
         }
