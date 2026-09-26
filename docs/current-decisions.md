@@ -35,6 +35,12 @@ Keep all six main worlds, including Creek. Room navigation and camera panning ar
 
 **Explicit radio behavior:** radio on → music plays → nearby idle characters automatically dance; radio off → music stops and characters settle. Walking or starting another action overrides dancing, and busy siblings keep their activity. Preserve mute, character-switch, save/reopen and shared/offline rules. This is ordinary object-driven free play; musical statues is an optional game layered on top. [Detailed reaction and acceptance contract](bluey-lets-play-reference-study-2026-09-25.html#20-sound-expression-and-pace).
 
+
+**Connected house and backyard — user clarification, September 25:** Home and Backyard are entrances into one continuous family property, from the front of the house through its fully usable rooms, kitchen/dining area and veranda to the far backyard and shed. Sideways exploration should feel like one long dollhouse level; doors/stairs connect bedroom and other room branches without returning to the world menu. Retain cooking, living/TV, reading, science/dinosaur play, personal bedrooms, secret rooms, garden equipment, radio/dancing and durable shed storage. The two bubbles are arrival shortcuts into the same persistent property, not duplicate houses or independent copies of its items. Each player has an independent camera and can remain indoors while another explores outside. Art/room chunks may load around the camera for the older iPad, but crossing between them must preserve object IDs, held items, container contents and authority. This is the required G5/G6 layout, not a claim that the full property is implemented by the menu milestone.
+
+
+**World-art sequence — latest user direction:** first build attractive Bluey-style walkable scenery for all six worlds. Add no new activity features to the other worlds yet. After those visual shells, concentrate sustained room and interaction development on Bluey's connected house/backyard property. Keep existing functioning play and the full feature backlog; defer other-world feature implementation rather than delete it.
+
 ## Evidence and build order
 
 **Character correction, September 25:** after rejecting the generic pup, the user requested the corrected layered Bluey/Bingo artwork in the real game. On Android build **100** they reported it works great and looks great for a prototype, while noting stiff movement. Prototype appearance and integration are accepted; final animation polish and the complete roster remain open. Build **101** restores Garden/Creek navigation in ordinary solo and upgrades old saves additively. [Implementation and retained-state evidence](implementation/character-phone-switch-2026-09-25.html). Official references and editable source art remain required.
@@ -47,7 +53,7 @@ The installed project uses Unity **6000.3.24f1**, NGO **2.13.2**, Transport **2.
 
 1. Requested client **101** rollout is complete. Continue focused physical G3 outage/rejoin acceptance and sustained performance when the user tests; preserve saved data and enrollment.
 2. **ART-PREP-02 / CHAR-01:** the corrected Bluey/Bingo workshop and real-game integration pass scoped technical checks, and the user accepts the Android prototype. Retain animation stiffness, additional views and final polish as open work.
-3. **NAV-REF-01** is the next visible task: implement the reference-led world bubbles and circle/tray/arrow navigation using the existing Garden/Creek and Bluey/Bingo commands. The initial G5 bedroom rule work remains a tested development checkpoint, with screen/network/save-adapter integration pending.
+3. **NAV-REF-01** now passes [native Windows 104 checks](implementation/reference-menus-2026-09-25.html): implemented the reference-led world bubbles and circle/tray/arrow navigation using the existing Garden/Creek and Bluey/Bingo commands. The initial G5 bedroom rule work remains a tested development checkpoint, with screen/network/save-adapter integration pending.
 4. **G5** establishes versioned bedroom, creation and reusable item contracts, safe idle returns and separate local/server persistence. It includes no offline merge engine.
 5. **G6** finishes one polished home/backyard slice, then **G7** expands the content. Retain the remaining G1–G3, G5 and G8–G9 release checks; no G4 gate exists.
 

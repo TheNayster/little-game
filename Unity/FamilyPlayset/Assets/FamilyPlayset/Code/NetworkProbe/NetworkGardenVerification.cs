@@ -34,11 +34,13 @@ namespace LittleWeeps.NetworkProbe
         [Serializable] private sealed class Step {public int serial;public string action,role,text;public float x,y;public int finger=11;}
         [Serializable] private sealed class PlayerView {public string id;public Vector2 position;public bool visible;}
         [Serializable] private sealed class ToyView {public string id,label;public Vector2 position;public float alpha;}
+        [Serializable] private sealed class ControlView {public string name;public Rect bounds;public bool enabled;}
         [Serializable] private sealed class Evidence
         {
             public int serial,visiblePlayers,canvases,narrators,audioSources;public bool passed,ready,pending,connected,menuOpen,shared;
             public string error,build,actor,feedback,dragging,zone,savePath,adventure,pendingRequest;public int pendingArchives;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
+            public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray;public string character;public int characterLayers;public ControlView[] controls;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
         private void OnDisable()=>Application.logMessageReceived-=Log;
@@ -70,6 +72,11 @@ namespace LittleWeeps.NetworkProbe
         private Vector2 Point(Step step)
         {
             if(string.IsNullOrEmpty(step.role))return screen.ScreenPoint(step.x,step.y);
+            if(step.role.StartsWith("ui:"))
+            {
+                var button=FindObjectsByType<Button>(FindObjectsSortMode.None).Single(b=>b.name==step.role.Substring(3) && b.gameObject.activeInHierarchy);
+                return RectTransformUtility.WorldToScreenPoint(null,button.transform.TransformPoint(new Vector3(step.x,step.y,0)));
+            }
             var rect=screen.Surfaces[step.role].GetComponent<RectTransform>();
             return RectTransformUtility.WorldToScreenPoint(null,rect.TransformPoint(new Vector3(step.x,step.y,0)));
         }
@@ -180,9 +187,27 @@ namespace LittleWeeps.NetworkProbe
             if(screen.Ready)
             {
                 evidence.screenWidth=Screen.width;evidence.screenHeight=Screen.height;evidence.safeArea=Screen.safeArea;
+                evidence.worldsOpen=screen.WorldsOpen;evidence.charactersOpen=screen.CharactersOpen;evidence.character=screen.DisplayedCharacterId;evidence.characterLayers=screen.DisplayedCharacterLayers;
+                evidence.joystickVisible=screen.Surfaces["stick"].gameObject.activeInHierarchy;
+                evidence.fullCharactersInTray=screen.CharactersOpen && FindObjectsByType<GameCharacterVisual>(FindObjectsSortMode.None)
+                    .Where(v=>v.GetComponentsInParent<RectMask2D>().Any(m=>m.name=="Cast viewport")).All(v=>
+                    {
+                        var clip=Bounds((RectTransform)v.GetComponentInParent<RectMask2D>().transform);
+                        return v.GetComponentsInChildren<Image>().Where(i=>i.enabled).All(i=>
+                        {var r=Bounds(i.rectTransform);return r.xMin>=clip.xMin-2 && r.xMax<=clip.xMax+2 && r.yMin>=clip.yMin-2 && r.yMax<=clip.yMax+2;});
+                    });
                 evidence.boardBounds=Bounds(screen.Board);evidence.boardLayoutWidth=screen.Board.rect.width;
-                evidence.controlsInSafeArea=FindObjectsByType<Button>(FindObjectsSortMode.None).All(b=>
-                {var r=Bounds((RectTransform)b.transform);return r.xMin>=Screen.safeArea.xMin-2 && r.yMin>=Screen.safeArea.yMin-2 && r.xMax<=Screen.safeArea.xMax+2 && r.yMax<=Screen.safeArea.yMax+2;});
+                // Scrollable content can extend past the viewport. Check the
+                // actual clipped targets, not invisible offscreen layout boxes.
+                evidence.controls=FindObjectsByType<Button>(FindObjectsSortMode.None).Select(b=>
+                {
+                    var r=Bounds((RectTransform)b.transform);
+                    foreach(var mask in b.GetComponentsInParent<RectMask2D>())
+                    {var clip=Bounds((RectTransform)mask.transform);r=Rect.MinMaxRect(Mathf.Max(r.xMin,clip.xMin),Mathf.Max(r.yMin,clip.yMin),Mathf.Min(r.xMax,clip.xMax),Mathf.Min(r.yMax,clip.yMax));}
+                    return new ControlView{name=b.name,bounds=r,enabled=b.interactable};
+                }).Where(c=>c.bounds.width>0 && c.bounds.height>0).ToArray();
+                evidence.controlsInSafeArea=evidence.controls.All(c=>
+                {var r=c.bounds;return r.xMin>=Screen.safeArea.xMin-2 && r.yMin>=Screen.safeArea.yMin-2 && r.xMax<=Screen.safeArea.xMax+2 && r.yMax<=Screen.safeArea.yMax+2;});
                 evidence.players=(screen.Shared?probe.Latest.view.players:screen.World.Snapshot().players).Select(p=>
                 {
                     var rect=screen.Board.Find(p.id==screen.Actor?"Pup":"Friend-"+p.id) as RectTransform;

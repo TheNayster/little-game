@@ -1,0 +1,218 @@
+{
+  "serial": 57,
+  "visiblePlayers": 2,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 1,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.104",
+  "actor": "player-1",
+  "feedback": "Welcome to the garden. Your friends can join you here!",
+  "dragging": "",
+  "zone": "garden",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "visible": false
+    },
+    {
+      "id": "player-2",
+      "position": {
+        "x": 910.0000610351562,
+        "y": 50.0
+      },
+      "visible": true
+    },
+    {
+      "id": "player-3",
+      "position": {
+        "x": 640.0,
+        "y": 100.0
+      },
+      "visible": false
+    },
+    {
+      "id": "player-4",
+      "position": {
+        "x": 820.0,
+        "y": 100.0
+      },
+      "visible": false
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "label": " Bucket",
+      "position": {
+        "x": 149.99998474121094,
+        "y": 270.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "sponge-1",
+      "label": " Sponge",
+      "position": {
+        "x": 560.0,
+        "y": 119.99998474121094
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "tap-1",
+      "label": " Tap",
+      "position": {
+        "x": 149.99998474121094,
+        "y": 340.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plant-1",
+      "label": " Plant",
+      "position": {
+        "x": 810.0,
+        "y": 330.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "puddle-1",
+      "label": " Puddle",
+      "position": {
+        "x": 680.0,
+        "y": 140.0
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 1280,
+  "screenHeight": 591,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": 35.45997619628906,
+    "y": 92.34375762939453,
+    "width": 1209.080078125,
+    "height": 369.375
+  },
+  "boardLayoutWidth": 1636.6566162109375,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "character": "bingo",
+  "characterLayers": 11,
+  "controls": [
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 38.41499328613281,
+        "y": 86.43376159667969,
+        "width": 88.64999389648438,
+        "height": 88.64999389648438
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1120.6678466796875,
+        "y": 525.251220703125,
+        "width": 118.199951171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Listen",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1113.566162109375,
+        "y": 16.252521514892578,
+        "width": 110.8125,
+        "height": 38.415000915527344
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 870.0989990234375,
+        "y": 525.251220703125,
+        "width": 155.137451171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 35.45998764038086,
+        "y": 517.8637084960938,
+        "width": 62.054996490478516,
+        "height": 62.0550537109375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Grow a flower",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 139.27955627441406,
+        "y": 473.5387268066406,
+        "width": 180.99375915527344,
+        "height": 35.46002197265625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Free play",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 699.363037109375,
+        "y": 473.5387268066406,
+        "width": 140.362548828125,
+        "height": 35.46002197265625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash cleanup",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 425.35650634765625,
+        "y": 473.5387268066406,
+        "width": 180.9937744140625,
+        "height": 35.46002197265625
+      },
+      "enabled": true
+    }
+  ]
+}

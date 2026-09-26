@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "build": 104,
+  "utc": "2026-09-26T02:10:13.637860+00:00",
+  "runId": "7a278b6dc8444e2fb71190dff7af78fc",
+  "checks": [
+    {
+      "check": "family circle opens full-body tray; touch changes only avatar and replicates",
+      "passed": true
+    },
+    {
+      "check": "tray swipe and canceled touch never select another character",
+      "passed": true
+    },
+    {
+      "check": "tray stops and hides joystick; close restores control without replaying old gesture",
+      "passed": true
+    },
+    {
+      "check": "menu during pickup settles lease without changing the prop",
+      "passed": true
+    },
+    {
+      "check": "six picture bubbles; unfinished entries inactive; independent Creek round trip preserves sibling play",
+      "passed": true
+    },
+    {
+      "check": "phone layout, world swipe, back arrow and settings keep correct touch ownership",
+      "passed": true
+    }
+  ],
+  "physicalDevicesAccessed": false,
+  "liveFamilyServerAccessed": false,
+  "evidence": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\SharedGarden\\7a278b6dc8444e2fb71190dff7af78fc\\navigation"
+}

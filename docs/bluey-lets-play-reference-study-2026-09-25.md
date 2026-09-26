@@ -123,6 +123,12 @@ Tap an available world bubble to enter its remembered or default safe arrival ar
 
 Lay out six bubbles in two staggered rows on landscape iPad. On wide phones preserve large targets and allow sideways browsing rather than squeezing six small circles into the available height. Keep the gear separated from destination targets. Returning home opens this browser; it does not reset the world. A canceled visit returns to the previous play view. Only the selecting player's area/camera changes.
 
+
+**Connected house and backyard — user clarification, September 25:** Home and Backyard are entrances into one continuous family property, from the front of the house through its fully usable rooms, kitchen/dining area and veranda to the far backyard and shed. Sideways exploration should feel like one long dollhouse level; doors/stairs connect bedroom and other room branches without returning to the world menu. Retain cooking, living/TV, reading, science/dinosaur play, personal bedrooms, secret rooms, garden equipment, radio/dancing and durable shed storage. The two bubbles are arrival shortcuts into the same persistent property, not duplicate houses or independent copies of its items. Each player has an independent camera and can remain indoors while another explores outside. Art/room chunks may load around the camera for the older iPad, but crossing between them must preserve object IDs, held items, container contents and authority. This is the required G5/G6 layout, not a claim that the full property is implemented by the menu milestone.
+
+
+**World-art sequence — latest user direction:** first build attractive Bluey-style walkable scenery for all six worlds. Add no new activity features to the other worlds yet. After those visual shells, concentrate sustained room and interaction development on Bluey's connected house/backyard property. Keep existing functioning play and the full feature backlog; defer other-world feature implementation rather than delete it.
+
 ## 6. Family circle, tray and arrow contract
 
 **Closed:** a circular family illustration with a thick light edge sits at lower left, like R8. **Open:** a light-blue tray rises from the bottom, with a white top border and full-body characters along a shared baseline. Its large left tab shows the white down arrow from R7. Horizontal swipes browse the cast. Tapping the arrow closes the tray and restores the unobstructed scene.

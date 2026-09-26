@@ -24,7 +24,7 @@ namespace LittleWeeps.Client
         public RectTransform Board { get; private set; }
         public bool JoystickMode { get; private set; }
         public SoloNarration Narration {get;private set;}
-        public bool MenuOpen => menu != null && menu.activeSelf;
+        public bool MenuOpen => menu != null && menu.activeSelf || WorldsOpen || CharactersOpen;
         public readonly Dictionary<string, SoloPointerSurface> Surfaces = new Dictionary<string, SoloPointerSurface>();
         private readonly Dictionary<string, RectTransform> toys = new Dictionary<string, RectTransform>();
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
@@ -84,6 +84,7 @@ namespace LittleWeeps.Client
             Surfaces.Clear();toys.Clear();fills.Clear();targetRings.Clear();targetArrows.Clear();
             resetCues.Clear();layoutPositions.Clear();
             friends.Clear();holders.Clear();travelButtons.Clear();fence.Clear();
+            ResetNavigation();
             Board=null;avatar=null;menu=null;connecting=null;dragging=null;requestedArea=null;travelSubmitted=false;
             grabConfirmed=false;gestureEnded=false;gestureCancelled=false;dropSubmitted=false;renderedSequence=-1;
         }
@@ -245,10 +246,8 @@ namespace LittleWeeps.Client
         }
         private void BuildScreen()
         {
-            Label(safe,"Little Weeps",36,new Vector2(-407,351),new Vector2(330,58));
-            areaLabel=Label(safe,"",17,new Vector2(-404,313),new Vector2(350,34));
-            Button(safe,"Bluey",new Vector2(-95,343),new Vector2(150,64),()=>ChooseAvatar("blue-pup"),new Color(.7f,.87f,.97f));
-            Button(safe,"Bingo",new Vector2(75,343),new Vector2(160,64),()=>ChooseAvatar("orange-pup"),new Color(1,.81f,.61f));
+            Label(safe,"Little Weeps",36,new Vector2(-245,351),new Vector2(330,58));
+            areaLabel=Label(safe,"",17,new Vector2(-245,313),new Vector2(350,34));
             movementLabel=Button(safe,JoystickMode?"Joystick":"Tap to walk",new Vector2(285,343),new Vector2(210,64),ToggleMovement,Cream);
             Button(safe,"Menu",new Vector2(500,343),new Vector2(160,64),()=>SetMenu(true),Cream);
             var garden=Button(safe,"Grow a flower",new Vector2(-380,265),new Vector2(245,48),()=>StartActivity("garden"),new Color(.86f,.93f,.74f));
@@ -259,12 +258,6 @@ namespace LittleWeeps.Client
             cleanup.rectTransform.anchoredPosition=new Vector2(22,0);cleanup.rectTransform.sizeDelta=new Vector2(191,48);
             Panel(cleanup.transform.parent,"Sponge picture",new Vector2(-94,0),new Vector2(34,23),new Color(1,.83f,.28f));
             Button(safe,"Free play",new Vector2(120,265),new Vector2(190,48),()=>StartActivity(""),Cream);
-            foreach(var zone in new[]{"garden","creek"})
-                {
-                    var place=zone;
-                    var button=Button(safe,zone=="garden"?"Garden":"Creek",new Vector2(zone=="garden"?320:505,265),new Vector2(165,56),()=>Travel(place),Cream);
-                    travelButtons.Add(zone,button.transform.parent.GetComponent<Button>());
-                }
             Board=Panel(safe,"Garden",new Vector2(0,-25),new Vector2(1120,500),new Color(.76f,.89f,.72f),true).rectTransform;
             Surface(Board,"ground");
             Panel(Board,"Sky",new Vector2(0,140),new Vector2(1116,216),new Color(.8f,.92f,.96f));
@@ -303,6 +296,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
+            BuildNavigation();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -370,7 +364,7 @@ namespace LittleWeeps.Client
         }
         public void ToggleMovement()
         {
-            CancelPointers(); JoystickMode=!JoystickMode; movementLabel.text=JoystickMode?"Joystick":"Tap to walk";stick.gameObject.SetActive(JoystickMode);
+            CancelPointers(); JoystickMode=!JoystickMode; movementLabel.text=JoystickMode?"Joystick":"Tap to walk";stick.gameObject.SetActive(JoystickMode && !MenuOpen);
             Narration.Speak(JoystickMode?"joystick":"tapwalk");
             PlayerPrefs.SetInt(PreferenceKey("joystick"),JoystickMode?1:0);PlayerPrefs.Save();
         }
@@ -396,7 +390,7 @@ namespace LittleWeeps.Client
             listenLabel.text=Narration.VoiceEnabled?"Listen":"Voice off";
             listenLabel.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
         }
-        public void SetMenu(bool open) { lastLocalAction=Time.realtimeSinceStartup;if(open){CancelPointers();Narration.Stop();SaveNow();ExportPlayPerformance();} menu.SetActive(open); }
+        public void SetMenu(bool open) { lastLocalAction=Time.realtimeSinceStartup;if(open){CloseNavigation();CancelPointers();Narration.Stop();SaveNow();ExportPlayPerformance();} menu.SetActive(open);if(open)menu.transform.SetAsLastSibling();stick.gameObject.SetActive(JoystickMode && !MenuOpen); }
         public void Listen(){var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
         { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return new Vector2((local.x/Board.rect.width+.5f)*SoloWorld.Width,(local.y/Board.rect.height+.5f)*SoloWorld.Height); }
@@ -557,7 +551,7 @@ namespace LittleWeeps.Client
             if(HasWorld)SaveNow();else FinishBackgroundSave(true);
             if(ownedCanvas!=null)Destroy(ownedCanvas);if(ownedEvents!=null)Destroy(ownedEvents);
             if(Narration!=null)Destroy(Narration);
-            foreach(var sprite in new[]{rounded,circle,hintRing})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}
+            foreach(var sprite in new[]{rounded,circle,hintRing,pictureRim})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}
         }
         private void OnApplicationPause(bool paused){applicationPaused=paused;if(paused){CancelPointers();SaveNow();ExportPlayPerformance();}}
         private void OnApplicationFocus(bool focused){if(!focused && HasWorld){CancelPointers();SaveNow();}}
@@ -567,6 +561,7 @@ namespace LittleWeeps.Client
         {
             RecordPlayFrame();
             if(!Ready)return;
+            AnimateNavigation();
             if(shared!=null && shared.Connected)
             {
                 var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
@@ -605,6 +600,7 @@ namespace LittleWeeps.Client
             var toyStates=ReadToys();var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
             renderedArea=p.zone;renderedVisit=p.visit;
             characterVisual.Select(p.avatar);
+            RenderNavigation();
             foreach(var t in toyStates){if(t.id!=dragging)toys[t.id].anchoredPosition=ToBoard(t.x,t.y);
                 if(shared!=null)
                 {
@@ -686,11 +682,12 @@ namespace LittleWeeps.Client
         {var label=Rect(parent,text,position,dimensions).gameObject.AddComponent<Text>();label.font=font;label.fontSize=size;label.text=text;label.color=Ink;label.alignment=TextAnchor.MiddleCenter;label.raycastTarget=false;return label;}
         private Text Button(Transform parent,string text,Vector2 position,Vector2 size,UnityEngine.Events.UnityAction action,Color color)
         {var image=Panel(parent,text,position,size,color,true);var button=image.gameObject.AddComponent<Button>();button.onClick.AddListener(action);return Label(image.transform,text,22,Vector2.zero,size);}
-        private Sprite Shape(bool oval)
+        private Sprite Shape(bool oval,bool rim=false)
         {
-            var texture=new Texture2D(64,64,TextureFormat.RGBA32,false);texture.filterMode=FilterMode.Bilinear;
-            for(var y=0;y<64;y++)for(var x=0;x<64;x++){var dx=Mathf.Abs(x-31.5f);var dy=Mathf.Abs(y-31.5f);var d=oval?Mathf.Sqrt(dx*dx+dy*dy)-31:Mathf.Sqrt(Mathf.Pow(Mathf.Max(0,dx-18),2)+Mathf.Pow(Mathf.Max(0,dy-18),2))-13;texture.SetPixel(x,y,new Color(1,1,1,Mathf.Clamp01(1-d)));}
-            texture.Apply();return Sprite.Create(texture,new Rect(0,0,64,64),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect,oval?Vector4.zero:new Vector4(16,16,16,16));
+            var size=oval?256:64;var center=(size-1)*.5f;
+            var texture=new Texture2D(size,size,TextureFormat.RGBA32,false);texture.filterMode=FilterMode.Bilinear;
+            for(var y=0;y<size;y++)for(var x=0;x<size;x++){var dx=Mathf.Abs(x-center);var dy=Mathf.Abs(y-center);var d=oval?Mathf.Sqrt(dx*dx+dy*dy)-(size/2f-1):Mathf.Sqrt(Mathf.Pow(Mathf.Max(0,dx-18),2)+Mathf.Pow(Mathf.Max(0,dy-18),2))-13;texture.SetPixel(x,y,new Color(1,1,1,Mathf.Clamp01(1-d)*(rim?Mathf.Clamp01(d+7):1)));}
+            texture.Apply();return Sprite.Create(texture,new Rect(0,0,size,size),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect,oval?Vector4.zero:new Vector4(16,16,16,16));
         }
         private Sprite Ring()
         {
@@ -720,11 +717,12 @@ namespace LittleWeeps.Client
                 rect.anchoredPosition=new Vector2(wide?-width/2+20+cell*(i+.5f):-465+i*155,80);
                 rect.sizeDelta=new Vector2(wide?cell-12:142,65);
             }
-            stick.anchoredPosition=new Vector2(-width/2+83,-193);
+            stick.anchoredPosition=new Vector2(-width/2+222,-193);
             activity.rectTransform.sizeDelta=new Vector2(width+10,44);
             message.rectTransform.sizeDelta=new Vector2(width-170,40);
             saveLabel.rectTransform.sizeDelta=new Vector2(width+10,28);
             ((RectTransform)menu.transform).sizeDelta=new Vector2(width+70,760);
+            LayoutNavigation();
             if(avatar!=null)Render();
         }
         private void UpdateSafeArea()

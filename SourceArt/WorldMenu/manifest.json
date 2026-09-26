@@ -1,0 +1,42 @@
+{
+  "generator": "Built-in image_gen",
+  "purpose": "Menu thumbnails only; not gameplay backgrounds or completed levels",
+  "assets": [
+    {
+      "id": "garden",
+      "asset": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/WorldMenu/garden.png",
+      "sha256": "6d9607a62d67fcbb6f68679d60f948887c1fefee0794dd31f1821d5559e61101",
+      "generationId": "b01f5edd-735f-410b-aad5-c7a70dae2ce5"
+    },
+    {
+      "id": "creek",
+      "asset": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/WorldMenu/creek.png",
+      "sha256": "ce9b7fca9f28c9452181490e0c6f216bb0e4c2e4a74ea29d91d1bbe8058cb13d",
+      "generationId": "564b1c37-303a-4cbd-b6d0-500bf57528aa"
+    },
+    {
+      "id": "home",
+      "asset": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/WorldMenu/home.png",
+      "sha256": "0c540bf33eb93e060a236046969e5957741fbb8ef02488104d254c7f3b497ecc",
+      "generationId": "ad5be433-ec01-4bc5-a939-c7e9454482dd"
+    },
+    {
+      "id": "park",
+      "asset": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/WorldMenu/park.png",
+      "sha256": "8c2e3f70d7716055ea6869d80904730dc07a7a36ddf4f71c3886795c95e558d0",
+      "generationId": "ed3b4ed8-6874-43a7-aada-1196c818fbd8"
+    },
+    {
+      "id": "beach",
+      "asset": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/WorldMenu/beach.png",
+      "sha256": "d9ba504f9fb4a9266f15320364dc984749f6e9db627c1b61f6c6ca69b447821c",
+      "generationId": "316bc270-2dac-46e1-97e4-59386a150bb6"
+    },
+    {
+      "id": "daycare",
+      "asset": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/WorldMenu/daycare.png",
+      "sha256": "87f57eabf61b883f7e701f90e680f2c73c577afa925ff3fdf9539c820a6eddd7",
+      "generationId": "073add27-03d8-45e1-b4b0-0409bd8fd835"
+    }
+  ]
+}
