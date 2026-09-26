@@ -1,0 +1,4488 @@
+{
+  "date": "2026-09-26",
+  "sourceCommit": "8a315ca945a899dbefe7687b47ac02a3bf7cd6fd",
+  "worlds": {
+    "all": "Across all worlds",
+    "home": "Heeler Home — house",
+    "yard": "Heeler Home — backyard",
+    "beach": "The Beach",
+    "creek": "The Creek",
+    "park": "Playground & Park",
+    "daycare": "Daycare",
+    "ops": "Parent setup and reliability",
+    "retired": "Removed from scope"
+  },
+  "statuses": {
+    "play": "Playable prototype",
+    "part": "Partial",
+    "plan": "Planned",
+    "dev": "Development only",
+    "scene": "Scenery only",
+    "optional": "Optional idea",
+    "retired": "Retired"
+  },
+  "features": [
+    {
+      "id": "G-01",
+      "world": "all",
+      "group": "Play and presentation",
+      "title": "Four independent family players",
+      "status": "part",
+      "chapters": [
+        1,
+        31,
+        47,
+        48
+      ],
+      "description": "One person per device; any arrival/departure changes only that player. Four-device admission exists; full content and sustained mixed-device acceptance remain open.",
+      "evidence": "family",
+      "extraSource": ""
+    },
+    {
+      "id": "G-02",
+      "world": "all",
+      "group": "Play and presentation",
+      "title": "Independent worlds, cameras and local loading",
+      "status": "part",
+      "chapters": [
+        3,
+        31,
+        50
+      ],
+      "description": "Five destination entries cover six content regions. Each player travels alone, joining existing objects and players. Long scenic travel works; bedroom/story branches remain planned.",
+      "evidence": "scene",
+      "extraSource": ""
+    },
+    {
+      "id": "G-03",
+      "world": "all",
+      "group": "Play and presentation",
+      "title": "Bluey-style illustrated dollhouse",
+      "status": "part",
+      "chapters": [
+        1,
+        2,
+        5
+      ],
+      "description": "Detailed wide scenery, readable outlines, perspective floors, foreground occlusion and recognizable characters. Scenic shells and initial home layers exist; art alone does not make furniture usable.",
+      "evidence": "layers",
+      "extraSource": ""
+    },
+    {
+      "id": "G-04",
+      "world": "all",
+      "group": "Play and presentation",
+      "title": "One visible object per usable object",
+      "status": "part",
+      "chapters": [
+        5,
+        51
+      ],
+      "description": "Separate room architecture, rear/front furniture, supports and movable props. Sofa, trampoline and shed have integrated layers; kitchen and remaining furniture still need this treatment.",
+      "evidence": "layers",
+      "extraSource": ""
+    },
+    {
+      "id": "G-05",
+      "world": "all",
+      "group": "Controls and menus",
+      "title": "Joystick and tap-to-walk",
+      "status": "play",
+      "chapters": [
+        5,
+        48
+      ],
+      "description": "Independent device preference, floor movement, stop on release and safe cancellation. Current floor bounds are not a complete furniture-aware pathfinding system.",
+      "evidence": "solo",
+      "extraSource": ""
+    },
+    {
+      "id": "G-06",
+      "world": "all",
+      "group": "Controls and menus",
+      "title": "Walk around furniture and through doors",
+      "status": "plan",
+      "chapters": [
+        5,
+        32
+      ],
+      "description": "Authored legal floors, obstacles, room doors and stairs; unreachable destinations resolve gently. The current broad floor bounds do not complete this navigation feature.",
+      "evidence": "layout",
+      "extraSource": ""
+    },
+    {
+      "id": "G-07",
+      "world": "all",
+      "group": "Controls and menus",
+      "title": "Family circle, horizontal characters, vertical places, down arrow",
+      "status": "play",
+      "chapters": [
+        3,
+        17
+      ],
+      "description": "Lower-right circle avoids the joystick; the tray keeps the avatar visible above it. One Heeler Home entry; the Creek stays available. Only Bluey and Bingo currently appear as playable choices.",
+      "evidence": "nav",
+      "extraSource": ""
+    },
+    {
+      "id": "G-08",
+      "world": "all",
+      "group": "Controls and menus",
+      "title": "Local loading and safe travel failure",
+      "status": "part",
+      "chapters": [
+        3,
+        12,
+        50
+      ],
+      "description": "Prepare destination art and accepted world state before enabling input; retry/back on failure without moving siblings. Existing scenic travel works; new room/story loaders need coverage.",
+      "evidence": "scene",
+      "extraSource": ""
+    },
+    {
+      "id": "G-09",
+      "world": "all",
+      "group": "Controls and menus",
+      "title": "Generous touch targets and gesture ownership",
+      "status": "part",
+      "chapters": [
+        2,
+        5,
+        48
+      ],
+      "description": "Large picture targets, safe areas, pointer ownership, drag versus walking separation and cancellation on menus/lock. Broad physical child-usability qualification remains open.",
+      "evidence": "solo",
+      "extraSource": ""
+    },
+    {
+      "id": "G-10",
+      "world": "all",
+      "group": "Controls and menus",
+      "title": "Simple Play and Explore & Stories",
+      "status": "plan",
+      "chapters": [
+        2,
+        18,
+        30,
+        41
+      ],
+      "description": "Per-child and per-skill assistance, ready setups, broad snapping, demonstrations, tap alternatives and deeper sequences. No age-based character/content locks.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "G-11",
+      "world": "all",
+      "group": "Activities and speech",
+      "title": "Free play and optional invitations",
+      "status": "part",
+      "chapters": [
+        2,
+        18
+      ],
+      "description": "Objects work without quests. Current flower/cleanup prompts can be left and repeated; the complete picture picker, nearby invitations and resumable activities remain planned.",
+      "evidence": "core",
+      "extraSource": ""
+    },
+    {
+      "id": "G-12",
+      "world": "all",
+      "group": "Activities and speech",
+      "title": "Activity picker, replay, switch, all done, resume",
+      "status": "plan",
+      "chapters": [
+        18,
+        24,
+        43
+      ],
+      "description": "Picture cards, spoken invitation, listen again, personal start/park/resume and independent shared participation. Leaving does not erase food, art or other players' work.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "G-13",
+      "world": "all",
+      "group": "Activities and speech",
+      "title": "No forced progress gates",
+      "status": "part",
+      "chapters": [
+        1,
+        2,
+        18,
+        42
+      ],
+      "description": "All released worlds, favorite characters and toys stay accessible; no required chores, reading, win/loss or elimination wait. Apply this to every future activity.",
+      "evidence": "keepy",
+      "extraSource": ""
+    },
+    {
+      "id": "G-14",
+      "world": "all",
+      "group": "Activities and speech",
+      "title": "English voices and speaking characters",
+      "status": "part",
+      "chapters": [
+        8,
+        17,
+        26
+      ],
+      "description": "Local reviewed prompts, reactions, names, greetings and mouth animation. A small English hint set exists; full cast voices and complete English content do not.",
+      "evidence": "solo",
+      "extraSource": ""
+    },
+    {
+      "id": "G-15",
+      "world": "all",
+      "group": "Activities and speech",
+      "title": "Spanish and separate local language choices",
+      "status": "plan",
+      "chapters": [
+        8,
+        26,
+        41
+      ],
+      "description": "Reviewed recordings, natural translations and Spanish-specific sounds/rhymes. Dialect remains a content decision; prototype translations are not a completed mode.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "G-16",
+      "world": "all",
+      "group": "Activities and speech",
+      "title": "One foreground voice, music ducking and replay",
+      "status": "part",
+      "chapters": [
+        8,
+        26,
+        27,
+        41
+      ],
+      "description": "Coalesce repeated requests, cancel stale speech and keep visual hints when muted. Existing hint narration is limited; book/TV/lesson arbitration remains planned.",
+      "evidence": "solo",
+      "extraSource": ""
+    },
+    {
+      "id": "G-17",
+      "world": "all",
+      "group": "Activities and speech",
+      "title": "Separate voice, music, effects and calm settings",
+      "status": "part",
+      "chapters": [
+        11,
+        33
+      ],
+      "description": "Voice and home-music toggles exist. Full independent volume controls, assistance, language, reduced motion and media settings remain planned.",
+      "evidence": "home",
+      "extraSource": ""
+    },
+    {
+      "id": "G-18",
+      "world": "all",
+      "group": "Characters",
+      "title": "Switch any available avatar without losing identity",
+      "status": "part",
+      "chapters": [
+        4,
+        17,
+        47
+      ],
+      "description": "Bluey/Bingo switching keeps profile and current supported state; all players may choose the same favorite. Full roster, parent avatars and all future role/grip cases remain open.",
+      "evidence": "walk",
+      "extraSource": ""
+    },
+    {
+      "id": "G-19",
+      "world": "all",
+      "group": "Characters",
+      "title": "Player badges distinct from NPC roles",
+      "status": "part",
+      "chapters": [
+        4,
+        17,
+        47
+      ],
+      "description": "Duplicate favorites need persistent readable symbol/color markers. Human Bandit/Chilli must not seize or remove an NPC seeker. Current player identity exists; parent/NPC roles are not built.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "G-20",
+      "world": "all",
+      "group": "Characters",
+      "title": "Natural movement and context poses",
+      "status": "part",
+      "chapters": [
+        4,
+        5,
+        17
+      ],
+      "description": "Accepted Bluey/Bingo sheets support walking, idle, sitting, bounce, dance and balloon tap. Finish turns/back views, grip/contact and special actions for every cast member.",
+      "evidence": "walk",
+      "extraSource": ""
+    },
+    {
+      "id": "G-21",
+      "world": "all",
+      "group": "Shared objects",
+      "title": "Drag, carry, release and one holder",
+      "status": "part",
+      "chapters": [
+        5,
+        6,
+        50
+      ],
+      "description": "Current bucket/sponge/ball ownership is authoritative. Expand correct hand anchors, handovers, portable cross-world props and safe rejected placement to the full object catalog.",
+      "evidence": "core",
+      "extraSource": ""
+    },
+    {
+      "id": "G-22",
+      "world": "all",
+      "group": "Shared objects",
+      "title": "Capacity-limited fill and pour",
+      "status": "part",
+      "chapters": [
+        6,
+        19,
+        51
+      ],
+      "description": "Bucket/tap/plant transfer exists. Extend consistent quantities and cancellation to cups, basins, recipes, watering cans, sand and all compatible targets.",
+      "evidence": "core",
+      "extraSource": ""
+    },
+    {
+      "id": "G-23",
+      "world": "all",
+      "group": "Shared objects",
+      "title": "Supported placement, stacking and moving supports",
+      "status": "plan",
+      "chapters": [
+        5,
+        6,
+        51
+      ],
+      "description": "Tables, trays, shelves and stable stacks need visible valid targets; moving a support must carry or safely settle its dependents. Ground dragging is not a general surface system.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "G-24",
+      "world": "all",
+      "group": "Shared objects",
+      "title": "Containers and durable nested contents",
+      "status": "part",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Four fixed shed slots retain items. Portable baskets, bags, drawers, cupboards, capacities, nested depth/cycle rules and carried contents remain planned.",
+      "evidence": "home",
+      "extraSource": ""
+    },
+    {
+      "id": "G-25",
+      "world": "all",
+      "group": "Shared objects",
+      "title": "Borrowed tools return automatically",
+      "status": "part",
+      "chapters": [
+        51
+      ],
+      "description": "Current bucket/sponge have saved eligible idle clocks and return cues, including in shed storage. General typed loans, spoken returns and safe creation separation remain open.",
+      "evidence": "home",
+      "extraSource": ""
+    },
+    {
+      "id": "G-26",
+      "world": "all",
+      "group": "Shared objects",
+      "title": "Enough tools and places for four",
+      "status": "part",
+      "chapters": [
+        31,
+        47,
+        51
+      ],
+      "description": "Four sofa/trampoline places exist in unchanged artwork. Other stations must offer four-person participation and essential tool stock; the single prototype bucket is not sufficient.",
+      "evidence": "keepy",
+      "extraSource": ""
+    },
+    {
+      "id": "G-27",
+      "world": "all",
+      "group": "Shared objects",
+      "title": "Protect personal creations and prevent hoarding",
+      "status": "plan",
+      "chapters": [
+        32,
+        51
+      ],
+      "description": "Separate fixed stock, essential tools, bounded loans, personal items, creations, supplies and effects. Count nested loans; preserve art/food and offer recoverable toy-box storage.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "G-28",
+      "world": "all",
+      "group": "Shared objects",
+      "title": "Reusable reactions and reversible changes",
+      "status": "part",
+      "chapters": [
+        2,
+        6,
+        19,
+        30
+      ],
+      "description": "Visible empty/full, dirty/clean, growth and valid rejection exist in the small water loop. Add material transforms, serving reactions, paint removal, undo and stable custom creations.",
+      "evidence": "core",
+      "extraSource": ""
+    },
+    {
+      "id": "H-01",
+      "world": "home",
+      "group": "Rooms and furniture",
+      "title": "Connected house, veranda and backyard",
+      "status": "part",
+      "chapters": [
+        3,
+        32
+      ],
+      "description": "One continuous property is walkable. Full branch rooms, doors/stairs and all room functions are still required; selecting Home while there retains position.",
+      "evidence": "scene",
+      "extraSource": ""
+    },
+    {
+      "id": "H-02",
+      "world": "home",
+      "group": "Rooms and furniture",
+      "title": "Living-room sofa for four",
+      "status": "play",
+      "chapters": [
+        5,
+        47
+      ],
+      "description": "Four close places, seated poses, foreground masking, avatar switch and independent exits. Available in 130/132; installed iPads/server 128 retain two places.",
+      "evidence": "keepy",
+      "extraSource": ""
+    },
+    {
+      "id": "H-03",
+      "world": "home",
+      "group": "Rooms and furniture",
+      "title": "Living-room radio and automatic dancing",
+      "status": "play",
+      "chapters": [
+        1,
+        5
+      ],
+      "description": "Radio on plays music and nearby idle characters dance; movement and other actions take priority. Local mute is independent of shared power.",
+      "evidence": "home",
+      "extraSource": ""
+    },
+    {
+      "id": "H-04",
+      "world": "home",
+      "group": "Rooms and furniture",
+      "title": "Chairs, benches, cushions and resting spots",
+      "status": "plan",
+      "chapters": [
+        4,
+        5,
+        32
+      ],
+      "description": "Correct seated/resting poses, holding a small item, easy exits and different cast sizes. The implemented sofa does not establish all furniture support.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-05",
+      "world": "home",
+      "group": "Rooms and furniture",
+      "title": "Cupboards, drawers, lights and lamps",
+      "status": "plan",
+      "chapters": [
+        6,
+        11,
+        32,
+        51
+      ],
+      "description": "Open and close real storage; lights change visibly; contents retain identity and can be retrieved. Painted cabinets and lamps are currently scenery.",
+      "evidence": "layers",
+      "extraSource": ""
+    },
+    {
+      "id": "H-06",
+      "world": "home",
+      "group": "Rooms and furniture",
+      "title": "Bathroom and laundry spaces",
+      "status": "plan",
+      "chapters": [
+        3,
+        21
+      ],
+      "description": "Bath/splash interaction with front water masking, towels, storage, dressing and bedtime connections. This room expansion is listed in the home layout record.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-07",
+      "world": "home",
+      "group": "Kitchen",
+      "title": "Interactive kitchen architecture",
+      "status": "plan",
+      "chapters": [
+        3,
+        19,
+        51
+      ],
+      "description": "Fridge, cupboards, sink, oven, worktop, ingredient storage and dining surfaces with aligned doors and interiors; separate interactive art before food production.",
+      "evidence": "layers",
+      "extraSource": ""
+    },
+    {
+      "id": "H-08",
+      "world": "home",
+      "group": "Kitchen",
+      "title": "Make, decorate and serve",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Spread, chop, pour, mix, shape, heat, decorate, slice, plate, carry, taste and wash. Use large controls, tap alternatives and optional ready-made bases.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-09",
+      "world": "home",
+      "group": "Kitchen",
+      "title": "Free recipes and persistent food creations",
+      "status": "plan",
+      "chapters": [
+        19,
+        51
+      ],
+      "description": "Mix-and-match toppings, picture orders, preserved decorations/portions, picnic packing and a creation album. Unexpected ingredients remain play, not failure.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-10",
+      "world": "home",
+      "group": "Kitchen",
+      "title": "Four-player preparation and safe ovens",
+      "status": "plan",
+      "chapters": [
+        19,
+        31,
+        47
+      ],
+      "description": "Separate trays/tools or shared accepted contributions; no whole-kitchen lock. Leave/rejoin safely and stop at a ready state without burning food while children explore.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-11",
+      "world": "home",
+      "group": "Kitchen",
+      "title": "Drinks, fruit, blender and pretend café",
+      "status": "plan",
+      "chapters": [
+        6,
+        19
+      ],
+      "description": "Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-12",
+      "world": "home",
+      "group": "Parents and hiding",
+      "title": "Bandit and Chilli's ambient routines",
+      "status": "plan",
+      "chapters": [
+        22,
+        47
+      ],
+      "description": "Roam, read, garden, prepare food and tidy eligible ambient props; requests interrupt safely, but never steal a busy seeker or destroy a child's work.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-13",
+      "world": "home",
+      "group": "Parents and hiding",
+      "title": "Parent-seeker hide-and-seek",
+      "status": "plan",
+      "chapters": [
+        22,
+        34
+      ],
+      "description": "Invite a parent, prepare individually, hide, hear a friendly search, be found and continue playing. All joined hiders can leave freely; no elimination screen.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-14",
+      "world": "home",
+      "group": "Parents and hiding",
+      "title": "Child/human seeker and role changes",
+      "status": "plan",
+      "chapters": [
+        22,
+        34,
+        47
+      ],
+      "description": "Picture role choice, independent hider preparation, swap roles, and an NPC replacement if the human seeker leaves. Character choice never changes the role.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-15",
+      "world": "home",
+      "group": "Parents and hiding",
+      "title": "Enterable hiding furniture",
+      "status": "plan",
+      "chapters": [
+        34
+      ],
+      "description": "Designated closets, oversized drawers, tents and curtain alcoves with entry/exit anchors, capacity, cutaways and a persistent Come out control.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-16",
+      "world": "home",
+      "group": "Parents and hiding",
+      "title": "Fair clues and bounded search",
+      "status": "plan",
+      "chapters": [
+        34
+      ],
+      "description": "Optional 5–10 second giggle/rattle or visual hint, manual/off settings and roughly 30 seconds per ready hider. Test routes; do not find by secret coordinates.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-17",
+      "world": "home",
+      "group": "Parents and hiding",
+      "title": "Concealment and mid-round joins",
+      "status": "plan",
+      "chapters": [
+        22,
+        31,
+        34
+      ],
+      "description": "Hide carried props, labels, hitboxes and unrelated positional audio from seeker. Late joiners prepare without resetting others; avatar swaps preserve hiding.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-18",
+      "world": "home",
+      "group": "Books and reading",
+      "title": "Reading nook and physical book props",
+      "status": "plan",
+      "chapters": [
+        25
+      ],
+      "description": "Low shelves, rug, cushions and book basket. Tap/open versus drag/move must be distinct; access to the same title stays independent for every player.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-19",
+      "world": "home",
+      "group": "Books and reading",
+      "title": "Interactive narrated reader",
+      "status": "plan",
+      "chapters": [
+        25,
+        26
+      ],
+      "description": "Large Play/Pause, replay, page arrows, close, optional automatic/manual turns and saved page. Opening alone does not start narration; relevant hotspots animate and say names.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-20",
+      "world": "home",
+      "group": "Books and reading",
+      "title": "Independent bookmarks and narration",
+      "status": "plan",
+      "chapters": [
+        25,
+        26,
+        29
+      ],
+      "description": "Each profile keeps pages and narration locally; names pause/resume only valid current narration. Muting, closing, changing pages or network state cannot restart old speech.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-21",
+      "world": "home",
+      "group": "TV and local media",
+      "title": "TV and thumbnail library in the house",
+      "status": "plan",
+      "chapters": [
+        27
+      ],
+      "description": "TV/remote opens local cards with titles, duration and posters; no web search/feed needed. Media/TV folder preparation is not an importer or playable TV.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-22",
+      "world": "home",
+      "group": "TV and local media",
+      "title": "Playback controls and persistent resume",
+      "status": "dev",
+      "chapters": [
+        27,
+        29
+      ],
+      "description": "Single-clip foundation proves play/pause, seeking and a profile bookmark. Integrate library, per-video Continue/Restart, skip, previous/next, finish choices and durable lifecycle checkpoints.",
+      "evidence": "media",
+      "extraSource": ""
+    },
+    {
+      "id": "H-23",
+      "world": "home",
+      "group": "TV and local media",
+      "title": "Parent media import and retained library",
+      "status": "plan",
+      "chapters": [
+        27
+      ],
+      "description": "Import normal files through Files; validate space/format, preserve current library on cancellation, detect duplicates and retain local media/bookmarks through updates.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-24",
+      "world": "home",
+      "group": "TV and local media",
+      "title": "Independent offline playback",
+      "status": "plan",
+      "chapters": [
+        27,
+        35
+      ],
+      "description": "One local decoder per device, correct aspect ratio, retry/back on missing clips, independent siblings, paused return after lock. Physical target media acceptance remains required.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-25",
+      "world": "home",
+      "group": "TV and local media",
+      "title": "Watch together or autoplay-next",
+      "status": "optional",
+      "chapters": [
+        27
+      ],
+      "description": "Explicitly later than the first local TV version; invitations and matching clip IDs would be needed for shared viewing.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-26",
+      "world": "home",
+      "group": "Dinosaur play",
+      "title": "Twenty-type accessible toy shelf",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Picture categories, roughly six visible at a time, all types available without quests and deliberate duplicate-toy choice. Twenty definitions do not mean unlimited active toys.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-27",
+      "world": "home",
+      "group": "Dinosaur play",
+      "title": "Named animated toys with connected uses",
+      "status": "plan",
+      "chapters": [
+        26,
+        28
+      ],
+      "description": "Carry, place, rotate/flip, stack/store, footprints/dust, brushing, washing, nests and book links. Same reviewed name ID across books and toys.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-28",
+      "world": "home",
+      "group": "Dinosaur play",
+      "title": "Dinosaur Discovery Mat",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Uncover toy, brush, hear name, optionally wash and arrange its world. Bypass digging if wanted; toys and creations survive independent departures.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-29",
+      "world": "home",
+      "group": "Science",
+      "title": "Discovery bench and free experiments",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Eight listed stations with immediate repeatable reactions, prediction pictures, generous assistance and no required order. First proposed slice: float tub, magnets and colored light.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-30",
+      "world": "home",
+      "group": "Science",
+      "title": "Shared experiments and saved creations",
+      "status": "plan",
+      "chapters": [
+        30,
+        31,
+        47
+      ],
+      "description": "Up to four participants with independent controls/trays, local narration and safe resets. Keep finished plants, boats or arrangements; simulation and explanations must agree.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-31",
+      "world": "home",
+      "group": "Bedrooms",
+      "title": "Two persistent child-owned bedrooms",
+      "status": "dev",
+      "chapters": [
+        32
+      ],
+      "description": "Early isolated ownership/style rules exist outside the shipped game. No integrated room UI/network/save rollout. Bedroom ownership follows profile, never selected avatar.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-32",
+      "world": "home",
+      "group": "Bedrooms",
+      "title": "Decorating, visits and undo",
+      "status": "plan",
+      "chapters": [
+        32
+      ],
+      "description": "Beds, rugs, shelves, toy baskets, cushions, pictures, decoration drawers, wall/bedding/lamp/plush choices; owner edits, optional Decorate together, safe paths and undo.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-33",
+      "world": "home",
+      "group": "Bedrooms",
+      "title": "Personal toy box and creation gallery",
+      "status": "plan",
+      "chapters": [
+        28,
+        32,
+        51
+      ],
+      "description": "Separate personal catalog, every dinosaur type, bounded loose props, put-one-away/take-one-out and recoverable displays. Never delete the oldest toy or a saved creation.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-34",
+      "world": "home",
+      "group": "Bedrooms",
+      "title": "Gentle tidy help and visitor protection",
+      "status": "plan",
+      "chapters": [
+        32,
+        51
+      ],
+      "description": "Owner's Help tidy stores loose personal toys and eligible loans; leave installed displays, held objects and other rooms alone. Visitors cannot erase a room.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-35",
+      "world": "home",
+      "group": "Secret rooms",
+      "title": "Two optional mini-door secret rooms",
+      "status": "plan",
+      "chapters": [
+        33
+      ],
+      "description": "Create an entrance per child, visit either existing room, move/archive doors without deleting contents and keep a visible exit plus return-home picture.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-36",
+      "world": "home",
+      "group": "Secret rooms",
+      "title": "Plush collection and quiet play",
+      "status": "plan",
+      "chapters": [
+        33
+      ],
+      "description": "Dinosaur, dog, cat, bunny, bear and sea-animal plushies, cuddle pillow, rug, cushions, blanket fort and shelf; carry, pile, tuck in, picnic, read and sit together.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-37",
+      "world": "home",
+      "group": "Secret rooms",
+      "title": "Stars, aurora and local calm controls",
+      "status": "plan",
+      "chapters": [
+        33
+      ],
+      "description": "Deep-blue sky, slow green/purple aurora, sparse star twinkles, brightness/music/effect controls and a still reduced-motion version. Optional factual aurora narration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "H-38",
+      "world": "home",
+      "group": "Secret rooms",
+      "title": "Independent visits and no surprise search",
+      "status": "plan",
+      "chapters": [
+        32,
+        33,
+        34
+      ],
+      "description": "Persistent layouts and shared visits; leaving never removes another visitor's room. Chill spaces leave normal hiding rounds; including them in a larger search is optional later.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-01",
+      "world": "yard",
+      "group": "Scenery and play",
+      "title": "Long backyard connected to the house",
+      "status": "scene",
+      "chapters": [
+        3
+      ],
+      "description": "Walk from the house through veranda/tree/trampoline scenery to the rear shed with local camera panning. Illustrated swing/pool/toys do not imply functioning interactions.",
+      "evidence": "scene",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-02",
+      "world": "yard",
+      "group": "Water and planting",
+      "title": "Tap, bucket, plant and sponge loop",
+      "status": "play",
+      "chapters": [
+        6
+      ],
+      "description": "Drag to fill, pour to water/grow, and clean the puddle. Water/holder/state save, repeat and synchronize. This is the small prototype, not full garden inventory.",
+      "evidence": "solo",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-03",
+      "world": "yard",
+      "group": "Water and planting",
+      "title": "Hose, watering can, multiple plants and pots",
+      "status": "plan",
+      "chapters": [
+        3,
+        6,
+        30
+      ],
+      "description": "Seed/soil/pot relations, filling, pouring, growth and movable decorated plants. Extend source capacity rules without replacing the existing loop.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-04",
+      "world": "yard",
+      "group": "Water and planting",
+      "title": "Sandpit and mud play",
+      "status": "plan",
+      "chapters": [
+        3,
+        19
+      ],
+      "description": "Fill/dampen/lift moulds, decorate saved sand creations and make pretend mud pizzas; allow rebuild and recovery without failure.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-05",
+      "world": "yard",
+      "group": "Furniture and equipment",
+      "title": "Trampoline for four",
+      "status": "play",
+      "chapters": [
+        5,
+        47
+      ],
+      "description": "Four close spots, bounce poses, mat reaction, shadows, local front/rear layers and independent exits. 130/132 have four; deployed iPads/server 128 have two.",
+      "evidence": "keepy",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-06",
+      "world": "yard",
+      "group": "Furniture and equipment",
+      "title": "Garden radio and automatic dancing",
+      "status": "play",
+      "chapters": [
+        1,
+        5
+      ],
+      "description": "Shared power, local music mute and nearby idle dancing with movement/use taking priority.",
+      "evidence": "home",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-07",
+      "world": "yard",
+      "group": "Furniture and equipment",
+      "title": "Shed open, store, close and retrieve",
+      "status": "play",
+      "chapters": [
+        51
+      ],
+      "description": "Four fixed storage targets preserve actual bucket/sponge/ball identities and contents through close, travel and reopen. Larger hooks/bins/interiors remain to expand.",
+      "evidence": "home",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-08",
+      "world": "yard",
+      "group": "Furniture and equipment",
+      "title": "Expanded shed shelves, hooks and bins",
+      "status": "plan",
+      "chapters": [
+        51
+      ],
+      "description": "Clear readable tool, watering and toy storage zones, capacities, compatible surfaces and safer nested storage; not merely painted storage scenery.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-09",
+      "world": "yard",
+      "group": "Furniture and equipment",
+      "title": "Tree swing and hanging/resting seats",
+      "status": "plan",
+      "chapters": [
+        5
+      ],
+      "description": "Authored seat/rope grips, readable arc, safe entry/exit and four-person activity design. Current painted swing is not a usable ride.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-10",
+      "world": "yard",
+      "group": "Furniture and equipment",
+      "title": "Wading pool and splash play",
+      "status": "plan",
+      "chapters": [
+        3,
+        5
+      ],
+      "description": "Shallow valid play zone, front-water occlusion, paddling/splashing response and easy exits. Existing pool art alone is decoration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-11",
+      "world": "yard",
+      "group": "Furniture and equipment",
+      "title": "Wagon, toy car and cargo",
+      "status": "plan",
+      "chapters": [
+        3,
+        51
+      ],
+      "description": "Load, carry/roll, unload and wash compatible toys with retained cargo. Handholding and other advanced responses need their own implementation.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-12",
+      "world": "yard",
+      "group": "Fishing",
+      "title": "Backyard fishpond catch-and-release",
+      "status": "plan",
+      "chapters": [
+        20,
+        47
+      ],
+      "description": "Toy rods, visible fish, forgiving cast/reel, observation bowl and release; five proposed fish designs and picture discovery album. Four usable roles/tools, exclusive catch identity.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "Y-13",
+      "world": "yard",
+      "group": "Fishing",
+      "title": "Fishing cancellation and discovery",
+      "status": "plan",
+      "chapters": [
+        20,
+        31
+      ],
+      "description": "No missed-bite penalty or deadline; a full bowl offers release/another spot. Leaving releases unfinished catches; completed discoveries remain.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "P-01",
+      "world": "park",
+      "group": "World foundation",
+      "title": "Long park and playground scenery",
+      "status": "scene",
+      "chapters": [
+        3,
+        39
+      ],
+      "description": "Walkable scenic shell exists. Playground machinery, NPC games and riding are planned; painted equipment must not be reported as working rides.",
+      "evidence": "scene",
+      "extraSource": ""
+    },
+    {
+      "id": "C-01",
+      "world": "creek",
+      "group": "World foundation",
+      "title": "Long creek scenery and inherited water fixture",
+      "status": "part",
+      "chapters": [
+        3,
+        38
+      ],
+      "description": "Walkable creek exists with a second instance of the garden water rules. That fixture does not implement creek fishing, stones, boats or nature discovery.",
+      "evidence": "core",
+      "extraSource": ""
+    },
+    {
+      "id": "B-01",
+      "world": "beach",
+      "group": "World foundation",
+      "title": "Long beach scenery",
+      "status": "scene",
+      "chapters": [
+        3,
+        37
+      ],
+      "description": "Walkable scenic shell exists. Interactive waves, animals, shells and the ten named beach activities remain planned.",
+      "evidence": "scene",
+      "extraSource": ""
+    },
+    {
+      "id": "D-01",
+      "world": "daycare",
+      "group": "World foundation",
+      "title": "Long daycare scenery",
+      "status": "scene",
+      "chapters": [
+        3,
+        40
+      ],
+      "description": "Walkable scenic shell exists. Calypso, classmates, lessons, day board and story sessions are not implemented.",
+      "evidence": "scene",
+      "extraSource": ""
+    },
+    {
+      "id": "D-02",
+      "world": "daycare",
+      "group": "Rooms and routine",
+      "title": "Classroom and activity zones",
+      "status": "plan",
+      "chapters": [
+        40
+      ],
+      "description": "Classroom, yard, book corner, art/sensory tables, pretend kitchen, quiet cushions and imagination mat; no extra top-level world bubbles.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "D-03",
+      "world": "daycare",
+      "group": "Rooms and routine",
+      "title": "Calypso and available classmates",
+      "status": "plan",
+      "chapters": [
+        4,
+        40
+      ],
+      "description": "Teacher greeting/reading/observing/helping/resting routines; illustrated friend board and full requested child roster spread across zones. NPCs yield essential toys.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "D-04",
+      "world": "daycare",
+      "group": "Rooms and routine",
+      "title": "Optional day board",
+      "status": "plan",
+      "chapters": [
+        40
+      ],
+      "description": "Hello/cubby, read-aloud, first adventure, snack/counting, second adventure, music/art/discovery, optional third adventure, quiet story/goodbye. Skip or leave at any time.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "D-05",
+      "world": "daycare",
+      "group": "Rooms and routine",
+      "title": "Two or three varied saved invitations",
+      "status": "plan",
+      "chapters": [
+        40
+      ],
+      "description": "Pick implemented, installed, solo-capable activities across world families; avoid recent repeats and save choices. Joining never rerolls the day or teleports siblings.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "D-06",
+      "world": "daycare",
+      "group": "Rooms and routine",
+      "title": "Personal schedules and field trips",
+      "status": "plan",
+      "chapters": [
+        40
+      ],
+      "description": "Each child keeps their own card and may replace unstarted suggestions, paint, visit another world or begin a new pretend day without rewriting another's active session.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "D-07",
+      "world": "daycare",
+      "group": "Learning",
+      "title": "Spoken lessons and adjustable help",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Show, invite, wait, acknowledge and optional demonstration; skill-specific assistance, no grades/streak loss, microphones or reading requirements; language-specific reviewed examples.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "D-08",
+      "world": "daycare",
+      "group": "Imagination",
+      "title": "Picture mat, spoken roles and independent stories",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "All nine story pictures remain unlocked; listen, choose role, play, change role, listen again and return. Up to four distinct lightweight sessions; NPCs fill missing roles.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "D-09",
+      "world": "daycare",
+      "group": "Imagination",
+      "title": "Safe story joining and departure",
+      "status": "plan",
+      "chapters": [
+        31,
+        42,
+        43
+      ],
+      "description": "Joining loads the current story, never restarts others. Preserve completed props/actions; autopilot or NPC takes necessary jobs and every player can exit.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "O-01",
+      "world": "ops",
+      "group": "Connection and saves",
+      "title": "Automatic enrolled family LAN connection",
+      "status": "part",
+      "chapters": [
+        7,
+        44,
+        46,
+        47
+      ],
+      "description": "PC authority, up to four mixed clients, known family identity and compatible content, no child Host/Join steps. Admission evidence exists; sustained failure qualification stays open.",
+      "evidence": "family",
+      "extraSource": ""
+    },
+    {
+      "id": "O-02",
+      "world": "ops",
+      "group": "Connection and saves",
+      "title": "PC authority survives client departure",
+      "status": "part",
+      "chapters": [
+        31,
+        45,
+        47
+      ],
+      "description": "Closing or moving one client releases its temporary holds and leaves connected players active. Persistent state and parent status tooling exist.",
+      "evidence": "family",
+      "extraSource": ""
+    },
+    {
+      "id": "O-03",
+      "world": "ops",
+      "group": "Connection and saves",
+      "title": "Private offline play and server-wins return",
+      "status": "part",
+      "chapters": [
+        35,
+        45,
+        50
+      ],
+      "description": "Installed solo features run locally. Disconnected work stays in private saves; reconnect loads the server's world without importing edits. All future content still needs offline coverage.",
+      "evidence": "outage",
+      "extraSource": ""
+    },
+    {
+      "id": "O-04",
+      "world": "ops",
+      "group": "Connection and saves",
+      "title": "Autosaves, backups, migration and recovery",
+      "status": "part",
+      "chapters": [
+        10,
+        11,
+        13,
+        29,
+        36,
+        43,
+        53
+      ],
+      "description": "Preserve good saves and malformed evidence, migrate explicitly, release stale leases and reject incompatible future data. Scoped recovery exists; independent backup/restore remains a release gate.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "O-05",
+      "world": "ops",
+      "group": "Connection and saves",
+      "title": "Parent server panel and dependable startup",
+      "status": "part",
+      "chapters": [
+        31,
+        44,
+        49
+      ],
+      "description": "Status, saved family, recovery and supervision exist. Actual automatic sign-in/reboot startup remains unqualified; do not infer current uptime from older reports.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "O-06",
+      "world": "ops",
+      "group": "Future hosting",
+      "title": "Owned VPS as future shared authority",
+      "status": "plan",
+      "chapters": [
+        55
+      ],
+      "description": "Qualified remote endpoint/server build, credentials, backups and one-writer migration from PC; preserve family identities and offline fallback. No VPS deployment has occurred.",
+      "evidence": "vps",
+      "extraSource": ""
+    },
+    {
+      "id": "O-07",
+      "world": "ops",
+      "group": "Future hosting",
+      "title": "Away-from-home shared play",
+      "status": "plan",
+      "chapters": [
+        35,
+        49,
+        55
+      ],
+      "description": "Internet/hotspot route to designated VPS after qualification; private route to home PC is an alternative. Without a route, each device plays solo.",
+      "evidence": "vps",
+      "extraSource": ""
+    },
+    {
+      "id": "O-08",
+      "world": "ops",
+      "group": "Devices and delivery",
+      "title": "In-place signed updates with saved data",
+      "status": "part",
+      "chapters": [
+        11,
+        13,
+        14,
+        48
+      ],
+      "description": "Windows builds Android, Mac signs Apple; retain package identity, saves/preferences/media. Prior updates have evidence; 132 is built but not installed while the family is away.",
+      "evidence": "family",
+      "extraSource": ""
+    },
+    {
+      "id": "O-09",
+      "world": "ops",
+      "group": "Devices and delivery",
+      "title": "Automatic Apple signing renewal",
+      "status": "plan",
+      "chapters": [
+        14,
+        35,
+        48
+      ],
+      "description": "Required unattended renewal must preserve data, coexist with network routes and work under documented reachable-device conditions. Manual signed installs do not complete it.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "O-10",
+      "world": "ops",
+      "group": "Devices and delivery",
+      "title": "Older-iPad performance and full lifecycle proof",
+      "status": "part",
+      "chapters": [
+        12,
+        13,
+        29,
+        36,
+        43,
+        48
+      ],
+      "description": "Measure A10 client/solo memory, frame times, media, rapid repeated travel and long four-device play. Scoped tests do not establish final performance or crash freedom.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "O-11",
+      "world": "ops",
+      "group": "Devices and delivery",
+      "title": "Phone layouts and current platform compatibility",
+      "status": "part",
+      "chapters": [
+        12,
+        48
+      ],
+      "description": "Safe areas, landscape targets, local settings and four-player UI; exact signed releases on each device. Android native 16 KB qualification and wider lifecycle checks remain open.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "O-12",
+      "world": "ops",
+      "group": "Production",
+      "title": "Local installed art, speech and media",
+      "status": "part",
+      "chapters": [
+        8,
+        9,
+        10,
+        29,
+        54
+      ],
+      "description": "Reusable content IDs, editable art/voice masters, reviewed content and bounded loading. Templates/package candidates are engineering choices, not completed game features.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "O-13",
+      "world": "ops",
+      "group": "Production",
+      "title": "Parent save/media/settings management",
+      "status": "part",
+      "chapters": [
+        11,
+        27,
+        51
+      ],
+      "description": "Deliberate destructive actions, usable storage diagnostics, retry/back and protection of children's creations; full media/room management is not built.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "O-14",
+      "world": "ops",
+      "group": "Optional extensions",
+      "title": "AR presentation",
+      "status": "optional",
+      "chapters": [
+        15,
+        52
+      ],
+      "description": "Optional later experiment, not a dependency of the 2D family game.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "R-01",
+      "world": "retired",
+      "group": "Superseded architecture",
+      "title": "Device hosting, host election and switching",
+      "status": "retired",
+      "chapters": [
+        44,
+        45,
+        52,
+        53
+      ],
+      "description": "Removed by the September 25 decision. Clients never become the shared authority; G4/AUTO-02 have no pending implementation gate.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "R-02",
+      "world": "retired",
+      "group": "Superseded architecture",
+      "title": "Bluetooth/router-free peer co-op",
+      "status": "retired",
+      "chapters": [
+        7,
+        35,
+        52,
+        53
+      ],
+      "description": "Removed; nearby offline devices do not create an alternate shared family world.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "R-03",
+      "world": "retired",
+      "group": "Superseded architecture",
+      "title": "Automatic offline merging/import",
+      "status": "retired",
+      "chapters": [
+        32,
+        35,
+        45,
+        51
+      ],
+      "description": "Removed. Preserve private saves separately; reconnection uses authoritative server state.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PIZ-01",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Cheese pizza",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Spread red sauce, scatter cheese, bake, slice; visible stretchy cheese",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PIZ-02",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Pepperoni pizza",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Add large round pepperoni pieces; slices keep their toppings",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PIZ-03",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Garden vegetable pizza",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Choose capsicum, mushroom, and tomato pieces; colorful arrangement",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PIZ-04",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Ham and pineapple pizza",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Alternate chunky pink and yellow toppings; no exact pattern required",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PIZ-05",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Silly-face pizza",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Make eyes, a nose, and a smile from toppings; photograph the creation in the in-game album",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAK-01",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Duck cake",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Assemble simple body/head pieces, add beak, eyes, icing, and popcorn-style feathers",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAK-02",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Chocolate layer cake",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Stack cake layers, spread icing, add chocolate decorations",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAK-03",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Strawberry heart cake",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Fill a heart mould, add pink icing and strawberries",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAK-04",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Rainbow cake",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Choose colored batter layers and rainbow decorations",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAK-05",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Carrot cake",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Stir orange pieces into batter, add pale icing and a tiny carrot decoration",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "MEAL-01",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Burger plate",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Stack bun, filling, cheese, and salad; add a side and serve",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "MEAL-02",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Spaghetti and sauce",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Add pasta to a pot, stir sauce, serve into a bowl, sprinkle cheese",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "MEAL-03",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Vegetable soup",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Drop chopped vegetables into broth, stir, ladle into cups/bowls",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "MEAL-04",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Pancake breakfast",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Pour batter, tap/drag to flip with assistance, stack, add fruit",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "MEAL-05",
+      "world": "home",
+      "group": "Fifteen kitchen recipes",
+      "title": "Rice and vegetable bowl",
+      "status": "plan",
+      "chapters": [
+        19
+      ],
+      "description": "Stir colorful vegetables, scoop rice, combine and decorate the plate",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-01",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Shell treasure",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Pick up any shell; tap to hear its gentle sound; drop it in a large tray Deeper play: Sort by shape, decorate a castle, make a pattern, or bring a favorite to a bedroom shelf; both children contribute",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-02",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Seagull surprise",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Walk near a small flock or tap a nearby bird; birds flap away and settle again Deeper play: Follow their footprints to another patch of sand; invite the sibling to approach from the other side; no hitting, capturing, or score for repeated chasing",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-03",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Waves and footprints",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Watch foam roll in; tap the water for ripples; walk to leave prints Deeper play: Draw a trail and watch the next wave erase only the wet-sand part; count waves together if wanted; no timer or required dodging",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-04",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Sandcastle workshop",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Lift a ready-filled mould; add a flag or shell Deeper play: Scoop sand → add a little water → press mould → lift → decorate; one child prepares towers while the other joins them with walls",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-05",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Beach ball",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Tap or drag-release a ball for a gentle bounce or roll Deeper play: Tap the sibling/NPC to pass, roll through a big hoop, or keep a shared rally going with generous automatic catches",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-06",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Flying disc",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Pick a pictured receiver and tap Throw; a curved animation carries the disc to them Deeper play: Optional drag-and-release aiming with a wide catch area; NPC catches if playing alone; misses land within easy reach",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-07",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Crab-and-footprint trail",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Follow a few large footprints and meet a waving crab Deeper play: Choose a crab-walk or hopping animation, make your own trail, and lead a friend to a shell; the crab is an animated observer, not a collectible",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-08",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Sand pictures",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Drag shells and pebbles into a picture or draw broad marks in sand Deeper play: Make spirals, faces, patterns, or a shared mosaic; save a postcard of the creation without needing a camera or internet",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-09",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Beach picnic café",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Put a ready snack on a plate and give it to a friend Deeper play: Pack a basket, arrange a blanket, pour drinks, serve picture orders, then wash props; reuse the kitchen and cleanup rules",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BCH-10",
+      "world": "beach",
+      "group": "Ten beach activities",
+      "title": "Kite meadow by the beach",
+      "status": "plan",
+      "chapters": [
+        37
+      ],
+      "description": "Simple play: Tap a kite to launch; move a large handle to make it swoop Deeper play: Add a tail, choose a wind ribbon, or fly two kites through broad cloud shapes; automatic recovery and no tangled-string simulation",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-01",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Rock collection and washing",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Pick up a chunky rock; rinse it to reveal its pattern Deeper play: Sort smooth/rough-looking, large/small, or patterned/plain toy rocks; display favorites or use them in stacks",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-02",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Creek fishing",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Tap a visible fish and receive a generous catch cue Deeper play: Choose a float, catch, observe, and release; use two rods and a shared picture album; reuse the backyard fishing system with a creek setting",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-03",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Log crossing",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Tap the far end; character walks the log automatically Deeper play: Carry a leaf parcel or stop at a wide lookout; sibling can follow; no precision balancing, fall punishment, or mandatory speed",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-04",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Rock towers",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Drop rocks over a broad base and snap them into a stable stack Deeper play: Choose sizes and arrangements, add a leaf flag, or create two linked towers; deliberate Knock down button affects only the selected creation",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-05",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Leaf and bark boats",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Drop a ready boat into the launch patch and watch it float Deeper play: Add a leaf passenger, choose a branch route, guide to a dock, or share a delivery route; no elimination race",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-06",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Stepping-stone path",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Tap a large marked stone to hop across Deeper play: Place a short series of stones, test the path, and make a shape trail for a friend",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-07",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Pretend mud spa",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Spread illustrated mud on Bandit's offered arm and rinse it away Deeper play: Mix pretend mud, place leaf decorations, wash, and dry; Bandit volunteers locally; a toy customer substitutes if he is busy elsewhere",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-08",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Nature spotter",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Tap a frog, insect, leaf, or ripple to see a short response Deeper play: Match a sound or silhouette to a nearby illustrated animal; add an observation stamp; creatures remain in the scenery",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-09",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Waterwheel tray",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Pour a bucket into a toy channel and watch a wheel turn Deeper play: Rotate two broad channel pieces to send water to a wheel or a plant; child one pours, child two routes; all actions also work solo",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CRK-10",
+      "world": "creek",
+      "group": "Ten creek activities",
+      "title": "Nature postcards",
+      "status": "plan",
+      "chapters": [
+        38
+      ],
+      "description": "Simple play: Place leaves, rock pictures, and boat stamps on a card Deeper play: Arrange a creek scene, choose a recorded caption, and take the card home; reuse the drawing/creation-save system",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-01",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Swings",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Tap a seat to sit and swing gently; large Get off picture Deeper play: Tap Push or choose a gentle/faster preset; push a sibling or NPC; two usable seats",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-02",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Slide",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Tap the ladder or slide picture; character climbs and slides Deeper play: Add a toy passenger or use a second slide lane; replay without navigating a tiny ladder hitbox",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-03",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Seesaw",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Tap a seat; an NPC balances the other end Deeper play: Sibling replaces NPC, take turns bouncing, add a toy passenger; no weight comparison between children",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-04",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Climbing tower and monkey bars",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Tap the next large hand/foot picture; assisted traversal Deeper play: Choose among two short routes, carry a flag to the platform, then slide down",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-05",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Roundabout",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Sit and tap a large Start/Stop picture Deeper play: One child pushes while another rides, swap whenever wanted; gentle capped speed and stationary camera",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-06",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Tag",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Chase or evade a friendly NPC in a small visible zone Deeper play: Invite sibling, choose who starts, optional roles swap after each touch; no eliminations or scoreboard requirement",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-07",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Hide-and-seek",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Parent seeks in a bounded park hiding area Deeper play: Optional child seeker; behind bushes, playhouse curtains, and a tunnel alcove; same configurable clues as the house",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-08",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Shadow stepping",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Tap connected shadows to walk a trail Deeper play: Choose a shadow route or place a parasol to make a new patch; grass gives a playful response and a return option, not failure",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-09",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Build a play trail",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Place one stepping pad and walk over it Deeper play: Combine pads, a low tunnel, flags, and hoops; test the sibling's course and rearrange it",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-10",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Bike and scooter loop",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Tap a destination on a broad loop; assisted riding Deeper play: Choose a loop, ring a bell, deliver a picnic item; auto-steer and no traffic/collision punishment",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-11",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Picnic and pretend shop",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Arrange ready snacks on a blanket Deeper play: Serve picture orders, share fruit, pour drinks, tidy plates; reuse kitchen, container, and cleanup systems",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "PRK-12",
+      "world": "park",
+      "group": "Twelve park activities",
+      "title": "Music statues and follow-the-leader",
+      "status": "plan",
+      "chapters": [
+        39
+      ],
+      "description": "Simple play: Tap Dance, then copy a pictured pose when music pauses Deeper play: Take turns selecting a movement; NPCs follow; moving during a pause is funny and never eliminates anyone",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-01",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Talking dinosaur book",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Listen to one short page; tap the dinosaur to hear its name Deeper play: Pick a picture answering a spoken question or predict the next picture; reuse the reading nook",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-02",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Sound basket",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Hear two everyday sounds and match one to a big picture Deeper play: Match initial sounds or spoken rhymes with pictured choices; language-specific content",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-03",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Letter delivery",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Match identical large letter shapes on a parcel and cubby; hear the letter name Deeper play: Choose a familiar letter after hearing its sound; later blend a few carefully selected simple words with optional help",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-04",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Tell the story",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Put two pictures into first/next slots and hear the resulting narration Deeper play: Arrange three or four events, choose an ending, or act the sequence with toy characters",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-05",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Picnic counting",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Give each of 1–3 pictured guests one plate; count each committed placement aloud Deeper play: Prepare sets up to 5 or 10 as appropriate; ask how many altogether and show the set, not just a numeral",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-06",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Give the dinosaur a snack",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Match one or two fruit pictures to a plate Deeper play: Hear “give three,” choose the set, then add or take away one; remove extras without a failure screen",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-07",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Compare and sort",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Choose a big/small basket or sort two visibly different shapes Deeper play: Compare two sets, order a few lengths, or sort by a new property; avoid color-only distinctions",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-08",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Shapes and patterns",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Place a circle in its broad outline or continue a two-item pictured pattern with help Deeper play: Rotate a simple shape, build an AB/ABC pattern, or copy a short block design",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-09",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Copy the drum",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Tap a drum; every touch produces a satisfying sound Deeper play: Echo two to four gentle beats or add a second instrument; no strict accuracy grade",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-10",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Musical painting",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Touch big high/low or slow/fast sound pictures and see matching movement Deeper play: Arrange a short musical phrase with picture tiles, then hear both children's parts",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-11",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Friends and feelings",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Match an expressive face to a spoken feeling; offer a plush or a wave Deeper play: Choose among several helpful responses in a pretend scene; different caring choices can all be valid",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "LRN-12",
+      "world": "daycare",
+      "group": "Twelve learning stations",
+      "title": "Predict and discover",
+      "status": "plan",
+      "chapters": [
+        41
+      ],
+      "description": "Simple play: Choose a float/sink picture, then drop a toy in the science tub Deeper play: Try a second material, compare outcomes, and explain using picture choices; reuse section 30's reviewed science rules",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-01",
+      "world": "home",
+      "group": "Eight science experiments",
+      "title": "Floaty boat tub",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Simple play: Drop a wooden block, smooth stone, or toy boat into a shallow illustrated tub Explore together: Add cargo to the boat; one child loads while the other changes the cargo; remove cargo and try again Factual constraint: Floating depends on the object and displaced water, not simply “big/heavy sinks.” Use a finite set of reviewed props",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-02",
+      "world": "home",
+      "group": "Eight science experiments",
+      "title": "Magnet treasure trail",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Simple play: Drag a large magnet wand near iron/steel toy pieces and watch them follow Explore together: Guide a magnetic toy along a path; try wood/plastic pieces; turn a second bar magnet to compare push and pull Factual constraint: Ordinary magnets do not visibly attract every metal or every object. Magnetic poles need consistent behavior",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-03",
+      "world": "home",
+      "group": "Eight science experiments",
+      "title": "Ramp and roll",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Simple play: Tap to release a ball down a ready-built ramp into a wide basket Explore together: Change ramp height and surface; one child adjusts, the other releases; keep both toys otherwise identical when comparing Factual constraint: Slope and friction change motion; do not use “heavier always rolls faster” as the rule",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-04",
+      "world": "home",
+      "group": "Eight science experiments",
+      "title": "Color-light garden",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Simple play: Switch on red, green, and blue lamps to light up a pretend flower screen Explore together: Move overlapping light spots or turn lamps off together; make picture-requested colors if wanted Factual constraint: This is colored light: red plus green makes yellow; all three can make white. Paint mixing uses different rules",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-05",
+      "world": "home",
+      "group": "Eight science experiments",
+      "title": "Dinosaur shadow theatre",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Simple play: Move one toy between a lamp and screen; its shadow follows Explore together: Move the toy closer to the light/screen, switch toys, and make a tiny story together Factual constraint: An opaque object blocks light; preserve consistent source/object/screen geometry",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-06",
+      "world": "home",
+      "group": "Eight science experiments",
+      "title": "Bubble workshop",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Simple play: Tap a fan button to blow bubbles, then tap to pop them Explore together: Try different wand outlines and air strength; one child operates the fan, the other catches bubbles Factual constraint: Free soap bubbles tend toward a round shape; a square wand does not make permanent square floating bubbles",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-07",
+      "world": "home",
+      "group": "Eight science experiments",
+      "title": "Sound-and-wiggle board",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Simple play: Pluck a large illustrated string and see it vibrate Explore together: Adjust a clearly marked length or tension control; take turns making high/low sounds Factual constraint: Vibration produces sound; change one relevant parameter at a time and separate pitch from loudness",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-08",
+      "world": "home",
+      "group": "Eight science experiments",
+      "title": "Little seed window",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Simple play: Place a seed, add water, and press a fast-forward sun picture Explore together: Compare two prepared pots, watch simplified growth stages, decorate the pots, and move a grown plant to a bedroom Factual constraint: Growth is deliberately sped up; plants need more than water alone, and soil is not the only possible growing medium",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BK-01",
+      "world": "home",
+      "group": "Six starter books",
+      "title": "Hello, Dinosaurs!",
+      "status": "plan",
+      "chapters": [
+        25,
+        26
+      ],
+      "description": "8 pages proposed. Cover, six dinosaur introductions, and a goodbye/play page; say names and reveal one recognizable feature per dinosaur",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BK-02",
+      "world": "home",
+      "group": "Six starter books",
+      "title": "The Dinosaur Toy Picnic",
+      "status": "plan",
+      "chapters": [
+        25,
+        26
+      ],
+      "description": "8 pages proposed. The children's toy dinosaurs set out cups and pretend food; tap to unfold a blanket, rock a cup, or lift a toy's head",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BK-03",
+      "world": "home",
+      "group": "Six starter books",
+      "title": "Where Is Little Dino?",
+      "status": "plan",
+      "chapters": [
+        25,
+        26
+      ],
+      "description": "8 pages proposed. A toy hides around the room; tap a curtain or cushion to reveal it; narration and page turns continue even without finding it",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BK-04",
+      "world": "home",
+      "group": "Six starter books",
+      "title": "Dinosaur Cleanup Day",
+      "status": "plan",
+      "chapters": [
+        25,
+        26
+      ],
+      "description": "8 pages proposed. Wash muddy toys, wipe a shelf, and put toys to bed; each page offers one short cleaning effect",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BK-05",
+      "world": "home",
+      "group": "Six starter books",
+      "title": "Big Dino, Little Dino",
+      "status": "plan",
+      "chapters": [
+        25,
+        26
+      ],
+      "description": "8 pages proposed. Compare large and small illustrated toys and matching footprints; describe toy sizes rather than inventing scientific measurements",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "BK-06",
+      "world": "home",
+      "group": "Six starter books",
+      "title": "Goodnight, Dinosaur Toys",
+      "status": "plan",
+      "chapters": [
+        25,
+        26
+      ],
+      "description": "8 pages proposed. A quiet bedtime story: tuck in a toy, dim a lamp, watch a slow blink; gentle movement and optional sound effects",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-01",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Tyrannosaurus, labeled T. rex for the child",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Take two little stomping steps; optional soft pretend roar Production batch: First six.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-02",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Triceratops",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Nod; highlight its three horns while counting Production batch: First six.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-03",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Stegosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Rock gently; highlight the back plates Production batch: First six.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-04",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Brachiosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Lift its long neck toward a pretend leaf Production batch: First six.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-05",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Diplodocus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Slowly sway its long tail Production batch: First six.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-06",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Ankylosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Turn to show its tail club; shuffle into a toy shelter Production batch: First six.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-07",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Parasaurolophus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Tilt its head and follow a tapped toy path Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-08",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Iguanodon",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Take a step and nudge a lightweight play block Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-09",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Spinosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Sway beside the pretend pond and leave toy footprints Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-10",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Allosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Follow a short drawn trail Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-11",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Velociraptor",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Peek out from behind a play rock Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-12",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Deinonychus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Step onto a low block platform Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-13",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Carnotaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Turn toward a tapped picture marker Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-14",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Styracosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Tilt its head for a close look Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-15",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Pachycephalosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Nod and roll a foam play ball Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-16",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Coelophysis",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Make a short, gentle tiptoe animation Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-17",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Plateosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Reach toward a pretend feeding tray Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-18",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Maiasaura",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Settle beside a smaller toy in a cushion nest Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-19",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Oviraptor",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Bob its head and inspect a toy basket Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "TOY-20",
+      "world": "home",
+      "group": "Twenty dinosaur types",
+      "title": "Therizinosaurus",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Slowly raise its illustrated arms, then settle Production batch: Expansion.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "DISC-01",
+      "world": "home",
+      "group": "Five dinosaur invitations",
+      "title": "Find a dinosaur",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Simple play: Tap a mound; brush once; hear the name Deeper play: One child digs, the other brushes or carries the toy to the mat",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "DISC-02",
+      "world": "home",
+      "group": "Five dinosaur invitations",
+      "title": "Dinosaur wash day",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Simple play: Drag a ready sponge across a muddy toy Deeper play: Fill the basin, wash, rinse, and arrange several clean toys together",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "DISC-03",
+      "world": "home",
+      "group": "Five dinosaur invitations",
+      "title": "Build a dinosaur world",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Simple play: Place a rock and a plant with generous snapping Deeper play: Make shelters and paths, add toys, and invent a story; no mandatory layout",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "DISC-04",
+      "world": "home",
+      "group": "Five dinosaur invitations",
+      "title": "Who's hiding?",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Simple play: Tap an obvious toy silhouette behind a bush Deeper play: One child hides a toy among designated mat props; the other looks; this reuses discovery rules without replacing avatar hide-and-seek",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "DISC-05",
+      "world": "home",
+      "group": "Five dinosaur invitations",
+      "title": "Dinosaur parade and bedtime",
+      "status": "plan",
+      "chapters": [
+        28
+      ],
+      "description": "Simple play: Tap a toy to make it take a few steps into a basket Deeper play: Arrange an order, lead the toys along a short path, then tuck them into cushion nests",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CLEAN-GAME-01",
+      "world": "home",
+      "group": "Five cleanup activities",
+      "title": "Toy tidy / Daddy Robot helpers",
+      "status": "plan",
+      "chapters": [
+        21
+      ],
+      "description": "Simple play: Put any loose activity toy in a big basket Deeper play: Sort by picture; one collects while the other operates the helper basket Preserve: Tag the session's loose props; never collect a held toy or an intentional construction",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CLEAN-GAME-02",
+      "world": "home",
+      "group": "Five cleanup activities",
+      "title": "Dishwashing bubbles",
+      "status": "plan",
+      "chapters": [
+        21
+      ],
+      "description": "Simple play: Rub a plate with a sponge; broad strokes make it clean Deeper play: Wash, rinse, and rack several dishes; split jobs Preserve: Dirt amount and wetness are bounded states; a completed dish stays clean",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CLEAN-GAME-03",
+      "world": "home",
+      "group": "Five cleanup activities",
+      "title": "Puddle and muddy-footprint cleanup",
+      "status": "part",
+      "chapters": [
+        21
+      ],
+      "description": "Simple play: Drag a mop through large patches Deeper play: Follow a trail together; squeeze the mop into its bucket Preserve: Use masks/patches with capped counts; cleaning cannot duplicate water Current sponge/puddle loop is only a subset; mop and muddy trails are not built.",
+      "evidence": "core",
+      "extraSource": ""
+    },
+    {
+      "id": "CLEAN-GAME-04",
+      "world": "home",
+      "group": "Five cleanup activities",
+      "title": "Laundry and dress-up basket",
+      "status": "plan",
+      "chapters": [
+        21
+      ],
+      "description": "Simple play: Put large clothes pictures into matching shape baskets Deeper play: Wash, hang, dry, and return accessories; both can arrange a line Preserve: Clothing is an object with dry/wet/clean states; undressing a player requires that player's action",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CLEAN-GAME-05",
+      "world": "yard",
+      "group": "Five cleanup activities",
+      "title": "Garden helpers / Bin Night",
+      "status": "plan",
+      "chapters": [
+        21
+      ],
+      "description": "Simple play: Collect leaves or clearly marked toy litter Deeper play: Use picture-coded destinations, water a newly cleared patch Preserve: Recognize generated cleanup props separately from the sibling's sandcastle, shell art, or boat",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-01",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Hide and Seek",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap a hiding place while a parent seeks Deeper play: Both hide, or alternate child seeker/hider roles Reuse / original priority: Cover, perception, roles; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-02",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Daddy Robot",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Feed a toy to a large helper basket Deeper play: One collects; one directs the robot to picture destinations Reuse / original priority: Cleaning, parent role, pickup; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-03",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Hotel",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Put a pillow on a guest bed; ring a bell Deeper play: Reception, room setup, and snack delivery; freely exchange jobs Reuse / original priority: Stations, customer reactions; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-04",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Shops",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Drag an item across a big scanner for a satisfying beep Deeper play: One shops while the other scans and bags; roles never block starting Reuse / original priority: Containers, scanning, role play; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-05",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Taxi",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap a destination picture; an assisted taxi follows a safe route Deeper play: Driver, passenger, and mechanic activities; let either child change roles Reuse / original priority: Authored routes, seated anchors; **C**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-06",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Trains",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap a station to ride and ring the bell Deeper play: Choose stops, deliver passengers, and set up destination play areas Reuse / original priority: Route graph, passenger attachment; **C**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-07",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Hospital",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap a toy scanner and place a bandage sticker Deeper play: One scans, one offers toy treatments; the patient gives funny reactions Reuse / original priority: Tool targets, character states; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-08",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Grannies",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Put on glasses and a blanket, then choose a dance Deeper play: Both invent a granny scene and tidy pretend spilled beans afterward Reuse / original priority: Wearables, poses, spill cleanup; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-09",
+      "world": "yard",
+      "group": "Show-inspired activities",
+      "title": "Pizza Girls",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Decorate a base and serve to a nearby parent Deeper play: One prepares; the other delivers; add a toy-car mechanic later Reuse / original priority: Recipe, delivery, optional vehicle; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-10",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Duck Cake",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Decorate a ready-shaped duck Deeper play: Assemble, ice, decorate, serve, and optionally clean together Reuse / original priority: Cooking, decoration, cleanup; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-11",
+      "world": "yard",
+      "group": "Show-inspired activities",
+      "title": "BBQ",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Put large colorful ingredients in a bowl Deeper play: One gathers, one mixes and sets the table; no urgent customer demands Reuse / original priority: Gathering, mixing, serving; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-12",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Fancy Restaurant",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Place one plate and serve a creation Deeper play: Make a menu, prepare food, and take turns as chef and server Reuse / original priority: Shared kitchen, guest reservations; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-13",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Burger Shop",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Stack three large burger pieces Deeper play: Assemble different picture orders while the other child plates or washes Reuse / original priority: Layering, order hints, washing; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-14",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Pavlova",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Add fruit and decorations to a dessert Deeper play: Run adjacent café counters and serve each other, without a winner requirement Reuse / original priority: Decoration and customer reactions; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-15",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Cubby",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Snap a cushion or blanket into a broad target Deeper play: Build connected nooks, furnish them, and place a toy inside Reuse / original priority: Stable sockets, saved constructions; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-16",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Rug Island",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Arrange oversized pretend sticks as food or a shelter Deeper play: Build a shared island and act out fishing/foraging with a parent Reuse / original priority: Prop arrangement, pretend variants; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-17",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "The Magic Xylophone",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap a note to freeze/unfreeze a willing parent in a funny pose Deeper play: One plays, the other adds a hat or chooses a pose; share turns Reuse / original priority: Temporary effects, NPC role; **A**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-18",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Feather Wand",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap a prop and watch a parent struggle comically Deeper play: Change heavy/light states to arrange a silly obstacle scene Reuse / original priority: Temporary state, reactions; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-19",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Asparagus",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Choose an animal picture; a parent imitates it Deeper play: Both build a pretend zoo and switch animal roles Reuse / original priority: Animation/voice variants, reversible effects; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-20",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Musical Statues",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap to dance; automatically settle into a pose when music pauses Deeper play: Choose poses and respond to a generous visual/audio stop cue together Reuse / original priority: Shared clock, animation, audio; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-21",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Dance Mode",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Big dance picture triggers a funny parent routine Deeper play: Take turns selecting moves or build a short joint routine Reuse / original priority: Parent role, queued reactions; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-22",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Pass the Parcel",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Assisted passing, followed by a big unwrap gesture Deeper play: Children choose wrapping and pass to each other or NPCs; no elimination Reuse / original priority: Container layers, turn transfer; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-23",
+      "world": "creek",
+      "group": "Show-inspired activities",
+      "title": "Barky Boats",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Put a decorated boat in a wide launch area Deeper play: Each makes a boat; guide both to a landing or take turns sending a leaf passenger Reuse / original priority: Floating path, decoration, shared water; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-24",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Ragdoll",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Drag a large handle to help Dad onto a cushion Deeper play: Alternate gentle pushes along a short shared route Reuse / original priority: Authored floppy poses, joint contribution; **C**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-25",
+      "world": "yard",
+      "group": "Show-inspired activities",
+      "title": "Keepy Uppy",
+      "status": "play",
+      "chapters": [
+        23
+      ],
+      "description": "Tap the resting backyard balloon; higher toss, faster fall and sideways drift; standing free-handed players beneath it raise an arm automatically. One balloon for all four, home only, no score/win/loss; landing rests until tapped. Core/native 132 checks pass; Android still has 130.",
+      "evidence": "keepy",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-26",
+      "world": "park",
+      "group": "Show-inspired activities",
+      "title": "Shadowlands",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap a large nearby shadow and auto-walk there Deeper play: Choose a route together; later add slowly moving shade Reuse / original priority: Valid zones, guided routes; **C**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-27",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Postman — Ground's Lava",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Tap big cushions; automatic safe hops Deeper play: One arranges a route, the other crosses; either can leave freely Reuse / original priority: Safe nodes, placement constraints; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-28",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Postman — letter delivery",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Deliver a picture card to a nearby mailbox Deeper play: Decorate, fold, and send letters to each other or a parent Reuse / original priority: Craft transform, delivery, simple flight; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-29",
+      "world": "yard",
+      "group": "Show-inspired activities",
+      "title": "Obstacle Course",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Follow three broad stations without a timer Deeper play: Build routes and take turns; personal timing is optional Reuse / original priority: Authored movement stations; **C**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-30",
+      "world": "home",
+      "group": "Show-inspired activities",
+      "title": "Obstacle Course — Memory Snap",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Match two large face-up pictures Deeper play: Use a few face-down pairs and cooperate on a shared board Reuse / original priority: Card matching, turn-optional input; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-31",
+      "world": "yard",
+      "group": "Show-inspired activities",
+      "title": "Rain",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Drop a broad barrier into a shallow channel Deeper play: Arrange channels and barriers together, then clean muddy tracks Reuse / original priority: Bounded flow graph, water visuals; **C**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-32",
+      "world": "yard",
+      "group": "Show-inspired activities",
+      "title": "Bin Night",
+      "status": "plan",
+      "chapters": [
+        23
+      ],
+      "description": "Simple play: Put a marked cleanup prop in a picture bin Deeper play: Collect, sort, and wheel bins with a parent Reuse / original priority: Cleanup tags, route and container; **B**. Suggested first location; portable game families may later appear elsewhere.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "SHOW-EXTRA",
+      "world": "yard",
+      "group": "Optional extensions",
+      "title": "Pirates swing-ship adventure",
+      "status": "optional",
+      "chapters": [
+        23
+      ],
+      "description": "Additional researched candidate outside the 32-card selection: steering and spotting picture landmarks; needs bespoke swing/character work.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-01",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "Calypso: a connected pretend town",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "blocks unfold into a miniature town with a café, home, pond, and gnome garden. Choose cook, builder, fisher, delivery helper, or garden protector. Simple Play gives one action—put food on a plate or place a roof. The older child can build a house, prepare a picture order, collect a fish-shaped pretend ingredient, and deliver lunch. These are invitations, not a dependency chain that prevents everyone from playing if one child stops fishing. A stocked basket/NPC supplier keeps the café usable. Reuse recipes, delivery slots, building pieces, gardening, and toy fishing. Let both children independently make things whose outputs can be offered to the other. NPCs ask softly for one useful object and accept substitutes. Start with three small stations, then connect the full town after shared object transfers are reliable. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-02",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "Helicopter: trips and friendly rescues",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "choose pilot, passenger/map helper, or rescue helper. Tap a destination picture; the illustrated helicopter travels along a gentle guided route. Simple Play lowers a basket onto a large target to pick up a stranded toy kangaroo. Explore mode chooses an island, lookout, and landing pad, then delivers supplies. Make the rescue reassuring, without a fire countdown or punishments. Both can operate separate controls; a second pilot can select a future destination or take over on request without an argument over an exclusive seat. Reuse ride anchors, route travel, target snapping, containers, and delivery. On pilot departure, autopilot/NPC completes the route to a valid landing; passengers retain an immediate Return option. A new passenger joins at a safe seat with a spoken “We're going to the island,” rather than replaying takeoff for everyone. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-03",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "Wild Girls: woodland and farm meet",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "offer woodland friend, farmer, or kind Pink Witch. Plant a seed, water it, gather pretend produce, and use a wand to make a flower arch between the forest and farm. Simple Play taps a ready plant or casts a friendly growth animation. Explore mode delivers ingredients to a shared woodland picnic and decorates the connecting path. Reuse planting, watering, carrying, and decorative placement. Magic changes authored prop states; it does not randomly destroy another child's crop. Both halves remain usable alone. A visiting sibling can bring flowers or food without having to abandon their chosen role. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-04",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "Early Baby: caring helpers and a dragon story",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "choose carer, blanket delivery helper, or friendly knight. Keep the baby's nursery calm: tuck in a doll, arrange a blanket, select a lullaby, and carry a picture parcel. In an adjacent fantasy corner, a friendly dragon has misplaced a blanket and needs help finding it. Simple Play is one comforting action; Explore mode links nursery supplies and the dragon's delivery route. Reuse doll placement, fabric overlays, music, searching, and deliveries. Keep this pretend care rather than a medical treatment simulation; there are no health meters, urgent alarms, or baby distress penalties. An NPC can hold the doll when a carer leaves. The knight activity cannot remove a doll another child is currently caring for. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-05",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "Typewriter: a picture-story quest",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "choose storyteller, shield helper, or trail finder. Gather three picture tiles, cross a broad bridge, shelter behind a playful bubble shield, and arrange the tiles into a narrated story. Simple Play follows a highlighted tile and taps the shield; Explore mode chooses routes and a story ending. Pretend arrows are soft visual tokens that bounce off a shield without damage. Reuse collect/snap, route choices, shield zones, and the story-sequencing lesson. Abilities belong to tools/roles, so a child who chooses Bingo can still use the trail-finder function. NPC helpers supply missing abilities; no required role or body shape prevents solo play. Keep original generated dialogue and authored story branches local. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-06",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "Mums and Dads: families with flexible roles",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "choose grown-up, baby, babysitter, shop worker, or helper and change at any time. Set a table, feed a pretend doll, pack a bag, drive a toy bus along a route, or deliver a snack. Simple Play focuses on one household object. Explore mode combines a short morning routine or invents a different family arrangement. Reuse kitchen, doll, cleanup, dress-up, and delivery systems. Any character can take any role. Choosing baby never locks a human avatar into a cot or removes controls. If a human leaves a care role, an NPC continues the pretend routine; nobody receives a guilt message about abandoning someone. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-07",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "The Adventure: a magical kingdom",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "choose royal explorer, horse/rider helper, or wand keeper. Blocks become castle walls, a rug becomes a meadow, and picture food becomes a picnic for the kingdom. Simple Play taps the wand to wake a statue or places a food item. Explore mode finds three supplies, opens a bridge, and invites everyone to a feast. Reuse building, delivery, riding, and prop transformations. Freeze NPC statues by default; do not immobilize a child's avatar as a punishment. If children opt into a freeze-play variant later, include an immediate self-release control. Costume and role swaps must not reset the kingdom's food table or bridge. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-08",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "Space: a cosy astronaut voyage",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "focus on reassuring exploration: astronaut, navigator, scientist, or friendly alien. Tap a star map, launch, collect a pretend space rock, and greet an alien. Simple Play presses a large launch button and places a rock in a tray. Explore mode assembles a small rover, follows a three-stop route, or waters an imaginary space garden. A swirling fantasy portal is optional; it is not a lesson claiming real black holes are safe tunnels. Reuse vehicle travel, rock collection, toy assembly, gardening, and backdrop transitions. Rest pods are optional seats with immediate exits. Do not reproduce a forced abandonment sequence or leave a child trapped in hypersleep when the sibling departs. An NPC navigator and persistent Return gate keep every route completable offline. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "STORY-IMG-09",
+      "world": "daycare",
+      "group": "Nine imagination stories",
+      "title": "Explorers: sail home together",
+      "status": "plan",
+      "chapters": [
+        42
+      ],
+      "description": "choose captain, lookout, map helper, or shore explorer. A playground boat becomes a ship on a friendly illustrated ocean. Simple Play taps a large island/home picture and rings a bell on arrival. Explore mode follows two or three landmarks, carries a picnic parcel, and chooses the next stop. NPC classmates wave goodbye when collected, then another helper can take a necessary role. Reuse route travel, map pictures, lookout discoveries, and delivery. NPC pickup is atmosphere, never a real deadline for the children. If one child closes the app, the other stays captain or continues their own role with an NPC crewmate. Visiting an island must not require both human players to approve a transition. Roles support four family players and NPC substitutes.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-01",
+      "world": "home",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Tea time",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Put a cup on the highlighted table spot Explorer version: Place two cups, pour pretend tea, bring a snack Reusable rule: Snap surface + container.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-02",
+      "world": "home",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Cosy corner",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Place a cushion on the mat Explorer version: Arrange cushions, add a blanket, put a toy inside Reusable rule: Placement + grouped recipe.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-03",
+      "world": "home",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Breakfast helpers",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Put fruit on a plate Explorer version: Fill two plates and deliver them to the table Reusable rule: Container + delivery.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-04",
+      "world": "yard",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Thirsty flower",
+      "status": "part",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Pour a ready-filled bucket on a flower Explorer version: Fill the bucket and water three plants Reusable rule: Fill + pour + growth. Current fixture waters one plant; the three-plant sequence remains planned.",
+      "evidence": "core",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-05",
+      "world": "yard",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Balloon fun",
+      "status": "play",
+      "chapters": [
+        3
+      ],
+      "description": "Fulfilled in the current Keepy Uppy direction: direct balloon tap, automatic raised-arm returns and free play. The earlier target-guidance suggestion is deferred; it is not part of build 132.",
+      "evidence": "keepy",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-06",
+      "world": "yard",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Sand surprise",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Press a filled mould Explorer version: Fill the mould, dampen sand, lift it, decorate Reusable rule: Material state + recipe.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-07",
+      "world": "park",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Ball basket",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Put one ball into a basket Explorer version: Find and place three picture-matched balls Reusable rule: Pickup + category match.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-08",
+      "world": "park",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Picnic",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Put a snack on the blanket Explorer version: Pack a basket, carry it, arrange a picnic Reusable rule: Container + delivery + placement.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-09",
+      "world": "park",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Play trail",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Put a stepping piece in a large marked spot Explorer version: Arrange three pieces and walk the trail Reusable rule: Snap placement + movement.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-10",
+      "world": "creek",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Boat launch",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Place a paper boat in the launch area Explorer version: Add a leaf passenger and guide the boat to a landing Reusable rule: Float + attachment + delivery.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-11",
+      "world": "creek",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Leaf collection",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Put a leaf into a tray Explorer version: Find three different leaf shapes Reusable rule: Category collection.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-12",
+      "world": "creek",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Crossing",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Place one large stepping stone Explorer version: Arrange a short crossing and walk across Reusable rule: Snap placement + path update.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-13",
+      "world": "beach",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Sandcastle",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Lift a ready-filled mould Explorer version: Add sand and a little water, mould it, add a shell Reusable rule: Container + mixture + recipe.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-14",
+      "world": "beach",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Shell pattern",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Put a shell on a picture Explorer version: Build a short shell pattern or your own design Reusable rule: Placement + optional pattern.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-15",
+      "world": "beach",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Bucket helpers",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Bring a bucket to a castle Explorer version: One child fills while the other decorates Reusable rule: Shared object state + cooperation.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-16",
+      "world": "daycare",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Picnic counting",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Give one friend a plate Explorer version: Set places for a pictured group and count each plate Reusable rule: One-to-one placement + spoken count.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-17",
+      "world": "daycare",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Choose a story",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Tap a mat picture and use one prop Explorer version: Choose a role and help a friend finish a short story Reusable rule: Role + activity session.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "QUEST-18",
+      "world": "daycare",
+      "group": "Eighteen starter invitation ideas",
+      "title": "Musical hello",
+      "status": "plan",
+      "chapters": [
+        3
+      ],
+      "description": "Simple play: Tap a drum and hear a sound Explorer version: Copy a short rhythm or add a second instrument Reusable rule: Immediate audio + pattern.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-bluey",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Bluey",
+      "status": "play",
+      "chapters": [
+        4
+      ],
+      "description": "Playable selected-sheet prototype.",
+      "evidence": "walk",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-bingo",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Bingo",
+      "status": "play",
+      "chapters": [
+        4
+      ],
+      "description": "Playable selected-sheet prototype.",
+      "evidence": "walk",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-muffin",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Muffin",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-socks",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Socks",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-chloe",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Chloe",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-coco",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Coco",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-honey",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Honey",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-indy",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Indy",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-mackenzie",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Mackenzie",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-rusty",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Rusty",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-jack",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Jack",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-snickers",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Snickers",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-winton",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Winton",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-terrier-1",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Terrier 1",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration. Individual avatar required; existing reference is a group portrait. Numbered labels are provisional.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-terrier-2",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Terrier 2",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration. Individual avatar required; existing reference is a group portrait. Numbered labels are provisional.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-terrier-3",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Terrier 3",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration. Individual avatar required; existing reference is a group portrait. Numbered labels are provisional.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-lucky",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Lucky",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-chucky",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Chucky",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-judo",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Judo",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-pom-pom",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Pom Pom",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-lila",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Lila",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-missy",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Missy",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-buddy",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Buddy",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-bentley",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Bentley",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-juniper",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Juniper",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-winnie",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Winnie",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-jean-luc",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Jean-Luc",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-lulu",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Lulu",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration. Existing reference is a head portrait, not a full body specification.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-dusty",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Dusty",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-dougie",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Dougie",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration. Preserve Auslan/visual communication with a spoken companion guide; do not rewrite his characterization.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-hercules",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Hercules",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-pretzel",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Pretzel",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Requested roster entry retained; official picture reference still needs verification.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-digger",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Digger",
+      "status": "optional",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-mia",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Mia",
+      "status": "optional",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-captain",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Captain",
+      "status": "optional",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-bandit",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Bandit",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "CAST-chilli",
+      "world": "all",
+      "group": "Character roster",
+      "title": "Chilli",
+      "status": "plan",
+      "chapters": [
+        4
+      ],
+      "description": "Reference exists; no playable rig/content integration.",
+      "evidence": "ledger",
+      "extraSource": ""
+    },
+    {
+      "id": "OBJECT-01",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Bucket",
+      "status": "part",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Fill and pour. Compatible uses: Water plants, fill tray, wet sand, carry small toys. Feedback/recovery: Visible fill level, slosh, bounded spill; refill at tap. Only a narrower prototype interaction exists; this complete object family is not finished.",
+      "evidence": "core",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-02",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Sponge",
+      "status": "part",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Wipe puddles. Compatible uses: Wash toy, clean plate, squeeze water into a container. Feedback/recovery: Foam and shrinking dirt patch; reusable after squeezing. Only a narrower prototype interaction exists; this complete object family is not finished.",
+      "evidence": "core",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-03",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Cup",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Hold a drink. Compatible uses: Pour into another cup, serve, stack empty cups. Feedback/recovery: Liquid color/level, character sip, safe placement.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-04",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Fruit",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Prepare food. Compatible uses: Slice, blend, plate, picnic, offer to a character. Feedback/recovery: Different prepared states; replenish from visible fruit supply.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-05",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Blender",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Transform ingredients. Compatible uses: Mix colors/flavors, make foam, fill cups. Feedback/recovery: Visible mixture, short motor sound, stop/start button.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-06",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Plate / tray",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Arrange items. Compatible uses: Carry a snack group, hold loose shells, wash after use. Feedback/recovery: Stable slots or surface placement; objects remain recoverable.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-07",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Plant pot",
+      "status": "part",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Hold a plant. Compatible uses: Add seed, water, decorate, move to table. Feedback/recovery: Growth stage and color; optional replant action. Only a narrower prototype interaction exists; this complete object family is not finished.",
+      "evidence": "core",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-08",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Water tray",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Hold shallow water. Compatible uses: Float boat, test toy buoyancy, scoop water. Feedback/recovery: Waterline and gentle bob; drain or refill.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-09",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Paper boat",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Float. Compatible uses: Add a leaf passenger, decorate, carry to creek. Feedback/recovery: Attached passenger and bounded path; retrieve at shore.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-10",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Sand mould",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Make a castle. Compatible uses: Try dry/wet sand, add shells, rebuild. Feedback/recovery: Formed shape, crumble/wash animation; refill.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-11",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Shell",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Decorate. Compatible uses: Sort, place in tray, tap like a tiny instrument. Feedback/recovery: Distinct clack and placement; no single required pattern.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-12",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Ball",
+      "status": "part",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Roll and bounce. Compatible uses: Basket, ramp, water tray, gentle character catch. Feedback/recovery: Readable bounce and sound; rescue if out of reach. Only a narrower prototype interaction exists; this complete object family is not finished.",
+      "evidence": "core",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-13",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Toy car",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Roll. Compatible uses: Ramp, wash, pretend garage, carry in basket. Feedback/recovery: Wheels and dirt state; no vehicle-driving skill required.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-14",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Ramp / plank",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Make a path. Compatible uses: Roll ball/car, bridge a small gap. Feedback/recovery: Preview support points; simple valid snapping.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-15",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Cushion / blanket",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Build a cosy spot. Compatible uses: Stack, seat a character, make a fort. Feedback/recovery: Stable placement and seated pose; dismantle easily.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-16",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Brush / washable paint",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Decorate. Compatible uses: Paint pot, toy surface, paper boat. Feedback/recovery: Continuous stroke or stamped patches; sponge removes paint.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-17",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Hat / accessory",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Dress up. Compatible uses: Swap, place on hook, pretend role-play. Feedback/recovery: Clear attachment and character reaction; remove by dragging.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-18",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Toy drum / bell",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Make sound. Compatible uses: Musical call-and-response, rhythm play. Feedback/recovery: Immediate sound with overlap limits; no score required.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-19",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Picnic basket",
+      "status": "plan",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Carry a set. Compatible uses: Pack snacks, collect toys, deliver to blanket. Feedback/recovery: Visible contents and capacity cue; easy extraction.",
+      "evidence": "ledger",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OBJECT-20",
+      "world": "all",
+      "group": "Reusable object catalog",
+      "title": "Tap / drawer / light switch",
+      "status": "part",
+      "chapters": [
+        6,
+        51
+      ],
+      "description": "Main use: Change environment. Compatible uses: Fill source, reveal props, adjust room mood. Feedback/recovery: Mechanical animation plus obvious new state; easy toggle. Only a narrower prototype interaction exists; this complete object family is not finished.",
+      "evidence": "core",
+      "extraSource": "[Toca/Piknik object catalog](toca-piknik-interaction-research-2026-09-23.html#6-a-concrete-object-catalog-for-our-game)"
+    },
+    {
+      "id": "OPTION-HAIR",
+      "world": "home",
+      "group": "Optional extensions",
+      "title": "Hair styling and extra dress-up transformations",
+      "status": "optional",
+      "chapters": [
+        4,
+        23
+      ],
+      "description": "Reversible styling appears in the commercial-reference study. Treat hair tools as a candidate requiring selection, not proof of an implemented salon. Required show dress-up and accessories remain in their own entries.",
+      "evidence": "ledger",
+      "extraSource": "[Interaction reference](bluey-lets-play-reference-study-2026-09-25.html#18-characterobject-interaction-specification)"
+    },
+    {
+      "id": "OPTION-FOSSIL",
+      "world": "home",
+      "group": "Optional extensions",
+      "title": "Fossils and other prehistoric animals",
+      "status": "optional",
+      "chapters": [
+        28
+      ],
+      "description": "Later fossil assembly requires reviewed anatomy. Flying/marine prehistoric reptiles would use a separate category; they are not part of the 20 dinosaur-type commitment.",
+      "evidence": "ledger",
+      "extraSource": ""
+    }
+  ]
+}

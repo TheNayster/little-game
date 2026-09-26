@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "Initial inventory is complete",
+    "World filter matches source inventory",
+    "Feature ID search finds Keepy Uppy",
+    "Status filter separates scenery",
+    "No-result notice is visible",
+    "Clear filters restores inventory"
+  ],
+  "scope": "Generated JavaScript parsed and filter logic exercised against a lightweight DOM model; not browser rendering or real UI automation.",
+  "browserRenderingVerified": false,
+  "browserPreviewLimit": "Browser policy rejected file URL navigation; no alternate browser route was attempted."
+}

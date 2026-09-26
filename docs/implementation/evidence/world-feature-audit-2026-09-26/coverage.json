@@ -1,0 +1,738 @@
+{
+  "passed": true,
+  "chapters": {
+    "1": [
+      "G-01",
+      "G-03",
+      "G-13",
+      "H-03",
+      "Y-06"
+    ],
+    "2": [
+      "G-03",
+      "G-09",
+      "G-10",
+      "G-11",
+      "G-13",
+      "G-28"
+    ],
+    "3": [
+      "G-02",
+      "G-07",
+      "G-08",
+      "H-01",
+      "H-06",
+      "H-07",
+      "Y-01",
+      "Y-03",
+      "Y-04",
+      "Y-10",
+      "Y-11",
+      "P-01",
+      "C-01",
+      "B-01",
+      "D-01",
+      "QUEST-01",
+      "QUEST-02",
+      "QUEST-03",
+      "QUEST-04",
+      "QUEST-05",
+      "QUEST-06",
+      "QUEST-07",
+      "QUEST-08",
+      "QUEST-09",
+      "QUEST-10",
+      "QUEST-11",
+      "QUEST-12",
+      "QUEST-13",
+      "QUEST-14",
+      "QUEST-15",
+      "QUEST-16",
+      "QUEST-17",
+      "QUEST-18"
+    ],
+    "4": [
+      "G-18",
+      "G-19",
+      "G-20",
+      "H-04",
+      "D-03",
+      "CAST-bluey",
+      "CAST-bingo",
+      "CAST-muffin",
+      "CAST-socks",
+      "CAST-chloe",
+      "CAST-coco",
+      "CAST-honey",
+      "CAST-indy",
+      "CAST-mackenzie",
+      "CAST-rusty",
+      "CAST-jack",
+      "CAST-snickers",
+      "CAST-winton",
+      "CAST-terrier-1",
+      "CAST-terrier-2",
+      "CAST-terrier-3",
+      "CAST-lucky",
+      "CAST-chucky",
+      "CAST-judo",
+      "CAST-pom-pom",
+      "CAST-lila",
+      "CAST-missy",
+      "CAST-buddy",
+      "CAST-bentley",
+      "CAST-juniper",
+      "CAST-winnie",
+      "CAST-jean-luc",
+      "CAST-lulu",
+      "CAST-dusty",
+      "CAST-dougie",
+      "CAST-hercules",
+      "CAST-pretzel",
+      "CAST-digger",
+      "CAST-mia",
+      "CAST-captain",
+      "CAST-bandit",
+      "CAST-chilli",
+      "OPTION-HAIR"
+    ],
+    "5": [
+      "G-03",
+      "G-04",
+      "G-05",
+      "G-06",
+      "G-09",
+      "G-20",
+      "G-21",
+      "G-23",
+      "H-02",
+      "H-03",
+      "H-04",
+      "Y-05",
+      "Y-06",
+      "Y-09",
+      "Y-10"
+    ],
+    "6": [
+      "G-21",
+      "G-22",
+      "G-23",
+      "G-24",
+      "G-28",
+      "H-05",
+      "H-11",
+      "Y-02",
+      "Y-03",
+      "OBJECT-01",
+      "OBJECT-02",
+      "OBJECT-03",
+      "OBJECT-04",
+      "OBJECT-05",
+      "OBJECT-06",
+      "OBJECT-07",
+      "OBJECT-08",
+      "OBJECT-09",
+      "OBJECT-10",
+      "OBJECT-11",
+      "OBJECT-12",
+      "OBJECT-13",
+      "OBJECT-14",
+      "OBJECT-15",
+      "OBJECT-16",
+      "OBJECT-17",
+      "OBJECT-18",
+      "OBJECT-19",
+      "OBJECT-20"
+    ],
+    "7": [
+      "O-01",
+      "R-02"
+    ],
+    "8": [
+      "G-14",
+      "G-15",
+      "G-16",
+      "O-12"
+    ],
+    "9": [
+      "O-12"
+    ],
+    "10": [
+      "O-04",
+      "O-12"
+    ],
+    "11": [
+      "G-17",
+      "H-05",
+      "O-04",
+      "O-08",
+      "O-13"
+    ],
+    "12": [
+      "G-08",
+      "O-10",
+      "O-11"
+    ],
+    "13": [
+      "O-04",
+      "O-08",
+      "O-10"
+    ],
+    "14": [
+      "O-08",
+      "O-09"
+    ],
+    "15": [
+      "O-14"
+    ],
+    "16": [
+      "master-requirements"
+    ],
+    "17": [
+      "G-07",
+      "G-14",
+      "G-18",
+      "G-19",
+      "G-20"
+    ],
+    "18": [
+      "G-10",
+      "G-11",
+      "G-12",
+      "G-13"
+    ],
+    "19": [
+      "G-22",
+      "G-28",
+      "H-07",
+      "H-08",
+      "H-09",
+      "H-10",
+      "H-11",
+      "Y-04",
+      "PIZ-01",
+      "PIZ-02",
+      "PIZ-03",
+      "PIZ-04",
+      "PIZ-05",
+      "CAK-01",
+      "CAK-02",
+      "CAK-03",
+      "CAK-04",
+      "CAK-05",
+      "MEAL-01",
+      "MEAL-02",
+      "MEAL-03",
+      "MEAL-04",
+      "MEAL-05"
+    ],
+    "20": [
+      "Y-12",
+      "Y-13"
+    ],
+    "21": [
+      "H-06",
+      "CLEAN-GAME-01",
+      "CLEAN-GAME-02",
+      "CLEAN-GAME-03",
+      "CLEAN-GAME-04",
+      "CLEAN-GAME-05"
+    ],
+    "22": [
+      "H-12",
+      "H-13",
+      "H-14",
+      "H-17"
+    ],
+    "23": [
+      "SHOW-01",
+      "SHOW-02",
+      "SHOW-03",
+      "SHOW-04",
+      "SHOW-05",
+      "SHOW-06",
+      "SHOW-07",
+      "SHOW-08",
+      "SHOW-09",
+      "SHOW-10",
+      "SHOW-11",
+      "SHOW-12",
+      "SHOW-13",
+      "SHOW-14",
+      "SHOW-15",
+      "SHOW-16",
+      "SHOW-17",
+      "SHOW-18",
+      "SHOW-19",
+      "SHOW-20",
+      "SHOW-21",
+      "SHOW-22",
+      "SHOW-23",
+      "SHOW-24",
+      "SHOW-25",
+      "SHOW-26",
+      "SHOW-27",
+      "SHOW-28",
+      "SHOW-29",
+      "SHOW-30",
+      "SHOW-31",
+      "SHOW-32",
+      "SHOW-EXTRA",
+      "OPTION-HAIR"
+    ],
+    "24": [
+      "G-12"
+    ],
+    "25": [
+      "H-18",
+      "H-19",
+      "H-20",
+      "BK-01",
+      "BK-02",
+      "BK-03",
+      "BK-04",
+      "BK-05",
+      "BK-06"
+    ],
+    "26": [
+      "G-14",
+      "G-15",
+      "G-16",
+      "H-19",
+      "H-20",
+      "H-27",
+      "BK-01",
+      "BK-02",
+      "BK-03",
+      "BK-04",
+      "BK-05",
+      "BK-06"
+    ],
+    "27": [
+      "G-16",
+      "H-21",
+      "H-22",
+      "H-23",
+      "H-24",
+      "H-25",
+      "O-13"
+    ],
+    "28": [
+      "H-26",
+      "H-27",
+      "H-28",
+      "H-33",
+      "TOY-01",
+      "TOY-02",
+      "TOY-03",
+      "TOY-04",
+      "TOY-05",
+      "TOY-06",
+      "TOY-07",
+      "TOY-08",
+      "TOY-09",
+      "TOY-10",
+      "TOY-11",
+      "TOY-12",
+      "TOY-13",
+      "TOY-14",
+      "TOY-15",
+      "TOY-16",
+      "TOY-17",
+      "TOY-18",
+      "TOY-19",
+      "TOY-20",
+      "DISC-01",
+      "DISC-02",
+      "DISC-03",
+      "DISC-04",
+      "DISC-05",
+      "OPTION-FOSSIL"
+    ],
+    "29": [
+      "H-20",
+      "H-22",
+      "O-04",
+      "O-10",
+      "O-12"
+    ],
+    "30": [
+      "G-10",
+      "G-28",
+      "H-29",
+      "H-30",
+      "Y-03",
+      "SCI-01",
+      "SCI-02",
+      "SCI-03",
+      "SCI-04",
+      "SCI-05",
+      "SCI-06",
+      "SCI-07",
+      "SCI-08"
+    ],
+    "31": [
+      "G-01",
+      "G-02",
+      "G-26",
+      "H-10",
+      "H-17",
+      "H-30",
+      "Y-13",
+      "D-09",
+      "O-02",
+      "O-05"
+    ],
+    "32": [
+      "G-06",
+      "G-27",
+      "H-01",
+      "H-04",
+      "H-05",
+      "H-31",
+      "H-32",
+      "H-33",
+      "H-34",
+      "H-38",
+      "R-03"
+    ],
+    "33": [
+      "G-17",
+      "H-35",
+      "H-36",
+      "H-37",
+      "H-38"
+    ],
+    "34": [
+      "H-13",
+      "H-14",
+      "H-15",
+      "H-16",
+      "H-17",
+      "H-38"
+    ],
+    "35": [
+      "H-24",
+      "O-03",
+      "O-07",
+      "O-09",
+      "R-02",
+      "R-03"
+    ],
+    "36": [
+      "O-04",
+      "O-10"
+    ],
+    "37": [
+      "B-01",
+      "BCH-01",
+      "BCH-02",
+      "BCH-03",
+      "BCH-04",
+      "BCH-05",
+      "BCH-06",
+      "BCH-07",
+      "BCH-08",
+      "BCH-09",
+      "BCH-10"
+    ],
+    "38": [
+      "C-01",
+      "CRK-01",
+      "CRK-02",
+      "CRK-03",
+      "CRK-04",
+      "CRK-05",
+      "CRK-06",
+      "CRK-07",
+      "CRK-08",
+      "CRK-09",
+      "CRK-10"
+    ],
+    "39": [
+      "P-01",
+      "PRK-01",
+      "PRK-02",
+      "PRK-03",
+      "PRK-04",
+      "PRK-05",
+      "PRK-06",
+      "PRK-07",
+      "PRK-08",
+      "PRK-09",
+      "PRK-10",
+      "PRK-11",
+      "PRK-12"
+    ],
+    "40": [
+      "D-01",
+      "D-02",
+      "D-03",
+      "D-04",
+      "D-05",
+      "D-06"
+    ],
+    "41": [
+      "G-10",
+      "G-15",
+      "G-16",
+      "D-07",
+      "LRN-01",
+      "LRN-02",
+      "LRN-03",
+      "LRN-04",
+      "LRN-05",
+      "LRN-06",
+      "LRN-07",
+      "LRN-08",
+      "LRN-09",
+      "LRN-10",
+      "LRN-11",
+      "LRN-12"
+    ],
+    "42": [
+      "G-13",
+      "D-08",
+      "D-09",
+      "STORY-IMG-01",
+      "STORY-IMG-02",
+      "STORY-IMG-03",
+      "STORY-IMG-04",
+      "STORY-IMG-05",
+      "STORY-IMG-06",
+      "STORY-IMG-07",
+      "STORY-IMG-08",
+      "STORY-IMG-09"
+    ],
+    "43": [
+      "G-12",
+      "D-09",
+      "O-04",
+      "O-10"
+    ],
+    "44": [
+      "O-01",
+      "O-05",
+      "R-01"
+    ],
+    "45": [
+      "O-02",
+      "O-03",
+      "R-01",
+      "R-03"
+    ],
+    "46": [
+      "O-01"
+    ],
+    "47": [
+      "G-01",
+      "G-18",
+      "G-19",
+      "G-26",
+      "H-02",
+      "H-10",
+      "H-12",
+      "H-14",
+      "H-30",
+      "Y-05",
+      "Y-12",
+      "O-01",
+      "O-02"
+    ],
+    "48": [
+      "G-01",
+      "G-05",
+      "G-09",
+      "O-08",
+      "O-09",
+      "O-10",
+      "O-11"
+    ],
+    "49": [
+      "O-05",
+      "O-07"
+    ],
+    "50": [
+      "G-02",
+      "G-08",
+      "G-21",
+      "O-03"
+    ],
+    "51": [
+      "G-04",
+      "G-22",
+      "G-23",
+      "G-24",
+      "G-25",
+      "G-26",
+      "G-27",
+      "H-05",
+      "H-07",
+      "H-09",
+      "H-33",
+      "H-34",
+      "Y-07",
+      "Y-08",
+      "Y-11",
+      "O-13",
+      "R-03",
+      "OBJECT-01",
+      "OBJECT-02",
+      "OBJECT-03",
+      "OBJECT-04",
+      "OBJECT-05",
+      "OBJECT-06",
+      "OBJECT-07",
+      "OBJECT-08",
+      "OBJECT-09",
+      "OBJECT-10",
+      "OBJECT-11",
+      "OBJECT-12",
+      "OBJECT-13",
+      "OBJECT-14",
+      "OBJECT-15",
+      "OBJECT-16",
+      "OBJECT-17",
+      "OBJECT-18",
+      "OBJECT-19",
+      "OBJECT-20"
+    ],
+    "52": [
+      "O-14",
+      "R-01",
+      "R-02"
+    ],
+    "53": [
+      "O-04",
+      "R-01",
+      "R-02"
+    ],
+    "54": [
+      "O-12"
+    ],
+    "55": [
+      "O-06",
+      "O-07"
+    ]
+  },
+  "masterRequirements": {
+    "CHAR-01": "part",
+    "CHAR-02": "part",
+    "FAMILY-01": "part",
+    "ACT-01": "part",
+    "COOK-01": "plan",
+    "FISH-01": "plan",
+    "CLEAN-01": "part",
+    "HIDE-01": "plan",
+    "HIDE-02": "plan",
+    "NPC-01": "plan",
+    "CAT-01": "part",
+    "BOOK-01": "plan",
+    "TV-01": "dev",
+    "DINO-01": "plan",
+    "DINO-02": "plan",
+    "LAB-01": "plan",
+    "JOIN-01": "part",
+    "WORLD-01": "part",
+    "WORLD-02": "part",
+    "ITEM-02": "part",
+    "ITEM-03": "part",
+    "STOCK-01": "part",
+    "ROOM-02": "plan",
+    "NET-02": "part",
+    "REMOTE-01": "plan",
+    "ROOM-01": "dev",
+    "SECRET-01": "plan",
+    "HIDE-03": "plan",
+    "TRAVEL-01": "part",
+    "AUTO-01": "part",
+    "AUTO-02": "retired",
+    "OUT-01": "plan",
+    "DAY-01": "plan",
+    "LEARN-01": "plan",
+    "IMG-01": "plan"
+  },
+  "catalogCounts": {
+    "SHOW": 32,
+    "BCH": 10,
+    "CRK": 10,
+    "PRK": 12,
+    "LRN": 12,
+    "PIZ": 5,
+    "CAK": 5,
+    "MEAL": 5,
+    "SCI": 8,
+    "BK": 6,
+    "TOY": 20,
+    "DISC": 5,
+    "CLEAN-GAME": 5,
+    "QUEST": 18,
+    "STORY-IMG": 9,
+    "CAST": 37,
+    "OBJECT": 20
+  },
+  "inventoryEntries": 330,
+  "statusCounts": {
+    "Partial": 39,
+    "Playable prototype": 12,
+    "Planned": 262,
+    "Development only": 2,
+    "Optional idea": 8,
+    "Scenery only": 4,
+    "Retired": 3
+  },
+  "sources": [
+    {
+      "path": "docs/bluey-game-research-2026-09-23.md",
+      "sha256": "d512bd485fb0e7938b2b601d2e77e213943024f9b9857b1892b4d2ae7c27a6e2"
+    },
+    {
+      "path": "docs/current-decisions.md",
+      "sha256": "04f2e4dc27240fdb7df0de4fe336a724fc002ffd510bfe9c6eb8ebbcf7b02a67"
+    },
+    {
+      "path": "docs/family-playset-build-guide-2026-09-23.md",
+      "sha256": "23f6323dc454422a174153868f6de6260077241dc65248292129dd0328fab364"
+    },
+    {
+      "path": "docs/bluey-lets-play-reference-study-2026-09-25.md",
+      "sha256": "88a9532875ce474a1c0e1a4b6c3acc9ce4d908705f042dcb5e81e0c71f337710"
+    },
+    {
+      "path": "docs/toca-piknik-interaction-research-2026-09-23.md",
+      "sha256": "9246319bb22ee84f43dc217f0c44583845916b623649201844483fced8bf7751"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
+      "sha256": "e2875fcca70e9a5e728d19da2366965f48a7c6a965a96edc07ae58232742f52f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
+      "sha256": "3161e796d42252057c055052ebdcc6de70f2c3a075e52b36430629a15eaaebb5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs",
+      "sha256": "15a1d1b47b9b290aec8dc09f1bc4a7e16fbc3f11b7505f2d2cca6b599f689c33"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs",
+      "sha256": "0c52cb3b304ed3a69f310fb4617bc506ec359772daf31a10db39416d38c390e3"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs",
+      "sha256": "f61c37bcc20261b26088b5b7c43febf068578417cb936b9fbb3a5b73b3eec1de"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
+      "sha256": "4001553cc5b98eb6a47fe3f260d494574011a370b7b94e3f7ef810fdca407b94"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs",
+      "sha256": "a0af6dc40b7d71a6f129522a0549adb7e1f74a2b0749c4e0baca29eba8d67b19"
+    }
+  ],
+  "newGameplayTests": false,
+  "physicalDevicesAccessed": false,
+  "liveServerAccessed": false,
+  "externalSourcesFreshlyRevalidated": false
+}

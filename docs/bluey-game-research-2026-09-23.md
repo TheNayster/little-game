@@ -100,9 +100,9 @@ Open the companion **[illustrated research guide](bluey-game-research-2026-09-23
 | Daycare | Sixth world; all requested child characters available, teacher routines, optional pretend day with 2–3 varied mini-game invitations |
 | Playful learning | 12 proposed spoken learning stations with per-child assistance: reading, sounds, numbers, patterns, music, feelings, and science |
 | Imagination | Picture play mat; nine episode-inspired stories with spoken role choices, NPC substitutes, and independent locations |
-| Navigation | One circle/arrow chooser: characters browse horizontally at the bottom, six scene bubbles vertically at the side; selecting a ready world opens a local loading screen until ready; home and settings remain consistent |
+| Navigation | One circle/arrow chooser: characters browse horizontally at the bottom, five destination bubbles vertically at the side; selecting a ready world opens a local loading screen until ready; home and settings remain consistent |
 | Shared play | Up to four mixed iPad/iPhone/Android clients automatically join the designated PC/VPS; independent areas and exclusive item use. No device hosting. |
-| Automatic recovery | No Host/Join menus; rejoin automatically after outages while preserving work, independent locations, and conflicting offline drafts |
+| Automatic recovery | No Host/Join menus; rejoin automatically after outages while keeping offline work in separate private saves and restoring the current server world |
 | Speech | Characters actually speak; instructions cannot depend on reading |
 | Languages | English first; structure the game for English and Spanish, then complete Spanish recordings |
 | Creation tools | Unity and Blender installed; ComfyUI for local voices; Windows creates the game and builds Android; Mac builds iOS |
@@ -209,7 +209,7 @@ Keep water shallow and stylized, and use forgiving animation rather than precari
 
 **Updated navigation decision, September 25:** one family-circle/down-arrow chooser combines horizontal full-body characters with vertical scene-filled world circles. Selecting a usable world opens a local loading screen until ready. This supersedes the separate staggered browser, central preview and second Play button. The [reference study](bluey-lets-play-reference-study-2026-09-25.html#5-main-world-menu-contract) records the contract; [native 105 evidence](implementation/combined-chooser-2026-09-25.html) qualifies the prototype on Windows.
 
-Keep six main destinations: Heeler Home, Backyard Garden, Playground & Park, The Creek, The Beach and Daycare. House rooms are subareas. Use recognizable scene thumbnails with optional short labels and spoken names. Preserve large targets and safe areas on both landscape iPads and phones. Only the selecting player travels; siblings keep playing in their current areas. The Creek entrance must remain available throughout the menu replacement. Development builds must distinguish unfinished previews from usable destinations.
+Keep five main destinations: Heeler Home (house and backyard), Playground & Park, The Creek, The Beach and Daycare. These preserve all six content regions. House rooms are subareas. Use recognizable scene thumbnails with optional short labels and spoken names. Preserve large targets and safe areas on both landscape iPads and phones. Only the selecting player travels; siblings keep playing in their current areas. The Creek entrance must remain available throughout the menu replacement. Development builds must distinguish unfinished previews from usable destinations.
 
 ## 4. Character roster and pictures
 
@@ -551,6 +551,8 @@ The renewal plan is intended to remove manual weekly reinstall work. It still de
 Travel internet/hotspot multiplayer is optional after VPS readiness. Router-free co-op and device hosting are removed; all installed solo activities remain available offline.
 
 **Original September 23 research limits:** no game build or iPad runtime test was performed during that research pass; GitHub findings are selected-source inspections; ComfyUI integrations were researched but not installed; generated voices were not auditioned; character pictures are official visual references rather than finished game rigs. The companion guide and evidence files make the proposed implementation concrete enough to review and start with the backyard prototype.
+
+**All-world checklist, September 26:** the [consolidated feature audit](all-world-features-audit-2026-09-26.html) lists every named world/activity/recipe/toy/story catalog, current status, sources, and all 35 requirement routes. It distinguishes scenery, playable prototypes and unbuilt content.
 
 ## 16. Expanded feature tracker
 
@@ -1318,7 +1320,7 @@ A room change is a small transaction: request target room/door → load local vi
 
 ### Offline room changes and return-home sync
 
-Each iPad keeps a usable cached home layout and its child's editable travel branch. Live changes cannot reach the other iPad while they have no connection; synchronize when a session or home server becomes available again. Do not label a disconnected edit “synced.”
+Each iPad keeps a usable cached home layout and its child's editable private travel save. Live changes cannot reach the other iPad without a connection. Rejoining loads the current server room while retaining offline work separately; do not label a disconnected edit “synced.”
 
 Connected bedroom edits are validated and saved by the PC/VPS, then sent to the other clients. Disconnected bedroom work is saved privately. Rejoining always loads the server room; do not merge room journals or ask children to resolve shared-world conflicts.
 
@@ -1646,7 +1648,7 @@ Reuse section 34's parent-seeker default, optional child seeker, Ready state, Co
 
 ## 40. Daycare: a sixth world with an optional pretend day
 
-**Add Daycare to the world bubble browser:** Heeler Home, Backyard Garden, Playground & Park, The Creek, The Beach, and Daycare. Its rooms and imagination destinations are subareas, so they do not each need another world bubble.
+**Daycare remains one of five destinations:** Heeler Home (including Backyard Garden), Playground & Park, The Creek, The Beach, and Daycare. Its rooms and imagination destinations are subareas, so they do not each need another world bubble.
 
 Use Calypso as the main teacher and combine a classroom, play yard, book corner, art/sensory tables, pretend kitchen, quiet cushion nook, and imagination mat. The show places the older children at Calypso's school; our all-ages daycare is an intentional family-game adaptation where the entire requested child roster can gather. It is not a claim that every show's child attends the same canonical classroom. The official character page identifies Calypso as Bluey's teacher and emphasizes encouraging imaginative play. [Calypso character reference](https://www.bluey.tv/characters/calypso/)
 
