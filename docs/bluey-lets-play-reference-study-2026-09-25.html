@@ -1,0 +1,964 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bluey: Let's Play! — Little Weeps reference study</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;border-radius:24px;background:radial-gradient(ellipse at 25% 45%,#ffffffb5 0 15%,transparent 16%),radial-gradient(ellipse at 75% 50%,#ffffffb5 0 20%,transparent 21%),linear-gradient(#62c0ed,#b8edfa)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid white;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+
+.reference-study{max-width:1080px;margin:40px auto;padding:0 24px}
+.reference-study h1{font-size:clamp(32px,4.5vw,54px);line-height:1.15}
+.reference-study img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid #bcd7db;margin:20px 0 14px}
+.reference-study h2{scroll-margin-top:90px;margin-top:48px}
+.reference-study h3{margin-top:28px}
+.reference-study code{overflow-wrap:anywhere}
+.reference-study .toc{padding:18px 24px;border:1px solid var(--line);border-radius:16px;background:white}
+.reference-study .toc ul{columns:2;column-gap:30px;margin:0;padding-left:20px}
+.reference-study .toc li{break-inside:avoid;margin-bottom:8px}
+@media(max-width:650px){.reference-study .toc ul{columns:1}}
+@media print{.reference-study{max-width:none;margin:0;padding:0}.reference-study img{max-height:280px;object-fit:contain}.reference-study h2,.reference-study h3{break-after:avoid}.reference-study .toc{display:none}}
+</style></head><body><header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a>
+<nav><a href="current-decisions.md">Current decisions</a><a href="family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Build status</a>
+<a href="bluey-lets-play-reference-study-2026-09-25.md">Editable study</a></nav></header><main class="reference-study report"><h1 id="bluey-lets-play-scene-menu-and-interaction-reference">Bluey: Let's Play! — scene, menu and interaction reference</h1>
+<p><strong>Research date: September 25, 2026.</strong> This is the visual and interaction target requested for Little Weeps. It supplements the <a href="bluey-game-research-2026-09-23.html">55-chapter goal sheet</a>, with the user's eight screenshots as the primary visual references. The <a href="current-decisions.md">current decisions</a> still govern multiplayer, saves and scope. This study records requirements and implementation proposals; it does not claim these scenes or menus are already installed in our game.</p>
+<p>The target is Budge's <strong>Bluey: Let's Play!</strong> mobile playset. The user clarified that this should be the base experience, followed by their more ambitious private family version, and explicitly included character interactions such as trampoline jumping, sitting and dancing. The most consequential change is to make the illustrated environment occupy the screen, with picture controls for entering worlds and choosing characters. A recognisable character placed on the current test board is only the beginning of that presentation.</p>
+<div class="toc">
+<ul>
+<li><a href="#1-what-is-now-a-firm-requirement">1. What is now a firm requirement</a></li>
+<li><a href="#2-reference-board-all-eight-supplied-images">2. Reference board: all eight supplied images</a></li>
+<li><a href="#3-what-the-official-sources-actually-establish">3. What the official sources actually establish</a></li>
+<li><a href="#4-scene-art-and-camera-specification">4. Scene art and camera specification</a></li>
+<li><a href="#5-main-world-menu-contract">5. Main-world menu contract</a></li>
+<li><a href="#6-family-circle-tray-and-arrow-contract">6. Family circle, tray and arrow contract</a></li>
+<li><a href="#7-gestures-and-reusable-object-behavior">7. Gestures and reusable object behavior</a></li>
+<li><a href="#8-first-interaction-families-to-develop">8. First interaction families to develop</a></li>
+<li><a href="#9-animation-that-addresses-the-reported-stiffness">9. Animation that addresses the reported stiffness</a></li>
+<li><a href="#10-keep-our-family-features-intact">10. Keep our family features intact</a></li>
+<li><a href="#11-current-source-gaps-and-implementation-order">11. Current source gaps and implementation order</a></li>
+<li><a href="#12-acceptance-checklist-for-the-next-visible-build">12. Acceptance checklist for the next visible build</a></li>
+<li><a href="#13-unverified-details-and-research-limits">13. Unverified details and research limits</a></li>
+<li><a href="#14-the-base-experience-and-the-private-family-upgrade">14. The base experience and the private family upgrade</a></li>
+<li><a href="#15-location-catalog-and-evidence-coverage">15. Location catalog and evidence coverage</a></li>
+<li><a href="#16-games-and-activity-families">16. Games and activity families</a></li>
+<li><a href="#17-character-coverage-and-appearance-research">17. Character coverage and appearance research</a></li>
+<li><a href="#18-characterobject-interaction-specification">18. Character–object interaction specification</a></li>
+<li><a href="#19-itemitem-interactions-containers-and-shed-storage">19. Item–item interactions, containers and shed storage</a></li>
+<li><a href="#20-sound-expression-and-pace">20. Sound, expression and pace</a></li>
+<li><a href="#21-coverage-register-and-observation-gaps">21. Coverage register and observation gaps</a></li>
+<li><a href="#22-delivery-status">22. Delivery status</a></li>
+</ul>
+</div>
+<h2 id="1-what-is-now-a-firm-requirement">1. What is now a firm requirement</h2>
+<p>The user supplied kitchen/backyard images, then explicitly requested the pictured main-world menu and the character menu with its circle and arrow. These references supersede the earlier rotating-wheel and small portrait-drawer proposals.</p>
+<ul>
+<li><strong>World selection:</strong> large circular scene previews on a blue sky/cloud background, with the playful staggered arrangement shown in reference R6. Keep our six main destinations; rooms remain subareas of their world.</li>
+<li><strong>Character selection:</strong> the family portrait circle at bottom left opens a wide light-blue tray along the bottom. Full-body character choices stand in a horizontal row. A large white down arrow on a blue tab closes it, as in R7–R8.</li>
+<li><strong>Scenes:</strong> broad illustrated rooms and connected outdoor panoramas, with furniture, equipment and loose toys that make the place feel inhabited.</li>
+<li><strong>Characters:</strong> recognisable Bluey artwork, expressive poses and object-specific reactions. The current Bluey/Bingo artwork has prototype acceptance; stiffness still needs work.</li>
+<li><strong>Play:</strong> children experiment with objects and choose activities freely. Pictures, animation and short spoken cues explain possibilities.</li>
+</ul>
+<p>Our four-device family play, independent travel, Creek, both movement modes, personal bedrooms, protected creations and private offline saves remain required. This visual direction does not remove any of the 35 feature IDs or the existing content catalogs.</p>
+<h2 id="2-reference-board-all-eight-supplied-images">2. Reference board: all eight supplied images</h2>
+<p>These are unmodified user-supplied captures. They are research references, not finished Little Weeps artwork or runtime scene backgrounds. The <a href="bluey-research/lets-play-2026-09-25/references.json">reference manifest</a> records original filenames, dimensions and hashes.</p>
+<h3 id="r1-kitchen-composition">R1 — Kitchen composition</h3>
+<p><img alt="R1: Kitchen, Bluey, home button and closed family circle" src="bluey-research/lets-play-2026-09-25/r1-kitchen.jpg" /></p>
+<p>The yellow paneled walls, pale cabinets, lavender fridge, terracotta floor and large familiar appliances establish a room immediately. The foreground floor is open enough to place a character or toy. Countertop objects have readable silhouettes. Fridge pictures communicate combinations inside the scene. Bluey is roughly a third of the picture's height, including ears; this is a visual estimate, not a runtime measurement.</p>
+<h3 id="r2-veranda-and-tree">R2 — Veranda and tree</h3>
+<p><img alt="R2: Veranda, garden tree, lights, hammock and garden props" src="bluey-research/lets-play-2026-09-25/r2-veranda-tree.jpg" /></p>
+<p>The veranda and oversized tree anchor opposite sides of the view. Hanging lights, foliage, flowers, a hammock and small animals supply detail above the playable lawn. Loose objects remain readable against simpler ground. Music-note graphics visibly indicate the radio's activity; these stills cannot establish its actual audio or timing.</p>
+<h3 id="r3-trampoline-and-pool">R3 — Trampoline and pool</h3>
+<p><img alt="R3: Trampoline, paddling pool and toy wagon" src="bluey-research/lets-play-2026-09-25/r3-trampoline-pool.jpg" /></p>
+<p>The large equipment dominates this section, giving it a different purpose from the tree area. The trampoline has a translucent front net; the pool has a front rim. Those shapes imply separate front/back drawing layers for convincing character placement. The picture alone does not establish the collision or animation implementation.</p>
+<h3 id="r4-tree-toys-and-wedding-bench">R4 — Tree, toys and wedding bench</h3>
+<p><img alt="R4: Toy car, stump, tree, gnomes and wedding props" src="bluey-research/lets-play-2026-09-25/r4-tree-wedding.jpg" /></p>
+<p>Objects occupy distinct little play arrangements: car near stump, shovel against tree, gnomes on the lawn, bench beside gifts. Background hills and repeated hedge shapes connect the view to its neighbors. The slight perspective exposes the ground and furniture tops without changing to an overhead camera.</p>
+<h3 id="r5-shed-end-of-the-backyard">R5 — Shed end of the backyard</h3>
+<p><img alt="R5: Shed, watering can, tap, wedding cake and gifts" src="bluey-research/lets-play-2026-09-25/r5-shed.jpg" /></p>
+<p>The tree/bench/gifts overlap R4, which is strong visual evidence of adjacent views of one longer setting. The shed is a destination landmark, not just filler. A tap and watering can create an obvious possible activity. Whether the shed door opens, the can fills or every gift can be manipulated is not established by this image.</p>
+<h3 id="r6-main-destination-menu">R6 — Main destination menu</h3>
+<p><img alt="R6: Circular scene previews on a cloud background" src="bluey-research/lets-play-2026-09-25/r6-world-menu.jpg" /></p>
+<p>Scene thumbnails fill thick white-edged circles, staggered across a sky background. Some bubbles are partially outside the viewport; that suggests a wider browsable menu, but this still alone does not prove its exact scrolling gesture. The user wants this menu language. Our implementation should provide generous horizontal browsing, a tap alternative, and six persistent main destinations. Store, advertising, subscription locks and promotional badges are not part of the requested family-game navigation.</p>
+<h3 id="r7-character-tray-open">R7 — Character tray open</h3>
+<p><img alt="R7: Open light-blue full-body character tray with down arrow" src="bluey-research/lets-play-2026-09-25/r7-character-tray.jpg" /></p>
+<p>The scene remains visible above a light-blue bottom strip with a white upper edge. The characters stand along a common baseline, preserving their different heights. A large rounded blue tab with a white down arrow sits on the left. The strip is about the lower third of this capture; characters project above its boundary. Use that as a starting composition, then test phones and 4:3 iPads.</p>
+<h3 id="r8-character-tray-closed">R8 — Character tray closed</h3>
+<p><img alt="R8: Unobstructed kitchen with the family portrait circle at bottom left" src="bluey-research/lets-play-2026-09-25/r8-character-circle.jpg" /></p>
+<p>The tray collapses back to the family portrait circle, leaving nearly the whole room visible. Keep this circle in the same safe-area corner in every playable location. Opening and closing it must not move the camera or another player's character.</p>
+<h2 id="3-what-the-official-sources-actually-establish">3. What the official sources actually establish</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Evidence</th>
+<th>How we use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Location bubbles, sideways scene exploration, a lower-left character tray, dragging characters into the scene, and reactions when placed on chairs/trampoline/pool</td>
+<td><a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094826-how-to-play-">Budge play instructions</a>, modified March 21, 2025</td>
+<td>Confirms the interaction structure behind the screenshots. Our avatar-switch semantics are specified separately below.</td>
+</tr>
+<tr>
+<td>Dropping compatible ingredients together creates recipes; fridge pictures supply hints; combining also applies to colored playroom hippos</td>
+<td><a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094827-how-do-i-make-recipes-">Budge recipe instructions</a>, modified July 12, 2023</td>
+<td>Use compatible object combinations and in-scene picture hints. Do not require recipe text to start cooking.</td>
+</tr>
+<tr>
+<td>The app centers on pretend play</td>
+<td><a href="https://budgestudios.com/en/apps/detail/bluey-lets-play/">Budge product page</a></td>
+<td>Free manipulation is the primary loop; optional invitations extend it.</td>
+</tr>
+<tr>
+<td>The original launch emphasized the house, food, toys, music and an episode-inspired backyard pizza oven</td>
+<td><a href="https://www.bluey.tv/blog/bluey-lets-play-mobile-app-is-available-now/">Official Bluey launch article</a></td>
+<td>Supports the home/backyard starting slice. This is historical launch coverage, not a complete present-day world list.</td>
+</tr>
+<tr>
+<td>The wedding update adds Frisky and wedding-themed cake, gifts, bouquets and gnomes</td>
+<td><a href="https://www.bluey.tv/blog/the-sign-arrives-on-bluey-lets-play/">Official “The Sign” update</a></td>
+<td>The supplied backyard decoration is consistent with that theme. It does not identify the installed app version.</td>
+</tr>
+<tr>
+<td>BBQ combines preparation, cooking and feeding; dress-up keeps outfits usable in other locations; hairdressing changes Bandit's wig through multiple tools</td>
+<td><a href="https://www.bluey.tv/blog/whats-new-lets-play/">Official newer minigame overview</a></td>
+<td>Build reusable sequences of object states and visible reactions, then add activity-specific tools. These three minigames are reference material, not newly promised scope.</td>
+</tr>
+<tr>
+<td>The Android listing describes cooking, coloring, keepy-uppy, trampoline and swing play; categorizes the app as single-player and offline</td>
+<td><a href="https://play.google.com/store/apps/details?id=com.budgestudios.googleplay.BlueyBLU&amp;hl=en_GB">Google Play developer listing</a>, observed September 25</td>
+<td>Family members “playing along” is not evidence of network co-op. Our four-client shared world needs its own engineering.</td>
+</tr>
+<tr>
+<td>The iOS history lists 2026.11.0 on September 8; preceding updates include Rug Island, wall coloring, three minigames, laundry and a front entrance</td>
+<td><a href="https://apps.apple.com/us/app/bluey-lets-play/id1669091583?platform=ipad">Apple listing/version history</a>, observed September 25</td>
+<td>The app has evolved beyond the original rooms. The user's screenshots remain the chosen visual target; do not chase every update.</td>
+</tr>
+<tr>
+<td>Budge's general FAQ says gameplay progress is local and is not transferred to a new device through its service</td>
+<td><a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000107737-i-bought-a-new-device-how-do-i-transfer-my-progress-">Budge progress FAQ</a>, modified February 27, 2026</td>
+<td>This general support policy does not describe exact per-prop persistence. Preserve our explicit shared-world and separate offline-save requirements.</td>
+</tr>
+<tr>
+<td>Budge's general FAQ allows offline play after content download and verification</td>
+<td><a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000107738-does-the-app-require-an-internet-connection-to-play-">Budge offline FAQ</a>, modified February 27, 2026</td>
+<td>Installed content must remain useful without a connection. Our private game has its own enrollment and save rules.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Research method: official developer support, official Bluey editorial material, developer-authored store descriptions/version history and official trailer descriptions, eight user images, and focused inspection of this project's source and maintained plans. No hands-on session of Budge's app, paid-content inspection, video frame analysis or extraction of its assets was performed. Reviews and fan-wiki inventories were not used as authoritative mechanics evidence. Community catalogs are explicitly identified as leads in sections 15 and 17; they are not treated as confirmed current inventories.</p>
+<h2 id="4-scene-art-and-camera-specification">4. Scene art and camera specification</h2>
+<p><strong>Our proposed implementation, derived from the supplied pictures:</strong> compose each location as an illustrated stage with a shallow ground plane and horizontal extent beyond one screen. Keep a stable apparent character size as the camera moves. Adapt to a taller iPad viewport by showing more vertical breathing room, not stretching the whole picture or shrinking touch targets.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Visual job</th>
+<th>Implementation requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Distant sky, hills and silhouettes</td>
+<td>Calm backdrop and geographic continuity</td>
+<td>Separate from interactive surfaces; optional restrained parallax after device profiling</td>
+</tr>
+<tr>
+<td>Walls, hedge, large tree and rear furniture</td>
+<td>Place identity and major landmarks</td>
+<td>Authored scene layers with stable coordinates</td>
+</tr>
+<tr>
+<td>Floor/lawn and placement surfaces</td>
+<td>Readable space for play</td>
+<td>Walkable regions, reachable arrival points and generous object drop areas</td>
+</tr>
+<tr>
+<td>Characters and loose props</td>
+<td>Main manipulation layer</td>
+<td>Stable feet/base pivots, consistent object scale, depth by ground position</td>
+</tr>
+<tr>
+<td>Chair fronts, table fronts, pool rim and trampoline net</td>
+<td>Convincing use of furniture/equipment</td>
+<td>Split front/rear pieces and named seat/use anchors; foreground never hides the whole interaction cue</td>
+</tr>
+<tr>
+<td>Small ambient details</td>
+<td>Liveliness between actions</td>
+<td>Limited butterflies, leaf movement and music cues; reduced-motion behavior</td>
+</tr>
+</tbody>
+</table></div>
+<p>Art direction: warm creams and yellow wall panels indoors; soft green lawn and hedge masses outdoors; lavender, teal and coral accents; simple filled shapes with restrained shading and colored outlines. Avoid filling every empty patch with decorations. The open ground is where play happens.</p>
+<p>Author the backyard as connected compositions: veranda/tree → swing/trampoline/pool → tree/stump/toys → shed/garden. The order is a proposal from the supplied overlaps, not a measured map of Budge's internal scene. Our fishpond and other required activities can connect beyond these areas without becoming tiny objects crammed into one screen.</p>
+<p>Keep editable scene sources and separate interactive props. A single flattened screenshot would give the appearance without the furniture, hiding, animation or interaction required by the goal sheet.</p>
+<h2 id="5-main-world-menu-contract">5. Main-world menu contract</h2>
+<p>Use the R6 sky-and-bubble composition. Each circle contains a recognizable scene illustration, not a generic symbol as final art. Thick light borders separate bubbles from the background. Small labels and spoken names support recognition; reading is optional.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Main bubble</th>
+<th>Primary image</th>
+<th>Destinations beneath it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Heeler Home</td>
+<td>House/recognizable interior</td>
+<td>Kitchen, living/play spaces, bedrooms, reading/TV/science corners and secret-room doors</td>
+</tr>
+<tr>
+<td>Backyard Garden</td>
+<td>Tree, grass and play equipment</td>
+<td>Garden, fishpond and outdoor play stations</td>
+</tr>
+<tr>
+<td>Playground &amp; Park</td>
+<td>Slide and swings</td>
+<td>Equipment, picnic and outdoor games</td>
+</tr>
+<tr>
+<td>The Creek</td>
+<td>Water, rocks and a log/boat</td>
+<td>Existing Creek access retained; expanded collecting/water play later</td>
+</tr>
+<tr>
+<td>The Beach</td>
+<td>Shore and sandcastle</td>
+<td>Sand, shells and beach games</td>
+</tr>
+<tr>
+<td>Daycare</td>
+<td>Familiar playroom and play mat</td>
+<td>Learning stations and imagination destinations</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tap an available world bubble to enter its remembered or default safe arrival area. Home's room choices can use the same picture-bubble language. Do not add an obligatory center preview plus second Play button. In the completed game every planned world is accessible; development builds must distinguish unfinished previews from usable destinations without presenting a broken entrance.</p>
+<p>Lay out six bubbles in two staggered rows on landscape iPad. On wide phones preserve large targets and allow sideways browsing rather than squeezing six small circles into the available height. Keep the gear separated from destination targets. Returning home opens this browser; it does not reset the world. A canceled visit returns to the previous play view. Only the selecting player's area/camera changes.</p>
+<h2 id="6-family-circle-tray-and-arrow-contract">6. Family circle, tray and arrow contract</h2>
+<p><strong>Closed:</strong> a circular family illustration with a thick light edge sits at lower left, like R8. <strong>Open:</strong> a light-blue tray rises from the bottom, with a white top border and full-body characters along a shared baseline. Its large left tab shows the white down arrow from R7. Horizontal swipes browse the cast. Tapping the arrow closes the tray and restores the unobstructed scene.</p>
+<p>Our existing player model gives each device one controlled avatar. Therefore <strong>tapping a tray character changes that player's avatar in place</strong>. Preserve the player's ID, bedroom ownership, position, held item, activity and hide-and-seek role. A selected-character marker may show which avatar is active. Both children can choose the same favorite. The full requested cast remains in scope; Bluey/Bingo are the first integrated art assets.</p>
+<p>Budge's documented tray also lets players drag characters into a scene. For our later pretend-play NPC placement, a drag must be explicitly associated with a local role/actor request; it must not duplicate a connected player's avatar or take control of a sibling. The user specifically asked for a character-changing menu, so tap-to-switch is the first behavior to ship. Tray browsing must not accidentally switch during a swipe.</p>
+<p>Opening the tray cancels the local walking gesture and settles active touch gestures through the existing input path. It does not pause the shared world. The tray owns touches inside its bounds; touches used to close it must not also move a character or pick up an object underneath. Keep the home button reachable, and ensure the left arrow/circle never conflicts with the joystick. When the tray is open, hide/disable the local movement pad; restore it on close.</p>
+<h2 id="7-gestures-and-reusable-object-behavior">7. Gestures and reusable object behavior</h2>
+<p>The following is our interaction design, not a claim about Budge's input implementation.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Touch begins on</th>
+<th>Owns that gesture</th>
+<th>Required result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home, bubble or tray</td>
+<td>Menu</td>
+<td>One navigation/selection action after a tap; horizontal motion browses without selection</td>
+</tr>
+<tr>
+<td>Joystick</td>
+<td>Movement</td>
+<td>Existing joystick behavior; second-finger prop use remains possible</td>
+</tr>
+<tr>
+<td>Movable prop</td>
+<td>Object</td>
+<td>Pickup, preview, compatible-target highlight, then one validated drop/use</td>
+</tr>
+<tr>
+<td>Fixed interactive furniture/tool</td>
+<td>That affordance</td>
+<td>Tap toggle/use or drag the designated handle; never start walking underneath</td>
+</tr>
+<tr>
+<td>Empty floor</td>
+<td>Scene input</td>
+<td>In tap mode, short release walks; horizontal movement past a forgiving threshold pans instead</td>
+</tr>
+<tr>
+<td>Empty background</td>
+<td>Camera</td>
+<td>Sideways exploration bounded to this scene</td>
+</tr>
+</tbody>
+</table></div>
+<p>Keep gesture ownership stable until release/cancel. A drag near a scene edge may gently pan after a short dwell; this is proposed and must be tested against accidental travel. Panning the camera never changes world coordinates or other players' cameras. Cross-area travel is an explicit action, not an accidental side effect of dragging near an edge.</p>
+<p>An object needs capabilities rather than a bespoke button for every use: carryable, container, pourable, recipe ingredient, stackable, seat, washable, growth target, openable and sound source. Not every prop needs every capability. A supported drop visibly snaps or reacts; an unsupported drop settles safely without deleting the object. Personal creations retain identity through storage and cleanup.</p>
+<h2 id="8-first-interaction-families-to-develop">8. First interaction families to develop</h2>
+<p>These are proposed Little Weeps examples, connected to existing goal IDs. The screenshots establish the visual props; official instructions establish broad combination/character-use patterns, not this exact catalog.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Concrete play chain</th>
+<th>Existing goals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Water and growth</td>
+<td>Pick up can → fill at tap → pour on plant → plant responds → put can away</td>
+<td>ITEM-02, ITEM-03, STOCK-01</td>
+</tr>
+<tr>
+<td>Seating and food</td>
+<td>Put food on plate → place plate on table → seat character → serve/react</td>
+<td>COOK-01, CHAR-01</td>
+</tr>
+<tr>
+<td>Making recipes</td>
+<td>Combine two compatible ingredients → show result → decorate/serve/save creation</td>
+<td>COOK-01, ROOM-01</td>
+</tr>
+<tr>
+<td>Garden equipment</td>
+<td>Place character at swing/trampoline → use authored pose and movement → leave independently</td>
+<td>OUT-01, WORLD-02</td>
+</tr>
+<tr>
+<td>Rooms and toys</td>
+<td>Pick a bedroom style → move authorized furniture → visit sibling → play with loose plush</td>
+<td>ROOM-01, ROOM-02</td>
+</tr>
+<tr>
+<td>Music and discovery</td>
+<td>Tap radio → hear/see music → explore a small hidden surprise → resume own story</td>
+<td>ACT-01, CHAR-01</td>
+</tr>
+</tbody>
+</table></div>
+<p>Start with depth in a few objects. A watering can that fills, carries, pours and stores contributes more to this target than twenty decorative props that only wiggle when tapped.</p>
+<h2 id="9-animation-that-addresses-the-reported-stiffness">9. Animation that addresses the reported stiffness</h2>
+<p>The still screenshots cannot reveal animation curves, frame rates or rig construction. These are requirements for our next motion pass, based on the user's prototype feedback and the documented object reactions:</p>
+<ul>
+<li><strong>Idle:</strong> gentle breathing, occasional blink and small gaze/ear variation; avoid a constant synchronized wobble across every character.</li>
+<li><strong>Walking:</strong> readable alternating steps, body weight transfer and a small tail response; contact feet should not slide through the floor.</li>
+<li><strong>Start/stop/turn:</strong> brief easing and a believable facing change without mirroring text or detaching a held prop.</li>
+<li><strong>Carrying/pouring:</strong> hand and prop stay connected; arms bend into a use pose; pour originates at the container spout.</li>
+<li><strong>Sitting/riding:</strong> authored bent-leg poses and seat anchors, with foreground furniture covering the appropriate body parts.</li>
+<li><strong>Bouncing:</strong> anticipation, rise, fall, landing compression and a reaction; the trampoline/net layers preserve depth.</li>
+<li><strong>Emotion:</strong> eyes/mouth/ears respond to an action, with expression returning naturally to idle.</li>
+</ul>
+<p>Preserve editable layered Bluey/Bingo sources. Where a pose changes silhouette substantially, add the needed view or drawing instead of rotating a stiff front-facing cutout through it. Validate the actual motion on the older iPad and against the user's visual feedback; a compilation or attachment test alone does not establish appealing animation.</p>
+<h2 id="10-keep-our-family-features-intact">10. Keep our family features intact</h2>
+<p>Menu, camera, selected hint and open book/TV panel belong to each client. The PC/VPS owns shared props, connected room edits and activity state. Opening a menu, visiting a bedroom or returning to the world browser must leave siblings playing.</p>
+<p>Player identity stays separate from the chosen character. Connected room edits use the room owner's permissions. Private offline edits are saved separately and never replace the server world on reconnect. Both iPads and the phones continue to support solo play from installed content.</p>
+<p>The same object ID survives a carry, container transfer and safe return. Essential station equipment can have a return policy; saved cakes, personal decorations and creations do not disappear under a generic room reset. The proposed policy in goal-sheet section 51 still applies; this study does not infer Budge's internal cleanup timers or container rules.</p>
+<h2 id="11-current-source-gaps-and-implementation-order">11. Current source gaps and implementation order</h2>
+<p>Focused source inspection found that <code>SoloScreen</code> still builds a bounded garden board with text controls and individually drawn test props. Its current Garden/Creek presentation is useful for rules and networking qualification but does not provide the R1–R8 scene/menu layout. The real Bluey/Bingo views and stable avatar IDs are reusable.</p>
+<p>The G5 bedroom rules begun before these references are preserved on the development branch: additive room state, profile-based ownership, visitor permissions, style changes and protected personal objects pass eight new bedroom checks within an <a href="implementation/evidence/lets-play-research-2026-09-25/bedroom-rules-checkpoint.json">84-check rules run</a>. This result belongs to the incomplete <code>codex/saved-bedrooms</code> development work and does not qualify a native build. They are <strong>not integrated into client UI, network content/version contracts or private-continuation adapters</strong>. The current adapters still reject room schema 3. No bedroom deployment or new mobile build is claimed.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Bounded task</th>
+<th>Completion evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — next implementation</td>
+<td>Reference-led navigation shell: world bubbles, family circle, full-body Bluey/Bingo tray and close arrow, connected to current Garden/Creek travel and character commands</td>
+<td>Native touch captures at phone and 4:3 layouts; correct area and character; held-item/profile continuity; menu cancellation; another client keeps playing</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Finish G5 room/save/network integration behind that shell</td>
+<td>Owner/visitor rules, old-save upgrade, restart/corrupt-primary recovery, two-room independent visits, private offline and server reunion, no creation loss</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Author one continuous backyard/home scene with proper floor, furniture depth and a small set of usable props</td>
+<td>Matched-framing visual review against the references; real pickup/use/seating; independent camera movement</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Soften character motion and complete representative play chains</td>
+<td>Idle/walk/carry/sit/bounce footage; stable attachments and feet; older-iPad performance; child usability</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Extend the accepted slice across the six-world and full-cast plan</td>
+<td>Existing G6/G7 content and device gates; no disappearance of Creek, books, TV, science, dinosaurs or bedrooms</td>
+</tr>
+</tbody>
+</table></div>
+<p>This moves the requested menu work ahead of further bedroom screen construction. G5 remains necessary before integrated durable rooms and creations are treated as complete. Physical connection/recovery acceptance remains open within G3; research does not substitute for it.</p>
+<h2 id="12-acceptance-checklist-for-the-next-visible-build">12. Acceptance checklist for the next visible build</h2>
+<ol>
+<li>The main selector visibly follows R6: sky/clouds, large circular scene thumbnails and a playful staggered composition. Every playable bubble enters the intended world. Creek is present and usable.</li>
+<li>In play, the lower-left control visibly follows R8. It opens the R7-style full-body tray, with a large down arrow that closes it reliably.</li>
+<li>Bluey/Bingo selection changes only the requesting player's appearance. Bedroom/profile identity, position, held object and another player's current action remain intact.</li>
+<li>A sideways swipe in the tray scrolls choices without an accidental switch. A menu-closing touch cannot pass through to the floor. Repeated open/close, app backgrounding and route loss leave no stuck pointer or joystick.</li>
+<li>On the iPads and wide phones, safe areas keep controls clear of screen edges. Touch targets retain useful physical size; landscape artwork is not stretched.</li>
+<li>The later scene pass supplies recognizable full-screen art, continuous sideways exploration, proper occlusion and visible action feedback. A scenery screenshot behind the old test board does not pass this criterion.</li>
+<li>Compare the actual native build to all eight references and retain screenshots/video with build identity. Visual review and user feedback remain separate from automated rule/build results.</li>
+</ol>
+<h2 id="13-unverified-details-and-research-limits">13. Unverified details and research limits</h2>
+<p>Still open for direct observation if needed: exact pan inertia; drag edge-scroll behavior; every prop's response; reset timing; persistence of each moved object after app restart; the complete current cast/world catalog; precise animation timings; audio mixing; and accessibility behavior. The full internal asset, scene, rig, physics and save architecture cannot be derived from screenshots or marketing/support text.</p>
+<p>These unknowns do not prevent implementing the explicitly requested bubble menu and circle/tray/arrow design. They prevent presenting our proposed engineering choices as facts about Budge's source code.</p>
+<h2 id="14-the-base-experience-and-the-private-family-upgrade">14. The base experience and the private family upgrade</h2>
+<p><strong>User direction:</strong> make the core experience substantially like Bluey: Let's Play!, then extend it into the family's cooler personal version. Research breadth does not mean silently expanding the immediate build to every commercial-app location. Keep a complete comparison catalog and implement a coherent slice before copying it into more places.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Base to establish</th>
+<th>Family upgrade already required in our goal sheet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Familiar illustrated rooms and outdoor playsets</td>
+<td>Six organized main worlds with independent subareas and the requested Creek</td>
+</tr>
+<tr>
+<td>World bubbles and a full-body character tray</td>
+<td>Each device keeps its own camera, travel and avatar choice; duplicate favorite characters allowed</td>
+</tr>
+<tr>
+<td>Characters sit, bounce, swing, dance and react to props</td>
+<td>Four connected family players use the same equipment and see each other's actions</td>
+</tr>
+<tr>
+<td>Food, toys, equipment and discoverable combinations</td>
+<td>Deeper cooking, science, dinosaurs, protected creations, reusable item rules and shared preparation</td>
+</tr>
+<tr>
+<td>Creative play and themed activities</td>
+<td>Optional spoken quests, assistance for ages 3 and 6, daycare stories and parent NPC activities</td>
+</tr>
+<tr>
+<td>Furnished house and movable play objects</td>
+<td>Two profile-owned bedrooms, safe visiting/decorating, toy storage and secret plush rooms</td>
+</tr>
+<tr>
+<td>Sound, music and expressive reactions</td>
+<td>Installed reviewed speech, English first/Spanish later, local book narration and private TV library</td>
+</tr>
+<tr>
+<td>Usable offline content</td>
+<td>Separate saved solo adventures and automatic return to the PC/VPS world without overwriting it</td>
+</tr>
+</tbody>
+</table></div>
+<p>Private use is now explicit project scope: private repository, family device installs and no public release/monetization work. Under U.S. guidance, noncommercial purpose is only one fair-use factor; it is not a blanket copyright exemption, and creating fresh drawings of existing characters does not itself resolve derivative-work rights. This is general information, not a legal determination or a promise against a claim. The project can independently implement the interaction systems and keep asset provenance clear; permission or qualified legal advice is the route to resolving rights uncertainty. <a href="https://www.copyright.gov/fair-use/more-info.html">U.S. Copyright Office: fair-use factors</a>, <a href="https://www.copyright.gov/help/faq/faq-fairuse.html">derivative-work FAQ</a>.</p>
+<h2 id="15-location-catalog-and-evidence-coverage">15. Location catalog and evidence coverage</h2>
+<p>This is the broad location inventory supported by sources inspected in this pass. A published update establishes the named location/activity at that time, not that every old prop or seasonal layout remains in the current build. Trailer links below were researched through their official titles/descriptions; the videos were not watched frame by frame.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Place or group</th>
+<th>Confirmed reference content</th>
+<th>Source / confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kitchen</td>
+<td>Food combinations and illustrated recipe hints</td>
+<td>R1/R7/R8; <a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094827-how-do-i-make-recipes-">Budge recipes</a> — primary</td>
+</tr>
+<tr>
+<td>Backyard</td>
+<td>Large equipment, loose toys and themed arrangements</td>
+<td>R2–R5; <a href="https://www.bluey.tv/play/lets-play-app/">official app overview</a> — visual/primary</td>
+</tr>
+<tr>
+<td>Living room, playroom, bathroom</td>
+<td>House rooms named at launch</td>
+<td><a href="https://www.bluey.tv/blog/bluey-lets-play-mobile-app-is-available-now/">Launch announcement</a> — primary/historical</td>
+</tr>
+<tr>
+<td>Campsite</td>
+<td>Campfire and fishing play; Jean-Luc</td>
+<td><a href="https://www.youtube.com/watch?v=qsobie4NdzQ">Budge camping trailer</a>, September 11, 2023 — primary</td>
+</tr>
+<tr>
+<td>Beach</td>
+<td>Swimming, ice cream and sandcastles</td>
+<td><a href="https://www.youtube.com/watch?v=Ng4Un1A84po">Budge beach trailer</a>, January 31, 2024 — primary</td>
+</tr>
+<tr>
+<td>Classroom</td>
+<td>Pillow forts and beeswax animals/statues</td>
+<td><a href="https://www.youtube.com/watch?v=VppI1ZvNIZM">Budge school trailer</a>, February 28, 2024 — primary</td>
+</tr>
+<tr>
+<td>Hammerbarn</td>
+<td>Shopping/cashier scanning</td>
+<td><a href="https://www.youtube.com/watch?v=1-HqtdpF4wg">Budge Hammerbarn trailer</a>, March 20, 2024 — primary</td>
+</tr>
+<tr>
+<td>Bandit's office</td>
+<td>Hidden chest key, paper planes and Unicorse</td>
+<td><a href="https://www.youtube.com/watch?v=UQg6JjOaQ0w">Budge office trailer</a>, April 19, 2024 — primary</td>
+</tr>
+<tr>
+<td>Uncle Stripe's house</td>
+<td>Pool, recipes and Muffin's toys</td>
+<td><a href="https://www.youtube.com/watch?v=Urs4BpC4mMU">Budge Stripe's house trailer</a>, May 17, 2024 — primary</td>
+</tr>
+<tr>
+<td>Playground</td>
+<td>Swing, slide and seesaw; Buddy</td>
+<td><a href="https://www.youtube.com/watch?v=CyxMOBrzszs">Budge playground trailer</a>, June 13, 2024 — primary</td>
+</tr>
+<tr>
+<td>Supermarket</td>
+<td>Trolley races</td>
+<td><a href="https://www.youtube.com/watch?v=55G9omaw37g">Budge supermarket trailer</a>, August 7, 2024 — primary</td>
+</tr>
+<tr>
+<td>Lounge</td>
+<td>Tidying, TV and musical statues</td>
+<td><a href="https://www.youtube.com/watch?v=nhlSgf31Qp0">Budge lounge trailer</a>, November 6, 2024 — primary</td>
+</tr>
+<tr>
+<td>Kindy</td>
+<td>Music, drawing, Bob Bilby photos</td>
+<td><a href="https://apps.apple.com/us/app/bluey-lets-play/id1669091583?platform=ipad">Apple version history</a>, 2025.1.0 — primary</td>
+</tr>
+<tr>
+<td>Restaurant</td>
+<td>Recipes and tall sandwiches</td>
+<td>Same Apple history, 2025.2.0 — primary</td>
+</tr>
+<tr>
+<td>School garden</td>
+<td>Growing food and flowers</td>
+<td>Same Apple history, 2025.4.0 — primary</td>
+</tr>
+<tr>
+<td>Front yard</td>
+<td>Garage sale and Grannies</td>
+<td>Same Apple history, 2025.5.0 — primary</td>
+</tr>
+<tr>
+<td>Park</td>
+<td>Cricket and pass the parcel</td>
+<td>Same Apple history, 2025.6.0 — primary</td>
+</tr>
+<tr>
+<td>School yard</td>
+<td>Sand, castle and treehouse</td>
+<td>Same Apple history, 2025.7.0 — primary</td>
+</tr>
+<tr>
+<td>Nana's apartment</td>
+<td>Blocks, puzzles and cooking</td>
+<td>Same Apple history, 2025.8.0 — primary</td>
+</tr>
+<tr>
+<td>Cubby; front entrance; laundry</td>
+<td>Additional fort/domestic play spaces</td>
+<td>Same Apple history, 2026.2.0, 2026.5.0, 2026.7.0 — primary</td>
+</tr>
+<tr>
+<td>Bedroom, deck, market</td>
+<td>Listed in community inventories; this pass lacks a matching detailed primary page</td>
+<td><a href="https://budge-studios.fandom.com/wiki/Bluey%3A_Let%27s_Play%21">Community catalog</a> — leads requiring direct confirmation</td>
+</tr>
+</tbody>
+</table></div>
+<p>Our six main-world structure can contain several of these play spaces without turning the top-level menu into dozens of tiny buttons. Additional shops, relatives' homes and market scenes are expansion candidates, not replacements for already-required science, books, TV, bedrooms or Creek. A change to the promised six-world inventory needs to be recorded explicitly rather than inferred from this catalog.</p>
+<h2 id="16-games-and-activity-families">16. Games and activity families</h2>
+<p>This table groups the researched content by play behavior. The last column is our design interpretation. It must not be read as a description of the commercial game's internal implementation.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Activity family</th>
+<th>Evidence in the reference</th>
+<th>Reusable system for our version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open-ended room play</td>
+<td><a href="https://www.bluey.tv/play/lets-play-app/">Official overview</a></td>
+<td>Persistent object placement, character roles and independent activities</td>
+</tr>
+<tr>
+<td>Ingredient combinations</td>
+<td><a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094827-how-do-i-make-recipes-">Recipe support</a></td>
+<td>Compatible inputs, single result identity, pictures showing possibilities</td>
+</tr>
+<tr>
+<td>Pizza/pretend food preparation</td>
+<td><a href="https://www.bluey.tv/blog/bluey-lets-play-mobile-app-is-available-now/">Launch article</a></td>
+<td>Preparation, appliance use, serving and saved creations</td>
+</tr>
+<tr>
+<td>Grilling</td>
+<td><a href="https://www.bluey.tv/blog/whats-new-lets-play/">Official minigame overview</a></td>
+<td>Tool-driven preparation, cooked/burned states, recovery and feeding</td>
+</tr>
+<tr>
+<td>Dress-up</td>
+<td>Same official minigame overview</td>
+<td>Outfit slots that remain attached during travel and animation</td>
+</tr>
+<tr>
+<td>Hairdressing</td>
+<td>Same official minigame overview</td>
+<td>Reversible style state, tools, color/accessory layers</td>
+</tr>
+<tr>
+<td>Coloring and drawing</td>
+<td><a href="https://play.google.com/store/apps/details?id=com.budgestudios.googleplay.BlueyBLU&amp;hl=en_GB">Developer store description</a></td>
+<td>Local artwork record, forgiving input, gallery/display surface</td>
+</tr>
+<tr>
+<td>Keepy-uppy and garden movement</td>
+<td><a href="https://www.bluey.tv/play/lets-play-app/">Official overview</a></td>
+<td>Simple toy motion and readable touch feedback</td>
+</tr>
+<tr>
+<td>Trampoline and character placement</td>
+<td><a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094826-how-to-play-">Budge play instructions</a></td>
+<td>Equipment slots, entry/use/exit states and object-specific animation</td>
+</tr>
+<tr>
+<td>Swings, slides and seesaw</td>
+<td><a href="https://www.youtube.com/watch?v=CyxMOBrzszs">Playground trailer</a></td>
+<td>Authored ride paths, occupants and safe exit points</td>
+</tr>
+<tr>
+<td>Pool/beach play</td>
+<td><a href="https://www.youtube.com/watch?v=Ng4Un1A84po">Beach</a>, <a href="https://www.youtube.com/watch?v=Urs4BpC4mMU">Stripe's house</a></td>
+<td>Waterline occlusion, swimming/splash state, restorable equipment occupancy</td>
+</tr>
+<tr>
+<td>Campfire/fishing</td>
+<td><a href="https://www.youtube.com/watch?v=qsobie4NdzQ">Camping trailer</a></td>
+<td>Station tools, catch/release sequence and optional prompts</td>
+</tr>
+<tr>
+<td>Pillow forts and modeling</td>
+<td><a href="https://www.youtube.com/watch?v=VppI1ZvNIZM">Classroom trailer</a></td>
+<td>Stacking, grouped creations and stable floor/collision rules</td>
+</tr>
+<tr>
+<td>Shopping and trolleys</td>
+<td><a href="https://www.youtube.com/watch?v=1-HqtdpF4wg">Hammerbarn</a>, <a href="https://www.youtube.com/watch?v=55G9omaw37g">supermarket</a></td>
+<td>Containers, scanned items, cart attachment and movement</td>
+</tr>
+<tr>
+<td>Secrets, keys and paper planes</td>
+<td><a href="https://www.youtube.com/watch?v=UQg6JjOaQ0w">Office trailer</a></td>
+<td>Discoverable affordances, keyed interactions and authored throw paths</td>
+</tr>
+<tr>
+<td>Musical statues and domestic play</td>
+<td><a href="https://www.youtube.com/watch?v=nhlSgf31Qp0">Lounge trailer</a></td>
+<td>Dance/freeze phases, music controls, optional participation and quick exit</td>
+</tr>
+<tr>
+<td>Hidden longdogs and Pop-up Croc</td>
+<td><a href="https://play.google.com/store/apps/details?id=com.budgestudios.googleplay.BlueyBLU&amp;hl=en_GB">Developer listing</a></td>
+<td>Small discoveries and reusable toy state; no compulsory quest gating</td>
+</tr>
+<tr>
+<td>Wedding roleplay</td>
+<td><a href="https://www.bluey.tv/blog/the-sign-arrives-on-bluey-lets-play/">The Sign update</a></td>
+<td>Theme packs applied to familiar rooms with persistent ordinary objects</td>
+</tr>
+<tr>
+<td>Seasonal dressing and decoration</td>
+<td><a href="https://apps.apple.com/us/app/bluey-lets-play/id1669091583?platform=ipad">Apple history</a></td>
+<td>Optional themed catalogs; preserve personal room choices when a theme changes</td>
+</tr>
+</tbody>
+</table></div>
+<p>The deeper pattern is <strong>place → manipulate → combine/use → react → continue the story</strong>. A room can support a game without a separate minigame screen. A specialized screen is useful when it makes fiddly activities such as hair styling easier, but the result should reconnect with ordinary play where appropriate.</p>
+<h2 id="17-character-coverage-and-appearance-research">17. Character coverage and appearance research</h2>
+<p>The inspected primary material confirms Bluey/Bingo and their parents through developer descriptions; Rusty is featured on the <a href="https://www.bluey.tv/play/lets-play-app/">official app page</a>; Jean-Luc and Buddy have named <a href="https://www.youtube.com/watch?v=qsobie4NdzQ">camping</a> and <a href="https://www.youtube.com/watch?v=CyxMOBrzszs">playground</a> announcements; Frisky and Rad appear in <a href="https://www.bluey.tv/blog/the-sign-arrives-on-bluey-lets-play/">The Sign update</a>. R7 shows the full-body tray's variety of body sizes and silhouettes. It is only one visible section, not proof of the complete roster.</p>
+<p><strong>Community-reported additional roster leads:</strong> Muffin, Socks, Stripe, Trixie, Nana, Bob, Grandad; Chloe, Coco, Indy, Mackenzie, Honey, Snickers, Winton, Lila, Missy, Jack, the Terriers, Mia, Pretzel, Pom Pom, Dusty; Lucky, Pat, Janelle, Chucky; Calypso, Mrs. Retriever and Doreen. These require version-specific in-app/primary confirmation before being labeled the complete current commercial-game cast. Entries marked “coming soon” in community pages are excluded from this list. <a href="https://blueypedia.fandom.com/wiki/Bluey%3A_Let%27s_Play%21">Community character inventory</a>.</p>
+<p>Our own requested roster remains defined by goal-sheet section 4 and the <a href="bluey-research/character-references.json">official character reference catalog</a>. Keep its full scope; the commercial app's free/paid selection does not determine which characters the family can eventually choose.</p>
+<p>For each character, author a reference sheet containing standing front/three-quarter and side poses, seated silhouette, limb lengths, ears, muzzle, color regions, eyes/mouth variants, feet and both hand attachment points. Test the same seat, cup and swing with a short child, tall adult and a distinct body shape. A universal stretch of Bluey's rig will not establish the right silhouettes for the whole cast. Outfit/prop overlays need explicit layer order and per-rig attachment offsets.</p>
+<h2 id="18-characterobject-interaction-specification">18. Character–object interaction specification</h2>
+<p><strong>Explicit user priority:</strong> the characters must actually use the world—particularly trampoline jumping, sitting and dancing. This section specifies our behavior, taking the verified reference categories as the basis. The entry poses, timing, slots and multiplayer rules below are our proposed design, not reverse-engineered Budge code.</p>
+<p>Every supported interaction needs five pieces: a clear trigger, a valid place for the character, the correct pose, visible/audible feedback and a forgiving exit. A standing character translated onto a chair, or a rigid cutout moved up and down, is insufficient.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interaction</th>
+<th>Trigger and character response</th>
+<th>Exit and edge cases to prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sit on chair/bench/cushion</strong></td>
+<td>Tap the seat to approach and sit; Simple Play may allow direct placement of the local avatar. Bend legs, align hips to the seat, settle body weight and place arms sensibly. Support a quiet seated idle and holding a small item.</td>
+<td>Tap ground/use exit to stand beside the seat. Different body sizes fit; front furniture hides correct parts; one seat cannot acquire two owners.</td>
+</tr>
+<tr>
+<td><strong>Jump on trampoline</strong></td>
+<td>Enter through an obvious equipment target; settle on the mat, crouch, rise, tuck/extend slightly, land with compression, then repeat. Mat reaction and shadow follow the bounce. Arms, ears and expression support the action.</td>
+<td>Exit to a clear ground anchor; no fall through the net, airborne stuck pose or repeated gravity impulse after reopening a menu. Multiple users need authored spaces and a clear capacity.</td>
+</tr>
+<tr>
+<td><strong>Dance</strong></td>
+<td><strong>User-requested automatic chain:</strong> turn the radio on → music plays → nearby idle characters dance, with arms, feet, body and facial expression. No separate dance button is required. Include at least a side-step, arm-up bounce and turn/pose in the first motion set.</td>
+<td>Radio off ends the loop and returns to idle. Walking away, picking up a prop or starting another action naturally overrides dancing. Opening the tray does not stop the sibling's music/game.</td>
+</tr>
+<tr>
+<td><strong>Musical statues</strong></td>
+<td>Optional dance game: music phase → freeze phase → playful reaction. A visible music/freeze picture supports muted play. Joining late starts from the current phase.</td>
+<td>Leave freely; avoid punishment that removes a child from play. A disconnected player continues a separate local activity without replaying it into the server.</td>
+</tr>
+<tr>
+<td><strong>Swing</strong></td>
+<td>Sit at an authored seat, hands align with ropes, legs change with the arc and seat/character travel together.</td>
+<td>Ease to a safe exit; character switch retains occupancy and correct new pose. A departing client releases only its own seat.</td>
+</tr>
+<tr>
+<td><strong>Slide</strong></td>
+<td>Enter at an accessible start, use a sitting pose along an authored route and react at the bottom.</td>
+<td>Finish at a clear landing point; a second entrant cannot overlap an occupied narrow slot.</td>
+</tr>
+<tr>
+<td><strong>Seesaw</strong></td>
+<td>Seat character at one end; legs/arms follow the support and the beam moves within a limited arc.</td>
+<td>Works solo with gentle assistance or an NPC; joining/leaving changes balance smoothly.</td>
+</tr>
+<tr>
+<td><strong>Swim/splash/bath</strong></td>
+<td>Place character in a valid shallow play zone; lower body is covered by the front water layer; arms and expression respond to paddling/splashing.</td>
+<td>Easy exit; do not replace ordinary body sprites permanently with the water pose.</td>
+</tr>
+<tr>
+<td><strong>Hold/carry/hand over</strong></td>
+<td>Hand reaches toward target, object attaches at the correct point and the carry pose blends with walking. Handover transfers the same object after authority accepts it.</td>
+<td>Switching/facing never duplicates or detaches the prop; incompatible activities settle it safely.</td>
+</tr>
+<tr>
+<td><strong>Pour/water</strong></td>
+<td>Grip container, raise/tilt toward a valid target, show stream from the spout and reduce stored contents consistently with the action.</td>
+<td>Cancel stops the stream; empty container visibly behaves differently; one command cannot pour twice after retry.</td>
+</tr>
+<tr>
+<td><strong>Eat/drink/serve</strong></td>
+<td>Object reaches mouth/table target; character briefly looks/reacts and the food/container changes appropriately. Support seated serving.</td>
+<td>Keep dish identity and remaining contents; a canceled or rejected action cannot consume food locally only.</td>
+</tr>
+<tr>
+<td><strong>Use tools/cook/clean</strong></td>
+<td>Hands/tool align with the work surface; show mixing, wiping, turning or gripping rather than just a generic wave.</td>
+<td>Tool remains owned by one player, surface state stays valid and creations survive cleanup/return.</td>
+</tr>
+<tr>
+<td><strong>Dress-up and hair styling</strong></td>
+<td>Visible accessory/style change preserves face/body readability through supported poses and travel.</td>
+<td>Reversible choices, correct layer order, and no accidental profile or room-ownership change.</td>
+</tr>
+<tr>
+<td><strong>Read/rest/pretend hide</strong></td>
+<td>Reading pose holds a book; resting uses the correct furniture pose; hiding uses a defined concealment slot and local role feedback. These are retained project features, not all verified commercial-app behaviors.</td>
+<td>Exit is always reachable; do not reveal a hiding child through an inappropriate label or force siblings into a local media screen.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="a-shared-interaction-lifecycle">A shared interaction lifecycle</h3>
+<p>Use <strong>available → reserved → entering → using → exiting → available</strong> for equipment slots. Character presentation follows <strong>idle/walk → approach → entry pose → active loop → exit pose → idle</strong>. Not every object needs an approach animation; Simple Play can use a short direct-placement transition. Both input modes converge on the same validated interaction.</p>
+<p>Keep the character's stable player root and object identity. Store interaction kind, object/slot ID, phase and authoritative start time where shared state is required; keep camera easing and purely cosmetic blinks local. Render peers from the accepted state, rather than networking every limb transform. This is a proposed boundary for this project, not evidence of Budge's engine architecture.</p>
+<p>Apply character switching at a defined transition or swap to an equivalent pose while retaining the occupied slot. A seat interaction can preserve a held cup; a ride that requires empty hands should visibly place an incompatible item at a safe reachable anchor using one validated transaction. Do not silently delete it or attach it to both the hand and furniture.</p>
+<p>For shared equipment, test two players asking for the same seat, changing character during use, a player leaving while another continues, and delayed/repeated commands. For all interactions, test cancel, background/lock, travel, save/reopen and server loss. Restore to a valid phase or safe idle; never restore an airborne or half-attached invalid pose merely because a transient animation frame was saved.</p>
+<h3 id="the-first-interaction-proof">The first interaction proof</h3>
+<p>After the navigation shell and required state contracts, build one <strong>seating + trampoline + music corner</strong> in the representative scene. Use Bluey and Bingo with three clear affordances: sit, bounce and dance. Capture entry, active use, character switch and exit for each. Include a second client doing a different activity, a shared-seat conflict and an offline reopen. This is an integrated milestone, not three unrelated animation buttons in a workshop.</p>
+<p>Acceptance: feet and hands make contact; body silhouette changes appropriately; foreground equipment is correct; the activity can be left without reading; a sibling keeps playing; saved objects remain; animation looks natural to the user on the older iPad. Exact clip durations and easing are tuning work and have not been measured from the commercial app.</p>
+<h2 id="19-itemitem-interactions-containers-and-shed-storage">19. Item–item interactions, containers and shed storage</h2>
+<p><strong>Additional explicit user requirement:</strong> objects must interact with other objects, including putting things in the shed. Treat storage and combinations as part of the base playset, alongside character interactions. R5 establishes the shed's appearance; it does not establish its internal capacity, door behavior or save semantics. Searches did not locate a primary description of those specific shed mechanics. Budge directly documents stacking in its <a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094826-how-to-play-">play instructions</a> and compatible combinations in its <a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094827-how-do-i-make-recipes-">recipe instructions</a>. The more detailed storage behavior below is our required design, not a claim about a verified commercial-app implementation.</p>
+<h3 id="what-a-child-should-be-able-to-do">What a child should be able to do</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Object meets object</th>
+<th>Expected behavior in our game</th>
+<th>Feedback and persistence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Toy/tool → open shed</td>
+<td>Place it on an interior shelf, hook, bin or clear floor area</td>
+<td>Highlight the valid destination; show the object in place; retain it after closing and reopening</td>
+</tr>
+<tr>
+<td>Toy → basket/toy box</td>
+<td>Put in, take out, and move the container where it is portable</td>
+<td>Contents remain the same objects; visible contents or a simple picture peek helps retrieval</td>
+</tr>
+<tr>
+<td>Small object → drawer/cupboard</td>
+<td>Open, store, close and retrieve</td>
+<td>Front panel hides contents visually without deleting them; no need for a text inventory</td>
+</tr>
+<tr>
+<td>Food → plate/tray</td>
+<td>Sit on its surface and travel with it</td>
+<td>Food retains its recipe/decoration; plate remains a separate object</td>
+</tr>
+<tr>
+<td>Cup → table/shelf</td>
+<td>Snap onto a supported surface</td>
+<td>Correct foreground/depth; contents remain with the cup</td>
+</tr>
+<tr>
+<td>Water source → bucket/can/cup</td>
+<td>Fill only compatible containers</td>
+<td>Level changes, capacity limits and overflow behavior are clear and consistent</td>
+</tr>
+<tr>
+<td>Full container → plant/basin/another container</td>
+<td>Transfer a bounded quantity to the target</td>
+<td>Visible pour; conserve contents except for an explicitly modeled use/spill</td>
+</tr>
+<tr>
+<td>Ingredient → ingredient/appliance</td>
+<td>Combine or process when compatible</td>
+<td>Show a changed result or cooking state; unsupported pairings remain usable separately</td>
+</tr>
+<tr>
+<td>Block/cushion → compatible support</td>
+<td>Stack into a stable arrangement</td>
+<td>Show a valid landing position; moving a support resolves its dependents predictably</td>
+</tr>
+<tr>
+<td>Sand/water → mould</td>
+<td>Fill, shape and reveal a creation</td>
+<td>Creation has its own saved identity and can be decorated</td>
+</tr>
+<tr>
+<td>Sponge/cloth → washable mess/item</td>
+<td>Change its dirty/wet state</td>
+<td>Visible wipe/clean response; do not erase unrelated decoration or a saved creation</td>
+</tr>
+<tr>
+<td>Seed → soil/pot; water → planted pot</td>
+<td>Establish and grow a plant</td>
+<td>Pot, plant and growth remain related when moved or stored</td>
+</tr>
+<tr>
+<td>Loose objects → wagon/cart</td>
+<td>Load cargo and move it together</td>
+<td>Cargo rides visibly within bounds; exit/unload never duplicates it</td>
+</tr>
+<tr>
+<td>Gift/decorated box → shelf or storage</td>
+<td>Store the intact decorated object</td>
+<td>Wrapping, contents and ownership remain; automatic tidying cannot flatten it into a generic box</td>
+</tr>
+</tbody>
+</table></div>
+<p>These are capability families. The final game should apply them to the objects that visibly support them, rather than promise that every prop combines with every other prop. Unsupported placements gently return to the last valid surface or settle on safe ground. Useful rejection feedback is a picture/brief motion, not an error message.</p>
+<h3 id="the-shed-experience">The shed experience</h3>
+<p>The shed has an obvious door handle. Opening it reveals a readable interior through an authored cutaway or close-up. A child drags a tool or toy toward a visible shelf, hook, basket or floor target, sees a generous highlight, and releases it into place. A valid drop visibly completes; closing the door hides the stored object behind the door artwork. Reopening shows the same object and contents, and it can be dragged back out.</p>
+<p>Use clear storage zones: a tool hook, watering shelf, loose-toy basket and a few broad floor positions. Keep the number of visible slots manageable. This is a proposed first layout, not a reproduction of an unseen Budge interior. A closed shed rejects a drop against its exterior unless a clearly drawn opening is intended. Do not accept an object behind opaque artwork without showing where it went.</p>
+<p>The first proof should place the watering can and a loose toy inside, close the shed, visit Creek and return, then restart the app and retrieve them. The can retains its water. A second connected player sees the accepted storage change and can take an available shared item. The device's private offline shed stays separate from the connected server shed on rejoin.</p>
+<h3 id="save-and-interaction-contract">Save and interaction contract</h3>
+<p>Each object needs a stable ID, type/capabilities, owner/return category, contents/state and one current location. A location can be world ground, a surface attachment, a container slot or a player's hand. <strong>One item has one parent/location at a time.</strong> Moving it into the shed changes that relation; it does not spawn a second copy and hide the first.</p>
+<p>A container supplies compatible slots or a bounded interior region, capacity and an open/closed interaction state. Its contents retain their individual IDs and state. A carried basket moves its contents together. A fixed shed does not become portable simply because it uses the same content model. Container contents inherit the container's area through their attachment, rather than retaining contradictory world coordinates in another area.</p>
+<p>Prevent containment cycles: no basket inside itself or inside one of its descendants. Count nested contents toward loose-prop/loan limits; a box must not bypass the rules by enclosing many borrowed tools. For a full or incompatible container, keep the rejected item reachable and unchanged. If an open/close transition races with a drop, one authoritative order determines whether the placement succeeded, with clear feedback to both clients.</p>
+<p>Stacking is a support relationship, not necessarily a container. A plate supports food; a table supports the plate. Removing the support must either move the supported set or gently settle it according to that object's defined behavior. Keep this predictable and use authored snapping for the preschool base experience, rather than uncontrolled piles of physics bodies.</p>
+<p>Store borrowed tools under the existing return policy. Before automatically returning a borrowed carrier, preserve any personal/created contents in a safe reachable place. Personal toys, decorated food and saved creations are protected. Closing a drawer, leaving an area or a station reset never means “delete everything inside.” Put explicit destructive reset controls in the parent area, as already required by the goal sheet.</p>
+<h3 id="shared-play-and-acceptance-cases">Shared-play and acceptance cases</h3>
+<ol>
+<li>Two players try to put the same item in different containers: one placement wins; both see one object.</li>
+<li>A player removes an item while another closes the shed: the accepted result is visible and recoverable, with no stuck hand or hidden duplicate.</li>
+<li>A filled container or decorated creation is stored, saved, reopened and retrieved with its contents intact.</li>
+<li>A portable container crosses an area boundary with its permitted contents; station-only tools follow the explicit travel/return policy.</li>
+<li>A blocked/full/closed target rejects safely. Nested containers cannot form cycles or evade stock limits.</li>
+<li>A borrowed carrier returns while holding personal work: the work survives and remains easy to find.</li>
+<li>Backgrounding, lost acknowledgement and repeated commands cannot perform the move or recipe twice. Offline storage changes remain private after reconnecting.</li>
+</ol>
+<p>Add the shed storage proof to the same representative scene as sitting, trampoline jumping and dancing. This connects <strong>character ↔ object</strong>, <strong>object ↔ object</strong> and <strong>object ↔ storage</strong> in one usable playset. Goal-sheet sections 32, 50 and 51 continue to govern ownership, travel, returns and protected creations.</p>
+<h2 id="20-sound-expression-and-pace">20. Sound, expression and pace</h2>
+<h3 id="radio-on-music-automatic-dancing">Radio on → music → automatic dancing</h3>
+<p><strong>The user explicitly requested this causal chain.</strong> Turning on a radio starts its music and prompts nearby idle characters to dance automatically. The radio shows an active state and gentle music-note feedback. The character responds through animated steps, arm poses, body motion and expression; it does not remain a standing cutout while only notes animate.</p>
+<p>Turning the radio off ends the music and eases dancing characters back to idle. Walking, leaving the music area or deliberately starting another activity takes priority over the dance; preserve the child's control. Do not interrupt an occupied swing, seated meal, hidden role, book/TV screen or an active item drag just because another player starts music. Once free and nearby, a character can join naturally. The exact hearing/dance range is a tuning value to test with the children.</p>
+<p>All connected players in the area see the same radio on/off state; only clients near that source mix its sound. Starting or stopping another radio must not leave the first radio's dancers permanently stuck or cause several songs to overwhelm the scene. Begin with one active source per small activity area and an explicit source association for its reactions. Other areas retain their own music and activities. Muting a device changes that device's audio output, not the shared radio state or visual dancing.</p>
+<p>Character switching keeps the same player and activity context, but selects the new character's dance clips and attachments. Backgrounding stops local audio through the normal lifecycle path; reopening uses the current valid shared or private world state. Persist the radio's meaningful on/off/track choice with its world, while treating a temporary dance pose as presentation that can safely re-enter or settle on load. A repeated radio command must not restart the track or multiply dance requests.</p>
+<p>Acceptance: radio on starts music and Bluey/Bingo dancing without a second command; radio off stops both; walking overrides the dance; returning to an active radio allows idle participation; a sibling already using a tool is uninterrupted; two clients agree on the source state; mute, character switching, save/reopen and offline/rejoin leave no stuck pose or duplicate audio. Musical statues remains a separate optional activity built on top of this ordinary radio behavior.</p>
+<p>The <a href="https://play.google.com/store/apps/details?id=com.budgestudios.googleplay.BlueyBLU&amp;hl=en_GB">developer listing</a> identifies music as part of the app, and the <a href="https://www.youtube.com/watch?v=nhlSgf31Qp0">lounge announcement</a> identifies musical statues. The newer <a href="https://www.bluey.tv/blog/whats-new-lets-play/">BBQ description</a> explicitly ties feeding to character reactions. These support responsive sound/expression as part of the play loop; they do not establish every voice actor, clip or audio-mix setting.</p>
+<p>For our game, build an audio/event sheet beside each interaction: pickup tap, seat settle, trampoline landing, splash, music start/stop, successful combination and short character reaction. Cap repeated effects, vary a few gentle reactions and prevent four players from producing an overwhelming chorus. Let speech briefly lower music, retain separate volume controls and provide visual equivalents. A muted device still shows water, success, rejection and music/freeze state.</p>
+<p>Use reviewed installed audio under the existing source/provenance plan. No online generation is required during ordinary play. New speech, score or recordings are separate assets to prepare; this research did not extract the commercial app's audio. Keep quiet idles and pauses so the world can be active without every object constantly moving or talking.</p>
+<h2 id="21-coverage-register-and-observation-gaps">21. Coverage register and observation gaps</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Area of research</th>
+<th>Covered here</th>
+<th>Remaining uncertainty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visual style and scene composition</td>
+<td>Eight actual user references, layers, proportions, palette and continuity</td>
+<td>Additional room-specific style sheets and motion footage</td>
+</tr>
+<tr>
+<td>Menus and navigation</td>
+<td>Explicit world-bubble and circle/tray/arrow requirements</td>
+<td>Exact commercial-app scrolling inertia and gesture thresholds</td>
+</tr>
+<tr>
+<td>Locations</td>
+<td>Broad primary-source catalog plus separately labeled leads</td>
+<td>Exhaustive installed-version room/seasonal inventory</td>
+</tr>
+<tr>
+<td>Games and object combinations</td>
+<td>Major documented play families and mechanisms</td>
+<td>Every prop, hidden combination and recipe count</td>
+</tr>
+<tr>
+<td>Item storage and nested contents</td>
+<td>Explicit shed/container/support model and shared/save acceptance cases</td>
+<td>Budge's specific shed interior, capacities and per-container persistence</td>
+</tr>
+<tr>
+<td>Characters</td>
+<td>Primary-confirmed examples, community leads and existing project roster</td>
+<td>Complete current commercial roster and every costume variant</td>
+</tr>
+<tr>
+<td>Character–object response</td>
+<td>Verified use categories plus detailed sit/bounce/dance/ride/hold/use design</td>
+<td>Measured animation timing, every reaction and undocumented affordance</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Music/reaction evidence and our required event/mixing plan</td>
+<td>Exact clips, voice coverage and commercial mixing implementation</td>
+</tr>
+<tr>
+<td>Saves/offline</td>
+<td>General Budge policy and explicit separate family-game contracts</td>
+<td>Per-item commercial reset/persistence rules</td>
+</tr>
+<tr>
+<td>Family upgrade</td>
+<td>Existing goals mapped to the reference base</td>
+<td>Actual implementation and physical-device acceptance</td>
+</tr>
+</tbody>
+</table></div>
+<p>This is a comprehensive design/research pass across the major feature families, not a claim of exhaustive hands-on verification of every item in a changing commercial app. Specific uncertainties are recorded so later observation can resolve them without replacing known facts with guesses.</p>
+<h2 id="22-delivery-status">22. Delivery status</h2>
+<p>Completed here: source-backed research across locations, cast, activities, art, menus, sound and interaction behavior; eight-image reference archive; detailed sit/bounce/dance and other character–object contracts; item–item combinations and shed/container storage rules; and alignment of the maintained goal sheet/build queue. The picture menu and tray are the next bounded implementation task. Client 101 and server/helper 91 remain the last verified deployed versions; this research pass did not replace the running family game.</p></main></body></html>

@@ -6,7 +6,7 @@
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
 .hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
 .note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
-.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;background:radial-gradient(circle at center,#fff 0 28%,#eef3ee 28% 29%,transparent 29%)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid transparent;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;border-radius:24px;background:radial-gradient(ellipse at 25% 45%,#ffffffb5 0 15%,transparent 16%),radial-gradient(ellipse at 75% 50%,#ffffffb5 0 20%,transparent 21%),linear-gradient(#62c0ed,#b8edfa)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid white;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
 .gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
 .report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
 @media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
@@ -64,6 +64,10 @@
 <p><strong>Purpose:</strong> build the game in a deliberate order, with a foundation that supports the complete Family Playset goal sheet. Start with small, testable systems; prove the difficult requirements; finish a representative playable area; then produce content in batches. A phase is complete because its acceptance checks passed, not because its scripts or pictures exist.</p>
 <p><strong>Current position:</strong> G3-REC-05 physical acceptance is pending for prepared 98. Older iPad 95 passed smoother offline walking and offline cold reopening. Last deployed server/helper is 91; no live availability check occurred in this audit. G1/G2/G3 remain partial. G4 is retired; G5 rooms/items and G6–G7 game content remain. <a href="current-decisions.md">Current decisions</a> and <a href="#19-implementation-audit-and-remaining-work">all 35 feature statuses</a>.</p>
 <p><a href="bluey-game-research-2026-09-23.html">Open the feature goal sheet</a> · <a href="family-playset-package-research-2026-09-23.html">Package research</a> · <a href="family-playset-technical-research-2026-09-23.html">Technical evidence</a> · <a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a></p>
+<p><strong>Visual/menu target, September 25:</strong> <a href="bluey-lets-play-reference-study-2026-09-25.html">Bluey: Let’s Play! reference study</a> incorporates the user’s eight screenshots and official gameplay sources. The required presentation is illustrated panoramic scenes, sky/cloud world bubbles and the family-circle/full-body-tray/down-arrow character control. This replaces older wheel/drawer proposals. The next visible task is the navigation shell; G5 room rules already started remain a development checkpoint, not a deployed feature.</p>
+<p><strong>Base and upgrade sequence:</strong> the user wants the Bluey: Let’s Play! experience as the base for a private family game, then the additional features already in the goal sheet. The <a href="bluey-lets-play-reference-study-2026-09-25.html">expanded reference study</a> covers the broader location/cast/game catalog and audio. After the menu and required state work, the first interaction scene must include <strong>sitting, trampoline jumping and dancing</strong>, with proper entry/use/exit poses, object attachment, cancellation and shared-play behavior. Keep them in the G6 representative slice, not merely as isolated animation buttons. No public publishing or monetization work is planned.</p>
+<p><strong>Item–item scope:</strong> include <a href="bluey-lets-play-reference-study-2026-09-25.html#19-itemitem-interactions-containers-and-shed-storage">shed/container storage and combinations</a> in G5 contracts and the G6 representative scene. Prove storing a filled can and a toy, closing/reopening, visiting Creek, save/restart and shared retrieval without duplication or loss. A decorated/filled object keeps its state; borrowed-item cleanup protects personal contents.</p>
+<p><strong>Explicit radio behavior:</strong> radio on → music plays → nearby idle characters automatically dance; radio off → music stops and characters settle. Walking or starting another action overrides dancing, and busy siblings keep their activity. Preserve mute, character-switch, save/reopen and shared/offline rules. This is ordinary object-driven free play; musical statues is an optional game layered on top. <a href="bluey-lets-play-reference-study-2026-09-25.html#20-sound-expression-and-pace">Detailed reaction and acceptance contract</a>.</p>
 <h2 id="1-two-documents-with-different-jobs">1. Two documents with different jobs</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
 <thead>
@@ -448,7 +452,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <h2 id="9-first-implementation-work-queue">9. First implementation work queue</h2>
 <p><strong>Current queue, updated September 25.</strong> The original startup work is largely present: separate project/repository, recorded tool versions, stable app identities, named build profiles, repeatable builders, native device launches, and scoped save/update proofs. Automatic renewal and independent backup/restore remain open. Section 19 separates completed checks from full gate completion; older implementation records retain their dated evidence.</p>
 <p>Complete one bounded task at a time. Each row below will take multiple tasks; it is a dependency order, not permission to start them all together.</p>
-<p><strong>Completed user-directed correction:</strong> build 83 on the PC server and Samsung includes the wider phone floor and the garden's idle/repeat timers. Native Android layout and save/admission checks passed; iPad 9/iPhone remain 79 and still need the cue/layout update; iPad 7 now runs 95. This advances a narrow part of ITEM-03; the full G5 world policy remains in sequence. <a href="implementation/g3-phone-layout-resets-2026-09-24.html">Record</a>.</p>
+<p><strong>Completed user-directed corrections:</strong> all four clients now run 101, with Bluey/Bingo and restored solo Creek navigation. The original family server/helper remains 91. In-place saves and enrollment were retained. The user accepts the Android character prototype but notes stiffness. Focused physical continuity and sustained performance remain open. <a href="implementation/character-phone-switch-2026-09-25.html">Delivery record</a>.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
 <thead>
 <tr>
@@ -459,43 +463,38 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 </thead>
 <tbody>
 <tr>
-<td><strong>Independent track while devices wait</strong></td>
-<td><strong>ART-PREP-02 Unity character view</strong></td>
-<td>Review the corrected Bluey/Bingo native preview against the research. Idle/walk/wave/carry, facing, hand attachment, switching and depth checks pass; visual acceptance remains open. Keep authority and saves unchanged.</td>
-</tr>
-<tr>
-<td><strong>1 — active bounded task</strong></td>
-<td><strong>G3-REC-05: repair and qualify offline recovery/movement (NET-02 / AUTO-01 / JOIN-01).</strong></td>
-<td>95 smooth walking and offline cold reopening pass on iPad 7. <strong>98 transition repair is implemented and passes Windows/emulator tests; Apple native compile passes.</strong> Finish local Mac signing, verify/install 98 in place, qualify visible-state continuity on iPad 7, then update iPad 9 and phones. Keep repeated off/on, held input/menu, cold reopen/reunion and sustained movement as scoped acceptance checks. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Results</a>.</td>
+<td><strong>1 — next bounded implementation</strong></td>
+<td><strong>NAV-REF-01: reference-led world and character menus (CHAR-01, WORLD-01, WORLD-02; G2/G6 presentation)</strong></td>
+<td>Follow the user’s <a href="bluey-lets-play-reference-study-2026-09-25.html">bubble/circle/tray/arrow references</a>; wire existing Garden/Creek travel and Bluey/Bingo switching, retain held props and player identity, cancel menu touches safely, and prove a sibling continues. Capture phone and 4:3 layouts; do not present unbuilt worlds as usable.</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Complete G3 reliability and the remaining mixed-device matrix, one task at a time</td>
-<td>Recovery/supervision is already enabled on helper 91. Complete measured sustained/device runs, phone lifecycle/ownership/travel, per-device solo coverage, server-absent initial joining, parent pairing and route changes. Both iPads already pass scoped movement/bucket/travel/rejoin, and all four devices were concurrently admitted; do not repeat those as unstarted work. <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">Current checklist</a>.</td>
+<td>G5 persistent room/creation/item integration</td>
+<td>Preserve the initial tested bedroom model on the development branch. Finish client, network/content-version and separate-save adapters, then prove owned rooms, visits, recovery and private/server separation. No offline imports.</td>
 </tr>
 <tr>
 <td>3</td>
-<td>ART-PREP-02 isolated character animation, then G5 contracts</td>
-<td>Art can proceed while device qualification waits. Prepare versioned rooms, personal creations, reusable containers and return policies; no device-host implementation or offline merge engine.</td>
+<td>G5 durable personal world and item policies</td>
+<td>Protected creations, portable items, reusable containers, idle returns and station stock. Test repeated actions and save/restart behavior; initial bedroom rules alone do not complete these policies.</td>
 </tr>
 <tr>
 <td>4</td>
-<td>G5 durable personal world and item policies</td>
-<td>Two owned bedrooms, saved creations, containers, idle returns and station stock. Connected edits sync through the server; private edits remain local. Test server transactions, repeated actions, protected work and separate save namespaces.</td>
+<td>G6 finish one representative slice</td>
+<td>Apply the reference scene scale, continuous camera and furniture layers; prove a seating/trampoline/music corner (radio automatically triggers dancing) plus usable shed storage, with expressive sit/bounce/dance transitions and picture-led object chains. Keep the required NPC, media, speech and assistance examples. Validate with children and devices before expanding.</td>
 </tr>
 <tr>
 <td>5</td>
-<td>G6 finish one representative slice</td>
-<td>Establish content definitions, authored floor/occlusion, character rigs, picture menus/assistance, activities, NPCs, media and reviewed speech. Prove the small integrated examples in section 8 with both children before copying them into all worlds.</td>
+<td>Focused G3/device qualification at appropriate device-test windows</td>
+<td>Build 101 includes the 98 continuity repair. Verify physical outage/rejoin, repeated off/on, held input/menu, cold reopen/reunion and sustained motion. Preserve the already-passed admission/update evidence.</td>
 </tr>
 <tr>
 <td>6</td>
 <td>G7 batches A–F, then G8 family release</td>
-<td>Expand the approved content in section 12; close device, renewal, update, offline and recovery checks. Keep missing content visible until its acceptance passes.</td>
+<td>Expand the six-world/full-cast content in section 12; close device, renewal, update, offline and recovery checks. No G4 gate exists.</td>
 </tr>
 </tbody>
 </table></div>
-<p><strong>Foundation checks to close alongside that sequence:</strong> complete free renewal on both iPads and observe an actual unattended refresh; choose an independent backup destination and prove a restore; finish native Android 16 KB qualification; complete remaining current-build phone acceptance; measure sustained frame times/memory on the A10. Both phone updates to 79 have passed. G2 also needs structured child usability, assistance styles and authored movement/interaction contracts before its gate closes. The user reports children are playing; that alone is not an observed usability study. These are tracked work, not a reason to repeat already-passed smoke checks every session.</p>
+<p><strong>Foundation checks to close alongside that sequence:</strong> complete free renewal on both iPads and observe an actual unattended refresh; choose an independent backup destination and prove a restore; finish native Android 16 KB qualification; complete remaining current-build phone acceptance; measure sustained frame times/memory on the A10. Both phones now run 101 with retained saves and enrollment. G2 also needs structured child usability, assistance styles and authored movement/interaction contracts before its gate closes. The user reports children are playing; that alone is not an observed usability study. These are tracked work, not a reason to repeat already-passed smoke checks every session.</p>
 <p><strong>G3-OPS-01 result:</strong> the parent page, safe lifecycle actions and isolated acceptance are complete within scope. It uses fresh native observations and validated process identity, verifies the checkpoint checksum, rejects duplicate starts, and has an authoritative occupied-stop guard. The real dashboard monitors existing 83 without stopping it. <a href="implementation/g3-parent-controls-2026-09-24.html">Implementation and test record</a>.</p>
 <p><strong>Deployment follow-up, September 25:</strong> server 83 → 91 completed in an empty session with a verified protected backup and exact executable/local-network permission. Every original world field, four player records and ten items were preserved. The old helper was deliberately retired; helper 91 selected the same game instance, made a verified backup and enabled recovery with healthy status. Actual sign-in startup remains Off; no live crash or OS sign-in/reboot was injected. <a href="implementation/evidence/ipad91-2026-09-25/server91-deployment.json">Server</a> · <a href="implementation/evidence/ipad91-2026-09-25/parent91-activation.json">Helper</a>.</p>
 <p><strong>G3-OPS-02 result:</strong> same-user Windows backups, exact restore/rollback, missing-directory reconstruction and fail-closed interrupted recovery are implemented and qualified in a separate four-player world. The actual 83 world was backed up without stopping it. Independent storage and portable credentials remain unqualified. <a href="implementation/g3-server-recovery-2026-09-24.html">Recovery record</a>.</p>
@@ -651,7 +650,7 @@ Status: pending
 </tr>
 </tbody>
 </table></div>
-<p>Necessary characters enter earlier batches as needed; G7-E closes the remaining roster gaps rather than withholding character choice until the end. The six-world wheel remains extensible from G2, but playable builds should not present broken entry buttons to content that does not exist yet.</p>
+<p>Necessary characters enter earlier batches as needed; G7-E closes the remaining roster gaps rather than withholding character choice until the end. The six-world bubble browser remains extensible from G2, but playable builds should not present broken entry buttons to content that does not exist yet.</p>
 <p>Counts such as six dinosaur books, 20 dinosaur types and eight science stations are proposed production batches in the goal sheet. Track their approved scope explicitly. The 15 cooking variants and nine named imagination stories are concrete requested content. Do not inflate progress by counting the same fishing system in two places as two finished engines.</p>
 <h2 id="13-test-strategy-and-the-evidence-required">13. Test strategy and the evidence required</h2>
 <p>Use a small test pyramid adapted to this game's risks: many fast state-rule checks, fewer system integration checks, and targeted real-device sessions. Unity's Test Framework supports Edit/Play Mode tests; use the core version tied to the selected editor, not a separately guessed version from an old tutorial. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.test-framework.html">Unity 6.3 Test Framework</a></p>
@@ -923,7 +922,7 @@ Status: pending
 <td>Separate deployment proof; retain G5 private saves and offline solo; does not wait on every G7 activity</td>
 </tr>
 <tr>
-<td>Controls, menus, six-world wheel, speech and settings</td>
+<td>Controls, menus, six-world bubble browser, speech and settings</td>
 <td>G1–G2 shell/input; G6 usable presentation</td>
 <td>G7 complete content/language settings</td>
 </tr>
@@ -946,7 +945,7 @@ Status: pending
 </table></div>
 <p>The current tracker contains 35 top-level feature IDs. The coverage validator checks that all appear in this map. The full research includes additional detail, proposed counts and acceptance conditions; follow the linked goal-sheet sections when implementing each row rather than treating this summary as a replacement specification.</p>
 <h2 id="18-current-work-record-and-research-basis">18. Current work record and research basis</h2>
-<p><strong>Physical issue history and current qualification, September 25:</strong> the all-device report of frozen Wi-Fi-loss controls and choppy offline walking remains recorded. On iPad 7, 94 removed the long control wait, and 95 subsequently passed smoother walking and offline cold reopening. The user also identified a rewind to older state at the transition. <strong>98 repairs that separate rewind in Windows/emulator tests; no physical 98 install is claimed.</strong> Other devices still run their older builds. Keep G3-REC-05 open for retained updates and focused physical acceptance. <a href="implementation/evidence/ipad91-2026-09-25/all-device-offline-feedback.json">Original feedback</a> · <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Current results</a>.</p>
+<p><strong>Physical issue history and current qualification, September 25:</strong> 94 removed the long Wi-Fi-loss control wait and 95 passed smoother walking/offline cold reopening on iPad 7. The separate rewind repair from 98 passed Windows/emulator checks and is included in deployed client 101. All four clients now run 101; focused physical continuity and sustained play acceptance remain open. <a href="implementation/evidence/ipad91-2026-09-25/all-device-offline-feedback.json">Original feedback</a> · <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Engineering results</a> · <a href="implementation/character-phone-switch-2026-09-25.html">101 deployment</a>.</p>
 <p><strong>Current build summary:</strong> server/helper <strong>91</strong>; Samsung, iPad 7, iPad 9 and iPhone <strong>101</strong>. Windows travel/prior-save update/recovery, physical Android visuals, retained Apple updates, native runtime/enrollment and four-player server admission pass within their stated scopes. <a href="implementation/character-phone-switch-2026-09-25.html">Evidence</a>. G5, final character polish and release gates remain open.</p>
 <p><strong>Device priority:</strong> iPads first, Android second. The A2197 iPad 7 is the minimum performance baseline; A2602 iPad 9 is the other primary play device. Test core controls, layouts, media, saves and client/solo transitions on both. Android and iPhone testing remain part of the mixed-device acceptance gates.</p>
 <p><strong>Earlier solo-device milestone, 24 September (build 56):</strong> the user tried the two Windows player windows and reported positive feedback. The Mac has now compiled/signed <strong>solo garden 56</strong>, and the iPad 9 update from 20 → 56 passed with all original preferences retained. Physical layout, walking, watering, speech, joystick plus dragging, menu/screen-lock cancellation, remembered voice/movement settings and Wi-Fi-off solo play passed. Closing and reopening retained the complete garden snapshot exactly. The older iPad 7 now also runs the garden: repeated checks were reported successful, and an actual restart retained its entire save and preferences. Its separate app-inventory query has a recorded CoreDevice error. Child usability, sustained measured performance and additional feature checks remain open. See the <a href="implementation/ipad-garden-2026-09-24.md">iPad garden evidence</a> and <a href="implementation/return-home-checklist-2026-09-24.md">return-home checklist</a>. Mobile multiplayer was not in that 56 export; subsequent 79/83 family builds and mixed-device evidence are recorded below. G1/G2/G3 are not complete.</p>
@@ -972,7 +971,7 @@ Status: pending
 </tr>
 <tr>
 <td>Current research deliverable</td>
-<td>Focused September 25 review of Unity timing, networking, touch/lifecycle and mobile profiling documentation, plus native failure reproduction. <a href="implementation/g3-offline-recovery-and-motion-2026-09-25.html">Research</a>. The earlier all-55-chapter/35-goal audit remains at its <a href="implementation/evidence/plan-audit90-2026-09-25/audit.json">dated baseline</a>; it was not falsely reclassified as a new full-source audit.</td>
+<td><a href="bluey-lets-play-reference-study-2026-09-25.html">Bluey: Let’s Play! scene/menu/interaction study</a>, official sources and eight user images. Existing 55 chapters/35 feature IDs retained; no full-source or device requalification claimed.</td>
 </tr>
 <tr>
 <td>Current phase position</td>
@@ -980,7 +979,7 @@ Status: pending
 </tr>
 <tr>
 <td>Current bounded task</td>
-<td>Requested 101 client rollout complete. Finalize delivery evidence and check wireless iPhone reachability after cable removal; no device-host work.</td>
+<td>Research and plan alignment complete. NAV-REF-01 is next: picture world bubbles and family-circle/tray/arrow controls connected to current travel and character commands. G5 bedroom source is an incomplete development checkpoint.</td>
 </tr>
 <tr>
 <td>Latest completed engineering evidence</td>
@@ -988,7 +987,7 @@ Status: pending
 </tr>
 <tr>
 <td>Next bounded task</td>
-<td>G5 persistent room/creation/item contracts. Focused physical continuity/lifecycle and sustained performance checks remain on the user checklist; no offline imports.</td>
+<td>Complete NAV-REF-01, then finish G5 room/save/network integration before treating bedrooms as playable. Focused physical continuity/lifecycle remains on the user checklist; no offline imports.</td>
 </tr>
 <tr>
 <td>Package budget</td>
@@ -1384,8 +1383,8 @@ Status: pending
 </tr>
 <tr>
 <td><strong>ROOM-01</strong></td>
-<td><strong>Not built</strong></td>
-<td>Two child-owned layouts, connected updates/visits and non-destructive offline reunion. G5/G6/G7-A.</td>
+<td><strong>Development only:</strong> initial additive room/ownership/style/visitor rules have isolated tests; no client, network or continuation-save integration and no device build.</td>
+<td>Finish versioned integration, two-room UI/visits, connected updates, recovery and separate private saves. See the reference study for the screen direction. G5/G6/G7-A.</td>
 </tr>
 <tr>
 <td><strong>SECRET-01</strong></td>
@@ -1452,8 +1451,8 @@ Status: pending
 <td>Tap/joystick and drag work; Voice and movement preferences persist. Simple Play / Explore &amp; Stories, forgiving picture controls, per-child help and actual child playtests remain open.</td>
 </tr>
 <tr>
-<td><strong>Menu, settings and stage wheel</strong></td>
-<td>Prototype Menu exists. Main menu, six-circle destination picker, language/assistance/audio settings and parent setup are not finished. Avoid exposing unfinished worlds as working buttons.</td>
+<td><strong>Menu, settings and world bubbles</strong></td>
+<td>Prototype Menu exists. The user now requires the <a href="bluey-lets-play-reference-study-2026-09-25.html">sky/cloud world bubbles and family-circle/tray/down-arrow controls</a>. NAV-REF-01 is the next visible task. Preserve settings and parent setup; unfinished destinations must not look playable.</td>
 </tr>
 <tr>
 <td><strong>Six worlds</strong></td>

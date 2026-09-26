@@ -1,0 +1,94 @@
+{
+  "capturedBy": "user",
+  "referenceGame": "Budge Bluey: Let's Play!",
+  "references": [
+    {
+      "id": "R1",
+      "file": "r1-kitchen.jpg",
+      "originalFilename": "1-Screenshot_20260925_202727_Bluey-Lets-Play-.jpg",
+      "source": "User supplied in this chat on 2026-09-25",
+      "width": 1280,
+      "height": 591,
+      "bytes": 92459,
+      "sha256": "e16d22d9598b40d8b2ad9083bfc467c78c648627bffbf04cdf34bdb7906f0366",
+      "role": "Unmodified research reference; not a runtime game asset"
+    },
+    {
+      "id": "R2",
+      "file": "r2-veranda-tree.jpg",
+      "originalFilename": "2-Screenshot_20260925_202752_Bluey-Lets-Play-.jpg",
+      "source": "User supplied in this chat on 2026-09-25",
+      "width": 1280,
+      "height": 591,
+      "bytes": 92768,
+      "sha256": "e430d6f91a2de5687fc54dcaecaf6aa33d800d716331da7c7da942ff0ea7f95e",
+      "role": "Unmodified research reference; not a runtime game asset"
+    },
+    {
+      "id": "R3",
+      "file": "r3-trampoline-pool.jpg",
+      "originalFilename": "3-7323.jpg",
+      "source": "User supplied in this chat on 2026-09-25",
+      "width": 1280,
+      "height": 591,
+      "bytes": 75648,
+      "sha256": "4efa30af0951f632f69718975409ad690df3312d5dac6e7ef1a996c7b6845036",
+      "role": "Unmodified research reference; not a runtime game asset"
+    },
+    {
+      "id": "R4",
+      "file": "r4-tree-wedding.jpg",
+      "originalFilename": "4-7325.jpg",
+      "source": "User supplied in this chat on 2026-09-25",
+      "width": 1280,
+      "height": 591,
+      "bytes": 71170,
+      "sha256": "7df64b55cf2accda18cc8881668d4605dac6e3076b76e508a28689a06b5edca6",
+      "role": "Unmodified research reference; not a runtime game asset"
+    },
+    {
+      "id": "R5",
+      "file": "r5-shed.jpg",
+      "originalFilename": "5-7327.jpg",
+      "source": "User supplied in this chat on 2026-09-25",
+      "width": 1280,
+      "height": 591,
+      "bytes": 68756,
+      "sha256": "5f8c34f94ea218f3c24bb0b76e493632c4a5be23b4f3d1ef3a85a05937d10312",
+      "role": "Unmodified research reference; not a runtime game asset"
+    },
+    {
+      "id": "R6",
+      "file": "r6-world-menu.jpg",
+      "originalFilename": "1-7331.jpg",
+      "source": "User supplied in this chat on 2026-09-25",
+      "width": 1280,
+      "height": 591,
+      "bytes": 117822,
+      "sha256": "f16a8274e383306bba8a1f754c07749a15c21da4bb0493ac6ce09bba62e05b75",
+      "role": "Unmodified research reference; not a runtime game asset"
+    },
+    {
+      "id": "R7",
+      "file": "r7-character-tray.jpg",
+      "originalFilename": "2-7333.jpg",
+      "source": "User supplied in this chat on 2026-09-25",
+      "width": 1280,
+      "height": 591,
+      "bytes": 92846,
+      "sha256": "0d0f3a46f42c7707e7bcc47e2e1d359f6a8ec98bd29d8fa64cdeb3a75d9abf62",
+      "role": "Unmodified research reference; not a runtime game asset"
+    },
+    {
+      "id": "R8",
+      "file": "r8-character-circle.jpg",
+      "originalFilename": "3-7335.jpg",
+      "source": "User supplied in this chat on 2026-09-25",
+      "width": 1280,
+      "height": 591,
+      "bytes": 85475,
+      "sha256": "ba4a0d8c9702c40048af9a62ac52899ae3d347a05234b1e3282c4f0ebb8793f8",
+      "role": "Unmodified research reference; not a runtime game asset"
+    }
+  ]
+}

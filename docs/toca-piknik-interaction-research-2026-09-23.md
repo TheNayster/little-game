@@ -186,7 +186,7 @@ Do not promise that every object combines meaningfully with every other object. 
 
 ## 7. Six areas, with simple activities inside them
 
-Keep the six-location wheel, including Daycare. Every location contains a **small activity space** that can be the younger child's starting view.
+Keep the six main destinations, including Daycare. The user’s September 25 [Bluey: Let’s Play! screenshots](bluey-lets-play-reference-study-2026-09-25.html) now specify a sky/cloud picture-bubble browser and family-circle/tray/arrow character menu; these supersede the earlier wheel layout. Every location contains a **small activity space** that can be the younger child's starting view.
 
 | Location | Simple Play entry | Deeper activity in the same space |
 | --- | --- | --- |

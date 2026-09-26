@@ -1,0 +1,103 @@
+{
+  "researchedOn": "2026-09-25",
+  "report": "bluey-lets-play-reference-study-2026-09-25.md",
+  "sources": [
+    {
+      "url": "https://apps.apple.com/us/app/bluey-lets-play/id1669091583?platform=ipad",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://blueypedia.fandom.com/wiki/Bluey%3A_Let%27s_Play%21",
+      "kind": "community-inventory-lead"
+    },
+    {
+      "url": "https://budge-studios.fandom.com/wiki/Bluey%3A_Let%27s_Play%21",
+      "kind": "community-inventory-lead"
+    },
+    {
+      "url": "https://budgestudios.com/en/apps/detail/bluey-lets-play/",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094826-how-to-play-",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094827-how-do-i-make-recipes-",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://budgestudios.freshdesk.com/en/support/solutions/articles/12000107737-i-bought-a-new-device-how-do-i-transfer-my-progress-",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://budgestudios.freshdesk.com/en/support/solutions/articles/12000107738-does-the-app-require-an-internet-connection-to-play-",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://play.google.com/store/apps/details?id=com.budgestudios.googleplay.BlueyBLU&hl=en_GB",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://www.bluey.tv/blog/bluey-lets-play-mobile-app-is-available-now/",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://www.bluey.tv/blog/the-sign-arrives-on-bluey-lets-play/",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://www.bluey.tv/blog/whats-new-lets-play/",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://www.bluey.tv/play/lets-play-app/",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://www.copyright.gov/fair-use/more-info.html",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://www.copyright.gov/help/faq/faq-fairuse.html",
+      "kind": "primary-official-source"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=1-HqtdpF4wg",
+      "kind": "primary-publisher-trailer-description"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=55G9omaw37g",
+      "kind": "primary-publisher-trailer-description"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=CyxMOBrzszs",
+      "kind": "primary-publisher-trailer-description"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Ng4Un1A84po",
+      "kind": "primary-publisher-trailer-description"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=UQg6JjOaQ0w",
+      "kind": "primary-publisher-trailer-description"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Urs4BpC4mMU",
+      "kind": "primary-publisher-trailer-description"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=VppI1ZvNIZM",
+      "kind": "primary-publisher-trailer-description"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=nhlSgf31Qp0",
+      "kind": "primary-publisher-trailer-description"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=qsobie4NdzQ",
+      "kind": "primary-publisher-trailer-description"
+    }
+  ],
+  "limits": "Official trailer descriptions were inspected, not video frames. Community pages are inventory leads only. No commercial app binary/assets extracted."
+}

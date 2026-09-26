@@ -23,6 +23,18 @@ Keep both iPads as the primary devices and the older A10 iPad as the performance
 
 English comes first; Spanish remains planned. Ordinary play uses installed content and prerecorded speech, without a live AI service. AR is optional. Free packages come first; consider a purchase around $20 only for demonstrated benefit. Personal TV media stays out of Git. The unrelated Meeps game project stays separate.
 
+## Visual presentation and menus
+
+**Approved September 25 from eight user screenshots:** use Budge’s Bluey: Let’s Play! as the concrete scene and navigation reference. Main worlds use large circular scene thumbnails on a sky/cloud background. The bottom-left family portrait circle opens a light-blue full-body character tray with horizontal browsing and a large down-arrow close tab. This supersedes the rotating-wheel and small portrait-drawer proposals. [Reference study and acceptance](bluey-lets-play-reference-study-2026-09-25.html).
+
+Keep all six main worlds, including Creek. Room navigation and camera panning are local to the selecting player. Tapping a character changes that player’s avatar without changing profile, bedroom ownership, position or held item. Preserve both requested movement modes and four-device family play. Detailed illustrated panoramas, layered furniture and expressive action poses are required for the finished presentation; current prototype acceptance is not final scene/animation acceptance.
+
+**Further user clarification:** Bluey: Let’s Play! is the base experience for an expanded private family version. No public publishing or monetization is planned. Character–object behavior is explicit scope: proper sitting, trampoline jumping, dancing and other context-specific actions, with expressive entry/use/exit poses. The [expanded study](bluey-lets-play-reference-study-2026-09-25.html#18-characterobject-interaction-specification) maps locations, cast, games, sound, interactions and the family upgrades. Independent implementation and private use are not a legal guarantee; the study records the limited copyright guidance without treating it as a completed rights clearance.
+
+**Item storage clarification:** item–item play is explicit scope, including putting toys/tools in the shed, baskets, drawers and other compatible containers; placing/stacking objects and combining ingredients. Stored items retain identity, contents and creations after closing, travel and save/reopen, subject to the recorded borrowed-item return policy. [Storage contract](bluey-lets-play-reference-study-2026-09-25.html#19-itemitem-interactions-containers-and-shed-storage).
+
+**Explicit radio behavior:** radio on → music plays → nearby idle characters automatically dance; radio off → music stops and characters settle. Walking or starting another action overrides dancing, and busy siblings keep their activity. Preserve mute, character-switch, save/reopen and shared/offline rules. This is ordinary object-driven free play; musical statues is an optional game layered on top. [Detailed reaction and acceptance contract](bluey-lets-play-reference-study-2026-09-25.html#20-sound-expression-and-pace).
+
 ## Evidence and build order
 
 **Character correction, September 25:** after rejecting the generic pup, the user requested the corrected layered Bluey/Bingo artwork in the real game. On Android build **100** they reported it works great and looks great for a prototype, while noting stiff movement. Prototype appearance and integration are accepted; final animation polish and the complete roster remain open. Build **101** restores Garden/Creek navigation in ordinary solo and upgrades old saves additively. [Implementation and retained-state evidence](implementation/character-phone-switch-2026-09-25.html). Official references and editable source art remain required.
@@ -35,8 +47,9 @@ The installed project uses Unity **6000.3.24f1**, NGO **2.13.2**, Transport **2.
 
 1. Requested client **101** rollout is complete. Continue focused physical G3 outage/rejoin acceptance and sustained performance when the user tests; preserve saved data and enrollment.
 2. **ART-PREP-02 / CHAR-01:** the corrected Bluey/Bingo workshop and real-game integration pass scoped technical checks, and the user accepts the Android prototype. Retain animation stiffness, additional views and final polish as open work.
-3. **G5** establishes versioned bedroom, creation and reusable item contracts, safe idle returns and separate local/server persistence. It includes no offline merge engine.
-4. **G6** finishes one polished home/backyard slice, then **G7** expands the content. Retain the remaining G1–G3, G5 and G8–G9 release checks; no G4 gate exists.
+3. **NAV-REF-01** is the next visible task: implement the reference-led world bubbles and circle/tray/arrow navigation using the existing Garden/Creek and Bluey/Bingo commands. The initial G5 bedroom rule work remains a tested development checkpoint, with screen/network/save-adapter integration pending.
+4. **G5** establishes versioned bedroom, creation and reusable item contracts, safe idle returns and separate local/server persistence. It includes no offline merge engine.
+5. **G6** finishes one polished home/backyard slice, then **G7** expands the content. Retain the remaining G1–G3, G5 and G8–G9 release checks; no G4 gate exists.
 
 Unattended Apple renewal, independent backup/restore, sustained device performance and Android native 16 KB qualification remain unresolved gates within their proper release scope. VPS details can wait. They must not be described as finished, or prevent isolated art/content preparation that does not depend on them.
 

@@ -52,6 +52,10 @@ I found useful GitHub building blocks, but did not find a verified, complete tem
 
 Open the companion **[illustrated research guide](bluey-game-research-2026-09-23.html)** for the character pictures and a clickable six-area concept. The pictures come from official character pages and need an internet connection in this research document. The intended finished game stores its art and audio locally.
 
+**Visual and menu direction, September 25:** the user supplied eight screenshots of Budge’s Bluey: Let’s Play! and explicitly selected its illustrated scene presentation, sky/cloud world bubbles and lower-left family circle → full-body character tray → down-arrow close control. These replace the older rotating-wheel and small portrait-drawer proposals. The [reference study](bluey-lets-play-reference-study-2026-09-25.html) records official-source findings, all eight images, input/animation requirements and the next navigation task. All six worlds and existing family features remain required.
+
+**Base experience and character–item behavior:** the user wants the commercial mobile playset as the foundation for a cooler private family version. The [broader catalog and interaction specification](bluey-lets-play-reference-study-2026-09-25.html#18-characterobject-interaction-specification) cover games, locations, cast, audio and character actions. Sitting, trampoline jumping and dancing are explicit priorities: use correct poses, contact points, expressions and clear exits. Four-device play and the original enhancements remain required; no public release or monetization is planned.
+
 ## 1. Your requirements, now recorded
 
 | Area | Agreed direction |
@@ -66,7 +70,7 @@ Open the companion **[illustrated research guide](bluey-game-research-2026-09-23
 | Characters | Child-character roster plus Bandit and Chilli; every player may choose any available character and switch during play; duplicate favorites allowed |
 | Players | 1–4 humans, one per device; mixed iPad/iPhone/Android over reachable LAN or the planned private internet route |
 | Movement | A setting for virtual joystick or tap-ground-to-walk |
-| Objects | Drag to pick up, move, place, stack, fill, pour, and trigger compatible interactions in either movement mode |
+| Objects | Drag to pick up, move, place, stack, fill, pour, and trigger compatible interactions in either movement mode; characters use proper sitting, jumping, dancing, riding, holding and serving poses with clear exits |
 | Activities | Easy optional quests and open-ended free play; picture-based activity picker; leave, switch, or resume without penalties or blocking the other child |
 | Cooking | Kitchen activities with at least five pizzas, five cakes, and five meals; free creation and shared preparation |
 | Fishing | Catch-and-release game at the Heeler backyard fishpond from Tradies and a creek variant |
@@ -88,7 +92,7 @@ Open the companion **[illustrated research guide](bluey-game-research-2026-09-23
 | Daycare | Sixth world; all requested child characters available, teacher routines, optional pretend day with 2–3 varied mini-game invitations |
 | Playful learning | 12 proposed spoken learning stations with per-child assistance: reading, sounds, numbers, patterns, music, feelings, and science |
 | Imagination | Picture play mat; nine episode-inspired stories with spoken role choices, NPC substitutes, and independent locations |
-| Navigation | Main menu, settings, character choice, and a wheel of six circular location buttons |
+| Navigation | Sky/cloud browser with six main-world scene bubbles; lower-left family circle opens a full-body character tray with a large down-arrow close tab; consistent home and settings controls |
 | Shared play | Up to four mixed iPad/iPhone/Android clients automatically join the designated PC/VPS; independent areas and exclusive item use. No device hosting. |
 | Automatic recovery | No Host/Join menus; rejoin automatically after outages while preserving work, independent locations, and conflicting offline drafts |
 | Speech | Characters actually speak; instructions cannot depend on reading |
@@ -112,6 +116,8 @@ I interpret the bucket example as watering a **plant**. The six requested worlds
 The model identification and hardware are supported by Apple's [iPad model list](https://support.apple.com/en-us/108043), [iPad 7 specifications](https://support.apple.com/en-us/111911), [iPad 9 specifications](https://support.apple.com/en-us/111898), and [iPhone specifications](https://support.apple.com/en-us/111870). Samsung identifies **SM-S948U1 as Galaxy S26 Ultra** in its [official update record](https://doc.samsungmobile.com/SM-S948U1/037285260311/eng.html). That firmware page alone does not establish the installed OS. The table now includes later native inventory: [device/toolchain ledger](family-playset-build-guide-2026-09-23.html#device-and-toolchain-ledger). The iPad observations correct the originally reported OS order; Samsung and Mac versions are recorded too. These are retained observations, not new measurements made during this audit.
 
 **Both iPads must work on iPadOS 18.** A successful test on the newer iPhone is useful but cannot qualify the iPads. Any optional native plugin must be tested on the older OS and physical hardware.
+
+**Explicit radio behavior:** radio on → music plays → nearby idle characters automatically dance; radio off → music stops and characters settle. Walking or starting another action overrides dancing, and busy siblings keep their activity. Preserve mute, character-switch, save/reopen and shared/offline rules. This is ordinary object-driven free play; musical statues is an optional game layered on top. [Detailed reaction and acceptance contract](bluey-lets-play-reference-study-2026-09-25.html#20-sound-expression-and-pace).
 
 ## 2. What makes this kind of game work
 
@@ -180,11 +186,11 @@ These locations and quest scripts are proposed original game content. They are n
 
 Keep water shallow and stylized, and use forgiving animation rather than precarious physics for slides, swings, and boats. A toy can fall or spill without making the child lose progress. Every quest should be restartable, skippable, and repeatable.
 
-### The six-circle stage wheel
+### The six-world picture-bubble browser
 
-Use six large illustrated circles around a center preview. Tap a circle to highlight it, hear the location name, and show a large Play button. A slow swipe can rotate the arrangement, but tapping must always work; no automatic spinning or precision stopping is necessary. The center previews the selected world; six destination circles surround it.
+**Updated from the user’s September 25 screenshots:** use large scene-filled circles on a sky/cloud background, arranged in staggered rows like Bluey: Let’s Play! The previous central preview, second Play button and rotating-wheel proposal are superseded. Tap a playable world bubble to enter; support forgiving sideways browsing on narrower displays. The [reference study](bluey-lets-play-reference-study-2026-09-25.html#5-main-world-menu-contract) supplies the layout and state contract.
 
-Each circle needs an unmistakable image: house, flower garden, slide, paper boat, sandcastle, and daycare play mat. Keep labels for parents and emerging readers. Preserve all six destination hit targets on a landscape 4:3 iPad screen. The updated requirement is independent travel: choosing a room or location must not move the sibling or stop their activity. An optional picture invitation lets them come along. Prove this inside Heeler Home first, then qualify the other locations before final release; see sections 31–33.
+Keep six main destinations: Heeler Home, Backyard Garden, Playground & Park, The Creek, The Beach and Daycare. House rooms are subareas. Use recognizable scene thumbnails with optional short labels and spoken names. Preserve large targets and safe areas on both landscape iPads and phones. Only the selecting player travels; siblings keep playing in their current areas. The Creek entrance must remain available throughout the menu replacement. Development builds must distinguish unfinished previews from usable destinations.
 
 ## 4. Character roster and pictures
 
@@ -425,7 +431,7 @@ For fifteen short quests, a compact definition can contain: ID, stage, invitatio
 
 ## 11. Menus, settings, saves, and recovery
 
-Suggested flow, revised by section 44: **Start → remembered character/profile → six-location wheel or last room → play**, with family discovery and connection happening automatically. Remember the child's last character and assistance preferences. A parent can help with initial Wi-Fi permission and installation, while everyday play remains picture-led.
+Suggested flow, revised by section 44: **Start → remembered character/profile → six-world bubble browser or last room → play**, with family discovery and connection happening automatically. Remember the child's last character and assistance preferences. A parent can help with initial Wi-Fi permission and installation, while everyday play remains picture-led.
 
 Settings should include music, effects, and speech volume; English/Spanish; joystick/tap movement; joystick side and size; assistance level; captions/picture hints; reduced motion; and return to menu. Put reset-world and saved-game management behind a deliberate parent action. Essential instructions still need visual cues when speech volume is zero.
 
@@ -498,7 +504,7 @@ Also watch each child play without coaching for a short session. Record where th
 | 1. Core interaction experiment | Plain shapes in one backyard, both input modes, bucket/tap/plant | Reliable drag and pour on the A10 |
 | 2. Two-iPad experiment | Direct LAN session, shared bucket ownership, synchronized plant | Both devices see the same results; interruption recovery works |
 | 3. Illustrated, speaking slice | Bluey/Bingo, finished backyard art sample, English dialogue and mouth animation | One complete inviting activity that both children can use |
-| 4. Product shell | Character chooser, six-circle menu, settings, local saves | Relaunch restores state; navigation needs no reading |
+| 4. Product shell | Character chooser, six-world bubble menu, settings, local saves | Relaunch restores state; navigation needs no reading |
 | 5. Content expansion | Expand to all six locations, activity families, and broader character roster | Every area supports free play and the same object rules; required networking gates in section 52 pass before broad production |
 | 6. Spanish completion | Reviewed translated lines and recordings; per-device language choice | No missing core Spanish instruction; mixed-language co-op works |
 | 7. Family release | Performance/crash checks and in-place installation | Both exact iPads pass release checks and automatic renewal verification |
@@ -525,7 +531,7 @@ Added September 23, 2026, following the Toca/Piknik research. This is the main r
 
 | ID | Required feature | Proposed behavior | Complete only when |
 | --- | --- | --- | --- |
-| CHAR-01 | Change characters whenever wanted | Tap own portrait, tap any available character; remain in place with the same held item, progress, and game role | Both iPads agree after switching, including during cooking and hiding |
+| CHAR-01 | Change characters whenever wanted | Tap the family circle, then a full-body tray character; close with the large down arrow; retain held item, position, profile and game role | Both iPads agree after switching, including during cooking and hiding |
 | CHAR-02 | Everyone may choose any available character | Include Bandit and Chilli; no adult/child restrictions or exclusive favorites; separate player avatars from NPC jobs | All four may switch, including duplicate Bandits, without losing roles, props, or NPC-led activities |
 | FAMILY-01 | Up to four mixed-device family players | iPad, iPhone, and Android share automatic LAN discovery; separate profiles, one authority, independent cameras/activities | Third/fourth join and leave; slots, recovery, phone UI, older-iPad load, and offline saves pass on real devices |
 | ACT-01 | Easy, optional quests | Large activity-picture button, nearby station invitations, one-tap start; leave or switch freely | No quest blocks movement, another activity, or the sibling's play |
@@ -567,9 +573,9 @@ The expanded tracker covers all 55 chapters and 35 feature IDs. AUTO-02 is expli
 
 ### What the child sees
 
-Keep the child's portrait in one consistent corner. Tapping it opens a small picture drawer over their own view. Tapping a portrait changes character and closes the drawer; tapping outside simply closes it. Favorites appear first, followed by large pages of portraits. Do not require typing a name, returning to the main menu, reconnecting, or restarting the scene.
+**Updated from the user’s September 25 screenshots:** keep the circular family portrait at bottom left. Tapping it opens a wide light-blue tray of full-body characters standing along a shared baseline. A large white down arrow on a rounded blue left tab closes it. Swipe horizontally to browse; tap a character to change that player’s avatar in place. Preserve the recognizable difference in character heights. The [reference study](bluey-lets-play-reference-study-2026-09-25.html#6-family-circle-tray-and-arrow-contract) records the open/closed states and touch behavior. No main-menu visit, typing, reconnect or scene restart is needed. The tray should remain available until closed so children can try different favorites.
 
-The world and the other child keep playing. Opening this drawer clears that player's walking input and routes touches to the drawer; it must not set the whole simulation's time scale to zero. During a hide-and-seek search, opening a menu does not grant invisibility or move the player to safety. The exit-activity picture remains available if they want to stop playing that round.
+The world and the other child keep playing. Opening this tray clears that player's walking input and routes touches to the tray; it must not set the whole simulation's time scale to zero. During a hide-and-seek search, opening a menu does not grant invisibility or move the player to safety. The exit-activity picture remains available if they want to stop playing that round.
 
 Allow both children to be Bluey, Bingo, or any other available child. Keep their persistent player markers distinct through a symbol plus color, such as star and flower. A character's identity does not determine which child owns an object or a save. Quest dialogue should address the current avatar or use a natural general phrase; it must not insist that only Bingo can cook or that only Bluey can complete a task.
 
@@ -895,7 +901,7 @@ Add play observations: can the younger child change character and start a differ
 
 **Yes: picking up a house book can open a full-screen, talking, interactive picture book.** Build this as a reusable Unity book reader. Each book supplies pages, artwork, recorded narration, and a few interactive picture regions. This suits the existing illustrated style and can run offline; a live AI model is unnecessary on the iPads.
 
-Place a low, face-out bookshelf, rug, cushions, and a dinosaur book basket in the house. The reading nook, TV, and dinosaur mat belong inside Heeler Home, so the six-location wheel stays intact. The proposed furniture arrangement is our game layout, not a claim about the exact floor plan in the show.
+Place a low, face-out bookshelf, rug, cushions, and a dinosaur book basket in the house. The reading nook, TV, and dinosaur mat belong inside Heeler Home, so the six-world bubble browser stays intact. The proposed furniture arrangement is our game layout, not a claim about the exact floor plan in the show.
 
 ### From shelf to story
 
@@ -1611,7 +1617,7 @@ Reuse section 34's parent-seeker default, optional child seeker, Ready state, Co
 
 ## 40. Daycare: a sixth world with an optional pretend day
 
-**Add Daycare to the world wheel:** Heeler Home, Backyard Garden, Playground & Park, The Creek, The Beach, and Daycare. Its rooms and imagination destinations are subareas, so they do not each need another wheel circle.
+**Add Daycare to the world bubble browser:** Heeler Home, Backyard Garden, Playground & Park, The Creek, The Beach, and Daycare. Its rooms and imagination destinations are subareas, so they do not each need another world bubble.
 
 Use Calypso as the main teacher and combine a classroom, play yard, book corner, art/sensory tables, pretend kitchen, quiet cushion nook, and imagination mat. The show places the older children at Calypso's school; our all-ages daycare is an intentional family-game adaptation where the entire requested child roster can gather. It is not a claim that every show's child attends the same canonical classroom. The official character page identifies Calypso as Bluey's teacher and emphasizes encouraging imaginative play. [Calypso character reference](https://www.bluey.tv/characters/calypso/)
 
@@ -1834,7 +1840,7 @@ One client leaving never stops the PC/VPS simulation. A client losing its route 
 | --- | --- | --- |
 | A — Outdoor essentials | Shell pickup, one sandcastle, creek log, rock stack, swing, slide | Proves collection, construction, special traversal, and seated character swapping |
 | B — Shared outdoor play | Ball/disc passes, creek fishing variant, seesaw, tag, park hiding | Tests two-person contention, NPC substitutes, joining, and leaving |
-| C — Daycare shell | Sixth wheel circle, rooms, friend board, teacher routine, saved 2–3-card plan | Establishes the optional day without needing all lessons or stories finished |
+| C — Daycare shell | Sixth world bubble, rooms, friend board, teacher routine, saved 2–3-card plan | Establishes the optional day without needing all lessons or stories finished |
 | D — First learning set | Talking book, picnic counting, copy-the-drum; then remaining nine lesson cards | Verifies speech, understandable prompts, per-child help, and local audio timing |
 | E — First imagination stories | Calypso town and Helicopter; then Space as a separate-zone stress test | Reuses existing props while proving role choice, vehicle travel, and independent locations |
 | F — Content completion | Remaining outdoor activities and the other six imagination stories | Expands tested systems; review every voice line and touch target |
@@ -2134,7 +2140,7 @@ On reconnection, join the server’s current world. Keep local work separately; 
 | Player 1 drops the bucket | Its new location and contents appear on both devices; Player 2 can now pick it up |
 | Player 1 leaves again | Player 2 continues in the same playground with no reset, forced move, or interrupted controls |
 
-Entering a location joins the **existing shared location**, not a fresh private copy. Being in the same area does not require identical camera framing; ordinary furniture occlusion and intentional hide-and-seek concealment still apply. A visit arrives at a safe entrance, not on top of the other avatar or inside their hiding place. The location wheel always supports independent travel; a friend portrait is an optional shortcut, never a required invitation or permission step.
+Entering a location joins the **existing shared location**, not a fresh private copy. Being in the same area does not require identical camera framing; ordinary furniture occlusion and intentional hide-and-seek concealment still apply. A visit arrives at a safe entrance, not on top of the other avatar or inside their hiding place. The location bubble browser always supports independent travel; a friend portrait is an optional shortcut, never a required invitation or permission step.
 
 Both children and parent visitors may enter either personal bedroom or secret room. Decoration ownership protects permanent edits; it does not lock visitors out. For imagination stories, a visit targets the actual running story instance. “Visit their Space game” must not secretly create a different spaceship. A deliberate new story can have a distinct instance, with a clear picture-based choice when more than one is running. Leaving an optional bounded mini-game ends only that player's participation; it does not restrict travel.
 
@@ -2251,6 +2257,8 @@ Activity protection has a defined reason and lifecycle: completion, participant 
 The inactivity clock belongs to the authority's world simulation, not each iPad's wall clock. Preserve eligible elapsed time across host recovery. When the whole family is away, pause creative activity progress and retain return eligibility; on resume, process returns in bounded batches with the normal visible cue. Do not wipe rooms or replay thousands of old cleanup animations because the PC ran overnight. A departing child does not reset a timer another child actively refreshed.
 
 Example: a child borrows a spare garden bucket, leaves it unused in their bedroom, and plays with dinosaurs. After the configured grace and cue, **that same bucket** returns to its garden rack on every connected screen. Their bed, selected plush toys, dinosaur arrangement, and saved cake stay. If another player picks up the bucket before the return commits, they keep using it and the return is cancelled.
+
+**September 25 item–item clarification:** the user explicitly wants shed storage and other object combinations. Provide usable shed shelves/hooks/bins, baskets, cupboards/drawers and supported surfaces. Open → place → close → reopen → retrieve must preserve the same item, contents and decorations, including after travel/restart; shared holders and private offline saves retain their existing rules. The [full container/support specification](bluey-lets-play-reference-study-2026-09-25.html#19-itemitem-interactions-containers-and-shed-storage) defines nested capacity, safe rejection, stacking and return behavior. The supplied shed picture establishes its visual target; its exact commercial-game storage semantics remain unverified.
 
 ### Containers and creations must not become loopholes or casualties
 
