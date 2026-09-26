@@ -1,0 +1,17 @@
+{
+  "utc": "2026-09-26T17:53:03.4043176Z",
+  "operation": "updated",
+  "version": "0.0.130",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "521efb994b5aba9d9f7909707d041739f8f367766dd87b632e70885eeb09f978",
+  "previousBuild": 128,
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "visibleUiAndSaveRetentionVerified": true,
+  "retainedSaveRecords": 16,
+  "byteIdenticalPriorRecords": 15,
+  "physicalBalloonTapVerified": true,
+  "saveUpgrade": "One paired solo world upgraded schema 4 to 5; original players, props and home state unchanged. Other 15 records byte-identical.",
+  "familyServerUpdated": false,
+  "appleDevicesUpdated": false
+}

@@ -43,6 +43,10 @@ Bingo's raised-arm balloon response:
 - **Six native recovery groups pass:** live backup, exact restore including paused in-flight balloon, four-player rejoin, rollback, invalid/interrupted-save refusal and rebuilding a missing disposable world from its backup. Only build 130 is added to the production recovery gate; exploratory 129 stays unqualified. [Recovery evidence](evidence/keepy-uppy130-2026-09-26/recovery.json).
 - All 72 runtime source files match both built release manifests. The Android signature matches the established family identity; all 401 payload entries are unchanged by signing. [Built-source check](evidence/keepy-uppy130-2026-09-26/built-source-check.json).
 
-Build 130 Windows server/client and a fresh family-signed Android release APK have been built. No physical phone/iPad update or live family-server cutover was performed for this milestone. Existing installed Samsung/iPads/server remain 128; iPhone remains 101. These tests use disposable families, not the children's saved game.
+Build 130 Windows server/client and the family-signed Android release APK were built and checked. The engineering tests above use disposable families.
+
+**Requested Android rollout:** Samsung updated **128 → 130** in place with the pinned signing identity and exact installed APK hash verified. All **16 prior saved records remain**: 15 byte-identical and one additive schema-4 → 5 solo upgrade, retaining all original players, props and home switches. The app opens; the home balloon is visible and a physical tap was verified to send it upward. The phone was left at Home. [Installation/save evidence](evidence/keepy-uppy130-2026-09-26/android-update.json) · [Physical balloon screenshot](evidence/keepy-uppy130-2026-09-26/android-balloon-started.png).
+
+Both iPads and the PC family server/helper remain **128**; iPhone remains **101**. No live-server cutover or Apple update was performed. Android currently plays private solo because its content 6 needs a matching updated server.
 
 Next: coordinate matching mobile/server builds, preserve and verify each device's existing saves/enrollment, then obtain physical four-device play and older-iPad performance feedback. iPad export/signing and physical installation are still pending. After this minigame's acceptance, return to the planned kitchen architecture, supports and interactive interiors.
