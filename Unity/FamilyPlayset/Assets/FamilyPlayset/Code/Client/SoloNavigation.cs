@@ -16,11 +16,12 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Text> worldBadges = new Dictionary<string, Text>();
         private static readonly string[] WorldIds = { "home", "garden", "park", "creek", "beach", "daycare" };
         private static readonly string[] WorldNames = { "Heeler Home", "Backyard Garden", "Playground & Park", "The Creek", "The Beach", "Daycare" };
-        public bool WorldsOpen => worlds != null && worlds.gameObject.activeSelf;
+        public bool WorldsOpen => CharactersOpen;
         public bool CharactersOpen => characterTray != null && characterTray.gameObject.activeSelf;
 
         private void ResetNavigation()
         {
+            ResetTravelScreen();
             worlds=null;characterTray=null;familyCircle=null;worldButton=null;
             worldBubbles.Clear();avatarMarkers.Clear();pickerCharacters.Clear();worldBadges.Clear();
         }
@@ -70,35 +71,25 @@ namespace LittleWeeps.Client
             PickerCharacter(face.transform,"blue-pup",new Vector2(-19,-24),.61f);
             PickerCharacter(face.transform,"orange-pup",new Vector2(25,-24),.66f);
 
-            worlds=Plain(safe,"World browser",Vector2.zero,Vector2.zero,new Color(.38f,.78f,.95f),true).rectTransform;Stretch(worlds);
-            // Decorative clouds stay behind the independently scrollable bubbles.
-            for(var i=0;i<7;i++)
-            {
-                var cloud=Rect(worlds,"Cloud",new Vector2(-640+i*210,(i%3-1)*270),new Vector2(220,90));
-                for(var n=0;n<4;n++)Panel(cloud,"Cloud puff",new Vector2(-65+n*45,(n%2)*20),new Vector2(105,80),new Color(.94f,.99f,1,.92f),false,true);
-            }
-            var back=RoundControl(worlds,"Back from worlds",Vector2.zero,78,()=>ShowWorlds(false));
-            var arrowRoot=Rect(back.transform,"Back arrow",Vector2.zero,Vector2.zero);Arrow(arrowRoot);arrowRoot.localRotation=Quaternion.Euler(0,0,-90);
-            var heading=Label(worlds,"Where shall we play?",36,Vector2.zero,new Vector2(740,60));heading.name="World heading";heading.fontStyle=FontStyle.Bold;
-            var settings=RoundControl(worlds,"World settings",Vector2.zero,78,()=>SetMenu(true));
-            var cog=Panel(settings.transform,"Cog",Vector2.zero,Vector2.one*37,Color.white,false,true);
-            for(var i=0;i<8;i++)
-            {
-                var tooth=Plain(cog.transform,"Tooth",Vector2.zero,new Vector2(47,11),Color.white);
-                tooth.rectTransform.localRotation=Quaternion.Euler(0,0,i*45);
-            }
-            Panel(cog.transform,"Cog middle",Vector2.zero,Vector2.one*19,new Color(.33f,.76f,.94f),false,true);
+            // One touch-owning overlay: horizontal cast below, vertical places
+            // on the right. Neither list pauses the shared simulation.
+            characterTray=Plain(safe,"Character tray",Vector2.zero,Vector2.zero,new Color(.12f,.27f,.33f,.12f),true).rectTransform;Stretch(characterTray);
+            worlds=Plain(characterTray,"Places rail",Vector2.zero,Vector2.zero,new Color(.78f,.93f,.99f),true).rectTransform;
+            worlds.anchorMin=new Vector2(1,0);worlds.anchorMax=Vector2.one;worlds.pivot=new Vector2(1,.5f);
+            worlds.offsetMin=new Vector2(-310,300);worlds.offsetMax=Vector2.zero;
+            var rim=Plain(worlds,"Rail edge",Vector2.zero,new Vector2(6,0),Color.white).rectTransform;
+            rim.anchorMin=Vector2.zero;rim.anchorMax=new Vector2(0,1);rim.sizeDelta=new Vector2(6,0);
+            var heading=Label(worlds,"Places",27,Vector2.zero,new Vector2(270,45));heading.fontStyle=FontStyle.Bold;
+            heading.rectTransform.anchorMin=heading.rectTransform.anchorMax=new Vector2(.5f,1);heading.rectTransform.anchoredPosition=new Vector2(0,-27);
             worldViewport=Plain(worlds,"World viewport",Vector2.zero,Vector2.zero,Color.clear,true).rectTransform;
+            Stretch(worldViewport);worldViewport.offsetMin=new Vector2(12,14);worldViewport.offsetMax=new Vector2(-12,-58);
             worldViewport.gameObject.AddComponent<RectMask2D>();
-            worldContent=Rect(worldViewport,"World pictures",Vector2.zero,Vector2.zero);worldContent.anchorMin=worldContent.anchorMax=new Vector2(0,.5f);worldContent.pivot=new Vector2(0,.5f);
-            worldScroll=worldViewport.gameObject.AddComponent<ScrollRect>();worldScroll.viewport=worldViewport;worldScroll.content=worldContent;worldScroll.vertical=false;worldScroll.movementType=ScrollRect.MovementType.Clamped;
+            worldContent=Rect(worldViewport,"World pictures",Vector2.zero,new Vector2(280,WorldIds.Length*212));
+            worldContent.anchorMin=worldContent.anchorMax=new Vector2(.5f,1);worldContent.pivot=new Vector2(.5f,1);
+            worldScroll=worldViewport.gameObject.AddComponent<ScrollRect>();worldScroll.viewport=worldViewport;worldScroll.content=worldContent;
+            worldScroll.horizontal=false;worldScroll.vertical=true;worldScroll.movementType=ScrollRect.MovementType.Clamped;
             for(var i=0;i<WorldIds.Length;i++)BuildWorldBubble(i);
-            var foot=Label(worlds,"More places are growing. Garden and Creek are ready to play.",20,Vector2.zero,new Vector2(1120,40));foot.name="World footer";
-            worlds.gameObject.SetActive(false);
 
-            // The transparent shield owns all remaining scene touches. It stops
-            // local walking without pausing the server or another player's view.
-            characterTray=Plain(safe,"Character tray",Vector2.zero,Vector2.zero,Color.clear,true).rectTransform;Stretch(characterTray);
             trayPanel=Plain(characterTray,"Cast shelf",Vector2.zero,Vector2.zero,new Color(.71f,.89f,.99f),true).rectTransform;
             trayPanel.anchorMin=Vector2.zero;trayPanel.anchorMax=new Vector2(1,0);trayPanel.pivot=new Vector2(.5f,0);trayPanel.sizeDelta=new Vector2(0,300);
             var edge=Plain(trayPanel,"White top edge",Vector2.zero,Vector2.zero,Color.white).rectTransform;
@@ -121,44 +112,40 @@ namespace LittleWeeps.Client
                 NavButton(card,()=>{if(!ActionPending && ReadPlayer(Actor).avatar!=id)ChooseAvatar(id);});
             }
             characterTray.gameObject.SetActive(false);
+            BuildTravelScreen();
         }
         private void BuildWorldBubble(int index)
         {
             var id=WorldIds[index];var ready=id=="garden" || id=="creek";
-            var group=Rect(worldContent,"World "+id,Vector2.zero,new Vector2(300,335));worldBubbles.Add(group);
-            group.anchorMin=group.anchorMax=new Vector2(0,.5f);
-            Panel(group,"Soft shadow",new Vector2(0,-6),Vector2.one*284,new Color(.23f,.51f,.63f,.23f),false,true);
-            var border=Panel(group,"World "+(id=="garden"?"Garden":id=="creek"?"Creek":WorldNames[index]),Vector2.zero,Vector2.one*280,Color.white,true,true);
-            var button=NavButton(border,()=>{if(!ready || ActionPending)return;ShowWorlds(false);Travel(id);});button.interactable=ready;
-            var picture=Panel(border.transform,"Round scene",Vector2.zero,Vector2.one*264,Color.white,false,true);
+            var group=Rect(worldContent,"World "+id,Vector2.zero,new Vector2(280,212));worldBubbles.Add(group);
+            group.anchorMin=group.anchorMax=new Vector2(.5f,1);
+            group.anchoredPosition=new Vector2(0,-90-index*212);
+            Panel(group,"Soft shadow",new Vector2(0,-6),Vector2.one*174,new Color(.23f,.51f,.63f,.23f),false,true);
+            var border=Panel(group,"World "+(id=="garden"?"Garden":id=="creek"?"Creek":WorldNames[index]),Vector2.zero,Vector2.one*170,Color.white,true,true);
+            var button=NavButton(border,()=>{if(!ready || WorldLoading)return;BeginWorldTravel(id);});button.interactable=ready;
+            var picture=Panel(border.transform,"Round scene",Vector2.zero,Vector2.one*158,Color.white,false,true);
             picture.gameObject.AddComponent<Mask>().showMaskGraphic=false;
-            var illustration=Panel(picture.transform,"Illustrated "+id,Vector2.zero,Vector2.one*264,Color.white);
+            var illustration=Panel(picture.transform,"Illustrated "+id,Vector2.zero,Vector2.one*158,Color.white);
             illustration.sprite=Resources.Load<Sprite>("WorldMenu/"+id);illustration.type=Image.Type.Simple;
             if(illustration.sprite==null)throw new InvalidOperationException("Missing world-menu illustration: "+id);
             if(!ready)illustration.color=new Color(1,1,1,.67f);
-            var rim=Panel(border.transform,"White picture edge",Vector2.zero,Vector2.one*280,Color.white,false,true);
+            var rim=Panel(border.transform,"White picture edge",Vector2.zero,Vector2.one*170,Color.white,false,true);
             rim.sprite=pictureRim;
-            var label=Label(group,WorldNames[index],24,new Vector2(0,-164),new Vector2(320,38));label.fontStyle=FontStyle.Bold;
-            var badge=Panel(group,"Destination status",new Vector2(0,-117),new Vector2(166,35),ready?new Color(.98f,.91f,.6f):new Color(.95f,.98f,1));
-            var text=Label(badge.transform,ready?"Let's play":"Coming later",18,Vector2.zero,new Vector2(166,35));worldBadges.Add(id,text);
+            var label=Label(group,WorldNames[index],21,new Vector2(0,-99),new Vector2(280,36));label.fontStyle=FontStyle.Bold;
+            var badge=Panel(group,"Destination status",new Vector2(0,-68),new Vector2(146,29),ready?new Color(.98f,.91f,.6f):new Color(.95f,.98f,1));
+            var text=Label(badge.transform,ready?"Let's play":"Coming later",16,Vector2.zero,new Vector2(146,29));worldBadges.Add(id,text);
         }
-        public void ShowWorlds(bool open)
-        {
-            lastLocalAction=Time.realtimeSinceStartup;
-            if(open){CancelPointers();Narration.Stop();characterTray.gameObject.SetActive(false);menu.SetActive(false);worlds.SetAsLastSibling();}
-            worlds.gameObject.SetActive(open);stick.gameObject.SetActive(JoystickMode && !MenuOpen);familyCircle.gameObject.SetActive(!MenuOpen);
-            RenderNavigation();
-        }
+        public void ShowWorlds(bool open) => ShowCharacters(open);
         public void ShowCharacters(bool open)
         {
+            if(WorldLoading)return;
             lastLocalAction=Time.realtimeSinceStartup;
-            if(open){CancelPointers();Narration.Stop();worlds.gameObject.SetActive(false);menu.SetActive(false);characterTray.SetAsLastSibling();worldButton.SetAsLastSibling();}
+            if(open){CancelPointers();Narration.Stop();menu.SetActive(false);characterTray.SetAsLastSibling();}
             characterTray.gameObject.SetActive(open);stick.gameObject.SetActive(JoystickMode && !MenuOpen);familyCircle.gameObject.SetActive(!MenuOpen);
             RenderNavigation();
         }
         private void CloseNavigation()
         {
-            if(worlds!=null)worlds.gameObject.SetActive(false);
             if(characterTray!=null)characterTray.gameObject.SetActive(false);
             if(familyCircle!=null)familyCircle.gameObject.SetActive(true);
         }
@@ -179,22 +166,7 @@ namespace LittleWeeps.Client
             if(worlds==null)return;
             worldButton.anchoredPosition=new Vector2(-safe.rect.width/2+90,343);
             familyCircle.anchoredPosition=new Vector2(-Board.rect.width/2+64,-223);
-            var wide=safe.rect.width/safe.rect.height>1.85f;
-            ((RectTransform)worlds.Find("Back from worlds")).anchoredPosition=new Vector2(-safe.rect.width/2+70,safe.rect.height/2-64);
-            ((RectTransform)worlds.Find("World settings")).anchoredPosition=new Vector2(safe.rect.width/2-70,safe.rect.height/2-64);
-            ((RectTransform)worlds.Find("World heading")).anchoredPosition=new Vector2(0,safe.rect.height/2-62);
-            ((RectTransform)worlds.Find("World footer")).anchoredPosition=new Vector2(0,-safe.rect.height/2+36);
-            worldViewport.anchoredPosition=new Vector2(0,-22);worldViewport.sizeDelta=new Vector2(safe.rect.width-48,safe.rect.height-162);
-            var width=wide?2160:Mathf.Max(1140,worldViewport.rect.width);
-            worldContent.sizeDelta=new Vector2(width,worldViewport.rect.height);
-            var bubbleScale=wide?1:Mathf.Min(1,(worldViewport.rect.height-20)/730);
-            for(var i=0;i<worldBubbles.Count;i++)
-            {
-                worldBubbles[i].localScale=Vector3.one*bubbleScale;
-                worldBubbles[i].anchoredPosition=wide?new Vector2(180+i*355,(i%2==0?22:-22))
-                    :new Vector2(width/6+(i%3)*width/3,((i<3?180:-180)+(i%3==1?20:-10))*bubbleScale);
-            }
-            worldScroll.StopMovement();worldScroll.horizontalNormalizedPosition=0;
+            worldScroll.StopMovement();worldScroll.verticalNormalizedPosition=1;
             characterScroll.StopMovement();characterScroll.horizontalNormalizedPosition=0;
         }
     }

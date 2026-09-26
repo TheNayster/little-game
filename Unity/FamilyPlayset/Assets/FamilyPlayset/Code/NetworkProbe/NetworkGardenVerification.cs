@@ -41,6 +41,7 @@ namespace LittleWeeps.NetworkProbe
             public string error,build,actor,feedback,dragging,zone,savePath,adventure,pendingRequest;public int pendingArchives;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
             public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray;public string character;public int characterLayers;public ControlView[] controls;
+            public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
         private void OnDisable()=>Application.logMessageReceived-=Log;
@@ -189,6 +190,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.screenWidth=Screen.width;evidence.screenHeight=Screen.height;evidence.safeArea=Screen.safeArea;
                 evidence.worldsOpen=screen.WorldsOpen;evidence.charactersOpen=screen.CharactersOpen;evidence.character=screen.DisplayedCharacterId;evidence.characterLayers=screen.DisplayedCharacterLayers;
                 evidence.joystickVisible=screen.Surfaces["stick"].gameObject.activeInHierarchy;
+                evidence.worldLoading=screen.WorldLoading;evidence.loadingDestination=screen.LoadingDestination;evidence.loadingFailure=screen.LoadingFailure;evidence.travelStages=screen.TravelStages;
                 evidence.fullCharactersInTray=screen.CharactersOpen && FindObjectsByType<GameCharacterVisual>(FindObjectsSortMode.None)
                     .Where(v=>v.GetComponentsInParent<RectMask2D>().Any(m=>m.name=="Cast viewport")).All(v=>
                     {

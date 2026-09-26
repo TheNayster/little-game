@@ -24,7 +24,7 @@ namespace LittleWeeps.Client
         public RectTransform Board { get; private set; }
         public bool JoystickMode { get; private set; }
         public SoloNarration Narration {get;private set;}
-        public bool MenuOpen => menu != null && menu.activeSelf || WorldsOpen || CharactersOpen;
+        public bool MenuOpen => menu != null && menu.activeSelf || CharactersOpen || WorldLoading;
         public readonly Dictionary<string, SoloPointerSurface> Surfaces = new Dictionary<string, SoloPointerSurface>();
         private readonly Dictionary<string, RectTransform> toys = new Dictionary<string, RectTransform>();
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
@@ -40,7 +40,7 @@ namespace LittleWeeps.Client
         private GameObject ownedCanvas, ownedEvents;
         public void ConfigureFamilyMode(Action changeMode,bool muted=false) { familyModeAction=changeMode;familyTestMuted=muted; }
         public bool RecoveringDisconnected => Shared && !shared.Connected;
-        public bool CanChangeSession => Ready && dragging==null && !ActionPending && !TravelPending &&
+        public bool CanChangeSession => Ready && (!WorldLoading || RecoveringDisconnected) && dragging==null && !ActionPending && !TravelPending &&
             !destination.HasValue && stickDirection.sqrMagnitude<.0001f && !Surfaces.Values.Any(s=>s.Pressed) &&
             // Lost-session gestures were canceled. A finger still resting on
             // glass must not veto recovery; joining live play still waits for it.
@@ -328,6 +328,7 @@ namespace LittleWeeps.Client
                 if(zone==CurrentArea)return;
                 CancelPointers();Narration.Stop();
                 var result=Command(SoloAction.Travel,value:zone);
+                if(WorldLoading && !result.Accepted)travelFailure=result.Outcome;
                 message.text=result.Accepted?"Welcome to the "+zone+". Keep exploring!":Friendly(result.Outcome);
                 return;
             }
@@ -344,6 +345,7 @@ namespace LittleWeeps.Client
             SubmitShared(SoloAction.Travel,"","",target,0,0,result=>
             {
                 travelSubmitted=false;
+                if(WorldLoading && !result.Accepted)travelFailure=result.Outcome;
                 if(!result.Accepted || requestedArea==target)requestedArea=null;
                 message.text=result.Accepted?"Welcome to the "+target+". Your friends can join you here!":Friendly(result.Outcome);
                 Render();
@@ -390,7 +392,7 @@ namespace LittleWeeps.Client
             listenLabel.text=Narration.VoiceEnabled?"Listen":"Voice off";
             listenLabel.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
         }
-        public void SetMenu(bool open) { lastLocalAction=Time.realtimeSinceStartup;if(open){CloseNavigation();CancelPointers();Narration.Stop();SaveNow();ExportPlayPerformance();} menu.SetActive(open);if(open)menu.transform.SetAsLastSibling();stick.gameObject.SetActive(JoystickMode && !MenuOpen); }
+        public void SetMenu(bool open) { if(WorldLoading)return;lastLocalAction=Time.realtimeSinceStartup;if(open){CloseNavigation();CancelPointers();Narration.Stop();SaveNow();ExportPlayPerformance();} menu.SetActive(open);if(open)menu.transform.SetAsLastSibling();stick.gameObject.SetActive(JoystickMode && !MenuOpen); }
         public void Listen(){var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
         { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return new Vector2((local.x/Board.rect.width+.5f)*SoloWorld.Width,(local.y/Board.rect.height+.5f)*SoloWorld.Height); }
@@ -562,6 +564,7 @@ namespace LittleWeeps.Client
             RecordPlayFrame();
             if(!Ready)return;
             AnimateNavigation();
+            AnimateTravelScreen();
             if(shared!=null && shared.Connected)
             {
                 var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);

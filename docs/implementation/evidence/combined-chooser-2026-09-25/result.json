@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "build": 105,
+  "utc": "2026-09-26T02:34:44.085487+00:00",
+  "runId": "1ad462ef156e4df18a19373976e9b31f",
+  "checks": [
+    {
+      "check": "one chooser shows vertical places and full-body horizontal cast; switching preserves identity; canceled/swiped touches do not select",
+      "passed": true
+    },
+    {
+      "check": "menu cancels movement and pickup safely; arrow restores controls",
+      "passed": true
+    },
+    {
+      "check": "vertical browsing does not travel; shared round trip waits for acknowledgement and preserves independent sibling play",
+      "passed": true
+    },
+    {
+      "check": "phone layout and loading touch shield; missing acknowledgement stays pending then offers recovery; sibling remains playable",
+      "passed": true
+    },
+    {
+      "check": "offline travel saves departure and arrival; verified checkpoint reopens in Creek",
+      "passed": true
+    }
+  ],
+  "physicalDevicesAccessed": false,
+  "liveFamilyServerAccessed": false,
+  "evidence": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\SharedGarden\\1ad462ef156e4df18a19373976e9b31f\\combined-chooser"
+}

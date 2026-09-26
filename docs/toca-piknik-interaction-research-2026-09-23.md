@@ -186,7 +186,7 @@ Do not promise that every object combines meaningfully with every other object. 
 
 ## 7. Six areas, with simple activities inside them
 
-Keep the six main destinations, including Daycare. The user’s September 25 [Bluey: Let’s Play! screenshots](bluey-lets-play-reference-study-2026-09-25.html) now specify a sky/cloud picture-bubble browser and family-circle/tray/arrow character menu; these supersede the earlier wheel layout. Every location contains a **small activity space** that can be the younger child's starting view.
+Keep the six main destinations, including Daycare. The user’s September 25 [Bluey: Let’s Play! screenshots](bluey-lets-play-reference-study-2026-09-25.html) guide the circular pictures and family-circle/tray/arrow control. The latest user decision combines horizontal characters with vertical places in one chooser; world selection opens a local loading screen until ready. This supersedes the separate world browser and earlier wheel layout. Every location contains a **small activity space** that can be the younger child's starting view.
 
 | Location | Simple Play entry | Deeper activity in the same space |
 | --- | --- | --- |

@@ -1,0 +1,16 @@
+{
+  "build": 105,
+  "zone": "creek",
+  "travelStages": [
+    "loading-screen",
+    "gestures-settled",
+    "departure-saved",
+    "travel-requested",
+    "local-arrival",
+    "arrival-saved",
+    "destination-presented",
+    "ready"
+  ],
+  "checkpointVerified": true,
+  "schema": 2
+}

@@ -10,7 +10,7 @@ The target is Budge's **Bluey: Let's Play!** mobile playset. The user clarified 
 
 The user supplied kitchen/backyard images, then explicitly requested the pictured main-world menu and the character menu with its circle and arrow. These references supersede the earlier rotating-wheel and small portrait-drawer proposals.
 
-- **World selection:** large circular scene previews on a blue sky/cloud background, with the playful staggered arrangement shown in reference R6. Keep our six main destinations; rooms remain subareas of their world.
+- **World selection:** retain R6 circular scene previews, now arranged vertically beside the horizontal character tray by the latest user decision. A world tap opens a loading screen until that destination is ready. Keep six main destinations; rooms remain subareas.
 - **Character selection:** the family portrait circle at bottom left opens a wide light-blue tray along the bottom. Full-body character choices stand in a horizontal row. A large white down arrow on a blue tab closes it, as in R7–R8.
 - **Scenes:** broad illustrated rooms and connected outdoor panoramas, with furniture, equipment and loose toys that make the place feel inhabited.
 - **Characters:** recognisable Bluey artwork, expressive poses and object-specific reactions. The current Bluey/Bingo artwork has prototype acceptance; stiffness still needs work.
@@ -56,7 +56,7 @@ The tree/bench/gifts overlap R4, which is strong visual evidence of adjacent vie
 
 ![R6: Circular scene previews on a cloud background](bluey-research/lets-play-2026-09-25/r6-world-menu.jpg)
 
-Scene thumbnails fill thick white-edged circles, staggered across a sky background. Some bubbles are partially outside the viewport; that suggests a wider browsable menu, but this still alone does not prove its exact scrolling gesture. The user wants this menu language. Our implementation should provide generous horizontal browsing, a tap alternative, and six persistent main destinations. Store, advertising, subscription locks and promotional badges are not part of the requested family-game navigation.
+Scene thumbnails fill thick white-edged circles, staggered across a sky background. Some bubbles are partially outside the viewport; that suggests a wider browsable menu, but this still alone does not prove its exact scrolling gesture. The user wants this picture language. Their later decision puts the six destinations in a vertical rail beside a horizontal character tray, replacing the separate staggered browser. Store, advertising, subscription locks and promotional badges are not part of the requested family-game navigation.
 
 ### R7 — Character tray open
 
@@ -108,7 +108,7 @@ Keep editable scene sources and separate interactive props. A single flattened s
 
 ## 5. Main-world menu contract
 
-Use the R6 sky-and-bubble composition. Each circle contains a recognizable scene illustration, not a generic symbol as final art. Thick light borders separate bubbles from the background. Small labels and spoken names support recognition; reading is optional.
+Retain R6 circular scene artwork in the combined chooser’s vertical places rail. Each circle contains a recognizable scene illustration, not a generic symbol as final art. Thick light borders separate bubbles from the background. Small labels and spoken names support recognition; reading is optional.
 
 | Main bubble | Primary image | Destinations beneath it |
 | --- | --- | --- |
@@ -121,7 +121,7 @@ Use the R6 sky-and-bubble composition. Each circle contains a recognizable scene
 
 Tap an available world bubble to enter its remembered or default safe arrival area. Home's room choices can use the same picture-bubble language. Do not add an obligatory center preview plus second Play button. In the completed game every planned world is accessible; development builds must distinguish unfinished previews from usable destinations without presenting a broken entrance.
 
-Lay out six bubbles in two staggered rows on landscape iPad. On wide phones preserve large targets and allow sideways browsing rather than squeezing six small circles into the available height. Keep the gear separated from destination targets. Returning home opens this browser; it does not reset the world. A canceled visit returns to the previous play view. Only the selecting player's area/camera changes.
+Place the world rail at the side above the bottom character shelf, on both iPad and phone. Vertical swipes browse all six circles; horizontal swipes browse characters. The family circle or home button opens this same chooser, and the large down arrow closes both lists. A world tap paints a destination loading screen, settles gestures, saves local state or waits for shared authority, prepares presentation, then restores controls. Before a travel command is committed, failures retain the original view; an uncertain shared command must be reconciled, never blindly rolled back or resent. Only the selecting player changes area/camera.
 
 
 **Connected house and backyard — user clarification, September 25:** Home and Backyard are entrances into one continuous family property, from the front of the house through its fully usable rooms, kitchen/dining area and veranda to the far backyard and shed. Sideways exploration should feel like one long dollhouse level; doors/stairs connect bedroom and other room branches without returning to the world menu. Retain cooking, living/TV, reading, science/dinosaur play, personal bedrooms, secret rooms, garden equipment, radio/dancing and durable shed storage. The two bubbles are arrival shortcuts into the same persistent property, not duplicate houses or independent copies of its items. Each player has an independent camera and can remain indoors while another explores outside. Art/room chunks may load around the camera for the older iPad, but crossing between them must preserve object IDs, held items, container contents and authority. This is the required G5/G6 layout, not a claim that the full property is implemented by the menu milestone.
@@ -130,11 +130,13 @@ Lay out six bubbles in two staggered rows on landscape iPad. On wide phones pres
 **World-art sequence — latest user direction:** first build attractive Bluey-style walkable scenery for all six worlds. Add no new activity features to the other worlds yet. After those visual shells, concentrate sustained room and interaction development on Bluey's connected house/backyard property. Keep existing functioning play and the full feature backlog; defer other-world feature implementation rather than delete it.
 
 
-**Long-world layout and loading recommendation, September 25:** the user wants substantial horizontal walking space in every world. Keep one-tap travel from the picture menu, but do not equate a quick transition with keeping all six worlds' art/audio/characters in RAM. Recommended implementation: independently load the selecting player's destination, retain only a bounded nearby section cache, release distant visuals/audio, and preserve lightweight authoritative/saved world state. Stream connected house/backyard sections as one property, using a short transition only when content is not ready. Actual budgets and timings must be measured on iPad 7. Separate loading reduces working-memory demand; it does not by itself reduce installed storage. This is a technical recommendation under discussion, not an implemented streaming system or a verified description of Budge's internals. [Unity 6.3 background scene loading](https://docs.unity3d.com/6000.3/Documentation/ScriptReference/SceneManagement.SceneManager.LoadSceneAsync.html) · [Unity asset memory management](https://docs.unity3d.com/Packages/com.unity.addressables@2.7/manual/MemoryManagement.html). Addressables is not currently installed; no package change was made for this review.
+**Combined chooser — latest user decision, September 25:** the lower-left family circle opens one menu, with full-body characters browsing horizontally along the bottom and circular place thumbnails browsing vertically down the side. The down arrow closes both. Tapping an available place opens a loading screen on that device, prepares the destination and its current state, then enables play only when ready. This supersedes the separate full-screen staggered world browser as our navigation layout; R6 still guides the circular scene artwork. No second Play button is required. Browsing either axis must not accidentally select an entry. Other players continue independently.
+
+**Long worlds and loading:** every world needs substantial horizontal walking space. The user selected a loading screen for major-world travel from the combined chooser. Retain a bounded cache of nearby presentation sections and lightweight persistent world state; release distant visuals/audio rather than keeping all six finished worlds resident. Connected house/backyard section loading remains a future implementation task, with continuity and actual memory/frame-time budgets measured on iPad 7. Separate loading controls working memory, not installed storage. Native 105 provides the transition and readiness barrier for the two existing resident prototype areas; it does not yet stream or unload scenic assets. Addressables is not installed. [Unity 6.3 background scene loading](https://docs.unity3d.com/6000.3/Documentation/ScriptReference/SceneManagement.SceneManager.LoadSceneAsync.html) · [Unity asset memory management](https://docs.unity3d.com/Packages/com.unity.addressables@2.7/manual/memory-assets.html).
 
 ## 6. Family circle, tray and arrow contract
 
-**Closed:** a circular family illustration with a thick light edge sits at lower left, like R8. **Open:** a light-blue tray rises from the bottom, with a white top border and full-body characters along a shared baseline. Its large left tab shows the white down arrow from R7. Horizontal swipes browse the cast. Tapping the arrow closes the tray and restores the unobstructed scene.
+**Closed:** a circular family illustration with a thick light edge sits at lower left, like R8. **Open:** a light-blue tray rises from the bottom, with a white top border and full-body characters along a shared baseline. Its large left tab shows the white down arrow from R7. Horizontal swipes browse the cast while a vertical world rail appears at the right. Tapping the arrow closes the entire chooser and restores the unobstructed scene.
 
 Our existing player model gives each device one controlled avatar. Therefore **tapping a tray character changes that player's avatar in place**. Preserve the player's ID, bedroom ownership, position, held item, activity and hide-and-seek role. A selected-character marker may show which avatar is active. Both children can choose the same favorite. The full requested cast remains in scope; Bluey/Bingo are the first integrated art assets.
 
@@ -148,7 +150,7 @@ The following is our interaction design, not a claim about Budge's input impleme
 
 | Touch begins on | Owns that gesture | Required result |
 | --- | --- | --- |
-| Home, bubble or tray | Menu | One navigation/selection action after a tap; horizontal motion browses without selection |
+| Home, bubble or tray | Menu | One action after a tap; horizontal cast swipes and vertical world swipes browse without selection; loading blocks scene touches |
 | Joystick | Movement | Existing joystick behavior; second-finger prop use remains possible |
 | Movable prop | Object | Pickup, preview, compatible-target highlight, then one validated drop/use |
 | Fixed interactive furniture/tool | That affordance | Tap toggle/use or drag the designated handle; never start walking underneath |
@@ -198,23 +200,24 @@ The same object ID survives a carry, container transfer and safe return. Essenti
 
 ## 11. Current source gaps and implementation order
 
-Focused source inspection found that `SoloScreen` still builds a bounded garden board with text controls and individually drawn test props. Its current Garden/Creek presentation is useful for rules and networking qualification but does not provide the R1–R8 scene/menu layout. The real Bluey/Bingo views and stable avatar IDs are reusable.
+Focused source inspection found that `SoloScreen` still builds a bounded garden board with text controls and individually drawn test props. Its Garden/Creek board remains useful for rules/network qualification and does not provide the final R1–R5 scenery. Native 105 now supplies the combined chooser and loading transition described above. The real Bluey/Bingo views and stable avatar IDs are reusable.
 
 The G5 bedroom rules begun before these references are preserved on the development branch: additive room state, profile-based ownership, visitor permissions, style changes and protected personal objects pass eight new bedroom checks within an [84-check rules run](implementation/evidence/lets-play-research-2026-09-25/bedroom-rules-checkpoint.json). This result belongs to the incomplete `codex/saved-bedrooms` development work and does not qualify a native build. They are **not integrated into client UI, network content/version contracts or private-continuation adapters**. The current adapters still reject room schema 3. No bedroom deployment or new mobile build is claimed.
 
 | Order | Bounded task | Completion evidence |
 | --- | --- | --- |
-| 1 — next implementation | Reference-led navigation shell: world bubbles, family circle, full-body Bluey/Bingo tray and close arrow, connected to current Garden/Creek travel and character commands | Native touch captures at phone and 4:3 layouts; correct area and character; held-item/profile continuity; menu cancellation; another client keeps playing |
-| 2 | Finish G5 room/save/network integration behind that shell | Owner/visitor rules, old-save upgrade, restart/corrupt-primary recovery, two-room independent visits, private offline and server reunion, no creation loss |
-| 3 | Author one continuous backyard/home scene with proper floor, furniture depth and a small set of usable props | Matched-framing visual review against the references; real pickup/use/seating; independent camera movement |
-| 4 | Soften character motion and complete representative play chains | Idle/walk/carry/sit/bounce footage; stable attachments and feet; older-iPad performance; child usability |
-| 5 | Extend the accepted slice across the six-world and full-cast plan | Existing G6/G7 content and device gates; no disappearance of Creek, books, TV, science, dinosaurs or bedrooms |
+| 1 — scoped native completion | NAV-REF-02 combined chooser and loading in Windows 105; Garden/Creek and Bluey/Bingo commands | [Five native acceptance groups](implementation/combined-chooser-2026-09-25.html), phone and 4:3 captures; gestures, shared acknowledgement/failure, sibling play and offline save/reopen. Mobile deployment remains pending |
+| 2 — next scenery work | Six long, attractive walkable world shells, with no new other-world activities; then concentrate on the connected house/backyard | Native panoramic exploration, recognizability, independent views and older-iPad memory/frame-time acceptance before qualification |
+| 3 | Finish G5 room/save/network integration behind that shell | Owner/visitor rules, old-save upgrade, restart/corrupt-primary recovery, two-room independent visits, private offline and server reunion, no creation loss |
+| 4 | Author one continuous backyard/home scene with proper floor, furniture depth and a small set of usable props | Matched-framing visual review against the references; real pickup/use/seating; independent camera movement |
+| 5 | Soften character motion and complete representative play chains | Idle/walk/carry/sit/bounce footage; stable attachments and feet; older-iPad performance; child usability |
+| 6 | Extend the accepted slice across the six-world and full-cast plan | Existing G6/G7 content and device gates; no disappearance of Creek, books, TV, science, dinosaurs or bedrooms |
 
 This moves the requested menu work ahead of further bedroom screen construction. G5 remains necessary before integrated durable rooms and creations are treated as complete. Physical connection/recovery acceptance remains open within G3; research does not substitute for it.
 
 ## 12. Acceptance checklist for the next visible build
 
-1. The main selector visibly follows R6: sky/clouds, large circular scene thumbnails and a playful staggered composition. Every playable bubble enters the intended world. Creek is present and usable.
+1. The combined selector retains R6 circular scene thumbnails vertically at the side, with R7 full-body characters horizontally below. Available destinations open a local loading screen until ready; Creek stays usable. Readiness and failure handling must be real, with no fake percentage or fixed cosmetic delay.
 2. In play, the lower-left control visibly follows R8. It opens the R7-style full-body tray, with a large down arrow that closes it reliably.
 3. Bluey/Bingo selection changes only the requesting player's appearance. Bedroom/profile identity, position, held object and another player's current action remain intact.
 4. A sideways swipe in the tray scrolls choices without an accidental switch. A menu-closing touch cannot pass through to the floor. Repeated open/close, app backgrounding and route loss leave no stuck pointer or joystick.
