@@ -1,6 +1,6 @@
 {
   "selectionDate": "2026-09-26",
-  "status": "selected appearance preferred by user on build 122; quieter walk revision 123 installed",
+  "status": "selected appearance and quieter 123 prototype walking positively reviewed by user",
   "originalFilename": "exec-3dd33745-45ab-4cc6-b22d-727a0bd6be47.png",
   "sha256": "17e936f99b5aa791e60497067cc5228aca976f73f5f51e5740212a4c6b524fcb",
   "width": 1254,
@@ -14,12 +14,12 @@
     "walking variants"
   ],
   "notYetQualified": [
-    "user acceptance of prepared animation",
     "precise moving grip registration",
     "asymmetric directional views",
     "physical A10 performance",
-    "unlocked phone review of 123"
+    "final gait and precise foot-contact polish"
   ],
   "runtimeReport": "docs/implementation/selected-sheet-characters-2026-09-26.html",
-  "installedBuild": 123
+  "installedBuild": 123,
+  "build123Feedback": "Thats lots better"
 }

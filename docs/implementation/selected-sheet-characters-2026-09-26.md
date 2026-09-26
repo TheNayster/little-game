@@ -66,3 +66,9 @@ At unchanged gameplay speed, full-speed cadence drops 25%, from 3.5 to 2.625 ste
 Commands repeat the 122 suite with build number **123**. The isolated native runs are `a7407793933145ee8cb37ecc1b218f33/walk`, `b4e1eaba5af447dd9550dc479c4fffda/home`, and `3b1ea128fbad4d90bccd71c87a6cb3a7/home-navigation`. No live server, Apple device or shared world was changed.
 
 **Android 123 delivery:** installed in place over 122 with the pinned family signer, exact fresh APK hash and native launch verified. All eight actual saved records are byte-identical before/after this update. [Delivery record](evidence/selected-sheet-2026-09-26/android-123-delivery.json). The phone is locked (`mInputRestricted=true`, `isKeyguardShowing=true`), so a game-screen check and the user's quieter-motion review remain pending unlock; no lock bypass was attempted. The earlier 122 appearance feedback is not claimed as approval of 123's motion.
+
+## User follow-up — quieter walking accepted for prototype continuation
+
+After trying build 123, the user said **“Thats lots better”** and asked for the status of interactive objects and backgrounds. Record this as positive acceptance of the current prototype walking improvement, not measured foot-plant accuracy or full animation/platform qualification. The user review supersedes the pending-unlock review status above; the installation-time lock observation remains historical evidence.
+
+Home behavior (sofa seats, radios/dancing, trampoline and shed storage) is already included in 123 and passes the recorded native checks. **The duplicate-background/interactive-fixture correction remains unimplemented.** The next task is ART-HOME-02: one clean living room and one layered usable sofa, then backyard trampoline/shed, then kitchen surfaces and interiors. Other worlds remain scenic. No app/server/save change was made by this status-record update.

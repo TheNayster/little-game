@@ -97,5 +97,14 @@
     }
   ],
   "allEightRecordsByteIdentical": true,
-  "screenCheck": "Blocked by phone lock: mInputRestricted=true, isKeyguardShowing=true. User asked to unlock."
+  "screenCheckAtInstallation": "Blocked by phone lock: mInputRestricted=true, isKeyguardShowing=true. User asked to unlock.",
+  "userFollowUp": {
+    "quote": "Thats lots better",
+    "scope": "Positive review of build 123 quieter prototype walking; proceed to home scene correction.",
+    "notClaimed": [
+      "automated phone-screen inspection",
+      "precise foot-contact qualification",
+      "physical A10 performance"
+    ]
+  }
 }

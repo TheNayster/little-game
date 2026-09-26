@@ -25,4 +25,4 @@ References: [Bluey](https://www.bluey.tv/characters/bluey/), [Bingo](https://www
 
 ## Latest visual selection
 
-The user prefers the [recovered movement sheet](SelectedReference/README.md). The [prepared Bluey/Bingo sheets](AnimationSheets/README.md) now replace the SVG rigs in the actual game and chooser in build 122. Native checks and the signed release pass. The user liked the 122 appearance; 123 adds quieter walk atlases and is installed with saves retained. Phone-screen review awaits unlock.
+The user prefers the [recovered movement sheet](SelectedReference/README.md). The [prepared Bluey/Bingo sheets](AnimationSheets/README.md) now replace the SVG rigs in the actual game and chooser in build 122. Native checks and the signed release pass. The user liked the 122 appearance; 123 adds quieter walk atlases and is installed with saves retained. The user reports the quieter 123 walk looks much better.
