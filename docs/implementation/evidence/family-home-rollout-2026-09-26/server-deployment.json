@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "build": 128,
+  "previousBuild": 110,
+  "previousSchema": 3,
+  "schema": 4,
+  "previousRevision": 2784,
+  "revision": 2785,
+  "existingStateRetained": true,
+  "protectedEnrollmentUnchanged": true,
+  "players": 4,
+  "toys": 11,
+  "persistentServer": true,
+  "helperBuild": 128,
+  "nativeStatus": "listening",
+  "supervisionHealthy": true
+}

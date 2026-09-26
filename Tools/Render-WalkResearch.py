@@ -9,6 +9,7 @@ import markdown
 docs = Path(__file__).resolve().parents[1] / 'docs'
 style = re.search(r'<style>(.*?)</style>', (docs / 'bluey-game-research-2026-09-23.html').read_text(encoding='utf-8'), re.S).group(1)
 for name, title in [
+    ('family-home-rollout-2026-09-26', 'Little Weeps — iPads and home server 128'),
     ('integrated-home-2026-09-26', 'Little Weeps — integrated home objects'),
     ('movement-speed-2026-09-26', 'Little Weeps — faster character travel 124–125'),
     ('selected-sheet-characters-2026-09-26', 'Little Weeps — selected Bluey and matching Bingo 122–123'),

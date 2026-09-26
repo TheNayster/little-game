@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "previousBuild": 110,
+  "build": 128,
+  "checks": [
+    {
+      "check": "110 to 128 retains all existing fields and enrollment; adds only schema-4 defaults, home ball and one revision",
+      "passed": true
+    },
+    {
+      "check": "Four original enrolled clients rejoin; home backup verifies; restored 110 checkpoint upgrades identically",
+      "passed": true
+    }
+  ],
+  "scope": "Disposable enrolled Windows family; no real family files used"
+}

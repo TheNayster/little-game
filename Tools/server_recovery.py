@@ -25,8 +25,9 @@ FILES = ENROLLMENT + ('world.save',)
 SAVES = ('world.save', 'world.save.bak', 'world.save.pending')
 LIMIT = 3 * 1024 * 1024
 # Keep experimental writers out even when a newer family build is qualified.
-# 110 passed native multi-area restore/rollback/re-enrollment acceptance.
-QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110}
+# 110 and 128 passed native multi-area restore/rollback/re-enrollment acceptance.
+# 128 also preserves the home radio and stored-item state in schema 4.
+QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128}
 MAX_QUALIFIED_BUILD = max(QUALIFIED_BUILDS)
 
 

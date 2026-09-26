@@ -1,0 +1,28 @@
+{
+  "build": 128,
+  "version": "0.0.128",
+  "signedVerified": true,
+  "nativeCompileAndLinkPassed": true,
+  "bundle": "com.littleweeps.familyplayset",
+  "applicationIdentifier": "6QF59C684U.com.littleweeps.familyplayset",
+  "minimumOS": "15.0",
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "profileExpires": "2026-10-01T17:41:17Z",
+  "filesHashed": 39,
+  "installed": false,
+  "nativeSymbolsVerified": [
+    "LWFamilyBrowse",
+    "LWFamilyPump",
+    "LWFamilyTake",
+    "LWFamilyStop",
+    "LWPairingAdd",
+    "LWPairingRead"
+  ],
+  "frameworkSha256": "d52be7c2a50742f4bec7b18b021ddb3838de30fca1a06a90481b9bc411a9605b",
+  "unityGeneratedWarningsPresent": true,
+  "ipad9Covered": true,
+  "ipad7Covered": true
+}
