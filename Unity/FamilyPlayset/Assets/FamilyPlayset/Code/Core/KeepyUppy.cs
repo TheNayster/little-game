@@ -6,7 +6,7 @@ namespace LittleWeeps.Core
     [Serializable] public sealed class KeepyState
     {
         // One balloon per home. Height is separate from the floor's depth axis.
-        public int phase, round, hitSerial;
+        public int phase, round, hitSerial, spawnRevision;
         public float x=KeepyRules.SpawnX, y=KeepyRules.SpawnY, height=28, vx, vz, centerX=KeepyRules.SpawnX;
         public double elapsed, remainder, hitAge=10;
         public string lastHitter="";
@@ -17,8 +17,20 @@ namespace LittleWeeps.Core
     {
         public const string Activity="keepy-uppy";
         public const double Step=1.0/60;
-        public const float Radius=28, ReachX=76, ReachDepth=95, HalfWidth=440;
-        public const float SpawnX=760, SpawnY=150, FlightRate=1.6f;
+        public const float Radius=28, ReachX=76, ReachDepth=95, HalfWidth=700;
+        public const float SpawnX=2450, SpawnY=150, FlightRate=1.6f;
+        // Derive each flight's variation from saved event counters, not a
+        // process-local RNG. Save/reopen and different tick rates keep its arc.
+        public static float Variation(KeepyState b,uint channel)
+        {
+            unchecked
+            {
+                uint n=(uint)b.round*747796405u^(uint)b.hitSerial*2891336453u^channel*277803737u;
+                n^=n>>16;n*=2246822519u;n^=n>>13;n*=3266489917u;n^=n>>16;
+                return (n>>8)*(1f/16777216);
+            }
+        }
+        public static bool HigherHit(KeepyState b)=>b.lastHitter!="" && Variation(b,1)>.55f;
         public static float HandHeight(string avatar)=>avatar=="orange-pup"?108:132;
         public static bool Under(SoloPlayer p,KeepyState b)=>p.zone=="garden" &&
             string.IsNullOrEmpty(p.fixture) && Math.Abs(p.x-b.x)<=ReachX && Math.Abs(p.y-b.y)<=ReachDepth;
@@ -30,17 +42,18 @@ namespace LittleWeeps.Core
         public static SoloWorld WithKeepyUppy(SoloWorld world)
         {
             world=WithHome(world);
-            if(world.Schema>=5 && world.state.keepy.x>=0)return world;
+            if(world.Schema>=5 && world.state.keepy.x>=0 && world.state.keepy.spawnRevision==1)return world;
             var copy=world.Snapshot();
             if(copy.schema<5){copy.schema=5;copy.keepy=new KeepyState();}
-            else
+            else if(copy.keepy.x<0 || copy.keepy.phase==0)
             {
-                // Only the old indoor balloon moves. Preserve the family,
-                // players, props and event identity; outdoor saves stay exact.
+                // Move the old resting balloon once into the clear lawn past
+                // the trampoline. A saved outdoor flight keeps its full motion.
                 var b=copy.keepy;b.x=KeepyRules.SpawnX;b.y=KeepyRules.SpawnY;b.centerX=b.x;
                 b.phase=0;b.height=KeepyRules.Radius;b.vx=0;b.vz=0;b.remainder=0;
                 b.lastHitter="";b.hitAge=10;b.elapsed=0;
             }
+            copy.keepy.spawnRevision=1;
             copy.revision++;Validate(copy);return new SoloWorld(copy);
         }
         private string StartKeepy(SoloPlayer p)
@@ -52,7 +65,8 @@ namespace LittleWeeps.Core
                 if(b.round>=1000000)return "round-limit";
                 b.round++;b.phase=1;b.elapsed=0;b.remainder=0;b.lastHitter="";b.hitAge=10;
                 b.centerX=Math.Max(-4300,Math.Min(4300,b.x));
-                b.height=KeepyRules.Radius;b.vz=330;b.vx=85;
+                b.height=KeepyRules.Radius;b.vz=330;
+                b.vx=(KeepyRules.Variation(b,2)<.5f?-1:1)*(110+80*KeepyRules.Variation(b,3));
             }
             return null;
         }
@@ -66,7 +80,7 @@ namespace LittleWeeps.Core
                     throw new InvalidOperationException("Keepy Uppy requires schema 5.");
                 return;
             }
-            if(b==null || b.phase<0 || b.phase>1 || b.round<0 || b.round>1000000 || b.hitSerial<0 || b.hitSerial>100000000 ||
+            if(b==null || b.spawnRevision<0 || b.spawnRevision>1 || b.phase<0 || b.phase>1 || b.round<0 || b.round>1000000 || b.hitSerial<0 || b.hitSerial>100000000 ||
                 !WorldLayout.Position("garden",5,b.x,b.y) || !KeepyRules.Finite(b.centerX) || Math.Abs(b.centerX)>4300 ||
                 !KeepyRules.Finite(b.height) || b.height<28 || b.height>600 || !KeepyRules.Finite(b.vx) || Math.Abs(b.vx)>200 ||
                 !KeepyRules.Finite(b.vz) || Math.Abs(b.vz)>350 || !KeepyRules.Finite(b.elapsed) || b.elapsed<0 || b.elapsed>86400 ||
@@ -89,11 +103,15 @@ namespace LittleWeeps.Core
                 // so the balloon does not hang on its descent. FlightRate affects
                 // only flight; contact cooldown and persisted clocks use real time.
                 var oldHeight=b.height;
-                var gravity=b.vz>0?120:360;
+                var gravity=b.vz>0?(KeepyRules.HigherHit(b)?85:120):360;
                 b.vz=Math.Max(-330,b.vz+(-gravity-.0016f*b.vz*Math.Abs(b.vz))*dt);
-                b.vx+=((float)Math.Sin(b.elapsed*1.25+b.round)*18-.32f*b.vx)*dt;
+                var breeze=KeepyRules.Variation(b,5)*Math.PI*2;
+                var wind=(float)(Math.Sin(b.elapsed*1.25+breeze)*24+Math.Sin(b.elapsed*2.7+breeze*1.7)*14);
+                b.vx=Math.Max(-200,Math.Min(200,b.vx+(wind-.18f*b.vx)*dt));
                 b.height+=b.vz*dt;b.x+=b.vx*dt;
-                var ceiling=520-b.y*.45f;
+                // Leave the entire balloon below the top controls at both
+                // phone and tablet aspect ratios, including high return hits.
+                var ceiling=Math.Min(590,600-b.y*.45f);
                 if(b.height>ceiling){b.height=ceiling;b.vz=-Math.Abs(b.vz)*.25f;}
                 var left=Math.Max(40,b.centerX-KeepyRules.HalfWidth);var right=Math.Min(4760,b.centerX+KeepyRules.HalfWidth);
                 if(b.x<left){b.x=left;b.vx=Math.Abs(b.vx)*.65f;}
@@ -111,11 +129,14 @@ namespace LittleWeeps.Core
                     }
                 if(hit!=null)
                 {
-                    b.height=KeepyRules.HandHeight(hit.avatar)+KeepyRules.Radius+(hit.y-b.y)*.45f;b.vz=300;
-                    var offset=b.x-hit.x;var sign=Math.Abs(offset)>12?Math.Sign(offset):(b.hitSerial%2==0?1:-1);
-                    b.vx=sign*(105+Math.Min(45,Math.Abs(offset)*.6f));
                     b.hitSerial=Math.Min(100000000,b.hitSerial+1);
-                    b.lastHitter=hit.id;b.hitAge=0;b.hitLeft=sign<0;
+                    b.lastHitter=hit.id;b.hitAge=0;
+                    b.height=KeepyRules.HandHeight(hit.avatar)+KeepyRules.Radius+(hit.y-b.y)*.45f;
+                    b.vz=KeepyRules.HigherHit(b)?335+15*KeepyRules.Variation(b,4):295+10*KeepyRules.Variation(b,4);
+                    var offset=b.x-hit.x;
+                    var sign=KeepyRules.Variation(b,2)<(offset>12?.7f:offset< -12?.3f:.5f)?1:-1;
+                    b.vx=sign*(110+85*KeepyRules.Variation(b,3));
+                    b.hitLeft=Math.Abs(offset)>12?offset<0:sign<0;
                 }
                 if(b.height<=KeepyRules.Radius || b.elapsed>=86400)
                 {b.height=KeepyRules.Radius;b.vx=0;b.vz=0;b.phase=0;b.remainder=0;}

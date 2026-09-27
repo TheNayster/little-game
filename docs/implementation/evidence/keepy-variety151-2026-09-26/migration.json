@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "previousBuild": 150,
+  "build": 151,
+  "checks": [
+    {
+      "check": "legacy resting balloon relocates once; all other saved state and enrollment remain exact; four profiles rejoin",
+      "passed": true
+    },
+    {
+      "check": "restored build-150 backup receives exactly the same migration",
+      "passed": true
+    }
+  ],
+  "liveFamilyServerAccessed": false
+}

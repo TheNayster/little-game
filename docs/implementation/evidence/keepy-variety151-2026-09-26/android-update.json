@@ -1,0 +1,19 @@
+{
+  "operation": "updated",
+  "version": "0.0.151",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "47614626a906353dc9d48a729bed837b4bd3de5d88a7b5ffec8abc34c2d500ba",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 150,
+  "previousApkSha256": "fb54326b23313210a8bbe379b94be847a0185feca01ef71df874cacbcad3364a",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "launchCommandSucceeded": true,
+  "build": 151,
+  "saveRecordsRetained": 16,
+  "unchangedSaveRecords": 16,
+  "visibleUiVerified": false,
+  "visibleUiPendingReason": "Phone lock screen",
+  "physicalFlightTuningAccepted": false,
+  "runtimeErrorsObserved": false
+}

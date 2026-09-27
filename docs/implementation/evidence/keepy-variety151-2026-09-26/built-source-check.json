@@ -1,0 +1,40 @@
+{
+  "build": 151,
+  "checks": [
+    {
+      "platform": "AndroidSigned",
+      "runtimeFiles": 83,
+      "allRuntimeHashesMatched": true,
+      "builds": [
+        {
+          "version": "0.0.151",
+          "result": "Succeeded",
+          "development": false,
+          "errors": 0,
+          "warnings": 0
+        }
+      ]
+    },
+    {
+      "platform": "NetworkProbe",
+      "runtimeFiles": 83,
+      "allRuntimeHashesMatched": true,
+      "builds": [
+        {
+          "role": "Server",
+          "version": "0.0.151",
+          "result": "Succeeded",
+          "errors": 0,
+          "warnings": 0
+        },
+        {
+          "role": "Client",
+          "version": "0.0.151",
+          "result": "Succeeded",
+          "errors": 0,
+          "warnings": 0
+        }
+      ]
+    }
+  ]
+}

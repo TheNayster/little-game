@@ -45,7 +45,7 @@ def main():
         play_place='garden' if args.build>=131 else 'home'
         for client in clients:
             travel(client,play_place)
-            if args.build>=131:require(command(client,0,x=420,y=100)['accepted'],'Yard approach failed')
+            if args.build>=131:require(command(client,0,x=2050 if args.build>=151 else 420,y=480 if args.build>=151 else 100)['accepted'],'Yard approach failed')
         time.sleep(.8)
         def balloon():return server.state()['view']['keepy']
         require(balloon()['phase']==0 and balloon()['round']==0,'Balloon started without a tap')
@@ -61,7 +61,7 @@ def main():
                 if sample['height']>peak:peak=sample['height'];apex=sample['elapsed']
                 time.sleep(.02);sample=balloon()
             flight=dict(peak=peak,flightSeconds=sample['elapsed'],fallSeconds=sample['elapsed']-apex)
-            require(peak>285 and sample['elapsed']<(2.3 if args.build>=132 else 3) and sample['x']>760,'Higher/faster outdoor toss failed')
+            require(peak>285 and sample['elapsed']<(2.3 if args.build>=132 else 3) and (abs(sample['x']-2450)>100 if args.build>=151 else sample['x']>760),'Higher/faster outdoor toss failed')
             if args.build>=132:require(flight['fallSeconds']<1.05,'Descent still too slow')
             passed('higher outdoor toss drifts sideways and lands quickly; descent duration measured separately')
         for hitter in clients:
@@ -88,6 +88,18 @@ def main():
             require('BalloonTap' in poses,'Raised arm not presented')
             wait(lambda:b.input('inspect')['keepy']['hitSerial']>=before+2,'shared hits')
             passed(label+' automatically raises arm and returns falling balloon; both clients agree on taps')
+        if args.build>=151:
+            require(command(a,1,value='blue-pup')['accepted'],'High flight avatar setup failed')
+            for width,height,label in [(1280,591,'phone'),(1024,768,'tablet')]:
+                a.input('resize',x=width,y=height);ready(a);limit=time.monotonic()+30;captured=False
+                while time.monotonic()<limit:
+                    v=balloon();require(command(a,0,x=v['x'],y=v['y'])['accepted'],'High flight follow failed')
+                    if v['phase']==0:
+                        time.sleep(.4);a.input('touchButton',text='Play Keepy Uppy')
+                    elif v['height']>495 and abs(v['vz'])<65:
+                        capture(a,folder,'higher-hit-'+label);captured=True;break
+                require(captured,'No occasional higher flight captured on '+label)
+            passed('occasional higher automatic returns render in phone and tablet viewports')
         a.input('resize',x=1024,y=768);ready(a);capture(a,folder,'balloon-tablet')
         require(command(a,0,x=1050 if args.build>=131 else -3500,y=480)['accepted'],'Depth placement failed')
         require(command(b,0,x=1050 if args.build>=131 else -3500,y=480)['accepted'],'Sibling depth failed')
@@ -109,6 +121,11 @@ def main():
         travel(a,'home');wait(lambda:balloon()['elapsed']>paused['elapsed'],'home resumes')
         passed('tap starts another toss; balloon stays home and pauses when everyone leaves; return resumes')
         fixture=RecoveryFixture(args.build);solo=fixture.launch(1);ready(solo);travel(solo,play_place)
+        if args.build>=151:
+            if not solo.input('inspect')['joystickVisible']:solo.input('touchButton',text='Tap to walk')
+            solo.input('touch-begin',role='stick',x=30,finger=31)
+            wait(lambda:next(p['position']['x'] for p in solo.input('inspect')['players'] if p['id']==solo.profile)>2050,'solo clear-lawn approach',15)
+            solo.input('touch-end',role='stick',x=30,finger=31);time.sleep(.6)
         solo.input('touchButton',text='Play Keepy Uppy');wait(lambda:solo.input('inspect')['keepy']['phase']==1,'solo toss')
         solo.input('touchButton',text='Menu');save=Path(solo.input('inspect')['savePath']);solo.close()
         saved=json.loads(save.read_bytes().split(b'\n',2)[2]);require(saved['schema']==expected_schema and saved['keepy']['round']==1,'Missing solo balloon save')

@@ -24,6 +24,15 @@ def main():
     def exercise(client,label):
         home.ready(client);home.travel(client,'garden')
         if not client.input('inspect')['joystickVisible']:client.input('touchButton',text='Tap to walk')
+        if args.build>=151:
+            # Carry the disposable fixture prop to the new clear-lawn start.
+            # Use ordinary input so this setup also works in private solo.
+            destination=client.input('inspect')['keepy']['x']-200
+            client.input('touch-begin',role='bucket-1',finger=28);client.input('touch-begin',role='stick',x=30,finger=29)
+            wait(lambda:x(client)>=destination,'walk held setup prop to balloon',15)
+            client.input('touch-end',role='stick',x=30,finger=29)
+            client.input('touch-end',x=x(client)-60,y=100,finger=28)
+            wait(lambda:not client.input('inspect')['dragging'],'setup prop released');home.ready(client);time.sleep(.6)
         client.input('touch-begin',role='stick',x=30,finger=21)
         moving_after(client,lambda:client.input('touchButton',text='Play Keepy Uppy'),label+': stationary joystick finger keeps walking after balloon tap')
         # A second touch picks up a real prop while the first continues moving.

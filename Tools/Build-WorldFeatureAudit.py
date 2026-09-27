@@ -216,7 +216,7 @@ for t in tables(section(23)):
         if not m:continue
         i=int(m[1]);fid=f'SHOW-{i:02}'
         if i==25:
-            desc='Tap the resting backyard balloon; higher toss, faster fall and sideways drift; standing free-handed players beneath it raise an arm automatically. One balloon for all four, home only, no score/win/loss; landing rests until tapped. Core/native 132 checks pass; Android still has 130.'
+            desc='The balloon starts on clear lawn past the trampoline. Ordinary and occasional higher auto-returns vary direction, speed and distance; the quicker descent and movement while tapping remain. One balloon for all four, Home only, no score/win/loss; landing rests until tapped. Build 151 passes core/native flight and save-upgrade checks; physical tuning acceptance remains open.'
         else:desc=f'Simple play: {row[2]} Deeper play: {row[3]} Reuse / original priority: {row[4]}. Suggested first location; portable game families may later appear elsewhere.'
         add(fid,show_world[i],'Show-inspired activities',plain(m[2]),'play' if i==25 else 'plan',[23],desc,'keepy' if i==25 else 'ledger')
 add('SHOW-EXTRA','yard','Optional extensions','Pirates swing-ship adventure','optional',[23],'Additional researched candidate outside the 32-card selection: steering and spotting picture landmarks; needs bespoke swing/character work.','ledger')

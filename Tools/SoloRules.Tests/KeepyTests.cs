@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using LittleWeeps.Core;
@@ -51,9 +52,61 @@ static partial class Program
                 if(b.phase==0){floorTime=(i+1)/60.0;break;}
             }
             // Build 130 measured about 203 units and 3.43 seconds for this toss.
-            Check(peak>290 && peak<325 && floorTime>1.9 && floorTime<2.2 && drift>100);
+            Check(peak>290 && peak<325 && floorTime>1.9 && floorTime<2.2 && Math.Abs(drift)>100);
             // Measure falling separately: a taller toss must not disguise a slow descent.
             Check(floorTime-apexTime>.7 && floorTime-apexTime<.95);
+        });
+        Test("clear-lawn balloon migration moves old rest once and preserves an outdoor flight",()=>{
+            foreach(var flying in new[]{false,true})
+            {
+                var old=SoloWorld.WithBooks(SoloWorld.Create("first","second","third","fourth")).Snapshot();
+                old.keepy.spawnRevision=0;old.keepy.x=760;old.keepy.centerX=760;old.keepy.round=4;old.keepy.hitSerial=11;
+                if(flying){old.keepy.phase=1;old.keepy.height=290;old.keepy.vx=-140;old.keepy.vz=160;old.keepy.elapsed=.75;old.keepy.remainder=.004;}
+                var w=SoloWorld.WithBooks(SoloWorld.Restore(old));var after=w.Snapshot();
+                Check(after.schema==old.schema && after.revision==old.revision+1 && after.keepy.spawnRevision==1);
+                Check(after.keepy.round==4 && after.keepy.hitSerial==11);
+                Check(JsonSerializer.Serialize(old.players,Json)==JsonSerializer.Serialize(after.players,Json));
+                Check(JsonSerializer.Serialize(old.toys,Json)==JsonSerializer.Serialize(after.toys,Json));
+                Check(JsonSerializer.Serialize(old.bedrooms,Json)==JsonSerializer.Serialize(after.bedrooms,Json));
+                Check(JsonSerializer.Serialize(old.secrets,Json)==JsonSerializer.Serialize(after.secrets,Json));
+                Check(JsonSerializer.Serialize(old.receipts,Json)==JsonSerializer.Serialize(after.receipts,Json));
+                if(flying){old.keepy.spawnRevision=1;Check(JsonSerializer.Serialize(old.keepy,Json)==JsonSerializer.Serialize(after.keepy,Json));}
+                else Check(after.keepy.x==KeepyRules.SpawnX && after.keepy.y==KeepyRules.SpawnY && after.keepy.phase==0);
+                Check(ReferenceEquals(w,SoloWorld.WithBooks(w)));
+            }
+            var fresh=KeepyWorld().Snapshot();
+            Check(KeepyRules.SpawnX>HomeLayout.TrampolineX+600 && KeepyRules.SpawnX<HomeLayout.ShedX-600);
+            Check(fresh.toys.Where(t=>t.zone=="garden").All(t=>Math.Abs(t.x-KeepyRules.SpawnX)>400));
+        });
+        Test("successive shared hits mix normal and higher arcs, both directions and longer travel",()=>{
+            var w=KeepyWorld();Good(w,SoloAction.StartActivity,value:KeepyRules.Activity);
+            var peaks=new System.Collections.Generic.List<float>();
+            var reaches=new System.Collections.Generic.List<float>();
+            var impulses=new System.Collections.Generic.List<float>();
+            int serial=0;float peak=0,startX=KeepyRules.SpawnX,reach=0;
+            for(var i=0;i<60*100 && peaks.Count<24;i++)
+            {
+                var b=w.ReadKeepy();Good(w,SoloAction.Move,x:b.x,y:b.y);w.AdvanceIdle(1.0/60,out _,new[]{"first"});b=w.ReadKeepy();
+                SoloWorld.Validate(w.Snapshot());
+                Check(b.x>=40 && b.x<=4760 && b.height+b.y*.45f<=600.001f);
+                if(b.hitSerial!=serial)
+                {
+                    if(serial>0){peaks.Add(peak);reaches.Add(reach);}
+                    serial=b.hitSerial;peak=b.height;startX=b.x;reach=0;impulses.Add(b.vx);
+                }
+                peak=Math.Max(peak,b.height);reach=Math.Max(reach,Math.Abs(b.x-startX));
+            }
+            Check(peaks.Count==24 && peaks.Count(h=>h<430)>=6 && peaks.Count(h=>h>490)>=6);
+            Check(impulses.Any(v=>v>175) && impulses.Any(v=>v< -175) && reaches.Max()>350);
+            File.WriteAllText(Path.Combine(root,"keepy-variety.json"),JsonSerializer.Serialize(new{peaks,reaches,impulses},Json));
+        });
+        Test("varied flight resumes exactly across saved counters and different render rates",()=>{
+            var w=KeepyWorld();Good(w,SoloAction.StartActivity,value:KeepyRules.Activity);TickKeepy(w,18,follow:true);
+            Good(w,SoloAction.Move,x:100,y:480);var saved=w.Snapshot();
+            var restored=SoloWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(JsonSerializer.Serialize(saved,Json),Json));
+            TickKeepy(w,.8,1.0/60);TickKeepy(restored,.8,1.0/30);
+            var a=w.ReadKeepy();var b=restored.ReadKeepy();
+            Check(Math.Abs(a.x-b.x)<.001 && Math.Abs(a.height-b.height)<.001 && a.hitSerial==b.hitSerial && a.vx==b.vx && a.vz==b.vz);
         });
         Test("keepy belongs only to home; tapping preserves current activity, position and held item",()=>{
             var w=KeepyWorld();Good(w,SoloAction.Travel,value:"creek");var before=JsonSerializer.Serialize(w.Snapshot(),Json);
@@ -131,7 +184,7 @@ static partial class Program
         Test("keepy malformed clocks, floor points, ownership and future schema refuse",()=>{
             var w=KeepyWorld();
             foreach(var change in new Action<SoloSnapshot>[] {s=>s.keepy.height=float.NaN,s=>s.keepy.vz=999,s=>s.keepy.remainder=1,
-                s=>s.keepy.lastHitter="missing",s=>s.keepy.phase=2,s=>s.schema=WorldLayout.Schema+1,s=>s.keepy=null,
+                s=>s.keepy.lastHitter="missing",s=>s.keepy.phase=2,s=>s.keepy.spawnRevision=2,s=>s.schema=WorldLayout.Schema+1,s=>s.keepy=null,
                 s=>{s.players[0].activity=KeepyRules.Activity;s.players[0].zone="beach";}})
             {var s=w.Snapshot();change(s);Throws(()=>SoloWorld.Validate(s));}
             var r=RecoveryFixture();r.snapshot=SoloWorld.WithKeepyUppy(SoloWorld.Restore(r.snapshot)).Snapshot();r.content=6;

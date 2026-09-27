@@ -1,5 +1,25 @@
 # Keepy Uppy and four-player home objects
 
+## Clear lawn and varied flight — build 151
+
+September 26, 2026 · SHOW-25 / HOME-4P · requested after the accepted movement fix
+
+The starting balloon moves right to **(2450, 150)**, on the open lawn past the trampoline and before the shed. New worlds use that position; an old resting balloon moves there once. Outdoor flights already in progress keep their position, height, velocity and clocks. Players, belongings, room decorations, book identities and enrollment stay intact. The optional per-balloon `spawnRevision` marker distinguishes old layout state from an already moved balloon. Existing schema 11/content 12 and all prior finite-state limits remain valid; no newer protocol or incompatible velocity range is required.
+
+Automatic returns now choose between ordinary and higher arcs. In 24 measured returns, ordinary Bluey hits peaked at **395–406** height units; stronger hits reached **511–523**. Sideways launch speeds vary in either direction, with a mild bias from the contact side and changing breeze. Measured travel between hits ranged up to **649** units. The play envelope expands from 440 to 700 units either side of the round's start, still bounded to the backyard. The same quicker downward pull remains: the initial toss still peaks around 302, lands in 2.08 seconds and descends in about 0.83 seconds. The upper limit leaves the whole balloon visible below the top controls. These are game measurements and tuning choices, not a claim of physical balloon accuracy.
+
+The authority derives variation from the saved round and hit counters. All four clients receive one result; render rate and save/reopen do not invent a different random arc. Existing movement while tapping/holding objects, free-handed auto-returns, floor rest/tap restart, independent participation and no-score free play remain.
+
+**Validation:** 157 core checks, [13 native simultaneous-touch checks](evidence/keepy-variety151-2026-09-26/movement.json) and nine native flight groups pass, including all four players returning the balloon, both accepted character arm poses, continued shared motion, higher arcs in phone/tablet layouts and private save/reopen. Two native upgrade groups pass: a real build-150 resting save gains only the new balloon layout/revision, all other state and enrollment stay exact, four original profiles rejoin, and restoring its older backup produces the same migration. Windows client/server and signed Android 151 built with zero errors/warnings; both manifests match every runtime source file. [Core](evidence/keepy-variety151-2026-09-26/core-results.json) · [Measured flights](evidence/keepy-variety151-2026-09-26/flight-samples.json) · [Native play](evidence/keepy-variety151-2026-09-26/native-play.json) · [Migration](evidence/keepy-variety151-2026-09-26/migration.json) · [Built sources](evidence/keepy-variety151-2026-09-26/built-source-check.json).
+
+![Resting balloon on the open lawn](evidence/keepy-variety151-2026-09-26/clear-lawn-spawn.png)
+
+![A higher return in the phone layout](evidence/keepy-variety151-2026-09-26/higher-hit-phone.png)
+
+![A higher return in the tablet layout](evidence/keepy-variety151-2026-09-26/higher-hit-tablet.png)
+
+Android 151 is installed in place over 150 with the pinned signature and exact installed APK verified. All 16 saved records are still byte-identical while the game is behind the phone lock screen; visible launch/migration verification awaits unlock. [Android evidence](evidence/keepy-variety151-2026-09-26/android-update.json). No family server or Apple device was updated. Physical acceptance of this new flight tuning, sustained four-device play and older-iPad performance remain open. The development branch also contains the original book preview with outstanding broader qualification; this is not a claim that Home or the books are finished.
+
 ## Movement while tapping — build 150
 
 September 26, 2026 · SHOW-25 / HOME-4P · user-reported touch regression

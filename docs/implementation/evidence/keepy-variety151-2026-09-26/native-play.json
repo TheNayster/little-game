@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "build": 151,
+  "checks": [
+    {
+      "check": "real balloon touch starts upward flight; sibling sees motion without sending commands",
+      "passed": true
+    },
+    {
+      "check": "higher outdoor toss drifts sideways and lands quickly; descent duration measured separately",
+      "passed": true
+    },
+    {
+      "check": "all four connected players can return the same balloon, observed by every client",
+      "passed": true
+    },
+    {
+      "check": "bluey automatically raises arm and returns falling balloon; both clients agree on taps",
+      "passed": true
+    },
+    {
+      "check": "bingo automatically raises arm and returns falling balloon; both clients agree on taps",
+      "passed": true
+    },
+    {
+      "check": "occasional higher automatic returns render in phone and tablet viewports",
+      "passed": true
+    },
+    {
+      "check": "wrong floor depth cannot hit; landing rests with no score, loss, timer or automatic restart",
+      "passed": true
+    },
+    {
+      "check": "tap starts another toss; balloon stays home and pauses when everyone leaves; return resumes",
+      "passed": true
+    },
+    {
+      "check": "offline touch starts same game; schema-11 balloon survives close/reopen in private solo",
+      "passed": true
+    }
+  ],
+  "flight": {
+    "peak": 301.470458984375,
+    "flightSeconds": 2.083333333333331,
+    "fallSeconds": 0.8333333333333304
+  },
+  "liveFamilyServerAccessed": false,
+  "physicalDevicesAccessed": false
+}

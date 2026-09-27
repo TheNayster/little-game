@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "build": 151,
+  "checks": [
+    {
+      "check": "four-player authority: stationary joystick finger keeps walking after balloon tap",
+      "passed": true
+    },
+    {
+      "check": "four-player authority: walking continues during object pickup/hold",
+      "passed": true
+    },
+    {
+      "check": "four-player authority: third balloon touch preserves both movement and held object",
+      "passed": true
+    },
+    {
+      "check": "four-player authority: releasing object does not cancel joystick",
+      "passed": true
+    },
+    {
+      "check": "four-player authority: joystick release and menu still stop movement",
+      "passed": true
+    },
+    {
+      "check": "four-player authority: tap-to-walk destination survives balloon tap",
+      "passed": true
+    },
+    {
+      "check": "all three siblings remain independent during mixed input",
+      "passed": true
+    },
+    {
+      "check": "private solo: stationary joystick finger keeps walking after balloon tap",
+      "passed": true
+    },
+    {
+      "check": "private solo: walking continues during object pickup/hold",
+      "passed": true
+    },
+    {
+      "check": "private solo: third balloon touch preserves both movement and held object",
+      "passed": true
+    },
+    {
+      "check": "private solo: releasing object does not cancel joystick",
+      "passed": true
+    },
+    {
+      "check": "private solo: joystick release and menu still stop movement",
+      "passed": true
+    },
+    {
+      "check": "private solo: tap-to-walk destination survives balloon tap",
+      "passed": true
+    }
+  ],
+  "liveFamilyServerAccessed": false,
+  "physicalMultiTouchQualified": false
+}
