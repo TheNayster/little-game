@@ -1,0 +1,41 @@
+{
+  "utc": "2026-09-27T14:24:50.3310403Z",
+  "operation": "updated",
+  "version": "0.0.166",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "cf77a5666f4fcf7ae837767b0442c4d1cfc77059a011612699785b7f6ccd7f7c",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 162,
+  "previousApkSha256": "96258fa672a01975569454d8b238491f5bddd340a7bcc13da393096566f96b03",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "visibleUiAndSaveRetentionVerified": true,
+  "native16KbQualified": false,
+  "primarySavesBefore": 16,
+  "primarySavesAfter": 16,
+  "byteIdenticalPrimary": 15,
+  "backupFilesRetained": 16,
+  "migrations": [
+    {
+      "previousSchema": 13,
+      "newSchema": 14,
+      "objects": 117,
+      "priorObjectsPreservedWithExpectedSupportRelocation": true,
+      "roomsAndOwnershipExact": true,
+      "playerIdentityAndInventoryExact": true,
+      "playerPositionChangedDuringPhoneUse": true,
+      "retainedReceiptEntries": 127,
+      "phoneUseDuringVerification": "One receipted PIZ-05 start: formerly empty cookware-0 becomes a whole new pizza and consumes exactly one dough unit. All other prior object state retained."
+    }
+  ],
+  "saveRetentionVerified": true,
+  "visibleUiVerified": true,
+  "visibleBehavior": "New pictured kitchen recipe chooser visibly launched on the unlocked Samsung; phone user started a persistent silly-face pizza during verification.",
+  "selectedRuntimeErrorsObserved": 0,
+  "sharedServerUpdated": false,
+  "otherDevicesUpdated": false,
+  "physicalFullRecipeAcceptance": false
+}
