@@ -33,7 +33,10 @@ namespace LittleWeeps.Client
             var rect=index<0?new Rect(0,0,texture.width,texture.height):new Rect(index%columns*(texture.width/(float)columns),(rows-1-index/columns)*(texture.height/(float)rows),texture.width/(float)columns,texture.height/(float)rows);
             // Generated atlas spacing is inspected, not assumed to be uniform.
             // These bounds preserve each full silhouette and exclude neighbours.
-            if(index>=0 && id=="recipes"){
+            if(index>=0 && id=="cake-stages"){
+                var boxes=new[]{new Rect(12,110,519,371),new Rect(532,193,487,258),new Rect(1027,151,498,341),new Rect(22,601,499,310),new Rect(537,630,510,263),new Rect(1110,533,414,417)};
+                var b=boxes[index];rect=new Rect(b.x/1536*texture.width,(1024-b.y-b.height)/1024*texture.height,b.width/1536*texture.width,b.height/1024*texture.height);
+            }else if(index>=0 && id=="recipes"){
                 var boxes=new[]{new Rect(10,48,303,254),new Rect(327,48,313,258),new Rect(652,48,312,256),new Rect(976,49,314,256),new Rect(1303,48,306,255),new Rect(14,351,309,267),new Rect(344,336,303,294),new Rect(668,365,294,256),new Rect(980,357,305,270),new Rect(1307,368,298,253),new Rect(11,671,342,253),new Rect(352,687,299,229),new Rect(671,692,290,227),new Rect(969,671,332,250),new Rect(1312,687,288,233)};
                 var b=boxes[index];rect=new Rect(b.x/1619*texture.width,(971-b.y-b.height)/971*texture.height,b.width/1619*texture.width,b.height/971*texture.height);
             }else if(index>=0 && id=="toppings"){
@@ -42,7 +45,7 @@ namespace LittleWeeps.Client
             }else if(index>=0)rect=new Rect(rect.x+3,rect.y+3,rect.width-6,rect.height-6);
             sprite=Sprite.Create(texture,rect,new Vector2(.5f,.5f));homeSprites.Add(sprite);kitchenSprites[key]=sprite;return sprite;
         }
-        private Sprite IngredientSprite(string id)=>KitchenSprite("ingredients",Array.IndexOf(Kitchen.Ingredients,id),5,5);
+        private Sprite IngredientSprite(string id)=>KitchenSprite("ingredients",id=="cake-mix"?9:Array.IndexOf(Kitchen.Ingredients,id),5,5);
         private RectTransform KitchenFixture(string id,float x,float y,string art,Vector2 offset,Vector2 size)
         {
             var root=Rect(Board,"Kitchen "+id,Vector2.zero,Vector2.zero);kitchenFixtures[id]=(root,x,y);HomePicture(root,id,offset,size,KitchenSprite(art));return root;
@@ -60,6 +63,7 @@ namespace LittleWeeps.Client
         public void KitchenStepGesture()
         {
             var t=ReadToys().FirstOrDefault(v=>v.id==cookingItem);var d=t?.kitchen?.dish;
+            if(CakeFlow.Active(d)){CakeTap();return;}
             if(d==null || t.kind==ToyKind.Plate){OpenEasyCook();return;}
             var step=Kitchen.Next(d);
             if(step.StartsWith("add:")){AddKitchenIngredient("ingredient-"+step.Substring(4));return;}
@@ -72,7 +76,7 @@ namespace LittleWeeps.Client
             var ingredient=all.FirstOrDefault(v=>v.id==id);if(ingredient==null)return;
             if(ingredient.kitchen.amount==0){KitchenCommand("easy:restock",id);return;}
             var n=t.kitchen.dish.ingredients.Length;var local=new Vector2(Mathf.Sin(n*2.4f)*.65f,Mathf.Cos(n*2.4f)*.65f);
-            if(screen.HasValue){RectTransformUtility.ScreenPointToLocalPointInRectangle(kitchenPreview,screen.Value,null,out var point);if(point.magnitude>245)return;local=Vector2.ClampMagnitude(point/210,.78f);}
+            if(screen.HasValue){RectTransformUtility.ScreenPointToLocalPointInRectangle(CakeFlow.Active(t.kitchen.dish)?cakeSurface:kitchenPreview,screen.Value,null,out var point);if(point.magnitude>270)return;local=Vector2.ClampMagnitude(CakeFlow.Active(t.kitchen.dish)?new Vector2(point.x/180,(point.y-90)/70):point/210,.78f);}
             KitchenCommand("easy:add",id,t.id,t.x+local.x*100,Mathf.Clamp(t.y+local.y*100,0,500));
         }
         private void OpenKitchenItem(string id)
@@ -150,6 +154,7 @@ namespace LittleWeeps.Client
         }
         private void PaintDish(FoodDish dish,Image image,Image baseImage,Image[] additions,float scale=1)
         {
+            if(CakeFlow.Active(dish)){PaintSmallCake(dish,image,baseImage,additions);return;}
             var visible=dish!=null && dish.portions!=0;var pizza=visible && dish.recipe.StartsWith("PIZ");
             image.gameObject.SetActive(visible && (pizza || dish.heated));baseImage.gameObject.SetActive(true);
             if(pizza && scale>1)baseImage.gameObject.SetActive(false);

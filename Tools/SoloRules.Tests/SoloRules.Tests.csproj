@@ -18,6 +18,8 @@
     <Compile Include="RoomPlayTests.cs" />
     <Compile Include="KitchenTests.cs" />
     <Compile Include="KitchenEasyTests.cs" />
+    <Compile Include="CakeFlowTests.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CakeFlow.cs" Link="CakeFlow.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KitchenAssistance.cs" Link="KitchenAssistance.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Kitchen.cs" Link="Kitchen.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/RoomPlay.cs" Link="RoomPlay.cs" />

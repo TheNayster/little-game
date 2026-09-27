@@ -1,0 +1,20 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-09-27",
+  "file": "cake-stages.png",
+  "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-acb6e78f-152e-416d-b4db-9400c4e41ab9.png",
+  "prompt": "Use case: illustration-story. Asset type: transparent sprite atlas for a preschool cooking game, one coherent 3-column by 2-row sheet of 6 separate components, equal cells, ample transparent gutters. Match warm polished 2D illustrated food art, gentle brown outlines, soft highlights, readable rounded forms, slightly elevated front view, no text, no shadows outside silhouettes. Top left: empty wide pale turquoise mixing bowl, clearly visible empty interior. Top middle: oval pool of smooth glossy chocolate cake batter alone, no container. Top right: empty wide round pale blue metal cake tin with visible inside. Bottom left: one plain round chocolate sponge cake layer, bare flat oval top, brown porous side, no icing, no plate. Bottom middle: isolated oval pale chocolate frosting disc with a soft scalloped edge, no cake/container. Bottom right: small wooden mixing spoon angled diagonally, chocolate-coated bowl tip. All six components complete and centered within their own equal cells, no overlap or cropped edges. Consistent oval perspective between batter surface, tin, sponge and icing to support code layering. No finished decorated cake, no scenery, no people. Real transparent alpha background.",
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "sprites": [
+      "empty mixing bowl",
+      "chocolate batter",
+      "empty cake tin",
+      "plain chocolate sponge layer",
+      "icing surface",
+      "wooden spoon"
+    ]
+  },
+  "notes": "Unmodified RGBA retained in SourceArt and Unity Resources. Runtime uses inspected rectangle bounds and nine icing coverage cells. Transparent alpha is preserved. Cake mix is a distinct counted premix stock item, using the existing flour bag icon with a distinct definition."
+}

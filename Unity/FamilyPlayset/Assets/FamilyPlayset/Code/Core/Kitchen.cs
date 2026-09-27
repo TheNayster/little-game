@@ -12,7 +12,7 @@ namespace LittleWeeps.Core
     }
     [Serializable] public sealed class FoodAddition
     {
-        public string unit,ingredient,by;
+        public string unit,ingredient,by,phase;
         public float x,y;
         public FoodAddition Copy()=>(FoodAddition)MemberwiseClone();
     }
@@ -20,10 +20,13 @@ namespace LittleWeeps.Core
     {
         public string id,recipe;
         public int step,portions;
-        public bool heated,assisted;
+        public bool heated,assisted,guided,experiment;
+        public int recipeVersion,layers,icingMask,cutMask;
+        public string stage;
+        public float mixed,poured;
         public double heat;
         public FoodAddition[] ingredients=Array.Empty<FoodAddition>();
-        public static bool Empty(FoodDish d)=>d==null || string.IsNullOrEmpty(d.id) && string.IsNullOrEmpty(d.recipe) && d.step==0 && d.portions==0 && !d.heated && !d.assisted && d.heat==0 && (d.ingredients==null || d.ingredients.Length==0);
+        public static bool Empty(FoodDish d)=>d==null || string.IsNullOrEmpty(d.id) && string.IsNullOrEmpty(d.recipe) && d.step==0 && d.portions==0 && !d.heated && !d.assisted && !d.guided && !d.experiment && d.heat==0 && d.recipeVersion==0 && string.IsNullOrEmpty(d.stage) && d.mixed==0 && d.poured==0 && d.layers==0 && d.icingMask==0 && d.cutMask==0 && (d.ingredients==null || d.ingredients.Length==0);
         public FoodDish Copy(){var d=(FoodDish)MemberwiseClone();d.ingredients=ingredients.Select(i=>i.Copy()).ToArray();return d;}
     }
     [Serializable] public sealed class KitchenItem
@@ -68,10 +71,16 @@ namespace LittleWeeps.Core
             new KitchenRecipe("MEAL-05","Rice & vegetables","rice","chop,stir,heat,scoop","carrot,capsicum,mushroom",14)
         };
         public static KitchenRecipe Recipe(string id)=>Recipes.FirstOrDefault(r=>r.id==id);
+        public static string[] Palette(FoodDish d)=>CakeFlow.Active(d)?CakeFlow.Palette(d):d.experiment?Ingredients:Recipe(d.recipe).toppings;
+        public static bool CanAdd(FoodDish d,string ingredient)=>CakeFlow.Active(d)?CakeFlow.CanAdd(d,ingredient):!d.guided || d.experiment || Recipe(d.recipe).toppings.Contains(ingredient);
+        // Optional experiments must leave room for every required preparation
+        // ingredient and the later icing, including milk added by the new flow.
+        public static int ReservedInputs(FoodDish d,string adding)=>(CakeFlow.Active(d)?CakeFlow.Batter.Concat(new[]{"icing"}):Recipe(d.recipe).toppings).Count(id=>id!=adding && !d.ingredients.Any(a=>a.ingredient==id));
         public static bool Kind(ToyKind kind)=>kind>=ToyKind.Ingredient && kind<=ToyKind.Plate;
         public static bool Dish(ToyKind kind)=>kind==ToyKind.Cookware || kind==ToyKind.Plate;
         public static string Next(FoodDish dish)
         {
+            if(CakeFlow.Active(dish))return CakeFlow.Next(dish);
             if(dish==null)return "choose";var recipe=Recipe(dish.recipe);var step=dish.step<recipe.steps.Length?recipe.steps[dish.step]:"serve";
             if(step=="heat"){var missing=recipe.toppings.FirstOrDefault(id=>!dish.ingredients.Any(i=>i.ingredient==id));if(missing!=null)return "add:"+missing;}
             return step;
@@ -108,7 +117,7 @@ namespace LittleWeeps.Core
         }
         private static readonly SoloToy[] originals=CreateStock();
         public static SoloToy[] Stock()=>originals.Select(t=>t.Copy()).ToArray();
-        public static bool Identity(SoloToy t)=>originals.Any(v=>v.id==t.id && v.kind==t.kind);
+        public static bool Identity(SoloToy t)=>originals.Any(v=>v.id==t.id && v.kind==t.kind) || t.id=="ingredient-cake-mix" && t.kind==ToyKind.Ingredient;
     }
     public sealed partial class SoloWorld
     {
@@ -132,7 +141,7 @@ namespace LittleWeeps.Core
         {
             if(s.schema<Kitchen.Schema){if(s.kitchen!=null || s.toys.Any(t=>t.kitchen!=null || Kitchen.Kind(t.kind)))throw new InvalidOperationException("Kitchen requires schema 13.");return;}
             if(s.kitchen==null || s.kitchen.cupboards==null || s.kitchen.cupboards.Length!=4)throw new InvalidOperationException("Invalid kitchen fixtures.");
-            foreach(var original in Kitchen.Stock())
+            foreach(var original in Kitchen.Stock().Concat(s.schema>=CakeFlow.Schema?new[]{CakeFlow.MixStock()}:Array.Empty<SoloToy>()))
             {
                 var t=s.toys.SingleOrDefault(v=>v.id==original.id);var k=t?.kitchen;
                 if(t==null || t.kind!=original.kind || k==null || k.definition!=original.kitchen.definition || k.batch<0 || k.batch>1000000000 || k.amount<0 || k.amount>16 ||
@@ -143,9 +152,9 @@ namespace LittleWeeps.Core
             {
                 if(!Kitchen.Kind(t.kind)){if(t.kitchen!=null)throw new InvalidOperationException("Unexpected food state.");continue;}
                 var d=t.kitchen.dish;if(d==null)continue;var r=Kitchen.Recipe(d.recipe);
-                if(!Kitchen.Dish(t.kind) || !Id(d.id) || r==null || d.step<0 || d.step>r.steps.Length || d.portions<0 || d.portions>15 ||
+                if(!Kitchen.Dish(t.kind) || !Id(d.id) || r==null || !CakeFlow.Valid(d,s.schema) || d.step<0 || d.step>r.steps.Length || d.portions<0 || d.portions>15 ||
                    double.IsNaN(d.heat) || double.IsInfinity(d.heat) || d.heat<0 || d.heat>Kitchen.HeatSeconds || d.ingredients==null || d.ingredients.Length<1 || d.ingredients.Length>24 ||
-                   d.ingredients.Any(i=>i==null || !Id(i.unit) || !string.IsNullOrEmpty(i.by) && !s.players.Any(p=>p.id==i.by) || !Kitchen.Ingredients.Contains(i.ingredient) || float.IsNaN(i.x) || float.IsNaN(i.y) || Math.Abs(i.x)>1 || Math.Abs(i.y)>1) ||
+                   d.ingredients.Any(i=>i==null || !Id(i.unit) || !string.IsNullOrEmpty(i.by) && !s.players.Any(p=>p.id==i.by) || !(Kitchen.Ingredients.Contains(i.ingredient) || s.schema>=CakeFlow.Schema && i.ingredient=="cake-mix") || !string.IsNullOrEmpty(i.phase) && !CakeFlow.Stages.Contains(i.phase) || float.IsNaN(i.x) || float.IsNaN(i.y) || Math.Abs(i.x)>1 || Math.Abs(i.y)>1) ||
                    d.ingredients.Select(i=>i.unit).Distinct().Count()!=d.ingredients.Length || t.kind==ToyKind.Plate && Kitchen.Next(d)!="serve")throw new InvalidOperationException("Invalid persistent dish.");
             }
             // Portions may live on different plates, but their origin/bit is unique.
@@ -169,6 +178,7 @@ namespace LittleWeeps.Core
         private string KitchenOperation(SoloCommand c,SoloPlayer p,SoloToy item)
         {
             if(state.schema<Kitchen.Schema)return "kitchen-unavailable";
+            if(c.value.StartsWith("cake:"))return CakeOperation(c,p,item);
             if(c.value.StartsWith("easy:"))return KitchenAssist(c,p,item);
             if(c.value=="door"){
                 if(p.zone!="garden")return "wrong-area";
@@ -185,6 +195,7 @@ namespace LittleWeeps.Core
                 k.batch++;k.amount=16;return null;
             }
             if(c.value=="start" || c.value=="readybase"){
+                if(state.schema>=CakeFlow.Schema){var assisted=new SoloCommand{item=c.item,target=c.target,value="easy:"+c.value,x=c.x,y=c.y};return KitchenAssist(assisted,p,item);}
                 if(p.zone!="garden" || item.kind!=ToyKind.Cookware || d!=null || k.dirty || k.batch>=1000000000)return "need-empty-clean-tray";
                 var r=Kitchen.Recipe(c.target);if(r==null)return "unknown-recipe";
                 var source=state.toys.First(t=>t.id=="ingredient-"+r.ingredient);
@@ -199,10 +210,11 @@ namespace LittleWeeps.Core
             if(c.value=="add"){
                 var target=state.toys.FirstOrDefault(t=>t.id==c.target);
                 if(item.kind!=ToyKind.Ingredient || k.amount<1 || !KitchenAvailable(target,p) || target.kind!=ToyKind.Cookware || target.kitchen.dish==null)return "need-ingredient-and-tray";
-                var food=target.kitchen.dish;var missing=Kitchen.Recipe(food.recipe).toppings.Count(id=>id!=k.definition && !food.ingredients.Any(i=>i.ingredient==id));if(food.ingredients.Length>=24-missing || food.portions!=15)return "dish-full-or-served";
+                var food=target.kitchen.dish;var missing=Kitchen.ReservedInputs(food,k.definition);if(food.ingredients.Length>=24-missing || food.portions!=15)return "dish-full-or-served";
+                if(!Kitchen.CanAdd(food,k.definition))return "ingredient-not-in-stage";
                 // Decorations use local coordinates; the command's board point is
                 // mapped into a bounded surface, independent of camera or avatar.
-                var add=TakeIngredient(item,(c.x-target.x)/100,(c.y-target.y)/100);food.ingredients=food.ingredients.Concat(new[]{add}).ToArray();return null;
+                var add=TakeIngredient(item,(c.x-target.x)/100,(c.y-target.y)/100);food.ingredients=food.ingredients.Concat(new[]{add}).ToArray();if(CakeFlow.Active(food))CakeFlow.Added(food,add);return null;
             }
             if(c.value=="taste"){
                 if(d==null || Kitchen.Next(d)!="serve" || d.portions==0)return "food-not-ready";
@@ -219,6 +231,7 @@ namespace LittleWeeps.Core
                 var bit=d.portions&-d.portions;var portion=d.Copy();portion.portions=bit;plate.kitchen.dish=portion;d.portions&=~bit;k.dirty=true;return null;
             }
             if(d==null || d.portions!=15 || item.kind!=ToyKind.Cookware || p.zone!="garden")return "need-whole-dish";
+            if(CakeFlow.Active(d))return "use-preparation-activity";
             if(c.value!=Kitchen.Next(d) || c.value=="heat" || c.value=="serve")return "next-step-changed";
             var tool=Kitchen.Tool(c.value);
             if(!state.toys.Any(t=>t.kind==ToyKind.KitchenTool && t.kitchen.definition==tool && KitchenAvailable(t,p)))return "tool-busy";
@@ -238,7 +251,7 @@ namespace LittleWeeps.Core
             foreach(var t in state.toys.Where(t=>t.kitchen?.dish!=null)){
                 var d=t.kitchen.dish;if(Kitchen.Next(d)!="heat" || !Kitchen.Slot(t.container,out var group,out _) || group!="oven")continue;
                 d.heat=Math.Min(Kitchen.HeatSeconds,d.heat+seconds);changed=true;
-                if(d.heat>=Kitchen.HeatSeconds){d.heated=true;d.step++;visible=true;}
+                if(d.heat>=Kitchen.HeatSeconds){d.heated=true;if(CakeFlow.Active(d)){d.stage="filling";d.layers=1;}else d.step++;visible=true;}
             }
             return changed;
         }

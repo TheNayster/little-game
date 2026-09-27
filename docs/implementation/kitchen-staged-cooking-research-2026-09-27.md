@@ -1,5 +1,7 @@
 # Cooking stages and ingredient flow — audit and research, September 27, 2026
 
+**Subsequent implementation:** [Chocolate cake candidate 171](chocolate-cake-flow-2026-09-27.html) applies this research. This document preserves the research-pass findings; the other recipe families and physical acceptance remain open.
+
 **Status: research and implementation contract; not implemented.** The user tested installed Android **166** and reported patties/cheese appearing in cake-making, and cooking that mostly involves repeatedly pressing a button. This is an open gameplay acceptance failure. Build 166 improved layout and entry, but did not deliver the hands-on cooking sequence requested in [chapter 19](../bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
 This pass examines recipe selection, ingredient timing, gesture behavior, food presentation and the existing persistence model. It is a bounded process audit, not a general repository audit. It changes research/tracking documents only. No new game code, assets, build or installation is included. Samsung remains **166**, with the [completed installation and retained saves](evidence/kitchen166-2026-09-27/android-update.json). Four-player independence, the connected Home, accepted characters and the complete fifteen-recipe menu remain required.

@@ -1,0 +1,42 @@
+{
+  "utc": "2026-09-27T15:19:49.8583819Z",
+  "operation": "updated",
+  "version": "0.0.171",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "5c8f0b62a038b742d516a72f1168f6eed52da90d49b6c876a02db7a64f44149f",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 166,
+  "previousApkSha256": "cf77a5666f4fcf7ae837767b0442c4d1cfc77059a011612699785b7f6ccd7f7c",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "launchCommandSucceeded": true,
+  "native16KbQualified": false,
+  "visibleGameLaunchVerified": true,
+  "physicalCakeFlowAccepted": false,
+  "retention": {
+    "primarySavesBefore": 16,
+    "primarySavesAfter": 16,
+    "byteIdenticalPrimary": 15,
+    "backupFilesRetained": 16,
+    "migrations": [
+      {
+        "previousSchema": 14,
+        "newSchema": 15,
+        "priorObjects": 117,
+        "newObjects": 118,
+        "allPriorObjectIdsRetained": true,
+        "unchangedObjectsExact": true,
+        "receiptedActionsAfterUpdate": 15,
+        "consumedIngredientUnits": 4,
+        "previousDishAndPlateWashedThroughRecordedPlay": true,
+        "playersExact": true,
+        "roomsAndOwnershipExact": true,
+        "priorReceiptsExactWithinRollingWindow": true,
+        "newCakeMixStock": 16
+      }
+    ],
+    "saveRetentionVerified": true
+  },
+  "note": "Existing active dish and plate were played through and washed after installation; 15 recorded actions explain four consumed ingredients and the two emptied dishes. All other prior object/player/room data retained."
+}

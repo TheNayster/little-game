@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build": 170,
+  "previousBuild": 166,
+  "checks": [
+    "Real 166 unfinished unusual cake, all existing items/rooms/receipts and four enrolled profiles preserved; one cake-mix supply added",
+    "Partially mixed shared cake continues privately, cold-reopens exactly, then rejoin restores authoritative partial work without importing private mixing",
+    "Current schema-15 cake backup validates; restored real 166 backup migrates identically; production allowlist unchanged"
+  ],
+  "liveFamilyTouched": false
+}

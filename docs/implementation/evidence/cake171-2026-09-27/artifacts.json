@@ -1,0 +1,78 @@
+{
+  "build": 171,
+  "passed": true,
+  "checks": [
+    {
+      "folder": "Builds/NetworkProbe/G3-0.0.171",
+      "verifiedCurrentSourceAssets": 620,
+      "artifactFilesVerified": 351,
+      "summary": {
+        "utc": "2026-09-27T15:15:07.5268324Z",
+        "contract": 17,
+        "content": 16,
+        "schema": 15,
+        "gardenPresentation": true,
+        "builds": [
+          {
+            "role": "Server",
+            "version": "0.0.171",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.171\\Server\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": true
+          },
+          {
+            "role": "Client",
+            "version": "0.0.171",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.171\\Client\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": false
+          }
+        ]
+      }
+    },
+    {
+      "folder": "Builds/AndroidSigned/G3-0.0.171",
+      "verifiedCurrentSourceAssets": 620,
+      "artifactFilesVerified": 1,
+      "summary": {
+        "version": "0.0.171",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/Android Family LAN.asset",
+        "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\AndroidSigned\\G3-0.0.171\\LittleWeeps.apk",
+        "result": "Succeeded",
+        "utc": "2026-09-27T15:17:27.5366931Z",
+        "platform": "Android",
+        "signing": "Pinned Little Weeps family key; externally signed unchanged Unity payload",
+        "development": false,
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    {
+      "folder": "Builds/iOSFamilyLAN/G3-0.0.171",
+      "verifiedCurrentSourceAssets": 595,
+      "artifactFilesVerified": 3098,
+      "summary": {
+        "version": "0.0.171",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/iPad Family LAN.asset",
+        "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\iOSFamilyLAN\\G3-0.0.171\\Xcode",
+        "result": "Succeeded",
+        "utc": "2026-09-27T15:24:33.8696996Z",
+        "platform": "iOS",
+        "signing": "Unsigned Xcode export; native compile/sign and physical networking pending",
+        "development": false,
+        "errors": 0,
+        "warnings": 0
+      }
+    }
+  ]
+}

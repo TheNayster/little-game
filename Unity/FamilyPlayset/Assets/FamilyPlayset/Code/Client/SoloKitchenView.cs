@@ -10,6 +10,8 @@ namespace LittleWeeps.Client
     {
         private int kitchenFamily,kitchenPage;
         private bool kitchenChoosing;
+        private bool kitchenExperiment;
+        private Text kitchenExperimentText;
         private Text kitchenMore,kitchenPrevious,kitchenUndo,kitchenTaste,kitchenBack,kitchenStage;
         private Image kitchenActionIcon;
         private RectTransform kitchenOccupied;
@@ -23,7 +25,7 @@ namespace LittleWeeps.Client
             // The authority chooses a free tray when the recipe is committed,
             // rather than letting four open pickers race for the same preview.
             var previous=ReadToys().Where(t=>t.kitchen?.dish!=null).Select(t=>t.kitchen.dish.id).ToArray();var id="";
-            KitchenCommand(kitchenReadyBase?"easy:readybase":"easy:start",id,recipe,complete:r=>{
+            KitchenCommand(kitchenExperiment?(kitchenReadyBase?"easy:readyexperiment":"easy:experiment"):kitchenReadyBase?"easy:readybase":"easy:start",id,recipe,complete:r=>{
                 if(!r.Accepted)return;
                 var tray=ReadToys().FirstOrDefault(t=>t.kind==ToyKind.Cookware && t.kitchen.cook==Actor && t.kitchen.dish?.recipe==recipe && !previous.Contains(t.kitchen.dish.id) && t.zone==CurrentArea);
                 if(tray!=null){cookingItem=tray.id;kitchenChoosing=false;kitchenMode="Make";kitchenPage=0;}
@@ -61,7 +63,8 @@ namespace LittleWeeps.Client
                 HomePicture(card,recipe.title,new Vector2(0,28),new Vector2(180,160),KitchenSprite("recipes",i,5,3)).preserveAspect=true;
                 Label(card,recipe.title,23,new Vector2(0,-85),new Vector2(192,65));
             }
-            kitchenReadyBaseText=Button(kitchenRecipes,"Make from the beginning",new Vector2(0,-220),new Vector2(460,80),()=>{kitchenReadyBase=!kitchenReadyBase;PresentKitchen();},new Color(.91f,.87f,.98f));
+            kitchenReadyBaseText=Button(kitchenRecipes,"Make from the beginning",new Vector2(-255,-220),new Vector2(470,80),()=>{kitchenReadyBase=!kitchenReadyBase;PresentKitchen();},new Color(.91f,.87f,.98f));
+            kitchenExperimentText=Button(kitchenRecipes,"Recipe ingredients",new Vector2(255,-220),new Vector2(470,80),()=>{kitchenExperiment=!kitchenExperiment;PresentKitchen();},new Color(.91f,.87f,.98f));
             kitchenOccupied=Rect(kitchenPanel,"Saved creations",Vector2.zero,Vector2.zero);
             Label(kitchenOccupied,"Your creations are safe. Tap one to help or continue.",25,new Vector2(0,195),new Vector2(950,70));
             for(var i=0;i<4;i++){
@@ -75,6 +78,7 @@ namespace LittleWeeps.Client
             kitchenPreviewBase=HomePicture(kitchenPreview,"Serving dish",Vector2.zero,new Vector2(425,425),CookingLayer(5));
             kitchenPreviewFood=HomePicture(kitchenPreview,"Dish",Vector2.zero,new Vector2(430,430),CookingLayer(0));kitchenPreviewFood.preserveAspect=true;
             kitchenPreviewToppings=Enumerable.Range(0,36).Select(i=>HomePicture(kitchenPreview,"Added ingredient "+i,Vector2.zero,new Vector2(85,85),IngredientSprite("cheese"))).ToArray();
+            BuildCakeSurface();
             kitchenIngredients=Rect(kitchenCooking,"Ingredients to add",Vector2.zero,Vector2.zero);
             for(var i=0;i<Kitchen.Ingredients.Length;i++){
                 var name=Kitchen.Ingredients[i];var id="ingredient-"+name;
@@ -106,6 +110,7 @@ namespace LittleWeeps.Client
         {
             var t=ReadToys().FirstOrDefault(v=>v.id==cookingItem);var d=t?.kitchen?.dish;
             if(d==null)return "Tap a food picture to start cooking.";
+            if(CakeFlow.Active(d)){cakeDemoUntil=Time.unscaledTime+3;return CakeInstruction(d)+". Tap the pictured tool for help.";}
             var next=Kitchen.Next(d);return next.StartsWith("add:")?"Tap the "+next.Substring(4)+" bowl.":next=="serve"?"Tap a plate to share your food.":next=="heat"?"Tap Bake. Your food cooks safely.":"Tap the big tool, or play with the food.";
         }
 
@@ -118,6 +123,7 @@ namespace LittleWeeps.Client
             kitchenTitle.text=choose?"What shall we make?":current==null?"The kitchen is full of creations":dish==null?"Your plate":Kitchen.Recipe(dish.recipe).title;
             kitchenStage.text=choose?"Choose a picture":dish==null?"":dish.heated?"Ready for decorating and sharing":"Make it your way";
             kitchenReadyBaseText.text=kitchenReadyBase?"Start with a ready-made base":"Make from the beginning";
+            kitchenExperimentText.text=kitchenExperiment?"Experiment: mix anything":"Recipe ingredients";
             for(var i=0;i<recipeCards.Count;i++)recipeCards[i].gameObject.SetActive(i/5==kitchenFamily);
             if(choose)return;
             if(current==null){for(var i=0;i<4;i++){var t=all.First(v=>v.id=="cookware-"+i);occupiedCards[i].text=t.kitchen.dish==null?"Wash this tray":Kitchen.Recipe(t.kitchen.dish.recipe).title;occupiedCards[i].transform.parent.GetComponent<Button>().interactable=t.zone==CurrentArea && (t.holder=="" || t.holder==Actor);}return;}
@@ -138,8 +144,8 @@ namespace LittleWeeps.Client
             if(current.kind==ToyKind.Plate && serving){kitchenStep.text="Make more food";kitchenStep.transform.parent.gameObject.SetActive(inKitchen);}
             kitchenHeat.text=!empty && next=="heat" && Kitchen.Slot(current.container,out var group,out _) && group=="oven"?"Baking… "+Mathf.CeilToInt((float)(Kitchen.HeatSeconds-dish.heat)):empty && dish!=null?"All shared! Your tray is ready to wash.":"";
             if(!inKitchen)kitchenHint.text="Enjoy your food. Wash it back in the kitchen.";
-            var order=dish==null?Kitchen.Ingredients:Kitchen.Recipe(dish.recipe).toppings.Concat(Kitchen.Ingredients).Distinct().ToArray();
-            var pages=(order.Length+5)/6;kitchenPage%=pages;
+            var order=dish==null?Kitchen.Ingredients:Kitchen.Palette(dish).Distinct().ToArray();
+            var pages=Math.Max(1,(order.Length+5)/6);kitchenPage%=pages;
             var shown=order.Skip(kitchenPage*6).Take(6).ToArray();
             foreach(var b in kitchenIngredientButtons){var name=b.id.Substring(11);var index=Array.IndexOf(shown,name);var root=(RectTransform)b.image.transform.parent;root.gameObject.SetActive(index>=0);if(index<0)continue;
                 root.anchoredPosition=new Vector2(index<3?-448:448,190-index%3*166);
@@ -147,11 +153,13 @@ namespace LittleWeeps.Client
                 b.image.color=available?Color.white:new Color(.7f,.7f,.7f,.6f);b.count.text=stock.kitchen.amount==0?"Refill":name;
             }
             kitchenMore.text="More bowls  "+(kitchenPage+1)+"/"+pages+"  >";
+            kitchenMore.transform.parent.gameObject.SetActive(pages>1 && kitchenIngredients.gameObject.activeSelf);
             for(var i=0;i<plateCards.Count;i++){
                 var plate=all.First(t=>t.id=="plate-"+i);var button=plateCards[i];var root=(RectTransform)button.transform.parent;root.anchoredPosition=new Vector2(i<4?-448:448,192-i%4*118);
                 var available=plate.zone==CurrentArea && (plate.holder=="" || plate.holder==Actor) && plate.kitchen.dish==null && !plate.kitchen.dirty;
                 root.GetComponent<Button>().interactable=available;button.text=available?"Plate "+(i+1):"In use";
             }
+            PaintCakeControls(dish,current);
         }
     }
 }

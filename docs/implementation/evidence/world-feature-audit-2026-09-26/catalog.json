@@ -613,8 +613,8 @@
       "chapters": [
         19
       ],
-      "description": "Central-food UI and automatic trays exist, but 166 feedback exposes shared ingredient pages and generic step advancement. Real mixing, pouring, shaping, correct ingredient timing and appropriate heat activities remain open; see FLOW-01–09.",
-      "evidence": "cookingflow",
+      "description": "Candidate 171 adds staged chocolate cake: visible mixing, pouring, safe bake, filling, layers, icing, decoration, cut and serve. Normal recipe ingredients are filtered; other cakes, pizza preparation and pan/pot meals remain prototypes. Physical child acceptance remains open.",
+      "evidence": "cakeflow",
       "extraSource": ""
     },
     {
@@ -627,8 +627,8 @@
         19,
         51
       ],
-      "description": "Food IDs, contributors and portions persist; pizza toppings survive baking/slicing. Cakes/meals still need intermediate food states and stage-specific ingredient rules. Partial mixing/pouring, legacy migration, orders, picnic packing and album remain open.",
-      "evidence": "cookingflow",
+      "description": "Chocolate cake retains partial mixture/transfer, coverage, layers and decorations through saved stages and unique portions. Legacy dishes keep their original rules/content; unusual combinations require explicit Experiment mode. Other recipe transformations, orders, picnic packing and album remain open.",
+      "evidence": "cakeflow",
       "extraSource": ""
     },
     {
@@ -1723,8 +1723,8 @@
       "chapters": [
         19
       ],
-      "description": "Stack cake layers, spread icing, add chocolate decorations A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
-      "evidence": "kitchen",
+      "description": "Candidate 171 implements chocolate batter mixing, partial pour into two tins, safe bake, filling, layer assembly, icing coverage, placed decorations, slicing and four unique servings. Saves retain partial work; old dishes stay on their original version. Physical child/A10 acceptance and spoken guidance remain open.",
+      "evidence": "cakeflow",
       "extraSource": ""
     },
     {

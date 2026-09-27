@@ -1,0 +1,24 @@
+{
+  "build": 171,
+  "exportVerified": true,
+  "exportFilesVerified": 3098,
+  "archiveSha256": "246cac05a201625a5cc7cf07d165093e3ea9cbc5fec63f0a3df9e085c9c86b9d",
+  "nativeBuildExit": 65,
+  "blocker": "codesign errSecInternalComponent; local Mac signing-key approval required",
+  "installed": false,
+  "ipad7": {
+    "connected": true,
+    "backupFilesVerified": 557,
+    "installed": false,
+    "backupComplete": true
+  },
+  "ipad9": {
+    "paired": true,
+    "activeConnection": true,
+    "backupComplete": true,
+    "backupFilesVerified": 1602,
+    "installed": false
+  },
+  "familyServerChanged": false,
+  "localSigningHelperOpened": true
+}
