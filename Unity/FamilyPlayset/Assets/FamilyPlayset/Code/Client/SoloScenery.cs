@@ -17,6 +17,8 @@ namespace LittleWeeps.Client
             public SceneTile(string id,string area,float start){this.id=id;this.area=area;this.start=start;}
         }
         private static readonly SceneTile[] SceneTiles={
+            new SceneTile("home-secret",SecretRooms.Id(0),0),new SceneTile("home-secret",SecretRooms.Id(1),0),
+            new SceneTile("home-secret",SecretRooms.Id(2),0),new SceneTile("home-secret",SecretRooms.Id(3),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(0),0),new SceneTile("home-bedroom",BedroomLayout.Id(1),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(2),0),new SceneTile("home-bedroom",BedroomLayout.Id(3),0),
             new SceneTile("home-upstairs",HomeRooms.Landing,0),

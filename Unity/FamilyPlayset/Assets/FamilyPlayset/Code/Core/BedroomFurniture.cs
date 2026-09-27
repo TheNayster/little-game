@@ -14,22 +14,22 @@ namespace LittleWeeps.Core
         public static string Cushion(int index)=>"bedroom-cushion-"+index;
         public static int CushionIndex(string id)
         {for(var i=0;i<4;i++)if(id==Cushion(i))return i;return -1;}
-        public static bool Seat(string id)=>id==Bed || CushionIndex(id)>=0;
+        public static bool Seat(string id)=>id==Bed || CushionIndex(id)>=0 || SecretRooms.FortIndex(id)>=0;
         public static float BedX(int layout)=>layout==0?1050:1450;
         // Leave the far-right wall clear for the later magical secret entrance.
         public static float ShelfX(int layout)=>layout==0?2010:900;
         public static float ChestX(int layout)=>layout==0?1650:1990;
-        public static float SeatX(string id,int layout)=>id==Bed?BedX(layout):(layout==0?820:1150)+CushionIndex(id)*200;
-        public static float SeatY(string id)=>id==Bed?350:95;
+        public static float SeatX(string id,int layout)=>SecretRooms.FortIndex(id)>=0?BedX(layout)-240+SecretRooms.FortIndex(id)*160:id==Bed?BedX(layout):(layout==0?820:1150)+CushionIndex(id)*200;
+        public static float SeatY(string id)=>id==Bed || SecretRooms.FortIndex(id)>=0?350:95;
         public static string Storage(string room,int slot)=>room+"/"+(slot<8?"chest-"+slot:"shelf-"+(slot-8));
         public static int Slot(string room,string id)
-        {if(BedroomLayout.Index(room)<0)return -1;for(var i=0;i<12;i++)if(id==Storage(room,i))return i;return -1;}
+        {if(!SecretRooms.Furnished(room))return -1;for(var i=0;i<12;i++)if(id==Storage(room,i))return i;return -1;}
         public static float StorageX(int layout,int slot)=>slot<8?ChestX(layout)+(slot%4-1.5f)*70:ShelfX(layout)+((slot-8)%2==0?-110:110);
         public static float StorageY(int slot)=>slot<8?300+slot/4*75:360+(slot-8)/2*80;
         public static WalkPoint Floor(float x,float y)=>new WalkPoint(x,x>600?Math.Min(260,y):y);
         public static WalkInput Route(SoloPlayer p,WalkInput input,int schema)
         {
-            if(schema<Schema || BedroomLayout.Index(p.zone)<0 || input==null || input.mode!=WalkMode.Destination)return input;
+            if(schema<Schema || !SecretRooms.Furnished(p.zone) || input==null || input.mode!=WalkMode.Destination)return input;
             var copy=input.Copy();var target=Floor(copy.x,copy.y);copy.x=target.X;copy.y=target.Y;
             // Use the clear front corridor before entering/leaving the left
             // doorway lane; never walk diagonally through a bed or shelf.
@@ -62,7 +62,7 @@ namespace LittleWeeps.Core
                     (s.bedrooms??Array.Empty<BedroomState>()).Any(r=>r.roomRevision!=0 || r.theme!=0 || r.layout!=0 || r.chestOpen || r.lampOn || r.decorateTogether || !string.IsNullOrEmpty(r.undoKind) || !string.IsNullOrEmpty(r.undoActor) || r.undoBefore!=0 || r.undoAfter!=0))
                     throw new InvalidOperationException("Furnishings require schema 8.");return;
             }
-            foreach(var r in s.bedrooms)
+            foreach(var r in SecretRooms.Furnishings(s))
             {
                 if(r.theme<0 || r.theme>3 || r.layout<0 || r.layout>1 || r.roomRevision<1 || r.roomRevision>=long.MaxValue ||
                     r.undoKind==null || r.undoActor==null || r.undoBefore<0 || r.undoBefore>3 || r.undoAfter<0 || r.undoAfter>3 ||
@@ -83,12 +83,12 @@ namespace LittleWeeps.Core
         {
             if(string.IsNullOrEmpty(toy.container))return true;
             if(HomeLayout.StorageSlot(toy.container)>=0)return state.home?.shedOpen==true;
-            var room=state.bedrooms.SingleOrDefault(r=>r.id==toy.zone);var slot=BedroomFurniture.Slot(toy.zone,toy.container);
+            var room=SecretRooms.Furnishings(state).SingleOrDefault(r=>r.id==toy.zone);var slot=BedroomFurniture.Slot(toy.zone,toy.container);
             return state.schema>=BedroomFurniture.Schema && room!=null && slot>=0 && (slot>=8 || room.chestOpen);
         }
         private string StoreInBedroom(SoloCommand c,SoloPlayer player,SoloToy item,int slot)
         {
-            var room=state.bedrooms.Single(r=>r.id==player.zone);
+            var room=SecretRooms.Furnishings(state).Single(r=>r.id==player.zone);
             if(state.schema<BedroomFurniture.Schema || slot<8 && !room.chestOpen)return "storage-closed";
             if(state.toys.Any(t=>t.container==c.target))return "storage-full";
             if(Math.Abs(c.x-BedroomFurniture.StorageX(room.layout,slot))>80 || Math.Abs(c.y-BedroomFurniture.StorageY(slot))>80)return "target-too-far";
@@ -97,11 +97,11 @@ namespace LittleWeeps.Core
         private string ApplyBedroomFixture(SoloCommand c,SoloPlayer p)
         {
             if(state.schema<BedroomFurniture.Schema)return "wrong-area";
-            var room=state.bedrooms.Single(r=>r.id==p.zone);
+            var room=SecretRooms.Furnishings(state).Single(r=>r.id==p.zone);
             if(c.action==SoloAction.LeaveFixture){ClearFixture(p);return null;}
             if(c.action==SoloAction.UseFixture)
             {
-                if(!BedroomFurniture.Seat(c.target))return "invalid-fixture";
+                if(!BedroomFurniture.Seat(c.target) || (SecretRooms.Index(p.zone)>=0?c.target==BedroomFurniture.Bed:SecretRooms.FortIndex(c.target)>=0))return "invalid-fixture";
                 if(state.players.Any(v=>v.id!=p.id && v.zone==p.zone && v.fixture==c.target))return "fixture-busy";
                 foreach(var t in state.toys.Where(v=>v.holder==p.id)){t.holder="";t.x=p.x;t.y=Math.Max(35,Math.Min(250,p.y-65));Touch(t);}
                 ClearFixture(p);p.fixture=c.target;p.activity="";p.x=BedroomFurniture.SeatX(c.target,room.layout);p.y=BedroomFurniture.SeatY(c.target);return null;
@@ -118,14 +118,14 @@ namespace LittleWeeps.Core
         }
         private string DecorateBedroom(SoloCommand c,SoloPlayer p)
         {
-            if(state.schema<BedroomFurniture.Schema || BedroomLayout.Index(p.zone)<0)return "wrong-area";
-            var room=state.bedrooms.Single(r=>r.id==p.zone);var owner=room.owner==p.id;
+            if(state.schema<BedroomFurniture.Schema || !SecretRooms.Furnished(p.zone))return "wrong-area";
+            var room=SecretRooms.Furnishings(state).Single(r=>r.id==p.zone);var owner=room.owner==p.id;
             if(!owner && (!room.decorateTogether || c.target=="together" || c.target=="tidy"))return "owner-only";
             var parts=c.value.Split(':');
             if(parts.Length!=2 || !int.TryParse(parts[0],out var value) || !long.TryParse(parts[1],out var expected) || expected!=room.roomRevision || room.roomRevision>=long.MaxValue-1)return "room-changed";
             if(c.target=="tidy")
             {
-                var loose=state.toys.Where(t=>t.zone==room.id && t.personalRoom==room.id && t.holder=="" && t.container=="").ToArray();
+                var loose=state.toys.Where(t=>t.zone==room.id && t.personalRoom==(SecretRooms.Index(room.id)>=0?SecretRooms.Parent(room.id):room.id) && t.holder=="" && t.container=="").ToArray();
                 var free=Enumerable.Range(0,8).Where(i=>!state.toys.Any(t=>t.container==BedroomFurniture.Storage(room.id,i))).ToArray();
                 if(loose.Length>free.Length)return "storage-full";
                 for(var i=0;i<loose.Length;i++){var t=loose[i];t.container=BedroomFurniture.Storage(room.id,free[i]);t.x=BedroomFurniture.StorageX(room.layout,free[i]);t.y=BedroomFurniture.StorageY(free[i]);Touch(t);}

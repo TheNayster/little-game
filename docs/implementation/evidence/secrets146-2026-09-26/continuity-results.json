@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 146,
+  "previousBuild": 142,
+  "checks": [
+    "Schema 8 to 9 adds four reserved secrets only; all prior furnished state, 27 objects, profiles, fixtures, balloon, receipts and enrollment remain unchanged",
+    "Hidden entrance and occupied secret survive outage/cold reopen; furniture, plush and local calm preferences persist privately; shared reconnect imports no offline edits and always permits exit"
+  ],
+  "liveFamilyTouched": false
+}

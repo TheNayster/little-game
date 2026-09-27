@@ -11,7 +11,7 @@ namespace LittleWeeps.Core
         public const string Landing="home-upstairs";
         public const double StairDuration=2.4;
         public const float LowerX=-2980, LowerY=420, UpperX=540, UpperY=400;
-        public static bool Internal(string zone)=>zone==Landing || BedroomLayout.Index(zone)>=0;
+        public static bool Internal(string zone)=>zone==Landing || BedroomLayout.Index(zone)>=0 || SecretRooms.Index(zone)>=0;
         public static bool Property(string zone)=>zone=="garden" || Internal(zone);
         public static bool StairArea(string zone)=>zone=="garden" || zone==Landing;
         public static float EntryX(string zone)=>zone=="garden"?LowerX:UpperX;
@@ -69,8 +69,9 @@ namespace LittleWeeps.Core
                     .SequenceEqual(s.players.Select(p=>p.id).OrderBy(id=>id,StringComparer.Ordinal)))
                 throw new InvalidOperationException("Invalid bedroom ownership.");
         }
-        private string EnterDoor(SoloPlayer p,string target)
+        private string EnterDoor(SoloPlayer p,string target,string revision)
         {
+            if(SecretRooms.Route(p.zone,target))return SecretTravel(p,target,revision);
             if(state.schema<BedroomLayout.Schema || !BedroomLayout.NearDoor(p,target))return "door-too-far";
             if(p.visit>=long.MaxValue-1)return "visit-limit";
             var source=p.zone;var slot=Array.FindIndex(state.players,v=>v.id==p.id);

@@ -82,12 +82,18 @@ def main():
                     (3,dict(item='home-bedroom-3-toy-0',target='home-bedroom-3/chest-0',x=1545,y=300)),
                     (10,dict(target='bedroom-chest',value='off'))]:
                     require(command(clients[2],action,**values)['accepted'],'Furniture recovery fixture failed')
+            if contract >= 11:
+                require(command(clients[2],0,x=2310,y=220)['accepted'],'Secret recovery approach')
+                time.sleep(.8);clients[2].input('touchButton',text='Secret star door')
+                wait(lambda:next(p for p in clients[2].state()['view']['players'] if p['id']==clients[2].profile)['zone']=='home-secret-3','Recovery secret arrival')
+                time.sleep(.5)
+                require(command(clients[2],15,target='active',value='0:2')['accepted'],'Archive occupied secret before recovery')
             require(command(clients[0],5,value='keepy-uppy')['accepted'],'Recovery balloon toss failed')
             require(command(clients[0],7,value='park')['accepted'],'Recovery departure failed')
             if contract < 8:
                 require(command(clients[2],7,value='park')['accepted'],'Recovery home pause failed')
         live = recovery.backup(); bundle, files, body = unpack(Path(live['path']))
-        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'park', 'creek', 'beach', 'home-bedroom-3'} if contract >= 9 else {'park', 'creek', 'beach', 'home-upstairs'} if contract >= 8 else {'park', 'creek', 'beach'} if contract >= 7 else {'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
+        require(set(files) == set(FILES) and body['receipts'] and {p['zone'] for p in body['players']} == ({'park', 'creek', 'beach', 'home-secret-3'} if contract >= 11 else {'park', 'creek', 'beach', 'home-bedroom-3'} if contract >= 9 else {'park', 'creek', 'beach', 'home-upstairs'} if contract >= 8 else {'park', 'creek', 'beach'} if contract >= 7 else {'garden', 'creek', 'beach'} if scenic else {'garden', 'creek'}), 'Incomplete backup')
         if scenic: require(body['schema'] == (summary['schema'] if contract >= 8 else 5 if contract >= 7 else 4 if contract >= 6 else 3) and ((body['keepy']['x'] >= 0 if args.build>=131 else body['keepy']['x'] < 0) if contract >= 7 else any(p['x'] < 0 for p in body['players'])), 'Scenic coordinates missing from backup')
         original_instance = server.snapshot()['instanceId']
         refused(lambda: recovery.restore(Path(live['path']), digest(save.read_bytes())))
@@ -114,6 +120,7 @@ def main():
         if contract >= 7:require(native_equivalent(restored['keepy'],original['keepy']) and restored['keepy']['phase']==1,'Paused in-flight balloon recovery differs')
         if contract >= 9:require(restored['bedrooms']==original['bedrooms'] and len(restored['bedrooms'])==4,'Bedroom ownership recovery differs')
         if contract >= 10:require(restored['bedrooms'][2]['theme']==3 and next(t for t in restored['toys'] if t['id']=='home-bedroom-3-toy-0')['container']=='home-bedroom-3/chest-0','Furniture decoration/storage recovery differs')
+        if contract >= 11:require(restored['secrets']==original['secrets'] and restored['secrets'][2]['created'] and not restored['secrets'][2]['active'] and len(restored['toys'])==33,'Archived secret and plush recovery differs')
         require(len(state['connected']) == 4, 'Saved enrollment did not reconnect')
         fixture.stop()
         recovery.rollback(result['rollbackJob'], digest(save.read_bytes()))

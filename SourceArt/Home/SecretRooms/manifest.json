@@ -1,0 +1,44 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "key": "base",
+      "transparent_background": false,
+      "prompt": "Use case: illustration-story. Asset type: panoramic architecture for a 2D side-view Bluey-style family dollhouse game. Create a warm magical secret playroom architecture ONLY, no furniture, objects or characters. Match the friendly hand-drawn clean linework and soft illustrated textures of the provided bedroom reference. Very wide 3:1 landscape panorama, straight-on wall and broad front floor exactly like reference geometry, wall-floor seam about 60 percent down image. Deep midnight-blue walls and a curved midnight star ceiling; tiny sparse painted stars, charming wooden trim, lavender-teal accents; cozy and bright enough to play, never dark or scary. A normal visible pale timber exit door at x=13.5 percent of width, bottom at wall-floor seam. Broad clear rosy wooden floor from y60 percent to bottom; clear open middle and far-right wall. Top half reserves open dark sky for separate animated green/purple aurora overlays. No painted aurora, no furniture, no cushions, no baskets, no books, no characters, no words. Reference is style and geometry only, make a new secret-room backdrop.",
+      "referenced_image_paths": [
+        "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Home\\Bedrooms\\bedroom-base-source.png"
+      ],
+      "source": "SourceArt/Home/SecretRooms/base.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-secret.png",
+      "sha256": "f5ad8e7f242ce84463ec424a9efce5130f9c04a20e1598684693ed5d5190673c",
+      "generated": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-2c442907-097f-4222-a918-ba19b31377df.png"
+    },
+    {
+      "key": "door",
+      "transparent_background": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent isolated game sprite. A tiny magical arched wooden door for the far wall of a child's Bluey-style illustrated bedroom, charming lavender door panels, soft teal timber arch trim, a golden five-point star in the upper half and small round gold handle. Door closed; straight-on flat view, small bottom threshold, no perspective side wall. Warm illustrated linework and soft painted texture, clear silhouette. Entire object centered with 6 percent transparent margin, portrait 2:3 composition. No background wall, no ground plane, no scene, no text, no character. Keep any magical glow confined to thin trim; sparkles will be separate runtime effects. Genuinely transparent background.",
+      "source": "SourceArt/Home/SecretRooms/door.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SecretArt/door.png",
+      "sha256": "87f05b38a73c3efef54a3a2db1a10d98f075f8ee95ef27246735a79e63e335a4",
+      "generated": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-cea9bcf3-fc82-4441-aa2b-32c80352829d.png"
+    },
+    {
+      "key": "fort",
+      "transparent_background": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent isolated game furniture sprite. A wide cozy blanket fort, front-facing Bluey-style 2D illustration, room for FOUR child-sized dog characters sitting in a row. Pale aqua and lavender draped blanket roof stretched over simple wooden supports. LARGE central open front, tied-back curtains at left and right, dark cool interior rear cloth, pale flat floor blanket and thin front hem. No furniture or toys inside, NO cushions, NO characters, NO books, NO lights. Rear interior should be a simple dark blue cloth background behind future occupants. Soft warm hand-drawn outlines, minimal perspective, clean illustrated contact edges. Very wide landscape 2:1 composition, object fills about 90 percent canvas, full object unclipped with genuinely transparent exterior background. No scene, no wall, no text. Front curtain sides and bottom hem must have clear boundaries for runtime overlap masks.",
+      "source": "SourceArt/Home/SecretRooms/fort.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SecretArt/fort.png",
+      "sha256": "47bb44482d4208f5c9bfb60f827cc63a3f96d84a266898016f747ae07f75e004",
+      "generated": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-9ad58ff1-6c6e-444c-be2e-d4b7cf2bf65d.png"
+    },
+    {
+      "key": "plush-sheet",
+      "transparent_background": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent sprite atlas for Bluey-style family dollhouse. Exactly SIX distinct small friendly stuffed plush toys in a perfectly regular 3-column by 2-row grid, each centered inside its equal cell, generous transparent separation, no overlap or shared shadows. Top row left to right: green stegosaurus dinosaur, golden floppy-eared dog, lavender cat. Bottom row left to right: cream long-eared rabbit, warm brown teddy bear, pale teal whale. Each is a single complete stuffed toy, seated/front three-quarter view except dinosaur/whale naturally horizontal. Soft fabric, simple embroidered eyes and stitched seams, friendly hand-drawn colored outlines matching a children's illustrated cartoon. All roughly same visual size with at least 15 percent blank cell margins. No background, no ground plane, no labels, no words, no grid lines, no other objects, no glow. Landscape 3:2 image. Truly transparent background.",
+      "source": "SourceArt/Home/SecretRooms/plush-sheet.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/SecretArt/plush-sheet.png",
+      "sha256": "4c1b5848554869966407cfb6bd7a92791e7b269fa1e17fc37f46b11259ae7d1f",
+      "generated": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-1cd04203-d43e-4676-b45e-74a3447df694.png"
+    }
+  ]
+}

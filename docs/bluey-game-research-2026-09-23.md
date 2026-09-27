@@ -1349,6 +1349,8 @@ Automatic saving should be frequent enough to preserve finished changes without 
 
 ## 33. Secret plush rooms with stars and northern lights
 
+**Implementation checkpoint — September 26:** [Researched candidate 146](implementation/secret-rooms-2026-09-26.html) adds four persistent optional secrets with locally revealed far-back entrances, safe exits, four-place fort/cushions, six plush types/storage and local calm controls. Full reader, cuddle/tuck/stack/picnic extensions, hiding integration and physical qualification remain open. The specification below remains required.
+
 **Latest entrance requirement, September 26:** the mini-door belongs at the **far back of each bedroom, away from the main entrance**. It is hidden until that player's character gets close, then appears with a glowing star, gentle sparkles and shimmer. Proximity reveals the entrance locally for each of the four players; entering still requires a deliberate tap. Use a calm static reveal when reduced motion is enabled, keep the approach clear of furniture, and keep the interior exit always visible. This replaces any entrance-near-the-hall interpretation; the secret rooms remain the next stage after bedroom furnishings.
 
 **Updated four-player layout: each of the four bedrooms can have a little star-marked door leading to its owner's own cozy secret room. All four players may enter any existing secret room, together or separately.** These are playful hidden spaces, with no password, quest unlock, or exclusion rule. They are an addition to our game house, not a claim about a room shown in the television series.

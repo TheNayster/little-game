@@ -39,6 +39,19 @@
         "H-34"
       ],
       "evidence": "docs/implementation/bedroom-furniture-2026-09-26.md"
+    },
+    {
+      "build": 146,
+      "baselineCommit": "bfed20a",
+      "entries": [
+        "G-02",
+        "G-17",
+        "H-35",
+        "H-36",
+        "H-37",
+        "H-38"
+      ],
+      "evidence": "docs/implementation/secret-rooms-2026-09-26.md"
     }
   ],
   "worlds": {
@@ -89,8 +102,8 @@
         31,
         50
       ],
-      "description": "Four independent world/room views and four owned furnished bedrooms now work in candidate 142. Broader activities and mixed-device qualification remain required.",
-      "evidence": "furniture",
+      "description": "Independent world/room views include four owned furnished bedrooms and four optional persistent secret rooms in candidate 146. Broader activities and mixed-device qualification remain required.",
+      "evidence": "secrets",
       "extraSource": ""
     },
     {
@@ -311,8 +324,8 @@
         11,
         33
       ],
-      "description": "Voice and home-music toggles exist. Full independent volume controls, assistance, language, reduced motion and media settings remain planned.",
-      "evidence": "home",
+      "description": "Voice/home-music toggles plus local secret-room brightness, reduced motion and independent ambience/chime levels exist. Broader assistance, language and media settings remain planned.",
+      "evidence": "secrets",
       "extraSource": ""
     },
     {
@@ -956,12 +969,12 @@
       "world": "home",
       "group": "Secret rooms",
       "title": "Four optional mini-door secret rooms",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         33
       ],
-      "description": "One secret-room option per profile, linked to its bedroom by a small far-back door, revealed locally on approach with a star glow, sparkles and shimmer. All four can visit any existing room; move/archive doors without deleting contents or stranding visitors. Optional use, required four-profile support.",
-      "evidence": "ledger",
+      "description": "Four optional persistent rooms now have owner creation, far-back approach-revealed star entrances, move/hide/show controls and safe exits independent of the entrance. Physical qualification remains open.",
+      "evidence": "secrets",
       "extraSource": ""
     },
     {
@@ -969,12 +982,12 @@
       "world": "home",
       "group": "Secret rooms",
       "title": "Plush collection and quiet play",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         33
       ],
-      "description": "Dinosaur, dog, cat, bunny, bear and sea-animal plushies, cuddle pillow, rug, cushions, blanket fort and shelf; carry, pile, tuck in, picnic, read and sit together.",
-      "evidence": "ledger",
+      "description": "Six plush types, rug, four cushions, four-place blanket fort, shelf/chest and lamp are usable with persistent carry/storage. Dedicated cuddle pillow, tucking, general stacks/picnic combinations and reader remain open.",
+      "evidence": "secrets",
       "extraSource": ""
     },
     {
@@ -982,12 +995,12 @@
       "world": "home",
       "group": "Secret rooms",
       "title": "Stars, aurora and local calm controls",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         33
       ],
-      "description": "Deep-blue sky, slow green/purple aurora, sparse star twinkles, brightness/music/effect controls and a still reduced-motion version. Optional factual aurora narration.",
-      "evidence": "ledger",
+      "description": "Deep-blue sky, slow green/purple ribbons, sparse twinkles and local brightness/still-sky/music/chime levels are implemented. Optional factual narration and physical A10 qualification remain open.",
+      "evidence": "secrets",
       "extraSource": ""
     },
     {
@@ -995,14 +1008,14 @@
       "world": "home",
       "group": "Secret rooms",
       "title": "Independent visits and no surprise search",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         32,
         33,
         34
       ],
-      "description": "Persistent layouts and shared visits; leaving never removes another visitor's room. Chill spaces leave normal hiding rounds; including them in a larger search is optional later.",
-      "evidence": "ledger",
+      "description": "Four visitors or four separate secret rooms retain independent travel and shared layouts. Hiding-round withdrawal/search integration remains a future dependency.",
+      "evidence": "secrets",
       "extraSource": ""
     },
     {

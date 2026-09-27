@@ -74,8 +74,8 @@ namespace LittleWeeps.Core
             foreach(var p in s.players)
                 if(double.IsNaN(p.useSeconds) || double.IsInfinity(p.useSeconds) || p.useSeconds<0 || p.useSeconds>86400 ||
                     (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:
-                     (BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || BedroomLayout.Index(p.zone)<0 ||
-                      p.x!=BedroomFurniture.SeatX(p.fixture,s.bedrooms.Single(r=>r.id==p.zone).layout) || p.y!=BedroomFurniture.SeatY(p.fixture):
+                     (BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || !SecretRooms.Furnished(p.zone) || (SecretRooms.Index(p.zone)>=0?p.fixture==BedroomFurniture.Bed:SecretRooms.FortIndex(p.fixture)>=0) ||
+                      p.x!=BedroomFurniture.SeatX(p.fixture,SecretRooms.Furnishings(s).Single(r=>r.id==p.zone).layout) || p.y!=BedroomFurniture.SeatY(p.fixture):
                       !HomeLayout.Usable(p.fixture) || p.zone!="garden" || p.x!=HomeLayout.X(p.fixture) || p.y!=HomeLayout.Y(p.fixture)) || s.toys.Any(t=>t.holder==p.id)))
                     throw new InvalidOperationException("Invalid home occupancy.");
             if(s.players.Where(p=>!string.IsNullOrEmpty(p.fixture)).GroupBy(p=>p.zone+"/"+p.fixture).Any(g=>g.Count()>1))
@@ -85,7 +85,7 @@ namespace LittleWeeps.Core
                 var bedroomSlot=BedroomFurniture.Slot(t.zone,t.container);
                 if(bedroomSlot>=0)
                 {
-                    var room=s.bedrooms.Single(r=>r.id==t.zone);
+                    var room=SecretRooms.Furnishings(s).Single(r=>r.id==t.zone);
                     if(s.schema<BedroomFurniture.Schema || !Carryable(t.kind) || t.holder!="" || t.x!=BedroomFurniture.StorageX(room.layout,bedroomSlot) || t.y!=BedroomFurniture.StorageY(bedroomSlot))throw new InvalidOperationException("Invalid bedroom support.");
                     continue;
                 }
@@ -99,7 +99,7 @@ namespace LittleWeeps.Core
         // Returns a rejection without mutation, or commits a validated action.
         private string ApplyHome(SoloCommand c,SoloPlayer player)
         {
-            if(BedroomLayout.Index(player.zone)>=0)return ApplyBedroomFixture(c,player);
+            if(SecretRooms.Furnished(player.zone))return ApplyBedroomFixture(c,player);
             if(state.home==null || player.zone!="garden")return "wrong-area";
             if(c.action==SoloAction.LeaveFixture){ClearFixture(player);return null;}
             if(c.action==SoloAction.UseFixture)

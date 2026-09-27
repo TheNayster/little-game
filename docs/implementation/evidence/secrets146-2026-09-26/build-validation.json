@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "build": 146,
+  "summary": {
+    "utc": "2026-09-27T00:14:48.8146589Z",
+    "contract": 11,
+    "content": 10,
+    "schema": 9,
+    "gardenPresentation": true,
+    "builds": [
+      {
+        "role": "Server",
+        "version": "0.0.146",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+        "result": "Succeeded",
+        "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.146\\Server\\LittleWeepsNetwork.exe",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": true
+      },
+      {
+        "role": "Client",
+        "version": "0.0.146",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+        "result": "Succeeded",
+        "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.146\\Client\\LittleWeepsNetwork.exe",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": false
+      }
+    ]
+  },
+  "baselineCommit": "bfed20a0bf458ecfbf59aacc8230e35ccfe1f6dd",
+  "runtimeSourceFilesChecked": 391,
+  "artifactFilesChecked": 351,
+  "sourceManifestSha256": "629a48628ea13604fe33a2d0ae71429fbf3bbedddeddb1288340cafe004ed5af",
+  "artifactManifestSha256": "8665522cec9ff5c85665b2a653869d5b9379edde374306950ed8f38f3fa7b0f5",
+  "excludedSource": "Importer/build-profile serialization whitespace was restored only after comparing normalized content; later test/document helpers are not compiled game source.",
+  "physicalDeployment": false
+}

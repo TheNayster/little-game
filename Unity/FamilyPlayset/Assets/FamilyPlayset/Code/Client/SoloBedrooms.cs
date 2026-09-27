@@ -14,9 +14,10 @@ namespace LittleWeeps.Client
         private Text bedroomTitle;
         private string doorSource,doorTarget;
         private float doorDeadline;
+        private long doorEntranceRevision;
         private bool doorApproach,doorSubmitted;
-        private string DoorPreload=>doorTarget==HomeRooms.Landing?"home-upstairs":BedroomLayout.Index(doorTarget)>=0?"home-bedroom":null;
-        private Vector2 DoorEntry=>new Vector2(BedroomLayout.DoorX(doorSource,doorTarget),BedroomLayout.DoorY);
+        private string DoorPreload=>SecretRooms.Index(doorTarget)>=0?"home-secret":doorTarget==HomeRooms.Landing?"home-upstairs":BedroomLayout.Index(doorTarget)>=0?"home-bedroom":null;
+        private Vector2 DoorEntry=>SecretRooms.Route(doorSource,doorTarget)?new Vector2(SecretRooms.Index(doorSource)>=0?BedroomLayout.ExitX:SecretRooms.DoorX(LocalSecret?.slot??0),SecretRooms.Index(doorSource)>=0?BedroomLayout.DoorY:SecretRooms.DoorY):new Vector2(BedroomLayout.DoorX(doorSource,doorTarget),BedroomLayout.DoorY);
         public BedroomState[] Bedrooms=>HasWorld?(Shared?shared.View.bedrooms:World.ReadBedrooms()):Array.Empty<BedroomState>();
 
         private void BuildBedrooms()
@@ -41,8 +42,8 @@ namespace LittleWeeps.Client
         public void RequestBedroom(string target)
         {
             if(!Ready || MenuOpen || TravelPending || WorldLoading || StairBusy || doorSubmitted ||
-                !BedroomLayout.Route(CurrentArea,target))return;
-            CancelStairApproach();doorSource=CurrentArea;doorTarget=target;doorApproach=true;
+                !(BedroomLayout.Route(CurrentArea,target) || SecretRooms.Route(CurrentArea,target)))return;
+            CancelStairApproach();doorSource=CurrentArea;doorTarget=target;doorApproach=true;doorEntranceRevision=LocalSecret?.entranceRevision??0;
             doorDeadline=Time.realtimeSinceStartup+30;manualCamera=false;destination=DoorEntry;
         }
         private void CancelDoorApproach()
@@ -55,6 +56,7 @@ namespace LittleWeeps.Client
             if(doorSource!=null && doorSource!=CurrentArea)
             {CancelDoorApproach();destination=null;stickDirection=Vector2.zero;return;}
             if(!doorApproach || doorSubmitted)return;
+            if(SecretRooms.Index(doorTarget)>=0 && (LocalSecret==null || !LocalSecret.active || LocalSecret.entranceRevision!=doorEntranceRevision)){CancelDoorApproach();destination=null;return;}
             if(Time.realtimeSinceStartup>doorDeadline)
             {
                 CancelDoorApproach();destination=null;homeFeedback.text="The room isn't ready yet. Try again.";homeFeedbackUntil=Time.unscaledTime+3;return;
@@ -68,8 +70,8 @@ namespace LittleWeeps.Client
                 if(!result.Accepted){CancelDoorApproach();homeFeedback.text="Try the doorway again.";homeFeedbackUntil=Time.unscaledTime+3;}
                 Render();
             }
-            if(Shared)SubmitShared(SoloAction.EnterDoor,"",doorTarget,"",0,0,Done);
-            else Done(Command(SoloAction.EnterDoor,target:doorTarget));
+            if(Shared)SubmitShared(SoloAction.EnterDoor,"",doorTarget,doorEntranceRevision.ToString(),0,0,Done);
+            else Done(Command(SoloAction.EnterDoor,target:doorTarget,value:doorEntranceRevision.ToString()));
         }
         private void PresentBedrooms()
         {

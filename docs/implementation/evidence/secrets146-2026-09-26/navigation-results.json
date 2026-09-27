@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build": 146,
+  "checks": [
+    "phone: one home destination, bottom-edge Bluey/Bingo visible, selection and close preserve state",
+    "tablet: one home destination, bottom-edge Bluey/Bingo visible, selection and close preserve state",
+    "Creek to single home entry retains real loading and scenery readiness",
+    "real joystick crosses house/backyard boundary without travel or a new visit"
+  ],
+  "liveFamilyTouched": false
+}

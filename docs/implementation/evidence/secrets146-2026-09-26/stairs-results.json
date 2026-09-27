@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "build": 146,
+  "checks": [
+    "real touch starts visible ascent; local landing keeps sibling downstairs and stays within scenery budget",
+    "one Home destination resumes upstairs; phone and tablet landing captures",
+    "four simultaneous opposite-direction trips; separate safe arrivals and local avatar visibility",
+    "all four share landing; borrowed item transfers with same ID and can be dropped upstairs",
+    "real upstairs pickup/drop works without downstairs interaction targets",
+    "joystick entry uses the same stair route as tapping",
+    "cancel and disconnect settle the traveler at source and preserve all other players"
+  ],
+  "liveFamilyTouched": false,
+  "limits": "Native Windows release clients. Bedrooms/furnishings, physical devices and visual user acceptance remain pending."
+}

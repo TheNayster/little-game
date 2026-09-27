@@ -44,6 +44,7 @@ namespace LittleWeeps.NetworkProbe
             public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray,activeCharacterVisible;public string character;public int characterLayers;public ControlView[] controls;
             public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
             public float homePoseAge;public string homePose;public bool homeMusicPlaying,musicMuted;public LittleWeeps.Core.HomeState home;
+            public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
             public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
         }
@@ -244,6 +245,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.joystickVisible=screen.Surfaces["stick"].gameObject.activeInHierarchy;
                 evidence.worldLoading=screen.WorldLoading;evidence.loadingDestination=screen.LoadingDestination;evidence.loadingFailure=screen.LoadingFailure;evidence.travelStages=screen.TravelStages;
                 evidence.homePoseAge=screen.HomePoseAge;evidence.homePose=screen.HomePose;evidence.homeMusicPlaying=screen.HomeMusicPlaying;evidence.musicMuted=screen.MusicMuted;evidence.home=screen.Home;
+                evidence.secretDoorVisible=screen.SecretDoorVisible;evidence.secretDoorInteractive=screen.SecretDoorInteractive;evidence.quietStill=screen.QuietStill;evidence.quietBrightness=screen.QuietBrightness;evidence.quietMusicLevel=screen.QuietMusicLevel;evidence.quietEffectsLevel=screen.QuietEffectsLevel;evidence.quietPhase=screen.QuietPhase;
                 evidence.sceneryReady=screen.SceneryReady;evidence.place=screen.CurrentPlace;evidence.cameraX=screen.CameraX;evidence.pendingScenery=screen.PendingScenery;evidence.residentScenery=screen.ResidentScenery;
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();

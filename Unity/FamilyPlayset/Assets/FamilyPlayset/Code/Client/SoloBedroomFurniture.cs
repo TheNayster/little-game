@@ -20,7 +20,7 @@ namespace LittleWeeps.Client
         private Text bedroomTogether,bedroomUndo;
         private string bedroomDragTarget="";
         private static readonly Color[] BedroomColors={Color.white,new Color(1,.87f,.85f),new Color(.84f,1,.9f),new Color(.93f,.85f,1)};
-        private BedroomState FurnishedRoom=>SceneSchema>=BedroomFurniture.Schema?Bedrooms.FirstOrDefault(r=>r.id==CurrentArea):null;
+        private BedroomState FurnishedRoom=>SceneSchema>=BedroomFurniture.Schema?(SecretRooms.Index(CurrentArea)>=0?LocalSecret?.furniture:Bedrooms.FirstOrDefault(r=>r.id==CurrentArea)):null;
 
         private Sprite BedroomSprite(string id)
         {
@@ -62,9 +62,9 @@ namespace LittleWeeps.Client
                 var index=i;var root=FurnitureRoot("cushion-"+i);var picture=HomePicture(root,"Reading cushion",new Vector2(0,10),new Vector2(180,120),BedroomSprite("cushion"));bedroomTints.Add(picture);
                 HomeHit(root,"Sit on cushion "+(i+1),new Vector2(0,35),new Vector2(175,125),()=>UseHome(BedroomFurniture.Cushion(index)));
             }
-            var lamp=FurnitureRoot("lamp");lampGlow=Panel(lamp,"Warm lamp light",new Vector2(0,265),new Vector2(220,220),new Color(1,.86f,.43f,.12f),false,true);
-            HomePicture(lamp,"Lamp",new Vector2(0,260),new Vector2(80,120),BedroomSprite("lamp"));
-            HomeHit(lamp,"Bedroom lamp",new Vector2(0,260),new Vector2(120,140),()=>HomeAction(SoloAction.SetFixture,"bedroom-lamp",FurnishedRoom.lampOn?"off":"on"));
+            var lamp=FurnitureRoot("lamp");lampGlow=Panel(lamp,"Warm lamp light",new Vector2(0,250),new Vector2(220,220),new Color(1,.86f,.43f,.12f),false,true);
+            HomePicture(lamp,"Lamp",new Vector2(0,245),new Vector2(80,120),BedroomSprite("lamp"));
+            HomeHit(lamp,"Bedroom lamp",new Vector2(0,245),new Vector2(120,140),()=>HomeAction(SoloAction.SetFixture,"bedroom-lamp",FurnishedRoom.lampOn?"off":"on"));
             var pictureFrame=FurnitureRoot("picture");
             Panel(pictureFrame,"Timber frame",Vector2.zero,new Vector2(210,170),new Color(.74f,.47f,.24f));
             bedroomTints.Add(Panel(pictureFrame,"Picture paper",Vector2.zero,new Vector2(186,146),Cream));
@@ -118,9 +118,9 @@ namespace LittleWeeps.Client
         {
             if(bedroomDecorButton==null)return;var room=FurnishedRoom;var visible=room!=null && !WorldLoading;var items=ReadToys();
             foreach(var pair in bedroomFurniture)
-            {pair.Value.gameObject.SetActive(visible);if(!visible)continue;var anchor=FurnitureAnchor(pair.Key,room);pair.Value.anchoredPosition=ToBoard(anchor.x,anchor.y);pair.Value.localScale=Vector3.one*sceneScale;}
+            {pair.Value.gameObject.SetActive(visible && !(SecretRooms.Index(CurrentArea)>=0 && (pair.Key=="bed" || pair.Key=="picture")));if(!visible)continue;var anchor=FurnitureAnchor(pair.Key,room);pair.Value.anchoredPosition=ToBoard(anchor.x,anchor.y);pair.Value.localScale=Vector3.one*sceneScale;}
             foreach(var pair in bedroomFronts)
-            {var root=(RectTransform)pair.Value.transform.parent;root.gameObject.SetActive(visible && (pair.Key!="chest-front" || room.chestOpen));if(!visible)continue;var anchor=FurnitureAnchor(pair.Key,room);root.anchoredPosition=ToBoard(anchor.x,anchor.y);root.localScale=Vector3.one*sceneScale;}
+            {var root=(RectTransform)pair.Value.transform.parent;root.gameObject.SetActive(visible && !(SecretRooms.Index(CurrentArea)>=0 && (pair.Key=="quilt" || pair.Key=="bed-front")) && (pair.Key!="chest-front" || room.chestOpen));if(!visible)continue;var anchor=FurnitureAnchor(pair.Key,room);root.anchoredPosition=ToBoard(anchor.x,anchor.y);root.localScale=Vector3.one*sceneScale;}
             var editable=visible && !MenuOpen && !TravelPending && (room.owner==Actor || room.decorateTogether);
             bedroomDecorButton.gameObject.SetActive(editable);if(!editable)bedroomDecorPanel.gameObject.SetActive(false);
             for(var i=0;i<12;i++)
