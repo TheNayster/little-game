@@ -1,0 +1,17 @@
+# Discovery room source art
+
+Generated September 27, 2026 with the built-in imagegen tool. Original generated PNGs are preserved here; runtime copies live in Resources/Scenery and Resources/HomeArt. These are implementation drafts, not user-accepted artwork.
+
+The architecture is empty below the wall decorations. Workbenches, science samples and coloring pages are separate runtime layers. The existing Home living room was inspected for the yellow timber wall, white baseboard and coral floor palette.
+
+## Recorded generation specifications
+
+These retain the generation constraints; they are summarized prompt specifications, not a verbatim transcript. All raster creation/editing used the built-in imagegen tool.
+
+1. **Empty architecture:** wide 3:1 side-view illustrated Bluey-style dollhouse room matching the existing Home palette. Warm yellow timber walls, white baseboard, coral floor, two garden windows, wordless science poster and empty corkboard. No characters, doors, furniture or loose props; clear wall/floor below decorations; continuous edges.
+2. **Separate workbench:** wide 3:1 four-child workbench, empty honey-colored wooden top, mint apron and four legs. Straight side view with a shallow visible top. Transparent background; no papers, equipment, text or characters.
+3. **Aligned architecture edit:** retain the first room's windows, decorations and colors; move the wall/floor join to about 55% of image height (approximately y399 of 725) to meet the adjacent living room.
+
+`home-discovery.png` preserves the first draft. `home-discovery-aligned.png` is the runtime panorama source; `discovery-table.png` is the separate transparent furniture source. File hashes/runtime destinations are in [manifest.json](manifest.json). No existing character image was regenerated.
+
+The six closed-region coloring designs are vector definitions from the research prototype, compiled by `Tools/Build-DiscoveryPages.py` into `Resources/Discovery/pages.json`. They are not imagegen raster edits.

@@ -1,0 +1,23 @@
+{
+  "generator": "Built-in imagegen",
+  "date": "2026-09-27",
+  "userAccepted": false,
+  "assets": [
+    {
+      "file": "home-discovery.png",
+      "sha256": "1a725459fe607f9bb3fcf0266df6960d9d0f0f3c2c0b77b20482aec4fe0b117e",
+      "runtime": null
+    },
+    {
+      "file": "home-discovery-aligned.png",
+      "sha256": "44c1f044ba1b8411d80a4981320b383391b40f46e645e7b94602ce8abbd5a22f",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-discovery.png"
+    },
+    {
+      "file": "discovery-table.png",
+      "sha256": "312537c9f004ed141400c96aa2e54a2b908cfb75d9bca5d826815d8ab2b0c0e5",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/HomeArt/discovery-table.png"
+    }
+  ],
+  "promptRecord": "README.md; summarized generation specifications, not a verbatim tool transcript"
+}

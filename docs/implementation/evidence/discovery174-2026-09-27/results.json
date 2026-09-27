@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": 174,
+  "previous": 172,
+  "checks": [
+    "actual previous release save migrates additively with profile avatar positions objects and receipts intact",
+    "four real UI boat trays preserve separate cargo and one reset does not affect siblings",
+    "native magnet drag commits once and RGB combinations update authoritative persistent state",
+    "all six fitted pages render with actual four-player fill undo redo and tablet/phone layout checks",
+    "one player travels away while another keeps coloring with no global activity lock",
+    "continuous living-room route retains held item and stays within three scenery textures",
+    "authority save restart and real client rejoin retain all four creations and science trays"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

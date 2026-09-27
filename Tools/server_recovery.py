@@ -32,7 +32,8 @@ LIMIT = 3 * 1024 * 1024
 # groups and exact 128-to-171 migration/restoration before coordinated family rollout.
 # 172 repeats all six recovery groups with unchanged schema/content and the
 # compact activity stream; physical mixed-device acceptance remains separate.
-QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131, 171, 172}
+# 174 repeats all six groups with four populated schema-16 discovery workspaces.
+QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131, 171, 172, 174}
 MAX_QUALIFIED_BUILD = max(QUALIFIED_BUILDS)
 
 
@@ -90,7 +91,7 @@ def checkpoint(raw):
     header, checksum, payload = raw.decode('utf-8-sig').split('\n', 2)
     check(header == 'LITTLEWEEPS-SOLO-1' and digest(payload.encode()) == checksum, 'Checkpoint checksum mismatch.')
     value = json.loads(payload)
-    check(value.get('schema') in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), 'Unsupported checkpoint version.')
+    check(value.get('schema') in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), 'Unsupported checkpoint version.')
     return value
 
 
@@ -103,6 +104,10 @@ def build_schema(build):
     summary = read(ROOT / f'Builds/NetworkProbe/G3-0.0.{build}/build-summary.json')
     contract = summary.get('contract') if summary else None
     schemas = {4: 2, 5: 3, 6: 4, 7: 5, 8: 6, 9: 7, 10: 8, 11: 9, 12: 10, 13: 11, 14: 12, 15: 13, 16: 14, 17: 15}
+    # Discovery retains the build-manifest contract, but has new save/content
+    # versions. Accept only the explicitly supported pair, not arbitrary schemas.
+    if contract == 17 and (summary.get('schema'), summary.get('content')) == (16, 17):
+        return 16
     check(contract in schemas and (contract < 8 or
           summary.get('schema') == schemas[contract] and summary.get('content') == schemas[contract]+1), 'Unverified build save compatibility.')
     return schemas[contract]

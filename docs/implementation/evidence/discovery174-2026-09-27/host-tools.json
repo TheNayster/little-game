@@ -1,0 +1,26 @@
+{
+  "build": 174,
+  "recoveryPassed": true,
+  "files": [
+    {
+      "path": "Tools/server_recovery.py",
+      "sha256": "b3d88173dd3e43dd3951fbab0875f92dd4a10a5bb33546d3e1c136196ec29cdd"
+    },
+    {
+      "path": "Tools/parent_server.py",
+      "sha256": "6299623ab74ab08f4952637ddae8aa36b08dce2b04cf360005ad2735ad51a403"
+    },
+    {
+      "path": "Tools/RecoveryValidator/RecoveryValidator.csproj",
+      "sha256": "130ae387d072f3501680d06553a285f8a4fd74ee028f2f34400b89162dd270f3"
+    },
+    {
+      "path": "Tools/Test-ServerRecovery.py",
+      "sha256": "03d56a3d3a899c48b6dfcb0bb6af9a239d50d1c32f35022bdaba1796b63d0273"
+    },
+    {
+      "path": "Tools/Test-Discovery.py",
+      "sha256": "50ae6635219430ffc6dd8df519542c381c8b963405c09be2aa48be6f088b2554"
+    }
+  ]
+}

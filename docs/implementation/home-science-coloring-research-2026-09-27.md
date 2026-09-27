@@ -1,5 +1,7 @@
 # Downstairs science and coloring: research applied to the Home design
 
+**Later implementation:** [Windows candidate 174](home-discovery-2026-09-27.html) applies this research to the actual connected house, three science trays and six persistent tap-fill pages. The browser prototype and its evidence below remain a separate historical research milestone. Blank drawing, gallery/carrying/Together and five science stations remain open.
+
 September 27, 2026 · LAB-01 / H-29–30 / ACT-01 / ITEM-03 · development branch `codex/home-science-coloring`.
 
 **Latest request:** add a science area and coloring-book area in the main house's general shared space, and actually use the research. Both belong downstairs, accessible to all four family players. The existing eight science activities remain in scope. Coloring is an additional creative activity, not a replacement for the six narrated books.
@@ -159,4 +161,4 @@ The review prototype scrolls vertically on small screens. This is not acceptance
 
 The maintained research, build guide, Home tracker and generated feature inventory were reconciled. Catalog validation retains all 55 research chapters, 35 master requirements, eight science stations and eight additional coloring requirements. All remain accurately classified for game implementation. The [plan/link consistency check](evidence/pc-vps-plan-audit-2026-09-25/docs-validation.json) passed; JavaScript syntax validation also passed.
 
-SC-0 is complete as research and a browser prototype. SC-1 and subsequent Unity implementation, four-device networking, family-save migration, older-iPad performance and child acceptance remain open.
+At the SC-0 milestone, only research and the browser prototype were complete. The later implementation linked above records actual Unity progress; physical four-device, older-iPad and child acceptance remain open.

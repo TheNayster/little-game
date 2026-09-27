@@ -1,0 +1,1119 @@
+{
+  "passed": true,
+  "build": 174,
+  "runtimeFilesVerified": 1095,
+  "artifactFilesVerified": 351,
+  "normalizedMetadata": [
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Android Foundation.asset",
+      "buildSha256": "0712b2becd13477d4bce17817a9336b8e6949c161856008b7d615b75fc154cc8",
+      "sourceSha256": "1d9c19b86295308553236ce2fae77903646167c0f6fe002eedde13041f4cdbbf",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Android Solo Prototype.asset",
+      "buildSha256": "1cc59237085e7ccf5dd9286c19ccde7b61c44f6bf45b0b9ea9ccc44ff53239ab",
+      "sourceSha256": "734e8c78d7e8bd3a3e6b6c02b8906091f65577b33753f1ec8c6e384786f75e96",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/iPad Foundation.asset",
+      "buildSha256": "3ea2d456f249cfdcd134ac0d1a96ccde08883baa6207c4445ea9b237148c1410",
+      "sourceSha256": "8ab66d96c68781ed1d1a50a06c96083167a64815cd6360cf3f60ac3a77be79cc",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/iPad Solo Prototype.asset",
+      "buildSha256": "f4ae9c5fb363de3509ba9f9d0a67d55a884d137798b9f1ad256f661f4455d4ac",
+      "sourceSha256": "5910f7fa8847106fefaa7ff60dbfef76c21f029f8550ba46043fbeb9c873cdaa",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/PC Server Network Probe.asset",
+      "buildSha256": "a5944a82d4f6111f23ea1372f95ed6fd6c14a3f7f5762e1215683192d5b6cf5a",
+      "sourceSha256": "273248172919b29bc58519a910a6be9c04c26241118b0fa64749ef33b399e95a",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/PC Server Network Probe.asset.meta",
+      "buildSha256": "0bd8ebda1024f5b282f9b60b3136112f6ecd18f03e5c95c9f91c2a333302a025",
+      "sourceSha256": "b848a7f117c76a84d737d4292f1f729417393eae71437bd3afa9f497de5324de",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Network Probe.asset",
+      "buildSha256": "b2b6bb65adf472d1cd2d2637fbbfd63ba32f09e3fc1f643db4b7d3da10740d7c",
+      "sourceSha256": "f761efe3187603b663d1f6484ef43b593480f06792acd1c0a267f43e0e06ca5e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Network Probe.asset.meta",
+      "buildSha256": "8b2504bda59735d14ef2214c2e352d7e29896d8dfaab2795653c63f2158ba275",
+      "sourceSha256": "bd5e94c227b548b5d8be2b909526c68ec85cc3ec74ae5a7ecb33261ff39a60bf",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Server Foundation.asset",
+      "buildSha256": "d702791b42fcb5c884792625a2b81005d1ab3b198539a647f863546a771592dc",
+      "sourceSha256": "192b9de2c6edc9722896d5c2bf741625433097e39306f36ec9a652dc60887193",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/DefaultNetworkPrefabs.asset.meta",
+      "buildSha256": "652c79c70e2c32688e584d29b765305f2cff7a8686c2ab76a2144c19fb99f006",
+      "sourceSha256": "d7aa278f1ecc5b67ce38bb3ee1815c86f7afaf76315525d6718395ea8416cf31",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bingo/actions.png.meta",
+      "buildSha256": "9c75b5ad97fbe88ed976465075d56459e170aed64435394c55c7e62fdd149162",
+      "sourceSha256": "c857aed758eeb90863bb70e3d643d030bcc4ca2736a7e0f3666fe18125e3aaef",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bingo/gentle-walk.png.meta",
+      "buildSha256": "432894c83ec1a3ab74213bca55e310bedab69c42220fd8bf314b97a0079f8dc2",
+      "sourceSha256": "527bb6c14bec3cd321f0c5ffc08de23bf808e298003dc0dabf7be681bc21829c",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bluey/actions.png.meta",
+      "buildSha256": "e13e0e99e54943c717c8e5f80cf0319bd3294767a17120668a373d438683c296",
+      "sourceSha256": "bd2ec56745f6e22ecbe35fd1900a1406578d974246529b44de64ccdd36507faf",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bluey/gentle-walk.png.meta",
+      "buildSha256": "8ad8bde39caddfe4b2fc4f49ff086b3bef8fbfff31bc715aeecf5b87d866fab9",
+      "sourceSha256": "16ed9fc2e30bc399b9785ef40f8f760cd7714c58e049e939bd7572c5c013cb3d",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CakeGesture.cs.meta",
+      "buildSha256": "c46384f5926e4c00de54cc55bda8b1e2d0f82661b2183cb60fb2aac9b932087e",
+      "sourceSha256": "5cd4267fc0a16f69bca71baaab6d8b26da0d55a78dff97856d1278d4d88cb400",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/DiscoverySurface.cs.meta",
+      "buildSha256": "e4bf4d5e1a35ef29e7b1d5529be75816268def143ca73501e2b4d9a536b44aea",
+      "sourceSha256": "59654efa6e7242333e24aa9f7121d793711d25550217bede66bad935e7998eba",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/IGardenSession.cs.meta",
+      "buildSha256": "0ff57670aa2c1ecfafc684e6a50f2b0b5770843234e7efb4c6fd839a14b4410d",
+      "sourceSha256": "22ac0ecfaf3af2c58bece38af5e74cccc5f92f9befab34303944d5ec415b02ef",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/KitchenGesture.cs.meta",
+      "buildSha256": "7447b104c1ca304b7b30ef1db6ac4e5ba552e505aee226162138a5a0025a253b",
+      "sourceSha256": "bec175cbaced191bee936a67aa07ddfc042c00bdd88f228a6aa7022df7898c0e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloBooks.cs.meta",
+      "buildSha256": "47ec16c80e2ff3af08ebd9a77207797c09f3792fa25849f1aa22728161d01f72",
+      "sourceSha256": "9513d2095410557bb7b22378ebb6a62e5e25d1a44f85372c4648e7fd40288ce1",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCakeFlow.cs.meta",
+      "buildSha256": "58fce8c64bd5684e6c8f50d80f76ec65651212d01c590c2cd2e877dfd4f8e428",
+      "sourceSha256": "e166bbcfe626a6d3c1e899e245f7ba53630d3d5327a2223fcf22506cf50831dc",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDiscovery.cs.meta",
+      "buildSha256": "0b3decc2b6aed19c20a61eb440bca5cfb33f68926ddf2574a2713261f8dc9f19",
+      "sourceSha256": "2ae0880242168490f308bf15d07fa19320ad841c1485454775410412069aadd1",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKitchen.cs.meta",
+      "buildSha256": "5ec2709db7d6d1851a69e5ecc088e51b663fbf7cc6547d35c686ee5fba8f9bc7",
+      "sourceSha256": "904fe9494430ec1c9cad80e90abb3b6204c5f034bdcd597d72116d7525f0745f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKitchenView.cs.meta",
+      "buildSha256": "c361c597ba89e73d1877e2eac29edfccce46b2fb573b10d9836e077da57f9540",
+      "sourceSha256": "68e729e9a68b35036189951400ae9c7d17a19048252bbb6e66554d60b07bdb44",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CakeFlow.cs.meta",
+      "buildSha256": "3da8074e6f57de1143188a1890ba84d44e2332d22861e7c83d851066289f2298",
+      "sourceSha256": "457e3569fa884d664dbd03c032c895ac6cf551b32167b01fb1f0ee7fe9b06d27",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Discovery.cs.meta",
+      "buildSha256": "097951fa72b8df6af87554fc4e8f8d76c721d6355c5f8f7f269a2c5412813a23",
+      "sourceSha256": "42a3bda3fc3b53ee872d9be4c93f10764409d0f864bc386f1c40a88ca5f92550",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs.meta",
+      "buildSha256": "2ffb2001995fc423c56116760db2198f8ae5f4025c745c523d7fbdbf4a97ad0e",
+      "sourceSha256": "d6562e311f1fef3dc93a4974b221772de2db507ff3a96490dd46f24e3736e9ab",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/GardenCommandQueue.cs.meta",
+      "buildSha256": "40375d484abe51246d80079ede1ab02f8bf20dc78ebd241778b32367037ceea3",
+      "sourceSha256": "097de01fe5b228f8295b9c6a7b3a29129a61ccf266ecdb12dd451dd14e196bec",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeBooks.cs.meta",
+      "buildSha256": "7bb54db377e617822f9c3d8247cfdbf6525136b6048b26fe48300196dff53e1c",
+      "sourceSha256": "3867c24b971eac89bd003d4999b0f2cf39c8024975c3a8b5709e998c2b6e405e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Kitchen.cs.meta",
+      "buildSha256": "545051138e1a7e1a0e9422510ef55ca31e8d1bfba838f2fa42720fc364b860fd",
+      "sourceSha256": "7ff0fe00cae45112c62464a63f95c80cc208eaeedc71c0003e36ef7b26f84c58",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KitchenAssistance.cs.meta",
+      "buildSha256": "f7d1d3f3e8aa1ba6f3120760b0fd0e7cc125edf3ef0f8b2c995881dda05c8143",
+      "sourceSha256": "23a7186e2cc973453087a8efbde37842d6b131b203fa8f64dcbc72fe6760fa97",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/BookContentBuildCheck.cs.meta",
+      "buildSha256": "828ba9fdae52257974f02b2e10ce1943e219fdeb9552e6542343295527f24847",
+      "sourceSha256": "c989145cb911f99515473d83ded3359032b1b040925d7f98267cd4cdbfce922a",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/NetworkProbeBuild.cs.meta",
+      "buildSha256": "1ccb4b789a5c1f9c88f05ccf429d7a30f7dc1d9a373d971561a0d9033daf825d",
+      "sourceSha256": "6d88d00211281e9dcc8654d492d3086194515774342165bfb0cffce621f5ba82",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe.meta",
+      "buildSha256": "79fa22205e60f54a7fb7c5e5bb516dca8d5b8c41308bbe082b4abe8e40878139",
+      "sourceSha256": "ac40824f49049e14a6b8e4300ba52df583a518b4f0e220271ad0ede63cd3875b",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/LittleWeeps.NetworkProbe.asmdef.meta",
+      "buildSha256": "26d59ed508287d1ad92940b152dca08895beeb2382e0e1c1984571cb8213ff29",
+      "sourceSha256": "e87e5177e939208400fbac743178b4b4b6f30d6bd2eaf852bc52e446c7037bb9",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenSession.cs.meta",
+      "buildSha256": "dab783da63f85363e50fdd606ca9bd80d9c459daf15da56aa1146558660fb0be",
+      "sourceSha256": "e12603d0820a1d255b381a1892e396abb43d1a7b3cf3a52242048bc5c1be4ae0",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs.meta",
+      "buildSha256": "75a693c97f2494ce5c0a238d4f57b0ea7c049084b03967a102a0683effec2e23",
+      "sourceSha256": "114e2beb41da7c56ec4b81758e67a3e394fa7ae35e8466ce5123125f2a6c1d0a",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs.meta",
+      "buildSha256": "c280554cb4606c30cbaec95f3cb8fc8e7d9d11fd7eddef3f155bed4c9481cec3",
+      "sourceSha256": "5e19de491896f4ad91fbf3ba1e82d92e476c8a1d96227b4b60a36b3ea1e79329",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/bed.png.meta",
+      "buildSha256": "f5e4a3ab722c2feec12b3cc48405f1e14b488b9748f65ea85e29d5a48410d1b1",
+      "sourceSha256": "dda9df4b40629a533afc9e6c4731e43ca725815997492acb582b24612a5aed7b",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/chest-closed.png.meta",
+      "buildSha256": "a16b9687f31a24226a70b5c3c5bdc64ec6e74f962c7eed37dde8fb2154f346e6",
+      "sourceSha256": "bea1cd925d6f85e073044bbbd5e899a8510e1aa62e588ba9fe911c00b4fedbec",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/chest-open.png.meta",
+      "buildSha256": "4fce221940852aca6b04c1d31575515af7b742281cfaeeb48536bb4d4e2ae01f",
+      "sourceSha256": "e333cff6b12fd7c9511f1f9ccc9f0b37af95901ebc1864363c95f13e3b02a321",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/cushion.png.meta",
+      "buildSha256": "74115e9319b89571da53fb92b6e9555f53bc1c1a701af5ad52e6c11252f1ccc8",
+      "sourceSha256": "9581f98b99448a049d859b126b8a9a51a1d0789d3eff422a98283f18c7fe34be",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/lamp.png.meta",
+      "buildSha256": "0ab0b7e028c2cb86c41a0280befc249b60392da139ffa31abfa7cdcb3a33c311",
+      "sourceSha256": "355d6d0efc737e1acc3c8cf8d185f8279f2e3908f90b1aaa6c64d0a1b35aeadb",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/plush.png.meta",
+      "buildSha256": "d126331ae505a2e1225d733201cdb94ade6c20c33b6314a87aa06fcc8ecb92d1",
+      "sourceSha256": "f314a9d6605335beaddb5b8a470f086b3e35312073cd37935d733f3cb04d0551",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/rug.png.meta",
+      "buildSha256": "341f6be4c664ace2e360dfed61bbb25dd74b23906fc32d783e662b722c35e42f",
+      "sourceSha256": "39ca1ad9f65149cd40b8a3f2515073a787e2e2d0d59a9fa2f74005a856a3e78b",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BedroomArt/shelf.png.meta",
+      "buildSha256": "586beedbc317f63d98a6ac5f9422dd43264f308f13de7c57c750c1ee65fbd735",
+      "sourceSha256": "019da47e26d2c5cd6fbec54b83766a1c010de65bb55d7990b8b94d0e63b31fb6",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books.meta",
+      "buildSha256": "521a049ee8d5d513311a32d7015ea2674b61d43dcc1f5c778e1f0c6a1d336338",
+      "sourceSha256": "e2e4aad899f87c42243426ca0d8965a12da713cc04ee1dc985d58870201e7c3a",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/catalog.json.meta",
+      "buildSha256": "1123256da8ca760037dce140d4ae273afdd83d46924dbb5d52e96574f704b94b",
+      "sourceSha256": "562a78f79647eb74a1f08cb0e1c752ee2cdbf51b441401c499dd6e95fe93f7d9",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/covers.png.meta",
+      "buildSha256": "5d2ec38919b938315e2f5b3f0454dde8622563fe58ae3134e5d5ab9003a2898a",
+      "sourceSha256": "f88b7b2bb9f46b0a1534d0126679b9ab224e712a3beef40ca8a49e7cace8ac94",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden.meta",
+      "buildSha256": "56ac2571ab5d4a49830a4c53a748520bf009e1e280d41bb05e69c9b64f4a35f8",
+      "sourceSha256": "0071be83d3a9d726fe38842f4f978fd6689f387b9492814da2d88e2c7e16a1b4",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio.meta",
+      "buildSha256": "10f039dc467747a8850487814bac25aa4a4fb2dfc28be762ed71b3f319bdeaf5",
+      "sourceSha256": "e50247973354abb6b27835186e6049fe7ee673907355084ea6f31a9d739047df",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/effect-0.wav.meta",
+      "buildSha256": "d6e62bb3ba1e5ac869645bf34d470fbbce5f2a03d6c90e6922d528c62391e12e",
+      "sourceSha256": "f3800bc29631fc0f237cec9fbf6b9e3caa6eac7f07b5e1bf60bfce0a4d7c7863",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/page-0.wav.meta",
+      "buildSha256": "4dd5ac200a8f9c9107106fa45c057e7e62140b6e6b2f43c7f8de9473a3229636",
+      "sourceSha256": "fb1e185f0c4eff2157eda0741e33e118e5ef3c23b69139a73268b7fa97434bdf",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/page-1.wav.meta",
+      "buildSha256": "5ed567796f02240c2c3c2f1a06f9e18e38516d08c226006eba59b3b6092388df",
+      "sourceSha256": "ef7658dcbf525481817dafa3d7f9638cdeef2fb954e9c71d8237e0dfa0787537",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/page-2.wav.meta",
+      "buildSha256": "b393546b54a7119cd1fd474401868a6bc83a869bfcf739180ddb455cb1a03ffa",
+      "sourceSha256": "3d92e1efd414d216814c67e66532de77dcd411c0a64ad2d9165e83686d660065",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/page-3.wav.meta",
+      "buildSha256": "c365d601a15a4751eab43c3b1ea056393bcf8bf4b793bccd39c712ed0d4ba753",
+      "sourceSha256": "1a1eb09bd1cc7097d60159184cd381b2fc152870bfd6f830d0cb38a4d60ece2e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/page-4.wav.meta",
+      "buildSha256": "78fd14c659242392a245cff31c320764a3809919b2d2d937d5407474501170bf",
+      "sourceSha256": "0ddc2076a5737cbec3c54bb5316d6e3720e70e32282aa40025f8812ff16dde8a",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/page-5.wav.meta",
+      "buildSha256": "e370b6b88dc6da3096e71c4b95a8875bcc21700c13a665e9452e82ead7b4c9b8",
+      "sourceSha256": "4afdfdaa1b834de6bf350f12795b52d8e2cc4c068f196554b57533e42d45c8f1",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/page-6.wav.meta",
+      "buildSha256": "e250049821bc4de81817ddea6e16c7661997e94b4fca01936801290913b09b2f",
+      "sourceSha256": "5b3a28453b8f2f2addc6a27ceac1f8fb8eede135e3ebc98ce936cda6637c98c2",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/audio/page-7.wav.meta",
+      "buildSha256": "0427a873b77edd4bdd54836666c660f2205a1f88ea69d694061755c04a1fd153",
+      "sourceSha256": "c37e2771edea119580ea33b90906ef49ec8dbcd17c5c28d9c2bf594a1e35bdc7",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/content.json.meta",
+      "buildSha256": "e81157203315d0a1298c9deeacf56f61575a0efdaeabefaf205199329f81246a",
+      "sourceSha256": "f2c44e8d34c40324119d8ddfc403047929a2986c5cb23964099a22e899a32176",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/fairy-garden/pages.png.meta",
+      "buildSha256": "a9b91d7b63c2b969175a15dabae8cc694f324af30a1d7a855971bda98e95bb8f",
+      "sourceSha256": "8c5ccc3cb619de00c490e8fca26cef07163bfe180df446a0009c12ec89438858",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs.meta",
+      "buildSha256": "1c95501e24d2feecec79bf3085a64e9ad215d70663a51f93ea860dea3afa6be3",
+      "sourceSha256": "8538bc1f1135eb768d3db4d22f0f776614b9823ef499d86dbfc958451b2e66d9",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio.meta",
+      "buildSha256": "efe64565f402689722480f813bfd2299af30f1583871fb7221c655e6e5d72926",
+      "sourceSha256": "8c2065860fecac2b2289888c70083cc8975ceb799e456611e4505ad0cd9a77e0",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-0.wav.meta",
+      "buildSha256": "8c872c327ec3491d8e7191d7b5fc6454fac4a5ffb406afca816de085bfa89dbb",
+      "sourceSha256": "63d43736ba5db982854ef3e43f64ae5b8c46254cf1abba60a2ae72d4e0246199",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-1.wav.meta",
+      "buildSha256": "1ad8ddfde5419789c92389bbe1e3dc92e27a1898d50949dcd97073a23e0a8192",
+      "sourceSha256": "53d715ee098e0f198ad75a47dc61672b1fb0803ce19f8083c02ae1fcd236e66d",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-10.wav.meta",
+      "buildSha256": "aa2d28bebb69d45605d88cf2b8bcd2f7bcf5e2a27a80b3946a5305d9d9bf88ad",
+      "sourceSha256": "f57a95a218b82f2b5ae5a30aab217ec6ab3725774ebb953536a00fa013bf83c5",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-11.wav.meta",
+      "buildSha256": "1e9c3c8a4953ebde5a122c346859bc2d6b72f360273936dffa5afebadda43bc2",
+      "sourceSha256": "349e8c9df33f1246216d4a4d717986bd3b20d6486c5b6d62026e431ea5c758f2",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-2.wav.meta",
+      "buildSha256": "67ad57945cfb2119e13ec20a76f4060ec8cee8766c973f8c5d35fad4a39878b2",
+      "sourceSha256": "1eaabf45ca8c6717950c202e41e608419d817d88928ea60740ef32fc5730391a",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-3.wav.meta",
+      "buildSha256": "81c44d4d2529027a5c54c6604d4980b7e55db116ba9b5315509dc493a7c6c934",
+      "sourceSha256": "5ad690c26b2d0accde5947d41dd49c0e09e66e80341c8375fe7cbb6984849d67",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-4.wav.meta",
+      "buildSha256": "f841b0ed9c89871044b4068c1ca9bbbbc5c0767e8ece5c5490dc58ac82685573",
+      "sourceSha256": "6a1a57b3837c0b5111cb7c0ac5e0d8e151d841818482430a14fcb0f6267d2470",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-5.wav.meta",
+      "buildSha256": "c736b03ae134d23a117025fccc0bee2b69a9948241b9ce9b10b89563d75cf665",
+      "sourceSha256": "135de04732ec8d536cedab493f88ccf23453f59af423708c87747c456df2085b",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-6.wav.meta",
+      "buildSha256": "c071837f0b43b3c80ca3b117926762ce327d0f96dcdcafb8cac8ffbdadc7ac88",
+      "sourceSha256": "cfd8ef5e3c33a812a40c7dc4ad451d14821834ae59cdf0223925948059ba09f1",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-7.wav.meta",
+      "buildSha256": "6d037dab94a9bd3ffccd2a84178cb2b4f377314ee82037633e46b9c9804bb9da",
+      "sourceSha256": "3a3b687f1569b9dbf0dccb96d00bd1403ad17892d279721359ea18387491afca",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-8.wav.meta",
+      "buildSha256": "d1e95fec4011179b733e9467fc542eff4beac60cab795298911e4be64017fccb",
+      "sourceSha256": "9cb041cba631d8e087bc2fe125c4bb9bd0d94461536bd1d1322ff9861dfe8b46",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-9.wav.meta",
+      "buildSha256": "4ba83b5ba6798f36cec5c0f3ef18e72471f9e61134ed514b1e305f18147cd577",
+      "sourceSha256": "9bc384036f121bf074a47aba422f0b25621ebe86325eacad12f0e4392ccc504f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-0.wav.meta",
+      "buildSha256": "55b384747fcf6323e1ad4cce80c0f9a1edb691e23730a10342c466062f913814",
+      "sourceSha256": "4974787e1a31252e8514124df65b34af21080400c9cf83541fffebb285640cb7",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-1.wav.meta",
+      "buildSha256": "9ac342e3d043a40aaae9fc5fb2ab49b7f37f2b65560d856b61733624ef04a644",
+      "sourceSha256": "2ec4f600807b98ea0fff66a5a9ae2790dc0edaa58eb02f4edcfc71e3e3439900",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-10.wav.meta",
+      "buildSha256": "92b39dd1eac28d8fbd18992f85ac1cfe582d69e379d92164540b84e0c64e270d",
+      "sourceSha256": "65b1a046a85c59b63e1100dbcf16e8cf07ac69a1b3546bdba3fc209c764a250d",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-11.wav.meta",
+      "buildSha256": "17187e23f5a6882e6c569c35c86b789dc943b8e67a08fc690e2feefccd44fe57",
+      "sourceSha256": "ac9db19e67eb066048d2d2b09f335436739abb4cb137357167ff9653175900ea",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-2.wav.meta",
+      "buildSha256": "aee0e01ec8bdd730a2e91061ba4833618b37f3d5c4e8be63e465abdf1ef36891",
+      "sourceSha256": "9765a739f75d3fa83f0f03bc16b3f285c03c03b3a3d726d3b94273d82375d7bb",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-3.wav.meta",
+      "buildSha256": "e4b5086fa551100369f2e681cada6e5f95f77cfa9a077d96c99e328f7104ac44",
+      "sourceSha256": "0a47fc839d8ed7f5a4c5e7ed788ac838e59f9263e608e428ada615daed0e6fbd",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-4.wav.meta",
+      "buildSha256": "f85f433e59b9e692df0f713f9562827864acf2a218cfe4253b7de76cae90ba72",
+      "sourceSha256": "16cfd7f48c8e129ca8e755457ff8486299d42908792527ade4522a5718aa4fab",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-5.wav.meta",
+      "buildSha256": "851bdaa92d434ee52ada70bf00a71bce33d940fe2edd7ef255834f8b8d0ffae1",
+      "sourceSha256": "fdb324be63dac1051882a23ac2ac2de66d77060118512d8787b1e4195fbfef7e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-6.wav.meta",
+      "buildSha256": "d4d996eb588cf8aeb021d700f297f1abcba2504960312eeb8634ff9cca6035d4",
+      "sourceSha256": "646f437297e6760a4bb17d65492a00e32a635e6c5138b2b65830569f8ac00aa5",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-7.wav.meta",
+      "buildSha256": "a083d6be725c3ec6ec48dbb5affc6a63e8fb75215285078ea54ae8648a36bcd2",
+      "sourceSha256": "3df6595f3aadda2bada277361bf0887d3d5364633e8a4eecb936ee9e1ddd30b9",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-8.wav.meta",
+      "buildSha256": "18498e2d3b0aeb28753cbf0320ce2a2afedbae3ebbfb791a7c515db947462a32",
+      "sourceSha256": "1688ea62bff915bc49743889a669f52353646bf832cbe99342e4fa80016e4220",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/name-9.wav.meta",
+      "buildSha256": "c9ebeb0ee6a63a40556a895fec5a36fe8d900f79c5aede3aac4d740b096d4d3f",
+      "sourceSha256": "9137f191c8aa022fb32762f3e0509710e326869810a8514b11408d6fa442dd09",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-0.wav.meta",
+      "buildSha256": "f24337e0142e3c434d5268b558788ac24f0d92a36a3a1b363e973aa995344945",
+      "sourceSha256": "aa6e84d61caaee35a0870d03625590a42e2886223c0a4ce3954453a11aa3cfd9",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-1.wav.meta",
+      "buildSha256": "27caed12894789f06e90e2a91fe4b921eecbea83ee9e90a305e6cd265b4fa978",
+      "sourceSha256": "838d0947d5064a1694e6175253ca5866e55e047f71ae0101041aac1b6449995b",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-10.wav.meta",
+      "buildSha256": "634386e36eb3b2763033d7541daaa1d9a5f195b09e4b57d8aeee42e2beb45d25",
+      "sourceSha256": "ba962067351e9f490975504752c6e78dc7bd5baf1e36a1832deec7a5836f4f73",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-11.wav.meta",
+      "buildSha256": "573214146e1b1439809a43d4a0f69e709dbcf88f0ca6124fa1826a5cd17d047c",
+      "sourceSha256": "fcf20e3dd23a27dea49b058410066b9e2154657afeaf0b970216dc6de5f8efad",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-12.wav.meta",
+      "buildSha256": "87756916a92808031664ec146f2a231fb72d7576605b4de3bf79c02ba066cb36",
+      "sourceSha256": "dea27f6e22e1c47c8e86e6895305adc6fa3d6e5fab805659862e4ef5a935a35e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-13.wav.meta",
+      "buildSha256": "8789f4fe504ca1b3a41c2ce72007b1c4805f219107d8ffad87c23402135467cf",
+      "sourceSha256": "ae282828c79bc7397f7622babf4f219a74f537da662517d292fb4c79a3c0238c",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-2.wav.meta",
+      "buildSha256": "22322dae02945be29a602abf6dec132a8584ddf18b2c326f0c18a93363075745",
+      "sourceSha256": "4b6369f8f41068b0c9a49e9fbe35f219d184b827fa7c693eb592a6781493b8e6",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-3.wav.meta",
+      "buildSha256": "1ca1f2c559718e9c501c0a907a5549404e0b8005e54411b983c9e1e664815c3b",
+      "sourceSha256": "7d8f825349e6fd2b3778a16af6d5ec9e4362243a4971572f2c6cf263312353cf",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-4.wav.meta",
+      "buildSha256": "7eeb7e0a0f0f2e8bca2b06baa21e560d2a7ecbbfe9010b55d3d83a736bb83d88",
+      "sourceSha256": "92868750be48408ed0fdcde6039a28587288ef9cebf0c7a3b4c59fc2dac46d32",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-5.wav.meta",
+      "buildSha256": "008636138ecc665fbc1b465bc3e1f43eff2e9e03a22172fcb8741ace111df166",
+      "sourceSha256": "d0b1e8b3f7124b3f44c70e1e13568d5460629da3bae9997b3ae2d562ee0872a2",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-6.wav.meta",
+      "buildSha256": "a82d3c637f8a334315576f73834b7961a9b73b1c8c41dadcc1c624f5aa7b9a77",
+      "sourceSha256": "6205a4b86ed0df989abf260c61361234ee734851811f4edf3868807dff7d1bf4",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-7.wav.meta",
+      "buildSha256": "a4bf65d01f3627a7352aa663cd2a2f1363c3ae445756e7cce07a2e5e86f11b23",
+      "sourceSha256": "a0373ef352ffa091a27d1a9aee94b4c92e7a3c064802907119d697a7cc220a6f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-8.wav.meta",
+      "buildSha256": "c72b9e268989de0ce258b9ae2eb20a2abb28ccbe833944aa5599f59293e91aa0",
+      "sourceSha256": "c27367b9c40830e9920c4c0a33f132dc2eb42ff3c3edc9cd06dafb6e4601b08e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/page-9.wav.meta",
+      "buildSha256": "6b5926d2112238524b527254301f1af9412132f3699f2ab86a948cbb9e779328",
+      "sourceSha256": "82072d093feaecfdd124fb79ac228328b3918ea98480731c6bf3a877a2883398",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/content.json.meta",
+      "buildSha256": "be553156ba52e8e974131ec3b5aa0391d4fee4530431b47ba33c7e84287c7ccf",
+      "sourceSha256": "16b6084e47c5a1eee45f8aad62c0d744641851d08d6b65e2c157adfac5a69560",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/dinosaurs-extra.png.meta",
+      "buildSha256": "7ba8ef21e2d5a196ef7c65c22032450fc82dcef22af6b9fcb2d0be27cedca927",
+      "sourceSha256": "b43e9a037f540a018033b0c255f42ff1c00f73a1afcbb788d63a2556d242c7a8",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/dinosaurs.png.meta",
+      "buildSha256": "669fa7d0a7a45ea89b62df184d1ceb1bd594e515f87b90f4ff25b50f453fcd0d",
+      "sourceSha256": "3b70eb60181a4f076989589660fd5341af8eddfee3fdecb3cf1a582da7bb7ea0",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge.meta",
+      "buildSha256": "43f41cf2db2844a217056e6bcb78bca4c044252387bad982035dad60617aaaed",
+      "sourceSha256": "b4d1b8ea4191204ce1f4feb66f06bcb002eabbb31a5df7d8d6ce899512193153",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio.meta",
+      "buildSha256": "10707ccbf65a2255a803905991711735b09cffc7c0804db66cfb80d024086e2f",
+      "sourceSha256": "481f248282504af63d9e941395612244fe0e519e3ca29a19e4a0013ae714b5a9",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/effect-0.wav.meta",
+      "buildSha256": "c9598a9f2599e7d3cb03099646fed8a81c797723b96af2dd7f2e91421565332a",
+      "sourceSha256": "8a32a6312b92c1af779c811f267ca252b360695b15196581862288659caf9d8c",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/page-0.wav.meta",
+      "buildSha256": "1739fac302938d0312da39077ce8b81aec662f81fb5f87382a72cce966930bec",
+      "sourceSha256": "a71959ef5dbad1cdd1457a085d1a843d2a78bdfb2756702a4fe94d741d74e08e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/page-1.wav.meta",
+      "buildSha256": "11a9f8c05f6bb1a5e5dbe718fb45d813066d35d5a0a013edc0c0cf667b173f4b",
+      "sourceSha256": "d2fcc806c860bc0c2c3298701f7da2f481f02f84e8548c1adf1c6350f2e8196e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/page-2.wav.meta",
+      "buildSha256": "d7ae8d4789be75fb525f991dbffbd2d199921093803a33fd7be982ba0b758247",
+      "sourceSha256": "ec405beb2ae728e97973bffffcb5df16b57d42cd78db7e35a1be1289dfe0cce4",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/page-3.wav.meta",
+      "buildSha256": "5bb533e49b0e5004254fa95a5e2c1d7d26a37931a9d39fe3366692308a997fa4",
+      "sourceSha256": "f56036c53317774905d518fbea8a4c162e8ccfbe8b2bd23b9a818a0e08457cba",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/page-4.wav.meta",
+      "buildSha256": "73906a9711597901bc7a36e7e51ae4fbdd32ecf44b2c758c2d64636fce15f194",
+      "sourceSha256": "dca3d3d5448c9bbd13523f4b8fc4fe984219361dd875d178213b335585d20037",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/page-5.wav.meta",
+      "buildSha256": "45b49855d55c67722a3c71869d85c44ddc8b9c18d69dbe23bf2e1c5a87a9917f",
+      "sourceSha256": "90fd7fad2ff7237ef8f14147f9f10602ef1982fdde7025667ef83f68aee65ea5",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/page-6.wav.meta",
+      "buildSha256": "89ec64e5bc64549d00cea68bb74c16a6bbde1007cf333a441c98fad2afcfd63b",
+      "sourceSha256": "46de8eb6f45dffa420fe5f79f8953a268adafb95730fd6b2b4be5517bc8fac0f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/audio/page-7.wav.meta",
+      "buildSha256": "4488aa09da596873c1afaeeac493b99716a4aa4411c5648d77b51c2ca85b6e42",
+      "sourceSha256": "eeb48633a5eb13a14e264e94a91befadfd2ef733e68b12d0eaac46339ba8093c",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/content.json.meta",
+      "buildSha256": "a5968d21015ca5cd4b6811ec6b8c1516d69600a5b77408a3ec9e40faa0779d2b",
+      "sourceSha256": "593b20c760d67d50174d17c14e9bc6594e6c6e4878f2ca54a6f2b97d189b7571",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/little-bridge/pages.png.meta",
+      "buildSha256": "06e21b4c4e0835cf46a3f0475436ae29326502d0c6785077f4314a622e9f3b85",
+      "sourceSha256": "16d2ec4fc9f8b04b8fec9912422e639deb527fe25a3081a9861bbeb67c57823c",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell.meta",
+      "buildSha256": "c38833f29a0d9073590bb26d56fb1a9ec912a420be9eeb3ed7069402b0c9d8cb",
+      "sourceSha256": "62434f4bfe4869db497a4f2db29e2e22dda0b792c1ff5e39c564d4df80c8357a",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio.meta",
+      "buildSha256": "69dc080cce4294694c8a67fe015a16d3df13d4ebda4ceb78cf0da7a2b12656f1",
+      "sourceSha256": "e26cb254f051df2afb001e1d8a629905b8b047f0bf7b37fab2bda2d670a751dd",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/effect-0.wav.meta",
+      "buildSha256": "ec91319f30e63548b0aae71b1c749a32d2f97f996963a2cf7a046de9e6dacfee",
+      "sourceSha256": "e075def7c45c5d583e45cb2815b1beb9f1b61d1189baa2a213eb21a9d8eccba5",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/page-0.wav.meta",
+      "buildSha256": "185448efa26a7d8dacb47820f5cf358f1f6a9a1825c662af0ce730f640499cfa",
+      "sourceSha256": "b72c47404fe362b5bfe741b753da110fd9925ff3bd61b035d494365937acc441",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/page-1.wav.meta",
+      "buildSha256": "b9c85fac5e63cc79c00b7c761102495a9597e66f6d32aa62fcdb8f315219eac2",
+      "sourceSha256": "0e1131baebe80418414782c5ec21ac64aa007411d893bcaeeed1a138c2b8e0af",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/page-2.wav.meta",
+      "buildSha256": "2ae37765099bea3e0e126b3074ba98f77b0e3c70933ffaec0602f25afe08601c",
+      "sourceSha256": "760261942a026d5ee50ec52e3daa76bf7200b338735343f83faeb499b2854bf2",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/page-3.wav.meta",
+      "buildSha256": "58ea1be1430af7035fbb2b1791893280a913d246b64adf86b2d1102cabb39f57",
+      "sourceSha256": "4531895aee4f90771f73bb4ef4cb88da482632bbd257affe9bf672e9c8aa188f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/page-4.wav.meta",
+      "buildSha256": "06959351927d71eae8d06869c1aae25e479be80d2842d41e241b447de553a2f7",
+      "sourceSha256": "d5967b4063b153a106ffc189ed6b13087928f23ab1d1709583c2dff102b7a260",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/page-5.wav.meta",
+      "buildSha256": "d1fba01bee1103f0d0964e01b35b679f8ebeedee03b2d4f7d71924c5b52e0e77",
+      "sourceSha256": "e37cecc37be04ee10c9ff1ef71b09c0e9c6bd8b41e5801cf60fc36e52acff880",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/page-6.wav.meta",
+      "buildSha256": "e6802d53f61d66d0826ad50a30a869c4dbbe49c7dfef83eb8db80fdd8e1ae7d4",
+      "sourceSha256": "dfd19376af0c457980ae7db1a72cb58e117ea444f5877d8e0b6501c06a782b57",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/audio/page-7.wav.meta",
+      "buildSha256": "07bfb9211b1143bcde4c66914507fe02fe92348c9d2d4e7804cce258b28ed399",
+      "sourceSha256": "218970d651876892cfd6c25ad75d66858101812207c89ca188d839e6b7b129a7",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/content.json.meta",
+      "buildSha256": "91b416c12a1cef4a514e31b5d508613b173d6c2d92297944f497e0eaea155596",
+      "sourceSha256": "0acd27e6000abfa6e0be413babce7addf3ba4538c083a570d0b2dacf6b6c7c9f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/mermaid-shell/pages.png.meta",
+      "buildSha256": "5aecea0df5f68e26c9f1a757fdaf8cb6af16a46932f4d587414f7181cbc2c6d2",
+      "sourceSha256": "881ba1ff9031181593ac1cca9ec573f11518f59158c700e21fb7469e57b99401",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star.meta",
+      "buildSha256": "59e0477d46cdfcf2e7f2286c07be7dfb7f1e8a2b3c17afcfcabbd8f855b71e2f",
+      "sourceSha256": "3cdc0b46ef2061cf4580036e23dccc95825c13cf30a3418771584a3c87ea48a8",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio.meta",
+      "buildSha256": "8aa3acc414bfa9912a69ef5fc69ed7baea55dda941c07310b64ad04594558ff2",
+      "sourceSha256": "d421dfc9b17655ff79fbacff0e12df3dd2779dca2b479ecd2b5a53cf732f9045",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/effect-0.wav.meta",
+      "buildSha256": "c8dac9e68bedd57ede31f8b288bd6460a52419c9c30c907d3a77c27cd8040c5e",
+      "sourceSha256": "6ba6e5f8a8a3f0d20aa0d0dc09c179c232ba282eba65346320d45697d311c1e0",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/page-0.wav.meta",
+      "buildSha256": "cb7aa0a1bdb4863f644bf7f98005d588157fc76471783749d39977d0dc158227",
+      "sourceSha256": "db5f94af3d03c256e01f4dc1c94d30f845c421506ff0ccced3cce9e64ff7d9f4",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/page-1.wav.meta",
+      "buildSha256": "012ba920689a85fca445be324db91d89b99ca893b2d151994fa82b0afeebc2d2",
+      "sourceSha256": "03a94b65c2c2f3910d4ea52e194894417f898e11299de71a70905416730de81c",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/page-2.wav.meta",
+      "buildSha256": "8d863cbda9c969c1da6be1021ffef392f325f02dd7823ba78b2b3300dc890af9",
+      "sourceSha256": "c337d02e2880aa7bdfd50ac4199c11d5eb519bcd5bed6ea767271f82c5711db2",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/page-3.wav.meta",
+      "buildSha256": "e301cd5e8d2a830a03ef92985c82991e74ee93f101ff9cc627418e5d490e0e6f",
+      "sourceSha256": "cd04b4d1e4a139e2db93791b84ab49fb0873cfb21301c515e149d4ade382973c",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/page-4.wav.meta",
+      "buildSha256": "eeca8309c7ce95622a1261f79459158ffc6b6f4ec9f181e4e5ab424b0c527ba0",
+      "sourceSha256": "ee07233e7ab90d3930b272b312852795ad6d7253fca82e72230619a5f16b7f89",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/page-5.wav.meta",
+      "buildSha256": "d1d1342f495b02b24b5bbcb366e4974edb2a15f7eba1646d80c4eabc8108ec35",
+      "sourceSha256": "24768af169acf1fb0b286ec804e6d13c00a25ff18708bab78e6c86f5e8510ee2",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/page-6.wav.meta",
+      "buildSha256": "21b59df787de83e4d910b25e1b18d51c5b1c849f0e1f3e43026e4a106a2b0965",
+      "sourceSha256": "bdfb0f0c9d95a00fc5176d1e2f312a1b38867940b3ee8290371b1f37653e3c64",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/audio/page-7.wav.meta",
+      "buildSha256": "18f10cb7a5338786b8b59b62fd8859e8b4e9a92525344d90ee1a3bed2ad71715",
+      "sourceSha256": "8c15b12ce6d17ecd503077ebeb5c0d02bef86971164ee25f43bb593252d85721",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/content.json.meta",
+      "buildSha256": "acc0332198e8377cc7cb7c60f37574cd10a35b787724d456a6dfe624b4f5155e",
+      "sourceSha256": "7b12f2f237042e289462a8977b4de63b989b591e390ee2bf23eacb2f83df68e1",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/princess-star/pages.png.meta",
+      "buildSha256": "f5f8c62200a1b84e32392b7aafbace503865767ce2f652cbfed22eae6abfee56",
+      "sourceSha256": "72d143d2e7951c98f9b7a710bb7cd2c5f23d432aee25eb79ff151f888a84302f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rack.png.meta",
+      "buildSha256": "c70e893e95e65c7c49110efa55739b5c1723aca3e29bb4ea7eb940449437a698",
+      "sourceSha256": "103376f05f54f0648a1f48e511e87a570f008600d37a7eae55b83792208b0cde",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon.meta",
+      "buildSha256": "ab253caaa65c1b025a30948ec753cba2cbe64d020dc81f2f969af732520292ee",
+      "sourceSha256": "2fb9f0444df33303d0b0614ceed36dd05ccafc2c26346f5d55ac38d5c48f688a",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio.meta",
+      "buildSha256": "affb2d512475a5f6781fc219238be4be8dc8304dd9ef6deb33c110724e79e7a9",
+      "sourceSha256": "323fbfbac1f126557ecdb680df7c7a7855069aef97d7931b583f28293b1f958f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/effect-0.wav.meta",
+      "buildSha256": "ec7feaf1c3585c149106eb95d1eaa41d9d4efa706c2f7ed8f17576db9c4a4f38",
+      "sourceSha256": "484028c350ae7884e72b97e3b16fffa6ea776dabc6f0f22340591f8c2cfba898",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/page-0.wav.meta",
+      "buildSha256": "14f8259d3e122529ec1a204c25fc2d051ce1ea9500bf511a66c32249a6263c05",
+      "sourceSha256": "b65018b9dcd1b8c37a6c22fecf5395b401a8a6d7bc18f84f33f65d404b25999e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/page-1.wav.meta",
+      "buildSha256": "deffe4892abec2755fb207c9984ddb99dbc4c82c8a78368e330dd42cb173e184",
+      "sourceSha256": "76d4334f637c6523fac776e56d725d81c126f34881cac74bec4da4f1bc99c062",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/page-2.wav.meta",
+      "buildSha256": "de877fd7da8fd845f0d7d8ec00da807b22541bda2cfc8c50e9e460c48d758cf6",
+      "sourceSha256": "96094c30ef1d3ce8cfa735848f2df58bbd9d5ce9163b8f95a70bc28d84caf36e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/page-3.wav.meta",
+      "buildSha256": "932fc834a4ff58a7c2a5b64806363824a3a3d16aa7d04b2d79443503edb79aba",
+      "sourceSha256": "b540ab424281e80fe508662ed3f14c6ff8827496f37ae133be6de6b846609150",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/page-4.wav.meta",
+      "buildSha256": "cda1d23acd5d02bb24e45a54056a6f42d48276f75984432a48103d6fb426c8e7",
+      "sourceSha256": "7d0ddb44bd4491caa94b287fc99c66da7cf0f8b1e07da8f59149adccbf27b8ef",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/page-5.wav.meta",
+      "buildSha256": "fba25044d4aca4960b22f20aa8e7cf243b79802a305d7f81c81ee5bae8ec7f12",
+      "sourceSha256": "aad33127629e08df5d857a5231f4831f4056b17d284eae3ad62b6bd11b48e714",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/page-6.wav.meta",
+      "buildSha256": "09d0eedbe08ad47ef61a79d382be364cac99faac7e5143d00a02ee5ea42c1614",
+      "sourceSha256": "7fb5a2315c75afbec7db6805774a517a9c2ec4b03d7ad5bcbfdaf45b7acfef24",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/audio/page-7.wav.meta",
+      "buildSha256": "c6bde3fdb2fd4d8df1fea07dcad4968b7ee59f0b77a442f705ba65d8471b9805",
+      "sourceSha256": "ea940bbbfcef3de0c235cdf67bc36f94eb3b997350d7a382bf27924ee6c1080f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/content.json.meta",
+      "buildSha256": "84afb6fa2144ae3015cbf308411cd2ad277cb757c1812c647e30d1e653704c28",
+      "sourceSha256": "50b6b75f7269b3ad1f447378321f429975d6cf48736c3b096012cad6e21aa871",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/rocket-moon/pages.png.meta",
+      "buildSha256": "b24486b20b624a9407e2cef4afb8e7b7bffc328994c8d881392a183896e1c983",
+      "sourceSha256": "e7499a3b1c7a8ee9789b5603082cc3f0345794c2c174c12253b41a70ee8a6fd9",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery.meta",
+      "buildSha256": "77a50990f497d855901d48c7147c9c918640d0dda2da7846bf10909d3ae91b6e",
+      "sourceSha256": "5e46ad316a9aaf90962c710b8cd128b78eb18c54720be521e1f5328a2af7b0e3",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/pages.json.meta",
+      "buildSha256": "19c0235cb4987dbebf0abaf88f6f13bdc1a2fbd84052b2eafde8829eaffbf7f8",
+      "sourceSha256": "4ea8e2e31b265e3befd9e8e24a3e68bdfc65dc6c382412ef7f1b76232d52b696",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/HomeArt/discovery-table.png.meta",
+      "buildSha256": "5497efaf64e1d939cb8d7abdd95f549716f6a722b92a7ab0635c74c96915a600",
+      "sourceSha256": "3ba1e6496aa49e167e5b0ef2a05b5c7f130b1ead12f86408a507e14e73b7054e",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen.meta",
+      "buildSha256": "70afb4dac1fd29401460cf0704318b33c52b6dceea96b5b94f33310b781abf00",
+      "sourceSha256": "64cd3f68f9be6e20ae69aee32e3e41fed5cb12aa12d00f26538fd302c7f53fa3",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/cake-stages.png.meta",
+      "buildSha256": "6eb3767e9e1543dbd1739f6e2a16aea53943d08fa22cdafecc53c76632837330",
+      "sourceSha256": "7973ddf3fe85f98ef7e869193594e522cd5b92702de4f33e49d5dab97e4f5149",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/cooking-layers.png.meta",
+      "buildSha256": "28c7e1063277d50b98629020ca3fa999edf921e0f78756f663393cfde5730f83",
+      "sourceSha256": "26aef15ca13873b632ac23e62cc8f19bd7db2d21140cf92eb7333ac14ecb7e17",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/counter-closed.png.meta",
+      "buildSha256": "9731cbadfc2604c9a2ed35cb6549d14ab490b7bd27a53f696952a4d436d29235",
+      "sourceSha256": "3d3f52623af2666ef67f08b430416e443e91b13c1b41ad9c223b40481e358510",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/counter.png.meta",
+      "buildSha256": "3ee7af430ed4f51e2292ad88eb3bae04a7154f4372e08d318cc3d3e6aefd2ccf",
+      "sourceSha256": "57e1adba965c2244ceac2f5c3ac50317c71a630bbcf262b1a73df14caa4d5ccb",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/dining.png.meta",
+      "buildSha256": "2746f941540a3b037ed02fc33d74ff421560636a6a8670ca2ac36a7e0bac4906",
+      "sourceSha256": "ba932a737c2dd276c7b184339076228bb27e65f493800a63d3839043ac4fd1d1",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/fridge-closed.png.meta",
+      "buildSha256": "e8e31d15450b8598d92d1b9f17877f225978aeb710d3056e63370de312faf487",
+      "sourceSha256": "22a7f1a4895e509aefd4fbf26e03b0ec3ca37b379388a8f6219ff4b1f443fe16",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/fridge.png.meta",
+      "buildSha256": "617ed6de6c08d98e5dce10992d82a6a34b56fe1d69eb71b2db803b3dacb80f2d",
+      "sourceSha256": "22ca601f7a5b2f107c547018ad6239065417faa3e56fd4a53d76594db9f67eff",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/ingredients.png.meta",
+      "buildSha256": "970e0aa3a5c77bd05ec8083e712bd800809257b18f427fbfe3b6d68ec7f244ee",
+      "sourceSha256": "7094befaf83db02bac4324287983a9734bea9b300b9a35d564ebd6f42c2b2e60",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/oven-closed.png.meta",
+      "buildSha256": "9a997df546ee89c68c1902d22c2596b60bdd1052a37437579dad08495db7fb8a",
+      "sourceSha256": "d618a18711b287462321f011e44814189610d2fdd667deeb09856c9bf11f3e9f",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/oven.png.meta",
+      "buildSha256": "08a27f6bf4295c6dd931a5f2484a358206c657c725a55a38ded42ad28f1f1b6d",
+      "sourceSha256": "75fd58c98a0c8c3b28725da0cf3e73c7881f3cc1c347a4f4d8efa90eec992d35",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/recipes.png.meta",
+      "buildSha256": "50de5301714b93fea44a4c8c20df29e968e0b7823928c53096b109a4e33af3ec",
+      "sourceSha256": "31711111e304818164ce0d99eb424c805656a369436e4ff8ab63061d1619fef3",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/toppings.png.meta",
+      "buildSha256": "49e36218707d8d5005e36fa8b99d66db42b27abe9507fd3af6dfa98cfdb4465b",
+      "sourceSha256": "74e691e7759086e13df46174c8fd059d327767d089f58f29bd0c54baf7a34782",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Kitchen/utensils.png.meta",
+      "buildSha256": "ca41c5cfbe549a584499e90f01abb812b778dd1cff50bd002b7d262b4094e097",
+      "sourceSha256": "35ca6fecfa50326bafe1a85dbdd1232a097e616dcd17dcac20b396df54947312",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/RoomPlay.meta",
+      "buildSha256": "4659a34e86a9df6a214a6e0508f95b6853662ea6b8ed2e8bb4883ff82919a4e8",
+      "sourceSha256": "08613c7579d08cfb637da61579cdca840386d7a61a0ed9eed34a853dae89cc12",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/RoomPlay/aurora.wav.meta",
+      "buildSha256": "1b16596c3fc4e9e1bc1ed20e880cadb992803b39d00a6df1eaeb101ab52f933b",
+      "sourceSha256": "15440dce93d62b44128a555b55c2c30db1e9a91342386348357a07c099f0a4a3",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/RoomPlay/nest.png.meta",
+      "buildSha256": "b2d81c58790aaebd2ccfc99f62f3ae3f053eb01216ee96e6064e56db582138cb",
+      "sourceSha256": "68ca9216b9a8afc797d8c9a04f5be29cc1faf89da04ef77d4b0892649ecf1855",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/RoomPlay/teacup.png.meta",
+      "buildSha256": "848d91a3075d44535991f732a542227c397ce69e7a822bc83100a13584af7d4f",
+      "sourceSha256": "58e06fbf4e6f87fcbfcb1c54a2dc3cccd79d89e2c558c59c7df8045cab6d4bde",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/RoomPlay/teapot.png.meta",
+      "buildSha256": "898893a55a0fce11c58977f906bf17773f774f44625b612fc8dacd4f93cc3e9e",
+      "sourceSha256": "5bc7eea4d264942f6dfd89e2272ee9542c4e6bffcde4de30fef646f17a440f75",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-bedroom.png.meta",
+      "buildSha256": "1796dae12f446d0dcb91872bc0aea56f7c1df3822d7891f1a08c29976320e49b",
+      "sourceSha256": "5a93064b62aae0a19982b4400e39e3f1c4b45fc7615e50e52a6f5cc647f8e1e6",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-discovery.png.meta",
+      "buildSha256": "2d2f83ddc788bcad9ed493cec6c7127abe4b09f54883723dfd60ce173e73e895",
+      "sourceSha256": "0bcc5b6f15bbf792190083fd8eebc8d7fad1b8ba0f207617d64fb9da808831b3",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-kitchen-working.png.meta",
+      "buildSha256": "e839c33417923770f3155af14cfbe94a9cc59f6b9c996c45881f265cf26ec9e9",
+      "sourceSha256": "a16d96e3a2a3ab6caaed46b95d8b3b506666496bc99894b5849b7b280455962d",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-secret.png.meta",
+      "buildSha256": "954c70f47024c21078aec93e8106a0c68b26c4c95fdc8915bc21db8501a7394b",
+      "sourceSha256": "857d9367d0441d1f8cd1a72ce7e17df6769345716276a8ad2219f3ba1ff3693d",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-upstairs.png.meta",
+      "buildSha256": "b15b628565f2bed2d5477bf2dc8deeecc2a86b5bc1b180f980ee5b36792ed402",
+      "sourceSha256": "b1eeffd817546b4e898a05ffe50e8f5b0e0bd87611bdcf2d6ff7ea4a24e44c01",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Scenes/NetworkProbe.unity.meta",
+      "buildSha256": "10cfc135bb93757a1f566b1a5a1daa00a98b1b5384f7d465e353dc6442d543e3",
+      "sourceSha256": "a904a481a63b95d9317853a5866d5f6af65516446e4ef00dff329f6538f18539",
+      "difference": "Text line endings/trailing whitespace only; no importer fields or values changed"
+    }
+  ],
+  "scope": "Every packaged Unity source/assets/packages/project-settings file matched the captured build manifest before metadata-only whitespace cleanup; every artifact hash matched. Host recovery/document tools changed after the game build and are tested separately."
+}

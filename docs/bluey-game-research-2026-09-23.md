@@ -1227,7 +1227,7 @@ The older iPad remains the performance baseline as client and solo player, inclu
 
 ## 30. A simple and playful science corner
 
-**September 27 user request:** science and a coloring-book area belong in the **main house's shared downstairs space**, accessible to all four players. [Deep research applied to placement, interactions and persistence](implementation/home-science-coloring-research-2026-09-27.html) and the [interactive research prototype](implementation/home-science-coloring-prototype.html) supplement this chapter. The prototype is browser-only; none of these stations is marked installed or network-qualified by that work.
+**September 27 user request:** science and a coloring-book area belong in the **main house's shared downstairs space**, accessible to all four players. [Deep research applied to placement, interactions and persistence](implementation/home-science-coloring-research-2026-09-27.html) and the [interactive research prototype](implementation/home-science-coloring-prototype.html) supplement this chapter. The prototype is browser-only; its evidence is separate from the later [candidate-174 Unity implementation](implementation/home-discovery-2026-09-27.html), which provides three simple saved science trays and six tap-fill pages. Five stations, freehand drawing, deeper creation integration and physical qualification remain open.
 
 **Build a little discovery bench inside Heeler Home, with toys that react immediately to a tap or drag.** The child can investigate freely; a parent character may offer a short invitation such as “What will float?” No reading test, mandatory experiment sequence, or result screen should interrupt play. Keep the existing Simple Play and Explore & Stories settings per child.
 

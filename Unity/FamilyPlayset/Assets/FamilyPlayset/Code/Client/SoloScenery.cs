@@ -22,7 +22,7 @@ namespace LittleWeeps.Client
             new SceneTile("home-bedroom",BedroomLayout.Id(0),0),new SceneTile("home-bedroom",BedroomLayout.Id(1),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(2),0),new SceneTile("home-bedroom",BedroomLayout.Id(3),0),
             new SceneTile("home-upstairs",HomeRooms.Landing,0),
-            new SceneTile("home-living","garden",-4800),new SceneTile("home-kitchen","garden",-2400),
+            new SceneTile("home-discovery","garden",-7200),new SceneTile("home-living","garden",-4800),new SceneTile("home-kitchen","garden",-2400),
             new SceneTile("garden-tree","garden",0),new SceneTile("garden-shed","garden",2400),
             new SceneTile("park-playground","park",0),new SceneTile("park-picnic","park",2400),
             new SceneTile("creek-bank","creek",0),new SceneTile("creek-crossing","creek",2400),
@@ -81,12 +81,12 @@ namespace LittleWeeps.Client
         private IEnumerable<SceneTile> VisibleTiles()
         {
             var half=Board.rect.width/(2*sceneScale);
-            return SceneTiles.Where(t=>t.area==CurrentArea && t.start<cameraX+half && t.start+WorldLayout.TileWidth>cameraX-half);
+            return SceneTiles.Where(t=>t.area==CurrentArea && (t.id!="home-discovery" || SceneSchema>=Discovery.Schema) && t.start<cameraX+half && t.start+WorldLayout.TileWidth>cameraX-half);
         }
         private void ClampCamera()
         {
             var half=Board.rect.width/(2*sceneScale);
-            cameraX=Mathf.Clamp(cameraX,WorldLayout.MinX(CurrentArea)+half,WorldLayout.MaxX(CurrentArea)-half);
+            cameraX=Mathf.Clamp(cameraX,WorldLayout.MinX(CurrentArea,SceneSchema)+half,WorldLayout.MaxX(CurrentArea)-half);
         }
         private void TickScenery()
         {
@@ -107,7 +107,7 @@ namespace LittleWeeps.Client
             var wanted=VisibleTiles().ToList();
             // At most two visible 3:1 panoramas plus one adjacent prefetch.
             // Distant areas are released, while persistent world records remain.
-            var neighbor=SceneTiles.Where(t=>t.area==CurrentArea && !wanted.Contains(t)).OrderBy(t=>Mathf.Abs(t.start+1200-cameraX)).FirstOrDefault();
+            var neighbor=SceneTiles.Where(t=>t.area==CurrentArea && (t.id!="home-discovery" || SceneSchema>=Discovery.Schema) && !wanted.Contains(t)).OrderBy(t=>Mathf.Abs(t.start+1200-cameraX)).FirstOrDefault();
             var stairTile=SceneTiles.FirstOrDefault(t=>t.id==(DoorPreload??StairPreload));
             if(stairTile!=null && !wanted.Contains(stairTile) && wanted.Count<3)wanted.Add(stairTile);
             else if(neighbor!=null && wanted.Count<3)wanted.Add(neighbor);

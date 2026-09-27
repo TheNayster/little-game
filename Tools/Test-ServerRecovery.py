@@ -50,6 +50,15 @@ def main():
         wait(lambda: not client.input('inspect')['pending'], 'settled item action')
     try:
         server.start(); clients = [fixture.join(i) for i in range(1, 5)]
+        if summary['schema'] >= 16:
+            command = runpy.run_path(str(ROOT / 'Tools/Test-HomeWorld.py'))['command']
+            for client in clients:
+                prior = next(p for p in client.state()['view']['players'] if p['id'] == client.profile)
+                require(command(client,0,x=-6590,y=200)['accepted'],'Discovery recovery placement')
+                for op in ('cargo-add','red','fill:0:5'):
+                    require(command(client,19,item=client.profile,target='0@0',value=op)['accepted'],'Discovery recovery state')
+                require(command(client,0,x=prior['x'],y=prior['y'])['accepted'],'Discovery recovery return')
+            time.sleep(.7)
         drop(clients[0], 730, 160)
         if scenic:
             travel = runpy.run_path(str(ROOT / 'Tools/Test-ScenicWorlds.py'))['travel']

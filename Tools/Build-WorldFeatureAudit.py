@@ -24,6 +24,7 @@ STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev'
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
  'scienceart':'implementation/home-science-coloring-research-2026-09-27.html',
+ 'discovery':'implementation/home-discovery-2026-09-27.html',
  'nav':'implementation/combined-chooser-2026-09-25.html',
  'scene':'implementation/scenic-worlds-2026-09-25.html',
  'home':'implementation/home-interactions-2026-09-25.html',
@@ -132,8 +133,8 @@ H-25|home|TV and local media|Watch together or autoplay-next|optional|27|Explici
 H-26|home|Dinosaur play|Twenty-type accessible toy shelf|plan|28|Picture categories, roughly six visible at a time, all types available without quests and deliberate duplicate-toy choice. Twenty definitions do not mean unlimited active toys.|ledger
 H-27|home|Dinosaur play|Named animated toys with connected uses|plan|26,28|Carry, place, rotate/flip, stack/store, footprints/dust, brushing, washing, nests and book links. Same reviewed name ID across books and toys.|ledger
 H-28|home|Dinosaur play|Dinosaur Discovery Mat|plan|28|Uncover toy, brush, hear name, optionally wash and arrange its world. Bypass digging if wanted; toys and creations survive independent departures.|ledger
-H-29|home|Science|Discovery bench and free experiments|plan|30|Eight listed stations with immediate repeatable reactions, prediction pictures, generous assistance and no required order. First proposed slice: float tub, magnets and colored light.|ledger
-H-30|home|Science|Shared experiments and saved creations|plan|30,31,47|Up to four participants with independent controls/trays, local narration and safe resets. Keep finished plants, boats or arrangements; simulation and explanations must agree.|ledger
+H-29|home|Science|Discovery bench and free experiments|part|30|Candidate 174 adds saved loaded boats, magnet materials and additive RGB light. All eight stations, deeper interactions, illustration and physical acceptance remain required.|discovery
+H-30|home|Science|Shared experiments and saved creations|part|30,31,47|Candidate 174 has four profile-owned persistent trays and independent reset/travel. Narration, portable creations and physical device qualification remain open.|discovery
 H-31|home|Bedrooms|Four persistent player-owned bedrooms|part|32|Four saved owned rooms include usable furniture/storage and candidate-155 cuddle/tuck/stack/tea play. Broader catalog and physical qualification remain open.|roomplay
 H-32|home|Bedrooms|Decorating, visits and undo|part|32|Owner/Together decoration and undo include bedding, rug, picture and lamp choices. Two safe arrangements remain; free placement and physical acceptance are open.|roomplay
 H-33|home|Bedrooms|Personal toy box and creation gallery|part|28,32,51|Each room has four persistent starter toys, an eight-slot chest and four shelf supports. The full dinosaur/personal catalog, put-one-away/take-one-out and creation gallery remain required.|furniture
@@ -203,9 +204,13 @@ for n,prefix,world,group in [(37,'BCH','beach','Ten beach activities'),(38,'CRK'
             if m:add(m[1],world,group,m[2],'plan',[n],f'Simple play: {row[1]} Deeper play: {row[2]}','ledger')
 for row in table_with(30,'ID and station')[1:]:
     m=re.match(r'(SCI-\d+)\s*—\s*(.+)',plain(row[0]))
-    add(m[1],'home','Eight science experiments',m[2],'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]} Browser research prototype is not installed Unity gameplay.','scienceart')
+    integrated=m[1] in ('SCI-01','SCI-02','SCI-04')
+    note=' Candidate 174 integrates the simple saved tray; deeper interactions and physical acceptance remain open.' if integrated else ' Planned; not implemented in Unity.'
+    add(m[1],'home','Eight science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'discovery' if integrated else 'scienceart')
 for row in table_with(30,'Coloring ID')[1:]:
-    add(row[0],'home','Shared downstairs coloring',row[1],'plan',[30],row[2]+' Research/prototype only; Unity integration and physical four-player qualification remain open.','scienceart')
+    integrated=row[0] in ('COL-01','COL-02','COL-03','COL-04','COL-05','COL-08')
+    note=' Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.' if integrated else ' Planned; no game implementation yet.'
+    add(row[0],'home','Shared downstairs coloring',row[1],'part' if integrated else 'plan',[30],row[2]+note,'discovery' if integrated else 'scienceart')
 for i,row in enumerate(table_with(26,'Working title')[1:],1):
     add(f'BK-{i:02}','home','Six starter books',plain(row[0]),'plan',[25,26],f'{row[1]} proposed. {row[2]}','ledger')
 for i,row in enumerate(table_with(28,'Dinosaur toy')[1:],1):
@@ -275,7 +280,7 @@ add('OPTION-FOSSIL','home','Optional extensions','Fossils and other prehistoric 
 
 TRACK_STATUS={
 'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'part','FISH-01':'plan','CLEAN-01':'part',
-'HIDE-01':'plan','HIDE-02':'plan','NPC-01':'plan','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'plan',
+'HIDE-01':'plan','HIDE-02':'plan','NPC-01':'plan','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'part',
 'JOIN-01':'part','WORLD-01':'part','WORLD-02':'part','ITEM-02':'part','ITEM-03':'part','STOCK-01':'part','ROOM-02':'plan','NET-02':'part',
 'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'plan','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',
 'DAY-01':'plan','LEARN-01':'plan','IMG-01':'plan'}

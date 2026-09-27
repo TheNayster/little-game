@@ -1,0 +1,1117 @@
+{
+  "serial": 78,
+  "visiblePlayers": 4,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 6,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": true,
+  "shared": true,
+  "error": "",
+  "build": "0.0.174",
+  "actor": "player-1",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "garden",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "position": {
+        "x": -5460.0,
+        "y": 199.99996948242188
+      },
+      "visible": true
+    },
+    {
+      "id": "player-2",
+      "position": {
+        "x": -5460.0,
+        "y": 199.99996948242188
+      },
+      "visible": true
+    },
+    {
+      "id": "player-3",
+      "position": {
+        "x": -5460.0,
+        "y": 199.99996948242188
+      },
+      "visible": true
+    },
+    {
+      "id": "player-4",
+      "position": {
+        "x": -5460.0,
+        "y": 199.99996948242188
+      },
+      "visible": true
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "label": "",
+      "position": {
+        "x": 360.0013122558594,
+        "y": 129.99998474121094
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "sponge-1",
+      "label": "",
+      "position": {
+        "x": 560.0012817382812,
+        "y": 119.99996948242188
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "tap-1",
+      "label": "",
+      "position": {
+        "x": 150.00131225585938,
+        "y": 340.0000305175781
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plant-1",
+      "label": "",
+      "position": {
+        "x": 810.0012817382812,
+        "y": 330.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "puddle-1",
+      "label": "",
+      "position": {
+        "x": 680.001708984375,
+        "y": 140.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ball-1",
+      "label": "",
+      "position": {
+        "x": 3350.004150390625,
+        "y": 129.99998474121094
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-hello",
+      "label": "",
+      "position": {
+        "x": -4635.0,
+        "y": 797.77783203125
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-little-bridge",
+      "label": "",
+      "position": {
+        "x": -4500.0,
+        "y": 797.77783203125
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-rocket-moon",
+      "label": "",
+      "position": {
+        "x": -4365.0,
+        "y": 797.77783203125
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-fairy-garden",
+      "label": "",
+      "position": {
+        "x": -4635.0,
+        "y": 588.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-princess-star",
+      "label": "",
+      "position": {
+        "x": -4500.0,
+        "y": 588.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-mermaid-shell",
+      "label": "",
+      "position": {
+        "x": -4365.0,
+        "y": 588.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-dough",
+      "label": " 16",
+      "position": {
+        "x": -1229.9998779296875,
+        "y": 1061.1112060546875
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-sauce",
+      "label": " 16",
+      "position": {
+        "x": -1157.9998779296875,
+        "y": 1061.1112060546875
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-cheese",
+      "label": " 16",
+      "position": {
+        "x": -1085.9996337890625,
+        "y": 1061.1112060546875
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-pepperoni",
+      "label": " 16",
+      "position": {
+        "x": -1229.9998779296875,
+        "y": 870.0000610351562
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-capsicum",
+      "label": " 16",
+      "position": {
+        "x": -1157.9998779296875,
+        "y": 870.0000610351562
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-mushroom",
+      "label": " 16",
+      "position": {
+        "x": -1085.9996337890625,
+        "y": 870.0000610351562
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-tomato",
+      "label": " 16",
+      "position": {
+        "x": -1229.9998779296875,
+        "y": 678.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-ham",
+      "label": " 16",
+      "position": {
+        "x": -1157.9998779296875,
+        "y": 678.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-pineapple",
+      "label": " 16",
+      "position": {
+        "x": -1085.9996337890625,
+        "y": 678.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-flour",
+      "label": " 16",
+      "position": {
+        "x": -1229.9998779296875,
+        "y": 487.7778015136719
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-egg",
+      "label": " 16",
+      "position": {
+        "x": -1157.9998779296875,
+        "y": 487.7778015136719
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-milk",
+      "label": " 16",
+      "position": {
+        "x": -1085.9996337890625,
+        "y": 487.7778015136719
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-icing",
+      "label": " 16",
+      "position": {
+        "x": -2565.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-chocolate",
+      "label": " 16",
+      "position": {
+        "x": -2504.999755859375,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-strawberry",
+      "label": " 16",
+      "position": {
+        "x": -2445.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-sprinkles",
+      "label": " 16",
+      "position": {
+        "x": -2385.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-carrot",
+      "label": " 16",
+      "position": {
+        "x": -2324.999755859375,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-bun",
+      "label": " 16",
+      "position": {
+        "x": -2265.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-patty",
+      "label": " 16",
+      "position": {
+        "x": -2204.999755859375,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-lettuce",
+      "label": " 16",
+      "position": {
+        "x": -2144.999755859375,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-pasta",
+      "label": " 16",
+      "position": {
+        "x": -2084.999755859375,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-broth",
+      "label": " 16",
+      "position": {
+        "x": -2024.999755859375,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-rice",
+      "label": " 16",
+      "position": {
+        "x": -1964.9998779296875,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-banana",
+      "label": " 16",
+      "position": {
+        "x": -1904.9998779296875,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-popcorn",
+      "label": " 16",
+      "position": {
+        "x": -2565.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "cookware-0",
+      "label": " ",
+      "position": {
+        "x": -2499.999755859375,
+        "y": 761.1111450195312
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-0",
+      "label": " ",
+      "position": {
+        "x": -739.9994506835938,
+        "y": 385.5555725097656
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-4",
+      "label": " ",
+      "position": {
+        "x": -2504.999755859375,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spoon-0",
+      "label": " ",
+      "position": {
+        "x": -2599.999755859375,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-knife-0",
+      "label": " ",
+      "position": {
+        "x": -2551.999755859375,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-roller-0",
+      "label": " ",
+      "position": {
+        "x": -2504.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spatula-0",
+      "label": " ",
+      "position": {
+        "x": -2456.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "cookware-1",
+      "label": " ",
+      "position": {
+        "x": -2320.0,
+        "y": 761.1111450195312
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-1",
+      "label": " ",
+      "position": {
+        "x": -559.9998779296875,
+        "y": 385.5555725097656
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-5",
+      "label": " ",
+      "position": {
+        "x": -2445.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spoon-1",
+      "label": " ",
+      "position": {
+        "x": -2408.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-knife-1",
+      "label": " ",
+      "position": {
+        "x": -2360.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-roller-1",
+      "label": " ",
+      "position": {
+        "x": -2312.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spatula-1",
+      "label": " ",
+      "position": {
+        "x": -2264.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "cookware-2",
+      "label": " ",
+      "position": {
+        "x": -2139.999755859375,
+        "y": 761.1111450195312
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-2",
+      "label": " ",
+      "position": {
+        "x": -379.9998779296875,
+        "y": 385.5555725097656
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-6",
+      "label": " ",
+      "position": {
+        "x": -2385.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spoon-2",
+      "label": " ",
+      "position": {
+        "x": -2216.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-knife-2",
+      "label": " ",
+      "position": {
+        "x": -2168.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-roller-2",
+      "label": " ",
+      "position": {
+        "x": -2119.999755859375,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spatula-2",
+      "label": " ",
+      "position": {
+        "x": -2072.000244140625,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "cookware-3",
+      "label": " ",
+      "position": {
+        "x": -1959.9998779296875,
+        "y": 761.1111450195312
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-3",
+      "label": " ",
+      "position": {
+        "x": -199.99989318847656,
+        "y": 385.5555725097656
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-7",
+      "label": " ",
+      "position": {
+        "x": -2324.999755859375,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spoon-3",
+      "label": " ",
+      "position": {
+        "x": -2024.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-knife-3",
+      "label": " ",
+      "position": {
+        "x": -1976.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-roller-3",
+      "label": " ",
+      "position": {
+        "x": -1927.9998779296875,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spatula-3",
+      "label": " ",
+      "position": {
+        "x": -1879.9998779296875,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-cake-mix",
+      "label": " 16",
+      "position": {
+        "x": -2265.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -7.62939453125e-06,
+    "y": -5.7220458984375e-06,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "bingo",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Coloring table",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 164.48089599609375,
+        "y": 386.8799743652344,
+        "width": 859.5191040039062,
+        "height": 230.39999389648438
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Discovery crayon Purple",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 592.7999877929688,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Back to Home",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 828.0,
+        "y": 698.0,
+        "width": 176.0,
+        "height": 52.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "< Page",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 25.600004196166992,
+        "y": 632.4000244140625,
+        "width": 160.0,
+        "height": 52.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Discovery crayon Brown",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 644.7999877929688,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 905.5999755859375,
+        "y": 34.399993896484375,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Discovery crayon Yellow",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 436.79998779296875,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Undo",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 30.0,
+        "y": 24.79999351501465,
+        "width": 116.0,
+        "height": 51.19999694824219
+      },
+      "enabled": false
+    },
+    {
+      "name": "Discovery crayon White",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 280.79998779296875,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Discovery crayon Black",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 696.7999877929688,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Page >",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 838.4000244140625,
+        "y": 632.4000244140625,
+        "width": 160.0,
+        "height": 52.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Discovery crayon Orange",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 384.79998779296875,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Science bench",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": -7.62939453125e-06,
+        "y": 386.8799743652344,
+        "width": 20.48090362548828,
+        "height": 230.39999389648438
+      },
+      "enabled": true
+    },
+    {
+      "name": "Redo",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 878.0,
+        "y": 24.79999351501465,
+        "width": 116.0,
+        "height": 51.19999694824219
+      },
+      "enabled": false
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Discovery crayon Green",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 488.79998779296875,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Discovery crayon Red",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 332.79998779296875,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Discovery crayon Blue",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 540.7999877929688,
+        "y": 24.79999351501465,
+        "width": 46.4000244140625,
+        "height": 51.19999694824219
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 700.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.0,
+  "homePose": "Idle",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 44.80897903442383,
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "home",
+  "cameraX": -5588.0009765625,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "home-discovery",
+    "home-living"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Home stairs",
+    "Kitchen counter",
+    "Kitchen fridge",
+    "Kitchen oven",
+    "Cupboard door 0",
+    "Cupboard door 1",
+    "Cupboard door 2",
+    "Cupboard door 3",
+    "cookware-0",
+    "cookware-1",
+    "cookware-2",
+    "cookware-3",
+    "utensil-knife-0",
+    "utensil-knife-1",
+    "utensil-knife-2",
+    "utensil-knife-3",
+    "utensil-roller-0",
+    "utensil-roller-1",
+    "utensil-roller-2",
+    "utensil-roller-3",
+    "utensil-spatula-0",
+    "utensil-spatula-1",
+    "utensil-spatula-2",
+    "utensil-spatula-3",
+    "utensil-spoon-0",
+    "utensil-spoon-1",
+    "utensil-spoon-2",
+    "utensil-spoon-3",
+    "Discovery coloring table",
+    "Discovery science bench",
+    "tap-1",
+    "plant-1",
+    "Home shed",
+    "Home shed front",
+    "Shared living-room book rack",
+    "living-book-fairy-garden",
+    "living-book-hello",
+    "living-book-little-bridge",
+    "living-book-mermaid-shell",
+    "living-book-princess-star",
+    "living-book-rocket-moon",
+    "Book rack lips",
+    "Home trampoline",
+    "Home trampoline front",
+    "Home sofa",
+    "Home sofa front",
+    "Player character",
+    "Friend-player-2",
+    "Friend-player-3",
+    "Friend-player-4",
+    "Radio garden",
+    "Radio living",
+    "Keepy Uppy balloon",
+    "puddle-1",
+    "Kitchen dining",
+    "Dining table front",
+    "ball-1",
+    "bucket-1",
+    "plate-0",
+    "plate-1",
+    "plate-2",
+    "plate-3",
+    "sponge-1"
+  ],
+  "discoveryOpen": true,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "",
+    "",
+    "",
+    "Page >",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "1",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Our books",
+    "Redo",
+    "",
+    "Coloring",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Back to Home",
+    "Upstairs \u2191",
+    "Cook",
+    "",
+    "",
+    "1",
+    "",
+    "3",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Tap to walk",
+    "",
+    "",
+    "4",
+    "Undo",
+    "< Page",
+    "",
+    "",
+    "Choose a crayon, then tap a shape.",
+    "2",
+    "Playing with family",
+    "",
+    "3",
+    "",
+    "",
+    "",
+    "",
+    "Your coloring book",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Truck  2 / 6",
+    "2",
+    "Science",
+    "",
+    "",
+    "",
+    "4",
+    "Menu",
+    "",
+    "",
+    "\u2713",
+    ""
+  ]
+}
