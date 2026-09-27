@@ -676,6 +676,8 @@ A one-room experiment may initially show both children together, but it is only 
 
 ## 19. Kitchen: five pizzas, five cakes, five meals
 
+**Latest user correction, September 27:** the Android 162 preview needs a large central dish with easy ingredient bowls around it, an effective Cook/tray entry, optional cupboard chores and clear fridge/oven access around the dining furniture. [Deep research and proposed correction](implementation/kitchen-child-friendly-research-2026-09-27.html) specify an easy first pizza while retaining real ingredients, four independent players, all fifteen recipes and the full behaviors below. This correction is researched but not implemented.
+
 **Implementation checkpoint, September 27:** [Kitchen prototype](implementation/home-kitchen-2026-09-27.html) adds usable fixtures, four independent work/dining places and persistent preparation/heat/serve/taste/wash for all 15 recipes. The detailed behaviors below remain the full goal; a playable path does not complete custom shape/effect, orders, album, drink or physical qualification requirements.
 
 Interpret the request as **three food families with at least five distinct recipes each: 15 minimum**, plus mix-and-match creation. Every recipe below is proposed game content. The show supports the themes: pretend pizza making and delivery in [Pizza Girls](https://www.bluey.tv/watch/season-3/pizza-girls/), the birthday bake in [Duck Cake](https://www.bluey.tv/watch/season-2/duck-cake/), restaurant roles in [Fancy Restaurant](https://www.bluey.tv/watch/season-2/fancy-restaurant/), and kitchen café play in [Pavlova](https://www.bluey.tv/watch/season-3/pavlova/). It does not establish this whole proposed menu as canonical food.

@@ -1,5 +1,7 @@
 # Home kitchen — September 27, 2026
 
+**User preview feedback, September 27:** the concepts are liked, but the table blocks the fridge/oven, tray selection does not work as expected and opening drawers for ingredients is confusing. These usability issues are open. The user wants a large central dish surrounded by easy ingredient choices. [Follow-up deep research and correction contract](kitchen-child-friendly-research-2026-09-27.html) is complete; no corrective game build has been made in that research pass.
+
 The user authorized four stages: usable kitchen fixtures and four dining places, durable ingredients/tools/plates, one complete four-player pizza, then all 15 researched recipes. This is a playable kitchen prototype within the existing connected Home property. The full COOK-01 goal remains Partial: custom transformation animation, optional orders, albums, drinks and physical acceptance are still open.
 
 ## What changed
@@ -52,4 +54,4 @@ PC server/helper and both iPads remain recorded at 128, iPhone 101. No live fami
 
 ## Remaining work
 
-The next bounded step is the user's kitchen preview and any interaction/art corrections it reveals, followed by physical four-device and A10 performance/lifecycle qualification. Keep the larger COOK-01 additions—picture orders and parent reactions, creation album, picnic packing, drinks/blender/café, bespoke preparation effects and kitchen sound design—in the Home tracker. No Home or phase gate is marked complete by these prototype paths.
+The preview has now identified the corrections above. The next bounded implementation is clear appliance access plus one easy tap-driven pizza with a large central dish, surrounding ingredient bowls, working entry and four independent persistent creations. Use the [KUX-01–07 checklist](kitchen-child-friendly-research-2026-09-27.html), then extend the presentation to the other recipes and continue physical four-device and A10 performance/lifecycle qualification. Keep the larger COOK-01 additions—picture orders and parent reactions, creation album, picnic packing, drinks/blender/café, bespoke preparation effects and kitchen sound design—in the Home tracker. No Home or phase gate is marked complete by these prototype paths.

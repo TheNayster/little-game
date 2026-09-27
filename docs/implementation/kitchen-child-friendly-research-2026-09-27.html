@@ -1,0 +1,205 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A simpler Home kitchen — applied research, September 27, 2026</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;border-radius:24px;background:radial-gradient(ellipse at 25% 45%,#ffffffb5 0 15%,transparent 16%),radial-gradient(ellipse at 75% 50%,#ffffffb5 0 20%,transparent 21%),linear-gradient(#62c0ed,#b8edfa)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid white;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+.wheel .scene-note{position:absolute;top:25%;left:7%;width:48%;font-size:17px}.place-rail{position:absolute;right:0;top:0;bottom:23%;width:39%;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 8px;background:#cbecf7;border-left:4px solid white}.place-rail .stage{position:relative;transform:none!important;left:auto;top:auto;width:126px;min-height:126px;flex-shrink:0}.cast-diagram{position:absolute;left:0;right:0;bottom:0;height:23%;background:#b8e2f7;border-top:4px solid white;display:flex;align-items:center;padding:18px;font-weight:700;font-size:16px}
+main{max-width:1100px;margin:32px auto;padding:24px}p,li{line-height:1.65}img{max-width:100%;height:auto}table{width:100%;border-collapse:collapse}th,td{padding:12px;border:1px solid #c9dadf;text-align:left;vertical-align:top}.table-scroll{overflow-x:auto}code{overflow-wrap:anywhere}</style></head><body><main><p><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Current build plan</a> · <a href="kitchen-child-friendly-research-2026-09-27.md">Editable source</a></p><h1 id="a-simpler-home-kitchen-applied-research-september-27-2026">A simpler Home kitchen — applied research, September 27, 2026</h1>
+<p><strong>Status: research and proposed design; not implemented or installed.</strong> This follows the user's review of Android 162. It supersedes the earlier kitchen interaction plan where they conflict. H-07–10 / COOK-01 and all fifteen recipes remain Partial. This pass reviewed the user's reference, retained screenshots, project requirements, research papers and official product/accessibility sources. It did not audit gameplay code, run gameplay tests, build an app or contact a device/server.</p>
+<h2 id="what-needs-to-change">What needs to change</h2>
+<p>The user likes the concepts but wants a large central dish with easy-to-tap ingredients around it. They reported that the dining table blocks the fridge/oven, tray selection does not work, and opening drawers to find ingredients is confusing. These are usability defects to resolve, not instructions the child should have to learn.</p>
+<p>The supplied <code>7359.jpg</code> is a collage of search results, not one identified app. Its useful reference is spatial: a prominent top-down pizza/plate, surrounding ingredient bowls, recognizable food and little competing interface. It does not establish those apps' actual usability, quality or multiplayer support.</p>
+<p>Retained evidence supports the reported mismatch:</p>
+<ul>
+<li><a href="evidence/kitchen162-2026-09-27/phone-kitchen.png">Actual Samsung plate screen</a>: an empty plate, a grey “Choose a tray” control, textual tabs and appliance controls. The screenshot establishes its appearance; the user establishes that selection failed. The underlying input cause was not investigated in this research pass.</li>
+<li><a href="evidence/kitchen162-2026-09-27/pizza-worktop-phone.png">Preparation screen</a>: a relatively small food area on the left and a dense grid of 25 ingredient packages on the right. The foreground table/chairs overlap the appliances.</li>
+<li><a href="evidence/kitchen162-2026-09-27/native-kitchen-build161.json">Recorded native checks</a> prove scoped cooking operations, including deliberate appliance opening. They do not prove that a new child can discover the sequence. The current feedback is an open acceptance failure despite those earlier passes.</li>
+</ul>
+<h2 id="evidence-and-its-limits">Evidence and its limits</h2>
+<p>Sources below were checked on September 27, 2026. Study findings, product descriptions and our proposed choices are kept distinct. None of these sources tests this game or establishes an optimal number of bowls for this family.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Relevant evidence</th>
+<th>Application to Little Weeps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://faculty.washington.edu/alexisr/TouchscreenPrompts.pdf">Hiniker et al., 2015 — Touchscreen Prompts for Preschoolers</a>, study of 34 children aged 2–5, following a review of 100 apps</td>
+<td>In the tested tasks, understanding which gesture to use was a major obstacle. Audio and hand demonstrations became more useful with age; under-threes relied on an adult model. Visual state changes alone did not reliably teach the tested gestures. The study used unfamiliar swipe/double-tap/shake tasks, not our ingredient taps, and was not a natural home-play trial.</td>
+<td>Make a productive tap obvious. Short speech and a brief demonstration may help but cannot rescue hidden prerequisites. A glow is an attention cue, not the entire instruction.</td>
+</tr>
+<tr>
+<td><a href="https://www.sciencedirect.com/science/article/pii/S1071581914001426">Vatavu, Cramariuc and Schipor, 2015 — Touch interaction for children aged 3 to 6</a>, publisher abstract/section summaries</td>
+<td>Eighty-nine children and thirty adults performed touch tasks. Accuracy and performance improved with age; young children had difficulty with precise acquisition and smooth dragging. Full publisher text was inaccessible in this session, so no detailed numerical target specification is inferred from it.</td>
+<td>Use forgiving ingredient targets and tap completion. Preserve optional dragging for children who enjoy placement, without making precision a requirement.</td>
+</tr>
+<tr>
+<td><a href="https://init.cise.ufl.edu/wp-content/uploads/sites/378/2019/04/soni-et-al-idc19.pdf">Soni et al., 2019 — TIDRC framework</a>, especially Appendix A and discussion</td>
+<td>Synthesizes 57 recommendations and evaluates 50 iPad apps. It supports recognizable graphics, clear interactive foregrounds, simpler navigation, feedback and forgiving touch areas. The authors acknowledge conflicting gesture/animation evidence and limits in the sampled apps. It is a research synthesis, not proof that every recommendation works for every child.</td>
+<td>Quiet worktop background, recognizable ingredients, stable positions, short contextual actions and a reversible decorating flow. Avoid a dense inventory menu or several equally prominent commands.</td>
+</tr>
+<tr>
+<td><a href="https://support.google.com/accessibility/android/answer/7101858?hl=en-GB">Google — Touch target size</a></td>
+<td>Recommends at least 48 × 48 dp with separation, and distinguishes hit area from visible artwork.</td>
+<td>Treat this as a platform baseline, not a toddler optimum. Prototype larger main controls and measure them on actual devices; Unity canvas pixels are not automatically dp.</td>
+</tr>
+<tr>
+<td><a href="https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html">W3C — Dragging Movements</a></td>
+<td>Describes equivalent single-pointer alternatives to dragging. This is web accessibility guidance, not a claim of Unity/WCAG certification.</td>
+<td>Every required cooking gesture gets an equivalent tap action; an optional drag must not unlock content unavailable to tap users.</td>
+</tr>
+<tr>
+<td><a href="https://apps.apple.com/cz/app/pizza-games-for-kids-cooking/id6447359628?platform=ipad">Bimi Boo — Pizza Games for Kids: Cooking, developer App Store listing</a></td>
+<td>Describes guided cooking with step-by-step recipes and character reactions. These are developer product claims; store ratings and age labels do not prove toddler usability.</td>
+<td>Use a visible cooking sequence as an invitation. Keep the existing fifteen foods accessible without presenting all ingredients and tools at once.</td>
+</tr>
+<tr>
+<td><a href="https://sagomini.com/apps/diner/">Sago Mini — Diner</a></td>
+<td>Describes recipe-book cooking and flexible customer/employee pretend play for preschoolers.</td>
+<td>Return the finished creation to the shared house for serving and pretend play. Orders remain optional future content.</td>
+</tr>
+<tr>
+<td><a href="https://sagomini.com/apps/super-juice/">Sago Mini — Super Juice</a></td>
+<td>Describes mixing with visible character transformations and reactions. No independent developmental effectiveness is inferred from its marketing.</td>
+<td>Show the consequence of an ingredient touch on the food. Sound and animation should explain that change.</td>
+</tr>
+<tr>
+<td><a href="https://www.tocaboca.com/apps">Toca Boca — official app catalog, Toca Kitchen</a></td>
+<td>Describes choosing, preparing and serving food with character reactions. Its four hungry characters are NPC recipients, not evidence of four simultaneous network players.</td>
+<td>Preserve experimentation and unexpected combinations. Our four-human-player behavior comes from the family's requirements and must be tested separately.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The strongest conclusion is to reduce the gap between a visible object and a useful action. <strong>A tap on cheese should visibly put cheese on the pizza.</strong> Enlarging the current menu while retaining closed-drawer requirements would leave the central problem unresolved.</p>
+<h2 id="proposed-screen-and-room-composition">Proposed screen and room composition</h2>
+<p>These measurements are starting design values to test, not findings asserted by the papers.</p>
+<p><strong>In the house:</strong> keep the kitchen and dining area connected, but position the table/chairs beside the appliance bank instead of in front of it. Preserve four dining places. Check open and closed door art, contents, tap targets and four seated characters across camera positions. Enlarging invisible appliance hit areas through the table is insufficient: the child should see what they are touching. Relocation must preserve fixture/support identities, occupied seats, held items and saved dishes.</p>
+<p><strong>At the worktop:</strong> open a landscape close-up with one large dish in the center. Surround it with a small stable set of illustrated bowls, leaving the food unobscured. Use a simple board or placemat beneath the food and quiet surroundings. On a narrow phone, arrange bowls in two side columns; on a tablet, a wider semicircle can fit. Do not shrink everything to fit a complete inventory.</p>
+<pre><code class="language-text"> Back            Food picture / small profile badge            Help
+
+ [sauce bowl]             LARGE PIZZA                 [cheese bowl]
+ [pepperoni]           on a wooden board               [vegetables]
+ [mushrooms]          visible actual toppings          [more bowls]
+
+ Undo                   [oven picture: Bake]                Finished
+</code></pre>
+<p>The sketch shows composition, not final game art or a claim that all these controls appear at every step. Use roughly 45–55% of usable screen height for the dish at topping time. Begin with four to six ingredient choices, usually the current recipe's useful ingredients plus a pictured “more” basket. Keep locations stable during a stage. Other ingredient pages use large visible arrows; no hidden swipe-only navigation. Main bowl/action hit areas should start around 64–80 dp-equivalent or larger, subject to phone fit and measured physical size. Never shrink below the platform baseline to fit another row. Verify safe areas, contrast, finger occlusion and spacing on Samsung and both target iPads.</p>
+<p>Food must become visually richer as the child works: dough changes shape, sauce covers its surface, cheese scatters, toppings appear at meaningful scale, and baking changes the same creation. Keep each child's chosen toppings after baking and on the corresponding slices. A generic finished illustration that replaces their arrangement defeats this interaction. Use bounded layered sprites/masks, not a costly fluid simulation. Bespoke cake/meal transformations remain tracked beyond the pizza correction.</p>
+<h2 id="entry-and-cooking-flow">Entry and cooking flow</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Proposed behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tap the worktop's pictured Cook control or an empty usable tray</td>
+<td>Open large food choices, then bind an available real tray automatically. No separate required tray-selection step. Resume the player's in-progress creation when appropriate.</td>
+</tr>
+<tr>
+<td>Tap an empty plate</td>
+<td>Offer a working pictured Make food action and any ready dishes available for serving. Do not show a dead-end “Choose a tray” label.</td>
+</tr>
+<tr>
+<td>Tap sauce or cheese</td>
+<td>Consume one real portion and apply it visibly. A single tap can spread/scatter; optional rubbing or dragging gives more control. No accuracy score.</td>
+</tr>
+<tr>
+<td>Tap a topping bowl</td>
+<td>Place a piece automatically at a sensible free point; optional drag chooses a clamped point on the food. Keep pieces large enough to recognize.</td>
+</tr>
+<tr>
+<td>Need a utensil</td>
+<td>Bring the appropriate tool into the close-up. Tap to perform the action; broad dragging/scribbling is optional. Do not require finding a spoon in a drawer first.</td>
+</tr>
+<tr>
+<td>Ready to heat</td>
+<td>One large oven/Bake action handles placement into a free real oven position. Show that same dish baking, then ready. No door-opening chore or repeated confirmation.</td>
+</tr>
+<tr>
+<td>Serve</td>
+<td>Offer visible plates and tap-to-transfer slices, followed by carrying into Home. No mandatory tidy-up or tasting step before leaving.</td>
+</tr>
+<tr>
+<td>Need help</td>
+<td>Offer a short contextual cue such as “Tap the cheese” with a matching image/demo. Stop prompting when the child acts; respect local audio and reduced-motion choices.</td>
+</tr>
+<tr>
+<td>Leave or close</td>
+<td>Save the same dish and release only local controls. Baking remains safe; other players continue. Return to that creation later.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>First corrected pizza path:</strong> Cook → pizza picture → central dough → sauce → cheese → optional toppings → Bake → cut/serve. Rolling and other preparation can be playful tap/gesture steps, with the existing ready-base assistance available. Show one prominent useful action for the current stage. Make / Decorate / Serve becomes a small picture guide with genuinely useful stage behavior, not three text tabs that leave the same dense inventory onscreen.</p>
+<p>All fifteen recipes remain reachable through pictured pizza/cake/meal families. This is progressive presentation, not deletion of recipes. Default assistance makes the first pizza easy; deeper preparation and free creation remain available. Unexpected toppings are allowed. A missing suggested ingredient must lead to visible help or a valid custom dish, not an unexplained refusal to bake/serve.</p>
+<h2 id="ingredients-without-cupboard-chores">Ingredients without cupboard chores</h2>
+<p>Ingredient bowls in the close-up are views of bounded shared stock, not newly spawned unlimited items. Starting assisted cooking makes the relevant stock accessible through an explicit kitchen-preparation transaction; it must not depend on the global fridge door remaining open. Manual fridge/cupboard play stays functional independently. Do not merely remove closed-container protections from general object pickup.</p>
+<p>Design the assisted stock contract before implementation: each accepted addition consumes one durable unit from an eligible unheld communal package. It must not take another player's held ingredient, private stored item or reserved portion. Two players touching the last unit must receive one accepted consumption. Show availability honestly; an empty bowl offers a clear pictured replenishment action using the existing bounded-package rule, not a text error or infinite loose props. Any intermediate reserved portions must retain ownership/identity and be returned or settled safely on cancel, disconnect and reopening.</p>
+<p>The simplest initial approach is consumption at the accepted ingredient action, avoiding speculative per-client food copies. If advance reservation is needed for a guided recipe, specify and test its release/recovery separately. Kitchen assistance is an authority-validated operation, not permission for a client to mint stock.</p>
+<h2 id="four-independent-players-and-durable-creations">Four independent players and durable creations</h2>
+<ul>
+<li>Each player has a local close-up and an identifiable real creation. Prefer their current dish, otherwise atomically select an eligible empty tray from the four available. Opening a screen must not clear or steal a tray. If all are occupied, show those creations and the allowed resume/help choices instead of silently resetting one.</li>
+<li>Four people may prepare different foods, bake independently, decorate or serve simultaneously. Only the affected item/transfer is serialized; no global kitchen lock. A deliberate shared-dish action may allow collaboration without consuming the same ingredient twice.</li>
+<li>Per-tray default assignment should survive avatar changes and ordinary travel by using stable profile/dish identity. If this requires new persisted ownership fields, add a forward migration; do not infer ownership from color, avatar or device slot.</li>
+<li>Decorating undo applies only to an eligible uncommitted recent change. Never replay an entire old dish snapshot over another player's edits or restore already eaten/served food. Permit moving/removing an unbaked topping within the same dish; any refund must conserve the original unit. A new recipe cannot overwrite an existing creation without a deliberate, clearly pictured action.</li>
+<li>The world object is the source of truth for toppings, preparation, heat, portions, support and holder. Network acceptance controls lasting food changes. Local touch feedback can start immediately, but cannot invent a successful stock transfer.</li>
+<li>Closing a door, closing a cooking view, leaving Home or losing one connection cannot stop the other three. PC/VPS authority and private offline saves remain unchanged; no offline merging.</li>
+</ul>
+<h2 id="bounded-implementation-order-and-acceptance">Bounded implementation order and acceptance</h2>
+<p>The next slice is <strong>clear appliance access plus one easy pizza flow</strong>. Finish and review that slice before extending the new presentation to the remaining foods. Existing recipe paths stay available during the work.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Required evidence before calling the correction done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KUX-01: room access</td>
+<td>Phone/tablet captures with doors open/closed and four diners; direct taps reach visible fridge, oven, cupboards and seats without the table intercepting or obscuring them.</td>
+</tr>
+<tr>
+<td>KUX-02: working entry</td>
+<td>From a normally saved kitchen with doors shut, Cook and empty-plate Make food lead to a usable creation; no dead control, prior adult setup or hidden tray chore. Cover held trays, all occupied trays and resume.</td>
+</tr>
+<tr>
+<td>KUX-03: tap-only pizza</td>
+<td>Make, bake and serve using taps, without manual cupboards, reading a paragraph or precision dragging. Show immediate sauce/cheese/topping changes; keep the exact decoration through baking, slicing and carrying.</td>
+</tr>
+<tr>
+<td>KUX-04: mistakes and help</td>
+<td>Off-center taps, long contact, rapid taps, optional drag then tap, interruptions, muted hints, empty stock and full dish all have understandable behavior. Gesture input must not swallow the next tap.</td>
+</tr>
+<tr>
+<td>KUX-05: four cooks and conservation</td>
+<td>Four concurrent dishes and serving operations; simultaneous last-ingredient use; one cook leaves/disconnects; no duplicated units, stolen held objects, cross-player reset or global lock.</td>
+</tr>
+<tr>
+<td>KUX-06: migration and devices</td>
+<td>Preserve old food, support identities, rooms, enrollment and saves across layout/ownership changes. Cold reopen, carry upstairs, safe mid-bake interruption and authoritative rejoin. Fresh source/artifact verification for any later phone build.</td>
+</tr>
+<tr>
+<td>KUX-07: actual child use</td>
+<td>On the target phone/tablets, observe first-use cooking before explaining the intended steps. Record where assistance was needed, mis-taps and whether the child can repeat the activity. Adult-native test success alone does not close this check. Under-threes may still need a parent demonstration; do not promise universal independent use.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use short, voluntary play attempts rather than a speed challenge. Compare ordinary first use with a single demonstrated example, and note the difference. Prioritize finishing a pizza, finding ingredients and returning to play over stars, scores or timed rewards. Hardware responsiveness and older A10 iPad performance remain separate measurements.</p>
+<h2 id="work-record">Work record</h2>
+<p>Research completed; the proposed correction is recorded in current decisions, the Home tracker, chapter 19 and the build work record. No game source/art, save schema, installed build or device state changed. Build 162 is still the last recorded Samsung installation. This report supplies the next implementation contract; it does not mark any correction accepted.</p></main></body></html>

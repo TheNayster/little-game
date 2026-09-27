@@ -1,5 +1,7 @@
 # Little Weeps — Home world feature tracker
 
+**Latest kitchen feedback — September 27:** user review of Android 162 found blocked appliances, unsuccessful tray selection and confusing ingredient/drawer prerequisites. [Applied child-interaction research and KUX-01–07 acceptance checklist](implementation/kitchen-child-friendly-research-2026-09-27.html) now directs the correction. First clear appliance access and build one large central pizza view with surrounding ingredient bowls, easy taps and four independent persistent creations. Corrections are planned, not delivered; all fifteen recipes and wider Home work remain tracked.
+
 **Current kitchen task — September 27:** the user authorized working fixtures and four dining places, persistent food/tools, four-player pizza, then all 15 recipes. [Applied research](implementation/kitchen-research-2026-09-27.html) and [implementation/evidence](implementation/home-kitchen-2026-09-27.html) govern this bounded stage. The room/book backlog and physical qualification remain tracked.
 
 
@@ -156,6 +158,8 @@ Provide real bath/splash space with front-water masking, towels, storage, washab
 
 
 ## Kitchen, dining and all 15 recipes
+
+**Open usability correction:** KUX-01–07 in the [new research](implementation/kitchen-child-friendly-research-2026-09-27.html) cover layout, working entry, tap-only pizza, errors/help, four cooks, continuity and actual child use. Earlier native passes do not close the user's Android 162 feedback. Keep H-07–10 / COOK-01 Partial until the full requirements are accepted.
 
 The playable prototype now covers the 15 preparation paths and durable serving. The unchecked entries below retain the full target behaviors, including custom shape/ingredient animation, optional orders, albums and physical usability checks; see the [kitchen report](implementation/home-kitchen-2026-09-27.html).
 
