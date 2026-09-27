@@ -17,7 +17,18 @@
       "file": "discovery-table.png",
       "sha256": "312537c9f004ed141400c96aa2e54a2b908cfb75d9bca5d826815d8ab2b0c0e5",
       "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/HomeArt/discovery-table.png"
+    },
+    {
+      "file": "mixing-props.png",
+      "sha256": "412af2eb0dacead5e3304f66842c0526d22b1a02faf4ec570235e535ad7e8dc7",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/mixing-props.png"
+    },
+    {
+      "file": "mixing-colors.png",
+      "sha256": "bac50a19d73ef0d23e8276a5f61363ca589d7601fff51e45e1169f42cf08d260",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/mixing-colors.png"
     }
   ],
-  "promptRecord": "README.md; summarized generation specifications, not a verbatim tool transcript"
+  "promptRecord": "README.md; summarized generation specifications, not a verbatim tool transcript",
+  "mixingPromptRecord": "mixing-prompts.md"
 }

@@ -35,7 +35,8 @@ namespace LittleWeeps.Core
         public bool wide,outOfWater;
         public float magnetX=400,magnetY=110,ironX=140,ironY=315;
         public ColoringPage[] pages;
-        public DiscoveryWorkspace Copy(){var c=(DiscoveryWorkspace)MemberwiseClone();c.pages=pages.Select(p=>p.Copy()).ToArray();return c;}
+        public MixingTray[] mixtures=Array.Empty<MixingTray>();
+        public DiscoveryWorkspace Copy(){var c=(DiscoveryWorkspace)MemberwiseClone();c.pages=pages.Select(p=>p.Copy()).ToArray();c.mixtures=(mixtures??Array.Empty<MixingTray>()).Select(t=>t.Copy()).ToArray();return c;}
     }
     public sealed partial class SoloWorld
     {
@@ -56,6 +57,8 @@ namespace LittleWeeps.Core
             bool Finite(float v,float min,float max)=>!float.IsNaN(v) && !float.IsInfinity(v) && v>=min && v<=max;
             foreach(var w in work)
             {
+                if(s.schema>=Mixing.Schema){if(w.mixtures==null || w.mixtures.Length!=Mixing.Modes)throw new InvalidOperationException("Missing mixing trays.");for(var mode=0;mode<Mixing.Modes;mode++)Mixing.Validate(w.mixtures[mode],mode);}
+                else if(w.mixtures!=null && w.mixtures.Length>0)throw new InvalidOperationException("Mixing requires schema 17.");
                 if(w.cargo<0 || w.cargo>7 || w.lights<0 || w.lights>7 || !Finite(w.magnetX,55,745) || !Finite(w.magnetY,70,340) || !Finite(w.ironX,55,745) || !Finite(w.ironY,70,380) || w.pages==null || w.pages.Length!=Discovery.Pages.Length)
                     throw new InvalidOperationException("Invalid science workspace.");
                 for(var i=0;i<w.pages.Length;i++)
@@ -73,6 +76,7 @@ namespace LittleWeeps.Core
             if(c.item!=p.id)return "owner-only";
             var w=state.discovery.Single(v=>v.owner==p.id);
             var op=c.value;
+            if(op.StartsWith("mix:"))return MixingOperation(c,w);
             if(op.StartsWith("fill:") || op=="undo" || op=="redo")
             {
                 var token=c.target.Split('@');

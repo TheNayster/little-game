@@ -44,7 +44,7 @@ namespace LittleWeeps.Client
             stick.gameObject.SetActive(false);PresentDiscovery();
         }
         private void CloseDiscovery()
-        {discoverySurface?.CancelGesture();if(discoveryPanel!=null)discoveryPanel.gameObject.SetActive(false);CancelPointers();if(stick!=null)stick.gameObject.SetActive(JoystickMode && !MenuOpen);}
+        {CancelMixingGesture();discoverySurface?.CancelGesture();if(discoveryPanel!=null)discoveryPanel.gameObject.SetActive(false);CancelPointers();if(stick!=null)stick.gameObject.SetActive(JoystickMode && !MenuOpen);}
         private void BuildDiscovery()
         {
             if(SceneSchema<Discovery.Schema)return;
@@ -65,7 +65,7 @@ namespace LittleWeeps.Client
             discoveryPanel=Panel(safe,"Discovery activity",Vector2.zero,Vector2.zero,new Color(.98f,.97f,.91f),true).rectTransform;Stretch(discoveryPanel);
             discoveryTitle=Label(discoveryPanel,"",30,Vector2.zero,new Vector2(550,55));
             discoveryBack=Button(discoveryPanel,"Back to Home",Vector2.zero,new Vector2(200,65),CloseDiscovery,Cream);
-            for(var i=0;i<3;i++){var index=i;discoveryStationButtons.Add(Button(discoveryPanel,new[]{"Floating boats","Magnet materials","Colored light"}[i],Vector2.zero,new Vector2(240,65),()=>{if(discoveryPending)return;discoverySurface.CancelGesture();discoveryStation=index;discoveryPaintRevision=-1;PresentDiscovery();},Cream));}
+            for(var i=0;i<(SceneSchema>=Mixing.Schema?4:3);i++){var index=i==3?4:i;discoveryStationButtons.Add(Button(discoveryPanel,new[]{"Floating boats","Magnet materials","Colored light","Mix & discover"}[i],Vector2.zero,new Vector2(240,65),()=>{if(discoveryPending)return;CancelMixingGesture();discoverySurface.CancelGesture();discoveryStation=index;discoveryPaintRevision=-1;PresentDiscovery();},Cream));}
             var paper=Panel(discoveryPanel,"Discovery paper",Vector2.zero,Vector2.zero,Color.white,true).rectTransform;
             discoverySurface=Rect(paper,"Discovery drawing surface",Vector2.zero,Vector2.zero).gameObject.AddComponent<DiscoverySurface>();Stretch(discoverySurface.rectTransform);
             discoverySurface.CanInteract=()=>DiscoveryOpen && !discoveryPending && !ActionPending && Ready && !applicationPaused;
@@ -83,7 +83,7 @@ namespace LittleWeeps.Client
             }
             discoveryUndo=Button(discoveryPanel,"Undo",Vector2.zero,new Vector2(145,64),()=>DiscoveryCommand("undo"),Cream);
             discoveryRedo=Button(discoveryPanel,"Redo",Vector2.zero,new Vector2(145,64),()=>DiscoveryCommand("redo"),Cream);
-            discoveryPanel.gameObject.SetActive(false);PresentDiscovery();
+            BuildMixing();discoveryPanel.gameObject.SetActive(false);PresentDiscovery();
         }
         private void ChangeDiscoveryPage(int delta){if(discoveryPending)return;discoverySurface.CancelGesture();discoveryPage=(discoveryPage+delta+6)%6;discoveryPaintRevision=-1;PresentDiscovery();}
         private void DiscoveryAction(int index)
@@ -105,8 +105,10 @@ namespace LittleWeeps.Client
             if(!DiscoveryOpen)return;var own=work.First(w=>w.owner==Actor);var art=discoveryStation==3;var size=discoveryPanel.rect.size;var width=size.x;var height=size.y;var available=Mathf.Min(height-350,(width-70)*460/800);
             discoveryTitle.text=art?"Your coloring book":"Your science tray";discoveryTitle.rectTransform.anchoredPosition=new Vector2(-width/2+310,height/2-55);
             DiscoveryButton(discoveryBack,"Back to Home",new Vector2(width/2-135,height/2-55),new Vector2(220,65));
-            for(var i=0;i<3;i++){var label=discoveryStationButtons[i];label.transform.parent.gameObject.SetActive(!art);DiscoveryButton(label,label.text,new Vector2((i-1)*265,height/2-137),new Vector2(250,65),!discoveryPending);label.transform.parent.GetComponent<Image>().color=i==discoveryStation?new Color(.66f,.87f,.82f):Cream;}
+            var tabWidth=Mathf.Min(250,(width-60)/discoveryStationButtons.Count-10);
+            for(var i=0;i<discoveryStationButtons.Count;i++){var label=discoveryStationButtons[i];label.transform.parent.gameObject.SetActive(!art);DiscoveryButton(label,label.text,new Vector2((i-(discoveryStationButtons.Count-1)/2f)*(tabWidth+10),height/2-137),new Vector2(tabWidth,65),!discoveryPending);label.transform.parent.GetComponent<Image>().color=(i==3?4:i)==discoveryStation?new Color(.66f,.87f,.82f):Cream;}
             var paper=(RectTransform)discoverySurface.transform.parent;paper.sizeDelta=new Vector2(available*800/460,available);paper.anchoredPosition=new Vector2(0,-10);
+            paper.gameObject.SetActive(discoveryStation!=4);
             paper.GetComponent<Image>().color=art?Color.white:new Color(.9f,.96f,.94f);discoverySurface.Present(own,discoveryStation,discoveryPage);
             discoveryHint.rectTransform.anchoredPosition=new Vector2(0,-height/2+140);discoveryHint.rectTransform.sizeDelta=new Vector2(width-80,60);
             discoveryHint.text=discoveryPending?"Saving…":discoveryFeedback!="" && Time.unscaledTime<discoveryFeedbackUntil?discoveryFeedback:art?"Choose a crayon, then tap a shape.":discoveryStation==0?(own.outOfWater?"Your boat is on the tray. Put it back whenever you like.":Discovery.Sinks(own)?"This boat sank. Try less cargo or a wider boat.":"Your boat floats. Add cargo and watch it sit lower."):discoveryStation==1?"Drag the magnet or tap a material. Iron follows; the others stay.":"Red + green makes yellow light. Your screen: "+Discovery.LightNames[own.lights]+".";
@@ -114,7 +116,7 @@ namespace LittleWeeps.Client
             discoverySave.text=Shared?(shared.Connected?"Playing with family":"Connection interrupted"):
                 saveLabel!=null && saveLabel.text.StartsWith("Couldn't save")?saveLabel.text:dirty || localSave.Pending?"Saving on this device…":"Saved on this device";
             var texts=discoveryStation==0?new[]{"− Cargo","+ Cargo","Narrow boat","Wide boat",own.outOfWater?"In water":"Lift out","Reset tray"}:discoveryStation==1?new[]{"Iron","Wood","Plastic","Aluminum","Reset tray"}:new[]{"Red lamp","Green lamp","Blue lamp","Reset tray"};
-            for(var i=0;i<discoveryActions.Count;i++){var label=discoveryActions[i];label.transform.parent.gameObject.SetActive(!art && i<texts.Length);if(i<texts.Length){var bwidth=Mathf.Min(160,(width-70)/texts.Length-9);DiscoveryButton(label,texts[i],new Vector2((i-(texts.Length-1)/2f)*(bwidth+9),-height/2+63),new Vector2(bwidth,68),!discoveryPending);label.transform.parent.name="Discovery "+texts[i];}}
+            for(var i=0;i<discoveryActions.Count;i++){var label=discoveryActions[i];label.transform.parent.gameObject.SetActive(!art && discoveryStation!=4 && i<texts.Length);if(i<texts.Length){var bwidth=Mathf.Min(160,(width-70)/texts.Length-9);DiscoveryButton(label,texts[i],new Vector2((i-(texts.Length-1)/2f)*(bwidth+9),-height/2+63),new Vector2(bwidth,68),!discoveryPending);label.transform.parent.name="Discovery "+texts[i];}}
             discoveryPrev.transform.parent.gameObject.SetActive(art);discoveryNext.transform.parent.gameObject.SetActive(art);discoveryPageLabel.gameObject.SetActive(art);
             DiscoveryButton(discoveryPrev,"< Page",new Vector2(-width/2+132,height/2-137),new Vector2(200,65),!discoveryPending);DiscoveryButton(discoveryNext,"Page >",new Vector2(width/2-132,height/2-137),new Vector2(200,65),!discoveryPending);
             discoveryPageLabel.text=Discovery.Pages[discoveryPage]+"  "+(discoveryPage+1)+" / 6";discoveryPageLabel.rectTransform.anchoredPosition=new Vector2(0,height/2-137);
@@ -122,8 +124,10 @@ namespace LittleWeeps.Client
             discoveryUndo.transform.parent.gameObject.SetActive(art);discoveryRedo.transform.parent.gameObject.SetActive(art);
             DiscoveryButton(discoveryUndo,"Undo",new Vector2(-width/2+110,-height/2+63),new Vector2(145,64),!discoveryPending && own.pages[discoveryPage].undo.Length>0);
             DiscoveryButton(discoveryRedo,"Redo",new Vector2(width/2-110,-height/2+63),new Vector2(145,64),!discoveryPending && own.pages[discoveryPage].redo.Length>0);
+            if(discoveryStation==4)discoveryHint.rectTransform.anchoredPosition=new Vector2(0,-height/2+43);
+            PresentMixing(own,size);
         }
         private void AddDiscoveryDepth(Action<RectTransform,float,int,string> add){foreach(var t in discoveryTables)add(t.root,ToBoard(t.x,340).y,0,t.root.name);}
-        private void ResetDiscovery(){discoveryIntent++;discoveryPending=false;discoverySurface?.CancelGesture();discoveryTables.Clear();discoveryMats.Clear();discoveryStationButtons.Clear();discoveryActions.Clear();discoveryColors.Clear();discoveryPanel=null;discoverySurface=null;discoveryCached=null;discoveryPaintRevision=-1;}
+        private void ResetDiscovery(){discoveryIntent++;discoveryPending=false;ResetMixing();discoverySurface?.CancelGesture();discoveryTables.Clear();discoveryMats.Clear();discoveryStationButtons.Clear();discoveryActions.Clear();discoveryColors.Clear();discoveryPanel=null;discoverySurface=null;discoveryCached=null;discoveryPaintRevision=-1;}
     }
 }

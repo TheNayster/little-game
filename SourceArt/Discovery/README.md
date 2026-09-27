@@ -15,3 +15,7 @@ These retain the generation constraints; they are summarized prompt specificatio
 `home-discovery.png` preserves the first draft. `home-discovery-aligned.png` is the runtime panorama source; `discovery-table.png` is the separate transparent furniture source. File hashes/runtime destinations are in [manifest.json](manifest.json). No existing character image was regenerated.
 
 The six closed-region coloring designs are vector definitions from the research prototype, compiled by `Tools/Build-DiscoveryPages.py` into `Resources/Discovery/pages.json`. They are not imagegen raster edits.
+
+## Mixing station additions
+
+`mixing-props.png` contains illustrated supplies, spoon, sponge, toy volcano and bowl. `mixing-colors.png` isolates red/blue/yellow droppers. Source PNG bytes are preserved; Unity sprite rectangles select props without baking interactions into the background. Runtime copies use Resources/Discovery. See [the exact prompts](mixing-prompts.md) and manifest hashes. User visual acceptance and physical A10 qualification remain open.

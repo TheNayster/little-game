@@ -79,6 +79,7 @@ namespace LittleWeeps.NetworkProbe
         private Vector2 Point(Step step)
         {
             if(step.role=="discovery")return screen.DiscoveryScreenPoint(step.x,step.y);
+            if(step.role=="mixing")return screen.MixingScreenPoint(step.x,step.y);
             if(step.role=="screen")return new Vector2(step.x,step.y);
             if(string.IsNullOrEmpty(step.role))return screen.ScreenPoint(step.x,step.y);
             if(step.role.StartsWith("ui:"))

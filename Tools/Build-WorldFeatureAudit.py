@@ -25,6 +25,7 @@ STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev'
 EVIDENCE = {
  'scienceart':'implementation/home-science-coloring-research-2026-09-27.html',
  'discovery':'implementation/home-discovery-2026-09-27.html',
+ 'mixing':'implementation/home-mixing-2026-09-27.html',
  'nav':'implementation/combined-chooser-2026-09-25.html',
  'scene':'implementation/scenic-worlds-2026-09-25.html',
  'home':'implementation/home-interactions-2026-09-25.html',
@@ -133,8 +134,8 @@ H-25|home|TV and local media|Watch together or autoplay-next|optional|27|Explici
 H-26|home|Dinosaur play|Twenty-type accessible toy shelf|plan|28|Picture categories, roughly six visible at a time, all types available without quests and deliberate duplicate-toy choice. Twenty definitions do not mean unlimited active toys.|ledger
 H-27|home|Dinosaur play|Named animated toys with connected uses|plan|26,28|Carry, place, rotate/flip, stack/store, footprints/dust, brushing, washing, nests and book links. Same reviewed name ID across books and toys.|ledger
 H-28|home|Dinosaur play|Dinosaur Discovery Mat|plan|28|Uncover toy, brush, hear name, optionally wash and arrange its world. Bypass digging if wanted; toys and creations survive independent departures.|ledger
-H-29|home|Science|Discovery bench and free experiments|part|30|Candidate 174 adds saved loaded boats, magnet materials and additive RGB light. All eight stations, deeper interactions, illustration and physical acceptance remain required.|discovery
-H-30|home|Science|Shared experiments and saved creations|part|30,31,47|Candidate 174 has four profile-owned persistent trays and independent reset/travel. Narration, portable creations and physical device qualification remain open.|discovery
+H-29|home|Science|Discovery bench and free experiments|part|30|Candidate 174 adds saved loaded boats, magnet materials and additive RGB light. Candidate 178 adds SCI-09 mixing in four variants. All nine stations, deeper interactions, illustration and physical acceptance remain required.|discovery
+H-30|home|Science|Shared experiments and saved creations|part|30,31,47|Candidate 174 has four profile-owned persistent trays and independent reset/travel; 178 adds sixteen independent saved mixing trays. Narration, portable creations and physical device qualification remain open.|discovery
 H-31|home|Bedrooms|Four persistent player-owned bedrooms|part|32|Four saved owned rooms include usable furniture/storage and candidate-155 cuddle/tuck/stack/tea play. Broader catalog and physical qualification remain open.|roomplay
 H-32|home|Bedrooms|Decorating, visits and undo|part|32|Owner/Together decoration and undo include bedding, rug, picture and lamp choices. Two safe arrangements remain; free placement and physical acceptance are open.|roomplay
 H-33|home|Bedrooms|Personal toy box and creation gallery|part|28,32,51|Each room has four persistent starter toys, an eight-slot chest and four shelf supports. The full dinosaur/personal catalog, put-one-away/take-one-out and creation gallery remain required.|furniture
@@ -204,13 +205,14 @@ for n,prefix,world,group in [(37,'BCH','beach','Ten beach activities'),(38,'CRK'
             if m:add(m[1],world,group,m[2],'plan',[n],f'Simple play: {row[1]} Deeper play: {row[2]}','ledger')
 for row in table_with(30,'ID and station')[1:]:
     m=re.match(r'(SCI-\d+)\s*—\s*(.+)',plain(row[0]))
-    integrated=m[1] in ('SCI-01','SCI-02','SCI-04')
+    integrated=m[1] in ('SCI-01','SCI-02','SCI-04','SCI-09')
     note=' Candidate 174 integrates the simple saved tray; deeper interactions and physical acceptance remain open.' if integrated else ' Planned; not implemented in Unity.'
-    add(m[1],'home','Science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'discovery' if integrated else 'scienceart')
+    if m[1]=='SCI-09':note=' Candidate 178 implements fizz/foam, indicator colors, oil/water separation and oobleck with direct pouring and sixteen saved trays. Physical/A10/audio acceptance and portable creations remain open.'
+    add(m[1],'home','Science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
 for row in table_with(30,'Coloring ID')[1:]:
     integrated=row[0] in ('COL-01','COL-02','COL-03','COL-04','COL-05','COL-08')
     note=' Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.' if integrated else ' Planned; no game implementation yet.'
-    add(row[0],'home','Shared downstairs coloring',row[1],'part' if integrated else 'plan',[30],row[2]+note,'discovery' if integrated else 'scienceart')
+    add(row[0],'home','Shared downstairs coloring',row[1],'part' if integrated else 'plan',[30],row[2]+note,'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
 for i,row in enumerate(table_with(26,'Working title')[1:],1):
     add(f'BK-{i:02}','home','Six starter books',plain(row[0]),'plan',[25,26],f'{row[1]} proposed. {row[2]}','ledger')
 for i,row in enumerate(table_with(28,'Dinosaur toy')[1:],1):
@@ -410,7 +412,7 @@ Still open for later content decisions: Spanish dialect; final extra cast priori
 
 Read the maintained decisions and build record, extracted every named catalog entry, reviewed the research's room/activity/state requirements, and compared current status with focused runtime source and retained acceptance reports. Source inspected includes `WorldLayout`, `SoloWorld`, `HomeWorld`, `KeepyUppy`, `SoloNavigation`, `SoloScreen` and the separate `FoundationVideo` probe. This is a feature/source/evidence audit, not a line-by-line review of all game code or a fresh external research pass. No devices, live server, personal media, credentials or saves were accessed or changed for this audit.
 
-The generated coverage record checks all 55 chapters, 35 master IDs, 32 show cards, 32 outdoor cards, 12 learning stations, 15 recipes, nine science stations, eight coloring requirements, six books, 20 dinosaurs, five dinosaur invitations, five cleanup entries, 18 starter invitations, nine stories, 37 individual roster entries and 20 reusable object families. SCI-09 mixing/reactions was added at the user's request on September 27 and remains planned. Overlapping entries are intentional; no completion percentage is derived.
+The generated coverage record checks all 55 chapters, 35 master IDs, 32 show cards, 32 outdoor cards, 12 learning stations, 15 recipes, nine science stations, eight coloring requirements, six books, 20 dinosaurs, five dinosaur invitations, five cleanup entries, 18 starter invitations, nine stories, 37 individual roster entries and 20 reusable object families. SCI-09 mixing/reactions was added at the user's request on September 27 and has four implemented candidate-178 variants; physical acceptance remains open. Overlapping entries are intentional; no completion percentage is derived.
 
 [Research and goal sheet](bluey-game-research-2026-09-23.html) · [Current decisions](current-decisions.md) · [Build plan](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Bluey interaction study](bluey-lets-play-reference-study-2026-09-25.html) · [Toca/Piknik supplement](toca-piknik-interaction-research-2026-09-23.html) · [Machine-readable inventory](implementation/evidence/world-feature-audit-2026-09-26/catalog.json) · [Coverage validation](implementation/evidence/world-feature-audit-2026-09-26/coverage.json).
 '''

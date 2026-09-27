@@ -1235,7 +1235,7 @@ The older iPad remains the performance baseline as client and solo player, inclu
 
 PBS's age-three science guidance emphasizes investigating pushes, pulls, rolling, floating, and movement through play and simple descriptive language. That supports a cause-and-effect approach; it does not establish that these proposed digital activities have a measured educational benefit. Our game designs below adapt physical science ideas into forgiving, illustrated play. [PBS: pushes and pulls at age three](https://www.pbs.org/parents/learn-grow/age-3/science/pushes-and-pulls)
 
-**Latest addition — mixing reactions:** the user explicitly requests mixing materials such as vinegar and baking soda and seeing something happen. SCI-09 below extends the original eight-station scope to nine. [Researched mixing process and variations](implementation/home-science-play-design-2026-09-27.html#sci-09-mix-and-discover). This is planned scope, not a feature in candidate 174.
+**Latest addition — mixing reactions:** the user explicitly requests mixing materials such as vinegar and baking soda and seeing something happen. SCI-09 below extends the original eight-station scope to nine. [Researched mixing process and variations](implementation/home-science-play-design-2026-09-27.html#sci-09-mix-and-discover). [Candidate 178 implementation](implementation/home-mixing-2026-09-27.html) now includes fizz/foam, indicator colors, oil/water and oobleck with four independent saved workspaces. Physical/device acceptance remains open; the wider nine-station catalog is not finished.
 
 ### Nine science activities
 

@@ -33,7 +33,8 @@ LIMIT = 3 * 1024 * 1024
 # 172 repeats all six recovery groups with unchanged schema/content and the
 # compact activity stream; physical mixed-device acceptance remains separate.
 # 174 repeats all six groups with four populated schema-16 discovery workspaces.
-QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131, 171, 172, 174}
+# 178 repeats them with sixteen schema-17 mixing trays and original enrollment.
+QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131, 171, 172, 174, 178}
 MAX_QUALIFIED_BUILD = max(QUALIFIED_BUILDS)
 
 
@@ -91,7 +92,7 @@ def checkpoint(raw):
     header, checksum, payload = raw.decode('utf-8-sig').split('\n', 2)
     check(header == 'LITTLEWEEPS-SOLO-1' and digest(payload.encode()) == checksum, 'Checkpoint checksum mismatch.')
     value = json.loads(payload)
-    check(value.get('schema') in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), 'Unsupported checkpoint version.')
+    check(value.get('schema') in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17), 'Unsupported checkpoint version.')
     return value
 
 
@@ -108,6 +109,8 @@ def build_schema(build):
     # versions. Accept only the explicitly supported pair, not arbitrary schemas.
     if contract == 17 and (summary.get('schema'), summary.get('content')) == (16, 17):
         return 16
+    if contract == 17 and (summary.get('schema'), summary.get('content')) == (17, 18):
+        return 17
     check(contract in schemas and (contract < 8 or
           summary.get('schema') == schemas[contract] and summary.get('content') == schemas[contract]+1), 'Unverified build save compatibility.')
     return schemas[contract]

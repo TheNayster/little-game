@@ -57,6 +57,12 @@ def main():
                 require(command(client,0,x=-6590,y=200)['accepted'],'Discovery recovery placement')
                 for op in ('cargo-add','red','fill:0:5'):
                     require(command(client,19,item=client.profile,target='0@0',value=op)['accepted'],'Discovery recovery state')
+                if summary['schema'] >= 17:
+                    # Distinct, settled contents in every variant must survive
+                    # byte-exact backup/restore with the coloring and room data.
+                    for mode,ingredients in enumerate(((1,2),(5,0),(2,6,8),(4,4,2))):
+                        for revision,ingredient in enumerate(ingredients):
+                            require(command(client,19,item=client.profile,target=f'mix:{mode}@{revision}',value=f'mix:{mode}:add:{ingredient}',x=1)['accepted'],'Mixing recovery state')
                 require(command(client,0,x=prior['x'],y=prior['y'])['accepted'],'Discovery recovery return')
             time.sleep(.7)
         drop(clients[0], 730, 160)

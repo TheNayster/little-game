@@ -902,7 +902,7 @@
       "chapters": [
         30
       ],
-      "description": "Candidate 174 adds saved loaded boats, magnet materials and additive RGB light. All eight stations, deeper interactions, illustration and physical acceptance remain required.",
+      "description": "Candidate 174 adds saved loaded boats, magnet materials and additive RGB light. Candidate 178 adds SCI-09 mixing in four variants. All nine stations, deeper interactions, illustration and physical acceptance remain required.",
       "evidence": "discovery",
       "extraSource": ""
     },
@@ -917,7 +917,7 @@
         31,
         47
       ],
-      "description": "Candidate 174 has four profile-owned persistent trays and independent reset/travel. Narration, portable creations and physical device qualification remain open.",
+      "description": "Candidate 174 has four profile-owned persistent trays and independent reset/travel; 178 adds sixteen independent saved mixing trays. Narration, portable creations and physical device qualification remain open.",
       "evidence": "discovery",
       "extraSource": ""
     },
@@ -2512,12 +2512,12 @@
       "world": "home",
       "group": "Science experiments",
       "title": "Mix and discover",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         30
       ],
-      "description": "Shared downstairs. Simple play: Scoop baking soda and pour vinegar into an open bowl or toy volcano; watch immediate fizzing Explore together: Four independent saved trays; compare portions, add optional soap for lasting foam; researched extensions include indicator colors, oil/water layers and cornstarch/water Factual constraint: Vinegar and baking soda produce carbon dioxide; soap retains bubbles rather than creating extra gas. Preserve consumed ingredients and distinguish chemical reactions from physical mixing; not every combination fizzes Planned; not implemented in Unity.",
-      "evidence": "scienceart",
+      "description": "Shared downstairs. Simple play: Scoop baking soda and pour vinegar into an open bowl or toy volcano; watch immediate fizzing Explore together: Four independent saved trays; compare portions, add optional soap for lasting foam; researched extensions include indicator colors, oil/water layers and cornstarch/water Factual constraint: Vinegar and baking soda produce carbon dioxide; soap retains bubbles rather than creating extra gas. Preserve consumed ingredients and distinguish chemical reactions from physical mixing; not every combination fizzes Candidate 178 implements fizz/foam, indicator colors, oil/water separation and oobleck with direct pouring and sixteen saved trays. Physical/A10/audio acceptance and portable creations remain open.",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {
@@ -2530,7 +2530,7 @@
         30
       ],
       "description": "Reachable downstairs, clear walking space, independent entry/exit Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
-      "evidence": "discovery",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {
@@ -2543,7 +2543,7 @@
         30
       ],
       "description": "Large closed regions, fitted pictures, surrounding visible tools; all pages available to every player Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
-      "evidence": "discovery",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {
@@ -2556,7 +2556,7 @@
         30
       ],
       "description": "Large named swatches, immediate feedback, authored region masks and a tap alternative to precise dragging Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
-      "evidence": "discovery",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {
@@ -2569,7 +2569,7 @@
         30
       ],
       "description": "Clipped strokes, one gesture per undo, no sibling-wide erase; default pending optional preference Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
-      "evidence": "discovery",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {
@@ -2582,7 +2582,7 @@
         30
       ],
       "description": "Creation/profile/page-version identity, autosave feedback, safe reopen and bounded storage Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
-      "evidence": "discovery",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {
@@ -2595,7 +2595,7 @@
         30
       ],
       "description": "Display or move a real picture record; preserve identity and prevent duplicate paintings Planned; no game implementation yet.",
-      "evidence": "scienceart",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {
@@ -2608,7 +2608,7 @@
         30
       ],
       "description": "Visitors view; owner controls editing; accepted work survives participant departure Planned; no game implementation yet.",
-      "evidence": "scienceart",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {
@@ -2621,7 +2621,7 @@
         30
       ],
       "description": "Bounded artwork updates, private offline saves, authoritative reunion, recovery and A10/touch verification Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
-      "evidence": "discovery",
+      "evidence": "mixing",
       "extraSource": ""
     },
     {

@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "build": 178,
+  "artifactFiles": 351,
+  "runtimeSourceFiles": 1107,
+  "runtimeCodeAndArtIdentical": true,
+  "whitespaceOnlyImporterCleanup": [
+    "Unity/FamilyPlayset/Assets/BuildProfiles/PC Server Network Probe.asset",
+    "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Network Probe.asset",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bingo/actions.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bingo/gentle-walk.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bluey/actions.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bluey/gentle-walk.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-bedroom.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-discovery.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-kitchen-working.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-secret.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-upstairs.png.meta"
+  ],
+  "hostToolsCheckedSeparately": true,
+  "coreChecks": 209,
+  "nativeGroups": 8,
+  "soloValidatedOnBuild": 177,
+  "soloCoreUnchangedIn178": true,
+  "physicalDevicesTested": false
+}

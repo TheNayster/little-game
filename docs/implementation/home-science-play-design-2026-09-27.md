@@ -1,5 +1,7 @@
 # Home science: playful projects and visual references
 
+**Implementation follow-through — candidate 178:** the user requested completion of SCI-09. [Four mixing variants are now implemented](home-mixing-2026-09-27.html), using the chemistry and direct-touch requirements below. This remains a dated research record; its proposal labels describe the research stage, not the latest implementation status. The other redesign recommendations remain open.
+
 September 27, 2026 · LAB-01 / H-29–30 / SCI-01–09 · Research and proposed design, not a new game build.
 
 **Latest addition:** the user explicitly requests mixing materials and seeing reactions, such as vinegar and baking soda. SCI-09 adds a mixing/reaction station to the previous eight. Its first required example is vinegar and baking soda; the additional variations below are researched proposals. No mixing implementation exists in candidate 174.

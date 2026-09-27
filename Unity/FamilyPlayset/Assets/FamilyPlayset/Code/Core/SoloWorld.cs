@@ -261,6 +261,7 @@ namespace LittleWeeps.Core
             if(state.revision>=long.MaxValue-1)throw new InvalidOperationException("World revision limit reached.");
             var changed=AdvanceHome(seconds);
             changed|=AdvanceKitchen(seconds,out var kitchenVisible);visibleChange|=kitchenVisible;
+            changed|=AdvanceMixing(seconds,out var mixingVisible);visibleChange|=mixingVisible;
             changed|=AdvanceKeepy(seconds,activePlayers);
             changed|=AdvanceStairs(seconds,activePlayers,out var roomCommitted);visibleChange|=roomCommitted;
             foreach(var toy in state.toys)

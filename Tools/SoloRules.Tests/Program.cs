@@ -33,6 +33,7 @@ static partial class Program
         KitchenTests();
         CakeFlowTests();
         DiscoveryTests();
+        MixingTests();
         ContinuationTests();
         BackgroundSaveTests();
         Test("local walking advances on irregular render frames and preserves transaction receipts",()=>{
