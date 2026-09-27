@@ -47,6 +47,7 @@ namespace LittleWeeps.NetworkProbe
             public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
             public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
+            public bool bookOpen,bookReady,bookPlaying,bookSpeaking;public int bookPage,bookSample;public string[] visibleText;
         }
         private void OnEnable()=>Application.logMessageReceived+=Log;
         private void OnDisable()=>Application.logMessageReceived-=Log;
@@ -249,6 +250,8 @@ namespace LittleWeeps.NetworkProbe
                 evidence.sceneryReady=screen.SceneryReady;evidence.place=screen.CurrentPlace;evidence.cameraX=screen.CameraX;evidence.pendingScenery=screen.PendingScenery;evidence.residentScenery=screen.ResidentScenery;
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();
+                evidence.bookOpen=screen.BookOpen;evidence.bookReady=screen.BookPageReady;evidence.bookPlaying=screen.BookPlaying;evidence.bookSpeaking=screen.BookSpeaking;evidence.bookPage=screen.BookPageNumber;evidence.bookSample=screen.BookSample;
+                evidence.visibleText=FindObjectsByType<Text>(FindObjectsSortMode.None).Where(t=>t.gameObject.activeInHierarchy).Select(t=>t.text).ToArray();
                 evidence.fullCharactersInTray=screen.CharactersOpen && FindObjectsByType<GameCharacterVisual>(FindObjectsSortMode.None)
                     .Where(v=>v.GetComponentsInParent<RectMask2D>().Any(m=>m.name=="Cast viewport")).All(v=>
                     {

@@ -3,22 +3,49 @@
   "exportVerified": true,
   "exportFilesVerified": 3098,
   "archiveSha256": "246cac05a201625a5cc7cf07d165093e3ea9cbc5fec63f0a3df9e085c9c86b9d",
-  "nativeBuildExit": 65,
-  "blocker": "codesign errSecInternalComponent; local Mac signing-key approval required",
-  "installed": false,
+  "nativeBuildExit": 0,
+  "installed": true,
   "ipad7": {
     "connected": true,
     "backupFilesVerified": 557,
-    "installed": false,
-    "backupComplete": true
+    "installed": true,
+    "backupComplete": true,
+    "signedArtifactVerified": true,
+    "documentsPreserved": 556,
+    "allExistingPreferencesPreserved": true,
+    "launchSucceeded": true,
+    "runningBuild": "0.0.171",
+    "enrollmentRetained": true,
+    "connectionStatus": "solo-available",
+    "connectionReason": "discovery-unavailable",
+    "inventoryAvailable": false
   },
   "ipad9": {
     "paired": true,
     "activeConnection": true,
     "backupComplete": true,
     "backupFilesVerified": 1602,
-    "installed": false
+    "installed": true,
+    "signedArtifactVerified": true,
+    "documentsPreserved": 1601,
+    "allExistingPreferencesPreserved": true,
+    "launchSucceeded": true,
+    "runningBuild": "0.0.171",
+    "enrollmentRetained": true,
+    "connectionStatus": "solo-available",
+    "connectionReason": "discovery-unavailable",
+    "inventoryAvailable": true
   },
-  "familyServerChanged": false,
-  "localSigningHelperOpened": true
+  "familyServerChanged": true,
+  "localSigningHelperOpened": true,
+  "priorBlocker": "Local codesign key access; resolved by user on Mac",
+  "userReportedBookAudioIssue": true,
+  "familyServerBuild": 171,
+  "ipad9SharedAdmissionVerified": true,
+  "sustainedSharedPlayAccepted": false,
+  "reportedIssues": [
+    "silent books",
+    "repeated client disconnects",
+    "stuck shared cooking countdown"
+  ]
 }

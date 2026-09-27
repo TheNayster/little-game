@@ -32,7 +32,8 @@ namespace LittleWeeps.Client
         private AudioSource readerVoice,readerEffects;
         private BookLease bookPageLease,bookNameLease,bookEffectLease;
         private AudioClip pageAudio,nameAudio,effectAudio;
-        private bool bookPagePending,bookNamePending,bookWasSpeaking,bookEffectsOn=true;
+        private bool bookPagePending,bookNamePending,bookWasSpeaking,bookAwaitingSpeech,bookEffectsOn=true;
+        private float bookSpeechDeadline;
         private float bookAutoAt=-1,bookNextSave,bookMotionUntil;
         private string readAfterDrop;
         public bool BookOpen=>reader.Open;
@@ -211,7 +212,7 @@ namespace LittleWeeps.Client
             PlayerPrefs.SetInt(key+"revision",reader.ContentRevision);PlayerPrefs.SetInt(key+"page",reader.Page);PlayerPrefs.SetInt(key+"sample",Math.Max(0,reader.Sample));PlayerPrefs.SetInt(key+"auto",reader.AutoTurn?1:0);PlayerPrefs.Save();bookNextSave=Time.unscaledTime+5;
         }
         private void StopBookName()
-        {bookNameGeneration++;bookNamePending=false;bookName=-1;if(readerVoice!=null){readerVoice.Stop();readerVoice.clip=null;}nameAudio=null;ReleaseBook(ref bookNameLease);bookWasSpeaking=false;}
+        {bookNameGeneration++;bookNamePending=false;bookName=-1;if(readerVoice!=null){readerVoice.Stop();readerVoice.clip=null;}nameAudio=null;ReleaseBook(ref bookNameLease);bookWasSpeaking=bookAwaitingSpeech=false;}
         private void StopBookEffect()
         {bookEffectGeneration++;if(readerEffects!=null){readerEffects.Stop();readerEffects.clip=null;}effectAudio=null;ReleaseBook(ref bookEffectLease);}
         private void PauseBook()
@@ -236,10 +237,20 @@ namespace LittleWeeps.Client
         }
         private IEnumerator LoadBookPage(int generation,BookLease lease)
         {
-            yield return lease.request;CompleteBookLoad(lease);if(!reader.Open || generation!=bookPageGeneration)yield break;
+            yield return LoadBookAudio(lease);if(!reader.Open || generation!=bookPageGeneration)yield break;
             pageAudio=lease.asset as AudioClip;bookPagePending=false;
-            if(pageAudio==null){reader.Pause();bookStatus.text="Page audio is unavailable. You can still read and turn pages.";yield break;}
+            if(pageAudio==null || pageAudio.loadState!=AudioDataLoadState.Loaded){reader.Pause();bookStatus.text="Page audio is unavailable. You can still read and turn pages.";RecordBookAudio("page-unavailable");yield break;}
             reader.ClampSamples(pageAudio.samples);if(reader.Playing && !BookNaming)StartBookSpeech();UpdateBookControls();
+        }
+        private IEnumerator LoadBookAudio(BookLease lease)
+        {
+            yield return lease.request;CompleteBookLoad(lease);
+            var clip=lease.asset as AudioClip;if(lease.users==0 || clip==null)yield break;
+            // ResourceRequest completion only loads the clip object. These
+            // files deliberately disable preloading to bound reader memory.
+            if(clip.loadState==AudioDataLoadState.Unloaded && !clip.LoadAudioData())yield break;
+            var until=Time.unscaledTime+10;
+            while(lease.users>0 && clip!=null && clip.loadState==AudioDataLoadState.Loading && Time.unscaledTime<until)yield return null;
         }
         private void ToggleBookPlay()
         {
@@ -249,9 +260,11 @@ namespace LittleWeeps.Client
         }
         private void StartBookSpeech()
         {
-            if(!reader.Playing || pageAudio==null || applicationPaused || !Narration.VoiceEnabled)return;
-            Narration.Stop();reader.ClampSamples(pageAudio.samples);readerVoice.clip=pageAudio;readerVoice.timeSamples=reader.Sample;readerVoice.Play();bookWasSpeaking=true;
+            if(!reader.Playing || bookPagePending || pageAudio==null || pageAudio.loadState!=AudioDataLoadState.Loaded || applicationPaused || !Narration.VoiceEnabled)return;
+            Narration.Stop();reader.ClampSamples(pageAudio.samples);readerVoice.clip=pageAudio;readerVoice.timeSamples=reader.Sample;StartReaderVoice();
         }
+        private void StartReaderVoice()
+        {readerVoice.Play();bookWasSpeaking=false;bookAwaitingSpeech=true;bookSpeechDeadline=Time.unscaledTime+3;RecordBookAudio("play-requested");}
         private void BookName(int index)
         {
             if(!reader.Open || !DinosaurBook || index<0 || index>=bookContent.names.Length)return;bookSelected=index;bookMotionUntil=Time.unscaledTime+1.6f;
@@ -260,9 +273,9 @@ namespace LittleWeeps.Client
         }
         private IEnumerator LoadBookName(int generation,int intent,BookLease lease)
         {
-            yield return lease.request;CompleteBookLoad(lease);if(!reader.Current(intent) || generation!=bookNameGeneration)yield break;
+            yield return LoadBookAudio(lease);if(!reader.Current(intent) || generation!=bookNameGeneration)yield break;
             nameAudio=lease.asset as AudioClip;bookNamePending=false;
-            if(nameAudio!=null){Narration.Stop();readerVoice.clip=nameAudio;readerVoice.Play();bookWasSpeaking=true;}
+            if(nameAudio!=null && nameAudio.loadState==AudioDataLoadState.Loaded){Narration.Stop();readerVoice.clip=nameAudio;StartReaderVoice();}
             else{StopBookName();if(reader.CanResume(intent))StartBookSpeech();}
         }
         private void PlayBookEffect()
@@ -272,8 +285,8 @@ namespace LittleWeeps.Client
         }
         private IEnumerator LoadBookEffect(int generation,BookLease lease)
         {
-            yield return lease.request;CompleteBookLoad(lease);if(!reader.Open || generation!=bookEffectGeneration || !bookEffectsOn || applicationPaused)yield break;
-            effectAudio=lease.asset as AudioClip;if(effectAudio!=null){readerEffects.clip=effectAudio;readerEffects.Play();}
+            yield return LoadBookAudio(lease);if(!reader.Open || generation!=bookEffectGeneration || !bookEffectsOn || applicationPaused)yield break;
+            effectAudio=lease.asset as AudioClip;if(effectAudio!=null && effectAudio.loadState==AudioDataLoadState.Loaded){readerEffects.clip=effectAudio;readerEffects.Play();RecordBookAudio("effect-requested");}
         }
         private void UpdateBookControls()
         {
@@ -314,6 +327,12 @@ namespace LittleWeeps.Client
             var scale=Vector3.one*Mathf.Min(safe.rect.width/1200,safe.rect.height/800);if(BookLibraryOpen){bookLibrary.SetAsLastSibling();bookLibraryFrame.localScale=scale;}
             if(!reader.Open)return;readerOverlay.SetAsLastSibling();LayoutBookReader();
             if(Time.unscaledTime>=bookNextSave)SaveBookmark();
+            ObserveBookAudio();
+            if(bookAwaitingSpeech && !applicationPaused)
+            {
+                if(readerVoice!=null && readerVoice.isPlaying){bookAwaitingSpeech=false;bookWasSpeaking=true;RecordBookAudio("play-started");}
+                else if(Time.unscaledTime>=bookSpeechDeadline){RecordBookAudio("play-did-not-start");PauseBook();bookStatus.text="Sound did not start. Tap Read to me to try again.";}
+            }
             if(bookWasSpeaking && readerVoice!=null && !readerVoice.isPlaying && !applicationPaused)
             {
                 bookWasSpeaking=false;

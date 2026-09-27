@@ -96,7 +96,7 @@ namespace LittleWeeps.NetworkProbe
             public double testLifetimeOffsetSeconds;
             public int testMotionDelayMs,testMotionJitterMs,testMotionDropEvery;
         }
-        [Serializable] private sealed class Hello {public string runId,profile,token,family,authority;public int protocol,content,recovery;}
+        [Serializable] private sealed class Hello {public string runId,profile,token,family,authority;public int protocol,content,recovery,activity;}
         [Serializable] public sealed class Control {public int serial;public string kind;public Request request;}
         [Serializable] public sealed class Request {public string requestId;public int protocol=Protocol;public SoloCommand command;}
         [Serializable] public sealed class State
@@ -177,6 +177,9 @@ namespace LittleWeeps.NetworkProbe
                     else transport.SetClientSecrets(pairing.serverName,pairing.caCertificate);
                 }
                 transport.MaxPayloadSize=MaxWireBytes;transport.DisconnectTimeoutMS=2500;transport.HeartbeatTimeoutMS=400;
+                // Four reliable windows plus motion/recovery need headroom in
+                // the per-frame packet queue. This does not enlarge saved data.
+                transport.MaxPacketQueueSize=256;
                 // Runtime-created managers have no inspector-serialized config.
                 network.NetworkConfig=new NetworkConfig{NetworkTransport=transport};
                 network.NetworkConfig.EnableSceneManagement=false;network.NetworkConfig.ConnectionApproval=true;
@@ -223,6 +226,7 @@ namespace LittleWeeps.NetworkProbe
             network.CustomMessagingManager.RegisterNamedMessageHandler(PoseMessage,ReceivePose);
             network.CustomMessagingManager.RegisterNamedMessageHandler(WalkMessage,ReceiveWalk);
             network.CustomMessagingManager.RegisterNamedMessageHandler(MotionMessage,ReceiveMotion);
+            network.CustomMessagingManager.RegisterNamedMessageHandler(ActivityMessage,ReceiveActivity);
             RegisterRecoveryMessages();
         }
         private void ShowShared()
@@ -354,7 +358,7 @@ namespace LittleWeeps.NetworkProbe
         private void StartGuest()
         {
             clientReady=false;
-            var hello=new Hello{runId=config.runId,profile=config.profile,token=config.token,protocol=config.protocol,content=config.content,family=pairing?.familyId,authority=pairing?.authorityId,recovery=1};
+            var hello=new Hello{runId=config.runId,profile=config.profile,token=config.token,protocol=config.protocol,content=config.content,family=pairing?.familyId,authority=pairing?.authorityId,recovery=1,activity=1};
             network.NetworkConfig.ConnectionData=Utf8.GetBytes(JsonUtility.ToJson(hello));
             if(!network.StartClient())throw new InvalidOperationException("Loopback client did not start.");
             guestStarted=true;admissionDeadline=Time.realtimeSinceStartupAsDouble+10;RegisterMessages();
@@ -377,6 +381,7 @@ namespace LittleWeeps.NetworkProbe
                 if(!admitted){response.Reason="unpaired-profile";return;}
                 response.Approved=session.Attach(request.ClientNetworkId,hello.profile,out var reason);response.Reason=reason;
                 if(response.Approved && hello.recovery==1)recoveryPeers[request.ClientNetworkId]=new RecoveryPeer();
+                if(response.Approved && hello.activity==1)activityPeers.Add(request.ClientNetworkId);
             }
             catch(ArgumentException){response.Reason="invalid-admission";}
             finally{TraceConnection(response.Approved?"approved":"rejected",request.ClientNetworkId,response.Reason);}
@@ -395,7 +400,7 @@ namespace LittleWeeps.NetworkProbe
             try
             {
                 if(config.role=="server")
-                {recoveryPeers.Remove(client);if(session.TryPlayer(client,out var actor))movement.Forget(actor);if(session.Detach(client)){SaveAuthority();Publish();}}
+                {recoveryPeers.Remove(client);activityPeers.Remove(client);if(session.TryPlayer(client,out var actor))movement.Forget(actor);if(session.Detach(client)){SaveAuthority();Publish();}}
                 else if(client==network.LocalClientId)
                 {
                     clientReady=false;ResetRecoveryTransfer();
@@ -462,6 +467,7 @@ namespace LittleWeeps.NetworkProbe
                 {if(!Guid.TryParseExact(state.requestId,"N",out _))throw new InvalidDataException("Bad response identity.");WriteJson(Path.Combine(output,"reply-"+state.requestId+".json"),state);}
                 if(state.sequence>seenSequence)
                 {
+                    PreserveActivityProgress(state);
                     foreach(var p in state.view.players)
                     {
                         var prior=Latest?.view.players.FirstOrDefault(v=>v.id==p.id);
@@ -588,7 +594,7 @@ namespace LittleWeeps.NetworkProbe
                 if(pose==null || pose.item==null || !WorldLayout.Position(view.toys.FirstOrDefault(t=>t.id==pose.item)?.zone,view.schema,pose.x,pose.y) || !session.TryPlayer(sender,out var actor) ||
                     actor!=pose.actor || !poses.TryGetValue(pose.item,out var current) || current.actor!=actor ||
                     current.lease!=pose.lease || pose.tick<=current.tick)return;
-                current.x=pose.x;current.y=pose.y;current.tick=pose.tick;Publish();
+                current.x=pose.x;current.y=pose.y;current.tick=pose.tick;activityDirty=true;
             }
             catch(ArgumentException){network.DisconnectClient(sender,"invalid-preview");}
             catch(InvalidDataException){network.DisconnectClient(sender,"invalid-preview");}
@@ -623,6 +629,7 @@ namespace LittleWeeps.NetworkProbe
             try{TickPresentation();}catch(Exception e){Fail(e);return;}
             UpdateConnectionEvidence();
             try{TickMovement(Time.realtimeSinceStartupAsDouble);}catch(Exception e){Fail(e);return;}
+            try{TickActivity(Time.realtimeSinceStartupAsDouble);}catch(Exception e){Fail(e);return;}
             TickRecovery(Time.realtimeSinceStartupAsDouble);
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
             // Only explicit home hosting opts out; automated probes keep their

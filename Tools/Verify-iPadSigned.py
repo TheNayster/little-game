@@ -46,6 +46,7 @@ framework=app/'Frameworks/UnityFramework.framework/UnityFramework'
 symbols=subprocess.check_output(['nm','-a',str(framework)],text=True)
 defined={line.split()[-1] for line in symbols.splitlines() if len(line.split())>=3 and line.split()[-2] in ('t','T')}
 names=['LWFamilyBrowse','LWFamilyPump','LWFamilyTake','LWFamilyStop','LWPairingAdd','LWPairingRead']
+if build>=172:names.append('LWBookAudioState')
 assert all('_'+name in defined for name in names),'Native bridge functions not linked'
 files=[]
 for f in sorted(app.rglob('*')):

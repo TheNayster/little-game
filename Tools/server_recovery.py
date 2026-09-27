@@ -28,8 +28,11 @@ LIMIT = 3 * 1024 * 1024
 # 110 and 128 passed native multi-area restore/rollback/re-enrollment acceptance.
 # 128 preserves home switches/storage; 130 also passed exact paused-balloon
 # schema-5 recovery, interrupted restore and all four enrolled clients rejoining.
-# 131 repeats those checks for the outdoor spawn; 132 awaits rollout qualification.
-QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131}
+# 131 repeats those checks for the outdoor spawn. 171 passed six native recovery
+# groups and exact 128-to-171 migration/restoration before coordinated family rollout.
+# 172 repeats all six recovery groups with unchanged schema/content and the
+# compact activity stream; physical mixed-device acceptance remains separate.
+QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131, 171, 172}
 MAX_QUALIFIED_BUILD = max(QUALIFIED_BUILDS)
 
 

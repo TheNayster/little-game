@@ -2,6 +2,8 @@
 
 September 26, 2026. BOOK-01 development on `codex/home-reading`, following the [reader research](home-reading-quiet-play-research-2026-09-26.md) and [voice research and selection](kids-narrator-research-2026-09-26.md).
 
+**September 27 iPad rollout:** both iPads now run 171 with the existing six-book preview. In-place installation retained all prior documents/preferences, and both devices wrote runtime version 171. The user reports silent books; listening acceptance remains open while audio controls/playback are checked. [Current rollout and evidence](chocolate-cake-flow-2026-09-27.html#device-delivery).
+
 ## Requested preview
 
 The user requested the original drafts on the phone before deciding whether to replace them. Build 147 delivered four books. The user reported clipped animals and story panels, small covers/pages, and two missing books. The next preview completes the original six, enlarges the shared rack and chooser, and replaces the small framed page with a screen-sized illustration and translucent controls, following the supplied tablet example. Full spoken story words appear on each page. Read to me supports pause/resume, replay, deliberate sounds and automatic page turning; reading never starts merely by opening a book.

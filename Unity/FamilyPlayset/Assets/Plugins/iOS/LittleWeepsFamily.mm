@@ -1,4 +1,6 @@
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+#import <TargetConditionals.h>
 #import <Security/Security.h>
 #include <dns_sd.h>
 #include <arpa/inet.h>
@@ -131,4 +133,19 @@ int LWPairingAdd(const char *json){
     return (int)code;
 }
 void LWExcludeEnrollmentBackup(const char *path){if(path){NSURL *url=[NSURL fileURLWithPath:@(path)];[url setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];}}
+char *LWBookAudioState(){
+#if TARGET_OS_IPHONE
+    // Observe output routing without activating, muting or reconfiguring it.
+    AVAudioSession *session=[AVAudioSession sharedInstance];
+    NSMutableArray *ports=[NSMutableArray array];
+    for(AVAudioSessionPortDescription *port in session.currentRoute.outputs)[ports addObject:port.portType];
+    NSDictionary *state=@{@"category":session.category?:@"",@"mode":session.mode?:@"",
+        @"outputVolume":@(session.outputVolume),@"outputs":ports,@"otherAudioPlaying":@(session.otherAudioPlaying)};
+    NSData *json=[NSJSONSerialization dataWithJSONObject:state options:0 error:nil];
+    NSString *value=[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+    return value?strdup(value.UTF8String):nullptr;
+#else
+    return strdup("{}");
+#endif
+}
 }

@@ -1,0 +1,21 @@
+{
+  "build": 172,
+  "checks": [
+    {
+      "target": "NetworkProbe",
+      "sourceFilesMatched": 98,
+      "releaseBuild": true
+    },
+    {
+      "target": "AndroidSigned",
+      "sourceFilesMatched": 98,
+      "releaseBuild": true
+    },
+    {
+      "target": "iOSFamilyLAN",
+      "sourceFilesMatched": 98,
+      "releaseBuild": true
+    }
+  ],
+  "iOSNativeBuildComplete": false
+}

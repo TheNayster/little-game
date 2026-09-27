@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "previousBuild": 128,
+  "build": 171,
+  "checks": [
+    "128 schema-4 world upgrades to 171 schema-15 with every previous field and protected enrollment retained; all four original players join; new backup validates",
+    "Restoring the qualified 128 backup repeats the identical native additive migration"
+  ],
+  "liveFamilyTouched": false
+}

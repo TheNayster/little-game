@@ -26,7 +26,7 @@ namespace LittleWeeps.NetworkProbe
         // stays immediate; only other players/held props use this history.
         public const double InterpolationDelay=.18;
         public void Initialize(NetworkProbe source)
-        {probe=source;probe.Received+=Receive;probe.MotionReceived+=CapturePositions;probe.LostConnection+=Disconnected;}
+        {probe=source;probe.Received+=Receive;probe.MotionReceived+=CapturePositions;probe.ActivityReceived+=CaptureProps;probe.LostConnection+=Disconnected;}
         public string Actor=>probe.Settings.profile;
         public string PreferenceScope
         {
@@ -65,18 +65,21 @@ namespace LittleWeeps.NetworkProbe
         private void Receive(NetworkProbe.State state)
         {
             CapturePositions();
-            foreach(var pose in probe.Latest?.poses??Array.Empty<NetworkProbe.DragPose>())
-            {
-                if(!toyTracks.TryGetValue(pose.item,out var track))toyTracks[pose.item]=track=new MotionBuffer();
-                track.Add(pose.lease,state.time,pose.x,pose.y);
-            }
-            foreach(var key in toyTracks.Keys.ToArray())if(!View.toys.Any(t=>t.id==key && !string.IsNullOrEmpty(t.holder)))toyTracks.Remove(key);
+            CaptureProps(state.time);
             if(string.IsNullOrEmpty(state.requestId))return;
             // Isolated native failure tests retain snapshots but suppress command
             // completion, representing an accepted action with an unknown result.
             if(dropTestAcknowledgments)return;
-            // Deterministic delayed-ack test, enabled only in isolated test configs.
             replies.Enqueue((Time.realtimeSinceStartup+(MutedTest ? .25f : 0),state));
+        }
+        private void CaptureProps(double time)
+        {
+            foreach(var pose in probe.Latest?.poses??Array.Empty<NetworkProbe.DragPose>())
+            {
+                if(!toyTracks.TryGetValue(pose.item,out var track))toyTracks[pose.item]=track=new MotionBuffer();
+                track.Add(pose.lease,time,pose.x,pose.y);
+            }
+            foreach(var key in toyTracks.Keys.ToArray())if(!View.toys.Any(t=>t.id==key && !string.IsNullOrEmpty(t.holder)))toyTracks.Remove(key);
         }
         private void Update()
         {
@@ -166,6 +169,6 @@ namespace LittleWeeps.NetworkProbe
             return new Vector2(p.x,p.y);
         }
         private void Disconnected(){probe.RememberInterrupted(queue.Unsettled());replies.Clear();queue.Disconnect();tracks.Clear();toyTracks.Clear();ownGeneration=null;walking=new WalkInput{mode=WalkMode.Stop};}
-        private void OnDestroy(){if(probe!=null){probe.Received-=Receive;probe.MotionReceived-=CapturePositions;probe.LostConnection-=Disconnected;}}
+        private void OnDestroy(){if(probe!=null){probe.Received-=Receive;probe.MotionReceived-=CapturePositions;probe.ActivityReceived-=CaptureProps;probe.LostConnection-=Disconnected;}}
     }
 }

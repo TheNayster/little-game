@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 172,
+  "checks": [
+    "four real recipe pickers create distinct cakes and offer only batter ingredients",
+    "actual stroke, assisted mix and interrupted pour persist; two bakes finish while another cook leaves",
+    "filling, layer assembly, icing, decoration and slicing keep the same food across four unique served portions"
+  ],
+  "liveFamilyTouched": false
+}

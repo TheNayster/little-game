@@ -1,0 +1,15 @@
+{
+  "build": 172,
+  "passed": true,
+  "checks": [
+    "six cold title loads, explicit playback, pause/resume samples and close cancellation",
+    "180 seconds of four simultaneous object drags with zero disconnects or send-queue errors"
+  ],
+  "activity": {
+    "packets": 13376,
+    "bytes": 3259820,
+    "maxBytes": 248
+  },
+  "liveFamilyTouched": false,
+  "physicalAudioVerified": false
+}
