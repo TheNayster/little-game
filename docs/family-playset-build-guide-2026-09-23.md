@@ -1,5 +1,7 @@
 # The Family Playset — ground-up build guide
 
+**Mixing/reaction station added — September 27:** the user requests vinegar/baking-soda-style experiments. **SCI-09 — Mix and discover** extends required science scope to nine stations. [Research and first complete mixing loop](implementation/home-science-play-design-2026-09-27.html#sci-09-mix-and-discover) specify direct scooping/pouring, immediate contact reactions, persistent amounts and four independent trays. First implement vinegar/baking soda; additional reviewed variations follow. This is a scope/research update, not an implementation, build, delivery or change to the current bounded queue. Earlier eight-station counts describe the preceding scope.
+
 **Science presentation research — September 27:** [Actual publisher visuals and eight applied play designs](implementation/home-science-play-design-2026-09-27.html) address the user's concern that the science must look and feel fun. Candidate 174's three schematic experiments remain Partial. The recommended next science slice is an illustrated cargo harbor with direct cargo handling and clear physical reactions; blank drawing and the other required stations remain queued. Research only: no new build or device/server update.
 
 **First science/coloring game slice — Windows candidate 174, September 27:** the connected downstairs bay now has four independent profile-owned workspaces, loaded boats, magnet materials, additive RGB light and six tap-fill coloring pages with persistent page-local undo/redo. [Implementation and evidence](implementation/home-discovery-2026-09-27.html). Schema 16/content 17; no device or live-server deployment. Freehand drawing, gallery/carrying/Together, five remaining science stations, final artwork and physical qualification remain open. The candidate inherits 172 fixes; installed Samsung/iPads/server remain last recorded at 171.
@@ -450,7 +452,7 @@ These batches preserve the complete goal sheet while avoiding simultaneous unfin
 
 Necessary characters enter earlier batches as needed; G7-E closes the remaining roster gaps rather than withholding character choice until the end. The six-world bubble browser remains extensible from G2, but playable builds should not present broken entry buttons to content that does not exist yet.
 
-Counts such as six distinct books (three boyish and three girly themes), 20 dinosaur types and eight science stations are proposed production batches in the goal sheet. Track their approved scope explicitly. The 15 cooking variants and nine named imagination stories are concrete requested content. Do not inflate progress by counting the same fishing system in two places as two finished engines.
+Counts such as six distinct books (three boyish and three girly themes) and 20 dinosaur types are production batches in the goal sheet. Science now has nine tracked stations after the user's SCI-09 mixing request. Track approved scope explicitly. The 15 cooking variants and nine named imagination stories are concrete requested content. Do not inflate progress by counting the same fishing system in two places as two finished engines.
 
 ## 13. Test strategy and the evidence required
 

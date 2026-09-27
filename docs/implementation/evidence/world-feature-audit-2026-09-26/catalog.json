@@ -2406,7 +2406,7 @@
     {
       "id": "SCI-01",
       "world": "home",
-      "group": "Eight science experiments",
+      "group": "Science experiments",
       "title": "Floaty boat tub",
       "status": "part",
       "chapters": [
@@ -2419,7 +2419,7 @@
     {
       "id": "SCI-02",
       "world": "home",
-      "group": "Eight science experiments",
+      "group": "Science experiments",
       "title": "Magnet treasure trail",
       "status": "part",
       "chapters": [
@@ -2432,7 +2432,7 @@
     {
       "id": "SCI-03",
       "world": "home",
-      "group": "Eight science experiments",
+      "group": "Science experiments",
       "title": "Ramp and roll",
       "status": "plan",
       "chapters": [
@@ -2445,7 +2445,7 @@
     {
       "id": "SCI-04",
       "world": "home",
-      "group": "Eight science experiments",
+      "group": "Science experiments",
       "title": "Color-light garden",
       "status": "part",
       "chapters": [
@@ -2458,7 +2458,7 @@
     {
       "id": "SCI-05",
       "world": "home",
-      "group": "Eight science experiments",
+      "group": "Science experiments",
       "title": "Dinosaur shadow theatre",
       "status": "plan",
       "chapters": [
@@ -2471,7 +2471,7 @@
     {
       "id": "SCI-06",
       "world": "home",
-      "group": "Eight science experiments",
+      "group": "Science experiments",
       "title": "Bubble workshop",
       "status": "plan",
       "chapters": [
@@ -2484,7 +2484,7 @@
     {
       "id": "SCI-07",
       "world": "home",
-      "group": "Eight science experiments",
+      "group": "Science experiments",
       "title": "Sound-and-wiggle board",
       "status": "plan",
       "chapters": [
@@ -2497,13 +2497,26 @@
     {
       "id": "SCI-08",
       "world": "home",
-      "group": "Eight science experiments",
+      "group": "Science experiments",
       "title": "Little seed window",
       "status": "plan",
       "chapters": [
         30
       ],
       "description": "Shared downstairs. Simple play: Place a seed, add water, and press a fast-forward sun picture Explore together: Compare two prepared pots, watch simplified growth stages, decorate the pots, and move a grown plant to a bedroom Factual constraint: Growth is deliberately sped up; plants need more than water alone, and soil is not the only possible growing medium Planned; not implemented in Unity.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "SCI-09",
+      "world": "home",
+      "group": "Science experiments",
+      "title": "Mix and discover",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Shared downstairs. Simple play: Scoop baking soda and pour vinegar into an open bowl or toy volcano; watch immediate fizzing Explore together: Four independent saved trays; compare portions, add optional soap for lasting foam; researched extensions include indicator colors, oil/water layers and cornstarch/water Factual constraint: Vinegar and baking soda produce carbon dioxide; soap retains bubbles rather than creating extra gas. Preserve consumed ingredients and distinguish chemical reactions from physical mixing; not every combination fizzes Planned; not implemented in Unity.",
       "evidence": "scienceart",
       "extraSource": ""
     },

@@ -1,5 +1,7 @@
 # Little Weeps — Home world feature tracker
 
+**New required science scope — SCI-09 mixing/reactions:** vinegar and baking soda with real scooping/pouring and visible fizzing; four independent saved trays. This is the ninth station, in addition to the previous eight. [Applied research and proposed variations](implementation/home-science-play-design-2026-09-27.html#sci-09-mix-and-discover). Planned, not implemented.
+
 **Science play/presentation research — September 27:** [Reference pictures, evidence and all eight proposed play loops](implementation/home-science-play-design-2026-09-27.html). The current three science trays remain Partial and visually schematic. Recommended next science slice: one polished cargo harbor with direct prop handling, then magnets/RGB. No new game implementation or acceptance is claimed; coloring and every remaining Home feature stay tracked.
 
 **First science/coloring game slice — Windows candidate 174, September 27:** the connected downstairs bay now has four independent profile-owned workspaces, loaded boats, magnet materials, additive RGB light and six tap-fill coloring pages with persistent page-local undo/redo. [Implementation and evidence](implementation/home-discovery-2026-09-27.html). Schema 16/content 17; no device or live-server deployment. Freehand drawing, gallery/carrying/Together, five remaining science stations, final artwork and physical qualification remain open. The candidate inherits 172 fixes; installed Samsung/iPads/server remain last recorded at 171.
@@ -347,16 +349,16 @@ Keep all 20 named types accessible through the toy catalog without requiring all
 - [ ] **DISC-05 — Dinosaur parade and bedtime** — *Planned*. Simple play: Tap a toy to make it take a few steps into a basket Deeper play: Arrange an order, lead the toys along a short path, then tuck them into cushion nests Sources: [§28](bluey-game-research-2026-09-23.html#28-dinosaur-toy-room-and-discovery-mini-game).
 
 
-## Science corner: eight experiments
+## Science corner: nine experiments
 
 Placement is now explicitly the main house's shared downstairs area. The [September 27 research](implementation/home-science-coloring-research-2026-09-27.html) governs the next integration: float/magnets/lights first, four independent workspaces, bounded updates and preserved creations. Candidate 174 implements the first three as Partial; all eight remain required. [Current game evidence](implementation/home-discovery-2026-09-27.html).
 
 The [game-reference follow-up](implementation/home-science-play-design-2026-09-27.html) supplies the missing visual/play standard: recognizable equipment, direct object manipulation, visible causal reactions and optional picture invitations. All eight proposed loops are mapped to the existing SCI IDs; this research does not change implementation statuses.
 
-All eight support four participants through independent controls, tools or sample trays, with safe resets. Preserve finished plants, boats and arrangements. Free experimentation and optional picture prompts come before quizzes or mandatory sequences; simplified explanations must agree with the illustrated behavior.
+All nine support four participants through independent controls, tools or sample trays, with safe resets. Preserve finished plants, boats, mixtures and arrangements. Free experimentation and optional picture prompts come before quizzes or mandatory sequences; simplified explanations must agree with the illustrated behavior. The earlier eight-station references describe the scope before SCI-09 was requested.
 
 
-- [ ] **H-29 — Discovery bench and free experiments** — *Partial*. Three simple experiments now work in candidate 174; the full eight-station bench remains unfinished.  Eight listed stations with immediate repeatable reactions, prediction pictures, generous assistance and no required order. First proposed slice: float tub, magnets and colored light. Sources: [§30](bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner).
+- [ ] **H-29 — Discovery bench and free experiments** — *Partial*. Three simple experiments work in candidate 174; the full nine-station bench remains unfinished. Immediate repeatable reactions, prediction pictures, generous assistance and no required order. SCI-09 mixing/reactions is added to the original eight. Sources: [§30](bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner).
 
 - [ ] **H-30 — Shared experiments and saved creations** — *Partial*. Four independent persistent trays are implemented; narration, carryable creations and physical acceptance remain open.  Up to four participants with independent controls/trays, local narration and safe resets. Keep finished plants, boats or arrangements; simulation and explanations must agree. Sources: [§30](bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner) · [§31](bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play) · [§47](bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android).
 
@@ -375,6 +377,8 @@ All eight support four participants through independent controls, tools or sampl
 - [ ] **SCI-07 — Sound-and-wiggle board** — *Planned*. Simple play: Pluck a large illustrated string and see it vibrate Explore together: Adjust a clearly marked length or tension control; take turns making high/low sounds Factual constraint: Vibration produces sound; change one relevant parameter at a time and separate pitch from loudness Sources: [§30](bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner).
 
 - [ ] **SCI-08 — Little seed window** — *Planned*. Simple play: Place a seed, add water, and press a fast-forward sun picture Explore together: Compare two prepared pots, watch simplified growth stages, decorate the pots, and move a grown plant to a bedroom Factual constraint: Growth is deliberately sped up; plants need more than water alone, and soil is not the only possible growing medium Sources: [§30](bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner).
+
+- [ ] **SCI-09 — Mix and discover** — *Planned*. User-requested vinegar/baking-soda reactions: scoop, pour, fizz, compare quantities and rinse; optional foam-volcano presentation. Four complete tool/supply sets, independently saved mixtures and local resets. Track actual amounts and consumed reactants; water alone must not trigger fizz. Indicator color changes, oil/water swirls and oobleck are researched extension proposals. Sources: [§30](bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner) · [Applied mixing research](implementation/home-science-play-design-2026-09-27.html#sci-09-mix-and-discover).
 
 
 ## Shared downstairs coloring-book area

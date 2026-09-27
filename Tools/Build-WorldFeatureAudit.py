@@ -206,7 +206,7 @@ for row in table_with(30,'ID and station')[1:]:
     m=re.match(r'(SCI-\d+)\s*—\s*(.+)',plain(row[0]))
     integrated=m[1] in ('SCI-01','SCI-02','SCI-04')
     note=' Candidate 174 integrates the simple saved tray; deeper interactions and physical acceptance remain open.' if integrated else ' Planned; not implemented in Unity.'
-    add(m[1],'home','Eight science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'discovery' if integrated else 'scienceart')
+    add(m[1],'home','Science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'discovery' if integrated else 'scienceart')
 for row in table_with(30,'Coloring ID')[1:]:
     integrated=row[0] in ('COL-01','COL-02','COL-03','COL-04','COL-05','COL-08')
     note=' Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.' if integrated else ' Planned; no game implementation yet.'
@@ -289,7 +289,7 @@ TRACK_MAP={
 'ACT-01':'G-11–G-13; QUEST-01–18','COOK-01':'H-07–H-11; PIZ, CAK, MEAL','FISH-01':'Y-12, Y-13; CRK-02',
 'CLEAN-01':'CLEAN-GAME-01–05; Y-02','HIDE-01':'H-13–H-17; SHOW-01','HIDE-02':'H-14, H-17','NPC-01':'H-12; D-03',
 'CAT-01':'SHOW-01–32; SHOW-EXTRA optional','BOOK-01':'H-18–H-20; BK-01–06','TV-01':'H-21–H-25','DINO-01':'H-26, H-27; TOY-01–20',
-'DINO-02':'H-28; DISC-01–05','LAB-01':'H-29, H-30; SCI-01–08','JOIN-01':'G-01, G-12, D-09; O-01–O-03',
+'DINO-02':'H-28; DISC-01–05','LAB-01':'H-29, H-30; SCI-01–09','JOIN-01':'G-01, G-12, D-09; O-01–O-03',
 'WORLD-01':'G-02, G-08, H-01; P-01, C-01, B-01, D-01','WORLD-02':'G-02, G-12; H-20, H-24, D-09',
 'ITEM-02':'G-21, G-22, G-24','ITEM-03':'G-25, G-27','STOCK-01':'G-26, G-27','ROOM-02':'H-33, H-34',
 'NET-02':'O-01–O-05','REMOTE-01':'O-06, O-07','ROOM-01':'H-31–H-34','SECRET-01':'H-35–H-38','HIDE-03':'H-15–H-17',
@@ -410,7 +410,7 @@ Still open for later content decisions: Spanish dialect; final extra cast priori
 
 Read the maintained decisions and build record, extracted every named catalog entry, reviewed the research's room/activity/state requirements, and compared current status with focused runtime source and retained acceptance reports. Source inspected includes `WorldLayout`, `SoloWorld`, `HomeWorld`, `KeepyUppy`, `SoloNavigation`, `SoloScreen` and the separate `FoundationVideo` probe. This is a feature/source/evidence audit, not a line-by-line review of all game code or a fresh external research pass. No devices, live server, personal media, credentials or saves were accessed or changed for this audit.
 
-The generated coverage record checks all 55 chapters, 35 master IDs, 32 show cards, 32 outdoor cards, 12 learning stations, 15 recipes, eight science stations, eight coloring requirements, six books, 20 dinosaurs, five dinosaur invitations, five cleanup entries, 18 starter invitations, nine stories, 37 individual roster entries and 20 reusable object families. Overlapping entries are intentional; no completion percentage is derived.
+The generated coverage record checks all 55 chapters, 35 master IDs, 32 show cards, 32 outdoor cards, 12 learning stations, 15 recipes, nine science stations, eight coloring requirements, six books, 20 dinosaurs, five dinosaur invitations, five cleanup entries, 18 starter invitations, nine stories, 37 individual roster entries and 20 reusable object families. SCI-09 mixing/reactions was added at the user's request on September 27 and remains planned. Overlapping entries are intentional; no completion percentage is derived.
 
 [Research and goal sheet](bluey-game-research-2026-09-23.html) · [Current decisions](current-decisions.md) · [Build plan](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Bluey interaction study](bluey-lets-play-reference-study-2026-09-25.html) · [Toca/Piknik supplement](toca-piknik-interaction-research-2026-09-23.html) · [Machine-readable inventory](implementation/evidence/world-feature-audit-2026-09-26/catalog.json) · [Coverage validation](implementation/evidence/world-feature-audit-2026-09-26/coverage.json).
 '''
@@ -418,7 +418,7 @@ parts.append(OUTRO)
 md='\n'.join(parts).rstrip()+'\n'
 (DOC/(NAME+'.md')).write_text(md,encoding='utf-8')
 
-expected={'SHOW':32,'BCH':10,'CRK':10,'PRK':12,'LRN':12,'PIZ':5,'CAK':5,'MEAL':5,'SCI':8,'COL':8,'BK':6,'TOY':20,'DISC':5,'CLEAN-GAME':5,'QUEST':18,'STORY-IMG':9,'CAST':37,'OBJECT':20}
+expected={'SHOW':32,'BCH':10,'CRK':10,'PRK':12,'LRN':12,'PIZ':5,'CAK':5,'MEAL':5,'SCI':9,'COL':8,'BK':6,'TOY':20,'DISC':5,'CLEAN-GAME':5,'QUEST':18,'STORY-IMG':9,'CAST':37,'OBJECT':20}
 counts={p:sum(bool(re.fullmatch(re.escape(p)+r'-\d+',f['id'])) for f in features) for p in expected}
 counts['CAST']=sum(f['id'].startswith('CAST-') for f in features)
 assert counts==expected,(counts,expected)

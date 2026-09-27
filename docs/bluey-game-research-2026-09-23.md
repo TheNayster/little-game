@@ -1235,7 +1235,9 @@ The older iPad remains the performance baseline as client and solo player, inclu
 
 PBS's age-three science guidance emphasizes investigating pushes, pulls, rolling, floating, and movement through play and simple descriptive language. That supports a cause-and-effect approach; it does not establish that these proposed digital activities have a measured educational benefit. Our game designs below adapt physical science ideas into forgiving, illustrated play. [PBS: pushes and pulls at age three](https://www.pbs.org/parents/learn-grow/age-3/science/pushes-and-pulls)
 
-### Eight proposed science activities
+**Latest addition — mixing reactions:** the user explicitly requests mixing materials such as vinegar and baking soda and seeing something happen. SCI-09 below extends the original eight-station scope to nine. [Researched mixing process and variations](implementation/home-science-play-design-2026-09-27.html#sci-09-mix-and-discover). This is planned scope, not a feature in candidate 174.
+
+### Nine science activities
 
 | ID and station | Simple Play | Extra exploration and cooperative use | Scientific idea to preserve |
 | --- | --- | --- | --- |
@@ -1247,6 +1249,7 @@ PBS's age-three science guidance emphasizes investigating pushes, pulls, rolling
 | **SCI-06 — Bubble workshop** | Tap a fan button to blow bubbles, then tap to pop them | Try different wand outlines and air strength; one child operates the fan, the other catches bubbles | Free soap bubbles tend toward a round shape; a square wand does not make permanent square floating bubbles |
 | **SCI-07 — Sound-and-wiggle board** | Pluck a large illustrated string and see it vibrate | Adjust a clearly marked length or tension control; take turns making high/low sounds | Vibration produces sound; change one relevant parameter at a time and separate pitch from loudness |
 | **SCI-08 — Little seed window** | Place a seed, add water, and press a fast-forward sun picture | Compare two prepared pots, watch simplified growth stages, decorate the pots, and move a grown plant to a bedroom | Growth is deliberately sped up; plants need more than water alone, and soil is not the only possible growing medium |
+| **SCI-09 — Mix and discover** | Scoop baking soda and pour vinegar into an open bowl or toy volcano; watch immediate fizzing | Four independent saved trays; compare portions, add optional soap for lasting foam; researched extensions include indicator colors, oil/water layers and cornstarch/water | Vinegar and baking soda produce carbon dioxide; soap retains bubbles rather than creating extra gas. Preserve consumed ingredients and distinguish chemical reactions from physical mixing; not every combination fizzes |
 
 **Factual source notes:** the [PBS sink-or-float activity](https://www.pbs.org/video/sink-or-float-prek-kindergarten-science-m2z0ne/) and [ramp activity](https://www.pbs.org/video/ramps-npt3-nanhcu/) support observing and comparing those effects. The National MagLab describes ferromagnetic materials in its [permanent-magnet explanation](https://nationalmaglab.org/about-the-maglab/around-the-lab/maglab-dictionary/permanent-magnet/); our limited prop list should be checked against those material distinctions before recording any factual lines.
 

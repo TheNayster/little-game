@@ -370,6 +370,7 @@
       "SCI-06",
       "SCI-07",
       "SCI-08",
+      "SCI-09",
       "COL-01",
       "COL-02",
       "COL-03",
@@ -669,7 +670,7 @@
     "PIZ": 5,
     "CAK": 5,
     "MEAL": 5,
-    "SCI": 8,
+    "SCI": 9,
     "COL": 8,
     "BK": 6,
     "TOY": 20,
@@ -680,11 +681,11 @@
     "CAST": 37,
     "OBJECT": 20
   },
-  "inventoryEntries": 338,
+  "inventoryEntries": 339,
   "statusCounts": {
     "Partial": 83,
     "Playable prototype": 12,
-    "Planned": 227,
+    "Planned": 228,
     "Development only": 1,
     "Optional idea": 8,
     "Scenery only": 4,
@@ -693,15 +694,15 @@
   "sources": [
     {
       "path": "docs/bluey-game-research-2026-09-23.md",
-      "sha256": "956f7c9c3d677bac1c4e408979b3ff8ac587a4f0a1018a644b2aa33b371ec272"
+      "sha256": "9353ea0fe3986b0ab54dec2c954ee0800af8f81b82d11663a4186782bf1a83a1"
     },
     {
       "path": "docs/current-decisions.md",
-      "sha256": "ccb0e5793b6133e5dfb5449f74c044f97b3f661646f0f8ab86043d1f21b9df15"
+      "sha256": "e440bdbb78c6aafb2bad110cebc770430857d9583e6511349520f0f3caf3f319"
     },
     {
       "path": "docs/family-playset-build-guide-2026-09-23.md",
-      "sha256": "780e54b0ed7c9495ca41a6365f0486bdaddf976a05835e992d6414b866afad98"
+      "sha256": "56dca2fb1ac9cb46bbed44d92fd40bd6fe86008a7a6bb450eef196f7a9649d8a"
     },
     {
       "path": "docs/bluey-lets-play-reference-study-2026-09-25.md",
