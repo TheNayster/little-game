@@ -1,5 +1,7 @@
 # Little Weeps — Home world feature tracker
 
+**Science play/presentation research — September 27:** [Reference pictures, evidence and all eight proposed play loops](implementation/home-science-play-design-2026-09-27.html). The current three science trays remain Partial and visually schematic. Recommended next science slice: one polished cargo harbor with direct prop handling, then magnets/RGB. No new game implementation or acceptance is claimed; coloring and every remaining Home feature stay tracked.
+
 **First science/coloring game slice — Windows candidate 174, September 27:** the connected downstairs bay now has four independent profile-owned workspaces, loaded boats, magnet materials, additive RGB light and six tap-fill coloring pages with persistent page-local undo/redo. [Implementation and evidence](implementation/home-discovery-2026-09-27.html). Schema 16/content 17; no device or live-server deployment. Freehand drawing, gallery/carrying/Together, five remaining science stations, final artwork and physical qualification remain open. The candidate inherits 172 fixes; installed Samsung/iPads/server remain last recorded at 171.
 
 **Research basis — shared downstairs science and coloring:** [Applied research and implementation sequence](implementation/home-science-coloring-research-2026-09-27.html) · [Interactive browser prototype](implementation/home-science-coloring-prototype.html). Retain SCI-01–08 and add COL-01–08 below. Prototype interactions are not installed Unity features or multiplayer qualification. The server/audio correction in 172 remains pending deployment.
@@ -348,6 +350,8 @@ Keep all 20 named types accessible through the toy catalog without requiring all
 ## Science corner: eight experiments
 
 Placement is now explicitly the main house's shared downstairs area. The [September 27 research](implementation/home-science-coloring-research-2026-09-27.html) governs the next integration: float/magnets/lights first, four independent workspaces, bounded updates and preserved creations. Candidate 174 implements the first three as Partial; all eight remain required. [Current game evidence](implementation/home-discovery-2026-09-27.html).
+
+The [game-reference follow-up](implementation/home-science-play-design-2026-09-27.html) supplies the missing visual/play standard: recognizable equipment, direct object manipulation, visible causal reactions and optional picture invitations. All eight proposed loops are mapped to the existing SCI IDs; this research does not change implementation statuses.
 
 All eight support four participants through independent controls, tools or sample trays, with safe resets. Preserve finished plants, boats and arrangements. Free experimentation and optional picture prompts come before quizzes or mandatory sequences; simplified explanations must agree with the illustrated behavior.
 

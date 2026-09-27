@@ -1,5 +1,7 @@
 # Downstairs science and coloring: research applied to the Home design
 
+**Later presentation research:** [Actual game visuals and eight project/play designs](home-science-play-design-2026-09-27.html) address the user's request for more engaging science. This first report covered scientific/system foundations more deeply than presentation; the follow-up adds that missing design evidence without claiming a new implementation.
+
 **Later implementation:** [Windows candidate 174](home-discovery-2026-09-27.html) applies this research to the actual connected house, three science trays and six persistent tap-fill pages. The browser prototype and its evidence below remain a separate historical research milestone. Blank drawing, gallery/carrying/Together and five science stations remain open.
 
 September 27, 2026 · LAB-01 / H-29–30 / ACT-01 / ITEM-03 · development branch `codex/home-science-coloring`.

@@ -64,7 +64,9 @@ These tests used disposable local worlds. No live family save, enrollment, serve
 
 ## Remaining work and next bounded slice
 
-Next: add **blank drawing with bounded stroke storage and separately fetched artwork**, durable per-profile creation folders, and gesture-scoped undo. Keep the existing region-fill pages working. Then add real display/carry records and optional Together editing with its own concurrency tests.
+The later user request asks for deeper fun/presentation research. The [game-reference follow-up](home-science-play-design-2026-09-27.html) recommends a complete illustrated SCI-01 cargo-harbor loop next, before applying that standard to magnets/RGB. The candidate screenshots above remain schematic, not accepted final presentation. No redesigned science build exists yet.
+
+The previously queued **blank drawing with bounded stroke storage and separately fetched artwork**, durable per-profile creation folders, and gesture-scoped undo remain required. Keep the existing region-fill pages working. Real display/carry records and optional Together editing still require their own concurrency tests.
 
 Ramps, dinosaur shadows, bubbles, vibration and plant growth all remain required science scope. Final science illustration/interaction polish, optional spoken prompts, older-iPad performance, physical lifecycle/outage/rejoin, mixed cooking/science/art endurance and coordinated retained-data device delivery remain open. No feature phase is marked complete from source tests alone.
 

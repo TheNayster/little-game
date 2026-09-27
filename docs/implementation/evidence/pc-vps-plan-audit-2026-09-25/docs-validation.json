@@ -1,7 +1,7 @@
 {
   "passed": true,
   "decision": "PC/VPS authority; private offline solo; server wins on reconnect",
-  "activeEntries": 53,
+  "activeEntries": 54,
   "historicalRecords": 48,
   "goalChapters": 55,
   "planSections": 19,
@@ -58,8 +58,8 @@
     "CAK": 5,
     "MEAL": 5
   },
-  "renderedPages": 98,
-  "localLinksChecked": 3278,
+  "renderedPages": 99,
+  "localLinksChecked": 3292,
   "conflictingPhraseRegressionCases": 6,
   "errors": [],
   "limits": "Local document consistency/link checks and manually reviewed scope; not live device, runtime or external-source revalidation."
