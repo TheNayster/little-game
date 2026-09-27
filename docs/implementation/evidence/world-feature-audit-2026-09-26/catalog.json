@@ -613,8 +613,8 @@
       "chapters": [
         19
       ],
-      "description": "Central-food cooking with pictured bowls, working automatic-tray entry, tap alternatives and optional cupboard play. Counted ingredients, safe heat, portions, carry/taste/wash and ready bases persist. Spoken help, broader effects and kitchen sound remain open.",
-      "evidence": "kitchen",
+      "description": "Central-food UI and automatic trays exist, but 166 feedback exposes shared ingredient pages and generic step advancement. Real mixing, pouring, shaping, correct ingredient timing and appropriate heat activities remain open; see FLOW-01–09.",
+      "evidence": "cookingflow",
       "extraSource": ""
     },
     {
@@ -627,8 +627,8 @@
         19,
         51
       ],
-      "description": "Food IDs, ingredients, contributors and portions persist on real cookware/plates. Pizza retains actual toppings through baking and slicing; cakes/meals retain prototype finished illustrations plus extras. Picture orders, picnic packing and creation album remain planned.",
-      "evidence": "kitchen",
+      "description": "Food IDs, contributors and portions persist; pizza toppings survive baking/slicing. Cakes/meals still need intermediate food states and stage-specific ingredient rules. Partial mixing/pouring, legacy migration, orders, picnic packing and album remain open.",
+      "evidence": "cookingflow",
       "extraSource": ""
     },
     {

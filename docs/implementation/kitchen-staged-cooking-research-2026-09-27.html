@@ -1,0 +1,370 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cooking stages and ingredient flow — audit and research, September 27, 2026</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;border-radius:24px;background:radial-gradient(ellipse at 25% 45%,#ffffffb5 0 15%,transparent 16%),radial-gradient(ellipse at 75% 50%,#ffffffb5 0 20%,transparent 21%),linear-gradient(#62c0ed,#b8edfa)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid white;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+.wheel .scene-note{position:absolute;top:25%;left:7%;width:48%;font-size:17px}.place-rail{position:absolute;right:0;top:0;bottom:23%;width:39%;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 8px;background:#cbecf7;border-left:4px solid white}.place-rail .stage{position:relative;transform:none!important;left:auto;top:auto;width:126px;min-height:126px;flex-shrink:0}.cast-diagram{position:absolute;left:0;right:0;bottom:0;height:23%;background:#b8e2f7;border-top:4px solid white;display:flex;align-items:center;padding:18px;font-weight:700;font-size:16px}
+main{max-width:1100px;margin:32px auto;padding:24px}p,li{line-height:1.65}img{max-width:100%;height:auto}table{width:100%;border-collapse:collapse}th,td{padding:12px;border:1px solid #c9dadf;text-align:left;vertical-align:top}.table-scroll{overflow-x:auto}code{overflow-wrap:anywhere}</style></head><body><main><p><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Current build plan</a> · <a href="kitchen-staged-cooking-research-2026-09-27.md">Editable source</a></p><h1 id="cooking-stages-and-ingredient-flow-audit-and-research-september-27-2026">Cooking stages and ingredient flow — audit and research, September 27, 2026</h1>
+<p><strong>Status: research and implementation contract; not implemented.</strong> The user tested installed Android <strong>166</strong> and reported patties/cheese appearing in cake-making, and cooking that mostly involves repeatedly pressing a button. This is an open gameplay acceptance failure. Build 166 improved layout and entry, but did not deliver the hands-on cooking sequence requested in <a href="../bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals">chapter 19</a>.</p>
+<p>This pass examines recipe selection, ingredient timing, gesture behavior, food presentation and the existing persistence model. It is a bounded process audit, not a general repository audit. It changes research/tracking documents only. No new game code, assets, build or installation is included. Samsung remains <strong>166</strong>, with the <a href="evidence/kitchen166-2026-09-27/android-update.json">completed installation and retained saves</a>. Four-player independence, the connected Home, accepted characters and the complete fifteen-recipe menu remain required.</p>
+<h2 id="findings-in-the-installed-process">Findings in the installed process</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Evidence in the current process</th>
+<th>Consequence and correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>F-01: every food exposes the same inventory</strong></td>
+<td><code>PresentEasyKitchen</code> puts the recipe's suggestions first, then appends all 25 ingredients. The same pages remain available across preparation. <code>KitchenAssist</code> accepts any ingredient into a whole dish.</td>
+<td>Cake can offer patty, cheese, pasta and broth. Filter both the visible palette and accepted operations by <strong>recipe and current stage</strong>. Filtering only the first page is insufficient.</td>
+</tr>
+<tr>
+<td><strong>F-02: ingredients are checked at the wrong time</strong></td>
+<td><code>Kitchen.Next</code> requires everything in the recipe's <code>toppings</code> list when it reaches heat. Cake lists include icing; duck cake includes popcorn. Pancakes include banana; burgers include lettuce.</td>
+<td>Decorations are effectively prerequisites for baking, and assembly ingredients have no distinct roles. Separate batter/dough ingredients, fillings, raw toppings, finishing decorations and serving additions.</td>
+</tr>
+<tr>
+<td><strong>F-03: a gesture usually means “advance”</strong></td>
+<td>On the work surface, tap and completed drag both call <code>KitchenStepGesture</code>. Drag motion itself does not update mixing or shaping. Most corresponding authority actions check the tool and increment <code>dish.step</code>.</td>
+<td>Mix, chop, shape, stack and pour have different names but largely the same interaction. Each needs a distinct activity with visible intermediate results and a meaningful completion condition.</td>
+</tr>
+<tr>
+<td><strong>F-04: the main food does not represent enough preparation states</strong></td>
+<td>Pizza has useful dough/sauce/cheese/baked layers. Cakes and meals retain preset finished food illustrations plus extras.</td>
+<td>A label change cannot show separate ingredients becoming batter, batter filling a mould, or cake layers being assembled. Author intermediate food/tool/container states before calling the recipe complete.</td>
+</tr>
+<tr>
+<td><strong>F-05: one heat path serves every recipe</strong></td>
+<td>Assisted Bake places cookware in an available oven support. All recipes use one <code>heat</code> stage and the same eight-second heat duration.</td>
+<td>Burger patties, pancakes and pots of soup need appropriate pan/pot activities and their own visual cues. Equal time is not inherently wrong; missing process distinctions are.</td>
+</tr>
+<tr>
+<td><strong>F-06: picture guidance is incomplete</strong></td>
+<td>A tool picture and label change, but Help is written text. There is no stage-specific demonstration of pouring or stirring.</td>
+<td>Add brief optional local speech and an in-context hand/tool demonstration. The food and tools must communicate the action even with sound off.</td>
+</tr>
+<tr>
+<td><strong>F-07: saved food has no partial mixing/pouring model</strong></td>
+<td>Persistent food records track recipe, integer step, ingredients, heat, portions and decoration coordinates. They do not represent batter consistency, partial transfer, layer assembly or preparation coverage.</td>
+<td>Design those persistent states and their bounded transactions; do not hide all progress in local animation.</td>
+</tr>
+<tr>
+<td><strong>F-08: previous tests proved a narrower result</strong></td>
+<td>The 184 core checks and native recipe checks validate accepted commands, stock, portions, four cooks and continuity.</td>
+<td>These checks remain valuable, but do not prove a satisfying cooking activity. “All fifteen paths pass” must not be read as “all fifteen cooking experiences are complete.”</td>
+</tr>
+</tbody>
+</table></div>
+<p>Source anchors: <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Kitchen.cs">recipe definitions and Next</a>, <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKitchenView.cs">ingredient palette</a>, <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/KitchenGesture.cs">worktop gestures</a>, <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKitchen.cs">action routing and presentation</a>, <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KitchenAssistance.cs">assisted authority operations</a>. The <a href="evidence/kitchen-flow-audit-2026-09-27/current-recipes.json">current fifteen-recipe inventory</a> records the inspected definitions, not proposed completion.</p>
+<h2 id="what-the-external-research-establishes">What the external research establishes</h2>
+<p>Sources were checked September 27, 2026. Developer descriptions establish advertised mechanics; they are not independent proof of toddler usability. No third-party app was purchased, installed or played in this pass. Website preview-image retrieval was incomplete, so the report does not claim an observed frame-by-frame walkthrough. Store reviews, download counts and age badges are not used as effectiveness evidence.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Primary source</th>
+<th>Relevant evidence</th>
+<th>Application to this game</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://pazugames.com/games/24/">Pazu Pizza Maker</a></td>
+<td>Describes preparing dough, rolling, vegetable cutting, sauce preparation, toppings and oven baking.</td>
+<td>The food changes through distinct preparation activities. Use this process structure for pizza, with our own art and forgiving interaction.</td>
+</tr>
+<tr>
+<td><a href="https://apps.apple.com/my/app/pizza-games-for-kids-cooking/id6447359628?platform=ipad">Bimi Boo cooking, developer App Store listing</a></td>
+<td>Advertises step-by-step recipes and multiple interaction mechanics. Its July 2025 cake update specifically describes batter preparation through final decoration.</td>
+<td>Changing a generic button's label is insufficient. Cake needs recognizably different batter, baking and finishing stages.</td>
+</tr>
+<tr>
+<td><a href="https://apps.apple.com/ph/app/kids-cooking-games-donut-maker/id6502041946">Timpy/KidloLand bakery listing, app ID 6502041946</a></td>
+<td>Describes mixing, batter pouring and placement of decorations. Its current title redirects from the earlier Timpy bakery title; the same listing includes a save-state update.</td>
+<td>Preserve the creation across stages and interruptions. Do not infer multiplayer support or exact timings from this listing.</td>
+</tr>
+<tr>
+<td><a href="https://www.drpanda.com/games/DrPandaRestaurant/index.html">Dr. Panda Restaurant</a></td>
+<td>Describes separate slicing, frying, toasting, mixing and baking activities, then serving and pretend restaurant play.</td>
+<td>Meals should use the appropriate tools and containers, then return to the shared house.</td>
+</tr>
+<tr>
+<td><a href="https://bubadu.com/games/pizza-maker-kids/">Bubadu Pizza Maker</a></td>
+<td>Describes freely arranging toppings and visible browning/melting during baking, then serving/eating. It also deliberately permits unusual ingredients.</td>
+<td>Keep visible consequences and creativity. Its broad novelty pantry does not justify making every ingredient the default for every named recipe.</td>
+</tr>
+<tr>
+<td><a href="https://apps.apple.com/us/app/cooking-mama-lets-cook/id987360477">Cooking Mama, Office Create's listing</a></td>
+<td>Describes cooking as varied touch minigames, including chopping, baking and stewing.</td>
+<td>Borrow the distinction between activities. Our family game does not need its scoring, rankings or restaurant economy.</td>
+</tr>
+<tr>
+<td><a href="https://play.google.com/store/apps/details?hl=en_SG&amp;id=com.tocaboca.tocakitchen2">Toca Boca Jr/Kitchen 2, publisher listing</a> and <a href="https://sagomini.com/apps/diner/">Sago Mini Diner</a></td>
+<td>Toca emphasizes free food experimentation and reactions; Diner describes a recipe book and customer/employee pretend play.</td>
+<td>Preserve optional experimentation and social serving, while a selected cake defaults to a sensible cake-making flow. Neither source proves four simultaneous human-player architecture.</td>
+</tr>
+<tr>
+<td><a href="https://faculty.washington.edu/alexisr/TouchscreenPrompts.pdf">Hiniker et al., Touchscreen Prompts for Preschoolers</a></td>
+<td>A study of 34 children aged 2–5 found age-dependent understanding of prompts; under-threes in those tasks needed an adult model. Audio and demonstrations became useful with age.</td>
+<td>Offer short speech and demonstrations alongside simple controls. Do not assume flashing objects or a tutorial paragraph teach the activity. These were unfamiliar gesture tasks, not tests of our recipes.</td>
+</tr>
+<tr>
+<td><a href="https://init.cise.ufl.edu/wp-content/uploads/sites/378/2019/04/soni-et-al-idc19.pdf">Soni et al., TIDRC framework</a></td>
+<td>Synthesizes 57 recommendations and analyzes 50 apps. Relevant themes are immediate feedback, recognizable objects, real-world gesture mappings, forgiving targets and partial gesture acceptance. It explicitly discusses conflicting evidence.</td>
+<td>A stirring motion should visibly stir; imperfect motions should still work. Guidance belongs beside the current action. Exact gesture thresholds and stage lengths require playtesting.</td>
+</tr>
+<tr>
+<td><a href="https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html">W3C dragging alternatives</a> and <a href="https://support.google.com/accessibility/android/answer/7101858?hl=en-GB">Android touch targets</a></td>
+<td>Support a non-dragging alternative and a 48-dp touch-target baseline respectively.</td>
+<td>Keep large direct-object tap alternatives. This is design guidance, not a Unity accessibility certification or a toddler-optimal size claim.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Design conclusion:</strong> the common useful pattern is a short sequence of different food manipulations, visible consequences and a finish that can be shared. Our proposed stage order below is an authored game design informed by those sources and the user's requirements, not a copied or scientifically validated universal recipe.</p>
+<h2 id="default-ingredients-and-stage-order">Default ingredients and stage order</h2>
+<p>When a child chooses a named food, show only ingredients relevant to that recipe <strong>at that moment</strong>. Cake mixing displays baking ingredients; cake finishing displays icing, fruit, chocolate and decorations. Patties belong to burger preparation. Cheese belongs to appropriate pizzas/meals, not the default cake palette. Hide unrelated inventory entirely in this flow, including further bowl pages. Recipe variants can still offer reasonable optional additions, without rigid “wrong topping” punishments.</p>
+<p>Keep the older free-creation requirement through a deliberate secondary <strong>Experiment</strong> choice. That choice may expose unusual combinations, but must not silently activate in a normal cake session. Record the mode with the dish. Do not delete existing unusual saved creations or refuse to load them after filtering is added.</p>
+<p>Every recipe distinguishes ingredients incorporated before cooking from items added afterward. Icing/popcorn are not required in raw duck-cake batter. Banana is a pancake finish unless a specifically authored banana-batter variant says otherwise. No universal “toppings” requirement at the heating boundary.</p>
+<p>The default remains making food from the beginning. An explicit ready-base choice skips the disclosed preparation stages and enters the proper finishing activity. Assistance and ready-base skipping are different choices: help with stirring should still show stirring and produce batter.</p>
+<h2 id="concrete-cake-and-pizza-flows">Concrete cake and pizza flows</h2>
+<p><strong>Cake:</strong> choose cake → add baking ingredients to a bowl → mix into batter → pour into the chosen mould → bake and visibly rise → brief automatic settle/cool → assemble if needed → spread icing → place decorations → slice/serve.</p>
+<p><strong>Pizza:</strong> choose pizza → combine dough ingredients or explicitly choose ready dough → mix/knead → roll/shape → spread sauce → scatter cheese/place toppings → bake with visible melting/browning → cut → serve.</p>
+<p>There is no mandatory long cooling timer, accurate measuring exam or precise circular gesture. Decorative stages remain open until the child chooses the pictured finish/serve action. Preparation stages complete only when their actual food condition is met. Transition after fingers are released so the ending touch cannot accidentally operate the next stage. The finished dish remains the same persistent creation throughout.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>What the child does</th>
+<th>Visible change and completion</th>
+<th>Accessible alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add/pour</td>
+<td>Tip a large jug or move an ingredient over the bowl</td>
+<td>A stream/fill level moves from source to destination; the accepted portion transfers once</td>
+<td>Tap the jug and bowl for the same visible pour</td>
+</tr>
+<tr>
+<td>Mix</td>
+<td>Scribble broadly inside the bowl; lifting/rejoining is allowed</td>
+<td>Separate ingredients become streaky, then smooth batter; the spoon follows the action</td>
+<td>Tap the spoon for an assisted stirring animation; remain in this activity until its result settles</td>
+</tr>
+<tr>
+<td>Knead/roll</td>
+<td>Press dough or sweep a rolling pin over it</td>
+<td>Dough becomes a ball, then a broad base</td>
+<td>Tap dough/pin to perform those same visible transformations</td>
+</tr>
+<tr>
+<td>Chop</td>
+<td>Sweep across large food pieces</td>
+<td>Whole vegetables become bounded pieces that can be added</td>
+<td>Tap the food/tool; broad snapping avoids precision cutting</td>
+</tr>
+<tr>
+<td>Fill mould</td>
+<td>Pour the same batter into a large heart/round mould</td>
+<td>Bowl empties as mould fills; preserve mixture identity and quantities</td>
+<td>Tap bowl then mould to transfer</td>
+</tr>
+<tr>
+<td>Bake</td>
+<td>Put the tray in the oven</td>
+<td>Same cake rises/pizza browns; progress appears in the food and oven</td>
+<td>Tap the oven picture to place the real tray and watch it cook safely</td>
+</tr>
+<tr>
+<td>Spread icing/sauce</td>
+<td>Move a spatula across the food</td>
+<td>Coverage follows the touched region instead of only changing a label</td>
+<td>Tap sauce/icing then food for an assisted spreading animation</td>
+</tr>
+<tr>
+<td>Stack/build</td>
+<td>Place large layers or duck body/head pieces</td>
+<td>Pieces settle into forgiving supported positions</td>
+<td>Tap a piece and target to place it</td>
+</tr>
+<tr>
+<td>Decorate</td>
+<td>Place visible toppings freely on the allowed surface</td>
+<td>Their positions, size and layer remain through serving</td>
+<td>Tap topping then food; the game chooses a sensible position</td>
+</tr>
+<tr>
+<td>Cut/serve</td>
+<td>Trace a broad cut or choose a plate</td>
+<td>Portions separate and the original loses the served portion</td>
+<td>Tap cutter and plate for the same conserved transfer</td>
+</tr>
+</tbody>
+</table></div>
+<p>This is not a proposal to demand repeated arbitrary taps until a hidden counter fills. Progress represents a food action—mixed content, transferred batter, spread coverage or positioned pieces. A generic Next button must not perform all activities. Exact progress thresholds, animation lengths and target sizes are prototype values to tune with the family, not facts supplied by the papers.</p>
+<h2 id="all-fifteen-recipe-contracts">All fifteen recipe contracts</h2>
+<p>The common activities above are reused, but each food keeps a distinct sequence and appearance. Preparation is simplified pretend cooking, not a real-world measured recipe.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>ID / food</th>
+<th>Required process</th>
+<th>Ingredient/appearance distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PIZ-01 Cheese</td>
+<td>Dough → roll → sauce → cheese → bake → cut</td>
+<td>Sauce coverage and scattered/melted cheese; retain requested cheese-stretch polish in backlog</td>
+</tr>
+<tr>
+<td>PIZ-02 Pepperoni</td>
+<td>Same base → place pepperoni → bake → cut</td>
+<td>Individual pepperoni pieces stay on their slices</td>
+</tr>
+<tr>
+<td>PIZ-03 Vegetable</td>
+<td>Dough → chop vegetables → sauce/optional cheese → arrange → bake → cut</td>
+<td>Capsicum, mushroom and tomato change from whole to cut pieces</td>
+</tr>
+<tr>
+<td>PIZ-04 Ham/pineapple</td>
+<td>Dough → sauce/cheese → place ham and pineapple → bake → cut</td>
+<td>Large pink/yellow pieces, no exact pattern requirement</td>
+</tr>
+<tr>
+<td>PIZ-05 Silly face</td>
+<td>Dough → sauce/cheese → arrange facial features → bake → cut</td>
+<td>Child's actual face arrangement survives; album remains tracked separately</td>
+</tr>
+<tr>
+<td>CAK-01 Duck</td>
+<td>Batter → pour body/head moulds → bake → assemble → ice → beak/eyes/feathers → serve</td>
+<td>Duck components are assembled after baking; popcorn-style feathers are finishing decorations</td>
+</tr>
+<tr>
+<td>CAK-02 Chocolate layers</td>
+<td>Chocolate batter → fill moulds → bake → stack layers with filling → ice/decorate → slice</td>
+<td>Visible chocolate batter, baked layers, filling and exterior icing</td>
+</tr>
+<tr>
+<td>CAK-03 Strawberry heart</td>
+<td>Batter → fill heart mould → bake → pink icing → strawberries → slice</td>
+<td>Heart shape appears in mould and finished cake; strawberries belong to finishing</td>
+</tr>
+<tr>
+<td>CAK-04 Rainbow</td>
+<td>Batter → choose/divide colors → pour/layer → bake → assemble/ice → decorate → slice</td>
+<td>Child-selected color order remains visible in the cake and slices</td>
+</tr>
+<tr>
+<td>CAK-05 Carrot</td>
+<td>Chop/grate carrot → add to batter → mix → pour → bake → pale icing/carrot decoration → slice</td>
+<td>Orange bits incorporated in batter, topping added after baking</td>
+</tr>
+<tr>
+<td>MEAL-01 Burger</td>
+<td>Cook patty in pan → turn → optional cheese melt → stack bun/patty/salad → plate</td>
+<td>Lettuce stays a fresh assembly item; the entire bun is not baked as a substitute for patty cooking</td>
+</tr>
+<tr>
+<td>MEAL-02 Spaghetti</td>
+<td>Add pasta to pot → cook → drain/transfer → stir/add sauce → plate → cheese</td>
+<td>Pasta, pot liquid, sauce and finishing cheese have distinct roles</td>
+</tr>
+<tr>
+<td>MEAL-03 Soup</td>
+<td>Chop vegetables → pour broth/add vegetables → stir/simmer → ladle</td>
+<td>Pot and liquid fill, moving vegetables, conserved bowl servings</td>
+</tr>
+<tr>
+<td>MEAL-04 Pancakes</td>
+<td>Batter → mix → pour pan circles → cook first side → flip → finish → stack → fruit</td>
+<td>Flipping happens during cooking; banana is offered with the finished stack</td>
+</tr>
+<tr>
+<td>MEAL-05 Rice/vegetables</td>
+<td>Cook rice or explicit cooked-rice option → chop/stir-cook vegetables → combine/scoop → finish</td>
+<td>Rice and vegetable components remain visible; use pot/pan rather than universal oven behavior</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="systems-and-artwork-required-to-make-the-plan-real">Systems and artwork required to make the plan real</h2>
+<p>Use a stage definition per recipe with allowed inputs, tool/container, completion condition, visible food states and next-stage branches. The authority should validate the same stage contract the client presents. A raw client “advance step” command must not bypass ingredient transfers or preparation results.</p>
+<p>Each persistent dish needs a recipe-definition version, stage ID, bounded stage progress, mixture/component contents, support/container identity and assembly/decoration placements. Track transferred quantities on both source and destination. A bowl pouring into a mould must not leave a second full batter behind. Baking and slicing preserve the accepted food and layers. Local animation follows this state and cannot invent a completed transfer.</p>
+<p>During continuous gestures, send bounded action progress rather than a complete world write for every finger movement. Attribute contributions to the dish and acting profile, reject stale-stage/repeated operations, and preserve accepted partial work after interruption. The implementation must choose and measure appropriate update/save cadence; this research does not set an untested network rate.</p>
+<p>Maintain four independent bowls/trays, essential tools and usable heating positions. Each player may be mixing, baking, decorating or serving a different creation. Local help/demo/audio does not control other screens. Optional cooperation on one dish serializes its ingredient/placement transactions; it never acquires a kitchen-wide lock. Closing a panel, leaving a room or losing a connection preserves the dish and releases only that player's temporary interaction. A shared dish's stage transition invalidates stale touches from its previous activity.</p>
+<p>Required new presentation includes bowls with separate ingredients and batter states, pouring streams and fill masks, moulds, rising cake, separate baked layers, icing coverage, duck assembly pieces, chopped food, pans/pots and pancakes before/after flipping. The current inventory also lacks some proposed dough/batter staples such as water, sugar, butter and yeast; either add bounded real stock/art or explicitly define a premix. Do not pretend those ingredients exist, silently take them from unrelated food, or draw decorative packages that have no saved contents. Exact stock expansion must be specified in the implementation slice and migrated once.</p>
+<p>Use layered sprites, simple meshes/masks and small bounded piece counts. No fluid simulation is required. Clip retained decoration to the actual shape and slice; a heart/duck/stack cannot use an unchanged circular pizza presentation. Keep quiet ingredient/tool sounds and optional short narration local, with mute/reduced-motion support. Runtime cloud voice generation is not required.</p>
+<p>Older saves need recipe-version-aware migration. Preserve completed 166 food and unusual combinations as legacy creations, including portions and toppings. Convert unfinished old food conservatively to a compatible checkpoint without charging ingredients twice or deleting earlier work; test each legacy recipe/step, since the old icing-before-bake rule makes a single integer remap unsafe. Broader intermediate state requires rechecking maximum save/network size and A10 memory/performance. PC/VPS authority, private offline saves and no offline merge remain unchanged.</p>
+<h2 id="acceptance-that-prevents-the-same-mistake-recurring">Acceptance that prevents the same mistake recurring</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Required observable result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FLOW-01 Ingredients</td>
+<td>All 15 recipes show only their current-stage ingredients in default mode, on every page. A cake never offers patties/cheese by default. A stale/direct command cannot bypass the rule. Experiment mode is deliberate.</td>
+</tr>
+<tr>
+<td>FLOW-02 Sequence</td>
+<td>Cake can bake without icing; icing appears afterward. Pizza toppings bake with the pizza. Pancakes flip during pan cooking. Burger lettuce is assembled after patty cooking.</td>
+</tr>
+<tr>
+<td>FLOW-03 Real action</td>
+<td>Mixing, pouring, rolling, spreading and stacking have distinct visible intermediate states. Repeated generic action-button taps cannot complete the default recipe without these activities occurring.</td>
+</tr>
+<tr>
+<td>FLOW-04 Assistance</td>
+<td>Each required drag has a usable direct-object tap alternative that visibly performs the same action. Long contact, interrupted strokes, off-center input and a second finger do not skip stages or duplicate ingredients.</td>
+</tr>
+<tr>
+<td>FLOW-05 Persistence</td>
+<td>Exit and cold-reopen during mixing, pouring, baking and decoration. Recover the same partial creation, transferred stock and placements. No full source batter survives a completed transfer.</td>
+</tr>
+<tr>
+<td>FLOW-06 Four players</td>
+<td>Four clients work at different stages/recipes; one leaves or disconnects. Include two cooks competing for the last unit and two cooperating on one dish. Preserve all other creations.</td>
+</tr>
+<tr>
+<td>FLOW-07 Finish</td>
+<td>The child sees the same colors, ingredients, layers and toppings after baking/cutting/carrying. Serving conserves portions; washing cannot erase food.</td>
+</tr>
+<tr>
+<td>FLOW-08 Guidance</td>
+<td>A non-reading child can identify bowl/tool/target using pictures and optional spoken/demo cues. Muting works. Observe first use before giving an adult demonstration; record assistance rather than assuming independence.</td>
+</tr>
+<tr>
+<td>FLOW-09 Device/save</td>
+<td>Final source-matched builds, phone and A10 visual/performance checks, old-world migration, background/resume and server/private rejoin. Native tests alone do not close physical acceptance.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="bounded-build-order">Bounded build order</h2>
+<ol>
+<li><strong>One complete chocolate cake:</strong> define correct batter/finishing ingredients, then build real bowl mixing, mould pouring, visible bake, layer assembly/icing and serving. Include four cooks, partial saves and legacy migration. Keep other recipes available as existing prototypes; do not claim they inherit completion merely by sharing the controls.</li>
+<li>Apply the common activities to the other four cakes, including heart/rainbow/duck-specific geometry and assembly.</li>
+<li>Complete the pizza family with real dough preparation/rolling/spreading and retained topping arrangements; retain the clear 166 worktop composition.</li>
+<li>Add the distinct pan/pot flows for all five meals. Do not route these through the generic oven to claim completion.</li>
+<li>Complete physical first-use and mixed-device acceptance, with observation-driven polish. Orders, album, picnic packing, drinks and wider Home work remain tracked separately.</li>
+</ol>
+<p>The first deliverable should be a <strong>playable cake sequence demonstrating different actions</strong>, not another rearrangement of buttons or a renamed step list. All FLOW checks remain open until implementation supplies the corresponding evidence. H-07–10 / COOK-01 remain Partial.</p></main></body></html>

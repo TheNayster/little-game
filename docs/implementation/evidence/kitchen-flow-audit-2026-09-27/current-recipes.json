@@ -1,0 +1,304 @@
+{
+  "installedBuild": 166,
+  "inspectedCommit": "4d5d5b741e8de4b366f7ef226e6a2a155ef83d5c",
+  "source": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Kitchen.cs",
+  "sourceSha256": "99c71cfa48c2a7beba6154b87e07d11f03bcd18ff2a4addbabbc0f31b7a0bd96",
+  "scope": "Read-only extraction of current recipe definitions plus authored process findings; not execution or child testing.",
+  "allIngredients": [
+    "dough",
+    "sauce",
+    "cheese",
+    "pepperoni",
+    "capsicum",
+    "mushroom",
+    "tomato",
+    "ham",
+    "pineapple",
+    "flour",
+    "egg",
+    "milk",
+    "icing",
+    "chocolate",
+    "strawberry",
+    "sprinkles",
+    "carrot",
+    "bun",
+    "patty",
+    "lettuce",
+    "pasta",
+    "broth",
+    "rice",
+    "banana",
+    "popcorn"
+  ],
+  "processFindings": {
+    "palette": "Recipe suggestions followed by all 25 ingredients; no stage palette.",
+    "ingredientTiming": "Every toppings entry required at heat, including icing and finishing fruit.",
+    "gesture": "Generic work-surface click and drag end advance current action; drag motion has no preparation progress.",
+    "heating": "All easy:bake operations use oven supports."
+  },
+  "recipes": [
+    {
+      "id": "PIZ-01",
+      "title": "Cheese pizza",
+      "initialIngredient": "dough",
+      "currentSteps": [
+        "shape",
+        "spread",
+        "heat",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "sauce",
+        "cheese"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "PIZ-02",
+      "title": "Pepperoni pizza",
+      "initialIngredient": "dough",
+      "currentSteps": [
+        "shape",
+        "spread",
+        "heat",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "sauce",
+        "cheese",
+        "pepperoni"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "PIZ-03",
+      "title": "Vegetable pizza",
+      "initialIngredient": "dough",
+      "currentSteps": [
+        "shape",
+        "chop",
+        "spread",
+        "heat",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "capsicum",
+        "mushroom",
+        "tomato"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "PIZ-04",
+      "title": "Ham & pineapple pizza",
+      "initialIngredient": "dough",
+      "currentSteps": [
+        "shape",
+        "spread",
+        "heat",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "ham",
+        "pineapple",
+        "cheese"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "PIZ-05",
+      "title": "Silly-face pizza",
+      "initialIngredient": "dough",
+      "currentSteps": [
+        "shape",
+        "spread",
+        "decorate",
+        "heat",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "tomato",
+        "cheese",
+        "capsicum"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "CAK-01",
+      "title": "Duck cake",
+      "initialIngredient": "flour",
+      "currentSteps": [
+        "mix",
+        "shape-duck",
+        "heat",
+        "decorate",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "egg",
+        "milk",
+        "icing",
+        "popcorn"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "CAK-02",
+      "title": "Chocolate layer cake",
+      "initialIngredient": "flour",
+      "currentSteps": [
+        "mix",
+        "heat",
+        "stack",
+        "ice",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "egg",
+        "chocolate",
+        "icing"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "CAK-03",
+      "title": "Strawberry heart cake",
+      "initialIngredient": "flour",
+      "currentSteps": [
+        "pour",
+        "shape-heart",
+        "heat",
+        "ice",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "milk",
+        "icing",
+        "strawberry"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "CAK-04",
+      "title": "Rainbow cake",
+      "initialIngredient": "flour",
+      "currentSteps": [
+        "mix",
+        "layer",
+        "heat",
+        "decorate",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "milk",
+        "sprinkles",
+        "icing"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "CAK-05",
+      "title": "Carrot cake",
+      "initialIngredient": "flour",
+      "currentSteps": [
+        "chop",
+        "mix",
+        "heat",
+        "ice",
+        "cut"
+      ],
+      "requiredBeforeHeat": [
+        "carrot",
+        "egg",
+        "icing"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "MEAL-01",
+      "title": "Burger plate",
+      "initialIngredient": "bun",
+      "currentSteps": [
+        "heat",
+        "stack",
+        "plate"
+      ],
+      "requiredBeforeHeat": [
+        "patty",
+        "cheese",
+        "lettuce"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "MEAL-02",
+      "title": "Spaghetti & sauce",
+      "initialIngredient": "pasta",
+      "currentSteps": [
+        "pour",
+        "stir",
+        "heat",
+        "scoop"
+      ],
+      "requiredBeforeHeat": [
+        "sauce",
+        "cheese"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "MEAL-03",
+      "title": "Vegetable soup",
+      "initialIngredient": "broth",
+      "currentSteps": [
+        "chop",
+        "pour",
+        "stir",
+        "heat",
+        "ladle"
+      ],
+      "requiredBeforeHeat": [
+        "carrot",
+        "tomato",
+        "capsicum"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "MEAL-04",
+      "title": "Pancake breakfast",
+      "initialIngredient": "flour",
+      "currentSteps": [
+        "mix",
+        "pour",
+        "heat",
+        "flip",
+        "stack"
+      ],
+      "requiredBeforeHeat": [
+        "egg",
+        "milk",
+        "banana"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    },
+    {
+      "id": "MEAL-05",
+      "title": "Rice & vegetables",
+      "initialIngredient": "rice",
+      "currentSteps": [
+        "chop",
+        "stir",
+        "heat",
+        "scoop"
+      ],
+      "requiredBeforeHeat": [
+        "carrot",
+        "capsicum",
+        "mushroom"
+      ],
+      "status": "Partial; staged-cooking correction required"
+    }
+  ]
+}

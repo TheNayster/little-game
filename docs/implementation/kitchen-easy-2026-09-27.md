@@ -1,5 +1,7 @@
 # Easier four-player cooking — September 27, 2026
 
+**Later phone feedback opens a process correction:** the user reports inappropriate ingredients in cakes and repeated-button cooking. [New process audit and staged-cooking research](kitchen-staged-cooking-research-2026-09-27.html) governs the next implementation. The engineering evidence below remains valid for its scope; it does not establish complete cooking activities or accepted child usability.
+
 The Android 162 review identified blocked appliances, a confusing tray selector and too many drawer prerequisites. Candidate **166** applies the [child-interaction research](kitchen-child-friendly-research-2026-09-27.html): a large central dish, surrounding ingredient bowls, working Cook entry and automatic selection of an available real tray. **Samsung was subsequently updated to 166; see phone delivery below.** This candidate is a new preview, not accepted child usability or completion of Home.
 
 ## Play and presentation
