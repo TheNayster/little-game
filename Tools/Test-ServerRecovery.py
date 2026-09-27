@@ -120,7 +120,7 @@ def main():
         if contract >= 7:require(native_equivalent(restored['keepy'],original['keepy']) and restored['keepy']['phase']==1,'Paused in-flight balloon recovery differs')
         if contract >= 9:require(restored['bedrooms']==original['bedrooms'] and len(restored['bedrooms'])==4,'Bedroom ownership recovery differs')
         if contract >= 10:require(restored['bedrooms'][2]['theme']==3 and next(t for t in restored['toys'] if t['id']=='home-bedroom-3-toy-0')['container']=='home-bedroom-3/chest-0','Furniture decoration/storage recovery differs')
-        if contract >= 11:require(restored['secrets']==original['secrets'] and restored['secrets'][2]['created'] and not restored['secrets'][2]['active'] and len(restored['toys'])==(64 if contract>=14 else 39 if contract>=13 else 37 if contract>=12 else 33),'Archived secret and plush recovery differs')
+        if contract >= 11:require(restored['secrets']==original['secrets'] and restored['secrets'][2]['created'] and not restored['secrets'][2]['active'] and len(restored['toys'])==(117 if contract>=15 else 64 if contract>=14 else 39 if contract>=13 else 37 if contract>=12 else 33),'Archived secret and plush recovery differs')
         require(len(state['connected']) == 4, 'Saved enrollment did not reconnect')
         fixture.stop()
         recovery.rollback(result['rollbackJob'], digest(save.read_bytes()))

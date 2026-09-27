@@ -594,14 +594,14 @@
       "world": "home",
       "group": "Kitchen",
       "title": "Interactive kitchen architecture",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         3,
         19,
         51
       ],
-      "description": "Fridge, cupboards, sink, oven, worktop, ingredient storage and dining surfaces with aligned doors and interiors; separate interactive art before food production.",
-      "evidence": "layers",
+      "description": "Working illustrated fridge, four cupboards/worktops, sink, oven and four dining places in the kitchen prototype. Physical alignment/child usability qualification remains open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -609,12 +609,12 @@
       "world": "home",
       "group": "Kitchen",
       "title": "Make, decorate and serve",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Spread, chop, pour, mix, shape, heat, decorate, slice, plate, carry, taste and wash. Use large controls, tap alternatives and optional ready-made bases.",
-      "evidence": "ledger",
+      "description": "Make/Decorate/Serve supports real counted ingredients, tap/drag preparation, safe heat, four portions, carry/taste/wash and optional ready bases. Bespoke transformation animations and kitchen sound design remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -622,13 +622,13 @@
       "world": "home",
       "group": "Kitchen",
       "title": "Free recipes and persistent food creations",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19,
         51
       ],
-      "description": "Mix-and-match toppings, picture orders, preserved decorations/portions, picnic packing and a creation album. Unexpected ingredients remain play, not failure.",
-      "evidence": "ledger",
+      "description": "Food IDs, ingredients, additional decoration positions and portions persist on real cookware/plates. The prototype uses preset finished recipe illustrations plus extra toppings; picture orders, picnic packing and the creation album remain planned.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -636,14 +636,14 @@
       "world": "home",
       "group": "Kitchen",
       "title": "Four-player preparation and safe ovens",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19,
         31,
         47
       ],
-      "description": "Separate trays/tools or shared accepted contributions; no whole-kitchen lock. Leave/rejoin safely and stop at a ready state without burning food while children explore.",
-      "evidence": "ledger",
+      "description": "Four independent cookware sets, tool sets, oven places and dining seats. Heat stops at ready, and removing one dish pauses only that dish. Native validation is recorded in the kitchen report; physical mixed-device qualification remains open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1641,12 +1641,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Cheese pizza",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Spread red sauce, scatter cheese, bake, slice; visible stretchy cheese",
-      "evidence": "ledger",
+      "description": "Spread red sauce, scatter cheese, bake, slice; visible stretchy cheese A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1654,12 +1654,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Pepperoni pizza",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Add large round pepperoni pieces; slices keep their toppings",
-      "evidence": "ledger",
+      "description": "Add large round pepperoni pieces; slices keep their toppings A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1667,12 +1667,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Garden vegetable pizza",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Choose capsicum, mushroom, and tomato pieces; colorful arrangement",
-      "evidence": "ledger",
+      "description": "Choose capsicum, mushroom, and tomato pieces; colorful arrangement A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1680,12 +1680,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Ham and pineapple pizza",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Alternate chunky pink and yellow toppings; no exact pattern required",
-      "evidence": "ledger",
+      "description": "Alternate chunky pink and yellow toppings; no exact pattern required A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1693,12 +1693,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Silly-face pizza",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Make eyes, a nose, and a smile from toppings; photograph the creation in the in-game album",
-      "evidence": "ledger",
+      "description": "Make eyes, a nose, and a smile from toppings; photograph the creation in the in-game album A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1706,12 +1706,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Duck cake",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Assemble simple body/head pieces, add beak, eyes, icing, and popcorn-style feathers",
-      "evidence": "ledger",
+      "description": "Assemble simple body/head pieces, add beak, eyes, icing, and popcorn-style feathers A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1719,12 +1719,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Chocolate layer cake",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Stack cake layers, spread icing, add chocolate decorations",
-      "evidence": "ledger",
+      "description": "Stack cake layers, spread icing, add chocolate decorations A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1732,12 +1732,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Strawberry heart cake",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Fill a heart mould, add pink icing and strawberries",
-      "evidence": "ledger",
+      "description": "Fill a heart mould, add pink icing and strawberries A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1745,12 +1745,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Rainbow cake",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Choose colored batter layers and rainbow decorations",
-      "evidence": "ledger",
+      "description": "Choose colored batter layers and rainbow decorations A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1758,12 +1758,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Carrot cake",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Stir orange pieces into batter, add pale icing and a tiny carrot decoration",
-      "evidence": "ledger",
+      "description": "Stir orange pieces into batter, add pale icing and a tiny carrot decoration A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1771,12 +1771,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Burger plate",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Stack bun, filling, cheese, and salad; add a side and serve",
-      "evidence": "ledger",
+      "description": "Stack bun, filling, cheese, and salad; add a side and serve A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1784,12 +1784,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Spaghetti and sauce",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Add pasta to a pot, stir sauce, serve into a bowl, sprinkle cheese",
-      "evidence": "ledger",
+      "description": "Add pasta to a pot, stir sauce, serve into a bowl, sprinkle cheese A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1797,12 +1797,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Vegetable soup",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Drop chopped vegetables into broth, stir, ladle into cups/bowls",
-      "evidence": "ledger",
+      "description": "Drop chopped vegetables into broth, stir, ladle into cups/bowls A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1810,12 +1810,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Pancake breakfast",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Pour batter, tap/drag to flip with assistance, stack, add fruit",
-      "evidence": "ledger",
+      "description": "Pour batter, tap/drag to flip with assistance, stack, add fruit A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {
@@ -1823,12 +1823,12 @@
       "world": "home",
       "group": "Fifteen kitchen recipes",
       "title": "Rice and vegetable bowl",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         19
       ],
-      "description": "Stir colorful vegetables, scoop rice, combine and decorate the plate",
-      "evidence": "ledger",
+      "description": "Stir colorful vegetables, scoop rice, combine and decorate the plate A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.",
+      "evidence": "kitchen",
       "extraSource": ""
     },
     {

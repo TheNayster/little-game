@@ -1,0 +1,93 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-09-27",
+  "sourceReference": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-kitchen.png",
+  "assets": [
+    {
+      "id": "architecture",
+      "prompt": "Use case: precise-object-edit. Asset type: clean architecture panorama for an interactive 2D Bluey-inspired family dollhouse game. Edit target: attached current kitchen panorama. Remove ALL kitchen counters and lower cupboards, sink/faucet, stove/oven, cooker hood, refrigerator, dining table and chairs, all portable food, utensils, plates and countertop plants. Reconstruct the wall, backsplash, baseboard and floor behind them. Keep the exact wide panorama composition, yellow paneled walls, windows with outdoor view, hanging high plant at far left, upper small wall shelves as empty architectural shelves, open veranda doorway at far right, warm floorboards, clean illustrated style and palette. Keep wall-floor boundary and all windows/door positions unchanged. This is the SAME room prepared to place separate working furniture, not a redesign. No characters, no new furniture, no text. Maintain 3:1 wide aspect ratio.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-21a68552-bd22-49e8-b30a-7279f5ace8d1.png",
+      "file": "architecture.png",
+      "sha256": "672b2f2d47c515b02359948bf450c768aa3cd3d5e59adbebfe28f6a26e3cbd42"
+    },
+    {
+      "id": "fridge",
+      "prompt": "Use case: background-extraction. Remove ALL dark purple glow, haze and gradients outside the refrigerator silhouette. Everything outside the fridge and open door must be fully transparent alpha. Keep exact same fridge, interior, shelves, door, size and canvas alignment. Hard clean cartoon cutout, no backdrop or outer shadow.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-d3349c78-cb32-458b-a237-1c266cb92377.png",
+      "file": "fridge.png",
+      "sha256": "9c21c80fd07005d291d63996878c874837cd309f3e238c3a5480ad95ff0cad08"
+    },
+    {
+      "id": "fridge-closed",
+      "prompt": "Use case: precise-object-edit. Close the door of this exact lavender fridge. Preserve canvas and outer frame position, shelves become completely hidden behind one solid lavender door aligned to the existing body at left. Right swung-open door disappears into true transparent alpha. Add a long pale blue handle on left edge of closed door, two little star magnets. Keep identical style, proportions and full object framing. No background, no haze.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-4cbdf3ee-b755-4558-9fe6-8a1c0bbdeaa8.png",
+      "file": "fridge-closed.png",
+      "sha256": "d405314c7161b4540756398bbd0142fcc1362a35f7ee44e049b48a1326d41ea2"
+    },
+    {
+      "id": "counter",
+      "prompt": "Use case: illustration-story. Asset type: isolated furniture sprite for the existing Bluey-style 2D family dollhouse. Reference image is style/palette only. A single long cream kitchen cabinet unit in shallow front view, warm timber countertop, turquoise sink and curved silver tap at far LEFT, four broad EMPTY worktop sections across middle and right. Under the counter four EMPTY open cupboard bays with one shelf each, no cupboard doors in this OPEN state. No oven, fridge, utensils, food, room, floor, text or people. Complete unit and legs visible, wide 3:1 composition. Match reference's clean illustrated warm outlines, pastel colors and restrained flat shading. Genuine transparent alpha outside the object, crisp silhouette, no glow or shadow haze outside silhouette, no text.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-3c07cc00-32c4-4b46-8465-c7da9fb1fc4c.png",
+      "file": "counter.png",
+      "sha256": "258806db1e11b4a75cff2e77e4d7fa3943b12f6fd558fdd254e9e8c1c7e6fa4a"
+    },
+    {
+      "id": "counter-closed",
+      "prompt": "Use case: precise-object-edit. Create the CLOSED cupboard state of this exact cabinet unit. Keep exact canvas, sink/tap, counter, outer frame and legs pixel-aligned and unchanged. Cover the four empty bays with four cream cupboard door panels, each rounded inset and small warm orange knob, matching the original art. No other changes. Genuine transparent alpha outside unit, no haze.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-bc631022-1dea-4d3e-b557-b84dd612774c.png",
+      "file": "counter-closed.png",
+      "sha256": "08311e219e2461964b38f884415fa012efe75ec0ff74fe14c82ece87e031d0f1"
+    },
+    {
+      "id": "oven",
+      "prompt": "Use case: illustration-story. Asset type: isolated furniture sprite for the existing Bluey-style 2D family dollhouse. Reference image is style/palette only. A single small powder-blue kitchen oven/stove in shallow front view. Four gentle round hob burners on its top. Large OPEN empty dark oven interior with two broad empty racks; door folds down at bottom. No fire, food, pan, room, floor, people or text. Complete stove with padding. Match reference's clean illustrated warm outlines, pastel colors and restrained flat shading. Genuine transparent alpha outside the object, crisp silhouette, no glow or shadow haze outside silhouette, no text.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-803b2a06-961c-4a94-91d0-927135651168.png",
+      "file": "oven.png",
+      "sha256": "c05443f2838cfffef473e948f4dffa27f86e6a65aa69b2604308c23a1de75fe9"
+    },
+    {
+      "id": "oven-closed",
+      "prompt": "Use case: precise-object-edit. Create the CLOSED oven state of this exact blue stove. Keep exact canvas, top, knobs and outer shell pixel-aligned. Close the bottom oven door flush over the cavity, with pale blue frame, dark navy glass and chunky pale handle; the open horizontal bottom door disappears to transparency. No food, no glow, genuine transparent alpha outside stove.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-48496072-8fbf-4167-9815-ae0a35a91618.png",
+      "file": "oven-closed.png",
+      "sha256": "105c2bc6d324ab2e0dc9b3ab2fa0af2995029dad984d3f4c01a705a2cbad532e"
+    },
+    {
+      "id": "dining",
+      "prompt": "Use case: illustration-story. Asset type: isolated furniture sprite for the existing Bluey-style 2D family dollhouse. Reference image is style/palette only. One long timber dining table for four children, shallow front view with broad EMPTY clear tabletop. Four evenly spaced small rounded wooden chair BACKS with green gingham seats behind the table, all four visible and distinct. No plates, food, flowers, characters, room or floor. Complete table legs visible. Wide 3:1 composition. Match reference's clean illustrated warm outlines, pastel colors and restrained flat shading. Genuine transparent alpha outside the object, crisp silhouette, no glow or shadow haze outside silhouette, no text.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-7b201fca-f528-4bfd-84ae-f47187fd7490.png",
+      "file": "dining.png",
+      "sha256": "83051694fc62ca1bbb20f3a7835bd9f835a36c268c2766190bacc647cc8e1e72"
+    },
+    {
+      "id": "recipes",
+      "prompt": "Use case: illustration-story. Asset type: game sprite atlas. Reference image supplies palette and line style only. One production FOOD SPRITE ATLAS, exactly 5 columns by 3 rows in equal rectangular cells, 15 complete separated food illustrations. Grid is invisible; every object fits wholly within central 75% of its cell with generous transparent padding. Read order left to right: row1 cheese pizza, pepperoni pizza, vegetable pizza, ham/pineapple pizza, smiling silly-face pizza. Row2 yellow duck-shaped birthday cake with orange beak and popcorn feathers, three-layer chocolate cake, pink strawberry heart-shaped cake, rainbow-layer cake, carrot cake with tiny carrot topper. Row3 burger with potato side, spaghetti in bowl with red sauce, vegetable soup in bowl, stack of pancakes with banana, rice and colorful vegetables in bowl. Three-quarter shallow front/top view. All foods distinctly recognizable, charming flat Bluey-style cartoon, no people, no letters, no background, no outer shadow. Actual transparent alpha outside every sprite. No checkerboard, gradients, glow, or haze.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-d7e0ceb9-a39f-48a6-96c2-58b8b6d694c4.png",
+      "file": "recipes.png",
+      "sha256": "8ce3bec696001ff1fe9d7d2806ad564c1c996bf0a68d01f02b4fe164cc638d5b"
+    },
+    {
+      "id": "ingredients",
+      "prompt": "Use case: illustration-story. Asset type: game sprite atlas. Reference image supplies palette and line style only. One production INGREDIENT SPRITE ATLAS exactly 5 columns by 5 rows in equal square cells, invisible grid. Every object fully within central 65% of its cell, generous transparent gaps. Read order left to right: row1 dough ball, red sauce jar, yellow cheese wedge, pepperoni sausage slices, green capsicum. Row2 brown mushrooms, red tomato, pink ham slices, yellow pineapple, cream flour bag. Row3 egg, milk bottle, pink icing piping bag, chocolate bar, strawberries. Row4 colorful sprinkles jar, carrot, burger bun, brown burger patty, lettuce. Row5 dry spaghetti, broth carton with simple vegetable picture, rice bag, banana, popcorn. No words or labels. Clean flat Bluey-style pastel cartoon, softly colored outlines, shallow front/top view, no characters, no backdrop. Actual transparent alpha outside every sprite. No checkerboard, gradients, glow, or haze.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-b6189176-9453-43ef-9857-06555df1cd7d.png",
+      "file": "ingredients.png",
+      "sha256": "ef9c3a14f08a14da1bc5e951a8a50dc3f7f59aebb35bbbf181f6c2893c8a53bc"
+    },
+    {
+      "id": "utensils",
+      "prompt": "Use case: illustration-story. Asset type: game sprite atlas. Reference image supplies palette and line style only. One production UTENSIL SPRITE ATLAS exactly 2 columns by 2 rows in equal cells, invisible grid with generous transparent padding. Top-left wooden mixing spoon, top-right child-friendly blunt blue-handled toy knife, bottom-left wooden rolling pin, bottom-right turquoise-handled spatula. Each complete tool angled slightly diagonally within central 70% of cell, clean flat Bluey-style cartoon, matching warm outlines and restrained shading. No words, no background. Actual transparent alpha outside every sprite. No checkerboard, gradients, glow, or haze.",
+      "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-e5715cfd-789d-43a3-a3c5-11c43ef0e72b.png",
+      "file": "utensils.png",
+      "sha256": "73d84a4a7c68d452b013dfca5fa2038dc99d689172ef5bb655a0686252e29842"
+    },
+    {
+      "id": "toppings",
+      "original": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-8290f093-7a55-4e31-ad21-6f88d59efe1e.png",
+      "file": "toppings.png",
+      "prompt": "Transparent 5 by 5 atlas of food additions themselves, no packaging: dough, sauce, shredded cheese, pepperoni, capsicum, mushrooms, tomato, ham, pineapple, flour, egg, milk, icing, chocolate, strawberries, sprinkles, carrots, bun, patty, lettuce, spaghetti, broth, rice, banana, popcorn. Warm illustrated dollhouse style. Sprite bounds measured from unchanged original alpha.",
+      "sha256": "5270f3f034e90550dcf3e10c8147d765e7844a9a677d508c5a36995e8e27074a"
+    }
+  ],
+  "initialFridgePrompt": "Use case: illustration-story. Asset type: isolated furniture sprite for the existing Bluey-style 2D family dollhouse. Reference image is style/palette only. A single OPEN lavender refrigerator, friendly chunky cream trim, three broad EMPTY shelves and lower EMPTY drawer, open door hinged right swung away so all interior visible, shallow front view. No food, magnets, characters, room, floor or detached items. Full fridge visible with padding; vertical composition. Match reference's clean illustrated warm outlines, pastel colors and restrained flat shading. Genuine transparent alpha outside the object, crisp silhouette, no glow or shadow haze outside silhouette, no text.",
+  "note": "PNG originals copied unchanged. Runtime Sprite rectangles select atlas cells; HomeArtPart registers foreground portions. 1024-pixel imports for fixtures/atlases, 2048 for panorama."
+}

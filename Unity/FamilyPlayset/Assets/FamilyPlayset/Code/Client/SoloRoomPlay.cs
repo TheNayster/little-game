@@ -26,10 +26,10 @@ namespace LittleWeeps.Client
             var texture=Resources.Load<Texture2D>("RoomPlay/"+id);if(texture==null)throw new InvalidOperationException("Missing room play art: "+id);
             homeTextures.Add(texture);sprite=Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f));homeSprites.Add(sprite);roomPlaySprites.Add(id,sprite);return sprite;
         }
-        public bool IsTapObject(string id)=>IsBook(id) || HasWorld && SceneSchema>=RoomPlay.Schema && AllToys().Any(t=>t.id==id && (t.kind==ToyKind.Plush || RoomPlay.Tea(t.kind)));
+        public bool IsTapObject(string id)=>IsBook(id) || HasWorld && SceneSchema>=RoomPlay.Schema && AllToys().Any(t=>t.id==id && (t.kind==ToyKind.Plush || RoomPlay.Tea(t.kind) || Kitchen.Kind(t.kind)));
         public void TapObject(string id)
         {
-            if(IsBook(id)){OpenBook(id);return;}if(!Ready || MenuOpen || TravelPending || dragging!=null)return;
+            if(IsBook(id)){OpenBook(id);return;}if(HasWorld && ReadToys().Any(t=>t.id==id && Kitchen.Kind(t.kind))){OpenKitchenItem(id);return;}if(!Ready || MenuOpen || TravelPending || dragging!=null)return;
             var toy=ReadToys().FirstOrDefault(t=>t.id==id);if(toy==null)return;
             // Keep an active movement pointer intact, as with the accepted
             // balloon input. Seating takes effect only while the player rests.

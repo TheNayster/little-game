@@ -18,15 +18,16 @@ namespace LittleWeeps.Core
         // them. Furniture art and its front/rear depth masks stay the same size.
         public static readonly string[] SofaSlots={"sofa-left","sofa-middle-left","sofa-middle-right","sofa-right"};
         public static readonly string[] TrampolineSlots={"trampoline-left","trampoline-middle-left","trampoline-middle-right","trampoline-right"};
-        public static bool Seat(string id)=>Array.IndexOf(SofaSlots,id)>=0;
+        public static bool Seat(string id)=>Array.IndexOf(SofaSlots,id)>=0 || Kitchen.Seat(id);
         public static bool Bounce(string id)=>Array.IndexOf(TrampolineSlots,id)>=0;
         public static bool Usable(string id)=>Seat(id) || Bounce(id);
         public static float X(string id)
         {
+            if(Kitchen.Seat(id))return Kitchen.SeatX(id);
             var seated=Seat(id);var index=Array.IndexOf(seated?SofaSlots:TrampolineSlots,id);
             return (seated?SofaX:TrampolineX)+(index*2/3f-1)*(seated?100:110);
         }
-        public static float Y(string id)=>Seat(id)?SofaY:TrampolineY;
+        public static float Y(string id)=>Kitchen.Seat(id)?220:Seat(id)?SofaY:TrampolineY;
         public static int StorageSlot(string id)=>id=="shed-0"?0:id=="shed-1"?1:id=="shed-2"?2:id=="shed-3"?3:-1;
         public static float StorageX(int slot)=>ShedX+(slot%2==0?-85:85);
         public static float StorageY(int slot)=>slot<2?430:160;
@@ -35,7 +36,7 @@ namespace LittleWeeps.Core
     }
     public sealed partial class SoloWorld
     {
-        public static bool Carryable(ToyKind kind)=>kind==ToyKind.Bucket || kind==ToyKind.Sponge || kind==ToyKind.Ball || BedroomFurniture.Personal(kind);
+        public static bool Carryable(ToyKind kind)=>kind==ToyKind.Bucket || kind==ToyKind.Sponge || kind==ToyKind.Ball || BedroomFurniture.Personal(kind) || Kitchen.Kind(kind);
         public HomeState ReadHome()=>state.home?.Copy();
         public static SoloWorld WithHome(SoloWorld world)
         {
@@ -76,12 +77,13 @@ namespace LittleWeeps.Core
                     (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:
                      (BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || !SecretRooms.Furnished(p.zone) || (SecretRooms.Index(p.zone)>=0?p.fixture==BedroomFurniture.Bed:SecretRooms.FortIndex(p.fixture)>=0) ||
                       p.x!=BedroomFurniture.SeatX(p.fixture,SecretRooms.Furnishings(s).Single(r=>r.id==p.zone).layout) || p.y!=BedroomFurniture.SeatY(p.fixture):
-                      !HomeLayout.Usable(p.fixture) || p.zone!="garden" || p.x!=HomeLayout.X(p.fixture) || p.y!=HomeLayout.Y(p.fixture)) || s.toys.Any(t=>t.holder==p.id && !(s.schema>=RoomPlay.Schema && BedroomFurniture.Seat(p.fixture) && t.kind==ToyKind.Plush))))
+                      !HomeLayout.Usable(p.fixture) || Kitchen.Seat(p.fixture) && s.schema<Kitchen.Schema || p.zone!="garden" || p.x!=HomeLayout.X(p.fixture) || p.y!=HomeLayout.Y(p.fixture)) || s.toys.Any(t=>t.holder==p.id && !(s.schema>=RoomPlay.Schema && BedroomFurniture.Seat(p.fixture) && t.kind==ToyKind.Plush))))
                     throw new InvalidOperationException("Invalid home occupancy.");
             if(s.players.Where(p=>!string.IsNullOrEmpty(p.fixture)).GroupBy(p=>p.zone+"/"+p.fixture).Any(g=>g.Count()>1))
                 throw new InvalidOperationException("Home slot has two occupants.");
             foreach(var t in s.toys.Where(t=>!string.IsNullOrEmpty(t.container)))
             {
+                if(Kitchen.Slot(t.container,out var kitchenGroup,out var kitchenSlot)){if(s.schema<Kitchen.Schema || t.zone!="garden" || t.holder!="" || !Carryable(t.kind) || t.x!=Kitchen.X(kitchenGroup,kitchenSlot) || t.y!=Kitchen.Y(kitchenGroup,kitchenSlot))throw new InvalidOperationException("Invalid kitchen support.");continue;}
                 if(RoomPlay.Parent(t)!="")continue;
                 var playSlot=RoomPlay.Slot(t.zone,t.container);
                 if(playSlot>=0){if(s.schema<RoomPlay.Schema || t.holder!="" || t.x!=RoomPlay.X(playSlot) || t.y!=RoomPlay.Y(playSlot) || t.kind!=(playSlot<4?ToyKind.Plush:playSlot==8?ToyKind.TeaPot:ToyKind.TeaCup))throw new InvalidOperationException("Invalid room play support.");continue;}
@@ -109,7 +111,7 @@ namespace LittleWeeps.Core
             if(c.action==SoloAction.LeaveFixture){ClearFixture(player);return null;}
             if(c.action==SoloAction.UseFixture)
             {
-                if(!HomeLayout.Usable(c.target))return "invalid-fixture";
+                if(!HomeLayout.Usable(c.target) || Kitchen.Seat(c.target) && state.schema<Kitchen.Schema)return "invalid-fixture";
                 if(state.players.Any(p=>p.id!=player.id && p.fixture==c.target))return "fixture-busy";
                 // Simple Play uses direct, safe placement. Held props settle on
                 // the floor before entry in the SAME transaction, contents intact.

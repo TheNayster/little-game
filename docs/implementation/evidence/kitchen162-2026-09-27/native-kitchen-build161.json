@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build": 161,
+  "checks": [
+    "real appliance handles open fridge, four cupboards and oven; tap runs; closed contents refuse pickup",
+    "real recipe, ingredient taps, spread gesture, oven, cut and Serve controls make four unique pizza portions",
+    "four dining places coexist; leaving releases only one seat; each original plate is independently tasted and washed",
+    "four trays bake independently; one player travels away and every dish reaches a stable ready state",
+    "all fifteen native recipe sequences consume real ingredients, prepare, heat, portion, taste and wash using bounded stock",
+    "all four clients receive maximum native food snapshot: four created secrets, 150 objects and twelve dishes with 24 additions each"
+  ],
+  "liveFamilyTouched": false
+}

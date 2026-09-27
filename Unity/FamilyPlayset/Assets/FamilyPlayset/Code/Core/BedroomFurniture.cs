@@ -81,6 +81,7 @@ namespace LittleWeeps.Core
         }
         private bool StorageOpen(SoloToy toy)
         {
+            if(Kitchen.Slot(toy.container,out var kitchenGroup,out var kitchenSlot))return Kitchen.Open(state.kitchen,kitchenGroup,kitchenSlot);
             if(RoomPlay.Parent(toy)!="" || RoomPlay.Slot(toy.zone,toy.container)>=0 || string.IsNullOrEmpty(toy.container) || state.schema>=HomeBooks.FirstSchema && HomeBooks.Slot(toy.container)>=0)return true;
             if(HomeLayout.StorageSlot(toy.container)>=0)return state.home?.shedOpen==true;
             var room=SecretRooms.Furnishings(state).SingleOrDefault(r=>r.id==toy.zone);var slot=BedroomFurniture.Slot(toy.zone,toy.container);

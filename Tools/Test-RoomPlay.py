@@ -43,8 +43,9 @@ def main():
             button(v,'Decorate')
             for name in ('Bedding','Rug','Picture','Lamp'):button(v,name)
             button(v,'Undo');button(v,'Decorate');enter(v,i)
-        require(world()['schema']==12 and len(world()['toys'])==97,'full bounded stock')
-        record('four owners independently use beds and new decoration controls; four secret rooms bring shared stock to 97 without exceeding wire bounds')
+        expected_stock=150 if world()['schema']>=13 else 97
+        require(world()['schema']>=12 and len(world()['toys'])==expected_stock,'full bounded stock')
+        record('four owners independently use beds and new decoration controls; four secret rooms retain bounded shared stock without exceeding wire bounds')
         for i,v in enumerate(clients):
             if i:leave(v);hall(v);room(v,0);enter(v,0)
         ids=['home-secret-1-plush-'+str(i) for i in range(4)]
@@ -85,7 +86,7 @@ def main():
         move(a,2000);button(a,'Look at room picture');home.capture(a,folder,'aurora-picture-card');button(a,'Picture read');button(a,'Close')
         a.input('resize',x=1280,y=591);home.ready(a);home.capture(a,folder,'room-play-phone')
         leave(a);move(a,1300);home.capture(a,folder,'bedroom-play-phone')
-        require(len(world()['toys'])==97,'stock changed after play')
+        require(len(world()['toys'])==expected_stock,'stock changed after play')
         record('room picture controls open and close; phone and tablet compositions captured; owner exit leaves other secret-room players')
         passed=True
     except Exception:

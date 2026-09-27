@@ -31,6 +31,7 @@ EVIDENCE = {
  'rooms':'implementation/upstairs-foundation-2026-09-26.html',
  'bedrooms':'implementation/bedroom-rooms-2026-09-26.html',
  'secrets':'implementation/secret-rooms-2026-09-26.html',
+ 'kitchen':'implementation/home-kitchen-2026-09-27.html',
  'roomplay':'implementation/room-object-play-2026-09-26.html',
  'furniture':'implementation/bedroom-furniture-2026-09-26.html',
  'walk':'implementation/selected-sheet-characters-2026-09-26.html',
@@ -106,10 +107,10 @@ H-03|home|Rooms and furniture|Living-room radio and automatic dancing|play|1,5|R
 H-04|home|Rooms and furniture|Chairs, benches, cushions and resting spots|part|4,5,32|Beds and four independent bedroom cushions now work, with layered rest/sit poses. Broader seating, held-item seating and final cast/device qualification remain required.|furniture
 H-05|home|Rooms and furniture|Cupboards, drawers, lights and lamps|part|6,11,32,51|Bedroom lamps switch and eight-slot chests open/close around real retained items; shelves have four supports. Wider cupboards/drawers and appliance systems remain required.|furniture
 H-06|home|Rooms and furniture|Bathroom and laundry spaces|plan|3,21|Bath/splash interaction with front water masking, towels, storage, dressing and bedtime connections. This room expansion is listed in the home layout record.|ledger
-H-07|home|Kitchen|Interactive kitchen architecture|plan|3,19,51|Fridge, cupboards, sink, oven, worktop, ingredient storage and dining surfaces with aligned doors and interiors; separate interactive art before food production.|layers
-H-08|home|Kitchen|Make, decorate and serve|plan|19|Spread, chop, pour, mix, shape, heat, decorate, slice, plate, carry, taste and wash. Use large controls, tap alternatives and optional ready-made bases.|ledger
-H-09|home|Kitchen|Free recipes and persistent food creations|plan|19,51|Mix-and-match toppings, picture orders, preserved decorations/portions, picnic packing and a creation album. Unexpected ingredients remain play, not failure.|ledger
-H-10|home|Kitchen|Four-player preparation and safe ovens|plan|19,31,47|Separate trays/tools or shared accepted contributions; no whole-kitchen lock. Leave/rejoin safely and stop at a ready state without burning food while children explore.|ledger
+H-07|home|Kitchen|Interactive kitchen architecture|part|3,19,51|Working illustrated fridge, four cupboards/worktops, sink, oven and four dining places in the kitchen prototype. Physical alignment/child usability qualification remains open.|kitchen
+H-08|home|Kitchen|Make, decorate and serve|part|19|Make/Decorate/Serve supports real counted ingredients, tap/drag preparation, safe heat, four portions, carry/taste/wash and optional ready bases. Bespoke transformation animations and kitchen sound design remain open.|kitchen
+H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Food IDs, ingredients, additional decoration positions and portions persist on real cookware/plates. The prototype uses preset finished recipe illustrations plus extra toppings; picture orders, picnic packing and the creation album remain planned.|kitchen
+H-10|home|Kitchen|Four-player preparation and safe ovens|part|19,31,47|Four independent cookware sets, tool sets, oven places and dining seats. Heat stops at ready, and removing one dish pauses only that dish. Native validation is recorded in the kitchen report; physical mixed-device qualification remains open.|kitchen
 H-11|home|Kitchen|Drinks, fruit, blender and pretend café|plan|6,19|Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature.|ledger
 H-12|home|Parents and hiding|Bandit and Chilli's ambient routines|plan|22,47|Roam, read, garden, prepare food and tidy eligible ambient props; requests interrupt safely, but never steal a busy seeker or destroy a child's work.|ledger
 H-13|home|Parents and hiding|Parent-seeker hide-and-seek|plan|22,34|Invite a parent, prepare individually, hide, hear a friendly search, be found and continue playing. All joined hiders can leave freely; no elimination screen.|ledger
@@ -226,6 +227,12 @@ for m in re.finditer(r'^### (IMG-\d+) — (.*?)\n(.*?)(?=^### |\Z)',section(42),
     paragraphs=[x for x in m[3].split('\n\n') if x.startswith('**Our game:**') or x.startswith('Reuse ')]
     add('STORY-'+m[1],'daycare','Nine imagination stories',m[2],'plan',[42],' '.join(paragraphs).replace('**Our game:** ','')+' Roles support four family players and NPC substitutes.','ledger')
 
+# Recipe targets remain partial until bespoke gestures, album and physical acceptance are finished.
+for feature in features:
+    if feature['id'].startswith(('PIZ-', 'CAK-', 'MEAL-')):
+        feature['status']='part';feature['evidence']='kitchen'
+        feature['description']+=' A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.'
+
 # Starter invitations are separate source entries, with links to fuller activity
 # designs in the same inventory. They are not all additional unique mini-games.
 place={'Home':'home','Backyard':'yard','Park':'park','Creek':'creek','Beach':'beach','Daycare':'daycare'}
@@ -259,7 +266,7 @@ add('OPTION-HAIR','home','Optional extensions','Hair styling and extra dress-up 
 add('OPTION-FOSSIL','home','Optional extensions','Fossils and other prehistoric animals','optional',[28],'Later fossil assembly requires reviewed anatomy. Flying/marine prehistoric reptiles would use a separate category; they are not part of the 20 dinosaur-type commitment.','ledger')
 
 TRACK_STATUS={
-'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'plan','FISH-01':'plan','CLEAN-01':'part',
+'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'part','FISH-01':'plan','CLEAN-01':'part',
 'HIDE-01':'plan','HIDE-02':'plan','NPC-01':'plan','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'plan',
 'JOIN-01':'part','WORLD-01':'part','WORLD-02':'part','ITEM-02':'part','ITEM-03':'part','STOCK-01':'part','ROOM-02':'plan','NET-02':'part',
 'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'plan','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',

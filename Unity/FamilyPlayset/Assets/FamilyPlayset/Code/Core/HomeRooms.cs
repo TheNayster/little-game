@@ -130,6 +130,7 @@ namespace LittleWeeps.Core
         }
         private static bool ValidToyLocation(SoloToy t,int schema)
         {
+            if(Kitchen.Kind(t.kind))return schema>=Kitchen.Schema && Kitchen.Identity(t) && HomeRooms.Property(t.zone);
             if(t.kind==ToyKind.Book)return schema>=HomeBooks.FirstSchema && HomeBooks.Index(t.id)>=0 && HomeRooms.Property(t.zone);
             if(BedroomFurniture.Personal(t.kind))return schema>=BedroomFurniture.Schema && BedroomLayout.Index(t.personalRoom)>=0 && HomeRooms.Property(t.zone);
             var origin=t.id==t.kind.ToString().ToLowerInvariant()+"-1"?"garden":

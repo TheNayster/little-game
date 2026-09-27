@@ -77,7 +77,7 @@ namespace LittleWeeps.Client
         }
         private void ResetPresentation()
         {
-            CancelPointers();CancelStairApproach();ResetBedrooms();ResetBedroomFurniture();ResetRoomPlay();ResetBooks();ResetSecrets();stairControl=null;stairFront=null;stairVisuals.Clear();Narration?.Stop();ResetScenery();ResetHome();
+            CancelPointers();CancelStairApproach();ResetBedrooms();ResetBedroomFurniture();ResetRoomPlay();ResetKitchen();ResetBooks();ResetSecrets();stairControl=null;stairFront=null;stairVisuals.Clear();Narration?.Stop();ResetScenery();ResetHome();
             // Keep one canvas, event system and narration source across switches.
             // Disable old children now so deferred Destroy cannot receive input.
             foreach(Transform child in safe){child.gameObject.SetActive(false);Destroy(child.gameObject);}
@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithRoomPlay(World);
+                World = SoloWorld.WithKitchen(World);
                 // Restore releases interrupted item holds; persist that change.
                 // Otherwise merely opening another saved adventure must not
                 // rewrite an untouched solo payload (including precise timers).
@@ -298,7 +298,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -598,7 +598,7 @@ namespace LittleWeeps.Client
                 visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
             }
             PresentRooms();
-            PresentBedrooms();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();
+            PresentBedrooms();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
         }
@@ -618,11 +618,12 @@ namespace LittleWeeps.Client
                 var fixture=player?.fixture??"";
                 if(SecretRooms.FortIndex(fixture)>=0 && secretFort!=null){Add(root,secretFort.anchoredPosition.y,1,id);return;}
                 if(BedroomFurniture.Seat(fixture) && FurnishedRoom!=null){var key=fixture==BedroomFurniture.Bed?"bed":"cushion-"+BedroomFurniture.CushionIndex(fixture);if(bedroomFurniture.TryGetValue(key,out var furniture)){Add(root,furniture.anchoredPosition.y,1,id);return;}}
+                if(Kitchen.Seat(fixture)){Add(root,ToBoard(0,130).y,1,id);return;}
                 var home=HomeLayout.Seat(fixture)?"Home sofa":HomeLayout.Bounce(fixture)?"Home trampoline":"";
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);
+            AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);
@@ -632,7 +633,7 @@ namespace LittleWeeps.Client
             foreach(var toy in depthToys)
             {
                 if(toy.id==dragging)continue;var rect=toys[toy.id];
-                if(RoomToyDepth(toy,rect,Add,depthToys))continue;
+                if(KitchenDepth(toy,rect,Add) || RoomToyDepth(toy,rect,Add,depthToys))continue;
                 var roomSlot=BedroomFurniture.Slot(toy.zone,toy.container);
                 if(HomeBooks.Slot(toy.container)>=0 && bookRack!=null)Add(rect,bookRack.anchoredPosition.y,1,toy.id);
                 else if(roomSlot>=0 && FurnishedRoom!=null && bedroomFurniture.TryGetValue(roomSlot<8?"chest":"shelf",out var roomSupport))Add(rect,roomSupport.anchoredPosition.y,1,toy.id);
@@ -700,7 +701,7 @@ namespace LittleWeeps.Client
                 targetArrows.Add(t.id,arrow.gameObject);arrow.gameObject.SetActive(false);
             }
             if(hit.raycastTarget)Surface(root,t.id);
-            DrawTea(t,root);
+            DrawTea(t,root);DrawKitchenItem(t,root);
             if(t.kind==ToyKind.Bucket){var handle=Panel(root,"Handle",new Vector2(0,27),new Vector2(65,50),Ink,false,true);handle.sprite=hintRing;Panel(root,"Bucket",Vector2.zero,new Vector2(80,70),new Color(.98f,.67f,.28f));fills[t.id]=Panel(root,"Water",new Vector2(0,3),new Vector2(58,10),new Color(.32f,.68f,.91f));}
             if(t.kind==ToyKind.Sponge){Panel(root,"Sponge",Vector2.zero,new Vector2(92,53),new Color(1,.87f,.39f));for(var i=0;i<4;i++)Panel(root,"Hole",new Vector2(-27+i*18,(i%2)*15-8),new Vector2(8,8),new Color(.78f,.58f,.25f),false,true);}
             if(t.kind==ToyKind.Tap){Panel(root,"Tap pipe",new Vector2(-14,5),new Vector2(28,100),new Color(.47f,.61f,.68f));Panel(root,"Spout",new Vector2(14,40),new Vector2(74,26),new Color(.59f,.71f,.76f));Panel(root,"Handle",new Vector2(-14,66),new Vector2(67,18),new Color(.29f,.5f,.61f));Panel(root,"Drop",new Vector2(40,6),new Vector2(20,28),new Color(.29f,.65f,.88f),false,true);}

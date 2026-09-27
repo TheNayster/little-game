@@ -1,5 +1,8 @@
 # Little Weeps — Home world feature tracker
 
+**Current kitchen task — September 27:** the user authorized working fixtures and four dining places, persistent food/tools, four-player pizza, then all 15 recipes. [Applied research](implementation/kitchen-research-2026-09-27.html) and [implementation/evidence](implementation/home-kitchen-2026-09-27.html) govern this bounded stage. The room/book backlog and physical qualification remain tracked.
+
+
 **Room object play — candidate 155:** four independent plush cuddles and blanket nests, three-toy piles, four-place pretend tea, saved bedding/rug/picture/lamp choices, and a deliberate aurora fact reader. [Implementation, research and qualification](implementation/room-object-play-2026-09-26.md). Full Home and physical acceptance remain open.
 
 **Latest balloon update — Android 151:** the balloon starts on open lawn past the trampoline, mixes ordinary and higher returns, and travels faster/farther in varied sideways directions. The accepted movement-while-tapping fix remains. All 16 saves remain; phone launch/feel verification awaits unlock. [Implementation and evidence](implementation/keepy-uppy-2026-09-26.html#clear-lawn-and-varied-flight-build-151).
@@ -154,48 +157,50 @@ Provide real bath/splash space with front-water masking, towels, storage, washab
 
 ## Kitchen, dining and all 15 recipes
 
+The playable prototype now covers the 15 preparation paths and durable serving. The unchecked entries below retain the full target behaviors, including custom shape/ingredient animation, optional orders, albums and physical usability checks; see the [kitchen report](implementation/home-kitchen-2026-09-27.html).
+
 Four players can prepare, decorate, plate, eat/serve and wash independently. Include real appliance interiors, ingredient storage, four dining places and suitable work positions/tools. Make / Decorate / Serve supports free creation, optional orders and ready-made bases. Recipe variants need distinct assembly/appearance, not five recolors. Food, portions and decorations persist as real objects; transformations consume ingredients once, and heating settles safely when a player leaves.
 
 
-- [ ] **H-07 — Interactive kitchen architecture** — *Planned*. Fridge, cupboards, sink, oven, worktop, ingredient storage and dining surfaces with aligned doors and interiors; separate interactive art before food production. Sources: [§3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals) · [§51](bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms).
+- [ ] **H-07 — Interactive kitchen architecture** — *Partial*. Fridge, cupboards, sink, oven, worktop, ingredient storage and dining surfaces with aligned doors and interiors; separate interactive art before food production. Sources: [§3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals) · [§51](bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms).
 
-- [ ] **H-08 — Make, decorate and serve** — *Planned*. Spread, chop, pour, mix, shape, heat, decorate, slice, plate, carry, taste and wash. Use large controls, tap alternatives and optional ready-made bases. Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **H-08 — Make, decorate and serve** — *Partial*. Spread, chop, pour, mix, shape, heat, decorate, slice, plate, carry, taste and wash. Use large controls, tap alternatives and optional ready-made bases. Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **H-09 — Free recipes and persistent food creations** — *Planned*. Mix-and-match toppings, picture orders, preserved decorations/portions, picnic packing and a creation album. Unexpected ingredients remain play, not failure. Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals) · [§51](bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms).
+- [ ] **H-09 — Free recipes and persistent food creations** — *Partial*. Mix-and-match toppings, picture orders, preserved decorations/portions, picnic packing and a creation album. Unexpected ingredients remain play, not failure. Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals) · [§51](bluey-game-research-2026-09-23.html#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms).
 
-- [ ] **H-10 — Four-player preparation and safe ovens** — *Planned*. Separate trays/tools or shared accepted contributions; no whole-kitchen lock. Leave/rejoin safely and stop at a ready state without burning food while children explore. Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals) · [§31](bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play) · [§47](bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android).
+- [ ] **H-10 — Four-player preparation and safe ovens** — *Partial*. Separate trays/tools or shared accepted contributions; no whole-kitchen lock. Leave/rejoin safely and stop at a ready state without burning food while children explore. Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals) · [§31](bluey-game-research-2026-09-23.html#31-joining-and-leaving-without-restarting-play) · [§47](bluey-game-research-2026-09-23.html#47-up-to-four-family-players-across-ipad-iphone-and-android).
 
 - [ ] **H-11 — Drinks, fruit, blender and pretend café** — *Planned*. Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature. Sources: [§6](bluey-game-research-2026-09-23.html#6-reusable-item-rules-bucket-water-plant) · [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **PIZ-01 — Cheese pizza** — *Planned*. Spread red sauce, scatter cheese, bake, slice; visible stretchy cheese Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **PIZ-01 — Cheese pizza** — *Partial*. Spread red sauce, scatter cheese, bake, slice; visible stretchy cheese Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **PIZ-02 — Pepperoni pizza** — *Planned*. Add large round pepperoni pieces; slices keep their toppings Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **PIZ-02 — Pepperoni pizza** — *Partial*. Add large round pepperoni pieces; slices keep their toppings Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **PIZ-03 — Garden vegetable pizza** — *Planned*. Choose capsicum, mushroom, and tomato pieces; colorful arrangement Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **PIZ-03 — Garden vegetable pizza** — *Partial*. Choose capsicum, mushroom, and tomato pieces; colorful arrangement Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **PIZ-04 — Ham and pineapple pizza** — *Planned*. Alternate chunky pink and yellow toppings; no exact pattern required Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **PIZ-04 — Ham and pineapple pizza** — *Partial*. Alternate chunky pink and yellow toppings; no exact pattern required Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **PIZ-05 — Silly-face pizza** — *Planned*. Make eyes, a nose, and a smile from toppings; photograph the creation in the in-game album Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **PIZ-05 — Silly-face pizza** — *Partial*. Make eyes, a nose, and a smile from toppings; photograph the creation in the in-game album Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-01 — Duck cake** — *Planned*. Assemble simple body/head pieces, add beak, eyes, icing, and popcorn-style feathers Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-01 — Duck cake** — *Partial*. Assemble simple body/head pieces, add beak, eyes, icing, and popcorn-style feathers Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-02 — Chocolate layer cake** — *Planned*. Stack cake layers, spread icing, add chocolate decorations Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-02 — Chocolate layer cake** — *Partial*. Stack cake layers, spread icing, add chocolate decorations Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-03 — Strawberry heart cake** — *Planned*. Fill a heart mould, add pink icing and strawberries Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-03 — Strawberry heart cake** — *Partial*. Fill a heart mould, add pink icing and strawberries Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-04 — Rainbow cake** — *Planned*. Choose colored batter layers and rainbow decorations Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-04 — Rainbow cake** — *Partial*. Choose colored batter layers and rainbow decorations Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-05 — Carrot cake** — *Planned*. Stir orange pieces into batter, add pale icing and a tiny carrot decoration Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-05 — Carrot cake** — *Partial*. Stir orange pieces into batter, add pale icing and a tiny carrot decoration Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **MEAL-01 — Burger plate** — *Planned*. Stack bun, filling, cheese, and salad; add a side and serve Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **MEAL-01 — Burger plate** — *Partial*. Stack bun, filling, cheese, and salad; add a side and serve Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **MEAL-02 — Spaghetti and sauce** — *Planned*. Add pasta to a pot, stir sauce, serve into a bowl, sprinkle cheese Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **MEAL-02 — Spaghetti and sauce** — *Partial*. Add pasta to a pot, stir sauce, serve into a bowl, sprinkle cheese Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **MEAL-03 — Vegetable soup** — *Planned*. Drop chopped vegetables into broth, stir, ladle into cups/bowls Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **MEAL-03 — Vegetable soup** — *Partial*. Drop chopped vegetables into broth, stir, ladle into cups/bowls Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **MEAL-04 — Pancake breakfast** — *Planned*. Pour batter, tap/drag to flip with assistance, stack, add fruit Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **MEAL-04 — Pancake breakfast** — *Partial*. Pour batter, tap/drag to flip with assistance, stack, add fruit Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **MEAL-05 — Rice and vegetable bowl** — *Planned*. Stir colorful vegetables, scoop rice, combine and decorate the plate Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **MEAL-05 — Rice and vegetable bowl** — *Partial*. Stir colorful vegetables, scoop rice, combine and decorate the plate Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
 
 ## Four bedrooms: ownership, decorating and personal storage

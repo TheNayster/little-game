@@ -1,0 +1,13 @@
+{
+  "finalBuild": 162,
+  "fullRecipeAndWireBuild": 161,
+  "migrationAndPrivateRejoinBuild": 161,
+  "recoveryBuild": 162,
+  "finalTouchAndVisualBuild": 162,
+  "changedCodeFrom161": [
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKitchen.cs"
+  ],
+  "change": "Raise seated children at dining table; core, network, save and recipe sources identical.",
+  "physicalQualification": false,
+  "liveFamilyTouched": false
+}
