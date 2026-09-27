@@ -1,0 +1,20 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-09-27",
+  "file": "cooking-layers.png",
+  "original": "C:/Users/sephi/.codex/generated_images/01a0df12-2119-7da1-a48e-e96ccab1c136/exec-cc9835f5-cc64-4369-9561-5630696b85e1.png",
+  "prompt": "Use case: illustration-story. Create ONE transparent sprite atlas for a high quality toddler cooking game, clean warm illustrated Bluey-like 2D children's playset style, soft hand-painted texture with clear tidy outlines, charming readable shapes. EXACTLY SIX SEPARATE SPRITES arranged in a strict THREE COLUMN by TWO ROW grid, equal square cells, generous transparent margin within each cell, no overlap. Row 1 left: a perfectly round unbaked flattened pizza dough disc, top-down view, raised pale dough rim, absolutely no sauce or toppings. Row 1 middle: the SAME round pizza crust baked golden, same diameter and top-down angle, empty pale golden center, absolutely no sauce, cheese or toppings. Row 1 right: a round red tomato sauce layer only, top-down flat circular spread, slightly organic edge, no crust no vessel. Row 2 left: a round layer of melted pale yellow mozzarella only, top-down circular spread with a few small toasted flecks, no crust no plate no toppings. Row 2 middle: a beautiful rounded-square honey-colored wooden chopping board viewed straight overhead, EMPTY surface with subtle timber grain, no handle. Row 2 right: an EMPTY shallow cream porcelain ingredient bowl seen from straight overhead, circular with blue-green rim and gently shaded interior. Every sprite centered in its cell, full silhouette, equal padding. NO text, letters, numbers, grid lines, table, kitchen, shadows outside silhouettes, utensils or other objects. GENUINE transparent alpha background.",
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "sprites": [
+      "raw dough",
+      "baked crust",
+      "tomato sauce",
+      "melted cheese",
+      "board",
+      "bowl"
+    ]
+  },
+  "notes": "Original RGBA is preserved. RGB beneath zero alpha is colored; render using alpha. Runtime slices the 3x2 sheet. No external shadow/background was composited."
+}

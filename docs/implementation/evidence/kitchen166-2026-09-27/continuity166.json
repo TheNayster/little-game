@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build": 166,
+  "previousBuild": 155,
+  "checks": [
+    "Actual 155 checkpoint upgrades additively: all prior objects, rooms, balloon and receipts identical; 53 kitchen objects added once; four original profiles rejoin",
+    "Real plate survives stairs and bedroom travel; outage/private taste/cold reopen retain food; rejoin loads family portion without importing private edits",
+    "Current food backup validates; restoring actual 155 backup repeats identical additive kitchen migration"
+  ],
+  "liveFamilyTouched": false
+}

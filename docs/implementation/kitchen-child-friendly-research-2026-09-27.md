@@ -1,5 +1,7 @@
 # A simpler Home kitchen — applied research, September 27, 2026
 
+**Later implementation — candidate 166:** [The researched ease-of-use correction is now implemented](kitchen-easy-2026-09-27.html), with scoped engineering evidence and physical acceptance still open. Samsung remains 162. The dated research/prototype record below describes its original milestone.
+
 **Status: research and proposed design; not implemented or installed.** This follows the user's review of Android 162. It supersedes the earlier kitchen interaction plan where they conflict. H-07–10 / COOK-01 and all fifteen recipes remain Partial. This pass reviewed the user's reference, retained screenshots, project requirements, research papers and official product/accessibility sources. It did not audit gameplay code, run gameplay tests, build an app or contact a device/server.
 
 ## What needs to change

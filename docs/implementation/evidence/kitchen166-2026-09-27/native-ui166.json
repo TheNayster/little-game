@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build": 166,
+  "checks": [
+    "four simultaneous recipe pickers create four independent trays without opening storage",
+    "tap-only ingredients/bake/serve and optional gesture retain decorations; departing cook does not stop siblings",
+    "four visible dining places remain independent and an empty plate leads directly to working cooking"
+  ],
+  "previewOnly": false,
+  "catalogGroup": null,
+  "liveFamilyTouched": false
+}

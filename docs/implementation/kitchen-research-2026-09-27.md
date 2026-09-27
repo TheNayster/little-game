@@ -1,5 +1,7 @@
 # Home kitchen implementation research — September 27, 2026
 
+**Later implementation — candidate 166:** [The researched ease-of-use correction is now implemented](kitchen-easy-2026-09-27.html), with scoped engineering evidence and physical acceptance still open. Samsung remains 162. The dated research/prototype record below describes its original milestone.
+
 **Later user feedback supersedes the interaction assumptions below:** Android 162's table obstructs appliances, tray selection is unsuccessful and ingredient access is too complicated. The [deeper child-interaction research and redesign contract](kitchen-child-friendly-research-2026-09-27.html) now governs correction. Earlier prototype checks remain scoped evidence; they do not establish child usability. The new design is not yet implemented.
 
 The user authorized four sequential stages: working fixtures and four dining places; persistent ingredients/tools/plates; one complete four-player pizza; then all 15 recipes. This is the active Home task on `codex/home-kitchen`, based on `6e2ca60`. The room pass, accepted movement and shared downstairs books remain intact.

@@ -1,0 +1,19 @@
+{
+  "attempts": [
+    {
+      "build": 164,
+      "test": "combined UI/catalog",
+      "result": "UI groups passed; serial catalog exceeded disposable unpaired probe lifetime; split catalog into three five-recipe runs without changing runtime limits."
+    },
+    {
+      "build": 165,
+      "test": "continuity",
+      "result": "Migration comparison passed, but fourth client join timed out during overlapping native tests/build activity; server logged send queue saturation. Cause not established."
+    },
+    {
+      "build": 166,
+      "test": "continuity",
+      "result": "All three groups passed on the isolated serial rerun; no core/network/save changes from 165."
+    }
+  ]
+}

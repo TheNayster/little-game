@@ -31,7 +31,7 @@ EVIDENCE = {
  'rooms':'implementation/upstairs-foundation-2026-09-26.html',
  'bedrooms':'implementation/bedroom-rooms-2026-09-26.html',
  'secrets':'implementation/secret-rooms-2026-09-26.html',
- 'kitchen':'implementation/home-kitchen-2026-09-27.html',
+ 'kitchen':'implementation/kitchen-easy-2026-09-27.html',
  'roomplay':'implementation/room-object-play-2026-09-26.html',
  'furniture':'implementation/bedroom-furniture-2026-09-26.html',
  'walk':'implementation/selected-sheet-characters-2026-09-26.html',
@@ -107,10 +107,10 @@ H-03|home|Rooms and furniture|Living-room radio and automatic dancing|play|1,5|R
 H-04|home|Rooms and furniture|Chairs, benches, cushions and resting spots|part|4,5,32|Beds and four independent bedroom cushions now work, with layered rest/sit poses. Broader seating, held-item seating and final cast/device qualification remain required.|furniture
 H-05|home|Rooms and furniture|Cupboards, drawers, lights and lamps|part|6,11,32,51|Bedroom lamps switch and eight-slot chests open/close around real retained items; shelves have four supports. Wider cupboards/drawers and appliance systems remain required.|furniture
 H-06|home|Rooms and furniture|Bathroom and laundry spaces|plan|3,21|Bath/splash interaction with front water masking, towels, storage, dressing and bedtime connections. This room expansion is listed in the home layout record.|ledger
-H-07|home|Kitchen|Interactive kitchen architecture|part|3,19,51|Working illustrated fridge, four cupboards/worktops, sink, oven and four dining places in the kitchen prototype. Physical alignment/child usability qualification remains open.|kitchen
-H-08|home|Kitchen|Make, decorate and serve|part|19|Make/Decorate/Serve supports real counted ingredients, tap/drag preparation, safe heat, four portions, carry/taste/wash and optional ready bases. Bespoke transformation animations and kitchen sound design remain open.|kitchen
-H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Food IDs, ingredients, additional decoration positions and portions persist on real cookware/plates. The prototype uses preset finished recipe illustrations plus extra toppings; picture orders, picnic packing and the creation album remain planned.|kitchen
-H-10|home|Kitchen|Four-player preparation and safe ovens|part|19,31,47|Four independent cookware sets, tool sets, oven places and dining seats. Heat stops at ready, and removing one dish pauses only that dish. Native validation is recorded in the kitchen report; physical mixed-device qualification remains open.|kitchen
+H-07|home|Kitchen|Interactive kitchen architecture|part|3,19,51|Working illustrated fridge, cupboards/worktops, sink, oven and four dining places. Candidate 166 moves dining beside appliances and migrates occupied supports; physical child/device acceptance remains open.|kitchen
+H-08|home|Kitchen|Make, decorate and serve|part|19|Central-food cooking with pictured bowls, working automatic-tray entry, tap alternatives and optional cupboard play. Counted ingredients, safe heat, portions, carry/taste/wash and ready bases persist. Spoken help, broader effects and kitchen sound remain open.|kitchen
+H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Food IDs, ingredients, contributors and portions persist on real cookware/plates. Pizza retains actual toppings through baking and slicing; cakes/meals retain prototype finished illustrations plus extras. Picture orders, picnic packing and creation album remain planned.|kitchen
+H-10|home|Kitchen|Four-player preparation and safe ovens|part|19,31,47|Four independent cookware/tool sets, oven positions and dining seats. Authority selects free trays atomically and records cook profiles; one leaving player does not interrupt others. Native qualification is recorded; physical mixed-device acceptance remains open.|kitchen
 H-11|home|Kitchen|Drinks, fruit, blender and pretend café|plan|6,19|Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature.|ledger
 H-12|home|Parents and hiding|Bandit and Chilli's ambient routines|plan|22,47|Roam, read, garden, prepare food and tidy eligible ambient props; requests interrupt safely, but never steal a busy seeker or destroy a child's work.|ledger
 H-13|home|Parents and hiding|Parent-seeker hide-and-seek|plan|22,34|Invite a parent, prepare individually, hide, hear a friendly search, be found and continue playing. All joined hiders can leave freely; no elimination screen.|ledger

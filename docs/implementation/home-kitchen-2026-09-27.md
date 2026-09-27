@@ -1,5 +1,7 @@
 # Home kitchen — September 27, 2026
 
+**Later implementation — candidate 166:** [The researched ease-of-use correction is now implemented](kitchen-easy-2026-09-27.html), with scoped engineering evidence and physical acceptance still open. Samsung remains 162. The dated research/prototype record below describes its original milestone.
+
 **User preview feedback, September 27:** the concepts are liked, but the table blocks the fridge/oven, tray selection does not work as expected and opening drawers for ingredients is confusing. These usability issues are open. The user wants a large central dish surrounded by easy ingredient choices. [Follow-up deep research and correction contract](kitchen-child-friendly-research-2026-09-27.html) is complete; no corrective game build has been made in that research pass.
 
 The user authorized four stages: usable kitchen fixtures and four dining places, durable ingredients/tools/plates, one complete four-player pizza, then all 15 researched recipes. This is a playable kitchen prototype within the existing connected Home property. The full COOK-01 goal remains Partial: custom transformation animation, optional orders, albums, drinks and physical acceptance are still open.

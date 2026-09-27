@@ -676,7 +676,7 @@ A one-room experiment may initially show both children together, but it is only 
 
 ## 19. Kitchen: five pizzas, five cakes, five meals
 
-**Latest user correction, September 27:** the Android 162 preview needs a large central dish with easy ingredient bowls around it, an effective Cook/tray entry, optional cupboard chores and clear fridge/oven access around the dining furniture. [Deep research and proposed correction](implementation/kitchen-child-friendly-research-2026-09-27.html) specify an easy first pizza while retaining real ingredients, four independent players, all fifteen recipes and the full behaviors below. This correction is researched but not implemented.
+**Latest kitchen correction, September 27:** candidate 166 implements the requested central dish and ingredient bowls, working automatic-tray Cook entry, optional cupboard chores and clear fridge/oven access. [Applied child-interaction research](implementation/kitchen-child-friendly-research-2026-09-27.html) and [implementation/evidence](implementation/kitchen-easy-2026-09-27.html) retain real ingredients, four independent players and all fifteen recipes. Exact pizza toppings persist through baking/slicing; bespoke cake/meal transformations, broader goals below and physical child/device acceptance remain open.
 
 **Implementation checkpoint, September 27:** [Kitchen prototype](implementation/home-kitchen-2026-09-27.html) adds usable fixtures, four independent work/dining places and persistent preparation/heat/serve/taste/wash for all 15 recipes. The detailed behaviors below remain the full goal; a playable path does not complete custom shape/effect, orders, album, drink or physical qualification requirements.
 

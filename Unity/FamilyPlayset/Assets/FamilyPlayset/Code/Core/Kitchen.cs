@@ -12,7 +12,7 @@ namespace LittleWeeps.Core
     }
     [Serializable] public sealed class FoodAddition
     {
-        public string unit,ingredient;
+        public string unit,ingredient,by;
         public float x,y;
         public FoodAddition Copy()=>(FoodAddition)MemberwiseClone();
     }
@@ -29,10 +29,11 @@ namespace LittleWeeps.Core
     [Serializable] public sealed class KitchenItem
     {
         public string definition;
+        public string cook;
         public int amount,batch;
         public bool dirty;
         public FoodDish dish;
-        public static bool Empty(KitchenItem k)=>k==null || string.IsNullOrEmpty(k.definition) && k.amount==0 && k.batch==0 && !k.dirty && FoodDish.Empty(k.dish);
+        public static bool Empty(KitchenItem k)=>k==null || string.IsNullOrEmpty(k.definition) && string.IsNullOrEmpty(k.cook) && k.amount==0 && k.batch==0 && !k.dirty && FoodDish.Empty(k.dish);
         public KitchenItem Copy(){var k=(KitchenItem)MemberwiseClone();k.dish=dish?.Copy();return k;}
     }
     public sealed class KitchenRecipe
@@ -78,7 +79,9 @@ namespace LittleWeeps.Core
         public static string Tool(string step)=>step=="shape"?"roller":step=="chop" || step=="cut"?"knife":step=="flip" || step=="stack" || step=="plate" || step.StartsWith("shape-")?"spatula":"spoon";
         public static string Seat(int index)=>"kitchen-seat-"+index;
         public static bool Seat(string id)=>Enumerable.Range(0,4).Any(i=>Seat(i)==id);
-        public static float SeatX(string id)=>-1020+Array.FindIndex(Enumerable.Range(0,4).Select(Seat).ToArray(),s=>s==id)*235;
+        public const int EasySchema=14;
+        public const float CounterX=-2210,FridgeX=-1150,OvenX=-1520,DiningX=-470;
+        public static float SeatX(string id,int schema=EasySchema)=>(schema<EasySchema?-1020:-740)+Array.FindIndex(Enumerable.Range(0,4).Select(Seat).ToArray(),s=>s==id)*(schema<EasySchema?235:180);
         public static string Support(string group,int i)=>"kitchen/"+group+"/"+i;
         public static int Count(string group)=>group=="fridge"?12:group=="cupboard"?24:group=="tools"?16:group=="counter" || group=="oven" || group=="dining" || group=="sink"?4:0;
         public static bool Slot(string id,out string group,out int slot)
@@ -86,13 +89,13 @@ namespace LittleWeeps.Core
             var parts=(id??"").Split('/');group=parts.Length==3?parts[1]:"";slot=-1;
             return parts.Length==3 && parts[0]=="kitchen" && int.TryParse(parts[2],out slot) && slot>=0 && slot<Count(group);
         }
-        public static float X(string group,int i)=>group=="fridge"?-1050+(i%3)*72:group=="cupboard"?-2270+(i%12)*86:group=="tools"?-2230+i*62:group=="counter"?-2040+i*230:group=="oven"?-610+(i%2)*95:group=="dining"?-1020+i*235:-2270+i*44;
+        public static float X(string group,int i,int schema=EasySchema)=>schema<EasySchema?(group=="fridge"?-1050+(i%3)*72:group=="cupboard"?-2270+(i%12)*86:group=="tools"?-2230+i*62:group=="counter"?-2040+i*230:group=="oven"?-610+(i%2)*95:group=="dining"?-1020+i*235:-2270+i*44):(group=="fridge"?-1230+(i%3)*72:group=="cupboard"?-2565+(i%12)*60:group=="tools"?-2600+i*48:group=="counter"?-2500+i*180:group=="oven"?-1565+(i%2)*95:group=="dining"?-740+i*180:-2560+i*36);
         public static float Y(string group,int i)=>group=="fridge"?450-(i/3)*100:group=="cupboard"?400-(i/12)*180:group=="counter"?430:group=="oven"?340-(i/2)*160:group=="dining"?180:430;
         public static bool Open(KitchenState state,string group,int slot)=>state!=null && (group=="fridge"?state.fridgeOpen:group=="cupboard"?state.cupboards[(slot%12)/3]:group=="oven"?state.ovenOpen:true);
         private static SoloToy[] CreateStock()
         {
             var list=new List<SoloToy>();
-            void Add(string id,ToyKind kind,string definition,string group,int slot,int amount=0)=>list.Add(new SoloToy{id=id,kind=kind,x=X(group,slot),y=Y(group,slot),container=Support(group,slot),kitchen=new KitchenItem{definition=definition,amount=amount}});
+            void Add(string id,ToyKind kind,string definition,string group,int slot,int amount=0)=>list.Add(new SoloToy{id=id,kind=kind,x=X(group,slot,Schema),y=Y(group,slot),container=Support(group,slot),kitchen=new KitchenItem{definition=definition,amount=amount}});
             for(var i=0;i<Ingredients.Length;i++)Add("ingredient-"+Ingredients[i],ToyKind.Ingredient,Ingredients[i],i<12?"fridge":"cupboard",i<12?i:i-12,16);
             // Four exclusive sets hang on a persistent rack above the worktops.
             for(var i=0;i<4;i++){
@@ -133,7 +136,7 @@ namespace LittleWeeps.Core
             {
                 var t=s.toys.SingleOrDefault(v=>v.id==original.id);var k=t?.kitchen;
                 if(t==null || t.kind!=original.kind || k==null || k.definition!=original.kitchen.definition || k.batch<0 || k.batch>1000000000 || k.amount<0 || k.amount>16 ||
-                   (t.kind!=ToyKind.Ingredient && k.amount!=0) || (t.kind==ToyKind.Ingredient && k.dirty) || t.personalRoom!="" || t.water!=0 || t.wet || t.resetPending)
+                   (t.kind!=ToyKind.Ingredient && k.amount!=0) || (t.kind==ToyKind.Ingredient && k.dirty) || (!string.IsNullOrEmpty(k.cook) && (t.kind!=ToyKind.Cookware || !s.players.Any(p=>p.id==k.cook))) || t.personalRoom!="" || t.water!=0 || t.wet || t.resetPending)
                     throw new InvalidOperationException("Invalid kitchen inventory.");
             }
             foreach(var t in s.toys)
@@ -142,7 +145,7 @@ namespace LittleWeeps.Core
                 var d=t.kitchen.dish;if(d==null)continue;var r=Kitchen.Recipe(d.recipe);
                 if(!Kitchen.Dish(t.kind) || !Id(d.id) || r==null || d.step<0 || d.step>r.steps.Length || d.portions<0 || d.portions>15 ||
                    double.IsNaN(d.heat) || double.IsInfinity(d.heat) || d.heat<0 || d.heat>Kitchen.HeatSeconds || d.ingredients==null || d.ingredients.Length<1 || d.ingredients.Length>24 ||
-                   d.ingredients.Any(i=>i==null || !Id(i.unit) || !Kitchen.Ingredients.Contains(i.ingredient) || float.IsNaN(i.x) || float.IsNaN(i.y) || Math.Abs(i.x)>1 || Math.Abs(i.y)>1) ||
+                   d.ingredients.Any(i=>i==null || !Id(i.unit) || !string.IsNullOrEmpty(i.by) && !s.players.Any(p=>p.id==i.by) || !Kitchen.Ingredients.Contains(i.ingredient) || float.IsNaN(i.x) || float.IsNaN(i.y) || Math.Abs(i.x)>1 || Math.Abs(i.y)>1) ||
                    d.ingredients.Select(i=>i.unit).Distinct().Count()!=d.ingredients.Length || t.kind==ToyKind.Plate && Kitchen.Next(d)!="serve")throw new InvalidOperationException("Invalid persistent dish.");
             }
             // Portions may live on different plates, but their origin/bit is unique.
@@ -154,7 +157,7 @@ namespace LittleWeeps.Core
         private void ReturnKitchenTool(SoloToy item,SoloPlayer player)
         {
             var origin=Kitchen.Stock().First(t=>t.id==item.id);item.holder="";
-            if(player.zone=="garden" && !state.toys.Any(t=>t.container==origin.container)){item.container=origin.container;item.x=origin.x;item.y=origin.y;}
+            if(player.zone=="garden" && !state.toys.Any(t=>t.container==origin.container)){item.container=origin.container;Kitchen.Slot(origin.container,out var group,out var slot);item.x=Kitchen.X(group,slot,state.schema);item.y=origin.y;}
             else {item.container="";item.x=player.x;item.y=Math.Max(35,player.y-65);}
             Touch(item);
         }
@@ -166,6 +169,7 @@ namespace LittleWeeps.Core
         private string KitchenOperation(SoloCommand c,SoloPlayer p,SoloToy item)
         {
             if(state.schema<Kitchen.Schema)return "kitchen-unavailable";
+            if(c.value.StartsWith("easy:"))return KitchenAssist(c,p,item);
             if(c.value=="door"){
                 if(p.zone!="garden")return "wrong-area";
                 if(c.target=="fridge")state.kitchen.fridgeOpen=!state.kitchen.fridgeOpen;
@@ -225,8 +229,8 @@ namespace LittleWeeps.Core
             if(state.schema<Kitchen.Schema || p.zone!="garden" || !Kitchen.Open(state.kitchen,group,slot))return "storage-closed";
             if(state.toys.Any(t=>t.container==c.target))return "storage-full";
             if((group=="oven" && item.kind!=ToyKind.Cookware) || (group=="tools" && item.kind!=ToyKind.KitchenTool) || (group=="dining" && item.kind!=ToyKind.Plate) || (group=="sink" && !Kitchen.Kind(item.kind)))return "wrong-support";
-            if(Math.Abs(c.x-Kitchen.X(group,slot))>80 || Math.Abs(c.y-Kitchen.Y(group,slot))>80)return "target-too-far";
-            item.container=c.target;item.holder="";item.x=Kitchen.X(group,slot);item.y=Kitchen.Y(group,slot);Touch(item);return null;
+            if(Math.Abs(c.x-Kitchen.X(group,slot,state.schema))>80 || Math.Abs(c.y-Kitchen.Y(group,slot))>80)return "target-too-far";
+            item.container=c.target;item.holder="";item.x=Kitchen.X(group,slot,state.schema);item.y=Kitchen.Y(group,slot);Touch(item);return null;
         }
         private bool AdvanceKitchen(double seconds,out bool visible)
         {

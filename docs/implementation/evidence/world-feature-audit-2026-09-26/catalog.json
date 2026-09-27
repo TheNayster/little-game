@@ -600,7 +600,7 @@
         19,
         51
       ],
-      "description": "Working illustrated fridge, four cupboards/worktops, sink, oven and four dining places in the kitchen prototype. Physical alignment/child usability qualification remains open.",
+      "description": "Working illustrated fridge, cupboards/worktops, sink, oven and four dining places. Candidate 166 moves dining beside appliances and migrates occupied supports; physical child/device acceptance remains open.",
       "evidence": "kitchen",
       "extraSource": ""
     },
@@ -613,7 +613,7 @@
       "chapters": [
         19
       ],
-      "description": "Make/Decorate/Serve supports real counted ingredients, tap/drag preparation, safe heat, four portions, carry/taste/wash and optional ready bases. Bespoke transformation animations and kitchen sound design remain open.",
+      "description": "Central-food cooking with pictured bowls, working automatic-tray entry, tap alternatives and optional cupboard play. Counted ingredients, safe heat, portions, carry/taste/wash and ready bases persist. Spoken help, broader effects and kitchen sound remain open.",
       "evidence": "kitchen",
       "extraSource": ""
     },
@@ -627,7 +627,7 @@
         19,
         51
       ],
-      "description": "Food IDs, ingredients, additional decoration positions and portions persist on real cookware/plates. The prototype uses preset finished recipe illustrations plus extra toppings; picture orders, picnic packing and the creation album remain planned.",
+      "description": "Food IDs, ingredients, contributors and portions persist on real cookware/plates. Pizza retains actual toppings through baking and slicing; cakes/meals retain prototype finished illustrations plus extras. Picture orders, picnic packing and creation album remain planned.",
       "evidence": "kitchen",
       "extraSource": ""
     },
@@ -642,7 +642,7 @@
         31,
         47
       ],
-      "description": "Four independent cookware sets, tool sets, oven places and dining seats. Heat stops at ready, and removing one dish pauses only that dish. Native validation is recorded in the kitchen report; physical mixed-device qualification remains open.",
+      "description": "Four independent cookware/tool sets, oven positions and dining seats. Authority selects free trays atomically and records cook profiles; one leaving player does not interrupt others. Native qualification is recorded; physical mixed-device acceptance remains open.",
       "evidence": "kitchen",
       "extraSource": ""
     },

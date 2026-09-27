@@ -1,0 +1,14 @@
+{
+  "finalBuild": 166,
+  "recipeCatalogBuild": 165,
+  "recoveryBuild": 165,
+  "continuityBuild": 166,
+  "finalTouchAndVisualBuild": 166,
+  "changedCodeFrom165": [
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKitchen.cs",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKitchenView.cs"
+  ],
+  "change": "Move Taste below plate choices and align rendered portion quadrants. Core/network/save and all image files identical.",
+  "physicalQualification": false,
+  "liveFamilyTouched": false
+}

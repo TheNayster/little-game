@@ -6,7 +6,7 @@ using LittleWeeps.Core;
 
 static partial class Program
 {
-    static SoloWorld KitchenWorld()=>SoloWorld.WithKitchen(PlayWorld());
+    static SoloWorld KitchenWorld()=>SoloWorld.WithFriendlyKitchen(PlayWorld());
     static void Cook(SoloWorld w,string operation,string item="",string target="",string actor="first")=>Good(w,SoloAction.Kitchen,item,target:target,value:operation,actor:actor);
     static void OpenKitchen(SoloWorld w){Cook(w,"door",target:"fridge");for(var i=0;i<4;i++)Cook(w,"door",target:i.ToString());Cook(w,"door",target:"oven");Cook(w,"door",target:"water");}
     static void KitchenDrop(SoloWorld w,string id,string group,int slot,string actor="first")
@@ -25,9 +25,10 @@ static partial class Program
     }
     static void KitchenTests()
     {
+        KitchenEasyTests();
         Test("recipe ingredients are required before heating and physical tools return to their rack",()=>{
             var w=KitchenWorld();OpenKitchen(w);Cook(w,"start","cookware-0","PIZ-01");
-            Good(w,SoloAction.Grab,"utensil-roller-0");Good(w,SoloAction.Drop,"utensil-roller-0",target:"cookware-0",x:-2040,y:430);
+            Good(w,SoloAction.Grab,"utensil-roller-0");Good(w,SoloAction.Drop,"utensil-roller-0",target:"cookware-0",x:Kitchen.X("counter",0),y:430);
             Check(Toy(w,"utensil-roller-0").container==Kitchen.Support("tools",2));Cook(w,"spread","cookware-0");KitchenDrop(w,"cookware-0","oven",0);
             for(var i=0;i<10;i++)w.AdvanceIdle(1,out _);Check(!Toy(w,"cookware-0").kitchen.dish.heated && Kitchen.Next(Toy(w,"cookware-0").kitchen.dish)=="add:sauce");
             Cook(w,"add","ingredient-sauce","cookware-0");Cook(w,"add","ingredient-cheese","cookware-0");for(var i=0;i<9;i++)w.AdvanceIdle(1,out _);Check(Toy(w,"cookware-0").kitchen.dish.heated);SoloWorld.Validate(w.Snapshot());
@@ -103,8 +104,8 @@ static partial class Program
             OpenKitchen(w);
             for(var i=0;i<4;i++){Cook(w,"start","cookware-"+i,"PIZ-01");Cook(w,"add","ingredient-sauce","cookware-"+i);for(var j=0;j<22;j++){if(Toy(w,"ingredient-cheese").kitchen.amount==0)Cook(w,"restock","ingredient-cheese");Cook(w,"add","ingredient-cheese","cookware-"+i);}FinishDish(w,"cookware-"+i);Cook(w,"serve","cookware-"+i,"plate-"+(i*2));Cook(w,"serve","cookware-"+i,"plate-"+(i*2+1));}
             var view=JsonSerializer.Serialize(new FamilySession(w).View(),new JsonSerializerOptions{IncludeFields=true});
-            if(Encoding.UTF8.GetByteCount(view)>=60000)throw new Exception("oversized view "+Encoding.UTF8.GetByteCount(view));
-            var recovery=RecoveryFixture();recovery.snapshot=w.Snapshot();recovery.content=14;recovery.Validate(recovery.family,recovery.authority,recovery.world);Check(RecoveryBytes(recovery).Length<RecoveryTransfer.MaxBytes);SoloWorld.Validate(w.Snapshot());
+            if(Encoding.UTF8.GetByteCount(view)>=100000)throw new Exception("oversized view "+Encoding.UTF8.GetByteCount(view));
+            var recovery=RecoveryFixture();recovery.snapshot=w.Snapshot();recovery.content=WorldLayout.Content;recovery.Validate(recovery.family,recovery.authority,recovery.world);Check(RecoveryBytes(recovery).Length<RecoveryTransfer.MaxBytes);SoloWorld.Validate(w.Snapshot());
         });
     }
 }

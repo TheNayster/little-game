@@ -17,6 +17,8 @@
     <Compile Include="BookTests.cs" />
     <Compile Include="RoomPlayTests.cs" />
     <Compile Include="KitchenTests.cs" />
+    <Compile Include="KitchenEasyTests.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KitchenAssistance.cs" Link="KitchenAssistance.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Kitchen.cs" Link="Kitchen.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/RoomPlay.cs" Link="RoomPlay.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeRooms.cs" Link="HomeRooms.cs" />

@@ -1,6 +1,6 @@
 # Little Weeps — Home world feature tracker
 
-**Latest kitchen feedback — September 27:** user review of Android 162 found blocked appliances, unsuccessful tray selection and confusing ingredient/drawer prerequisites. [Applied child-interaction research and KUX-01–07 acceptance checklist](implementation/kitchen-child-friendly-research-2026-09-27.html) now directs the correction. First clear appliance access and build one large central pizza view with surrounding ingredient bowls, easy taps and four independent persistent creations. Corrections are planned, not delivered; all fifteen recipes and wider Home work remain tracked.
+**Easier kitchen — candidate 166, September 27:** clear appliance access, a large central dish with surrounding ingredient bowls, working Cook/empty-plate entry and atomic selection of four independent real trays. Tap-only assisted cooking works without opening cupboards; pizza retains its actual toppings through baking and serving. All fifteen recipes remain available. [Implemented correction and qualification](implementation/kitchen-easy-2026-09-27.html). Schema 14/content 15; physical review and first-use child acceptance remain open. Samsung remains 162; no device or family server was updated.
 
 **Current kitchen task — September 27:** the user authorized working fixtures and four dining places, persistent food/tools, four-player pizza, then all 15 recipes. [Applied research](implementation/kitchen-research-2026-09-27.html) and [implementation/evidence](implementation/home-kitchen-2026-09-27.html) govern this bounded stage. The room/book backlog and physical qualification remain tracked.
 
@@ -159,9 +159,9 @@ Provide real bath/splash space with front-water masking, towels, storage, washab
 
 ## Kitchen, dining and all 15 recipes
 
-**Open usability correction:** KUX-01–07 in the [new research](implementation/kitchen-child-friendly-research-2026-09-27.html) cover layout, working entry, tap-only pizza, errors/help, four cooks, continuity and actual child use. Earlier native passes do not close the user's Android 162 feedback. Keep H-07–10 / COOK-01 Partial until the full requirements are accepted.
+**Candidate correction:** the [researched KUX-01–07 checklist](implementation/kitchen-child-friendly-research-2026-09-27.html) now has [scoped implementation and native evidence](implementation/kitchen-easy-2026-09-27.html). Clear appliance access, automatic tray selection, central pizza and optional drawer play are implemented. Full physical checks, the mistake/help matrix and actual child observation remain open; keep H-07–10 / COOK-01 Partial.
 
-The playable prototype now covers the 15 preparation paths and durable serving. The unchecked entries below retain the full target behaviors, including custom shape/ingredient animation, optional orders, albums and physical usability checks; see the [kitchen report](implementation/home-kitchen-2026-09-27.html).
+The playable prototype now covers the 15 preparation paths and durable serving. The unchecked entries below retain the full target behaviors, including custom shape/ingredient animation, optional orders, albums and physical usability checks; see the [current kitchen report](implementation/kitchen-easy-2026-09-27.html).
 
 Four players can prepare, decorate, plate, eat/serve and wash independently. Include real appliance interiors, ingredient storage, four dining places and suitable work positions/tools. Make / Decorate / Serve supports free creation, optional orders and ready-made bases. Recipe variants need distinct assembly/appearance, not five recolors. Food, portions and decorations persist as real objects; transformations consume ingredients once, and heating settles safely when a player leaves.
 

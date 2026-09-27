@@ -24,8 +24,9 @@ def main():
         f.build=args.build;f.controller=ParentServer(f.run_id,args.build);server=f.launch(0)
         wait(lambda:server.status() and server.status()['status']=='listening','upgraded authority')
         after=checkpoint(save.read_bytes());normalized=deepcopy(after)
-        require(after['schema']==13 and len(after['toys'])==106,'Kitchen migration missing')
-        normalized['schema']=12;normalized['revision']-=1;normalized['toys']=normalized['toys'][:53];normalized.pop('kitchen')
+        friendly=args.build>=163
+        require(after['schema']==(14 if friendly else 13) and len(after['toys'])==106,'Kitchen migration missing')
+        normalized['schema']=12;normalized['revision']-=2 if friendly else 1;normalized['toys']=normalized['toys'][:53];normalized.pop('kitchen')
         for t in normalized['toys']:t.pop('kitchen',None)
         require(normalized==before,'Kitchen migration changed old fields')
         require(all((f.path/n).read_bytes()==v for n,v in keys.items()),'Enrollment changed')
@@ -46,7 +47,7 @@ def main():
         cmd(3,item='plate-0',x=1800,y=60);require(toy('plate-0')['kitchen']['dish']['portions']==1,'Carried portion changed')
         move(1500,200);time.sleep(1.5);server.process.kill();server.process.wait(timeout=10)
         wait(lambda:(s if not (s:=a.input('inspect'))['shared'] and s['ready'] and s['adventure'] else None),'private kitchen continuation',40);home.ready(a)
-        a.input('touch-begin',role='plate-0',finger=52);a.input('touch-end',role='plate-0',finger=52);button('Taste');button('Close');button('Menu')
+        a.input('touch-begin',role='plate-0',finger=52);a.input('touch-end',role='plate-0',finger=52);button('Taste');button('Back' if friendly else 'Close');button('Menu')
         path=Path(a.input('inspect')['savePath']);local=json.loads(path.read_text(encoding='utf-8-sig').split('\n',2)[2])['snapshot']
         require(next(t for t in local['toys'] if t['id']=='plate-0')['kitchen']['dish']['portions']==0,'Private taste not saved')
         a.close();a=f.launch(1);home.ready(a);require(a.input('inspect')['zone']=='home-bedroom-1','Private room lost')
