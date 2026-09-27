@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "same cargo can sink a narrow hull and float in a wider hull; removing cargo restores buoyancy",
+      "passed": true
+    },
+    {
+      "name": "magnet moves iron only, preserves other sample positions and remains inside its tray",
+      "passed": true
+    },
+    {
+      "name": "RGB combinations identify additive secondary colors and white",
+      "passed": true
+    },
+    {
+      "name": "four owners can color the same template independently; undo and page switching preserve siblings",
+      "passed": true
+    },
+    {
+      "name": "a freehand gesture is one undo step, redo restores it, a new stroke clears abandoned redo",
+      "passed": true
+    },
+    {
+      "name": "science state and all six page records survive serialization with four independent owners",
+      "passed": true
+    },
+    {
+      "name": "corrupt colors, undo operations, out-of-paper coordinates and excessive strokes are rejected",
+      "passed": true
+    },
+    {
+      "name": "bounded prototype drawing/history refuses extra strokes without deleting existing pictures",
+      "passed": true
+    }
+  ],
+  "scope": "Browser research model only",
+  "unityGameplayTested": false,
+  "networkMultiplayerTested": false,
+  "liveFamilyTouched": false
+}

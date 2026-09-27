@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'scienceart':'implementation/home-science-coloring-research-2026-09-27.html',
  'nav':'implementation/combined-chooser-2026-09-25.html',
  'scene':'implementation/scenic-worlds-2026-09-25.html',
  'home':'implementation/home-interactions-2026-09-25.html',
@@ -202,7 +203,9 @@ for n,prefix,world,group in [(37,'BCH','beach','Ten beach activities'),(38,'CRK'
             if m:add(m[1],world,group,m[2],'plan',[n],f'Simple play: {row[1]} Deeper play: {row[2]}','ledger')
 for row in table_with(30,'ID and station')[1:]:
     m=re.match(r'(SCI-\d+)\s*—\s*(.+)',plain(row[0]))
-    add(m[1],'home','Eight science experiments',m[2],'plan',[30],f'Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}','ledger')
+    add(m[1],'home','Eight science experiments',m[2],'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]} Browser research prototype is not installed Unity gameplay.','scienceart')
+for row in table_with(30,'Coloring ID')[1:]:
+    add(row[0],'home','Shared downstairs coloring',row[1],'plan',[30],row[2]+' Research/prototype only; Unity integration and physical four-player qualification remain open.','scienceart')
 for i,row in enumerate(table_with(26,'Working title')[1:],1):
     add(f'BK-{i:02}','home','Six starter books',plain(row[0]),'plan',[25,26],f'{row[1]} proposed. {row[2]}','ledger')
 for i,row in enumerate(table_with(28,'Dinosaur toy')[1:],1):
@@ -402,7 +405,7 @@ Still open for later content decisions: Spanish dialect; final extra cast priori
 
 Read the maintained decisions and build record, extracted every named catalog entry, reviewed the research's room/activity/state requirements, and compared current status with focused runtime source and retained acceptance reports. Source inspected includes `WorldLayout`, `SoloWorld`, `HomeWorld`, `KeepyUppy`, `SoloNavigation`, `SoloScreen` and the separate `FoundationVideo` probe. This is a feature/source/evidence audit, not a line-by-line review of all game code or a fresh external research pass. No devices, live server, personal media, credentials or saves were accessed or changed for this audit.
 
-The generated coverage record checks all 55 chapters, 35 master IDs, 32 show cards, 32 outdoor cards, 12 learning stations, 15 recipes, eight science stations, six books, 20 dinosaurs, five dinosaur invitations, five cleanup entries, 18 starter invitations, nine stories, 37 individual roster entries and 20 reusable object families. Overlapping entries are intentional; no completion percentage is derived.
+The generated coverage record checks all 55 chapters, 35 master IDs, 32 show cards, 32 outdoor cards, 12 learning stations, 15 recipes, eight science stations, eight coloring requirements, six books, 20 dinosaurs, five dinosaur invitations, five cleanup entries, 18 starter invitations, nine stories, 37 individual roster entries and 20 reusable object families. Overlapping entries are intentional; no completion percentage is derived.
 
 [Research and goal sheet](bluey-game-research-2026-09-23.html) · [Current decisions](current-decisions.md) · [Build plan](family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis) · [Bluey interaction study](bluey-lets-play-reference-study-2026-09-25.html) · [Toca/Piknik supplement](toca-piknik-interaction-research-2026-09-23.html) · [Machine-readable inventory](implementation/evidence/world-feature-audit-2026-09-26/catalog.json) · [Coverage validation](implementation/evidence/world-feature-audit-2026-09-26/coverage.json).
 '''
@@ -410,7 +413,7 @@ parts.append(OUTRO)
 md='\n'.join(parts).rstrip()+'\n'
 (DOC/(NAME+'.md')).write_text(md,encoding='utf-8')
 
-expected={'SHOW':32,'BCH':10,'CRK':10,'PRK':12,'LRN':12,'PIZ':5,'CAK':5,'MEAL':5,'SCI':8,'BK':6,'TOY':20,'DISC':5,'CLEAN-GAME':5,'QUEST':18,'STORY-IMG':9,'CAST':37,'OBJECT':20}
+expected={'SHOW':32,'BCH':10,'CRK':10,'PRK':12,'LRN':12,'PIZ':5,'CAK':5,'MEAL':5,'SCI':8,'COL':8,'BK':6,'TOY':20,'DISC':5,'CLEAN-GAME':5,'QUEST':18,'STORY-IMG':9,'CAST':37,'OBJECT':20}
 counts={p:sum(bool(re.fullmatch(re.escape(p)+r'-\d+',f['id'])) for f in features) for p in expected}
 counts['CAST']=sum(f['id'].startswith('CAST-') for f in features)
 assert counts==expected,(counts,expected)

@@ -1227,6 +1227,8 @@ The older iPad remains the performance baseline as client and solo player, inclu
 
 ## 30. A simple and playful science corner
 
+**September 27 user request:** science and a coloring-book area belong in the **main house's shared downstairs space**, accessible to all four players. [Deep research applied to placement, interactions and persistence](implementation/home-science-coloring-research-2026-09-27.html) and the [interactive research prototype](implementation/home-science-coloring-prototype.html) supplement this chapter. The prototype is browser-only; none of these stations is marked installed or network-qualified by that work.
+
 **Build a little discovery bench inside Heeler Home, with toys that react immediately to a tap or drag.** The child can investigate freely; a parent character may offer a short invitation such as “What will float?” No reading test, mandatory experiment sequence, or result screen should interrupt play. Keep the existing Simple Play and Explore & Stories settings per child.
 
 PBS's age-three science guidance emphasizes investigating pushes, pulls, rolling, floating, and movement through play and simple descriptive language. That supports a cause-and-effect approach; it does not establish that these proposed digital activities have a measured educational benefit. Our game designs below adapt physical science ideas into forgiving, illustrated play. [PBS: pushes and pulls at age three](https://www.pbs.org/parents/learn-grow/age-3/science/pushes-and-pulls)
@@ -1265,6 +1267,23 @@ For the first version, use reviewed response tables or simple bounded models: ca
 The PC or local solo authority calculates results. Clients display interpolation, splashes, bubbles, light, and sound; they do not independently decide whether the same boat sank. Unity physics on two devices should not be assumed to produce identical results from identical inputs. Bound the number of balls, bubbles, dust particles, and simultaneous sounds. An offline iPad runs these same rules locally.
 
 **First science prototype:** float tub, magnet trail, and color lights. They test three distinct interactions while reusing the existing container, drag, and touch systems. Complete those before adding the other five stations.
+
+### Shared downstairs coloring and drawing
+
+This newly requested area sits beside the living room and shared science bay. Four players can use their own papers at once, regardless of chosen avatar. It does not replace narrated books. The working default includes coloring pages and blank drawing paper; the optional preference question remains open. Final art/themes need review.
+
+| Coloring ID | Feature | Required behavior |
+| --- | --- | --- |
+| COL-01 | Shared art table and four paper places | Reachable downstairs, clear walking space, independent entry/exit |
+| COL-02 | Full-page coloring books | Large closed regions, fitted pictures, surrounding visible tools; all pages available to every player |
+| COL-03 | Forgiving crayons and tap fill | Large named swatches, immediate feedback, authored region masks and a tap alternative to precise dragging |
+| COL-04 | Blank drawing and undo/redo | Clipped strokes, one gesture per undo, no sibling-wide erase; default pending optional preference |
+| COL-05 | Durable personal picture folders | Creation/profile/page-version identity, autosave feedback, safe reopen and bounded storage |
+| COL-06 | Shared display and carrying creations | Display or move a real picture record; preserve identity and prevent duplicate paintings |
+| COL-07 | Optional Together permission | Visitors view; owner controls editing; accepted work survives participant departure |
+| COL-08 | Four-player and device qualification | Bounded artwork updates, private offline saves, authoritative reunion, recovery and A10/touch verification |
+
+**Scientific coloring distinction:** RGB light mixing is not crayon or paint mixing. Keep the systems and explanations distinct. There is no correct-color score or required completion percentage. The [applied specification](implementation/home-science-coloring-research-2026-09-27.html) records the source-to-decision mapping, drawing-data/network constraints and acceptance sequence.
 
 ## 31. Joining and leaving without restarting play
 

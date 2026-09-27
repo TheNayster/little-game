@@ -2412,8 +2412,8 @@
       "chapters": [
         30
       ],
-      "description": "Simple play: Drop a wooden block, smooth stone, or toy boat into a shallow illustrated tub Explore together: Add cargo to the boat; one child loads while the other changes the cargo; remove cargo and try again Factual constraint: Floating depends on the object and displaced water, not simply “big/heavy sinks.” Use a finite set of reviewed props",
-      "evidence": "ledger",
+      "description": "Shared downstairs. Simple play: Drop a wooden block, smooth stone, or toy boat into a shallow illustrated tub Explore together: Add cargo to the boat; one child loads while the other changes the cargo; remove cargo and try again Factual constraint: Floating depends on the object and displaced water, not simply “big/heavy sinks.” Use a finite set of reviewed props Browser research prototype is not installed Unity gameplay.",
+      "evidence": "scienceart",
       "extraSource": ""
     },
     {
@@ -2425,8 +2425,8 @@
       "chapters": [
         30
       ],
-      "description": "Simple play: Drag a large magnet wand near iron/steel toy pieces and watch them follow Explore together: Guide a magnetic toy along a path; try wood/plastic pieces; turn a second bar magnet to compare push and pull Factual constraint: Ordinary magnets do not visibly attract every metal or every object. Magnetic poles need consistent behavior",
-      "evidence": "ledger",
+      "description": "Shared downstairs. Simple play: Drag a large magnet wand near iron/steel toy pieces and watch them follow Explore together: Guide a magnetic toy along a path; try wood/plastic pieces; turn a second bar magnet to compare push and pull Factual constraint: Ordinary magnets do not visibly attract every metal or every object. Magnetic poles need consistent behavior Browser research prototype is not installed Unity gameplay.",
+      "evidence": "scienceart",
       "extraSource": ""
     },
     {
@@ -2438,8 +2438,8 @@
       "chapters": [
         30
       ],
-      "description": "Simple play: Tap to release a ball down a ready-built ramp into a wide basket Explore together: Change ramp height and surface; one child adjusts, the other releases; keep both toys otherwise identical when comparing Factual constraint: Slope and friction change motion; do not use “heavier always rolls faster” as the rule",
-      "evidence": "ledger",
+      "description": "Shared downstairs. Simple play: Tap to release a ball down a ready-built ramp into a wide basket Explore together: Change ramp height and surface; one child adjusts, the other releases; keep both toys otherwise identical when comparing Factual constraint: Slope and friction change motion; do not use “heavier always rolls faster” as the rule Browser research prototype is not installed Unity gameplay.",
+      "evidence": "scienceart",
       "extraSource": ""
     },
     {
@@ -2451,8 +2451,8 @@
       "chapters": [
         30
       ],
-      "description": "Simple play: Switch on red, green, and blue lamps to light up a pretend flower screen Explore together: Move overlapping light spots or turn lamps off together; make picture-requested colors if wanted Factual constraint: This is colored light: red plus green makes yellow; all three can make white. Paint mixing uses different rules",
-      "evidence": "ledger",
+      "description": "Shared downstairs. Simple play: Switch on red, green, and blue lamps to light up a pretend flower screen Explore together: Move overlapping light spots or turn lamps off together; make picture-requested colors if wanted Factual constraint: This is colored light: red plus green makes yellow; all three can make white. Paint mixing uses different rules Browser research prototype is not installed Unity gameplay.",
+      "evidence": "scienceart",
       "extraSource": ""
     },
     {
@@ -2464,8 +2464,8 @@
       "chapters": [
         30
       ],
-      "description": "Simple play: Move one toy between a lamp and screen; its shadow follows Explore together: Move the toy closer to the light/screen, switch toys, and make a tiny story together Factual constraint: An opaque object blocks light; preserve consistent source/object/screen geometry",
-      "evidence": "ledger",
+      "description": "Shared downstairs. Simple play: Move one toy between a lamp and screen; its shadow follows Explore together: Move the toy closer to the light/screen, switch toys, and make a tiny story together Factual constraint: An opaque object blocks light; preserve consistent source/object/screen geometry Browser research prototype is not installed Unity gameplay.",
+      "evidence": "scienceart",
       "extraSource": ""
     },
     {
@@ -2477,8 +2477,8 @@
       "chapters": [
         30
       ],
-      "description": "Simple play: Tap a fan button to blow bubbles, then tap to pop them Explore together: Try different wand outlines and air strength; one child operates the fan, the other catches bubbles Factual constraint: Free soap bubbles tend toward a round shape; a square wand does not make permanent square floating bubbles",
-      "evidence": "ledger",
+      "description": "Shared downstairs. Simple play: Tap a fan button to blow bubbles, then tap to pop them Explore together: Try different wand outlines and air strength; one child operates the fan, the other catches bubbles Factual constraint: Free soap bubbles tend toward a round shape; a square wand does not make permanent square floating bubbles Browser research prototype is not installed Unity gameplay.",
+      "evidence": "scienceart",
       "extraSource": ""
     },
     {
@@ -2490,8 +2490,8 @@
       "chapters": [
         30
       ],
-      "description": "Simple play: Pluck a large illustrated string and see it vibrate Explore together: Adjust a clearly marked length or tension control; take turns making high/low sounds Factual constraint: Vibration produces sound; change one relevant parameter at a time and separate pitch from loudness",
-      "evidence": "ledger",
+      "description": "Shared downstairs. Simple play: Pluck a large illustrated string and see it vibrate Explore together: Adjust a clearly marked length or tension control; take turns making high/low sounds Factual constraint: Vibration produces sound; change one relevant parameter at a time and separate pitch from loudness Browser research prototype is not installed Unity gameplay.",
+      "evidence": "scienceart",
       "extraSource": ""
     },
     {
@@ -2503,8 +2503,112 @@
       "chapters": [
         30
       ],
-      "description": "Simple play: Place a seed, add water, and press a fast-forward sun picture Explore together: Compare two prepared pots, watch simplified growth stages, decorate the pots, and move a grown plant to a bedroom Factual constraint: Growth is deliberately sped up; plants need more than water alone, and soil is not the only possible growing medium",
-      "evidence": "ledger",
+      "description": "Shared downstairs. Simple play: Place a seed, add water, and press a fast-forward sun picture Explore together: Compare two prepared pots, watch simplified growth stages, decorate the pots, and move a grown plant to a bedroom Factual constraint: Growth is deliberately sped up; plants need more than water alone, and soil is not the only possible growing medium Browser research prototype is not installed Unity gameplay.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "COL-01",
+      "world": "home",
+      "group": "Shared downstairs coloring",
+      "title": "Shared art table and four paper places",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Reachable downstairs, clear walking space, independent entry/exit Research/prototype only; Unity integration and physical four-player qualification remain open.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "COL-02",
+      "world": "home",
+      "group": "Shared downstairs coloring",
+      "title": "Full-page coloring books",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Large closed regions, fitted pictures, surrounding visible tools; all pages available to every player Research/prototype only; Unity integration and physical four-player qualification remain open.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "COL-03",
+      "world": "home",
+      "group": "Shared downstairs coloring",
+      "title": "Forgiving crayons and tap fill",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Large named swatches, immediate feedback, authored region masks and a tap alternative to precise dragging Research/prototype only; Unity integration and physical four-player qualification remain open.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "COL-04",
+      "world": "home",
+      "group": "Shared downstairs coloring",
+      "title": "Blank drawing and undo/redo",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Clipped strokes, one gesture per undo, no sibling-wide erase; default pending optional preference Research/prototype only; Unity integration and physical four-player qualification remain open.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "COL-05",
+      "world": "home",
+      "group": "Shared downstairs coloring",
+      "title": "Durable personal picture folders",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Creation/profile/page-version identity, autosave feedback, safe reopen and bounded storage Research/prototype only; Unity integration and physical four-player qualification remain open.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "COL-06",
+      "world": "home",
+      "group": "Shared downstairs coloring",
+      "title": "Shared display and carrying creations",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Display or move a real picture record; preserve identity and prevent duplicate paintings Research/prototype only; Unity integration and physical four-player qualification remain open.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "COL-07",
+      "world": "home",
+      "group": "Shared downstairs coloring",
+      "title": "Optional Together permission",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Visitors view; owner controls editing; accepted work survives participant departure Research/prototype only; Unity integration and physical four-player qualification remain open.",
+      "evidence": "scienceart",
+      "extraSource": ""
+    },
+    {
+      "id": "COL-08",
+      "world": "home",
+      "group": "Shared downstairs coloring",
+      "title": "Four-player and device qualification",
+      "status": "plan",
+      "chapters": [
+        30
+      ],
+      "description": "Bounded artwork updates, private offline saves, authoritative reunion, recovery and A10/touch verification Research/prototype only; Unity integration and physical four-player qualification remain open.",
+      "evidence": "scienceart",
       "extraSource": ""
     },
     {

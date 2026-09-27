@@ -1,5 +1,7 @@
 # Little Weeps — Home world feature tracker
 
+**Latest research — shared downstairs science and coloring:** [Applied research and implementation sequence](implementation/home-science-coloring-research-2026-09-27.html) · [Interactive browser prototype](implementation/home-science-coloring-prototype.html). Retain SCI-01–08 and add COL-01–08 below. Prototype interactions are not installed Unity features or multiplayer qualification. The server/audio correction in 172 remains pending deployment.
+
 **Staged chocolate cake — candidate 171, September 27:** newly chosen chocolate cakes now have visible mixing, partial pouring into two tins, safe baking, filling, layer assembly, icing, decoration, slicing and four conserved servings. Normal recipes have relevant ingredient lists; unusual combinations require explicit Experiment mode. [Implementation and applied research](implementation/chocolate-cake-flow-2026-09-27.html). Schema 15/content 16; old dishes keep their original rules and contents. Qualification/delivery is recorded in that report. Other recipe activities and physical child/A10 acceptance remain open; COOK-01 and Home remain Partial.
 
 **Cooking process correction — latest Android 166 feedback, September 27:** cake-making exposes unrelated ingredients and cooking mostly advances through repeated button presses. [Cooking-stage audit, deep research and all fifteen flows](implementation/kitchen-staged-cooking-research-2026-09-27.html) confirms shared ingredient pages, finishing ingredients required before heat, generic step advancement and missing partial preparation states. The required correction is recipe/stage-specific ingredients plus visible mixing, pouring, shaping, appropriate cooking, finishing and serving. First bounded implementation: one complete chocolate-cake sequence, then the other cakes, pizzas and pan/pot meals. Four-player independence and all fifteen recipes remain required. That audit pass changed research/tracking only; the first implemented cake flow is recorded above.
@@ -343,6 +345,8 @@ Keep all 20 named types accessible through the toy catalog without requiring all
 
 ## Science corner: eight experiments
 
+Placement is now explicitly the main house's shared downstairs area. The [September 27 research](implementation/home-science-coloring-research-2026-09-27.html) governs the next integration: float/magnets/lights first, four independent workspaces, bounded updates and preserved creations. All eight stations remain Planned in the game; the browser research prototype does not change that status.
+
 All eight support four participants through independent controls, tools or sample trays, with safe resets. Preserve finished plants, boats and arrangements. Free experimentation and optional picture prompts come before quizzes or mandatory sequences; simplified explanations must agree with the illustrated behavior.
 
 
@@ -366,6 +370,19 @@ All eight support four participants through independent controls, tools or sampl
 
 - [ ] **SCI-08 — Little seed window** — *Planned*. Simple play: Place a seed, add water, and press a fast-forward sun picture Explore together: Compare two prepared pots, watch simplified growth stages, decorate the pots, and move a grown plant to a bedroom Factual constraint: Growth is deliberately sped up; plants need more than water alone, and soil is not the only possible growing medium Sources: [§30](bluey-game-research-2026-09-23.html#30-a-simple-and-playful-science-corner).
 
+
+## Shared downstairs coloring-book area
+
+- [ ] **COL-01 — Shared art table and four paper places** — *Planned*. Usable downstairs furniture, reachable tools, clear floor path and independent entry/exit.
+- [ ] **COL-02 — Full-page coloring books** — *Planned*. Large fitted pages with closed regions; every player can choose any page. Six schematic pages exist only in the research prototype.
+- [ ] **COL-03 — Forgiving crayons and tap fill** — *Planned*. Large swatches, region-based fill, immediate feedback and visible selected tool/color.
+- [ ] **COL-04 — Blank drawing and undo/redo** — *Planned*. Working default pending optional preference. Clip strokes to paper; one gesture per undo; never erase another player's work.
+- [ ] **COL-05 — Persistent personal picture folders** — *Planned*. Stable creation/profile/page-version identity, bounded data, autosave feedback and safe reopen. Browser-local prototype persistence is not game-save integration.
+- [ ] **COL-06 — Display/carry finished pictures** — *Planned*. Move or display real saved creations without duplication or idle cleanup.
+- [ ] **COL-07 — Optional decorate/color Together permission** — *Planned*. Owner-approved edits, read-only visitors, revocation without losing accepted work.
+- [ ] **COL-08 — Four-player/network/device acceptance** — *Planned*. Bounded operations and separately fetched artwork, save migration/recovery, offline/server separation, A10 and physical touch acceptance.
+
+Source and build contract: [applied research](implementation/home-science-coloring-research-2026-09-27.html). Narrated books remain a separate feature.
 
 ## Bandit, Chilli and hide-and-seek
 

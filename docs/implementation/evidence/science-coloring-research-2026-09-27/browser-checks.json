@@ -1,0 +1,305 @@
+{
+  "date": "2026-09-27",
+  "scope": "Single-browser research prototype; real UI interactions in Codex in-app browser",
+  "checks": [
+    {
+      "name": "Same three cargo loads sink narrow hull and float wide hull",
+      "passed": true
+    },
+    {
+      "name": "RGB red+green gives yellow and RGB gives white",
+      "passed": true
+    },
+    {
+      "name": "Dragging magnet moves iron only",
+      "passed": true
+    },
+    {
+      "name": "Second-player reset leaves first-player boat and lights unchanged",
+      "passed": true
+    },
+    {
+      "name": "Fill undo/redo restores the selected page only",
+      "passed": true
+    },
+    {
+      "name": "Actual pointer drawing is one undo step and returns on redo/reload",
+      "passed": true
+    },
+    {
+      "name": "Player 2 colors and Player 3 drawing retained after reload and player switching",
+      "passed": true
+    },
+    {
+      "name": "Four independent workspace summaries update separately",
+      "passed": true
+    },
+    {
+      "name": "Six coloring-page region bounds stay inside paper",
+      "passed": true
+    },
+    {
+      "name": "No horizontal overflow at 1024x768, 844x390 and 390x844",
+      "passed": true
+    },
+    {
+      "name": "Keyboard Enter fills the focused region",
+      "passed": true
+    }
+  ],
+  "pageBounds": [
+    {
+      "page": "dinosaur",
+      "regions": [
+        {
+          "inside": true,
+          "name": "Color dinosaur body"
+        },
+        {
+          "inside": true,
+          "name": "Color dinosaur tummy"
+        },
+        {
+          "inside": true,
+          "name": "Color sun"
+        },
+        {
+          "inside": true,
+          "name": "Color hill"
+        }
+      ]
+    },
+    {
+      "page": "truck",
+      "regions": [
+        {
+          "inside": true,
+          "name": "Color truck body"
+        },
+        {
+          "inside": true,
+          "name": "Color truck loading bed"
+        },
+        {
+          "inside": true,
+          "name": "Color driver cabin"
+        },
+        {
+          "inside": true,
+          "name": "Color truck window"
+        },
+        {
+          "inside": true,
+          "name": "Color back wheel"
+        },
+        {
+          "inside": true,
+          "name": "Color front wheel"
+        },
+        {
+          "inside": true,
+          "name": "Color back wheel center"
+        },
+        {
+          "inside": true,
+          "name": "Color front wheel center"
+        },
+        {
+          "inside": true,
+          "name": "Color cloud"
+        }
+      ]
+    },
+    {
+      "page": "unicorn",
+      "regions": [
+        {
+          "inside": true,
+          "name": "Color unicorn tail"
+        },
+        {
+          "inside": true,
+          "name": "Color unicorn body"
+        },
+        {
+          "inside": true,
+          "name": "Color unicorn horn"
+        },
+        {
+          "inside": true,
+          "name": "Color unicorn mane"
+        },
+        {
+          "inside": true,
+          "name": "Color star"
+        },
+        {
+          "inside": true,
+          "name": "Color small star"
+        }
+      ]
+    },
+    {
+      "page": "snake",
+      "regions": [
+        {
+          "inside": true,
+          "name": "Color snake body"
+        },
+        {
+          "inside": true,
+          "name": "Color snake head"
+        },
+        {
+          "inside": true,
+          "name": "Color snake spot"
+        },
+        {
+          "inside": true,
+          "name": "Color snake spot"
+        },
+        {
+          "inside": true,
+          "name": "Color snake spot"
+        },
+        {
+          "inside": true,
+          "name": "Color leaf"
+        }
+      ]
+    },
+    {
+      "page": "garden",
+      "regions": [
+        {
+          "inside": true,
+          "name": "Color flower pot"
+        },
+        {
+          "inside": true,
+          "name": "Color flower stem"
+        },
+        {
+          "inside": true,
+          "name": "Color left leaf"
+        },
+        {
+          "inside": true,
+          "name": "Color right leaf"
+        },
+        {
+          "inside": true,
+          "name": "Color flower petal 1"
+        },
+        {
+          "inside": true,
+          "name": "Color flower petal 2"
+        },
+        {
+          "inside": true,
+          "name": "Color flower petal 3"
+        },
+        {
+          "inside": true,
+          "name": "Color flower petal 4"
+        },
+        {
+          "inside": true,
+          "name": "Color flower petal 5"
+        },
+        {
+          "inside": true,
+          "name": "Color flower petal 6"
+        },
+        {
+          "inside": true,
+          "name": "Color flower center"
+        },
+        {
+          "inside": true,
+          "name": "Color sun"
+        }
+      ]
+    },
+    {
+      "page": "house",
+      "regions": [
+        {
+          "inside": true,
+          "name": "Color house walls"
+        },
+        {
+          "inside": true,
+          "name": "Color roof"
+        },
+        {
+          "inside": true,
+          "name": "Color door"
+        },
+        {
+          "inside": true,
+          "name": "Color left window"
+        },
+        {
+          "inside": true,
+          "name": "Color right window"
+        },
+        {
+          "inside": true,
+          "name": "Color sun"
+        },
+        {
+          "inside": true,
+          "name": "Color front path"
+        }
+      ]
+    }
+  ],
+  "magnetBefore": [
+    {
+      "material": "Try Iron washer",
+      "position": "translate(140 290)"
+    },
+    {
+      "material": "Try Wood block",
+      "position": "translate(310 315)"
+    },
+    {
+      "material": "Try Plastic bead",
+      "position": "translate(480 315)"
+    },
+    {
+      "material": "Try Aluminum disc",
+      "position": "translate(650 315)"
+    }
+  ],
+  "magnetAfter": [
+    {
+      "material": "Try Iron washer",
+      "position": "translate(298 154)"
+    },
+    {
+      "material": "Try Wood block",
+      "position": "translate(310 315)"
+    },
+    {
+      "material": "Try Plastic bead",
+      "position": "translate(480 315)"
+    },
+    {
+      "material": "Try Aluminum disc",
+      "position": "translate(650 315)"
+    }
+  ],
+  "browserScriptErrors": [],
+  "limits": [
+    "Browser viewport sizes are not physical-device testing.",
+    "The research page scrolls vertically at small sizes; production Unity full-page UI remains unimplemented.",
+    "Local player selection is not simultaneous network multiplayer.",
+    "No Unity gameplay, device installation, family save migration or server was tested or modified."
+  ],
+  "screenshots": [
+    "coloring-preview.png",
+    "science-preview.png"
+  ]
+}

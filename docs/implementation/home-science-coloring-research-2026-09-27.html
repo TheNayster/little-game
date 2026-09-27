@@ -1,0 +1,305 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Downstairs science and coloring: research applied to the Home design</title><style>
+:root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
+*{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
+.topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:400px;gap:34px;padding-top:54px;padding-bottom:44px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase;color:var(--blue);margin-bottom:16px}.hero h1{font-size:clamp(38px,4.4vw,61px);max-width:710px;margin:0 0 20px}.intro{max-width:620px;font-size:19px;color:var(--muted)}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{border-radius:24px;background:#e7f0f1;font-size:12px;font-weight:650;padding:5px 12px}.hero-art{height:335px;position:relative;background:#ddecf3;border-radius:48% 52% 40% 60%;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:22px 24px 0}.hero-art img{height:95%;width:48%;object-fit:contain;object-position:bottom}.hero-art img:last-child{height:78%}.hero-art:before{content:"LET’S PLAY";position:absolute;top:29px;right:80px;font-size:12px;font-weight:750;letter-spacing:.17em;color:#5686a1;transform:rotate(9deg)}
+.note{background:#fff2d9;border-left:4px solid #e3af52;padding:16px 20px;border-radius:0 12px 12px 0;font-size:15px;margin:16px 0 30px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:60px}.summary article{border-top:2px solid #8ab1c7;padding:20px 0}.summary h3{font-size:20px;margin:0 0 10px}.summary p{font-size:15px;color:var(--muted);margin:0}.section{padding:52px 0;border-top:1px solid var(--line)}.section-lead{max-width:780px;color:var(--muted)}
+.stage-layout{display:grid;grid-template-columns:minmax(400px,1.1fr) minmax(280px,.9fr);gap:36px;align-items:center}.wheel{width:100%;aspect-ratio:1;max-width:590px;position:relative;margin:auto;border-radius:24px;background:radial-gradient(ellipse at 25% 45%,#ffffffb5 0 15%,transparent 16%),radial-gradient(ellipse at 75% 50%,#ffffffb5 0 20%,transparent 21%),linear-gradient(#62c0ed,#b8edfa)}.stage{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border:5px solid white;border-radius:50%;background:var(--bubble);box-shadow:0 5px 0 #0000000a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;gap:7px;padding:10px;transition:transform .16s,border-color .16s}.stage>span{font-size:clamp(30px,4vw,47px);line-height:1.1}.stage strong{font-size:13px;max-width:100px}.stage[aria-pressed=true]{border-color:var(--blue);transform:translate(-50%,-50%) scale(1.06)}.stage:hover{box-shadow:0 6px 16px #203e5220}.wheel-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;line-height:1.3}.wheel-center span{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}.wheel-center strong{display:block;font-size:19px;margin-top:8px}.quest-preview{background:white;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 10px 35px #25455806}.quest-preview h3{font-size:29px;margin:7px 0 14px}.quest-preview p{font-size:16px}.control-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.control-row .label{width:76px;font-size:12px;color:var(--muted)}.toggle{border:1px solid var(--line);border-radius:10px;padding:6px 13px;background:white;font-size:13px}.toggle[aria-pressed=true]{color:white;background:var(--blue);border-color:var(--blue)}.prompt{background:var(--sky);border-radius:14px;padding:20px;margin-top:20px}.prompt .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}.prompt p{font-size:20px;line-height:1.45;margin:8px 0 0}.recipe{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.demo-disclaimer{font-size:13px;color:var(--muted);margin-top:15px}
+.gallery-tools{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:24px 0}.gallery-tools input{padding:11px 15px;border:1px solid #bacbd2;border-radius:12px;background:white;width:min(330px,100%);font-size:15px}.gallery-count{font-size:13px;color:var(--muted)}.characters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}.character{display:flex;flex-direction:column;text-align:center;text-decoration:none;color:var(--ink);background:white;border:1px solid var(--line);border-radius:20px;padding:14px 10px 17px;min-width:0;transition:transform .15s}.character:hover{transform:translateY(-4px);border-color:#89b6cf}.portrait{height:164px;display:grid;place-items:center;background:#f2f7fa;border-radius:14px;margin-bottom:13px}.portrait img{width:100%;height:155px;object-fit:contain}.character strong{font-size:17px}.character small{font-size:11px;color:var(--muted);line-height:1.3;margin:5px 0;min-height:29px}.source-link{font-size:11px;color:var(--blue)}.character[hidden]{display:none}.image-fallback{font-size:12px;color:var(--muted)}
+.report-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.contents{position:sticky;top:91px;max-height:calc(100vh - 120px);overflow:auto;font-size:12px;line-height:1.6;padding-right:8px}.contents h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 15px}.contents ul{list-style:none;padding:0;margin:0}.contents li{margin:0 0 11px}.contents a{text-decoration:none;color:var(--muted)}.contents a:hover{color:var(--blue)}.report{font-size:16px;min-width:0}.report>h2{font-size:28px;padding-top:40px;margin-top:42px;border-top:1px solid var(--line)}.report>h3{font-size:22px}.report li{margin-bottom:9px}.report ul,.report ol{padding-left:25px}.report .table-scroll{overflow-x:auto;margin:24px 0 30px;border:1px solid var(--line);border-radius:10px}.report table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.55}.report th{background:#e8f1f5;text-align:left;color:#274d66}.report th,.report td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top;min-width:100px}.report tr:last-child td{border-bottom:0}.report tr:nth-child(even) td{background:#ffffff75}.report code{font-size:.88em;background:#e9eef0;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}.report a{overflow-wrap:anywhere}.footer{padding:35px 0 50px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);margin-top:50px}.footer a{margin-right:20px}
+@media(min-width:1450px){.stage strong{font-size:14px}.stage>span{font-size:49px}}
+@media(max-width:1000px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{grid-template-columns:1.3fr 1fr}.hero-art{height:280px}.stage-layout{gap:18px;grid-template-columns:1fr 1fr}.stage strong{font-size:11px}.quest-preview{padding:22px}.report-layout{grid-template-columns:190px minmax(0,1fr);gap:26px}}
+@media(max-width:760px){.topbar{padding:11px 20px;gap:12px}.brand{font-size:12px}.topbar nav{gap:15px;font-size:12px}.wrap{padding:0 20px}.hero{padding-top:35px;grid-template-columns:1fr;gap:22px}.hero h1{font-size:43px}.hero-art{height:250px;max-width:400px;width:100%;margin:auto}.summary{grid-template-columns:1fr;gap:5px;margin-bottom:20px}.summary article{padding:16px 0}.stage-layout{grid-template-columns:1fr;gap:20px}.wheel{max-width:530px}.stage>span{font-size:40px}.stage strong{font-size:12px}.section{padding:38px 0}.characters{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.portrait{height:135px}.portrait img{height:128px}.character strong{font-size:15px}.character{padding:9px 7px 13px}.report-layout{display:block}.contents{position:static;max-height:none;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:35px}.contents ul{columns:2}.report{font-size:15px}.report>h2{font-size:25px}.report th,.report td{padding:10px;min-width:140px}h2{font-size:28px}}
+@media(max-width:430px){.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar nav{gap:10px}.hero h1{font-size:37px}.stage>span{font-size:30px}.stage strong{font-size:10px}.wheel-center strong{font-size:15px}.wheel-center span{font-size:8px}.stage{padding:5px;border-width:3px}.contents ul{columns:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
+.wheel .scene-note{position:absolute;top:25%;left:7%;width:48%;font-size:17px}.place-rail{position:absolute;right:0;top:0;bottom:23%;width:39%;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 8px;background:#cbecf7;border-left:4px solid white}.place-rail .stage{position:relative;transform:none!important;left:auto;top:auto;width:126px;min-height:126px;flex-shrink:0}.cast-diagram{position:absolute;left:0;right:0;bottom:0;height:23%;background:#b8e2f7;border-top:4px solid white;display:flex;align-items:center;padding:18px;font-weight:700;font-size:16px}
+main{max-width:1100px;margin:32px auto;padding:24px}p,li{line-height:1.65}img{max-width:100%;height:auto}table{width:100%;border-collapse:collapse}th,td{padding:12px;border:1px solid #c9dadf;text-align:left;vertical-align:top}.table-scroll{overflow-x:auto}code{overflow-wrap:anywhere}</style></head><body><main><p><a href="../family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">Current build plan</a> · <a href="home-science-coloring-research-2026-09-27.md">Editable source</a></p><h1 id="downstairs-science-and-coloring-research-applied-to-the-home-design">Downstairs science and coloring: research applied to the Home design</h1>
+<p>September 27, 2026 · LAB-01 / H-29–30 / ACT-01 / ITEM-03 · development branch <code>codex/home-science-coloring</code>.</p>
+<p><strong>Latest request:</strong> add a science area and coloring-book area in the main house's general shared space, and actually use the research. Both belong downstairs, accessible to all four family players. The existing eight science activities remain in scope. Coloring is an additional creative activity, not a replacement for the six narrated books.</p>
+<p><strong>What this pass delivers:</strong> a researched room and interaction specification, an interactive <a href="home-science-coloring-prototype.html">research prototype</a>, a source-to-decision record, and an implementation/acceptance checklist. The prototype demonstrates three science interactions and coloring/drawing with four separate local workspaces. It is not a Unity build or a networked four-device test. No installed app, production server, save schema or runtime game source is changed by this research pass. Final artwork and child usability are not accepted merely because a prototype runs.</p>
+<h2 id="1-research-conclusions-that-change-the-design">1. Research conclusions that change the design</h2>
+<p>NAEYC describes digital media as another way for preschoolers to explore, create and communicate, alongside physical materials. Its guidance favors exploration and documenting children's work. This supports free creation, preservation and sharing; it does not prove this specific game produces learning gains. <a href="https://www.naeyc.org/resources/topics/technology-and-media/preschoolers-and-kindergartners">NAEYC preschool technology guidance</a>.</p>
+<p>PBS's Play &amp; Learn Science materials target caregiver-supported inquiry for ages 3–5. Sago Mini School combines child-led science play and doodling. These support using familiar objects, a ready-to-use setup and optional prompts, rather than making reading or a rigid lesson sequence prerequisites. Publisher descriptions establish product patterns, not comparative effectiveness. <a href="https://kits.pbskids.org/products/play-learn-science-fcl-workshop-series-english">PBS program</a>, <a href="https://sagomini.com/school/">Sago Mini School</a>.</p>
+<p>The PBS app's evaluation reported positive outcomes in a supported family context, but its single-group design cannot establish causation or generalize to ordinary unsupported app use. Our design inference is to offer optional parent/child comparison prompts, not to label the game scientifically proven. A research team's account also describes challenging the “heavy sinks” assumption with contrasting materials and modeling useful questions. Apply this to “What changed when you added cargo?” and “Try the same cargo in the other boat.” <a href="https://files.eric.ed.gov/fulltext/ED599703.pdf">Evaluation, findings and limitations, pp. 4 and 32</a>, <a href="https://www.nsta.org/blog/plan-interactive-family-science-event-support-app">researchers' family-event account</a>.</p>
+<p>Crayola's product describes open-ended drawing/coloring without points or time limits, and its FAQ documents coloring pages, drawing and a gallery in the same explorable world. Apply that separation: a shared table is the entrance; the child's page is a large focused workspace; completed pictures can be displayed. Do not import subscriptions, reward currencies or unlock gates into this family game. <a href="https://www.crayolacreateandplay.com/">Crayola Create &amp; Play</a>, <a href="https://www.crayolacreateandplay.com/faq">activity and gallery FAQ</a>.</p>
+<p><strong>Applied interaction rules:</strong></p>
+<ul>
+<li>A tap produces an understandable result immediately: an object enters water, a magnet moves toward a sample, a lamp changes the illuminated screen, or a region takes the selected color.</li>
+<li>A drag is expressive but optional for essential actions. Use broad snap targets; never require multitouch, precise timing, blowing, camera recognition or a second player.</li>
+<li>No scores, failure sounds, required order, forced restart or countdown pressure. Sinking is an observation, with an obvious way to lift the object out.</li>
+<li>Provide one short optional invitation at a time. Instructions never cover or immobilize another player's work.</li>
+<li>Leave preserves accepted work. Reset and undo affect the chosen personal workspace, not the whole corner.</li>
+<li>A completed picture stays a creation; it is not automatically cleaned away as borrowed equipment.</li>
+</ul>
+<h2 id="2-placement-in-the-actual-house">2. Placement in the actual house</h2>
+<p>The current illustrated house spans roughly X=-4800 to 0. Its usable book rack is at -4500, sofa -3960, living radio -3480, stairs -2980, kitchen counter -2210, oven -1520, fridge -1150 and dining table -470. The living and kitchen panorama assets were inspected. The existing routes and fixture footprints leave little room for two generous four-player work areas without repeating the kitchen's obstruction problem.</p>
+<p><strong>Recommended layout:</strong> extend the continuous ground floor to the left of the existing living area with one shared discovery/art bay. This is a proposed extension, not a committed change to saved coordinates. It stays in the same persistent Home property; no new world-menu destination, locked bedroom or loading doorway is required. A child can walk from science to art to the shared books, sofa, stairs and kitchen.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Proposed bay</th>
+<th>Purpose</th>
+<th>Composition rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left half: discovery bench</td>
+<td>Four sample trays, water tub, material tray and colored-light screen; later stations stored/displayed nearby</td>
+<td>Low work surface, broad visible controls, clear standing space in front</td>
+</tr>
+<tr>
+<td>Right half: coloring table</td>
+<td>Four paper places, accessible crayon pots, page chooser and personal picture folders</td>
+<td>Papers remain readable; tray edge never covers the interaction surface</td>
+</tr>
+<tr>
+<td>Back wall</td>
+<td>Family picture display and science result shelf</td>
+<td>Display real creation records; remove a displayed picture from the wall when moved</td>
+</tr>
+<tr>
+<td>Foreground</td>
+<td>Continuous walkable floor joining the living room</td>
+<td>Keep a clear corridor and avoid hitboxes extending invisibly across it</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tentative extra panorama bounds are -7200 to -4800, leaving every existing object and player coordinate unchanged. Final dimensions depend on a Unity composition check at iPad 4:3 and phone landscape ratios. Verify camera bounds, stream seams, cold arrival and carried objects before adopting them. Current scenery already limits loaded/requested textures to three; retain that ceiling.</p>
+<p>Architecture, furniture backs, contents/characters and front lips must be separate. Never bake usable crayons, pictures, science samples or a second table into the room background. Match the accepted Home illustration style and character art. The research prototype is a functional schematic and does not approve final room art.</p>
+<h2 id="3-science-complete-eight-station-inventory">3. Science: complete eight-station inventory</h2>
+<p>The first integration follows the existing chapter-30 order: <strong>SCI-01 floating, SCI-02 magnets, SCI-04 colored light</strong>. They cover different input/result types. Finish and qualify these before the remaining five; keep every row below tracked.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Station</th>
+<th>Child's visible play loop</th>
+<th>Adjustable/deeper play</th>
+<th>Scientific constraint and source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SCI-01 Float and loaded boats</strong></td>
+<td>Choose a sample → tap/drag into water → observe float/sink → lift out</td>
+<td>Compare a narrow and wide boat; add/remove identical cargo; decorate a saved boat</td>
+<td>Buoyancy depends on displaced water and total weight, not a blanket “metal sinks” or “heavy sinks” rule. Hulls flood when load exceeds their available displacement. <a href="https://www.sciencebuddies.org/stem-activities/aluminum-foil-boats-float">Science Buddies</a></td>
+</tr>
+<tr>
+<td><strong>SCI-02 Magnet materials</strong></td>
+<td>Move a wand near samples → magnetic samples follow → release onto tray</td>
+<td>Compare iron with wood/plastic/aluminum; later flip a second magnet for consistent push/pull</td>
+<td>Iron, nickel and cobalt are ferromagnetic. Material identity matters: not every metal is attracted, and not every steel alloy behaves alike. Choose explicitly defined samples. <a href="https://nationalmaglab.org/about-the-maglab/around-the-lab/maglab-dictionary/permanent-magnet/">National MagLab</a></td>
+</tr>
+<tr>
+<td><strong>SCI-03 Ramps and surfaces</strong></td>
+<td>Release the same ball/car → watch roll → collect/release again</td>
+<td>Adjust height or surface one at a time; compare two tracks</td>
+<td>More resistance slows motion; avoid “heavier always rolls faster.” Hold toy and launch conditions constant for comparisons. <a href="https://www.pbs.org/video/friction-racing-rttdqu/">PBS Friction Racing</a></td>
+</tr>
+<tr>
+<td><strong>SCI-04 Colored-light garden</strong></td>
+<td>Switch red/green/blue lamps → see their illuminated overlap</td>
+<td>Move light spots; match an optional picture color; switch any lamp independently</td>
+<td>Additive light: R+G=yellow, R+B=magenta, G+B=cyan, RGB=white, none=dark. These are not paint-mixing rules. <a href="https://www.exploratorium.edu/snacks/colored-shadows">Exploratorium Colored Shadows</a></td>
+</tr>
+<tr>
+<td><strong>SCI-05 Dinosaur shadows</strong></td>
+<td>Place a dinosaur between lamp and screen → move it → watch its silhouette</td>
+<td>Change distance, switch dinosaur, tell a short story</td>
+<td>A closer object relative to a point source casts a larger projected shadow; preserve lamp–object–screen ordering. Simplify the source explicitly. <a href="https://www.exploratorium.edu/snacks/colored-shadows">Exploratorium light/shadow activity</a></td>
+</tr>
+<tr>
+<td><strong>SCI-06 Bubbles and fan</strong></td>
+<td>Dip wand → tap/hold fan → bubbles form → pop</td>
+<td>Change wand outline or airflow; compare before releasing</td>
+<td>Free bubbles tend toward spheres; a square wand does not create permanent square floating bubbles. <a href="https://annex.exploratorium.edu/ronh/bubbles/shape_of_bubbles.html">Exploratorium bubble shapes</a></td>
+</tr>
+<tr>
+<td><strong>SCI-07 Sound and vibration</strong></td>
+<td>Pluck string → see vibration and hear tone → damp it</td>
+<td>Change length or tension separately; compare high/low pitch</td>
+<td>Distinguish pitch from loudness; show vibration even when muted. Shorter vibrating lengths raise pitch when other relevant conditions stay fixed. <a href="https://www.sciencebuddies.org/teacher-resources/lesson-plans/sound-wave-frequency-amplitude">Science Buddies sound lesson</a></td>
+</tr>
+<tr>
+<td><strong>SCI-08 Seed, water and light</strong></td>
+<td>Choose seed → water → use an explicit time-jump control → see stages</td>
+<td>Compare prepared pots; decorate one and move the resulting plant</td>
+<td>Time is deliberately accelerated. Plants need water, light, air and nutrients; soil is useful but not the only growing medium. <a href="https://science.nasa.gov/eclips/videos/do-plants-need-soil/">NASA</a></td>
+</tr>
+</tbody>
+</table></div>
+<p>The physical activities above are references for scientific relationships. Some target older children; adapt the interface and vocabulary for this family's ages. Do not transplant classroom instructions or claim measured educational outcomes.</p>
+<h3 id="first-three-state-and-response-details">First three: state and response details</h3>
+<p><strong>Float tub.</strong> Each tray has identified samples and one boat. Choose → place → observe → retrieve is reversible and never consumes a sample. A bounded buoyancy model compares the combined boat/cargo mass with available displacement; derive waterline from that ratio, then cap bobbing as a visual effect. In the prototype, narrow/wide capacities and cargo weights are illustrative units, explicitly not predictions for real objects. The same load can sink the narrow hull and float in the wider hull. Taking cargo off restores buoyancy. Four people must be able to load their own boats simultaneously.</p>
+<p><strong>Magnet tray.</strong> Samples retain material, ID and position. An attraction-radius rule operates only on eligible samples, with bounded movement toward the wand. Tapping a sample moves the wand near it as the accessible alternative to dragging. Nonmagnetic samples visibly stay put. Reset restores only this tray's sample positions. A second-magnet polarity experiment remains a later extension; ordinary iron samples should not suddenly repel because a wand flips.</p>
+<p><strong>Light screen.</strong> Each workspace starts with three large labeled lamp controls and a dark screen. Use additive compositing or an explicit reviewed eight-combination table, not transparent red/green/blue paint layers that turn muddy. Show the component names and resulting color alongside color swatches. The prototype exercises all eight combinations. Movable overlapping spots follow in the Unity interaction implementation; the first prototype validates combination rules and independent toggles.</p>
+<h2 id="4-coloring-child-facing-flow-and-scope">4. Coloring: child-facing flow and scope</h2>
+<p><strong>Walk to the shared art table → choose a picture or blank paper → choose a crayon → color → leave/resume or display.</strong> Opening the table never starts narration, changes another child's page, or waits for a free global art lock.</p>
+<p>Working default while awaiting the user's optional preference: coloring pages <strong>and</strong> blank drawing paper. Starter themes in the prototype are dinosaur, truck, unicorn, snake, garden and house. These are suggested coloring themes, not a change to the separately requested narrated-book subjects. Every player can choose every theme. Additional recognizable character pages need their own reviewed art sources.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Required behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large page</td>
+<td>Fit most of the landscape screen. Place tools around the page, not in an opaque block over the subject. Keep essential controls visible at 4:3 and wide phone sizes.</td>
+</tr>
+<tr>
+<td>Tap fill</td>
+<td>Select color, tap an enclosed region. Use authored region IDs/masks; never perform an unbounded flood fill that leaks through anti-aliased outlines.</td>
+</tr>
+<tr>
+<td>Crayon drawing</td>
+<td>Immediate local strokes; keep the outline above paint. Clip to paper. An optional stay-inside mode clips to the starting region. Blank paper is freely drawable.</td>
+</tr>
+<tr>
+<td>Palette</td>
+<td>Large swatches with names/selection marks, including white and dark colors. No correct-color scoring. A purple dinosaur is valid.</td>
+</tr>
+<tr>
+<td>Undo/redo</td>
+<td>One gesture is one history step. Undo only the current creation's own operation. Reset/clear offers immediate undo and never targets all players.</td>
+</tr>
+<tr>
+<td>Independent pages</td>
+<td>Switching page/profile restores that page's colors and strokes; no empty-page overwrite. Owner ID is the persistent family profile, not Bluey/Bingo selection.</td>
+</tr>
+<tr>
+<td>Gallery</td>
+<td>Finished and unfinished pictures persist. Display is optional. A copy gets a new creation ID with provenance; a move keeps the same ID.</td>
+</tr>
+<tr>
+<td>Sharing</td>
+<td>Viewing is allowed. Editing another owner's picture requires explicit Together permission. Turning Together off ends future edit access without discarding accepted work.</td>
+</tr>
+<tr>
+<td>Save feedback</td>
+<td>Distinguish local pending marks from acknowledged durable progress. If saving fails, keep the picture open/in memory and show retry; never silently claim Saved.</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Gentle optional tool sounds; local mute/volume. No new narrator is selected by this task, and the reported book-sound issue remains separate.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The interactive prototype implements six tap-fill pages, free strokes on blank paper, undo/redo, per-player/page persistence, personal science trays and a four-player summary. It does not implement a production gallery, room-object carrying, Together permissions, narrated hints or true network sharing.</p>
+<h2 id="5-four-player-and-save-contracts">5. Four-player and save contracts</h2>
+<p>The PC/VPS is the only shared authority. Installed solo uses the same rules with separate private saves; reconnect never uploads offline pictures or experiments into the shared family world. Four children may all use science, all use art, or split across activities. One leaving, backgrounding, closing a page or changing rooms releases only their temporary input/tool claim.</p>
+<p><strong>Proposed durable records:</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Meaningful fields</th>
+<th>Exclude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Science workspace</td>
+<td>Stable ID, owner/profile, station/version, sample identities/materials/positions, boat/cargo, lamp state, result revision</td>
+<td>Splash particles, frame timers, rendered light textures</td>
+</tr>
+<tr>
+<td>Creation metadata</td>
+<td>Creation ID, owner, page-definition/version, revision, permissions, display/support location, content digest</td>
+<td>Full image bytes in every world snapshot</td>
+</tr>
+<tr>
+<td>Coloring content</td>
+<td>Region-color mapping, ordered strokes/checkpoint, undo metadata within a bounded policy</td>
+<td>One GameObject or reliable world update per sampled pen point</td>
+</tr>
+<tr>
+<td>Local preferences</td>
+<td>Selected tool/color, motion/sound settings, current view</td>
+<td>Authority ownership or shared progress</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Do not repeat the current networking failure.</strong> The existing wire limit is 131,072 bytes and Home sends reliable snapshots for accepted world transactions. Adding arbitrary picture histories to every snapshot, or submitting full-world transactions at drawing frequency, would undo the 172 bandwidth correction. Treat saved artwork as separately versioned content, fetched only when opened/displayed. Bound operations, chunks, pending queues, history and decoded textures. Measure full-world and artwork sizes at their maxima; refuse malformed/oversized payloads before allocation.</p>
+<p>A production stroke needs a stable operation ID, creation ID, base revision, bounded normalized points, color and tool width. Locally preview immediately; acknowledge the completed stroke or bounded batch. Retries of the same ID are idempotent. Server validation checks ownership/Together permission, page version and coordinates. It must not replay a stale stroke onto a newer page after a page switch. Initially, one editor per creation is simpler and safer than claiming collaborative merge correctness; four independent creations remain concurrent. Together mode needs its own scoped concurrency tests.</p>
+<p>Only durable acknowledged state enters backups. Temporary leases do not survive restoration. Additive migration adds empty new workspaces without rewriting old profiles, fixtures, dishes, bedrooms or bookmarks. Existing build 171 clients must not silently receive a schema/content they cannot read; a later Unity release needs coordinated compatibility and recovery qualification.</p>
+<h2 id="6-input-accessibility-and-older-ipad-budgets">6. Input, accessibility and older-iPad budgets</h2>
+<p>Apple specifies at least 44×44-point hit regions as a general touch baseline and recommends visible press states and spacing. For this toddler-oriented design, choose larger targets where practical, then measure them on real devices: Unity reference pixels and CSS pixels do not automatically equal iPad points. Prototype controls are generally 48–56 CSS pixels or larger. <a href="https://developer.apple.com/design/human-interface-guidelines/buttons">Apple buttons</a>, <a href="https://developer.apple.com/design/tips/">UI design tips</a>.</p>
+<p>Use one active pointer per personal tool. A second finger must not move the character through the page, draw a line from the previous finger position, or activate a hidden world control. Cancel the gesture cleanly on close, travel, suspension, session change and device disconnect. Keep results visible with sound off; honor reduced motion with still water and restrained glows.</p>
+<p>Unity's uGUI guidance recommends separating dynamic content and avoiding needless rebuild/raycast work. Apply this to one bounded drawing surface, reusable/poolable stroke data and a small set of tool controls, rather than creating hundreds of child graphics per stroke. Noninteractive decoration should not receive raycasts. These are implementation strategies, not measured A10 performance claims. <a href="https://unity.com/how-to/unity-ui-optimization-tips">Unity uGUI optimization</a>.</p>
+<p>Proposed budgets to measure: one active paper render surface per device; small gallery thumbnails loaded on demand; capped water/bubble particles and tool sounds; no simulation work on closed views beyond necessary authoritative state; preserve the existing three-panorama load ceiling. Do not choose a high-resolution painting canvas before measuring sustained A10 memory/frame time and repeated open/close behavior.</p>
+<h2 id="7-applied-research-traceability">7. Applied research traceability</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Feature table"><table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Applied now</th>
+<th>Unity acceptance test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open-ended, child-led exploration</td>
+<td>Three reversible science loops; no score/forced sequence</td>
+<td>A child can start and repeat each loop without reading a blocking instruction</td>
+</tr>
+<tr>
+<td>Material-specific magnetism</td>
+<td>Iron sample moves; wood/plastic/aluminum remain</td>
+<td>Same material response on server and all clients, with tap and drag inputs</td>
+</tr>
+<tr>
+<td>Weight/displacement relationship</td>
+<td>Same cargo compared in narrow/wide hulls</td>
+<td>Four independent boats; unload recovers; late join sees the same result</td>
+</tr>
+<tr>
+<td>Additive light</td>
+<td>All eight RGB combinations, named result</td>
+<td>R+G yellow, RGB white, none dark; no paint averaging</td>
+</tr>
+<tr>
+<td>Creative ownership</td>
+<td>Four profile/page records; independent undo</td>
+<td>Avatar changes preserve ownership; sibling cannot erase another's art</td>
+</tr>
+<tr>
+<td>Large art surface and forgiving input</td>
+<td>Big page, surrounding tools, fill plus blank drawing</td>
+<td>iPad/phone hit targets and actual child use; no clipped subjects</td>
+</tr>
+<tr>
+<td>Preserve children's work</td>
+<td>Browser-local autosave/restore demonstration</td>
+<td>Authoritative save/reopen, interrupted save, restore and offline/server separation</td>
+</tr>
+<tr>
+<td>Bounded traffic and UI work</td>
+<td>Explicit production content contract and budgets</td>
+<td>Four artists drawing while another activity progresses; no queue errors or stalled countdown</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-ordered-implementation-and-acceptance-checklist">8. Ordered implementation and acceptance checklist</h2>
+<p>This research changes the next Home feature design; it does not mark LAB-01 or coloring playable in the installed game. Preserve the pending 172 shared-play/audio deployment work as a separate unfinished prerequisite to calling a new shared release healthy.</p>
+<ol>
+<li><strong>SC-0 research/prototype:</strong> source review, placement plan, first-three science rules, art flow and honest prototype limitations. Test actual prototype interactions and save isolation. This pass.</li>
+<li><strong>SC-1 common downstairs foundations:</strong> extend/compose the bay, safe routes and four workspace identities; versioned save migration and independent entry/exit. Inspect real art layering and scenery seams.</li>
+<li><strong>SC-2 first science trio:</strong> integrate float/magnets/lights with real sample state, tap/drag alternatives and shared authority. Test intermediate animation/state, not only the final result.</li>
+<li><strong>COL-1 coloring:</strong> authored closed-region pages, full-page interface, bounded stroke/content storage, per-profile folders, undo and visible saved status. Test payload limits before four-client drawing stress.</li>
+<li><strong>SC-3 shared release:</strong> four concurrent activities, one participant leaving/backgrounding, save/reopen, exact backup recovery, mixed-device/A10 endurance, current artifact identity, retained-save installs and physical visual/audio acceptance.</li>
+<li><strong>SC-4 remaining science and creation integration:</strong> ramps, dinosaur shadows, bubbles, vibration and plants; movable saved boats/plants/art and optional Together editing. Retain all eight stations throughout.</li>
+</ol>
+<p>Minimum scenarios: all four at one science type; all four coloring different pictures; mixed science/cooking/books; closing one overlay while others continue; duplicate commands; stale page edits; concurrent edits to one creation; owner versus visitor reset; force-close during an acknowledged stroke; offline private drawing followed by authoritative reunion; maximum artwork inventory; repeated image open/close; no clipped dinosaur/unicorn/truck subjects at supported ratios.</p>
+<h2 id="9-evidence-boundary-and-remaining-decisions">9. Evidence boundary and remaining decisions</h2>
+<p>The prototype uses a single browser with selectable player workspaces. It is suitable for exploring flow, state isolation and the reviewed example rules. It does not simulate network delay, prove concurrent devices, use the accepted Unity character animation, or qualify save migration, Apple signing, audio output or actual child usability.</p>
+<p>The optional preference question asks whether coloring should include blank drawing paper. Pending a reply, both are included in this prototype. The room extension, coloring themes, final artwork, canvas resolution, saved-picture capacity and Together concurrency remain design choices to validate during their bounded implementation slices. Existing Home, room, kitchen, story and device requirements remain on the backlog.</p>
+<h2 id="10-prototype-verification">10. Prototype verification</h2>
+<p>Eight model-check groups passed: boat capacity, material-specific attraction, all eight light combinations, profile/page isolation, gesture undo/redo, serialization, malformed-data rejection and bounded drawing/history storage. <a href="evidence/science-coloring-research-2026-09-27/model-checks.json">Model evidence</a>. These validate the prototype model, not Unity code or a network protocol.</p>
+<p>Actual browser interactions verified the same three cargo loads sinking the narrow hull and floating the wide hull; red plus green light becoming yellow and all three becoming white; a dragged magnet moving iron while leaving the other samples in place; independent reset; fill and drawing undo/redo; keyboard region filling; and saved colors/drawing surviving reload and player switching. All six pages' rendered regions stayed within their paper bounds. Tablet and phone viewport checks (1024×768, 844×390 and 390×844) found no horizontal overflow. No page-script warnings/errors were reported during the check. <a href="evidence/science-coloring-research-2026-09-27/browser-checks.json">Browser evidence</a>.</p>
+<p>The review prototype scrolls vertically on small screens. This is not acceptance of the eventual landscape Unity activity overlay or a physical-device touch-size check. Dinosaur and unicorn pages received visual inspection; geometric bounds checks on all six pages do not substitute for final illustrated-page art review. <a href="evidence/science-coloring-research-2026-09-27/coloring-preview.png">Coloring preview</a> · <a href="evidence/science-coloring-research-2026-09-27/science-preview.png">Science preview</a>.</p>
+<p>The maintained research, build guide, Home tracker and generated feature inventory were reconciled. Catalog validation retains all 55 research chapters, 35 master requirements, eight science stations and eight additional coloring requirements. All remain accurately classified for game implementation. The <a href="evidence/pc-vps-plan-audit-2026-09-25/docs-validation.json">plan/link consistency check</a> passed; JavaScript syntax validation also passed.</p>
+<p>SC-0 is complete as research and a browser prototype. SC-1 and subsequent Unity implementation, four-device networking, family-save migration, older-iPad performance and child acceptance remain open.</p></main></body></html>
