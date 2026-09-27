@@ -40,7 +40,7 @@ The full kitchen, maximum four-player coloring histories and sixteen populated m
 
 ## Verification and delivery
 
-Windows **178** is built and its source/artifacts are verified. **209 core checks, eight four-client native mixing groups, two offline solo groups and six recovery groups passed.** No phone, iPad, Mac or live family-server installation was requested or performed in this task. No physical A10, child usability, mixed-device endurance or audio acceptance is claimed. The development branch remains `codex/home-science-coloring`; existing book/audio/shared-play qualification holds still block promotion of this lineage to `main`.
+Windows **178** is built and its source/artifacts are verified. **209 core checks, eight four-client native mixing groups, two offline solo groups and six recovery groups passed.** The initial Windows implementation did not deploy devices; the subsequent Samsung update is recorded below. No physical A10, child usability, mixed-device endurance or audio acceptance is claimed. The development branch remains `codex/home-science-coloring`; existing book/audio/shared-play qualification holds still block promotion of this lineage to `main`.
 
 - [Core results](evidence/mixing178-2026-09-27/core-results.json): additive migration, finite reactions, four-player ownership, stale/duplicate rejection, corrupted-state validation, restored progress and combined payload bounds.
 - [Build summary](evidence/mixing178-2026-09-27/build-summary.json): Windows release client and dedicated server, zero errors/warnings.
@@ -57,3 +57,13 @@ The implementation adds `Mixing.cs`, `SoloMixing.cs`, `MixingSurface.cs` and `Mi
 ## Remaining work and next bounded task
 
 Review this mixing station on the intended phone/iPads as part of a coordinated content-18 client/server delivery; resolve inherited shared-play/book-sound acceptance before calling the family release healthy. SCI-01 boats, SCI-02 magnets and SCI-04 RGB retain their initial schematic implementations. SCI-03 ramps, SCI-05 shadows, SCI-06 bubbles/fan, SCI-07 vibration and SCI-08 growth remain required. The next bounded science implementation remains the researched illustrated cargo-harbor/direct-handling pass. Blank coloring, folders/gallery, carrying/Together and the rest of Home are still tracked.
+
+## Samsung delivery — Android 179
+
+The user supplied the wireless endpoint and requested a phone update. A fresh non-development Android release was built from the current source, signed with the pinned family certificate, verified against 341 gameplay/art source files, and installed over 171 with `adb install -r`. The exact installed APK hash matches the fresh signed artifact. No uninstall, data clear or downgrade was used.
+
+[Installation and retention evidence](evidence/mixing179-2026-09-27/android-update.json) records all 20 prior saved-world files and 20 backups retained. Nineteen primary files are byte-identical. The active private world migrated from schema 15 to 17; all prior objects, kitchen, Home fixtures, balloon, bedrooms, secret rooms and identity remain exact. Player coordinates and new science activity changed during visible play. Existing enrollment and saved family snapshots are unchanged.
+
+The app visibly launched, and its science/mixing screen with saved ingredients was captured on the Samsung. This confirms installed presentation and retained play state, not subjective sound quality, complete child acceptance or shared four-device qualification. Server and iPads were not updated; the phone currently plays privately until a compatible coordinated family update.
+
+![Mixing on the actual updated Samsung](evidence/mixing179-2026-09-27/mixing-phone.png)

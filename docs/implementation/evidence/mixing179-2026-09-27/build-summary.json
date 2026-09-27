@@ -1,0 +1,13 @@
+{
+  "version": "0.0.179",
+  "unity": "6000.3.24f1",
+  "profile": "Assets/BuildProfiles/Android Family LAN.asset",
+  "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\AndroidSigned\\G3-0.0.179\\LittleWeeps.apk",
+  "result": "Succeeded",
+  "utc": "2026-09-27T21:31:37.7531135Z",
+  "platform": "Android",
+  "signing": "Pinned Little Weeps family key; externally signed unchanged Unity payload",
+  "development": false,
+  "errors": 0,
+  "warnings": 0
+}

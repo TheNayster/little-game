@@ -1,0 +1,46 @@
+{
+  "utc": "2026-09-27T21:32:34.4565951Z",
+  "operation": "updated",
+  "version": "0.0.179",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "907d4fb6ab2e5695318d8a52961ea516a817057a9d6e04caf690200dbf7a96c7",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 171,
+  "previousApkSha256": "5c8f0b62a038b742d516a72f1168f6eed52da90d49b6c876a02db7a64f44149f",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "pid": "16353",
+  "visibleUiAndSaveRetentionVerified": true,
+  "native16KbQualified": false,
+  "visibleMixingScreenVerified": true,
+  "retention": {
+    "primarySavesBefore": 20,
+    "primarySavesRetained": 20,
+    "byteIdenticalPrimary": 19,
+    "backupFilesRetained": 20,
+    "migrations": [
+      {
+        "previousSchema": 15,
+        "newSchema": 17,
+        "previousObjects": 118,
+        "allObjectsExact": true,
+        "roomsAndOwnershipExact": true,
+        "playerIdentityExact": true,
+        "onlyPlayerPositionChanged": true,
+        "newDiscoveryWorkspace": true,
+        "newMixingTrays": 4
+      }
+    ],
+    "enrollmentAndPriorFamilySnapshotsUnchanged": true
+  },
+  "currentRuntime": "private solo",
+  "serverUpdated": false,
+  "ipadsUpdated": false,
+  "sourceCommit": "3146cb028b75a511d48828e93b31d8226c40687b",
+  "runtimeCodeAndArtFilesVerified": 341,
+  "physicalAudioAccepted": false,
+  "fullActivityAccepted": false
+}
