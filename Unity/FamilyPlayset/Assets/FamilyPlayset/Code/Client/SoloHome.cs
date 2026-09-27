@@ -53,10 +53,10 @@ namespace LittleWeeps.Client
             part.Configure(sprite.texture,homeLayerLayout.parts.Single(p=>p.id==partId).polygons);
             return part;
         }
-        private void HomeHit(Transform parent,string id,Vector2 pos,Vector2 size,Action action)
+        private void HomeHit(Transform parent,string id,Vector2 pos,Vector2 size,Action action,bool cancelPointers=true)
         {
             var hit=Plain(parent,id,pos,size,Color.clear,true);hit.canvasRenderer.cullTransparentMesh=false;
-            NavButton(hit,()=>{if(MenuOpen || TravelPending || !Ready)return;CancelPointers();action();});
+            NavButton(hit,()=>{if(MenuOpen || TravelPending || !Ready)return;if(cancelPointers)CancelPointers();action();});
         }
         private void HomeAction(SoloAction action,string target,string value="")
         {

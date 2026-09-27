@@ -1,5 +1,19 @@
 # Keepy Uppy and four-player home objects
 
+## Movement while tapping — build 150
+
+September 26, 2026 · SHOW-25 / HOME-4P · user-reported touch regression
+
+Tapping the balloon used the common fixture helper that canceled every active pointer. That also released the joystick, canceled an object drag and cleared a tap-to-walk destination. The balloon now opts out of that cancellation; its tap starts the activity while other fingers keep their current gestures. Fixture controls retain their existing cancellation behavior. There is no save, shared-authority or content-contract change from build 149.
+
+`Tools/Test-KeepyMovement.py 150` passed **13 native release checks** using Unity's touch-input path in disposable solo and four-player sessions. The checks cover an unmoving joystick finger continuing after a balloon tap, simultaneous object pickup/holding, a third balloon touch preserving both gestures, object release, joystick release, menu cancellation, tap-to-walk continuity and unaffected siblings. [Native evidence](evidence/keepy-movement150-2026-09-26/native-play.json). These are injected native touches, not physical phone multi-touch acceptance.
+
+Windows client/server and signed Android **150** built successfully with no errors or warnings. Both manifests match all current runtime source files. [Build/source evidence](evidence/keepy-movement150-2026-09-26/built-source-check.json). Samsung updated in place from 149 with the pinned signature and exact installed APK verified; **all 16 saves remain byte-identical**. The launch command succeeded and no Unity/Android runtime errors were recorded. The user then opened the game and confirmed the balloon fix on the phone: “just tested the ballon and works great!” This is scoped acceptance of the reported input issue; sustained mixed-device play remains separate. [Installation/save evidence](evidence/keepy-movement150-2026-09-26/android-update.json).
+
+The change remains on `codex/home-reading` with the original six-book preview, whose broader recovery, four-device and A10 qualification is still open. No family server or Apple device was updated. Next: continue the bounded Home/book work from the current tracker after the accepted balloon fix.
+
+## Original Keepy Uppy milestone
+
 September 26, 2026 · SHOW-25 / HOME-4P · candidate **130**, content **6**, save schema **5**
 
 The home now has a red balloon that starts Keepy Uppy when tapped. It tosses upward, drifts, and receives an automatic raised-arm tap from an eligible character underneath. All four connected players share the same balloon. There are no points, winners, losses or game-over screens. A balloon that reaches the floor rests until tapped again. The connected backyard remains part of Home; other worlds do not receive this activity.

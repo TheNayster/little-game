@@ -1,0 +1,22 @@
+{
+  "operation": "updated",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "fb54326b23313210a8bbe379b94be847a0185feca01ef71df874cacbcad3364a",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 149,
+  "previousApkSha256": "82b507698d9e783fa0c60ae7c21b2f6f5a4df5e67d837be13fa534b0701a81d9",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "launchCommandSucceeded": true,
+  "build": 150,
+  "schema": 11,
+  "content": 12,
+  "saveRecordsRetained": 16,
+  "unchangedSaveRecords": 16,
+  "visibleUiVerified": true,
+  "physicalMultiTouchQualified": true,
+  "runtimeErrorsObserved": false,
+  "visibleUiEvidence": "User confirmation and inspected android-home.png showing Home, Bluey, balloon and joystick",
+  "physicalQualificationScope": "User tested the reported balloon/movement issue on Samsung; no mixed-device or sustained qualification claimed",
+  "userFeedback": "just tested the ballon and works great!"
+}

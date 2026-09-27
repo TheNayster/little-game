@@ -17,7 +17,9 @@ namespace LittleWeeps.Client
             keepyShadow=Panel(keepyRoot,"Balloon ground shadow",new Vector2(0,-45),new Vector2(52,12),new Color(.28f,.38f,.27f,.22f),false,true).rectTransform;
             keepyBalloon=Rect(keepyRoot,"Red balloon",Vector2.zero,new Vector2(80,132));
             keepyArt=keepyBalloon.gameObject.AddComponent<BalloonGraphic>();keepyArt.raycastTarget=false;
-            HomeHit(keepyBalloon,"Play Keepy Uppy",Vector2.zero,new Vector2(100,105),()=>StartActivity(KeepyRules.Activity));
+            // A balloon tap is independent of the other finger's joystick or
+            // object drag. Keep its gesture lease and tap-to-walk destination.
+            HomeHit(keepyBalloon,"Play Keepy Uppy",Vector2.zero,new Vector2(100,105),()=>StartActivity(KeepyRules.Activity),cancelPointers:false);
             TickKeepy();
         }
         private void TickKeepy()
