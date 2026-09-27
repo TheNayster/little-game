@@ -99,14 +99,15 @@ namespace LittleWeeps.Client
         private bool VisibleToy(SoloToy t)
         {
             if(t.zone!=CurrentArea)return false;if(string.IsNullOrEmpty(t.container))return true;
+            if(HomeBooks.Slot(t.container)>=0)return true;
             if(HomeLayout.StorageSlot(t.container)>=0)return Home!=null && Home.shedOpen;
             var room=FurnishedRoom;var slot=BedroomFurniture.Slot(t.zone,t.container);return room!=null && slot>=0 && (slot>=8 || room.chestOpen);
         }
         private Vector2 FurnitureToyPoint(SoloToy t)
-        {var room=FurnishedRoom;var slot=BedroomFurniture.Slot(t.zone,t.container);return room!=null && slot>=0?StoragePicture(room,slot):ToBoard(t.x,t.y);}
+        {if(HomeBooks.Slot(t.container)>=0)return BookSupportPicture(HomeBooks.Slot(t.container));var room=FurnishedRoom;var slot=BedroomFurniture.Slot(t.zone,t.container);return room!=null && slot>=0?StoragePicture(room,slot):ToBoard(t.x,t.y);}
         private Vector2 BedroomDropPoint(Vector2 raw)
         {
-            bedroomDragTarget="";var room=FurnishedRoom;if(room==null)return raw;
+            bedroomDragTarget="";raw=BookDropPoint(raw);if(bedroomDragTarget!="")return raw;var room=FurnishedRoom;if(room==null)return raw;
             var board=ToBoard(raw.x,raw.y);var closest=-1;var distance=float.MaxValue;
             for(var i=0;i<12;i++)
             {var d=Vector2.Distance(board,StoragePicture(room,i))/sceneScale;if(d<distance){distance=d;closest=i;}}

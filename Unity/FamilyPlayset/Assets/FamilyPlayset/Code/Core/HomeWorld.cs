@@ -82,6 +82,8 @@ namespace LittleWeeps.Core
                 throw new InvalidOperationException("Home slot has two occupants.");
             foreach(var t in s.toys.Where(t=>!string.IsNullOrEmpty(t.container)))
             {
+                var bookSlot=HomeBooks.Slot(t.container);
+                if(bookSlot>=0){if(s.schema<HomeBooks.FirstSchema || t.kind!=ToyKind.Book || t.zone!="garden" || t.holder!="" || t.x!=HomeBooks.X(bookSlot) || t.y!=HomeBooks.Y(bookSlot))throw new InvalidOperationException("Invalid book support.");continue;}
                 var bedroomSlot=BedroomFurniture.Slot(t.zone,t.container);
                 if(bedroomSlot>=0)
                 {

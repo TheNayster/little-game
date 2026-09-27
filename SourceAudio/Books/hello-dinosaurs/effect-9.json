@@ -1,0 +1,12 @@
+{
+  "prompt": "One soft hollow bird-like croak with slow leathery wing flaps, a gentle large flying reptile, quiet background.",
+  "negative_prompt": "Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing",
+  "seed": 9635,
+  "model": "MMAudio large_44k_v2",
+  "model_sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74",
+  "model_license": "CC-BY-NC-4.0",
+  "source": "https://github.com/hkchengrex/MMAudio",
+  "generated": true,
+  "kind": "Imaginative sound design; not an authentic extinct-animal recording",
+  "sha256": "dd9dbdbda933c1139995b8e0bc38569f841203c7fb89ca49c97baefb6a4790e8"
+}

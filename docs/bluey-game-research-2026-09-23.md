@@ -584,7 +584,7 @@ Added September 23, 2026, following the Toca/Piknik research. This is the main r
 | HIDE-02 | A human seeker finds up to three other players | Choose hide/seek roles; hide each hider's position on the seeker's device | Seeker cannot reveal hiders via nameplates, touch targets, or character changes |
 | NPC-01 | Parents behave naturally between activities | Walk, read, garden, prepare food, tidy designated props; interruptible requests | Parents respond to play requests and never become permanently reserved |
 | CAT-01 | A substantial show-based activity backlog | 32 entries in section 23, linked to official episode sources | Each selected activity receives art/audio, cancellation rules, and device tests |
-| BOOK-01 | Pick up and explore narrated books | House reading nook; full-screen illustrated pages; Play/Pause, page arrows, spoken names, small animations; six proposed starter titles | First eight-page book and remaining approved books work offline, with understandable controls and no overlapping speech |
+| BOOK-01 | Pick up and explore narrated books | House reading nook; full-screen illustrated pages; Play/Pause, page arrows, spoken names, small animations; six proposed starter titles | First expanded dinosaur book and remaining five distinct books work offline, with understandable controls and no overlapping speech |
 | TV-01 | Watch clips through the house TV and resume later | Local thumbnail library; play/pause, skip, seek and restart; one player per device; persistent per-child/per-video bookmarks | Offline playback, leave/return, close/relaunch, crash recovery, independent siblings, failed import and in-place update preservation pass |
 | DINO-01 | Lots of different dinosaur toys | Target 20 museum-referenced types, all with drag interactions, spoken names, and short toy animations | Every type is reachable without unlocking, saves correctly, and supports shared play |
 | DINO-02 | A dinosaur mini-game | Dinosaur Discovery Mat: dig, brush, wash, arrange, and invent stories; five optional invitations | Younger child can play without reading; both children can contribute or leave without losing toys |
@@ -945,6 +945,8 @@ Add play observations: can the younger child change character and start a differ
 
 ## 25. Reading nook and interactive books
 
+**Placement correction, September 26:** the shared book collection goes on the **first floor around the living room**, accessible to everyone. Do not seed separate bedroom/secret-room collections. Carryable books may travel upstairs; all four players retain independent reading access and bookmarks. [Applied book/plush/device research](implementation/home-reading-quiet-play-research-2026-09-26.md).
+
 **Yes: picking up a house book can open a full-screen, talking, interactive picture book.** Build this as a reusable Unity book reader. Each book supplies pages, artwork, recorded narration, and a few interactive picture regions. This suits the existing illustrated style and can run offline; a live AI model is unnecessary on the iPads.
 
 Place a low, face-out bookshelf, rug, cushions, and a dinosaur book basket in the house. The reading nook, TV, and dinosaur mat belong inside Heeler Home, so the five-destination chooser stays intact. The proposed furniture arrangement is our game layout, not a claim about the exact floor plan in the show.
@@ -977,22 +979,24 @@ Keep the book readable through network changes. Page and narration position are 
 
 ## 26. Dinosaur books and spoken names
 
-### Six proposed starter books
+### Six distinct starter books
 
-These are original working titles and story concepts for this project, not existing published books or downloaded Bluey stories. Start by finishing the first title; keep the others in the content backlog until illustrated and voiced.
+**Book subjects — latest user correction, September 26:** the six books are **dinosaurs; snakes and reptiles; cars and trucks; Hello Kitty; Tangled; and unicorns**. The user explicitly rejected the assistant-selected space, fairy-garden, invented-princess and mermaid subjects. Use familiar Hello Kitty and Tangled characters/stories; Tangled follows Rapunzel, not an invented replacement princess. The specific unicorn story/character is awaiting the user’s reply. All four players can read all six. Rapunzel’s speaking voice remains the requested locally generated narrator reference. Do not produce further assets for the superseded subjects or treat their draft output as accepted.
 
 | Working title | Proposed length | Content and little interactions |
 | --- | --- | --- |
-| **Hello, Dinosaurs!** | 8 pages | Cover, six dinosaur introductions, and a goodbye/play page; say names and reveal one recognizable feature per dinosaur |
-| **The Dinosaur Toy Picnic** | 8 pages | The children's toy dinosaurs set out cups and pretend food; tap to unfold a blanket, rock a cup, or lift a toy's head |
-| **Where Is Little Dino?** | 8 pages | A toy hides around the room; tap a curtain or cushion to reveal it; narration and page turns continue even without finding it |
-| **Dinosaur Cleanup Day** | 8 pages | Wash muddy toys, wipe a shelf, and put toys to bed; each page offers one short cleaning effect |
-| **Big Dino, Little Dino** | 8 pages | Compare large and small illustrated toys and matching footprints; describe toy sizes rather than inventing scientific measurements |
-| **Goodnight, Dinosaur Toys** | 8 pages | A quiet bedtime story: tuck in a toy, dim a lamp, watch a slow blink; gentle movement and optional sound effects |
+| **Hello, Dinosaurs!** | 14 pages | Requested dinosaurs and pterosaurs, names, feature cues and imaginative creature calls. |
+| **Snakes and Reptiles** | To storyboard | A factual picture book with snakes and other reptiles, clear names, distinctive features and gentle effects. |
+| **Cars and Trucks** | To storyboard | Cars plus recognizable working trucks; vehicle names, what they do and deliberate engine/work sounds. |
+| **Hello Kitty** | To storyboard | Familiar Hello Kitty characters and a recognizable story context; do not substitute unrelated invented characters. |
+| **Tangled** | To storyboard | Rapunzel’s movie story and recognizable cast, tower and lanterns, using newly written narration rather than copied dialogue. |
+| **Unicorns** | Pending specific story choice | User requested unicorns; ask which familiar story/character or picture-book direction before inventing one. |
 
-Book lengths are production targets. Keep sentences short and review actual recorded duration with the children. The toy stories deliberately allow different prehistoric animals to play together; factual pages should not imply that every named dinosaur lived in the same place or time.
+The dinosaur book uses twelve creature introductions plus cover and final choice page. Pteranodon and Quetzalcoatlus are identified as flying reptiles. The other five books require revised storyboards for the user-selected subjects; their length is not yet finalized. Boyish/girly is planning shorthand for the requested theme balance, not a rule about who enjoys or can read a book.
 
-### First book: an eight-page storyboard
+### First book: original storyboard, expanded by the latest request
+
+The original eight-page draft below is historical content guidance. Expand it to fourteen pages to include the requested additional creatures; do not omit them to preserve the old page target.
 
 The following narration is a short original draft. The museum links are factual references; final art, pronunciations, audio, and translations still require review.
 
@@ -1181,7 +1185,7 @@ This extends the existing architecture instead of making each book, dinosaur, or
 ### Build order for these additions
 
 1. **Keep the existing foundation gate.** Shared touch interactions, player IDs, save recovery, and LAN behavior must work before these features can be called integrated.
-2. **Books and first six toys:** build one eight-page book, six reviewed name recordings, Play/Pause/page controls, and toy pickup/washing. Verify one child reading while the other plays. Do not produce all six books before this works.
+2. **Books and first six toys:** build the expanded dinosaur book with reviewed name recordings, Play/Pause/page controls, and toy pickup/washing. Verify all four players reading independently while others may continue playing. Do not produce all six books before this works.
 3. **One TV clip:** use a small supplied MP4 to prove preparation, playback, audio focus, aspect ratio, exit, backgrounding, and client playback responsiveness and uninterrupted sibling play.
 4. **Discovery mat:** finish digging, brushing, toy placement, and the five optional invitations using the established object rules.
 5. **Expand content:** complete the 20-toy catalog and approved book titles, reviewing pronunciations and art. Add the Files importer after the basic video player has passed its device checks.

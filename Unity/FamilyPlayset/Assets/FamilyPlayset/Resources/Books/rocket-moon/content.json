@@ -1,0 +1,117 @@
+{
+  "id": "rocket-moon",
+  "title": "Rocket to the Moon",
+  "revision": 1,
+  "locale": "en-US",
+  "kind": "story",
+  "names": [],
+  "pages": [
+    {
+      "title": "Our moon adventure",
+      "caption": "A pretend mission begins.",
+      "speech": "Ari and Pip packed for a pretend moon adventure. Helmets, gloves, and a picnic! Their rocket waited under the stars. Where shall we go first?",
+      "art": "Child Ari with curly dark hair in white teal spacesuit, small round orange robot Pip, red white rocket, starry launch pad.",
+      "species": -1
+    },
+    {
+      "title": "Count down",
+      "caption": "Three, two, one… lift off!",
+      "speech": "Ari checked the seat belts. Pip checked the map. Three, two, one, lift off! Their pretend rocket rose into the sparkling night.",
+      "art": "Same rocket lifts gently from launch pad with soft orange plume; Ari and Pip visible in round window.",
+      "species": -1
+    },
+    {
+      "title": "Hello, Earth",
+      "caption": "Our home looks blue and white.",
+      "speech": "Through the window, Earth looked blue and white. That is our home, said Ari. Pip drew a little heart beside it on the map.",
+      "art": "Ari and orange robot look through rocket window at blue white Earth, dark space.",
+      "species": -1
+    },
+    {
+      "title": "A gentle landing",
+      "caption": "The moon has no air to breathe.",
+      "speech": "They landed gently. The real moon has no air to breathe, so astronauts need spacesuits. Ari and Pip kept their pretend helmets closed.",
+      "art": "Rocket landed on grey moon; child in sealed helmet and small robot step down ladder, Earth distant.",
+      "species": -1
+    },
+    {
+      "title": "Moon steps",
+      "caption": "Hop, pause, look!",
+      "speech": "Moon gravity is weaker than Earth's. Ari imagined a long slow hop. Hop, pause, look! Pip followed a trail of round footprints.",
+      "art": "Child in sealed spacesuit makes small playful hop on moon, robot and footprints, rocket nearby.",
+      "species": -1
+    },
+    {
+      "title": "What made that crater?",
+      "caption": "A bowl-shaped hollow in the ground.",
+      "speech": "They found a crater, a big hollow in the ground. Space rocks made many moon craters. Ari looked from a safe spot and sketched its shape.",
+      "art": "Ari and robot observe rounded crater from safe flat edge, sketch pad, rocket in distance.",
+      "species": -1
+    },
+    {
+      "title": "A message home",
+      "caption": "We are coming back!",
+      "speech": "Inside the rocket, Ari sent a message home. We saw craters and imagined moon hops! Pip saved their pictures. Now it was time to return.",
+      "art": "Child and orange robot inside warm rocket cabin press blue radio button, moon visible through window.",
+      "species": -1
+    },
+    {
+      "title": "Home under the stars",
+      "caption": "What would you explore next?",
+      "speech": "Their pretend mission ended with a picnic at home. The moon shone above them. Next time, said Ari, let us imagine another adventure.",
+      "art": "Ari without spacesuit and small orange toy robot on garden picnic blanket, cardboard rocket, moon overhead.",
+      "species": -1
+    }
+  ],
+  "notes": "Original story and illustrations; all family profiles can read it.",
+  "artRects": [
+    {
+      "x": 0.001594896331738437,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24960127591706538
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24960127591706538
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.25598086124401914,
+      "width": 0.4960127591706539,
+      "height": 0.24162679425837322
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.25598086124401914,
+      "width": 0.4960127591706539,
+      "height": 0.24162679425837322
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.5023923444976076,
+      "width": 0.4960127591706539,
+      "height": 0.23604465709728867
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.5023923444976076,
+      "width": 0.4960127591706539,
+      "height": 0.23604465709728867
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.7440191387559809,
+      "width": 0.4960127591706539,
+      "height": 0.2543859649122807
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.7440191387559809,
+      "width": 0.4960127591706539,
+      "height": 0.2543859649122807
+    }
+  ]
+}

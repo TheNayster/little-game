@@ -1,0 +1,266 @@
+[
+  {
+    "text": "Hello, dinosaur explorers! Let us meet twelve amazing prehistoric animals. Tap a picture to hear its name. The sound button plays an imagined animal call.",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-0.wav"
+  },
+  {
+    "text": "Tyrannosaurus rex walked on two strong legs. Its arms were small. Can you find them?",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-1.wav"
+  },
+  {
+    "text": "Triceratops had three horns and a wide frill. Can you count the horns? One, two, three!",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-2.wav"
+  },
+  {
+    "text": "Stegosaurus had tall plates along its back and spikes on its tail. Point to a plate, then a spike.",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-3.wav"
+  },
+  {
+    "text": "Brachiosaurus had a long neck. Its front legs were longer than its back legs. Imagine reaching high into a leafy tree.",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-4.wav"
+  },
+  {
+    "text": "Diplodocus had a long neck and a very long, slender tail. Follow the tail with your finger. Where does it end?",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-5.wav"
+  },
+  {
+    "text": "Ankylosaurus wore bony armour. Its tail ended in a heavy club. Can you spot the club in the picture?",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-6.wav"
+  },
+  {
+    "text": "Brontosaurus was a giant plant eater with a long neck and sturdy legs. Imagine its slow steps through the ferns.",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-7.wav"
+  },
+  {
+    "text": "Spinosaurus had a tall sail on its back and a long snout. It ate fish. Can you trace the shape of its sail?",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-8.wav"
+  },
+  {
+    "text": "Pteranodon was a flying reptile, not a dinosaur. It had a long beak and wide wings. Spread your arms like wings!",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-9.wav"
+  },
+  {
+    "text": "Quetzalcoatlus was another flying reptile. It had a long neck and an enormous wingspan. Imagine the shadow of those wings.",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-10.wav"
+  },
+  {
+    "text": "Parasaurolophus had a long curved crest on its head. Scientists think its crest may have helped it make sounds. What do you imagine?",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-11.wav"
+  },
+  {
+    "text": "Velociraptor was much smaller than the giants in this book. It had feathers. Look for the feathers on its arms and tail.",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-12.wav"
+  },
+  {
+    "text": "Which animal would you like to meet again? Some lived millions of years apart. Their real voices are a mystery, so our sounds are made for imagination.",
+    "output": "SourceAudio/Books/hello-dinosaurs/page-13.wav"
+  },
+  {
+    "text": "Tyrannosaurus rex.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-0.wav"
+  },
+  {
+    "text": "Triceratops.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-1.wav"
+  },
+  {
+    "text": "Stegosaurus.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-2.wav"
+  },
+  {
+    "text": "Brachiosaurus.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-3.wav"
+  },
+  {
+    "text": "Diplodocus.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-4.wav"
+  },
+  {
+    "text": "Ankylosaurus.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-5.wav"
+  },
+  {
+    "text": "Brontosaurus.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-6.wav"
+  },
+  {
+    "text": "Spinosaurus.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-7.wav"
+  },
+  {
+    "text": "Pteranodon.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-8.wav"
+  },
+  {
+    "text": "Quetzalcoatlus.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-9.wav"
+  },
+  {
+    "text": "Parasaurolophus.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-10.wav"
+  },
+  {
+    "text": "Velociraptor.",
+    "output": "SourceAudio/Books/hello-dinosaurs/name-11.wav"
+  },
+  {
+    "text": "Milo wanted to visit his friend across the stream. The old stepping stones were under water. We need a little bridge, he said.",
+    "output": "SourceAudio/Books/little-bridge/page-0.wav"
+  },
+  {
+    "text": "First, the builders looked carefully. They chose firm ground on both banks. Milo drew a bridge with a wide path and strong sides.",
+    "output": "SourceAudio/Books/little-bridge/page-1.wav"
+  },
+  {
+    "text": "The orange digger scooped a little earth. Scoop, lift, and set it down. The workers made a steady place for each end of the bridge.",
+    "output": "SourceAudio/Books/little-bridge/page-2.wav"
+  },
+  {
+    "text": "The blue truck brought stones. Its bed lifted slowly. The stones tumbled into a tidy pile. That is enough, said Milo.",
+    "output": "SourceAudio/Books/little-bridge/page-3.wav"
+  },
+  {
+    "text": "The crane lifted a strong beam. Everyone stood clear. Up slowly, across carefully, and down gently. The beam joined the two banks.",
+    "output": "SourceAudio/Books/little-bridge/page-4.wav"
+  },
+  {
+    "text": "The builders added boards and sturdy rails. They checked for wobbles and sharp edges. A smooth path helps wheels and little feet.",
+    "output": "SourceAudio/Books/little-bridge/page-5.wav"
+  },
+  {
+    "text": "A grown-up builder checked the finished bridge. Strong, steady, and ready! Milo waited for the all-clear, then walked across with his friend.",
+    "output": "SourceAudio/Books/little-bridge/page-6.wav"
+  },
+  {
+    "text": "Now friends could visit in muddy weather. A little wagon rolled across too. Milo waved to the builders. We made a way for everyone!",
+    "output": "SourceAudio/Books/little-bridge/page-7.wav"
+  },
+  {
+    "text": "Ari and Pip packed for a pretend moon adventure. Helmets, gloves, and a picnic! Their rocket waited under the stars. Where shall we go first?",
+    "output": "SourceAudio/Books/rocket-moon/page-0.wav"
+  },
+  {
+    "text": "Ari checked the seat belts. Pip checked the map. Three, two, one, lift off! Their pretend rocket rose into the sparkling night.",
+    "output": "SourceAudio/Books/rocket-moon/page-1.wav"
+  },
+  {
+    "text": "Through the window, Earth looked blue and white. That is our home, said Ari. Pip drew a little heart beside it on the map.",
+    "output": "SourceAudio/Books/rocket-moon/page-2.wav"
+  },
+  {
+    "text": "They landed gently. The real moon has no air to breathe, so astronauts need spacesuits. Ari and Pip kept their pretend helmets closed.",
+    "output": "SourceAudio/Books/rocket-moon/page-3.wav"
+  },
+  {
+    "text": "Moon gravity is weaker than Earth's. Ari imagined a long slow hop. Hop, pause, look! Pip followed a trail of round footprints.",
+    "output": "SourceAudio/Books/rocket-moon/page-4.wav"
+  },
+  {
+    "text": "They found a crater, a big hollow in the ground. Space rocks made many moon craters. Ari looked from a safe spot and sketched its shape.",
+    "output": "SourceAudio/Books/rocket-moon/page-5.wav"
+  },
+  {
+    "text": "Inside the rocket, Ari sent a message home. We saw craters and imagined moon hops! Pip saved their pictures. Now it was time to return.",
+    "output": "SourceAudio/Books/rocket-moon/page-6.wav"
+  },
+  {
+    "text": "Their pretend mission ended with a picnic at home. The moon shone above them. Next time, said Ari, let us imagine another adventure.",
+    "output": "SourceAudio/Books/rocket-moon/page-7.wav"
+  },
+  {
+    "text": "Lila the fairy found a flower with a drooping head. Hello, little flower, she whispered. What would help you feel better today?",
+    "output": "SourceAudio/Books/fairy-garden/page-0.wav"
+  },
+  {
+    "text": "Lila touched the soil gently. It felt dry. She fetched her little watering can. Plants need water, but not a great big flood.",
+    "output": "SourceAudio/Books/fairy-garden/page-1.wav"
+  },
+  {
+    "text": "Drip, drop, drip. Lila poured a little water around the roots. A ladybird rested on a leaf and watched the droplets shine.",
+    "output": "SourceAudio/Books/fairy-garden/page-2.wav"
+  },
+  {
+    "text": "A fallen leaf was covering the small plant. Lila moved it aside. Now the green leaves could reach toward the warm sunshine.",
+    "output": "SourceAudio/Books/fairy-garden/page-3.wav"
+  },
+  {
+    "text": "Lila waited. She watched the clouds and listened to the garden. Growing takes time. She could care for the flower without hurrying it.",
+    "output": "SourceAudio/Books/fairy-garden/page-4.wav"
+  },
+  {
+    "text": "On another morning, the flower stood taller. A butterfly fluttered by. It settled for a moment, then danced away between the leaves.",
+    "output": "SourceAudio/Books/fairy-garden/page-5.wav"
+  },
+  {
+    "text": "Look! A new little bud had appeared. Lila smiled. Water, light, and patient care had helped the garden grow. What a lovely surprise.",
+    "output": "SourceAudio/Books/fairy-garden/page-6.wav"
+  },
+  {
+    "text": "Lila left room for all her garden visitors. The flower, the butterfly, and the tiny ladybird each belonged. Who might visit your garden?",
+    "output": "SourceAudio/Books/fairy-garden/page-7.wav"
+  },
+  {
+    "text": "Princess Nora found a star-shaped lantern in the courtyard. It had rolled away from the evening parade. Someone must be looking for you, she said.",
+    "output": "SourceAudio/Books/princess-star/page-0.wav"
+  },
+  {
+    "text": "Nora asked the gardener. Have you seen this star? The gardener shook her head, then pointed toward the busy village square. Let us ask together.",
+    "output": "SourceAudio/Books/princess-star/page-1.wav"
+  },
+  {
+    "text": "A little golden ribbon lay on the path. It matched the lantern's ribbon. Nora followed it carefully, keeping the lantern safe in both hands.",
+    "output": "SourceAudio/Books/princess-star/page-2.wav"
+  },
+  {
+    "text": "Beside the bakery, a basket had tipped over. Nora stopped to help gather the wrapped rolls. Thank you, said the baker. Kindness is never a detour.",
+    "output": "SourceAudio/Books/princess-star/page-3.wav"
+  },
+  {
+    "text": "In the square, a child was searching beside the parade cart. My star is missing, he said. Nora knelt down. Is this the one you made?",
+    "output": "SourceAudio/Books/princess-star/page-4.wav"
+  },
+  {
+    "text": "That is my star! The child smiled. Nora helped tie its ribbon onto the cart. Together they checked that the knot was secure.",
+    "output": "SourceAudio/Books/princess-star/page-5.wav"
+  },
+  {
+    "text": "Walk with us, said the child. Nora joined the parade. There were big lanterns and tiny lanterns, each made by someone in the village.",
+    "output": "SourceAudio/Books/princess-star/page-6.wav"
+  },
+  {
+    "text": "The lanterns glowed as evening fell. Nora had not found a real star from the sky. She had found a chance to help, and new friends to share the light.",
+    "output": "SourceAudio/Books/princess-star/page-7.wav"
+  },
+  {
+    "text": "Mira the mermaid spotted a shell with rainbow colours. It rested in the sand beside a swaying sea plant. What a beautiful little home, she said.",
+    "output": "SourceAudio/Books/mermaid-shell/page-0.wav"
+  },
+  {
+    "text": "Mira looked closely before touching it. A tiny claw peeked out. Someone was already living inside! The shell belonged to a little hermit crab.",
+    "output": "SourceAudio/Books/mermaid-shell/page-1.wav"
+  },
+  {
+    "text": "The little crab wanted to reach a sheltered rock. But a loose piece of litter lay across the sand. Mira knew litter did not belong in the sea.",
+    "output": "SourceAudio/Books/mermaid-shell/page-2.wav"
+  },
+  {
+    "text": "Mira carefully lifted the loose litter into her basket. She would take it to the shore for proper disposal. Now the sandy path was clear.",
+    "output": "SourceAudio/Books/mermaid-shell/page-3.wav"
+  },
+  {
+    "text": "Mira swam beside the crab. She did not hurry him or carry his shell away. Slow was a good speed for such small legs.",
+    "output": "SourceAudio/Books/mermaid-shell/page-4.wav"
+  },
+  {
+    "text": "At last, the crab reached a calm spot beside the rock. Little fish drifted past. Mira waved gently and gave her new neighbour plenty of room.",
+    "output": "SourceAudio/Books/mermaid-shell/page-5.wav"
+  },
+  {
+    "text": "Mira left the rainbow shell with its owner. The best treasure was a living sea to care for, full of creatures with homes of their own.",
+    "output": "SourceAudio/Books/mermaid-shell/page-6.wav"
+  },
+  {
+    "text": "Mira swam home with her basket of litter. Next time she saw a pretty shell, she would look closely first. What might you notice by the sea?",
+    "output": "SourceAudio/Books/mermaid-shell/page-7.wav"
+  }
+]

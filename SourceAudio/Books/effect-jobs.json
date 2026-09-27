@@ -1,0 +1,70 @@
+[
+  {
+    "prompt": "One low, friendly animal rumble with a breathy crocodile-like exhale. A gentle imaginary large dinosaur call, close and dry, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-0.wav"
+  },
+  {
+    "prompt": "Two soft resonant animal grunts, warm and rounded, a calm large herbivore, close and dry, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-1.wav"
+  },
+  {
+    "prompt": "A soft low animal coo followed by a little breathy snuffle, gentle imaginary herbivore, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-2.wav"
+  },
+  {
+    "prompt": "A gentle deep hollow coo from a very large calm animal, slow breath, warm rumbling resonance, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-3.wav"
+  },
+  {
+    "prompt": "Soft airy animal hum and a light breath, a relaxed giant herbivore, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-4.wav"
+  },
+  {
+    "prompt": "A short rounded low animal grunt, then gentle snuffling, a calm armoured imaginary dinosaur, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-5.wav"
+  },
+  {
+    "prompt": "A deep peaceful resonant animal bellow, very soft, short and rounded, large gentle herbivore, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-6.wav"
+  },
+  {
+    "prompt": "A soft crocodilian animal chuff and breathy rumble near a quiet river, gentle and curious, no loud roar.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-7.wav"
+  },
+  {
+    "prompt": "Gentle seabird-like chirrup followed by two soft leathery wing flaps, an imaginary flying reptile, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-8.wav"
+  },
+  {
+    "prompt": "One soft hollow bird-like croak with slow leathery wing flaps, a gentle large flying reptile, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-9.wav"
+  },
+  {
+    "prompt": "One gentle low hollow resonant horn-like animal call, soft and breathy, an imaginative crested dinosaur, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-10.wav"
+  },
+  {
+    "prompt": "Two soft curious bird-like clucks and a small chirp, gentle feathered animal, close and dry, quiet background.",
+    "output": "SourceAudio/Books/hello-dinosaurs/effect-11.wav"
+  },
+  {
+    "prompt": "Soft construction vehicle engine idling and a short gravel tumble, gentle toy-like outdoor work sounds, no voices.",
+    "output": "SourceAudio/Books/little-bridge/effect-0.wav"
+  },
+  {
+    "prompt": "A soft science fiction rocket whoosh with a gentle electronic radio bleep, playful calm space adventure, no voices or music.",
+    "output": "SourceAudio/Books/rocket-moon/effect-0.wav"
+  },
+  {
+    "prompt": "Gentle garden birds chirping with a little water trickle and soft leaves rustling, peaceful close outdoor sounds.",
+    "output": "SourceAudio/Books/fairy-garden/effect-0.wav"
+  },
+  {
+    "prompt": "A delicate short magical shimmer made of soft tiny glass bell chimes, warm and gentle, no tune or voices.",
+    "output": "SourceAudio/Books/princess-star/effect-0.wav"
+  },
+  {
+    "prompt": "Soft underwater bubbles rising with a gentle water swish, calm close aquatic sound, no voices or music.",
+    "output": "SourceAudio/Books/mermaid-shell/effect-0.wav"
+  }
+]

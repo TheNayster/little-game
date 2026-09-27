@@ -1,0 +1,117 @@
+{
+  "id": "mermaid-shell",
+  "title": "The Mermaid and the Rainbow Shell",
+  "revision": 1,
+  "locale": "en-US",
+  "kind": "story",
+  "names": [],
+  "pages": [
+    {
+      "title": "A colour in the sand",
+      "caption": "Mira spots a rainbow shell.",
+      "speech": "Mira the mermaid spotted a shell with rainbow colours. It rested in the sand beside a swaying sea plant. What a beautiful little home, she said.",
+      "art": "Mermaid Mira with copper skin dark curly hair turquoise tail coral top finds pearly rainbow spiral shell on sandy seabed.",
+      "species": -1
+    },
+    {
+      "title": "Look before you lift",
+      "caption": "Is someone living inside?",
+      "speech": "Mira looked closely before touching it. A tiny claw peeked out. Someone was already living inside! The shell belonged to a little hermit crab.",
+      "art": "Same mermaid carefully observes small hermit crab claw peeking from rainbow spiral shell, gentle clear underwater scene.",
+      "species": -1
+    },
+    {
+      "title": "A wobbly path",
+      "caption": "The crab is trying to reach a rock.",
+      "speech": "The little crab wanted to reach a sheltered rock. But a loose piece of litter lay across the sand. Mira knew litter did not belong in the sea.",
+      "art": "Small hermit crab in rainbow shell faces discarded plain plastic loop on sand; mermaid notices, safe no entanglement.",
+      "species": -1
+    },
+    {
+      "title": "Clear the way",
+      "caption": "Mira puts the litter in her basket.",
+      "speech": "Mira carefully lifted the loose litter into her basket. She would take it to the shore for proper disposal. Now the sandy path was clear.",
+      "art": "Mermaid places loose plastic loop into woven collection basket, crab path now clear, underwater plants.",
+      "species": -1
+    },
+    {
+      "title": "Travel together",
+      "caption": "Slow is a good speed for a small crab.",
+      "speech": "Mira swam beside the crab. She did not hurry him or carry his shell away. Slow was a good speed for such small legs.",
+      "art": "Mermaid swims slowly beside tiny hermit crab walking in rainbow shell toward sheltered rock.",
+      "species": -1
+    },
+    {
+      "title": "A sheltered home",
+      "caption": "A calm place beside the rock.",
+      "speech": "At last, the crab reached a calm spot beside the rock. Little fish drifted past. Mira waved gently and gave her new neighbour plenty of room.",
+      "art": "Rainbow-shell crab sheltered beside smooth rock with small fish, mermaid waves at respectful distance.",
+      "species": -1
+    },
+    {
+      "title": "The best treasure",
+      "caption": "A living sea to care for.",
+      "speech": "Mira left the rainbow shell with its owner. The best treasure was a living sea to care for, full of creatures with homes of their own.",
+      "art": "Mermaid admires thriving reef from distance, hermit crab in shell at rock, diverse gentle fish and sea plants.",
+      "species": -1
+    },
+    {
+      "title": "What will you notice?",
+      "caption": "Look closely. Care gently.",
+      "speech": "Mira swam home with her basket of litter. Next time she saw a pretty shell, she would look closely first. What might you notice by the sea?",
+      "art": "Mermaid at shallow shore brings basket of litter to collection point, clean beach, shell crab visible safely below water.",
+      "species": -1
+    }
+  ],
+  "notes": "Original story and illustrations; all family profiles can read it.",
+  "artRects": [
+    {
+      "x": 0.001594896331738437,
+      "y": 0.001594896331738437,
+      "width": 0.49521531100478466,
+      "height": 0.24082934609250398
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24082934609250398
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.24960127591706538,
+      "width": 0.49521531100478466,
+      "height": 0.24322169059011164
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.24960127591706538,
+      "width": 0.4960127591706539,
+      "height": 0.24322169059011164
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.5,
+      "width": 0.49521531100478466,
+      "height": 0.20893141945773525
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.5,
+      "width": 0.4960127591706539,
+      "height": 0.20893141945773525
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.7161084529505582,
+      "width": 0.49521531100478466,
+      "height": 0.2822966507177033
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.7161084529505582,
+      "width": 0.4960127591706539,
+      "height": 0.2822966507177033
+    }
+  ]
+}

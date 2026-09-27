@@ -1,0 +1,19 @@
+{
+  "text": "Tyrannosaurus rex.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+  "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+  "seed": 440,
+  "tempo": 0.88,
+  "reference_text": "And... I have something for you too. I should have given it to you before, but I was just scared.",
+  "reference_url": "https://video.disney.com/watch/tangled-side-by-side-disney-59e8be2ba9091ebd6b4f2a72",
+  "reference_start": 94.95,
+  "reference_duration": 8.35,
+  "reference_sha256": "e45c8cebe25be9d206241a855d21c536f3bc0feea05e269700751aee50d24f77",
+  "generated": true,
+  "model_license": "Apache-2.0",
+  "sample_rate": 24000,
+  "duration_seconds": 2.246,
+  "peak_dbfs": -7.04,
+  "sha256": "09a8dff0112ec8256a27c9c05088fe8f151a13a42e77446d53ffc8d4c0520651",
+  "status": "Generated candidate; similarity and final listening acceptance are not established by generation"
+}

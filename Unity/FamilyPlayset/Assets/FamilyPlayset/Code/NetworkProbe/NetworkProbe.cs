@@ -334,7 +334,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithSecretRooms(world);
+            world=SoloWorld.WithBooks(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");

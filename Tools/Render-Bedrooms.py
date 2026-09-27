@@ -11,7 +11,8 @@ docs=Path(__file__).resolve().parents[1]/'docs'
 style=re.search(r'<style>(.*?)</style>',(docs/'bluey-game-research-2026-09-23.html').read_text(encoding='utf-8'),re.S)[1]
 for name in ('home-world-feature-tracker','implementation/upstairs-bedrooms-research-2026-09-26',
              'implementation/bedroom-rooms-2026-09-26','implementation/bedroom-furniture-2026-09-26',
-             'implementation/secret-rooms-research-2026-09-26','implementation/secret-rooms-2026-09-26'):
+             'implementation/secret-rooms-research-2026-09-26','implementation/secret-rooms-2026-09-26',
+             'implementation/home-reading-quiet-play-research-2026-09-26','implementation/kids-narrator-research-2026-09-26','implementation/home-books-2026-09-26'):
     path=docs/(name+'.md');source=path.read_text(encoding='utf-8')
     title=html.escape(source.splitlines()[0].lstrip('# '))
     body=markdown.markdown(source,extensions=['tables','fenced_code','toc'])

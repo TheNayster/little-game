@@ -1,0 +1,140 @@
+{
+  "assets": [
+    {
+      "id": "dinosaurs",
+      "prompt": "Edit target: supplied dinosaur atlas. Fix production sprite clipping. Keep the exact six animals, colors, textures and style, in exactly the same order: Tyrannosaurus rex, Triceratops, Stegosaurus; Brachiosaurus, Diplodocus, Ankylosaurus. CRITICAL change: reduce EACH animal to HALF its current linear size and center the complete animal (including its longest tail, neck, horns and wings) in its own equal square cell. Keep atlas landscape 1536x1024, exactly 3 columns and 2 rows, cells 512x512. Each complete animal must fit inside the central 300x300 pixels of its cell, leaving at least 100 pixels of fully transparent clearance from EVERY cell boundary. These are SMALL isolated sprites with lots of empty transparent space around each, not large illustrations filling the sheet. No part of any animal may leave its cell or overlap another. Preserve complete tails/wings and species-specific anatomy. Remove all background glows/shadows/color clouds: background alpha zero. No labels, no drawn boxes, no scenery.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-c6660393-f8e1-4211-a6da-423d95dbdc31.png",
+      "runtime": "Books/hello-dinosaurs/dinosaurs.png",
+      "tool": "built-in image_gen",
+      "status": "Preview 148; full animal silhouettes fit measured sprite bounds",
+      "sha256": "4b5d7cb4c1a18baa01a903b316f5a2c911503fcd0d7fdf09000600773ccbb1b3",
+      "editable_source": "SourceArt/Books/dinosaurs.png"
+    },
+    {
+      "id": "dinosaurs-extra",
+      "prompt": "Edit target: supplied dinosaur atlas. Fix production sprite clipping. Keep the exact six animals, colors, textures and style, in exactly the same order: Brontosaurus, Spinosaurus, Pteranodon; Quetzalcoatlus, Parasaurolophus, Velociraptor. CRITICAL change: reduce EACH animal to HALF its current linear size and center the complete animal (including its longest tail, neck, horns and wings) in its own equal square cell. Keep atlas landscape 1536x1024, exactly 3 columns and 2 rows, cells 512x512. Each complete animal must fit inside the central 300x300 pixels of its cell, leaving at least 100 pixels of fully transparent clearance from EVERY cell boundary. These are SMALL isolated sprites with lots of empty transparent space around each, not large illustrations filling the sheet. No part of any animal may leave its cell or overlap another. Preserve complete tails/wings and species-specific anatomy. Remove all background glows/shadows/color clouds: background alpha zero. No labels, no drawn boxes, no scenery.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-5e0d633c-45a3-4ad0-9f0a-add688d2bc0f.png",
+      "runtime": "Books/hello-dinosaurs/dinosaurs-extra.png",
+      "tool": "built-in image_gen",
+      "status": "Preview 148; full animal silhouettes fit measured sprite bounds",
+      "sha256": "47318591f9a10c27aab441a260d25a5b78a96fd43b351762657692474b7802db",
+      "editable_source": "SourceArt/Books/dinosaurs-extra.png"
+    },
+    {
+      "id": "rack",
+      "prompt": "Use case: illustration-story. Asset type: one isolated EMPTY low face-out children's book rack sprite for the shared downstairs reading nook of a private Bluey-inspired 2D family dollhouse. Clean warm illustrated timber furniture matching pastel yellow Heeler living-room walls and terracotta floor. Front view, shallow visible top/inside, low wide shape with gently rounded side cheeks and two shallow open display tiers. Honey-coloured wood with a small pale aqua panel on the lower front, warm brown fine outlines, restrained flat 2D cartoon shading. This rack will hold real movable book sprites drawn separately. Both rows MUST BE COMPLETELY EMPTY and have obvious interior support surfaces: no books, toys, signs, writing, painted icons or occupants. Each tier has only a short front lip so a face-out picture book remains visible. Four short wooden feet. Single complete object centered, generous alpha border, landscape 3:2 canvas, entire rack fills about 85% width and 70% height. Genuine transparent alpha outside the clean outline; no glow, haze, floor, external shadow, wall, scene, text or 3D render. Keep thin foreground lips separable by registered cover masks.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-c2b1f938-6ffd-4d2c-91c2-944866c77971.png",
+      "runtime": "Books/rack.png",
+      "tool": "built-in image_gen",
+      "status": "Generated candidate; native composition not yet verified",
+      "sha256": "bfc49b88853259b9c22949bf874a78cca505d241b0582a004ac5edd3a330887a",
+      "editable_source": "SourceArt/Books/rack.png"
+    },
+    {
+      "id": "little-bridge",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-9f8f8548-4585-4536-b726-fea31c7f0579.png",
+      "editable_source": "SourceArt/Books/little-bridge.png",
+      "runtime": "Books/little-bridge/pages.png",
+      "sha256": "05119c9deec9fdad7a91351d9adff35d5bd447dde49e8f573d3d1d605266dcd0",
+      "tool": "built-in image_gen",
+      "status": "Original draft authorized for phone preview; final subject selection remains open"
+    },
+    {
+      "id": "fairy-garden",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-b50ceb87-5489-4649-9c7f-3adb80a51c54.png",
+      "editable_source": "SourceArt/Books/fairy-garden.png",
+      "runtime": "Books/fairy-garden/pages.png",
+      "sha256": "7ec58952b391d32809c8c683683b028dac1f13d3e24aac64d4c988d455523761",
+      "tool": "built-in image_gen",
+      "status": "Original draft authorized for phone preview; final subject selection remains open"
+    },
+    {
+      "id": "mermaid-shell",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-19653b14-da43-48f4-b04a-7885b8fab92f.png",
+      "editable_source": "SourceArt/Books/mermaid-shell.png",
+      "runtime": "Books/mermaid-shell/pages.png",
+      "sha256": "4712f8d02fd51c384ed48dc5b08b223ed13af15b2ad86108351e51fa772589b1",
+      "tool": "built-in image_gen",
+      "status": "Original draft authorized for phone preview; final subject selection remains open"
+    },
+    {
+      "id": "covers",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-cddd9e3d-7b43-4581-8c36-c8f28c05f03b.png",
+      "editable_source": "SourceArt/Books/covers.png",
+      "runtime": "Books/covers.png",
+      "sha256": "eaf8baf0f7cb29fe983d459726bdd3a746aa5a9ed129d17eafde73366bacd8d9",
+      "tool": "built-in image_gen",
+      "status": "Six-cover source; preview uses only four finished titles"
+    },
+    {
+      "id": "rocket-moon",
+      "prompt": "Use case: illustration-story. Create a polished children's picture book illustration atlas for \"Rocket to the Moon\". It is a production game texture: a tall portrait canvas divided into EXACTLY 2 COLUMNS and 4 ROWS, eight equally sized rectangular panels, reading left-to-right then top-to-bottom. Every panel must remain exactly in its own grid cell with no overlap; no panel outlines, no gutters, no titles, no text, no letters, no numbers. Each panel has a complete illustrated background. Soft hand-painted children's storybook gouache and watercolor with readable dark contours, colorful and beautiful, appealing to young children. Keep the same characters, clothes, objects and colour palette consistent across all eight panels. Gentle expressions and warm lighting, imaginative detailed environments, not clipart. Do not use copyrighted characters. Scenes in order:\nPanel 1: Child Ari with curly dark hair in white teal spacesuit, small round orange robot Pip, red white rocket, starry launch pad.\nPanel 2: Same rocket lifts gently from launch pad with soft orange plume; Ari and Pip visible in round window.\nPanel 3: Ari and orange robot look through rocket window at blue white Earth, dark space.\nPanel 4: Rocket landed on grey moon; child in sealed helmet and small robot step down ladder, Earth distant.\nPanel 5: Child in sealed spacesuit makes small playful hop on moon, robot and footprints, rocket nearby.\nPanel 6: Ari and robot observe rounded crater from safe flat edge, sketch pad, rocket in distance.\nPanel 7: Child and orange robot inside warm rocket cabin press blue radio button, moon visible through window.\nPanel 8: Ari without spacesuit and small orange toy robot on garden picnic blanket, cardboard rocket, moon overhead.\nThe grid is critical: 2 equal-width columns, 4 equal-height rows. Fill the canvas edge-to-edge with the 8 separate panels. Portrait aspect ratio approximately 2:3.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-ae9253db-d66d-4668-a097-5d9eafa2efac.png",
+      "editable_source": "SourceArt/Books/rocket-moon.png",
+      "sha256": "939d1df1b72b8880b0a59c98c09e48ca8a5e6e49b451abebb163076e7eae875b",
+      "tool": "built-in image_gen",
+      "status": "Preview 148; full animal silhouettes fit measured sprite bounds",
+      "runtime": "Books/rocket-moon/pages.png"
+    },
+    {
+      "id": "princess-star",
+      "prompt": "Use case: illustration-story. Create a polished children's picture book illustration atlas for \"The Princess and the Lost Star\". It is a production game texture: a tall portrait canvas divided into EXACTLY 2 COLUMNS and 4 ROWS, eight equally sized rectangular panels, reading left-to-right then top-to-bottom. Every panel must remain exactly in its own grid cell with no overlap; no panel outlines, no gutters, no titles, no text, no letters, no numbers. Each panel has a complete illustrated background. Soft hand-painted children's storybook gouache and watercolor with readable dark contours, colorful and beautiful, appealing to young children. Keep the same characters, clothes, objects and colour palette consistent across all eight panels. Gentle expressions and warm lighting, imaginative detailed environments, not clipart. Do not use copyrighted characters. Scenes in order:\nPanel 1: Princess Nora with warm brown skin long dark braid lavender practical dress and small gold crown finds glowing star paper lantern in courtyard.\nPanel 2: Same princess shows star paper lantern to friendly woman gardener near castle gate, flower beds.\nPanel 3: Princess carrying star paper lantern follows golden ribbon along cobbled village path.\nPanel 4: Princess and smiling baker gather wrapped bread rolls from clean paving; star lantern safe on bench.\nPanel 5: Princess kneels to show star paper lantern to worried young child beside decorated parade cart.\nPanel 6: Child and princess attach glowing star paper lantern to low parade cart with ribbon, smiling villagers.\nPanel 7: Princess child gardener baker walk together beside small cart, varied glowing paper lanterns at dusk.\nPanel 8: Wide welcoming village evening lantern parade, princess friends star paper lantern central, real stars overhead.\nThe grid is critical: 2 equal-width columns, 4 equal-height rows. Fill the canvas edge-to-edge with the 8 separate panels. Portrait aspect ratio approximately 2:3.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-ea9dd139-b32d-45be-8ae6-f607d1264b4f.png",
+      "editable_source": "SourceArt/Books/princess-star.png",
+      "sha256": "49d42e95d92900e6ac15c0fb86232324891a28d0aeb463c8d995e8de22d67f37",
+      "tool": "built-in image_gen",
+      "status": "Preview 148; full animal silhouettes fit measured sprite bounds",
+      "runtime": "Books/princess-star/pages.png"
+    },
+    {
+      "id": "fairy-garden-full-page",
+      "prompt": "Edit the supplied eight-page story illustration sheet. Preserve ALL EIGHT exact story scenes in row-major order, the same recurring character identities, costumes, objects, action and warm illustrated picture-book style. Change the overall sheet to a SQUARE 2048 by 2048 pixel canvas, with exactly TWO equal columns and FOUR equal rows, zero gutters, no text or borders: each panel is a wide 2:1 landscape illustration (1024 by 512). The user needs full-screen landscape book pages. Recompose/outpaint each existing scene for this wider frame, extending the existing scenery left/right; do NOT stretch the characters and do NOT simply crop the old scene. Keep each main character's complete head, hands, body and relevant story objects fully inside its own panel with comfortable margins. Arrange faces and story actions within the central 75% of each panel; leave upper/lower edge scenery relatively calm for translucent reader controls. No characters or props may cross panel boundaries, no extra scenes, no missing scenes, no merged panels. Exact equal horizontal dividers at 25%,50%,75% and vertical divider at50%. Fill every panel corner with its own scene. Retain story continuity and panel order from the supplied sheet. This is an edit of the supplied art, not a new story.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-60f105bb-eec2-4e20-adb8-b47b9f5bc6b2.png",
+      "editable_source": "SourceArt/Books/fairy-garden-full-page.png",
+      "runtime": "Books/fairy-garden/pages.png",
+      "tool": "built-in image_gen",
+      "sha256": "23c963a8d0b8a8fb713233a510218e20b169df4736d81d9ebe3c1261294ac1ff",
+      "status": "Full-page preview, measured per-panel bounds"
+    },
+    {
+      "id": "mermaid-shell-full-page",
+      "prompt": "Edit the supplied eight-page story illustration sheet. Preserve ALL EIGHT exact story scenes in row-major order, the same recurring character identities, costumes, objects, action and warm illustrated picture-book style. Change the overall sheet to a SQUARE 2048 by 2048 pixel canvas, with exactly TWO equal columns and FOUR equal rows, zero gutters, no text or borders: each panel is a wide 2:1 landscape illustration (1024 by 512). The user needs full-screen landscape book pages. Recompose/outpaint each existing scene for this wider frame, extending the existing scenery left/right; do NOT stretch the characters and do NOT simply crop the old scene. Keep each main character's complete head, hands, body and relevant story objects fully inside its own panel with comfortable margins. Arrange faces and story actions within the central 75% of each panel; leave upper/lower edge scenery relatively calm for translucent reader controls. No characters or props may cross panel boundaries, no extra scenes, no missing scenes, no merged panels. Exact equal horizontal dividers at 25%,50%,75% and vertical divider at50%. Fill every panel corner with its own scene. Retain story continuity and panel order from the supplied sheet. This is an edit of the supplied art, not a new story.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-c74873a9-a685-4714-9175-e2852c544b5e.png",
+      "editable_source": "SourceArt/Books/mermaid-shell-full-page.png",
+      "runtime": "Books/mermaid-shell/pages.png",
+      "tool": "built-in image_gen",
+      "sha256": "dd6c7909ee262921cb85b09e3e0f8c07d447a7b64fcf991a231fc9c8ae99f2ac",
+      "status": "Full-page preview, measured per-panel bounds"
+    },
+    {
+      "id": "little-bridge-full-page",
+      "prompt": "SQUARE OUTPUT IMAGE, aspect ratio 1:1, exactly 2048 x 2048. Edit the supplied story sheet into a SQUARE contact sheet. The OUTER canvas must be square, equal width and height. Arrange these same EIGHT story scenes in exactly TWO columns and FOUR rows, all eight cells equal sized, all completely filled. This means each individual cell is 1024 wide x512 high, with two cells across and four down. Outer 2048x2048 SQUARE. Recompose these eight scenes to fit that precise template while preserving the same cast, story events, costumes, warm illustration style and row-major scene order. Extend scenery as needed. Keep whole main bodies, heads, hands and relevant objects in each cell. No text, borders or gutters. Use exact hard boundaries at x1024, y512, y1024, y1536. Do not output a wide banner or a tall poster. Final SQUARE 1:1 contact sheet with eight 2:1 cells.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-a1a0346f-44f1-4402-a179-02e657c9dac9.png",
+      "editable_source": "SourceArt/Books/little-bridge-full-page.png",
+      "runtime": "Books/little-bridge/pages.png",
+      "tool": "built-in image_gen",
+      "sha256": "348e1378cc1ffeb109f47b7ce3e731aa276fa1ec965a1dbc063951b51e5cb5c1",
+      "status": "Full-page preview, measured per-panel bounds"
+    },
+    {
+      "id": "rocket-moon-full-page",
+      "prompt": "SQUARE OUTPUT IMAGE, aspect ratio 1:1, exactly 2048 x 2048. Edit the supplied story sheet into a SQUARE contact sheet. The OUTER canvas must be square, equal width and height. Arrange these same EIGHT story scenes in exactly TWO columns and FOUR rows, all eight cells equal sized, all completely filled. This means each individual cell is 1024 wide x512 high, with two cells across and four down. Outer 2048x2048 SQUARE. Recompose these eight scenes to fit that precise template while preserving the same cast, story events, costumes, warm illustration style and row-major scene order. Extend scenery as needed. Keep whole main bodies, heads, hands and relevant objects in each cell. No text, borders or gutters. Use exact hard boundaries at x1024, y512, y1024, y1536. Do not output a wide banner or a tall poster. Final SQUARE 1:1 contact sheet with eight 2:1 cells.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-606263ef-f697-4c03-91f9-f18b6c7a4ed3.png",
+      "editable_source": "SourceArt/Books/rocket-moon-full-page.png",
+      "runtime": "Books/rocket-moon/pages.png",
+      "tool": "built-in image_gen",
+      "sha256": "912dc5e626075158a7df5af49819a2d7b32e744c724b5cb3715e5090e6a2eb3c",
+      "status": "Full-page preview, measured per-panel bounds"
+    },
+    {
+      "id": "princess-star-full-page",
+      "prompt": "SQUARE OUTPUT IMAGE, aspect ratio 1:1, exactly 2048 x 2048. Edit the supplied story sheet into a SQUARE contact sheet. The OUTER canvas must be square, equal width and height. Arrange these same EIGHT story scenes in exactly TWO columns and FOUR rows, all eight cells equal sized, all completely filled. This means each individual cell is 1024 wide x512 high, with two cells across and four down. Outer 2048x2048 SQUARE. Recompose these eight scenes to fit that precise template while preserving the same cast, story events, costumes, warm illustration style and row-major scene order. Extend scenery as needed. Keep whole main bodies, heads, hands and relevant objects in each cell. No text, borders or gutters. Use exact hard boundaries at x1024, y512, y1024, y1536. Do not output a wide banner or a tall poster. Final SQUARE 1:1 contact sheet with eight 2:1 cells.",
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-8204d51a-ee96-4489-82fd-f2ee86390d2f.png",
+      "editable_source": "SourceArt/Books/princess-star-full-page.png",
+      "runtime": "Books/princess-star/pages.png",
+      "tool": "built-in image_gen",
+      "sha256": "c6bf5ef44d44f21b6a4b48a7c10522229be297443058dfc6836a1a99d75c0858",
+      "status": "Full-page preview, measured per-panel bounds"
+    }
+  ]
+}

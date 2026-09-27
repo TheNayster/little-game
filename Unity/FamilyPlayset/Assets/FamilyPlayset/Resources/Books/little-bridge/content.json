@@ -1,0 +1,117 @@
+{
+  "id": "little-bridge",
+  "title": "Big Trucks, Little Bridge",
+  "revision": 1,
+  "locale": "en-US",
+  "kind": "story",
+  "names": [],
+  "pages": [
+    {
+      "title": "A bridge for everyone",
+      "caption": "Milo visits a muddy stream.",
+      "speech": "Milo wanted to visit his friend across the stream. The old stepping stones were under water. We need a little bridge, he said.",
+      "art": "A curious child in a yellow hard hat and red boots stands beside a stream; friendly orange digger and blue dump truck nearby.",
+      "species": -1
+    },
+    {
+      "title": "Look, then plan",
+      "caption": "Where can the bridge go?",
+      "speech": "First, the builders looked carefully. They chose firm ground on both banks. Milo drew a bridge with a wide path and strong sides.",
+      "art": "Same child draws a simple bridge plan on paper; two banks of stream and safe clear work area.",
+      "species": -1
+    },
+    {
+      "title": "Dig a steady base",
+      "caption": "The digger scoops the earth.",
+      "speech": "The orange digger scooped a little earth. Scoop, lift, and set it down. The workers made a steady place for each end of the bridge.",
+      "art": "Orange digger scoops earth at one stream bank; child watches well outside work zone.",
+      "species": -1
+    },
+    {
+      "title": "Deliver the stones",
+      "caption": "Tip, tumble, stop!",
+      "speech": "The blue truck brought stones. Its bed lifted slowly. The stones tumbled into a tidy pile. That is enough, said Milo.",
+      "art": "Blue dump truck tips gravel into a tidy pile beside stream, same child at safe distance.",
+      "species": -1
+    },
+    {
+      "title": "Lift the beams",
+      "caption": "Up slowly. Down gently.",
+      "speech": "The crane lifted a strong beam. Everyone stood clear. Up slowly, across carefully, and down gently. The beam joined the two banks.",
+      "art": "Small yellow crane carefully places wooden beam across stream; child behind low safety fence.",
+      "species": -1
+    },
+    {
+      "title": "Build the path",
+      "caption": "A smooth path and sturdy rails.",
+      "speech": "The builders added boards and sturdy rails. They checked for wobbles and sharp edges. A smooth path helps wheels and little feet.",
+      "art": "Nearly complete wooden bridge, workers attach rails, smooth boards, no dangerous child work.",
+      "species": -1
+    },
+    {
+      "title": "Time to check",
+      "caption": "The grown-up checks it first.",
+      "speech": "A grown-up builder checked the finished bridge. Strong, steady, and ready! Milo waited for the all-clear, then walked across with his friend.",
+      "art": "Adult builder inspects completed bridge while two children wait, friendly trucks behind.",
+      "species": -1
+    },
+    {
+      "title": "Across together",
+      "caption": "A bridge for little feet and wheels.",
+      "speech": "Now friends could visit in muddy weather. A little wagon rolled across too. Milo waved to the builders. We made a way for everyone!",
+      "art": "Two friends and little wagon cross finished bridge with rails; orange digger blue truck yellow crane celebrate quietly.",
+      "species": -1
+    }
+  ],
+  "notes": "Original story and illustrations; all family profiles can read it.",
+  "artRects": [
+    {
+      "x": 0.001594896331738437,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.25199362041467305,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.25199362041467305,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.5023923444976076,
+      "width": 0.4960127591706539,
+      "height": 0.24481658692185007
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.5023923444976076,
+      "width": 0.4960127591706539,
+      "height": 0.24481658692185007
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.7527910685805422,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.7527910685805422,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    }
+  ]
+}

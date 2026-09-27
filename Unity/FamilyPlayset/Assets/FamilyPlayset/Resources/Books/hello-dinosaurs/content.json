@@ -1,0 +1,182 @@
+{
+  "id": "hello-dinosaurs",
+  "revision": 2,
+  "title": "Hello, Dinosaurs!",
+  "locale": "en-US",
+  "kind": "dinosaurs",
+  "pages": [
+    {
+      "title": "Hello, Dinosaurs!",
+      "caption": "Twelve prehistoric animals to meet.",
+      "speech": "Hello, dinosaur explorers! Let us meet twelve amazing prehistoric animals. Tap a picture to hear its name. The sound button plays an imagined animal call.",
+      "species": -1
+    },
+    {
+      "title": "Tyrannosaurus rex",
+      "caption": "Two strong legs and tiny arms.",
+      "speech": "Tyrannosaurus rex walked on two strong legs. Its arms were small. Can you find them?",
+      "species": 0
+    },
+    {
+      "title": "Triceratops",
+      "caption": "Three horns. One, two, three!",
+      "speech": "Triceratops had three horns and a wide frill. Can you count the horns? One, two, three!",
+      "species": 1
+    },
+    {
+      "title": "Stegosaurus",
+      "caption": "Tall plates along its back.",
+      "speech": "Stegosaurus had tall plates along its back and spikes on its tail. Point to a plate, then a spike.",
+      "species": 2
+    },
+    {
+      "title": "Brachiosaurus",
+      "caption": "Front legs longer than back legs.",
+      "speech": "Brachiosaurus had a long neck. Its front legs were longer than its back legs. Imagine reaching high into a leafy tree.",
+      "species": 3
+    },
+    {
+      "title": "Diplodocus",
+      "caption": "A very long, slender tail.",
+      "speech": "Diplodocus had a long neck and a very long, slender tail. Follow the tail with your finger. Where does it end?",
+      "species": 4
+    },
+    {
+      "title": "Ankylosaurus",
+      "caption": "Armour and a tail club.",
+      "speech": "Ankylosaurus wore bony armour. Its tail ended in a heavy club. Can you spot the club in the picture?",
+      "species": 5
+    },
+    {
+      "title": "Brontosaurus",
+      "caption": "A long neck and sturdy legs.",
+      "speech": "Brontosaurus was a giant plant eater with a long neck and sturdy legs. Imagine its slow steps through the ferns.",
+      "species": 6
+    },
+    {
+      "title": "Spinosaurus",
+      "caption": "A tall sail and a long snout.",
+      "speech": "Spinosaurus had a tall sail on its back and a long snout. It ate fish. Can you trace the shape of its sail?",
+      "species": 7
+    },
+    {
+      "title": "Pteranodon",
+      "caption": "A flying reptile, not a dinosaur.",
+      "speech": "Pteranodon was a flying reptile, not a dinosaur. It had a long beak and wide wings. Spread your arms like wings!",
+      "species": 8
+    },
+    {
+      "title": "Quetzalcoatlus",
+      "caption": "Another amazing flying reptile.",
+      "speech": "Quetzalcoatlus was another flying reptile. It had a long neck and an enormous wingspan. Imagine the shadow of those wings.",
+      "species": 9
+    },
+    {
+      "title": "Parasaurolophus",
+      "caption": "A curved crest on its head.",
+      "speech": "Parasaurolophus had a long curved crest on its head. Scientists think its crest may have helped it make sounds. What do you imagine?",
+      "species": 10
+    },
+    {
+      "title": "Velociraptor",
+      "caption": "A small dinosaur with feathers.",
+      "speech": "Velociraptor was much smaller than the giants in this book. It had feathers. Look for the feathers on its arms and tail.",
+      "species": 11
+    },
+    {
+      "title": "Who will you choose?",
+      "caption": "Tap an animal to hear its name again.",
+      "speech": "Which animal would you like to meet again? Some lived millions of years apart. Their real voices are a mystery, so our sounds are made for imagination.",
+      "species": -1
+    }
+  ],
+  "names": [
+    "Tyrannosaurus rex",
+    "Triceratops",
+    "Stegosaurus",
+    "Brachiosaurus",
+    "Diplodocus",
+    "Ankylosaurus",
+    "Brontosaurus",
+    "Spinosaurus",
+    "Pteranodon",
+    "Quetzalcoatlus",
+    "Parasaurolophus",
+    "Velociraptor"
+  ],
+  "notes": "Original text. Illustrative colours and imaginative calls; no claim animals coexisted. Pterosaurs are flying reptiles.",
+  "artRects": [
+    {
+      "x": 0.068359375,
+      "y": 0.1708984375,
+      "width": 0.216796875,
+      "height": 0.2216796875
+    },
+    {
+      "x": 0.388671875,
+      "y": 0.162109375,
+      "width": 0.20052083333333334,
+      "height": 0.232421875
+    },
+    {
+      "x": 0.712890625,
+      "y": 0.1640625,
+      "width": 0.22005208333333334,
+      "height": 0.2275390625
+    },
+    {
+      "x": 0.057291666666666664,
+      "y": 0.595703125,
+      "width": 0.20703125,
+      "height": 0.2734375
+    },
+    {
+      "x": 0.39453125,
+      "y": 0.6123046875,
+      "width": 0.216796875,
+      "height": 0.251953125
+    },
+    {
+      "x": 0.7265625,
+      "y": 0.66796875,
+      "width": 0.21549479166666666,
+      "height": 0.1943359375
+    },
+    {
+      "x": 0.06705729166666667,
+      "y": 0.1318359375,
+      "width": 0.19205729166666666,
+      "height": 0.265625
+    },
+    {
+      "x": 0.3932291666666667,
+      "y": 0.1533203125,
+      "width": 0.22330729166666666,
+      "height": 0.2353515625
+    },
+    {
+      "x": 0.724609375,
+      "y": 0.1533203125,
+      "width": 0.220703125,
+      "height": 0.2265625
+    },
+    {
+      "x": 0.076171875,
+      "y": 0.6044921875,
+      "width": 0.1875,
+      "height": 0.2763671875
+    },
+    {
+      "x": 0.3958333333333333,
+      "y": 0.6318359375,
+      "width": 0.2109375,
+      "height": 0.2314453125
+    },
+    {
+      "x": 0.7272135416666666,
+      "y": 0.65625,
+      "width": 0.20442708333333334,
+      "height": 0.2099609375
+    }
+  ]
+}

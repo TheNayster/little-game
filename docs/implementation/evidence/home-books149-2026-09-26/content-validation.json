@@ -1,0 +1,44 @@
+{
+  "books": [
+    {
+      "id": "hello-dinosaurs",
+      "title": "Hello, Dinosaurs!",
+      "pages": 14
+    },
+    {
+      "id": "little-bridge",
+      "title": "Big Trucks, Little Bridge",
+      "pages": 8
+    },
+    {
+      "id": "rocket-moon",
+      "title": "Rocket to the Moon",
+      "pages": 8
+    },
+    {
+      "id": "fairy-garden",
+      "title": "The Fairy Garden Surprise",
+      "pages": 8
+    },
+    {
+      "id": "princess-star",
+      "title": "The Princess and the Lost Star",
+      "pages": 8
+    },
+    {
+      "id": "mermaid-shell",
+      "title": "The Mermaid and the Rainbow Shell",
+      "pages": 8
+    }
+  ],
+  "clips": 83,
+  "artBoundsChecked": true,
+  "sourceAudioBytesMatched": true,
+  "unityParagraphCheck": {
+    "pages": 54,
+    "aspect": "4:3",
+    "minimumFontSize": 24,
+    "maximumMeasuredHeight": 55,
+    "passed": true
+  }
+}

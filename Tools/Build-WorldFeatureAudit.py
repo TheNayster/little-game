@@ -37,6 +37,7 @@ EVIDENCE = {
  'family':'implementation/family-home-rollout-2026-09-26.html',
  'ledger':'family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status',
  'outage':'implementation/g3-offline-authority-and-hitch-review-2026-09-25.html',
+ 'books':'implementation/home-books-2026-09-26.html',
  'media':'../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs',
  'core':'../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs',
  'layout':'../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs',
@@ -115,9 +116,9 @@ H-14|home|Parents and hiding|Child/human seeker and role changes|plan|22,34,47|P
 H-15|home|Parents and hiding|Enterable hiding furniture|plan|34|Designated closets, oversized drawers, tents and curtain alcoves with entry/exit anchors, capacity, cutaways and a persistent Come out control.|ledger
 H-16|home|Parents and hiding|Fair clues and bounded search|plan|34|Optional 5–10 second giggle/rattle or visual hint, manual/off settings and roughly 30 seconds per ready hider. Test routes; do not find by secret coordinates.|ledger
 H-17|home|Parents and hiding|Concealment and mid-round joins|plan|22,31,34|Hide carried props, labels, hitboxes and unrelated positional audio from seeker. Late joiners prepare without resetting others; avatar swaps preserve hiding.|ledger
-H-18|home|Books and reading|Reading nook and physical book props|plan|25|Low shelves, rug, cushions and book basket. Tap/open versus drag/move must be distinct; access to the same title stays independent for every player.|ledger
-H-19|home|Books and reading|Interactive narrated reader|plan|25,26|Large Play/Pause, replay, page arrows, close, optional automatic/manual turns and saved page. Opening alone does not start narration; relevant hotspots animate and say names.|ledger
-H-20|home|Books and reading|Independent bookmarks and narration|plan|25,26,29|Each profile keeps pages and narration locally; names pause/resume only valid current narration. Muting, closing, changing pages or network state cannot restart old speech.|ledger
+H-18|home|Books and reading|Reading nook and physical book props|part|25|Original six-book phone preview: shared rack, independent local reader/bookmarks, explicit narration and effects; final subjects and mixed-device qualification remain open. Low shelves, rug, cushions and book basket. Tap/open versus drag/move must be distinct; access to the same title stays independent for every player.|books
+H-19|home|Books and reading|Interactive narrated reader|part|25,26|Original six-book phone preview: shared rack, independent local reader/bookmarks, explicit narration and effects; final subjects and mixed-device qualification remain open. Large Play/Pause, replay, page arrows, close, optional automatic/manual turns and saved page. Opening alone does not start narration; relevant hotspots animate and say names.|books
+H-20|home|Books and reading|Independent bookmarks and narration|part|25,26,29|Original six-book phone preview: shared rack, independent local reader/bookmarks, explicit narration and effects; final subjects and mixed-device qualification remain open. Each profile keeps pages and narration locally; names pause/resume only valid current narration. Muting, closing, changing pages or network state cannot restart old speech.|books
 H-21|home|TV and local media|TV and thumbnail library in the house|plan|27|TV/remote opens local cards with titles, duration and posters; no web search/feed needed. Media/TV folder preparation is not an importer or playable TV.|ledger
 H-22|home|TV and local media|Playback controls and persistent resume|dev|27,29|Single-clip foundation proves play/pause, seeking and a profile bookmark. Integrate library, per-video Continue/Restart, skip, previous/next, finish choices and durable lifecycle checkpoints.|media
 H-23|home|TV and local media|Parent media import and retained library|plan|27|Import normal files through Files; validate space/format, preserve current library on cancellation, detect duplicates and retain local media/bookmarks through updates.|ledger
@@ -258,7 +259,7 @@ add('OPTION-FOSSIL','home','Optional extensions','Fossils and other prehistoric 
 
 TRACK_STATUS={
 'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'plan','FISH-01':'plan','CLEAN-01':'part',
-'HIDE-01':'plan','HIDE-02':'plan','NPC-01':'plan','CAT-01':'part','BOOK-01':'plan','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'plan',
+'HIDE-01':'plan','HIDE-02':'plan','NPC-01':'plan','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'plan',
 'JOIN-01':'part','WORLD-01':'part','WORLD-02':'part','ITEM-02':'part','ITEM-03':'part','STOCK-01':'part','ROOM-02':'plan','NET-02':'part',
 'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'plan','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',
 'DAY-01':'plan','LEARN-01':'plan','IMG-01':'plan'}

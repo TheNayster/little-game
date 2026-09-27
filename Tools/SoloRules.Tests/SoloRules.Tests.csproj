@@ -14,9 +14,11 @@
     <Compile Include="BedroomTests.cs" />
     <Compile Include="FurnitureTests.cs" />
     <Compile Include="SecretTests.cs" />
+    <Compile Include="BookTests.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeRooms.cs" Link="HomeRooms.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/BedroomFurniture.cs" Link="BedroomFurniture.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SecretRooms.cs" Link="SecretRooms.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeBooks.cs" Link="HomeBooks.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs" Link="WorldLayout.cs" />
     <Compile Include="RecoveryTests.cs" />
     <Compile Include="ContinuationTests.cs" />

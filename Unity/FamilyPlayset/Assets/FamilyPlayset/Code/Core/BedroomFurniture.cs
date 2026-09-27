@@ -9,7 +9,7 @@ namespace LittleWeeps.Core
     {
         public const int Schema=8;
         public const string Bed="bedroom-bed";
-        public static bool Personal(ToyKind kind)=>kind==ToyKind.Plush || kind==ToyKind.Block;
+        public static bool Personal(ToyKind kind)=>kind==ToyKind.Plush || kind==ToyKind.Block || kind==ToyKind.Book;
         public static string ToyId(int room,int slot)=>BedroomLayout.Id(room)+"-toy-"+slot;
         public static string Cushion(int index)=>"bedroom-cushion-"+index;
         public static int CushionIndex(string id)
@@ -77,11 +77,11 @@ namespace LittleWeeps.Core
                 if(t==null || t.kind!=(j<2?ToyKind.Plush:ToyKind.Block) || t.personalRoom!=BedroomLayout.Id(i) || t.water!=0 || t.wet || t.resetPending)
                     throw new InvalidOperationException("Missing or altered personal toy.");
             }
-            if(s.toys.Any(t=>BedroomFurniture.Personal(t.kind)!=!string.IsNullOrEmpty(t.personalRoom)))throw new InvalidOperationException("Invalid personal item identity.");
+            if(s.toys.Any(t=>t.kind!=ToyKind.Book && BedroomFurniture.Personal(t.kind)!=!string.IsNullOrEmpty(t.personalRoom)))throw new InvalidOperationException("Invalid personal item identity.");
         }
         private bool StorageOpen(SoloToy toy)
         {
-            if(string.IsNullOrEmpty(toy.container))return true;
+            if(string.IsNullOrEmpty(toy.container) || state.schema>=HomeBooks.FirstSchema && HomeBooks.Slot(toy.container)>=0)return true;
             if(HomeLayout.StorageSlot(toy.container)>=0)return state.home?.shedOpen==true;
             var room=SecretRooms.Furnishings(state).SingleOrDefault(r=>r.id==toy.zone);var slot=BedroomFurniture.Slot(toy.zone,toy.container);
             return state.schema>=BedroomFurniture.Schema && room!=null && slot>=0 && (slot>=8 || room.chestOpen);

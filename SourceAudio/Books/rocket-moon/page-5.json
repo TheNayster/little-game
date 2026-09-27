@@ -1,0 +1,19 @@
+{
+  "text": "They found a crater, a big hollow in the ground. Space rocks made many moon craters. Ari looked from a safe spot and sketched its shape.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+  "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+  "seed": 465,
+  "tempo": 0.88,
+  "reference_text": "And... I have something for you too. I should have given it to you before, but I was just scared.",
+  "reference_url": "https://video.disney.com/watch/tangled-side-by-side-disney-59e8be2ba9091ebd6b4f2a72",
+  "reference_start": 94.95,
+  "reference_duration": 8.35,
+  "reference_sha256": "e45c8cebe25be9d206241a855d21c536f3bc0feea05e269700751aee50d24f77",
+  "generated": true,
+  "model_license": "Apache-2.0",
+  "sample_rate": 24000,
+  "duration_seconds": 10.165,
+  "peak_dbfs": -3.0,
+  "sha256": "1ecd0e7844c80ab57ff7a4b0850a20f3d0a1d8eed30f7d8947c706dc56d78f46",
+  "status": "Generated candidate; similarity and final listening acceptance are not established by generation"
+}

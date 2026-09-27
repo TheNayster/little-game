@@ -148,7 +148,7 @@ namespace LittleWeeps.Client
             if(room!=null)secretActive.text=room.active?"Hide entrance":"Show entrance";
             if(scenicImages.TryGetValue("home-secret",out var background)){var light=quietBrightness==0?1:quietBrightness==1?.84f:.68f;background.color=new Color(light,light,light,1);}
             var audible=inside && visible && !applicationPaused && quietMusicLevel>0 && !musicMuted;
-            secretAudio.volume=Mathf.MoveTowards(secretAudio.volume,audible?(quietMusicLevel==1?.08f:.17f):0,Time.unscaledDeltaTime*.3f);
+            secretAudio.volume=Mathf.MoveTowards(secretAudio.volume,audible?(quietMusicLevel==1?.08f:.17f)*BookDucking:0,Time.unscaledDeltaTime*.3f);
             if(audible && !secretAudio.isPlaying)secretAudio.Play();else if(!audible && secretAudio.volume==0)secretAudio.Stop();
             if(!inside || applicationPaused || quietEffectsLevel==0)secretChime.Stop();if(applicationPaused){secretAudio.Stop();secretAudio.volume=0;}SortDepth();
         }

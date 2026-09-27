@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace LittleWeeps.Core
 {
-    public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball, Plush, Block }
+    public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball, Plush, Block, Book }
     public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor, DecorateRoom, SecretRoom, ReturnBedroom }
     [Serializable] public sealed class SoloPlayer
     {
@@ -202,7 +202,7 @@ namespace LittleWeeps.Core
         {
             if (s == null || s.schema < 1 || s.schema > WorldLayout.Schema) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
-                s.toys == null || s.toys.Length != (s.schema==1?5:s.schema<4?10:s.schema<BedroomFurniture.Schema?11:27+(s.schema>=SecretRooms.Schema?(s.secrets??Array.Empty<SecretRoomState>()).Count(r=>r!=null && r.created)*6:0)) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
+                s.toys == null || s.toys.Length != (s.schema==1?5:s.schema<4?10:s.schema<BedroomFurniture.Schema?11:27+(s.schema>=SecretRooms.Schema?(s.secrets??Array.Empty<SecretRoomState>()).Count(r=>r!=null && r.created)*6:0)+HomeBooks.ExtraStock(s.schema)) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
             var ids = new HashSet<string>();
             foreach (var p in s.players)
                 if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !WorldLayout.Position(AreaOf(p.zone),s.schema,p.x,p.y) ||
@@ -226,7 +226,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateBedrooms(s);ValidateSecrets(s);ValidateFurnishings(s);ValidateHome(s);ValidateKeepy(s);
+            ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateHome(s);ValidateKeepy(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -351,6 +351,8 @@ namespace LittleWeeps.Core
                     item.holder = "";Touch(item);break;
                 case SoloAction.Drop:
                     if (item == null || item.holder != c.actor) return Reject("not-holder");
+                    var bookSlot=HomeBooks.Slot(c.target);
+                    if(bookSlot>=0){var stored=StoreBook(c,player,item,bookSlot);if(stored!=null)return Reject(stored);outcome="item-stored";break;}
                     var bedroomSlot=BedroomFurniture.Slot(player.zone,c.target);
                     if(bedroomSlot>=0){var stored=StoreInBedroom(c,player,item,bedroomSlot);if(stored!=null)return Reject(stored);outcome="item-stored";break;}
                     var slot=HomeLayout.StorageSlot(c.target);

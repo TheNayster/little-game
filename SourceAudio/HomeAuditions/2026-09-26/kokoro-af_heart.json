@@ -1,0 +1,16 @@
+{
+  "id": "kokoro-af_heart",
+  "text": "Hello, dinosaur explorers! Look, a Triceratops! It has three horns. One, two, three! Here comes Brontosaurus, with a very long neck. Tyrannosaurus rex. Spinosaurus. Pteranodon. Let's listen. What might these amazing animals have sounded like?",
+  "settings": {
+    "model": "hexgrad/Kokoro-82M",
+    "voice": "af_heart",
+    "speed": 0.92,
+    "model_license": "Apache-2.0"
+  },
+  "file": "kokoro-af_heart.wav",
+  "duration_seconds": 17.8,
+  "sample_rate": 24000,
+  "sample_peak_dbfs": -3.01,
+  "sha256": "bf5a43fca1d5debeba729df64919f3b90fb823c8df236e7d475714ec12e462fa",
+  "status": "audition; family listening acceptance pending"
+}

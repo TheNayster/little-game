@@ -1,0 +1,12 @@
+{
+  "prompt": "A delicate short magical shimmer made of soft tiny glass bell chimes, warm and gentle, no tune or voices.",
+  "negative_prompt": "Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing",
+  "seed": 9641,
+  "model": "MMAudio large_44k_v2",
+  "model_sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74",
+  "model_license": "CC-BY-NC-4.0",
+  "source": "https://github.com/hkchengrex/MMAudio",
+  "generated": true,
+  "kind": "Imaginative sound design; not an authentic extinct-animal recording",
+  "sha256": "dc264f4227e89e16b8fa1587f58ad471012c2a9c33341c56f39eadf3dee22ce4"
+}

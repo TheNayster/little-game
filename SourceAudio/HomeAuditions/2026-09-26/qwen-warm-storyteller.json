@@ -1,0 +1,17 @@
+{
+  "id": "qwen-warm-storyteller",
+  "text": "Hello, dinosaur explorers! Look, a Triceratops! It has three horns. One, two, three! Here comes Brontosaurus, with a very long neck. Tyrannosaurus rex. Spinosaurus. Pteranodon. Let's listen. What might these amazing animals have sounded like?",
+  "settings": {
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "A warm, clear adult female American English storyteller, reading a picture book to young children. Friendly, curious, gently expressive. Natural conversational voice with a smile, distinct words and relaxed pauses. Medium pitch and unhurried pace. No whispering, shouting or exaggerated baby voice.",
+    "seed": 426,
+    "attention": "sdpa",
+    "model_license": "Apache-2.0"
+  },
+  "file": "qwen-warm-storyteller.wav",
+  "duration_seconds": 19.12,
+  "sample_rate": 24000,
+  "sample_peak_dbfs": -4.46,
+  "sha256": "0693355466aa4897689548a7fe1e68f054d49d81921644326bed1a5f02d50f08",
+  "status": "audition; family listening acceptance pending"
+}

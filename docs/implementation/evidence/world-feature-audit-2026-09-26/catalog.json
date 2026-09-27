@@ -737,12 +737,12 @@
       "world": "home",
       "group": "Books and reading",
       "title": "Reading nook and physical book props",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         25
       ],
-      "description": "Low shelves, rug, cushions and book basket. Tap/open versus drag/move must be distinct; access to the same title stays independent for every player.",
-      "evidence": "ledger",
+      "description": "Original six-book phone preview: shared rack, independent local reader/bookmarks, explicit narration and effects; final subjects and mixed-device qualification remain open. Low shelves, rug, cushions and book basket. Tap/open versus drag/move must be distinct; access to the same title stays independent for every player.",
+      "evidence": "books",
       "extraSource": ""
     },
     {
@@ -750,13 +750,13 @@
       "world": "home",
       "group": "Books and reading",
       "title": "Interactive narrated reader",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         25,
         26
       ],
-      "description": "Large Play/Pause, replay, page arrows, close, optional automatic/manual turns and saved page. Opening alone does not start narration; relevant hotspots animate and say names.",
-      "evidence": "ledger",
+      "description": "Original six-book phone preview: shared rack, independent local reader/bookmarks, explicit narration and effects; final subjects and mixed-device qualification remain open. Large Play/Pause, replay, page arrows, close, optional automatic/manual turns and saved page. Opening alone does not start narration; relevant hotspots animate and say names.",
+      "evidence": "books",
       "extraSource": ""
     },
     {
@@ -764,14 +764,14 @@
       "world": "home",
       "group": "Books and reading",
       "title": "Independent bookmarks and narration",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         25,
         26,
         29
       ],
-      "description": "Each profile keeps pages and narration locally; names pause/resume only valid current narration. Muting, closing, changing pages or network state cannot restart old speech.",
-      "evidence": "ledger",
+      "description": "Original six-book phone preview: shared rack, independent local reader/bookmarks, explicit narration and effects; final subjects and mixed-device qualification remain open. Each profile keeps pages and narration locally; names pause/resume only valid current narration. Muting, closing, changing pages or network state cannot restart old speech.",
+      "evidence": "books",
       "extraSource": ""
     },
     {
@@ -2505,7 +2505,7 @@
         25,
         26
       ],
-      "description": "8 pages proposed. Cover, six dinosaur introductions, and a goodbye/play page; say names and reveal one recognizable feature per dinosaur",
+      "description": "14 pages proposed. Requested dinosaurs and pterosaurs, names, feature cues and imaginative creature calls.",
       "evidence": "ledger",
       "extraSource": ""
     },
@@ -2513,13 +2513,13 @@
       "id": "BK-02",
       "world": "home",
       "group": "Six starter books",
-      "title": "The Dinosaur Toy Picnic",
+      "title": "Snakes and Reptiles",
       "status": "plan",
       "chapters": [
         25,
         26
       ],
-      "description": "8 pages proposed. The children's toy dinosaurs set out cups and pretend food; tap to unfold a blanket, rock a cup, or lift a toy's head",
+      "description": "To storyboard proposed. A factual picture book with snakes and other reptiles, clear names, distinctive features and gentle effects.",
       "evidence": "ledger",
       "extraSource": ""
     },
@@ -2527,13 +2527,13 @@
       "id": "BK-03",
       "world": "home",
       "group": "Six starter books",
-      "title": "Where Is Little Dino?",
+      "title": "Cars and Trucks",
       "status": "plan",
       "chapters": [
         25,
         26
       ],
-      "description": "8 pages proposed. A toy hides around the room; tap a curtain or cushion to reveal it; narration and page turns continue even without finding it",
+      "description": "To storyboard proposed. Cars plus recognizable working trucks; vehicle names, what they do and deliberate engine/work sounds.",
       "evidence": "ledger",
       "extraSource": ""
     },
@@ -2541,13 +2541,13 @@
       "id": "BK-04",
       "world": "home",
       "group": "Six starter books",
-      "title": "Dinosaur Cleanup Day",
+      "title": "Hello Kitty",
       "status": "plan",
       "chapters": [
         25,
         26
       ],
-      "description": "8 pages proposed. Wash muddy toys, wipe a shelf, and put toys to bed; each page offers one short cleaning effect",
+      "description": "To storyboard proposed. Familiar Hello Kitty characters and a recognizable story context; do not substitute unrelated invented characters.",
       "evidence": "ledger",
       "extraSource": ""
     },
@@ -2555,13 +2555,13 @@
       "id": "BK-05",
       "world": "home",
       "group": "Six starter books",
-      "title": "Big Dino, Little Dino",
+      "title": "Tangled",
       "status": "plan",
       "chapters": [
         25,
         26
       ],
-      "description": "8 pages proposed. Compare large and small illustrated toys and matching footprints; describe toy sizes rather than inventing scientific measurements",
+      "description": "To storyboard proposed. Rapunzel’s movie story and recognizable cast, tower and lanterns, using newly written narration rather than copied dialogue.",
       "evidence": "ledger",
       "extraSource": ""
     },
@@ -2569,13 +2569,13 @@
       "id": "BK-06",
       "world": "home",
       "group": "Six starter books",
-      "title": "Goodnight, Dinosaur Toys",
+      "title": "Unicorns",
       "status": "plan",
       "chapters": [
         25,
         26
       ],
-      "description": "8 pages proposed. A quiet bedtime story: tuck in a toy, dim a lamp, watch a slow blink; gentle movement and optional sound effects",
+      "description": "Pending specific story choice proposed. User requested unicorns; ask which familiar story/character or picture-book direction before inventing one.",
       "evidence": "ledger",
       "extraSource": ""
     },

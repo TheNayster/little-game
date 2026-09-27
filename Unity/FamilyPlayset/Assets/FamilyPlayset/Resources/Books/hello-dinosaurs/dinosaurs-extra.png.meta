@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 53915db19bd845babf843f97cf1f9299
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6433035156907942742
+    second: dinosaurs-extra_0
+  - first:
+      213: 2472670620058853417
+    second: dinosaurs-extra_1
+  - first:
+      213: 5642557873924750017
+    second: dinosaurs-extra_2
+  - first:
+      213: 4056668426756892102
+    second: dinosaurs-extra_3
+  - first:
+      213: 360955942364618938
+    second: dinosaurs-extra_4
+  - first:
+      213: 8598130537207702820
+    second: dinosaurs-extra_5
+  - first:
+      213: -5333229837942835931
+    second: dinosaurs-extra_6
+  - first:
+      213: -3252990418492635055
+    second: dinosaurs-extra_7
+  - first:
+      213: 2624800171744859014
+    second: dinosaurs-extra_8
+  - first:
+      213: 9031154704654688450
+    second: dinosaurs-extra_9
+  - first:
+      213: 8848605951773196237
+    second: dinosaurs-extra_10
+  - first:
+      213: 1715079300750481491
+    second: dinosaurs-extra_11
+  - first:
+      213: 7793662617430065179
+    second: dinosaurs-extra_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dinosaurs-extra_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 457
+        width: 517
+        height: 547
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aac17e4cb9449b6a0800000000000000
+      internalID: -6433035156907942742
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_1
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 16
+        width: 481
+        height: 988
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920272304d0b05220800000000000000
+      internalID: 2472670620058853417
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_2
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 343
+        width: 451
+        height: 673
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca3ed3ad746e4e40800000000000000
+      internalID: 5642557873924750017
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_3
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 883
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c52364e07e2c4830800000000000000
+      internalID: 4056668426756892102
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_4
+      rect:
+        serializedVersion: 2
+        x: 1454
+        y: 871
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab0a534648f520500800000000000000
+      internalID: 360955942364618938
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_5
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 567
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42524b23b22b25770800000000000000
+      internalID: 8598130537207702820
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_6
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 431
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52537e318bf8cf5b0800000000000000
+      internalID: -5333229837942835931
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_7
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 67
+        width: 471
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1584fff037e0bd2d0800000000000000
+      internalID: -3252990418492635055
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_8
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 142
+        width: 321
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6839c3379d92d6420800000000000000
+      internalID: 2624800171744859014
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_9
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 367
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c06a82da5b155d70800000000000000
+      internalID: 9031154704654688450
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_10
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 47
+        width: 17
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcf39d03b309cca70800000000000000
+      internalID: 8848605951773196237
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_11
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 55
+        width: 340
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3589bd2898f2dc710800000000000000
+      internalID: 1715079300750481491
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinosaurs-extra_12
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 15
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b100923abd6a82c60800000000000000
+      internalID: 7793662617430065179
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dinosaurs-extra_0: -6433035156907942742
+      dinosaurs-extra_1: 2472670620058853417
+      dinosaurs-extra_10: 8848605951773196237
+      dinosaurs-extra_11: 1715079300750481491
+      dinosaurs-extra_12: 7793662617430065179
+      dinosaurs-extra_2: 5642557873924750017
+      dinosaurs-extra_3: 4056668426756892102
+      dinosaurs-extra_4: 360955942364618938
+      dinosaurs-extra_5: 8598130537207702820
+      dinosaurs-extra_6: -5333229837942835931
+      dinosaurs-extra_7: -3252990418492635055
+      dinosaurs-extra_8: 2624800171744859014
+      dinosaurs-extra_9: 9031154704654688450
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

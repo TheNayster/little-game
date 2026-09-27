@@ -1,0 +1,19 @@
+{
+  "text": "Ankylosaurus wore bony armour. Its tail ended in a heavy club. Can you spot the club in the picture?",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+  "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+  "seed": 432,
+  "tempo": 0.88,
+  "reference_text": "And... I have something for you too. I should have given it to you before, but I was just scared.",
+  "reference_url": "https://video.disney.com/watch/tangled-side-by-side-disney-59e8be2ba9091ebd6b4f2a72",
+  "reference_start": 94.95,
+  "reference_duration": 8.35,
+  "reference_sha256": "e45c8cebe25be9d206241a855d21c536f3bc0feea05e269700751aee50d24f77",
+  "generated": true,
+  "model_license": "Apache-2.0",
+  "sample_rate": 24000,
+  "duration_seconds": 7.706,
+  "peak_dbfs": -5.63,
+  "sha256": "8348ba55519f7cb21193f8ae8cabeb3c1789f0b5fe94013c852f2716097b5760",
+  "status": "Generated candidate; similarity and final listening acceptance are not established by generation"
+}

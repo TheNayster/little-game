@@ -1,0 +1,12 @@
+{
+  "prompt": "Soft airy animal hum and a light breath, a relaxed giant herbivore, quiet background.",
+  "negative_prompt": "Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing",
+  "seed": 9630,
+  "model": "MMAudio large_44k_v2",
+  "model_sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74",
+  "model_license": "CC-BY-NC-4.0",
+  "source": "https://github.com/hkchengrex/MMAudio",
+  "generated": true,
+  "kind": "Imaginative sound design; not an authentic extinct-animal recording",
+  "sha256": "ab057eb251aea13ba49985a72443ee5d9b5185825ceed33edbfb37d397a0af42"
+}

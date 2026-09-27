@@ -1,0 +1,27 @@
+{
+  "operation": "updated",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "82b507698d9e783fa0c60ae7c21b2f6f5a4df5e67d837be13fa534b0701a81d9",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 147,
+  "previousApkSha256": "3eaa65b1247d4b6a20a62d7a2d8b3ea248c6f13e0aaa6ae34564dd026c16b255",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "launchCommandSucceeded": true,
+  "build": 149,
+  "schema": 11,
+  "content": 12,
+  "saveRecordsRetained": 16,
+  "unchangedSaveRecords": 15,
+  "activeWorldUpgrade": {
+    "fromSchema": 10,
+    "toSchema": 11,
+    "oldIdentitiesRetained": true,
+    "newBookCopies": 2
+  },
+  "visibleReaderVerified": true,
+  "observedPage": "Mermaid page 1: full illustration, complete story words and translucent controls",
+  "allBookPagesPhysicallyVerified": false,
+  "runtimeErrorsObserved": false,
+  "fourDeviceBookQualification": false
+}

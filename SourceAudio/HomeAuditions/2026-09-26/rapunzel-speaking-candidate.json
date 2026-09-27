@@ -1,0 +1,17 @@
+{
+  "text": "Hello, story explorers! Today we can discover dinosaurs, build a little bridge, and visit the moon. Then we can step into a fairy garden, help a princess find a star, and dive into a mermaid adventure. Which book shall we open first?",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+  "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+  "seed": 426,
+  "reference_url": "https://video.disney.com/watch/tangled-side-by-side-disney-59e8be2ba9091ebd6b4f2a72",
+  "reference_start": 94.95,
+  "reference_duration": 8.35,
+  "reference_sha256": "e45c8cebe25be9d206241a855d21c536f3bc0feea05e269700751aee50d24f77",
+  "generated": true,
+  "model_license": "Apache-2.0",
+  "sample_rate": 24000,
+  "duration_seconds": 13.52,
+  "peak_dbfs": -4.57,
+  "sha256": "99a4a3f9eb50024931abbb04fa6ed239605022145bb18535f59bcc8d5f493592",
+  "status": "Generated candidate; similarity and final listening acceptance are not established by generation"
+}

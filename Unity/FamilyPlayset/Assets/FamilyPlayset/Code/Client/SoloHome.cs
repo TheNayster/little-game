@@ -168,7 +168,7 @@ namespace LittleWeeps.Client
             if(homeMusic!=null)
             {
                 var distance=Mathf.Min(home.livingRadio?Mathf.Abs(own.x+3480):99999,home.gardenRadio?Mathf.Abs(own.x-1230):99999);
-                homeMusic.volume=audible?Mathf.Lerp(.04f,.22f,1-distance/640):0;
+                homeMusic.volume=audible?Mathf.Lerp(.04f,.22f,1-distance/640)*BookDucking:0;
                 if(audible && !homeMusic.isPlaying)homeMusic.Play();else if(!audible && homeMusic.isPlaying)homeMusic.Stop();
             }
             homeFeedback.gameObject.SetActive(Time.unscaledTime<homeFeedbackUntil);

@@ -1,0 +1,19 @@
+{
+  "text": "The lanterns glowed as evening fell. Nora had not found a real star from the sky. She had found a chance to help, and new friends to share the light.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+  "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+  "seed": 483,
+  "tempo": 0.88,
+  "reference_text": "And... I have something for you too. I should have given it to you before, but I was just scared.",
+  "reference_url": "https://video.disney.com/watch/tangled-side-by-side-disney-59e8be2ba9091ebd6b4f2a72",
+  "reference_start": 94.95,
+  "reference_duration": 8.35,
+  "reference_sha256": "e45c8cebe25be9d206241a855d21c536f3bc0feea05e269700751aee50d24f77",
+  "generated": true,
+  "model_license": "Apache-2.0",
+  "sample_rate": 24000,
+  "duration_seconds": 10.347,
+  "peak_dbfs": -4.87,
+  "sha256": "12745b98a3c610192b9380674216c4749175a36afc8d8f361d1e28b0de16cea5",
+  "status": "Generated candidate; similarity and final listening acceptance are not established by generation"
+}

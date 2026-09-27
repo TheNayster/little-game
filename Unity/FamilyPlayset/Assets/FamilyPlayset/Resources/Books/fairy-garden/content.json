@@ -1,0 +1,117 @@
+{
+  "id": "fairy-garden",
+  "title": "The Fairy Garden Surprise",
+  "revision": 1,
+  "locale": "en-US",
+  "kind": "story",
+  "names": [],
+  "pages": [
+    {
+      "title": "A tiny garden",
+      "caption": "Lila finds a drooping flower.",
+      "speech": "Lila the fairy found a flower with a drooping head. Hello, little flower, she whispered. What would help you feel better today?",
+      "art": "Tiny fairy Lila with brown skin dark curly bob mint dress translucent wings beside drooping pink flower in lush garden.",
+      "species": -1
+    },
+    {
+      "title": "Look at the soil",
+      "caption": "The soil feels dry.",
+      "speech": "Lila touched the soil gently. It felt dry. She fetched her little watering can. Plants need water, but not a great big flood.",
+      "art": "Same fairy kneels beside dry soil and pink flower, blue tiny watering can.",
+      "species": -1
+    },
+    {
+      "title": "A little drink",
+      "caption": "Pour slowly around the roots.",
+      "speech": "Drip, drop, drip. Lila poured a little water around the roots. A ladybird rested on a leaf and watched the droplets shine.",
+      "art": "Fairy pours small water droplets at flower roots, red ladybird on leaf, morning light.",
+      "species": -1
+    },
+    {
+      "title": "Make room for light",
+      "caption": "Leaves reach toward the sunshine.",
+      "speech": "A fallen leaf was covering the small plant. Lila moved it aside. Now the green leaves could reach toward the warm sunshine.",
+      "art": "Fairy lifts fallen leaf from young flower, warm sun reaches leaves, ladybird nearby.",
+      "species": -1
+    },
+    {
+      "title": "Waiting is part of growing",
+      "caption": "Good things take time.",
+      "speech": "Lila waited. She watched the clouds and listened to the garden. Growing takes time. She could care for the flower without hurrying it.",
+      "art": "Fairy sits on smooth stone beside recovering flower, soft clouds and calm garden.",
+      "species": -1
+    },
+    {
+      "title": "A visitor arrives",
+      "caption": "A butterfly finds the flower.",
+      "speech": "On another morning, the flower stood taller. A butterfly fluttered by. It settled for a moment, then danced away between the leaves.",
+      "art": "Upright pink flower, yellow butterfly lands gently, fairy watches smiling.",
+      "species": -1
+    },
+    {
+      "title": "The garden surprise",
+      "caption": "A new little bud!",
+      "speech": "Look! A new little bud had appeared. Lila smiled. Water, light, and patient care had helped the garden grow. What a lovely surprise.",
+      "art": "Fairy discovers tiny new closed pink bud beside open flower, blue watering can, ladybird.",
+      "species": -1
+    },
+    {
+      "title": "A place to share",
+      "caption": "Who might visit next?",
+      "speech": "Lila left room for all her garden visitors. The flower, the butterfly, and the tiny ladybird each belonged. Who might visit your garden?",
+      "art": "Thriving flower patch, fairy butterfly ladybird and snail together, inviting warm illustrated garden.",
+      "species": -1
+    }
+  ],
+  "notes": "Original story and illustrations; all family profiles can read it.",
+  "artRects": [
+    {
+      "x": 0.001594896331738437,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.2511961722488038,
+      "width": 0.4960127591706539,
+      "height": 0.24641148325358853
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.2511961722488038,
+      "width": 0.4960127591706539,
+      "height": 0.24641148325358853
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.5023923444976076,
+      "width": 0.4960127591706539,
+      "height": 0.23285486443381181
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.5023923444976076,
+      "width": 0.4960127591706539,
+      "height": 0.23285486443381181
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.740829346092504,
+      "width": 0.4960127591706539,
+      "height": 0.25757575757575757
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.740829346092504,
+      "width": 0.4960127591706539,
+      "height": 0.25757575757575757
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "id": "princess-star",
+  "title": "The Princess and the Lost Star",
+  "revision": 1,
+  "locale": "en-US",
+  "kind": "story",
+  "names": [],
+  "pages": [
+    {
+      "title": "A light in the courtyard",
+      "caption": "Nora finds a little lantern.",
+      "speech": "Princess Nora found a star-shaped lantern in the courtyard. It had rolled away from the evening parade. Someone must be looking for you, she said.",
+      "art": "Princess Nora with warm brown skin long dark braid lavender practical dress and small gold crown finds glowing star paper lantern in courtyard.",
+      "species": -1
+    },
+    {
+      "title": "Ask a friend",
+      "caption": "Have you seen this star?",
+      "speech": "Nora asked the gardener. Have you seen this star? The gardener shook her head, then pointed toward the busy village square. Let us ask together.",
+      "art": "Same princess shows star paper lantern to friendly woman gardener near castle gate, flower beds.",
+      "species": -1
+    },
+    {
+      "title": "Follow the ribbon",
+      "caption": "A golden ribbon on the path.",
+      "speech": "A little golden ribbon lay on the path. It matched the lantern's ribbon. Nora followed it carefully, keeping the lantern safe in both hands.",
+      "art": "Princess carrying star paper lantern follows golden ribbon along cobbled village path.",
+      "species": -1
+    },
+    {
+      "title": "Help along the way",
+      "caption": "A basket has tipped over.",
+      "speech": "Beside the bakery, a basket had tipped over. Nora stopped to help gather the wrapped rolls. Thank you, said the baker. Kindness is never a detour.",
+      "art": "Princess and smiling baker gather wrapped bread rolls from clean paving; star lantern safe on bench.",
+      "species": -1
+    },
+    {
+      "title": "The missing lantern",
+      "caption": "A small child looks worried.",
+      "speech": "In the square, a child was searching beside the parade cart. My star is missing, he said. Nora knelt down. Is this the one you made?",
+      "art": "Princess kneels to show star paper lantern to worried young child beside decorated parade cart.",
+      "species": -1
+    },
+    {
+      "title": "Found at last",
+      "caption": "The star belongs to the parade.",
+      "speech": "That is my star! The child smiled. Nora helped tie its ribbon onto the cart. Together they checked that the knot was secure.",
+      "art": "Child and princess attach glowing star paper lantern to low parade cart with ribbon, smiling villagers.",
+      "species": -1
+    },
+    {
+      "title": "An invitation",
+      "caption": "Walk with us, Nora!",
+      "speech": "Walk with us, said the child. Nora joined the parade. There were big lanterns and tiny lanterns, each made by someone in the village.",
+      "art": "Princess child gardener baker walk together beside small cart, varied glowing paper lanterns at dusk.",
+      "species": -1
+    },
+    {
+      "title": "Everyone brings a little light",
+      "caption": "Helping made the evening brighter.",
+      "speech": "The lanterns glowed as evening fell. Nora had not found a real star from the sky. She had found a chance to help, and new friends to share the light.",
+      "art": "Wide welcoming village evening lantern parade, princess friends star paper lantern central, real stars overhead.",
+      "species": -1
+    }
+  ],
+  "notes": "Original story and illustrations; all family profiles can read it.",
+  "artRects": [
+    {
+      "x": 0.001594896331738437,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.001594896331738437,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.2527910685805423,
+      "width": 0.4960127591706539,
+      "height": 0.24481658692185007
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.2527910685805423,
+      "width": 0.4960127591706539,
+      "height": 0.24481658692185007
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.5023923444976076,
+      "width": 0.4960127591706539,
+      "height": 0.24481658692185007
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.5023923444976076,
+      "width": 0.4960127591706539,
+      "height": 0.24481658692185007
+    },
+    {
+      "x": 0.001594896331738437,
+      "y": 0.7527910685805422,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    },
+    {
+      "x": 0.5023923444976076,
+      "y": 0.7527910685805422,
+      "width": 0.4960127591706539,
+      "height": 0.24561403508771928
+    }
+  ]
+}

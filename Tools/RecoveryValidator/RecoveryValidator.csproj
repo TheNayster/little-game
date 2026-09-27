@@ -10,6 +10,7 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeRooms.cs" Link="HomeRooms.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/BedroomFurniture.cs" Link="BedroomFurniture.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SecretRooms.cs" Link="SecretRooms.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeBooks.cs" Link="HomeBooks.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs" Link="SharedMovement.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs" Link="FamilySession.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs" Link="HomeWorld.cs" />

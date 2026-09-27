@@ -1385,7 +1385,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>BOOK-01</td>
 <td>Pick up and explore narrated books</td>
 <td>House reading nook; full-screen illustrated pages; Play/Pause, page arrows, spoken names, small animations; six proposed starter titles</td>
-<td>First eight-page book and remaining approved books work offline, with understandable controls and no overlapping speech</td>
+<td>First expanded dinosaur book and remaining five distinct books work offline, with understandable controls and no overlapping speech</td>
 </tr>
 <tr>
 <td>TV-01</td>
@@ -2289,6 +2289,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Add play observations: can the younger child change character and start a different game without reading; can either child leave without asking for adult help; does the parent search feel understandable; do finished foods remain interesting toys; and does each sibling find something to do while the other is occupied? These outcomes matter more than quest completion percentages.</p>
 <p><strong>Tracking rule:</strong> mark a feature implemented only when code and content exist, and mark it device-verified only after the relevant physical iPad checks. This update is research and design work; no Unity systems, scenes, or iPad build were changed.</p>
 <h2 id="25-reading-nook-and-interactive-books">25. Reading nook and interactive books</h2>
+<p><strong>Placement correction, September 26:</strong> the shared book collection goes on the <strong>first floor around the living room</strong>, accessible to everyone. Do not seed separate bedroom/secret-room collections. Carryable books may travel upstairs; all four players retain independent reading access and bookmarks. <a href="implementation/home-reading-quiet-play-research-2026-09-26.md">Applied book/plush/device research</a>.</p>
 <p><strong>Yes: picking up a house book can open a full-screen, talking, interactive picture book.</strong> Build this as a reusable Unity book reader. Each book supplies pages, artwork, recorded narration, and a few interactive picture regions. This suits the existing illustrated style and can run offline; a live AI model is unnecessary on the iPads.</p>
 <p>Place a low, face-out bookshelf, rug, cushions, and a dinosaur book basket in the house. The reading nook, TV, and dinosaur mat belong inside Heeler Home, so the five-destination chooser stays intact. The proposed furniture arrangement is our game layout, not a claim about the exact floor plan in the show.</p>
 <h3 id="from-shelf-to-story">From shelf to story</h3>
@@ -2328,8 +2329,8 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Give a reading avatar a seated/reading pose where practical; book opening should not wait for a long walk to a chair. Release the reader's temporary activity reservations using the existing leave/park rules. In hide-and-seek, opening a book withdraws that child from the round; the parent can keep seeking the remaining child. Closing the book returns control without restoring a stale role or a stuck movement touch.</p>
 <p>Keep the book readable through network changes. Page and narration position are local; resuming shared play loads the current server room without importing offline edits.</p>
 <h2 id="26-dinosaur-books-and-spoken-names">26. Dinosaur books and spoken names</h2>
-<h3 id="six-proposed-starter-books">Six proposed starter books</h3>
-<p>These are original working titles and story concepts for this project, not existing published books or downloaded Bluey stories. Start by finishing the first title; keep the others in the content backlog until illustrated and voiced.</p>
+<h3 id="six-distinct-starter-books">Six distinct starter books</h3>
+<p><strong>Book subjects — latest user correction, September 26:</strong> the six books are <strong>dinosaurs; snakes and reptiles; cars and trucks; Hello Kitty; Tangled; and unicorns</strong>. The user explicitly rejected the assistant-selected space, fairy-garden, invented-princess and mermaid subjects. Use familiar Hello Kitty and Tangled characters/stories; Tangled follows Rapunzel, not an invented replacement princess. The specific unicorn story/character is awaiting the user’s reply. All four players can read all six. Rapunzel’s speaking voice remains the requested locally generated narrator reference. Do not produce further assets for the superseded subjects or treat their draft output as accepted.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
 <thead>
 <tr>
@@ -2341,38 +2342,39 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <tbody>
 <tr>
 <td><strong>Hello, Dinosaurs!</strong></td>
-<td>8 pages</td>
-<td>Cover, six dinosaur introductions, and a goodbye/play page; say names and reveal one recognizable feature per dinosaur</td>
+<td>14 pages</td>
+<td>Requested dinosaurs and pterosaurs, names, feature cues and imaginative creature calls.</td>
 </tr>
 <tr>
-<td><strong>The Dinosaur Toy Picnic</strong></td>
-<td>8 pages</td>
-<td>The children's toy dinosaurs set out cups and pretend food; tap to unfold a blanket, rock a cup, or lift a toy's head</td>
+<td><strong>Snakes and Reptiles</strong></td>
+<td>To storyboard</td>
+<td>A factual picture book with snakes and other reptiles, clear names, distinctive features and gentle effects.</td>
 </tr>
 <tr>
-<td><strong>Where Is Little Dino?</strong></td>
-<td>8 pages</td>
-<td>A toy hides around the room; tap a curtain or cushion to reveal it; narration and page turns continue even without finding it</td>
+<td><strong>Cars and Trucks</strong></td>
+<td>To storyboard</td>
+<td>Cars plus recognizable working trucks; vehicle names, what they do and deliberate engine/work sounds.</td>
 </tr>
 <tr>
-<td><strong>Dinosaur Cleanup Day</strong></td>
-<td>8 pages</td>
-<td>Wash muddy toys, wipe a shelf, and put toys to bed; each page offers one short cleaning effect</td>
+<td><strong>Hello Kitty</strong></td>
+<td>To storyboard</td>
+<td>Familiar Hello Kitty characters and a recognizable story context; do not substitute unrelated invented characters.</td>
 </tr>
 <tr>
-<td><strong>Big Dino, Little Dino</strong></td>
-<td>8 pages</td>
-<td>Compare large and small illustrated toys and matching footprints; describe toy sizes rather than inventing scientific measurements</td>
+<td><strong>Tangled</strong></td>
+<td>To storyboard</td>
+<td>Rapunzel’s movie story and recognizable cast, tower and lanterns, using newly written narration rather than copied dialogue.</td>
 </tr>
 <tr>
-<td><strong>Goodnight, Dinosaur Toys</strong></td>
-<td>8 pages</td>
-<td>A quiet bedtime story: tuck in a toy, dim a lamp, watch a slow blink; gentle movement and optional sound effects</td>
+<td><strong>Unicorns</strong></td>
+<td>Pending specific story choice</td>
+<td>User requested unicorns; ask which familiar story/character or picture-book direction before inventing one.</td>
 </tr>
 </tbody>
 </table></div>
-<p>Book lengths are production targets. Keep sentences short and review actual recorded duration with the children. The toy stories deliberately allow different prehistoric animals to play together; factual pages should not imply that every named dinosaur lived in the same place or time.</p>
-<h3 id="first-book-an-eight-page-storyboard">First book: an eight-page storyboard</h3>
+<p>The dinosaur book uses twelve creature introductions plus cover and final choice page. Pteranodon and Quetzalcoatlus are identified as flying reptiles. The other five books require revised storyboards for the user-selected subjects; their length is not yet finalized. Boyish/girly is planning shorthand for the requested theme balance, not a rule about who enjoys or can read a book.</p>
+<h3 id="first-book-original-storyboard-expanded-by-the-latest-request">First book: original storyboard, expanded by the latest request</h3>
+<p>The original eight-page draft below is historical content guidance. Expand it to fourteen pages to include the requested additional creatures; do not omit them to preserve the old page target.</p>
 <p>The following narration is a short original draft. The museum links are factual references; final art, pronunciations, audio, and translations still require review.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
 <thead>
@@ -2790,7 +2792,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <h3 id="build-order-for-these-additions">Build order for these additions</h3>
 <ol>
 <li><strong>Keep the existing foundation gate.</strong> Shared touch interactions, player IDs, save recovery, and LAN behavior must work before these features can be called integrated.</li>
-<li><strong>Books and first six toys:</strong> build one eight-page book, six reviewed name recordings, Play/Pause/page controls, and toy pickup/washing. Verify one child reading while the other plays. Do not produce all six books before this works.</li>
+<li><strong>Books and first six toys:</strong> build the expanded dinosaur book with reviewed name recordings, Play/Pause/page controls, and toy pickup/washing. Verify all four players reading independently while others may continue playing. Do not produce all six books before this works.</li>
 <li><strong>One TV clip:</strong> use a small supplied MP4 to prove preparation, playback, audio focus, aspect ratio, exit, backgrounding, and client playback responsiveness and uninterrupted sibling play.</li>
 <li><strong>Discovery mat:</strong> finish digging, brushing, toy placement, and the five optional invitations using the established object rules.</li>
 <li><strong>Expand content:</strong> complete the 20-toy catalog and approved book titles, reviewing pronunciations and art. Add the Files importer after the basic video player has passed its device checks.</li>
