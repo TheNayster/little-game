@@ -56,7 +56,7 @@ namespace LittleWeeps.Client
             chestImage=HomePicture(chest,"Toy chest",new Vector2(0,100),new Vector2(390,260),BedroomSprite("chest-closed"));
             FurnitureMask("chest-front",chestSprite,new Vector2(0,100),new Vector2(390,260),Patch(0,.525f,1,1));
             HomeHit(chest,"Open toy chest",new Vector2(0,20),new Vector2(310,115),()=>HomeAction(SoloAction.SetFixture,"bedroom-chest",FurnishedRoom.chestOpen?"off":"on"));
-            var rug=FurnitureRoot("rug");HomePicture(rug,"Play rug",Vector2.zero,new Vector2(1080,330),BedroomSprite("rug"));
+            var rug=FurnitureRoot("rug");roomRug=HomePicture(rug,"Play rug",Vector2.zero,new Vector2(1080,330),BedroomSprite("rug"));
             for(var i=0;i<4;i++)
             {
                 var index=i;var root=FurnitureRoot("cushion-"+i);var picture=HomePicture(root,"Reading cushion",new Vector2(0,10),new Vector2(180,120),BedroomSprite("cushion"));bedroomTints.Add(picture);
@@ -68,16 +68,19 @@ namespace LittleWeeps.Client
             var pictureFrame=FurnitureRoot("picture");
             Panel(pictureFrame,"Timber frame",Vector2.zero,new Vector2(210,170),new Color(.74f,.47f,.24f));
             bedroomTints.Add(Panel(pictureFrame,"Picture paper",Vector2.zero,new Vector2(186,146),Cream));
-            HomePicture(pictureFrame,"Dinosaur print",Vector2.zero,new Vector2(170,120),BedroomSprite("plush"));
+            roomPrint=HomePicture(pictureFrame,"Dinosaur print",Vector2.zero,new Vector2(170,120),BedroomSprite("plush"));
+            if(SceneSchema>=RoomPlay.Schema)HomeHit(pictureFrame,"Look at room picture",Vector2.zero,new Vector2(210,170),OpenRoomPicture);
             for(var i=0;i<12;i++)
             {var hint=Panel(Board,"Bedroom storage place "+i,Vector2.zero,new Vector2(75,65),new Color(1,.9f,.45f,.65f));hint.sprite=hintRing;hint.type=Image.Type.Simple;bedroomStorageHints.Add(hint.rectTransform);}
             bedroomDecorButton=(RectTransform)Button(safe,"Decorate",new Vector2(-380,315),new Vector2(180,60),()=>{CancelPointers();bedroomDecorPanel.gameObject.SetActive(!bedroomDecorPanel.gameObject.activeSelf);},Cream).transform.parent;
-            bedroomDecorPanel=Panel(safe,"Room decoration",new Vector2(20,-235),new Vector2(850,95),new Color(1,.98f,.89f,.97f)).rectTransform;
-            Button(bedroomDecorPanel,"Colours",new Vector2(-325,0),new Vector2(145,62),()=>BedroomEdit("theme",(FurnishedRoom.theme+1)%4),new Color(.83f,.93f,1));
-            Button(bedroomDecorPanel,"Arrange",new Vector2(-163,0),new Vector2(145,62),()=>BedroomEdit("layout",1-FurnishedRoom.layout),new Color(.86f,.94f,.81f));
-            bedroomTogether=Button(bedroomDecorPanel,"Together: off",new Vector2(0,0),new Vector2(158,62),()=>BedroomEdit("together",FurnishedRoom.decorateTogether?0:1),new Color(.96f,.86f,.94f));
-            bedroomUndo=Button(bedroomDecorPanel,"Undo",new Vector2(164,0),new Vector2(145,62),()=>BedroomEdit("undo",0),Cream);
-            Button(bedroomDecorPanel,"Put toys away",new Vector2(326,0),new Vector2(162,62),()=>BedroomEdit("tidy",0),new Color(.89f,.94f,.81f));
+            bedroomDecorPanel=Panel(safe,"Room decoration",new Vector2(20,-235),new Vector2(850,185),new Color(1,.98f,.89f,.97f)).rectTransform;
+            Button(bedroomDecorPanel,"Colours",new Vector2(-325,-40),new Vector2(145,62),()=>BedroomEdit("theme",(FurnishedRoom.theme+1)%4),new Color(.83f,.93f,1));
+            Button(bedroomDecorPanel,"Arrange",new Vector2(-163,-40),new Vector2(145,62),()=>BedroomEdit("layout",1-FurnishedRoom.layout),new Color(.86f,.94f,.81f));
+            bedroomTogether=Button(bedroomDecorPanel,"Together: off",new Vector2(0,-40),new Vector2(158,62),()=>BedroomEdit("together",FurnishedRoom.decorateTogether?0:1),new Color(.96f,.86f,.94f));
+            bedroomUndo=Button(bedroomDecorPanel,"Undo",new Vector2(164,-40),new Vector2(145,62),()=>BedroomEdit("undo",0),Cream);
+            Button(bedroomDecorPanel,"Put toys away",new Vector2(326,-40),new Vector2(162,62),()=>BedroomEdit("tidy",0),new Color(.89f,.94f,.81f));
+            if(SceneSchema>=RoomPlay.Schema)foreach(var field in new[]{"bedding","rug","picture","lamp"})
+            {var key=field;var index=Array.IndexOf(new[]{"bedding","rug","picture","lamp"},field);Button(bedroomDecorPanel,char.ToUpper(field[0])+field.Substring(1),new Vector2(-300+index*200,40),new Vector2(180,60),()=>BedroomEdit(key,(RoomPlay.DecorValue(FurnishedRoom,key)+1)%4),new Color(.9f,.91f,1));}
             bedroomDecorPanel.gameObject.SetActive(false);
         }
         private void BedroomEdit(string target,int value)
@@ -88,7 +91,7 @@ namespace LittleWeeps.Client
             if(id=="shelf" || id=="shelf-front" || id=="lamp")return new Vector2(BedroomFurniture.ShelfX(room.layout),380);
             if(id=="chest" || id=="chest-front")return new Vector2(BedroomFurniture.ChestX(room.layout),350);
             if(id=="rug")return new Vector2(room.layout==0?1120:1460,105);
-            if(id=="picture")return new Vector2(BedroomFurniture.BedX(room.layout)-80,990);
+            if(id=="picture")return new Vector2(SecretRooms.Index(CurrentArea)>=0?BedroomFurniture.ChestX(room.layout)+60:BedroomFurniture.BedX(room.layout)-80,990);
             var index=int.Parse(id.Substring("cushion-".Length));return new Vector2(BedroomFurniture.SeatX(BedroomFurniture.Cushion(index),room.layout),95);
         }
         private Vector2 StoragePicture(BedroomState room,int slot)
@@ -99,15 +102,15 @@ namespace LittleWeeps.Client
         private bool VisibleToy(SoloToy t)
         {
             if(t.zone!=CurrentArea)return false;if(string.IsNullOrEmpty(t.container))return true;
-            if(HomeBooks.Slot(t.container)>=0)return true;
+            if(RoomPlay.Parent(t)!="" || RoomPlay.Slot(t.zone,t.container)>=0 || HomeBooks.Slot(t.container)>=0)return true;
             if(HomeLayout.StorageSlot(t.container)>=0)return Home!=null && Home.shedOpen;
             var room=FurnishedRoom;var slot=BedroomFurniture.Slot(t.zone,t.container);return room!=null && slot>=0 && (slot>=8 || room.chestOpen);
         }
         private Vector2 FurnitureToyPoint(SoloToy t)
-        {if(HomeBooks.Slot(t.container)>=0)return BookSupportPicture(HomeBooks.Slot(t.container));var room=FurnishedRoom;var slot=BedroomFurniture.Slot(t.zone,t.container);return room!=null && slot>=0?StoragePicture(room,slot):ToBoard(t.x,t.y);}
+        {if(RoomToyPoint(t,out var playPoint))return playPoint;if(HomeBooks.Slot(t.container)>=0)return BookSupportPicture(HomeBooks.Slot(t.container));var room=FurnishedRoom;var slot=BedroomFurniture.Slot(t.zone,t.container);return room!=null && slot>=0?StoragePicture(room,slot):ToBoard(t.x,t.y);}
         private Vector2 BedroomDropPoint(Vector2 raw)
         {
-            bedroomDragTarget="";raw=BookDropPoint(raw);if(bedroomDragTarget!="")return raw;var room=FurnishedRoom;if(room==null)return raw;
+            bedroomDragTarget="";raw=BookDropPoint(raw);if(bedroomDragTarget!="")return raw;var room=FurnishedRoom;if(room==null)return raw;if(RoomDropPoint(raw,out var playPoint))return playPoint;
             var board=ToBoard(raw.x,raw.y);var closest=-1;var distance=float.MaxValue;
             for(var i=0;i<12;i++)
             {var d=Vector2.Distance(board,StoragePicture(room,i))/sceneScale;if(d<distance){distance=d;closest=i;}}
@@ -119,7 +122,7 @@ namespace LittleWeeps.Client
         {
             if(bedroomDecorButton==null)return;var room=FurnishedRoom;var visible=room!=null && !WorldLoading;var items=ReadToys();
             foreach(var pair in bedroomFurniture)
-            {pair.Value.gameObject.SetActive(visible && !(SecretRooms.Index(CurrentArea)>=0 && (pair.Key=="bed" || pair.Key=="picture")));if(!visible)continue;var anchor=FurnitureAnchor(pair.Key,room);pair.Value.anchoredPosition=ToBoard(anchor.x,anchor.y);pair.Value.localScale=Vector3.one*sceneScale;}
+            {pair.Value.gameObject.SetActive(visible && !(SecretRooms.Index(CurrentArea)>=0 && (pair.Key=="bed")));if(!visible)continue;var anchor=FurnitureAnchor(pair.Key,room);pair.Value.anchoredPosition=ToBoard(anchor.x,anchor.y);pair.Value.localScale=Vector3.one*sceneScale;}
             foreach(var pair in bedroomFronts)
             {var root=(RectTransform)pair.Value.transform.parent;root.gameObject.SetActive(visible && !(SecretRooms.Index(CurrentArea)>=0 && (pair.Key=="quilt" || pair.Key=="bed-front")) && (pair.Key!="chest-front" || room.chestOpen));if(!visible)continue;var anchor=FurnitureAnchor(pair.Key,room);root.anchoredPosition=ToBoard(anchor.x,anchor.y);root.localScale=Vector3.one*sceneScale;}
             var editable=visible && !MenuOpen && !TravelPending && (room.owner==Actor || room.decorateTogether);
@@ -128,7 +131,7 @@ namespace LittleWeeps.Client
             {var hint=bedroomStorageHints[i];hint.gameObject.SetActive(visible && dragging!=null && (i>=8 || room.chestOpen) && !items.Any(t=>t.container==BedroomFurniture.Storage(room.id,i)));if(visible){hint.anchoredPosition=StoragePicture(room,i);hint.localScale=Vector3.one*sceneScale;hint.SetAsLastSibling();}}
             if(!visible)return;
             chestImage.sprite=BedroomSprite(room.chestOpen?"chest-open":"chest-closed");lampGlow.gameObject.SetActive(room.lampOn);
-            foreach(var tint in bedroomTints)tint.color=BedroomColors[room.theme];bedQuilt.color=BedroomColors[room.theme];
+            foreach(var tint in bedroomTints)tint.color=BedroomColors[room.theme];bedQuilt.color=BedroomColors[SceneSchema>=RoomPlay.Schema?room.bedding:room.theme];
             bedroomTogether.text=room.decorateTogether?"Together: on":"Together: off";
             bedroomTogether.transform.parent.GetComponent<Button>().interactable=room.owner==Actor;
             bedroomUndo.transform.parent.GetComponent<Button>().interactable=room.undoKind!="" && room.undoActor==Actor;
@@ -142,7 +145,8 @@ namespace LittleWeeps.Client
             var room=FurnishedRoom;if(room==null)return;
             foreach(var pair in bedroomFurniture)
             {
-                var root=pair.Value;var ground=pair.Key=="rug" || pair.Key=="picture"?99999:root.anchoredPosition.y;
+                var root=pair.Value;// A wall picture covers the sky and its twinkle hit targets.
+                var ground=pair.Key=="rug"?99999:pair.Key=="picture"?99997:root.anchoredPosition.y;
                 add(root,ground,0,pair.Key);
             }
             foreach(var pair in bedroomFronts){var root=(RectTransform)pair.Value.transform.parent;add(root,root.anchoredPosition.y,2,pair.Key);}

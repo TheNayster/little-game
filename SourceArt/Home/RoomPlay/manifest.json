@@ -1,0 +1,29 @@
+[
+  {
+    "id": "nest",
+    "tool": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Production transparent 2D game sprite for Little Weeps Home bedrooms and secret rooms. Supporting style reference is the existing cushion only; create a NEW separate object. One isolated small plush-toy blanket nest: a low soft cream oval cushion with a tiny cream pillow at the rear, pale mint quilt folded across the front lower half, a small star stitched on the quilt. Front view, shallow dollhouse perspective. The UPPER CENTER must be an empty clear seat for an independently rendered toy; no toy or character. Quilt front covers the lower half of a toy placed in that empty seat. Entire object centered with 10% transparent margin, clean outlined game cutout. Match the recognizable clean flat Bluey-like family dollhouse art: softly colored brown outlines, crisp pastel fill shapes, restrained two-tone shading. No haze or glow outside the hard object outline. Truly transparent alpha outside the object. No text, labels, checkerboard painted into the image, photorealism or 3D.",
+    "reference": "SourceArt/Home/Bedrooms/Furniture/cushion.png",
+    "transparent_background": true,
+    "generation": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-0e687d55-6478-4aaf-b74f-d1f32ed310df.png",
+    "sha256": "0405c1be86bcdb775f0db8f6c737a3eddbadf5f7292c7c2df193880a5e9b4264"
+  },
+  {
+    "id": "teapot",
+    "tool": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Production transparent 2D game sprite for Little Weeps Home bedrooms and secret rooms. Supporting style reference is the existing cushion only; create a NEW separate object. One isolated small toy teapot for pretend play: rounded pastel mint body, short spout pointing LEFT, thick friendly handle on the RIGHT, cream lid with coral knob, one simple white flower decoration. Front view, shallow dollhouse perspective. Whole complete teapot centered with 10% transparent margin. No liquid pouring, no steam, no cup, no scene. Match the recognizable clean flat Bluey-like family dollhouse art: softly colored brown outlines, crisp pastel fill shapes, restrained two-tone shading. No haze or glow outside the hard object outline. Truly transparent alpha outside the object. No text, labels, checkerboard painted into the image, photorealism or 3D.",
+    "reference": "SourceArt/Home/Bedrooms/Furniture/cushion.png",
+    "transparent_background": true,
+    "generation": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-a303c750-9833-4292-bf12-aa5a5b4dab3e.png",
+    "sha256": "b20d8f3ce5e9c08ff627e389110a197e98a2a164915e46a26bfddcba4ffd513e"
+  },
+  {
+    "id": "teacup",
+    "tool": "image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Production transparent 2D game sprite for Little Weeps Home bedrooms and secret rooms. Supporting style reference is the existing cushion only; create a NEW separate object. One isolated small empty toy teacup for pretend play: rounded pastel coral cup, chunky cream rim, a little handle on the RIGHT, cream foot, one tiny mint star decoration. Front view with a shallow visible elliptical empty opening. Whole complete cup centered with 15% transparent margin. No saucer, no liquid, no steam, no other objects. Match the recognizable clean flat Bluey-like family dollhouse art: softly colored brown outlines, crisp pastel fill shapes, restrained two-tone shading. No haze or glow outside the hard object outline. Truly transparent alpha outside the object. No text, labels, checkerboard painted into the image, photorealism or 3D.",
+    "reference": "SourceArt/Home/Bedrooms/Furniture/cushion.png",
+    "transparent_background": true,
+    "generation": "C:\\Users\\sephi\\.codex\\generated_images\\01a0df12-2119-7da1-a48e-e96ccab1c136\\exec-67d155db-56de-43aa-b9ee-0bbce4223356.png",
+    "sha256": "ae29b1057b56e0957191931b5ce2f4a6b85889a5f5d80b969566dee7a8f848cb"
+  }
+]

@@ -49,6 +49,8 @@ The physical book requires additive schema-10 migration and a matching content/w
 
 ## Plush interactions: next bounded contract
 
+**Implementation follow-through:** [candidate 155](room-object-play-2026-09-26.md) applies the five contracts below using existing four cushion places for cuddling, four new blanket supports, three-toy piles, four tea places and a deliberate fact picture. Physical qualification and the separate large cuddle-pillow illustration remain open.
+
 The existing carry/storage lane already supplies persistent toy identities and a PC/VPS authority. Extend that contract instead of making duplicate decoration-only plush sprites. These are design decisions derived from this game's authoritative object constraints and [Unity's separation of local presentation and network authority](https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/ownership.html); they are not claims that Unity supplies a finished stacking system.
 
 1. **Cuddle pillow:** four independent nearby places around one generously drawn pillow. A child can sit with a selected plush; leaving releases only that child and settles the same plush. Holding and seating rules need an explicit combined contract, not an exception that creates two holders.

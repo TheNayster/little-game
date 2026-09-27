@@ -11,20 +11,20 @@ namespace LittleWeeps.Client
         public SoloScreen Screen;
         public string Role;
         private int? pointer;
-        private bool deferredBook;
-        private UnityEngine.Vector2 bookDown;
+        private bool deferredTap;
+        private UnityEngine.Vector2 tapDown;
         public bool Pressed => pointer.HasValue;
         public void OnPointerDown(PointerEventData e)
         {
             if(pointer.HasValue)return;
-            deferredBook=Screen.IsBook(Role);bookDown=e.position;
-            if(!deferredBook && !Screen.BeginPointer(Role,e.position))return;
+            deferredTap=Screen.IsTapObject(Role);tapDown=e.position;
+            if(!deferredTap && !Screen.BeginPointer(Role,e.position))return;
             pointer = e.pointerId;
         }
         public void OnDrag(PointerEventData e)
         {
             if(pointer!=e.pointerId)return;
-            if(deferredBook){if(UnityEngine.Vector2.Distance(bookDown,e.position)<UnityEngine.EventSystems.EventSystem.current.pixelDragThreshold)return;deferredBook=false;if(!Screen.BeginPointer(Role,bookDown)){pointer=null;return;}}
+            if(deferredTap){if(UnityEngine.Vector2.Distance(tapDown,e.position)<UnityEngine.EventSystems.EventSystem.current.pixelDragThreshold)return;deferredTap=false;if(!Screen.BeginPointer(Role,tapDown)){pointer=null;return;}}
             Screen.MovePointer(Role,e.position);
         }
         public void OnPointerUp(PointerEventData e)
@@ -37,10 +37,10 @@ namespace LittleWeeps.Client
                     if (touch.touchId.ReadValue() == extended.touchId && touch.phase.ReadValue() == UnityEngine.InputSystem.TouchPhase.Canceled)
                     { Screen.CancelPointer(Role); return; }
             }
-            if(deferredBook){deferredBook=false;Screen.OpenBook(Role);}else Screen.EndPointer(Role,e.position);
+            if(deferredTap){deferredTap=false;Screen.TapObject(Role);}else Screen.EndPointer(Role,e.position);
         }
         public void OnCancel(BaseEventData e) => Cancel();
-        public void Cancel() { if (pointer.HasValue) { pointer = null; deferredBook=false; Screen.CancelPointer(Role); } }
+        public void Cancel() { if (pointer.HasValue) { pointer = null; deferredTap=false; Screen.CancelPointer(Role); } }
         protected override void OnDisable() { Cancel(); base.OnDisable(); }
     }
 }

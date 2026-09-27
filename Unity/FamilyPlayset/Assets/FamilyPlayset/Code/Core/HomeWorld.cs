@@ -45,8 +45,8 @@ namespace LittleWeeps.Core
             copy.toys=copy.toys.Concat(new[]{new SoloToy{id="ball-1",kind=ToyKind.Ball,x=3350,y=130}}).ToArray();
             copy.revision++;Validate(copy);return new SoloWorld(copy);
         }
-        private static void ClearFixture(SoloPlayer p)
-        {p.fixture="";p.useSeconds=0;}
+        private void ClearFixture(SoloPlayer p)
+        {SettleCuddle(p);p.fixture="";p.useSeconds=0;}
         // A lease is temporary, including across app suspension, travel and
         // recovery. The furniture and stored item state are durable.
         public bool ReleaseFixture(string actor)
@@ -76,12 +76,15 @@ namespace LittleWeeps.Core
                     (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:
                      (BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || !SecretRooms.Furnished(p.zone) || (SecretRooms.Index(p.zone)>=0?p.fixture==BedroomFurniture.Bed:SecretRooms.FortIndex(p.fixture)>=0) ||
                       p.x!=BedroomFurniture.SeatX(p.fixture,SecretRooms.Furnishings(s).Single(r=>r.id==p.zone).layout) || p.y!=BedroomFurniture.SeatY(p.fixture):
-                      !HomeLayout.Usable(p.fixture) || p.zone!="garden" || p.x!=HomeLayout.X(p.fixture) || p.y!=HomeLayout.Y(p.fixture)) || s.toys.Any(t=>t.holder==p.id)))
+                      !HomeLayout.Usable(p.fixture) || p.zone!="garden" || p.x!=HomeLayout.X(p.fixture) || p.y!=HomeLayout.Y(p.fixture)) || s.toys.Any(t=>t.holder==p.id && !(s.schema>=RoomPlay.Schema && BedroomFurniture.Seat(p.fixture) && t.kind==ToyKind.Plush))))
                     throw new InvalidOperationException("Invalid home occupancy.");
             if(s.players.Where(p=>!string.IsNullOrEmpty(p.fixture)).GroupBy(p=>p.zone+"/"+p.fixture).Any(g=>g.Count()>1))
                 throw new InvalidOperationException("Home slot has two occupants.");
             foreach(var t in s.toys.Where(t=>!string.IsNullOrEmpty(t.container)))
             {
+                if(RoomPlay.Parent(t)!="")continue;
+                var playSlot=RoomPlay.Slot(t.zone,t.container);
+                if(playSlot>=0){if(s.schema<RoomPlay.Schema || t.holder!="" || t.x!=RoomPlay.X(playSlot) || t.y!=RoomPlay.Y(playSlot) || t.kind!=(playSlot<4?ToyKind.Plush:playSlot==8?ToyKind.TeaPot:ToyKind.TeaCup))throw new InvalidOperationException("Invalid room play support.");continue;}
                 var bookSlot=HomeBooks.Slot(t.container);
                 if(bookSlot>=0){if(s.schema<HomeBooks.FirstSchema || t.kind!=ToyKind.Book || t.zone!="garden" || t.holder!="" || t.x!=HomeBooks.X(bookSlot) || t.y!=HomeBooks.Y(bookSlot))throw new InvalidOperationException("Invalid book support.");continue;}
                 var bedroomSlot=BedroomFurniture.Slot(t.zone,t.container);

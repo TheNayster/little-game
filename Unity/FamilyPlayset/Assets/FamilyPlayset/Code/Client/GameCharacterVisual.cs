@@ -45,7 +45,7 @@ namespace LittleWeeps.Client
         {
             if(view==null)return;
             var frame=motion.Observe(point,continuity,held,false,dt);
-            if(!held && Core.BedroomFurniture.Seat(player.fixture))
+            if(Core.BedroomFurniture.Seat(player.fixture))
                 frame=new CharacterFrame(player.fixture==Core.BedroomFurniture.Bed?CharacterPose.Rest:CharacterPose.Sit,0,false,(float)player.useSeconds);
             else if(!held && Core.HomeLayout.Usable(player.fixture))
             {

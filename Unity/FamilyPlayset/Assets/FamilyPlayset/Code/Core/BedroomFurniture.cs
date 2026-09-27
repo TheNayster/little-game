@@ -9,7 +9,7 @@ namespace LittleWeeps.Core
     {
         public const int Schema=8;
         public const string Bed="bedroom-bed";
-        public static bool Personal(ToyKind kind)=>kind==ToyKind.Plush || kind==ToyKind.Block || kind==ToyKind.Book;
+        public static bool Personal(ToyKind kind)=>kind==ToyKind.Plush || kind==ToyKind.Block || kind==ToyKind.Book || RoomPlay.Tea(kind);
         public static string ToyId(int room,int slot)=>BedroomLayout.Id(room)+"-toy-"+slot;
         public static string Cushion(int index)=>"bedroom-cushion-"+index;
         public static int CushionIndex(string id)
@@ -67,8 +67,8 @@ namespace LittleWeeps.Core
                 if(r.theme<0 || r.theme>3 || r.layout<0 || r.layout>1 || r.roomRevision<1 || r.roomRevision>=long.MaxValue ||
                     r.undoKind==null || r.undoActor==null || r.undoBefore<0 || r.undoBefore>3 || r.undoAfter<0 || r.undoAfter>3 ||
                     (r.undoKind==""?(r.undoActor!="" || r.undoBefore!=0 || r.undoAfter!=0):
-                    (r.undoKind!="theme" && r.undoKind!="layout") || !s.players.Any(p=>p.id==r.undoActor) ||
-                    (r.undoKind=="theme"?r.theme:r.layout)!=r.undoAfter || r.undoKind=="layout" && (r.undoBefore>1 || r.undoAfter>1)))
+                    (r.undoKind!="theme" && r.undoKind!="layout" && !(s.schema>=RoomPlay.Schema && RoomPlay.Decoration(r.undoKind))) || !s.players.Any(p=>p.id==r.undoActor) ||
+                    RoomPlay.DecorValue(r,r.undoKind)!=r.undoAfter || r.undoKind=="layout" && (r.undoBefore>1 || r.undoAfter>1)))
                     throw new InvalidOperationException("Invalid furnishing state.");
             }
             for(var i=0;i<4;i++)for(var j=0;j<4;j++)
@@ -81,7 +81,7 @@ namespace LittleWeeps.Core
         }
         private bool StorageOpen(SoloToy toy)
         {
-            if(string.IsNullOrEmpty(toy.container) || state.schema>=HomeBooks.FirstSchema && HomeBooks.Slot(toy.container)>=0)return true;
+            if(RoomPlay.Parent(toy)!="" || RoomPlay.Slot(toy.zone,toy.container)>=0 || string.IsNullOrEmpty(toy.container) || state.schema>=HomeBooks.FirstSchema && HomeBooks.Slot(toy.container)>=0)return true;
             if(HomeLayout.StorageSlot(toy.container)>=0)return state.home?.shedOpen==true;
             var room=SecretRooms.Furnishings(state).SingleOrDefault(r=>r.id==toy.zone);var slot=BedroomFurniture.Slot(toy.zone,toy.container);
             return state.schema>=BedroomFurniture.Schema && room!=null && slot>=0 && (slot>=8 || room.chestOpen);
@@ -103,8 +103,9 @@ namespace LittleWeeps.Core
             {
                 if(!BedroomFurniture.Seat(c.target) || (SecretRooms.Index(p.zone)>=0?c.target==BedroomFurniture.Bed:SecretRooms.FortIndex(c.target)>=0))return "invalid-fixture";
                 if(state.players.Any(v=>v.id!=p.id && v.zone==p.zone && v.fixture==c.target))return "fixture-busy";
-                foreach(var t in state.toys.Where(v=>v.holder==p.id)){t.holder="";t.x=p.x;t.y=Math.Max(35,Math.Min(250,p.y-65));Touch(t);}
-                ClearFixture(p);p.fixture=c.target;p.activity="";p.x=BedroomFurniture.SeatX(c.target,room.layout);p.y=BedroomFurniture.SeatY(c.target);return null;
+                var cuddle=state.schema>=RoomPlay.Schema?state.toys.FirstOrDefault(t=>t.holder==p.id && t.kind==ToyKind.Plush):null;
+                foreach(var t in state.toys.Where(v=>v.holder==p.id && v!=cuddle)){t.holder="";t.x=p.x;t.y=Math.Max(35,Math.Min(250,p.y-65));Touch(t);}
+                ClearFixture(p);p.fixture=c.target;p.activity="";p.x=BedroomFurniture.SeatX(c.target,room.layout);p.y=BedroomFurniture.SeatY(c.target);if(cuddle!=null){cuddle.holder=p.id;cuddle.x=p.x;cuddle.y=Math.Max(35,Math.Min(250,p.y-65));}return null;
             }
             if(c.action==SoloAction.SetFixture)
             {
@@ -125,7 +126,7 @@ namespace LittleWeeps.Core
             if(parts.Length!=2 || !int.TryParse(parts[0],out var value) || !long.TryParse(parts[1],out var expected) || expected!=room.roomRevision || room.roomRevision>=long.MaxValue-1)return "room-changed";
             if(c.target=="tidy")
             {
-                var loose=state.toys.Where(t=>t.zone==room.id && t.personalRoom==(SecretRooms.Index(room.id)>=0?SecretRooms.Parent(room.id):room.id) && t.holder=="" && t.container=="").ToArray();
+                var loose=state.toys.Where(t=>t.zone==room.id && t.personalRoom==(SecretRooms.Index(room.id)>=0?SecretRooms.Parent(room.id):room.id) && t.holder=="" && t.container=="" && !state.toys.Any(child=>child.container==RoomPlay.Stack(t.id))).ToArray();
                 var free=Enumerable.Range(0,8).Where(i=>!state.toys.Any(t=>t.container==BedroomFurniture.Storage(room.id,i))).ToArray();
                 if(loose.Length>free.Length)return "storage-full";
                 for(var i=0;i<loose.Length;i++){var t=loose[i];t.container=BedroomFurniture.Storage(room.id,free[i]);t.x=BedroomFurniture.StorageX(room.layout,free[i]);t.y=BedroomFurniture.StorageY(free[i]);Touch(t);}
@@ -136,13 +137,13 @@ namespace LittleWeeps.Core
             if(c.target=="undo")
             {
                 if(room.undoKind=="" || room.undoActor!=p.id)return "nothing-to-undo";
-                if(room.undoKind=="theme")room.theme=room.undoBefore;else MoveRoomLayout(room,room.undoBefore);
+                if(room.undoKind=="layout")MoveRoomLayout(room,room.undoBefore);else RoomPlay.SetDecor(room,room.undoKind,room.undoBefore);
                 ClearRoomUndo(room);room.roomRevision++;return null;
             }
-            if(c.target!="theme" && c.target!="layout" || value<0 || value>(c.target=="theme"?3:1))return "invalid-decoration";
-            var before=c.target=="theme"?room.theme:room.layout;
+            if(c.target!="theme" && c.target!="layout" && !(state.schema>=RoomPlay.Schema && RoomPlay.Decoration(c.target)) || value<0 || value>(c.target=="layout"?1:3))return "invalid-decoration";
+            var before=RoomPlay.DecorValue(room,c.target);
             if(before==value)return "already-there";
-            if(c.target=="theme")room.theme=value;else MoveRoomLayout(room,value);
+            if(c.target=="layout")MoveRoomLayout(room,value);else RoomPlay.SetDecor(room,c.target,value);
             room.undoKind=c.target;room.undoActor=p.id;room.undoBefore=before;room.undoAfter=value;room.roomRevision++;return null;
         }
         private static void ClearRoomUndo(BedroomState room)
@@ -151,7 +152,7 @@ namespace LittleWeeps.Core
         {
             room.layout=layout;
             foreach(var p in state.players.Where(p=>p.zone==room.id && BedroomFurniture.Seat(p.fixture)))
-            {p.x=BedroomFurniture.SeatX(p.fixture,layout);p.y=BedroomFurniture.SeatY(p.fixture);}
+            {p.x=BedroomFurniture.SeatX(p.fixture,layout);p.y=BedroomFurniture.SeatY(p.fixture);foreach(var held in state.toys.Where(t=>t.holder==p.id)){held.x=p.x;held.y=Math.Max(35,Math.Min(250,p.y-65));}}
             foreach(var t in state.toys.Where(t=>t.zone==room.id))
             {var slot=BedroomFurniture.Slot(room.id,t.container);if(slot>=0){t.x=BedroomFurniture.StorageX(layout,slot);t.y=BedroomFurniture.StorageY(slot);}}
         }

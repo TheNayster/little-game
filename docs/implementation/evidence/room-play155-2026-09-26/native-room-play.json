@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build": 155,
+  "checks": [
+    "four owners independently use beds and new decoration controls; four secret rooms bring shared stock to 97 without exceeding wire bounds",
+    "real tap gestures create four separate cuddles; accepted sitting art remains and moving releases only one plush",
+    "real drag tucks and retrieves exact plush identity; quilt front is above toy and cushion rear below",
+    "real three-toy stacking and lower-toy removal settle dependents separately without duplicates",
+    "real teapot refill/pour and four individual cup taps change only bounded pretend-liquid states",
+    "room picture controls open and close; phone and tablet compositions captured; owner exit leaves other secret-room players"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTouched": false
+}

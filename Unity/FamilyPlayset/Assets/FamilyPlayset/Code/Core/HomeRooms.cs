@@ -26,6 +26,7 @@ namespace LittleWeeps.Core
     {
         public string id, owner;
         public int theme,layout,undoBefore,undoAfter;
+        public int bedding,rug,picture,lamp;
         public long roomRevision;
         public bool chestOpen,lampOn,decorateTogether;
         public string undoKind="",undoActor="";

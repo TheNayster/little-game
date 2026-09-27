@@ -55,7 +55,7 @@ def capture(client,folder,name):
     return s
 
 def command(client,action,**kw):
-    state=client.state();p=next(p for p in state['view']['players'] if p['id']==client.profile);rid=uuid.uuid4().hex
+    state=wait(lambda:client.state(),'fresh command view');p=next(p for p in state['view']['players'] if p['id']==client.profile);rid=uuid.uuid4().hex
     data=dict(requestId=rid,actor=client.profile,expectedRevision=state['view']['revision'],action=action,zone=p['zone'],visit=p['visit'],item='',target='',value='',x=0,y=0);data.update(kw)
     client.serial+=1;write(client.out/'control.json',dict(serial=client.serial,kind='command',request=dict(requestId=rid,protocol=3,command=data)))
     return wait(lambda:read(client.out/('reply-'+rid+'.json')),'test transaction')

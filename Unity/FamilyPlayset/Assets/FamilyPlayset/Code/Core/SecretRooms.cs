@@ -75,6 +75,7 @@ namespace LittleWeeps.Core
                 r.created=r.active=true;r.furniture.chestOpen=true;var index=SecretRooms.Index(r.id);
                 state.toys=state.toys.Concat(Enumerable.Range(0,6).Select(k=>{var slot=k<4?8+k:k-4;return new SoloToy{id=SecretRooms.ToyId(index,k),kind=ToyKind.Plush,personalRoom=r.parent,zone=r.id,
                     container=BedroomFurniture.Storage(r.id,slot),x=BedroomFurniture.StorageX(0,slot),y=BedroomFurniture.StorageY(slot)};})).ToArray();
+                if(state.schema>=RoomPlay.Schema){r.furniture.bedding=r.furniture.rug=r.furniture.lamp=r.furniture.theme;state.toys=state.toys.Concat(RoomPlay.Stock(r.id)).ToArray();}
             }
             else
             {

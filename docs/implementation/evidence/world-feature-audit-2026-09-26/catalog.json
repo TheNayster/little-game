@@ -3,6 +3,18 @@
   "sourceCommit": "8a315ca945a899dbefe7687b47ac02a3bf7cd6fd",
   "scopedUpdates": [
     {
+      "build": 155,
+      "baselineCommit": "1c060cd",
+      "entries": [
+        "H-31",
+        "H-32",
+        "H-34",
+        "H-36",
+        "H-37"
+      ],
+      "evidence": "docs/implementation/room-object-play-2026-09-26.md"
+    },
+    {
       "build": 135,
       "baselineCommit": "b2d41922a4d722e4c941cf1cc1d65b2e61a9f939",
       "entries": [
@@ -918,8 +930,8 @@
       "chapters": [
         32
       ],
-      "description": "Four saved profile-owned rooms now include usable furniture, real storage and bounded personal toys in candidate 142. Broader catalog, richer decor and physical qualification remain open.",
-      "evidence": "furniture",
+      "description": "Four saved owned rooms include usable furniture/storage and candidate-155 cuddle/tuck/stack/tea play. Broader catalog and physical qualification remain open.",
+      "evidence": "roomplay",
       "extraSource": ""
     },
     {
@@ -931,8 +943,8 @@
       "chapters": [
         32
       ],
-      "description": "Owner decoration, optional Together, two safe arrangements and actor-scoped single-operation undo now work with four visitors. Richer picture choices/free placement and final visual/device acceptance remain open.",
-      "evidence": "furniture",
+      "description": "Owner/Together decoration and undo include bedding, rug, picture and lamp choices. Two safe arrangements remain; free placement and physical acceptance are open.",
+      "evidence": "roomplay",
       "extraSource": ""
     },
     {
@@ -960,8 +972,8 @@
         32,
         51
       ],
-      "description": "Owner tidy stores only their own loose unheld personal toys, preserving displays, visitors and other rooms. Borrowed-tool return remains separate; broader loan/creation integration remains open.",
-      "evidence": "furniture",
+      "description": "Owner tidy preserves held/stored toys, nests and stacks, other owners and visitors. Broader loan/creation integration remains open.",
+      "evidence": "roomplay",
       "extraSource": ""
     },
     {
@@ -986,8 +998,8 @@
       "chapters": [
         33
       ],
-      "description": "Six plush types, rug, four cushions, four-place blanket fort, shelf/chest and lamp are usable with persistent carry/storage. Dedicated cuddle pillow, tucking, general stacks/picnic combinations and reader remain open.",
-      "evidence": "secrets",
+      "description": "Candidate 155 adds four cushion cuddle places, four saved blanket nests, three-toy piles and four-place pretend tea. Shared downstairs books can travel here. Large pillow art, broader catalog and physical acceptance remain open.",
+      "evidence": "roomplay",
       "extraSource": ""
     },
     {
@@ -999,8 +1011,8 @@
       "chapters": [
         33
       ],
-      "description": "Deep-blue sky, slow green/purple ribbons, sparse twinkles and local brightness/still-sky/music/chime levels are implemented. Optional factual narration and physical A10 qualification remain open.",
-      "evidence": "secrets",
+      "description": "Calm sky and local controls include an optional fact picture with Read to me. Physical A10 and final listening qualification remain open.",
+      "evidence": "roomplay",
       "extraSource": ""
     },
     {

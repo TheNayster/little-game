@@ -1,0 +1,11 @@
+{
+  "priorBuild": 153,
+  "finalWindowsBuild": 155,
+  "changedRuntimePaths": [
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloBedroomFurniture.cs",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloRoomPlay.cs"
+  ],
+  "coreIdentical": true,
+  "networkIdentical": true,
+  "reason": "Final UI revisions reposition the secret fact picture clear of the lamp, add its static sky illustration, and place the picture above the sky interaction surface. The 153 migration/private/recovery checks apply to identical core and network sources; all six room UI groups and 13 balloon movement groups passed on final 155."
+}

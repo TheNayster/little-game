@@ -20,6 +20,7 @@ namespace LittleWeeps.Client
                 clips.Add(id,clip);
             }
         }
+        public void AddClip(string id,AudioClip clip){if(clip!=null)clips[id]=clip;}
         public void SetVoiceEnabled(bool enabled){VoiceEnabled=enabled;if(!enabled)Stop();}
         public void Speak(string id){if(speaker==null)return;speaker.Stop();if(VoiceEnabled && clips.TryGetValue(id,out var clip)){speaker.clip=clip;speaker.Play();}}
         public void Stop(){if(speaker!=null)speaker.Stop();}

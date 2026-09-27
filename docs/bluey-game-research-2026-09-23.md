@@ -1309,6 +1309,8 @@ The PC still has to stay awake and reachable for the shared home session. A PC/n
 
 ## 32. Four personal bedrooms with shared updates
 
+**Room-object pass, candidate 155:** four-place cuddling/tucking/pretend tea, bounded toy stacks, saved bedding/rug/picture/lamp choices and an optional local aurora fact reader now have an implementation record. [Research applied, migration and qualification](implementation/room-object-play-2026-09-26.md). Broader catalog, free furniture placement and physical acceptance remain open.
+
 **Current implementation:** [BED-3 candidate 142](implementation/bedroom-furniture-2026-09-26.html) provides usable bedroom furniture, bounded personal toys/storage, owner decoration/Together/undo and tested save rules. The full chapter remains the goal: richer picture choices, catalogs, creation displays, reader integration and physical qualification are not complete.
 
 **Upstairs layout and sequence, latest user direction:** all four bedrooms are on a new second floor. Make the existing living-room stairs usable in both directions, with a real landing/hall and four bedroom doors. Each player can travel independently while the others remain anywhere in Home. Finish this bedroom stage before the four secret rooms. See the [deep implementation research](implementation/upstairs-bedrooms-research-2026-09-26.html); its recommendations and acceptance cases are not implemented features.
@@ -1352,6 +1354,8 @@ Connected bedroom edits are validated and saved by the PC/VPS, then sent to the 
 Automatic saving should be frequent enough to preserve finished changes without rewriting the entire world on every drag frame. Record committed drops/style choices, create periodic compact snapshots, and validate migration when the game adds new furniture definitions. Test this on real interrupted writes and out-of-order reconnections, not only a normal save/load cycle.
 
 ## 33. Secret plush rooms with stars and northern lights
+
+**Room-object pass, candidate 155:** four-place cuddling/tucking/pretend tea, bounded toy stacks, saved bedding/rug/picture/lamp choices and an optional local aurora fact reader now have an implementation record. [Research applied, migration and qualification](implementation/room-object-play-2026-09-26.md). Broader catalog, free furniture placement and physical acceptance remain open.
 
 **Implementation checkpoint — September 26:** [Researched candidate 146](implementation/secret-rooms-2026-09-26.html) adds four persistent optional secrets with locally revealed far-back entrances, safe exits, four-place fort/cushions, six plush types/storage and local calm controls. Full reader, cuddle/tuck/stack/picnic extensions, hiding integration and physical qualification remain open. The specification below remains required.
 

@@ -143,7 +143,7 @@ class ParentServer:
                 raise ValueError('Oversize save')
             header, digest, payload = raw.decode('utf-8-sig').split('\n', 2)
             body = json.loads(payload)
-            if header != 'LITTLEWEEPS-SOLO-1' or hashlib.sha256(payload.encode()).hexdigest() != digest or body.get('schema') not in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11):
+            if header != 'LITTLEWEEPS-SOLO-1' or hashlib.sha256(payload.encode()).hexdigest() != digest or body.get('schema') not in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12):
                 raise ValueError('Unverified save')
             return dict(state='verified', savedAt=datetime.fromtimestamp(stamp, timezone.utc).isoformat(), revision=body['revision'])
         except FileNotFoundError:

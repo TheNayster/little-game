@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "build": 153,
+  "previousBuild": 151,
+  "checks": [
+    "Build 151 to current preserves every old object, room, balloon, receipt and enrollment field; adds 20 bounded tea objects; all four original profiles rejoin",
+    "New tucks and bedding survive an outage; private edits retain exact toys/decor through cold reopen; rejoin restores server state without importing private edits; hidden entrance retains usable exit",
+    "Current backup validates, and restoring the real build-151 backup repeats the same additive room-play migration"
+  ],
+  "liveFamilyTouched": false
+}
