@@ -579,7 +579,7 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 
 **Physical issue history and current qualification, September 25:** 94 removed the long Wi-Fi-loss control wait and 95 passed smoother walking/offline cold reopening on iPad 7. The separate rewind repair from 98 passed Windows/emulator checks and is included in deployed client 101. That earlier 101 rollout is superseded by the current version summary; focused physical continuity and sustained play acceptance remain open. [Original feedback](implementation/evidence/ipad91-2026-09-25/all-device-offline-feedback.json) · [Engineering results](implementation/g3-offline-authority-and-hitch-review-2026-09-25.html) · [101 deployment](implementation/character-phone-switch-2026-09-25.html).
 
-**Current build summary:** kitchen Windows/Android candidate **162**, schema 13/content 14. Samsung remains recorded at **155**, server/helper and iPads **128**, iPhone **101**. The production recovery allowlist is unchanged. See the [kitchen evidence and precise qualification scope](implementation/home-kitchen-2026-09-27.html).
+**Current build summary:** kitchen Windows/Android candidate **162**, schema 13/content 14. Samsung is now **162**, with all 16 saves retained and the kitchen visibly launched; server/helper and iPads remain **128**, iPhone **101**. The production recovery allowlist is unchanged. See the [kitchen evidence and precise qualification scope](implementation/home-kitchen-2026-09-27.html).
 
 **Device priority:** iPads first, Android second. The A2197 iPad 7 is the minimum performance baseline; A2602 iPad 9 is the other primary play device. Test core controls, layouts, media, saves and client/solo transitions on both. Android and iPhone testing remain part of the mixed-device acceptance gates.
 
@@ -589,7 +589,7 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 | --- | --- |
 | Goal sheet | Main Family Playset research, 55 sections, including owned VPS hosting after server readiness |
 | Production guide | This document; ordered method and acceptance gates |
-| Last recorded family/mobile state | Samsung 155, all 16 saves retained byte-for-byte; visible phone/first-launch migration verification awaits unlock. Server/iPads 128 and iPhone 101 were not changed. |
+| Last recorded family/mobile state | Samsung 162: all 16 saves retained, 15 byte-identical; active world migrated additively, existing objects/players/rooms intact. Kitchen visibly launched. Server/iPads 128 and iPhone 101 unchanged. |
 | Previous focused research | [Scene composition and object-layer research](implementation/home-scene-layer-research-2026-09-26.html): official interaction sources, four-panorama/source audit, furniture/prop classification, uGUI draw order, touch/support contracts, asset inventory, memory considerations and staged acceptance. This is research, not an installed fix. |
 | Current phase position | G3 now has concurrent four-physical-device admission and scoped play feedback; G1/G2/G3 exit checks remain open. No implementation gate is declared complete; G0 is complete as a maintained planning artifact. [Gate-by-gate ledger](#phase-gates-done-versus-open). |
 | Current bounded task | **H-07–10 / COOK-01:** working kitchen, persistent food and all 15 recipe prototype paths for four players. |

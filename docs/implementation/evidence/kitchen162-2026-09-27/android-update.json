@@ -1,0 +1,36 @@
+{
+  "utc": "2026-09-27T12:51:14.7689132Z",
+  "operation": "updated",
+  "version": "0.0.162",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "96258fa672a01975569454d8b238491f5bddd340a7bcc13da393096566f96b03",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 155,
+  "previousApkSha256": "1ea956392009b323b7a62b955df27d48252513e718b8ab80de7dd7c25dc0a872",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "pid": "18889",
+  "native16KbQualified": false,
+  "primarySavesBefore": 16,
+  "primarySavesAfter": 16,
+  "byteIdenticalPrimary": 15,
+  "migrations": [
+    {
+      "previousSchema": 12,
+      "newSchema": 13,
+      "previousToys": 64,
+      "newToys": 117,
+      "priorObjectsPlayersRoomsExact": true
+    }
+  ],
+  "visibleUiVerified": true,
+  "saveRetentionVerified": true,
+  "visibleBehavior": "Phone launched Home; new kitchen appliances and plate controls visible.",
+  "runtimeErrorsObserved": 0,
+  "sharedServerUpdated": false,
+  "otherDevicesUpdated": false,
+  "physicalFullRecipeAcceptance": false
+}

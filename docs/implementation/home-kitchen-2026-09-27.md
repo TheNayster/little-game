@@ -34,7 +34,7 @@ Qualification results are collected in [the evidence directory](evidence/kitchen
 - **Three migration/private-play groups passed in 161** against an actual 155 checkpoint: exact prior fields and enrollment retained, food carried upstairs, outage/private taste/cold reopen, authoritative rejoin without private import, current backup and restored-155 migration. [Continuity results](evidence/kitchen162-2026-09-27/continuity-build161.json).
 - **Six isolated recovery groups passed in final 162**, covering protected backup, exact restore and four original profiles, rollback, ten invalid-bundle refusals, interrupted recovery and missing-world reconstruction. [Recovery results](evidence/kitchen162-2026-09-27/recovery-build162.json).
 - **Three native touch/visual groups passed again in final 162** after raising seated children to the chair height. This is the only code change from 161; core/network/save sources are identical. [Final UI checks](evidence/kitchen162-2026-09-27/native-final-ui-build162.json) · [Exact qualification scope](evidence/kitchen162-2026-09-27/qualification-scope.json).
-- Final **Windows client/server and signed Android 162** built successfully. All **88 game code files and 12 kitchen images** match both final source manifests. [Source/artifact verification](evidence/kitchen162-2026-09-27/source-verification.json). Android is ready, **not installed**.
+- Final **Windows client/server and signed Android 162** built successfully. All **88 game code files and 12 kitchen images** match both final source manifests. [Source/artifact verification](evidence/kitchen162-2026-09-27/source-verification.json). Android **162 is now installed** in place on Samsung; see the phone delivery below.
 
 These are native Windows captures at phone/tablet aspect ratios, not physical-device acceptance:
 
@@ -46,7 +46,9 @@ These are native Windows captures at phone/tablet aspect ratios, not physical-de
 
 The kitchen milestone is maintained on `codex/home-kitchen`. It includes the earlier book-preview development lineage, whose outstanding qualification is recorded in [the book report](home-books-2026-09-26.md); that broader lineage is not promoted to `main` by this kitchen task.
 
-No live family server, installed phone app, iPad, iPhone or private media was changed by this task. The recorded deployed state remains Samsung 155, PC server/helper and both iPads 128, iPhone 101. The content-14 client requires a matching coordinated server for shared play; private solo remains available.
+**Phone delivery — September 27:** Samsung updated from **155 to 162** with the exact signed APK and installed package verified. All **16 primary saves** and their backups remain: 15 primary saves are byte-identical; the active schema-12 world migrated to schema 13, preserving every prior object/player/room field and adding 53 kitchen objects (64 → 117). Home launched visibly and the new kitchen/plate controls were visible on the unlocked phone. No selected Unity/Android runtime errors were observed. This is an installation/visible-launch check, not full physical recipe or four-device acceptance. [Sanitized update and retention evidence](evidence/kitchen162-2026-09-27/android-update.json) · [Actual phone kitchen](evidence/kitchen162-2026-09-27/phone-kitchen.png).
+
+PC server/helper and both iPads remain recorded at 128, iPhone 101. No live family server, other device or private media was changed. The content-14 client requires a matching coordinated server for shared play; private solo remains available.
 
 ## Remaining work
 
