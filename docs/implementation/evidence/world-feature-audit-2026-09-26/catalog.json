@@ -2412,7 +2412,7 @@
       "chapters": [
         30
       ],
-      "description": "Shared downstairs. Simple play: Drop a wooden block, smooth stone, or toy boat into a shallow illustrated tub Explore together: Add cargo to the boat; one child loads while the other changes the cargo; remove cargo and try again Factual constraint: Floating depends on the object and displaced water, not simply “big/heavy sinks.” Use a finite set of reviewed props Candidate 174 integrates the simple saved tray; deeper interactions and physical acceptance remain open.",
+      "description": "Shared downstairs. Simple play: Drop a wooden block, smooth stone, or toy boat into a shallow illustrated tub Explore together: Add cargo to the boat; one child loads while the other changes the cargo; remove cargo and try again Factual constraint: Floating depends on the object and displaced water, not simply “big/heavy sinks.” Use a finite set of reviewed props Candidate 187 adds illustrated equipment and smooth RGB presentation to the saved trays; deeper interactions and physical acceptance remain open.",
       "evidence": "discovery",
       "extraSource": ""
     },
@@ -2425,7 +2425,7 @@
       "chapters": [
         30
       ],
-      "description": "Shared downstairs. Simple play: Drag a large magnet wand near iron/steel toy pieces and watch them follow Explore together: Guide a magnetic toy along a path; try wood/plastic pieces; turn a second bar magnet to compare push and pull Factual constraint: Ordinary magnets do not visibly attract every metal or every object. Magnetic poles need consistent behavior Candidate 174 integrates the simple saved tray; deeper interactions and physical acceptance remain open.",
+      "description": "Shared downstairs. Simple play: Drag a large magnet wand near iron/steel toy pieces and watch them follow Explore together: Guide a magnetic toy along a path; try wood/plastic pieces; turn a second bar magnet to compare push and pull Factual constraint: Ordinary magnets do not visibly attract every metal or every object. Magnetic poles need consistent behavior Candidate 187 adds illustrated equipment and smooth RGB presentation to the saved trays; deeper interactions and physical acceptance remain open.",
       "evidence": "discovery",
       "extraSource": ""
     },
@@ -2451,7 +2451,7 @@
       "chapters": [
         30
       ],
-      "description": "Shared downstairs. Simple play: Switch on red, green, and blue lamps to light up a pretend flower screen Explore together: Move overlapping light spots or turn lamps off together; make picture-requested colors if wanted Factual constraint: This is colored light: red plus green makes yellow; all three can make white. Paint mixing uses different rules Candidate 174 integrates the simple saved tray; deeper interactions and physical acceptance remain open.",
+      "description": "Shared downstairs. Simple play: Switch on red, green, and blue lamps to light up a pretend flower screen Explore together: Move overlapping light spots or turn lamps off together; make picture-requested colors if wanted Factual constraint: This is colored light: red plus green makes yellow; all three can make white. Paint mixing uses different rules Candidate 187 adds illustrated equipment and smooth RGB presentation to the saved trays; deeper interactions and physical acceptance remain open.",
       "evidence": "discovery",
       "extraSource": ""
     },
@@ -2516,7 +2516,7 @@
       "chapters": [
         30
       ],
-      "description": "Shared downstairs. Simple play: Scoop baking soda and pour vinegar into an open bowl or toy volcano; watch immediate fizzing Explore together: Four independent saved trays; compare portions, add optional soap for lasting foam; researched extensions include indicator colors, oil/water layers and cornstarch/water Factual constraint: Vinegar and baking soda produce carbon dioxide; soap retains bubbles rather than creating extra gas. Preserve consumed ingredients and distinguish chemical reactions from physical mixing; not every combination fizzes Candidate 178 implements fizz/foam, indicator colors, oil/water separation and oobleck with direct pouring and sixteen saved trays. Physical/A10/audio acceptance and portable creations remain open.",
+      "description": "Shared downstairs. Simple play: Scoop baking soda and pour vinegar into an open bowl or toy volcano; watch immediate fizzing Explore together: Four independent saved trays; compare portions, add optional soap for lasting foam; researched extensions include indicator colors, oil/water layers and cornstarch/water Factual constraint: Vinegar and baking soda produce carbon dioxide; soap retains bubbles rather than creating extra gas. Preserve consumed ingredients and distinguish chemical reactions from physical mixing; not every combination fizzes Candidate 187 adds the illustrated workbench and layered glass to fizz/foam, indicator colors, oil/water and oobleck, retaining direct pouring and sixteen saved trays. Physical/A10/audio acceptance and portable creations remain open.",
       "evidence": "mixing",
       "extraSource": ""
     },
@@ -2529,7 +2529,7 @@
       "chapters": [
         30
       ],
-      "description": "Reachable downstairs, clear walking space, independent entry/exit Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
+      "description": "Reachable downstairs, clear walking space, independent entry/exit Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
       "evidence": "mixing",
       "extraSource": ""
     },
@@ -2542,7 +2542,7 @@
       "chapters": [
         30
       ],
-      "description": "Large closed regions, fitted pictures, surrounding visible tools; all pages available to every player Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
+      "description": "Large closed regions, fitted pictures, surrounding visible tools; all pages available to every player Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
       "evidence": "mixing",
       "extraSource": ""
     },
@@ -2555,7 +2555,7 @@
       "chapters": [
         30
       ],
-      "description": "Large named swatches, immediate feedback, authored region masks and a tap alternative to precise dragging Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
+      "description": "Large named swatches, immediate feedback, authored region masks and a tap alternative to precise dragging Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
       "evidence": "mixing",
       "extraSource": ""
     },
@@ -2568,7 +2568,7 @@
       "chapters": [
         30
       ],
-      "description": "Clipped strokes, one gesture per undo, no sibling-wide erase; default pending optional preference Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
+      "description": "Clipped strokes, one gesture per undo, no sibling-wide erase; default pending optional preference Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
       "evidence": "mixing",
       "extraSource": ""
     },
@@ -2581,7 +2581,7 @@
       "chapters": [
         30
       ],
-      "description": "Creation/profile/page-version identity, autosave feedback, safe reopen and bounded storage Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
+      "description": "Creation/profile/page-version identity, autosave feedback, safe reopen and bounded storage Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
       "evidence": "mixing",
       "extraSource": ""
     },
@@ -2620,7 +2620,7 @@
       "chapters": [
         30
       ],
-      "description": "Bounded artwork updates, private offline saves, authoritative reunion, recovery and A10/touch verification Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
+      "description": "Bounded artwork updates, private offline saves, authoritative reunion, recovery and A10/touch verification Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.",
       "evidence": "mixing",
       "extraSource": ""
     },

@@ -1275,6 +1275,8 @@ The PC or local solo authority calculates results. Clients display interpolation
 
 ### Shared downstairs coloring and drawing
 
+**September 27 visual correction:** the user rejects schematic science and a six-page coloring limit. [The applied workshop correction](implementation/workshop-visuals-2026-09-27.html) adds illustrated equipment and twelve official Bluey pages, for eighteen total, with additive per-profile save migration. Final visual/physical acceptance and blank drawing remain open.
+
 This newly requested area sits beside the living room and shared science bay. Four players can use their own papers at once, regardless of chosen avatar. It does not replace narrated books. The working default includes coloring pages and blank drawing paper; the optional preference question remains open. Final art/themes need review.
 
 | Coloring ID | Feature | Required behavior |

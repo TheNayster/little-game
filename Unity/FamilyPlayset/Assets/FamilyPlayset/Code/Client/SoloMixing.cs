@@ -11,7 +11,7 @@ namespace LittleWeeps.Client
     {
         private RectTransform mixingRoot;
         private MixingSurface mixingSurface;
-        private Image mixingVolcano,mixingGhost;
+        private Image mixingVolcano,mixingGhost,mixingBowlBack,mixingBowlFront;
         private readonly List<Image> mixingSupplyCards=new List<Image>();
         private readonly List<Text> mixingModes=new List<Text>();
         private readonly List<Image> mixingSupplyArt=new List<Image>();
@@ -52,24 +52,26 @@ namespace LittleWeeps.Client
             for(var i=0;i<4;i++){var mode=i;mixingModes.Add(Button(mixingRoot,Mixing.Names[i],new Vector2((i-1.5f)*258,259),new Vector2(248,58),()=>{if(discoveryPending)return;CancelMixingGesture();mixingMode=mode;mixingSelected=Mixing.Supplies[mode][0];PresentDiscovery();},Cream));}
             // A direct touch surface and authored prop sprites keep the working
             // vessel central; text labels supplement the recognizable pictures.
+            mixingBowlBack=HomePicture(mixingRoot,"Glass bowl rear",new Vector2(0,-20),new Vector2(580,435),WorkshopArt.Bowl(0));mixingBowlBack.raycastTarget=false;
             mixingSurface=Rect(mixingRoot,"Mixture bowl",new Vector2(0,-20),new Vector2(580,435)).gameObject.AddComponent<MixingSurface>();
             var touch=mixingSurface.gameObject.AddComponent<MixingGesture>();
             touch.Begin=point=>{if(!MixingReady || mixingHeld>=0)return;mixingSurfaceDrag=true;mixingLastPoint=point;mixingSent=false;};
             touch.Move=point=>{if(!mixingSurfaceDrag || !MixingReady)return;if(Vector2.Distance(point,mixingLastPoint)>28){MixingSend("stir");mixingLastPoint=point;mixingSent=true;}};
             touch.End=moved=>{if(!mixingSurfaceDrag)return;mixingSurfaceDrag=false;if(!moved && MixingReady)MixingSend(mixingMode==3?"poke":"add:"+mixingSelected);};
+            mixingBowlFront=HomePicture(mixingRoot,"Glass bowl front",new Vector2(0,-20),new Vector2(580,435),WorkshopArt.Bowl(1));mixingBowlFront.raycastTarget=false;
             mixingVolcano=HomePicture(mixingRoot,"Toy volcano",new Vector2(0,-56),new Vector2(355,320),MixingSprite(10));mixingVolcano.preserveAspect=true;mixingVolcano.raycastTarget=false;
             for(var i=0;i<6;i++){
                 var slot=i;var point=new Vector2(i<3?-430:430,145-i%3*148);
-                var card=Panel(mixingRoot,"Mixing supply "+i,point,new Vector2(184,139),Cream,true);mixingSupplyCards.Add(card);
-                var art=HomePicture(card.transform,"Ingredient picture",new Vector2(0,12),new Vector2(108,106),MixingSprite(i));art.preserveAspect=true;art.raycastTarget=false;mixingSupplyArt.Add(art);
-                var label=Label(card.transform,"",20,new Vector2(0,-51),new Vector2(174,33));label.raycastTarget=false;mixingSupplyLabels.Add(label);
+                var card=Panel(mixingRoot,"Mixing supply "+i,point,new Vector2(184,139),Color.clear,true);mixingSupplyCards.Add(card);
+                var art=HomePicture(card.transform,"Ingredient picture",new Vector2(0,12),new Vector2(128,117),MixingSprite(i));art.preserveAspect=true;art.raycastTarget=false;mixingSupplyArt.Add(art);
+                var label=Label(card.transform,"",20,new Vector2(0,-57),new Vector2(174,33));label.raycastTarget=false;mixingSupplyLabels.Add(label);
                 var gesture=card.gameObject.AddComponent<MixingGesture>();
                 var ownsGesture=false;
                 gesture.Begin=pointOnScreen=>{ownsGesture=false;if(!MixingReady || mixingHeld>=0 || mixingSurfaceDrag)return;ownsGesture=true;mixingHeld=Mixing.Supplies[mixingMode][slot];mixingSelected=mixingHeld;mixingDragged=false;mixingSent=false;mixingOverBowl=false;mixingNextPour=Time.unscaledTime;MoveMixingTool(pointOnScreen);};
                 gesture.Move=pointOnScreen=>{if(!ownsGesture || mixingHeld<0)return;mixingDragged=true;MoveMixingTool(pointOnScreen);};
                 gesture.End=moved=>{if(!ownsGesture)return;ownsGesture=false;if(mixingHeld<0)return;var ingredient=mixingHeld;var add=!moved || mixingOverBowl && !mixingSent;CancelMixingGesture();if(add && MixingReady)MixingSend("add:"+ingredient);};
             }
-            mixingInstruction=Label(mixingRoot,"Tap an ingredient, or drag it over the bowl to pour.",22,new Vector2(0,205),new Vector2(730,34));
+            mixingInstruction=Label(mixingRoot,"Tap an ingredient, or drag it over the bowl to pour.",22,new Vector2(0,199),new Vector2(730,34));
             mixingAmounts=Label(mixingRoot,"",18,new Vector2(0,-230),new Vector2(630,24));
             mixingVesselButton=Button(mixingRoot,"Volcano",new Vector2(-402,-264),new Vector2(170,56),()=>MixingSend("vessel"),Cream);
             Button(mixingRoot,"Stir",new Vector2(-208,-264),new Vector2(164,56),()=>MixingSend("stir"),Cream).transform.parent.name="Mixing Stir";
@@ -108,12 +110,12 @@ namespace LittleWeeps.Client
         private void PresentMixing(DiscoveryWorkspace own,Vector2 size)
         {
             if(mixingRoot==null)return;mixingRoot.gameObject.SetActive(discoveryStation==4);if(!MixingOpen)return;
-            mixingRoot.localScale=Vector3.one*Mathf.Min((size.x-35)/1080,(size.y-267)/580);mixingRoot.anchoredPosition=new Vector2(0,-49);
+            mixingRoot.localScale=Vector3.one*Mathf.Min((size.x-182)/1080,(size.y-167)/625);mixingRoot.anchoredPosition=new Vector2(70,-26);
             for(var i=0;i<4;i++)mixingModes[i].transform.parent.GetComponent<Image>().color=i==mixingMode?new Color(.65f,.87f,.8f):Cream;
             var supplies=Mixing.Supplies[mixingMode];var tray=own.mixtures[mixingMode];
-            for(var i=0;i<6;i++){var card=mixingSupplyCards[i];card.gameObject.SetActive(i<supplies.Length);if(i>=supplies.Length)continue;var ingredient=supplies[i];card.name="Mixing ingredient "+ingredient;card.color=ingredient==mixingSelected?new Color(1,.88f,.61f):Cream;
+            for(var i=0;i<6;i++){var card=mixingSupplyCards[i];card.gameObject.SetActive(i<supplies.Length);if(i>=supplies.Length)continue;var ingredient=supplies[i];card.name="Mixing ingredient "+ingredient;card.color=ingredient==mixingSelected?new Color(1,.92f,.73f,.24f):Color.clear;
                 mixingSupplyArt[i].sprite=MixingIngredientSprite(ingredient);mixingSupplyLabels[i].text=mixingMode==1 && ingredient==1?"Soda solution":Mixing.Labels[ingredient];}
-            mixingVolcano.gameObject.SetActive(mixingMode==0 && tray.volcano);mixingSurface.Paint(tray,mixingMode,MixingCalm);
+            mixingBowlBack.gameObject.SetActive(!(mixingMode==0 && tray.volcano));mixingBowlFront.gameObject.SetActive(!(mixingMode==0 && tray.volcano));mixingVolcano.gameObject.SetActive(mixingMode==0 && tray.volcano);mixingSurface.Paint(tray,mixingMode,MixingCalm);
             mixingVesselButton.transform.parent.gameObject.SetActive(mixingMode==0);mixingVesselButton.text=tray.volcano?"Clear bowl":"Toy volcano";mixingVesselButton.transform.parent.name="Mixing Vessel";
             mixingPokeButton.transform.parent.gameObject.SetActive(mixingMode==3);mixingPokeButton.transform.parent.name="Mixing Tap mixture";
             mixingSoundButton.text=MixingSound?"Sound on":"Sound off";mixingMotionButton.text=MixingCalm?"Calm motion":"Gentle motion";

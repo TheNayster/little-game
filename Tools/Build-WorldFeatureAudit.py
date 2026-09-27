@@ -206,12 +206,12 @@ for n,prefix,world,group in [(37,'BCH','beach','Ten beach activities'),(38,'CRK'
 for row in table_with(30,'ID and station')[1:]:
     m=re.match(r'(SCI-\d+)\s*—\s*(.+)',plain(row[0]))
     integrated=m[1] in ('SCI-01','SCI-02','SCI-04','SCI-09')
-    note=' Candidate 174 integrates the simple saved tray; deeper interactions and physical acceptance remain open.' if integrated else ' Planned; not implemented in Unity.'
-    if m[1]=='SCI-09':note=' Candidate 178 implements fizz/foam, indicator colors, oil/water separation and oobleck with direct pouring and sixteen saved trays. Physical/A10/audio acceptance and portable creations remain open.'
+    note=' Candidate 187 adds illustrated equipment and smooth RGB presentation to the saved trays; deeper interactions and physical acceptance remain open.' if integrated else ' Planned; not implemented in Unity.'
+    if m[1]=='SCI-09':note=' Candidate 187 adds the illustrated workbench and layered glass to fizz/foam, indicator colors, oil/water and oobleck, retaining direct pouring and sixteen saved trays. Physical/A10/audio acceptance and portable creations remain open.'
     add(m[1],'home','Science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
 for row in table_with(30,'Coloring ID')[1:]:
     integrated=row[0] in ('COL-01','COL-02','COL-03','COL-04','COL-05','COL-08')
-    note=' Candidate 174 integrates fixed-page tap fill, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.' if integrated else ' Planned; no game implementation yet.'
+    note=' Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.' if integrated else ' Planned; no game implementation yet.'
     add(row[0],'home','Shared downstairs coloring',row[1],'part' if integrated else 'plan',[30],row[2]+note,'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
 for i,row in enumerate(table_with(26,'Working title')[1:],1):
     add(f'BK-{i:02}','home','Six starter books',plain(row[0]),'plan',[25,26],f'{row[1]} proposed. {row[2]}','ledger')

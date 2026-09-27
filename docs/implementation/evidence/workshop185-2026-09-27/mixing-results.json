@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "build": 185,
+  "previous": 174,
+  "checks": [
+    "actual 174 save adds sixteen trays while preserving all previous records and coloring",
+    "illustrated boats materials and lamps render with direct boat and lamp input",
+    "four clients use real ingredient taps with immediate contact gas and a water control",
+    "holding the jug over the vessel partially pours and foam survives vessel changes without duplicating reactants",
+    "a second finger cannot steal an active ingredient pour",
+    "indicator quantities oil separation and oobleck touch all operate as distinct persistent activities",
+    "phone/tablet layouts and calm muted controls render and lifecycle retains the mixtures",
+    "one user can travel another rinse and another color while sibling mixtures remain intact",
+    "server save restart and rejoin retain all four players and all four experiment variants without replay"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

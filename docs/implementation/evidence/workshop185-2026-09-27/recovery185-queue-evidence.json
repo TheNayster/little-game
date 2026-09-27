@@ -1,0 +1,13 @@
+{
+  "qualified": false,
+  "sourceQueuePackets": 256,
+  "installedReliableWindow": 64,
+  "familyWorldTouched": false,
+  "errors": [
+    {
+      "instance": "f35d1363ca78430c893531a4042fbfcf",
+      "count": 586,
+      "example": "Send error on connection 4294967299: send queue full (need to increase 'Max Packet Queue Size' parameter)"
+    }
+  ]
+}

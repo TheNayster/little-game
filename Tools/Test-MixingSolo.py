@@ -10,7 +10,7 @@ from shared_garden_runtime import Instance, read, write, wait, require
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('build',type=int);args=parser.parse_args()
     folder=ROOT/f'Builds/NetworkProbe/G3-0.0.{args.build}'
-    summary=read(folder/'build-summary.json');require(summary['schema']==17,'Wrong mixing candidate')
+    summary=read(folder/'build-summary.json');require(summary['schema'] in (17,18),'Wrong mixing candidate')
     authority,players,_=create_family()
     class Run:pass
     run=Run();run.build=args.build;run.run_id=authority['worldId'];run.path=ROOT/'LocalData/FamilyLAN'/run.run_id;run.path.mkdir(parents=True)
@@ -29,7 +29,12 @@ def main():
     try:
         a=start();require(not a.input('inspect')['shared'],'Unexpected family join')
         save=Path(a.input('inspect')['savePath'])
-        def world():return json.loads(save.read_bytes().split(b'\n',2)[2])
+        def world():
+            for attempt in range(6):
+                try:return json.loads(save.read_bytes().split(b'\n',2)[2])
+                except PermissionError:
+                    if attempt==5:raise
+                    time.sleep(.025)
         def tray(mode=0):return world()['discovery'][0]['mixtures'][mode]
         def button(name):a.input('touchButton',text=name);time.sleep(.16)
         def supply(slot):

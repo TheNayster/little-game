@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "newPages": 12,
+  "totalPages": 18,
+  "pages": [
+    {
+      "id": "bluey",
+      "regions": 33,
+      "width": 725,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "bingo-glasses",
+      "regions": 34,
+      "width": 724,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "bingo-jump",
+      "regions": 30,
+      "width": 724,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "bingo-scooter",
+      "regions": 61,
+      "width": 724,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "bingo-hooray",
+      "regions": 28,
+      "width": 724,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "bingo-rocket",
+      "regions": 58,
+      "width": 724,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "bluey-bike",
+      "regions": 69,
+      "width": 724,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "chilli-hockey",
+      "regions": 45,
+      "width": 724,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "heeler-family",
+      "regions": 83,
+      "width": 725,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "bluey-surprise",
+      "regions": 75,
+      "width": 725,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "bluey-potion",
+      "regions": 6,
+      "width": 724,
+      "height": 1024,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    },
+    {
+      "id": "football-friends",
+      "regions": 114,
+      "width": 1024,
+      "height": 720,
+      "sourceHashVerified": true,
+      "allRegionsPresent": true
+    }
+  ]
+}

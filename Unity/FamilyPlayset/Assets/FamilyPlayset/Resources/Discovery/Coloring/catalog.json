@@ -1,0 +1,125 @@
+{
+  "publisher": "Bluey official / Ludo Studio, BBC Studios",
+  "pages": [
+    {
+      "id": "bluey",
+      "name": "Bluey",
+      "url": "https://www.bluey.tv/wp-content/uploads/2019/07/Bluey.pdf",
+      "pdfPage": 0,
+      "width": 725,
+      "height": 1024,
+      "regions": 33,
+      "sha256": "a98a802dfcc33af4710efa98ea408982538b01a6b1fc2b4285e855a7561a6bb0"
+    },
+    {
+      "id": "bingo-glasses",
+      "name": "Bingo's glasses",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/bingo-glasses.pdf",
+      "pdfPage": 0,
+      "width": 724,
+      "height": 1024,
+      "regions": 34,
+      "sha256": "dcced77ea3f55f1e98e4bee12bd36ae7207671a88f196c66f131b29aae34a699"
+    },
+    {
+      "id": "bingo-jump",
+      "name": "Jump, Bingo!",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/Bingo-jump.pdf",
+      "pdfPage": 0,
+      "width": 724,
+      "height": 1024,
+      "regions": 30,
+      "sha256": "ff34f6edaa4dd0970a701f0ce8babf841f7410bec4e296775e7873f4bf54a7ad"
+    },
+    {
+      "id": "bingo-scooter",
+      "name": "Bingo's scooter",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/Bingo-scooter_1.pdf",
+      "pdfPage": 0,
+      "width": 724,
+      "height": 1024,
+      "regions": 61,
+      "sha256": "730439e4b5a5408efdd056c942a2b1c441105b93d329281a631b8aa56c561c76"
+    },
+    {
+      "id": "bingo-hooray",
+      "name": "Hooray, Bingo!",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/bingo-yay.pdf",
+      "pdfPage": 0,
+      "width": 724,
+      "height": 1024,
+      "regions": 28,
+      "sha256": "31a6d794217914d891fd57fb6df7d245c75f82b2da56193aac7495b32b7e60a9"
+    },
+    {
+      "id": "bingo-rocket",
+      "name": "Rocket Bingo",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/rocket-bingo.pdf",
+      "pdfPage": 0,
+      "width": 724,
+      "height": 1024,
+      "regions": 58,
+      "sha256": "1c98521b5ad068b44d9ecaf3d07c86cf9794f9da42344241befae57a16dbd324"
+    },
+    {
+      "id": "bluey-bike",
+      "name": "Bluey's bike",
+      "url": "https://www.bluey.tv/wp-content/uploads/2024/07/Bluey-Bike.pdf",
+      "pdfPage": 0,
+      "width": 724,
+      "height": 1024,
+      "regions": 69,
+      "sha256": "86e533b843f83cc554336c1701ed70e9f87ae0255a6614317f347c3eceb69e33"
+    },
+    {
+      "id": "chilli-hockey",
+      "name": "Chilli plays hockey",
+      "url": "https://www.bluey.tv/wp-content/uploads/2024/07/MUM-HOCKEY.pdf",
+      "pdfPage": 0,
+      "width": 724,
+      "height": 1024,
+      "regions": 45,
+      "sha256": "1d90d0af8e3bf81bcc7d2d642c6be44581e3c060f32f5fe0cf2cc123d9019a02"
+    },
+    {
+      "id": "heeler-family",
+      "name": "The Heeler family",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/04/COLOURINGPAGE1.pdf",
+      "pdfPage": 0,
+      "width": 725,
+      "height": 1024,
+      "regions": 83,
+      "sha256": "d8554f3acda519a359054cb5809d0b550b6a9ecc6a592670d1ac4f9d521d7f80"
+    },
+    {
+      "id": "bluey-surprise",
+      "name": "Bluey's surprise",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/04/SURPRISE_ColouringSheet.pdf",
+      "pdfPage": 0,
+      "width": 725,
+      "height": 1024,
+      "regions": 75,
+      "sha256": "83ee9a207561b276634a5df0d718bb160465365033eb95e5878db880e589835a"
+    },
+    {
+      "id": "bluey-potion",
+      "name": "Bluey's potion",
+      "url": "https://www.bluey.tv/wp-content/uploads/2024/12/Bluey_ColouringSheet_Minisodes_Potion2_A4.pdf",
+      "pdfPage": 0,
+      "width": 724,
+      "height": 1024,
+      "regions": 6,
+      "sha256": "0c709e07f944df8f9c6363b8841a45fcc58cdb4196084a493acfe3a6ed6de8c4"
+    },
+    {
+      "id": "football-friends",
+      "name": "Football friends",
+      "url": "https://www.bluey.tv/wp-content/uploads/2024/07/COLOUR-IN-YOUR-OWN-JERSEY-PRINTOUT-v2.pdf",
+      "pdfPage": 0,
+      "width": 1024,
+      "height": 720,
+      "regions": 114,
+      "sha256": "19f950e1d797d44abb2917b7124a31865b4ef5957bba9d5c382893e70e2362d3"
+    }
+  ]
+}

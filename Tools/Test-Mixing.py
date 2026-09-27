@@ -22,9 +22,11 @@ def main():
         require(home.command(legacy,19,item=legacy.profile,target='0@0',value='fill:0:5')['accepted'],'legacy coloring')
         old.close();before=saved(old)
         run=Run(args.build,resume=old.run_id);server=run.start('server');after=saved(run);normal=deepcopy(after)
-        require(after['schema']==17 and all(len(w['mixtures'])==4 for w in after['discovery']),'Missing mixing migration')
-        for w in normal['discovery']:w.pop('mixtures')
-        normal['schema']=before['schema'];normal['revision']-=1;require(normal==before,'Migration altered existing records')
+        require(after['schema'] in (17,18) and all(len(w['mixtures'])==4 for w in after['discovery']),'Missing mixing migration')
+        for w in normal['discovery']:
+            w.pop('mixtures')
+            if after['schema']>=18:w['pages']=w['pages'][:6]
+        normal['schema']=before['schema'];normal['revision']-=after['schema']-before['schema'];require(normal==before,'Migration altered existing records')
         record('actual 174 save adds sixteen trays while preserving all previous records and coloring')
         clients=[run.start('client',v['profile']) for v in run.slots];a,b,c,d=clients
         def world():return wait(lambda:server.state(),'authority')['view']
@@ -39,7 +41,17 @@ def main():
             v.input('touch-begin',role='mixing',x=x,y=y,finger=61);v.input('touch-end',role='mixing',x=x,y=y,finger=61);time.sleep(.14);home.ready(v)
         def supply(v,slot):tap(v,-430 if slot<3 else 430,145-slot%3*148)
         for v in clients:home.ready(v);cmd(v,0,x=-6590,y=200);button(v,'Science bench');button(v,'Mix & discover')
-        a.input('resize',x=1024,y=768);home.ready(a);home.capture(a,folder,'mixing-empty-tablet')
+        a.input('resize',x=1024,y=768);home.ready(a)
+        button(a,'Floating boats')
+        a.input('touch-begin',role='discovery',x=400,y=230,finger=71);a.input('touch-end',role='discovery',x=400,y=230,finger=71);home.ready(a)
+        require(ws(a)['cargo']==1,'Direct boat tap did not add cargo');button(a,'Discovery Wide boat');home.capture(a,folder,'illustrated-boat-tablet')
+        button(a,'Magnet materials');button(a,'Discovery Iron');home.capture(a,folder,'illustrated-magnets-tablet')
+        button(a,'Colored light')
+        for x in [230,400,570]:
+            a.input('touch-begin',role='discovery',x=x,y=375,finger=72);a.input('touch-end',role='discovery',x=x,y=375,finger=72);home.ready(a)
+        require(ws(a)['lights']==7,'Direct illustrated lamps failed');home.capture(a,folder,'illustrated-rgb-tablet');button(a,'Mix & discover')
+        record('illustrated boats materials and lamps render with direct boat and lamp input')
+        home.capture(a,folder,'mixing-empty-tablet')
         for v in clients:
             supply(v,1);supply(v,2);require(tray(v)['reacted']==0,'Water made gas');supply(v,0);require(tray(v)['reacted']==1,'Contact did not react')
         home.capture(a,folder,'mixing-bowl-tablet')
@@ -74,7 +86,7 @@ def main():
         button(d,'Back to Home');cmd(d,7,value='park');before_b=tray(b)['amounts'][:];button(c,'Mixing Rinse bowl');require(tray(b)['amounts']==before_b,'Other user reset')
         require(a.input('inspect')['discoveryOpen'] and not d.input('inspect')['discoveryOpen'],'View not independent')
         # Include old coloring behavior in the new release.
-        button(a,'Back to Home');cmd(a,0,x=-5460,y=200);button(a,'Coloring table');button(a,'Discovery crayon Green')
+        button(a,'Back to Home');cmd(a,0,x=-5460,y=200);button(a,'Coloring table');button(a,'Choose picture');button(a,'Coloring page 0');button(a,'Discovery crayon Green')
         a.input('touch-begin',role='discovery',x=280,y=250,finger=66);a.input('touch-end',role='discovery',x=280,y=250,finger=66);home.ready(a)
         require(ws(a)['pages'][0]['colors'][0]==4,'Existing coloring regressed')
         record('one user can travel another rinse and another color while sibling mixtures remain intact')

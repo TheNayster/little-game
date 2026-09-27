@@ -20,9 +20,12 @@ namespace LittleWeeps.Client
         private static readonly Color Ink=new Color(.2f,.28f,.3f);
         public Action<int> FillRegion;
         public Action<Vector2> MoveMagnet;
+        public Action<string> ScienceOperation;
+        private RawImage lightScreen;private Material lightMaterial;
         public Func<bool> CanInteract;
         public int Station,Page;
         private DiscoveryWorkspace workspace,preview;
+        private readonly List<Image> equipment=new List<Image>();
         private int? pointer;
         private Vector2 down;
         public static Catalog Pages
@@ -36,8 +39,8 @@ namespace LittleWeeps.Client
             }
         }
         public void Present(DiscoveryWorkspace value,int station,int page)
-        {if(ReferenceEquals(workspace,value) && Station==station && Page==page)return;workspace=value;Station=station;Page=page;if(pointer==null)preview=null;SetVerticesDirty();}
-        public void CancelGesture(){pointer=null;preview=null;SetVerticesDirty();}
+        {if(ReferenceEquals(workspace,value) && Station==station && Page==page)return;workspace=value;Station=station;Page=page;if(pointer==null)preview=null;Equipment();SetVerticesDirty();}
+        public void CancelGesture(){pointer=null;preview=null;Equipment();SetVerticesDirty();}
         protected override void OnDisable(){CancelGesture();base.OnDisable();}
         private Vector2 Point(PointerEventData e){RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform,e.position,e.pressEventCamera,out var p);var r=rectTransform.rect;return new Vector2((p.x-r.xMin)/r.width*800,(r.yMax-p.y)/r.height*460);}
         public void OnPointerDown(PointerEventData e)
@@ -46,12 +49,18 @@ namespace LittleWeeps.Client
             down=Point(e);if(Station!=1 || workspace==null || Mathf.Abs(down.x-workspace.magnetX)>65 || Mathf.Abs(down.y-workspace.magnetY)>60)return;
             pointer=e.pointerId;preview=workspace.Copy();
         }
-        public void OnDrag(PointerEventData e){if(pointer!=e.pointerId || preview==null)return;var p=Point(e);Discovery.Magnet(preview,p.x,p.y);SetVerticesDirty();}
+        public void OnDrag(PointerEventData e){if(pointer!=e.pointerId || preview==null)return;var p=Point(e);Discovery.Magnet(preview,p.x,p.y);Equipment();SetVerticesDirty();}
         public void OnPointerUp(PointerEventData e)
-        {if(pointer!=e.pointerId || preview==null)return;var p=new Vector2(preview.magnetX,preview.magnetY);pointer=null;preview=null;if(CanInteract?.Invoke()??true)MoveMagnet?.Invoke(p);SetVerticesDirty();}
+        {if(pointer!=e.pointerId || preview==null)return;var p=new Vector2(preview.magnetX,preview.magnetY);pointer=null;preview=null;if(CanInteract?.Invoke()??true)MoveMagnet?.Invoke(p);Equipment();SetVerticesDirty();}
         public void OnPointerClick(PointerEventData e)
         {
-            if(Station!=3 || !(CanInteract?.Invoke()??true))return;var p=Point(e);
+            if(!(CanInteract?.Invoke()??true))return;var p=Point(e);
+            if(Station!=3){
+                if(Station==0 && p.x>200 && p.x<600)ScienceOperation?.Invoke("cargo-add");
+                else if(Station==1 && p.y>260){var index=Mathf.Clamp((int)((p.x-55)/175),0,3);ScienceOperation?.Invoke(new[]{"iron","wood","plastic","aluminum"}[index]);}
+                else if(Station==2 && p.y>305 && p.x>145 && p.x<665)ScienceOperation?.Invoke(new[]{"red","green","blue"}[Mathf.Clamp((int)((p.x-145)/170),0,2)]);
+                return;
+            }
             var shapes=Pages.pages[Page].shapes;
             for(var i=shapes.Length-1;i>=0;i--)if(shapes[i].region>=0 && Inside(shapes[i].points,p)){FillRegion?.Invoke(shapes[i].region);return;}
         }
@@ -60,26 +69,34 @@ namespace LittleWeeps.Client
             h.Clear();if(workspace==null)return;var w=preview??workspace;
             if(Station==3){foreach(var shape in Pages.pages[Page].shapes){var c=shape.region<0?Ink:Palette[w.pages[Page].colors[shape.region]];if(shape.closed && shape.solid)Poly(h,shape.points,c,shape.triangles);if(shape.region>=0 || !shape.closed)Line(h,shape.points,Ink,5,shape.closed);}return;}
             if(Station==0){
-                Box(h,70,85,660,315,new Color(.8f,.91f,.92f));Box(h,80,245,640,145,new Color(.51f,.79f,.9f));
-                var y=w.outOfWater?70:Discovery.Sinks(w)?350:220+Discovery.Waterline(w)*50;var width=w.wide?285:185;
-                Poly(h,new[]{new Vector2(400-width/2,y-15),new Vector2(400+width/2,y-15),new Vector2(380+width/2,y+35),new Vector2(420-width/2,y+35)},new Color(.81f,.58f,.26f));
-                Box(h,393-width/2,y-25,width+14,12,new Color(1,.84f,.5f));
-                for(var i=0;i<w.cargo;i++)Box(h,330+i%4*36,y-57-i/4*33,29,29,Palette[i%5+2]);
-            }else if(Station==1){
-                Ellipse(h,w.ironX,w.ironY,29,29,new Color(.5f,.58f,.61f));Ellipse(h,w.ironX,w.ironY,12,12,new Color(.91f,.96f,.94f));
-                Box(h,282,287,56,56,new Color(.8f,.58f,.35f));Ellipse(h,480,315,29,29,Palette[1]);Ellipse(h,650,315,29,29,new Color(.7f,.8f,.86f));
-                // A single closed outline avoids gaps between thick curve segments.
-                var points=new List<Vector2>{new Vector2(w.magnetX-39,w.magnetY+30)};
-                for(var i=0;i<=24;i++){var a=Mathf.PI+i*Mathf.PI/24;points.Add(new Vector2(w.magnetX+Mathf.Cos(a)*39,w.magnetY-12+Mathf.Sin(a)*39));}
-                points.Add(new Vector2(w.magnetX+39,w.magnetY+30));points.Add(new Vector2(w.magnetX+15,w.magnetY+30));
-                for(var i=24;i>=0;i--){var a=Mathf.PI+i*Mathf.PI/24;points.Add(new Vector2(w.magnetX+Mathf.Cos(a)*15,w.magnetY-12+Mathf.Sin(a)*15));}
-                points.Add(new Vector2(w.magnetX-15,w.magnetY+30));Poly(h,points.ToArray(),Palette[1]);
-                Box(h,w.magnetX-39,w.magnetY+15,24,20,Palette[5]);Box(h,w.magnetX+15,w.magnetY+15,24,20,Palette[5]);
-            }else{
-                Box(h,120,30,560,280,Ink);Box(h,138,48,524,244,Lights[w.lights]);
-                for(var i=0;i<3;i++){var x=230+i*170;Poly(h,new[]{new Vector2(x,345),new Vector2(x-33,412),new Vector2(x+33,412)},(w.lights&(1<<i))!=0?Lights[1<<i]:new Color(.64f,.7f,.69f));Box(h,x-41,410,82,12,Ink);}
+                Ellipse(h,400,393,310,26,new Color(.18f,.35f,.4f,.19f));
+                Poly(h,new[]{new Vector2(207,235),new Vector2(593,235),new Vector2(586,280),new Vector2(560,328),new Vector2(530,351),new Vector2(500,360),new Vector2(300,360),new Vector2(270,351),new Vector2(240,328),new Vector2(214,280)},new Color(.21f,.64f,.79f,.68f));
+                Ellipse(h,400,235,189,30,new Color(.52f,.88f,.94f,.87f));
+                for(var i=0;i<5;i++)Line(h,new[]{new Vector2(245+i*65,235),new Vector2(265+i*65,239),new Vector2(284+i*65,235)},new Color(.86f,.99f,1,.65f),3,false);
             }
         }
+
+        private void Equipment()
+        {
+            if(workspace==null)return;
+            while(equipment.Count<12){var go=new GameObject("Illustrated science prop",typeof(RectTransform),typeof(CanvasRenderer),typeof(Image));go.transform.SetParent(transform,false);var img=go.GetComponent<Image>();img.preserveAspect=true;img.raycastTarget=false;equipment.Add(img);}
+            foreach(var img in equipment)img.gameObject.SetActive(false);
+            if(lightScreen==null){var go=new GameObject("Additive light canvas",typeof(RectTransform),typeof(CanvasRenderer),typeof(RawImage));go.transform.SetParent(transform,false);lightScreen=go.GetComponent<RawImage>();lightScreen.raycastTarget=false;lightMaterial=new Material(Resources.Load<Shader>("Discovery/LightMix"));lightScreen.material=lightMaterial;var r=lightScreen.rectTransform;r.anchorMin=new Vector2(.095f,.31f);r.anchorMax=new Vector2(.905f,.98f);r.offsetMin=r.offsetMax=Vector2.zero;go.transform.SetAsFirstSibling();}
+            lightScreen.gameObject.SetActive(Station==2);
+            var w=preview??workspace;lightMaterial.SetFloat("_Lights",w.lights);var slot=0;
+            void Show(Sprite sprite,float x,float y,float width,float height,Color tint){var img=equipment[slot++];img.gameObject.SetActive(true);img.sprite=sprite;img.color=tint;var r=img.rectTransform;r.anchorMin=new Vector2((x-width/2)/800,1-(y+height/2)/460);r.anchorMax=new Vector2((x+width/2)/800,1-(y-height/2)/460);r.offsetMin=r.offsetMax=Vector2.zero;}
+            void Prop(int i,float x,float y,float width,float height)=>Show(WorkshopArt.Prop(i),x,y,width,height,Color.white);
+            if(Station==0){
+                var y=w.outOfWater?95:Discovery.Sinks(w)?326:175+Discovery.Waterline(w)*45;
+                Prop(w.wide?1:0,400,y,w.wide?330:240,160);
+                for(var i=0;i<w.cargo;i++)Prop(7,355+i%4*29,y-34-i/4*27,40,36);
+                Show(WorkshopArt.Bowl(1),400,253,850,470,new Color(1,1,1,.65f));
+            }else if(Station==1){
+                Prop(3,w.ironX,w.ironY,82,82);Prop(4,310,315,90,90);Prop(5,480,315,82,82);Prop(6,650,315,90,90);Prop(2,w.magnetX,w.magnetY,130,130);
+            }else if(Station==2){for(var i=0;i<3;i++)Prop(8+i,230+i*170,375,105,115);}
+        }
+
+        protected override void OnDestroy(){if(lightMaterial!=null)Destroy(lightMaterial);base.OnDestroy();}
         private Vector3 ScreenPoint(Vector2 p){var r=rectTransform.rect;return new Vector3(r.xMin+p.x/800*r.width,r.yMax-p.y/460*r.height);}
         private void Poly(VertexHelper h,Vector2[] p,Color c,int[] indices=null)
         {var offset=h.currentVertCount;foreach(var v in p)h.AddVert(ScreenPoint(v),c,Vector2.zero);var t=indices??Triangulate(p);for(var i=0;i<t.Length;i+=3)h.AddTriangle(offset+t[i],offset+t[i+1],offset+t[i+2]);}

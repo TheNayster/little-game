@@ -27,6 +27,21 @@
       "file": "mixing-colors.png",
       "sha256": "bac50a19d73ef0d23e8276a5f61363ca589d7601fff51e45e1169f42cf08d260",
       "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/mixing-colors.png"
+    },
+    {
+      "file": "workshop-background.png",
+      "sha256": "e099a60f0e235eb00e367e511db78edefca7ae159b98704ab435bd28bc5995bf",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/workshop-background.png"
+    },
+    {
+      "file": "workshop-props.png",
+      "sha256": "ff1b61c69c8265b7bae620190355bb43f1c448823e732c5615e1a5ebec68ba16",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/workshop-props.png"
+    },
+    {
+      "file": "workshop-bowl.png",
+      "sha256": "ac88d9caca04e23477ca89718007961eb869cb4e2c69400a272c42f119faac84",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/workshop-bowl.png"
     }
   ],
   "promptRecord": "README.md; summarized generation specifications, not a verbatim tool transcript",

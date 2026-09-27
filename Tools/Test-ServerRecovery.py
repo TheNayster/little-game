@@ -63,6 +63,9 @@ def main():
                     for mode,ingredients in enumerate(((1,2),(5,0),(2,6,8),(4,4,2))):
                         for revision,ingredient in enumerate(ingredients):
                             require(command(client,19,item=client.profile,target=f'mix:{mode}@{revision}',value=f'mix:{mode}:add:{ingredient}',x=1)['accepted'],'Mixing recovery state')
+                if summary['schema']>=18:
+                    for page in range(6,18):
+                        require(command(client,19,item=client.profile,target=f'{page}@0',value='fill:0:3')['accepted'],'Expanded coloring recovery state')
                 require(command(client,0,x=prior['x'],y=prior['y'])['accepted'],'Discovery recovery return')
             time.sleep(.7)
         drop(clients[0], 730, 160)
@@ -201,6 +204,9 @@ def main():
         require(server.snapshot()['players'] == 4, 'Reconstructed enrollment did not admit the original players')
         fixture.stop()
         passed('missing entire test world reconstructed from the bundle with byte-identical protected enrollment; original four players admitted; existing-directory replacement refused')
+        logs=list(fixture.path.rglob('player.log'))+list(archive.rglob('player.log'))
+        require(all('send queue full' not in p.read_text(errors='replace').lower() for p in logs),'Packet queue overflow during four-player recovery')
+        passed('encrypted four-player recovery completes without packet-queue overflow')
         success = True
     finally:
         fixture.cleanup()

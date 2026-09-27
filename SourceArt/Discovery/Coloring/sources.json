@@ -1,0 +1,65 @@
+{
+  "publisher": "Bluey official / Ludo Studio, BBC Studios",
+  "pages": [
+    {
+      "id": "bluey",
+      "name": "Bluey",
+      "url": "https://www.bluey.tv/wp-content/uploads/2019/07/Bluey.pdf"
+    },
+    {
+      "id": "bingo-glasses",
+      "name": "Bingo's glasses",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/bingo-glasses.pdf"
+    },
+    {
+      "id": "bingo-jump",
+      "name": "Jump, Bingo!",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/Bingo-jump.pdf"
+    },
+    {
+      "id": "bingo-scooter",
+      "name": "Bingo's scooter",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/Bingo-scooter_1.pdf"
+    },
+    {
+      "id": "bingo-hooray",
+      "name": "Hooray, Bingo!",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/bingo-yay.pdf"
+    },
+    {
+      "id": "bingo-rocket",
+      "name": "Rocket Bingo",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/02/rocket-bingo.pdf"
+    },
+    {
+      "id": "bluey-bike",
+      "name": "Bluey's bike",
+      "url": "https://www.bluey.tv/wp-content/uploads/2024/07/Bluey-Bike.pdf"
+    },
+    {
+      "id": "chilli-hockey",
+      "name": "Chilli plays hockey",
+      "url": "https://www.bluey.tv/wp-content/uploads/2024/07/MUM-HOCKEY.pdf"
+    },
+    {
+      "id": "heeler-family",
+      "name": "The Heeler family",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/04/COLOURINGPAGE1.pdf"
+    },
+    {
+      "id": "bluey-surprise",
+      "name": "Bluey's surprise",
+      "url": "https://www.bluey.tv/wp-content/uploads/2025/04/SURPRISE_ColouringSheet.pdf"
+    },
+    {
+      "id": "bluey-potion",
+      "name": "Bluey's potion",
+      "url": "https://www.bluey.tv/wp-content/uploads/2024/12/Bluey_ColouringSheet_Minisodes_Potion2_A4.pdf"
+    },
+    {
+      "id": "football-friends",
+      "name": "Football friends",
+      "url": "https://www.bluey.tv/wp-content/uploads/2024/07/COLOUR-IN-YOUR-OWN-JERSEY-PRINTOUT-v2.pdf"
+    }
+  ]
+}

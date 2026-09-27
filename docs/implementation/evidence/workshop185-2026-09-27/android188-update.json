@@ -1,0 +1,31 @@
+{
+  "installation": {
+    "utc": "2026-09-27T22:18:46.9141404Z",
+    "operation": "updated",
+    "version": "0.0.188",
+    "package": "com.littleweeps.familyplayset",
+    "apkSha256": "5f130ab202b795e958e8184c65810c667bc2be2c889be8a530f46c48feef8956",
+    "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+    "previousBuild": 179,
+    "previousApkSha256": "907d4fb6ab2e5695318d8a52961ea516a817057a9d6e04caf690200dbf7a96c7",
+    "installedApkHashMatched": true,
+    "deviceModel": "SM-S948U1",
+    "pageBytes": 4096,
+    "activeUser": 0,
+    "launchCommandSucceeded": true,
+    "pid": "7773",
+    "visibleUiAndSaveRetentionVerified": false,
+    "native16KbQualified": false
+  },
+  "saveRetention": {
+    "primarySaves": 20,
+    "backups": 20,
+    "checksummedSaveEnvelopes": 40,
+    "allPriorCapturedFilesByteIdentical": true,
+    "missingPriorFiles": 0,
+    "capturedScope": "SoloPrototype and FamilyLAN; private backups are excluded from Git"
+  },
+  "visibleCheck": "Blocked by locked/dozing phone. Wake command sent; no lock bypass attempted. User asked to unlock and open game.",
+  "liveServerOrOtherDevicesChanged": false,
+  "physicalAcceptance": false
+}

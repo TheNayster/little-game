@@ -19,10 +19,20 @@ def main():
     def record(text):checks.append(text);print('PASS '+text,flush=True)
     try:
         old.start('server');legacy=old.start('client',old.slots[0]['profile']);home.ready(legacy)
-        require(home.command(legacy,0,x=-4210,y=220)['accepted'],'legacy placement');require(home.command(legacy,1,value='orange-pup')['accepted'],'legacy avatar');old.close();before=saved(old)
+        require(home.command(legacy,0,x=-4210,y=220)['accepted'],'legacy placement');require(home.command(legacy,1,value='orange-pup')['accepted'],'legacy avatar')
+        if args.previous>=178:
+            require(home.command(legacy,0,x=-6590,y=220)['accepted'],'old science position')
+            require(home.command(legacy,19,item=legacy.profile,target='0@0',value='fill:0:5')['accepted'],'old colored page')
+            require(home.command(legacy,19,item=legacy.profile,target='mix:1@0',value='mix:1:add:5',x=1)['accepted'],'old indicator mixture')
+        old.close();before=saved(old)
         run=Run(args.build,resume=old.run_id);server=run.start('server');after=saved(run);normal=deepcopy(after)
-        require(after['schema']==16 and len(after['discovery'])==4,'New schema/workspaces missing')
-        normal.pop('discovery');normal['schema']=before['schema'];normal['revision']-=1
+        require(after['schema']>=16 and len(after['discovery'])==4,'New schema/workspaces missing')
+        if before['schema']<16:normal.pop('discovery')
+        else:
+            for w in normal['discovery']:
+                w['pages']=w['pages'][:len(before['discovery'][0]['pages'])]
+                if before['schema']<17:w.pop('mixtures')
+        normal['schema']=before['schema'];normal['revision']-=after['schema']-before['schema']
         require(normal==before,'Migration changed existing saved records')
         record('actual previous release save migrates additively with profile avatar positions objects and receipts intact')
         clients=[run.start('client',v['profile']) for v in run.slots];a,b,c,d=clients
@@ -54,14 +64,31 @@ def main():
         button(a,'Discovery Blue lamp');require(ws(a)['lights']==7,'RGB light not white');home.capture(a,folder,'colored-light-tablet')
         record('native magnet drag commits once and RGB combinations update authoritative persistent state')
         for v in clients:button(v,'Back to Home');move(v,-5460);button(v,'Coloring table')
+        for v in clients:button(v,'Choose picture');button(v,'Coloring page 0')
         for v,color in zip(clients,['Blue','Green','Purple','Orange']):button(v,'Discovery crayon '+color);tap(v,280,250)
         require([ws(v)['pages'][0]['colors'][0] for v in clients]==[5,4,6,2],'Four independent coloring edits')
         before_b=deepcopy(ws(b));button(a,'Undo');require(ws(a)['pages'][0]['colors'][0]==0 and ws(b)==before_b,'Undo scope');button(a,'Redo');require(ws(a)['pages'][0]['colors'][0]==5,'Redo scope')
         for page in range(6):
             home.capture(a,folder,'coloring-'+str(page)+'-tablet')
             if page<5:button(a,'Page >')
+        # Official line art uses fixed PDF-derived masks; test their real hit regions.
+        mask_root=Path(__file__).resolve().parents[1]/'Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/Coloring'
+        catalog=json.loads((mask_root/'catalog.json').read_text())
+        for page,item in enumerate(catalog['pages'],6):
+            raw=(mask_root/(item['id']+'.bytes')).read_bytes();width=int.from_bytes(raw[:2],'little');height=int.from_bytes(raw[2:4],'little')
+            # A large closed character region, away from the edge and logo.
+            import collections
+            middle=raw[4+width*height//4:4+width*height*3//4];counts=collections.Counter(middle);counts.pop(0,None);region=counts.most_common(1)[0][0]
+            pixels=[i for i,c in enumerate(raw[4:]) if c==region];point=pixels[len(pixels)//2];x=(point%width+.5)/width*800;y=(point//width+.5)/height*460
+            for v,color in zip(clients,['Blue','Green','Purple','Orange']):
+                button(v,'Choose picture');button(v,'Coloring page '+str(page));button(v,'Discovery crayon '+color);tap(v,x,y)
+            require([ws(v)['pages'][page]['colors'][region-1] for v in clients]==[5,4,6,2],'Official page hit mask/four-owner fill '+str(page))
+            before=deepcopy(ws(b));button(a,'Undo');require(ws(a)['pages'][page]['colors'][region-1]==0 and ws(b)==before,'New page undo scope');button(a,'Redo')
+            home.capture(a,folder,'official-'+item['id']+'-tablet')
+        button(a,'Choose picture');home.capture(a,folder,'all-eighteen-pictures');button(a,'Coloring page 6')
         a.input('resize',x=1280,y=591);home.ready(a);home.capture(a,folder,'coloring-phone-landscape')
-        record('all six fitted pages render with actual four-player fill undo redo and tablet/phone layout checks')
+        record('all eighteen fitted pages pass four-player hit masks fill undo redo and tablet/phone layout checks')
+        button(b,'Choose picture');button(b,'Coloring page 0')
         prior={v.profile:deepcopy(ws(v)) for v in clients};button(d,'Back to Home');cmd(d,7,value='park')
         button(b,'Discovery crayon Red');tap(b,130,102);require(ws(c)==prior[c.profile] and ws(d)==prior[d.profile],'Departure altered another creation')
         require(not d.input('inspect')['discoveryOpen'] and b.input('inspect')['discoveryOpen'],'Overlay was not local')

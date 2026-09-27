@@ -179,7 +179,7 @@ namespace LittleWeeps.NetworkProbe
                 transport.MaxPayloadSize=MaxWireBytes;transport.DisconnectTimeoutMS=2500;transport.HeartbeatTimeoutMS=400;
                 // Four reliable windows plus motion/recovery need headroom in
                 // the per-frame packet queue. This does not enlarge saved data.
-                transport.MaxPacketQueueSize=256;
+                transport.MaxPacketQueueSize=512;
                 // Runtime-created managers have no inspector-serialized config.
                 network.NetworkConfig=new NetworkConfig{NetworkTransport=transport};
                 network.NetworkConfig.EnableSceneManagement=false;network.NetworkConfig.ConnectionApproval=true;
@@ -340,7 +340,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithMixing(world);
+            world=SoloWorld.WithColoringCollection(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -416,11 +416,13 @@ namespace LittleWeeps.NetworkProbe
                 accepted=result?.Accepted??false,duplicate=result?.Duplicate??false,outcome=result?.Outcome??"snapshot",
                 durable=!positionDirty,view=session.View(),connected=session.ConnectedPlayers,poses=poses.Values.ToArray()};
         }
-        private void Publish()
+        private void Publish(ulong? acknowledgedPeer=null)
         {
             foreach(var item in poses.Keys.ToArray())if(!session.Checkpoint().toys.Any(t=>t.id==item && t.holder==poses[item].actor))poses.Remove(item);
             var state=Current();WriteJson(Path.Combine(output,"view.json"),state);
-            foreach(var peer in network.ConnectedClientsIds)Send(StateMessage,peer,state);
+            // The command acknowledgement already carries the same complete
+            // state to its actor. Do not enqueue a second fragmented copy.
+            foreach(var peer in network.ConnectedClientsIds)if(peer!=acknowledgedPeer)Send(StateMessage,peer,state);
         }
         private void ReceiveCommand(ulong sender,FastBufferReader reader)
         {
@@ -445,7 +447,7 @@ namespace LittleWeeps.NetworkProbe
                         foreach(var item in poses.Keys.Where(id=>poses[id].actor==request.command.actor).ToArray())poses.Remove(item);
                 }
                 Send(StateMessage,sender,Current(request.requestId,result));
-                if(result.Accepted && !result.Duplicate)Publish();
+                if(result.Accepted && !result.Duplicate)Publish(sender);
             }
             catch(Exception e) when(e is ArgumentException || e is InvalidDataException || e is OverflowException)
             {network.DisconnectClient(sender,"invalid-message");}

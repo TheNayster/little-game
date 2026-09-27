@@ -5,16 +5,16 @@ namespace LittleWeeps.Core
 {
     public static class Discovery
     {
-        public const int Schema=16, HistoryLimit=20;
+        public const int Schema=16, ColoringSchema=18, LegacyPages=6, HistoryLimit=20;
         public const float MinX=-7200, ScienceX=-6590, ArtX=-5460;
-        public static readonly string[] Pages={"Dinosaur","Truck","Unicorn","Snake","Garden","House"};
-        public static readonly int[] Regions={4,9,6,6,12,7};
+        public static readonly string[] Pages={"Dinosaur","Truck","Unicorn","Snake","Garden","House","Bluey","Bingo's glasses","Jump, Bingo!","Bingo's scooter","Hooray, Bingo!","Rocket Bingo","Bluey's bike","Chilli plays hockey","The Heeler family","Bluey's surprise","Bluey's potion","Football friends"};
+        public static readonly int[] Regions={4,9,6,6,12,7,33,34,30,61,28,58,69,45,83,75,6,114};
         public static readonly string[] LightNames={"Dark","Red","Green","Yellow","Blue","Magenta","Cyan","White"};
         public static bool InBay(SoloPlayer p)=>p.zone=="garden" && p.x>=MinX && p.x<=-4800;
         public static bool Sinks(DiscoveryWorkspace w)=>2+2*w.cargo>(w.wide?12:6);
         public static float Waterline(DiscoveryWorkspace w)=>Math.Min(1,(2+2*w.cargo)/(w.wide?12f:6f));
         public static string PageToken(int page,ColoringPage state)=>page+"@"+state.revision;
-        public static DiscoveryWorkspace Create(string owner)=>new DiscoveryWorkspace{owner=owner,pages=Regions.Select(n=>new ColoringPage{colors=new int[n]}).ToArray()};
+        public static DiscoveryWorkspace Create(string owner)=>new DiscoveryWorkspace{owner=owner,pages=Regions.Take(LegacyPages).Select(n=>new ColoringPage{colors=new int[n]}).ToArray()};
         public static void Magnet(DiscoveryWorkspace w,float x,float y)
         {
             w.magnetX=Math.Max(55,Math.Min(745,x));w.magnetY=Math.Max(70,Math.Min(340,y));
@@ -40,6 +40,14 @@ namespace LittleWeeps.Core
     }
     public sealed partial class SoloWorld
     {
+        public static SoloWorld WithColoringCollection(SoloWorld world)
+        {
+            world=WithMixing(world);if(world.Schema>=Discovery.ColoringSchema)return world;
+            var s=world.Snapshot();s.schema=Discovery.ColoringSchema;s.revision++;
+            // Append only: old page IDs, colors, histories and every mixture remain exact.
+            foreach(var w in s.discovery)w.pages=w.pages.Concat(Discovery.Regions.Skip(Discovery.LegacyPages).Select(n=>new ColoringPage{colors=new int[n]})).ToArray();
+            Validate(s);return new SoloWorld(s);
+        }
         public static SoloWorld WithDiscovery(SoloWorld world)
         {
             world=WithCakeFlow(world);if(world.Schema>=Discovery.Schema)return world;
@@ -59,7 +67,7 @@ namespace LittleWeeps.Core
             {
                 if(s.schema>=Mixing.Schema){if(w.mixtures==null || w.mixtures.Length!=Mixing.Modes)throw new InvalidOperationException("Missing mixing trays.");for(var mode=0;mode<Mixing.Modes;mode++)Mixing.Validate(w.mixtures[mode],mode);}
                 else if(w.mixtures!=null && w.mixtures.Length>0)throw new InvalidOperationException("Mixing requires schema 17.");
-                if(w.cargo<0 || w.cargo>7 || w.lights<0 || w.lights>7 || !Finite(w.magnetX,55,745) || !Finite(w.magnetY,70,340) || !Finite(w.ironX,55,745) || !Finite(w.ironY,70,380) || w.pages==null || w.pages.Length!=Discovery.Pages.Length)
+                if(w.cargo<0 || w.cargo>7 || w.lights<0 || w.lights>7 || !Finite(w.magnetX,55,745) || !Finite(w.magnetY,70,340) || !Finite(w.ironX,55,745) || !Finite(w.ironY,70,380) || w.pages==null || w.pages.Length!=(s.schema>=Discovery.ColoringSchema?Discovery.Pages.Length:Discovery.LegacyPages))
                     throw new InvalidOperationException("Invalid science workspace.");
                 for(var i=0;i<w.pages.Length;i++)
                 {

@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "windowsBuild": 187,
+  "androidBuild": 188,
+  "matchingRuntimeFiles": 370,
+  "scope": "Runtime code/art/data/shaders; excludes editor tools and metadata serialization whitespace"
+}

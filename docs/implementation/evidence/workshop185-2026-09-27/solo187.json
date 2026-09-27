@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 187,
+  "checks": [
+    "unserved installed-style launch supports walking and mixing with private saves",
+    "solo chemistry advances while viewing boats and restores settled amounts and local preferences after relaunch"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

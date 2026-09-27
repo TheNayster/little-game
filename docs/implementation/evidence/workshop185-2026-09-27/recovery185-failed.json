@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "build": 185,
+  "utc": "2026-09-27T22:11:34.263205+00:00",
+  "checks": [],
+  "scope": "Separate enrolled Windows world and four native Windows clients; same-user DPAPI backup/restore. No family world restoration, physical-device, independent-storage or cross-machine recovery claim."
+}
