@@ -1,0 +1,8 @@
+{
+  "build": 207,
+  "matched": true,
+  "files": 123,
+  "scope": "All game C# source plus cake atlas and color shader",
+  "signedRelease": true,
+  "installed": false
+}

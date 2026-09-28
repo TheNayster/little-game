@@ -32,6 +32,7 @@ static partial class Program
         RoomPlayTests();
         KitchenTests();
         CakeFlowTests();
+        CakeFamilyTests();
         DiscoveryTests();
         MixingTests();
         ColoringCollectionTests();

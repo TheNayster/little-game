@@ -135,6 +135,7 @@ namespace LittleWeeps.Client
         {
             if(homeMusic!=null){homeMusic.Stop();Destroy(homeMusic);homeMusic=null;}
             foreach(var sprite in homeSprites)Destroy(sprite);
+            if(cakeColorMaterial!=null){Destroy(cakeColorMaterial);cakeColorMaterial=null;}
             foreach(var texture in homeTextures)Resources.UnloadAsset(texture);
             homeSprites.Clear();homeTextures.Clear();homeObjects.Clear();homeFronts.Clear();storageHints.Clear();shedPicture=null;shedFront=null;homeLayerLayout=null;
         }

@@ -75,7 +75,7 @@ namespace LittleWeeps.Core
         public static bool CanAdd(FoodDish d,string ingredient)=>CakeFlow.Active(d)?CakeFlow.CanAdd(d,ingredient):!d.guided || d.experiment || Recipe(d.recipe).toppings.Contains(ingredient);
         // Optional experiments must leave room for every required preparation
         // ingredient and the later icing, including milk added by the new flow.
-        public static int ReservedInputs(FoodDish d,string adding)=>(CakeFlow.Active(d)?CakeFlow.Batter.Concat(new[]{"icing"}):Recipe(d.recipe).toppings).Count(id=>id!=adding && !d.ingredients.Any(a=>a.ingredient==id));
+        public static int ReservedInputs(FoodDish d,string adding)=>(CakeFamilies.Active(d)?CakeFamilies.Batter(d.recipe).Concat(new[]{"icing"}):CakeFlow.Active(d)?CakeFlow.Batter.Concat(new[]{"icing"}):Recipe(d.recipe).toppings).Count(id=>id!=adding && !d.ingredients.Any(a=>a.ingredient==id));
         public static bool Kind(ToyKind kind)=>kind>=ToyKind.Ingredient && kind<=ToyKind.Plate;
         public static bool Dish(ToyKind kind)=>kind==ToyKind.Cookware || kind==ToyKind.Plate;
         public static string Next(FoodDish dish)
@@ -161,9 +161,9 @@ namespace LittleWeeps.Core
         private static void ValidateFood(FoodDish d,ToyKind kind,SoloSnapshot s)
         {
             var r=Kitchen.Recipe(d.recipe);
-                if(!Kitchen.Dish(kind) || !Id(d.id) || r==null || !CakeFlow.Valid(d,s.schema) || d.step<0 || d.step>r.steps.Length || d.portions<0 || d.portions>15 ||
+                if(!Kitchen.Dish(kind) || !Id(d.id) || r==null || !CakeFlow.Valid(d,s.schema) || d.step<0 || !CakeFamilies.Active(d) && d.step>r.steps.Length || d.portions<0 || d.portions>15 ||
                    double.IsNaN(d.heat) || double.IsInfinity(d.heat) || d.heat<0 || d.heat>Kitchen.HeatSeconds || d.ingredients==null || d.ingredients.Length<1 || d.ingredients.Length>24 ||
-                   d.ingredients.Any(i=>i==null || !Id(i.unit) || !string.IsNullOrEmpty(i.by) && !s.players.Any(p=>p.id==i.by) || !(Kitchen.Ingredients.Contains(i.ingredient) || s.schema>=CakeFlow.Schema && i.ingredient=="cake-mix") || !string.IsNullOrEmpty(i.phase) && !CakeFlow.Stages.Contains(i.phase) || float.IsNaN(i.x) || float.IsNaN(i.y) || Math.Abs(i.x)>1 || Math.Abs(i.y)>1) ||
+                   d.ingredients.Any(i=>i==null || !Id(i.unit) || !string.IsNullOrEmpty(i.by) && !s.players.Any(p=>p.id==i.by) || !(Kitchen.Ingredients.Contains(i.ingredient) || s.schema>=CakeFlow.Schema && i.ingredient=="cake-mix") || !string.IsNullOrEmpty(i.phase) && !CakeFlow.StageList(d).Contains(i.phase) || float.IsNaN(i.x) || float.IsNaN(i.y) || Math.Abs(i.x)>1 || Math.Abs(i.y)>1) ||
                    d.ingredients.Select(i=>i.unit).Distinct().Count()!=d.ingredients.Length || kind==ToyKind.Plate && Kitchen.Next(d)!="serve")throw new InvalidOperationException("Invalid persistent dish.");
         }
         private bool KitchenAvailable(SoloToy t,SoloPlayer p)=>t!=null && t.zone==p.zone && (t.holder=="" || t.holder==p.id) && StorageOpen(t);
@@ -256,7 +256,7 @@ namespace LittleWeeps.Core
             foreach(var t in state.toys.Where(t=>t.kitchen?.dish!=null)){
                 var d=t.kitchen.dish;if(Kitchen.Next(d)!="heat" || !Kitchen.Slot(t.container,out var group,out _) || group!="oven")continue;
                 d.heat=Math.Min(Kitchen.HeatSeconds,d.heat+seconds);changed=true;
-                if(d.heat>=Kitchen.HeatSeconds){d.heated=true;if(CakeFlow.Active(d)){d.stage="filling";d.layers=1;}else d.step++;visible=true;}
+                if(d.heat>=Kitchen.HeatSeconds){d.heated=true;if(CakeFamilies.Active(d))CakeFamilies.Heated(d);else if(CakeFlow.Active(d)){d.stage="filling";d.layers=1;}else d.step++;visible=true;}
             }
             return changed;
         }

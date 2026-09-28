@@ -47,7 +47,7 @@ namespace LittleWeeps.Client
             kitchenPanel=Panel(safe,"Kitchen worktop",Vector2.zero,Vector2.zero,new Color(1,.97f,.88f,1),true).rectTransform;
             kitchenPanel.anchorMin=Vector2.zero;kitchenPanel.anchorMax=Vector2.one;kitchenPanel.offsetMin=new Vector2(12,12);kitchenPanel.offsetMax=new Vector2(-12,-12);
             kitchenBack=Button(kitchenPanel,"Back",new Vector2(-525,334),new Vector2(150,72),CloseKitchen,new Color(.83f,.93f,.92f));
-            kitchenTitle=Label(kitchenPanel,"Let's cook!",32,new Vector2(0,338),new Vector2(770,60));
+            kitchenTitle=Label(kitchenPanel,"Let's cook!",28,new Vector2(0,338),new Vector2(410,64));
             Button(kitchenPanel,"Help",new Vector2(525,334),new Vector2(150,72),()=>{kitchenHint.text=KitchenHelp();},new Color(.83f,.93f,.92f));
             kitchenStage=Label(kitchenPanel,"",22,new Vector2(0,280),new Vector2(760,40));
             kitchenHint=Label(kitchenPanel,"",23,new Vector2(0,-355),new Vector2(1050,42));

@@ -49,10 +49,18 @@ Acceptance per family: appropriate palettes; intermediate saves; stock conservat
 
 ## 4. Next activity and retained room scope
 
+### Further cooking sources reviewed before the family expansions
+
+[Sago Mini Diner, the publisher's app description](https://sagomini.com/apps/diner/) uses recognizable recipe ingredients and immediate meal creation. The applicable lesson is a visible dish surrounded by relevant inputs; customers, scoring and timed orders are not prerequisites for our family cooking.
+
+[King Arthur's pizza teaching guide](https://www.kingarthurbaking.com/learn/pizza) separates dough shaping from topping and baking. Its [pizza crust recipe](https://www.kingarthurbaking.com/recipes/pizza-crust-recipe) provides a kneading reference. Our pizza path will show kneading and flattening, sauce coverage, recipe-specific toppings, optional vegetable preparation, oven transformation and real slices. Rolling is an accessible pretend-play option, not a claim that all pizza styles use a rolling pin. Ready bases remain an explicit choice.
+
+[Barilla's pasta process](https://www.barilla.com/en-us/help-with/pasta-kitchen-tips/how-to-cook-pasta) distinguishes boiling pasta, stirring, draining and finishing with sauce. Apply that distinction to the spaghetti path instead of heating a preassembled finished illustration. [Good Food's pancake method](https://tollbit.bbcgoodfood.com/recipes/easy-pancakes) distinguishes batter, pan cooking and turning to cook both sides. Apply a visible pour, first-side cook, flip and second-side cook before stacking. These real-food references supply operation order; the game uses brief safe pretend heating rather than real recipe times or food-safety instruction.
+
 Ramp/marble play is the working next activity because it already has a researched prototype and fills SCI-03. Use the existing Home science entry, child-selected height/surface, a forgiving catch tray and repeatable release. Motion must respond to the actual course and surface, not a prerecorded success animation. Reuse the picture controls and five-minute temporary reset, while preserving deliberately saved constructions. An optional complete-course start supports immediate play. Broader construction graphs, tunnels and family chain reactions require separate bounded work.
 
 Bathroom/laundry, Home TV, the agreed six-book subjects, twenty dinosaur toys, parents/hiding, backyard rides/fishpond, room furnishing expansion, freehand art and physical device qualification remain required. This sequence does not mark Home complete or substitute browser evidence for the installed game. Server/iPad rollout requires a coordinated matching release; no device deployment is implied by editing source.
 
 ## Work evidence
 
-[Coloring controls candidate 202](native-coloring-controls-2026-09-28.html) passes six native groups with saved-page retention and actual phone/tablet captures. [Creation/food storage 205](home-creation-storage-2026-09-28.html) now has seven native creation groups and four native rule groups, plus 254 passing core and seven isolated recovery groups. Remaining cooking families and ramp integration remain implementation work, not claims of finished code.
+[Coloring controls candidate 202](native-coloring-controls-2026-09-28.html) passes six native groups with saved-page retention and actual phone/tablet captures. [Creation/food storage 205](home-creation-storage-2026-09-28.html) now has seven native creation groups and four native rule groups, plus 254 passing core and seven isolated recovery groups. [Four cake families 207](cake-families-2026-09-28.html) now pass 259 core and six native groups; independent recovery qualification is blocked at validator launch. The five pizza paths, five meal paths and ramp integration remain implementation work, not claims of finished code.

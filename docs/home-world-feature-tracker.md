@@ -1,5 +1,7 @@
 # Little Weeps — Home world feature tracker
 
+**Four cake families — September 28:** [Cake activities 207](implementation/cake-families-2026-09-28.html) adds duck assembly, heart molds, chosen rainbow layers and carrot preparation, with stage-specific ingredients, pictured assistance and preserved food/portions. Schema 24/content 25. All 259 core and six native four-player groups pass, including cold restart/rejoin. Independent recovery qualification is open because Windows Application Control blocked the validator from starting; no data-invalid result or world replacement occurred. No device rollout. Five pizza paths, five meals and the next ramp activity follow; preserve the full backlog and main integration hold.
+
 **Creation/food storage — September 28:** [Creation/food storage 205](implementation/home-creation-storage-2026-09-28.html) adds four kept-picture places and two saved-food places per profile, owner-controlled bedroom display, recoverable picture removal and exact food/portion preservation. Schema 23/content 24. Seven native creation groups and four native rule groups pass. All 254 core and seven isolated recovery groups also pass. No device rollout. Remaining cooking stages follow this bounded slice, then the next Home activity; preserve the full backlog and main integration hold.
 
 
@@ -225,15 +227,15 @@ Four players can prepare, decorate, plate, eat/serve and wash independently. Inc
 
 - [ ] **PIZ-05 — Silly-face pizza** — *Partial*. Make eyes, a nose, and a smile from toppings; photograph the creation in the in-game album Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-01 — Duck cake** — *Partial*. Assemble simple body/head pieces, add beak, eyes, icing, and popcorn-style feathers Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-01 — Duck cake** — *Partial*. Candidate 207 now implements its distinct staged preparation, with retained food/color/assembly and native four-cook evidence; physical and independent recovery qualification remain open. Assemble simple body/head pieces, add beak, eyes, icing, and popcorn-style feathers Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
 - [ ] **CAK-02 — Chocolate layer cake** — *Partial; staged flow implemented, physical acceptance open*. New cakes mix batter, pour into two tins, bake, fill/stack/ice, decorate and serve conserved portions. [Implementation and qualification](implementation/chocolate-cake-flow-2026-09-27.html). Stack cake layers, spread icing, add chocolate decorations Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-03 — Strawberry heart cake** — *Partial*. Fill a heart mould, add pink icing and strawberries Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-03 — Strawberry heart cake** — *Partial*. Candidate 207 now implements its distinct staged preparation, with retained food/color/assembly and native four-cook evidence; physical and independent recovery qualification remain open. Fill a heart mould, add pink icing and strawberries Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-04 — Rainbow cake** — *Partial*. Choose colored batter layers and rainbow decorations Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-04 — Rainbow cake** — *Partial*. Candidate 207 now implements its distinct staged preparation, with retained food/color/assembly and native four-cook evidence; physical and independent recovery qualification remain open. Choose colored batter layers and rainbow decorations Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
-- [ ] **CAK-05 — Carrot cake** — *Partial*. Stir orange pieces into batter, add pale icing and a tiny carrot decoration Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
+- [ ] **CAK-05 — Carrot cake** — *Partial*. Candidate 207 now implements its distinct staged preparation, with retained food/color/assembly and native four-cook evidence; physical and independent recovery qualification remain open. Stir orange pieces into batter, add pale icing and a tiny carrot decoration Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 
 - [ ] **MEAL-01 — Burger plate** — *Partial*. Stack bun, filling, cheese, and salad; add a side and serve Sources: [§19](bluey-game-research-2026-09-23.html#19-kitchen-five-pizzas-five-cakes-five-meals).
 

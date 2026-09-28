@@ -173,8 +173,8 @@ namespace LittleWeeps.Client
             if(kitchenStored!=null && KitchenOpen){
                 var item=ReadToys().FirstOrDefault(t=>t.id==cookingItem);var dish=item?.kitchen?.dish;
                 kitchenStored.transform.parent.gameObject.SetActive(CurrentArea=="garden");kitchenStore.transform.parent.gameObject.SetActive(CurrentArea=="garden" && dish!=null && dish.portions>0 && !kitchenChoosing);
-                LayoutColorControl(kitchenStored,"Saved food",new Vector2(-476,285),new Vector2(208,62),!collectionPending && !ActionPending);
-                LayoutColorControl(kitchenStore,"Put away",new Vector2(476,285),new Vector2(208,62),!collectionPending && !ActionPending && !cakeHelping && !cakeSending && (dish==null || dish.heated || dish.heat==0));
+                LayoutColorControl(kitchenStored,"Saved food",new Vector2(-325,334),new Vector2(208,62),!collectionPending && !ActionPending);
+                LayoutColorControl(kitchenStore,"Put away",new Vector2(325,334),new Vector2(208,62),!collectionPending && !ActionPending && !cakeHelping && !cakeSending && (dish==null || dish.heated || dish.heat==0));
                 kitchenStage.rectTransform.sizeDelta=new Vector2(680,40);
             }
         }

@@ -1,0 +1,14 @@
+{
+  "build": 207,
+  "reviewed": [
+    "Three distinct rainbow bowls match saved colors",
+    "Blue layer renders blue rather than green",
+    "Heart mold and cake silhouettes fully visible",
+    "Duck body head and icing features visible",
+    "Header hit rectangles are at least 44 native pixels and do not overlap at phone/tablet sizes"
+  ],
+  "limitations": [
+    "Physical child usability and A10 performance remain unverified",
+    "Native controls/assistance exercised; physical touch gestures are not device-qualified"
+  ]
+}

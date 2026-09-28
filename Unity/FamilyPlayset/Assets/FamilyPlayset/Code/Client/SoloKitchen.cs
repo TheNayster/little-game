@@ -36,6 +36,9 @@ namespace LittleWeeps.Client
             if(index>=0 && id=="cake-stages"){
                 var boxes=new[]{new Rect(12,110,519,371),new Rect(532,193,487,258),new Rect(1027,151,498,341),new Rect(22,601,499,310),new Rect(537,630,510,263),new Rect(1110,533,414,417)};
                 var b=boxes[index];rect=new Rect(b.x/1536*texture.width,(1024-b.y-b.height)/1024*texture.height,b.width/1536*texture.width,b.height/1024*texture.height);
+            }else if(index>=0 && id=="cake-families"){
+                var boxes=new[]{new Rect(29,63,366,295),new Rect(424,74,344,274),new Rect(800,79,337,236),new Rect(1180,78,325,259),new Rect(30,438,354,204),new Rect(412,439,357,205),new Rect(794,405,426,259),new Rect(1274,418,231,211),new Rect(86,728,267,202),new Rect(432,766,283,142),new Rect(776,709,338,238),new Rect(1177,745,321,196)};
+                var b=boxes[index];rect=new Rect(b.x/1536*texture.width,(1024-b.y-b.height)/1024*texture.height,b.width/1536*texture.width,b.height/1024*texture.height);
             }else if(index>=0 && id=="recipes"){
                 var boxes=new[]{new Rect(10,48,303,254),new Rect(327,48,313,258),new Rect(652,48,312,256),new Rect(976,49,314,256),new Rect(1303,48,306,255),new Rect(14,351,309,267),new Rect(344,336,303,294),new Rect(668,365,294,256),new Rect(980,357,305,270),new Rect(1307,368,298,253),new Rect(11,671,342,253),new Rect(352,687,299,229),new Rect(671,692,290,227),new Rect(969,671,332,250),new Rect(1312,687,288,233)};
                 var b=boxes[index];rect=new Rect(b.x/1619*texture.width,(971-b.y-b.height)/971*texture.height,b.width/1619*texture.width,b.height/971*texture.height);
@@ -154,6 +157,7 @@ namespace LittleWeeps.Client
         }
         private void PaintDish(FoodDish dish,Image image,Image baseImage,Image[] additions,float scale=1)
         {
+            image.material=null;baseImage.material=null;foreach(var part in additions)part.material=null;
             if(CakeFlow.Active(dish)){PaintSmallCake(dish,image,baseImage,additions);return;}
             var visible=dish!=null && dish.portions!=0;var pizza=visible && dish.recipe.StartsWith("PIZ");
             image.gameObject.SetActive(visible && (pizza || dish.heated));baseImage.gameObject.SetActive(true);

@@ -1,5 +1,7 @@
 # Current project decisions
 
+**Four cake families — September 28:** [Cake activities 207](implementation/cake-families-2026-09-28.html) adds duck assembly, heart molds, chosen rainbow layers and carrot preparation, with stage-specific ingredients, pictured assistance and preserved food/portions. Schema 24/content 25. All 259 core and six native four-player groups pass, including cold restart/rejoin. Independent recovery qualification is open because Windows Application Control blocked the validator from starting; no data-invalid result or world replacement occurred. No device rollout. Five pizza paths, five meals and the next ramp activity follow; preserve the full backlog and main integration hold.
+
 **Creation/food storage — September 28:** [Creation/food storage 205](implementation/home-creation-storage-2026-09-28.html) adds four kept-picture places and two saved-food places per profile, owner-controlled bedroom display, recoverable picture removal and exact food/portion preservation. Schema 23/content 24. Seven native creation groups and four native rule groups pass. All 254 core and seven isolated recovery groups also pass. No device rollout. Remaining cooking stages follow this bounded slice, then the next Home activity; preserve the full backlog and main integration hold.
 
 

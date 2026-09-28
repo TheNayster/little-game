@@ -9,12 +9,14 @@ namespace LittleWeeps.Core
         public const int Schema=15, Version=1, FullCoverage=511;
         public static readonly string[] Stages={"ingredients","mix","pour","bake","filling","stack","ice","decorate","cut","serve"};
         public static readonly string[] Batter={"egg","milk","chocolate"};
-        public static bool Active(FoodDish d)=>d!=null && d.recipeVersion==Version;
-        public static string Token(FoodDish d)=>d.id+"@"+d.stage;
-        public static int Index(FoodDish d)=>Array.IndexOf(Stages,d.stage);
-        public static string Next(FoodDish d)=>d.stage=="ingredients"?"add:"+Batter.First(id=>!d.ingredients.Any(a=>a.ingredient==id)):d.stage=="bake"?"heat":d.stage;
+        public static bool Active(FoodDish d)=>d!=null && (d.recipeVersion==Version || CakeFamilies.Active(d));
+        public static string Token(FoodDish d)=>CakeFamilies.Active(d)?CakeFamilies.Token(d):d.id+"@"+d.stage;
+        public static int Index(FoodDish d)=>CakeFamilies.Active(d)?CakeFamilies.Index(d):Array.IndexOf(Stages,d.stage);
+        public static string[] StageList(FoodDish d)=>CakeFamilies.Active(d)?CakeFamilies.Stages(d):Stages;
+        public static string Next(FoodDish d)=>d.stage=="ingredients"?"add:"+(CakeFamilies.Active(d)?CakeFamilies.Batter(d.recipe):Batter).First(id=>!d.ingredients.Any(a=>a.ingredient==id)):d.stage=="bake"?"heat":d.stage;
         public static string[] Palette(FoodDish d)
         {
+            if(CakeFamilies.Active(d))return CakeFamilies.Palette(d);
             if(d.experiment && (d.stage=="ingredients" || d.stage=="decorate"))return Kitchen.Ingredients;
             if(d.stage=="ingredients")return Batter.Where(id=>!d.ingredients.Any(a=>a.ingredient==id)).ToArray();
             if(d.stage=="filling" && !d.ingredients.Any(a=>a.ingredient=="icing"))return new[]{"icing"};
@@ -30,19 +32,22 @@ namespace LittleWeeps.Core
         }
         public static void Added(FoodDish d,FoodAddition addition)
         {
+            if(CakeFamilies.Active(d)){CakeFamilies.Added(d,addition);return;}
             addition.phase=d.stage;
             if(d.stage=="ingredients" && HasBatter(d))d.stage="mix";
         }
-        public static bool Complete(FoodDish d)=>d.stage=="mix"?d.mixed==1:d.stage=="pour"?d.poured==1:
+        public static bool Complete(FoodDish d)=>CakeFamilies.Active(d)?CakeFamilies.Complete(d):d.stage=="mix"?d.mixed==1:d.stage=="pour"?d.poured==1:
             d.stage=="filling" || d.stage=="ice"?d.icingMask==FullCoverage:d.stage=="stack"?d.layers==2:d.stage=="cut"?d.cutMask==3:d.stage=="decorate";
         public static void Finish(FoodDish d)
         {
+            if(CakeFamilies.Active(d)){CakeFamilies.Finish(d);return;}
             var prior=d.stage;d.stage=Stages[Index(d)+1];
             if(prior=="stack")d.icingMask=0;
         }
         public static SoloToy MixStock()=>new SoloToy{id="ingredient-cake-mix",kind=ToyKind.Ingredient,x=Kitchen.X("cupboard",17),y=Kitchen.Y("cupboard",17),container=Kitchen.Support("cupboard",17),kitchen=new KitchenItem{definition="cake-mix",amount=16}};
         public static bool Valid(FoodDish d,int schema)
         {
+            if(CakeFamilies.Active(d))return CakeFamilies.Valid(d,schema);
             if(d.recipeVersion==0)return string.IsNullOrEmpty(d.stage) && d.mixed==0 && d.poured==0 && d.layers==0 && d.icingMask==0 && d.cutMask==0;
             if(schema<Schema || !Active(d) || d.recipe!="CAK-02" || Index(d)<0 || !FiniteUnit(d.mixed) || !FiniteUnit(d.poured) || d.layers<0 || d.layers>2 || d.icingMask<0 || d.icingMask>FullCoverage || d.cutMask<0 || d.cutMask>3)return false;
             var i=Index(d);
@@ -75,7 +80,13 @@ namespace LittleWeeps.Core
                 CakeFlow.Finish(d);Touch(item);return null;
             }
             if(op!=d.stage)return "next-step-changed";
-            if(op=="mix" || op=="pour"){
+            if(CakeFamilies.Active(d) && (op=="chop" || op=="features")){
+                if(c.x!=0 && c.x!=1)return "invalid-preparation";d.step|=1<<(int)c.x;
+            }else if(CakeFamilies.Active(d) && op=="colors"){
+                if(c.x<0 || c.x>5 || c.x!=(int)c.x || CakeFamilies.Colors(d).Length>=3)return "invalid-preparation";
+                d.step=d.step*7+(int)c.x+1;
+                if(CakeFamilies.Complete(d))CakeFamilies.Finish(d);
+            }else if(op=="mix" || op=="pour"){
                 if(c.x<=0 || c.x>.2f || float.IsNaN(c.x) || float.IsInfinity(c.x))return "invalid-preparation";
                 if(op=="mix")d.mixed=Math.Min(1,d.mixed+c.x);else d.poured=Math.Min(1,d.poured+c.x);
             }else if(op=="filling" || op=="ice"){
@@ -85,7 +96,8 @@ namespace LittleWeeps.Core
                 var column=Math.Min(2,(int)((c.x+1)*1.5f));var row=Math.Min(2,(int)((y+1)*1.5f));d.icingMask|=1<<(row*3+column);
             }else if(op=="stack"){
                 if(!CakePoint(c.x,c.y-2) || Math.Abs(c.x)>.8f || Math.Abs(c.y-2)>.8f)return "place-layer-on-cake";
-                d.layers=2;
+                d.layers=CakeFamilies.Active(d)?Math.Min(CakeFamilies.LayerCount(d),d.layers+1):2;
+                if(CakeFamilies.Active(d) && CakeFamilies.Complete(d))CakeFamilies.Finish(d);
             }else if(op=="cut"){
                 if(c.x!=0 && c.x!=1)return "invalid-preparation";d.cutMask|=1<<(int)c.x;
             }else return "next-step-changed";

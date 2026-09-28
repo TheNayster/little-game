@@ -1,0 +1,10 @@
+{
+  "build": 207,
+  "qualified": false,
+  "stage": "launch game rules validator",
+  "observed": "Windows Application Control blocked Tools/RecoveryValidator/bin/Release/net9.0/RecoveryValidator.exe from starting.",
+  "saveValidationErrorObserved": false,
+  "worldReplaced": false,
+  "securitySettingsChanged": false,
+  "nativeColdRestartAndFourRejoinPassed": true
+}

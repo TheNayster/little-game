@@ -694,15 +694,15 @@
   "sources": [
     {
       "path": "docs/bluey-game-research-2026-09-23.md",
-      "sha256": "1e45668ae441ab549a208aa91f9035600cff7e2c1494c300a64397feae1ac951"
+      "sha256": "7e10b683b4991663703dc3c34c2bb0ee180e668e1cdd6ebeb38dca4b84b8cec2"
     },
     {
       "path": "docs/current-decisions.md",
-      "sha256": "92f6a0111f0a8ced5e6697a0d777825bdb6ddd29ec3464fa89594df3ffe272bf"
+      "sha256": "9f6bfded686165869fcaa04213f56fdaf5f7c96a3d1edca0f10d7188afe5e69f"
     },
     {
       "path": "docs/family-playset-build-guide-2026-09-23.md",
-      "sha256": "2d7923009b06b3b7180fdb185270bd1f1a40e624d3bd68d8f9de7cdedf25b643"
+      "sha256": "a7cec566b08c9df907994cbd3c2ee4bbf95e11cd98d4327aabe78f465c0c7588"
     },
     {
       "path": "docs/bluey-lets-play-reference-study-2026-09-25.md",
@@ -714,7 +714,7 @@
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
-      "sha256": "61c17784b0d446762e28fbf0f6c81be4c9609edcd41f190ec61cfbd8c79afee5"
+      "sha256": "0afcc2e3232401c9e90cc85a5cdea23d2ca314d3f42fd623ae20a42103487ed2"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
@@ -734,7 +734,7 @@
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
-      "sha256": "a872c79652d287494084c017fe121ec53abdf554f39a5a622a036f7576136dca"
+      "sha256": "be4c5c0406e7619feb9f717b202c4d97c488e650f2b6f03d2414484a8a1a469b"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs",

@@ -30,9 +30,11 @@ namespace LittleWeeps.Client
             cakeParts=Enumerable.Range(0,48).Select(i=>HomePicture(cakeSurface,"Cake component "+i,Vector2.zero,new Vector2(100,100),CakeSprite(0))).ToArray();
             cakeTool=HomePicture(cakeSurface,"Your cooking tool",Vector2.zero,new Vector2(150,150),CakeSprite(5));cakeTool.preserveAspect=true;
             cakeSurface.gameObject.SetActive(false);
+            BuildCakeFamilyChoices();
         }
         private static string CakeInstruction(FoodDish d)
         {
+            if(CakeFamilies.Active(d))return CakeFamilyInstruction(d);
             switch(d.stage){
                 case "ingredients":return "Add egg, milk and chocolate to the cake mix";
                 case "mix":return "Stir inside the bowl — watch the batter become smooth";
@@ -50,10 +52,11 @@ namespace LittleWeeps.Client
         {
             cakeDrawn=d;
             var active=CakeFlow.Active(d) && d.portions!=0;
+            PaintCakeFamilyChoices(d);
             cakeSurface.gameObject.SetActive(active);kitchenPreview.gameObject.SetActive(!active);
             if(!active)return;
             if(cakeDisplayToken!=CakeFlow.Token(d)){cakeDisplayToken=CakeFlow.Token(d);cakeToolPoint=Vector2.zero;cakeMoveTime=0;kitchenHint.text=CakeInstruction(d);}
-            kitchenStage.text="Make  •  Decorate  •  Serve     |     "+(CakeFlow.Index(d)+1)+" / "+CakeFlow.Stages.Length;
+            kitchenStage.text="Make  •  Decorate  •  Serve     |     "+(CakeFlow.Index(d)+1)+" / "+CakeFlow.StageList(d).Length;
             if(string.IsNullOrEmpty(kitchenHint.text))kitchenHint.text=CakeInstruction(d);
             kitchenUndo.transform.parent.gameObject.SetActive(false);
             kitchenIngredients.gameObject.SetActive(CakeFlow.Palette(d).Length>0);
@@ -61,16 +64,18 @@ namespace LittleWeeps.Client
             kitchenServing.gameObject.SetActive(d.stage=="serve" && current.kind==ToyKind.Cookware && CurrentArea=="garden");
             kitchenStep.transform.parent.gameObject.SetActive(d.stage!="serve" && d.stage!="ingredients" && !(d.stage=="filling" && !d.ingredients.Any(a=>a.ingredient=="icing")));
             var labels=new[]{"","Stir for me","Pour for me","Bake","Spread filling","Stack layer","Spread icing","Finish decorating","Slice cake",""};
-            kitchenStep.text=labels[CakeFlow.Index(d)];
+            kitchenStep.text=CakeFamilies.Active(d)?CakeFamilyAction(d):labels[CakeFlow.Index(d)];
+            if(CakeFamilies.Active(d))kitchenStep.transform.parent.gameObject.SetActive(d.stage!="ingredients" && d.stage!="colors" && d.stage!="serve" && !(d.stage=="ice" && !d.ingredients.Any(a=>a.ingredient=="icing")));
             kitchenStep.transform.parent.GetComponent<Button>().interactable=!cakeHelping && !cakeSending && !(d.stage=="bake" && Kitchen.Slot(current.container,out var g,out _) && g=="oven");
             kitchenActionIcon.sprite=d.stage=="bake"?KitchenSprite("oven-closed"):d.stage=="pour"?CakeSprite(0):d.stage=="stack"?CakeSprite(3):d.stage=="cut"?KitchenSprite("utensils",1,2,2):CakeSprite(5);
             PaintCake(d);
         }
         private void PaintCake(FoodDish d)
         {
+            if(CakeFamilies.Active(d)){PaintFamilyCake(d);return;}
             if(cakeParts==null || !cakeSurface.gameObject.activeSelf)return;
             foreach(var part in cakeParts)part.gameObject.SetActive(false);cakeTool.gameObject.SetActive(false);var at=0;
-            Image Part(Sprite sprite,float x,float y,float w,float h,float alpha=1){var p=cakeParts[at++];p.gameObject.SetActive(true);p.sprite=sprite;p.type=Image.Type.Simple;p.preserveAspect=false;p.color=new Color(1,1,1,alpha);p.rectTransform.anchoredPosition=new Vector2(x,y);p.rectTransform.sizeDelta=new Vector2(w,h);p.rectTransform.localEulerAngles=Vector3.zero;return p;}
+            Image Part(Sprite sprite,float x,float y,float w,float h,float alpha=1){var p=cakeParts[at++];p.gameObject.SetActive(true);p.sprite=sprite;p.material=null;p.type=Image.Type.Simple;p.preserveAspect=false;p.color=new Color(1,1,1,alpha);p.rectTransform.anchoredPosition=new Vector2(x,y);p.rectTransform.sizeDelta=new Vector2(w,h);p.rectTransform.localEulerAngles=Vector3.zero;return p;}
             void Batter(float x,float y,float w,float h,float amount){if(amount<=0)return;Part(CakeSprite(1),x,y,w*Mathf.Sqrt(amount),h*Mathf.Sqrt(amount));}
             var stage=d.stage;var prep=stage=="ingredients" || stage=="mix";
             if(prep){
@@ -133,6 +138,7 @@ namespace LittleWeeps.Client
         public void CakeTap()
         {
             var d=CurrentCake;if(!CakeFlow.Active(d) || cakeHelping || cakeSending)return;
+            if(CakeFamilies.Active(d) && (d.stage=="colors" || d.stage=="ice" && !d.ingredients.Any(a=>a.ingredient=="icing"))){kitchenHint.text=CakeInstruction(d);return;}
             if(d.stage=="ingredients" || d.stage=="filling" && !d.ingredients.Any(a=>a.ingredient=="icing")){kitchenHint.text=CakeInstruction(d);return;}
             if(d.stage=="bake"){KitchenCommand("easy:bake",cookingItem);return;}
             if(d.stage=="serve")return;
@@ -143,12 +149,12 @@ namespace LittleWeeps.Client
             cakeHelping=true;cakeAssistStart=Time.unscaledTime;cakeReleaseToken=null;
             try{
                 if(stage=="decorate"){CakeSend("finish",token,0,0);yield break;}
-                var count=stage=="mix" || stage=="pour"?10:stage=="ice" || stage=="filling"?9:stage=="cut"?2:1;
+                var count=stage=="mix" || stage=="pour"?10:stage=="ice" || stage=="filling"?9:stage=="cut" || stage=="chop" || stage=="features"?2:1;
                 for(var i=0;i<count && CakeToken==token;i++){
                     if(!KitchenOpen || applicationPaused || !Ready)yield break;
                     yield return new WaitForSecondsRealtime(stage=="stack"?.6f:stage=="cut"?.45f:.2f);
                     if(CakeToken!=token || applicationPaused || !Ready)yield break;
-                    var x=stage=="ice" || stage=="filling"?-.67f+i%3*.67f:stage=="cut"?i:stage=="stack"?0:.12f;
+                    var x=stage=="ice" || stage=="filling"?-.67f+i%3*.67f:stage=="cut" || stage=="chop" || stage=="features"?i:stage=="stack"?0:.12f;
                     var y=stage=="ice" || stage=="filling"?-.67f+i/3*.67f:0;
                     CakeSend(stage,token,x,y);
                     while(cakeSending && CakeToken==token)yield return null;
@@ -177,7 +183,7 @@ namespace LittleWeeps.Client
                 else if(end && CakeFlow.Complete(d))CakeSend("finish",token,0,0);
             }else if(stage=="ice" || stage=="filling")CakeSend(stage,token,Mathf.Clamp(b.x/175,-.99f,.99f),Mathf.Clamp((b.y-(stage=="ice"?90:-5))/75,-.99f,.99f),Finish);
             else if(stage=="stack" && end)CakeSend(stage,token,b.x/250,(b.y+30)/250,Finish);
-            else if(stage=="cut" && end && Vector2.Distance(origin,b)>110)CakeSend(stage,token,Mathf.Abs(b.x-origin.x)>Mathf.Abs(b.y-origin.y)?0:1,0,Finish);
+            else if((stage=="cut" || stage=="chop") && end && Vector2.Distance(origin,b)>110)CakeSend(stage,token,Mathf.Abs(b.x-origin.x)>Mathf.Abs(b.y-origin.y)?0:1,0,Finish);
         }
         private void TickCake()
         {
@@ -189,6 +195,7 @@ namespace LittleWeeps.Client
         }
         private void PaintSmallCake(FoodDish d,Image food,Image baseImage,Image[] extras)
         {
+            if(CakeFamilies.Active(d)){PaintSmallFamilyCake(d,food,baseImage,extras);return;}
             foreach(var p in extras)p.gameObject.SetActive(false);baseImage.gameObject.SetActive(true);
             food.gameObject.SetActive(d.portions!=0);if(d.portions==0)return;
             food.type=Image.Type.Simple;food.color=Color.white;food.rectTransform.anchoredPosition=new Vector2(0,22);food.sprite=CakeSprite(d.heated?3:d.stage=="pour" || d.stage=="bake"?2:0);
@@ -196,7 +203,7 @@ namespace LittleWeeps.Client
                 var batter=extras[0];batter.gameObject.SetActive(true);batter.sprite=CakeSprite(1);batter.type=Image.Type.Simple;batter.color=Color.white;batter.rectTransform.anchoredPosition=new Vector2(0,38);batter.rectTransform.sizeDelta=new Vector2(84,30)*Mathf.Sqrt(d.stage=="pour"?Mathf.Max(.1f,d.poured):.25f+d.mixed*.75f);return;
             }
             var n=0;
-            Image Layer(Sprite sprite,Vector2 point,Vector2 size){var p=extras[n++];p.gameObject.SetActive(true);p.sprite=sprite;p.type=Image.Type.Simple;p.color=Color.white;p.rectTransform.anchoredPosition=point;p.rectTransform.sizeDelta=size;p.preserveAspect=false;return p;}
+            Image Layer(Sprite sprite,Vector2 point,Vector2 size){var p=extras[n++];p.gameObject.SetActive(true);p.sprite=sprite;p.material=null;p.type=Image.Type.Simple;p.color=Color.white;p.rectTransform.anchoredPosition=point;p.rectTransform.sizeDelta=size;p.preserveAspect=false;return p;}
             if(d.layers==2){Layer(CakeSprite(4),new Vector2(0,35),new Vector2(126,43));Layer(CakeSprite(3),new Vector2(0,53),new Vector2(126,73));}
             var top=d.layers==2?73:42;
             if(d.stage=="stack" || CakeFlow.Index(d)>=7)Layer(CakeSprite(4),new Vector2(0,top),new Vector2(126,43));

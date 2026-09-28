@@ -77,7 +77,8 @@ def main():
                 if summary['schema']>=23:
                     require(command(client,19,item=client.profile,target='0@1',value='save-picture')['accepted'],'Saved picture recovery state')
                     require(command(client,0,x=-2300,y=200)['accepted'],'Food storage recovery placement')
-                    created=command(client,18,target='PIZ-02',value='easy:readybase');require(created['accepted'],'Food recovery preparation')
+                    recipe=['CAK-01','CAK-03','CAK-04','CAK-05'][clients.index(client)] if summary['schema']>=24 else 'PIZ-02'
+                    created=command(client,18,target=recipe,value='easy:readybase');require(created['accepted'],'Food recovery preparation')
                     tray=next(t for t in created['view']['toys'] if t.get('kitchen',{}).get('cook')==client.profile and t['id'].startswith('cookware-'))
                     dish=tray['kitchen']['dish'];token=dish['id']+'@'+(dish['stage'] or '')+'@'+str(dish['step'])+'@'+str(dish['portions'])
                     require(command(client,18,item=tray['id'],target=token,value='store-food')['accepted'],'Stored food recovery state')
