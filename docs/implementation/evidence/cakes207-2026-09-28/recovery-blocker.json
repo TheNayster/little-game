@@ -6,5 +6,9 @@
   "saveValidationErrorObserved": false,
   "worldReplaced": false,
   "securitySettingsChanged": false,
-  "nativeColdRestartAndFourRejoinPassed": true
+  "nativeColdRestartAndFourRejoinPassed": true,
+  "confirmedEventId": 3077,
+  "confirmedPolicyId": "0283ac0f-fff1-49ae-ada1-8a933130cad6",
+  "authenticodeStatus": "NotSigned",
+  "policyFriendlyName": "Not established; read-only CiTool policy listing returned access denied."
 }
