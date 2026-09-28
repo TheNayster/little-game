@@ -1,0 +1,51 @@
+{
+  "utc": "2026-09-28T23:40:00.1615386Z",
+  "operation": "updated",
+  "version": "0.0.226",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "c69c7ad219c19a494ea9f5a126a3be87f1ffbf34dabd518c69f25a7a5fe6991f",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 223,
+  "previousApkSha256": "78fbb914e86df117c40a966e465b541d5cc0edbcdb1d2c26df443e9d81584e2c",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "pid": "16167",
+  "visibleUiAndSaveRetentionVerified": true,
+  "native16KbQualified": false,
+  "saveRetentionVerified": true,
+  "primarySavesCompared": 21,
+  "backupsCompared": 21,
+  "byteIdenticalPrimarySaves": 20,
+  "byteIdenticalBackups": 20,
+  "enrollmentStatusUnchanged": true,
+  "bookAudioStateUnchanged": true,
+  "migrations": [
+    {
+      "record": "active world",
+      "previousSchema": 28,
+      "newSchema": 29,
+      "objectsRetainedExact": 118,
+      "otherDurableWorldFieldsExact": true,
+      "playerIdentityAndInventoryExact": true,
+      "recordedHideActionsAfterLaunch": 2,
+      "changesLimitedToMigrationHidingPositionReceiptsAndIdleTimers": true
+    },
+    {
+      "record": "active backup",
+      "previousSchema": 28,
+      "newSchema": 29,
+      "objectsRetainedExact": 118,
+      "otherDurableWorldFieldsExact": true,
+      "playerIdentityAndInventoryExact": true,
+      "recordedHideActionsAfterLaunch": 2,
+      "changesLimitedToMigrationHidingPositionReceiptsAndIdleTimers": true
+    }
+  ],
+  "visibleLaunch": "Unlocked Little Weeps Home; Bingo, retained food plates, parent HUD and new dining-table Hide button visible.",
+  "physicalFourPlayerAcceptance": false,
+  "familyServerUpdated": false,
+  "ipadsUpdated": false
+}
