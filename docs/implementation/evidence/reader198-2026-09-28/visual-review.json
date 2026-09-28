@@ -1,0 +1,32 @@
+{
+  "build": 198,
+  "reviewedNativeCaptures": [
+    "story-phone.png",
+    "story-tablet.png",
+    "dinosaurs-phone.png",
+    "dinosaurs-tablet.png",
+    "options-phone.png"
+  ],
+  "resolutions": [
+    [
+      1280,
+      591
+    ],
+    [
+      1024,
+      768
+    ]
+  ],
+  "observations": [
+    "Full authored story illustration fits with aspect-ratio margins",
+    "Cream controls show the underlying picture while opaque labels remain legible",
+    "Books title More and Home have separated bounds on both layouts",
+    "Three pictured main actions and fixed page arrows fit both screens",
+    "All twelve dinosaur pictures and names remain visible without overlap",
+    "More contains large voice effects words and automatic-page settings"
+  ],
+  "limitations": [
+    "Native Windows captures do not verify physical touch size, device audio, child usability or A10 performance",
+    "Existing story artwork and final requested catalog are not accepted by this visual control check"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "build": 198,
+  "previous": 194,
+  "checks": [
+    "194 to candidate retains two title page and narration bookmarks exactly and never starts playback on open",
+    "four readers keep independent pages playback and world travel",
+    "name page changes and effect close cancel stale audio; narration and effects do not compete",
+    "manual mode stays on page and optional automatic mode follows actual narration completion",
+    "all six installed titles and 54 pages load; bounded textures, explicit speech and nonwrapping arrows",
+    "phone and tablet controls remain inside screen with at least 44px targets; native screenshots captured",
+    "words voice effects and bookmark survive process restart; network-only changes preserve reading and simulated application lifecycle return stays quiet",
+    "all candidate clients and authority close without reader cleanup exceptions or queue warnings"
+  ],
+  "legacyBookmarks": {
+    "hello-dinosaurs": {
+      "page": 2,
+      "sample": 23552
+    },
+    "little-bridge": {
+      "page": 3,
+      "sample": 23040
+    }
+  },
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false,
+  "physicalAudioVerified": false
+}

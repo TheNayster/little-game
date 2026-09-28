@@ -1,0 +1,23 @@
+{
+  "initialBuild": 195,
+  "passedGroupsBeforeFixtureCorrection": [
+    "194 to candidate retains two title page and narration bookmarks exactly and never starts playback on open",
+    "four readers keep independent pages playback and world travel",
+    "name page changes and effect close cancel stale audio; narration and effects do not compete",
+    "manual mode stays on page and optional automatic mode follows actual narration completion",
+    "all six installed titles and 54 pages load; bounded textures, explicit speech and nonwrapping arrows",
+    "phone and tablet controls remain inside screen with at least 44px targets; native screenshots captured"
+  ],
+  "fixtureIssue": "The initial final check used network-only pause as application suspension. Local books intentionally continue across network-only changes. The final fixture separately exercises Unity application pause/resume callbacks.",
+  "visualCorrectionsFor196": [
+    "Single translucent card fill instead of two overlapping fills",
+    "Teal dinosaur names and a clear page-number backing",
+    "Header positions calculated from screen edges to avoid phone overlap"
+  ],
+  "extraAudioReview": "Changing the effects preference only resumes narration when it actually interrupted an effect; an unavailable page clip remains retryable.",
+  "physicalDeviceTested": false,
+  "interim196NativeGroupsPassed": 7,
+  "final197SourceCorrection": "Two loading-status ellipsis bytes were normalized to ASCII so every game C# file is valid UTF-8 across platforms. No behavior, content or saved-state contract changed.",
+  "candidate197FinalLogCheck": "Seven behavior groups passed, but the full run failed its log gate: two client shutdowns raised NullReferenceException in ReleaseBookMedia while clearing already-destroyed Unity Image components.",
+  "correctionFor198": "ResetBooks no longer updates reader controls or detached pictures during teardown. Normal close still clears living pictures, with destroyed-reference guards. The final test closes every candidate process before checking every log."
+}

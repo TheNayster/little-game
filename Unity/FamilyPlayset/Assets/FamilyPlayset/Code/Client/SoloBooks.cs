@@ -32,7 +32,7 @@ namespace LittleWeeps.Client
         private AudioSource readerVoice,readerEffects;
         private BookLease bookPageLease,bookNameLease,bookEffectLease;
         private AudioClip pageAudio,nameAudio,effectAudio;
-        private bool bookPagePending,bookNamePending,bookWasSpeaking,bookAwaitingSpeech,bookEffectsOn=true;
+        private bool bookPagePending,bookNamePending,bookEffectPending,bookWasEffect,bookWasSpeaking,bookAwaitingSpeech,bookEffectsOn=true;
         private float bookSpeechDeadline;
         private float bookAutoAt=-1,bookNextSave,bookMotionUntil;
         private string readAfterDrop;
@@ -99,41 +99,28 @@ namespace LittleWeeps.Client
             {
                 var index=i;
                 var choice=HomePicture(readerFrame,"Animal choice "+i,Vector2.zero,new Vector2(250,170),null);choice.preserveAspect=true;choice.raycastTarget=true;NavButton(choice,()=>BookName(index));bookChoices.Add(choice);
-                bookChoiceLabels.Add(BookText("",24,Vector2.zero,new Vector2(260,36)));
+                var animalLabel=BookText("",24,Vector2.zero,new Vector2(260,36));animalLabel.color=new Color(.17f,.34f,.33f);Destroy(animalLabel.GetComponent<Shadow>());bookChoiceLabels.Add(animalLabel);
             }
-            bookTitle=BookText("",36,new Vector2(0,303),new Vector2(1000,64));
-            bookWordsPanel=Panel(readerFrame,"Story words on page",new Vector2(0,-224),new Vector2(1040,172),new Color(.02f,.04f,.06f,.27f));
+            bookHeadingCard=ReaderDrawing(readerFrame,"Page heading",new Vector2(-65,342),new Vector2(640,76),"card",new Color(1,.985f,.94f,.68f));
+            bookTitle=BookText("",32,new Vector2(-65,342),new Vector2(640,70));bookTitle.resizeTextForBestFit=true;bookTitle.resizeTextMinSize=23;bookTitle.resizeTextMaxSize=32;bookTitle.color=new Color(.17f,.34f,.33f);Destroy(bookTitle.GetComponent<Shadow>());
+            bookWordsPanel=Panel(readerFrame,"Story words on page",new Vector2(0,-224),new Vector2(1040,172),Color.clear);
+            var wordsCard=ReaderDrawing(bookWordsPanel.transform,"Translucent words",Vector2.zero,new Vector2(1040,172),"card",new Color(1,.985f,.94f,.76f));Stretch(wordsCard.rectTransform);
             bookCaption=BookText("",28,new Vector2(0,-224),new Vector2(1008,156));
+            bookCaption.color=new Color(.17f,.34f,.33f);Destroy(bookCaption.GetComponent<Shadow>());
             bookCaption.resizeTextForBestFit=true;bookCaption.resizeTextMinSize=24;bookCaption.resizeTextMaxSize=28;
             bookCaption.horizontalOverflow=HorizontalWrapMode.Wrap;bookCaption.verticalOverflow=VerticalWrapMode.Truncate;
             bookStatus=BookText("",18,new Vector2(0,-310),new Vector2(1000,28));
-            BookControl("Close",.94f,352,110,CloseBook);
-            BookControl("Our books",.78f,352,150,()=>{CloseBook();ShowBookLibrary();});
-            bookVoiceLabel=BookControl("Voice on",.075f,352,140,()=>{PauseBook();ToggleVoice();UpdateBookControls();});
-            bookEffectsLabel=BookControl("Sounds on",.23f,352,150,()=>{bookEffectsOn=!bookEffectsOn;StopBookEffect();PlayerPrefs.SetInt(QuietKey("book-effects"),bookEffectsOn?1:0);PlayerPrefs.Save();UpdateBookControls();});
-            bookCounter=BookText("",22,new Vector2(0,352),new Vector2(140,42));
-            BookControl("<",.045f,0,66,()=>TurnBook(reader.Page-1));
-            BookControl(">",.955f,0,66,()=>TurnBook(reader.Page+1));
-            bookPlay=BookControl("Read to me",.26f,-354,170,ToggleBookPlay);
-            BookControl("Replay",.42f,-354,150,()=>{PauseBook();reader.Sample=0;ToggleBookPlay();});
-            BookControl("Hear sound",.58f,-354,150,PlayBookEffect);
-            bookAuto=BookControl("Auto pages on",.74f,-354,185,()=>{reader.AutoTurn=!reader.AutoTurn;if(!reader.AutoTurn)bookAutoAt=-1;SaveBookmark();UpdateBookControls();});
+            BuildBookControls();
             readerVoice=gameObject.AddComponent<AudioSource>();readerEffects=gameObject.AddComponent<AudioSource>();
             foreach(var source in new[]{readerVoice,readerEffects}){source.playOnAwake=false;source.spatialBlend=0;}
             var muted=VerifyRun!=null || familyTestMuted || shared?.MutedTest==true;readerVoice.volume=muted?0:.65f;readerEffects.volume=muted?0:.45f;
-            bookEffectsOn=PlayerPrefs.GetInt(QuietKey("book-effects"),1)!=0;readerOverlay.gameObject.SetActive(reader.Open);
+            bookWordsOn=PlayerPrefs.GetInt(QuietKey("book-words"),1)!=0;bookEffectsOn=PlayerPrefs.GetInt(QuietKey("book-effects"),1)!=0;readerOverlay.gameObject.SetActive(reader.Open);
             if(reader.Open){reader.Pause();ShowBookPage();StartBookArt();}Application.lowMemory+=BookLowMemory;
         }
         private Text BookText(string text,int size,Vector2 position,Vector2 dimensions)
         {
             var label=Label(readerFrame,text,size,position,dimensions);label.color=Color.white;
             var shadow=label.gameObject.AddComponent<Shadow>();shadow.effectColor=new Color(0,0,0,.9f);shadow.effectDistance=new Vector2(1.5f,-1.5f);return label;
-        }
-        private Text BookControl(string text,float x,float y,float width,UnityEngine.Events.UnityAction action)
-        {
-            var label=Button(readerFrame,text,Vector2.zero,new Vector2(width,64),action,new Color(.04f,.07f,.10f,.30f));label.color=Color.white;
-            var shadow=label.gameObject.AddComponent<Shadow>();shadow.effectColor=new Color(0,0,0,.7f);shadow.effectDistance=new Vector2(1,-1);
-            bookControlAnchors.Add((label.transform.parent.GetComponent<RectTransform>(),x,y));return label;
         }
         private void LayoutBookReader()
         {
@@ -142,14 +129,20 @@ namespace LittleWeeps.Client
             var scale=safe.rect.height/800;var width=safe.rect.width/scale;
             readerFrame.localScale=Vector3.one*scale;readerFrame.sizeDelta=new Vector2(width,800);
             bookFocus.rectTransform.sizeDelta=DinosaurBook?new Vector2(width-180,450):new Vector2(width,800);
-            foreach(var control in bookControlAnchors)control.rect.anchoredPosition=new Vector2((control.x-.5f)*width,control.y);
+            foreach(var control in bookControlAnchors){
+                var x=(control.x-.5f)*width;
+                if(control.rect.name=="Our books")x=-width/2+94;
+                else if(control.rect.name=="More reading options")x=width/2-232;
+                else if(control.rect.name=="Close")x=width/2-80;
+                control.rect.anchoredPosition=new Vector2(x,control.y);
+            }
             var group=DinosaurBook && bookContent.pages[reader.Page].species<0;
-            bookWordsPanel.rectTransform.sizeDelta=new Vector2(width-180,group?128:172);bookCaption.rectTransform.sizeDelta=new Vector2(width-216,group?112:156);
-            bookWordsPanel.rectTransform.anchoredPosition=bookCaption.rectTransform.anchoredPosition=new Vector2(0,group?-245:-224);bookTitle.rectTransform.sizeDelta=new Vector2(width-240,64);
+            bookWordsPanel.rectTransform.sizeDelta=new Vector2(width-200,group?108:140);bookCaption.rectTransform.sizeDelta=new Vector2(width-236,group?92:124);
+            bookWordsPanel.rectTransform.anchoredPosition=bookCaption.rectTransform.anchoredPosition=new Vector2(0,group?-200:-184);bookTitle.rectTransform.sizeDelta=new Vector2(width-534,70);bookHeadingCard.rectTransform.sizeDelta=new Vector2(width-516,76);bookStatus.rectTransform.anchoredPosition=new Vector2(0,-258);
             var cell=(width-200)/4;
             for(var i=0;i<12;i++)
             {
-                var pos=new Vector2((i%4-1.5f)*cell,220-i/4*140);
+                var pos=new Vector2((i%4-1.5f)*cell,229-i/4*137);
                 bookChoices[i].rectTransform.anchoredPosition=pos;bookChoices[i].rectTransform.sizeDelta=new Vector2(cell-24,110);
                 bookChoiceLabels[i].rectTransform.anchoredPosition=pos+new Vector2(0,-65);bookChoiceLabels[i].rectTransform.sizeDelta=new Vector2(cell,40);
             }
@@ -163,8 +156,9 @@ namespace LittleWeeps.Client
         public void OpenBook(string copyId)
         {
             if(!Ready || !IsBook(copyId) || MenuOpen || WorldLoading || TravelPending)return;
+            if(reader.Open)CloseBook();
             CancelPointers();CancelStairApproach();CancelDoorApproach();CloseNavigation();Narration.Stop();ReadBookContent(HomeBooks.Index(copyId));
-            var key=BookKey;reader.Begin(PlayerPrefs.GetInt(key+"page",0),PlayerPrefs.GetInt(key+"sample",0),PlayerPrefs.GetInt(key+"revision",bookContent.revision),bookContent.pages.Length,bookContent.revision);reader.AutoTurn=PlayerPrefs.GetInt(key+"auto",1)!=0;
+            var key=BookKey;reader.Begin(PlayerPrefs.GetInt(key+"page",0),PlayerPrefs.GetInt(key+"sample",0),PlayerPrefs.GetInt(key+"revision",bookContent.revision),bookContent.pages.Length,bookContent.revision);reader.AutoTurn=PlayerPrefs.GetInt(key+"auto",0)!=0;bookOptions.gameObject.SetActive(false);
             readerOverlay.gameObject.SetActive(true);readerOverlay.SetAsLastSibling();stick.gameObject.SetActive(false);
             ShowBookPage();StartBookArt();SaveBookmark();
         }
@@ -214,11 +208,11 @@ namespace LittleWeeps.Client
         private void StopBookName()
         {bookNameGeneration++;bookNamePending=false;bookName=-1;if(readerVoice!=null){readerVoice.Stop();readerVoice.clip=null;}nameAudio=null;ReleaseBook(ref bookNameLease);bookWasSpeaking=bookAwaitingSpeech=false;}
         private void StopBookEffect()
-        {bookEffectGeneration++;if(readerEffects!=null){readerEffects.Stop();readerEffects.clip=null;}effectAudio=null;ReleaseBook(ref bookEffectLease);}
+        {bookEffectGeneration++;bookEffectPending=bookWasEffect=false;if(readerEffects!=null){readerEffects.Stop();readerEffects.clip=null;}effectAudio=null;ReleaseBook(ref bookEffectLease);}
         private void PauseBook()
         {if(!reader.Open)return;CaptureBookSample();reader.Pause();StopBookName();StopBookEffect();bookAutoAt=-1;SaveBookmark();UpdateBookControls();}
         private void CloseBook()
-        {if(!reader.Open)return;PauseBook();reader.Close();ReleaseBookMedia();readerOverlay.gameObject.SetActive(false);stick.gameObject.SetActive(JoystickMode && !MenuOpen);CancelPointers();}
+        {if(!reader.Open)return;PauseBook();reader.Close();ReleaseBookMedia();readerOverlay.gameObject.SetActive(false);bookOptions.gameObject.SetActive(false);stick.gameObject.SetActive(JoystickMode && !MenuOpen);CancelPointers();}
         private void TurnBook(int page)
         {if(!reader.Open || page<0 || page>=reader.Pages)return;PauseBook();reader.Turn(page);ShowBookPage();SaveBookmark();}
         private void ShowBookPage()
@@ -231,7 +225,7 @@ namespace LittleWeeps.Client
         {
             if(bookFocus==null)return;var species=bookContent.pages[reader.Page].species;var group=DinosaurBook && species<0;
             var index=DinosaurBook?species:reader.Page;bookFocus.gameObject.SetActive(!group);bookFocus.sprite=index>=0 && index<bookPageSprites.Count?bookPageSprites[index]:null;
-            readerOverlay.GetComponent<Image>().color=DinosaurBook?new Color(.23f,.30f,.25f):new Color(.07f,.09f,.10f);
+            readerOverlay.GetComponent<Image>().color=DinosaurBook?new Color(.86f,.93f,.85f):new Color(.94f,.92f,.82f);
             LayoutBookReader();
             for(var i=0;i<12;i++){bookChoices[i].gameObject.SetActive(group);bookChoiceLabels[i].gameObject.SetActive(group);bookChoices[i].sprite=bookPageSprites.Count==12?bookPageSprites[i]:null;bookChoiceLabels[i].text=DinosaurBook?bookContent.names[i]:"";}
         }
@@ -239,8 +233,8 @@ namespace LittleWeeps.Client
         {
             yield return LoadBookAudio(lease);if(!reader.Open || generation!=bookPageGeneration)yield break;
             pageAudio=lease.asset as AudioClip;bookPagePending=false;
-            if(pageAudio==null || pageAudio.loadState!=AudioDataLoadState.Loaded){reader.Pause();bookStatus.text="Page audio is unavailable. You can still read and turn pages.";RecordBookAudio("page-unavailable");yield break;}
-            reader.ClampSamples(pageAudio.samples);if(reader.Playing && !BookNaming)StartBookSpeech();UpdateBookControls();
+            if(pageAudio==null || pageAudio.loadState!=AudioDataLoadState.Loaded){reader.Pause();UpdateBookControls();bookStatus.text="Page audio is unavailable. You can still read and turn pages.";RecordBookAudio("page-unavailable");yield break;}
+            reader.ClampSamples(pageAudio.samples);if(reader.Playing && !BookNaming && !bookEffectPending && !bookWasEffect)StartBookSpeech();UpdateBookControls();
         }
         private IEnumerator LoadBookAudio(BookLease lease)
         {
@@ -254,7 +248,8 @@ namespace LittleWeeps.Client
         }
         private void ToggleBookPlay()
         {
-            if(!reader.Open)return;if(reader.Playing){PauseBook();return;}if(!Narration.VoiceEnabled)return;
+            if(!reader.Open || applicationPaused)return;if(reader.Playing){PauseBook();return;}if(!Narration.VoiceEnabled)return;
+            if(!bookPagePending && (pageAudio==null || pageAudio.loadState!=AudioDataLoadState.Loaded))ShowBookPage();
             StopBookName();StopBookEffect();if(pageAudio!=null && reader.Sample>=pageAudio.samples-1)reader.Sample=0;
             reader.Play();bookAutoAt=-1;StartBookSpeech();UpdateBookControls();
         }
@@ -267,7 +262,7 @@ namespace LittleWeeps.Client
         {readerVoice.Play();bookWasSpeaking=false;bookAwaitingSpeech=true;bookSpeechDeadline=Time.unscaledTime+3;RecordBookAudio("play-requested");}
         private void BookName(int index)
         {
-            if(!reader.Open || !DinosaurBook || index<0 || index>=bookContent.names.Length)return;bookSelected=index;bookMotionUntil=Time.unscaledTime+1.6f;
+            if(!reader.Open || applicationPaused || !DinosaurBook || index<0 || index>=bookContent.names.Length)return;bookSelected=index;bookMotionUntil=Time.unscaledTime+1.6f;
             if(!Narration.VoiceEnabled)return;CaptureBookSample();StopBookName();StopBookEffect();bookName=index;bookNamePending=true;bookAutoAt=-1;
             bookNameLease=AcquireBook(BookPath+"audio/name-"+index);StartCoroutine(LoadBookName(bookNameGeneration,reader.Generation,bookNameLease));UpdateBookControls();
         }
@@ -280,32 +275,45 @@ namespace LittleWeeps.Client
         }
         private void PlayBookEffect()
         {
-            if(!reader.Open || !bookEffectsOn || applicationPaused)return;StopBookEffect();bookMotionUntil=Time.unscaledTime+1.6f;
-            bookEffectLease=AcquireBook(BookPath+"audio/effect-"+(DinosaurBook?bookSelected:0));StartCoroutine(LoadBookEffect(bookEffectGeneration,bookEffectLease));
+            if(!reader.Open || !bookEffectsOn || applicationPaused)return;
+            CaptureBookSample();StopBookName();StopBookEffect();bookAutoAt=-1;bookEffectPending=true;bookMotionUntil=Time.unscaledTime+1.6f;
+            bookEffectLease=AcquireBook(BookPath+"audio/effect-"+(DinosaurBook?bookSelected:0));StartCoroutine(LoadBookEffect(bookEffectGeneration,bookEffectLease));UpdateBookControls();
         }
         private IEnumerator LoadBookEffect(int generation,BookLease lease)
         {
             yield return LoadBookAudio(lease);if(!reader.Open || generation!=bookEffectGeneration || !bookEffectsOn || applicationPaused)yield break;
-            effectAudio=lease.asset as AudioClip;if(effectAudio!=null && effectAudio.loadState==AudioDataLoadState.Loaded){readerEffects.clip=effectAudio;readerEffects.Play();RecordBookAudio("effect-requested");}
+            bookEffectPending=false;effectAudio=lease.asset as AudioClip;
+            if(effectAudio!=null && effectAudio.loadState==AudioDataLoadState.Loaded){readerEffects.clip=effectAudio;readerEffects.Play();bookWasEffect=true;RecordBookAudio("effect-requested");}
+            else if(reader.Playing)StartBookSpeech();
+            UpdateBookControls();
         }
         private void UpdateBookControls()
         {
-            if(bookPlay==null)return;bookPlay.text=reader.Playing?"Pause":reader.Sample>0?"Continue":"Read to me";bookPlay.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
+            if(bookPlay==null)return;
+            bookPlay.text=reader.Playing?(bookPagePending?"Cancel":"Pause"):reader.Sample>0?"Keep reading":"Read to me";
+            bookPlayPicture.Icon=reader.Playing?(bookPagePending?"cancel":"pause"):"play";bookPlayPicture.SetVerticesDirty();
+            bookPlay.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
+            bookReplay.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
+            bookSound.transform.parent.GetComponent<Button>().interactable=bookEffectsOn;
+            bookPrevious.interactable=reader.Page>0;bookNext.interactable=reader.Page<reader.Pages-1;
             bookAuto.text=reader.AutoTurn?"Auto pages on":"Auto pages off";bookVoiceLabel.text=Narration.VoiceEnabled?"Voice on":"Voice off";bookEffectsLabel.text=bookEffectsOn?"Sounds on":"Sounds off";
-            bookStatus.text=bookPagePending?"Getting this page ready…":BookNaming?"Listen to the animal's name":"";
+            bookWordsLabel.text=bookWordsOn?"Words on":"Words off";bookCaption.gameObject.SetActive(bookWordsOn);bookWordsPanel.gameObject.SetActive(bookWordsOn);
+            bookStatus.text=bookPagePending?"Getting this page ready...":BookNaming?"Listen to the animal's name":bookEffectPending?"Getting the sound ready...":"";
         }
-        private void ReleaseBookMedia()
+        private void ReleaseBookMedia(bool detachPictures=true)
         {
             bookArtGeneration++;bookPageGeneration++;StopBookName();StopBookEffect();bookPagePending=false;pageAudio=null;ReleaseBook(ref bookPageLease);
-            if(bookFocus!=null)bookFocus.sprite=null;foreach(var picture in bookChoices)picture.sprite=null;
+            if(detachPictures){if(bookFocus!=null)bookFocus.sprite=null;foreach(var picture in bookChoices)if(picture!=null)picture.sprite=null;}
             foreach(var sprite in bookPageSprites)Destroy(sprite);bookPageSprites.Clear();foreach(var item in bookArt){var lease=item;ReleaseBook(ref lease);}bookArt.Clear();
         }
         private void BookLowMemory(){if(!reader.Open)ReleaseBookMedia();}
         private void ResetBooks()
         {
-            if(reader.Open)PauseBook();ReleaseBookMedia();Application.lowMemory-=BookLowMemory;
+            // Unity can destroy the canvas before this component. Teardown
+            // saves/stops media without asking dead UI graphics to rebuild.
+            bookPlay=null;if(reader.Open)PauseBook();ReleaseBookMedia(false);Application.lowMemory-=BookLowMemory;
             if(readerVoice!=null)Destroy(readerVoice);if(readerEffects!=null)Destroy(readerEffects);readerVoice=readerEffects=null;
-            readerOverlay=readerFrame=bookRack=bookRackFront=bookLibrary=bookLibraryFrame=null;bookFocus=bookWordsPanel=null;bookChoices.Clear();bookChoiceLabels.Clear();bookCovers.Clear();bookRackSprite=null;bookControlAnchors.Clear();
+            readerOverlay=readerFrame=bookRack=bookRackFront=bookLibrary=bookLibraryFrame=bookOptions=null;bookFocus=bookWordsPanel=null;bookChoices.Clear();bookChoiceLabels.Clear();bookCovers.Clear();bookRackSprite=null;bookControlAnchors.Clear();
         }
         private Vector2 BookSupportPicture(int slot)=>ToBoard(HomeBooks.RackX,HomeBooks.RackY)+new Vector2((slot%3-1)*135,slot<3?251:157)*sceneScale;
         private Vector2 BookDropPoint(Vector2 raw)
@@ -340,6 +348,7 @@ namespace LittleWeeps.Client
                 else if(reader.Playing && pageAudio!=null){reader.Sample=pageAudio.samples-1;readerVoice.clip=null;bookAutoAt=reader.AutoTurn && reader.Page<reader.Pages-1?Time.unscaledTime+1:-1;if(bookAutoAt<0)reader.Pause();SaveBookmark();}
                 UpdateBookControls();
             }
+            if(bookWasEffect && readerEffects!=null && !readerEffects.isPlaying && !applicationPaused){StopBookEffect();if(reader.Playing)StartBookSpeech();UpdateBookControls();}
             if(bookAutoAt>=0 && Time.unscaledTime>=bookAutoAt){TurnBook(reader.Page+1);reader.Play();StartBookSpeech();UpdateBookControls();}
             if(readerEffects!=null)readerEffects.volume=(VerifyRun!=null || familyTestMuted || shared?.MutedTest==true)?0:(BookSpeaking ? .13f : .45f);
             var phase=Mathf.Clamp01((bookMotionUntil-Time.unscaledTime)/1.6f);var moving=DinosaurBook && !quietStill && phase>0;

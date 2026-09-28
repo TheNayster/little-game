@@ -1,0 +1,52 @@
+# Native picture controls for the Home books
+
+September 28, 2026. BOOK-01 / H-19 / H-20. This bounded slice carries the accepted [browser reader and picture-control research](home-picture-controls-2026-09-28.html) into the Unity game. The six existing draft books, their 54 pages, original illustration bounds and recorded narration/name/effect assets are retained. The requested final subjects and voice acceptance remain separate open work.
+
+## Applied research and presentation
+
+The [Khan Academy Kids publisher guide](https://khankids.zendesk.com/hc/en-us/articles/4409036780955-Learn-more-about-the-books-in-the-Khan-Academy-Kids-app) distinguishes deliberate Read to Me from quiet reading with arrows. The [W3C enhanced target guidance](https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html) recommends at least 44 by 44 CSS pixels and larger targets for frequent/sequential actions. Both sources were rechecked for this implementation. These are design references; native screen pixels are not CSS pixels or proof of physical toddler usability.
+
+- Three main pictured actions: **Read to me**, **Read again**, and **Hear sound**. The primary action becomes Pause during playback, Cancel while requested page audio loads, and Keep reading after a pause.
+- Cream translucent rounded cards, opaque teal pictures and labels, and a green primary action follow the accepted science/reader treatment. Pictures are small native meshes, with no additional raster textures or audio assets.
+- Fixed Back/Next arrows, Books, and Home remain accessible. Arrows disable at the first and last page instead of wrapping. More opens the voice, effects, words and automatic-page controls.
+- Full illustrations continue to fit their authored bounds. The words panel can be hidden locally; it starts visible. Page images are never cropped to fill a different screen aspect.
+- New title preferences start with automatic turns off. Previously saved automatic-turn choices are preserved. Optional automatic turns follow actual narration completion and a short pause.
+
+## Audio and four-player behavior
+
+Opening and returning from the background remain quiet. Each profile keeps its own local page and narration sample for each title; bookmarks are not added to the server snapshot. No world schema, content version, ownership or network authority contract changes are needed.
+
+Explicit effects now temporarily suspend the page narration, just as spoken dinosaur names do. They resume only the still-current reading intent. Pause, page change, title change, close and lifecycle interruption cancel old requests; a delayed load cannot revive them. Existing resource leases still protect a new request from an old request unloading the same clip. A failed page-audio load leaves page controls available and Read to me can retry.
+
+The shared living-room rack and carryable physical books remain. Four players can read the same title at different pages while another player travels or plays. This change does not add a shared reading lock or pause the authority.
+
+## Validation and delivery
+
+Windows candidate **198** passes [eight native groups](evidence/reader198-2026-09-28/native-results.json), using disposable loopback family worlds and real Input System/uGUI touches:
+
+1. Exact per-title pages and narration samples survive 194 to 198; saved auto preferences remain, and opening stays quiet.
+2. Four readers keep separate pages and playback while a sibling travels.
+3. Effects suspend/resume narration; name/page changes and closing cancel old audio and release media.
+4. Manual mode stays on the page; optional automatic mode follows actual clip completion.
+5. All six draft titles and 54 pages load with bounded resident textures and nonwrapping arrows; narration is exercised in each title.
+6. Phone 1280 by 591 and tablet 1024 by 768 layouts keep the reader controls inside the screen, with measured native touch rectangles at least 44 pixels in each dimension.
+7. Words/voice/effect choices and bookmarks survive cold process restart. Network-only interruption preserves local reading; simulated Unity application pause/resume callbacks leave it quiet.
+8. Every candidate client and the authority close before final log inspection; no reader-cleanup exceptions or send-queue warnings.
+
+[Visual review](evidence/reader198-2026-09-28/visual-review.json) uses actual native captures. [Initial review](evidence/reader198-2026-09-28/initial-review.json) records presentation polish, loading-label encoding cleanup, an intermittent shutdown cleanup fix, and correction of a test fixture that had confused network suspension with app suspension. No physical device is implied by these tests.
+
+![Native phone reader](evidence/reader198-2026-09-28/story-phone.png)
+
+![Native tablet dinosaur page](evidence/reader198-2026-09-28/dinosaurs-tablet.png)
+
+Windows and signed Android **198** are prepared, **not installed or deployed**. [Source/artifact evidence](evidence/reader198-2026-09-28/source-artifact-checks.json) verifies all 115 Unity C# files match both artifacts and current source, plus all 351 Windows files and the APK. All 25 Core files are unchanged from 194; its 233 core groups and full recovery evidence remain historical, not new 198 runs. Reader teardown now saves/stops/releases media without updating UI that Unity may already have destroyed. This local reader slice does not add a save migration or increase the server world payload.
+
+[Android inspection](evidence/reader198-2026-09-28/android-artifact-inspection.json) passes Little Weeps identity, pinned family signature, non-development release and ZIP/LOAD alignment. The inherited 16 KB RELRO static check still fails; the artifact is not fully qualified for that gate. Physical runtime/speaker/A10 qualification remains open. No family data or enrollment has been touched.
+
+## Remaining work
+
+No physical speaker-route, A10 performance, child usability or sustained mixed-device acceptance is claimed by native Windows media-state tests. The existing Android 16 KB qualification issue, production recovery/deployment, reported physical book audio and branch integration hold remain open. Home and BOOK-01 remain Partial.
+
+The requested final catalog remains dinosaurs, snakes/reptiles, cars/trucks, Hello Kitty, Tangled and unicorns. This controls pass does not approve or replace the installed original story drafts or narrator.
+
+Next bounded implementation: apply the accepted picture controls to the native coloring workspace, preserving its eighteen pages, four independent creations and undo/redo. Cooking controls, remaining science activities and the full Home backlog remain required. Review the current reader and science candidates on devices when deployment is requested.
