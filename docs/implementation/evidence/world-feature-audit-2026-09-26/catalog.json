@@ -902,8 +902,8 @@
       "chapters": [
         30
       ],
-      "description": "Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Candidate 192 adds the preparation-based bubble lab with four saved mixtures. Candidate 194 adds SP-15 liquid colors with ratios, dilution and four saved mixtures. Remaining science prototypes, all nine original stations and physical acceptance stay required.",
-      "evidence": "liquid",
+      "description": "Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Candidate 192 adds the preparation-based bubble lab with four saved mixtures. Candidate 194 adds SP-15 liquid colors with ratios, dilution and four saved mixtures. Candidate 216 adds SCI-03 adjustable marble ramps with four kept courses and independent releases. Remaining science prototypes, the unfinished portions of all nine original stations and physical acceptance stay required.",
+      "evidence": "ramps",
       "extraSource": ""
     },
     {
@@ -2434,12 +2434,12 @@
       "world": "home",
       "group": "Science experiments",
       "title": "Ramp and roll",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         30
       ],
-      "description": "Shared downstairs. Simple play: Tap to release a ball down a ready-built ramp into a wide basket Explore together: Change ramp height and surface; one child adjusts, the other releases; keep both toys otherwise identical when comparing Factual constraint: Slope and friction change motion; do not use “heavier always rolls faster” as the rule Planned; not implemented in Unity.",
-      "evidence": "scienceart",
+      "description": "Shared downstairs. Simple play: Tap to release a ball down a ready-built ramp into a wide basket Explore together: Change ramp height and surface; one child adjusts, the other releases; keep both toys otherwise identical when comparing Factual constraint: Slope and friction change motion; do not use “heavier always rolls faster” as the rule Candidate 216 adds a ready three-ramp course, six adjustable endpoints, wood/felt/rubber resistance, four owned saved courses and releases, explicit Keep/Restore, undo and creation-preserving five-minute cleanup. Native qualification is recorded in the linked report; physical A10/child/mixed-device acceptance and broader construction remain open.",
+      "evidence": "ramps",
       "extraSource": ""
     },
     {

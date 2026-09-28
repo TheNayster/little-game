@@ -40,3 +40,5 @@ Physical child/A10/mixed-device/audio qualification, the inherited Android 16 KB
 ![The saved burger retains its remaining half](evidence/meals212-2026-09-28/01-retained-meal-1.png)
 
 ![Soup stays within its illustrated bowl](evidence/meals212-2026-09-28/02-full-soup-tablet.png)
+
+**Follow-up in the ramp candidate:** the core already allowed a burger safely waiting for a flip to be stored, but the 212 Put away button still treated its completed first-side heat as busy. [The ramp implementation](marble-ramps-2026-09-28.html) corrects that control and records actual storage/retrieval verification.

@@ -1,0 +1,2 @@
+Ramp JSON failure: Invalid marble release. source=14.816666666666666 restored=14.816666666666668 duration=14.816666666666666 json={"revision":0,"current":{"course":{"surface":0,"points":[210,150,760,220,860,280,230,345,140,410,680,440]},"released":true,"elapsed":14.816666666666667},"previous":[],"kept":[]}
+Ramp JSON round trips: 24; failures: 1

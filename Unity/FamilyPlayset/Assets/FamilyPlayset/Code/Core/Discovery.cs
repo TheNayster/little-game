@@ -35,11 +35,12 @@ namespace LittleWeeps.Core
         public bool wide,outOfWater;
         public float magnetX=400,magnetY=110,ironX=140,ironY=315;
         public ColoringPage[] pages;
+        public RampTray[] ramps=Array.Empty<RampTray>();
         public LiquidColorTray[] liquid=Array.Empty<LiquidColorTray>();
         public BubbleTray[] bubbles=Array.Empty<BubbleTray>();
         public IceRescueTray[] ice=Array.Empty<IceRescueTray>();
         public MixingTray[] mixtures=Array.Empty<MixingTray>();
-        public DiscoveryWorkspace Copy(){var c=(DiscoveryWorkspace)MemberwiseClone();c.liquid=(liquid??Array.Empty<LiquidColorTray>()).Select(t=>t.Copy()).ToArray();c.bubbles=(bubbles??Array.Empty<BubbleTray>()).Select(t=>t.Copy()).ToArray();c.ice=(ice??Array.Empty<IceRescueTray>()).Select(t=>t.Copy()).ToArray();c.pages=pages.Select(p=>p.Copy()).ToArray();c.mixtures=(mixtures??Array.Empty<MixingTray>()).Select(t=>t.Copy()).ToArray();return c;}
+        public DiscoveryWorkspace Copy(){var c=(DiscoveryWorkspace)MemberwiseClone();c.ramps=(ramps??Array.Empty<RampTray>()).Select(t=>t.Copy()).ToArray();c.liquid=(liquid??Array.Empty<LiquidColorTray>()).Select(t=>t.Copy()).ToArray();c.bubbles=(bubbles??Array.Empty<BubbleTray>()).Select(t=>t.Copy()).ToArray();c.ice=(ice??Array.Empty<IceRescueTray>()).Select(t=>t.Copy()).ToArray();c.pages=pages.Select(p=>p.Copy()).ToArray();c.mixtures=(mixtures??Array.Empty<MixingTray>()).Select(t=>t.Copy()).ToArray();return c;}
     }
     public sealed partial class SoloWorld
     {
@@ -68,6 +69,7 @@ namespace LittleWeeps.Core
             bool Finite(float v,float min,float max)=>!float.IsNaN(v) && !float.IsInfinity(v) && v>=min && v<=max;
             foreach(var w in work)
             {
+                if(s.schema>=MarbleRamps.Schema){if(w.ramps==null || w.ramps.Length!=1)throw new InvalidOperationException("Missing ramp tray.");MarbleRamps.Validate(w.ramps[0]);}else if(w.ramps!=null && w.ramps.Length>0)throw new InvalidOperationException("Ramps require schema 27.");
                 if(s.schema>=LiquidColorLab.Schema){if(w.liquid==null || w.liquid.Length!=1)throw new InvalidOperationException("Missing liquid color tray.");LiquidColorLab.Validate(w.liquid[0]);}else if(w.liquid!=null && w.liquid.Length>0)throw new InvalidOperationException("Liquid colors require schema 21.");
                 if(s.schema>=BubbleLab.Schema){if(w.bubbles==null || w.bubbles.Length!=1)throw new InvalidOperationException("Missing bubble tray.");BubbleLab.Validate(w.bubbles[0]);}else if(w.bubbles!=null && w.bubbles.Length>0)throw new InvalidOperationException("Bubble lab requires schema 20.");
                 if(s.schema>=IceRescue.Schema){if(w.ice==null || w.ice.Length!=1)throw new InvalidOperationException("Missing rescue tray.");IceRescue.Validate(w.ice[0]);}else if(w.ice!=null && w.ice.Length>0)throw new InvalidOperationException("Ice rescue requires schema 19.");
@@ -95,7 +97,8 @@ namespace LittleWeeps.Core
             var w=state.discovery.Single(v=>v.owner==p.id);
             var op=c.value;
             if(op=="save-picture" || op=="display-picture" || op=="remove-picture" || op=="undo-picture-remove")return PictureCollection(c,p,w);
-            if(op.StartsWith("visit:"))return state.schema>=HomeTidying.Schema && HomeTidying.Labs.Contains(op.Substring(6))?null:"unknown-discovery-action";
+            if(op.StartsWith("visit:"))return state.schema>=HomeTidying.Schema && HomeTidying.LabsFor(state.schema).Contains(op.Substring(6))?null:"unknown-discovery-action";
+            if(op.StartsWith("ramp:"))return RampOperation(c,w);
             if(op.StartsWith("liquid:"))return LiquidColorOperation(c,w);
             if(op.StartsWith("bubble:"))return BubbleOperation(c,w);
             if(op.StartsWith("ice:"))return IceRescueOperation(c,w);

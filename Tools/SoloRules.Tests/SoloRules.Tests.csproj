@@ -26,6 +26,7 @@
     <Compile Include="CakeFamilyTests.cs" />
     <Compile Include="PizzaFlowTests.cs" />
     <Compile Include="MealFlowTests.cs" />
+    <Compile Include="MarbleRampTests.cs" />
     <Compile Include="DiscoveryTests.cs" />
     <Compile Include="MixingTests.cs" />
     <Compile Include="IceRescueTests.cs" />
@@ -42,6 +43,7 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/PreparationFlow.cs" Link="PreparationFlow.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/PizzaFlow.cs" Link="PizzaFlow.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/MealFlow.cs" Link="MealFlow.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/MarbleRamps.cs" Link="MarbleRamps.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KitchenAssistance.cs" Link="KitchenAssistance.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Kitchen.cs" Link="Kitchen.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/RoomPlay.cs" Link="RoomPlay.cs" />

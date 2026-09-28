@@ -35,6 +35,7 @@ static partial class Program
         CakeFamilyTests();
         PizzaFlowTests();
         MealFlowTests();
+        MarbleRampTests();
         DiscoveryTests();
         MixingTests();
         ColoringCollectionTests();

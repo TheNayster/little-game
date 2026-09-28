@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'ramps':'implementation/marble-ramps-2026-09-28.html',
  'mealflow':'implementation/meal-preparation-2026-09-28.html',
  'pizzaflow':'implementation/pizza-preparation-2026-09-28.html',
  'cakefamilies':'implementation/cake-families-2026-09-28.html',
@@ -143,7 +144,7 @@ H-25|home|TV and local media|Watch together or autoplay-next|optional|27|Explici
 H-26|home|Dinosaur play|Twenty-type accessible toy shelf|plan|28|Picture categories, roughly six visible at a time, all types available without quests and deliberate duplicate-toy choice. Twenty definitions do not mean unlimited active toys.|ledger
 H-27|home|Dinosaur play|Named animated toys with connected uses|plan|26,28|Carry, place, rotate/flip, stack/store, footprints/dust, brushing, washing, nests and book links. Same reviewed name ID across books and toys.|ledger
 H-28|home|Dinosaur play|Dinosaur Discovery Mat|plan|28|Uncover toy, brush, hear name, optionally wash and arrange its world. Bypass digging if wanted; toys and creations survive independent departures.|ledger
-H-29|home|Science|Discovery bench and free experiments|part|30|Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Candidate 192 adds the preparation-based bubble lab with four saved mixtures. Candidate 194 adds SP-15 liquid colors with ratios, dilution and four saved mixtures. Remaining science prototypes, all nine original stations and physical acceptance stay required.|liquid
+H-29|home|Science|Discovery bench and free experiments|part|30|Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Candidate 192 adds the preparation-based bubble lab with four saved mixtures. Candidate 194 adds SP-15 liquid colors with ratios, dilution and four saved mixtures. Candidate 216 adds SCI-03 adjustable marble ramps with four kept courses and independent releases. Remaining science prototypes, the unfinished portions of all nine original stations and physical acceptance stay required.|ramps
 H-30|home|Science|Shared experiments and saved creations|part|30,31,47|Candidate 174 has four profile-owned persistent trays and independent reset/travel; 178 adds sixteen saved chemistry trays. Candidate 194 also retains four ice, bubble and liquid-color states with independent reset/undo and native restart/rejoin evidence. Narration, portable creations and physical device qualification remain open.|liquid
 H-31|home|Bedrooms|Four persistent player-owned bedrooms|part|32|Four saved owned rooms include usable furniture/storage and candidate-155 cuddle/tuck/stack/tea play. Broader catalog and physical qualification remain open.|roomplay
 H-32|home|Bedrooms|Decorating, visits and undo|part|32|Owner/Together decoration and undo include bedding, rug, picture and lamp choices. Two safe arrangements remain; free placement and physical acceptance are open.|roomplay
@@ -214,11 +215,12 @@ for n,prefix,world,group in [(37,'BCH','beach','Ten beach activities'),(38,'CRK'
             if m:add(m[1],world,group,m[2],'plan',[n],f'Simple play: {row[1]} Deeper play: {row[2]}','ledger')
 for row in table_with(30,'ID and station')[1:]:
     m=re.match(r'(SCI-\d+)\s*—\s*(.+)',plain(row[0]))
-    integrated=m[1] in ('SCI-01','SCI-02','SCI-04','SCI-06','SCI-09')
+    integrated=m[1] in ('SCI-01','SCI-02','SCI-03','SCI-04','SCI-06','SCI-09')
     note=' Candidate 187 adds illustrated equipment and smooth RGB presentation to the saved trays; deeper interactions and physical acceptance remain open.' if integrated else ' Planned; not implemented in Unity.'
+    if m[1]=='SCI-03':note=' Candidate 216 adds a ready three-ramp course, six adjustable endpoints, wood/felt/rubber resistance, four owned saved courses and releases, explicit Keep/Restore, undo and creation-preserving five-minute cleanup. Native qualification is recorded in the linked report; physical A10/child/mixed-device acceptance and broader construction remain open.'
     if m[1]=='SCI-06':note=' Candidate 192 adds native preparation, dipped film, big/little round bubbles, round/square wands, soft/strong air, direct popping and four saved independent trays with reset/undo. Fan/wind, broader shared catching and physical child/A10/audio acceptance remain open.'
     if m[1]=='SCI-09':note=' Candidate 187 adds the illustrated workbench and layered glass to fizz/foam, indicator colors, oil/water and oobleck, retaining direct pouring and sixteen saved trays. Physical/A10/audio acceptance and portable creations remain open.'
-    add(m[1],'home','Science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'bubbles' if m[1]=='SCI-06' else 'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
+    add(m[1],'home','Science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'ramps' if m[1]=='SCI-03' else 'bubbles' if m[1]=='SCI-06' else 'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
 for row in table_with(30,'Coloring ID')[1:]:
     integrated=row[0] in ('COL-01','COL-02','COL-03','COL-04','COL-05','COL-06','COL-08')
     note=' Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.' if integrated else ' Planned; no game implementation yet.'

@@ -17,12 +17,14 @@ namespace LittleWeeps.Core
         public static string Item(string id)=>"item/"+id;
         public static string Lab(string owner,string lab)=>"lab/"+owner+"/"+lab;
         internal static readonly Dictionary<string,SoloToy> Origins=Kitchen.Stock().Concat(new[]{CakeFlow.MixStock()}).ToDictionary(t=>t.id);
-        public static readonly string[] Labs={"float","magnets","lights","mix0","mix1","mix2","mix3","ice","bubble","liquid"};
-        public static string[] Keys(SoloSnapshot s)=>s.toys.Where(t=>Kitchen.Kind(t.kind) || t.kind==ToyKind.Book).Select(t=>Item(t.id)).Concat(new[]{"kitchen","balloon"}).Concat(s.players.SelectMany(p=>Labs.Select(l=>Lab(p.id,l)))).OrderBy(k=>k,StringComparer.Ordinal).ToArray();
+        public static readonly string[] Labs={"float","magnets","lights","mix0","mix1","mix2","mix3","ice","bubble","liquid","ramps"};
+        public static IEnumerable<string> LabsFor(int schema)=>Labs.Where(l=>l!="ramps" || schema>=MarbleRamps.Schema);
+        public static string[] Keys(SoloSnapshot s)=>s.toys.Where(t=>Kitchen.Kind(t.kind) || t.kind==ToyKind.Book).Select(t=>Item(t.id)).Concat(new[]{"kitchen","balloon"}).Concat(s.players.SelectMany(p=>LabsFor(s.schema).Select(l=>Lab(p.id,l)))).OrderBy(k=>k,StringComparer.Ordinal).ToArray();
         public static string[] CueKeys(SoloSnapshot view){var keys=Keys(view);return (view.homeTidyCues??Array.Empty<int>()).Where(i=>i>=0 && i<keys.Length).Select(i=>keys[i]).ToArray();}
         public static string LabAction(string op)
         {
             if(op.StartsWith("visit:") && Labs.Contains(op.Substring(6)))return op.Substring(6);
+            if(op.StartsWith("ramp:"))return "ramps";
             if(op.StartsWith("liquid:"))return "liquid";
             if(op.StartsWith("bubble:"))return "bubble";
             if(op.StartsWith("ice:"))return "ice";
@@ -50,7 +52,7 @@ namespace LittleWeeps.Core
             if(s.schema<HomeTidying.Schema){if(timers.Length>0 || (s.homeTidyCues?.Length??0)>0)throw new InvalidOperationException("Home tidying requires schema 22.");return;}
             var keys=new HashSet<string>(s.toys.Where(t=>Kitchen.Kind(t.kind) || t.kind==ToyKind.Book).Select(t=>HomeTidying.Item(t.id)));
             keys.Add("kitchen");keys.Add("balloon");
-            foreach(var p in s.players)foreach(var lab in HomeTidying.Labs)keys.Add(HomeTidying.Lab(p.id,lab));
+            foreach(var p in s.players)foreach(var lab in HomeTidying.LabsFor(s.schema))keys.Add(HomeTidying.Lab(p.id,lab));
             var cues=s.homeTidyCues??Array.Empty<int>();
             if(cues.Any(i=>i<0 || i>=keys.Count) || cues.Distinct().Count()!=cues.Length)throw new InvalidOperationException("Invalid Home tidying cues.");
             var seen=new HashSet<string>();
@@ -117,6 +119,7 @@ namespace LittleWeeps.Core
                 Age(HomeTidying.Lab(w.owner,"ice"),ice.revision<long.MaxValue-1 && (ice.current.cells.Any(v=>v!=1) || ice.current.x!=500 || ice.current.y!=330) && ice.current.energy.All(v=>v==0),()=>{ice.previous=new[]{ice.current.Copy()};ice.current=new IceRescueState{toy=ice.current.toy};ice.revision++;});
                 var bubble=w.bubbles[0];var bs=bubble.current;
                 Age(HomeTidying.Lab(w.owner,"bubble"),bubble.revision<long.MaxValue-1 && bs.water && bs.floating.Length==0,()=>{bubble.previous=new[]{bs.Copy()};bubble.current=new BubbleState{big=bs.big,square=bs.square,strong=bs.strong};bubble.revision++;});
+                if(state.schema>=MarbleRamps.Schema){var ramp=w.ramps[0];Age(HomeTidying.Lab(w.owner,"ramps"),ramp.revision<long.MaxValue-1 && !MarbleRamps.Running(ramp.current) && MarbleRamps.Temporary(ramp),()=>{ramp.previous=new[]{ramp.current.Copy()};ramp.current=new RampState{course=MarbleRamps.RestingCourse(ramp)};ramp.revision++;});}
                 var liquid=w.liquid[0];
                 Age(HomeTidying.Lab(w.owner,"liquid"),liquid.revision<long.MaxValue-1 && LiquidColorLab.Volume(liquid.current)>0,()=>{liquid.previous=new[]{liquid.current.Copy()};liquid.current=new LiquidColorState();liquid.revision++;});
             }

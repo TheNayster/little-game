@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithMealPreparation(World);
+                World = SoloWorld.WithMarbleRamps(World);
                 // Restore releases interrupted item holds; persist that change.
                 // Otherwise merely opening another saved adventure must not
                 // rewrite an untouched solo payload (including precise timers).
@@ -507,7 +507,7 @@ namespace LittleWeeps.Client
         {
             FinishBackgroundSave(false);
             if(Ready)TickCake();
-            if(Ready){TickMixing();TickBubbleLab();TickLiquidColors();}
+            if(Ready){TickMixing();TickBubbleLab();TickLiquidColors();TickMarbleRamps();}
             if(Ready){CheckStairInput();CheckDoorInput();}
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
             if(shared!=null)

@@ -1,0 +1,23 @@
+{
+  "tool": "built-in image_gen",
+  "created": "2026-09-28",
+  "source": "exec-3a3cf807-71e9-42bb-a2cc-16cf78f41a67.png",
+  "selected": "exec-9b1d92f8-fbad-4392-a546-7697487bb220.png",
+  "transparentBackground": true,
+  "prompts": [
+    "Create a polished hand-painted 2D sprite atlas for a preschool marble-and-ramp science game. Nine completely separate game components on true transparent RGBA background, exactly 3 columns by 3 rows. Every component fits within its own cell with generous transparent gaps; no clipped silhouettes, no labels, text, numbers, checkerboard or surrounding scenery. Warm cream, honey wood, teal and coral palette; rounded friendly shapes, clear outlines, attractive illustrated shading and subtle material texture. Viewpoint is straight-on orthographic so pieces can be placed and rotated independently in a flat game board. ROW ONE: (1) an EMPTY wide rectangular cream pegboard panel with a rounded honey-wood frame and neat small peg holes, landscape ratio about 1.7:1, absolutely no tracks, ball, handles or basket painted on it; (2) one long straight horizontal honey-wood ramp/track strip, rounded ends, visible upper running edge and narrow front depth, roughly 6:1 aspect, no supports or ball; (3) same ramp strip with a soft mint felt running surface and subtle felt texture. ROW TWO: (4) same ramp strip with a coral rubber ribbed running surface; (5) REAR layer of a wide shallow teal catch basket, open front, visible inside and rear rim, no ball, about 3:1 aspect; (6) matching FRONT rim/wall of that basket, isolated narrow horizontal piece, no rear or interior repeated. ROW THREE: (7) one large beautiful blue glass marble with turquoise swirl and soft highlight, fully circular, no cast shadow; (8) one round warm brass adjustment knob with a cream center, clear easy-to-grab shape, no arrows or letters; (9) one short vertical teal catch-stop rail with rounded ends, narrow upright shape, roughly 1:5 width to height. No objects may touch or overlap. The board, tracks, catches, marble and knobs must remain distinct layers. Keep all nine objects fully visible and centered in their own cells.",
+    "Edit this transparent nine-component science-game atlas. Preserve every object, position, scale, palette, texture and silhouette EXCEPT the three horizontal ramp strips (top middle, top right, middle left). Remove both upright curved end caps from each of those three ramps. Each ramp must be an open-ended straight horizontal channel/strip that a marble can roll off either end, with no lip or barrier at either short end. Keep their smooth wood, mint felt and coral ribbed surfaces, thickness, shading and exact placement. Do not alter the pegboard, basket pieces, marble, brass handle or vertical stop rail. Preserve true transparent RGBA background and separate components."
+  ],
+  "components": [
+    "empty pegboard",
+    "smooth track",
+    "felt track",
+    "ribbed track",
+    "basket rear",
+    "basket front",
+    "glass marble",
+    "adjustment knob",
+    "vertical stop"
+  ],
+  "notes": "Source RGBA copied unchanged. Open track ends correspond to simulated exits. Runtime sprite bounds follow inspected alpha silhouettes."
+}

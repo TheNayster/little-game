@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "build": 214,
+  "checks": [
+    "private geometry surface kept course restore undo history and sound/calm settings survive cold reopen exactly"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

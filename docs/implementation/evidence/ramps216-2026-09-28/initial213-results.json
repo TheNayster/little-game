@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "build": 213,
+  "previous": 212,
+  "checks": [
+    "actual schema26 save gains four ramp trays without altering prior records"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

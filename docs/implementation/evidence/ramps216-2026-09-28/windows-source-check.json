@@ -1,0 +1,10 @@
+{
+  "build": 216,
+  "matched": true,
+  "files": 271,
+  "scope": "All recorded C# sources and new ramp atlas",
+  "sourceCommit": "a0689554144342f9e37bdfe004868c08b3e07690",
+  "rampAtlasSha256": "da2565ec0f7a6636d7531fe4c1ce123c6d0458328de3304e73ee3a627a670c30",
+  "noDeviceDeployment": true,
+  "artifactFilesVerified": 351
+}
