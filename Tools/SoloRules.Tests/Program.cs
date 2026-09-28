@@ -37,6 +37,7 @@ static partial class Program
         ColoringCollectionTests();
         IceRescueTests();
         BubbleLabTests();
+        LiquidColorTests();
         ContinuationTests();
         BackgroundSaveTests();
         Test("local walking advances on irregular render frames and preserves transaction receipts",()=>{

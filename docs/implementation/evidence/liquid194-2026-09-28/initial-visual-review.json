@@ -1,0 +1,8 @@
+{
+  "build": 193,
+  "mechanismTestsPassed": true,
+  "visualAccepted": false,
+  "issue": "Yellow and blue sprites were cropped because pixel bounds assumed source dimensions rather than imported texture dimensions.",
+  "correction": "Crop rectangles are normalized against source dimensions and scaled to the actual imported width/height. Candidate 194 was subsequently visually reviewed; see visual-review.json.",
+  "productionDeviceUpdated": false
+}

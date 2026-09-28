@@ -902,8 +902,8 @@
       "chapters": [
         30
       ],
-      "description": "Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Candidate 192 adds the preparation-based bubble lab with four saved mixtures. Remaining science prototypes, all nine original stations and physical acceptance stay required.",
-      "evidence": "bubbles",
+      "description": "Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Candidate 192 adds the preparation-based bubble lab with four saved mixtures. Candidate 194 adds SP-15 liquid colors with ratios, dilution and four saved mixtures. Remaining science prototypes, all nine original stations and physical acceptance stay required.",
+      "evidence": "liquid",
       "extraSource": ""
     },
     {
@@ -917,8 +917,8 @@
         31,
         47
       ],
-      "description": "Candidate 174 has four profile-owned persistent trays and independent reset/travel; 178 adds sixteen independent saved mixing trays. Narration, portable creations and physical device qualification remain open.",
-      "evidence": "discovery",
+      "description": "Candidate 174 has four profile-owned persistent trays and independent reset/travel; 178 adds sixteen saved chemistry trays. Candidate 194 also retains four ice, bubble and liquid-color states with independent reset/undo and native restart/rejoin evidence. Narration, portable creations and physical device qualification remain open.",
+      "evidence": "liquid",
       "extraSource": ""
     },
     {

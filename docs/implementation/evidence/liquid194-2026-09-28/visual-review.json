@@ -1,0 +1,17 @@
+{
+  "build": 194,
+  "reviewed": [
+    "colors-tablet-orange.png",
+    "colors-tablet-full.png",
+    "colors-phone-orange.png"
+  ],
+  "findings": [
+    "Red yellow and blue bottle heads and bases remain complete at imported resolution.",
+    "All seven sidebar activities remain visible at tablet and phone aspect ratios.",
+    "Glass vessel contains the liquid at low and maximum volumes.",
+    "Color name and portion markers remain separate from all three large picture buttons."
+  ],
+  "reviewSurface": "Native Windows release clients resized to 1024x768 and 1280x591",
+  "physicalDeviceTested": false,
+  "childUsabilityAccepted": false
+}

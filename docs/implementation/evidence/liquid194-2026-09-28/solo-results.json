@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "build": 194,
+  "checks": [
+    "private color quantities dilution reset undo and sound/calm preferences survive cold reopen exactly"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

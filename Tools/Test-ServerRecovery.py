@@ -66,6 +66,9 @@ def main():
                 if summary['schema']>=18:
                     for page in range(6,18):
                         require(command(client,19,item=client.profile,target=f'{page}@0',value='fill:0:3')['accepted'],'Expanded coloring recovery state')
+                if summary['schema']>=21:
+                    for revision,op in enumerate(['red','yellow','water']):
+                        require(command(client,19,item=client.profile,target=f'colors@{revision}',value='liquid:'+op)['accepted'],'Liquid color recovery state')
                 if summary['schema']>=20:
                     for revision,op in enumerate(['water','soap','stir','dip','shape']):
                         require(command(client,19,item=client.profile,target=f'bubbles@{revision}',value='bubble:'+op)['accepted'],'Bubble mixture recovery state')

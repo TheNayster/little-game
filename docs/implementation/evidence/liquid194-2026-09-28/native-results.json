@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": 194,
+  "previous": 192,
+  "checks": [
+    "actual schema20 save gains four color trays without altering any earlier record",
+    "four native clients use real bottle touches to independently make orange green purple and brown",
+    "water keeps original color quantities and reset undo affects only the owner",
+    "one-pointer touch protection works and twelve portions disable extra pours without overflow",
+    "one player changes station another travels and another pours without interrupting siblings",
+    "phone and tablet layouts render and lifecycle preserves local sound and calm settings",
+    "authority restart and rejoin preserve all four mixtures undo history and previous science records exactly"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

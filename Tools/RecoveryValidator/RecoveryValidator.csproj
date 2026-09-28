@@ -8,6 +8,7 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Mixing.cs" Link="Mixing.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/IceRescue.cs" Link="IceRescue.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/BubbleLab.cs" Link="BubbleLab.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/LiquidColorLab.cs" Link="LiquidColorLab.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Kitchen.cs" Link="Kitchen.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KitchenAssistance.cs" Link="KitchenAssistance.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CakeFlow.cs" Link="CakeFlow.cs" />

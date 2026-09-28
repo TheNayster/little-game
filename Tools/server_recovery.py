@@ -39,7 +39,8 @@ LIMIT = 3 * 1024 * 1024
 # 191 passes all seven isolated native recovery groups with four rescue trays.
 # A concurrent-build load run warned on packet queues; stress/physical gates remain open.
 # 192 repeats all seven groups with four prepared schema-20 bubble trays.
-QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131, 171, 172, 174, 178, 187, 191, 192}
+# 194 repeats all seven groups with four saved schema-21 liquid-color mixtures.
+QUALIFIED_BUILDS = frozenset(range(83, 92)) | {110, 128, 130, 131, 171, 172, 174, 178, 187, 191, 192, 194}
 MAX_QUALIFIED_BUILD = max(QUALIFIED_BUILDS)
 
 
@@ -97,7 +98,7 @@ def checkpoint(raw):
     header, checksum, payload = raw.decode('utf-8-sig').split('\n', 2)
     check(header == 'LITTLEWEEPS-SOLO-1' and digest(payload.encode()) == checksum, 'Checkpoint checksum mismatch.')
     value = json.loads(payload)
-    check(value.get('schema') in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 'Unsupported checkpoint version.')
+    check(value.get('schema') in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21), 'Unsupported checkpoint version.')
     return value
 
 
@@ -114,6 +115,8 @@ def build_schema(build):
     # versions. Accept only the explicitly supported pair, not arbitrary schemas.
     if contract == 17 and (summary.get('schema'), summary.get('content')) == (16, 17):
         return 16
+    if contract == 17 and (summary.get('schema'), summary.get('content')) == (21, 22):
+        return 21
     if contract == 17 and (summary.get('schema'), summary.get('content')) == (20, 21):
         return 20
     if contract == 17 and (summary.get('schema'), summary.get('content')) == (19, 20):

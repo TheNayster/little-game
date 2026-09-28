@@ -129,7 +129,7 @@ namespace LittleWeeps.Client
             // (and kitchen maintenance) advancing once while this view is open.
             if(!Shared && DiscoveryOpen && !applicationPaused){if(World.AdvanceIdle(Mathf.Clamp(Time.unscaledDeltaTime,0,.1f),out var visible,new[]{Actor}))dirty=true;if(visible){discoveryPaintRevision=-1;PresentDiscovery();}if(dirty && Time.realtimeSinceStartup>=nextSave){SaveDuringPlay();nextSave=Time.realtimeSinceStartup+1;}}
             if(IceOpen && Time.unscaledTime-iceSurface.StrikeTime<.5f)iceSurface.SetVerticesDirty();
-            if(!MixingOpen){CancelMixingGesture();if(!IceOpen && !BubbleOpen && mixingAudio!=null && mixingAudio.isPlaying)mixingAudio.Stop();return;}
+            if(!MixingOpen){CancelMixingGesture();if(!IceOpen && !BubbleOpen && !LiquidOpen && mixingAudio!=null && mixingAudio.isPlaying)mixingAudio.Stop();return;}
             if(mixingHeld>=0 && mixingDragged && mixingOverBowl && MixingReady && Time.unscaledTime>=mixingNextPour){mixingNextPour=Time.unscaledTime+.45f;mixingSent=true;MixingSend("add:"+mixingHeld);}
             if(Time.unscaledTime<mixingNextPaint)return;mixingNextPaint=Time.unscaledTime+.04f;
             mixingSurface.Clock=Time.unscaledTime;mixingSurface.Pouring=Time.unscaledTime<mixingPourUntil;mixingSurface.PourIngredient=mixingPourIngredient;mixingSurface.SetVerticesDirty();

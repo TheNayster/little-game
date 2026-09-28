@@ -79,6 +79,7 @@ namespace LittleWeeps.NetworkProbe
         private Vector2 Point(Step step)
         {
             if(step.role=="discovery")return screen.DiscoveryScreenPoint(step.x,step.y);
+            if(step.role=="colors")return screen.LiquidScreenPoint(step.x,step.y);
             if(step.role=="bubbles")return screen.BubbleScreenPoint(step.x,step.y);
             if(step.role=="ice")return screen.IceScreenPoint(step.x,step.y);
             if(step.role=="mixing")return screen.MixingScreenPoint(step.x,step.y);
