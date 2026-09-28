@@ -43,5 +43,42 @@
         "tent open"
       ]
     }
-  ]
+  ],
+  "expansion": {
+    "date": "2026-09-28",
+    "generator": "Built-in image_gen",
+    "status": "First-level candidate; original HS-1 concept liked by user, new art not yet accepted",
+    "reference": {
+      "url": "https://www.bluey.tv/characters/chilli/",
+      "image": "https://www.bluey.tv/wp-content/uploads/2023/07/Chilli.png",
+      "file": "chilli-reference.png"
+    },
+    "assets": [
+      {
+        "id": "chilli",
+        "file": "chilli.png",
+        "grid": [
+          3,
+          2
+        ],
+        "prompt": "Use case: illustration-story. Asset type: production 2D sprite atlas for Little Weeps. Create SIX full-body CHILLI HEELER poses in a precise 3 column x 2 row grid of equal cells. Image 1 is the official identity/palette reference for Chilli. Image 2 is ONLY pose-grid and game style reference (do not copy blue colors, glow or background). Top row: standing facing right; gentle walking right left leg forward; gentle walking right right leg forward (distinct opposite step). Bottom row: counting with both paws covering her eyes; leaning down to inspect a hiding place facing right; happy friendly found-you wave facing right. Keep her exact recognizable adult orange/red Heeler identity, brown ear/face patch, cream muzzle/center forehead/paws/belly, narrow adult silhouette, not Bingo. Flat clean Bluey TV colors, fine dark outlines, restrained shading. All six poses same scale and feet baseline in each cell, 10 percent clear margins, all ears/paws/tails fully inside each cell. Transparent background and no shadow, glow, haze, text, grid lines, scenery, blue character or extra props.",
+        "references": [
+          "chilli-reference.png",
+          "bandit.png"
+        ]
+      },
+      {
+        "id": "first-level-covers",
+        "file": "first-level-covers.png",
+        "grid": [
+          3,
+          2
+        ],
+        "prompt": "Use case: illustration-story. Asset type: production 2D game furniture atlas. Reference image is ONLY line/color style and 3 by 2 grid example, do not reuse its objects or background. Draw a new precise 3-column x 2-row equal-cell atlas of THREE hiding props, all empty, transparent alpha outside props. Top row CLOSED states: (1) a compact freestanding three-panel pastel lilac/teal folding play screen with a few painted stars; (2) a low rounded wooden garden bench with a coral/cream striped blanket draped over its front, making a cozy nook underneath with opaque fabric front; (3) a round lush mint/green garden shrub, thick gently scalloped leaves fully hiding the space behind, tiny yellow flowers. Bottom row same props in same registration and scale, OPEN inspection/cutaway states: (1) middle folding screen panel swung aside revealing an empty warm space; (2) same bench blanket front lifted/rolled up revealing empty inviting nook below; (3) same shrub with front leafy branches parted showing an empty sheltered space. Flat clean Bluey TV dollhouse style, precise dark outlines, restrained simple shading, no 3D or painterly texture. Each prop fits completely inside its cell, 10 percent transparent margins and consistent ground baseline per cell, no shadows, glow, text, labels, extra items, people, room or floor.",
+        "references": [
+          "covers.png"
+        ]
+      }
+    ]
+  }
 }

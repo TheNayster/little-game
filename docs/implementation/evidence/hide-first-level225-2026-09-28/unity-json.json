@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "groups": 12,
+  "checks": [
+    "legacy pre-hiding inline JSON",
+    "schema 28 with twenty-second active state",
+    "all ten current hidden-slot round trips and safe restore"
+  ],
+  "log": "LocalData/Logs/build-network-225.log"
+}

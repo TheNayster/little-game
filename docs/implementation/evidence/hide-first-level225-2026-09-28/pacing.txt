@@ -1,0 +1,1 @@
+Longest single-hider search across 60 slot/parent/start-position cases: 72.95 seconds.

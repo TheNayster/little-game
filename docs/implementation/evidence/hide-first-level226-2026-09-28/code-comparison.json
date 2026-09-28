@@ -1,0 +1,10 @@
+{
+  "previousBuild": 225,
+  "currentBuild": 226,
+  "codeFilesCompared": 136,
+  "changedCodeFiles": [
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloHideAndSeek.cs"
+  ],
+  "coreNetworkAndJsonChecksUnchanged": true,
+  "scope": "Candidate 226 adds only countdown presentation to the qualified candidate 225 game code; fresh native UI and release checks recorded separately."
+}

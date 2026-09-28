@@ -1,5 +1,7 @@
 # Downstairs hide-and-seek — HS-1
 
+**Later user feedback:** the [first-level expansion](hide-and-seek-first-level-2026-09-28.html) supersedes the twenty-second count and six-slot scope with ten seconds, ten places, look-around pauses and alternating Bandit/Chilli turns. The original evidence/design below remains dated to its own milestone.
+
 September 28, 2026. Goal IDs: HIDE-01, HIDE-03 and the seeker-role portion of NPC-01; Home H-13, H-15, H-16 and H-17. This is the first downstairs Bandit game. Chilli, clue options, wider Home search, human seekers and everyday parent routines remain required follow-ups.
 
 ## What the child does

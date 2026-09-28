@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace LittleWeeps.Core
 {
-    public enum HidePhase { Idle, Counting, Waiting, Walking, Inspecting, Found }
+    public enum HidePhase { Idle, Counting, Waiting, Walking, Inspecting, Found, Looking }
     public enum HiderMode { Away, Preparing, Hidden, Found }
     [Serializable] public sealed class HiderState
     {
@@ -15,40 +15,66 @@ namespace LittleWeeps.Core
     }
     [Serializable] public sealed class HideState
     {
-        public int round, direction=1, cursor, target=-1, pass;
+        public int round, direction=1, cursor, target=-1, pass, visited;
         public HidePhase phase;
-        public double age, count, clock;
+        public double age, count, clock, walked;
         public float x=HideAndSeek.StartX;
         public HiderState[] hiders=Array.Empty<HiderState>();
         public HideState Copy(){var h=(HideState)MemberwiseClone();h.hiders=hiders.Select(p=>p.Copy()).ToArray();return h;}
     }
-    // Fixed covers and a clear foreground rail form the compact downstairs
-    // navigation graph. Loose toys and other players never obstruct safe exits.
+    // The connected first level has a clear foreground walking rail. Authored
+    // cover points, rather than hidden player coordinates, drive search choices.
     public static class HideAndSeek
     {
-        public const int Schema=28;
-        public const double CountSeconds=20, InspectSeconds=1.5, ReactionSeconds=1.25;
-        public const float StartX=-3660, RailY=50, Speed=280;
-        public static readonly float[] SlotX={-4900,-4050,-3870,-3560,-3430,-3150};
-        public static readonly string[] Names={"Curtain","Sofa left","Sofa right","Wardrobe left","Wardrobe right","Tent"};
-        public static readonly int[] Props={0,1,1,2,2,3};
+        public const int Schema=28, ExpansionSchema=29;
+        public const double CountSeconds=10, InspectSeconds=1.35, ReactionSeconds=1.25;
+        public const float StartX=-3660, RailY=50, Speed=420, GlanceDistance=1100;
+        // Preserve the six original slot IDs for schema-28 saves.
+        public static readonly float[] SlotX={-4900,-4050,-3870,-3560,-3430,-3150,-7040,-470,2910,4310};
+        public static readonly float[] GroundY={245,200,200,245,245,245,120,130,120,180};
+        public static readonly string[] Names={"Curtain","Sofa left","Sofa right","Wardrobe left","Wardrobe right","Tent","Folding screen","Dining table","Blanket bench","Garden bush"};
+        public static readonly int[] Props={0,1,1,2,2,3,4,5,6,7};
+        public const int AllChecked=(1<<10)-1;
+        public static float HiddenY(int slot)=>slot<6?320:slot==7?150:GroundY[slot]+65;
         public static HiderState Player(HideState s,string actor)=>s?.hiders.FirstOrDefault(p=>p.actor==actor);
         public static bool Hidden(HideState s,string actor)=>Player(s,actor)?.mode==HiderMode.Hidden;
-        public static bool Zone(SoloPlayer p)=>p.zone=="garden" && p.stairs==0 && p.x>=-5090 && p.x<=-2990;
+        public static bool Zone(SoloPlayer p)=>p.zone=="garden" && p.stairs==0;
         public static bool Eligible(HiderState p)=>p.mode==HiderMode.Hidden && p.preparation<=0;
-        // Only round/pass/direction enter route selection. Occupancy is read
-        // exclusively after arriving and completing a visible inspection.
-        public static int NextSlot(HideState s)=>s.direction>0?s.cursor:5-s.cursor;
-        public static bool Finite(double n)=>!double.IsNaN(n) && !double.IsInfinity(n);
-        public static void Validate(HideState h,string[] actors)
+        public static bool Complete(HideState s)=>s.hiders.All(p=>p.mode==HiderMode.Away || p.mode==HiderMode.Found);
+        public static bool NextRound(HideState s)=>s.phase==HidePhase.Idle || Complete(s);
+        public static string Parent(HideState s,bool preview=false)=>((s.round+(preview && NextRound(s)?1:0))%2==0 && s.round+(preview && NextRound(s)?1:0)>0)?"Chilli":"Bandit";
+        public static double LookSeconds(HideState s)=>.9+.15*(((long)s.round+s.pass+(s.target+1))%3);
+        public static int Facing(HideState s)=>s.phase==HidePhase.Looking && s.age<LookSeconds(s)*.5?-s.direction:s.direction;
+        // The small repeatable variation changes nearby choices each round.
+        // No occupancy, identity or hidden coordinates are an input.
+        public static int NextSlot(HideState s)
         {
+            var best=-1;var score=double.MaxValue;
+            for(var i=0;i<SlotX.Length;i++)
+            {
+                if((s.visited & (1<<i))!=0)continue;
+                var variation=((long)s.round*73+(long)s.pass*47+i*109)%61;
+                var remaining=Enumerable.Range(0,SlotX.Length).Where(j=>j!=i && (s.visited & (1<<j))==0).Select(j=>SlotX[j]).ToArray();
+                var travel=Math.Abs(SlotX[i]-s.x);
+                // On this one-dimensional rail, the remaining extreme covers
+                // give a cheap tour estimate that avoids crossing Home twice.
+                var rest=remaining.Length==0?0:remaining.Max()-remaining.Min()+Math.Min(Math.Abs(SlotX[i]-remaining.Min()),Math.Abs(SlotX[i]-remaining.Max()));
+                var value=travel*1.35+rest+variation;
+                if(value<score){score=value;best=i;}
+            }
+            return best;
+        }
+        public static bool Finite(double n)=>!double.IsNaN(n) && !double.IsInfinity(n);
+        public static void Validate(HideState h,string[] actors,int schema=ExpansionSchema)
+        {
+            var expanded=schema>=ExpansionSchema;var slots=expanded?SlotX.Length:6;var maxCount=expanded?CountSeconds:20;
             if(h==null || h.hiders==null || h.hiders.Length!=actors.Length || !h.hiders.Select(p=>p?.actor).OrderBy(x=>x).SequenceEqual(actors.OrderBy(x=>x)) ||
-                h.round<0 || h.direction!=1 && h.direction!=-1 || h.cursor<0 || h.cursor>5 || h.target< -1 || h.target>5 || h.pass<0 ||
-                !Enum.IsDefined(typeof(HidePhase),h.phase) || !Finite(h.age) || h.age<0 || h.age>300 || !Finite(h.count) || h.count<0 || h.count>CountSeconds ||
-                !Finite(h.clock) || h.clock<0 || h.clock>86400 || !Finite(h.x) || h.x<SlotX[0] || h.x>SlotX[5])throw new InvalidOperationException("Invalid hide-and-seek state.");
+                h.round<0 || h.direction!=1 && h.direction!=-1 || h.cursor<0 || h.cursor>=slots || h.target< -1 || h.target>=slots || h.pass<0 || h.visited<0 || h.visited>AllChecked || !Finite(h.walked) || h.walked<0 || h.walked>GlanceDistance+1 ||
+                !Enum.IsDefined(typeof(HidePhase),h.phase) || !Finite(h.age) || h.age<0 || h.age>300 || !Finite(h.count) || h.count<0 || h.count>maxCount ||
+                !Finite(h.clock) || h.clock<0 || h.clock>86400 || !Finite(h.x) || h.x<(expanded?Discovery.MinX:-4900) || h.x>(expanded?4800:-3150) || !expanded && (h.phase==HidePhase.Looking || h.visited!=0 || h.walked!=0))throw new InvalidOperationException("Invalid hide-and-seek state.");
             foreach(var p in h.hiders)
-                if(!Enum.IsDefined(typeof(HiderMode),p.mode) || p.cycle<0 || p.slot< -1 || p.slot>5 || (p.mode==HiderMode.Hidden)!=(p.slot>=0) ||
-                    !Finite(p.preparation) || p.preparation<0 || p.preparation>CountSeconds || !Finite(p.idle) || p.idle<0 || p.idle>300)
+                if(!Enum.IsDefined(typeof(HiderMode),p.mode) || p.cycle<0 || p.slot< -1 || p.slot>=slots || (p.mode==HiderMode.Hidden)!=(p.slot>=0) ||
+                    !Finite(p.preparation) || p.preparation<0 || p.preparation>maxCount || !Finite(p.idle) || p.idle<0 || p.idle>300)
                     throw new InvalidOperationException("Invalid hider state.");
             if(h.hiders.Where(p=>p.slot>=0).GroupBy(p=>p.slot).Any(g=>g.Count()>1))throw new InvalidOperationException("Hide space occupied twice.");
             if((h.phase==HidePhase.Walking || h.phase==HidePhase.Inspecting) && h.target<0)throw new InvalidOperationException("Missing inspection target.");
@@ -59,9 +85,11 @@ namespace LittleWeeps.Core
         public HideState ReadHideAndSeek()=>state.hideAndSeek?.Copy();
         public static SoloWorld WithHideAndSeek(SoloWorld world)
         {
-            world=WithMarbleRamps(world);if(world.Schema>=HideAndSeek.Schema)return world;
-            var s=world.Snapshot();s.schema=HideAndSeek.Schema;s.revision++;
-            s.hideAndSeek=new HideState{hiders=s.players.Select(p=>new HiderState{actor=p.id}).ToArray()};
+            world=WithMarbleRamps(world);if(world.Schema>=HideAndSeek.ExpansionSchema)return world;
+            var s=world.Snapshot();
+            if(s.schema<HideAndSeek.Schema)s.hideAndSeek=new HideState{hiders=s.players.Select(p=>new HiderState{actor=p.id}).ToArray()};
+            else SuspendRestoredHide(s);
+            s.hideAndSeek.visited=0;s.hideAndSeek.walked=0;s.schema=HideAndSeek.ExpansionSchema;s.revision++;
             Validate(s);return new SoloWorld(s);
         }
         private static void NormalizeHideInline(SoloSnapshot s)
@@ -72,9 +100,9 @@ namespace LittleWeeps.Core
         private static void ValidateHideAndSeek(SoloSnapshot s)
         {
             if(s.schema<HideAndSeek.Schema){if(s.hideAndSeek!=null)throw new InvalidOperationException("Hiding requires schema 28.");return;}
-            HideAndSeek.Validate(s.hideAndSeek,s.players.Select(p=>p.id).ToArray());
+            HideAndSeek.Validate(s.hideAndSeek,s.players.Select(p=>p.id).ToArray(),s.schema);
             foreach(var h in s.hideAndSeek.hiders.Where(p=>p.mode==HiderMode.Hidden))
-            {var p=s.players.Single(v=>v.id==h.actor);if(!HideAndSeek.Zone(p) || p.fixture!="" || p.x!=HideAndSeek.SlotX[h.slot] || p.y!=320)throw new InvalidOperationException("Hidden occupant is outside cover.");}
+            {var p=s.players.Single(v=>v.id==h.actor);if(!HideAndSeek.Zone(p) || p.fixture!="" || p.x!=HideAndSeek.SlotX[h.slot] || p.y!=(s.schema>=HideAndSeek.ExpansionSchema?HideAndSeek.HiddenY(h.slot):320))throw new InvalidOperationException("Hidden occupant is outside cover.");}
         }
         private void ExitHide(SoloPlayer player,HiderState h,bool placeExit)
         {
@@ -93,20 +121,20 @@ namespace LittleWeeps.Core
         {
             var s=state.hideAndSeek;if(s==null)return "hiding-upgrade-needed";var h=HideAndSeek.Player(s,player.id);
             if(c.value=="leave"){ExitHide(player,h,true);h.mode=HiderMode.Away;h.preparation=0;FinishEmptyHide();return null;}
-            if(!HideAndSeek.Zone(player))return "come-to-living-room";
+            if(!HideAndSeek.Zone(player))return "come-to-first-level";
             if(c.value=="join")
             {
                 if(h.mode==HiderMode.Preparing || h.mode==HiderMode.Hidden)return null;
                 if(s.round==int.MaxValue || h.cycle==int.MaxValue)return "round-limit";
-                if(s.phase==HidePhase.Idle){s.round++;s.direction=s.round%2==0?-1:1;s.cursor=0;s.pass=0;s.target=-1;s.x=HideAndSeek.StartX;s.count=HideAndSeek.CountSeconds;s.age=0;s.clock=0;s.phase=HidePhase.Counting;}
+                if(HideAndSeek.NextRound(s)){s.round++;s.direction=s.round%2==0?-1:1;s.cursor=0;s.pass=0;s.visited=0;s.walked=0;s.target=-1;s.x=Math.Max(Discovery.MinX+40,Math.Min(4760,player.x+220));s.count=HideAndSeek.CountSeconds;s.age=0;s.clock=0;s.phase=HidePhase.Counting;}
                 h.cycle++;h.mode=HiderMode.Preparing;h.slot=-1;h.preparation=HideAndSeek.CountSeconds;h.idle=0;return null;
             }
             if(h.mode==HiderMode.Away || h.mode==HiderMode.Found)return "join-first";
             if(c.value=="out"){ExitHide(player,h,true);return null;}
-            if(c.value!="hide" || !int.TryParse(c.target,out var slot) || slot<0 || slot>=6)return "invalid-hide-space";
+            if(c.value!="hide" || !int.TryParse(c.target,out var slot) || slot<0 || slot>=HideAndSeek.SlotX.Length)return "invalid-hide-space";
             if(s.hiders.Any(p=>p.actor!=player.id && p.slot==slot))return "hide-space-busy";
             if(Math.Abs(player.x-HideAndSeek.SlotX[slot])>170)return "walk-to-hide-space";
-            ClearFixture(player);player.activity="";player.x=HideAndSeek.SlotX[slot];player.y=320;
+            ClearFixture(player);player.activity="";player.x=HideAndSeek.SlotX[slot];player.y=HideAndSeek.HiddenY(slot);
             h.slot=slot;h.mode=HiderMode.Hidden;h.idle=0;
             foreach(var t in state.toys.Where(t=>t.holder==player.id)){t.x=player.x;t.y=player.y;}
             return null;
@@ -140,16 +168,27 @@ namespace LittleWeeps.Core
             s.clock=Math.Min(86400,s.clock+seconds);s.age=Math.Min(300,s.age+seconds);changed=true;
             var oldPhase=s.phase;FinishEmptyHide();
             if(s.phase==HidePhase.Idle){visible|=oldPhase!=s.phase;return true;}
-            if(s.phase==HidePhase.Counting){s.count=Math.Max(0,s.count-seconds);if(s.count==0){s.phase=HidePhase.Waiting;s.age=0;}}
-            else if(s.phase==HidePhase.Waiting){if(s.hiders.Any(HideAndSeek.Eligible)){s.target=HideAndSeek.NextSlot(s);s.phase=HidePhase.Walking;s.age=0;}}
+            if(s.phase==HidePhase.Counting){s.count=Math.Max(0,s.count-seconds);if(s.count==0){s.phase=HidePhase.Looking;s.age=0;}}
+            else if(s.phase==HidePhase.Waiting)
+            {
+                if(s.hiders.Any(HideAndSeek.Eligible))
+                {
+                    if(s.visited==HideAndSeek.AllChecked){s.visited=0;if(s.pass<int.MaxValue)s.pass++;}
+                    s.target=HideAndSeek.NextSlot(s);s.direction=HideAndSeek.SlotX[s.target]<s.x?-1:1;s.walked=0;s.phase=HidePhase.Walking;s.age=0;
+                }
+            }
+            else if(s.phase==HidePhase.Looking && s.age>=HideAndSeek.LookSeconds(s))
+            {s.phase=s.target>=0?HidePhase.Walking:HidePhase.Waiting;s.age=0;}
             else if(s.phase==HidePhase.Walking)
             {
                 var goal=HideAndSeek.SlotX[s.target];var delta=goal-s.x;var step=(float)(HideAndSeek.Speed*seconds);
-                s.x=Math.Abs(delta)<=step?goal:s.x+Math.Sign(delta)*step;
-                if(s.x==goal){s.phase=HidePhase.Inspecting;s.age=0;}
+                var before=s.x;s.x=Math.Abs(delta)<=step?goal:s.x+Math.Sign(delta)*step;s.walked+=Math.Abs(s.x-before);
+                if(s.x==goal){s.phase=HidePhase.Inspecting;s.age=0;s.walked=0;}
+                else if(s.walked>=HideAndSeek.GlanceDistance){s.phase=HidePhase.Looking;s.age=0;s.walked=0;}
             }
             else if(s.phase==HidePhase.Inspecting && s.age>=HideAndSeek.InspectSeconds)
             {
+                s.visited|=1<<s.target;s.cursor=(s.cursor+1)%HideAndSeek.SlotX.Length;
                 var found=s.hiders.FirstOrDefault(p=>p.slot==s.target && HideAndSeek.Eligible(p));
                 if(found!=null){ExitHide(state.players.Single(p=>p.id==found.actor),found,true);found.mode=HiderMode.Found;found.preparation=0;s.phase=HidePhase.Found;s.age=0;}
                 else NextHideInspection();
@@ -159,8 +198,7 @@ namespace LittleWeeps.Core
         }
         private void NextHideInspection()
         {
-            var s=state.hideAndSeek;s.cursor++;if(s.cursor==6){s.cursor=0;s.direction=-s.direction;s.pass=Math.Min(int.MaxValue,s.pass+1);}
-            s.phase=HidePhase.Waiting;s.age=0;s.target=-1;
+            var s=state.hideAndSeek;s.phase=HidePhase.Looking;s.age=0;s.target=-1;s.walked=0;
         }
         private static void SuspendRestoredHide(SoloSnapshot s)
         {

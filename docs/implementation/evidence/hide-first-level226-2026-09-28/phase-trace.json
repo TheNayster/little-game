@@ -1,0 +1,9704 @@
+[
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          -1,
+          0
+        ]
+      ]
+    ],
+    "observed": 414950.718,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.30152080000000225,
+      "count": 9.698479199999998,
+      "clock": 0.30152080000000225,
+      "walked": 0.0,
+      "x": -3580.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 9.698479199999998,
+          "idle": 0.30152080000000225
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 0,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 0,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 0,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          -1,
+          0
+        ]
+      ]
+    ],
+    "observed": 414953.156,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 2.7524684000000015,
+      "count": 7.2475315999999985,
+      "clock": 2.7524684000000015,
+      "walked": 0.0,
+      "x": -3580.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 7.2475315999999985,
+          "idle": 2.7524684000000015
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 9.582822400000001,
+          "idle": 0.4171775999999987
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 0,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 0,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          0,
+          -1,
+          0
+        ]
+      ]
+    ],
+    "observed": 414954.078,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 3.651083500000002,
+      "count": 6.348916499999998,
+      "clock": 3.651083500000002,
+      "walked": 0.0,
+      "x": -3580.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 6.348916499999998,
+          "idle": 3.651083500000002
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 8.6842073,
+          "idle": 1.3157926999999994
+        },
+        {
+          "actor": "player-3",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 9.667982299999998,
+          "idle": 0.3320177000000015
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 0,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 414955.796,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 5.401130100000003,
+      "count": 4.598869899999997,
+      "clock": 5.401130100000003,
+      "walked": 0.0,
+      "x": -3580.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 4.598869899999997,
+          "idle": 5.401130100000003
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 6.9341607,
+          "idle": 3.0658393000000004
+        },
+        {
+          "actor": "player-3",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 7.9179356999999975,
+          "idle": 2.0820643000000025
+        },
+        {
+          "actor": "player-4",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 9.566722899999998,
+          "idle": 0.4332771000000015
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 414957.593,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 7.202267300000003,
+      "count": 2.7977326999999974,
+      "clock": 7.202267300000003,
+      "walked": 0.0,
+      "x": -3580.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 2.7977326999999974,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 5.1330235,
+          "idle": 4.8669765
+        },
+        {
+          "actor": "player-3",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 6.116798499999998,
+          "idle": 3.883201500000002
+        },
+        {
+          "actor": "player-4",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 7.765585699999999,
+          "idle": 2.234414300000001
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          2,
+          6,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 414959.343,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 8.9532666,
+      "count": 1.0467334000000008,
+      "clock": 8.9532666,
+      "walked": 0.0,
+      "x": -3580.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 1.0467334000000008,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 2,
+          "slot": 6,
+          "cycle": 1,
+          "preparation": 3.3820242000000036,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 4.365799200000001,
+          "idle": 5.634200799999999
+        },
+        {
+          "actor": "player-4",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 6.014586400000002,
+          "idle": 3.9854135999999976
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          2,
+          6,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 414961.156,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 6,
+      "age": 0.7491504000000049,
+      "count": 0.0,
+      "clock": 10.753367000000004,
+      "walked": 0.0,
+      "x": -3580.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 2,
+          "slot": 6,
+          "cycle": 1,
+          "preparation": 1.5819237999999984,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 2.5656987999999963,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 4.214485999999997,
+          "idle": 5.785514000000003
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          2,
+          6,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414963.078,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 1,
+      "target": -1,
+      "pass": 0,
+      "visited": 8,
+      "phase": 6,
+      "age": 0.1517887999999985,
+      "count": 0.0,
+      "clock": 12.652512700000003,
+      "walked": 0.0,
+      "x": -3560.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 2,
+          "slot": 6,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.666553099999998,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 2.315340299999999,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414963.984,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 1,
+      "target": -1,
+      "pass": 0,
+      "visited": 8,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 13.5528993,
+      "walked": 0.0,
+      "x": -3560.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 1.4149537000000016,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      2,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414964.031,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 1,
+      "target": 2,
+      "pass": 0,
+      "visited": 8,
+      "phase": 3,
+      "age": 0.061540200000003153,
+      "count": 0.0,
+      "clock": 13.646124900000004,
+      "walked": 25.8466796875,
+      "x": -3585.8466796875,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 1.3217280999999979,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      2,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414964.765,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 1,
+      "target": 2,
+      "pass": 0,
+      "visited": 8,
+      "phase": 4,
+      "age": 0.029558200000003865,
+      "count": 0.0,
+      "clock": 14.359167400000004,
+      "walked": 0.0,
+      "x": -3870.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.6086855999999976,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414966.125,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 2,
+      "target": -1,
+      "pass": 0,
+      "visited": 12,
+      "phase": 6,
+      "age": 0.030923600000001272,
+      "count": 0.0,
+      "clock": 15.7182679,
+      "walked": 0.0,
+      "x": -3870.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414967.203,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 2,
+      "target": 1,
+      "pass": 0,
+      "visited": 12,
+      "phase": 3,
+      "age": 0.030756199999999012,
+      "count": 0.0,
+      "clock": 16.8165651,
+      "walked": 12.917724609375,
+      "x": -3882.917724609375,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414967.671,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 2,
+      "target": 1,
+      "pass": 0,
+      "visited": 12,
+      "phase": 4,
+      "age": 0.032835099999999784,
+      "count": 0.0,
+      "clock": 17.249426300000003,
+      "walked": 0.0,
+      "x": -4050.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414969.015,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 3,
+      "target": -1,
+      "pass": 0,
+      "visited": 14,
+      "phase": 6,
+      "age": 0.02866029999999853,
+      "count": 0.0,
+      "clock": 18.611680200000002,
+      "walked": 0.0,
+      "x": -4050.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414970.062,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 3,
+      "target": -1,
+      "pass": 0,
+      "visited": 14,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 19.645055400000004,
+      "walked": 0.0,
+      "x": -4050.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      0,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414970.109,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 3,
+      "target": 0,
+      "pass": 0,
+      "visited": 14,
+      "phase": 3,
+      "age": 0.03244500000000272,
+      "count": 0.0,
+      "clock": 19.710824000000002,
+      "walked": 13.626953125,
+      "x": -4063.626953125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      0,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414972.14,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 3,
+      "target": 0,
+      "pass": 0,
+      "visited": 14,
+      "phase": 4,
+      "age": 0.044288700000002734,
+      "count": 0.0,
+      "clock": 21.754916100000003,
+      "walked": 0.0,
+      "x": -4900.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414973.5,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 4,
+      "target": -1,
+      "pass": 0,
+      "visited": 15,
+      "phase": 6,
+      "age": 0.028737200000001906,
+      "count": 0.0,
+      "clock": 23.105334500000005,
+      "walked": 0.0,
+      "x": -4900.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      6,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414974.578,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 4,
+      "target": 6,
+      "pass": 0,
+      "visited": 15,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 24.1686974,
+      "walked": 0.0,
+      "x": -4900.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      6,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414977.218,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 4,
+      "target": 6,
+      "pass": 0,
+      "visited": 15,
+      "phase": 6,
+      "age": 0.028475400000004925,
+      "count": 0.0,
+      "clock": 26.816374600000003,
+      "walked": 0.0,
+      "x": -6000.06689453125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      6,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414978.406,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 4,
+      "target": 6,
+      "pass": 0,
+      "visited": 15,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 28.004187100000003,
+      "walked": 0.0,
+      "x": -6000.06689453125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      6,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414980.906,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 4,
+      "target": 6,
+      "pass": 0,
+      "visited": 15,
+      "phase": 4,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 30.490237800000003,
+      "walked": 0.0,
+      "x": -7040.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414982.265,
+    "state": {
+      "round": 1,
+      "direction": -1,
+      "cursor": 5,
+      "target": -1,
+      "pass": 0,
+      "visited": 79,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 31.841088400000004,
+      "walked": 0.0,
+      "x": -7040.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      4,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414983.359,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 5,
+      "target": 4,
+      "pass": 0,
+      "visited": 79,
+      "phase": 3,
+      "age": 0.029411400000000754,
+      "count": 0.0,
+      "clock": 32.9673627,
+      "walked": 12.35302734375,
+      "x": -7027.64697265625,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      4,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414986.0,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 5,
+      "target": 4,
+      "pass": 0,
+      "visited": 79,
+      "phase": 6,
+      "age": 0.030128700000005892,
+      "count": 0.0,
+      "clock": 35.597903200000005,
+      "walked": 0.0,
+      "x": -5935.4736328125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      4,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414986.937,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 5,
+      "target": 4,
+      "pass": 0,
+      "visited": 79,
+      "phase": 3,
+      "age": 0.06134509999999693,
+      "count": 0.0,
+      "clock": 36.5425518,
+      "walked": 25.7646484375,
+      "x": -5909.708984375,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      4,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414989.531,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 5,
+      "target": 4,
+      "pass": 0,
+      "visited": 79,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 39.1098163,
+      "walked": 0.0,
+      "x": -4831.45751953125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      4,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414990.468,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 5,
+      "target": 4,
+      "pass": 0,
+      "visited": 79,
+      "phase": 3,
+      "age": 0.033560699999995336,
+      "count": 0.0,
+      "clock": 40.059130100000004,
+      "walked": 14.095703125,
+      "x": -4817.36181640625,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      4,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414993.109,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 5,
+      "target": 4,
+      "pass": 0,
+      "visited": 79,
+      "phase": 6,
+      "age": 0.0287081000000029,
+      "count": 0.0,
+      "clock": 42.69008620000002,
+      "walked": 0.0,
+      "x": -3724.414794921875,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      4,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414993.984,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 5,
+      "target": 4,
+      "pass": 0,
+      "visited": 79,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 43.57333160000001,
+      "walked": 0.0,
+      "x": -3724.414794921875,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      4,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414994.718,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 5,
+      "target": 4,
+      "pass": 0,
+      "visited": 79,
+      "phase": 4,
+      "age": 0.027299300000009907,
+      "count": 0.0,
+      "clock": 44.31623060000002,
+      "walked": 0.0,
+      "x": -3430.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414996.078,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 6,
+      "target": -1,
+      "pass": 0,
+      "visited": 95,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 45.64967020000001,
+      "walked": 0.0,
+      "x": -3430.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414997.125,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 6,
+      "target": -1,
+      "pass": 0,
+      "visited": 95,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 46.70144870000002,
+      "walked": 0.0,
+      "x": -3430.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      5,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414997.171,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 6,
+      "target": 5,
+      "pass": 0,
+      "visited": 95,
+      "phase": 3,
+      "age": 0.029130900000012616,
+      "count": 0.0,
+      "clock": 46.76289140000002,
+      "walked": 12.23486328125,
+      "x": -3417.76513671875,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      5,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414997.843,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 6,
+      "target": 5,
+      "pass": 0,
+      "visited": 95,
+      "phase": 4,
+      "age": 0.029967099999993252,
+      "count": 0.0,
+      "clock": 47.44348340000001,
+      "walked": 0.0,
+      "x": -3150.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 414999.203,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 7,
+      "target": -1,
+      "pass": 0,
+      "visited": 127,
+      "phase": 6,
+      "age": 0.030627700000010805,
+      "count": 0.0,
+      "clock": 48.80756780000002,
+      "walked": 0.0,
+      "x": -3150.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415000.281,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 7,
+      "target": -1,
+      "pass": 0,
+      "visited": 127,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 49.84090850000002,
+      "walked": 0.0,
+      "x": -3150.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      7,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415000.343,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 7,
+      "target": 7,
+      "pass": 0,
+      "visited": 127,
+      "phase": 3,
+      "age": 0.06671969999999305,
+      "count": 0.0,
+      "clock": 49.944082500000015,
+      "walked": 28.022216796875,
+      "x": -3121.977783203125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      7,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415002.937,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 7,
+      "target": 7,
+      "pass": 0,
+      "visited": 127,
+      "phase": 6,
+      "age": 0.029852399999995782,
+      "count": 0.0,
+      "clock": 52.54103910000001,
+      "walked": 0.0,
+      "x": -2043.792724609375,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      7,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415003.875,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 7,
+      "target": 7,
+      "pass": 0,
+      "visited": 127,
+      "phase": 3,
+      "age": 0.033154699999997206,
+      "count": 0.0,
+      "clock": 53.45960190000002,
+      "walked": 13.9249267578125,
+      "x": -2029.8677978515625,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      7,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415006.468,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 7,
+      "target": 7,
+      "pass": 0,
+      "visited": 127,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 56.049616600000014,
+      "walked": 0.0,
+      "x": -942.061767578125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      7,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415007.406,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 7,
+      "target": 7,
+      "pass": 0,
+      "visited": 127,
+      "phase": 3,
+      "age": 0.031248800000000188,
+      "count": 0.0,
+      "clock": 56.996360500000016,
+      "walked": 13.12451171875,
+      "x": -928.937255859375,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      7,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415008.546,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 7,
+      "target": 7,
+      "pass": 0,
+      "visited": 127,
+      "phase": 4,
+      "age": 0.051057400000004804,
+      "count": 0.0,
+      "clock": 58.14720770000002,
+      "walked": 0.0,
+      "x": -470.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      5,
+      7,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415009.89,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 7,
+      "pass": 0,
+      "visited": 255,
+      "phase": 5,
+      "age": 0.052186100000000124,
+      "count": 0.0,
+      "clock": 59.499535000000016,
+      "walked": 0.0,
+      "x": -470.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.052186100000000124
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415011.14,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": -1,
+      "pass": 0,
+      "visited": 255,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 60.702697600000015,
+      "walked": 0.0,
+      "x": -470.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 1.255348699999999
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415012.171,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": -1,
+      "pass": 0,
+      "visited": 255,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 61.76793180000002,
+      "walked": 0.0,
+      "x": -470.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 2.320582900000005
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415012.234,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 8,
+      "pass": 0,
+      "visited": 255,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 61.79748930000002,
+      "walked": 0.0,
+      "x": -470.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 2.350140400000001
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415014.859,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 8,
+      "pass": 0,
+      "visited": 255,
+      "phase": 6,
+      "age": 0.029419699999991167,
+      "count": 0.0,
+      "clock": 64.45603760000002,
+      "walked": 0.0,
+      "x": 634.2338256835938,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 5.008688699999993
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415015.937,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 8,
+      "pass": 0,
+      "visited": 255,
+      "phase": 3,
+      "age": 0.052325699999997255,
+      "count": 0.0,
+      "clock": 65.54175210000002,
+      "walked": 21.976806640625,
+      "x": 656.2106323242188,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 6.094403200000002
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415018.515,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 8,
+      "pass": 0,
+      "visited": 255,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 68.10929790000003,
+      "walked": 0.0,
+      "x": 1734.57958984375,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 8.661949000000007
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415019.609,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 8,
+      "pass": 0,
+      "visited": 255,
+      "phase": 3,
+      "age": 0.03158160000000976,
+      "count": 0.0,
+      "clock": 69.20407960000003,
+      "walked": 13.2642822265625,
+      "x": 1747.8438720703125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 9.756730700000006
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415022.218,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 8,
+      "pass": 0,
+      "visited": 255,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 71.80449530000003,
+      "walked": 0.0,
+      "x": 2840.01904296875,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 12.357146400000005
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415023.265,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 8,
+      "pass": 0,
+      "visited": 255,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 72.85617960000002,
+      "walked": 0.0,
+      "x": 2840.01904296875,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 13.408830699999996
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ]
+      ]
+    ],
+    "observed": 415023.468,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 8,
+      "target": 8,
+      "pass": 0,
+      "visited": 255,
+      "phase": 4,
+      "age": 0.028593000000000757,
+      "count": 0.0,
+      "clock": 73.06532290000003,
+      "walked": 0.0,
+      "x": 2910.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 13.617974000000004
+        },
+        {
+          "actor": "player-4",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      5,
+      8,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415024.828,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 9,
+      "target": 8,
+      "pass": 0,
+      "visited": 511,
+      "phase": 5,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 74.39891800000002,
+      "walked": 0.0,
+      "x": 2910.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 14.9515691
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415026.109,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 9,
+      "target": -1,
+      "pass": 0,
+      "visited": 511,
+      "phase": 6,
+      "age": 0.029962699999998677,
+      "count": 0.0,
+      "clock": 75.69533000000003,
+      "walked": 0.0,
+      "x": 2910.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 16.247981100000004
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 1.2964120000000037
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415027.156,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 9,
+      "target": -1,
+      "pass": 0,
+      "visited": 511,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 76.72899390000002,
+      "walked": 0.0,
+      "x": 2910.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 17.281644999999997
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 2.330075899999997
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      9,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415027.203,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 9,
+      "target": 9,
+      "pass": 0,
+      "visited": 511,
+      "phase": 3,
+      "age": 0.03288750000000107,
+      "count": 0.0,
+      "clock": 76.80224110000002,
+      "walked": 13.812744140625,
+      "x": 2923.812744140625,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 17.354892199999995
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 2.4033230999999944
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      9,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415029.843,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 9,
+      "target": 9,
+      "pass": 0,
+      "visited": 511,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 79.40275710000002,
+      "walked": 0.0,
+      "x": 4016.028564453125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 19.955408199999994
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 5.003839099999993
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      9,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415031.031,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 9,
+      "target": 9,
+      "pass": 0,
+      "visited": 511,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 80.60579620000003,
+      "walked": 0.0,
+      "x": 4016.028564453125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 21.158447300000006
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 6.206878200000006
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      9,
+      [
+        [
+          2,
+          9,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415031.734,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 9,
+      "target": 9,
+      "pass": 0,
+      "visited": 511,
+      "phase": 4,
+      "age": 0.02779669999999612,
+      "count": 0.0,
+      "clock": 81.34416060000002,
+      "walked": 0.0,
+      "x": 4310.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 21.8968117
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 6.9452426
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      5,
+      9,
+      [
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415033.125,
+    "state": {
+      "round": 1,
+      "direction": 1,
+      "cursor": 0,
+      "target": 9,
+      "pass": 0,
+      "visited": 1023,
+      "phase": 5,
+      "age": 0.02945420000000354,
+      "count": 0.0,
+      "clock": 82.70701790000003,
+      "walked": 0.0,
+      "x": 4310.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.02945420000000354
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 23.259669000000002
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 8.308099900000002
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415033.734,
+    "state": {
+      "round": 2,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.36727750000000015,
+      "count": 9.6327225,
+      "clock": 0.36727750000000015,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 9.6327225,
+          "idle": 0.36727750000000015
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 23.893631799999994
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 8.942062699999994
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415034.765,
+    "state": {
+      "round": 2,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.3670560000000052,
+      "count": 8.632943999999995,
+      "clock": 1.3670560000000052,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 8.632943999999995,
+          "idle": 1.3670560000000052
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 9.633592399999998,
+          "idle": 0.3664076000000023
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 24.8934103
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 9.941841199999999
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415036.453,
+    "state": {
+      "round": 2,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 3.071587700000009,
+      "count": 6.928412299999991,
+      "clock": 3.071587700000009,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 2,
+          "cycle": 2,
+          "preparation": 6.928412299999991,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 7.929060699999994,
+          "idle": 2.0709393000000063
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 26.597942000000003
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 11.646372900000003
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415038.25,
+    "state": {
+      "round": 2,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 4.868092900000008,
+      "count": 5.131907099999992,
+      "clock": 4.868092900000008,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 5.131907099999992,
+          "idle": 0.42075219999999547
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 6.132555499999995,
+          "idle": 1.7447668000000078
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 28.394447200000002
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 13.442878100000001
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415039.859,
+    "state": {
+      "round": 2,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 6.467670300000009,
+      "count": 3.532329699999991,
+      "clock": 6.467670300000009,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 0,
+          "cycle": 2,
+          "preparation": 3.532329699999991,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 4.532978099999994,
+          "idle": 3.344344200000009
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 29.994024600000003
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 15.042455500000003
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415039.968,
+    "state": {
+      "round": 2,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 6.578208400000008,
+      "count": 3.4217915999999917,
+      "clock": 6.578208400000008,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 4.422439999999995,
+          "idle": 3.4548823000000084
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 30.104562700000002
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 15.152993600000002
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      0,
+      -1,
+      [
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          3,
+          -1,
+          1
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415040.375,
+    "state": {
+      "round": 2,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 0,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 6.867727000000002,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 30.493049400000004
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 15.541480300000003
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415041.906,
+    "state": {
+      "round": 3,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.33316530000000455,
+      "count": 9.666834699999995,
+      "clock": 0.33316530000000455,
+      "walked": 0.0,
+      "x": -3210.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 9.666834699999995,
+          "idle": 0.33316530000000455
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 17.1055954
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          2,
+          4,
+          2
+        ],
+        [
+          3,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415042.421,
+    "state": {
+      "round": 3,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8249982000000102,
+      "count": 9.17500179999999,
+      "clock": 0.8249982000000102,
+      "walked": 0.0,
+      "x": -3210.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 2,
+          "slot": 4,
+          "cycle": 2,
+          "preparation": 9.17500179999999,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 3,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 17.597428300000004
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      0,
+      -1,
+      [
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415058.546,
+    "state": {
+      "round": 3,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 0,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 7.783956900000007,
+      "walked": 0.0,
+      "x": -3210.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          3
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415060.625,
+    "state": {
+      "round": 4,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.38095769999999884,
+      "count": 9.619042300000007,
+      "clock": 0.38095769999999884,
+      "walked": 0.0,
+      "x": -4680.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 3,
+          "preparation": 9.619042300000007,
+          "idle": 0.38095769999999884
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415061.125,
+    "state": {
+      "round": 4,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.9291284999999974,
+      "count": 9.07087150000001,
+      "clock": 0.9291284999999974,
+      "walked": 0.0,
+      "x": -4680.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 0,
+          "cycle": 3,
+          "preparation": 9.07087150000001,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          3
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415061.703,
+    "state": {
+      "round": 4,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.4767126999999984,
+      "count": 8.523287300000009,
+      "clock": 1.4767126999999984,
+      "walked": 0.0,
+      "x": -4680.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 3,
+          "preparation": 8.523287300000009,
+          "idle": 0.33097050000000117
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          4
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415064.14,
+    "state": {
+      "round": 5,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.3470763000000012,
+      "count": 9.652923699999999,
+      "clock": 0.3470763000000012,
+      "walked": 0.0,
+      "x": -3830.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 4,
+          "preparation": 9.652923699999999,
+          "idle": 0.3470763000000012
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415064.64,
+    "state": {
+      "round": 5,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8409592999999997,
+      "count": 9.1590407,
+      "clock": 0.8409592999999997,
+      "walked": 0.0,
+      "x": -3830.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 1,
+          "cycle": 4,
+          "preparation": 9.1590407,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          4
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415065.203,
+    "state": {
+      "round": 5,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.3873843000000008,
+      "count": 8.6126157,
+      "clock": 1.3873843000000008,
+      "walked": 0.0,
+      "x": -3830.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 4,
+          "preparation": 8.6126157,
+          "idle": 0.2963640000000005
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          5
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415067.64,
+    "state": {
+      "round": 6,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.32992690000000024,
+      "count": 9.6700731,
+      "clock": 0.32992690000000024,
+      "walked": 0.0,
+      "x": -3650.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 5,
+          "preparation": 9.6700731,
+          "idle": 0.32992690000000024
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          2,
+          5
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415068.093,
+    "state": {
+      "round": 6,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.7760235000000009,
+      "count": 9.2239765,
+      "clock": 0.7760235000000009,
+      "walked": 0.0,
+      "x": -3650.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 2,
+          "cycle": 5,
+          "preparation": 9.2239765,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          5
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415068.703,
+    "state": {
+      "round": 6,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.373672700000002,
+      "count": 8.626327299999998,
+      "clock": 1.373672700000002,
+      "walked": 0.0,
+      "x": -3650.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 5,
+          "preparation": 8.626327299999998,
+          "idle": 0.39758840000000184
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          6
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415071.25,
+    "state": {
+      "round": 7,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.31382010000000093,
+      "count": 9.686179899999999,
+      "clock": 0.31382010000000093,
+      "walked": 0.0,
+      "x": -3340.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 6,
+          "preparation": 9.686179899999999,
+          "idle": 0.31382010000000093
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          3,
+          6
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415071.765,
+    "state": {
+      "round": 7,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8231231000000001,
+      "count": 9.1768769,
+      "clock": 0.8231231000000001,
+      "walked": 0.0,
+      "x": -3340.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 3,
+          "cycle": 6,
+          "preparation": 9.1768769,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          6
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415072.328,
+    "state": {
+      "round": 7,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.4192265000000006,
+      "count": 8.5807735,
+      "clock": 1.4192265000000006,
+      "walked": 0.0,
+      "x": -3340.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 6,
+          "preparation": 8.5807735,
+          "idle": 0.3295102000000014
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          7
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415074.734,
+    "state": {
+      "round": 8,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.3284324000000005,
+      "count": 9.6715676,
+      "clock": 0.3284324000000005,
+      "walked": 0.0,
+      "x": -3210.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 7,
+          "preparation": 9.6715676,
+          "idle": 0.3284324000000005
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          4,
+          7
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415075.234,
+    "state": {
+      "round": 8,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8247435000000003,
+      "count": 9.1752565,
+      "clock": 0.8247435000000003,
+      "walked": 0.0,
+      "x": -3210.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 4,
+          "cycle": 7,
+          "preparation": 9.1752565,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          7
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415075.796,
+    "state": {
+      "round": 8,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.370786299999999,
+      "count": 8.629213700000001,
+      "clock": 1.370786299999999,
+      "walked": 0.0,
+      "x": -3210.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 7,
+          "preparation": 8.629213700000001,
+          "idle": 0.31265009999999904
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          8
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415078.281,
+    "state": {
+      "round": 9,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.3786055000000026,
+      "count": 9.621394499999997,
+      "clock": 0.3786055000000026,
+      "walked": 0.0,
+      "x": -2930.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 8,
+          "preparation": 9.621394499999997,
+          "idle": 0.3786055000000026
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          5,
+          8
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415078.796,
+    "state": {
+      "round": 9,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8871925000000012,
+      "count": 9.112807499999999,
+      "clock": 0.8871925000000012,
+      "walked": 0.0,
+      "x": -2930.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 5,
+          "cycle": 8,
+          "preparation": 9.112807499999999,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          8
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415079.359,
+    "state": {
+      "round": 9,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.4325478000000018,
+      "count": 8.567452199999998,
+      "clock": 1.4325478000000018,
+      "walked": 0.0,
+      "x": -2930.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 8,
+          "preparation": 8.567452199999998,
+          "idle": 0.3620233000000006
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          9
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415081.843,
+    "state": {
+      "round": 10,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.3289617000000007,
+      "count": 9.6710383,
+      "clock": 0.3289617000000007,
+      "walked": 0.0,
+      "x": -6820.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 9,
+          "preparation": 9.6710383,
+          "idle": 0.3289617000000007
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          6,
+          9
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415082.359,
+    "state": {
+      "round": 10,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8254502000000024,
+      "count": 9.174549799999998,
+      "clock": 0.8254502000000024,
+      "walked": 0.0,
+      "x": -6820.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 6,
+          "cycle": 9,
+          "preparation": 9.174549799999998,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          9
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415083.125,
+    "state": {
+      "round": 10,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.5884128000000004,
+      "count": 8.4115872,
+      "clock": 1.5884128000000004,
+      "walked": 0.0,
+      "x": -6820.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 9,
+          "preparation": 8.4115872,
+          "idle": 0.2958791999999981
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          10
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415085.562,
+    "state": {
+      "round": 11,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.3429992000000013,
+      "count": 9.657000799999999,
+      "clock": 0.3429992000000013,
+      "walked": 0.0,
+      "x": -250.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 10,
+          "preparation": 9.657000799999999,
+          "idle": 0.3429992000000013
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          7,
+          10
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415086.078,
+    "state": {
+      "round": 11,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8519378000000017,
+      "count": 9.148062199999998,
+      "clock": 0.8519378000000017,
+      "walked": 0.0,
+      "x": -250.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 7,
+          "cycle": 10,
+          "preparation": 9.148062199999998,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          10
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415086.703,
+    "state": {
+      "round": 11,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.4480766000000003,
+      "count": 8.5519234,
+      "clock": 1.4480766000000003,
+      "walked": 0.0,
+      "x": -250.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 10,
+          "preparation": 8.5519234,
+          "idle": 0.2960988000000029
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          11
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415089.156,
+    "state": {
+      "round": 12,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.3291631000000024,
+      "count": 9.670836899999998,
+      "clock": 0.3291631000000024,
+      "walked": 0.0,
+      "x": 3130.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 11,
+          "preparation": 9.670836899999998,
+          "idle": 0.3291631000000024
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          8,
+          11
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415089.656,
+    "state": {
+      "round": 12,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8256118000000043,
+      "count": 9.174388199999996,
+      "clock": 0.8256118000000043,
+      "walked": 0.0,
+      "x": 3130.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 8,
+          "cycle": 11,
+          "preparation": 9.174388199999996,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          11
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415090.328,
+    "state": {
+      "round": 12,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.5211962000000057,
+      "count": 8.478803799999994,
+      "clock": 1.5211962000000057,
+      "walked": 0.0,
+      "x": 3130.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 11,
+          "preparation": 8.478803799999994,
+          "idle": 0.3284988999999996
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          12
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415092.75,
+    "state": {
+      "round": 13,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.36565620000000365,
+      "count": 9.634343799999996,
+      "clock": 0.36565620000000365,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 12,
+          "preparation": 9.634343799999996,
+          "idle": 0.36565620000000365
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          9,
+          12
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415093.265,
+    "state": {
+      "round": 13,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.8743099000000001,
+      "count": 9.1256901,
+      "clock": 0.8743099000000001,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 12,
+          "preparation": 9.1256901,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          12
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415093.921,
+    "state": {
+      "round": 13,
+      "direction": 1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.5693874000000037,
+      "count": 8.430612599999996,
+      "clock": 1.5693874000000037,
+      "walked": 0.0,
+      "x": 4530.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 12,
+          "preparation": 8.430612599999996,
+          "idle": 0.37837960000000237
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          1,
+          -1,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415096.421,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 0.3450174999999973,
+      "count": 9.654982500000003,
+      "clock": 0.3450174999999973,
+      "walked": 0.0,
+      "x": -2930.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 1,
+          "slot": -1,
+          "cycle": 13,
+          "preparation": 9.654982500000003,
+          "idle": 0.3450174999999973
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      1,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415097.937,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 1,
+      "age": 1.882021899999998,
+      "count": 8.117978100000002,
+      "clock": 1.882021899999998,
+      "walked": 0.0,
+      "x": -2930.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 8.117978100000002,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415106.078,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 0,
+      "target": -1,
+      "pass": 0,
+      "visited": 0,
+      "phase": 6,
+      "age": 0.026852699999999174,
+      "count": 0.0,
+      "clock": 10.036130499999999,
+      "walked": 0.0,
+      "x": -2930.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      5,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415107.296,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 0,
+      "target": 5,
+      "pass": 0,
+      "visited": 0,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 11.245446199999996,
+      "walked": 0.0,
+      "x": -2930.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      5,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415107.859,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 0,
+      "target": 5,
+      "pass": 0,
+      "visited": 0,
+      "phase": 4,
+      "age": 0.024845100000000286,
+      "count": 0.0,
+      "clock": 11.802261299999998,
+      "walked": 0.0,
+      "x": -3150.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415109.203,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 1,
+      "target": -1,
+      "pass": 0,
+      "visited": 32,
+      "phase": 6,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 13.135681899999994,
+      "walked": 0.0,
+      "x": -3150.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415110.421,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 1,
+      "target": -1,
+      "pass": 0,
+      "visited": 32,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 14.3479752,
+      "walked": 0.0,
+      "x": -3150.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      3,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415110.468,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 1,
+      "target": 3,
+      "pass": 0,
+      "visited": 32,
+      "phase": 3,
+      "age": 0.05724899999999877,
+      "count": 0.0,
+      "clock": 14.431438199999995,
+      "walked": 24.044677734375,
+      "x": -3174.044677734375,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      3,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415111.453,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 1,
+      "target": 3,
+      "pass": 0,
+      "visited": 32,
+      "phase": 4,
+      "age": 0.026003500000001623,
+      "count": 0.0,
+      "clock": 15.391044299999997,
+      "walked": 0.0,
+      "x": -3560.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415112.781,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 2,
+      "target": -1,
+      "pass": 0,
+      "visited": 40,
+      "phase": 6,
+      "age": 0.025007600000002128,
+      "count": 0.0,
+      "clock": 16.7497793,
+      "walked": 0.0,
+      "x": -3560.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415114.0,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 2,
+      "target": -1,
+      "pass": 0,
+      "visited": 40,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 17.9333448,
+      "walked": 0.0,
+      "x": -3560.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      2,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415114.046,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 2,
+      "target": 2,
+      "pass": 0,
+      "visited": 40,
+      "phase": 3,
+      "age": 0.02515029999999996,
+      "count": 0.0,
+      "clock": 17.987818399999995,
+      "walked": 10.563232421875,
+      "x": -3570.563232421875,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      2,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415114.765,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 2,
+      "target": 2,
+      "pass": 0,
+      "visited": 40,
+      "phase": 4,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 18.704697499999995,
+      "walked": 0.0,
+      "x": -3870.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415116.156,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 3,
+      "target": -1,
+      "pass": 0,
+      "visited": 44,
+      "phase": 6,
+      "age": 0.040063099999997576,
+      "count": 0.0,
+      "clock": 20.104619199999995,
+      "walked": 0.0,
+      "x": -3870.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415117.359,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 3,
+      "target": 1,
+      "pass": 0,
+      "visited": 44,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 21.295361900000003,
+      "walked": 0.0,
+      "x": -3870.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415117.843,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 3,
+      "target": 1,
+      "pass": 0,
+      "visited": 44,
+      "phase": 4,
+      "age": 0.04798189999999636,
+      "count": 0.0,
+      "clock": 21.787510800000007,
+      "walked": 0.0,
+      "x": -4050.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415119.171,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 4,
+      "target": -1,
+      "pass": 0,
+      "visited": 46,
+      "phase": 6,
+      "age": 0.041550299999997264,
+      "count": 0.0,
+      "clock": 23.146036100000003,
+      "walked": 0.0,
+      "x": -4050.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      0,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415120.39,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 4,
+      "target": 0,
+      "pass": 0,
+      "visited": 46,
+      "phase": 3,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 24.337058600000006,
+      "walked": 0.0,
+      "x": -4050.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      4,
+      0,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415122.437,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 4,
+      "target": 0,
+      "pass": 0,
+      "visited": 46,
+      "phase": 4,
+      "age": 0.02506200000000547,
+      "count": 0.0,
+      "clock": 26.38948810000001,
+      "walked": 0.0,
+      "x": -4900.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415123.796,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 5,
+      "target": -1,
+      "pass": 0,
+      "visited": 47,
+      "phase": 6,
+      "age": 0.025545899999997346,
+      "count": 0.0,
+      "clock": 27.754209799999998,
+      "walked": 0.0,
+      "x": -4900.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      2,
+      -1,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415125.0,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 5,
+      "target": -1,
+      "pass": 0,
+      "visited": 47,
+      "phase": 2,
+      "age": 0.0,
+      "count": 0.0,
+      "clock": 28.9377523,
+      "walked": 0.0,
+      "x": -4900.0,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      3,
+      6,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415125.062,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 5,
+      "target": 6,
+      "pass": 0,
+      "visited": 47,
+      "phase": 3,
+      "age": 0.02341179999999099,
+      "count": 0.0,
+      "clock": 28.988756600000002,
+      "walked": 9.8330078125,
+      "x": -4909.8330078125,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "signature": [
+      6,
+      6,
+      [
+        [
+          2,
+          9,
+          13
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          1
+        ]
+      ]
+    ],
+    "observed": 415127.687,
+    "state": {
+      "round": 14,
+      "direction": -1,
+      "cursor": 5,
+      "target": 6,
+      "pass": 0,
+      "visited": 47,
+      "phase": 6,
+      "age": 0.04654469999999833,
+      "count": 0.0,
+      "clock": 31.638202300000003,
+      "walked": 0.0,
+      "x": -6003.04931640625,
+      "hiders": [
+        {
+          "actor": "player-1",
+          "mode": 2,
+          "slot": 9,
+          "cycle": 13,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-2",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-3",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 2,
+          "preparation": 0.0,
+          "idle": 0.0
+        },
+        {
+          "actor": "player-4",
+          "mode": 0,
+          "slot": -1,
+          "cycle": 1,
+          "preparation": 0.0,
+          "idle": 0.0
+        }
+      ]
+    }
+  }
+]

@@ -10,7 +10,7 @@ from shared_garden_runtime import Instance, read, write, wait, require
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('build',type=int);args=parser.parse_args()
     folder=ROOT/f'Builds/NetworkProbe/G3-0.0.{args.build}'
-    summary=read(folder/'build-summary.json');require(summary['schema'] ==28,'Wrong hiding candidate')
+    summary=read(folder/'build-summary.json');require(summary['schema'] ==29,'Wrong hiding candidate')
     authority,players,_=create_family()
     class Run:pass
     run=Run();run.build=args.build;run.run_id=authority['worldId'];run.path=ROOT/'LocalData/FamilyLAN'/run.run_id;run.path.mkdir(parents=True)
@@ -38,13 +38,13 @@ def main():
         def hider():return world()['hideAndSeek']['hiders'][0]
         def button(name):a.input('touchButton',text=name);time.sleep(.2)
         a.input('fixtureTravel',text='home');time.sleep(1)
-        button('Hide & seek');button('Play with Bandit')
+        button('Hide & seek');button('Play hide and seek')
         wait(lambda:hider()['mode']==1,'private joining')
         button('Hide Curtain');wait(lambda:hider()['mode']==2,'private hide')
-        time.sleep(3);remaining=hider()['preparation'];require(remaining<19,'Private countdown stalled')
-        wait(lambda:hider()['mode']==3,'private friendly find',45)
+        time.sleep(3);remaining=hider()['preparation'];require(remaining<9,'Private countdown stalled')
+        wait(lambda:hider()['mode']==3,'private friendly find',100)
         record('private solo has working pictured entry auto-approach countdown inspection and friendly find')
-        button('Come out');wait(lambda:hider()['mode']==1,'private hide again')
+        button('Come out');wait(lambda:hider()['mode']==1,'private hide again');require(world()['hideAndSeek']['round']==2,'Chilli missing from private second turn')
         button('Hide Curtain');wait(lambda:hider()['mode']==2,'private re-entry')
         time.sleep(1.2);before=world();a.close();a=start();time.sleep(1)
         require(hider()['mode']==0 and hider()['slot']==-1,'Private reopen resumed stale role')

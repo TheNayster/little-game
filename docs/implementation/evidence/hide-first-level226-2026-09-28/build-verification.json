@@ -1,0 +1,62 @@
+[
+  {
+    "folder": "Builds/NetworkProbe/G3-0.0.226",
+    "compiledSourceAndArtFilesChecked": 686,
+    "sourceMismatches": [],
+    "artifactsChecked": 351,
+    "artifactMismatches": [],
+    "summary": {
+      "utc": "2026-09-28T23:29:42.3157521Z",
+      "contract": 17,
+      "content": 30,
+      "schema": 29,
+      "gardenPresentation": true,
+      "builds": [
+        {
+          "role": "Server",
+          "version": "0.0.226",
+          "unity": "6000.3.24f1",
+          "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+          "result": "Succeeded",
+          "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.226\\Server\\LittleWeepsNetwork.exe",
+          "errors": 0,
+          "warnings": 0,
+          "dedicatedServer": true
+        },
+        {
+          "role": "Client",
+          "version": "0.0.226",
+          "unity": "6000.3.24f1",
+          "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+          "result": "Succeeded",
+          "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.226\\Client\\LittleWeepsNetwork.exe",
+          "errors": 0,
+          "warnings": 0,
+          "dedicatedServer": false
+        }
+      ]
+    },
+    "scope": "All Unity C# / PNG / WAV and package files in each source manifest; documentation, tool updates and platform-specific generated settings excluded."
+  },
+  {
+    "folder": "Builds/AndroidSigned/G3-0.0.226",
+    "compiledSourceAndArtFilesChecked": 686,
+    "sourceMismatches": [],
+    "artifactsChecked": 1,
+    "artifactMismatches": [],
+    "summary": {
+      "version": "0.0.226",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/Android Family LAN.asset",
+      "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\AndroidSigned\\G3-0.0.226\\LittleWeeps.apk",
+      "result": "Succeeded",
+      "utc": "2026-09-28T23:34:43.5651129Z",
+      "platform": "Android",
+      "signing": "Pinned Little Weeps family key; externally signed unchanged Unity payload",
+      "development": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    "scope": "All Unity C# / PNG / WAV and package files in each source manifest; documentation, tool updates and platform-specific generated settings excluded."
+  }
+]

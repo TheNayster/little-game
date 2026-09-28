@@ -23,7 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
- 'hiding':'implementation/hide-and-seek-2026-09-28.html',
+ 'hiding':'implementation/hide-and-seek-first-level-2026-09-28.html',
  'hideresearch':'implementation/hide-and-seek-research-2026-09-28.html',
  'worldmusic':'implementation/world-music-2026-09-28.html',
  'ramps':'implementation/marble-ramps-2026-09-28.html',
@@ -131,10 +131,10 @@ H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Chocolat
 H-10|home|Kitchen|Four-player preparation and safe ovens|part|19,31,47|Four independent cookware/tool sets, oven positions and dining seats. Authority selects free trays atomically and records cook profiles; one leaving player does not interrupt others. Native qualification is recorded; physical mixed-device acceptance remains open.|kitchen
 H-11|home|Kitchen|Drinks, fruit, blender and pretend café|plan|6,19|Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature.|ledger
 H-12|home|Parents and hiding|Bandit and Chilli's ambient routines|plan|22,47|Roam, read, garden, prepare food and tidy eligible ambient props; requests interrupt safely, but never steal a busy seeker or destroy a child's work.|ledger
-H-13|home|Parents and hiding|Parent-seeker hide-and-seek|part|22,34|HS-1 adds the pictured Bandit invitation, visible countdown, four independent hiders and friendly finds. Chilli, richer search, speech and physical qualification remain.|hiding
+H-13|home|Parents and hiding|Parent-seeker hide-and-seek|part|22,34|Bandit and Chilli alternate first-level turns with pictured invitations, large ten-to-one countdown numbers, looking pauses, four independent hiders and friendly finds. Observation/clue options, speech and physical qualification remain.|hiding
 H-14|home|Parents and hiding|Child/human seeker and role changes|plan|22,34,47|Picture role choice, independent hider preparation, swap roles, and an NPC replacement if the human seeker leaves. Character choice never changes the role.|ledger
-H-15|home|Parents and hiding|Enterable hiding furniture|part|34|HS-1 supplies six enterable spaces: curtain, two sofa nooks, two wardrobe compartments and tent. Local cutaways, concealed remote occupants and safe exits work; wider hiding furniture remains.|hiding
-H-16|home|Parents and hiding|Fair clues and bounded search|part|34|HS-1 uses bounded occupancy-independent coverage and timed inspection. Twelve stationary slot/direction cases measure at most 20.10 seconds after preparation. Sight/sound clues, settings and wider Home routes remain.|hiding
+H-15|home|Parents and hiding|Enterable hiding furniture|part|34|Ten enterable spaces include the original six plus a folding screen, dining-table nook, blanket bench and garden bush. Local cutaways, concealed remote occupants and safe exits work; upstairs hiding furniture remains.|hiding
+H-16|home|Parents and hiding|Fair clues and bounded search|part|34|First-level search uses checked-cover memory, nearby unvisited targets and visible look pauses. Sixty stationary slot/parent/start-position cases measure at most 72.95 seconds after preparation. Sight/sound clues, settings and upstairs routes remain.|hiding
 H-17|home|Parents and hiding|Concealment and mid-round joins|part|22,31,34|HS-1 conceals hidden avatars and held props, keeps profile/possessions through avatar changes and supports independent late-join preparation, re-hide, exit, travel and suspension. Human-seeker filtering and physical qualification remain.|hiding
 H-18|home|Books and reading|Reading nook and physical book props|part|25|Original six-book phone preview: shared rack, independent local reader/bookmarks, explicit narration and effects; final subjects and mixed-device qualification remain open. Low shelves, rug, cushions and book basket. Tap/open versus drag/move must be distinct; access to the same title stays independent for every player.|books
 H-19|home|Books and reading|Interactive narrated reader|part|25,26|Native candidate 198: translucent picture controls, explicit Read to me, fixed arrows and optional settings. Eight Windows groups cover four independent readers, old bookmarks, six drafts/54 pages, sound cancellation and lifecycle. Final content, physical audio/A10 and device qualification remain open. Large Play/Pause, replay, page arrows, close, optional automatic/manual turns and saved page. Opening alone does not start narration; relevant hotspots animate and say names.|reader
@@ -249,7 +249,7 @@ for t in tables(section(23)):
         if i==25:
             desc='The balloon starts on clear lawn past the trampoline. Ordinary and occasional higher auto-returns vary direction, speed and distance; the quicker descent and movement while tapping remain. One balloon for all four, Home only, no score/win/loss; landing rests until tapped. Build 151 passes core/native flight and save-upgrade checks; physical tuning acceptance remains open.'
         else:desc=f'Simple play: {row[2]} Deeper play: {row[3]} Reuse / original priority: {row[4]}. Suggested first location; portable game families may later appear elsewhere.'
-        add(fid,show_world[i],'Show-inspired activities',plain(m[2]),'play' if i==25 else 'part' if i==1 else 'plan',[23],desc+(' HS-1 supplies the first four-player downstairs Bandit loop; Chilli, clues and broader Home remain.' if i==1 else ''),'keepy' if i==25 else 'hiding' if i==1 else 'ledger')
+        add(fid,show_world[i],'Show-inspired activities',plain(m[2]),'play' if i==25 else 'part' if i==1 else 'plan',[23],desc+(' Ten first-level spaces and alternating Bandit/Chilli searches work for four players; clues and upstairs search remain.' if i==1 else ''),'keepy' if i==25 else 'hiding' if i==1 else 'ledger')
 add('SHOW-EXTRA','yard','Optional extensions','Pirates swing-ship adventure','optional',[23],'Additional researched candidate outside the 32-card selection: steering and spotting picture landmarks; needs bespoke swing/character work.','ledger')
 
 for m in re.finditer(r'^### (IMG-\d+) — (.*?)\n(.*?)(?=^### |\Z)',section(42),re.M|re.S):

@@ -7,3 +7,5 @@ Bandit has stand, two walking, counting, inspecting and friendly-wave poses. The
 Generated assets are candidates, not family-approved artwork. Accepted Bluey/Bingo sheets are unchanged. The first walk atlas has limited pose separation; further animation polish remains possible after physical review.
 
 The corresponding runtime copies are under `Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/HideAndSeek`. The reference image is research material for this private family project, not a new player avatar.
+
+The first-level expansion adds `chilli.png` and `first-level-covers.png` through the built-in imagegen tool. Exact prompts and reference roles are in the manifest. Three new props plus a reused dining-table cutaway create four additional hiding places. Both walking sheets have limited pose separation; look-around pauses turn the whole character deliberately and remain subject to family visual review. No accepted child-character source is replaced.

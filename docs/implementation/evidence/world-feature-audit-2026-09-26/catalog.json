@@ -684,7 +684,7 @@
         22,
         34
       ],
-      "description": "HS-1 adds the pictured Bandit invitation, visible countdown, four independent hiders and friendly finds. Chilli, richer search, speech and physical qualification remain.",
+      "description": "Bandit and Chilli alternate first-level turns with pictured invitations, large ten-to-one countdown numbers, looking pauses, four independent hiders and friendly finds. Observation/clue options, speech and physical qualification remain.",
       "evidence": "hiding",
       "extraSource": ""
     },
@@ -712,7 +712,7 @@
       "chapters": [
         34
       ],
-      "description": "HS-1 supplies six enterable spaces: curtain, two sofa nooks, two wardrobe compartments and tent. Local cutaways, concealed remote occupants and safe exits work; wider hiding furniture remains.",
+      "description": "Ten enterable spaces include the original six plus a folding screen, dining-table nook, blanket bench and garden bush. Local cutaways, concealed remote occupants and safe exits work; upstairs hiding furniture remains.",
       "evidence": "hiding",
       "extraSource": ""
     },
@@ -725,7 +725,7 @@
       "chapters": [
         34
       ],
-      "description": "HS-1 uses bounded occupancy-independent coverage and timed inspection. Twelve stationary slot/direction cases measure at most 20.10 seconds after preparation. Sight/sound clues, settings and wider Home routes remain.",
+      "description": "First-level search uses checked-cover memory, nearby unvisited targets and visible look pauses. Sixty stationary slot/parent/start-position cases measure at most 72.95 seconds after preparation. Sight/sound clues, settings and upstairs routes remain.",
       "evidence": "hiding",
       "extraSource": ""
     },
@@ -3107,7 +3107,7 @@
       "chapters": [
         23
       ],
-      "description": "Simple play: Tap a hiding place while a parent seeks Deeper play: Both hide, or alternate child seeker/hider roles Reuse / original priority: Cover, perception, roles; **A**. Suggested first location; portable game families may later appear elsewhere. HS-1 supplies the first four-player downstairs Bandit loop; Chilli, clues and broader Home remain.",
+      "description": "Simple play: Tap a hiding place while a parent seeks Deeper play: Both hide, or alternate child seeker/hider roles Reuse / original priority: Cover, perception, roles; **A**. Suggested first location; portable game families may later appear elsewhere. Ten first-level spaces and alternating Bandit/Chilli searches work for four players; clues and upstairs search remain.",
       "evidence": "hiding",
       "extraSource": ""
     },

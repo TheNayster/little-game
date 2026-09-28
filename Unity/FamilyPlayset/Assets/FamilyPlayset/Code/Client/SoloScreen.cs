@@ -623,7 +623,7 @@ namespace LittleWeeps.Client
                 var player=HasWorld?ReadPlayer(id):null;
                 if(player!=null && player.stairs>0){Add(root,ToBoard(HomeRooms.EntryX(player.zone),HomeRooms.EntryY(player.zone)).y,1,id);return;}
                 var hider=HideAndSeek.Player(HideGame,id);
-                if(hider?.mode==HiderMode.Hidden){Add(root,ToBoard(player.x,hider.slot==1 || hider.slot==2?HomeLayout.SofaY:245).y,1,id);return;}
+                if(hider?.mode==HiderMode.Hidden){Add(root,ToBoard(player.x,HideAndSeek.GroundY[hider.slot]).y,1,id);return;}
                 var fixture=player?.fixture??"";
                 if(SecretRooms.FortIndex(fixture)>=0 && secretFort!=null){Add(root,secretFort.anchoredPosition.y,1,id);return;}
                 if(BedroomFurniture.Seat(fixture) && FurnishedRoom!=null){var key=fixture==BedroomFurniture.Bed?"bed":"cushion-"+BedroomFurniture.CushionIndex(fixture);if(bedroomFurniture.TryGetValue(key,out var furniture)){Add(root,furniture.anchoredPosition.y,1,id);return;}}

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": 225,
+  "checks": [
+    "pictured start card and headless countdown; four independent participants and a separate parent",
+    "four covers accept physical taps and hide sibling characters while showing local status",
+    "Bandit searches across the first level and finds; one child leaving preserves siblings",
+    "same-slot rejection, held object retention, avatar change and immediate Come out",
+    "background and world travel release only their own player",
+    "tablet composition and native cold restore suspend stale roles without removing inventory",
+    "all ten first-level picture buttons enter and exit real covers, including four new places",
+    "headless seeker visibly pauses during long walks without advancing its floor position"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}
