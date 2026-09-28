@@ -1,0 +1,133 @@
+{
+  "date": "2026-09-28",
+  "scope": "Desktop in-app browser; prototype only",
+  "observations": [
+    "Existing saved selection loaded after migration; no preservation error",
+    "Two direct pointer hits chipped the touched ice; 13 additional Chip actions completed the prior partially melted rescue",
+    "Freed dinosaur moved through pointer drag",
+    "Water/Soap/Stir/Dip/Blow completed; size and square-wand controls responded",
+    "Direct red/yellow bottle taps made Orange, two portions",
+    "Reload retained the Orange two-portion mixture; clear water increased it to three portions",
+    "Player 2 made Green, player 3 Purple, player 4 Earthy brown",
+    "Player 3 restart left other three descriptions unchanged; undo restored Purple",
+    "colorsOrange.wav loaded, duration 4.679002s, paused=false and no media error"
+  ],
+  "bubbleFlowChecks": [
+    {
+      "pressed": "Water",
+      "hint": "Add a little soap to your water."
+    },
+    {
+      "pressed": "Soap",
+      "hint": "Stir the soap and water together."
+    },
+    {
+      "pressed": "Stir",
+      "hint": "Dip the wand into the bubble mixture."
+    },
+    {
+      "pressed": "Dip",
+      "hint": "Blow bubbles! Tap a bubble to pop it."
+    },
+    {
+      "pressed": "Blow",
+      "hint": "Blow bubbles! Tap a bubble to pop it."
+    }
+  ],
+  "independentColors": [
+    "Liquid color lab. Orange · 3 of 12 portions Use the picture tools or tap the objects.",
+    "Liquid color lab. Green · 2 of 12 portions Use the picture tools or tap the objects.",
+    "Liquid color lab. Purple · 2 of 12 portions Use the picture tools or tap the objects.",
+    "Liquid color lab. Earthy brown · 3 of 12 portions Use the picture tools or tap the objects."
+  ],
+  "resetResult": [
+    "Liquid color lab. Orange · 3 of 12 portions Use the picture tools or tap the objects.",
+    "Liquid color lab. Green · 2 of 12 portions Use the picture tools or tap the objects.",
+    "Liquid color lab. Tap two colored bottles. Watch them mix. Use the picture tools or tap the objects.",
+    "Liquid color lab. Earthy brown · 3 of 12 portions Use the picture tools or tap the objects."
+  ],
+  "hammerBeforeReload": "Dinosaur ice rescue. 12% uncovered · Little hammer Use the picture tools or tap the objects.",
+  "hammerAfterReload": "Dinosaur ice rescue. 12% uncovered · Little hammer Use the picture tools or tap the objects.",
+  "layouts": [
+    {
+      "h": 844,
+      "scroll": 390,
+      "tools": [
+        {
+          "h": 90.59375,
+          "name": "Red",
+          "w": 107.33333587646484
+        },
+        {
+          "h": 90.59375,
+          "name": "Yellow",
+          "w": 107.33333587646484
+        },
+        {
+          "h": 90.59375,
+          "name": "Blue",
+          "w": 107.33333587646484
+        }
+      ],
+      "w": 390
+    },
+    {
+      "h": 640,
+      "scroll": 305,
+      "tools": [
+        {
+          "h": 90.59375,
+          "name": "Red",
+          "w": 82
+        },
+        {
+          "h": 90.59375,
+          "name": "Yellow",
+          "w": 82
+        },
+        {
+          "h": 90.59375,
+          "name": "Blue",
+          "w": 82
+        }
+      ],
+      "w": 320
+    },
+    {
+      "h": 360,
+      "scroll": 725,
+      "tools": [
+        {
+          "h": 48,
+          "name": "Red",
+          "w": 112
+        },
+        {
+          "h": 48,
+          "name": "Yellow",
+          "w": 112
+        },
+        {
+          "h": 48,
+          "name": "Blue",
+          "w": 112
+        }
+      ],
+      "w": 740
+    }
+  ],
+  "tablet": {
+    "width": 1024,
+    "height": 768,
+    "scrollWidth": 1024,
+    "visibleWorkspaces": 4,
+    "visual": true
+  },
+  "consoleErrorsOrWarnings": [],
+  "viewportRestored": true,
+  "limits": [
+    "No direct inspection of browser private storage; complete migration comparison is in model tests",
+    "No physical multitouch, phone/iPad, Unity/server qualification",
+    "No human listening-quality or child-usability acceptance"
+  ]
+}

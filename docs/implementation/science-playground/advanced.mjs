@@ -7,7 +7,7 @@ export function renderAdvanced(world,i,element,dispatch,runFamily){
  if('color'in s){COLORS.forEach((c,n)=>{const e=document.createElement('button');e.className='swatch';e.style.background=c;e.setAttribute('aria-label',['Rose','Blue','Purple','Gold','Mint'][n]);e.textContent=s.color===n?'✓':'';e.onclick=()=>dispatch(i,'color',n,{rebuild:true});element.append(e);});}
  switch(id){
  case 'lava':b(s.heat?'Cool water':'Warm water','heat',s.heat?0:1);break;
- case 'ice':b('Warm dropper','heat',1);b('Cool dropper','heat',0);b('Change dinosaur','toy');break;
+ case 'ice':b('Little hammer','iceTool','hammer');b('Water dropper','iceTool','water');b('Warm dropper','heat',1);b('Cool dropper','heat',0);b('Change dinosaur','toy');break;
  case 'marble':b(s.rough?'Use smooth surface':'Use felt surface','rough');break;
  case 'slime':b('Add activator','activator');b('Stir','stir');b('Squish together','squish');break;
  case 'milk':b('Color dropper','tool','color');b('Soap wand','tool','soap');break;
@@ -18,6 +18,7 @@ export function renderAdvanced(world,i,element,dispatch,runFamily){
  case 'circuits':['lamp','fan','buzzer'].forEach(v=>b(v,'load',v));break;
  case 'weather':r('Sun warmth','sun',s.sun,0,2);r('Cool the air','cool',s.cool,0,2);r('Wind','wind',s.wind,-2,2);break;
  case 'bubbles':b(s.shape==='round'?'Square wand':'Round wand','shape');r('Blowing strength','air',s.air,.5,2);r('Wind','wind',s.wind,-2,2);break;
+ case 'colors':b('Add clear water','water');b('Stir together','stir');break;
  case 'light':r('Mirror angle','angle',s.angle,-35,65,1);break;
  case 'chain':['domino','ramp','bell','gap'].forEach(v=>b(v,'piece',v));b(s.joined?'Leave family chain':'Join family chain','join');const e=document.createElement('button');e.textContent='Run joined sections';e.onclick=runFamily;element.append(e);break;
  }

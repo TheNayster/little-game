@@ -1227,6 +1227,8 @@ The older iPad remains the performance baseline as client and solo player, inclu
 
 ## 30. A simple and playful science corner
 
+**Hammer, bubbles and liquid colors — September 28:** the user liked the simpler prototype and requested these additions. [Applied research and evidence](implementation/science-hammer-labs-2026-09-28.html): SP-02 now offers a little hammer and retained water melting, SP-12 expands into a bubble-making lab, and SP-15 adds colored-liquid mixing, ratio changes and dilution. Fifteen browser activities retain independent play for four participants with tested additive save migration. These physical color mixtures use different rules from SCI-04 colored light. Production Home integration remains open.
+
 **Child-flow follow-up, September 28:** the [applied research and simpler prototype flows](implementation/science-kids-flow-2026-09-28.html) replace dropdown/text-heavy entry with experiment pictures, direct taps, at most three main picture tools and on-demand draft spoken hints. Four players retain independent play and restart undo. Browser evidence does not complete the Home stations or physical-device qualification.
 
 **September 27 presentation follow-up:** the user asks for actual games, pictures and fun project ideas to inform this area. [Publisher references and eight applied play designs](implementation/home-science-play-design-2026-09-27.html) now supplement the scientific rules below. Candidate 174 is a functioning schematic first pass, not accepted final art/play. Recommended next science slice: a directly manipulable illustrated cargo harbor, followed by the magnet/light presentation. No additional station is implemented by this research.

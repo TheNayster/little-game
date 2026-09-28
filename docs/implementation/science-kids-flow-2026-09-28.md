@@ -1,5 +1,7 @@
 # Science playground: simpler controls for children
 
+**Later September 28 update:** [Dinosaur hammer, expanded bubble lab and new liquid-color lab](science-hammer-labs-2026-09-28.html) now bring the collection to fifteen activities with a tested version-2 save upgrade. The report below preserves the earlier scope and evidence.
+
 September 28, 2026. The user asked whether the science prototypes had researched how children's apps make flow and buttons easy, then authorized this implementation with “Start.”
 
 [Open the updated playground](home-science-playground.html). This pass applies picture selection, short state-based actions and optional spoken help to all fourteen existing experiments. It is a browser prototype for review, not a Unity build or a phone/server update. The scientific models and version-1 browser save contract are unchanged.

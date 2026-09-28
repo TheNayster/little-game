@@ -1,10 +1,11 @@
-import {slimeReady,powered,lightPath} from './model.mjs';
+import {slimeReady,powered,lightPath,nextIce,liquidVolume,liquidName} from './model.mjs';
 
 // Guidance follows the experiment state, including a restored or freely edited state.
 // Commands always use the original model; this layer cannot invent a completed result.
 export const HINTS={
  lava:'Tap the fizzy tablet. Watch the blobs go up and down.',
  ice:'Tap the dropper, or rub warm water over the ice.',
+ iceHammer:'Tap the ice with your little hammer. Chip it away to rescue your dinosaur!',
  iceFree:'You rescued your dinosaur! Drag it around the tray.',
  slimeAdd:'Tip the blue bottle into the glue.',
  slimeMix:'Mix it with the spoon. Your slime is almost ready.',
@@ -34,6 +35,16 @@ export const HINTS={
  weatherPlay:'Try the sun, rain, or snow.',
  dip:'Dip the wand into the bubble mixture.',
  blow:'Blow bubbles! Tap a bubble to pop it.',
+ bubbleWater:'Pour water into your bubble bowl.',
+ bubbleSoap:'Add a little soap to your water.',
+ bubbleStir:'Stir the soap and water together.',
+ bubbleRefill:'Your mixture is used up. Make another bowl!',
+ colors:'Tap two colored bottles. Watch the liquids swirl into a new color!',
+ colorsOrange:'You made orange! Try adding more red or yellow.',
+ colorsGreen:'You made green! Try adding more yellow or blue.',
+ colorsPurple:'You made purple! Try adding more red or blue.',
+ colorsBrown:'All three colors made an earthy brown.',
+ colorsFull:'Your jar is full. Tap Again for a fresh jar.',
  lightOn:'Turn on your torch.',
  prism:'Move the triangle into the light.',
  rainbow:'A rainbow! Turn the mirror and try again.',
@@ -50,7 +61,12 @@ const again=()=>button('again','Again','restart',[['reset']]);
 export function kidFlow(id,s){
  switch(id){
  case 'lava':return make('lava',button('fizz','Fizz!','tablet',[['tablet']],[793,300,75]),[color(s)]);
- case 'ice':return s.freed?make('iceFree',null,[again()]):make('ice',button('melt','Melt','dropper',[['heat',1],['pour']],[145,200,75]),s.drops===0?[button('dinosaur','Dinosaur','dinosaur',[['toy']])]:[]);
+ case 'ice':{
+  if(s.freed)return make('iceFree',null,[again()]);
+  const extras=[button('tool',s.tool==='hammer'?'Water':'Hammer',s.tool==='hammer'?'dropper':'hammer',[['iceTool',s.tool==='hammer'?'water':'hammer']])];
+  if(s.drops===0&&s.hits===0)extras.push(button('dinosaur','Dinosaur','dinosaur',[['toy']]));
+  return s.tool==='hammer'?make('iceHammer',button('chip','Chip!','hammer',[['chip',nextIce(s)]],[155,265,80]),extras):make('ice',button('melt','Melt','dropper',[['heat',1],['pour']],[850,265,75]),extras);
+ }
  case 'marble':return make('marble',button('roll','Roll','ball',[['release']],s.ball?.done?[s.ball.x,s.ball.y,55]:[s.tracks[0][0]+18,s.tracks[0][1]-24,45]),[button('slope','Ramp','ramp',[['slope']])]);
  case 'slime':
   if(!s.activator)return make('slimeAdd',button('add','Pour','bottle',[['activator']],[790,190,85]));
@@ -78,7 +94,21 @@ export function kidFlow(id,s){
   if((!powered(s)&&s.closed)||s.wires.length<3)return make('wire',button('wire','Connect','plug',[['loop']],[190,300,65]));
   return make(powered(s)?'circuitPlay':'switch',button('switch',s.closed?'Off':'On','switch',[['switch']],[490,210,80]),[button('output',s.load==='fan'?'Lamp':'Fan',s.load==='fan'?'bulb':'fan',[['load',s.load==='fan'?'lamp':'fan']])]);
  case 'weather':return make(s.rain||s.snow?'weatherPlay':'rain',button('rain','Rain','rain',[['cool',1.5]],[s.x,190,95]),[button('sun','Sun','sun',[['cool',0],['sun',2]]),button('snow','Snow','snow',[['cool',2]])]);
- case 'bubbles':return s.film>.1?make('blow',button('blow','Blow','bubbles',[['blow']],[267,290,65])):make('dip',button('dip','Dip','wand',[['dip']],[240,479,80]));
+ case 'bubbles':{
+  if(!s.water)return make('bubbleWater',button('water','Water','water',[['water']],[190,175,70]));
+  if(!s.soap)return make('bubbleSoap',button('soap','Soap','soap',[['soap']],[185,345,70]));
+  if(!s.mixed)return make('bubbleStir',button('stir','Stir','spoon',[['stir']],[520,320,110]));
+  const extras=[button('size',s.big?'Little ones':'Big bubble',s.big?'bubbles':'bigBubble',[['big']]),button('shape',s.shape==='round'?'Square wand':'Round wand','wand',[['shape']])];
+  if(s.film>.1)return make('blow',button('blow','Blow','bubbles',[['blow']],[800,245,78]),extras);
+  if(s.solution<=0)return make('bubbleRefill',button('refill','New mix','mix',[['refill']]));
+  return make('dip',button('dip','Dip','wand',[['dip']],[490,320,95]),extras);
+ }
+ case 'colors':{
+  if(liquidVolume(s)>=12)return make('colorsFull',again());
+  const hint={Orange:'colorsOrange',Green:'colorsGreen',Purple:'colorsPurple','Earthy brown':'colorsBrown'}[liquidName(s)]||'colors';
+  const buttons=['Red','Yellow','Blue'].map((name,i)=>button('pour'+i,name,'liquid'+i,[['pourColor',i]],[[165,220,60],[500,75,55],[835,220,60]][i]));
+  return {...make(hint,buttons[0],buttons.slice(1)),equalChoices:true};
+ }
  case 'light':
   if(!s.on)return make('lightOn',button('on','Light on','torch',[['light']],[140,250,65]));
   if(!lightPath(s).hit)return make('prism',button('prism','Move','prism',[['align']],[s.prismX,s.prismY,75]));

@@ -1,4 +1,4 @@
-import {fresh,valid,clone,initial,ACTIVITIES,state,choose,action,step,startFamily,slimeReady,CIRCUIT_NODES} from './model.mjs';
+import {fresh,upgrade,VERSION,clone,initial,ACTIVITIES,state,choose,action,step,startFamily,slimeReady,CIRCUIT_NODES,observe} from './model.mjs';
 import {draw,handles} from './draw.mjs';
 import {kidFlow,performKidAction} from './kids-flow.mjs';
 import {picture} from './pictures.mjs';
@@ -7,7 +7,7 @@ import {renderAdvanced} from './advanced.mjs';
 const KEY='little-weeps-science-playground-v1';
 let world=fresh(),storageBlocked=false,hadStored=false,dirty=false,lastSave=0;
 const saveLabel=document.querySelector('#save');
-try{const raw=localStorage.getItem(KEY);hadStored=!!raw;if(raw){const parsed=JSON.parse(raw);if(!valid(parsed))throw Error('Unrecognized save');world=parsed;world.paused=false;}}
+try{const raw=localStorage.getItem(KEY);hadStored=!!raw;if(raw){const parsed=JSON.parse(raw),next=upgrade(parsed);if(parsed.version<VERSION){const backup=KEY+'-before-v2';if(!localStorage.getItem(backup))localStorage.setItem(backup,raw);dirty=true;}world=next;world.paused=false;}}
 catch{storageBlocked=true;saveLabel.textContent='Previous data preserved. This preview is temporary.';saveLabel.classList.add('bad');}
 if(!hadStored)world.calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function save(){if(!dirty||storageBlocked)return;try{localStorage.setItem(KEY,JSON.stringify(world));saveLabel.textContent='Saved on this browser';saveLabel.classList.remove('bad');dirty=false;}catch{saveLabel.textContent='Saving unavailable. Keep this page open.';saveLabel.classList.add('bad');}}
@@ -45,7 +45,7 @@ for(let i=0;i<4;i++){
   const c=card.querySelector('canvas').getContext('2d');c.scale(.26,.26);const preview=initial(a.id);
   if(a.id==='slime'){preview.activator=1;preview.mixed=1;preview.stretch=.4;}
   if(a.id==='lava')preview.blobs=[{x:480,y:230,r:22,up:true},{x:560,y:330,r:17,up:false}];
-  if(a.id==='foam')preview.foam=3;if(a.id==='light'){preview.angle=0;preview.prismY=250;}if(a.id==='bubbles')preview.bubbles=[{x:540,y:240,r:60},{x:720,y:330,r:38}];draw(c,a.id,preview,{calm:true});
+  if(a.id==='foam')preview.foam=3;if(a.id==='light'){preview.angle=0;preview.prismY=250;}if(a.id==='bubbles'){preview.water=4;preview.soap=1;preview.mixed=1;preview.bubbles=[{x:580,y:170,r:60},{x:720,y:120,r:38}];}if(a.id==='colors')preview.parts=[2,2,0];draw(c,a.id,preview,{calm:true});
   card.onclick=()=>{cancelPanel(i);stopHint(panel);choose(world,i,a.id);panel.choosing=false;panel.undo=null;panel.extra.open=false;dirty=true;build(panel);save();panel.canvas.focus({preventScroll:true});};panel.picker.querySelector('.picture-grid').append(card);
  }
  canvas.addEventListener('pointerdown',e=>pointerDown(panel,e));canvas.addEventListener('pointermove',e=>pointerMove(panel,e));canvas.addEventListener('pointerup',e=>pointerEnd(panel,e));canvas.addEventListener('pointercancel',e=>pointerEnd(panel,e,true));canvas.addEventListener('lostpointercapture',e=>pointers.delete(e.pointerId));
@@ -69,11 +69,12 @@ function build(panel){
 }
 function update(panel){
  const flow=kidFlow(world.players[panel.i].activity,state(world,panel.i));panel.flow=flow;panel.undoButton.hidden=!panel.undo||panel.choosing;
+ const description=`${ACTIVITIES.find(a=>a.id===world.players[panel.i].activity).title}. ${observe(world.players[panel.i].activity,state(world,panel.i))} Use the picture tools or tap the objects.`;if(panel.canvas.getAttribute('aria-label')!==description)panel.canvas.setAttribute('aria-label',description);
  panel.hint.textContent=panel.choosing?'Pick a picture. Your play stays here.':selectedHandles[panel.i]>=0?'Tap where this ramp end should go.':flow.text;if(panel.choosing)return;
  const key=JSON.stringify([flow.hint,flow.primary&&[flow.primary.id,flow.primary.label],flow.extras.map(b=>[b.id,b.label])]);if(panel.key===key)return;panel.key=key;
  const focusId=panel.tools.contains(document.activeElement)?document.activeElement.dataset.kidAction:null;panel.tools.replaceChildren();
  for(const[n,descriptor]of [flow.primary,...flow.extras].entries()){
-  if(!descriptor)continue;const b=picButton(descriptor.label,descriptor.icon,()=>{const current=kidFlow(world.players[panel.i].activity,state(world,panel.i));runKid(panel,[current.primary,...current.extras].find(d=>d?.id===descriptor.id));},`picture-tool${n===0?' primary':''}`);b.dataset.kidAction=descriptor.id;b.setAttribute('aria-label',descriptor.label);if(n===0)b.setAttribute('aria-description','Try this next');panel.tools.append(b);
+  if(!descriptor)continue;const b=picButton(descriptor.label,descriptor.icon,()=>{const current=kidFlow(world.players[panel.i].activity,state(world,panel.i));runKid(panel,[current.primary,...current.extras].find(d=>d?.id===descriptor.id));},`picture-tool${n===0&&!flow.equalChoices?' primary':''}`);b.dataset.kidAction=descriptor.id;b.setAttribute('aria-label',descriptor.label);if(n===0&&!flow.equalChoices)b.setAttribute('aria-description','Try this next');panel.tools.append(b);
  }
  if(!flow.primary&&!flow.extras.length){const watch=document.createElement('div');watch.className='watch';watch.innerHTML=picture('play')+'<span>Watch!</span>';panel.tools.append(watch);}
  if(focusId){const next=[...panel.tools.children].find(b=>b.dataset.kidAction===focusId)||panel.tools.querySelector('button');next?.focus({preventScroll:true});}
@@ -87,7 +88,9 @@ function pointerDown(panel,e){
  if(e.button!==0||panel.choosing)return;e.preventDefault();if([...pointers.values()].some(g=>g.i===panel.i))return;stopHint(panel);
  const p=pos(panel,e),s=state(world,panel.i),id=world.players[panel.i].activity,flow=kidFlow(id,s),g={i:panel.i,id,x:p.x,y:p.y,time:e.timeStamp,downX:p.x,downY:p.y,handle:-1,moved:false,lastDrop:e.timeStamp,handled:false,primary:inside(p,flow.primary?.target)};
  if(id==='marble'&&!g.primary)g.handle=nearest(handles(id,s),p,45);if(id==='circuits')g.handle=nearest(CIRCUIT_NODES,p,43);pointers.set(e.pointerId,g);panel.canvas.setPointerCapture(e.pointerId);
- if(id==='ice'&&(s.freed||p.x>280&&p.x<720&&p.y>150&&p.y<430)){dispatch(panel.i,s.freed?'move':'drop',p);g.handled=true;}
+ if(id==='ice'&&(s.freed||p.x>280&&p.x<720&&p.y>150&&p.y<430)){dispatch(panel.i,s.freed?'move':s.tool==='hammer'?'chip':'drop',p,{tone:s.tool==='hammer'});g.handled=true;}
+ if(id==='ice'&&!s.freed&&!g.primary){if(Math.hypot(p.x-155,p.y-265)<80){dispatch(panel.i,'iceTool','hammer');g.handled=true;}else if(Math.hypot(p.x-850,p.y-265)<75){dispatch(panel.i,'iceTool','water');g.handled=true;}}
+ if(id==='colors'){const n=nearest([[165,220],[500,90],[835,220]],p,85);if(n>=0){dispatch(panel.i,'pourColor',n,{tone:true});g.handled=true;}}
  if(id==='milk'&&Math.hypot((p.x-500)/355,(p.y-295)/200)<=1){if(!panel.extra.open)dispatch(panel.i,'tool',s.drops.length?'soap':'color');dispatch(panel.i,'touch',p);g.handled=true;}
  if(id==='bubbles'&&s.bubbles.some(b=>Math.hypot(b.x-p.x,b.y-p.y)<b.r+12)){dispatch(panel.i,'pop',p);g.handled=true;}
  if(id==='chain'&&!g.primary){const n=Math.round((p.x-192)/124);if(p.y>190&&p.y<440&&n>=0&&n<6){dispatch(panel.i,'place',n);g.handled=true;}}
@@ -96,7 +99,7 @@ function pointerDown(panel,e){
 function pointerMove(panel,e){
  const g=pointers.get(e.pointerId);if(!g||g.i!==panel.i)return;const p=pos(panel,e),dt=Math.max(.008,(e.timeStamp-g.time)/1000),speed=Math.hypot(p.x-g.x,p.y-g.y)/dt;if(Math.hypot(p.x-g.downX,p.y-g.downY)>10)g.moved=true;const s=state(world,panel.i);
  if(g.id==='marble'&&g.handle>=0)dispatch(panel.i,'handle',{...p,index:g.handle});
- if(g.id==='ice'&&(s.freed||p.x>280&&p.x<720&&p.y>150&&p.y<430)&&e.timeStamp-g.lastDrop>80){dispatch(panel.i,s.freed?'move':'drop',p);g.lastDrop=e.timeStamp;}
+ if(g.id==='ice'&&(s.freed||p.x>280&&p.x<720&&p.y>150&&p.y<430)&&e.timeStamp-g.lastDrop>(s.tool==='hammer'?180:80)){dispatch(panel.i,s.freed?'move':s.tool==='hammer'?'chip':'drop',p,{tone:s.tool==='hammer'});g.lastDrop=e.timeStamp;}
  if(g.id==='slime')dispatch(panel.i,'pull',{...p,speed});if(g.id==='light'&&g.handle===0)dispatch(panel.i,'prism',p);g.x=p.x;g.y=p.y;g.time=e.timeStamp;
 }
 function pointerEnd(panel,e,cancelled=false){
@@ -108,7 +111,7 @@ function pointerEnd(panel,e,cancelled=false){
  }
  try{panel.canvas.releasePointerCapture(e.pointerId);}catch{}update(panel);save();
 }
-function drawCue(panel){const target=panel.flow?.primary?.target;if(!target||panel.choosing)return;const c=panel.ctx;c.save();c.beginPath();c.arc(target[0],target[1],target[2],0,Math.PI*2);c.lineWidth=7;c.strokeStyle='#fff6ce';c.stroke();c.lineWidth=3;c.strokeStyle='#27827e';c.setLineDash([10,8]);c.stroke();c.restore();}
+function drawCue(panel){if(panel.choosing)return;const targets=panel.flow?.equalChoices?[panel.flow.primary,...panel.flow.extras].map(b=>b.target):[panel.flow?.primary?.target];const c=panel.ctx;for(const target of targets){if(!target)continue;c.save();c.beginPath();c.arc(target[0],target[1],target[2],0,Math.PI*2);c.lineWidth=7;c.strokeStyle='#fff6ce';c.stroke();c.lineWidth=3;c.strokeStyle='#27827e';c.setLineDash([10,8]);c.stroke();c.restore();}}
 document.querySelector('#quad').onclick=()=>{panels.forEach(p=>cancelPanel(p.i));world.quad=!world.quad;dirty=true;layout();save();};
 document.querySelector('#pause').onclick=()=>{world.paused=!world.paused;document.querySelector('#pause').textContent=world.paused?'Resume':'Pause';document.querySelector('#pause').setAttribute('aria-pressed',world.paused);dirty=true;save();};
 document.querySelector('#sound').checked=world.sound;document.querySelector('#sound').onchange=e=>{world.sound=e.target.checked;dirty=true;sound();save();};

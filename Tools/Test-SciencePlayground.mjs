@@ -10,9 +10,9 @@ const setup=id=>{const w=fresh();choose(w,0,id);return [w,state(w,0)];};
 const act=(w,k,v)=>action(w,0,k,v);
 const near=(a,b,epsilon=1e-6)=>assert.ok(Math.abs(a-b)<epsilon,`${a} != ${b}`);
 
-test('14 complete workspaces per player, no shared references',()=>{
- const w=fresh();assert.equal(IDS.length,14);assert.ok(valid(w));
- for(const p of w.players){assert.equal(Object.keys(p.states).length,14);for(const id of IDS)assert.notEqual(p.states[id],w.players[(p.id+1)%4].states[id]);}
+test('15 complete workspaces per player, no shared references',()=>{
+ const w=fresh();assert.equal(IDS.length,15);assert.ok(valid(w));
+ for(const p of w.players){assert.equal(Object.keys(p.states).length,15);for(const id of IDS)assert.notEqual(p.states[id],w.players[(p.id+1)%4].states[id]);}
 });
 test('warm lava reacts faster but cannot create extra reserve',()=>{
  const [warm,ws]=setup('lava'),[cool,cs]=setup('lava');act(warm,'tablet');act(cool,'tablet');act(cool,'heat',0);advance(warm,4);advance(cool,4);assert.ok(ws.used>cs.used);advance(warm,35);advance(cool,35);near(ws.used,1);near(cs.used,1);assert.equal(ws.blobs.length,0);assert.equal(cs.blobs.length,0);
@@ -51,7 +51,7 @@ test('water is conserved; condensation required before precipitation',()=>{
  const [w,s]=setup('weather');advance(w,25);assert.equal(s.rain,0);assert.ok(s.vapor>25);act(w,'cool',1.5);advance(w,20);assert.ok(s.rain>0);near(s.water+s.vapor+s.cloud+s.fall,100);act(w,'cool',2);advance(w,5);assert.ok(s.snow>0&&s.rain===0);advance(w,300);near(s.water+s.vapor+s.cloud+s.fall,100);
 });
 test('bubbles require film; pop affects only selected bubble',()=>{
- const [w,s]=setup('bubbles');act(w,'blow');assert.equal(s.bubbles.length,0);act(w,'dip');act(w,'shape');act(w,'blow');assert.equal(s.shape,'square');assert.equal(s.bubbles.length,3);act(w,'pop',{x:s.bubbles[0].x,y:s.bubbles[0].y});assert.equal(s.bubbles.length,2);for(let i=0;i<10;i++)act(w,'blow');assert.ok(s.bubbles.length<=14);advance(w,20);assert.equal(s.bubbles.length,0);
+ const [w,s]=setup('bubbles');act(w,'blow');assert.equal(s.bubbles.length,0);act(w,'water');act(w,'soap');act(w,'stir');act(w,'dip');act(w,'shape');act(w,'blow');assert.equal(s.shape,'square');assert.equal(s.bubbles.length,3);act(w,'pop',{x:s.bubbles[0].x,y:s.bubbles[0].y});assert.equal(s.bubbles.length,2);for(let i=0;i<10;i++)act(w,'blow');assert.ok(s.bubbles.length<=14);advance(w,20);assert.equal(s.bubbles.length,0);
 });
 test('reflection changes beam; prism must intersect; source off stops rainbow',()=>{
  const [w,s]=setup('light');act(w,'align');assert.ok(lightPath(s).hit);const dx=lightPath(s).dx;act(w,'angle',-20);assert.notEqual(lightPath(s).dx,dx);assert.ok(!lightPath(s).hit);act(w,'align');assert.ok(lightPath(s).hit);act(w,'light');assert.ok(!lightPath(s).hit);act(w,'light');act(w,'angle',65);act(w,'align');assert.ok(lightPath(s).hit);
@@ -65,14 +65,14 @@ test('four joined chain sections complete; leaving player does not block others'
 test('same activity on four players: reset and navigation never clear sibling',()=>{
  const w=fresh();for(let i=0;i<4;i++){choose(w,i,'lava');for(let j=0;j<=i;j++)action(w,i,'tablet');}advance(w,1);const siblings=w.players.slice(1).map(p=>clone(p.states));action(w,0,'reset');choose(w,0,'ice');assert.deepEqual(w.players.slice(1).map(p=>p.states),siblings);advance(w,1);assert.ok(state(w,3).used>siblings[2].lava.used);
 });
-test('pause freezes simulations, resume continues; save restores all 56 states',()=>{
+test('pause freezes simulations, resume continues; save restores all 60 states',()=>{
  const w=fresh();for(let i=0;i<4;i++){choose(w,i,'robot');action(w,i,'run');}advance(w,1);w.paused=true;const snapshot=clone(w);advance(w,2);assert.deepEqual(w,snapshot);w.paused=false;advance(w,1);assert.notDeepEqual(w,snapshot);const restored=clone(w);assert.ok(valid(restored));advance(w,1);advance(restored,1);assert.deepEqual(restored,w);
 });
 test('corrupt saves, wrong types, invalid running queues rejected',()=>{
  const mutations=[w=>w.version=99,w=>w.players[0].states.lava.fuel='3',w=>w.players[0].states.ice.cells[0]='0',w=>w.players[0].states.marble.ball={},w=>w.players[0].states.robot.paths.push([1]),w=>w.players[0].states.milk.drops.push({x:1}),w=>w.players[0].states.chain.phase='no',w=>w.family={running:true,queue:[],at:0},w=>w.family={running:true,queue:[0,0],at:0},w=>w.players[0].states.weather.water=200];for(const mutate of mutations){const w=fresh();mutate(w);assert.ok(!valid(w));}
 });
 test('stress inputs stay bounded and complete saved model remains valid',()=>{
- const w=fresh();for(let p=0;p<4;p++)for(const id of IDS){choose(w,p,id);for(let n=0;n<100;n++){const actions={lava:['tablet'],ice:['pour'],marble:['release'],slime:['activator','stir'],milk:['touch'],robot:['run'],rocket:['pump'],foam:['peroxide','soap','yeast'],wind:['weight'],circuits:['loop'],weather:['cool'],bubbles:['dip','blow'],light:['align'],chain:['run']}[id];for(const k of actions)action(w,p,k,k==='touch'?{x:500,y:295}:1);}}advance(w,10);assert.ok(valid(w));assert.ok(JSON.stringify(w).length<900000);assert.ok(valid(clone(w)));
+ const w=fresh();for(let p=0;p<4;p++)for(const id of IDS){choose(w,p,id);for(let n=0;n<100;n++){const actions={lava:['tablet'],ice:['pour'],marble:['release'],slime:['activator','stir'],milk:['touch'],robot:['run'],rocket:['pump'],foam:['peroxide','soap','yeast'],wind:['weight'],circuits:['loop'],weather:['cool'],bubbles:['water','soap','stir','dip','blow'],colors:['pourColor'],light:['align'],chain:['run']}[id];for(const k of actions)action(w,p,k,k==='touch'?{x:500,y:295}:1);}}advance(w,10);assert.ok(valid(w));assert.ok(JSON.stringify(w).length<900000);assert.ok(valid(clone(w)));
 });
 
 const report={date:'2026-09-27',scope:'Pure browser-prototype model; no Unity, network, or physical-device qualification',total:results.length,passed:results.filter(r=>r.passed).length,results};

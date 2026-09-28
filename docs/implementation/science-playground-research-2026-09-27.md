@@ -1,5 +1,7 @@
 # Four-player science playground: research and interaction prototypes
 
+**Later September 28 update:** [Dinosaur hammer, expanded bubble lab and new liquid-color lab](science-hammer-labs-2026-09-28.html) now bring the collection to fifteen activities with a tested version-2 save upgrade. The report below preserves the earlier scope and evidence.
+
 **September 28 follow-up:** [Simpler controls, applied children's-app research and current evidence](science-kids-flow-2026-09-28.html) now supersede the original dropdown-based interface. The scientific models and prior evidence below remain the baseline.
 
 September 27, 2026 · LAB-01 / SCI-03/04/06/09 and fourteen requested activity concepts.

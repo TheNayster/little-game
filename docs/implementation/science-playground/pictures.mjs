@@ -2,6 +2,12 @@
 const common='stroke="#315b60" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"';
 const bottle='<rect x="29" y="21" width="42" height="68" rx="12" fill="#90d9df"/><path d="M30 57h40v19q0 12-12 12H42q-12 0-12-12z" fill="#6cbcbf"/><rect x="37" y="10" width="26" height="16" rx="4" fill="#ffe5a6"/>';
 const paths={
+ hammer:'<path d="m49 33-19 55q-2 8 9 10 7 1 10-7l17-53" fill="#d4a46c"/><g transform="rotate(18 52 28)"><rect x="15" y="9" width="73" height="38" rx="9" fill="#88b8c4"/><path d="M29 12v30" stroke="#d7f5f3" stroke-width="8"/></g>',
+ water:bottle.replaceAll('#90d9df','#b3e3f3').replaceAll('#6cbcbf','#5daed9'),
+ liquid0:bottle.replaceAll('#90d9df','#f6b2b9').replaceAll('#6cbcbf','#e74358'),
+ liquid1:bottle.replaceAll('#90d9df','#fff0aa').replaceAll('#6cbcbf','#edc233'),
+ liquid2:bottle.replaceAll('#90d9df','#a8caf3').replaceAll('#6cbcbf','#4082dc'),
+ bigBubble:'<circle cx="50" cy="50" r="40" fill="#cce8f277"/><path d="M19 45a32 32 0 0 1 27-27" stroke="white" stroke-width="7"/><path d="M25 78a35 35 0 0 0 53-19" stroke="#d797cb" stroke-width="6"/>',
  play:'<circle cx="50" cy="50" r="40" fill="#7bc4ac"/><path d="m39 28 32 22-32 22z" fill="white"/>',
  stop:'<circle cx="50" cy="50" r="40" fill="#efb3a4"/><rect x="33" y="33" width="34" height="34" rx="5" fill="white"/>',
  tablet:'<ellipse cx="49" cy="62" rx="31" ry="17" fill="#fff3d3"/><path d="m25 55 42 15"/><circle cx="24" cy="27" r="7" fill="#a7d8e7"/><circle cx="59" cy="20" r="9" fill="#d1b4e6"/><circle cx="77" cy="40" r="5" fill="#a7d8e7"/>',

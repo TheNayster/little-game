@@ -1,9 +1,9 @@
 // Research models only. Values are illustrative, not laboratory predictions.
-export const VERSION=1, W=1000, H=600;
+export const VERSION=2, W=1000, H=600;
 export const COLORS=['#dc638c','#588ed5','#af70c7','#e5ae3b','#4cb899'];
 export const ACTIVITIES=[
  ['lava','Lava jars','Add a fizz tablet. Watch the colored blobs rise, then fall.','Try warm and cool water. Does the same portion last as long?','◉'],
- ['ice','Dinosaur ice rescue','Choose a dropper, then tap or brush over the ice.','Use equal warm and cool drops. Which melts more ice?','❄'],
+ ['ice','Dinosaur ice rescue','Tap the ice with your little hammer.','Try breaking ice, then melting it with warm water.','❄'],
  ['marble','Marble playground','Release the ball. Drag the gold ramp handles to change its route.','Can you reach the basket with a different ramp arrangement?','●'],
  ['slime','Stretchy slime','Add activator and stir. Pull the slime handle slowly or quickly.','Does a quick pull behave like a slow stretch?','≈'],
  ['milk','Magic milk','Place colored drops, then touch them with the soap wand.','Touch a different spot. Watch where the colors travel.','✺'],
@@ -13,9 +13,10 @@ export const ACTIVITIES=[
  ['wind','Wind tube','Turn up the fan. Change the canopy or add a weight.','Can you make your invention hover halfway up?','↟'],
  ['circuits','Light-up inventions','Tap two terminals to connect a wire. Close the switch.','Make a complete loop, then try a different output.','ϟ'],
  ['weather','Mini weather world','Warm the pond, cool the air and move the wind.','Follow water from the pond into a cloud and back again.','☁'],
- ['bubbles','Bubble garden','Dip your wand, blow, then tap bubbles to pop them.','Does a square wand make a square flying bubble?','○'],
+ ['bubbles','Bubble lab','Mix water and soap, dip your wand, then blow.','Try a big bubble, a bubble shower, or a square wand.','○'],
  ['light','Rainbow mirrors','Rotate the mirror. Drag the prism into the reflected beam.','Move the prism away. Where does the rainbow go?','◇'],
- ['chain','Family chain reaction','Choose a piece and tap a place. Set off your little machine.','Try a gap. Join the family chain to link your sections.','⇢']
+ ['chain','Family chain reaction','Choose a piece and tap a place. Set off your little machine.','Try a gap. Join the family chain to link your sections.','⇢'],
+ ['colors','Liquid color lab','Pour two colors and watch them swirl together.','Try different amounts, or add clear water.','◒']
 ].map(([id,title,hint,invitation,icon])=>({id,title,hint,invitation,icon}));
 export const IDS=ACTIVITIES.map(a=>a.id);
 export const clamp=(v,min=0,max=1)=>Math.max(min,Math.min(max,Number.isFinite(v)?v:min));
@@ -25,7 +26,7 @@ export const CIRCUIT_NODES=[[190,385],[190,210],[425,210],[555,210],[785,245],[7
 export function initial(id){
  const all={
   lava:{color:0,heat:1,fuel:0,used:0,clock:0,spawn:0,blobs:[],serial:0},
-  ice:{heat:1,cells:Array(24).fill(1),energy:Array(24).fill(0),toy:0,drops:0,freed:false,x:500,y:355},
+  ice:{heat:1,cells:Array(24).fill(1),energy:Array(24).fill(0),toy:0,drops:0,freed:false,x:500,y:355,tool:'hammer',hits:0,chips:[],strike:{x:500,y:300,life:0}},
   marble:{tracks:[[210,150,760,220],[860,280,230,345],[140,410,700,470]],rough:false,ball:null,trace:[],last:0},
   slime:{color:2,glue:1,activator:0,mixed:0,stretch:0,torn:false,x:620,y:340},
   milk:{color:0,tool:'color',drops:[],bursts:[],saturation:0},
@@ -35,15 +36,26 @@ export function initial(id){
   wind:{fan:0,area:1,mass:1,height:0,v:0,spin:0},
   circuits:{wires:[],closed:false,load:'lamp',selected:-1,phase:0},
   weather:{sun:1,cool:0,wind:0,water:70,vapor:25,cloud:5,fall:0,rain:0,snow:0,x:470,clock:0},
-  bubbles:{film:0,shape:'round',air:1,wind:0,bubbles:[],serial:0,popped:0,clock:0},
+  bubbles:{film:0,shape:'round',air:1,wind:0,bubbles:[],serial:0,popped:0,clock:0,water:0,soap:0,mixed:0,solution:0,big:false,pops:[]},
   light:{on:true,angle:15,prismX:675,prismY:330},
-  chain:{slots:['domino','ramp','domino','bell','ramp','bell'],piece:'domino',joined:false,phase:'idle',at:-1,clock:0,runs:0}
+  chain:{slots:['domino','ramp','domino','bell','ramp','bell'],piece:'domino',joined:false,phase:'idle',at:-1,clock:0,runs:0},
+  colors:{parts:[0,0,0],water:0,mix:1,clock:0,pour:{color:0,life:0}}
  };return all[id];
 }
 export function fresh(){return {version:VERSION,focus:0,quad:false,sound:false,calm:false,paused:false,players:Array.from({length:4},(_,i)=>({id:i,activity:IDS[i],states:Object.fromEntries(IDS.map(id=>[id,initial(id)]))})),family:{running:false,queue:[],at:0}};}
 export function choose(world,player,id){if(IDS.includes(id)&&world.players[player])world.players[player].activity=id;}
 export function state(world,p,id=world.players[p].activity){return world.players[p].states[id];}
 export function iceAmount(s){return 1-s.cells.reduce((a,b)=>a+b,0)/24;}
+export function nextIce(s){const i=s.cells.findIndex(v=>v>.01);return {x:316+(i%6)*74,y:185+Math.floor(i/6)*70};}
+export function liquidVolume(s){return s.parts.reduce((a,b)=>a+b,0)+s.water;}
+// Authored RYB pigment approximations, not additive RGB light or a dye spectrum solver.
+export function liquidColor(s){
+ const peak=Math.max(...s.parts);if(!peak)return [226,243,246];
+ const [r,y,b]=s.parts.map(v=>v/peak),anchors=[[245,247,237],[64,130,220],[248,212,55],[60,172,113],[231,67,88],[153,90,193],[242,137,52],[125,101,80]];
+ const rgb=[0,0,0];for(let i=0;i<8;i++){const weight=(i&4?r:1-r)*(i&2?y:1-y)*(i&1?b:1-b);for(let c=0;c<3;c++)rgb[c]+=anchors[i][c]*weight;}
+ const dilution=s.parts.reduce((a,b)=>a+b,0)/liquidVolume(s);return rgb.map((v,i)=>Math.round(v*dilution+[238,247,247][i]*(1-dilution)));
+}
+export function liquidName(s){const active=s.parts.map((v,i)=>v>0?i:-1).filter(v=>v>=0);if(!active.length)return s.water?'Clear water':'Choose two colors';if(active.length===3)return Math.min(...s.parts)/Math.max(...s.parts)>=.65?'Earthy brown':'Mixed colors';if(active.length===1)return ['Red','Yellow','Blue'][active[0]];return active.includes(0)?active.includes(1)?'Orange':'Purple':'Green';}
 export function slimeReady(s){return s.glue>0&&s.activator>0&&s.mixed>=1;}
 function circuitPath(s,load=true){
  const edges=s.wires.slice();if(s.closed)edges.push([2,3]);if(load)edges.push([4,5]);
@@ -70,6 +82,14 @@ export function action(world,p,kind,v){
  switch(id){
  case 'lava':if(kind==='tablet')s.fuel=clamp(s.fuel+1,0,5);if(kind==='heat')s.heat=clamp(v,0,2);break;
  case 'ice':
+  if(kind==='iceTool')s.tool=v==='water'?'water':'hammer';
+  if(kind==='chip'&&!s.freed&&v&&v.x>=280&&v.x<=720&&v.y>=150&&v.y<=430){
+   let changed=false;
+   for(let i=0;i<24;i++){const x=316+(i%6)*74,y=185+Math.floor(i/6)*70,d=Math.hypot(x-v.x,y-v.y);if(d>108||s.cells[i]<=0)continue;const before=s.cells[i];s.cells[i]=Math.max(0,before-(d<52?.62:.3));changed=true;
+    if(before>0&&s.cells[i]===0){s.energy[i]=0;for(let j=0;j<3;j++)s.chips.push({x:x+(j-1)*14,y,vx:(j-1)*65,vy:-75-j*20,age:0});}
+   }
+   if(changed){s.hits++;s.strike={x:v.x,y:v.y,life:.4};s.chips=s.chips.slice(-48);if(iceAmount(s)>.96){s.freed=true;s.cells.fill(0);}}else return false;
+  }
   if(kind==='heat')s.heat=v?1:0;
   if(kind==='drop'){
    const x=clamp(v.x,280,720),y=clamp(v.y,150,430);s.drops++;
@@ -128,12 +148,21 @@ export function action(world,p,kind,v){
   if(kind==='cool')s.cool=clamp(v,0,2);
   if(kind==='wind')s.wind=clamp(v,-2,2);break;
  case 'bubbles':
-  if(kind==='dip')s.film=1;
+  if(kind==='water'&&!s.water){s.water=4;s.mixed=0;}
+  if(kind==='soap'&&!s.soap){s.soap=1;s.mixed=0;}
+  if(kind==='stir'&&s.water&&s.soap&&!s.mixed){s.mixed=1;s.solution=4;}
+  if(kind==='refill'&&s.solution<=0){s.water=0;s.soap=0;s.mixed=0;s.film=0;}
+  if(kind==='dip'&&s.mixed&&s.solution>0){s.film=1;s.solution=Math.max(0,s.solution-.25);}
+  if(kind==='big')s.big=!s.big;
   if(kind==='shape')s.shape=s.shape==='round'?'square':'round';
   if(kind==='air')s.air=clamp(v,.5,2);
   if(kind==='wind')s.wind=clamp(v,-2,2);
-  if(kind==='blow'&&s.film>.1&&s.bubbles.length<28){s.film=Math.max(0,s.film-.24);for(let i=0;i<3;i++)s.bubbles.push({id:++s.serial,x:250+i*22,y:420-i*10,r:20+9*s.air+(i*7)%15,vx:45*s.air,vy:-30-12*i,age:0});}
-  if(kind==='pop'){const i=s.bubbles.findIndex(b=>Math.hypot(b.x-v.x,b.y-v.y)<b.r+12);if(i>=0){s.bubbles.splice(i,1);s.popped++;}}
+  if(kind==='blow'&&s.film>.1&&s.bubbles.length<28){s.film=Math.max(0,s.film-(s.big?.55:.24));for(let i=0;i<(s.big?1:3);i++)s.bubbles.push({id:++s.serial,x:785-i*28,y:245-i*12,r:s.big?70+8*s.air:22+9*s.air+(i*7)%15,vx:-38*s.air,vy:-22-10*i,age:0});}
+  if(kind==='pop'){const i=s.bubbles.findIndex(b=>Math.hypot(b.x-v.x,b.y-v.y)<b.r+12);if(i>=0){const b=s.bubbles[i];s.pops.push({x:b.x,y:b.y,r:b.r,age:0});s.pops=s.pops.slice(-12);s.bubbles.splice(i,1);s.popped++;}}
+  break;
+ case 'colors':
+  if((kind==='pourColor'||kind==='water')&&liquidVolume(s)<12){if(kind==='water')s.water++;else if(Number.isInteger(v)&&v>=0&&v<3){s.parts[v]++;s.pour={color:v,life:.65};}else return false;s.mix=0;}
+  if(kind==='stir')s.mix=1;
   break;
  case 'light':
   if(kind==='light')s.on=!s.on;
@@ -176,6 +205,7 @@ function advance(id,s,dt){
   s.blobs=s.blobs.filter(b=>b.y<443);break;
  }
  case 'ice':
+  s.strike.life=Math.max(0,s.strike.life-dt);for(const chip of s.chips){chip.age+=dt;chip.vy+=250*dt;chip.x+=chip.vx*dt;chip.y+=chip.vy*dt;}s.chips=s.chips.filter(p=>p.age<1.2);
   for(let i=0;i<24;i++){const melt=Math.min(s.cells[i],s.energy[i]*dt*2);s.cells[i]-=melt;s.energy[i]=Math.max(0,s.energy[i]-melt-dt*.003);}
   s.freed=iceAmount(s)>.96;if(s.freed)s.cells.fill(0);break;
  case 'marble':{
@@ -213,7 +243,8 @@ function advance(id,s,dt){
   s.x=clamp(s.x+s.wind*dt*13,230,770);break;
  }
  case 'bubbles':
-  s.clock+=dt;for(const b of s.bubbles){b.age+=dt;b.vx+=(s.wind*30-b.vx*.2)*dt;b.x+=b.vx*dt;b.y+=b.vy*dt;b.vy-=dt*2;}s.bubbles=s.bubbles.filter(b=>b.age<14&&b.x>-80&&b.x<1080&&b.y>-70);break;
+  s.clock+=dt;for(const b of s.bubbles){b.age+=dt;b.vx+=(s.wind*30-b.vx*.2)*dt;b.x+=b.vx*dt;b.y+=b.vy*dt;b.vy-=dt*2;}s.bubbles=s.bubbles.filter(b=>b.age<14&&b.x>-80&&b.x<1080&&b.y>-70);for(const p of s.pops)p.age+=dt;s.pops=s.pops.filter(p=>p.age<.4);break;
+ case 'colors':s.clock+=dt;s.mix=Math.min(1,s.mix+dt*.45);s.pour.life=Math.max(0,s.pour.life-dt);break;
  case 'chain':
   if(s.phase==='running'){if(s.slots[s.at]==='gap'){s.phase='blocked';break;}s.clock+=dt;if(s.clock>=.65){s.clock=0;s.at++;if(s.at>=6){s.at=5;s.phase='done';s.runs++;}}}break;
  }
@@ -221,7 +252,7 @@ function advance(id,s,dt){
 export function observe(id,s){
  switch(id){
  case 'lava':return s.fuel>.001?'Gas carries the colored water up. It falls when the gas escapes.':s.blobs.length?'The last blobs are settling.':'Ready for a fizz tablet.';
- case 'ice':return s.freed?'Your dinosaur is free! Move it around the tray.':`${Math.round(iceAmount(s)*100)}% melted · ${s.heat?'Warm':'Cool'} dropper`;
+ case 'ice':return s.freed?'Your dinosaur is free! Move it around the tray.':`${Math.round(iceAmount(s)*100)}% uncovered · ${s.tool==='hammer'?'Little hammer':s.heat?'Warm dropper':'Cool dropper'}`;
  case 'marble':return !s.ball?'The course is ready.':s.ball.done?(s.last>650&&s.last<850?'In the basket! Try changing the ramps.':'The ball landed on the mat. Adjust a ramp and try again.'):'Watch the ball follow your ramps.';
  case 'slime':return !s.activator?'Add activator to the glue mixture.':!slimeReady(s)?'Stir the two portions together.':s.torn?'That quick pull tore the slime. Squish it together.':'Ready to stretch. Pull slowly, then try quickly.';
  case 'milk':return s.bursts.length?'The soap pushes the colors away from where you touched.':s.drops.length?'Touch a colored spot with the soap wand.':'Add some colored drops to the milk.';
@@ -231,14 +262,15 @@ export function observe(id,s){
  case 'wind':return !s.fan?'Fan off. Gravity brings your invention down.':Math.abs(s.v)<7&&s.height>20?'Hovering! Try another weight or canopy.':'Air pushes up; weight pulls down.';
  case 'circuits':return powered(s)?`A complete loop powers the ${s.load}.`:s.selected>=0?'Now choose another terminal.':'Complete the wires and close the switch.';
  case 'weather':return s.snow?'Cloud water returns as snow in cold air.':s.rain?'Droplets have grown: rain returns water to the pond.':s.cool?'Cooling helps vapor condense into cloud droplets.':'Sun warms the pond. Some water evaporates.';
- case 'bubbles':return s.bubbles.length?'The flying bubbles are round, whatever the wand shape.':s.film?'The film is ready. Blow through your wand.':'Dip the wand to pick up a soap film.';
+ case 'bubbles':return !s.water?'Pour water into your bowl.':!s.soap?'Add soap to the water.':!s.mixed?'Stir the soap and water.':s.bubbles.length?'The flying bubbles are round, whatever the wand shape.':s.film>.1?'The film is ready. Blow through your wand.':s.solution?'Dip the wand to pick up a soap film.':'Make a fresh bubble mixture.';
+ case 'colors':return liquidVolume(s)?`${liquidName(s)} · ${liquidVolume(s)} of 12 portions`:'Tap two colored bottles. Watch them mix.';
  case 'light':return !s.on?'Light off.':lightPath(s).hit?'The prism separates the white light into colors.':'Move the prism into the reflected beam.';
  case 'chain':return s.phase==='blocked'?'The gap stopped the chain. Replace it and try again.':s.phase==='done'?'Your whole section worked!':s.phase==='running'?'One action sets off the next.':'Build your section, then give it a nudge.';
  }
 }
 
 // Reject malformed or oversized saved prototypes; never coerce unknown data into a new save.
-export function valid(world){
+function validate(world,version){
  try{
   const shape=(value,template)=>{
    if(template===null)return value===null;
@@ -247,11 +279,12 @@ export function valid(world){
    return typeof value===typeof template&&(typeof value!=='number'||Number.isFinite(value));
   };
   const records=(values,template,max)=>Array.isArray(values)&&values.length<=max&&values.every(v=>shape(v,template));
-  if(world.version!==VERSION||!Array.isArray(world.players)||world.players.length!==4||!Number.isInteger(world.focus)||world.focus<0||world.focus>3)return false;
+  if(world.version!==version||!Array.isArray(world.players)||world.players.length!==4||!Number.isInteger(world.focus)||world.focus<0||world.focus>3)return false;
+  const ids=version===1?IDS.filter(id=>id!=='colors'):IDS;
   for(const k of ['quad','sound','calm','paused'])if(typeof world[k]!=='boolean')return false;
   for(let i=0;i<4;i++){
-   const p=world.players[i];if(p.id!==i||!IDS.includes(p.activity)||Object.keys(p.states).length!==14)return false;
-   for(const id of IDS){const s=p.states[id],base=initial(id);if(id==='marble'&&s?.ball!==null)base.ball={x:0,y:0,vx:0,vy:0,done:false};if(!s||!shape(s,base))return false;}
+   const p=world.players[i];if(p.id!==i||!ids.includes(p.activity)||Object.keys(p.states).length!==ids.length)return false;
+   for(const id of ids){const s=p.states[id],base=initial(id);if(version===1&&id==='ice')for(const k of ['tool','hits','chips','strike'])delete base[k];if(version===1&&id==='bubbles')for(const k of ['water','soap','mixed','solution','big','pops'])delete base[k];if(id==='marble'&&s?.ball!==null)base.ball={x:0,y:0,vx:0,vy:0,done:false};if(!s||!shape(s,base))return false;}
    const s=p.states;if(s.ice.cells.length!==24||s.ice.energy.length!==24||s.marble.tracks.length!==3||s.robot.paths.length>1200||s.milk.drops.length>90||s.lava.blobs.length>32||s.bubbles.bubbles.length>30||s.chain.slots.length!==6)return false;
    if(s.circuits.wires.length>15||s.circuits.wires.some(e=>e.length!==2||e.some(n=>!Number.isInteger(n)||n<0||n>5)))return false;
    if(s.chain.slots.some(v=>!['domino','ramp','bell','gap'].includes(v)))return false;
@@ -259,9 +292,22 @@ export function valid(world){
    if(!['idle','flying','rest'].includes(s.rocket.phase)||!['idle','running','blocked','done'].includes(s.chain.phase)||!['domino','ramp','bell','gap'].includes(s.chain.piece)||!['lamp','fan','buzzer'].includes(s.circuits.load)||!['round','square'].includes(s.bubbles.shape)||!['soap','color'].includes(s.milk.tool))return false;
    if(!Number.isInteger(s.chain.at)||s.chain.at< -1||s.chain.at>5||s.chain.phase==='running'&&s.chain.at<0||s.ice.energy.some(v=>v<0||v>1.5))return false;
    if(s.ice.cells.some(v=>v<0||v>1)||Math.abs(s.weather.water+s.weather.vapor+s.weather.cloud+s.weather.fall-100)>.001)return false;
+   if(version===2){
+    if(!['hammer','water'].includes(s.ice.tool)||!Number.isInteger(s.ice.hits)||s.ice.hits<0||!records(s.ice.chips,{x:0,y:0,vx:0,vy:0,age:0},48))return false;
+    if(!records(s.bubbles.pops,{x:0,y:0,r:0,age:0},12)||s.bubbles.water<0||s.bubbles.water>4||s.bubbles.soap<0||s.bubbles.soap>1||s.bubbles.mixed<0||s.bubbles.mixed>1||s.bubbles.solution<0||s.bubbles.solution>4)return false;
+    if(s.colors.parts.some(v=>!Number.isInteger(v)||v<0)||!Number.isInteger(s.colors.water)||s.colors.water<0||liquidVolume(s.colors)>12||s.colors.mix<0||s.colors.mix>1||!Number.isInteger(s.colors.pour.color)||s.colors.pour.color<0||s.colors.pour.color>2)return false;
+   }
   }
   const scan=(v,depth=0)=>{if(depth>10)return false;if(typeof v==='number')return Number.isFinite(v)&&Math.abs(v)<1e9;if(typeof v==='string')return v.length<40;if(v===null||typeof v==='boolean')return true;if(Array.isArray(v))return v.length<=1200&&v.every(x=>scan(x,depth+1));if(typeof v==='object')return Object.values(v).every(x=>scan(x,depth+1));return false;};
   const f=world.family;
   return shape(f,{running:false,queue:[],at:0})&&f.queue.length<=4&&new Set(f.queue).size===f.queue.length&&f.queue.every(i=>Number.isInteger(i)&&i>=0&&i<4)&&Number.isInteger(f.at)&&f.at>=0&&f.at<=f.queue.length&&(!f.running||f.at<f.queue.length)&&scan(world)&&JSON.stringify(world).length<900000;
  }catch{return false;}
+}
+export function valid(world){return validate(world,VERSION);}
+export function upgrade(world){
+ if(valid(world))return clone(world);
+ if(!validate(world,1))throw Error('Unrecognized or damaged prototype save');
+ const next=clone(world);next.version=VERSION;
+ for(const p of next.players){p.states.ice={...initial('ice'),...p.states.ice};p.states.bubbles={...initial('bubbles'),water:4,soap:1,mixed:1,solution:4,...p.states.bubbles};p.states.colors=initial('colors');}
+ if(!valid(next))throw Error('Prototype migration failed');return next;
 }

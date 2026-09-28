@@ -15,6 +15,11 @@
                       "file":  "ice.wav"
                   },
                   {
+                      "id":  "iceHammer",
+                      "text":  "Tap the ice with your little hammer. Chip it away to rescue your dinosaur!",
+                      "file":  "iceHammer.wav"
+                  },
+                  {
                       "id":  "iceFree",
                       "text":  "You rescued your dinosaur! Drag it around the tray.",
                       "file":  "iceFree.wav"
@@ -158,6 +163,56 @@
                       "id":  "blow",
                       "text":  "Blow bubbles! Tap a bubble to pop it.",
                       "file":  "blow.wav"
+                  },
+                  {
+                      "id":  "bubbleWater",
+                      "text":  "Pour water into your bubble bowl.",
+                      "file":  "bubbleWater.wav"
+                  },
+                  {
+                      "id":  "bubbleSoap",
+                      "text":  "Add a little soap to your water.",
+                      "file":  "bubbleSoap.wav"
+                  },
+                  {
+                      "id":  "bubbleStir",
+                      "text":  "Stir the soap and water together.",
+                      "file":  "bubbleStir.wav"
+                  },
+                  {
+                      "id":  "bubbleRefill",
+                      "text":  "Your mixture is used up. Make another bowl!",
+                      "file":  "bubbleRefill.wav"
+                  },
+                  {
+                      "id":  "colors",
+                      "text":  "Tap two colored bottles. Watch the liquids swirl into a new color!",
+                      "file":  "colors.wav"
+                  },
+                  {
+                      "id":  "colorsOrange",
+                      "text":  "You made orange! Try adding more red or yellow.",
+                      "file":  "colorsOrange.wav"
+                  },
+                  {
+                      "id":  "colorsGreen",
+                      "text":  "You made green! Try adding more yellow or blue.",
+                      "file":  "colorsGreen.wav"
+                  },
+                  {
+                      "id":  "colorsPurple",
+                      "text":  "You made purple! Try adding more red or blue.",
+                      "file":  "colorsPurple.wav"
+                  },
+                  {
+                      "id":  "colorsBrown",
+                      "text":  "All three colors made an earthy brown.",
+                      "file":  "colorsBrown.wav"
+                  },
+                  {
+                      "id":  "colorsFull",
+                      "text":  "Your jar is full. Tap Again for a fresh jar.",
+                      "file":  "colorsFull.wav"
                   },
                   {
                       "id":  "lightOn",
