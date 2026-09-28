@@ -49,7 +49,7 @@ namespace LittleWeeps.Client
         {
             if(SceneSchema<Mixing.Schema)return;
             mixingRoot=Rect(discoveryPanel,"Mix and discover",new Vector2(0,-30),new Vector2(1080,570));
-            for(var i=0;i<4;i++){var mode=i;mixingModes.Add(Button(mixingRoot,Mixing.Names[i],new Vector2((i-1.5f)*258,259),new Vector2(248,58),()=>{if(discoveryPending)return;CancelMixingGesture();mixingMode=mode;mixingSelected=Mixing.Supplies[mode][0];PresentDiscovery();},Cream));}
+            for(var i=0;i<4;i++){var mode=i;mixingModes.Add(Button(mixingRoot,Mixing.Names[i],new Vector2((i-1.5f)*258,259),new Vector2(248,58),()=>{if(discoveryPending)return;CancelMixingGesture();mixingMode=mode;mixingSelected=Mixing.Supplies[mode][0];PresentDiscovery();TouchDiscoveryStation();},Cream));}
             // A direct touch surface and authored prop sprites keep the working
             // vessel central; text labels supplement the recognizable pictures.
             mixingBowlBack=HomePicture(mixingRoot,"Glass bowl rear",new Vector2(0,-20),new Vector2(580,435),WorkshopArt.Bowl(0));mixingBowlBack.raycastTarget=false;

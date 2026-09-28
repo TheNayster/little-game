@@ -7,6 +7,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="HomeTidyingTests.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeTidying.cs" Link="HomeTidying.cs" />
     <Compile Include="SceneryTests.cs" />
     <Compile Include="HomeTests.cs" />
     <Compile Include="KeepyTests.cs" />

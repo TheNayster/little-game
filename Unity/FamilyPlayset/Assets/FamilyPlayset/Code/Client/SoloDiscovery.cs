@@ -39,13 +39,15 @@ namespace LittleWeeps.Client
             else Done(Command(SoloAction.Discovery,Actor,Discovery.PageToken(discoveryPage,page),op,x,y));
             PresentDiscovery();
         }
+        private string CurrentTidyLab=>discoveryStation==0?"float":discoveryStation==1?"magnets":discoveryStation==2?"lights":discoveryStation==4?"mix"+mixingMode:discoveryStation==5?"ice":discoveryStation==6?"bubble":discoveryStation==7?"liquid":"";
+        private void TouchDiscoveryStation(){if(SceneSchema>=HomeTidying.Schema && CurrentTidyLab!="")DiscoveryCommand("visit:"+CurrentTidyLab);}
         private void OpenDiscovery(int station)
         {
             if(!Ready || MenuOpen || TravelPending || SceneSchema<Discovery.Schema)return;
             if(!Discovery.InBay(ReadPlayer(Actor))){RoomPlayFeedback("Walk a little closer to the activity tables.");return;}
             CancelPointers();CancelStairApproach();CancelDoorApproach();CloseNavigation();CloseKitchen();Narration.Stop();
             discoveryStation=station;discoveryPage=Math.Min(discoveryPage,OwnDiscovery.pages.Length-1);discoveryGallery.gameObject.SetActive(false);discoveryPanel.gameObject.SetActive(true);discoveryPanel.SetAsLastSibling();discoveryPaintRevision=-1;
-            stick.gameObject.SetActive(false);PresentDiscovery();
+            stick.gameObject.SetActive(false);PresentDiscovery();TouchDiscoveryStation();
         }
         private void CloseDiscovery()
         {CloseIceRescue();CloseBubbleLab();CloseLiquidColors();CancelMixingGesture();discoverySurface?.CancelGesture();if(discoveryPanel!=null)discoveryPanel.gameObject.SetActive(false);CancelPointers();if(stick!=null)stick.gameObject.SetActive(JoystickMode && !MenuOpen);}
@@ -70,7 +72,7 @@ namespace LittleWeeps.Client
             var backdrop=HomePicture(discoveryPanel,"Illustrated workshop",Vector2.zero,Vector2.zero,WorkshopArt.Background);Stretch(backdrop.rectTransform);backdrop.raycastTarget=false;
             discoveryTitle=Label(discoveryPanel,"",30,Vector2.zero,new Vector2(550,55));
             discoveryBack=Button(discoveryPanel,"Back to Home",Vector2.zero,new Vector2(200,65),CloseDiscovery,Cream);
-            for(var i=0;i<(SceneSchema>=LiquidColorLab.Schema?7:SceneSchema>=BubbleLab.Schema?6:SceneSchema>=IceRescue.Schema?5:SceneSchema>=Mixing.Schema?4:3);i++){var index=i>=3?i+1:i;discoveryStationButtons.Add(Button(discoveryPanel,new[]{"Floating boats","Magnet materials","Colored light","Mix & discover","Dinosaur rescue","Bubble lab","Liquid colors"}[i],Vector2.zero,new Vector2(240,65),()=>{if(discoveryPending)return;CancelMixingGesture();discoverySurface.CancelGesture();discoveryStation=index;discoveryPaintRevision=-1;PresentDiscovery();},Cream));}
+            for(var i=0;i<(SceneSchema>=LiquidColorLab.Schema?7:SceneSchema>=BubbleLab.Schema?6:SceneSchema>=IceRescue.Schema?5:SceneSchema>=Mixing.Schema?4:3);i++){var index=i>=3?i+1:i;discoveryStationButtons.Add(Button(discoveryPanel,new[]{"Floating boats","Magnet materials","Colored light","Mix & discover","Dinosaur rescue","Bubble lab","Liquid colors"}[i],Vector2.zero,new Vector2(240,65),()=>{if(discoveryPending)return;CancelMixingGesture();discoverySurface.CancelGesture();discoveryStation=index;discoveryPaintRevision=-1;PresentDiscovery();TouchDiscoveryStation();},Cream));}
             for(var i=0;i<discoveryStationButtons.Count;i++){
                 var img=HomePicture(discoveryStationButtons[i].transform.parent,"Activity picture",new Vector2(0,12),new Vector2(68,62),i==3?MixingSprite(10):WorkshopArt.Prop(i==0?0:i==1?2:9));img.preserveAspect=true;img.raycastTarget=false;discoveryStationArt.Add(img);if(i==4){img.gameObject.SetActive(false);IceDrawing(img.transform.parent,"Dinosaur picture",new Vector2(0,10),new Vector2(68,56),"dinosaur");}if(i==5){img.gameObject.SetActive(false);BubbleDrawing(img.transform.parent,"Bubble picture",new Vector2(0,10),new Vector2(68,56),"icon","blow");}if(i==6){img.gameObject.SetActive(false);LiquidDrawing(img.transform.parent,"Liquid colors picture",new Vector2(0,10),new Vector2(68,56)).Icon=true;}
             }
@@ -153,6 +155,9 @@ namespace LittleWeeps.Client
             discoverySave.rectTransform.anchoredPosition=new Vector2(0,-height/2+14);
             discoverySave.text=Shared?(shared.Connected?"Playing with family":"Connection interrupted"):
                 saveLabel!=null && saveLabel.text.StartsWith("Couldn't save")?saveLabel.text:dirty || localSave.Pending?"Saving on this device…":"Saved on this device";
+            var tidyLab=CurrentTidyLab;
+            var tidyKey=HomeTidying.Lab(Actor,tidyLab);
+            if(tidyLab!="" && (Shared?HomeTidying.CueKeys(shared.View).Contains(tidyKey):World.ReadTidyCues().Contains(tidyKey)))discoverySave.text="Tidying soon — play to keep this experiment";
             var texts=discoveryStation==0?new[]{"− Cargo","+ Cargo","Narrow boat","Wide boat",own.outOfWater?"In water":"Lift out","Reset tray"}:discoveryStation==1?new[]{"Iron","Wood","Plastic","Aluminum","Reset tray"}:new[]{"Red lamp","Green lamp","Blue lamp","Reset tray"};
             for(var i=0;i<discoveryActions.Count;i++){var label=discoveryActions[i];label.transform.parent.gameObject.SetActive(!art && discoveryStation<4 && i<texts.Length);if(i<texts.Length){var bw=Mathf.Min(148,(width-190)/texts.Length-9);DiscoveryButton(label,texts[i],new Vector2(65+(i-(texts.Length-1)/2f)*(bw+9),-height/2+47),new Vector2(bw,55),!discoveryPending);label.fontSize=19;label.transform.parent.name="Discovery "+texts[i];}}
             discoveryPrev.transform.parent.gameObject.SetActive(art);discoveryNext.transform.parent.gameObject.SetActive(art);discoveryPageLabel.gameObject.SetActive(art);discoveryChoose.transform.parent.gameObject.SetActive(art);

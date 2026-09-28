@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'tidying':'implementation/home-idle-cleanup-2026-09-28.html',
  'scienceart':'implementation/home-science-coloring-research-2026-09-27.html',
  'discovery':'implementation/home-discovery-2026-09-27.html',
  'mixing':'implementation/home-mixing-2026-09-27.html',
@@ -106,7 +107,7 @@ G-21|all|Shared objects|Drag, carry, release and one holder|part|5,6,50|Current 
 G-22|all|Shared objects|Capacity-limited fill and pour|part|6,19,51|Bucket/tap/plant transfer exists. Extend consistent quantities and cancellation to cups, basins, recipes, watering cans, sand and all compatible targets.|core
 G-23|all|Shared objects|Supported placement, stacking and moving supports|plan|5,6,51|Tables, trays, shelves and stable stacks need visible valid targets; moving a support must carry or safely settle its dependents. Ground dragging is not a general surface system.|ledger
 G-24|all|Shared objects|Containers and durable nested contents|part|6,51|Four fixed shed slots retain items. Portable baskets, bags, drawers, cupboards, capacities, nested depth/cycle rules and carried contents remain planned.|home
-G-25|all|Shared objects|Borrowed tools return automatically|part|51|Current bucket/sponge have saved eligible idle clocks and return cues, including in shed storage. General typed loans, spoken returns and safe creation separation remain open.|home
+G-25|all|Shared objects|Borrowed tools return automatically|part|51|Five-minute Home timers reset independent science trays and return kitchen/book stock with held-item and creation protection. General typed loans, spoken cues and food/creation archives remain open.|tidying
 G-26|all|Shared objects|Enough tools and places for four|part|31,47,51|Four sofa/trampoline places exist in unchanged artwork. Other stations must offer four-person participation and essential tool stock; the single prototype bucket is not sufficient.|keepy
 G-27|all|Shared objects|Protect personal creations and prevent hoarding|plan|32,51|Separate fixed stock, essential tools, bounded loans, personal items, creations, supplies and effects. Count nested loans; preserve art/food and offer recoverable toy-box storage.|ledger
 G-28|all|Shared objects|Reusable reactions and reversible changes|part|2,6,19,30|Visible empty/full, dirty/clean, growth and valid rejection exist in the small water loop. Add material transforms, serving reactions, paint removal, undo and stable custom creations.|core

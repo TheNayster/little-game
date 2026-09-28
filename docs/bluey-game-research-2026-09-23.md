@@ -45,7 +45,7 @@ Feature goal sheet and supporting research • September 23, 2026
 
 **Latest user decision:** multiplayer stays on PC/VPS. Devices are clients; no device hosting, host election/switching or offline merge engine is required. Full offline solo remains required and travel multiplayer remains optional.
 
-**Confirmed item-return rule:** [unused borrowed shared items return home automatically](#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms). Personal decorations and saved creations must remain protected. Section 51 adds item categories, stocked activity stations, toy-box storage, container checks, and multiplayer-safe cleanup so one bedroom cannot collect the whole house. The broad timing/capacity numbers there are design proposals. The current 83 garden fixture specifically implements 180-second idle tool returns and 60-second completed-station rearming, each with a five-second cue; held/use interactions and partial progress are protected. [Measured timer and deployment record](implementation/g3-phone-layout-resets-2026-09-24.html). That narrow implementation does not yet supply the broader personal-item/bedroom policy, and 79 clients do not display the cue.
+**Confirmed item-return rule:** [unused borrowed shared items return home automatically](#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms). Personal decorations and saved creations must remain protected. Section 51 adds item categories, stocked activity stations, toy-box storage, container checks, and multiplayer-safe cleanup so one bedroom cannot collect the whole house. The broad timing/capacity numbers there are design proposals. The historical 83 garden fixture implemented 180-second idle tool returns and 60-second completed-station rearming, each with a five-second cue; held/use interactions and partial progress are protected. [Measured timer and deployment record](implementation/g3-phone-layout-resets-2026-09-24.html). That narrow implementation does not yet supply the broader personal-item/bedroom policy, and 79 clients do not display the cue.
 
 **Confirmed shared-world behavior:** [everyone travels independently, then meets in the same existing area](#50-one-shared-world-independent-travel-and-shared-items). Leaving never moves or pauses the players who stay. A shared item is one object: if someone holds the only bucket, others see it being held and cannot take it until released. Section 50 makes these acceptance requirements for all 1–4 players, locations, rooms, and compatible imagination activities.
 
@@ -2326,6 +2326,8 @@ Build a two-zone test with a creek, playground, one portable bucket, one water s
 
 ## 51. Automatic item returns, stocked areas, and tidy bedrooms
 
+**September 28 decision:** the user selects **five minutes** without meaningful use, then the brief five-second cleanup cue. This supersedes the earlier three-minute timing proposal for the installed Home systems. [Applied implementation and qualification](implementation/home-idle-cleanup-2026-09-28.html) uses independent experiment/item clocks, same-object returns, protected personal content and PC/VPS authority. New future activities must adopt the policy deliberately; it is not a whole-room wipe.
+
 **Confirmed preference: borrowed shared items return home automatically after they have been unused for a while. Personal decorations and saved creations are protected.** The purpose is to keep the house and activities usable, without turning cleanup into a compulsory chore or allowing one child to stockpile every shared prop in a bedroom. Returning an individual eligible item is different from resetting a room or the whole world.
 
 This refines section 50: one item still has at most one holder, but a borrowed item is not necessarily left wherever it was dropped forever. Players keep their freedom to travel; an item's travel/return policy depends on its purpose. The detailed limits below are proposed defaults to test with both children, not claims that Toca Boca uses these rules.
@@ -2362,7 +2364,7 @@ Define a minimum local working set per station and audit it through the authorit
 
 ### What counts as unused, and when should an item return?
 
-**Initial experiment: three minutes of eligible inactivity, followed by a roughly five-second basket/sparkle cue if visible, then return.** These durations are design starting points; tune them from play observations. The automatic return must also work while another player remains in that room, as you selected. A short warning is local to relevant players and must not pause their game.
+**Selected September 28: five minutes of eligible inactivity, followed by a roughly five-second basket/sparkle cue if visible, then return.** The earlier three-minute proposal is superseded. The automatic return must also work while another player remains in that room, as you selected. A short warning is local to relevant players and must not pause their game.
 
 Do not return a prop while any player holds/drags it, while it is being poured/used, while a transfer is pending, or while it is an actual dependency of a running recipe/ride/hiding setup. A child arriving or picking it up during the cue cancels the pending return. The server rechecks eligibility at commit. Looking through a book, standing in the room, camera movement, or an unrelated touch does not by itself renew every prop in the room.
 

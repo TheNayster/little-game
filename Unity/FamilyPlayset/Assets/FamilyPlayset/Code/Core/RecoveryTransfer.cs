@@ -20,7 +20,7 @@ namespace LittleWeeps.Core
                 world != expectedWorld || !FamilyPairing.Id(epoch) || checkpoint < 1 || checkpoint == long.MaxValue)
                 throw new InvalidDataException("Recovery identity or version mismatch.");
             SoloWorld.Validate(snapshot);
-            if(snapshot.schema != (content-1) || snapshot.players.Length != 4 || snapshot.idleTimers == null)
+            if(snapshot.schema != (content-1) || snapshot.players.Length != 4 || snapshot.idleTimers == null || snapshot.schema>=HomeTidying.Schema && snapshot.homeIdleTimers==null)
                 throw new InvalidDataException("Incomplete shared recovery state.");
         }
 

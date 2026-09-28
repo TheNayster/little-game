@@ -45,7 +45,15 @@ class RecoveryFixture:
 
     def join(self, index):
         v = self.launch(index)
-        wait(lambda: v.status() and v.status()['status'] == 'connected' and v.input('inspect')['shared'], 'fixture player joins', 45)
+        # Transport callback/status writes can overlap the first accepted snapshot.
+        # Qualify the actual connected, ready shared presentation rather than a
+        # single diagnostic label that may briefly say synchronizing.
+        def joined():
+            if not v.status():return False
+            if not v.state():return False
+            state=v.input('inspect')
+            return state['connected'] and state['ready'] and state['shared']
+        wait(joined, 'fixture player joins', 45)
         return v
 
     def stop(self):

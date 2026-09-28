@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithLiquidColors(World);
+                World = SoloWorld.WithHomeTidying(World);
                 // Restore releases interrupted item holds; persist that change.
                 // Otherwise merely opening another saved adventure must not
                 // rewrite an untouched solo payload (including precise timers).
@@ -664,6 +664,7 @@ namespace LittleWeeps.Client
             // container visibility here too, so hidden props never re-enter the
             // UI raycast list for the remainder of that frame.
             foreach(var toy in AllToys())toys[toy.id].gameObject.SetActive(VisibleToy(toy));
+            var tidyCues=Shared?HomeTidying.CueKeys(shared.View):World.ReadTidyCues();
             var toyStates=ReadToys();roomPlayItems=toyStates;var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);
             renderedArea=p.zone;renderedVisit=p.visit;
             characterVisual.Select(p.avatar);
@@ -678,7 +679,7 @@ namespace LittleWeeps.Client
                 if(t.kind==ToyKind.Bucket)fills[t.id].rectTransform.sizeDelta=new Vector2(58,5+13*t.water);
                 if(t.kind==ToyKind.Plant)fills[t.id].gameObject.SetActive(t.water==3);
             if(t.kind==ToyKind.Puddle)fills[t.id].rectTransform.localScale=Vector3.one*(t.water/3f);
-                if(resetCues.TryGetValue(t.id,out var cue))cue.SetActive(t.resetPending);
+                if(resetCues.TryGetValue(t.id,out var cue))cue.SetActive(t.resetPending || tidyCues.Contains(HomeTidying.Item(t.id)));
             }
             if(shared!=null)RenderFriends();
             // Larger y is farther back on the illustrated floor plane.
@@ -714,14 +715,14 @@ namespace LittleWeeps.Client
             if(t.kind==ToyKind.Block){Panel(root,"Soft block edge",Vector2.zero,new Vector2(77,72),Ink);Panel(root,"Soft block",Vector2.zero,new Vector2(69,64),new Color(.78f,.88f,.94f));Panel(root,"Block circle",Vector2.zero,new Vector2(35,35),new Color(.96f,.75f,.39f),false,true);}
             if(t.kind==ToyKind.Puddle)fills[t.id]=Panel(root,"Puddle",Vector2.zero,new Vector2(126,49),new Color(.41f,.73f,.86f),false,true);
             // Scene props use their pictures; instructions live in the optional activity menu.
-            if(t.kind!=ToyKind.Tap && t.kind!=ToyKind.Ball && !BedroomFurniture.Personal(t.kind))
+            if(t.kind!=ToyKind.Tap && t.kind!=ToyKind.Ball && (!BedroomFurniture.Personal(t.kind) || t.kind==ToyKind.Book))
             {
                 var cue=Panel(root,"Idle return cue",new Vector2(0,115),new Vector2(160,36),Cream).gameObject;
                 // A picture plus plain text; never a ticking challenge/failure timer.
                 var picture=Panel(cue.transform,"Return picture",new Vector2(-59,0),new Vector2(26,26),new Color(.87f,.72f,.33f),false,true);
                 Panel(picture.transform,"Arrow stem",new Vector2(0,1),new Vector2(15,4),Ink);
                 var arrow=Panel(picture.transform,"Arrow tip",new Vector2(-5,4),new Vector2(10,4),Ink);arrow.rectTransform.localRotation=Quaternion.Euler(0,0,45);
-                Label(cue.transform,t.kind==ToyKind.Bucket || t.kind==ToyKind.Sponge?"Back soon":"Again soon",16,new Vector2(15,0),new Vector2(120,32));
+                Label(cue.transform,t.kind==ToyKind.Bucket || t.kind==ToyKind.Sponge || t.kind==ToyKind.Book || Kitchen.Kind(t.kind)?"Back soon":"Again soon",16,new Vector2(15,0),new Vector2(120,32));
                 cue.SetActive(false);resetCues[t.id]=cue;
             }
         }

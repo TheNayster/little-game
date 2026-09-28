@@ -90,6 +90,7 @@ namespace LittleWeeps.Core
             if(c.item!=p.id)return "owner-only";
             var w=state.discovery.Single(v=>v.owner==p.id);
             var op=c.value;
+            if(op.StartsWith("visit:"))return state.schema>=HomeTidying.Schema && HomeTidying.Labs.Contains(op.Substring(6))?null:"unknown-discovery-action";
             if(op.StartsWith("liquid:"))return LiquidColorOperation(c,w);
             if(op.StartsWith("bubble:"))return BubbleOperation(c,w);
             if(op.StartsWith("ice:"))return IceRescueOperation(c,w);

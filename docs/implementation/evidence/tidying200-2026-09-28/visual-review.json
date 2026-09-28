@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "nativePhoneCueReviewed": true,
+  "scope": "Actual native 1280x591 capture: existing large pictured science controls remain unobscured; inactivity hint appears in the lower status position. Child/A10 acceptance remains separate.",
+  "testHarnessCorrections": [
+    "Opened the fridge before taking its stored ingredient; waited for visible enabled activity controls.",
+    "Extended only isolated test lifetime beyond the usual 240-second probe deadline.",
+    "Compared persisted floating-point clocks within 1e-9 seconds; one restart check continued from the same stopped test world.",
+    "Recovery joins require the actual connected ready shared presentation, not one diagnostic status label."
+  ],
+  "runtimeChangesAfter200Build": false
+}

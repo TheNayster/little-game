@@ -39,9 +39,15 @@ Windows candidate **198** passes [eight native groups](evidence/reader198-2026-0
 
 ![Native tablet dinosaur page](evidence/reader198-2026-09-28/dinosaurs-tablet.png)
 
-Windows and signed Android **198** are prepared, **not installed or deployed**. [Source/artifact evidence](evidence/reader198-2026-09-28/source-artifact-checks.json) verifies all 115 Unity C# files match both artifacts and current source, plus all 351 Windows files and the APK. All 25 Core files are unchanged from 194; its 233 core groups and full recovery evidence remain historical, not new 198 runs. Reader teardown now saves/stops/releases media without updating UI that Unity may already have destroyed. This local reader slice does not add a save migration or increase the server world payload.
+At the initial preparation milestone, Windows and signed Android **198** were prepared but not installed. The later Samsung delivery is recorded below. [Source/artifact evidence](evidence/reader198-2026-09-28/source-artifact-checks.json) verifies all 115 Unity C# files match both artifacts and current source, plus all 351 Windows files and the APK. All 25 Core files are unchanged from 194; its 233 core groups and full recovery evidence remain historical, not new 198 runs. Reader teardown now saves/stops/releases media without updating UI that Unity may already have destroyed. This local reader slice does not add a save migration or increase the server world payload.
 
-[Android inspection](evidence/reader198-2026-09-28/android-artifact-inspection.json) passes Little Weeps identity, pinned family signature, non-development release and ZIP/LOAD alignment. The inherited 16 KB RELRO static check still fails; the artifact is not fully qualified for that gate. Physical runtime/speaker/A10 qualification remains open. No family data or enrollment has been touched.
+[Android inspection](evidence/reader198-2026-09-28/android-artifact-inspection.json) passes Little Weeps identity, pinned family signature, non-development release and ZIP/LOAD alignment. The inherited 16 KB RELRO static check still fails; the artifact is not fully qualified for that gate. Physical runtime/speaker/A10 qualification remains open. The initial artifact qualification did not touch family data or enrollment.
+
+## Samsung delivery
+
+On September 28 the user supplied a reachable wireless endpoint and requested the update. Build 198 replaced 188 using the pinned family signature and `adb install -r`; the installed APK matches the release artifact exactly. All 21 primary saves and 21 backups remain. Twenty primary saves and twenty backups are byte-identical; the active private world migrated 18 to 21, retaining all 118 objects, four bedrooms, four secret rooms and prior coloring pages while adding the new labs. Its checksums remain valid. A few normal player/item/radio changes also occurred after launch.
+
+The unlocked phone visibly launched Little Weeps with its existing kitchen and food; the user subsequently opened coloring. This verifies launch and visible saved content, not physical speaker quality or a complete reader acceptance pass. The phone has 4096-byte pages. Server, iPads and iPhone were not updated. [Sanitized update evidence](evidence/reader198-2026-09-28/android-update.json).
 
 ## Remaining work
 

@@ -1,0 +1,52 @@
+{
+  "utc": "2026-09-28T16:36:21.0962105Z",
+  "operation": "updated",
+  "version": "0.0.198",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "6381d9eb04680d6c266350d06cc3698b4c2173b9b15030b3e0c480b946caf8a3",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 188,
+  "previousApkSha256": "5f130ab202b795e958e8184c65810c667bc2be2c889be8a530f46c48feef8956",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "pid": "23156",
+  "visibleUiAndSaveRetentionVerified": true,
+  "native16KbQualified": false,
+  "visibleChecks": [
+    "Exact Little Weeps activity foreground while unlocked",
+    "Existing kitchen furniture and food visible",
+    "User subsequently opened the coloring workspace"
+  ],
+  "primarySaves": 21,
+  "backupSaves": 21,
+  "byteIdenticalPrimarySaves": 20,
+  "byteIdenticalBackups": 20,
+  "activeSaveMigration": {
+    "before": 18,
+    "after": 21,
+    "checksumsValid": true,
+    "objectsRetained": 118,
+    "bedroomsRetained": 4,
+    "secretRoomsRetained": 4,
+    "existingArtworkPreserved": true,
+    "addedFields": [
+      "ice",
+      "bubbles",
+      "liquid"
+    ],
+    "otherChanges": [
+      "player position and visit",
+      "one item placement",
+      "living radio state",
+      "revision and receipts"
+    ]
+  },
+  "physicalAudioAcceptance": false,
+  "readerControlsPhysicallyVerified": false,
+  "sourceCommitAtInstall": "589d1aaba31d4408fc4035b9f8adb2e3c3d9eb29",
+  "currentSourceMatchedAtInstall": true,
+  "serverAndOtherDevicesUpdated": false
+}

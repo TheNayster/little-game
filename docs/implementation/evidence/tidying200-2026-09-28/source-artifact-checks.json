@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 200,
+  "matchingUnityCSharpFiles": 116,
+  "verifiedArtifacts": [
+    351,
+    1
+  ],
+  "sourceScope": "All current Unity C# files match both release artifacts; documentation and test helpers do not ship in the game."
+}

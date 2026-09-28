@@ -1,0 +1,47 @@
+{
+  "utc": "2026-09-28T17:10:16.0346877Z",
+  "operation": "updated",
+  "version": "0.0.200",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "fd584ad3f10dfa5642444788290a828fed6175085337994b1f277910ad2a6349",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 198,
+  "previousApkSha256": "6381d9eb04680d6c266350d06cc3698b4c2173b9b15030b3e0c480b946caf8a3",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "pid": "15113",
+  "visibleUiAndSaveRetentionVerified": true,
+  "native16KbQualified": false,
+  "primarySaves": 21,
+  "backupSaves": 21,
+  "byteIdenticalPrimarySaves": 20,
+  "byteIdenticalBackups": 20,
+  "migrationChecks": [
+    {
+      "record": "world.save",
+      "schemaBefore": 21,
+      "schemaAfter": 22,
+      "toysRetained": 118,
+      "bedroomsRetained": 4,
+      "secretRoomsRetained": 4,
+      "allFoodArtworkAndScienceRecordsExact": true
+    },
+    {
+      "record": "world.save.bak",
+      "schemaBefore": 21,
+      "schemaAfter": 22,
+      "toysRetained": 118,
+      "bedroomsRetained": 4,
+      "secretRoomsRetained": 4,
+      "allFoodArtworkAndScienceRecordsExact": true
+    }
+  ],
+  "checksumsVerified": true,
+  "visibleLaunch": "Unlocked Little Weeps resumed the saved Bingo/beach state; Home and the shared six-book rack were subsequently visible.",
+  "physicalCleanupTimingVerified": false,
+  "physicalAudioAcceptance": false,
+  "serverOrOtherDevicesUpdated": false
+}

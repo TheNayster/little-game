@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "build": 200,
+  "previous": 198,
+  "checks": [
+    "actual 198 world upgrades with placements artwork rooms food and enrollment unchanged",
+    "four native players prepare independent experiments with loose stock and a held shared book",
+    "real five-minute inactivity plus five-second cue resets three trays while active sibling continues",
+    "unused kitchen stock returns and fridge closes while held book paintings and bedrooms remain",
+    "saved inactivity clocks survive authority restart and pause without connected players",
+    "all candidate processes close cleanly and final logs contain no exceptions or queue overflow"
+  ],
+  "realTimer": true,
+  "continuedFromSameStoppedWorld": true,
+  "clockRoundTripToleranceSeconds": 1e-09,
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

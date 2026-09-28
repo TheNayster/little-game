@@ -98,7 +98,7 @@ static partial class Program
             var restored=SoloWorld.Restore(w.Snapshot());Check(Encode(restored.Snapshot())==Encode(w.Snapshot()));
         });
         Test("kitchen maximum stock and food remain inside reliable-view and recovery bounds",()=>{
-            var w=SoloWorld.WithLiquidColors(KitchenWorld());var actors=w.Snapshot().players;
+            var w=SoloWorld.WithHomeTidying(KitchenWorld());var actors=w.Snapshot().players;
             for(var i=0;i<4;i++)MakeSecret(w,i,actors[i].id);
             var s=w.Snapshot();foreach(var p in s.players){p.zone="garden";p.x=-1500;p.y=200;p.fixture="";p.useSeconds=0;p.stairs=0;}w=SoloWorld.Restore(s);
             OpenKitchen(w);
@@ -108,6 +108,7 @@ static partial class Program
             foreach(var actor in actors){PrepareBubbles(w,actor.id);for(var n=0;n<4;n++)Check(Bubbles(w,"blow",actor.id).Accepted);Check(Bubbles(w,"dip",actor.id).Accepted);for(var n=0;n<2;n++)Check(Bubbles(w,"blow",actor.id).Accepted);Check(Bubbles(w,"shape",actor.id).Accepted);}
             foreach(var actor in actors)for(var i=0;i<12;i++)Check(Liquid(w,new[]{"red","yellow","blue","water"}[i%4],actor.id).Accepted);
             var filled=w.Snapshot();foreach(var d in filled.discovery){foreach(var t in new[]{d.ice[0].current}){for(var i=0;i<24;i++){t.cells[i]=.1234567f;t.energy[i]=.2345678f;}}d.ice[0].previous=new[]{d.ice[0].current.Copy()};var bubble=d.bubbles[0];bubble.serial=1000000000;foreach(var bs in new[]{bubble.current,bubble.previous[0]}){bs.clock=999999999.9999999;foreach(var particle in bs.floating){particle.id+=999999000;particle.born=999999999.1234567;}}}w=SoloWorld.Restore(filled);
+            var pending=w.Snapshot();pending.homeIdleTimers=HomeTidying.Keys(pending).Select(key=>new HomeIdleTimer{key=key,seconds=300}).ToArray();w=SoloWorld.Restore(pending);
             var view=JsonSerializer.Serialize(new FamilySession(w).View(),new JsonSerializerOptions{IncludeFields=true});
             System.IO.File.WriteAllText(System.IO.Path.Combine(root,"combined-kitchen-discovery-payload.txt"),Encoding.UTF8.GetByteCount(view)+" bytes, full kitchen plus four maximal coloring histories and sixteen populated mixing trays, four ice histories and 144 current/undo bubbles and four full liquid-color trays");
             if(Encoding.UTF8.GetByteCount(view)>=100000)throw new Exception("oversized view "+Encoding.UTF8.GetByteCount(view));

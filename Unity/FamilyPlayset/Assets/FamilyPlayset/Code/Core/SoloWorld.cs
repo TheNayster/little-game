@@ -59,6 +59,9 @@ namespace LittleWeeps.Core
         // Additive, optional maintenance metadata. Old saves begin a fresh grace
         // period; item IDs, contents, placements and receipts are unchanged.
         public GardenIdleTimer[] idleTimers = Array.Empty<GardenIdleTimer>();
+        public HomeIdleTimer[] homeIdleTimers = Array.Empty<HomeIdleTimer>();
+        // Compact presentation hints; elapsed clocks remain authority-only.
+        public int[] homeTidyCues = Array.Empty<int>();
     }
     [Serializable] public sealed class SoloCommand
     {
@@ -108,6 +111,7 @@ namespace LittleWeeps.Core
         {
             Validate(snapshot);
             var copy = Clone(snapshot);
+            copy.homeTidyCues=Array.Empty<int>();
             // A pointer lease never survives closing the app or a recovered save.
             if (copy.toys.Any(t => !string.IsNullOrEmpty(t.holder)))
             {
@@ -192,7 +196,8 @@ namespace LittleWeeps.Core
                 players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
                 bedrooms=(s.bedrooms??Array.Empty<BedroomState>()).Select(r=>r.Copy()).ToArray(),
                 secrets=(s.secrets??Array.Empty<SecretRoomState>()).Select(r=>r.Copy()).ToArray(),
-                idleTimers=(s.idleTimers??Array.Empty<GardenIdleTimer>()).Select(t=>t.Copy()).ToArray() };
+                idleTimers=(s.idleTimers??Array.Empty<GardenIdleTimer>()).Select(t=>t.Copy()).ToArray(),
+                homeIdleTimers=(s.homeIdleTimers??Array.Empty<HomeIdleTimer>()).Select(t=>t.Copy()).ToArray(),homeTidyCues=(int[])(s.homeTidyCues??Array.Empty<int>()).Clone() };
             foreach(var p in copy.players)p.zone=AreaOf(p.zone);
             foreach(var t in copy.toys)t.zone=AreaOf(t.zone);
             return copy;
@@ -228,14 +233,15 @@ namespace LittleWeeps.Core
             if(s.idleTimers!=null && s.idleTimers.Length>s.toys.Length)throw new InvalidOperationException("Too many idle timers.");
             foreach(var timer in s.idleTimers??Array.Empty<GardenIdleTimer>())
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
-                    double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>ToolIdleSeconds+ResetCueSeconds)
+                    double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>(s.schema>=HomeTidying.Schema?HomeTidying.IdleSeconds:ToolIdleSeconds)+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);
+            ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
         {
             if(toy==null)return;
+            TouchTidy(HomeTidying.Item(toy.id));
             toy.resetPending=false;state.idleTimers=state.idleTimers.Where(t=>t.item!=toy.id).ToArray();
         }
         private bool IdleEligible(SoloToy toy)
@@ -252,8 +258,8 @@ namespace LittleWeeps.Core
             return false;
         }
         // Only the authority advances eligible PLAY time. No wall-clock catch-up,
-        // client timers, room wipes or new item instances. This deliberately covers
-        // the garden fixture only; personal toys/creations need their later policy.
+        // client timers, room wipes or new item instances. Home cleanup is separate
+        // from the legacy garden rules and never clears personal creations.
         public bool AdvanceIdle(double seconds,out bool visibleChange,string[] activePlayers=null)
         {
             if(double.IsNaN(seconds) || double.IsInfinity(seconds) || seconds<0 || seconds>1)throw new ArgumentOutOfRangeException(nameof(seconds));
@@ -265,6 +271,7 @@ namespace LittleWeeps.Core
             changed|=AdvanceIceRescue(seconds,out var iceVisible);visibleChange|=iceVisible;
             changed|=AdvanceBubbleLab(seconds,out var bubblesVisible);visibleChange|=bubblesVisible;
             changed|=AdvanceKeepy(seconds,activePlayers);
+            changed|=AdvanceHomeTidying(seconds,out var tidyVisible);visibleChange|=tidyVisible;
             changed|=AdvanceStairs(seconds,activePlayers,out var roomCommitted);visibleChange|=roomCommitted;
             foreach(var toy in state.toys)
             {
@@ -276,7 +283,7 @@ namespace LittleWeeps.Core
                 }
                 if(timer==null){timer=new GardenIdleTimer{item=toy.id};state.idleTimers=state.idleTimers.Concat(new[]{timer}).ToArray();}
                 timer.seconds+=seconds;changed=true;
-                var grace=toy.kind==ToyKind.Bucket || toy.kind==ToyKind.Sponge?ToolIdleSeconds:ActivityIdleSeconds;
+                var grace=state.schema>=HomeTidying.Schema?HomeTidying.IdleSeconds:toy.kind==ToyKind.Bucket || toy.kind==ToyKind.Sponge?ToolIdleSeconds:ActivityIdleSeconds;
                 if(timer.seconds>=grace+ResetCueSeconds)
                 {
                     // Eligibility was rechecked this tick, including another
@@ -410,6 +417,7 @@ namespace LittleWeeps.Core
                     var error=ApplyHome(c,player);if(error!=null)return Reject(error);outcome="home-changed";break;
                 default: return Reject("unknown-action");
             }
+            TouchHomeAction(c,player);
             state.revision++;
             var receipt = new SoloReceipt { requestId = c.requestId, fingerprint = c.Fingerprint(), outcome = outcome, revision = Revision };
             state.receipts = state.receipts.Skip(Math.Max(0, state.receipts.Length - 127)).Concat(new[] { receipt }).ToArray();

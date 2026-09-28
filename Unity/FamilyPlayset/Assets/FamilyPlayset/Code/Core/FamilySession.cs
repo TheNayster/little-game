@@ -55,7 +55,10 @@ namespace LittleWeeps.Core
         // the authority. Full recovery replication is a later, separate contract.
         public SoloSnapshot View()
         {
-            var state=world.Snapshot();state.receipts=Array.Empty<SoloReceipt>();state.idleTimers=Array.Empty<GardenIdleTimer>();return state;
+            var state=world.Snapshot();state.receipts=Array.Empty<SoloReceipt>();state.idleTimers=Array.Empty<GardenIdleTimer>();
+            var keys=HomeTidying.Keys(state);
+            state.homeTidyCues=state.homeIdleTimers.Where(t=>t.seconds>=HomeTidying.IdleSeconds).Select(t=>Array.IndexOf(keys,t.key)).ToArray();
+            state.homeIdleTimers=Array.Empty<HomeIdleTimer>();return state;
         }
     }
 }
