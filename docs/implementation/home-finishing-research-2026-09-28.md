@@ -55,4 +55,4 @@ Bathroom/laundry, Home TV, the agreed six-book subjects, twenty dinosaur toys, p
 
 ## Work evidence
 
-[Coloring controls candidate 202](native-coloring-controls-2026-09-28.html) passes six native groups with saved-page retention and actual phone/tablet captures. Storage, remaining cooking families and ramp integration are researched design decisions here, not claims of finished code.
+[Coloring controls candidate 202](native-coloring-controls-2026-09-28.html) passes six native groups with saved-page retention and actual phone/tablet captures. [Creation/food storage 205](home-creation-storage-2026-09-28.html) now has seven native creation groups and four native rule groups, plus 254 passing core and seven isolated recovery groups. Remaining cooking families and ramp integration remain implementation work, not claims of finished code.

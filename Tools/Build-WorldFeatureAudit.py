@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'creations':'implementation/home-creation-storage-2026-09-28.html',
  'tidying':'implementation/home-idle-cleanup-2026-09-28.html',
  'scienceart':'implementation/home-science-coloring-research-2026-09-27.html',
  'discovery':'implementation/home-discovery-2026-09-27.html',
@@ -109,7 +110,7 @@ G-23|all|Shared objects|Supported placement, stacking and moving supports|plan|5
 G-24|all|Shared objects|Containers and durable nested contents|part|6,51|Four fixed shed slots retain items. Portable baskets, bags, drawers, cupboards, capacities, nested depth/cycle rules and carried contents remain planned.|home
 G-25|all|Shared objects|Borrowed tools return automatically|part|51|Five-minute Home timers reset independent science trays and return kitchen/book stock with held-item and creation protection. General typed loans, spoken cues and food/creation archives remain open.|tidying
 G-26|all|Shared objects|Enough tools and places for four|part|31,47,51|Four sofa/trampoline places exist in unchanged artwork. Other stations must offer four-person participation and essential tool stock; the single prototype bucket is not sufficient.|keepy
-G-27|all|Shared objects|Protect personal creations and prevent hoarding|plan|32,51|Separate fixed stock, essential tools, bounded loans, personal items, creations, supplies and effects. Count nested loans; preserve art/food and offer recoverable toy-box storage.|ledger
+G-27|all|Shared objects|Protect personal creations and prevent hoarding|part|32,51|Separate fixed stock, essential tools, bounded loans, personal items, creations, supplies and effects. Count nested loans; preserve art/food and offer recoverable toy-box storage. Candidate 205 adds bounded saved food and picture collections with owner bedroom display; broader loans/storage remain open.|creations
 G-28|all|Shared objects|Reusable reactions and reversible changes|part|2,6,19,30|Visible empty/full, dirty/clean, growth and valid rejection exist in the small water loop. Add material transforms, serving reactions, paint removal, undo and stable custom creations.|core
 H-01|home|Rooms and furniture|Connected house, veranda and backyard|part|3,32|Connected downstairs property, working stairs/landing and four owned furnished bedrooms. Kitchen, bathroom/laundry, veranda functions and broader room content remain required.|furniture
 H-02|home|Rooms and furniture|Living-room sofa for four|play|5,47|Four close places, seated poses, foreground masking, avatar switch and independent exits. Available in 130/132; installed iPads/server 128 retain two places.|keepy
@@ -119,7 +120,7 @@ H-05|home|Rooms and furniture|Cupboards, drawers, lights and lamps|part|6,11,32,
 H-06|home|Rooms and furniture|Bathroom and laundry spaces|plan|3,21|Bath/splash interaction with front water masking, towels, storage, dressing and bedtime connections. This room expansion is listed in the home layout record.|ledger
 H-07|home|Kitchen|Interactive kitchen architecture|part|3,19,51|Working illustrated fridge, cupboards/worktops, sink, oven and four dining places. Candidate 166 moves dining beside appliances and migrates occupied supports; physical child/device acceptance remains open.|kitchen
 H-08|home|Kitchen|Make, decorate and serve|part|19|Candidate 171 adds staged chocolate cake: visible mixing, pouring, safe bake, filling, layers, icing, decoration, cut and serve. Normal recipe ingredients are filtered; other cakes, pizza preparation and pan/pot meals remain prototypes. Physical child acceptance remains open.|cakeflow
-H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Chocolate cake retains partial mixture/transfer, coverage, layers and decorations through saved stages and unique portions. Legacy dishes keep their original rules/content; unusual combinations require explicit Experiment mode. Other recipe transformations, orders, picnic packing and album remain open.|cakeflow
+H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Chocolate cake retains partial mixture/transfer, coverage, layers and decorations through saved stages and unique portions. Legacy dishes keep their original rules/content; unusual combinations require explicit Experiment mode. Candidate 205 stores and retrieves the same food, freeing reusable trays and preserving ingredients/portions. Other recipe transformations, orders, picnic packing and album remain open.|creations
 H-10|home|Kitchen|Four-player preparation and safe ovens|part|19,31,47|Four independent cookware/tool sets, oven positions and dining seats. Authority selects free trays atomically and records cook profiles; one leaving player does not interrupt others. Native qualification is recorded; physical mixed-device acceptance remains open.|kitchen
 H-11|home|Kitchen|Drinks, fruit, blender and pretend café|plan|6,19|Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature.|ledger
 H-12|home|Parents and hiding|Bandit and Chilli's ambient routines|plan|22,47|Roam, read, garden, prepare food and tidy eligible ambient props; requests interrupt safely, but never steal a busy seeker or destroy a child's work.|ledger
@@ -216,10 +217,11 @@ for row in table_with(30,'ID and station')[1:]:
     if m[1]=='SCI-09':note=' Candidate 187 adds the illustrated workbench and layered glass to fizz/foam, indicator colors, oil/water and oobleck, retaining direct pouring and sixteen saved trays. Physical/A10/audio acceptance and portable creations remain open.'
     add(m[1],'home','Science experiments',m[2],'part' if integrated else 'plan',[30],f'Shared downstairs. Simple play: {row[1]} Explore together: {row[2]} Factual constraint: {row[3]}'+note,'bubbles' if m[1]=='SCI-06' else 'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
 for row in table_with(30,'Coloring ID')[1:]:
-    integrated=row[0] in ('COL-01','COL-02','COL-03','COL-04','COL-05','COL-08')
+    integrated=row[0] in ('COL-01','COL-02','COL-03','COL-04','COL-05','COL-06','COL-08')
     note=' Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.' if integrated else ' Planned; no game implementation yet.'
     if row[0] in ('COL-02','COL-03'):note+=' Candidate 202 adds native rounded picture controls, six large chooser previews per screen, nonwrapping page navigation and six native four-player/layout/save-retention groups. No device rollout.'
-    add(row[0],'home','Shared downstairs coloring',row[1],'part' if integrated else 'plan',[30],row[2]+note,'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
+    if row[0] in ('COL-05','COL-06'):note=' Candidate 205 adds four kept-picture places per profile, immutable saved copies, an owner-controlled bedroom display and recoverable removal. All eighteen working pages remain separate and persistent. Creation carrying, Together editing and physical qualification remain open.'
+    add(row[0],'home','Shared downstairs coloring',row[1],'part' if integrated else 'plan',[30],row[2]+note,'creations' if row[0] in ('COL-05','COL-06') else 'discovery' if integrated else 'scienceart')
 for i,row in enumerate(table_with(26,'Working title')[1:],1):
     add(f'BK-{i:02}','home','Six starter books',plain(row[0]),'plan',[25,26],f'{row[1]} proposed. {row[2]}','ledger')
 for i,row in enumerate(table_with(28,'Dinosaur toy')[1:],1):

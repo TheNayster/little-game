@@ -98,12 +98,18 @@ static partial class Program
             var restored=SoloWorld.Restore(w.Snapshot());Check(Encode(restored.Snapshot())==Encode(w.Snapshot()));
         });
         Test("kitchen maximum stock and food remain inside reliable-view and recovery bounds",()=>{
-            var w=SoloWorld.WithHomeTidying(KitchenWorld());var actors=w.Snapshot().players;
+            var w=SoloWorld.WithHomeCreations(KitchenWorld());var actors=w.Snapshot().players;
             for(var i=0;i<4;i++)MakeSecret(w,i,actors[i].id);
             var s=w.Snapshot();foreach(var p in s.players){p.zone="garden";p.x=-1500;p.y=200;p.fixture="";p.useSeconds=0;p.stairs=0;}w=SoloWorld.Restore(s);
             OpenKitchen(w);
+            for(var i=0;i<4;i++)for(var savedFood=0;savedFood<HomeCreations.FoodPlaces;savedFood++){
+                var id="cookware-"+i;Cook(w,"easy:readybase",id,"PIZ-01",actors[i].id);
+                while(Toy(w,id).kitchen.dish.ingredients.Length<24){if(Toy(w,"ingredient-cheese").kitchen.amount==0)Cook(w,"easy:restock","ingredient-cheese",actor:actors[i].id);Cook(w,"easy:add","ingredient-cheese",id,actors[i].id);}
+                Cook(w,"easy:cut",id,actor:actors[i].id);PackFood(w,id,actors[i].id);
+            }
             for(var i=0;i<4;i++){Cook(w,"start","cookware-"+i,"PIZ-01");Cook(w,"add","ingredient-sauce","cookware-"+i);for(var j=0;j<22;j++){if(Toy(w,"ingredient-cheese").kitchen.amount==0)Cook(w,"restock","ingredient-cheese");Cook(w,"add","ingredient-cheese","cookware-"+i);}FinishDish(w,"cookware-"+i);Cook(w,"serve","cookware-"+i,"plate-"+(i*2));Cook(w,"serve","cookware-"+i,"plate-"+(i*2+1));}
             foreach(var actor in actors){Good(w,SoloAction.Move,x:Discovery.ArtX,y:200,actor:actor.id);for(var page=0;page<Discovery.Pages.Length;page++)for(var n=0;n<40;n++)Check(Discover(w,"fill:0:"+(n%8+1),actor.id,page).Accepted);}
+            foreach(var actor in actors)for(var page=0;page<HomeCreations.PicturePlaces;page++)Check(Discover(w,"save-picture",actor.id,page).Accepted);
             foreach(var actor in actors)for(var mode=0;mode<4;mode++)foreach(var ingredient in Mixing.Supplies[mode])Check(Mix(w,"add:"+ingredient,mode,4,actor.id).Accepted);
             foreach(var actor in actors){PrepareBubbles(w,actor.id);for(var n=0;n<4;n++)Check(Bubbles(w,"blow",actor.id).Accepted);Check(Bubbles(w,"dip",actor.id).Accepted);for(var n=0;n<2;n++)Check(Bubbles(w,"blow",actor.id).Accepted);Check(Bubbles(w,"shape",actor.id).Accepted);}
             foreach(var actor in actors)for(var i=0;i<12;i++)Check(Liquid(w,new[]{"red","yellow","blue","water"}[i%4],actor.id).Accepted);
@@ -111,7 +117,7 @@ static partial class Program
             var pending=w.Snapshot();pending.homeIdleTimers=HomeTidying.Keys(pending).Select(key=>new HomeIdleTimer{key=key,seconds=300}).ToArray();w=SoloWorld.Restore(pending);
             var view=JsonSerializer.Serialize(new FamilySession(w).View(),new JsonSerializerOptions{IncludeFields=true});
             System.IO.File.WriteAllText(System.IO.Path.Combine(root,"combined-kitchen-discovery-payload.txt"),Encoding.UTF8.GetByteCount(view)+" bytes, full kitchen plus four maximal coloring histories and sixteen populated mixing trays, four ice histories and 144 current/undo bubbles and four full liquid-color trays");
-            if(Encoding.UTF8.GetByteCount(view)>=100000)throw new Exception("oversized view "+Encoding.UTF8.GetByteCount(view));
+            if(Encoding.UTF8.GetByteCount(view)>=110000)throw new Exception("oversized view "+Encoding.UTF8.GetByteCount(view));
             var recovery=RecoveryFixture();recovery.snapshot=w.Snapshot();recovery.content=WorldLayout.Content;recovery.Validate(recovery.family,recovery.authority,recovery.world);var bytes=Encoding.UTF8.GetBytes(JsonSerializer.Serialize(recovery,new JsonSerializerOptions{IncludeFields=true}));Check(bytes.Length<RecoveryTransfer.MaxBytes);var transfer=new RecoveryTransfer();byte[] complete=null;var transferId=Guid.NewGuid().ToString("N");for(var i=0;i<RecoveryTransfer.Count(bytes.Length);i++)complete=transfer.Add(RecoveryTransfer.Chunk(bytes,transferId,recovery.epoch,i),recovery.epoch,i*.05);Check(bytes.SequenceEqual(complete));SoloWorld.Validate(RecoveryDecode(Encoding.UTF8.GetString(complete)).snapshot);
         });
     }

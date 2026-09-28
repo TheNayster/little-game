@@ -46,6 +46,10 @@ namespace LittleWeeps.Client
             foreach(var swatch in discoveryColors)coloringSelections.Add(ReaderDrawing(swatch.transform.parent,"Selected color",new Vector2(20,24),new Vector2(22,22),"check",Color.white));
             coloringFooter=ReaderDrawing(discoveryPanel,"Coloring saved status",Vector2.zero,new Vector2(600,70),"card",new Color(1,.985f,.94f,.92f));
             coloringFooter.transform.SetSiblingIndex(discoveryHint.transform.GetSiblingIndex());
+            if(SceneSchema>=HomeCreations.Schema){
+                coloringKeep=Button(discoveryPanel,"Keep picture",Vector2.zero,new Vector2(190,76),KeepColoringPicture,Cream);ColorControl(coloringKeep,"check");
+                coloringFolder=Button(discoveryPanel,"My pictures",Vector2.zero,new Vector2(190,76),()=>OpenCollection(false),Cream);ColorControl(coloringFolder,"pictures");
+            }
             coloringCollectionTitle=Label(discoveryGallery,"Choose a picture",30,Vector2.zero,new Vector2(700,60));
             coloringCollectionPrevious=Button(discoveryGallery,"Earlier pictures",Vector2.zero,new Vector2(190,68),()=>{coloringCollectionPage=Math.Max(0,coloringCollectionPage-1);PresentDiscovery();},Cream);
             coloringCollectionNext=Button(discoveryGallery,"More pictures",Vector2.zero,new Vector2(190,68),()=>{coloringCollectionPage=Math.Min((OwnDiscovery.pages.Length-1)/6,coloringCollectionPage+1);PresentDiscovery();},Cream);

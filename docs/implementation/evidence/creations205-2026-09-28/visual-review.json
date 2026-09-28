@@ -1,0 +1,17 @@
+{
+  "build": 205,
+  "reviewed": [
+    "saved-food-phone.png",
+    "saved-picture-phone.png",
+    "coloring-storage-controls.png",
+    "bedroom-after-folder.png"
+  ],
+  "findings": [
+    "Complete source aspect ratios preserved",
+    "Large separate creation and controls",
+    "Workspace edits differ from saved Bluey copy",
+    "Bedroom line art remains visible after closing folder",
+    "Mip filtering fixes dotted minified outline from 204"
+  ],
+  "physicalAcceptance": false
+}

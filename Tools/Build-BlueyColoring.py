@@ -43,6 +43,7 @@ for item in catalog['pages']:
   if not meta.exists():
    import re
    value=re.sub(r'guid: \w+', 'guid: '+uuid.uuid4().hex,base_meta,count=1).replace('textureCompression: 1','textureCompression: 0').replace('textureFormat: 50','textureFormat: -1').replace('overridden: 1','overridden: 0')
+   if png==stem.with_suffix('.png'):value=value.replace('enableMipMap: 0','enableMipMap: 1').replace('filterMode: 1','filterMode: 2')
    meta.write_text(value)
  item.update(width=pix.width,height=pix.height,regions=len(ids),sha256=hashlib.sha256(pdf.read_bytes()).hexdigest())
  counts.append(len(ids));print(item['name'],pix.width,pix.height,len(ids),flush=True)

@@ -1,0 +1,11 @@
+{
+  "actualViewBytes": 71398,
+  "archiveCharacters": 272,
+  "archiveCharacterCap": 8192,
+  "previousMaximalWorldBytes": 98441,
+  "combinedUpperBoundBytes": 106633,
+  "transportPayloadCap": 131072,
+  "note": "Conservative storage contribution bound added to the measured full-food/science/coloring baseline; counts do not inflate JSON inside the archive.",
+  "laterMeasuredFullWorldWithCollectionsBytes": 100072,
+  "laterMeasurementSource": "254-group core run, maximum kitchen/science/coloring histories with eight saved foods and sixteen saved pictures"
+}

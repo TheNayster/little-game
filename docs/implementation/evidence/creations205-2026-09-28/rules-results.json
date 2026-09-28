@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build": 204,
+  "checks": [
+    "owner held-food capacity and occupied-tray guards preserve original creations",
+    "serving archiving and restoring conserve all four unique portions",
+    "unfinished cake and served portions survive authority restart exactly",
+    "archive cap adds at most 8192 bytes to the previously measured maximal shared world"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

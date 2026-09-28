@@ -74,6 +74,13 @@ def main():
                         require(command(client,19,item=client.profile,target=f'bubbles@{revision}',value='bubble:'+op)['accepted'],'Bubble mixture recovery state')
                 if summary['schema']>=19:
                     require(command(client,19,item=client.profile,target='ice@0',value='ice:chip',x=316,y=185)['accepted'],'Ice recovery progress')
+                if summary['schema']>=23:
+                    require(command(client,19,item=client.profile,target='0@1',value='save-picture')['accepted'],'Saved picture recovery state')
+                    require(command(client,0,x=-2300,y=200)['accepted'],'Food storage recovery placement')
+                    created=command(client,18,target='PIZ-02',value='easy:readybase');require(created['accepted'],'Food recovery preparation')
+                    tray=next(t for t in created['view']['toys'] if t.get('kitchen',{}).get('cook')==client.profile and t['id'].startswith('cookware-'))
+                    dish=tray['kitchen']['dish'];token=dish['id']+'@'+(dish['stage'] or '')+'@'+str(dish['step'])+'@'+str(dish['portions'])
+                    require(command(client,18,item=tray['id'],target=token,value='store-food')['accepted'],'Stored food recovery state')
                 require(command(client,0,x=prior['x'],y=prior['y'])['accepted'],'Discovery recovery return')
             time.sleep(.7)
         drop(clients[0], 730, 160)

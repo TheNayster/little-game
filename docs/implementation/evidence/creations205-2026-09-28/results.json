@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": 205,
+  "previous": 202,
+  "checks": [
+    "202 coloring and food migrate unchanged into schema 23",
+    "four real Put away controls preserve food and free four trays",
+    "four Bring out controls restore original identities ingredients and preparation",
+    "four independent picture folders save once and hang one picture per owner",
+    "native collection targets fit phone and tablet; picture undo and immutable saved copy work",
+    "bedroom display and authority restart preserve all four personal collections",
+    "native authority and clients close without exceptions"
+  ],
+  "physicalDevicesTested": false,
+  "liveFamilyTouched": false
+}

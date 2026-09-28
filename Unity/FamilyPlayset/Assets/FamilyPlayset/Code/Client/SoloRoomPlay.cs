@@ -74,6 +74,7 @@ namespace LittleWeeps.Client
         private void OpenRoomPicture()
         {
             if(roomPictureCard==null || FurnishedRoom==null)return;
+            if(SceneSchema>=HomeCreations.Schema && SecretRooms.Index(CurrentArea)<0 && Collections.pictures.Any(p=>p.owner==FurnishedRoom.owner && p.displayed)){OpenCollection(false,FurnishedRoom.owner,true);return;}
             var secret=SecretRooms.Index(CurrentArea)>=0;
             roomPictureCard.Find("Picture title").GetComponent<Text>().text=secret?"Aurora lights":"Play with your toy friends";
             roomPictureCard.Find("Picture words").GetComponent<Text>().text=secret?AuroraWords:"Tap a plush for a cuddle. Drag it to a blanket nest to tuck it in.\n\nPile up to three plush toys or blocks. Tap the teapot to fill it, drag it to a cup, then tap the cup for a pretend sip.";

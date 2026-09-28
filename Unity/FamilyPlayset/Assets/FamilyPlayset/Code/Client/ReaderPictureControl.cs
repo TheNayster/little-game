@@ -48,6 +48,10 @@ namespace LittleWeeps.Client
                 Arc(h,69,41,7,0,360,5,gold);
                 Poly(h,Ink,new Vector2(28,79),new Vector2(47,49),new Vector2(61,65),new Vector2(72,55),new Vector2(87,79));return;
             }
+            if(Icon=="dish"){
+                Arc(h,53,52,29,0,360,6,Ink);Arc(h,53,52,19,0,360,4,gold);
+                Line(h,11,20,11,83,5,Ink);Line(h,3,20,3,43,4,Ink);Line(h,19,20,19,43,4,Ink);Line(h,3,43,19,43,4,Ink);return;
+            }
             if(Icon=="check"){Line(h,19,51,40,73,9,Ink);Line(h,40,73,82,26,9,Ink);return;}
             if(Icon=="sound" || Icon=="voice"){
                 Poly(h,gold,new Vector2(13,40),new Vector2(33,40),new Vector2(53,23),new Vector2(53,78),new Vector2(33,60),new Vector2(13,60));

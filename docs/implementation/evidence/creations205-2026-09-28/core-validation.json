@@ -1,0 +1,53 @@
+{
+  "firstRunTotal": 254,
+  "firstRunPassed": 253,
+  "firstRunFailures": [
+    {
+      "name": "kitchen maximum stock and food remain inside reliable-view and recovery bounds",
+      "error": "System.IO.InvalidDataException: Incomplete shared recovery state.\r\n   at LittleWeeps.Core.RecoveryRecord.Validate(String expectedFamily, String expectedAuthority, String expectedWorld) in C:\\Users\\sephi\\Desktop\\Little weeps game\\Unity\\FamilyPlayset\\Assets\\FamilyPlayset\\Code\\Core\\RecoveryTransfer.cs:line 24\r\n   at Program.<>c.<KitchenTests>b__61_9() in C:\\Users\\sephi\\Desktop\\Little weeps game\\Tools\\SoloRules.Tests\\KitchenTests.cs:line 115\r\n   at Program.Test(String name, Action body) in C:\\Users\\sephi\\Desktop\\Little weeps game\\Tools\\SoloRules.Tests\\Program.cs:line 491"
+    }
+  ],
+  "newStorageGroups": [
+    {
+      "name": "creation storage migrates additively and preserves every prior record",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "four cooks store independent creations and free the same reusable trays",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "storage refuses other cooks held food and heating; full slots lose nothing",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "stored portions cannot duplicate served food and retain exact ingredients through recovery",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "retrying a stored-food command never creates a second archived copy",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "picture folders snapshot colors without overwriting work; four owners display independently",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "bounded archive format rejects corrupt oversized and trailing content without replacing saves",
+      "passed": true,
+      "error": ""
+    }
+  ],
+  "latestSuiteCompilation": "succeeded with 0 warnings and 0 errors",
+  "latestSuiteExecution": "standard dotnet run succeeded, 254/254 checks passed",
+  "securitySettingsChanged": false,
+  "completeLatestSuitePassClaimed": true,
+  "earlierExecutionBlock": "Windows Application Control initially blocked the standalone assembly; later standard invocation succeeded without security changes",
+  "maximalWorldBytes": 100072
+}

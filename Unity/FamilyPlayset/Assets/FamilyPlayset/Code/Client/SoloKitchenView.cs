@@ -103,6 +103,10 @@ namespace LittleWeeps.Client
                 var id="plate-"+i;var button=Button(kitchenServing,"Plate "+(i+1),Vector2.zero,new Vector2(162,105),()=>KitchenCommand("easy:serve",cookingItem,id),new Color(.88f,.95f,.95f));
                 HomePicture(button.transform.parent,"Plate picture",new Vector2(0,14),new Vector2(70,56),CookingLayer(5));button.rectTransform.anchoredPosition=new Vector2(0,-30);plateCards.Add(button);
             }
+            if(SceneSchema>=HomeCreations.Schema){
+                kitchenStore=Button(kitchenPanel,"Put food away",Vector2.zero,new Vector2(208,62),PutFoodAway,Cream);ColorControl(kitchenStore,"more");
+                kitchenStored=Button(kitchenPanel,"My saved food",Vector2.zero,new Vector2(208,62),()=>OpenCollection(true),Cream);ColorControl(kitchenStored,"more");
+            }
             kitchenPanel.gameObject.SetActive(false);
         }
 

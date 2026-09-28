@@ -1291,6 +1291,8 @@ The PC or local solo authority calculates results. Clients display interpolation
 
 ### Shared downstairs coloring and drawing
 
+**Creation/food storage — September 28:** [Creation/food storage 205](implementation/home-creation-storage-2026-09-28.html) adds four kept-picture places and two saved-food places per profile, owner-controlled bedroom display, recoverable picture removal and exact food/portion preservation. Schema 23/content 24. Seven native creation groups and four native rule groups pass. All 254 core and seven isolated recovery groups also pass. No device rollout. Remaining cooking stages follow this bounded slice, then the next Home activity; preserve the full backlog and main integration hold.
+
 **Native controls — September 28:** [Candidate 202](implementation/native-coloring-controls-2026-09-28.html) applies the accepted picture style to Pictures/Undo/Redo/Back/Next/Home, a six-preview chooser and readable save feedback. Six native groups preserve eighteen pages and four independent histories. No device rollout. [The user-approved finishing sequence](implementation/home-finishing-research-2026-09-28.html) continues with creation/food storage, remaining cooking stages and another Home activity.
 
 **September 27 visual correction:** the user rejects schematic science and a six-page coloring limit. [The applied workshop correction](implementation/workshop-visuals-2026-09-27.html) adds illustrated equipment and twelve official Bluey pages, for eighteen total, with additive per-profile save migration. Final visual/physical acceptance and blank drawing remain open.

@@ -151,16 +151,20 @@ namespace LittleWeeps.Core
             foreach(var t in s.toys)
             {
                 if(!Kitchen.Kind(t.kind)){if(t.kitchen!=null)throw new InvalidOperationException("Unexpected food state.");continue;}
-                var d=t.kitchen.dish;if(d==null)continue;var r=Kitchen.Recipe(d.recipe);
-                if(!Kitchen.Dish(t.kind) || !Id(d.id) || r==null || !CakeFlow.Valid(d,s.schema) || d.step<0 || d.step>r.steps.Length || d.portions<0 || d.portions>15 ||
-                   double.IsNaN(d.heat) || double.IsInfinity(d.heat) || d.heat<0 || d.heat>Kitchen.HeatSeconds || d.ingredients==null || d.ingredients.Length<1 || d.ingredients.Length>24 ||
-                   d.ingredients.Any(i=>i==null || !Id(i.unit) || !string.IsNullOrEmpty(i.by) && !s.players.Any(p=>p.id==i.by) || !(Kitchen.Ingredients.Contains(i.ingredient) || s.schema>=CakeFlow.Schema && i.ingredient=="cake-mix") || !string.IsNullOrEmpty(i.phase) && !CakeFlow.Stages.Contains(i.phase) || float.IsNaN(i.x) || float.IsNaN(i.y) || Math.Abs(i.x)>1 || Math.Abs(i.y)>1) ||
-                   d.ingredients.Select(i=>i.unit).Distinct().Count()!=d.ingredients.Length || t.kind==ToyKind.Plate && Kitchen.Next(d)!="serve")throw new InvalidOperationException("Invalid persistent dish.");
+                var d=t.kitchen.dish;if(d==null)continue;ValidateFood(d,t.kind,s);
             }
             // Portions may live on different plates, but their origin/bit is unique.
             var portions=new HashSet<string>();
-            foreach(var d in s.toys.Where(t=>t.kitchen?.dish!=null).Select(t=>t.kitchen.dish))for(var i=0;i<4;i++)
+            foreach(var d in s.toys.Where(t=>t.kitchen?.dish!=null).Select(t=>t.kitchen.dish).Concat(s.schema>=HomeCreations.Schema?HomeCreations.Decode(s.homeCreations).foods.Select(f=>f.dish):Array.Empty<FoodDish>()))for(var i=0;i<4;i++)
                 if((d.portions&(1<<i))!=0 && !portions.Add(d.id+"/"+i))throw new InvalidOperationException("Duplicated food portion.");
+        }
+        private static void ValidateFood(FoodDish d,ToyKind kind,SoloSnapshot s)
+        {
+            var r=Kitchen.Recipe(d.recipe);
+                if(!Kitchen.Dish(kind) || !Id(d.id) || r==null || !CakeFlow.Valid(d,s.schema) || d.step<0 || d.step>r.steps.Length || d.portions<0 || d.portions>15 ||
+                   double.IsNaN(d.heat) || double.IsInfinity(d.heat) || d.heat<0 || d.heat>Kitchen.HeatSeconds || d.ingredients==null || d.ingredients.Length<1 || d.ingredients.Length>24 ||
+                   d.ingredients.Any(i=>i==null || !Id(i.unit) || !string.IsNullOrEmpty(i.by) && !s.players.Any(p=>p.id==i.by) || !(Kitchen.Ingredients.Contains(i.ingredient) || s.schema>=CakeFlow.Schema && i.ingredient=="cake-mix") || !string.IsNullOrEmpty(i.phase) && !CakeFlow.Stages.Contains(i.phase) || float.IsNaN(i.x) || float.IsNaN(i.y) || Math.Abs(i.x)>1 || Math.Abs(i.y)>1) ||
+                   d.ingredients.Select(i=>i.unit).Distinct().Count()!=d.ingredients.Length || kind==ToyKind.Plate && Kitchen.Next(d)!="serve")throw new InvalidOperationException("Invalid persistent dish.");
         }
         private bool KitchenAvailable(SoloToy t,SoloPlayer p)=>t!=null && t.zone==p.zone && (t.holder=="" || t.holder==p.id) && StorageOpen(t);
         private void ReturnKitchenTool(SoloToy item,SoloPlayer player)
@@ -178,6 +182,7 @@ namespace LittleWeeps.Core
         private string KitchenOperation(SoloCommand c,SoloPlayer p,SoloToy item)
         {
             if(state.schema<Kitchen.Schema)return "kitchen-unavailable";
+            if(c.value=="store-food" || c.value=="restore-food")return StoreFood(c,p,item);
             if(c.value.StartsWith("cake:"))return CakeOperation(c,p,item);
             if(c.value.StartsWith("easy:"))return KitchenAssist(c,p,item);
             if(c.value=="door"){

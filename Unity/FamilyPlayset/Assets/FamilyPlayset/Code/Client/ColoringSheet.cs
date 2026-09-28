@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using LittleWeeps.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,8 @@ namespace LittleWeeps.Client
         [Serializable] public sealed class Entry {public string id,name;public int width,height,regions;}
         [Serializable] public sealed class Catalog {public Entry[] pages;}
         private static Catalog catalog;
+        private sealed class SharedArt {public Texture2D texture;public int users;}
+        private static readonly Dictionary<int,SharedArt> activeArt=new Dictionary<int,SharedArt>();
         public static Catalog Pages=>catalog??(catalog=JsonUtility.FromJson<Catalog>(Resources.Load<TextAsset>("Discovery/Coloring/catalog").text));
         public Action<int> Fill;public Func<bool> CanInteract;
         private Texture2D lineArt,mask,palette;
@@ -20,12 +23,15 @@ namespace LittleWeeps.Client
         private long revision=-1;
         private Material ink;
         public float Aspect=>width/(float)Math.Max(1,height);
-        public void Present(int page,ColoringPage state)
+        public void Present(int page,ColoringPage state,long? generation=null)
         {
             if(selected!=page){
                 Release();selected=page;var entry=Pages.pages[page-Discovery.LegacyPages];
                 var path="Discovery/Coloring/"+entry.id;
-                lineArt=Resources.Load<Texture2D>(path);
+                // A bedroom frame and its open folder may show the same page.
+                // Unload only after the last active view releases this asset.
+                if(!activeArt.TryGetValue(page,out var art)){art=new SharedArt{texture=Resources.Load<Texture2D>(path)};activeArt.Add(page,art);}
+                art.users++;lineArt=art.texture;
                 var file=Resources.Load<TextAsset>(path);regions=file.bytes;Resources.UnloadAsset(file);
                 width=BitConverter.ToUInt16(regions,0);height=BitConverter.ToUInt16(regions,2);
                 if(width!=lineArt.width || height!=lineArt.height || regions.Length!=4+width*height || state.colors.Length!=entry.regions)throw new InvalidOperationException("Coloring resource contract mismatch.");
@@ -35,7 +41,7 @@ namespace LittleWeeps.Client
                 palette=new Texture2D(256,1,TextureFormat.RGBA32,false,true){filterMode=FilterMode.Point,wrapMode=TextureWrapMode.Clamp};
                 ink=new Material(Resources.Load<Shader>("Discovery/ColoringInk"));ink.SetTexture("_Regions",mask);ink.SetTexture("_Palette",palette);material=ink;texture=lineArt;
             }
-            if(revision==state.revision)return;revision=state.revision;
+            var next=generation??state.revision;if(revision==next)return;revision=next;
             var colors=new Color32[256];for(var i=0;i<colors.Length;i++)colors[i]=Color.white;
             for(var i=0;i<state.colors.Length;i++)colors[i+1]=DiscoverySurface.Palette[state.colors[i]];
             palette.SetPixels32(colors);palette.Apply(false,false);SetMaterialDirty();
@@ -50,7 +56,7 @@ namespace LittleWeeps.Client
         private void Release()
         {
             texture=null;material=null;regions=null;
-            if(lineArt!=null)Resources.UnloadAsset(lineArt);
+            if(lineArt!=null && activeArt.TryGetValue(selected,out var art) && --art.users==0){Resources.UnloadAsset(lineArt);activeArt.Remove(selected);}
             if(mask!=null)Destroy(mask);if(palette!=null)Destroy(palette);if(ink!=null)Destroy(ink);
             lineArt=null;mask=null;palette=null;ink=null;revision=-1;selected=-1;
         }

@@ -78,11 +78,15 @@ namespace LittleWeeps.Core
                 for(var i=0;i<w.pages.Length;i++)
                 {
                     var page=w.pages[i];var count=Discovery.Regions[i];
-                    bool History(int[] h)=>h!=null && h.Length<=Discovery.HistoryLimit && h.All(v=>v>=0 && v/16<count && v%16<=8);
-                    if(page==null || page.revision<0 || page.revision==long.MaxValue || page.colors==null || page.colors.Length!=count || page.colors.Any(v=>v<0 || v>8) || !History(page.undo) || !History(page.redo))
-                        throw new InvalidOperationException("Invalid coloring page.");
+                    ValidateColoringPage(page,count);
                 }
             }
+        }
+        private static void ValidateColoringPage(ColoringPage page,int count)
+        {
+            bool History(int[] h)=>h!=null && h.Length<=Discovery.HistoryLimit && h.All(v=>v>=0 && v/16<count && v%16<=8);
+            if(page==null || page.revision<0 || page.revision==long.MaxValue || page.colors==null || page.colors.Length!=count || page.colors.Any(v=>v<0 || v>8) || !History(page.undo) || !History(page.redo))
+                throw new InvalidOperationException("Invalid coloring page.");
         }
         private string DiscoveryOperation(SoloCommand c,SoloPlayer p)
         {
@@ -90,6 +94,7 @@ namespace LittleWeeps.Core
             if(c.item!=p.id)return "owner-only";
             var w=state.discovery.Single(v=>v.owner==p.id);
             var op=c.value;
+            if(op=="save-picture" || op=="display-picture" || op=="remove-picture" || op=="undo-picture-remove")return PictureCollection(c,p,w);
             if(op.StartsWith("visit:"))return state.schema>=HomeTidying.Schema && HomeTidying.Labs.Contains(op.Substring(6))?null:"unknown-discovery-action";
             if(op.StartsWith("liquid:"))return LiquidColorOperation(c,w);
             if(op.StartsWith("bubble:"))return BubbleOperation(c,w);
