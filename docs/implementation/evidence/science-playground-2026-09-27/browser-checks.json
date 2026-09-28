@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-27",
+  "scope": "Browser interaction prototypes only, tested in the Codex in-app browser through native UI actions",
+  "activityControlsExercised": ["lava", "ice", "marble", "slime", "milk", "robot", "rocket", "foam", "wind", "circuits", "weather", "bubbles", "light", "chain"],
+  "checks": {
+    "allFourWorkspacesVisibleAndDifferentActivitiesRunning": true,
+    "manualCircuitTerminalTapsAndWireDragPoweredLamp": true,
+    "marbleRampDrag": true,
+    "slimeFormationAndFastPullTear": true,
+    "milkSoapResponse": true,
+    "nativeRobotFanAndWeatherSlidersChangedValues": true,
+    "prismAlignmentProducesRainbowState": true,
+    "dinosaurMelt21PercentPreservedAcrossNavigationAndReload": true,
+    "phoneWidth390VisualInspectionNoHorizontalOverflow": true,
+    "tabletWidth1024VisualInspectionNoHorizontalOverflow": true,
+    "width320DomOverflowCheck": true,
+    "viewportOverrideResetAfterTesting": true
+  },
+  "resolvedDuringTesting": [
+    "Windows text/plain MIME for .mjs prevented module startup; dedicated local server serves text/javascript",
+    "Initial marble course overshot; visible catch rails and adjusted preset reach basket with model regression assertion",
+    "Exact-center soap touch now displaces coincident dye instead of a zero-direction no-op",
+    "Mirror rendering now matches reflection geometry"
+  ],
+  "notQualified": ["Unity integration", "four-device multiplayer", "simultaneous physical multi-touch", "A10 performance", "child usability", "final artwork and audio", "game save migration", "shared-server recovery"],
+  "deployment": "None; no phone, iPad, live family server, game enrollment or game save changed"
+}

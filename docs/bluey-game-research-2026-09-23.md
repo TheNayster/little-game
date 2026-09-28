@@ -1239,6 +1239,8 @@ PBS's age-three science guidance emphasizes investigating pushes, pulls, rolling
 
 ### Nine science activities
 
+**New prototype collection, September 27:** the user accepted fourteen playful activity concepts and requested deeper research and prototypes before detailing them. [SP-01–14 research, scientific rules, implementation limits and evidence](implementation/science-playground-research-2026-09-27.html) · [Playground](implementation/home-science-playground.html). Lava jars, dinosaur ice rescue, marble playground, stretchy slime, magic milk, drawing robot, balloon rocket, foam fountain, wind tubes, circuits, weather, bubbles, rainbow mirrors and family chain reactions each have a retained workspace for four local players. Some extend SCI-03/04/06/09; others add concepts under LAB-01. Browser prototypes are not completed Home stations; the original nine below and their remaining requirements are retained.
+
 | ID and station | Simple Play | Extra exploration and cooperative use | Scientific idea to preserve |
 | --- | --- | --- | --- |
 | **SCI-01 — Floaty boat tub** | Drop a wooden block, smooth stone, or toy boat into a shallow illustrated tub | Add cargo to the boat; one child loads while the other changes the cargo; remove cargo and try again | Floating depends on the object and displaced water, not simply “big/heavy sinks.” Use a finite set of reviewed props |
