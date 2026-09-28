@@ -777,6 +777,8 @@ Give each mess patch/object a stable ID and remaining amount. The host applies c
 
 ## 22. Hide-and-seek and parents with everyday routines
 
+**Parent hide-and-seek research — September 28:** the user requests an illustrated start menu, Bandit or Chilli finding up to four players, a visible countdown and real hiding places. [Applied research and build proposal](implementation/hide-and-seek-research-2026-09-28.html) specifies independent readiness, six proposed downstairs hiding slots, observation-based NPC search, server-owned timers, safe exits and a staged expansion through Home. The proposed 20-second hiding countdown and compact-area search budget need playtesting. Research/documentation only; HIDE-01/HIDE-03/NPC-01 remain unbuilt. Music 217 is still awaiting a reachable phone; preserve the main integration hold and full Home backlog.
+
 **Updated requirements:** section 34 adds enterable closets/drawers, configurable 5–10-second clues, a roughly 30-second parent search per ready hider, and immediate mid-round joining. It takes precedence over the earlier outline below where more specific.
 
 <a id="first-mode-bandit-or-chilli-finds-both-children"></a>
@@ -1450,6 +1452,8 @@ Keep the camera steady and the exit visible. If any player leaves, the room and 
 **Default relationship with hide-and-seek:** secret rooms are chill spaces outside the short parent-search arena. Entering one leaves the active hiding round without stopping the sibling's search. A later explicitly selected “search secret rooms too” mode may include their doors and parent routes, but it needs its own timing tests; don't silently turn a quiet room into an unpredictable hiding-game destination.
 
 ## 34. Hide-and-seek with enterable furniture and gentle clues
+
+The [September 28 applied research](implementation/hide-and-seek-research-2026-09-28.html) elaborates the latest menu/countdown request, actual spot contracts, fair search observations, four-player timing and bounded build slices. It preserves the requirements below; all gameplay remains unbuilt. Its numerical defaults are proposals, not measured results.
 
 The official episode provides the family hide-and-seek premise; our parent roles, furniture mechanics, clue timing, and late joining are game designs. [Bluey: Hide and Seek](https://www.bluey.tv/watch/season-1/hide-and-seek/)
 

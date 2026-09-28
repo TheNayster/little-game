@@ -684,8 +684,8 @@
         22,
         34
       ],
-      "description": "Invite a parent, prepare individually, hide, hear a friendly search, be found and continue playing. All joined hiders can leave freely; no elimination screen.",
-      "evidence": "ledger",
+      "description": "Research September 28 specifies an illustrated Bandit/Chilli invitation, visible countdown, four independent hiders and friendly finds. HS-1 proposes a complete downstairs loop; no gameplay is implemented.",
+      "evidence": "hideresearch",
       "extraSource": ""
     },
     {
@@ -712,8 +712,8 @@
       "chapters": [
         34
       ],
-      "description": "Designated closets, oversized drawers, tents and curtain alcoves with entry/exit anchors, capacity, cutaways and a persistent Come out control.",
-      "evidence": "ledger",
+      "description": "Designated closets, oversized drawers, tents and curtain alcoves with entry/exit anchors, capacity, cutaways and a persistent Come out control. Research proposes six distinct slots across four integrated downstairs props, retaining storage and safe exits; placement/art remain unbuilt.",
+      "evidence": "hideresearch",
       "extraSource": ""
     },
     {
@@ -725,8 +725,8 @@
       "chapters": [
         34
       ],
-      "description": "Optional 5–10 second giggle/rattle or visual hint, manual/off settings and roughly 30 seconds per ready hider. Test routes; do not find by secret coordinates.",
-      "evidence": "ledger",
+      "description": "Optional 5–10 second giggle/rattle or visual hint, manual/off settings and roughly 30 seconds per ready hider. Test routes; do not find by secret coordinates. Applied research defines observation-limited choices, a seeded coverage route, server timers and route-budget tests; whole-Home duration must be measured separately.",
+      "evidence": "hideresearch",
       "extraSource": ""
     },
     {
@@ -740,8 +740,8 @@
         31,
         34
       ],
-      "description": "Hide carried props, labels, hitboxes and unrelated positional audio from seeker. Late joiners prepare without resetting others; avatar swaps preserve hiding.",
-      "evidence": "ledger",
+      "description": "Hide carried props, labels, hitboxes and unrelated positional audio from seeker. Late joiners prepare without resetting others; avatar swaps preserve hiding. Applied research includes per-cycle IDs, simultaneous entry/exit handling and explicit secret-room withdrawal.",
+      "evidence": "hideresearch",
       "extraSource": ""
     },
     {
