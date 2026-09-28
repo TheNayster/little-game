@@ -37,6 +37,18 @@ namespace LittleWeeps.Client
             }
             if(Icon=="back" || Icon=="next"){var direction=Icon=="back"?-1:1;Line(h,50-direction*12,22,50+direction*12,50,9,Ink);Line(h,50+direction*12,50,50-direction*12,78,9,Ink);return;}
             if(Icon=="replay"){Arc(h,50,51,31,-125,185,7,Ink);Poly(h,Ink,new Vector2(17,10),new Vector2(44,28),new Vector2(17,34));return;}
+            if(Icon=="undo" || Icon=="redo"){
+                var flip=Icon=="redo";
+                Arc(h,50,55,28,flip?-130:-50,flip?130:210,7,Ink);
+                var x=flip?77:23;var d=flip?-1:1;
+                Poly(h,Ink,new Vector2(x,17),new Vector2(x+d*26,32),new Vector2(x,43));return;
+            }
+            if(Icon=="pictures"){
+                Round(h,13,11,68,65,5,gold);Round(h,23,23,68,65,5,paper);
+                Arc(h,69,41,7,0,360,5,gold);
+                Poly(h,Ink,new Vector2(28,79),new Vector2(47,49),new Vector2(61,65),new Vector2(72,55),new Vector2(87,79));return;
+            }
+            if(Icon=="check"){Line(h,19,51,40,73,9,Ink);Line(h,40,73,82,26,9,Ink);return;}
             if(Icon=="sound" || Icon=="voice"){
                 Poly(h,gold,new Vector2(13,40),new Vector2(33,40),new Vector2(53,23),new Vector2(53,78),new Vector2(33,60),new Vector2(13,60));
                 Line(h,53,23,53,78,5,Ink);Arc(h,48,50,25,-48,48,5,Ink);Arc(h,48,50,39,-48,48,5,Ink);return;

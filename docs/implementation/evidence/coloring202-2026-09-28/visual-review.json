@@ -1,0 +1,15 @@
+{
+  "build": 202,
+  "reviewed": [
+    "coloring-phone.png",
+    "pictures-phone.png"
+  ],
+  "findings": [
+    "Full official Bluey outline and border fit",
+    "Six previews fit without clipping",
+    "Selected red crayon has a check and gold background",
+    "Home Pictures Undo Redo Back Next remain readable",
+    "Native tests measure phone and tablet target bounds"
+  ],
+  "physicalChildAcceptance": false
+}

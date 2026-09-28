@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "build": 202,
+  "previous": 200,
+  "checks": [
+    "200 saved pages colors histories and science data reopen unchanged",
+    "all eighteen pages accessible through the paged picture chooser; thirteen real mask fills remain independent across four players",
+    "undo redo and disabled page boundaries cannot modify another artist or wrap",
+    "phone/tablet touch bounds and six large previews verified with native captures",
+    "independent departure and authority restart/rejoin retain all four artists' pages and histories",
+    "native clients and authority close without exceptions"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

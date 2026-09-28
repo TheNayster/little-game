@@ -218,6 +218,7 @@ for row in table_with(30,'ID and station')[1:]:
 for row in table_with(30,'Coloring ID')[1:]:
     integrated=row[0] in ('COL-01','COL-02','COL-03','COL-04','COL-05','COL-08')
     note=' Candidate 187 has eighteen fixed pages including twelve official Bluey sheets, a picture chooser, bounded per-profile save/undo and four-client evidence. Blank strokes, full folders/gallery, creation carrying/Together and physical acceptance remain open.' if integrated else ' Planned; no game implementation yet.'
+    if row[0] in ('COL-02','COL-03'):note+=' Candidate 202 adds native rounded picture controls, six large chooser previews per screen, nonwrapping page navigation and six native four-player/layout/save-retention groups. No device rollout.'
     add(row[0],'home','Shared downstairs coloring',row[1],'part' if integrated else 'plan',[30],row[2]+note,'mixing' if m[1]=='SCI-09' else 'discovery' if integrated else 'scienceart')
 for i,row in enumerate(table_with(26,'Working title')[1:],1):
     add(f'BK-{i:02}','home','Six starter books',plain(row[0]),'plan',[25,26],f'{row[1]} proposed. {row[2]}','ledger')

@@ -41,7 +41,15 @@ def main():
         def cmd(v,action,**kw):
             r=home.command(v,action,**kw);require(r['accepted'],str(r));home.ready(v);return r
         def move(v,x):cmd(v,0,x=x,y=200);time.sleep(.65);home.ready(v)
-        def button(v,name):v.input('touchButton',text=name);time.sleep(.15);home.ready(v)
+        def button(v,name):
+            if name.startswith('Coloring page '):
+                page=int(name.split()[-1])
+                for _ in range(3):
+                    names={c['name'] for c in v.input('inspect')['controls']}
+                    if name in names:break
+                    visible=[int(n.split()[-1]) for n in names if n.startswith('Coloring page ')]
+                    v.input('touchButton',text='More pictures' if page>max(visible) else 'Earlier pictures');time.sleep(.15)
+            v.input('touchButton',text=name);time.sleep(.15);home.ready(v)
         def tap(v,x,y,finger=39):
             v.input('touch-begin',role='discovery',x=x,y=y,finger=finger);v.input('touch-end',role='discovery',x=x,y=y,finger=finger);time.sleep(.15);home.ready(v)
         for v in clients:home.ready(v);move(v,-6590)
