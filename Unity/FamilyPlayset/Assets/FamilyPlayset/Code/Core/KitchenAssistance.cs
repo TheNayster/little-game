@@ -40,14 +40,15 @@ namespace LittleWeeps.Core
                 // still in the oven must begin on a free worktop, or its next
                 // recipe would heat automatically as soon as preparation ends.
                 var prepSlot=-1;
-                if(state.schema>=PizzaFlow.Schema && Kitchen.Slot(item.container,out var oldPlace,out _) && oldPlace=="oven"){
+                if(state.schema>=PizzaFlow.Schema && Kitchen.Slot(item.container,out var oldPlace,out _) && (oldPlace=="oven" || oldPlace=="hob")){
                     prepSlot=Enumerable.Range(0,4).Where(i=>!state.toys.Any(t=>t!=item && t.container==Kitchen.Support("counter",i))).DefaultIfEmpty(-1).First();
                     if(prepSlot<0)return "storage-full";
                 }
+                var meal=state.schema>=MealFlow.Schema && recipe.id.StartsWith("MEAL-");
                 var pizza=state.schema>=PizzaFlow.Schema && recipe.id.StartsWith("PIZ-");
                 var family=state.schema>=CakeFamilies.Schema && CakeFamilies.Recipes.Contains(recipe.id);
                 var staged=state.schema>=CakeFlow.Schema && recipe.id=="CAK-02";
-                var ids=new[]{staged || family?"cake-mix":recipe.ingredient}.Concat(op=="readybase"?(pizza?PizzaFlow.Inputs(new FoodDish{recipe=recipe.id}):family?CakeFamilies.Batter(recipe.id):staged?CakeFlow.Batter:recipe.toppings):Array.Empty<string>()).Distinct().ToArray();
+                var ids=new[]{meal?MealFlow.Base(recipe.id):staged || family?"cake-mix":recipe.ingredient}.Concat(op=="readybase"?(meal?MealFlow.ReadyInputs(new FoodDish{recipe=recipe.id}):pizza?PizzaFlow.Inputs(new FoodDish{recipe=recipe.id}):family?CakeFamilies.Batter(recipe.id):staged?CakeFlow.Batter:recipe.toppings):Array.Empty<string>()).Distinct().ToArray();
                 var stock=ids.Select(id=>state.toys.First(t=>t.id=="ingredient-"+id)).ToArray();
                 if(stock.Any(t=>!PrepAvailable(t,p) || t.kitchen.amount==0 && t.kitchen.batch>=1000000000))return "ingredient-unavailable";
                 // Choosing a recipe deliberately restocks an exhausted base in
@@ -60,6 +61,7 @@ namespace LittleWeeps.Core
                 if(staged)CakeFlow.Begin(k.dish,op=="readybase");
                 if(family)CakeFamilies.Begin(k.dish,op=="readybase");
                 if(pizza)PizzaFlow.Begin(k.dish,op=="readybase");
+                if(meal)MealFlow.Begin(k.dish,op=="readybase");
                 if(prepSlot>=0)PlacePrepared(item,"counter",prepSlot);
                 Touch(item);return null;
             }
@@ -106,9 +108,10 @@ namespace LittleWeeps.Core
             }
             if(op=="bake"){
                 if(Kitchen.Next(dish)!="heat")return "next-step-changed";
-                if(Kitchen.Slot(item.container,out var current,out _) && current=="oven")return null;
-                var slot=Enumerable.Range(0,4).Where(i=>!state.toys.Any(t=>t.container==Kitchen.Support("oven",i))).DefaultIfEmpty(-1).First();
-                if(slot<0)return "storage-full";PlacePrepared(item,"oven",slot);return null;
+                var group=MealFlow.Active(dish)?"hob":"oven";
+                if(Kitchen.Slot(item.container,out var current,out _) && current==group){if(MealFlow.Active(dish)){MealFlow.StartHeat(dish);Touch(item);}return null;}
+                var slot=Enumerable.Range(0,4).Where(i=>!state.toys.Any(t=>t.container==Kitchen.Support(group,i))).DefaultIfEmpty(-1).First();
+                if(slot<0)return "storage-full";if(MealFlow.Active(dish))MealFlow.StartHeat(dish);PlacePrepared(item,group,slot);return null;
             }
             if(op!=Kitchen.Next(dish) || op=="heat" || op=="serve")return "next-step-changed";
             if(PreparationFlow.Active(dish))return "use-preparation-activity";

@@ -17,6 +17,7 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CakeFamilies.cs" Link="CakeFamilies.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/PreparationFlow.cs" Link="PreparationFlow.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/PizzaFlow.cs" Link="PizzaFlow.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/MealFlow.cs" Link="MealFlow.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Discovery.cs" Link="Discovery.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/RoomPlay.cs" Link="RoomPlay.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs" Link="WorldLayout.cs" />

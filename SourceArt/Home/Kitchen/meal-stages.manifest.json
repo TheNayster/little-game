@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen",
+  "created": "2026-09-28",
+  "source": "exec-989c3c50-8dbc-4c96-8faa-61ec18b3bfbe.png",
+  "selected": "exec-6202cb72-3cc1-4ab4-96c4-325d1566cb6e.png",
+  "transparentBackground": true,
+  "prompts": [
+    "Create one production sprite atlas for a warm, attractive preschool cooking game, on a fully transparent RGBA background. Exactly twelve isolated components in four columns and three rows; each complete silhouette fits comfortably inside its own cell with generous transparent gaps, including every handle. No text, numbers, labels, shadows cast outside objects, board, scenery, border or checkerboard. Polished hand-painted 2D food illustration, gentle shading, clear outlines, warm appetizing color, readable at small scale; match a kitchen with cream dishes, teal rims and wooden boards. Viewpoint: nearly top-down with slight front depth, all round cooking interiors visible and usable for layering food. Row 1 left to right: (1) empty dark nonstick frying pan with short teal handle pointing right, (2) empty teal saucepan with silver interior, open rim and two short side handles, (3) empty silver colander with small holes and two side handles, (4) clear glass water jug with a large readable blue-tinted water fill. Row 2: (5) one uncooked pink burger patty, (6) same sized cooked browned patty with subtle grill marks, (7) lower half of a golden burger bun with its cut surface facing up, (8) matching upper sesame bun. Row 3: (9) one pale round pancake batter puddle with a few tiny air bubbles, (10) matching golden cooked pancake, no butter/syrup/fruit, (11) fluffy mound of cooked white rice with recognizable grains, (12) one large teal-handled soup ladle, bowl angled toward the viewer. Maintain exact grid ordering, no merged objects, no food inside the cookware. These are separate layers that the game animates through pouring, cooking, flipping and assembly.",
+    "Edit this transparent cookware/food sprite atlas. Preserve all twelve objects, their ordering, colors, silhouettes, materials, lighting and overall painted style. Change ONLY spacing and scale: shrink each separate object by about 20% around its own center, and center it within a strict invisible 4-column by 3-row grid. Every object including every handle must stay entirely inside its own cell with at least 24 transparent pixels on all four edges. In particular the frying pan handle must not extend into the saucepan's column. Do not crop any object or add anything. Retain the fully transparent RGBA background; no visible grid, labels or shadows between the objects."
+  ],
+  "components": [
+    "empty frying pan",
+    "empty saucepan",
+    "empty colander",
+    "water jug",
+    "raw patty",
+    "cooked patty",
+    "bottom bun",
+    "top bun",
+    "pancake batter",
+    "cooked pancake",
+    "cooked rice",
+    "ladle"
+  ],
+  "notes": "RGBA copied unchanged; runtime sprite bounds follow alpha silhouettes, not assumed equal cells."
+}

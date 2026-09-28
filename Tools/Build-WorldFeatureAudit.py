@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'mealflow':'implementation/meal-preparation-2026-09-28.html',
  'pizzaflow':'implementation/pizza-preparation-2026-09-28.html',
  'cakefamilies':'implementation/cake-families-2026-09-28.html',
  'creations':'implementation/home-creation-storage-2026-09-28.html',
@@ -121,7 +122,7 @@ H-04|home|Rooms and furniture|Chairs, benches, cushions and resting spots|part|4
 H-05|home|Rooms and furniture|Cupboards, drawers, lights and lamps|part|6,11,32,51|Bedroom lamps switch and eight-slot chests open/close around real retained items; shelves have four supports. Wider cupboards/drawers and appliance systems remain required.|furniture
 H-06|home|Rooms and furniture|Bathroom and laundry spaces|plan|3,21|Bath/splash interaction with front water masking, towels, storage, dressing and bedtime connections. This room expansion is listed in the home layout record.|ledger
 H-07|home|Kitchen|Interactive kitchen architecture|part|3,19,51|Working illustrated fridge, cupboards/worktops, sink, oven and four dining places. Candidate 166 moves dining beside appliances and migrates occupied supports; physical child/device acceptance remains open.|kitchen
-H-08|home|Kitchen|Make, decorate and serve|part|19|Candidate 207 adds four distinctive cake paths alongside the staged chocolate cake: duck assembly, heart molds, chosen rainbow layers and carrot preparation. All preserve staged food and servings. Pizza and pan/pot transformations, physical child acceptance and independent 207 recovery qualification remain open.|cakefamilies
+H-08|home|Kitchen|Make, decorate and serve|part|19|Candidates 207, 210 and 212 add distinct staged paths for all five cakes, five pizzas and five meals. Four hobs/oven places preserve independent preparation, food and servings. Child/A10 acceptance, orders, album, additional polish and independent recovery after 205 remain open.|mealflow
 H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Chocolate cake retains partial mixture/transfer, coverage, layers and decorations through saved stages and unique portions. Legacy dishes keep their original rules/content; unusual combinations require explicit Experiment mode. Candidate 205 stores and retrieves the same food, freeing reusable trays and preserving ingredients/portions. Other recipe transformations, orders, picnic packing and album remain open.|creations
 H-10|home|Kitchen|Four-player preparation and safe ovens|part|19,31,47|Four independent cookware/tool sets, oven positions and dining seats. Authority selects free trays atomically and records cook profiles; one leaving player does not interrupt others. Native qualification is recorded; physical mixed-device acceptance remains open.|kitchen
 H-11|home|Kitchen|Drinks, fruit, blender and pretend café|plan|6,19|Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature.|ledger
@@ -261,6 +262,9 @@ for feature in features:
         if feature['id'].startswith('PIZ-'):
             feature['evidence']='pizzaflow'
             feature['description']+=' Candidate 210 implements dough kneading/rolling, saved sauce coverage, vegetable chopping, matching toppings, shared safe baking and conserved slices. Physical acceptance, cheese-stretch polish and independent recovery qualification remain open.'
+        if feature['id'].startswith('MEAL-'):
+            feature['evidence']='mealflow'
+            feature['description']+=' Candidate 212 adds recipe-specific pan/pot preparation, four hobs, separate cooking passes and saved food/servings. All 273 core groups, six native four-cook groups on 211 and three presentation/retention groups on 212 pass. Physical and independent recovery qualification remain open.'
         if feature['id']=='CAK-02':
             feature['evidence']='cakeflow'
             feature['description']='Candidate 171 implements chocolate batter mixing, partial pour into two tins, safe bake, filling, layer assembly, icing coverage, placed decorations, slicing and four unique servings. Saves retain partial work; old dishes stay on their original version. Physical child/A10 acceptance and spoken guidance remain open.'

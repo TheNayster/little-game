@@ -1,0 +1,8 @@
+{
+  "fromBuild": 211,
+  "toBuild": 212,
+  "changedGameFiles": [
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloMealFlow.cs"
+  ],
+  "coreAndNetworkUnchanged": true
+}

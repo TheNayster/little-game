@@ -34,6 +34,7 @@ namespace LittleWeeps.Client
         }
         private static string CakeInstruction(FoodDish d)
         {
+            if(MealFlow.Active(d))return MealInstruction(d);
             if(PizzaFlow.Active(d))return PizzaInstruction(d);
             if(CakeFamilies.Active(d))return CakeFamilyInstruction(d);
             switch(d.stage){
@@ -65,7 +66,7 @@ namespace LittleWeeps.Client
             kitchenServing.gameObject.SetActive(d.stage=="serve" && current.kind==ToyKind.Cookware && CurrentArea=="garden");
             kitchenStep.transform.parent.gameObject.SetActive(d.stage!="serve" && d.stage!="ingredients" && !(d.stage=="filling" && !d.ingredients.Any(a=>a.ingredient=="icing")));
             var labels=new[]{"","Stir for me","Pour for me","Bake","Spread filling","Stack layer","Spread icing","Finish decorating","Slice cake",""};
-            kitchenStep.text=PizzaFlow.Active(d)?PizzaAction(d):CakeFamilies.Active(d)?CakeFamilyAction(d):labels[PreparationFlow.Index(d)];
+            kitchenStep.text=MealFlow.Active(d)?MealActionLabel(d):PizzaFlow.Active(d)?PizzaAction(d):CakeFamilies.Active(d)?CakeFamilyAction(d):labels[PreparationFlow.Index(d)];
             if(CakeFamilies.Active(d))kitchenStep.transform.parent.gameObject.SetActive(d.stage!="ingredients" && d.stage!="colors" && d.stage!="serve" && !(d.stage=="ice" && !d.ingredients.Any(a=>a.ingredient=="icing")));
             if(PizzaFlow.Active(d))kitchenStep.transform.parent.gameObject.SetActive(d.stage!="sauce" && d.stage!="vegetables" && d.stage!="serve");
             kitchenStep.transform.parent.GetComponent<Button>().interactable=!cakeHelping && !cakeSending && !(d.stage=="bake" && Kitchen.Slot(current.container,out var g,out _) && g=="oven");
@@ -74,11 +75,13 @@ namespace LittleWeeps.Client
                 kitchenActionIcon.sprite=d.stage=="knead"?IngredientSprite("dough"):d.stage=="roll"?KitchenSprite("utensils",2,2,2):d.stage=="chop" || d.stage=="cut"?KitchenSprite("utensils",1,2,2):d.stage=="toppings"?CookingLayer(0):kitchenActionIcon.sprite;
                 if(d.stage=="toppings")kitchenStep.transform.parent.GetComponent<Button>().interactable=PizzaFlow.Complete(d) && !cakeHelping && !cakeSending;
             }
+            if(MealFlow.Active(d))PaintMealControls(d,current);
             PaintCake(d);
         }
         private void PaintCake(FoodDish d)
         {
             if(cakeParts!=null)foreach(var p in cakeParts)FoodPortionClip.Apply(p,15,Vector2.zero);
+            if(MealFlow.Active(d)){PaintMeal(d);return;}
             if(PizzaFlow.Active(d)){PaintPizzaPreparation(d);return;}
             if(CakeFamilies.Active(d)){PaintFamilyCake(d);return;}
             if(cakeParts==null || !cakeSurface.gameObject.activeSelf)return;
@@ -146,6 +149,7 @@ namespace LittleWeeps.Client
         public void CakeTap()
         {
             var d=CurrentCake;if(!PreparationFlow.Active(d) || cakeHelping || cakeSending)return;
+            if(MealFlow.Active(d)){MealTap(d);return;}
             if(PizzaFlow.Active(d) && (d.stage=="sauce" || d.stage=="vegetables" || d.stage=="toppings" && !PizzaFlow.Complete(d))){kitchenHint.text=PizzaInstruction(d);return;}
             if(CakeFamilies.Active(d) && (d.stage=="colors" || d.stage=="ice" && !d.ingredients.Any(a=>a.ingredient=="icing"))){kitchenHint.text=CakeInstruction(d);return;}
             if(d.stage=="ingredients" || d.stage=="filling" && !d.ingredients.Any(a=>a.ingredient=="icing")){kitchenHint.text=CakeInstruction(d);return;}
@@ -175,7 +179,7 @@ namespace LittleWeeps.Client
         private void CakeSend(string op,string token,float x,float y,Action<SoloResult> done=null)
         {
             if(cakeSending || CakeToken!=token || !Ready)return;
-            cakeSending=true;KitchenCommand((PizzaFlow.Active(CurrentCake)?"prepare:":"cake:")+op,cookingItem,token,x,y+2,r=>{cakeSending=false;done?.Invoke(r);if(r.Accepted && op!="finish" && CakeToken==token && cakeReleaseToken==token && PreparationFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);});
+            cakeSending=true;KitchenCommand((MealFlow.Active(CurrentCake)?"meal:":PizzaFlow.Active(CurrentCake)?"prepare:":"cake:")+op,cookingItem,token,x,y+2,r=>{cakeSending=false;done?.Invoke(r);if(r.Accepted && op!="finish" && CakeToken==token && cakeReleaseToken==token && PreparationFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);});
         }
         public void CakeStroke(string token,Vector2 from,Vector2 to,bool end,Vector2 start)
         {
@@ -186,6 +190,7 @@ namespace LittleWeeps.Client
             RectTransformUtility.ScreenPointToLocalPointInRectangle(cakeSurface,start,null,out var origin);
             if(Mathf.Abs(b.x)>280 || Mathf.Abs(b.y)>230)return;
             cakeToolPoint=b;cakeMoveTime=Time.unscaledTime+.3f;var d=CurrentCake;var stage=d.stage;
+            if(MealFlow.Active(d)){MealStroke(token,a,b,end,origin);return;}
             void Finish(SoloResult result){if(end && result.Accepted && CakeToken==token && PreparationFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);}
             if(stage=="mix" || stage=="pour" || stage=="knead" || stage=="roll"){
                 var amount=Mathf.Min(.18f,Vector2.Distance(a,b)/(stage=="mix"?1100:650));
@@ -200,12 +205,14 @@ namespace LittleWeeps.Client
         {
             if(!KitchenOpen || cakeSurface==null || !cakeSurface.gameObject.activeSelf || !HasWorld)return;
             if(Time.unscaledTime<cakeNextPaint || cakeDrawn==null)return;
-            if(!cakeHelping && cakeMoveTime<Time.unscaledTime && cakeDemoUntil<Time.unscaledTime && cakeDrawn.stage!="bake")return;
+            var heating=cakeDrawn.stage=="bake" || MealFlow.Active(cakeDrawn) && MealFlow.HeatStage(cakeDrawn.stage);
+            if(!cakeHelping && cakeMoveTime<Time.unscaledTime && cakeDemoUntil<Time.unscaledTime && !heating)return;
             cakeNextPaint=Time.unscaledTime+.04f;
-            var d=cakeDrawn.stage=="bake"?CurrentCake:cakeDrawn;if(PreparationFlow.Active(d))PaintCake(d);
+            var d=heating?CurrentCake:cakeDrawn;if(PreparationFlow.Active(d))PaintCake(d);
         }
-        private void PaintSmallCake(FoodDish d,Image food,Image baseImage,Image[] extras)
+        private void PaintSmallCake(FoodDish d,Image food,Image baseImage,Image[] extras,float scale=1)
         {
+            if(MealFlow.Active(d)){PaintSmallMeal(d,food,baseImage,extras,scale);return;}
             if(PizzaFlow.Active(d)){PaintSmallPizza(d,food,baseImage,extras);return;}
             if(CakeFamilies.Active(d)){PaintSmallFamilyCake(d,food,baseImage,extras);return;}
             foreach(var p in extras)p.gameObject.SetActive(false);baseImage.gameObject.SetActive(true);

@@ -37,7 +37,7 @@ namespace LittleWeeps.Core
         {
             using(var raw=new MemoryStream()){
                 using(var w=new BinaryWriter(raw,Utf8,true)){
-                    w.Write((byte)1);w.Write(data.serial);w.Write((byte)data.foods.Length);
+                    w.Write((byte)2);w.Write(data.serial);w.Write((byte)data.foods.Length);
                     foreach(var f in data.foods){w.Write(f.key);WriteString(w,f.owner);WriteFood(w,f.dish);}
                     WritePictures(w,data.pictures);WritePictures(w,data.removed);
                 }
@@ -61,9 +61,9 @@ namespace LittleWeeps.Core
                     while((n=deflate.Read(buffer,0,buffer.Length))>0){if(raw.Length+n>MaxRaw)throw new InvalidDataException("Oversized decoded creations.");raw.Write(buffer,0,n);}
                     raw.Position=0;
                     using(var r=new BinaryReader(raw,Utf8,true)){
-                        if(r.ReadByte()!=1)throw new InvalidDataException("Unknown creation format.");
+                        var version=r.ReadByte();if(version!=1 && version!=2)throw new InvalidDataException("Unknown creation format.");
                         var data=new CreationCollection{serial=r.ReadInt32()};var count=Count(r,FoodPlaces*4);
-                        data.foods=Enumerable.Range(0,count).Select(_=>new StoredFood{key=r.ReadInt32(),owner=ReadString(r),dish=ReadFood(r)}).ToArray();
+                        data.foods=Enumerable.Range(0,count).Select(_=>new StoredFood{key=r.ReadInt32(),owner=ReadString(r),dish=ReadFood(r,version)}).ToArray();
                         data.pictures=ReadPictures(r,PicturePlaces*4);data.removed=ReadPictures(r,4);
                         if(raw.Position!=raw.Length)throw new InvalidDataException("Trailing creation data.");
                         lock(cache){if(cache.Count>=4)cache.Clear();cache[encoded]=data.Copy();}return data;
@@ -79,12 +79,13 @@ namespace LittleWeeps.Core
         private static void WriteFood(BinaryWriter w,FoodDish d)
         {
             WriteString(w,d.id);WriteString(w,d.recipe);w.Write(d.step);w.Write(d.portions);w.Write(d.heated);w.Write(d.assisted);w.Write(d.guided);w.Write(d.experiment);
-            w.Write(d.recipeVersion);w.Write(d.layers);w.Write(d.icingMask);w.Write(d.cutMask);WriteString(w,d.stage);w.Write(d.mixed);w.Write(d.poured);w.Write(d.heat);
+            w.Write(d.recipeVersion);w.Write(d.layers);w.Write(d.icingMask);w.Write(d.cutMask);WriteString(w,d.stage);w.Write(d.mixed);w.Write(d.poured);w.Write(d.heat);WriteString(w,d.preparation);
             w.Write((byte)d.ingredients.Length);foreach(var a in d.ingredients){WriteString(w,a.unit);WriteString(w,a.ingredient);WriteString(w,a.by);WriteString(w,a.phase);w.Write(a.x);w.Write(a.y);}
         }
-        private static FoodDish ReadFood(BinaryReader r)
+        private static FoodDish ReadFood(BinaryReader r,int version)
         {
             var d=new FoodDish{id=ReadString(r),recipe=ReadString(r),step=r.ReadInt32(),portions=r.ReadInt32(),heated=r.ReadBoolean(),assisted=r.ReadBoolean(),guided=r.ReadBoolean(),experiment=r.ReadBoolean(),recipeVersion=r.ReadInt32(),layers=r.ReadInt32(),icingMask=r.ReadInt32(),cutMask=r.ReadInt32(),stage=ReadString(r),mixed=r.ReadSingle(),poured=r.ReadSingle(),heat=r.ReadDouble()};
+            if(version>=2)d.preparation=ReadString(r);
             d.ingredients=Enumerable.Range(0,Count(r,24)).Select(_=>new FoodAddition{unit=ReadString(r),ingredient=ReadString(r),by=ReadString(r),phase=ReadString(r),x=r.ReadSingle(),y=r.ReadSingle()}).ToArray();return d;
         }
         private static void WritePictures(BinaryWriter w,StoredPicture[] pictures)
@@ -134,7 +135,7 @@ namespace LittleWeeps.Core
                 if(!PrepAvailable(item,p) || !Kitchen.Dish(item.kind) || item.holder!="" || d==null || d.portions==0)return "need-unheld-food";
                 if(item.kind==ToyKind.Cookware && !string.IsNullOrEmpty(item.kitchen.cook) && item.kitchen.cook!=p.id)return "owner-only";
                 if(HomeCreations.FoodToken(d)!=c.target)return "food-changed";
-                if(d.heat>0 && !d.heated)return "food-still-cooking";
+                if(MealFlow.Active(d)?Kitchen.Heating(item):d.heat>0 && !d.heated)return "food-still-cooking";
                 if(data.foods.Count(f=>f.owner==p.id)>=HomeCreations.FoodPlaces || data.serial>=1000000000)return "food-storage-full";
                 data.foods=data.foods.Concat(new[]{new StoredFood{key=++data.serial,owner=p.id,dish=d.Copy()}}).ToArray();
                 if(!SaveCreations(data))return "creation-storage-full";

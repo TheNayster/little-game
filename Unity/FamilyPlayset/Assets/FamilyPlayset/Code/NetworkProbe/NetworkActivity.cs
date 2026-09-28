@@ -21,7 +21,7 @@ namespace LittleWeeps.NetworkProbe
         // even with four held objects and four ovens. New samples replace old
         // ones; durable actions and completed dishes still use reliable state.
         [Serializable] private sealed class ActivitySample
-        {public string epoch,item,dish;public double time,heat;public DragPose pose;}
+        {public string epoch,item,dish,stage;public double time,heat;public DragPose pose;}
         [Serializable] private sealed class ActivityMetrics
         {public long packets,bytes;public int maxBytes;}
         private int largestActivity;
@@ -30,8 +30,7 @@ namespace LittleWeeps.NetworkProbe
         {
             if(config.role!="server" || now<nextActivitySend)return;nextActivitySend=now+.1;
             var view=session.View();
-            var heating=view.toys.Where(t=>t.kitchen?.dish!=null && Kitchen.Next(t.kitchen.dish)=="heat" &&
-                Kitchen.Slot(t.container,out var group,out _) && group=="oven").ToArray();
+            var heating=view.toys.Where(Kitchen.Heating).ToArray();
             foreach(var peer in network.ConnectedClientsIds)
             {
                 if(!activityPeers.Contains(peer))
@@ -43,7 +42,7 @@ namespace LittleWeeps.NetworkProbe
                 }
                 foreach(var pose in poses.Values)SendActivity(peer,new ActivitySample{epoch=epoch,time=ServerClock,pose=pose});
                 foreach(var toy in heating)SendActivity(peer,new ActivitySample{epoch=epoch,time=ServerClock,item=toy.id,
-                    dish=toy.kitchen.dish.id,heat=toy.kitchen.dish.heat});
+                    dish=toy.kitchen.dish.id,stage=toy.kitchen.dish.stage,heat=toy.kitchen.dish.heat});
             }
             if(now>=nextLegacyHeat)
             {
@@ -76,8 +75,7 @@ namespace LittleWeeps.NetworkProbe
                 {
                     var toy=Latest.view.toys.FirstOrDefault(t=>t.id==sample.item);
                     var dish=toy?.kitchen?.dish;
-                    if(dish==null || dish.id!=sample.dish || Kitchen.Next(dish)!="heat" ||
-                        !Kitchen.Slot(toy.container,out var group,out _) || group!="oven" ||
+                    if(dish==null || dish.id!=sample.dish || (dish.stage??"")!=(sample.stage??"") || !Kitchen.Heating(toy) ||
                         !KeepyRules.Finite(sample.heat) || sample.heat<0 || sample.heat>Kitchen.HeatSeconds)return;
                     dish.heat=Math.Max(dish.heat,sample.heat);
                 }
@@ -93,9 +91,9 @@ namespace LittleWeeps.NetworkProbe
             foreach(var toy in incoming.view.toys)
             {
                 var dish=toy.kitchen?.dish;
-                if(dish==null || Kitchen.Next(dish)!="heat")continue;
-                var previous=Latest.view.toys.FirstOrDefault(t=>t.id==toy.id)?.kitchen?.dish;
-                if(previous!=null && previous.id==dish.id) dish.heat=Math.Max(dish.heat,previous.heat);
+                if(dish==null || !Kitchen.Heating(toy))continue;
+                var previousToy=Latest.view.toys.FirstOrDefault(t=>t.id==toy.id);var previous=previousToy?.kitchen?.dish;
+                if(previous!=null && Kitchen.Heating(previousToy) && previous.id==dish.id && (previous.stage??"")==(dish.stage??"")) dish.heat=Math.Max(dish.heat,previous.heat);
             }
             foreach(var pose in incoming.poses??Array.Empty<DragPose>())
             {

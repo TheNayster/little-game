@@ -39,6 +39,9 @@ namespace LittleWeeps.Client
             }else if(index>=0 && id=="cake-families"){
                 var boxes=new[]{new Rect(29,63,366,295),new Rect(424,74,344,274),new Rect(800,79,337,236),new Rect(1180,78,325,259),new Rect(30,438,354,204),new Rect(412,439,357,205),new Rect(794,405,426,259),new Rect(1274,418,231,211),new Rect(86,728,267,202),new Rect(432,766,283,142),new Rect(776,709,338,238),new Rect(1177,745,321,196)};
                 var b=boxes[index];rect=new Rect(b.x/1536*texture.width,(1024-b.y-b.height)/1024*texture.height,b.width/1536*texture.width,b.height/1024*texture.height);
+            }else if(index>=0 && id=="meal-stages"){
+                var boxes=new[]{new Rect(69,101,313,191),new Rect(447,87,296,218),new Rect(823,88,293,215),new Rect(1237,71,227,237),new Rect(72,403,254,200),new Rect(457,401,262,202),new Rect(838,403,256,200),new Rect(1202,398,270,209),new Rect(71,700,260,210),new Rect(448,691,273,223),new Rect(831,698,272,224),new Rect(1208,659,259,272)};
+                var b=boxes[index];rect=new Rect(b.x/1536*texture.width,(1024-b.y-b.height)/1024*texture.height,b.width/1536*texture.width,b.height/1024*texture.height);
             }else if(index>=0 && id=="recipes"){
                 var boxes=new[]{new Rect(10,48,303,254),new Rect(327,48,313,258),new Rect(652,48,312,256),new Rect(976,49,314,256),new Rect(1303,48,306,255),new Rect(14,351,309,267),new Rect(344,336,303,294),new Rect(668,365,294,256),new Rect(980,357,305,270),new Rect(1307,368,298,253),new Rect(11,671,342,253),new Rect(352,687,299,229),new Rect(671,692,290,227),new Rect(969,671,332,250),new Rect(1312,687,288,233)};
                 var b=boxes[index];rect=new Rect(b.x/1619*texture.width,(971-b.y-b.height)/971*texture.height,b.width/1619*texture.width,b.height/971*texture.height);
@@ -79,7 +82,7 @@ namespace LittleWeeps.Client
             var ingredient=all.FirstOrDefault(v=>v.id==id);if(ingredient==null)return;
             if(ingredient.kitchen.amount==0){KitchenCommand("easy:restock",id);return;}
             var n=t.kitchen.dish.ingredients.Length;var local=new Vector2(Mathf.Sin(n*2.4f)*.65f,Mathf.Cos(n*2.4f)*.65f);
-            if(screen.HasValue){RectTransformUtility.ScreenPointToLocalPointInRectangle(PreparationFlow.Active(t.kitchen.dish)?cakeSurface:kitchenPreview,screen.Value,null,out var point);if(point.magnitude>270)return;local=Vector2.ClampMagnitude(PizzaFlow.Active(t.kitchen.dish)?point/190:PreparationFlow.Active(t.kitchen.dish)?new Vector2(point.x/180,(point.y-90)/70):point/210,.78f);}
+            if(screen.HasValue){RectTransformUtility.ScreenPointToLocalPointInRectangle(PreparationFlow.Active(t.kitchen.dish)?cakeSurface:kitchenPreview,screen.Value,null,out var point);if(point.magnitude>270)return;local=Vector2.ClampMagnitude(PizzaFlow.Active(t.kitchen.dish) || MealFlow.Active(t.kitchen.dish)?point/190:PreparationFlow.Active(t.kitchen.dish)?new Vector2(point.x/180,(point.y-90)/70):point/210,.78f);}
             KitchenCommand("easy:add",id,t.id,t.x+local.x*100,Mathf.Clamp(t.y+local.y*100,0,500));
         }
         private void OpenKitchenItem(string id)
@@ -109,6 +112,7 @@ namespace LittleWeeps.Client
             HomeHit(fridge,"Fridge handle",new Vector2(117,265),new Vector2(60,180),()=>KitchenCommand("door",target:"fridge"),false);
             var oven=KitchenFixture("oven",Kitchen.OvenX,350,"oven",new Vector2(0,125),new Vector2(320,308));kitchenOven=oven.Find("oven").GetComponent<Image>();
             HomeHit(oven,"Oven handle",new Vector2(0,150),new Vector2(190,55),()=>KitchenCommand("door",target:"oven"),false);
+            if(SceneSchema>=MealFlow.Schema)for(var i=0;i<4;i++)HomeHit(oven,"Cook at hob "+(i+1),new Vector2(-65+i%2*130,242-i/2*40),new Vector2(110,40),OpenEasyCook,false);
             var table=KitchenFixture("dining",Kitchen.DiningX,130,"dining",new Vector2(0,70),new Vector2(900,300));
             var front=Rect(Board,"Dining table front",Vector2.zero,Vector2.zero);kitchenDiningFront=front;
             var tablePart=Rect(front,"Table top and legs",new Vector2(0,70),new Vector2(900,300)).gameObject.AddComponent<HomeArtPart>();tablePart.Configure(KitchenSprite("dining").texture,new[]{new HomeArtPart.Polygon{points=Patch(0,.27f,1,1)}});
@@ -124,6 +128,7 @@ namespace LittleWeeps.Client
             if(group=="cupboard")return ToBoard(Kitchen.X(group,slot),350)+new Vector2(0,113-slot/12*99)*sceneScale;
             if(group=="counter")return ToBoard(Kitchen.X(group,slot),350)+new Vector2(0,185)*sceneScale;
             if(group=="oven")return ToBoard(Kitchen.X(group,slot),350)+new Vector2(0,134-slot/2*56)*sceneScale;
+            if(group=="hob")return ToBoard(Kitchen.X(group,slot),350)+new Vector2(0,242-slot/2*40)*sceneScale;
             if(group=="dining")return ToBoard(Kitchen.X(group,slot),130)+new Vector2(0,115)*sceneScale;
             if(group=="tools")return ToBoard(Kitchen.X(group,slot),350)+new Vector2(0,280)*sceneScale;
             return ToBoard(Kitchen.X(group,slot),350)+new Vector2(0,235)*sceneScale;
@@ -135,8 +140,8 @@ namespace LittleWeeps.Client
             point=raw;if(SceneSchema<Kitchen.Schema || CurrentArea!="garden" || dragging==null)return false;
             var all=ReadToys();var t=all.FirstOrDefault(v=>v.id==dragging);if(t==null)return false;var board=ToBoard(raw.x,raw.y);var distance=70f;var target="";var result=raw;
             void Candidate(string id,Vector2 visual,float x,float y){var d=Vector2.Distance(board,visual)/sceneScale;if(d>=distance)return;distance=d;target=id;result=new Vector2(x,y);}
-            foreach(var group in new[]{"fridge","cupboard","counter","oven","dining","sink","tools"})for(var i=0;i<Kitchen.Count(group);i++){
-                if(all.Any(v=>v.container==Kitchen.Support(group,i)) || !Kitchen.Open(KitchenState,group,i) || group=="oven" && t.kind!=ToyKind.Cookware || group=="tools" && t.kind!=ToyKind.KitchenTool || group=="dining" && t.kind!=ToyKind.Plate || group=="sink" && !Kitchen.Kind(t.kind))continue;
+            foreach(var group in new[]{"fridge","cupboard","counter","oven","hob","dining","sink","tools"})for(var i=0;i<Kitchen.Count(group);i++){
+                if(group=="hob" && SceneSchema<MealFlow.Schema || all.Any(v=>v.container==Kitchen.Support(group,i)) || !Kitchen.Open(KitchenState,group,i) || (group=="oven" || group=="hob") && t.kind!=ToyKind.Cookware || group=="tools" && t.kind!=ToyKind.KitchenTool || group=="dining" && t.kind!=ToyKind.Plate || group=="sink" && !Kitchen.Kind(t.kind))continue;
                 Candidate(Kitchen.Support(group,i),KitchenPoint(group,i),Kitchen.X(group,i),Kitchen.Y(group,i));
             }
             foreach(var item in all.Where(v=>v.id!=t.id && v.zone==CurrentArea && VisibleToy(v)))
@@ -158,7 +163,7 @@ namespace LittleWeeps.Client
         private void PaintDish(FoodDish dish,Image image,Image baseImage,Image[] additions,float scale=1)
         {
             image.material=null;image.rectTransform.localScale=Vector3.one;baseImage.material=null;FoodPortionClip.Apply(image,15,Vector2.zero);foreach(var part in additions){part.material=null;FoodPortionClip.Apply(part,15,Vector2.zero);}
-            if(PreparationFlow.Active(dish)){PaintSmallCake(dish,image,baseImage,additions);return;}
+            if(PreparationFlow.Active(dish)){PaintSmallCake(dish,image,baseImage,additions,scale);return;}
             var visible=dish!=null && dish.portions!=0;var pizza=visible && dish.recipe.StartsWith("PIZ");
             image.gameObject.SetActive(visible && (pizza || dish.heated));baseImage.gameObject.SetActive(true);
             if(pizza && scale>1)baseImage.gameObject.SetActive(false);
@@ -218,7 +223,7 @@ namespace LittleWeeps.Client
         private bool KitchenDepth(SoloToy t,RectTransform rect,Action<RectTransform,float,int,string> add)
         {
             if(!Kitchen.Slot(t.container,out var group,out var slot))return false;
-            add(rect,ToBoard(t.x,group=="dining"?130:350).y,group=="counter" || group=="dining" || group=="sink" || group=="tools"?3:1,t.id);return true;
+            add(rect,ToBoard(t.x,group=="dining"?130:350).y,group=="counter" || group=="hob" || group=="dining" || group=="sink" || group=="tools"?3:1,t.id);return true;
         }
         private void ResetKitchen(){kitchenSprites.Clear();kitchenFixtures.Clear();kitchenItems.Clear();kitchenDoors.Clear();kitchenIngredientButtons.Clear();recipeCards.Clear();plateCards.Clear();occupiedCards.Clear();kitchenPanel=null;kitchenDiningFront=null;cookingItem=null;kitchenPaintRevision=-1;}
     }

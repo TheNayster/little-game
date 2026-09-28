@@ -1,0 +1,10 @@
+{
+  "build": 212,
+  "matched": true,
+  "files": 127,
+  "scope": "All game C# source and new meal atlas",
+  "sourceCommit": "6b2c4f9274758374cc2b5d5cb3f6987ade03b03d",
+  "mealAtlasSha256": "dd9dd4f7a00bc4cb7126e5f189ff4043062cf815ee25011b96269473c27654c0",
+  "noDeviceDeployment": true,
+  "artifactFilesVerified": 351
+}

@@ -1,0 +1,20 @@
+{
+  "build": 212,
+  "reviewed": [
+    "phone patty transfer",
+    "tablet water and batter",
+    "first and second pan timers",
+    "burger assembly and retained half",
+    "full and half soup inside bowl",
+    "pasta",
+    "pancakes",
+    "rice"
+  ],
+  "corrections": [
+    "Soup surface sits within the illustrated bowl",
+    "Spatula replaces spoon for patty transfer",
+    "Stack assistance interpolates the moving layer",
+    "Small food view uses fixed view scale across repeated repaints"
+  ],
+  "physicalAcceptance": false
+}

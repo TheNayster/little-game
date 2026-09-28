@@ -91,7 +91,7 @@ namespace LittleWeeps.Core
                 string anchor;float x,y;
                 if(t.kind==ToyKind.Book){var i=HomeBooks.Index(t.id);anchor=HomeBooks.Support(i);x=HomeBooks.X(i);y=HomeBooks.Y(i);}
                 else {var origin=origins[t.id];anchor=origin.container;Kitchen.Slot(anchor,out var group,out var slot);x=Kitchen.X(group,slot,state.schema);y=Kitchen.Y(group,slot);}
-                var heating=t.kitchen?.dish!=null && Kitchen.Next(t.kitchen.dish)=="heat" && Kitchen.Slot(t.container,out var g,out _) && g=="oven";
+                var heating=Kitchen.Heating(t);
                 var away=t.zone!="garden" || t.container!=anchor || t.x!=x || t.y!=y;
                 var emptyDirty=t.kitchen!=null && t.kitchen.dirty && (t.kitchen.dish==null || t.kitchen.dish.portions==0);
                 var free=!state.toys.Any(o=>o!=t && o.container==anchor);

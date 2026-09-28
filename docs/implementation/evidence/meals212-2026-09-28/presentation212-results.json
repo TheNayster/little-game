@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "build": 212,
+  "checks": [
+    "final candidate presents four retained meal portions without changing their saved preparation",
+    "soup sits within the illustrated bowl at full and partial serving amounts",
+    "pictured stack assistance moves the layer and preserves one committed assembly step"
+  ],
+  "liveFamilyTouched": false
+}
