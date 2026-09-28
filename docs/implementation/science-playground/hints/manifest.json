@@ -1,0 +1,198 @@
+{
+    "purpose":  "Local draft voice for prototype hints; not the final narrator",
+    "voice":  "Microsoft Zira Desktop",
+    "rate":  -1,
+    "format":  "22050 Hz, 16-bit mono PCM WAV",
+    "hints":  [
+                  {
+                      "id":  "lava",
+                      "text":  "Tap the fizzy tablet. Watch the blobs go up and down.",
+                      "file":  "lava.wav"
+                  },
+                  {
+                      "id":  "ice",
+                      "text":  "Tap the dropper, or rub warm water over the ice.",
+                      "file":  "ice.wav"
+                  },
+                  {
+                      "id":  "iceFree",
+                      "text":  "You rescued your dinosaur! Drag it around the tray.",
+                      "file":  "iceFree.wav"
+                  },
+                  {
+                      "id":  "slimeAdd",
+                      "text":  "Tip the blue bottle into the glue.",
+                      "file":  "slimeAdd.wav"
+                  },
+                  {
+                      "id":  "slimeMix",
+                      "text":  "Mix it with the spoon. Your slime is almost ready.",
+                      "file":  "slimeMix.wav"
+                  },
+                  {
+                      "id":  "slimePlay",
+                      "text":  "Pull slowly to stretch. Pull quickly to tear!",
+                      "file":  "slimePlay.wav"
+                  },
+                  {
+                      "id":  "slimeTorn",
+                      "text":  "Squish the pieces back together.",
+                      "file":  "slimeTorn.wav"
+                  },
+                  {
+                      "id":  "milkColor",
+                      "text":  "Put a color drop in the milk.",
+                      "file":  "milkColor.wav"
+                  },
+                  {
+                      "id":  "milkSoap",
+                      "text":  "Touch the color with soap. Watch it swirl!",
+                      "file":  "milkSoap.wav"
+                  },
+                  {
+                      "id":  "marble",
+                      "text":  "Tap the ball to roll it. Try moving a ramp.",
+                      "file":  "marble.wav"
+                  },
+                  {
+                      "id":  "robotStart",
+                      "text":  "Tap the robot to make it draw.",
+                      "file":  "robotStart.wav"
+                  },
+                  {
+                      "id":  "robotStop",
+                      "text":  "Tap the robot to stop. Try a new pen color.",
+                      "file":  "robotStop.wav"
+                  },
+                  {
+                      "id":  "robotPaper",
+                      "text":  "Your drawing is full. Tap the paper for a new one.",
+                      "file":  "robotPaper.wav"
+                  },
+                  {
+                      "id":  "rocketPump",
+                      "text":  "Pump some air into your balloon.",
+                      "file":  "rocketPump.wav"
+                  },
+                  {
+                      "id":  "rocketGo",
+                      "text":  "Let go! Watch your balloon rocket fly.",
+                      "file":  "rocketGo.wav"
+                  },
+                  {
+                      "id":  "rocketWatch",
+                      "text":  "Watch it fly! The air pushes it along.",
+                      "file":  "rocketWatch.wav"
+                  },
+                  {
+                      "id":  "rocketBack",
+                      "text":  "Bring your balloon back for another go.",
+                      "file":  "rocketBack.wav"
+                  },
+                  {
+                      "id":  "foamPour",
+                      "text":  "Pour the starter liquid into the bottle.",
+                      "file":  "foamPour.wav"
+                  },
+                  {
+                      "id":  "foamSoap",
+                      "text":  "Add soap to catch the bubbles.",
+                      "file":  "foamSoap.wav"
+                  },
+                  {
+                      "id":  "foamYeast",
+                      "text":  "Tip in the yeast mix. Watch the foam grow!",
+                      "file":  "foamYeast.wav"
+                  },
+                  {
+                      "id":  "foamWatch",
+                      "text":  "Look at the foam! The reaction will finish by itself.",
+                      "file":  "foamWatch.wav"
+                  },
+                  {
+                      "id":  "foamAgain",
+                      "text":  "Ready for a fresh bottle? Tap start again.",
+                      "file":  "foamAgain.wav"
+                  },
+                  {
+                      "id":  "windOn",
+                      "text":  "Turn on the fan. Can your parachute float?",
+                      "file":  "windOn.wav"
+                  },
+                  {
+                      "id":  "windPlay",
+                      "text":  "Try a bigger parachute, or add a weight.",
+                      "file":  "windPlay.wav"
+                  },
+                  {
+                      "id":  "wire",
+                      "text":  "Tap the battery to connect the ready wires.",
+                      "file":  "wire.wav"
+                  },
+                  {
+                      "id":  "switch",
+                      "text":  "Tap the switch to turn on your invention.",
+                      "file":  "switch.wav"
+                  },
+                  {
+                      "id":  "circuitPlay",
+                      "text":  "It works! Turn it off, or try the fan.",
+                      "file":  "circuitPlay.wav"
+                  },
+                  {
+                      "id":  "rain",
+                      "text":  "Tap the cloud. Watch water turn into rain.",
+                      "file":  "rain.wav"
+                  },
+                  {
+                      "id":  "weatherPlay",
+                      "text":  "Try the sun, rain, or snow.",
+                      "file":  "weatherPlay.wav"
+                  },
+                  {
+                      "id":  "dip",
+                      "text":  "Dip the wand into the bubble mixture.",
+                      "file":  "dip.wav"
+                  },
+                  {
+                      "id":  "blow",
+                      "text":  "Blow bubbles! Tap a bubble to pop it.",
+                      "file":  "blow.wav"
+                  },
+                  {
+                      "id":  "lightOn",
+                      "text":  "Turn on your torch.",
+                      "file":  "lightOn.wav"
+                  },
+                  {
+                      "id":  "prism",
+                      "text":  "Move the triangle into the light.",
+                      "file":  "prism.wav"
+                  },
+                  {
+                      "id":  "rainbow",
+                      "text":  "A rainbow! Turn the mirror and try again.",
+                      "file":  "rainbow.wav"
+                  },
+                  {
+                      "id":  "chain",
+                      "text":  "Give the first domino a nudge.",
+                      "file":  "chain.wav"
+                  },
+                  {
+                      "id":  "chainWatch",
+                      "text":  "Watch one piece set off the next!",
+                      "file":  "chainWatch.wav"
+                  },
+                  {
+                      "id":  "chainGap",
+                      "text":  "There is a gap. Add a piece to join it up.",
+                      "file":  "chainGap.wav"
+                  },
+                  {
+                      "id":  "choose",
+                      "text":  "Pick a picture to play. Your other experiments will stay here.",
+                      "file":  "choose.wav"
+                  }
+              ]
+}

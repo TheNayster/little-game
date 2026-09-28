@@ -1,0 +1,161 @@
+{
+  "date": "2026-09-28",
+  "scope": "Desktop in-app browser prototype only",
+  "activitySelections": [
+    {
+      "actions": [
+        "Fizz!",
+        "Color"
+      ],
+      "extraClosed": true,
+      "title": "Lava jars"
+    },
+    {
+      "actions": [
+        "Melt"
+      ],
+      "extraClosed": true,
+      "title": "Dinosaur ice rescue"
+    },
+    {
+      "actions": [
+        "Roll",
+        "Ramp"
+      ],
+      "extraClosed": true,
+      "title": "Marble playground"
+    },
+    {
+      "actions": [
+        "Stretch",
+        "Quick pull",
+        "Color"
+      ],
+      "extraClosed": true,
+      "title": "Stretchy slime"
+    },
+    {
+      "actions": [
+        "Soap",
+        "Color"
+      ],
+      "extraClosed": true,
+      "title": "Magic milk"
+    },
+    {
+      "actions": [
+        "New paper"
+      ],
+      "extraClosed": true,
+      "title": "Drawing robot"
+    },
+    {
+      "actions": [
+        "Bring back"
+      ],
+      "extraClosed": true,
+      "title": "Balloon rocket"
+    },
+    {
+      "actions": [
+        "Again"
+      ],
+      "extraClosed": true,
+      "title": "Foam fountain"
+    },
+    {
+      "actions": [
+        "Fan off",
+        "Bigger",
+        "Heavier"
+      ],
+      "extraClosed": true,
+      "title": "Wind tube"
+    },
+    {
+      "actions": [
+        "Off",
+        "Fan"
+      ],
+      "extraClosed": true,
+      "title": "Light-up inventions"
+    },
+    {
+      "actions": [
+        "Rain",
+        "Sun",
+        "Snow"
+      ],
+      "extraClosed": true,
+      "title": "Mini weather world"
+    },
+    {
+      "actions": [
+        "Blow"
+      ],
+      "extraClosed": true,
+      "title": "Bubble garden"
+    },
+    {
+      "actions": [
+        "Turn",
+        "Light off"
+      ],
+      "extraClosed": true,
+      "title": "Rainbow mirrors"
+    },
+    {
+      "actions": [
+        "Go!",
+        "Bell",
+        "Ramp"
+      ],
+      "extraClosed": true,
+      "title": "Family chain reaction"
+    }
+  ],
+  "observed": [
+    "Slime: restart, undo restored torn state, then restart / Pour / Mix / Stretch",
+    "Prior selected activity and experiment state retained after reload",
+    "Pointer taps on balloon: Pump -> Go -> Watch",
+    "Correct rocketWatch.wav played with currentTime 0.003404 and duration 4.20898; no media error",
+    "Four together: player 2 chooser opened while the other three experiments stayed visible"
+  ],
+  "viewports": [
+    {
+      "width": 1024,
+      "height": 768,
+      "visual": true,
+      "scrollWidth": 1009
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "visual": true,
+      "scrollWidth": 390,
+      "primaryHeight": 91.927
+    },
+    {
+      "width": 740,
+      "height": 360,
+      "visual": true,
+      "scrollWidth": 725,
+      "primaryHeight": 48
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "visual": false,
+      "scrollWidth": 305,
+      "primaryWidth": 82,
+      "primaryHeight": 91.927
+    }
+  ],
+  "consoleErrorsOrWarnings": [],
+  "limits": [
+    "No child usability or human voice-quality review",
+    "No physical multitouch, phone/iPad, Unity or network qualification",
+    "Browser zoom required screenshot-based pointer targeting; keyboard activation used for repeatable controls"
+  ],
+  "viewportRestored": true
+}

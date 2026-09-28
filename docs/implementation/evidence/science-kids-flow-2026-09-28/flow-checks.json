@@ -1,0 +1,260 @@
+{
+  "date": "2026-09-28",
+  "scope": "Browser prototype flow and generated hint files; no Unity, device, network, or child-usability qualification",
+  "total": 15,
+  "passed": 15,
+  "results": [
+    {
+      "name": "all 14 starters have one primary, at most three picture actions, and short recorded help",
+      "passed": true
+    },
+    {
+      "name": "slime progresses Pour → Mix → Stretch → tear → Squish using actual material state",
+      "passed": true
+    },
+    {
+      "name": "rocket pump and launch lead to a passive flight and a return action",
+      "passed": true
+    },
+    {
+      "name": "foam requires all three real ingredients and finishes without another tap",
+      "passed": true
+    },
+    {
+      "name": "ice melt remains finite and toy selection disappears once melting starts",
+      "passed": true
+    },
+    {
+      "name": "milk places color before soap, soap moves existing drops",
+      "passed": true
+    },
+    {
+      "name": "circuit connects a loop before switching and can recover edited incomplete wires",
+      "passed": true
+    },
+    {
+      "name": "bubble wand dips, blows finite film, and returns to Dip",
+      "passed": true
+    },
+    {
+      "name": "mirror controls follow actual beam intersection and torch power",
+      "passed": true
+    },
+    {
+      "name": "chain repairs a gap, waits during motion, and leaves the design intact",
+      "passed": true
+    },
+    {
+      "name": "chain picture tools place a visible piece without an unexplained second step",
+      "passed": true
+    },
+    {
+      "name": "lava, marble, robot, wind, weather actions change their own physical controls",
+      "passed": true
+    },
+    {
+      "name": "every flow stays bounded for repeated input and version-1 save round trips",
+      "passed": true
+    },
+    {
+      "name": "four independently chosen flows never mutate another player through a button",
+      "passed": true
+    },
+    {
+      "name": "all 38 local hint clips match scripts and contain non-silent 22.05kHz mono PCM",
+      "passed": true
+    }
+  ],
+  "clips": [
+    {
+      "id": "lava",
+      "seconds": 5.11,
+      "peak": 14103
+    },
+    {
+      "id": "ice",
+      "seconds": 4.34,
+      "peak": 15591
+    },
+    {
+      "id": "iceFree",
+      "seconds": 4.82,
+      "peak": 16456
+    },
+    {
+      "id": "slimeAdd",
+      "seconds": 2.7,
+      "peak": 14155
+    },
+    {
+      "id": "slimeMix",
+      "seconds": 4.72,
+      "peak": 14484
+    },
+    {
+      "id": "slimePlay",
+      "seconds": 4.55,
+      "peak": 14300
+    },
+    {
+      "id": "slimeTorn",
+      "seconds": 2.82,
+      "peak": 13461
+    },
+    {
+      "id": "milkColor",
+      "seconds": 2.52,
+      "peak": 14133
+    },
+    {
+      "id": "milkSoap",
+      "seconds": 4.33,
+      "peak": 13195
+    },
+    {
+      "id": "marble",
+      "seconds": 4.6,
+      "peak": 16562
+    },
+    {
+      "id": "robotStart",
+      "seconds": 2.82,
+      "peak": 13934
+    },
+    {
+      "id": "robotStop",
+      "seconds": 4.81,
+      "peak": 16834
+    },
+    {
+      "id": "robotPaper",
+      "seconds": 4.75,
+      "peak": 13934
+    },
+    {
+      "id": "rocketPump",
+      "seconds": 2.69,
+      "peak": 15193
+    },
+    {
+      "id": "rocketGo",
+      "seconds": 4.12,
+      "peak": 14595
+    },
+    {
+      "id": "rocketWatch",
+      "seconds": 4.21,
+      "peak": 15814
+    },
+    {
+      "id": "rocketBack",
+      "seconds": 3.01,
+      "peak": 13930
+    },
+    {
+      "id": "foamPour",
+      "seconds": 2.9,
+      "peak": 14400
+    },
+    {
+      "id": "foamSoap",
+      "seconds": 2.71,
+      "peak": 13175
+    },
+    {
+      "id": "foamYeast",
+      "seconds": 4.36,
+      "peak": 13971
+    },
+    {
+      "id": "foamWatch",
+      "seconds": 4.84,
+      "peak": 14366
+    },
+    {
+      "id": "foamAgain",
+      "seconds": 4.42,
+      "peak": 14348
+    },
+    {
+      "id": "windOn",
+      "seconds": 4.43,
+      "peak": 12884
+    },
+    {
+      "id": "windPlay",
+      "seconds": 3.62,
+      "peak": 15888
+    },
+    {
+      "id": "wire",
+      "seconds": 3.36,
+      "peak": 15018
+    },
+    {
+      "id": "switch",
+      "seconds": 3.2,
+      "peak": 14378
+    },
+    {
+      "id": "circuitPlay",
+      "seconds": 4.89,
+      "peak": 16515
+    },
+    {
+      "id": "rain",
+      "seconds": 4.58,
+      "peak": 13471
+    },
+    {
+      "id": "weatherPlay",
+      "seconds": 3.05,
+      "peak": 16478
+    },
+    {
+      "id": "dip",
+      "seconds": 2.86,
+      "peak": 13797
+    },
+    {
+      "id": "blow",
+      "seconds": 4.18,
+      "peak": 13754
+    },
+    {
+      "id": "lightOn",
+      "seconds": 2.12,
+      "peak": 11327
+    },
+    {
+      "id": "prism",
+      "seconds": 2.8,
+      "peak": 16475
+    },
+    {
+      "id": "rainbow",
+      "seconds": 4.26,
+      "peak": 16692
+    },
+    {
+      "id": "chain",
+      "seconds": 2.69,
+      "peak": 12975
+    },
+    {
+      "id": "chainWatch",
+      "seconds": 2.92,
+      "peak": 14234
+    },
+    {
+      "id": "chainGap",
+      "seconds": 4.26,
+      "peak": 11791
+    },
+    {
+      "id": "choose",
+      "seconds": 5.23,
+      "peak": 12546
+    }
+  ]
+}
