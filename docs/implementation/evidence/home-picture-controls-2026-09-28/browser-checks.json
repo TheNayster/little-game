@@ -1,0 +1,1064 @@
+{
+  "scope": "Browser previews only",
+  "checks": [
+    {
+      "check": "page turn cancels speech",
+      "page": "2 / 8",
+      "paused": true
+    },
+    {
+      "check": "Player 2 bookmark",
+      "page": "3 / 8"
+    },
+    {
+      "check": "Player 3 bookmark",
+      "page": "4 / 8"
+    },
+    {
+      "check": "Player 4 bookmark",
+      "page": "5 / 8"
+    },
+    {
+      "check": "Reload player 1",
+      "label": "Big Trucks, Little Bridge\nKeep my page · 2 / 8"
+    },
+    {
+      "check": "Reload player 2",
+      "label": "Big Trucks, Little Bridge\nKeep my page · 3 / 8"
+    },
+    {
+      "check": "Reload player 3",
+      "label": "Big Trucks, Little Bridge\nKeep my page · 4 / 8"
+    },
+    {
+      "check": "Reload player 4",
+      "label": "Big Trucks, Little Bridge\nKeep my page · 5 / 8"
+    },
+    {
+      "check": "name cancelled by next page",
+      "page": "2 / 14",
+      "paused": true
+    },
+    {
+      "check": "book opens quietly",
+      "page": "2 / 14",
+      "paused": true,
+      "title": "Player 1 · Hello, Dinosaurs!",
+      "tools": [
+        "Read to me",
+        "Read again",
+        "Hear sound"
+      ]
+    },
+    {
+      "check": "book opens quietly",
+      "page": "2 / 8",
+      "paused": true,
+      "title": "Player 1 · Big Trucks, Little Bridge",
+      "tools": [
+        "Read to me",
+        "Read again",
+        "Hear sound"
+      ]
+    },
+    {
+      "check": "book opens quietly",
+      "page": "1 / 8",
+      "paused": true,
+      "title": "Player 1 · Rocket to the Moon",
+      "tools": [
+        "Read to me",
+        "Read again",
+        "Hear sound"
+      ]
+    },
+    {
+      "check": "book opens quietly",
+      "page": "1 / 8",
+      "paused": true,
+      "title": "Player 1 · The Fairy Garden Surprise",
+      "tools": [
+        "Read to me",
+        "Read again",
+        "Hear sound"
+      ]
+    },
+    {
+      "check": "book opens quietly",
+      "page": "1 / 8",
+      "paused": true,
+      "title": "Player 1 · The Princess and the Lost Star",
+      "tools": [
+        "Read to me",
+        "Read again",
+        "Hear sound"
+      ]
+    },
+    {
+      "check": "book opens quietly",
+      "page": "1 / 8",
+      "paused": true,
+      "title": "Player 1 · The Mermaid and the Rainbow Shell",
+      "tools": [
+        "Read to me",
+        "Read again",
+        "Hear sound"
+      ]
+    },
+    {
+      "check": "automatic page turning",
+      "page": "4 / 8",
+      "paused": false,
+      "time": 7.702098
+    },
+    {
+      "check": "optional picture action selects Fan",
+      "pressed": "true"
+    },
+    {
+      "check": "sound follows selected dinosaur",
+      "paused": false,
+      "source": "http://127.0.0.1:8763/Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Books/hello-dinosaurs/audio/effect-7.wav"
+    },
+    {
+      "check": "closing reader stops sound",
+      "paused": true
+    },
+    {
+      "check": "narration lifecycle",
+      "observed": "8.168292-second page completed; Read again then Pause retained 0.072482 seconds; Keep reading resumed before manual page turn"
+    },
+    {
+      "action": "Keep reading",
+      "check": "final reader revision reload and pause",
+      "page": "2 / 14",
+      "paused": true,
+      "seconds": 0.061634
+    }
+  ],
+  "layouts": [
+    {
+      "height": 768,
+      "scroll": 1024,
+      "tools": [
+        {
+          "h": 48,
+          "inside": true,
+          "label": "Books",
+          "w": 97.21875,
+          "x": 12,
+          "y": 10
+        },
+        {
+          "h": 52,
+          "inside": true,
+          "label": "More reading options",
+          "w": 52,
+          "x": 960,
+          "y": 10
+        },
+        {
+          "h": 80,
+          "inside": true,
+          "label": "Previous page",
+          "w": 62,
+          "x": 10,
+          "y": 305.59375
+        },
+        {
+          "h": 80,
+          "inside": true,
+          "label": "Next page",
+          "w": 62,
+          "x": 952,
+          "y": 305.59375
+        },
+        {
+          "h": 80,
+          "inside": true,
+          "label": "Keep reading",
+          "w": 180,
+          "x": 229.9947967529297,
+          "y": 648
+        },
+        {
+          "h": 80,
+          "inside": true,
+          "label": "Read again",
+          "w": 180,
+          "x": 421.9948120117187,
+          "y": 648
+        },
+        {
+          "h": 80,
+          "inside": true,
+          "label": "Hear sound",
+          "w": 180,
+          "x": 613.9948120117188,
+          "y": 648
+        }
+      ],
+      "width": 1024,
+      "words": {
+        "h": 83,
+        "scroll": 83
+      }
+    },
+    {
+      "height": 360,
+      "scroll": 740,
+      "tools": [
+        {
+          "h": 44,
+          "inside": true,
+          "label": "Books",
+          "w": 97.21875,
+          "x": 12,
+          "y": 5
+        },
+        {
+          "h": 48,
+          "inside": true,
+          "label": "More reading options",
+          "w": 48,
+          "x": 680,
+          "y": 5
+        },
+        {
+          "h": 58.79166793823242,
+          "inside": true,
+          "label": "Previous page",
+          "w": 62,
+          "x": 10,
+          "y": 132.6041717529297
+        },
+        {
+          "h": 58.79166793823242,
+          "inside": true,
+          "label": "Next page",
+          "w": 62,
+          "x": 668,
+          "y": 132.6041717529297
+        },
+        {
+          "h": 48,
+          "inside": true,
+          "label": "Keep reading",
+          "w": 180,
+          "x": 88,
+          "y": 287
+        },
+        {
+          "h": 48,
+          "inside": true,
+          "label": "Read again",
+          "w": 180,
+          "x": 280,
+          "y": 287
+        },
+        {
+          "h": 48,
+          "inside": true,
+          "label": "Hear sound",
+          "w": 180,
+          "x": 472,
+          "y": 287
+        }
+      ],
+      "width": 740,
+      "words": {
+        "h": 44,
+        "scroll": 44
+      }
+    },
+    {
+      "height": 640,
+      "scroll": 320,
+      "tools": [
+        {
+          "h": 59.39583587646485,
+          "inside": true,
+          "label": "Books",
+          "w": 60,
+          "x": 8,
+          "y": 10
+        },
+        {
+          "h": 52,
+          "inside": true,
+          "label": "More reading options",
+          "w": 52,
+          "x": 260,
+          "y": 10
+        },
+        {
+          "h": 64,
+          "inside": true,
+          "label": "Previous page",
+          "w": 48,
+          "x": 10,
+          "y": 256
+        },
+        {
+          "h": 64,
+          "inside": true,
+          "label": "Next page",
+          "w": 48,
+          "x": 262,
+          "y": 256
+        },
+        {
+          "h": 93.1875,
+          "inside": true,
+          "label": "Keep reading",
+          "w": 94.92708587646484,
+          "x": 9.604166984558104,
+          "y": 508.8125
+        },
+        {
+          "h": 93.1875,
+          "inside": true,
+          "label": "Read again",
+          "w": 94.9375,
+          "x": 112.53125,
+          "y": 508.8125
+        },
+        {
+          "h": 93.1875,
+          "inside": true,
+          "label": "Hear sound",
+          "w": 94.92708587646484,
+          "x": 215.46875,
+          "y": 508.8125
+        }
+      ],
+      "width": 320,
+      "words": {
+        "h": 83,
+        "scroll": 83
+      }
+    }
+  ],
+  "science": [
+    {
+      "extras": [
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Rose",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Blue",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Purple",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Gold",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Mint",
+          "w": 48
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Cool water",
+          "w": 187.6666717529297
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Fizz!"
+        },
+        {
+          "icon": true,
+          "text": "Color"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Lava jars",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Little hammer",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Water dropper",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Warm water",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Cool water",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Change dinosaur",
+          "w": 244.6666717529297
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Chip!"
+        },
+        {
+          "icon": true,
+          "text": "Water"
+        },
+        {
+          "icon": true,
+          "text": "Dinosaur"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Dinosaur ice rescue",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Felt surface",
+          "w": 244.6666717529297
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Roll"
+        },
+        {
+          "icon": true,
+          "text": "Ramp"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Marble playground",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Rose",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Blue",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Purple",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Gold",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Mint",
+          "w": 48
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Add activator",
+          "w": 187.6666717529297
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Stir",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Squish together",
+          "w": 117.83333587646484
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Pour"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Stretchy slime",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Rose",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Blue",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Purple",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Gold",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Mint",
+          "w": 48
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Color dropper",
+          "w": 187.6666717529297
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Soap wand",
+          "w": 244.6666717529297
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Color"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Magic milk",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Rose",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Blue",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Purple",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Gold",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Mint",
+          "w": 48
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "New paper",
+          "w": 244.6666717529297
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Go!"
+        },
+        {
+          "icon": true,
+          "text": "Color"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [
+        {
+          "icon": true,
+          "label": "Motor speed"
+        },
+        {
+          "icon": true,
+          "label": "Off-center weight"
+        }
+      ],
+      "title": "Drawing robot",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Add weight",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Add air",
+          "w": 117.83333587646484
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Pump"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Balloon rocket",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Rose",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Blue",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Purple",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Gold",
+          "w": 48
+        },
+        {
+          "h": 48,
+          "icon": false,
+          "swatch": true,
+          "text": "Mint",
+          "w": 48
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Starter liquid",
+          "w": 187.6666717529297
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Soap",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Yeast mixture",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Wide bowl",
+          "w": 244.6666717529297
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Pour"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Foam fountain",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Add weight",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Remove weight",
+          "w": 117.83333587646484
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Fan on"
+        },
+        {
+          "icon": true,
+          "text": "Bigger"
+        },
+        {
+          "icon": true,
+          "text": "Heavier"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [
+        {
+          "icon": true,
+          "label": "Fan strength"
+        }
+      ],
+      "title": "Wind tube",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Lamp",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Fan",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Buzzer",
+          "w": 244.6666717529297
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Connect"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Light-up inventions",
+      "width": 320
+    },
+    {
+      "extras": [],
+      "main": [
+        {
+          "icon": true,
+          "text": "Rain"
+        },
+        {
+          "icon": true,
+          "text": "Sun"
+        },
+        {
+          "icon": true,
+          "text": "Snow"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [
+        {
+          "icon": true,
+          "label": "Sun warmth"
+        },
+        {
+          "icon": true,
+          "label": "Cool the air"
+        },
+        {
+          "icon": true,
+          "label": "Wind"
+        }
+      ],
+      "title": "Mini weather world",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Square wand",
+          "w": 244.6666717529297
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Dip"
+        },
+        {
+          "icon": true,
+          "text": "Big bubble"
+        },
+        {
+          "icon": true,
+          "text": "Square wand"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [
+        {
+          "icon": true,
+          "label": "Blowing strength"
+        },
+        {
+          "icon": true,
+          "label": "Wind"
+        }
+      ],
+      "title": "Bubble lab",
+      "width": 320
+    },
+    {
+      "extras": [],
+      "main": [
+        {
+          "icon": true,
+          "text": "Move"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [
+        {
+          "icon": true,
+          "label": "Mirror angle"
+        }
+      ],
+      "title": "Rainbow mirrors",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Domino",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Ramp",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Bell",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Gap",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Join chain",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Run together",
+          "w": 117.83333587646484
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Go!"
+        },
+        {
+          "icon": true,
+          "text": "Bell"
+        },
+        {
+          "icon": true,
+          "text": "Ramp"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Family chain reaction",
+      "width": 320
+    },
+    {
+      "extras": [
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Clear water",
+          "w": 117.83333587646484
+        },
+        {
+          "h": 64,
+          "icon": true,
+          "swatch": false,
+          "text": "Stir together",
+          "w": 117.83333587646484
+        }
+      ],
+      "main": [
+        {
+          "icon": true,
+          "text": "Red"
+        },
+        {
+          "icon": true,
+          "text": "Yellow"
+        },
+        {
+          "icon": true,
+          "text": "Blue"
+        }
+      ],
+      "scroll": 305,
+      "sliders": [],
+      "title": "Liquid color lab",
+      "width": 320
+    }
+  ],
+  "logs": [],
+  "limits": [
+    "Browser state and rendered views only; no human voice-quality check",
+    "No Unity, phone/iPad, server or physical multitouch qualification"
+  ]
+}

@@ -953,6 +953,8 @@ Add play observations: can the younger child change character and start a differ
 
 ## 25. Reading nook and interactive books
 
+**Accepted picture-button style — September 28:** the user wants the new science style retained across mini-games and reading. [Control review, implementation and evidence](implementation/home-picture-controls-2026-09-28.html): all fifteen browser science activities now have pictured optional tools; a matching six-book reader preview uses large, translucent picture controls, deliberate Read to me, fixed arrows and independent bookmarks for four readers. Existing book art/audio is reused. Fifty-five test groups pass. This is a browser preview, not a native game or device update; native cooking/coloring/reader integration and the broader Home backlog remain open.
+
 **Placement correction, September 26:** the shared book collection goes on the **first floor around the living room**, accessible to everyone. Do not seed separate bedroom/secret-room collections. Carryable books may travel upstairs; all four players retain independent reading access and bookmarks. [Applied book/plush/device research](implementation/home-reading-quiet-play-research-2026-09-26.md).
 
 **Yes: picking up a house book can open a full-screen, talking, interactive picture book.** Build this as a reusable Unity book reader. Each book supplies pages, artwork, recorded narration, and a few interactive picture regions. This suits the existing illustrated style and can run offline; a live AI model is unnecessary on the iPads.

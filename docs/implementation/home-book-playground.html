@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Little Weeps · Our books</title><link rel="icon" href="data:,"><link rel="stylesheet" href="science-playground/style.css?v=3"><link rel="stylesheet" href="book-playground/style.css"></head>
+<body>
+<div id="library"><header><div><span class="eyebrow">Little Weeps · Reading corner</span><h1>Our books</h1></div><nav class="preview-nav" aria-label="Play and read"><a href="home-science-playground.html">Science</a><a href="home-book-playground.html" aria-current="page">Books</a></nav></header>
+<main><div class="family-bar"><nav id="players" aria-label="Choose your reader"></nav><details class="settings"><summary>Grown-ups</summary><div class="preferences"><a href="home-picture-controls-2026-09-28.html">Research &amp; notes</a><p>Existing six book drafts, reused to review the controls. Story replacements remain on the plan.</p></div></details></div>
+<section class="workspace library"><p>Pick a book. Your page stays here.</p><div id="shelf" class="book-grid"></div></section>
+<div class="bottom"><span id="save" role="status">Loading books…</span><span>Browser preview · Phone app unchanged</span></div></main></div>
+<section id="reader" aria-label="Picture book reader" hidden>
+ <canvas id="page-art" aria-label="Book illustration"></canvas><div id="animal-choices" hidden></div>
+ <div class="reader-top"><div id="book-back"></div><div class="reader-heading"><span id="reader-owner"></span><h2 id="page-title"></h2></div><details id="book-options"><summary aria-label="More reading options"></summary><div class="reading-options"><label><input id="auto-pages" type="checkbox"> Turn pages after reading</label><label><input id="show-words" type="checkbox"> Show words</label><p>Opening a book is quiet. Tap Read to me when you want to listen.</p><a href="home-science-playground.html">Back to science</a></div></details></div>
+ <div id="page-back" class="page-arrow previous"></div><div id="page-next" class="page-arrow next"></div>
+ <div class="reader-bottom"><p id="story-words"></p><div id="reading-tools"></div><div class="reader-status"><span id="page-count"></span><span id="audio-status" role="status"></span></div></div>
+ <audio id="book-audio" preload="none" aria-label="Book narration or selected sound"></audio>
+</section><script type="module" src="book-playground/app.mjs"></script>
+</body></html>

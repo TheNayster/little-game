@@ -1,0 +1,88 @@
+{
+  "date": "2026-09-27",
+  "scope": "Pure browser-prototype model; no Unity, network, or physical-device qualification",
+  "total": 20,
+  "passed": 20,
+  "results": [
+    {
+      "name": "15 complete workspaces per player, no shared references",
+      "passed": true
+    },
+    {
+      "name": "warm lava reacts faster but cannot create extra reserve",
+      "passed": true
+    },
+    {
+      "name": "ice responds to finite local heat; warm drops melt more",
+      "passed": true
+    },
+    {
+      "name": "marble changes path with geometry and rough surface slows it",
+      "passed": true
+    },
+    {
+      "name": "slime formation, slow stretch, fast tear and reunion",
+      "passed": true
+    },
+    {
+      "name": "soap advects existing dye even at exact-center tap and decays",
+      "passed": true
+    },
+    {
+      "name": "robot needs power; imbalance changes trace; history bounded",
+      "passed": true
+    },
+    {
+      "name": "rocket requires gas; larger reserve travels farther; added mass slows",
+      "passed": true
+    },
+    {
+      "name": "foam catalyst changes rate, cannot replace reactant; soap traps gas",
+      "passed": true
+    },
+    {
+      "name": "wind lift responds to canopy and mass, fan off returns object",
+      "passed": true
+    },
+    {
+      "name": "circuit requires a closed load loop and rejects shorts",
+      "passed": true
+    },
+    {
+      "name": "water is conserved; condensation required before precipitation",
+      "passed": true
+    },
+    {
+      "name": "bubbles require film; pop affects only selected bubble",
+      "passed": true
+    },
+    {
+      "name": "reflection changes beam; prism must intersect; source off stops rainbow",
+      "passed": true
+    },
+    {
+      "name": "chain gap blocks; completed individual run preserves design",
+      "passed": true
+    },
+    {
+      "name": "four joined chain sections complete; leaving player does not block others",
+      "passed": true
+    },
+    {
+      "name": "same activity on four players: reset and navigation never clear sibling",
+      "passed": true
+    },
+    {
+      "name": "pause freezes simulations, resume continues; save restores all 60 states",
+      "passed": true
+    },
+    {
+      "name": "corrupt saves, wrong types, invalid running queues rejected",
+      "passed": true
+    },
+    {
+      "name": "stress inputs stay bounded and complete saved model remains valid",
+      "passed": true
+    }
+  ]
+}

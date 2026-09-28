@@ -2,6 +2,19 @@
 const common='stroke="#315b60" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"';
 const bottle='<rect x="29" y="21" width="42" height="68" rx="12" fill="#90d9df"/><path d="M30 57h40v19q0 12-12 12H42q-12 0-12-12z" fill="#6cbcbf"/><rect x="37" y="10" width="26" height="16" rx="4" fill="#ffe5a6"/>';
 const paths={
+ book:'<path d="M50 22Q25 9 8 20v61q24-9 42 1 18-10 42-1V20Q75 9 50 22z" fill="#fff3d3"/><path d="M50 22v60M20 34l18 3M20 48l18 3M62 37l18-3M62 51l18-3" fill="none"/>',
+ pause:'<circle cx="50" cy="50" r="40" fill="#f0d28b"/><path d="M36 30v40M64 30v40" stroke="#315b60" stroke-width="12"/>',
+ previous:'<path d="m60 18-32 32 32 32" fill="none" stroke-width="12"/>',
+ next:'<path d="m40 18 32 32-32 32" fill="none" stroke-width="12"/>',
+ close:'<path d="m25 25 50 50m0-50L25 75" fill="none" stroke-width="10"/>',
+ smooth:'<path d="M12 67h76" stroke="#d0a06f" stroke-width="14"/><circle cx="50" cy="37" r="18" fill="#9ac5e2"/>',
+ felt:'<path d="m12 67 9-9 9 9 9-9 9 9 9-9 9 9 9-9 9 9" fill="none" stroke="#96ba8d" stroke-width="12"/><circle cx="50" cy="32" r="18" fill="#9ac5e2"/>',
+ wind:'<path d="M10 32h54q24 0 15-17-8-12-19 0M10 50h76M10 68h54q24 0 15 17-8 12-19 0" fill="none" stroke="#86b9d1" stroke-width="7"/>',
+ gap:'<rect x="9" y="23" width="22" height="60" rx="5" fill="#baa1db"/><rect x="69" y="23" width="22" height="60" rx="5" fill="#edbd78"/><path d="M40 73h19" stroke-dasharray="4 7"/>',
+ family:'<circle cx="32" cy="29" r="13" fill="#8db5ce"/><circle cx="69" cy="29" r="13" fill="#c0a0d4"/><path d="M9 83V64q23-27 45 0v19M48 83V64q22-27 44 0v19" fill="#cbe3ba"/>',
+ removeWeight:'<path d="m21 42-9 43h62L64 42z" fill="#a8bac2"/><path d="M30 40V26h25v14M62 17h28" fill="none" stroke-width="7"/>',
+ wide:'<path d="M8 24h84M13 24v57q37 15 74 0V24" fill="#b6e1e6"/>',
+ narrow:'<path d="M34 14h32M39 14v30L25 74q-8 20 25 20t25-20L61 44V14" fill="#b6e1e6"/>',
  hammer:'<path d="m49 33-19 55q-2 8 9 10 7 1 10-7l17-53" fill="#d4a46c"/><g transform="rotate(18 52 28)"><rect x="15" y="9" width="73" height="38" rx="9" fill="#88b8c4"/><path d="M29 12v30" stroke="#d7f5f3" stroke-width="8"/></g>',
  water:bottle.replaceAll('#90d9df','#b3e3f3').replaceAll('#6cbcbf','#5daed9'),
  liquid0:bottle.replaceAll('#90d9df','#f6b2b9').replaceAll('#6cbcbf','#e74358'),

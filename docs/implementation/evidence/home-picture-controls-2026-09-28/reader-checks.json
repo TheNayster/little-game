@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-28",
+  "scope": "Browser reader controls, saved-page isolation and existing content integrity; not Unity or physical audio qualification",
+  "total": 8,
+  "passed": 8,
+  "results": [
+    {
+      "name": "four readers keep distinct pages and narration positions in the same title",
+      "passed": true
+    },
+    {
+      "name": "every title retains its own bookmark when another title is opened",
+      "passed": true
+    },
+    {
+      "name": "first and last page boundaries cannot wrap or erase progress",
+      "passed": true
+    },
+    {
+      "name": "changed content resets only its own bookmark; player settings survive",
+      "passed": true
+    },
+    {
+      "name": "malformed and future saves are rejected without changing their input",
+      "passed": true
+    },
+    {
+      "name": "pause and navigation invalidate delayed starts; new playback cannot be stopped by an old token",
+      "passed": true
+    },
+    {
+      "name": "all six existing books and 54 page recordings are present without changing story selection",
+      "passed": true
+    },
+    {
+      "name": "all story and dinosaur crop rectangles fit their existing atlases",
+      "passed": true
+    }
+  ]
+}

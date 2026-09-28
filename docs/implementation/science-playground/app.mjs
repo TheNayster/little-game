@@ -3,8 +3,10 @@ import {draw,handles} from './draw.mjs';
 import {kidFlow,performKidAction} from './kids-flow.mjs';
 import {picture} from './pictures.mjs';
 import {renderAdvanced} from './advanced.mjs';
+import {picButton} from './controls.mjs';
 
 const KEY='little-weeps-science-playground-v1';
+document.querySelectorAll('.preview-nav a').forEach((link,i)=>link.insertAdjacentHTML('afterbegin',picture(i?'book':'games')));
 let world=fresh(),storageBlocked=false,hadStored=false,dirty=false,lastSave=0;
 const saveLabel=document.querySelector('#save');
 try{const raw=localStorage.getItem(KEY);hadStored=!!raw;if(raw){const parsed=JSON.parse(raw),next=upgrade(parsed);if(parsed.version<VERSION){const backup=KEY+'-before-v2';if(!localStorage.getItem(backup))localStorage.setItem(backup,raw);dirty=true;}world=next;world.paused=false;}}
@@ -18,7 +20,6 @@ function sound(hz=480){
  if(!world.sound||voices>=3)return;
  try{audioContext??=new(window.AudioContext||window.webkitAudioContext)();if(audioContext.state==='suspended')audioContext.resume();const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.setValueAtTime(hz,audioContext.currentTime);g.gain.setValueAtTime(.025,audioContext.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+.13);o.connect(g).connect(audioContext.destination);o.start();o.stop(audioContext.currentTime+.15);voices++;o.onended=()=>voices--;}catch{}
 }
-function picButton(label,icon,click,className=''){const b=document.createElement('button');b.type='button';b.className=className;b.innerHTML=picture(icon)+`<span>${label}</span>`;b.onclick=click;return b;}
 function stopHint(panel){panel.audio.pause();panel.audio.currentTime=0;panel.listen.setAttribute('aria-pressed','false');panel.listen.innerHTML=picture('listen')+'<span>Listen</span>';}
 async function hear(panel){
  if(!panel.audio.paused){stopHint(panel);return;}

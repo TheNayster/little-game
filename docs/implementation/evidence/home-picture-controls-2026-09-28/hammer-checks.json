@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-28",
+  "scope": "Browser prototype hammer, bubble lab, liquid pigments and version-1 migration; no Unity/device/network qualification",
+  "total": 12,
+  "passed": 12,
+  "results": [
+    {
+      "name": "hammer cracks the struck ice locally, breaks on later taps, and never creates heat",
+      "passed": true
+    },
+    {
+      "name": "simple hammer flow fully rescues a draggable dinosaur and keeps particle effects bounded",
+      "passed": true
+    },
+    {
+      "name": "water melting and hammer chipping share the same retained ice",
+      "passed": true
+    },
+    {
+      "name": "bubble film requires real water, soap and mixing before dipping",
+      "passed": true
+    },
+    {
+      "name": "big bubbles spend more film, square wands still release round bubbles, pop is local",
+      "passed": true
+    },
+    {
+      "name": "exhausted mixture cannot be refilled by repeated stirring; a fresh batch preserves flying bubbles",
+      "passed": true
+    },
+    {
+      "name": "liquid pairs produce orange, green and purple independently of pour order",
+      "passed": true
+    },
+    {
+      "name": "ratios change shade, water dilutes, equal three colors become earthy instead of white",
+      "passed": true
+    },
+    {
+      "name": "liquid fill is bounded, settles without further taps, and resets only the chosen player",
+      "passed": true
+    },
+    {
+      "name": "version-1 migration preserves all 56 earlier workspaces and adds four separate color labs",
+      "passed": true
+    },
+    {
+      "name": "damaged/future saves are rejected and new records validate bounded shapes",
+      "passed": true
+    },
+    {
+      "name": "four players can hammer, mix bubbles and mix colors without cross-player command mutation",
+      "passed": true
+    }
+  ]
+}
