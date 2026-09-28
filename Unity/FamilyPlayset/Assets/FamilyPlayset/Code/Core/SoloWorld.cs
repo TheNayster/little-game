@@ -263,6 +263,7 @@ namespace LittleWeeps.Core
             changed|=AdvanceKitchen(seconds,out var kitchenVisible);visibleChange|=kitchenVisible;
             changed|=AdvanceMixing(seconds,out var mixingVisible);visibleChange|=mixingVisible;
             changed|=AdvanceIceRescue(seconds,out var iceVisible);visibleChange|=iceVisible;
+            changed|=AdvanceBubbleLab(seconds,out var bubblesVisible);visibleChange|=bubblesVisible;
             changed|=AdvanceKeepy(seconds,activePlayers);
             changed|=AdvanceStairs(seconds,activePlayers,out var roomCommitted);visibleChange|=roomCommitted;
             foreach(var toy in state.toys)

@@ -902,8 +902,8 @@
       "chapters": [
         30
       ],
-      "description": "Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Remaining science prototypes, all nine original stations and physical acceptance stay required.",
-      "evidence": "ice",
+      "description": "Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Candidate 192 adds the preparation-based bubble lab with four saved mixtures. Remaining science prototypes, all nine original stations and physical acceptance stay required.",
+      "evidence": "bubbles",
       "extraSource": ""
     },
     {
@@ -2473,12 +2473,12 @@
       "world": "home",
       "group": "Science experiments",
       "title": "Bubble workshop",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         30
       ],
-      "description": "Shared downstairs. Simple play: Tap a fan button to blow bubbles, then tap to pop them Explore together: Try different wand outlines and air strength; one child operates the fan, the other catches bubbles Factual constraint: Free soap bubbles tend toward a round shape; a square wand does not make permanent square floating bubbles Planned; not implemented in Unity.",
-      "evidence": "scienceart",
+      "description": "Shared downstairs. Simple play: Add water and soap, stir, dip a wand, blow bubbles and tap to pop Explore together: Four independent mixtures; explore wand outlines and air strength. Optional fan and shared catching play remain required Factual constraint: Free soap bubbles tend toward a round shape; a square wand does not make permanent square floating bubbles Candidate 192 adds native preparation, dipped film, big/little round bubbles, round/square wands, soft/strong air, direct popping and four saved independent trays with reset/undo. Fan/wind, broader shared catching and physical child/A10/audio acceptance remain open.",
+      "evidence": "bubbles",
       "extraSource": ""
     },
     {

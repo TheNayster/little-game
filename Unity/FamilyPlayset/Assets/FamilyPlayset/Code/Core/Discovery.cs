@@ -35,9 +35,10 @@ namespace LittleWeeps.Core
         public bool wide,outOfWater;
         public float magnetX=400,magnetY=110,ironX=140,ironY=315;
         public ColoringPage[] pages;
+        public BubbleTray[] bubbles=Array.Empty<BubbleTray>();
         public IceRescueTray[] ice=Array.Empty<IceRescueTray>();
         public MixingTray[] mixtures=Array.Empty<MixingTray>();
-        public DiscoveryWorkspace Copy(){var c=(DiscoveryWorkspace)MemberwiseClone();c.ice=(ice??Array.Empty<IceRescueTray>()).Select(t=>t.Copy()).ToArray();c.pages=pages.Select(p=>p.Copy()).ToArray();c.mixtures=(mixtures??Array.Empty<MixingTray>()).Select(t=>t.Copy()).ToArray();return c;}
+        public DiscoveryWorkspace Copy(){var c=(DiscoveryWorkspace)MemberwiseClone();c.bubbles=(bubbles??Array.Empty<BubbleTray>()).Select(t=>t.Copy()).ToArray();c.ice=(ice??Array.Empty<IceRescueTray>()).Select(t=>t.Copy()).ToArray();c.pages=pages.Select(p=>p.Copy()).ToArray();c.mixtures=(mixtures??Array.Empty<MixingTray>()).Select(t=>t.Copy()).ToArray();return c;}
     }
     public sealed partial class SoloWorld
     {
@@ -66,6 +67,7 @@ namespace LittleWeeps.Core
             bool Finite(float v,float min,float max)=>!float.IsNaN(v) && !float.IsInfinity(v) && v>=min && v<=max;
             foreach(var w in work)
             {
+                if(s.schema>=BubbleLab.Schema){if(w.bubbles==null || w.bubbles.Length!=1)throw new InvalidOperationException("Missing bubble tray.");BubbleLab.Validate(w.bubbles[0]);}else if(w.bubbles!=null && w.bubbles.Length>0)throw new InvalidOperationException("Bubble lab requires schema 20.");
                 if(s.schema>=IceRescue.Schema){if(w.ice==null || w.ice.Length!=1)throw new InvalidOperationException("Missing rescue tray.");IceRescue.Validate(w.ice[0]);}else if(w.ice!=null && w.ice.Length>0)throw new InvalidOperationException("Ice rescue requires schema 19.");
                 if(s.schema>=Mixing.Schema){if(w.mixtures==null || w.mixtures.Length!=Mixing.Modes)throw new InvalidOperationException("Missing mixing trays.");for(var mode=0;mode<Mixing.Modes;mode++)Mixing.Validate(w.mixtures[mode],mode);}
                 else if(w.mixtures!=null && w.mixtures.Length>0)throw new InvalidOperationException("Mixing requires schema 17.");
@@ -86,6 +88,7 @@ namespace LittleWeeps.Core
             if(c.item!=p.id)return "owner-only";
             var w=state.discovery.Single(v=>v.owner==p.id);
             var op=c.value;
+            if(op.StartsWith("bubble:"))return BubbleOperation(c,w);
             if(op.StartsWith("ice:"))return IceRescueOperation(c,w);
             if(op.StartsWith("mix:"))return MixingOperation(c,w);
             if(op.StartsWith("fill:") || op=="undo" || op=="redo")

@@ -683,9 +683,9 @@
   },
   "inventoryEntries": 339,
   "statusCounts": {
-    "Partial": 84,
+    "Partial": 85,
     "Playable prototype": 12,
-    "Planned": 227,
+    "Planned": 226,
     "Development only": 1,
     "Optional idea": 8,
     "Scenery only": 4,
@@ -694,15 +694,15 @@
   "sources": [
     {
       "path": "docs/bluey-game-research-2026-09-23.md",
-      "sha256": "2649030733db9d8f368734785798b9772235f2da6a7ed4e98bf6bd07d1fccdca"
+      "sha256": "762ec4f8a5d10e702d2d737c783faed7115f1389ed3caa595da865abf1e55cd3"
     },
     {
       "path": "docs/current-decisions.md",
-      "sha256": "9dab9a653329fba8c3837e544d33c143d3dbd30a719ff2a27ab4eaee39c01f06"
+      "sha256": "82f7c8e45d3a32352614680f469299ec2da590d89c0ee760f31dc38a551f476f"
     },
     {
       "path": "docs/family-playset-build-guide-2026-09-23.md",
-      "sha256": "61800a268bb024a3e64b14899bf4e3aac878c14683549e15b3c93a08e0bbb0d9"
+      "sha256": "7d578441aa88348848ab747aa0077ec4ce63ae04134997b078fd7cfcc2c9d8e6"
     },
     {
       "path": "docs/bluey-lets-play-reference-study-2026-09-25.md",
@@ -714,11 +714,11 @@
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
-      "sha256": "5a2c8a90a500c79216f1cb28b074ff9fd4c5c07f0dc9aa6808e75e2f70ed9969"
+      "sha256": "aca8340601fdabc8bf554e1ae81744c18dec6f82a2b556d9a0abda03ec688ccf"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
-      "sha256": "a101f72ca1e1ca91ebe05e4588f8ea4bb5d9040e650ef5cf6801d16b062fff10"
+      "sha256": "668bec12474de2a04c4ae6c41e3dca5e3e149780f89576d96e1fd793a826a57f"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs",
@@ -734,7 +734,7 @@
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
-      "sha256": "695b77dc33b92109d83a61d88836df47caa13b1fa1bace567513cdc01fdb2695"
+      "sha256": "e30e293516f9cc0fe9fda43ebe37f0f7ef364d9af71ed6fcd2f9385e826866a7"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs",

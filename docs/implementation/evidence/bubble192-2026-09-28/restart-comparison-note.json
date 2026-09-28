@@ -1,0 +1,13 @@
+{
+  "initialRunPassed": false,
+  "initialRun": "5041ab4d01b44f6ea6bb765e0ca11829",
+  "failure": "Exact parsed-double comparison after Unity JSON restart",
+  "onlyDifference": {
+    "path": "discovery[0].bubbles[0].current.clock",
+    "before": 17.201369900000017,
+    "after": 17.20136990000002
+  },
+  "correction": "Clock and birth time comparisons allow absolute 1e-12; all quantities, IDs, history structure and other records remain exact.",
+  "productionCodeChangedForCorrection": false,
+  "repeatPassed": true
+}
