@@ -36,9 +36,18 @@ namespace LittleWeeps.Core
                 // Concurrent cooks cannot claim the same previously empty tray.
                 if(item==null)item=state.toys.FirstOrDefault(t=>t.kind==ToyKind.Cookware && PrepAvailable(t,p) && t.kitchen.dish==null && !t.kitchen.dirty && (string.IsNullOrEmpty(t.kitchen.cook) || t.kitchen.cook==p.id));
                 if(!PrepAvailable(item,p) || item.kind!=ToyKind.Cookware || item.kitchen.dish!=null || item.kitchen.dirty || !string.IsNullOrEmpty(item.kitchen.cook) && item.kitchen.cook!=p.id || item.kitchen.batch>=1000000000)return "need-empty-clean-tray";
+                // A stored creation leaves an empty tray behind. Reusing a tray
+                // still in the oven must begin on a free worktop, or its next
+                // recipe would heat automatically as soon as preparation ends.
+                var prepSlot=-1;
+                if(state.schema>=PizzaFlow.Schema && Kitchen.Slot(item.container,out var oldPlace,out _) && oldPlace=="oven"){
+                    prepSlot=Enumerable.Range(0,4).Where(i=>!state.toys.Any(t=>t!=item && t.container==Kitchen.Support("counter",i))).DefaultIfEmpty(-1).First();
+                    if(prepSlot<0)return "storage-full";
+                }
+                var pizza=state.schema>=PizzaFlow.Schema && recipe.id.StartsWith("PIZ-");
                 var family=state.schema>=CakeFamilies.Schema && CakeFamilies.Recipes.Contains(recipe.id);
                 var staged=state.schema>=CakeFlow.Schema && recipe.id=="CAK-02";
-                var ids=new[]{staged || family?"cake-mix":recipe.ingredient}.Concat(op=="readybase"?(family?CakeFamilies.Batter(recipe.id):staged?CakeFlow.Batter:recipe.toppings):Array.Empty<string>()).Distinct().ToArray();
+                var ids=new[]{staged || family?"cake-mix":recipe.ingredient}.Concat(op=="readybase"?(pizza?PizzaFlow.Inputs(new FoodDish{recipe=recipe.id}):family?CakeFamilies.Batter(recipe.id):staged?CakeFlow.Batter:recipe.toppings):Array.Empty<string>()).Distinct().ToArray();
                 var stock=ids.Select(id=>state.toys.First(t=>t.id=="ingredient-"+id)).ToArray();
                 if(stock.Any(t=>!PrepAvailable(t,p) || t.kitchen.amount==0 && t.kitchen.batch>=1000000000))return "ingredient-unavailable";
                 // Choosing a recipe deliberately restocks an exhausted base in
@@ -50,6 +59,8 @@ namespace LittleWeeps.Core
                 if(op=="readybase"){k.dish.heated=true;k.dish.heat=Kitchen.HeatSeconds;k.dish.step=Array.IndexOf(recipe.steps,"heat")+1;}
                 if(staged)CakeFlow.Begin(k.dish,op=="readybase");
                 if(family)CakeFamilies.Begin(k.dish,op=="readybase");
+                if(pizza)PizzaFlow.Begin(k.dish,op=="readybase");
+                if(prepSlot>=0)PlacePrepared(item,"counter",prepSlot);
                 Touch(item);return null;
             }
             if(!PrepAvailable(item,p) || item.kitchen==null)return "item-busy-or-closed";
@@ -68,7 +79,7 @@ namespace LittleWeeps.Core
                 if(!Kitchen.CanAdd(food,item.kitchen.definition))return "ingredient-not-in-stage";
                 var missing=Kitchen.ReservedInputs(food,item.kitchen.definition);
                 if(food.ingredients.Length>=24-missing)return "dish-full-or-served";
-                var a=TakeIngredient(item,(c.x-tray.x)/100,(c.y-tray.y)/100);a.by=p.id;food.ingredients=food.ingredients.Concat(new[]{a}).ToArray();if(CakeFlow.Active(food))CakeFlow.Added(food,a);Touch(tray);return null;
+                var a=TakeIngredient(item,(c.x-tray.x)/100,(c.y-tray.y)/100);a.by=p.id;food.ingredients=food.ingredients.Concat(new[]{a}).ToArray();if(PreparationFlow.Active(food))PreparationFlow.Added(food,a);Touch(tray);return null;
             }
             if(op=="wash"){
                 if(!Kitchen.Dish(item.kind) || dish!=null && dish.portions!=0)return "food-still-here";
@@ -87,7 +98,7 @@ namespace LittleWeeps.Core
             }
             if(dish==null || item.kind!=ToyKind.Cookware || dish.portions!=15)return "need-whole-dish";
             if(op=="undo"){
-                if(CakeFlow.Active(dish))return "preparation-already-incorporated";
+                if(PreparationFlow.Active(dish))return "preparation-already-incorporated";
                 if(dish.heated || dish.heat>0 || dish.ingredients.Length<2 || dish.ingredients.Last().by!=p.id)return "nothing-to-undo";
                 // Removing an unbaked addition discards that consumed portion.
                 // Never rewind stock batches or refund already shared/served food.
@@ -100,7 +111,7 @@ namespace LittleWeeps.Core
                 if(slot<0)return "storage-full";PlacePrepared(item,"oven",slot);return null;
             }
             if(op!=Kitchen.Next(dish) || op=="heat" || op=="serve")return "next-step-changed";
-            if(CakeFlow.Active(dish))return "use-preparation-activity";
+            if(PreparationFlow.Active(dish))return "use-preparation-activity";
             var tool=Kitchen.Tool(op);
             if(!state.toys.Any(t=>t.kind==ToyKind.KitchenTool && t.kitchen.definition==tool && PrepAvailable(t,p)))return "tool-busy";
             dish.step++;Touch(item);return null;

@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'pizzaflow':'implementation/pizza-preparation-2026-09-28.html',
  'cakefamilies':'implementation/cake-families-2026-09-28.html',
  'creations':'implementation/home-creation-storage-2026-09-28.html',
  'tidying':'implementation/home-idle-cleanup-2026-09-28.html',
@@ -257,6 +258,9 @@ for feature in features:
         if feature['id'] in ('CAK-01','CAK-03','CAK-04','CAK-05'):
             feature['evidence']='cakefamilies'
             feature['description']+=' Candidate 207 implements distinct staged preparation and art, with six native four-cook groups and retained servings/storage. Physical acceptance and independent recovery qualification remain open.'
+        if feature['id'].startswith('PIZ-'):
+            feature['evidence']='pizzaflow'
+            feature['description']+=' Candidate 210 implements dough kneading/rolling, saved sauce coverage, vegetable chopping, matching toppings, shared safe baking and conserved slices. Physical acceptance, cheese-stretch polish and independent recovery qualification remain open.'
         if feature['id']=='CAK-02':
             feature['evidence']='cakeflow'
             feature['description']='Candidate 171 implements chocolate batter mixing, partial pour into two tins, safe bake, filling, layer assembly, icing coverage, placed decorations, slicing and four unique servings. Saves retain partial work; old dishes stay on their original version. Physical child/A10 acceptance and spoken guidance remain open.'

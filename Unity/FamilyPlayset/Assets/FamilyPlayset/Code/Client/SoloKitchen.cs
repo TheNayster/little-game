@@ -66,7 +66,7 @@ namespace LittleWeeps.Client
         public void KitchenStepGesture()
         {
             var t=ReadToys().FirstOrDefault(v=>v.id==cookingItem);var d=t?.kitchen?.dish;
-            if(CakeFlow.Active(d)){CakeTap();return;}
+            if(PreparationFlow.Active(d)){CakeTap();return;}
             if(d==null || t.kind==ToyKind.Plate){OpenEasyCook();return;}
             var step=Kitchen.Next(d);
             if(step.StartsWith("add:")){AddKitchenIngredient("ingredient-"+step.Substring(4));return;}
@@ -79,7 +79,7 @@ namespace LittleWeeps.Client
             var ingredient=all.FirstOrDefault(v=>v.id==id);if(ingredient==null)return;
             if(ingredient.kitchen.amount==0){KitchenCommand("easy:restock",id);return;}
             var n=t.kitchen.dish.ingredients.Length;var local=new Vector2(Mathf.Sin(n*2.4f)*.65f,Mathf.Cos(n*2.4f)*.65f);
-            if(screen.HasValue){RectTransformUtility.ScreenPointToLocalPointInRectangle(CakeFlow.Active(t.kitchen.dish)?cakeSurface:kitchenPreview,screen.Value,null,out var point);if(point.magnitude>270)return;local=Vector2.ClampMagnitude(CakeFlow.Active(t.kitchen.dish)?new Vector2(point.x/180,(point.y-90)/70):point/210,.78f);}
+            if(screen.HasValue){RectTransformUtility.ScreenPointToLocalPointInRectangle(PreparationFlow.Active(t.kitchen.dish)?cakeSurface:kitchenPreview,screen.Value,null,out var point);if(point.magnitude>270)return;local=Vector2.ClampMagnitude(PizzaFlow.Active(t.kitchen.dish)?point/190:PreparationFlow.Active(t.kitchen.dish)?new Vector2(point.x/180,(point.y-90)/70):point/210,.78f);}
             KitchenCommand("easy:add",id,t.id,t.x+local.x*100,Mathf.Clamp(t.y+local.y*100,0,500));
         }
         private void OpenKitchenItem(string id)
@@ -157,8 +157,8 @@ namespace LittleWeeps.Client
         }
         private void PaintDish(FoodDish dish,Image image,Image baseImage,Image[] additions,float scale=1)
         {
-            image.material=null;baseImage.material=null;foreach(var part in additions)part.material=null;
-            if(CakeFlow.Active(dish)){PaintSmallCake(dish,image,baseImage,additions);return;}
+            image.material=null;image.rectTransform.localScale=Vector3.one;baseImage.material=null;FoodPortionClip.Apply(image,15,Vector2.zero);foreach(var part in additions){part.material=null;FoodPortionClip.Apply(part,15,Vector2.zero);}
+            if(PreparationFlow.Active(dish)){PaintSmallCake(dish,image,baseImage,additions);return;}
             var visible=dish!=null && dish.portions!=0;var pizza=visible && dish.recipe.StartsWith("PIZ");
             image.gameObject.SetActive(visible && (pizza || dish.heated));baseImage.gameObject.SetActive(true);
             if(pizza && scale>1)baseImage.gameObject.SetActive(false);

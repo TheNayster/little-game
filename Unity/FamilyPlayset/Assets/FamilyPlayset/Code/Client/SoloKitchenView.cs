@@ -114,7 +114,7 @@ namespace LittleWeeps.Client
         {
             var t=ReadToys().FirstOrDefault(v=>v.id==cookingItem);var d=t?.kitchen?.dish;
             if(d==null)return "Tap a food picture to start cooking.";
-            if(CakeFlow.Active(d)){cakeDemoUntil=Time.unscaledTime+3;return CakeInstruction(d)+". Tap the pictured tool for help.";}
+            if(PreparationFlow.Active(d)){cakeDemoUntil=Time.unscaledTime+3;return CakeInstruction(d)+". Tap the pictured tool for help.";}
             var next=Kitchen.Next(d);return next.StartsWith("add:")?"Tap the "+next.Substring(4)+" bowl.":next=="serve"?"Tap a plate to share your food.":next=="heat"?"Tap Bake. Your food cooks safely.":"Tap the big tool, or play with the food.";
         }
 

@@ -33,6 +33,7 @@ static partial class Program
         KitchenTests();
         CakeFlowTests();
         CakeFamilyTests();
+        PizzaFlowTests();
         DiscoveryTests();
         MixingTests();
         ColoringCollectionTests();

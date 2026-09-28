@@ -19,7 +19,7 @@ namespace LittleWeeps.Client
         private float cakeNextPaint;
         private FoodDish cakeDrawn;
         private FoodDish CurrentCake=>ReadToys().FirstOrDefault(t=>t.id==cookingItem)?.kitchen?.dish;
-        public string CakeToken=>KitchenOpen && CakeFlow.Active(CurrentCake)?CakeFlow.Token(CurrentCake):null;
+        public string CakeToken=>KitchenOpen && PreparationFlow.Active(CurrentCake)?PreparationFlow.Token(CurrentCake):null;
         private Sprite CakeSprite(int index)=>KitchenSprite("cake-stages",index,3,2);
 
         private void BuildCakeSurface()
@@ -34,6 +34,7 @@ namespace LittleWeeps.Client
         }
         private static string CakeInstruction(FoodDish d)
         {
+            if(PizzaFlow.Active(d))return PizzaInstruction(d);
             if(CakeFamilies.Active(d))return CakeFamilyInstruction(d);
             switch(d.stage){
                 case "ingredients":return "Add egg, milk and chocolate to the cake mix";
@@ -51,27 +52,34 @@ namespace LittleWeeps.Client
         private void PaintCakeControls(FoodDish d,SoloToy current)
         {
             cakeDrawn=d;
-            var active=CakeFlow.Active(d) && d.portions!=0;
+            var active=PreparationFlow.Active(d) && d.portions!=0;
             PaintCakeFamilyChoices(d);
             cakeSurface.gameObject.SetActive(active);kitchenPreview.gameObject.SetActive(!active);
             if(!active)return;
-            if(cakeDisplayToken!=CakeFlow.Token(d)){cakeDisplayToken=CakeFlow.Token(d);cakeToolPoint=Vector2.zero;cakeMoveTime=0;kitchenHint.text=CakeInstruction(d);}
-            kitchenStage.text="Make  •  Decorate  •  Serve     |     "+(CakeFlow.Index(d)+1)+" / "+CakeFlow.StageList(d).Length;
+            if(cakeDisplayToken!=PreparationFlow.Token(d)){cakeDisplayToken=PreparationFlow.Token(d);cakeToolPoint=Vector2.zero;cakeMoveTime=0;kitchenHint.text=CakeInstruction(d);}
+            kitchenStage.text="Make  •  Decorate  •  Serve     |     "+(PreparationFlow.Index(d)+1)+" / "+PreparationFlow.StageList(d).Length;
             if(string.IsNullOrEmpty(kitchenHint.text))kitchenHint.text=CakeInstruction(d);
             kitchenUndo.transform.parent.gameObject.SetActive(false);
-            kitchenIngredients.gameObject.SetActive(CakeFlow.Palette(d).Length>0);
-            kitchenMore.transform.parent.gameObject.SetActive(CakeFlow.Palette(d).Length>6);kitchenPrevious.transform.parent.gameObject.SetActive(CakeFlow.Palette(d).Length>6 && kitchenPage>0);
+            kitchenIngredients.gameObject.SetActive(PreparationFlow.Palette(d).Length>0);
+            kitchenMore.transform.parent.gameObject.SetActive(PreparationFlow.Palette(d).Length>6);kitchenPrevious.transform.parent.gameObject.SetActive(PreparationFlow.Palette(d).Length>6 && kitchenPage>0);
             kitchenServing.gameObject.SetActive(d.stage=="serve" && current.kind==ToyKind.Cookware && CurrentArea=="garden");
             kitchenStep.transform.parent.gameObject.SetActive(d.stage!="serve" && d.stage!="ingredients" && !(d.stage=="filling" && !d.ingredients.Any(a=>a.ingredient=="icing")));
             var labels=new[]{"","Stir for me","Pour for me","Bake","Spread filling","Stack layer","Spread icing","Finish decorating","Slice cake",""};
-            kitchenStep.text=CakeFamilies.Active(d)?CakeFamilyAction(d):labels[CakeFlow.Index(d)];
+            kitchenStep.text=PizzaFlow.Active(d)?PizzaAction(d):CakeFamilies.Active(d)?CakeFamilyAction(d):labels[PreparationFlow.Index(d)];
             if(CakeFamilies.Active(d))kitchenStep.transform.parent.gameObject.SetActive(d.stage!="ingredients" && d.stage!="colors" && d.stage!="serve" && !(d.stage=="ice" && !d.ingredients.Any(a=>a.ingredient=="icing")));
+            if(PizzaFlow.Active(d))kitchenStep.transform.parent.gameObject.SetActive(d.stage!="sauce" && d.stage!="vegetables" && d.stage!="serve");
             kitchenStep.transform.parent.GetComponent<Button>().interactable=!cakeHelping && !cakeSending && !(d.stage=="bake" && Kitchen.Slot(current.container,out var g,out _) && g=="oven");
             kitchenActionIcon.sprite=d.stage=="bake"?KitchenSprite("oven-closed"):d.stage=="pour"?CakeSprite(0):d.stage=="stack"?CakeSprite(3):d.stage=="cut"?KitchenSprite("utensils",1,2,2):CakeSprite(5);
+            if(PizzaFlow.Active(d)){
+                kitchenActionIcon.sprite=d.stage=="knead"?IngredientSprite("dough"):d.stage=="roll"?KitchenSprite("utensils",2,2,2):d.stage=="chop" || d.stage=="cut"?KitchenSprite("utensils",1,2,2):d.stage=="toppings"?CookingLayer(0):kitchenActionIcon.sprite;
+                if(d.stage=="toppings")kitchenStep.transform.parent.GetComponent<Button>().interactable=PizzaFlow.Complete(d) && !cakeHelping && !cakeSending;
+            }
             PaintCake(d);
         }
         private void PaintCake(FoodDish d)
         {
+            if(cakeParts!=null)foreach(var p in cakeParts)FoodPortionClip.Apply(p,15,Vector2.zero);
+            if(PizzaFlow.Active(d)){PaintPizzaPreparation(d);return;}
             if(CakeFamilies.Active(d)){PaintFamilyCake(d);return;}
             if(cakeParts==null || !cakeSurface.gameObject.activeSelf)return;
             foreach(var part in cakeParts)part.gameObject.SetActive(false);cakeTool.gameObject.SetActive(false);var at=0;
@@ -103,7 +111,7 @@ namespace LittleWeeps.Client
                     // Each touched region reveals its corresponding piece of one
                     // frosting surface. Coverage is persistent, not a generic meter.
                     for(var cell=0;cell<9;cell++)if((d.icingMask&(1<<cell))!=0){var p=Part(CakeIcingCell(cell),-115+(cell%3)*115,topY-39+(cell/3)*39,116,40);}
-                }else if(stage=="stack" || CakeFlow.Index(d)>=7)Part(CakeSprite(4),0,topY,345,118);
+                }else if(stage=="stack" || PreparationFlow.Index(d)>=7)Part(CakeSprite(4),0,topY,345,118);
                 if(stage=="stack" && d.layers<2){
                     var destination=new Vector2(0,37);var moving=cakeHelping?Vector2.Lerp(new Vector2(120,147),destination,Mathf.Clamp01((Time.unscaledTime-cakeAssistStart)/.6f)):cakeMoveTime>Time.unscaledTime?cakeToolPoint:new Vector2(120,147);
                     Part(CakeSprite(3),moving.x,moving.y,220,120);
@@ -137,35 +145,37 @@ namespace LittleWeeps.Client
         }
         public void CakeTap()
         {
-            var d=CurrentCake;if(!CakeFlow.Active(d) || cakeHelping || cakeSending)return;
+            var d=CurrentCake;if(!PreparationFlow.Active(d) || cakeHelping || cakeSending)return;
+            if(PizzaFlow.Active(d) && (d.stage=="sauce" || d.stage=="vegetables" || d.stage=="toppings" && !PizzaFlow.Complete(d))){kitchenHint.text=PizzaInstruction(d);return;}
             if(CakeFamilies.Active(d) && (d.stage=="colors" || d.stage=="ice" && !d.ingredients.Any(a=>a.ingredient=="icing"))){kitchenHint.text=CakeInstruction(d);return;}
             if(d.stage=="ingredients" || d.stage=="filling" && !d.ingredients.Any(a=>a.ingredient=="icing")){kitchenHint.text=CakeInstruction(d);return;}
             if(d.stage=="bake"){KitchenCommand("easy:bake",cookingItem);return;}
             if(d.stage=="serve")return;
-            StartCoroutine(AssistCake(CakeFlow.Token(d),d.stage,cookingItem));
+            StartCoroutine(AssistCake(PreparationFlow.Token(d),d.stage,cookingItem));
         }
         private IEnumerator AssistCake(string token,string stage,string item)
         {
             cakeHelping=true;cakeAssistStart=Time.unscaledTime;cakeReleaseToken=null;
             try{
-                if(stage=="decorate"){CakeSend("finish",token,0,0);yield break;}
-                var count=stage=="mix" || stage=="pour"?10:stage=="ice" || stage=="filling"?9:stage=="cut" || stage=="chop" || stage=="features"?2:1;
+                if(stage=="decorate" || stage=="toppings"){CakeSend("finish",token,0,0);yield break;}
+                var progress=stage=="mix" || stage=="pour" || stage=="knead" || stage=="roll";var spreading=stage=="ice" || stage=="filling" || stage=="spread";
+                var count=progress?10:spreading?9:stage=="cut" || stage=="chop" || stage=="features"?2:1;
                 for(var i=0;i<count && CakeToken==token;i++){
                     if(!KitchenOpen || applicationPaused || !Ready)yield break;
                     yield return new WaitForSecondsRealtime(stage=="stack"?.6f:stage=="cut"?.45f:.2f);
                     if(CakeToken!=token || applicationPaused || !Ready)yield break;
-                    var x=stage=="ice" || stage=="filling"?-.67f+i%3*.67f:stage=="cut" || stage=="chop" || stage=="features"?i:stage=="stack"?0:.12f;
-                    var y=stage=="ice" || stage=="filling"?-.67f+i/3*.67f:0;
+                    var x=spreading?-.67f+i%3*.67f:stage=="cut" || stage=="chop" || stage=="features"?i:stage=="stack"?0:.12f;
+                    var y=spreading?-.67f+i/3*.67f:0;
                     CakeSend(stage,token,x,y);
                     while(cakeSending && CakeToken==token)yield return null;
                 }
-                if(CakeToken==token && CakeFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);
+                if(CakeToken==token && PreparationFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);
             }finally{cakeHelping=false;if(KitchenOpen)PresentKitchen();}
         }
         private void CakeSend(string op,string token,float x,float y,Action<SoloResult> done=null)
         {
             if(cakeSending || CakeToken!=token || !Ready)return;
-            cakeSending=true;KitchenCommand("cake:"+op,cookingItem,token,x,y+2,r=>{cakeSending=false;done?.Invoke(r);if(r.Accepted && op!="finish" && CakeToken==token && cakeReleaseToken==token && CakeFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);});
+            cakeSending=true;KitchenCommand((PizzaFlow.Active(CurrentCake)?"prepare:":"cake:")+op,cookingItem,token,x,y+2,r=>{cakeSending=false;done?.Invoke(r);if(r.Accepted && op!="finish" && CakeToken==token && cakeReleaseToken==token && PreparationFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);});
         }
         public void CakeStroke(string token,Vector2 from,Vector2 to,bool end,Vector2 start)
         {
@@ -176,12 +186,13 @@ namespace LittleWeeps.Client
             RectTransformUtility.ScreenPointToLocalPointInRectangle(cakeSurface,start,null,out var origin);
             if(Mathf.Abs(b.x)>280 || Mathf.Abs(b.y)>230)return;
             cakeToolPoint=b;cakeMoveTime=Time.unscaledTime+.3f;var d=CurrentCake;var stage=d.stage;
-            void Finish(SoloResult result){if(end && result.Accepted && CakeToken==token && CakeFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);}
-            if(stage=="mix" || stage=="pour"){
+            void Finish(SoloResult result){if(end && result.Accepted && CakeToken==token && PreparationFlow.Complete(CurrentCake))CakeSend("finish",token,0,0);}
+            if(stage=="mix" || stage=="pour" || stage=="knead" || stage=="roll"){
                 var amount=Mathf.Min(.18f,Vector2.Distance(a,b)/(stage=="mix"?1100:650));
                 if(amount>0)CakeSend(stage,token,amount,0,Finish);
-                else if(end && CakeFlow.Complete(d))CakeSend("finish",token,0,0);
+                else if(end && PreparationFlow.Complete(d))CakeSend("finish",token,0,0);
             }else if(stage=="ice" || stage=="filling")CakeSend(stage,token,Mathf.Clamp(b.x/175,-.99f,.99f),Mathf.Clamp((b.y-(stage=="ice"?90:-5))/75,-.99f,.99f),Finish);
+            else if(stage=="spread")CakeSend(stage,token,Mathf.Clamp(b.x/175,-.99f,.99f),Mathf.Clamp(b.y/175,-.99f,.99f),Finish);
             else if(stage=="stack" && end)CakeSend(stage,token,b.x/250,(b.y+30)/250,Finish);
             else if((stage=="cut" || stage=="chop") && end && Vector2.Distance(origin,b)>110)CakeSend(stage,token,Mathf.Abs(b.x-origin.x)>Mathf.Abs(b.y-origin.y)?0:1,0,Finish);
         }
@@ -191,10 +202,11 @@ namespace LittleWeeps.Client
             if(Time.unscaledTime<cakeNextPaint || cakeDrawn==null)return;
             if(!cakeHelping && cakeMoveTime<Time.unscaledTime && cakeDemoUntil<Time.unscaledTime && cakeDrawn.stage!="bake")return;
             cakeNextPaint=Time.unscaledTime+.04f;
-            var d=cakeDrawn.stage=="bake"?CurrentCake:cakeDrawn;if(CakeFlow.Active(d))PaintCake(d);
+            var d=cakeDrawn.stage=="bake"?CurrentCake:cakeDrawn;if(PreparationFlow.Active(d))PaintCake(d);
         }
         private void PaintSmallCake(FoodDish d,Image food,Image baseImage,Image[] extras)
         {
+            if(PizzaFlow.Active(d)){PaintSmallPizza(d,food,baseImage,extras);return;}
             if(CakeFamilies.Active(d)){PaintSmallFamilyCake(d,food,baseImage,extras);return;}
             foreach(var p in extras)p.gameObject.SetActive(false);baseImage.gameObject.SetActive(true);
             food.gameObject.SetActive(d.portions!=0);if(d.portions==0)return;
@@ -206,7 +218,7 @@ namespace LittleWeeps.Client
             Image Layer(Sprite sprite,Vector2 point,Vector2 size){var p=extras[n++];p.gameObject.SetActive(true);p.sprite=sprite;p.material=null;p.type=Image.Type.Simple;p.color=Color.white;p.rectTransform.anchoredPosition=point;p.rectTransform.sizeDelta=size;p.preserveAspect=false;return p;}
             if(d.layers==2){Layer(CakeSprite(4),new Vector2(0,35),new Vector2(126,43));Layer(CakeSprite(3),new Vector2(0,53),new Vector2(126,73));}
             var top=d.layers==2?73:42;
-            if(d.stage=="stack" || CakeFlow.Index(d)>=7)Layer(CakeSprite(4),new Vector2(0,top),new Vector2(126,43));
+            if(d.stage=="stack" || PreparationFlow.Index(d)>=7)Layer(CakeSprite(4),new Vector2(0,top),new Vector2(126,43));
             else if(d.stage=="ice" || d.stage=="filling")for(var cell=0;cell<9;cell++)if((d.icingMask&(1<<cell))!=0)Layer(CakeIcingCell(cell),new Vector2(-42+cell%3*42,top-14+cell/3*14),new Vector2(43,15));
             foreach(var add in d.ingredients.Where(a=>a.phase=="decorate")){
                 var bit=add.x>=0?(add.y>=0?0:1):(add.y<0?2:3);if((d.portions&(1<<bit))==0 || n>=extras.Length)continue;

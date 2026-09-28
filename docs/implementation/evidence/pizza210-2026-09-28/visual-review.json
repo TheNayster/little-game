@@ -1,0 +1,29 @@
+{
+  "build": 210,
+  "reviewed": [
+    "01-partial-dough-phone.png",
+    "02-whole-vegetables.png",
+    "03-partial-chop.png",
+    "04-partial-sauce-phone.png",
+    "06-pizza-baking-phone.png",
+    "07-silly-face-phone.png",
+    "08-silly-face-served-tablet.png",
+    "09-saved-pizza-3.png"
+  ],
+  "phone": [
+    1280,
+    591
+  ],
+  "tablet": [
+    1024,
+    768
+  ],
+  "corrected": [
+    "Reused oven tray now waits on a free counter for an explicit bake",
+    "All slice layers clip at the common food origin, including small sauce patches"
+  ],
+  "limits": [
+    "No physical-device child acceptance",
+    "Sauce spreading currently uses nine saved regions"
+  ]
+}
