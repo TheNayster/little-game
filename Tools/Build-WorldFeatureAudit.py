@@ -26,6 +26,7 @@ EVIDENCE = {
  'scienceart':'implementation/home-science-coloring-research-2026-09-27.html',
  'discovery':'implementation/home-discovery-2026-09-27.html',
  'mixing':'implementation/home-mixing-2026-09-27.html',
+ 'ice':'implementation/ice-rescue-2026-09-28.html',
  'nav':'implementation/combined-chooser-2026-09-25.html',
  'scene':'implementation/scenic-worlds-2026-09-25.html',
  'home':'implementation/home-interactions-2026-09-25.html',
@@ -134,7 +135,7 @@ H-25|home|TV and local media|Watch together or autoplay-next|optional|27|Explici
 H-26|home|Dinosaur play|Twenty-type accessible toy shelf|plan|28|Picture categories, roughly six visible at a time, all types available without quests and deliberate duplicate-toy choice. Twenty definitions do not mean unlimited active toys.|ledger
 H-27|home|Dinosaur play|Named animated toys with connected uses|plan|26,28|Carry, place, rotate/flip, stack/store, footprints/dust, brushing, washing, nests and book links. Same reviewed name ID across books and toys.|ledger
 H-28|home|Dinosaur play|Dinosaur Discovery Mat|plan|28|Uncover toy, brush, hear name, optionally wash and arrange its world. Bypass digging if wanted; toys and creations survive independent departures.|ledger
-H-29|home|Science|Discovery bench and free experiments|part|30|Candidate 174 adds saved loaded boats, magnet materials and additive RGB light. Candidate 178 adds SCI-09 mixing in four variants. All nine stations, deeper interactions, illustration and physical acceptance remain required.|discovery
+H-29|home|Science|Discovery bench and free experiments|part|30|Candidate 174 adds saved boats, magnets and additive light; 178 adds four SCI-09 mixing variants. Candidate 191 adds SP-02 dinosaur rescue with hammer, water melting and four persistent independent trays. Remaining science prototypes, all nine original stations and physical acceptance stay required.|ice
 H-30|home|Science|Shared experiments and saved creations|part|30,31,47|Candidate 174 has four profile-owned persistent trays and independent reset/travel; 178 adds sixteen independent saved mixing trays. Narration, portable creations and physical device qualification remain open.|discovery
 H-31|home|Bedrooms|Four persistent player-owned bedrooms|part|32|Four saved owned rooms include usable furniture/storage and candidate-155 cuddle/tuck/stack/tea play. Broader catalog and physical qualification remain open.|roomplay
 H-32|home|Bedrooms|Decorating, visits and undo|part|32|Owner/Together decoration and undo include bedding, rug, picture and lamp choices. Two safe arrangements remain; free placement and physical acceptance are open.|roomplay

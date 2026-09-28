@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "build": 191,
+  "matchingCSharpFiles": 211,
+  "verifiedArtifacts": [
+    351,
+    1
+  ],
+  "importerWhitespaceOnlyRestored": [
+    "Unity/FamilyPlayset/Assets/BuildProfiles/PC Server Network Probe.asset",
+    "Unity/FamilyPlayset/Assets/BuildProfiles/Windows Network Probe.asset",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bingo/actions.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bingo/gentle-walk.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bluey/actions.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Art/Characters/bluey/gentle-walk.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-bedroom.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-discovery.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-kitchen-working.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-secret.png.meta",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-upstairs.png.meta"
+  ],
+  "physicalDeviceTested": false
+}

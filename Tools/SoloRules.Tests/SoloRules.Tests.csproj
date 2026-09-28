@@ -21,6 +21,8 @@
     <Compile Include="CakeFlowTests.cs" />
     <Compile Include="DiscoveryTests.cs" />
     <Compile Include="MixingTests.cs" />
+    <Compile Include="IceRescueTests.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/IceRescue.cs" Link="IceRescue.cs" />
     <Compile Include="ColoringCollectionTests.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Mixing.cs" Link="Mixing.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Discovery.cs" Link="Discovery.cs" />

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": 191,
+  "previous": 187,
+  "checks": [
+    "actual schema18 save adds four rescue trays and preserves every earlier record",
+    "all four release clients use direct localized hammer taps",
+    "Again and Undo preserve one rescue without touching siblings",
+    "large Chip button completes rescue and second finger cannot steal freed dinosaur drag",
+    "authority melts water while sibling changes station another travels and another chips",
+    "phone and tablet views render and lifecycle retains toy plus local sound and calm preferences",
+    "authority restart and client rejoin preserve all four rescues and previous activities exactly"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

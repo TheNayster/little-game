@@ -66,6 +66,8 @@ def main():
                 if summary['schema']>=18:
                     for page in range(6,18):
                         require(command(client,19,item=client.profile,target=f'{page}@0',value='fill:0:3')['accepted'],'Expanded coloring recovery state')
+                if summary['schema']>=19:
+                    require(command(client,19,item=client.profile,target='ice@0',value='ice:chip',x=316,y=185)['accepted'],'Ice recovery progress')
                 require(command(client,0,x=prior['x'],y=prior['y'])['accepted'],'Discovery recovery return')
             time.sleep(.7)
         drop(clients[0], 730, 160)

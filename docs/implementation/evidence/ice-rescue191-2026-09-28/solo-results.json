@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "build": 191,
+  "checks": [
+    "private rescue saves hammer and melting progress and reopens with local sound and calm preferences"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

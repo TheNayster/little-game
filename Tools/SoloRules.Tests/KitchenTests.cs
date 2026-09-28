@@ -98,7 +98,7 @@ static partial class Program
             var restored=SoloWorld.Restore(w.Snapshot());Check(Encode(restored.Snapshot())==Encode(w.Snapshot()));
         });
         Test("kitchen maximum stock and food remain inside reliable-view and recovery bounds",()=>{
-            var w=SoloWorld.WithColoringCollection(KitchenWorld());var actors=w.Snapshot().players;
+            var w=SoloWorld.WithIceRescue(KitchenWorld());var actors=w.Snapshot().players;
             for(var i=0;i<4;i++)MakeSecret(w,i,actors[i].id);
             var s=w.Snapshot();foreach(var p in s.players){p.zone="garden";p.x=-1500;p.y=200;p.fixture="";p.useSeconds=0;p.stairs=0;}w=SoloWorld.Restore(s);
             OpenKitchen(w);
