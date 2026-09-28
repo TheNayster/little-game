@@ -506,6 +506,7 @@ namespace LittleWeeps.Client
         private void Update()
         {
             FinishBackgroundSave(false);
+            TickWorldMusic();
             if(Ready)TickCake();
             if(Ready){TickMixing();TickBubbleLab();TickLiquidColors();TickMarbleRamps();}
             if(Ready){CheckStairInput();CheckDoorInput();}
@@ -571,7 +572,7 @@ namespace LittleWeeps.Client
             ResetBooks();if(Narration!=null)Destroy(Narration);
             foreach(var sprite in new[]{rounded,circle,hintRing,pictureRim})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}
         }
-        private void OnApplicationPause(bool paused){applicationPaused=paused;if(paused){if(DiscoveryOpen)CloseDiscovery();if(CollectionOpen)CloseCollection(false);PauseBook();CancelPointers();SettleHomeUse();SaveNow();ExportPlayPerformance();}}
+        private void OnApplicationPause(bool paused){applicationPaused=paused;worldMusic?.Suspend(paused);if(paused){if(DiscoveryOpen)CloseDiscovery();if(CollectionOpen)CloseCollection(false);PauseBook();CancelPointers();SettleHomeUse();SaveNow();ExportPlayPerformance();}}
         private void OnApplicationFocus(bool focused){if(!focused && HasWorld){if(DiscoveryOpen)CloseDiscovery();if(CollectionOpen)CloseCollection(false);PauseBook();CancelPointers();SettleHomeUse();SaveNow();}}
         private void OnApplicationQuit(){if(HasWorld){PauseBook();CancelPointers();SaveNow();}}
         private Vector2 ToBoard(float x,float y)=>new Vector2((x-cameraX)*sceneScale,(y*.45f-250)*sceneScale);

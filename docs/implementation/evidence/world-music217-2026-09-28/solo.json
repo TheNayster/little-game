@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "build": 217,
+  "checks": [
+    "private music produces decoded audio, saved mute survives cold reopen, and existing objects rooms and creations remain exact"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

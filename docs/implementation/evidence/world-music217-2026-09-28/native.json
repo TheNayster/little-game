@@ -1,0 +1,117 @@
+{
+  "build": 217,
+  "passed": true,
+  "checks": [
+    "six themes decode and advance in release players; four destinations remain independent",
+    "mute is immediate and local and remains off across travel and client restart",
+    "rapid travel releases old clips; deliberate book narration ducks only its local music",
+    "radio keeps its original dance music; background pause stops audio and resume preserves playback",
+    "upstairs and bedrooms retain a softer Home score; secret room keeps its separate quiet ambience"
+  ],
+  "audio": [
+    {
+      "worldMusicTrack": "home",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.3782809376716614,
+      "worldMusicSignal": 0.0445709303021431,
+      "worldMusicClipCount": 2,
+      "worldMusicSample": 70559
+    },
+    {
+      "worldMusicTrack": "park",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.39939069747924805,
+      "worldMusicSignal": 0.04852969944477081,
+      "worldMusicClipCount": 2,
+      "worldMusicSample": 73382
+    },
+    {
+      "worldMusicTrack": "creek",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.3989788293838501,
+      "worldMusicSignal": 0.06578871607780457,
+      "worldMusicClipCount": 2,
+      "worldMusicSample": 73382
+    },
+    {
+      "worldMusicTrack": "beach",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.3953253924846649,
+      "worldMusicSignal": 0.015261812135577202,
+      "worldMusicClipCount": 2,
+      "worldMusicSample": 72441
+    },
+    {
+      "worldMusicTrack": "daycare",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.39685869216918945,
+      "worldMusicSignal": 0.030170651152729988,
+      "worldMusicClipCount": 2,
+      "worldMusicSample": 74323
+    },
+    {
+      "worldMusicTrack": "yard",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.40923452377319336,
+      "worldMusicSignal": 0.03308151662349701,
+      "worldMusicClipCount": 2,
+      "worldMusicSample": 75263
+    },
+    {
+      "worldMusicTrack": "park",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.41999998688697815,
+      "worldMusicSignal": 0.06976540386676788,
+      "worldMusicClipCount": 1,
+      "worldMusicSample": 95020
+    },
+    {
+      "worldMusicTrack": "home",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.4006125330924988,
+      "worldMusicSignal": 0.029431574046611786,
+      "worldMusicClipCount": 2,
+      "worldMusicSample": 75263
+    },
+    {
+      "worldMusicTrack": "home",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.41999998688697815,
+      "worldMusicSignal": 0.009421822614967823,
+      "worldMusicClipCount": 1,
+      "worldMusicSample": 208857
+    },
+    {
+      "worldMusicTrack": "home",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.41999998688697815,
+      "worldMusicSignal": 0.020549196749925613,
+      "worldMusicClipCount": 1,
+      "worldMusicSample": 342451
+    },
+    {
+      "worldMusicTrack": "home",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.41999998688697815,
+      "worldMusicSignal": 0.05073237419128418,
+      "worldMusicClipCount": 1,
+      "worldMusicSample": 373497
+    },
+    {
+      "worldMusicTrack": "home",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.2939999997615814,
+      "worldMusicSignal": 0.03914619982242584,
+      "worldMusicClipCount": 1,
+      "worldMusicSample": 640684
+    },
+    {
+      "worldMusicTrack": "home",
+      "worldMusicPlaying": true,
+      "worldMusicVolume": 0.2939999997615814,
+      "worldMusicSignal": 0.009320110082626343,
+      "worldMusicClipCount": 1,
+      "worldMusicSample": 822259
+    }
+  ]
+}

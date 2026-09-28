@@ -1,0 +1,96 @@
+{
+  "utc": "2026-09-28T21:06:57.2435638Z",
+  "operation": "updated",
+  "version": "0.0.216",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "071c3155407f3574c16f72acbca3f6b5764230b162cd74b590a6015a70e475eb",
+  "certificateSha256": "3aa42982bf8955ae45eb7d669e9202dccd1b108e6ebc6ca7aeff993b46d4c49d",
+  "previousBuild": 200,
+  "previousApkSha256": "fd584ad3f10dfa5642444788290a828fed6175085337994b1f277910ad2a6349",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "pid": "8679",
+  "visibleUiAndSaveRetentionVerified": true,
+  "native16KbQualified": false,
+  "visibleLaunch": "Unlocked game visibly resumed the kitchen with Bingo and food/fixtures.",
+  "verifiedRecords": [
+    {
+      "directory": "SoloPrototype",
+      "record": "world.save",
+      "byteIdentical": true,
+      "schemaBefore": 1,
+      "schemaAfter": 1,
+      "objectsRetained": 5,
+      "priorContentRetained": true
+    },
+    {
+      "directory": "SoloPrototype",
+      "record": "world.save.bak",
+      "byteIdentical": true,
+      "schemaBefore": 1,
+      "schemaAfter": 1,
+      "objectsRetained": 5,
+      "priorContentRetained": true
+    },
+    {
+      "directory": "SoloPrototype",
+      "record": "world.save",
+      "byteIdentical": false,
+      "schemaBefore": 22,
+      "schemaAfter": 27,
+      "objectsRetained": 118,
+      "priorContentRetained": true
+    },
+    {
+      "directory": "SoloPrototype",
+      "record": "world.save.bak",
+      "byteIdentical": false,
+      "schemaBefore": 22,
+      "schemaAfter": 27,
+      "objectsRetained": 118,
+      "priorContentRetained": true
+    },
+    {
+      "directory": "FamilyLAN",
+      "record": "selection.save",
+      "byteIdentical": true,
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "objectsRetained": 0,
+      "priorContentRetained": true
+    },
+    {
+      "directory": "FamilyLAN",
+      "record": "selection.save.bak",
+      "byteIdentical": true,
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "objectsRetained": 0,
+      "priorContentRetained": true
+    },
+    {
+      "directory": "FamilyLAN",
+      "record": "world.save",
+      "byteIdentical": true,
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "objectsRetained": 0,
+      "priorContentRetained": true
+    },
+    {
+      "directory": "FamilyLAN",
+      "record": "world.save.bak",
+      "byteIdentical": true,
+      "schemaBefore": null,
+      "schemaAfter": null,
+      "objectsRetained": 0,
+      "priorContentRetained": true
+    }
+  ],
+  "retentionScope": "Four accessible primary records and four backups in SoloPrototype/FamilyLAN were compared. Full application-directory inventory was not obtained before wireless disconnection; do not claim all 21 historical saves freshly verified.",
+  "physicalAudioAcceptance": false,
+  "musicUpdateInstalled": false
+}

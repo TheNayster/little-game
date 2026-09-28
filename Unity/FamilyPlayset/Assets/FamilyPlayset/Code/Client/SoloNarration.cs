@@ -8,6 +8,7 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string,AudioClip> clips=new Dictionary<string,AudioClip>();
         private AudioSource speaker;
         public bool Ready {get;private set;}
+        public bool Speaking=>speaker!=null && speaker.isPlaying && speaker.volume>0;
         public bool VoiceEnabled {get;private set;}=true;
         public void Initialize(bool muted)
         {

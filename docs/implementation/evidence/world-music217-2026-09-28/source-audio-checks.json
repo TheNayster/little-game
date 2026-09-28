@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "currentAndBothReleaseSourcesMatch": true,
+  "codeAndMusicFiles": 295,
+  "tracks": [
+    {
+      "id": "home",
+      "title": "Little Everyday Adventures",
+      "bpm": 100,
+      "bars": 32,
+      "seconds": 76.8,
+      "sha256": "273731220755877ef281103aef4774004254f239ca48637351ef3489175228a7",
+      "peak": 0.453521728515625,
+      "rms_db": -22.000265076360378,
+      "seam": 0.0
+    },
+    {
+      "id": "yard",
+      "title": "Sunshine in the Grass",
+      "bpm": 112,
+      "bars": 32,
+      "seconds": 68.57142857142857,
+      "sha256": "d2edc0301ff96ba25df34b31a76d48e5b55d1789ab946fdf427cfefd046cd79e",
+      "peak": 0.574066162109375,
+      "rms_db": -22.000265076360378,
+      "seam": 0.0
+    },
+    {
+      "id": "park",
+      "title": "Follow the Little Path",
+      "bpm": 116,
+      "bars": 32,
+      "seconds": 66.20689342403628,
+      "sha256": "830b71b6574587d2f88959513027895dbda078d99b7348b7ac6d7c90edea81aa",
+      "peak": 0.407012939453125,
+      "rms_db": -22.000265076360378,
+      "seam": 0.0
+    },
+    {
+      "id": "creek",
+      "title": "Pebbles and Ripples",
+      "bpm": 86,
+      "bars": 32,
+      "seconds": 89.30233560090703,
+      "sha256": "dfdc3ee701dc567acc06f6590bc2c720ccab0b9f010088a55c345f9413b1ce54",
+      "peak": 0.39874267578125,
+      "rms_db": -22.000265076360378,
+      "seam": 0.0
+    },
+    {
+      "id": "beach",
+      "title": "Seashell Skipping",
+      "bpm": 104,
+      "bars": 32,
+      "seconds": 73.84614512471656,
+      "sha256": "02075f92ec2866ceaf47a2629602e1a70da266cd4ff738047f89f5aea796140a",
+      "peak": 0.537567138671875,
+      "rms_db": -22.000265076360378,
+      "seam": 0.0
+    },
+    {
+      "id": "daycare",
+      "title": "A Pocket Full of Ideas",
+      "bpm": 108,
+      "bars": 32,
+      "seconds": 71.11111111111111,
+      "sha256": "149343bf49923eec4991b6cf56e004da1a25946fef81bed6ea0ab21af68c0adf",
+      "peak": 0.4794921875,
+      "rms_db": -22.000265076360378,
+      "seam": 0.0
+    }
+  ],
+  "streamingAndBackgroundImport": true
+}

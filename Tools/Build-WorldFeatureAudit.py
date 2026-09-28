@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'worldmusic':'implementation/world-music-2026-09-28.html',
  'ramps':'implementation/marble-ramps-2026-09-28.html',
  'mealflow':'implementation/meal-preparation-2026-09-28.html',
  'pizzaflow':'implementation/pizza-preparation-2026-09-28.html',
@@ -103,8 +104,8 @@ G-12|all|Activities and speech|Activity picker, replay, switch, all done, resume
 G-13|all|Activities and speech|No forced progress gates|part|1,2,18,42|All released worlds, favorite characters and toys stay accessible; no required chores, reading, win/loss or elimination wait. Apply this to every future activity.|keepy
 G-14|all|Activities and speech|English voices and speaking characters|part|8,17,26|Local reviewed prompts, reactions, names, greetings and mouth animation. A small English hint set exists; full cast voices and complete English content do not.|solo
 G-15|all|Activities and speech|Spanish and separate local language choices|plan|8,26,41|Reviewed recordings, natural translations and Spanish-specific sounds/rhymes. Dialect remains a content decision; prototype translations are not a completed mode.|ledger
-G-16|all|Activities and speech|One foreground voice, music ducking and replay|part|8,26,27,41|Coalesce repeated requests, cancel stale speech and keep visual hints when muted. Existing hint narration is limited; book/TV/lesson arbitration remains planned.|solo
-G-17|all|Activities and speech|Separate voice, music, effects and calm settings|part|11,33|Voice/home-music toggles plus local secret-room brightness, reduced motion and independent ambience/chime levels exist. Broader assistance, language and media settings remain planned.|secrets
+G-16|all|Activities and speech|One foreground voice, music ducking and replay|part|8,26,27,41|Coalesce repeated requests, cancel stale speech and keep visual hints when muted. Candidate 217 ducks six world scores and existing radio/quiet ambience under books or hints. Broader book/TV/lesson voice arbitration remains planned.|worldmusic
+G-17|all|Activities and speech|Separate voice, music, effects and calm settings|part|11,33|Candidate 217 adds six world scores with local saved mute, independent travel and softer bedrooms. Separate voice and secret-room brightness/motion/ambience/chime controls remain. Broader assistance, language and media settings stay planned.|worldmusic
 G-18|all|Characters|Switch any available avatar without losing identity|part|4,17,47|Bluey/Bingo switching keeps profile and current supported state; all players may choose the same favorite. Full roster, parent avatars and all future role/grip cases remain open.|walk
 G-19|all|Characters|Player badges distinct from NPC roles|part|4,17,47|Duplicate favorites need persistent readable symbol/color markers. Human Bandit/Chilli must not seize or remove an NPC seeker. Current player identity exists; parent/NPC roles are not built.|ledger
 G-20|all|Characters|Natural movement and context poses|part|4,5,17|Accepted Bluey/Bingo sheets support walking, idle, sitting, bounce, dance and balloon tap. Finish turns/back views, grip/contact and special actions for every cast member.|walk

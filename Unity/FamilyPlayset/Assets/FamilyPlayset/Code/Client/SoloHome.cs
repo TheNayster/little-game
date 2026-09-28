@@ -124,6 +124,7 @@ namespace LittleWeeps.Client
             musicSetting.transform.parent.name="Music setting";
             homeMusic=gameObject.AddComponent<AudioSource>();homeMusic.playOnAwake=false;homeMusic.loop=true;homeMusic.spatialBlend=0;
             homeMusic.clip=Resources.Load<AudioClip>("HomeArt/home-music");
+            worldMusic=gameObject.AddComponent<WorldMusicPlayer>();
             TickHome();
         }
         public void ToggleMusic()
@@ -133,6 +134,7 @@ namespace LittleWeeps.Client
         }
         private void ResetHome()
         {
+            if(worldMusic!=null){Destroy(worldMusic);worldMusic=null;}
             if(homeMusic!=null){homeMusic.Stop();Destroy(homeMusic);homeMusic=null;}
             foreach(var sprite in homeSprites)Destroy(sprite);
             if(cakeColorMaterial!=null){Destroy(cakeColorMaterial);cakeColorMaterial=null;}
@@ -169,7 +171,7 @@ namespace LittleWeeps.Client
             if(homeMusic!=null)
             {
                 var distance=Mathf.Min(home.livingRadio?Mathf.Abs(own.x+3480):99999,home.gardenRadio?Mathf.Abs(own.x-1230):99999);
-                homeMusic.volume=audible?Mathf.Lerp(.04f,.22f,1-distance/640)*BookDucking:0;
+                homeMusic.volume=audible?Mathf.Lerp(.04f,.22f,1-distance/640)*ForegroundDucking:0;
                 if(audible && !homeMusic.isPlaying)homeMusic.Play();else if(!audible && homeMusic.isPlaying)homeMusic.Stop();
             }
             homeFeedback.gameObject.SetActive(Time.unscaledTime<homeFeedbackUntil);

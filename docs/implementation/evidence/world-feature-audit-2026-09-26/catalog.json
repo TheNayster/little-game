@@ -322,8 +322,8 @@
         27,
         41
       ],
-      "description": "Coalesce repeated requests, cancel stale speech and keep visual hints when muted. Existing hint narration is limited; book/TV/lesson arbitration remains planned.",
-      "evidence": "solo",
+      "description": "Coalesce repeated requests, cancel stale speech and keep visual hints when muted. Candidate 217 ducks six world scores and existing radio/quiet ambience under books or hints. Broader book/TV/lesson voice arbitration remains planned.",
+      "evidence": "worldmusic",
       "extraSource": ""
     },
     {
@@ -336,8 +336,8 @@
         11,
         33
       ],
-      "description": "Voice/home-music toggles plus local secret-room brightness, reduced motion and independent ambience/chime levels exist. Broader assistance, language and media settings remain planned.",
-      "evidence": "secrets",
+      "description": "Candidate 217 adds six world scores with local saved mute, independent travel and softer bedrooms. Separate voice and secret-room brightness/motion/ambience/chime controls remain. Broader assistance, language and media settings stay planned.",
+      "evidence": "worldmusic",
       "extraSource": ""
     },
     {
