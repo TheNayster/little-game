@@ -29,12 +29,17 @@ namespace LittleWeeps.Core
         public static bool AdvanceLocal(SoloWorld world,string actor,WalkMode mode,float x,float y,float dt)
         {
             if(world==null || !Enum.IsDefined(typeof(WalkMode),mode) || float.IsNaN(dt) || float.IsInfinity(dt) || dt<0 || dt>.1f ||
-                float.IsNaN(x) || float.IsInfinity(x) || float.IsNaN(y) || float.IsInfinity(y) || Math.Abs(x)>4800 || Math.Abs(y)>1000)
+                float.IsNaN(x) || float.IsInfinity(x) || float.IsNaN(y) || float.IsInfinity(y))
                 throw new ArgumentException("Invalid local walking step.");
             var p=world.ReadPlayer(actor);
+            if(!ValidInput(p,world.Schema,mode,x,y))throw new ArgumentException("Invalid local walking destination.");
             var next=Step(p.x,p.y,BedroomFurniture.Route(p,new WalkInput{mode=mode,x=x,y=y},world.Schema),dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
             return world.SetWalkingPosition(p.id,p.zone,p.visit,next.X,next.Y);
         }
+        // Destination bounds follow the current saved layout, including the
+        // connected downstairs extension. Direction inputs retain their old limit.
+        internal static bool ValidInput(SoloPlayer p,int schema,WalkMode mode,float x,float y)=>mode==WalkMode.Destination?
+            WorldLayout.Position(p.zone,schema,x,y):Math.Abs(x)<=4800 && Math.Abs(y)<=1000;
         public static WalkPoint Step(float x,float y,WalkInput input,float dt,float minX=40,float maxX=960)
         {
             if(input==null || input.mode==WalkMode.Stop || dt<=0)return new WalkPoint(x,y);
@@ -60,9 +65,9 @@ namespace LittleWeeps.Core
         {
             if(input==null || !session.TryPlayer(connection,out var actor) || input.actor!=actor || input.sequence<=0 ||
                 !Enum.IsDefined(typeof(WalkMode),input.mode) || float.IsNaN(input.x) || float.IsNaN(input.y) ||
-                float.IsInfinity(input.x) || float.IsInfinity(input.y) || Math.Abs(input.x)>4800 || Math.Abs(input.y)>1000)return false;
+                float.IsInfinity(input.x) || float.IsInfinity(input.y))return false;
             var p=world.ReadPlayer(actor);
-            if(input.zone!=p.zone || input.visit!=p.visit)return false;
+            if(input.zone!=p.zone || input.visit!=p.visit || !Walking.ValidInput(p,world.Schema,input.mode,input.x,input.y))return false;
             if(controls.TryGetValue(actor,out var prior) && prior.connection==connection && input.sequence<=prior.input.sequence)return false;
             controls[actor]=new Control{connection=connection,input=input.Copy(),received=now};return true;
         }

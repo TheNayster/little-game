@@ -1,0 +1,1 @@
+Longest single-hider search across 12 slot/direction cases: 20.10 seconds.

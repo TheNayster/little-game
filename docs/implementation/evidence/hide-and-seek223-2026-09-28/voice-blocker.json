@@ -1,0 +1,9 @@
+{
+  "stage": "local original parent voice generation",
+  "blockedBeforeGeneration": true,
+  "error": "WinError 4551: Application Control blocked torch.dll or one of its dependencies",
+  "component": "C:\\ComfyUI\\.venv\\Lib\\site-packages\\torch\\lib\\torch.dll",
+  "policyChanged": false,
+  "bypassAttempted": false,
+  "workingAlternative": "Original chimes and visible countdown; parent dialogue remains unfinished"
+}

@@ -21,7 +21,7 @@ namespace LittleWeeps.NetworkProbe
         // even with four held objects and four ovens. New samples replace old
         // ones; durable actions and completed dishes still use reliable state.
         [Serializable] private sealed class ActivitySample
-        {public string epoch,item,dish,stage;public double time,heat;public DragPose pose;}
+        {public string epoch,item,dish,stage;public double time,heat;public DragPose pose;public HideState hiding;public long revision;}
         [Serializable] private sealed class ActivityMetrics
         {public long packets,bytes;public int maxBytes;}
         private int largestActivity;
@@ -40,6 +40,7 @@ namespace LittleWeeps.NetworkProbe
                     if(activityDirty || heating.Length>0 && now>=nextLegacyHeat)Send(StateMessage,peer,Current());
                     continue;
                 }
+                if(view.hideAndSeek!=null && view.hideAndSeek.hiders.Any(h=>h.mode!=HiderMode.Away))SendActivity(peer,new ActivitySample{epoch=epoch,time=ServerClock,revision=view.revision,hiding=view.hideAndSeek});
                 foreach(var pose in poses.Values)SendActivity(peer,new ActivitySample{epoch=epoch,time=ServerClock,pose=pose});
                 foreach(var toy in heating)SendActivity(peer,new ActivitySample{epoch=epoch,time=ServerClock,item=toy.id,
                     dish=toy.kitchen.dish.id,stage=toy.kitchen.dish.stage,heat=toy.kitchen.dish.heat});
@@ -63,7 +64,12 @@ namespace LittleWeeps.NetworkProbe
             {
                 var sample=JsonUtility.FromJson<ActivitySample>(Read(reader));
                 if(sample==null || sample.epoch!=epoch || !KeepyRules.Finite(sample.time) || sample.time<Latest.time)return;
-                if(sample.pose!=null && !string.IsNullOrEmpty(sample.pose.item))
+                if(sample.hiding!=null){
+                    if(sample.revision!=Latest.view.revision || sample.hiding.round!=Latest.view.hideAndSeek?.round || sample.hiding.clock<Latest.view.hideAndSeek.clock)return;
+                    HideAndSeek.Validate(sample.hiding,Latest.view.players.Select(p=>p.id).ToArray());
+                    Latest.view.hideAndSeek=sample.hiding;
+                }
+                else if(sample.pose!=null && !string.IsNullOrEmpty(sample.pose.item))
                 {
                     var p=sample.pose;
                     var toy=Latest.view.toys.FirstOrDefault(t=>t.id==p.item && t.holder==p.actor);
@@ -80,12 +86,14 @@ namespace LittleWeeps.NetworkProbe
                     dish.heat=Math.Max(dish.heat,sample.heat);
                 }
             }
+            catch(InvalidOperationException){ }
             catch(ArgumentException){ /* A bad transient sample cannot change durable state. */ }
             catch(InvalidDataException){ }
         }
         private void PreserveActivityProgress(State incoming)
         {
             if(Latest==null || Latest.epoch!=incoming.epoch)return;
+            if(incoming.view.revision==Latest.view.revision && incoming.view.hideAndSeek!=null && Latest.view.hideAndSeek!=null && incoming.view.hideAndSeek.round==Latest.view.hideAndSeek.round && incoming.view.hideAndSeek.clock<Latest.view.hideAndSeek.clock)incoming.view.hideAndSeek=Latest.view.hideAndSeek.Copy();
             // Reliable snapshots and disposable samples are different streams.
             // A delayed snapshot must not rewind a matching bake or drag lease.
             foreach(var toy in incoming.view.toys)

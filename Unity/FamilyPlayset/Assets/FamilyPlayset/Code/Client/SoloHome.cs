@@ -134,6 +134,7 @@ namespace LittleWeeps.Client
         }
         private void ResetHome()
         {
+            ResetHideAndSeek();
             if(worldMusic!=null){Destroy(worldMusic);worldMusic=null;}
             if(homeMusic!=null){homeMusic.Stop();Destroy(homeMusic);homeMusic=null;}
             foreach(var sprite in homeSprites)Destroy(sprite);
@@ -187,6 +188,8 @@ namespace LittleWeeps.Client
         }
         private void SettleHomeUse()
         {
+            hideApproach=-1;if(hideChime!=null)hideChime.Stop();
+            if(Ready && OwnHider!=null && OwnHider.mode!=HiderMode.Away)SendHide("leave");
             CancelStairApproach();
             CancelDoorApproach();
             if(Ready && ReadPlayer(Actor).stairs>0)Command(SoloAction.CancelStairs);

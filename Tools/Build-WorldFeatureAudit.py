@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'hiding':'implementation/hide-and-seek-2026-09-28.html',
  'hideresearch':'implementation/hide-and-seek-research-2026-09-28.html',
  'worldmusic':'implementation/world-music-2026-09-28.html',
  'ramps':'implementation/marble-ramps-2026-09-28.html',
@@ -130,11 +131,11 @@ H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Chocolat
 H-10|home|Kitchen|Four-player preparation and safe ovens|part|19,31,47|Four independent cookware/tool sets, oven positions and dining seats. Authority selects free trays atomically and records cook profiles; one leaving player does not interrupt others. Native qualification is recorded; physical mixed-device acceptance remains open.|kitchen
 H-11|home|Kitchen|Drinks, fruit, blender and pretend café|plan|6,19|Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature.|ledger
 H-12|home|Parents and hiding|Bandit and Chilli's ambient routines|plan|22,47|Roam, read, garden, prepare food and tidy eligible ambient props; requests interrupt safely, but never steal a busy seeker or destroy a child's work.|ledger
-H-13|home|Parents and hiding|Parent-seeker hide-and-seek|plan|22,34|Research September 28 specifies an illustrated Bandit/Chilli invitation, visible countdown, four independent hiders and friendly finds. HS-1 proposes a complete downstairs loop; no gameplay is implemented.|hideresearch
+H-13|home|Parents and hiding|Parent-seeker hide-and-seek|part|22,34|HS-1 adds the pictured Bandit invitation, visible countdown, four independent hiders and friendly finds. Chilli, richer search, speech and physical qualification remain.|hiding
 H-14|home|Parents and hiding|Child/human seeker and role changes|plan|22,34,47|Picture role choice, independent hider preparation, swap roles, and an NPC replacement if the human seeker leaves. Character choice never changes the role.|ledger
-H-15|home|Parents and hiding|Enterable hiding furniture|plan|34|Designated closets, oversized drawers, tents and curtain alcoves with entry/exit anchors, capacity, cutaways and a persistent Come out control. Research proposes six distinct slots across four integrated downstairs props, retaining storage and safe exits; placement/art remain unbuilt.|hideresearch
-H-16|home|Parents and hiding|Fair clues and bounded search|plan|34|Optional 5–10 second giggle/rattle or visual hint, manual/off settings and roughly 30 seconds per ready hider. Test routes; do not find by secret coordinates. Applied research defines observation-limited choices, a seeded coverage route, server timers and route-budget tests; whole-Home duration must be measured separately.|hideresearch
-H-17|home|Parents and hiding|Concealment and mid-round joins|plan|22,31,34|Hide carried props, labels, hitboxes and unrelated positional audio from seeker. Late joiners prepare without resetting others; avatar swaps preserve hiding. Applied research includes per-cycle IDs, simultaneous entry/exit handling and explicit secret-room withdrawal.|hideresearch
+H-15|home|Parents and hiding|Enterable hiding furniture|part|34|HS-1 supplies six enterable spaces: curtain, two sofa nooks, two wardrobe compartments and tent. Local cutaways, concealed remote occupants and safe exits work; wider hiding furniture remains.|hiding
+H-16|home|Parents and hiding|Fair clues and bounded search|part|34|HS-1 uses bounded occupancy-independent coverage and timed inspection. Twelve stationary slot/direction cases measure at most 20.10 seconds after preparation. Sight/sound clues, settings and wider Home routes remain.|hiding
+H-17|home|Parents and hiding|Concealment and mid-round joins|part|22,31,34|HS-1 conceals hidden avatars and held props, keeps profile/possessions through avatar changes and supports independent late-join preparation, re-hide, exit, travel and suspension. Human-seeker filtering and physical qualification remain.|hiding
 H-18|home|Books and reading|Reading nook and physical book props|part|25|Original six-book phone preview: shared rack, independent local reader/bookmarks, explicit narration and effects; final subjects and mixed-device qualification remain open. Low shelves, rug, cushions and book basket. Tap/open versus drag/move must be distinct; access to the same title stays independent for every player.|books
 H-19|home|Books and reading|Interactive narrated reader|part|25,26|Native candidate 198: translucent picture controls, explicit Read to me, fixed arrows and optional settings. Eight Windows groups cover four independent readers, old bookmarks, six drafts/54 pages, sound cancellation and lifecycle. Final content, physical audio/A10 and device qualification remain open. Large Play/Pause, replay, page arrows, close, optional automatic/manual turns and saved page. Opening alone does not start narration; relevant hotspots animate and say names.|reader
 H-20|home|Books and reading|Independent bookmarks and narration|part|25,26,29|Native candidate 198: translucent picture controls, explicit Read to me, fixed arrows and optional settings. Eight Windows groups cover four independent readers, old bookmarks, six drafts/54 pages, sound cancellation and lifecycle. Final content, physical audio/A10 and device qualification remain open. Each profile keeps pages and narration locally; names pause/resume only valid current narration. Muting, closing, changing pages or network state cannot restart old speech.|reader
@@ -248,7 +249,7 @@ for t in tables(section(23)):
         if i==25:
             desc='The balloon starts on clear lawn past the trampoline. Ordinary and occasional higher auto-returns vary direction, speed and distance; the quicker descent and movement while tapping remain. One balloon for all four, Home only, no score/win/loss; landing rests until tapped. Build 151 passes core/native flight and save-upgrade checks; physical tuning acceptance remains open.'
         else:desc=f'Simple play: {row[2]} Deeper play: {row[3]} Reuse / original priority: {row[4]}. Suggested first location; portable game families may later appear elsewhere.'
-        add(fid,show_world[i],'Show-inspired activities',plain(m[2]),'play' if i==25 else 'plan',[23],desc,'keepy' if i==25 else 'ledger')
+        add(fid,show_world[i],'Show-inspired activities',plain(m[2]),'play' if i==25 else 'part' if i==1 else 'plan',[23],desc+(' HS-1 supplies the first four-player downstairs Bandit loop; Chilli, clues and broader Home remain.' if i==1 else ''),'keepy' if i==25 else 'hiding' if i==1 else 'ledger')
 add('SHOW-EXTRA','yard','Optional extensions','Pirates swing-ship adventure','optional',[23],'Additional researched candidate outside the 32-card selection: steering and spotting picture landmarks; needs bespoke swing/character work.','ledger')
 
 for m in re.finditer(r'^### (IMG-\d+) — (.*?)\n(.*?)(?=^### |\Z)',section(42),re.M|re.S):
@@ -307,14 +308,14 @@ add('OPTION-FOSSIL','home','Optional extensions','Fossils and other prehistoric 
 
 TRACK_STATUS={
 'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'part','FISH-01':'plan','CLEAN-01':'part',
-'HIDE-01':'plan','HIDE-02':'plan','NPC-01':'plan','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'part',
+'HIDE-01':'part','HIDE-02':'plan','NPC-01':'part','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'part',
 'JOIN-01':'part','WORLD-01':'part','WORLD-02':'part','ITEM-02':'part','ITEM-03':'part','STOCK-01':'part','ROOM-02':'plan','NET-02':'part',
-'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'plan','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',
+'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'part','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',
 'DAY-01':'plan','LEARN-01':'plan','IMG-01':'plan'}
 TRACK_MAP={
 'CHAR-01':'G-18, G-20; Character roster','CHAR-02':'G-18, G-19; Character roster','FAMILY-01':'G-01, G-26, O-01, O-10',
 'ACT-01':'G-11–G-13; QUEST-01–18','COOK-01':'H-07–H-11; PIZ, CAK, MEAL','FISH-01':'Y-12, Y-13; CRK-02',
-'CLEAN-01':'CLEAN-GAME-01–05; Y-02','HIDE-01':'H-13–H-17; SHOW-01','HIDE-02':'H-14, H-17','NPC-01':'H-12; D-03',
+'CLEAN-01':'CLEAN-GAME-01–05; Y-02','HIDE-01':'H-13–H-17; SHOW-01','HIDE-02':'H-14, H-17','NPC-01':'H-12, H-13; D-03',
 'CAT-01':'SHOW-01–32; SHOW-EXTRA optional','BOOK-01':'H-18–H-20; BK-01–06','TV-01':'H-21–H-25','DINO-01':'H-26, H-27; TOY-01–20',
 'DINO-02':'H-28; DISC-01–05','LAB-01':'H-29, H-30; SCI-01–09','JOIN-01':'G-01, G-12, D-09; O-01–O-03',
 'WORLD-01':'G-02, G-08, H-01; P-01, C-01, B-01, D-01','WORLD-02':'G-02, G-12; H-20, H-24, D-09',
@@ -417,7 +418,7 @@ OUTRO='''
 | Six-region content was confused with six menu entries | Five destination buttons; Home includes backyard. No region removed. |
 | Older two-player examples, room counts and furniture capacities | Four profile-owned bedrooms and four optional secret rooms; all future shared activities support four. Sofa/trampoline four-place implementation is only in the newer builds. Future rides/rods need enough participation space; no forced long queues. |
 | Character pictures or scenery mistaken for features | Mark playable rigs separately; painted objects remain scenery until interactions/state/content exist. |
-| Show catalog labeled entirely research-only | Keepy Uppy is now implemented; the other 31 catalog cards remain planned. |
+| Show catalog labeled entirely research-only | Keepy Uppy is implemented and parent hide-and-seek has a partial downstairs loop; the other 30 catalog cards remain planned. |
 | Old device versions in dated feature rows | Use the deployment snapshot at the top, with dated evidence kept historical. Do not claim that build 132 is installed. |
 | Offline “sync” wording | Offline progress stays private. Connected edits update the server world; reconnect does not import offline changes. |
 | TV fixtures or empty bedrooms mistaken for finished features | TV remains Development only. Bedrooms are Partial after BED-3 furniture/storage/decor; broader content and visual/device acceptance remain open. |

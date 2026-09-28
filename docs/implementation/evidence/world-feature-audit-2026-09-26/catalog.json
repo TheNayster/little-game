@@ -679,13 +679,13 @@
       "world": "home",
       "group": "Parents and hiding",
       "title": "Parent-seeker hide-and-seek",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         22,
         34
       ],
-      "description": "Research September 28 specifies an illustrated Bandit/Chilli invitation, visible countdown, four independent hiders and friendly finds. HS-1 proposes a complete downstairs loop; no gameplay is implemented.",
-      "evidence": "hideresearch",
+      "description": "HS-1 adds the pictured Bandit invitation, visible countdown, four independent hiders and friendly finds. Chilli, richer search, speech and physical qualification remain.",
+      "evidence": "hiding",
       "extraSource": ""
     },
     {
@@ -708,12 +708,12 @@
       "world": "home",
       "group": "Parents and hiding",
       "title": "Enterable hiding furniture",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         34
       ],
-      "description": "Designated closets, oversized drawers, tents and curtain alcoves with entry/exit anchors, capacity, cutaways and a persistent Come out control. Research proposes six distinct slots across four integrated downstairs props, retaining storage and safe exits; placement/art remain unbuilt.",
-      "evidence": "hideresearch",
+      "description": "HS-1 supplies six enterable spaces: curtain, two sofa nooks, two wardrobe compartments and tent. Local cutaways, concealed remote occupants and safe exits work; wider hiding furniture remains.",
+      "evidence": "hiding",
       "extraSource": ""
     },
     {
@@ -721,12 +721,12 @@
       "world": "home",
       "group": "Parents and hiding",
       "title": "Fair clues and bounded search",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         34
       ],
-      "description": "Optional 5–10 second giggle/rattle or visual hint, manual/off settings and roughly 30 seconds per ready hider. Test routes; do not find by secret coordinates. Applied research defines observation-limited choices, a seeded coverage route, server timers and route-budget tests; whole-Home duration must be measured separately.",
-      "evidence": "hideresearch",
+      "description": "HS-1 uses bounded occupancy-independent coverage and timed inspection. Twelve stationary slot/direction cases measure at most 20.10 seconds after preparation. Sight/sound clues, settings and wider Home routes remain.",
+      "evidence": "hiding",
       "extraSource": ""
     },
     {
@@ -734,14 +734,14 @@
       "world": "home",
       "group": "Parents and hiding",
       "title": "Concealment and mid-round joins",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         22,
         31,
         34
       ],
-      "description": "Hide carried props, labels, hitboxes and unrelated positional audio from seeker. Late joiners prepare without resetting others; avatar swaps preserve hiding. Applied research includes per-cycle IDs, simultaneous entry/exit handling and explicit secret-room withdrawal.",
-      "evidence": "hideresearch",
+      "description": "HS-1 conceals hidden avatars and held props, keeps profile/possessions through avatar changes and supports independent late-join preparation, re-hide, exit, travel and suspension. Human-seeker filtering and physical qualification remain.",
+      "evidence": "hiding",
       "extraSource": ""
     },
     {
@@ -3103,12 +3103,12 @@
       "world": "home",
       "group": "Show-inspired activities",
       "title": "Hide and Seek",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         23
       ],
-      "description": "Simple play: Tap a hiding place while a parent seeks Deeper play: Both hide, or alternate child seeker/hider roles Reuse / original priority: Cover, perception, roles; **A**. Suggested first location; portable game families may later appear elsewhere.",
-      "evidence": "ledger",
+      "description": "Simple play: Tap a hiding place while a parent seeks Deeper play: Both hide, or alternate child seeker/hider roles Reuse / original priority: Cover, perception, roles; **A**. Suggested first location; portable game families may later appear elsewhere. HS-1 supplies the first four-player downstairs Bandit loop; Chilli, clues and broader Home remain.",
+      "evidence": "hiding",
       "extraSource": ""
     },
     {

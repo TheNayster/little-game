@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build": 223,
+  "checks": [
+    "pictured start card and headless countdown; four independent participants and a separate parent",
+    "four covers accept physical taps and hide sibling characters while showing local status",
+    "Bandit visibly searches and finds; the starter group continues when one child leaves",
+    "same-slot rejection, held object retention, avatar change and immediate Come out",
+    "background and world travel release only their own player",
+    "tablet composition and native cold restore suspend stale roles without removing inventory"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

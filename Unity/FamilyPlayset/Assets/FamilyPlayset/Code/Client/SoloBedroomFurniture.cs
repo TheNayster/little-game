@@ -101,7 +101,7 @@ namespace LittleWeeps.Client
         }
         private bool VisibleToy(SoloToy t)
         {
-            if(t.zone!=CurrentArea)return false;if(string.IsNullOrEmpty(t.container))return true;
+            if(t.zone!=CurrentArea || !string.IsNullOrEmpty(t.holder) && HideAndSeek.Hidden(HideGame,t.holder))return false;if(string.IsNullOrEmpty(t.container))return true;
             if(Kitchen.Slot(t.container,out var kg,out var ks))return Kitchen.Open(KitchenState,kg,ks);
             if(RoomPlay.Parent(t)!="" || RoomPlay.Slot(t.zone,t.container)>=0 || HomeBooks.Slot(t.container)>=0)return true;
             if(HomeLayout.StorageSlot(t.container)>=0)return Home!=null && Home.shedOpen;

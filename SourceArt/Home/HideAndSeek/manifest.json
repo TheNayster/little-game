@@ -1,0 +1,47 @@
+{
+  "generator": "Built-in image_gen",
+  "date": "2026-09-28",
+  "status": "HS-1 candidate; family visual acceptance pending",
+  "reference": {
+    "url": "https://www.bluey.tv/characters/bandit/",
+    "image": "https://www.bluey.tv/wp-content/uploads/2023/07/Bandit.png",
+    "file": "bandit-reference.png"
+  },
+  "assets": [
+    {
+      "id": "bandit",
+      "file": "bandit.png",
+      "prompt": "Use case: illustration-story. Asset type: single production sprite atlas for a private Bluey 2D dollhouse game. Using the reference only for Bandit's exact character identity and palette, draw SIX full-body Bandit poses in a precise 3-column by 2-row equal-cell grid. Transparent background, no labels, no grid lines, no shadows. Every pose same scale, feet on same baseline within its cell, generous transparent margins, entirely contained within its cell. Top row: relaxed standing facing right; walking right with left leg forward; walking right with right leg forward. Bottom row: counting with BOTH paws covering eyes; leaning/crouching to inspect a hiding spot facing right; warm happy found-you wave facing right. Clearly recognizable adult Bandit Heeler, navy face patches, pale blue eyebrows/paws, yellow muzzle/belly, blue body, dark spots, two ears and tail. Match flat clean Bluey TV artwork, not 3D or painterly. No other characters or objects.",
+      "followup": "Remove external glow and preserve alpha; maintain six poses and common registration.",
+      "grid": [
+        3,
+        2
+      ],
+      "poses": [
+        "stand",
+        "walk-a",
+        "walk-b",
+        "count",
+        "inspect",
+        "found"
+      ]
+    },
+    {
+      "id": "covers",
+      "file": "covers.png",
+      "prompt": "Use case: illustration-story. Asset type: one production furniture state atlas, precise 3 columns x 2 rows equal cells, transparent background. Flat clean friendly Bluey TV dollhouse illustration, warm pastel colors, fine navy outlines, subtle simple shading matching a coral sofa and warm yellow house. TOP ROW, three CLOSED hiding props: (1) teal floor-length curtain hanging on small wooden rod, opaque gently folded fabric; (2) freestanding rounded pale mint dress-up wardrobe with TWO broad closed doors, warm wood feet, each compartment large enough for a small child; (3) small cream and coral play tent with blue star details, CLOSED opaque fabric front flap. BOTTOM ROW: same three props at EXACT matching scale and registration, with their covers OPEN showing inviting EMPTY warm interiors, wardrobe has two separate clearly divided empty compartments. Curtain drawn aside, wardrobe doors swung aside, tent flap rolled up. No items or characters inside. Entire objects inside equal cells with clear 10 percent margins, all feet/base align. No floor, room, words, labels, gridlines, glow, haze, outside shadows, realism or extra props. Genuine transparent alpha outside each sprite. These will be six separately selected sprite rectangles in a game.",
+      "grid": [
+        3,
+        2
+      ],
+      "poses": [
+        "curtain closed",
+        "wardrobe closed",
+        "tent closed",
+        "curtain open",
+        "wardrobe open",
+        "tent open"
+      ]
+    }
+  ]
+}
