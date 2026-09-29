@@ -30,21 +30,25 @@ def main():
         for v in clients:home.ready(v);cmd(v,0,x=-3800,y=50)
         a.input('resize',x=1280,y=591);time.sleep(1)
         button(a,'Hide & seek');home.capture(a,out,'invitation-phone');button(a,'Play hide and seek')
-        start=state()['count'];require(8<start<=10,'Not a ten-second count');home.capture(a,out,'countdown-phone');time.sleep(1.3);require(0<state()['count']<start-.8,'Headless countdown stalled')
+        start=state()['count'];require(13<start<=15,'Not a fifteen-second count');home.capture(a,out,'countdown-phone');time.sleep(1.3);require(0<state()['count']<start-.8,'Headless countdown stalled')
+        hide_buttons=[c for c in info(a)['controls'] if c['name'].startswith('Hide ')]
+        require(hide_buttons and min(c['bounds']['width'] for c in hide_buttons)>=120 and min(c['bounds']['height'] for c in hide_buttons)>=50,'Hide buttons are not child-readable')
         for v in (b,c):join(v)
         d.input('resize',x=1024,y=768);join(d);home.capture(d,out,'countdown-tablet')
         require(len(server.state()['view']['players'])==4 and len(state()['hiders'])==4,'NPC consumed a player slot')
-        record('pictured start card and headless countdown; four independent participants and a separate parent')
+        record('pictured start card, fifteen-second countdown, large glowing hide buttons and four independent participants')
         slots=[9,6,7,8]
         for v,slot in zip(clients,slots):
             position(v,slot);button(v,'Hide '+['Curtain','Sofa left','Sofa right','Wardrobe left','Wardrobe right','Tent','Folding screen','Dining table','Blanket bench','Garden bush'][slot]);wait(lambda:hider(v)['mode']==2,'hidden at '+str(slot))
             home.capture(v,out,'hidden-'+str(slot))
         all_hidden=state();require(len({h['slot'] for h in all_hidden['hiders']})==4,'Duplicate hiding slots')
+        wait(lambda:state()['phase'] in (5,6),'parent search started',30)
+        time.sleep(.8);follow=info(a);require(abs(follow['cameraX']-state()['x'])<900,'Hidden-player camera did not follow parent')
         # Scene visibility, not merely authoritative slot flags.
         for v in clients:
             s=info(v);hidden_others={h['actor'] for h in s['hideAndSeek']['hiders'] if h['mode']==2 and h['actor']!=v.profile}
             require(all(not p['visible'] for p in s['players'] if p['id'] in hidden_others),'A hidden sibling is visible')
-        record('four covers accept physical taps and hide sibling characters while showing local status')
+        record('four covers accept physical taps, hide sibling characters and follow the parent camera while showing local status')
         # One sibling leaves while the other three keep their own roles.
         prior={h['actor']:h['cycle'] for h in state()['hiders']};button(b,'All done');require(hider(b)['mode']==0,'Leave failed')
         require(all(hider(v)['cycle']==prior[v.profile] and hider(v)['mode'] in (2,3) for v in (a,c,d)),'Leaving restarted siblings')

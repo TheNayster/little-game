@@ -1,0 +1,47 @@
+{
+  "utc": "2026-09-29T00:16:00Z",
+  "operation": "updated",
+  "version": "0.0.227",
+  "package": "com.littleweeps.familyplayset",
+  "apkSha256": "87a99d9fca9407fb2f59320686eaef4675c3f7b736b9612fb842f2809144ec7c",
+  "previousBuild": 226,
+  "previousApkSha256": "c69c7ad219c19a494ea9f5a126a3be87f1ffbf34dabd518c69f25a7a5fe6991f",
+  "installedApkHashMatched": true,
+  "deviceModel": "SM-S948U1",
+  "pageBytes": 4096,
+  "activeUser": 0,
+  "launchCommandSucceeded": true,
+  "visibleUiAndSaveRetentionVerified": true,
+  "native16KbQualified": false,
+  "saveRetentionVerified": true,
+  "primarySavesCompared": 20,
+  "backupsCompared": 20,
+  "byteIdenticalPrimarySaves": 19,
+  "byteIdenticalBackups": 19,
+  "enrollmentStatusUnchanged": true,
+  "bookAudioStateUnchanged": true,
+  "migrations": [
+    {
+      "record": "paired active world",
+      "previousSchema": 29,
+      "newSchema": 30,
+      "toysRetainedExact": true,
+      "otherDurableWorldFieldsExact": true,
+      "playerIdentityAndInventoryExact": true,
+      "changesLimitedToMigrationAndTransientHideFields": true
+    },
+    {
+      "record": "paired active backup",
+      "previousSchema": 29,
+      "newSchema": 30,
+      "toysRetainedExact": true,
+      "otherDurableWorldFieldsExact": true,
+      "playerIdentityAndInventoryExact": true,
+      "changesLimitedToMigrationAndTransientHideFields": true
+    }
+  ],
+  "visibleLaunch": "Unlocked Little Weeps Home after the in-place update; Chilli, retained shed/yard state, Hide-and-Seek HUD, Come out control and family chooser were visible in the captured launch screen.",
+  "physicalFourPlayerAcceptance": false,
+  "familyServerUpdated": false,
+  "ipadsUpdated": false
+}

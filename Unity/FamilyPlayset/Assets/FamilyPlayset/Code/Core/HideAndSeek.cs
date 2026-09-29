@@ -26,8 +26,8 @@ namespace LittleWeeps.Core
     // cover points, rather than hidden player coordinates, drive search choices.
     public static class HideAndSeek
     {
-        public const int Schema=28, ExpansionSchema=29;
-        public const double CountSeconds=10, InspectSeconds=1.35, ReactionSeconds=1.25;
+        public const int Schema=28, ExpansionSchema=29, CountSchema=30;
+        public const double CountSeconds=15, InspectSeconds=1.35, ReactionSeconds=1.25;
         public const float StartX=-3660, RailY=50, Speed=420, GlanceDistance=1100;
         // Preserve the six original slot IDs for schema-28 saves.
         public static readonly float[] SlotX={-4900,-4050,-3870,-3560,-3430,-3150,-7040,-470,2910,4310};
@@ -65,9 +65,9 @@ namespace LittleWeeps.Core
             return best;
         }
         public static bool Finite(double n)=>!double.IsNaN(n) && !double.IsInfinity(n);
-        public static void Validate(HideState h,string[] actors,int schema=ExpansionSchema)
+        public static void Validate(HideState h,string[] actors,int schema=CountSchema)
         {
-            var expanded=schema>=ExpansionSchema;var slots=expanded?SlotX.Length:6;var maxCount=expanded?CountSeconds:20;
+            var expanded=schema>=ExpansionSchema;var slots=expanded?SlotX.Length:6;var maxCount=schema>=CountSchema?CountSeconds:expanded?10:20;
             if(h==null || h.hiders==null || h.hiders.Length!=actors.Length || !h.hiders.Select(p=>p?.actor).OrderBy(x=>x).SequenceEqual(actors.OrderBy(x=>x)) ||
                 h.round<0 || h.direction!=1 && h.direction!=-1 || h.cursor<0 || h.cursor>=slots || h.target< -1 || h.target>=slots || h.pass<0 || h.visited<0 || h.visited>AllChecked || !Finite(h.walked) || h.walked<0 || h.walked>GlanceDistance+1 ||
                 !Enum.IsDefined(typeof(HidePhase),h.phase) || !Finite(h.age) || h.age<0 || h.age>300 || !Finite(h.count) || h.count<0 || h.count>maxCount ||
@@ -85,11 +85,11 @@ namespace LittleWeeps.Core
         public HideState ReadHideAndSeek()=>state.hideAndSeek?.Copy();
         public static SoloWorld WithHideAndSeek(SoloWorld world)
         {
-            world=WithMarbleRamps(world);if(world.Schema>=HideAndSeek.ExpansionSchema)return world;
+            world=WithMarbleRamps(world);if(world.Schema>=HideAndSeek.CountSchema)return world;
             var s=world.Snapshot();
             if(s.schema<HideAndSeek.Schema)s.hideAndSeek=new HideState{hiders=s.players.Select(p=>new HiderState{actor=p.id}).ToArray()};
             else SuspendRestoredHide(s);
-            s.hideAndSeek.visited=0;s.hideAndSeek.walked=0;s.schema=HideAndSeek.ExpansionSchema;s.revision++;
+            s.hideAndSeek.visited=0;s.hideAndSeek.walked=0;s.schema=HideAndSeek.CountSchema;s.revision++;
             Validate(s);return new SoloWorld(s);
         }
         private static void NormalizeHideInline(SoloSnapshot s)

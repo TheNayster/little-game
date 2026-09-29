@@ -1,0 +1,61 @@
+{
+  "utc": "2026-09-29T00:17:00Z",
+  "candidate": "0.0.227",
+  "contract": 17,
+  "content": 31,
+  "schema": 30,
+  "windows": {
+    "result": [
+      {
+        "role": "Server",
+        "version": "0.0.227",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+        "result": "Succeeded",
+        "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.227\\Server\\LittleWeepsNetwork.exe",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": true
+      },
+      {
+        "role": "Client",
+        "version": "0.0.227",
+        "unity": "6000.3.24f1",
+        "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+        "result": "Succeeded",
+        "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.227\\Client\\LittleWeepsNetwork.exe",
+        "errors": 0,
+        "warnings": 0,
+        "dedicatedServer": false
+      }
+    ],
+    "artifactFiles": 351
+  },
+  "android": {
+    "result": {
+      "version": "0.0.227",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/Android Family LAN.asset",
+      "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\AndroidSigned\\G3-0.0.227\\LittleWeeps.apk",
+      "result": "Succeeded",
+      "utc": "2026-09-29T00:11:27.3442840Z",
+      "platform": "Android",
+      "signing": "Pinned Little Weeps family key; externally signed unchanged Unity payload",
+      "development": false,
+      "errors": 0,
+      "warnings": 0
+    },
+    "apkBytes": 138585273,
+    "apkSha256": "87a99d9fca9407fb2f59320686eaef4675c3f7b736b9612fb842f2809144ec7c"
+  },
+  "sourceManifests": {
+    "windowsFiles": 1527,
+    "androidFiles": 1527,
+    "sameSourceManifest": false
+  },
+  "nativeGameplayEvidence": {
+    "multiplayer": "results.json passed 8 checks",
+    "solo": "solo-results.json passed 2 checks",
+    "core": "298 groups passed"
+  }
+}

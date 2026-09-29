@@ -10,7 +10,7 @@ from shared_garden_runtime import Instance, read, write, wait, require
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('build',type=int);args=parser.parse_args()
     folder=ROOT/f'Builds/NetworkProbe/G3-0.0.{args.build}'
-    summary=read(folder/'build-summary.json');require(summary['schema'] ==29,'Wrong hiding candidate')
+    summary=read(folder/'build-summary.json');require(summary['schema'] ==30,'Wrong hiding candidate')
     authority,players,_=create_family()
     class Run:pass
     run=Run();run.build=args.build;run.run_id=authority['worldId'];run.path=ROOT/'LocalData/FamilyLAN'/run.run_id;run.path.mkdir(parents=True)
@@ -41,7 +41,7 @@ def main():
         button('Hide & seek');button('Play hide and seek')
         wait(lambda:hider()['mode']==1,'private joining')
         button('Hide Curtain');wait(lambda:hider()['mode']==2,'private hide')
-        time.sleep(3);remaining=hider()['preparation'];require(remaining<9,'Private countdown stalled')
+        time.sleep(3);remaining=hider()['preparation'];require(remaining<14,'Private fifteen-second countdown stalled')
         wait(lambda:hider()['mode']==3,'private friendly find',100)
         record('private solo has working pictured entry auto-approach countdown inspection and friendly find')
         button('Come out');wait(lambda:hider()['mode']==1,'private hide again');require(world()['hideAndSeek']['round']==2,'Chilli missing from private second turn')

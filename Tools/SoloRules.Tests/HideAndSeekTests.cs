@@ -17,7 +17,7 @@ static partial class Program
             Throws(()=>Walking.AdvanceLocal(w,"first",WalkMode.Destination,-9000,50,.1f));
         });
         Test("hiding migration adds inactive roles without changing rooms objects or player positions",()=>{
-            var old=RampWorld();var before=old.Snapshot();var w=SoloWorld.WithHideAndSeek(old);var next=w.Snapshot();Check(next.schema==29 && next.hideAndSeek.hiders.Length==4);next.schema=before.schema;next.revision--;next.hideAndSeek=null;Check(Encode(next)==Encode(before));
+            var old=RampWorld();var before=old.Snapshot();var w=SoloWorld.WithHideAndSeek(old);var next=w.Snapshot();Check(next.schema==30 && next.hideAndSeek.hiders.Length==4);next.schema=before.schema;next.revision--;next.hideAndSeek=null;Check(Encode(next)==Encode(before));
         });
         Test("four independent hiders fit ten slots and Bandit uses no player slot",()=>{
             var w=HideWorld();var actors=w.Snapshot().players.Select(p=>p.id).ToArray();for(var i=0;i<4;i++){Check(Hide(w,"join",actors[i]).Accepted);HideAt(w,actors[i],i);}
@@ -25,10 +25,10 @@ static partial class Program
         });
         Test("same-slot race has one winner duplicate requests never rejoin restart or move possessions",()=>{
             var w=HideWorld();Check(Hide(w,"join").Accepted && Hide(w,"join","second").Accepted);HideAt(w,"first",2);Good(w,SoloAction.Move,x:HideAndSeek.SlotX[2],y:50,actor:"second");Check(!Hide(w,"hide","second",2).Accepted);
-            var c=Command(w,SoloAction.HideAndSeek,value:"out");Check(w.Apply(c).Accepted);Advance(w,1);var before=Encode(w.Snapshot());Check(w.Apply(c).Duplicate && before==Encode(w.Snapshot()));Check(Hide(w,"join").Accepted && w.ReadHideAndSeek().count<10);
+            var c=Command(w,SoloAction.HideAndSeek,value:"out");Check(w.Apply(c).Accepted);Advance(w,1);var before=Encode(w.Snapshot());Check(w.Apply(c).Duplicate && before==Encode(w.Snapshot()));Check(Hide(w,"join").Accepted && w.ReadHideAndSeek().count<HideAndSeek.CountSeconds);
         });
         Test("late joining gets personal preparation without rewinding the existing parent search",()=>{
-            var w=HideWorld();Check(Hide(w,"join").Accepted);HideAt(w,"first",9);Advance(w,9);Check(Hide(w,"join","second").Accepted);HideAt(w,"second",0);Advance(w,5);var s=w.ReadHideAndSeek();Check(s.hiders.Single(p=>p.actor=="second").preparation>4 && s.hiders.Single(p=>p.actor=="second").mode==HiderMode.Hidden && s.phase!=HidePhase.Counting);Advance(w,100);Check(w.ReadHideAndSeek().hiders.Where(p=>p.actor=="first" || p.actor=="second").All(p=>p.mode==HiderMode.Found));
+            var w=HideWorld();Check(Hide(w,"join").Accepted);HideAt(w,"first",9);Advance(w,(int)HideAndSeek.CountSeconds-1);Check(Hide(w,"join","second").Accepted);HideAt(w,"second",0);Advance(w,5);var s=w.ReadHideAndSeek();Check(s.hiders.Single(p=>p.actor=="second").preparation>4 && s.hiders.Single(p=>p.actor=="second").mode==HiderMode.Hidden && s.phase!=HidePhase.Counting);Advance(w,100);Check(w.ReadHideAndSeek().hiders.Where(p=>p.actor=="first" || p.actor=="second").All(p=>p.mode==HiderMode.Found));
         });
         Test("identical search observations produce identical targets with occupants in different covers",()=>{
             var a=HideWorld();var b=HideWorld();Check(Hide(a,"join").Accepted && Hide(b,"join").Accepted);HideAt(a,"first",4);HideAt(b,"first",5);
@@ -41,7 +41,7 @@ static partial class Program
             var w=HideWorld();var session=new FamilySession(w);Check(session.Attach(1,"first",out _) && session.Attach(2,"second",out _));Check(Hide(w,"join").Accepted && Hide(w,"join","second").Accepted);HideAt(w,"first",0);HideAt(w,"second",5);Check(session.Detach(1));Check(w.ReadHideAndSeek().phase==HidePhase.Counting && HideAndSeek.Hidden(w.ReadHideAndSeek(),"second"));Advance(w,100);Check(HideAndSeek.Player(w.ReadHideAndSeek(),"second").mode==HiderMode.Found);Check(Hide(w,"join","second").Accepted);Good(w,SoloAction.Travel,value:"park",actor:"second");Check(HideAndSeek.Player(w.ReadHideAndSeek(),"second").mode==HiderMode.Away);
         });
         Test("headless count advances independently of rendering and cold restore suspends stale roles",()=>{
-            var w=HideWorld();Check(Hide(w,"join").Accepted);HideAt(w,"first",3);Advance(w,7);var snapshot=Decode(Encode(w.Snapshot()));Check(Math.Abs(snapshot.hideAndSeek.count-3)<.01);var restored=SoloWorld.Restore(snapshot);Check(restored.ReadHideAndSeek().phase==HidePhase.Idle && restored.ReadHideAndSeek().hiders.All(h=>h.mode==HiderMode.Away) && restored.ReadPlayer("first").y==50);Check(Encode(w.ReadToys())==Encode(restored.ReadToys()));SoloWorld.Validate(restored.Snapshot());
+            var w=HideWorld();Check(Hide(w,"join").Accepted);HideAt(w,"first",3);Advance(w,(int)HideAndSeek.CountSeconds-3);var snapshot=Decode(Encode(w.Snapshot()));Check(Math.Abs(snapshot.hideAndSeek.count-3)<.01);var restored=SoloWorld.Restore(snapshot);Check(restored.ReadHideAndSeek().phase==HidePhase.Idle && restored.ReadHideAndSeek().hiders.All(h=>h.mode==HiderMode.Away) && restored.ReadPlayer("first").y==50);Check(Encode(w.ReadToys())==Encode(restored.ReadToys()));SoloWorld.Validate(restored.Snapshot());
         });
         Test("unused preparation expires after five minutes and preserves all creations",()=>{
             var w=HideWorld();var before=Encode(w.ReadToys());Check(Hide(w,"join").Accepted);Advance(w,299);Check(HideAndSeek.Player(w.ReadHideAndSeek(),"first").mode==HiderMode.Preparing);Advance(w,2);Check(HideAndSeek.Player(w.ReadHideAndSeek(),"first").mode==HiderMode.Away && before==Encode(w.ReadToys()));
@@ -58,7 +58,7 @@ static partial class Program
             var w=HideWorld();Good(w,SoloAction.Grab,"bucket-1");Check(Hide(w,"join").Accepted);HideAt(w,"first",3);
             var old=w.Snapshot();old.schema=28;old.hideAndSeek.count=20;old.hideAndSeek.hiders[0].preparation=20;
             SoloWorld.Validate(old);var upgraded=SoloWorld.WithHideAndSeek(SoloWorld.Restore(Decode(Encode(old))));var s=upgraded.Snapshot();
-            Check(s.schema==29 && s.hideAndSeek.round==old.hideAndSeek.round && s.hideAndSeek.hiders.All(h=>h.mode==HiderMode.Away));
+            Check(s.schema==30 && s.hideAndSeek.round==old.hideAndSeek.round && s.hideAndSeek.hiders.All(h=>h.mode==HiderMode.Away));
             Check(s.toys.Select(t=>t.id).SequenceEqual(old.toys.Select(t=>t.id)) && Encode(s.bedrooms)==Encode(old.bedrooms) && s.homeCreations==old.homeCreations);
             Check(HideAndSeek.Parent(s.hideAndSeek,true)=="Chilli");SoloWorld.Validate(s);
         });

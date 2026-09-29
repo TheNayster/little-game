@@ -37,7 +37,7 @@ namespace LittleWeeps.Client
         private string cameraArea;
         private long cameraVisit=-1;
         private Vector2 groundDown;
-        private bool groundPan,manualCamera;
+        private bool groundPan,manualCamera,hideCameraFollowing;
         public string CurrentPlace=>HasWorld?WorldLayout.Place(ReadPlayer(Actor)):"garden";
         private int SceneSchema=>shared==null?World.Schema:shared.View.schema;
         public float CameraX=>cameraX;
@@ -76,7 +76,7 @@ namespace LittleWeeps.Client
             }
             areaLabel.gameObject.SetActive(false);activity.gameObject.SetActive(false);message.gameObject.SetActive(false);saveLabel.gameObject.SetActive(false);
             listenLabel.transform.parent.gameObject.SetActive(false);
-            cameraArea=null;cameraVisit=-1;
+            cameraArea=null;cameraVisit=-1;hideCameraFollowing=false;
         }
         private IEnumerable<SceneTile> VisibleTiles()
         {
@@ -96,7 +96,17 @@ namespace LittleWeeps.Client
             var position=shared!=null && shared.Connected?shared.VisualPosition(Actor):new Vector2(player.x,player.y);
             if(cameraArea!=player.zone || cameraVisit!=player.visit)
             {cameraArea=player.zone;cameraVisit=player.visit;cameraX=position.x;manualCamera=false;}
-            if(CharactersOpen)cameraX=position.x;
+            var followParent=FollowingHideParent;
+            if(followParent!=hideCameraFollowing)
+            {
+                // Switch viewpoints locally; never move the hidden player or fly
+                // across the whole property when entering/leaving a hiding spot.
+                hideCameraFollowing=followParent;manualCamera=false;groundPan=false;
+                cameraX=followParent?HideGame.x:position.x;
+            }
+            if(followParent)
+            {manualCamera=false;cameraX=Mathf.Lerp(cameraX,HideGame.x,1-Mathf.Exp(-9*Time.unscaledDeltaTime));}
+            else if(CharactersOpen)cameraX=position.x;
             else if(!manualCamera)
             {
                 var dead=Board.rect.width/sceneScale*.12f;
@@ -167,7 +177,7 @@ namespace LittleWeeps.Client
         private void MoveGround(Vector2 screen)
         {
             if(Vector2.Distance(screen,groundDown)>14)groundPan=true;
-            if(!groundPan)return;
+            if(!groundPan || FollowingHideParent)return;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var now);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,groundDown,null,out var start);
             cameraX=groundCamera-(now.x-start.x)/sceneScale;ClampCamera();manualCamera=true;destination=null;
