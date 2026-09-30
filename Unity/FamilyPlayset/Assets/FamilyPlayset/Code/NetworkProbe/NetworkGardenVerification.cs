@@ -45,6 +45,7 @@ namespace LittleWeeps.NetworkProbe
             public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
             public float homePoseAge;public string homePose;public bool homeMusicPlaying,musicMuted;public string worldMusicTrack;public bool worldMusicPlaying;public float worldMusicVolume,worldMusicSignal;public int worldMusicClipCount,worldMusicSample;public LittleWeeps.Core.HomeState home;
             public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
+            public LittleWeeps.Core.DinosaurWorldState dinosaurWorld;public int dinosaurTextures;public bool dinosaurSoundPlaying;public Vector2 dinosaurSeat;
             public LittleWeeps.Core.ZooState zoo;public int visibleZooAnimals,zooTextures,zooAudioClips;public bool zooSoundPlaying;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
@@ -262,6 +263,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.secretDoorVisible=screen.SecretDoorVisible;evidence.secretDoorInteractive=screen.SecretDoorInteractive;evidence.quietStill=screen.QuietStill;evidence.quietBrightness=screen.QuietBrightness;evidence.quietMusicLevel=screen.QuietMusicLevel;evidence.quietEffectsLevel=screen.QuietEffectsLevel;evidence.quietPhase=screen.QuietPhase;
                 evidence.sceneryReady=screen.SceneryReady;evidence.place=screen.CurrentPlace;evidence.cameraX=screen.CameraX;evidence.pendingScenery=screen.PendingScenery;evidence.residentScenery=screen.ResidentScenery;
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
+                evidence.dinosaurWorld=screen.DinosaurGame;evidence.dinosaurTextures=screen.DinosaurTextureCount;evidence.dinosaurSoundPlaying=screen.DinosaurSoundPlaying;evidence.dinosaurSeat=screen.DinosaurSeat;
                 evidence.zoo=screen.ZooGame;evidence.visibleZooAnimals=screen.VisibleZooAnimals;evidence.zooTextures=screen.ZooTextureCount;evidence.zooAudioClips=screen.ZooAudioClipCount;evidence.zooSoundPlaying=screen.ZooSoundPlaying;
                 evidence.hideAndSeek=screen.HideGame;
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();
@@ -307,7 +309,7 @@ namespace LittleWeeps.NetworkProbe
                 File.WriteAllText(temp,JsonUtility.ToJson(evidence,true));if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);
                 evidencePending=false;
             }
-            catch(IOException e) when((e.HResult&0xffff)==32 || (e.HResult&0xffff)==33)
+            catch(IOException e) when(DiagnosticFileWriter.IsReplacementConflict(e.HResult))
             {
                 // The Windows test reader can briefly deny atomic replacement.
                 // Retry only this observation next frame, never the input action.

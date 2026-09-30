@@ -33,7 +33,7 @@ namespace LittleWeeps.Core
                 throw new ArgumentException("Invalid local walking step.");
             var p=world.ReadPlayer(actor);
             if(!ValidInput(p,world.Schema,mode,x,y))throw new ArgumentException("Invalid local walking destination.");
-            var next=Step(p.x,p.y,BedroomFurniture.Route(p,new WalkInput{mode=mode,x=x,y=y},world.Schema),dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
+            var next=DinosaurRides.Step(p,p.x,p.y,BedroomFurniture.Route(p,new WalkInput{mode=mode,x=x,y=y},world.Schema),dt,world.Schema);
             return world.SetWalkingPosition(p.id,p.zone,p.visit,next.X,next.Y);
         }
         // Destination bounds follow the current saved layout, including the
@@ -81,7 +81,7 @@ namespace LittleWeeps.Core
                 if(!session.TryPlayer(c.connection,out var actor) || actor!=pair.Key || p.zone!=c.input.zone || p.visit!=c.input.visit)
                 {controls.Remove(pair.Key);continue;}
                 if(now-c.received>InputTimeout)continue;
-                var next=Walking.Step(p.x,p.y,BedroomFurniture.Route(p,c.input,world.Schema),dt,WorldLayout.MinX(p.zone,world.Schema)+40,WorldLayout.MaxX(p.zone,world.Schema)-40);
+                var next=DinosaurRides.Step(p,p.x,p.y,BedroomFurniture.Route(p,c.input,world.Schema),dt,world.Schema);
                 moved|=world.SetWalkingPosition(p.id,p.zone,p.visit,next.X,next.Y);
             }
             return moved;

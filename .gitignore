@@ -65,3 +65,7 @@ Thumbs.db
 Tools/ZooRules.Tests/bin/
 
 Tools/ZooRules.Tests/obj/
+
+!Tools/DinosaurRules.Tests/DinosaurRules.Tests.csproj
+Tools/DinosaurRules.Tests/bin/
+Tools/DinosaurRules.Tests/obj/

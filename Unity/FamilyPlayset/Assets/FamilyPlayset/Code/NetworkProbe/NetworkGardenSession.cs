@@ -95,11 +95,11 @@ namespace LittleWeeps.NetworkProbe
                 // inventory prediction. Full input rollback/replay is not used.
                 if(now-lastMotionReceived<.5)
                 {
-                    var next=Walking.Step(anticipated.x,anticipated.y,walking,dt,WorldLayout.MinX(p.zone,View.schema)+40,WorldLayout.MaxX(p.zone,View.schema)-40);next=ZooLayout.Floor(p.zone,next.X,next.Y);anticipated=new Vector2(next.X,next.Y);
+                    var next=DinosaurRides.Step(p,anticipated.x,anticipated.y,walking,dt,View.schema);next=ZooLayout.Floor(p.zone,next.X,next.Y);anticipated=new Vector2(next.X,next.Y);
                     if(probe.InputAck(Actor)>=lastChangedSequence)
                     {
                         var age=(float)Math.Max(0,Math.Min(.2,probe.ServerClock-probe.PositionTime(Actor)));
-                        var forecast=Walking.Step(p.x,p.y,walking,age,WorldLayout.MinX(p.zone,View.schema)+40,WorldLayout.MaxX(p.zone,View.schema)-40);forecast=ZooLayout.Floor(p.zone,forecast.X,forecast.Y);var target=new Vector2(forecast.X,forecast.Y);
+                        var forecast=DinosaurRides.Step(p,p.x,p.y,walking,age,View.schema);forecast=ZooLayout.Floor(p.zone,forecast.X,forecast.Y);var target=new Vector2(forecast.X,forecast.Y);
                         anticipated=Vector2.Distance(anticipated,target)>90?target:Vector2.Lerp(anticipated,target,1-Mathf.Exp(-12*dt));
                     }
                 }
@@ -154,7 +154,7 @@ namespace LittleWeeps.NetworkProbe
             foreach(var id in tracks.Keys.ToArray())if(!Players.Contains(id))tracks.Remove(id);
             foreach(var p in View.players.Where(p=>Players.Contains(p.id)))
             {
-                var generation=p.zone+":"+p.visit;
+                var generation=p.zone+":"+p.visit+":"+p.fixture;
                 if(!tracks.TryGetValue(p.id,out var track))tracks[p.id]=track=new MotionBuffer();
                 track.Add(generation,probe.PositionTime(p.id),p.x,p.y);
                 if(p.id==Actor && generation!=ownGeneration)
@@ -164,7 +164,7 @@ namespace LittleWeeps.NetworkProbe
         public Vector2 VisualPosition(string actor)
         {
             var p=View.players.First(v=>v.id==actor);
-            if(actor==Actor && Connected && ownGeneration==p.zone+":"+p.visit)return anticipated;
+            if(actor==Actor && Connected && ownGeneration==p.zone+":"+p.visit+":"+p.fixture)return anticipated;
             if(tracks.TryGetValue(actor,out var track)){var point=track.Sample(probe.ServerClock-InterpolationDelay);return new Vector2(point.X,point.Y);}
             return new Vector2(p.x,p.y);
         }

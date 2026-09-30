@@ -10,7 +10,7 @@ namespace LittleWeeps.EditorTools
         public int callbackOrder => 1;
         public void OnPreprocessBuild(BuildReport report)
         {
-            foreach(var id in new[]{"home","garden","park","creek","beach","daycare"})
+            foreach(var id in new[]{"home","garden","park","creek","beach","daycare","zoo","dinosaur-world"})
             {
                 var path="Assets/FamilyPlayset/Resources/WorldMenu/"+id+".png";
                 var importer=AssetImporter.GetAtPath(path) as TextureImporter;

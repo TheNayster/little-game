@@ -1,0 +1,20 @@
+[
+  {
+    "name": "tyrannosaurus",
+    "transparent": true,
+    "prompt": "Repair this game animation atlas while preserving its character, colors, saddle and all 8 poses. EXACT 4 columns x 2 rows equal square cells on fully transparent background. Every dinosaur including entire tail, horns, feet, crest and head must fit strictly within central 65% width and central 78% height OF EACH INDIVIDUAL CELL, leaving generous completely empty transparent gutters on all four edges. Reduce all eight dinosaurs uniformly in size to achieve this. Keep right-facing full body dinosaurs. Same scale throughout. Keep all 8 poses but align saddle center at same relative position within every cell and keep feet baseline registered. No grid lines, labels or added objects. This is a bitmap sprite sheet with 8 individually separate complete small dinosaurs, no overlap across cell boundaries.",
+    "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-d8f592b7-813f-4c49-9881-731b791a7335.png"
+  },
+  {
+    "name": "triceratops",
+    "transparent": true,
+    "prompt": "Repair this game animation atlas while preserving its character, colors, saddle and all 8 poses. EXACT 4 columns x 2 rows equal square cells on fully transparent background. Every dinosaur including entire tail, horns, feet, crest and head must fit strictly within central 65% width and central 78% height OF EACH INDIVIDUAL CELL, leaving generous completely empty transparent gutters on all four edges. Reduce all eight dinosaurs uniformly in size to achieve this. Keep right-facing full body dinosaurs. Same scale throughout. Keep all 8 poses but align saddle center at same relative position within every cell and keep feet baseline registered. No grid lines, labels or added objects. This is a bitmap sprite sheet with 8 individually separate complete small dinosaurs, no overlap across cell boundaries.",
+    "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-f18c35e3-2842-4af0-bacd-e87b36052d57.png"
+  },
+  {
+    "name": "parasaurolophus",
+    "transparent": true,
+    "prompt": "Repair this game animation atlas while preserving its character, colors, saddle and all 8 poses. EXACT 4 columns x 2 rows equal square cells on fully transparent background. Every dinosaur including entire tail, horns, feet, crest and head must fit strictly within central 65% width and central 78% height OF EACH INDIVIDUAL CELL, leaving generous completely empty transparent gutters on all four edges. Reduce all eight dinosaurs uniformly in size to achieve this. Keep right-facing full body dinosaurs. Same scale throughout. Keep all 8 poses but align saddle center at same relative position within every cell and keep feet baseline registered. No grid lines, labels or added objects. This is a bitmap sprite sheet with 8 individually separate complete small dinosaurs, no overlap across cell boundaries.",
+    "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-1c638afa-d67b-4015-9aed-af2b3bd270fa.png"
+  }
+]

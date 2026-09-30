@@ -21,6 +21,8 @@ namespace LittleWeeps.Client
             new SceneTile("home-secret",SecretRooms.Id(2),0),new SceneTile("home-secret",SecretRooms.Id(3),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(0),0),new SceneTile("home-bedroom",BedroomLayout.Id(1),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(2),0),new SceneTile("home-bedroom",BedroomLayout.Id(3),0),
+            new SceneTile("dinosaur-valley-a",DinosaurRides.Area,0),
+            new SceneTile("dinosaur-valley-b",DinosaurRides.Area,2400),
             new SceneTile("zoo-entrance",ZooLayout.Entrance,0),
             new SceneTile("zoo-elephant",ZooLayout.Savanna,0),
             new SceneTile("zoo-giraffe",ZooLayout.Savanna,2400),

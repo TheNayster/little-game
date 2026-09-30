@@ -1,0 +1,18 @@
+{
+  "tyrannosaurus": {
+    "bookEffect": 0,
+    "sha256": "0e3884c24df6ceebbe10ccc82f1f26b55692af344fbc6a5ebd751a3de835d1ab"
+  },
+  "triceratops": {
+    "bookEffect": 1,
+    "sha256": "2ba5ced7b5f984834e7f43d9d949e96b456c1fa0add8d1abf116464e4dcefe65"
+  },
+  "brachiosaurus": {
+    "bookEffect": 3,
+    "sha256": "3ea8bcd392d0041fd9a5aa79263c08bb59ed728eb5ce552078238051a5aa2539"
+  },
+  "parasaurolophus": {
+    "bookEffect": 10,
+    "sha256": "a3f1ec1074307ce9fce879d8fbcc4440a873ac36b620aa00c05c24211c82b7f8"
+  }
+}

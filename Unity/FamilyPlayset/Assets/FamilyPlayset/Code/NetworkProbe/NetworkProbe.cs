@@ -66,7 +66,8 @@ namespace LittleWeeps.NetworkProbe
         public long InputAck(string actor)=>inputAcks.TryGetValue(actor,out var ack)?ack:0;
         public event Action MotionReceived;
         [Serializable] public sealed class MovingPlayer {public string actor,zone;public long visit,input;public float x,y;public double stairs;}
-        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;}
+        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;public DinosaurMotion dinosaurs;}
+        [Serializable] public sealed class DinosaurMotion {public double clock;public int[] points;public int left,wandering,riders;}
         [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public double seconds;}
         private CheckpointStore store;
         private FileStream authorityLock;
@@ -340,7 +341,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithZoo(world);
+            world=SoloWorld.WithDinosaurWorld(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -435,7 +436,7 @@ namespace LittleWeeps.NetworkProbe
                     request.command==null || request.command.requestId!=request.requestId?new SoloResult(false,"invalid-command",session.Checkpoint().revision):session.Submit(sender,request.command);
                 if(result.Accepted && !result.Duplicate)
                 {
-                    if(request.command.action==SoloAction.Travel || request.command.action==SoloAction.Move || request.command.action==SoloAction.UseFixture)movement.Forget(request.command.actor);
+                    if(request.command.action==SoloAction.Travel || request.command.action==SoloAction.Move || request.command.action==SoloAction.UseFixture || request.command.action==SoloAction.Dinosaur && request.command.value!="call")movement.Forget(request.command.actor);
                     SaveAuthority();
                     if(request.command.action==SoloAction.Grab)
                     {
@@ -453,7 +454,7 @@ namespace LittleWeeps.NetworkProbe
             {network.DisconnectClient(sender,"invalid-message");}
             catch(Exception e){Fail(e);}
         }
-        private double keepyTime,parkTime;
+        private double keepyTime,parkTime,dinosaurTime;
         private void ReceiveState(ulong sender,FastBufferReader reader)
         {
             if(config.role!="client" || sender!=NetworkManager.ServerClientId || failed || applicationPaused || retryPending || localOnly || !network.IsConnectedClient)return;
@@ -476,6 +477,11 @@ namespace LittleWeeps.NetworkProbe
                         if(prior!=null && prior.zone==p.zone && prior.visit==p.visit && PositionTime(p.id)>state.time){p.x=prior.x;p.y=prior.y;p.stairs=prior.stairs;}
                         else{positionTimes[p.id]=state.time;if(prior==null || prior.visit!=p.visit)inputAcks[p.id]=0;}
                     }
+                    if(Latest?.view.dinosaurWorld!=null && state.view.dinosaurWorld!=null && dinosaurTime>state.time){
+                        state.view.dinosaurWorld.clock=Latest.view.dinosaurWorld.clock;
+                        for(var i=0;i<4;i++){var from=Latest.view.dinosaurWorld.animals[i];var to=state.view.dinosaurWorld.animals[i];to.x=from.x;to.y=from.y;to.left=from.left;to.wandering=from.wandering;}
+                    }else dinosaurTime=state.time;
+                    foreach(var mounted in state.view.players.Where(p=>DinosaurRides.Usable(p.fixture))){var mount=state.view.dinosaurWorld.animals.Single(a=>DinosaurRides.Fixture(a.species)==mounted.fixture);mount.x=mounted.x;mount.y=mounted.y;}
                     if(!clientReady)
                     {
                         TraceConnection("first-snapshot",sender,state.sequence.ToString());
@@ -541,7 +547,7 @@ namespace LittleWeeps.NetworkProbe
                 if(p==null || p.zone!=sample.zone || p.visit!=sample.visit || frame.time<=PositionTime(p.id))continue;
                 // Leaving an authored slot is also conveyed by the motion lane.
                 // A position frame can arrive before the reliable state update.
-                if(!string.IsNullOrEmpty(p.fixture))
+                if(!string.IsNullOrEmpty(p.fixture) && !DinosaurRides.Usable(p.fixture))
                 {
                     var bedroom=BedroomFurniture.Seat(p.fixture)?SecretRooms.Furnishings(Latest.view).FirstOrDefault(r=>r.id==p.zone):null;
                     var supportX=bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):ParkPlay.Usable(p.fixture)?ParkPlay.X(p.fixture):HomeLayout.X(p.fixture);
@@ -557,6 +563,20 @@ namespace LittleWeeps.NetworkProbe
                 Latest.view.keepy=frame.keepy;keepyTime=frame.time;
             }
             if(frame.time>parkTime && frame.park!=null){Latest.view.park=frame.park;parkTime=frame.time;}
+            if(frame.dinosaurs!=null && frame.dinosaurs.clock==0 && (frame.dinosaurs.points==null || frame.dinosaurs.points.Length==0) && frame.dinosaurs.left==0 && frame.dinosaurs.wandering==0 && frame.dinosaurs.riders==0)frame.dinosaurs=null; // Unity expands null inline objects.
+            if(frame.time>dinosaurTime && frame.dinosaurs!=null && Latest.view.dinosaurWorld!=null){
+                var d=frame.dinosaurs;
+                if(!HideAndSeek.Finite(d.clock) || d.clock<0 || d.points==null || d.points.Length!=8 || d.left<0 || d.left>15 || d.wandering<0 || d.wandering>15 || d.riders<0 || d.riders>4095)throw new InvalidDataException("Invalid dinosaur motion.");
+                for(var i=0;i<4;i++)if(!DinosaurRides.Point(d.points[i*2]/4f,d.points[i*2+1]/4f) || ((d.riders>>(i*3))&7)>Latest.view.players.Length)throw new InvalidDataException("Invalid dinosaur point or rider.");
+                foreach(var p in Latest.view.players.Where(p=>DinosaurRides.Usable(p.fixture))){p.fixture="";p.useSeconds=0;}
+                Latest.view.dinosaurWorld.clock=d.clock;
+                for(var i=0;i<4;i++){
+                    var a=Latest.view.dinosaurWorld.animals[i];a.x=d.points[i*2]/4f;a.y=d.points[i*2+1]/4f;a.left=(d.left&(1<<i))!=0;a.wandering=(d.wandering&(1<<i))!=0;
+                    var seat=(d.riders>>(i*3))&7;
+                    if(seat>0){var p=Latest.view.players[seat-1];if(p.zone==DinosaurRides.Area){p.fixture=DinosaurRides.Fixture(a.species);a.x=p.x;a.y=p.y;}}
+                }
+                dinosaurTime=frame.time;
+            }
             MotionReceived?.Invoke();
             WriteJson(Path.Combine(output,"view.json"),Latest);
         }
@@ -582,7 +602,10 @@ namespace LittleWeeps.NetworkProbe
             // Positions describe the completed simulation step, not the later
             // packet-send instant. Otherwise 30 Hz simulation sampled at 20 Hz
             // creates an artificial alternating fast/slow interpolation speed.
-            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
+            DinosaurMotion dinosaurMotion=null;
+            if(view.dinosaurWorld!=null && view.players.Any(p=>p.zone==DinosaurRides.Area)){dinosaurMotion=new DinosaurMotion{clock=view.dinosaurWorld.clock,points=view.dinosaurWorld.animals.SelectMany(a=>new[]{(int)Math.Round(a.x*4),(int)Math.Round(a.y*4)}).ToArray()};
+                for(var i=0;i<4;i++){var a=view.dinosaurWorld.animals[i];if(a.left)dinosaurMotion.left|=1<<i;if(a.wandering)dinosaurMotion.wandering|=1<<i;var rider=Array.FindIndex(view.players,p=>p.fixture==DinosaurRides.Fixture(a.species));dinosaurMotion.riders|=(rider+1)<<(i*3);}}
+            var frame=new MotionFrame{dinosaurs=dinosaurMotion,epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
             foreach(var peer in network.ConnectedClientsIds){Send(MotionMessage,peer,frame,NetworkDelivery.UnreliableSequenced);motionPackets++;}
             // Diagnostics are deliberately not durable checkpoints.
             WriteJson(Path.Combine(output,"view.json"),Current());

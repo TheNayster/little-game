@@ -106,6 +106,17 @@ namespace LittleWeeps.Client
             shadow.localScale = frame.Pose == CharacterPose.Bounce ? Vector3.one * Mathf.Lerp(1, .6f, Mathf.Clamp01((offset.y - 84) / 108)) : Vector3.one;
         }
 
+        public void PresentRiding(Texture2D texture,Rect crop,Vector2 contact,float height,bool left)
+        {
+            // Match the authored seat contact exactly to the dinosaur cushion.
+            image.texture=texture;
+            image.uvRect=new Rect(crop.x/texture.width,1-crop.yMax/texture.height,crop.width/texture.width,crop.height/texture.height);
+            picture.pivot=new Vector2((contact.x-crop.x)/crop.width,(crop.yMax-contact.y)/crop.height);
+            picture.sizeDelta=crop.size*(180/height);
+            facing.anchoredPosition=new Vector2(0,45);facing.localRotation=Quaternion.identity;
+            facing.localScale=new Vector3(left?-1:1,1,1);shadow.gameObject.SetActive(false);
+        }
+
         public void AttachToSupport(float angle)
         {
             // Park anchors describe the actual contact point in the equipment

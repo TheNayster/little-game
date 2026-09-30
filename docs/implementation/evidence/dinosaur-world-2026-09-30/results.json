@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": 306,
+  "checks": [
+    "new picture destination loads; four distinct dinosaurs mounted via real touches; repeat taps retain rides; each approved call plays",
+    "real joystick steers dinosaur both directions without dismount; all four authority body/rider positions agree",
+    "four riders share the valley; roar is replicated to siblings and rapid call taps are bounded",
+    "explicit get-off, occupied-mount rejection, world unloading, independent travel and disconnect preserve remaining rides",
+    "application pause releases its rider and stops dinosaur audio; resume can ride again",
+    "all four world WAVs match approved runtime Home-book WAVs byte-for-byte"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false,
+  "familyProfileIdLength": 32,
+  "visualReview": "Individual Bluey/Bingo mounts and Bandit supported-pose fallback inspected; clustered view demonstrates ground depth, with fourth dinosaur partially outside that camera."
+}

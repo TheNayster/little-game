@@ -15,8 +15,8 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Image> avatarMarkers = new Dictionary<string, Image>();
         private readonly List<GameCharacterVisual> pickerCharacters = new List<GameCharacterVisual>();
         private readonly Dictionary<string, Text> worldBadges = new Dictionary<string, Text>();
-        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare", "zoo" };
-        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare", "Zoo" };
+        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare", "zoo", "dinosaur-world" };
+        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare", "Zoo", "Dinosaur World" };
         private float navigationCamera;
         private bool navigationManualCamera;
         public bool WorldsOpen => CharactersOpen;

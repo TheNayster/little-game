@@ -1,0 +1,36 @@
+{
+  "build": 306,
+  "schema": 36,
+  "content": 39,
+  "baseCommit": "43f5fd2ae9d87fe87e04805a29ae9564b428df78",
+  "runtimeSourceHashesVerified": 152,
+  "builds": [
+    {
+      "role": "Server",
+      "version": "0.0.306",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+      "result": "Succeeded",
+      "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\DinosaurWorld\\Builds\\NetworkProbe\\G3-0.0.306\\Server\\LittleWeepsNetwork.exe",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": true
+    },
+    {
+      "role": "Client",
+      "version": "0.0.306",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+      "result": "Succeeded",
+      "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\DinosaurWorld\\Builds\\NetworkProbe\\G3-0.0.306\\Client\\LittleWeepsNetwork.exe",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": false
+    }
+  ],
+  "unityJsonChecks": "DINOSAUR_JSON_PASS: assets, additive migration, four mounts after seven seconds, uint RNG roundtrip and released recovery leases",
+  "coreChecks": 8,
+  "zooFocusedChecks": 8,
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

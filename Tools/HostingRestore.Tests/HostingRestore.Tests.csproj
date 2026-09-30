@@ -17,5 +17,6 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilyPairing.cs" Link="FamilyPairing.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/RecoveryTransfer.cs" Link="RecoveryTransfer.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/CheckpointStore.cs" Link="CheckpointStore.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurWorld.cs" Link="Core/DinosaurWorld.cs" />
   </ItemGroup>
 </Project>

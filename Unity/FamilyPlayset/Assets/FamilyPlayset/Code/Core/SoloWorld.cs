@@ -6,7 +6,7 @@ using System.Linq;
 namespace LittleWeeps.Core
 {
     public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball, Plush, Block, Book, TeaCup, TeaPot, Ingredient, KitchenTool, Cookware, Plate }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor, DecorateRoom, SecretRoom, ReturnBedroom, RoomObject, Kitchen, Discovery, HideAndSeek, Park, Zoo }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor, DecorateRoom, SecretRoom, ReturnBedroom, RoomObject, Kitchen, Discovery, HideAndSeek, Park, Zoo, Dinosaur }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
@@ -51,6 +51,7 @@ namespace LittleWeeps.Core
         public HomeState home;
         public ParkState park;
         public ZooState zoo;
+        public DinosaurWorldState dinosaurWorld;
         public HideState hideAndSeek;
         public KitchenState kitchen;
         public DiscoveryWorkspace[] discovery=Array.Empty<DiscoveryWorkspace>();
@@ -165,12 +166,13 @@ namespace LittleWeeps.Core
             // corridor only when walking changes the requested point.
             if(p.x==x && p.y==y)return false;
             if(state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(zone)){var floor=BedroomFurniture.Floor(x,y);x=floor.X;y=floor.Y;}
+            var dinoFloor=DinosaurRides.Floor(zone,x,y);x=dinoFloor.X;y=dinoFloor.Y;
             var zooFloor=ZooLayout.Floor(zone,x,y);x=zooFloor.X;y=zooFloor.Y;
             if(p.x==x && p.y==y)return false;
-            if(!string.IsNullOrEmpty(p.fixture)){ClearFixture(p);state.revision++;}
+            if(!string.IsNullOrEmpty(p.fixture) && !DinosaurRides.Usable(p.fixture)){ClearFixture(p);state.revision++;}
             var h=HideAndSeek.Player(state.hideAndSeek,actor);
             if(h!=null && h.mode!=HiderMode.Away){h.idle=0;if(h.mode==HiderMode.Hidden){ExitHide(p,h,false);state.revision++;}}
-            p.x=x;p.y=y;return true;
+            var previousX=p.x;p.x=x;p.y=y;SyncDinosaurRider(p,previousX);return true;
         }
         // Presentation reads do not need the durable command receipt history.
         // Return detached copies so a view cannot mutate the authority.
@@ -202,7 +204,7 @@ namespace LittleWeeps.Core
         }
         private static SoloSnapshot Clone(SoloSnapshot s)
         {
-            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, homeCreations=s.homeCreations,home=s.home?.Copy(),park=s.park?.Copy(),zoo=s.zoo?.Copy(),hideAndSeek=s.hideAndSeek?.Copy(),kitchen=s.kitchen?.Copy(),discovery=(s.discovery??Array.Empty<DiscoveryWorkspace>()).Select(w=>w.Copy()).ToArray(),keepy=s.keepy?.Copy(),
+            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, homeCreations=s.homeCreations,home=s.home?.Copy(),park=s.park?.Copy(),zoo=s.zoo?.Copy(),dinosaurWorld=s.dinosaurWorld?.Copy(),hideAndSeek=s.hideAndSeek?.Copy(),kitchen=s.kitchen?.Copy(),discovery=(s.discovery??Array.Empty<DiscoveryWorkspace>()).Select(w=>w.Copy()).ToArray(),keepy=s.keepy?.Copy(),
                 players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
                 bedrooms=(s.bedrooms??Array.Empty<BedroomState>()).Select(r=>r.Copy()).ToArray(),
                 secrets=(s.secrets??Array.Empty<SecretRoomState>()).Select(r=>r.Copy()).ToArray(),
@@ -219,7 +221,7 @@ namespace LittleWeeps.Core
         public static void Validate(SoloSnapshot s)
         {
             NormalizeKitchenInline(s);
-            NormalizeHideInline(s);NormalizeZooInline(s);
+            NormalizeHideInline(s);NormalizeZooInline(s);NormalizeDinosaurInline(s);
             if (s == null || s.schema < 1 || s.schema > WorldLayout.Schema) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
                 s.toys == null || s.toys.Length != (s.schema==1?5:s.schema<4?10:s.schema<BedroomFurniture.Schema?11:27+(s.schema>=SecretRooms.Schema?(s.secrets??Array.Empty<SecretRoomState>()).Count(r=>r!=null && r.created)*6:0)+HomeBooks.ExtraStock(s.schema)+RoomPlay.ExtraStock(s)+(s.schema>=Kitchen.Schema?Kitchen.StockCount:0)+(s.schema>=CakeFlow.Schema?1:0)+(s.schema>=ParkPlay.Schema?2:0)) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
@@ -246,7 +248,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>(s.schema>=HomeTidying.Schema?HomeTidying.IdleSeconds:ToolIdleSeconds)+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateHideAndSeek(s);ValidateCreations(s);ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);ValidatePark(s);ValidateZoo(s);
+            ValidateHideAndSeek(s);ValidateCreations(s);ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);ValidatePark(s);ValidateZoo(s);ValidateDinosaurWorld(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -278,6 +280,7 @@ namespace LittleWeeps.Core
             visibleChange=false;if(seconds==0)return false;
             if(state.revision>=long.MaxValue-1)throw new InvalidOperationException("World revision limit reached.");
             var changed=AdvanceHome(seconds);
+            changed|=AdvanceDinosaurWorld(seconds,activePlayers,out var dinoVisible);visibleChange|=dinoVisible;
             changed|=AdvanceZoo(seconds,activePlayers,out var zooVisible);visibleChange|=zooVisible;
             changed|=AdvancePark(seconds,out var parkVisible);visibleChange|=parkVisible;
             changed|=AdvanceHideAndSeek(seconds,activePlayers,out var hideVisible);visibleChange|=hideVisible;
@@ -357,6 +360,8 @@ namespace LittleWeeps.Core
                     var exitError=SecretTravel(player,SecretRooms.Parent(player.zone),"",true);if(exitError!=null)return Reject(exitError);outcome="room-entered";break;
                 case SoloAction.DecorateRoom:
                     var decorError=DecorateBedroom(c,player);if(decorError!=null)return Reject(decorError);outcome="room-decorated";break;
+                case SoloAction.Dinosaur:
+                    var dinoError=DinosaurOperation(c,player);if(dinoError!=null)return Reject(dinoError);outcome="dinosaur-played";break;
                 case SoloAction.Zoo:
                     var zooError=ZooOperation(c,player);if(zooError!=null)return Reject(zooError);outcome="zoo-played";break;
                 case SoloAction.Park:
@@ -375,8 +380,8 @@ namespace LittleWeeps.Core
                     if(player.visit>=long.MaxValue-1)return Reject("visit-limit");
                     TravelPlayer(player,c.value);outcome="area-entered";break;
                 case SoloAction.Move:
-                    ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(player.zone)?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
-                    floorPoint=ZooLayout.Floor(player.zone,floorPoint.X,floorPoint.Y);player.x=floorPoint.X;player.y=floorPoint.Y;break;
+                    if(!DinosaurRides.Usable(player.fixture))ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(player.zone)?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
+                    floorPoint=ZooLayout.Floor(player.zone,floorPoint.X,floorPoint.Y);floorPoint=DinosaurRides.Floor(player.zone,floorPoint.X,floorPoint.Y);var oldX=player.x;player.x=floorPoint.X;player.y=floorPoint.Y;SyncDinosaurRider(player,oldX);break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
                     player.avatar = c.value; break;

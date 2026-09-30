@@ -134,7 +134,7 @@ namespace LittleWeeps.Client
         }
         private void ResetHome()
         {
-            ResetZoo();ResetPark();ResetHideAndSeek();
+            ResetDinosaurWorld();ResetZoo();ResetPark();ResetHideAndSeek();
             if(worldMusic!=null){Destroy(worldMusic);worldMusic=null;}
             if(homeMusic!=null){homeMusic.Stop();Destroy(homeMusic);homeMusic=null;}
             foreach(var sprite in homeSprites)Destroy(sprite);
@@ -188,7 +188,7 @@ namespace LittleWeeps.Client
         }
         private void SettleHomeUse()
         {
-            hideApproach=-1;if(hideChime!=null)hideChime.Stop();
+            ResetDinosaurSound();hideApproach=-1;if(hideChime!=null)hideChime.Stop();
             if(Ready && OwnHider!=null && OwnHider.mode!=HiderMode.Away)SendHide("leave");
             CancelStairApproach();
             CancelDoorApproach();
