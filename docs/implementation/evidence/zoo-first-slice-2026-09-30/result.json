@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "build": 253,
+  "checks": [
+    "Zoo sixth picture menu destination, entrance and touch-controlled savanna gate",
+    "four clients see one animal queue and four distinct offered portions",
+    "independent departure cancels only that portion; remaining three are eaten once",
+    "giraffe has its own feeding pose; visitor boundary and world departure work"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false,
+  "schema": 34,
+  "content": 36,
+  "sourceSnapshot": "LocalData/ZooBuild/snapshot",
+  "unityJsonPassed": true,
+  "standaloneFirstPass": true,
+  "standaloneUpdatedRun": "Windows Application Control blocked the updated DLL; Unity JSON/native rules passed instead",
+  "remaining": [
+    "14 species",
+    "other Zoo trails",
+    "animal vocal audio",
+    "layered production art",
+    "feeding-contact visual refinement",
+    "phone/iPad playtesting"
+  ],
+  "artHashes": {
+    "elephant.png": "8a46809687c968944007429fa565b59356dc3ebc82624de645bab0b1d24fdced",
+    "giraffe.png": "9d6bf8597fcf3c59b735d6658a49bfded0610155f7739ff87f5742ea0d417d5e",
+    "zoo-elephant.png": "756ac5e0e6006d5b343b43b59a760c60841b4c3e1c5641dd1e91d0048d13b48b",
+    "zoo-entrance.png": "1a73c804c10d930c1e44e0652ed73d371ded403c937847abe4ae14031072e200",
+    "zoo-giraffe.png": "75153af2a366c71284413a4ab29795ed6cb02dfe3e9721a05b10b971a2b4f09e"
+  },
+  "standaloneFinalPass": true,
+  "standaloneFinalSource": "Zoo-only private index rebased on 729af819e048c5994415f0fa676a3873178cb119; schema 34/content 36",
+  "standaloneFinalGroups": 5
+}

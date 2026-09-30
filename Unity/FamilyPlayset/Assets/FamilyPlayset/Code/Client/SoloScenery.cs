@@ -21,6 +21,7 @@ namespace LittleWeeps.Client
             new SceneTile("home-secret",SecretRooms.Id(2),0),new SceneTile("home-secret",SecretRooms.Id(3),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(0),0),new SceneTile("home-bedroom",BedroomLayout.Id(1),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(2),0),new SceneTile("home-bedroom",BedroomLayout.Id(3),0),
+            new SceneTile("zoo-entrance",ZooLayout.Entrance,0),new SceneTile("zoo-elephant",ZooLayout.Savanna,0),new SceneTile("zoo-giraffe",ZooLayout.Savanna,2400),
             new SceneTile("home-upstairs",HomeRooms.Landing,0),
             new SceneTile("home-discovery","garden",-7200),new SceneTile("home-living","garden",-4800),new SceneTile("home-kitchen","garden",-2400),
             new SceneTile("garden-tree","garden",0),new SceneTile("garden-shed","garden",2400),
@@ -179,12 +180,12 @@ namespace LittleWeeps.Client
             if(!groundPan || FollowingHideParent)return;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var now);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,groundDown,null,out var start);
-            cameraX=groundCamera-(now.x-start.x)/sceneScale;ClampCamera();manualCamera=true;destination=null;
+            cameraX=groundCamera-(now.x-start.x)/sceneScale;ClampCamera();manualCamera=true;zooApproach=false;destination=null;
         }
         private void EndGround(Vector2 screen)
         {
             if(!groundPan && !JoystickMode)
-            {var point=BoardPoint(screen);destination=new Vector2(Mathf.Clamp(point.x,WorldLayout.MinX(CurrentArea)+40,WorldLayout.MaxX(CurrentArea)-40),Mathf.Clamp(point.y,35,455));manualCamera=false;}
+            {zooApproach=false;var point=BoardPoint(screen);destination=new Vector2(Mathf.Clamp(point.x,WorldLayout.MinX(CurrentArea)+40,WorldLayout.MaxX(CurrentArea)-40),Mathf.Clamp(point.y,35,ZooLayout.Area(CurrentArea)?120:455));manualCamera=false;}
             groundPan=false;
         }
     }

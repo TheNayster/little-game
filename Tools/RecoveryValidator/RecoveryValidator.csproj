@@ -26,6 +26,7 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs" Link="SoloWorld.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/PlayableCharacters.cs" Link="PlayableCharacters.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkPlay.cs" Link="ParkPlay.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ZooWorld.cs" Link="ZooWorld.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeRooms.cs" Link="HomeRooms.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/BedroomFurniture.cs" Link="BedroomFurniture.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SecretRooms.cs" Link="SecretRooms.cs" />

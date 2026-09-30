@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build": 253,
+  "checks": [
+    "Zoo sixth picture menu destination, entrance and touch-controlled savanna gate",
+    "four clients see one animal queue and four distinct offered portions",
+    "independent departure cancels only that portion; remaining three are eaten once",
+    "giraffe has its own feeding pose; visitor boundary and world departure work"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

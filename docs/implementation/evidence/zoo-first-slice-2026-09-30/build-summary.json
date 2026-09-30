@@ -1,0 +1,31 @@
+{
+    "utc": "2026-09-30T19:29:35.2300678Z",
+    "contract": 17,
+    "content": 36,
+    "schema": 34,
+    "gardenPresentation": true,
+    "builds": [
+        {
+            "role": "Server",
+            "version": "0.0.253",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\ZooBuild\\snapshot\\Builds\\NetworkProbe\\G3-0.0.253\\Server\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": true
+        },
+        {
+            "role": "Client",
+            "version": "0.0.253",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\ZooBuild\\snapshot\\Builds\\NetworkProbe\\G3-0.0.253\\Client\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": false
+        }
+    ]
+}

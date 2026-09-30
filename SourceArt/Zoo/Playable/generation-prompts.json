@@ -1,0 +1,73 @@
+{
+  "mode": "built-in image_gen",
+  "initial": [
+    {
+      "name": "zoo-entrance",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset type: runtime art for a children's 2D Bluey-style zoo game. Flat colored shapes, clean soft edges, cheerful muted Australian cartoon colors, simple recognizable silhouettes, no gradients, no photorealism, no 3D, no text or watermark. Create a very wide panoramic background, aspect ratio 3:1. Sunny zoo entrance plaza with a welcoming timber entry arch, a distant leafy park and four small trail gateways suggested in the background. Side-view playset perspective, sky upper half, foliage middle, continuous empty sand visitor path across bottom quarter. No people, animals, dinosaurs, food buckets or interactive objects; these are separate game objects. No letters on signs. Keep left and right edges open for walking."
+    },
+    {
+      "name": "zoo-elephant",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset type: runtime art for a children's 2D Bluey-style zoo game. Flat colored shapes, clean soft edges, cheerful muted Australian cartoon colors, simple recognizable silhouettes, no gradients, no photorealism, no 3D, no text or watermark. Create a very wide panoramic background, aspect ratio 3:1, for an elephant habitat. Sunny savanna with acacia shade, soft distant rocks, a small distant water patch and pale grass. Side-view playset perspective; empty sandy animal ground in middle lower half; continuous empty visitor walkway across bottom quarter, with open horizontal edges. No animals, people, buckets, feeders or foreground fence (separate game objects). Large clear central animal space."
+    },
+    {
+      "name": "zoo-giraffe",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset type: runtime art for a children's 2D Bluey-style zoo game. Flat colored shapes, clean soft edges, cheerful muted Australian cartoon colors, simple recognizable silhouettes, no gradients, no photorealism, no 3D, no text or watermark. Create a very wide panoramic background, aspect ratio 3:1, for a giraffe habitat beside an elephant exhibit. Sunny savanna, airy acacia browse trees, soft grass and distant rocks. Side-view playset perspective; lots of clear space for a tall neck; empty sandy animal ground in middle lower half; continuous empty visitor walkway across bottom quarter. No animals, people, buckets, feeders or foreground fence (separate game objects). Open horizontal edges."
+    },
+    {
+      "name": "elephant",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: runtime art for a children's 2D Bluey-style zoo game. Flat colored shapes, clean soft edges, cheerful muted Australian cartoon colors, simple recognizable silhouettes, no gradients, no photorealism, no 3D, no text or watermark. Transparent animation sprite atlas, exactly 4 equal columns and 2 equal rows, 8 separate complete full-body African elephant frames. All face RIGHT, identical character design, scale and baseline centered within each cell with generous transparent padding. Friendly grey elephant, large ears, short ivory tusks, trunk, stout legs. Top row four walking-cycle phases with alternating feet and small natural trunk sway, body registration stable. Bottom row: standing relaxed; noticing food with ear lift; trunk gently reaching forward; trunk curled toward mouth while chewing. Entire elephant fits each cell including trunk and feet; no cropping or overlap between cells. No grid lines, labels, backgrounds, shadows, paper, bucket or food props. Genuine alpha transparency."
+    },
+    {
+      "name": "giraffe",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: runtime art for a children's 2D Bluey-style zoo game. Flat colored shapes, clean soft edges, cheerful muted Australian cartoon colors, simple recognizable silhouettes, no gradients, no photorealism, no 3D, no text or watermark. Transparent animation sprite atlas, exactly 4 equal columns and 2 equal rows, 8 separate complete full-body giraffe frames. All face RIGHT, identical character design, scale and baseline centered within each cell with generous transparent padding. Friendly gold giraffe with simple brown patches, long neck, ossicones, ears and four slender legs. Top row four walking-cycle phases, alternate feet with stable body registration. Bottom row: standing relaxed; noticing food; gently extending neck and muzzle forward toward raised browse; mouth chewing leaves without a leaf prop. Full head, neck, tail and feet fit every cell; no cropping or overlap. No grid lines, labels, backgrounds, shadows, paper, bucket or food props. Genuine alpha transparency."
+    }
+  ],
+  "attempts": [
+    "Edit this sprite atlas only: remove the entire brown and golden glow background to genuine alpha transparency, including spaces between legs and around all eight giraffes. Preserve exactly the existing 4-column by 2-row layout, cell dimensions, each complete giraffe pose, baseline and silhouette. Simplify shading into clean flat Bluey-style solid color fills; remove all glow and background shadows. No substitute background, no checkerboard painted into image, no grid or text. All non-character pixels must be transparent.",
+    "A clean 2D game SPRITE SHEET of eight giraffes on actual TRANSPARENT ALPHA background. Exactly four equal columns and two equal rows. Each cell contains one complete same friendly giraffe, entire head, long neck, legs and tail visible, face right. Flat gold with brown patches in the Bluey television cartoon style, clean solid fills. Row one four alternating-leg walk phases. Row two stand, notice, reach neck forward, chew. Generous transparent margin between sprites; no glow, no environment, no paper, no shadow, no brown backing, no gradient. Only the giraffes are visible, all other pixels transparent. This is a production sprite atlas not a presentation illustration.",
+    "Production transparent 2D animation atlas. VERY WIDE 2:1 canvas, exactly 4 columns by 2 rows of equal SQUARE cells. Eight full-body giraffe sprites in Bluey TV's flat cartoon style, friendly eyes, gold with brown patches, all facing right. Each sprite fits completely INSIDE its own square cell with at least 15% transparent margin on ALL four sides. Identical body scale and foot baseline for all eight. No giraffe may touch or cross a cell edge. First row four walking phases. Second row standing; noticing leaves; head tilted very slightly forward with neck still UPRIGHT (DO NOT extend the neck horizontally); mouth chewing without leaves. Keep each long neck vertical so it fits its square. Pure alpha transparent background, no gradient, no glow, no shadows, no markings, no labels, no food, no scenery.",
+    "A clean 2D Bluey-style elephant animation sprite sheet on genuine alpha transparency. VERY WIDE canvas aspect ratio 2:1. Exactly four columns and two rows, eight equal SQUARE cells. One complete full-body African elephant in each cell, all face right. Consistent grey body, large ears, tiny ivory tusks, chunky feet, identical size, friendly eye. Keep elephant centered and FULLY INSIDE its own cell with at least 10% empty transparent padding on every side. Trunk always compact, hanging down or curled; NEVER extend a trunk sideways past the cell. Row one four walk phases. Row two stand; notice with perked ear; gently lift COMPACT CURLED trunk; curl trunk to mouth and chew. No extra body parts, no inter-cell overlaps, no food, no labels, no shadows, no backdrop, no gradients. Stable feet baseline all eight cells."
+  ],
+  "final": [
+    {
+      "name": "zoo-entrance",
+      "prompt": "Use case: illustration-story. Asset type: runtime art for a children's 2D Bluey-style zoo game. Flat colored shapes, clean soft edges, cheerful muted Australian cartoon colors, simple recognizable silhouettes, no gradients, no photorealism, no 3D, no text or watermark. Create a very wide panoramic background, aspect ratio 3:1. Sunny zoo entrance plaza with a welcoming timber entry arch, a distant leafy park and four small trail gateways suggested in the background. Side-view playset perspective, sky upper half, foliage middle, continuous empty sand visitor path across bottom quarter. No people, animals, dinosaurs, food buckets or interactive objects; these are separate game objects. No letters on signs. Keep left and right edges open for walking.",
+      "transparent": false,
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-4c7f0399-43d4-43f3-9d78-d7337c3c82be.png",
+      "saved": "SourceArt/Zoo/Playable/zoo-entrance.png"
+    },
+    {
+      "name": "zoo-elephant",
+      "prompt": "Use case: illustration-story. Asset type: runtime art for a children's 2D Bluey-style zoo game. Flat colored shapes, clean soft edges, cheerful muted Australian cartoon colors, simple recognizable silhouettes, no gradients, no photorealism, no 3D, no text or watermark. Create a very wide panoramic background, aspect ratio 3:1, for an elephant habitat. Sunny savanna with acacia shade, soft distant rocks, a small distant water patch and pale grass. Side-view playset perspective; empty sandy animal ground in middle lower half; continuous empty visitor walkway across bottom quarter, with open horizontal edges. No animals, people, buckets, feeders or foreground fence (separate game objects). Large clear central animal space.",
+      "transparent": false,
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-807b84a4-a364-445e-82a9-0fb94f843d04.png",
+      "saved": "SourceArt/Zoo/Playable/zoo-elephant.png"
+    },
+    {
+      "name": "zoo-giraffe",
+      "prompt": "Use case: illustration-story. Asset type: runtime art for a children's 2D Bluey-style zoo game. Flat colored shapes, clean soft edges, cheerful muted Australian cartoon colors, simple recognizable silhouettes, no gradients, no photorealism, no 3D, no text or watermark. Create a very wide panoramic background, aspect ratio 3:1, for a giraffe habitat beside an elephant exhibit. Sunny savanna, airy acacia browse trees, soft grass and distant rocks. Side-view playset perspective; lots of clear space for a tall neck; empty sandy animal ground in middle lower half; continuous empty visitor walkway across bottom quarter. No animals, people, buckets, feeders or foreground fence (separate game objects). Open horizontal edges.",
+      "transparent": false,
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-f5ecd9ce-381c-4063-b6fd-144b5d4b1b20.png",
+      "saved": "SourceArt/Zoo/Playable/zoo-giraffe.png"
+    },
+    {
+      "name": "elephant",
+      "prompt": "A clean 2D Bluey-style elephant animation sprite sheet on genuine alpha transparency. VERY WIDE canvas aspect ratio 2:1. Exactly four columns and two rows, eight equal SQUARE cells. One complete full-body African elephant in each cell, all face right. Consistent grey body, large ears, tiny ivory tusks, chunky feet, identical size, friendly eye. Keep elephant centered and FULLY INSIDE its own cell with at least 10% empty transparent padding on every side. Trunk always compact, hanging down or curled; NEVER extend a trunk sideways past the cell. Row one four walk phases. Row two stand; notice with perked ear; gently lift COMPACT CURLED trunk; curl trunk to mouth and chew. No extra body parts, no inter-cell overlaps, no food, no labels, no shadows, no backdrop, no gradients. Stable feet baseline all eight cells.",
+      "transparent": true,
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-f3481b4b-83c0-4b49-a7bc-10fe7c86b9c2.png",
+      "saved": "SourceArt/Zoo/Playable/elephant.png"
+    },
+    {
+      "name": "giraffe",
+      "prompt": "Production transparent 2D animation atlas. VERY WIDE 2:1 canvas, exactly 4 columns by 2 rows of equal SQUARE cells. Eight full-body giraffe sprites in Bluey TV's flat cartoon style, friendly eyes, gold with brown patches, all facing right. Each sprite fits completely INSIDE its own square cell with at least 15% transparent margin on ALL four sides. Identical body scale and foot baseline for all eight. No giraffe may touch or cross a cell edge. First row four walking phases. Second row standing; noticing leaves; head tilted very slightly forward with neck still UPRIGHT (DO NOT extend the neck horizontally); mouth chewing without leaves. Keep each long neck vertical so it fits its square. Pure alpha transparent background, no gradient, no glow, no shadows, no markings, no labels, no food, no scenery.",
+      "transparent": true,
+      "source": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-92ea08e8-ccdf-4619-b0c4-f9559f9afeaa.png",
+      "saved": "SourceArt/Zoo/Playable/giraffe.png"
+    }
+  ]
+}

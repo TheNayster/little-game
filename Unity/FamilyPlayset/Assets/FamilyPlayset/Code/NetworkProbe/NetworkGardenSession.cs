@@ -95,11 +95,11 @@ namespace LittleWeeps.NetworkProbe
                 // inventory prediction. Full input rollback/replay is not used.
                 if(now-lastMotionReceived<.5)
                 {
-                    var next=Walking.Step(anticipated.x,anticipated.y,walking,dt,WorldLayout.MinX(p.zone,View.schema)+40,WorldLayout.MaxX(p.zone,View.schema)-40);anticipated=new Vector2(next.X,next.Y);
+                    var next=Walking.Step(anticipated.x,anticipated.y,walking,dt,WorldLayout.MinX(p.zone,View.schema)+40,WorldLayout.MaxX(p.zone,View.schema)-40);next=ZooLayout.Floor(p.zone,next.X,next.Y);anticipated=new Vector2(next.X,next.Y);
                     if(probe.InputAck(Actor)>=lastChangedSequence)
                     {
                         var age=(float)Math.Max(0,Math.Min(.2,probe.ServerClock-probe.PositionTime(Actor)));
-                        var forecast=Walking.Step(p.x,p.y,walking,age,WorldLayout.MinX(p.zone,View.schema)+40,WorldLayout.MaxX(p.zone,View.schema)-40);var target=new Vector2(forecast.X,forecast.Y);
+                        var forecast=Walking.Step(p.x,p.y,walking,age,WorldLayout.MinX(p.zone,View.schema)+40,WorldLayout.MaxX(p.zone,View.schema)-40);forecast=ZooLayout.Floor(p.zone,forecast.X,forecast.Y);var target=new Vector2(forecast.X,forecast.Y);
                         anticipated=Vector2.Distance(anticipated,target)>90?target:Vector2.Lerp(anticipated,target,1-Mathf.Exp(-12*dt));
                     }
                 }

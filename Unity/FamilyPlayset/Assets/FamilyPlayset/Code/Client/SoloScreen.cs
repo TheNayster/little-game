@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithPark(World);
+                World = SoloWorld.WithZoo(World);
                 // Restore releases interrupted holds, hiding roles and fixture/stair
                 // leases. Persist every revision-changing restore, including an
                 // otherwise idle player who has just come out of cover.
@@ -305,7 +305,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildZoo();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -507,7 +507,7 @@ namespace LittleWeeps.Client
         {
             foreach(var surface in Surfaces.Values)surface.Cancel();
             if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
-            destination=null;stickDirection=Vector2.zero;
+            zooApproach=false;destination=null;stickDirection=Vector2.zero;
             shared?.Walk(WalkMode.Stop);
         }
         private void Update()
@@ -516,7 +516,7 @@ namespace LittleWeeps.Client
             TickWorldMusic();
             if(Ready)TickCake();
             if(Ready){TickMixing();TickBubbleLab();TickLiquidColors();TickMarbleRamps();}
-            if(Ready){CheckStairInput();CheckDoorInput();CheckHideInput();}
+            if(Ready){CheckStairInput();CheckDoorInput();CheckHideInput();CheckZooInput();}
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
             if(shared!=null)
             {
@@ -529,6 +529,7 @@ namespace LittleWeeps.Client
                 if(!shared.Connected)return;
                 FinishTravel();
                 if(MenuOpen || TravelPending || StairBusy || doorSubmitted)shared.Walk(WalkMode.Stop);
+                else if(zooApproach)shared.Walk(WalkMode.Destination,zooEntry.x,zooEntry.y);
                 else if(hideApproach>=0)shared.Walk(WalkMode.Destination,HideEntry.x,HideEntry.y);
                 else if(doorApproach)shared.Walk(WalkMode.Destination,DoorEntry.x,DoorEntry.y);
                 else if(stairApproach)shared.Walk(WalkMode.Destination,HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea));
@@ -550,8 +551,8 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=StairBusy || doorSubmitted?WalkMode.Stop:hideApproach>=0 || doorApproach || stairApproach?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
-            var input=hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):JoystickMode?stickDirection:destination??Vector2.zero;
+            var mode=StairBusy || doorSubmitted?WalkMode.Stop:zooApproach || hideApproach>=0 || doorApproach || stairApproach?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
                 dirty=true;lastLocalAction=now;
@@ -589,7 +590,7 @@ namespace LittleWeeps.Client
             RecordPlayFrame();
             if(!Ready)return;
             AnimateNavigation();
-            EnsureToyViews();AnimateTravelScreen();TickScenery();TickHome();TickKeepy();TickPark();
+            EnsureToyViews();AnimateTravelScreen();TickScenery();TickHome();TickKeepy();TickPark();TickZoo();
             if(shared!=null && shared.Connected)
             {
                 var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
@@ -638,7 +639,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddParkDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
+            AddZooDepth(Add);AddParkDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);
