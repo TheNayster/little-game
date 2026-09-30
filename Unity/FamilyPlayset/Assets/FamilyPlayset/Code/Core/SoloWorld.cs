@@ -309,6 +309,14 @@ namespace LittleWeeps.Core
             if(visibleChange)state.revision++;
             return changed;
         }
+        private void TravelPlayer(SoloPlayer player,string destination)
+        {
+            // Settle station tools at their racks; personal items and food stay
+            // at departure. This is shared by normal travel and accepted invites.
+            foreach(var held in state.toys.Where(t=>t.holder==player.id))
+            {held.holder="";if(BedroomFurniture.Personal(held.kind) || Kitchen.Kind(held.kind)){held.x=player.x;held.y=Math.Max(35,Math.Min(250,player.y-65));Touch(held);continue;}if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
+            ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
+        }
         public SoloResult Apply(SoloCommand c)
         {
             SoloResult Reject(string reason) => new SoloResult(false, reason, Revision);
@@ -353,11 +361,7 @@ namespace LittleWeeps.Core
                     if(state.schema<2 || !(state.schema>=WorldLayout.ScenerySchema?WorldLayout.Destination(c.value):c.value=="garden" || c.value=="creek"))return Reject("unknown-area");
                     if(c.value==WorldLayout.Place(player))return Reject("already-there");
                     if(player.visit>=long.MaxValue-1)return Reject("visit-limit");
-                    // These are essential station tools. Settle a live hold at
-                    // its rack, preserving water; no new instance is spawned.
-                    foreach(var held in state.toys.Where(t=>t.holder==c.actor))
-                    {held.holder="";if(BedroomFurniture.Personal(held.kind) || Kitchen.Kind(held.kind)){held.x=player.x;held.y=Math.Max(35,Math.Min(250,player.y-65));Touch(held);continue;}if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
-                    ClearFixture(player);player.zone=WorldLayout.Canonical(c.value);player.visit++;player.x=WorldLayout.ArrivalX(c.value);player.y=100;player.activity="";outcome="area-entered";break;
+                    TravelPlayer(player,c.value);outcome="area-entered";break;
                 case SoloAction.Move:
                     ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(player.zone)?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
                     player.x=floorPoint.X;player.y=floorPoint.Y;break;

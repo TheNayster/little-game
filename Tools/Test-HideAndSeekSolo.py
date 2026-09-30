@@ -10,7 +10,7 @@ from shared_garden_runtime import Instance, read, write, wait, require
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('build',type=int);args=parser.parse_args()
     folder=ROOT/f'Builds/NetworkProbe/G3-0.0.{args.build}'
-    summary=read(folder/'build-summary.json');require(summary['schema'] ==30,'Wrong hiding candidate')
+    summary=read(folder/'build-summary.json');require(summary['schema'] ==32,'Wrong hiding candidate')
     authority,players,_=create_family()
     class Run:pass
     run=Run();run.build=args.build;run.run_id=authority['worldId'];run.path=ROOT/'LocalData/FamilyLAN'/run.run_id;run.path.mkdir(parents=True)
@@ -32,19 +32,19 @@ def main():
         def world():
             for attempt in range(6):
                 try:return json.loads(save.read_bytes().split(b'\n',2)[2])
-                except PermissionError:
+                except (PermissionError, FileNotFoundError):
                     if attempt==5:raise
                     time.sleep(.025)
         def hider():return world()['hideAndSeek']['hiders'][0]
         def button(name):a.input('touchButton',text=name);time.sleep(.2)
         a.input('fixtureTravel',text='home');time.sleep(1)
         button('Hide & seek');button('Play hide and seek')
-        wait(lambda:hider()['mode']==1,'private joining')
+        wait(lambda:world()['hideAndSeek']['phase']==1,'private countdown')
         button('Hide Curtain');wait(lambda:hider()['mode']==2,'private hide')
-        time.sleep(3);remaining=hider()['preparation'];require(remaining<14,'Private fifteen-second countdown stalled')
+        time.sleep(3);remaining=world()['hideAndSeek']['count'];require(remaining<14,'Private fifteen-second countdown stalled')
         wait(lambda:hider()['mode']==3,'private friendly find',100)
         record('private solo has working pictured entry auto-approach countdown inspection and friendly find')
-        button('Come out');wait(lambda:hider()['mode']==1,'private hide again');require(world()['hideAndSeek']['round']==2,'Chilli missing from private second turn')
+        button('Come out');button('Play hide and seek');wait(lambda:world()['hideAndSeek']['phase']==1,'private hide again');require(world()['hideAndSeek']['round']==2,'Chilli missing from private second turn')
         button('Hide Curtain');wait(lambda:hider()['mode']==2,'private re-entry')
         time.sleep(1.2);before=world();a.close();a=start();time.sleep(1)
         require(hider()['mode']==0 and hider()['slot']==-1,'Private reopen resumed stale role')

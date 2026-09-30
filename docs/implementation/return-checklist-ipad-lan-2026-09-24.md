@@ -1,5 +1,7 @@
 # Your next checks — updated characters, Creek and shared play
 
+**September 30 hide-to-join correction:** [Candidate 229](hide-and-seek-hide-to-join-2026-09-30.html) starts one countdown visible to all four server players. Only children hidden at zero are sought. Coordinate all device/server updates to content 33; the last recorded deployed family server is 227. After rollout, check nonhiders remain ignored and coming out or moving after zero withdraws only that hider. The older device records below are historical.
+
 **Current architecture:** PC/VPS shared authority; private offline solo; server state wins on reconnect without offline imports. Older report checklists are historical.
 
 **Current devices:** Samsung, both iPads and iPhone run **101**. All were updated in place; saves/settings and original family identities are retained. The original server/helper **91** is running and all four players joined. The user accepts the character prototype and notes animation stiffness. [Current update and evidence](character-phone-switch-2026-09-25.html).

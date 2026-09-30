@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build": 229,
+  "checks": [
+    "one start broadcasts fifteen seconds to all four; hiding opts in and nonhiders stay ignored",
+    "coming out after zero withdraws only that player; parent finds only the remaining hider",
+    "all four hide together with one alternating parent; walking and leaving preserve the shared search",
+    "no hiders at zero ends gently without searching or personal timers",
+    "cold restore clears temporary roles and preserves inventory"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

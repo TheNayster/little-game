@@ -23,7 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
- 'hiding':'implementation/hide-and-seek-first-level-2026-09-28.html',
+ 'hiding':'implementation/hide-and-seek-hide-to-join-2026-09-30.html',
  'hideresearch':'implementation/hide-and-seek-research-2026-09-28.html',
  'worldmusic':'implementation/world-music-2026-09-28.html',
  'ramps':'implementation/marble-ramps-2026-09-28.html',
@@ -131,7 +131,7 @@ H-09|home|Kitchen|Free recipes and persistent food creations|part|19,51|Chocolat
 H-10|home|Kitchen|Four-player preparation and safe ovens|part|19,31,47|Four independent cookware/tool sets, oven positions and dining seats. Authority selects free trays atomically and records cook profiles; one leaving player does not interrupt others. Native qualification is recorded; physical mixed-device acceptance remains open.|kitchen
 H-11|home|Kitchen|Drinks, fruit, blender and pretend café|plan|6,19|Slice/blend fruit, fill cups, serve, wash and keep bounded contents. Reuses the Toca/Piknik object catalog; not yet a home appliance feature.|ledger
 H-12|home|Parents and hiding|Bandit and Chilli's ambient routines|plan|22,47|Roam, read, garden, prepare food and tidy eligible ambient props; requests interrupt safely, but never steal a busy seeker or destroy a child's work.|ledger
-H-13|home|Parents and hiding|Parent-seeker hide-and-seek|part|22,34|Bandit and Chilli alternate first-level turns with pictured invitations, large fifteen-to-one countdown numbers, parent-follow cameras for hidden players, looking pauses, four independent hiders and friendly finds. Observation/clue options, speech and physical qualification remain.|hiding
+H-13|home|Parents and hiding|Parent-seeker hide-and-seek|part|22,34|Bandit and Chilli alternate first-level turns with pictured invitations, large fifteen-to-one countdown numbers, parent-follow cameras for hidden players, looking pauses, one broadcast countdown, hiding before zero to join, ignored nonhiders and independent withdrawal during search and friendly finds. Observation/clue options, speech and physical qualification remain.|hiding
 H-14|home|Parents and hiding|Child/human seeker and role changes|plan|22,34,47|Picture role choice, independent hider preparation, swap roles, and an NPC replacement if the human seeker leaves. Character choice never changes the role.|ledger
 H-15|home|Parents and hiding|Enterable hiding furniture|part|34|Ten enterable spaces include the original six plus a folding screen, dining-table nook, blanket bench and garden bush. Larger pictured Hide buttons with gentle glow, local cutaways, concealed remote occupants and safe exits work; upstairs hiding furniture remains.|hiding
 H-16|home|Parents and hiding|Fair clues and bounded search|part|34|First-level search uses checked-cover memory, nearby unvisited targets and visible look pauses. Sixty stationary slot/parent/start-position cases measure at most 72.95 seconds after preparation. Sight/sound clues, settings and upstairs routes remain.|hiding

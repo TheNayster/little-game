@@ -1,0 +1,12 @@
+{
+  "build": 229,
+  "schema": 32,
+  "content": 33,
+  "checkedCSharpFiles": 276,
+  "sourceMismatches": [],
+  "checkedArtifacts": 351,
+  "artifactMismatches": [],
+  "passed": true,
+  "physicalDevicesTested": false,
+  "liveFamilyTouched": false
+}

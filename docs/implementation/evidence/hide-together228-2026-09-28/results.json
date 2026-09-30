@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build": 228,
+  "checks": [
+    "all four receive the invitation; staggered accepts wait together, including a player in another world",
+    "Start together begins one authoritative fifteen-second countdown displayed on all four clients",
+    "one parent finds the group; movement and departure release only that player and preserve remaining progress",
+    "inviter departure transfers Start; decline and backgrounding keep the group intact; no personal mid-search restart",
+    "cold server restore safely closes old invitations and keeps the same saved inventory"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

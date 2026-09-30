@@ -13,7 +13,7 @@ namespace LittleWeeps.EditorTools
             var legacy=JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(s));legacy.schema=28;legacy.hideAndSeek.count=20;legacy.hideAndSeek.phase=HidePhase.Counting;
             legacy.hideAndSeek.hiders[0].mode=HiderMode.Preparing;legacy.hideAndSeek.hiders[0].preparation=20;
             SoloWorld.Validate(legacy);var migrated=SoloWorld.WithHideAndSeek(SoloWorld.Restore(legacy));
-            if(migrated.Schema!=30 || migrated.ReadHideAndSeek().phase!=HidePhase.Idle)throw new InvalidOperationException("Legacy hiding migration failed.");
+            if(migrated.Schema!=HideAndSeek.HidingWindowSchema || migrated.ReadHideAndSeek().phase!=HidePhase.Idle)throw new InvalidOperationException("Legacy hiding migration failed.");
             for(var i=0;i<HideAndSeek.SlotX.Length;i++)
             {
                 s.hideAndSeek.phase=HidePhase.Inspecting;s.hideAndSeek.target=i;s.hideAndSeek.age=1.4999999999999;s.hideAndSeek.count=9.999999999;

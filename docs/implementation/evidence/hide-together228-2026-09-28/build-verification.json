@@ -1,0 +1,24 @@
+{
+  "build": 228,
+  "checks": [
+    {
+      "platform": "NetworkProbe",
+      "codeFilesMatched": 136,
+      "artifactFilesMatched": 351,
+      "passed": true
+    },
+    {
+      "platform": "AndroidSigned",
+      "codeFilesMatched": 136,
+      "artifactFilesMatched": 1,
+      "passed": true
+    },
+    {
+      "platform": "iOSFamilyLAN",
+      "codeFilesMatched": 136,
+      "artifactFilesMatched": 3103,
+      "passed": true
+    }
+  ],
+  "physicalDevicesUpdated": false
+}

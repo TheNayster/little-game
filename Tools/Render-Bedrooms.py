@@ -9,7 +9,7 @@ import markdown
 
 docs=Path(__file__).resolve().parents[1]/'docs'
 style=re.search(r'<style>(.*?)</style>',(docs/'bluey-game-research-2026-09-23.html').read_text(encoding='utf-8'),re.S)[1]
-for name in ('implementation/hide-and-seek-first-level-2026-09-28','implementation/hide-and-seek-2026-09-28','implementation/hide-and-seek-research-2026-09-28','implementation/world-music-2026-09-28','home-world-feature-tracker','implementation/upstairs-bedrooms-research-2026-09-26',
+for name in ('implementation/hide-and-seek-hide-to-join-2026-09-30','implementation/hide-and-seek-together-2026-09-28','implementation/hide-and-seek-first-level-2026-09-28','implementation/hide-and-seek-2026-09-28','implementation/hide-and-seek-research-2026-09-28','implementation/world-music-2026-09-28','home-world-feature-tracker','implementation/upstairs-bedrooms-research-2026-09-26',
              'implementation/bedroom-rooms-2026-09-26','implementation/bedroom-furniture-2026-09-26',
              'implementation/secret-rooms-research-2026-09-26','implementation/secret-rooms-2026-09-26',
              'implementation/home-reading-quiet-play-research-2026-09-26','implementation/kids-narrator-research-2026-09-26','implementation/home-books-2026-09-26','implementation/room-object-play-2026-09-26','implementation/kitchen-research-2026-09-27','implementation/home-kitchen-2026-09-27','implementation/kitchen-child-friendly-research-2026-09-27','implementation/kitchen-easy-2026-09-27','implementation/kitchen-staged-cooking-research-2026-09-27','implementation/chocolate-cake-flow-2026-09-27','implementation/shared-play-regressions-2026-09-27','implementation/home-science-coloring-research-2026-09-27','implementation/home-discovery-2026-09-27',
