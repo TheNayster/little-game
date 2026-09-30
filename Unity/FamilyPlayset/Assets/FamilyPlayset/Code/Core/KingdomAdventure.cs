@@ -59,8 +59,10 @@ namespace LittleWeeps.Core
         {if(s!=null && s.schema<KingdomAdventure.Schema && s.kingdom!=null && s.kingdom.round==0 && s.kingdom.clock==0 && (s.kingdom.members==null || s.kingdom.members.Length==0))s.kingdom=null;}
         private static void ValidateKingdom(SoloSnapshot s)
         {
+            // Unity JSON rounds double timers; allow one millisecond at the
+            // eight-second boundary so a valid toss remains saveable.
             var g=s.kingdom;if(s.schema<KingdomAdventure.Schema){if(g!=null || s.players.Any(p=>p.zone==KingdomAdventure.Zone))throw new InvalidOperationException("Kingdom requires schema 38.");return;}
-            if(g==null || !Enum.IsDefined(typeof(KingdomPhase),g.phase) || g.round<0 || g.round==int.MaxValue || !KeepyRules.Finite(g.clock) || g.clock<0 || !KeepyRules.Finite(g.started) || g.started<0 || g.started>g.clock || !KeepyRules.Finite(g.distractedUntil) || g.distractedUntil<0 || g.distractedUntil>g.clock+8 ||
+            if(g==null || !Enum.IsDefined(typeof(KingdomPhase),g.phase) || g.round<0 || g.round==int.MaxValue || !KeepyRules.Finite(g.clock) || g.clock<0 || !KeepyRules.Finite(g.started) || g.started<0 || g.started>g.clock || !KeepyRules.Finite(g.distractedUntil) || g.distractedUntil<0 || g.distractedUntil>g.clock+8.001 ||
                 g.supplies<0 || g.supplies>7 || g.boards<0 || g.boards>7 || g.rescued<0 || g.rescued>7 || g.members==null || !g.members.Select(m=>m?.actor).OrderBy(v=>v).SequenceEqual(s.players.Select(p=>p.id).OrderBy(v=>v)))throw new InvalidOperationException("Invalid kingdom checkpoint.");
             foreach(var m in g.members)if(m.role<0 || m.role>3 || m.attending && (s.players.Single(p=>p.id==m.actor).zone!=KingdomAdventure.Zone || g.phase==KingdomPhase.Ready))throw new InvalidOperationException("Invalid kingdom participant.");
             if(g.phase>=KingdomPhase.Bridge && g.supplies!=7 || g.phase>=KingdomPhase.Queen && g.boards!=7 || g.phase==KingdomPhase.Feast && g.rescued!=7 || g.phase==KingdomPhase.Ready && (g.round!=0 || g.supplies!=0 || g.boards!=0 || g.rescued!=0))throw new InvalidOperationException("Invalid kingdom progression.");
@@ -93,7 +95,12 @@ namespace LittleWeeps.Core
         private bool AdvanceKingdom(double seconds,string[] activePlayers,out bool visible)
         {
             visible=false;var g=state.kingdom;if(g==null || !g.members.Any(m=>m.attending && (activePlayers==null || activePlayers.Contains(m.actor))))return false;
-            g.clock+=seconds;if(g.phase==KingdomPhase.Welcome && g.clock-g.started>=3)KingdomPhaseTo(KingdomPhase.Supplies);visible=true;return true;
+            var before=g.clock;g.clock+=seconds;
+            if(g.phase==KingdomPhase.Welcome && g.clock-g.started>=3){KingdomPhaseTo(KingdomPhase.Supplies);visible=true;}
+            else if(g.phase==KingdomPhase.Queen && before<g.distractedUntil && g.clock>=g.distractedUntil)visible=true;
+            // Clock samples use the existing motion lane; only transitions
+            // advance revision so shared join/action commands can settle.
+            return true;
         }
     }
 }

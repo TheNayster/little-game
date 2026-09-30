@@ -1,0 +1,14 @@
+{
+  "build": 305,
+  "passed": true,
+  "checks": [
+    "Daycare menu starts one shared story; four players join current progress with nine prepared NPCs",
+    "four shared contributions, independent return/disconnect, join during rescue and common completion",
+    "empty suspension, native saved checkpoint reopening and explicit shared replay"
+  ],
+  "scope": "Gameplay acceptance in disposable release server/four native clients, plus separate reopening of the same saved checkpoint; no device or live-server update",
+  "limits": [
+    "One client returned a nonzero process exit during the first run cleanup after server shutdown; all gameplay groups completed before that. Separate checkpoint/resume/replay run exits normally. Harness now closes clients before the server.",
+    "Family artwork, listening and physical-device acceptance remain open."
+  ]
+}

@@ -68,7 +68,7 @@ Feature goal sheet and supporting research • September 23, 2026
 
 **Automatic connection:** discover and authenticate the designated PC on home Wi-Fi, or the configured VPS after migration. A later player joins that same authority. No device competes to host; server unavailability leads to private solo.
 
-**Outdoor and daycare expansion:** [10 beach activities](#37-the-beach-collecting-building-and-playing-together), [10 creek activities](#38-the-creek-rocks-water-and-gentle-discovery), [12 park activities](#39-playground-and-park-equipment-that-really-works), and [Daycare as the sixth world](#40-daycare-a-sixth-world-with-an-optional-pretend-day). The daycare plan adds 2–3 rotating activity invitations, [12 playful learning stations](#41-daycare-learning-short-playful-and-spoken), and [all nine requested imagination stories](#42-the-imagination-mat-nine-stories-that-become-playable-worlds). [Implementation and acceptance checks](#43-building-saving-and-testing-the-outdoor-and-daycare-expansion) preserve optional play, late joining, and offline travel. All are researched plans, not implemented game features.
+**Outdoor and daycare expansion:** [10 beach activities](#37-the-beach-collecting-building-and-playing-together), [10 creek activities](#38-the-creek-rocks-water-and-gentle-discovery), [12 park activities](#39-playground-and-park-equipment-that-really-works), and [Daycare as the sixth world](#40-daycare-a-sixth-world-with-an-optional-pretend-day). The daycare plan adds 2–3 rotating activity invitations, [12 playful learning stations](#41-daycare-learning-short-playful-and-spoken), and [all nine requested imagination stories](#42-the-imagination-mat-nine-stories-that-become-playable-worlds). [Implementation and acceptance checks](#43-building-saving-and-testing-the-outdoor-and-daycare-expansion) preserve optional play, late joining, and offline travel. These sections remain the scope plan; current implementation evidence includes The Adventure and the named outdoor prototypes in the build guide.
 
 **Home and travel:** the PC/VPS runs the shared world independently of any child. Science, personal rooms, secret rooms and hiding are retained. Full installed solo play is required; travel internet co-op is optional. Sections 44–46 define the current client/server scope.
 
@@ -1963,6 +1963,8 @@ Reuse collect/snap, route choices, shield zones, and the story-sequencing lesson
 Reuse kitchen, doll, cleanup, dress-up, and delivery systems. Any character can take any role. Choosing baby never locks a human avatar into a cot or removes controls. If a human leaves a care role, an NPC continues the pretend routine; nobody receives a guilt message about abandoning someone.
 
 ### IMG-07 — The Adventure: a magical kingdom
+
+**Current implementation — September 30:** The Adventure now has a direct Daycare Games entry, nine prepared NPCs, shared fruit/bridge/wand/rescue/feast phases, optional roles and free joining/departure for up to four. The empty story saves and suspends. See the [scoped implementation and evidence](implementation/daycare-the-adventure-2026-09-30.html). The wider nine-story requirement remains partial.
 
 **Verified inspiration:** Bluey and Chloe act multiple roles in a kingdom story involving a quest for food, queens, a magic wand, and rescuing frozen characters. [The Adventure, S1E38](https://www.bluey.tv/watch/season-1/the-adventure/)
 

@@ -66,7 +66,7 @@ namespace LittleWeeps.NetworkProbe
         public long InputAck(string actor)=>inputAcks.TryGetValue(actor,out var ack)?ack:0;
         public event Action MotionReceived;
         [Serializable] public sealed class MovingPlayer {public string actor,zone;public long visit,input;public float x,y;public double stairs;}
-        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;}
+        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;public int kingdomRound,kingdomPhase;public double kingdomClock;}
         [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public double seconds;}
         private CheckpointStore store;
         private FileStream authorityLock;
@@ -557,6 +557,7 @@ namespace LittleWeeps.NetworkProbe
                 Latest.view.keepy=frame.keepy;keepyTime=frame.time;
             }
             if(frame.time>parkTime && frame.park!=null){Latest.view.park=frame.park;parkTime=frame.time;}
+            if(Latest.view.kingdom!=null && frame.kingdomRound==Latest.view.kingdom.round && frame.kingdomPhase==(int)Latest.view.kingdom.phase && KeepyRules.Finite(frame.kingdomClock) && frame.kingdomClock>Latest.view.kingdom.clock)Latest.view.kingdom.clock=frame.kingdomClock;
             MotionReceived?.Invoke();
             WriteJson(Path.Combine(output,"view.json"),Latest);
         }
@@ -582,7 +583,7 @@ namespace LittleWeeps.NetworkProbe
             // Positions describe the completed simulation step, not the later
             // packet-send instant. Otherwise 30 Hz simulation sampled at 20 Hz
             // creates an artificial alternating fast/slow interpolation speed.
-            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
+            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,kingdomRound=view.kingdom?.round??0,kingdomPhase=(int)(view.kingdom?.phase??KingdomPhase.Ready),kingdomClock=view.kingdom?.clock??0,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
             foreach(var peer in network.ConnectedClientsIds){Send(MotionMessage,peer,frame,NetworkDelivery.UnreliableSequenced);motionPackets++;}
             // Diagnostics are deliberately not durable checkpoints.
             WriteJson(Path.Combine(output,"view.json"),Current());

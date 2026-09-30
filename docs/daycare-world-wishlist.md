@@ -1,8 +1,8 @@
 # Little Weeps daycare world wishlist
 
-Collected from the project docs on September 30, 2026. This file gathers the recorded daycare goals so the family can choose a first feature. It adds no game implementation and does not approve every proposed detail in the older research.
+Collected from the project docs on September 30, 2026. This file gathers the recorded daycare goals so the family can choose a first feature. This is the scope list, with current progress recorded below; it does not approve every proposed detail in the older research.
 
-The recorded status is **walkable scenery exists; daycare activities, teaching routines, learning stations and imagination stories are still planned**. The existing scenery runs from a timber playroom to an outdoor cubby garden. The September 30 complete character selector provides reusable character artwork, but it does not establish working daycare classmates or teacher behavior.
+The current status is **walkable scenery and The Adventure prototype exist; teaching routines, learning stations and the other eight imagination stories remain planned**. [The Adventure implementation](implementation/daycare-the-adventure-2026-09-30.html) supports one shared story for up to four players who can come and go freely. The existing scenery runs from a timber playroom to an outdoor cubby garden. The September 30 complete character selector provides reusable character artwork, but it does not establish working daycare classmates or teacher behavior.
 
 ## The daycare you wanted
 

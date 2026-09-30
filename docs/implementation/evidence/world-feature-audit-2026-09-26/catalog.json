@@ -1258,27 +1258,27 @@
       "world": "yard",
       "group": "Fishing",
       "title": "Backyard fishpond catch-and-release",
-      "status": "plan",
+      "status": "play",
       "chapters": [
         20,
         47
       ],
-      "description": "Toy rods, visible fish, forgiving cast/reel, observation bowl and release; five proposed fish designs and picture discovery album. Four usable roles/tools, exclusive catch identity.",
-      "evidence": "ledger",
+      "description": "Done in source, candidate 285: four shared rods, random bites, easy Reel in, painted fish close-up/Release and feeding. Two pictured menu choices immediately travel/start. Physical review remains.",
+      "evidence": "pond",
       "extraSource": ""
     },
     {
       "id": "Y-13",
       "world": "yard",
       "group": "Fishing",
-      "title": "Fishing cancellation and discovery",
-      "status": "plan",
+      "title": "Fishing cancellation and release",
+      "status": "play",
       "chapters": [
         20,
         31
       ],
-      "description": "No missed-bite penalty or deadline; a full bowl offers release/another spot. Leaving releases unfinished catches; completed discoveries remain.",
-      "evidence": "ledger",
+      "description": "Done in source: missed bites retry; release, walking, travel, leaving and disconnect return only the player’s catch/rod while siblings continue. Temporary leases clear after recovery.",
+      "evidence": "pond",
       "extraSource": ""
     },
     {
@@ -1421,12 +1421,12 @@
       "world": "daycare",
       "group": "Imagination",
       "title": "Picture mat, spoken roles and independent stories",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         42
       ],
-      "description": "All nine story pictures remain unlocked; listen, choose role, play, change role, listen again and return. Up to four distinct lightweight sessions; NPCs fill missing roles.",
-      "evidence": "ledger",
+      "description": "The Adventure has one shared kingdom story for four, nine prepared NPCs, optional roles, free joining/departure and saved checkpoints. Other stories and the general picture mat remain planned.",
+      "evidence": "adventure",
       "extraSource": ""
     },
     {
@@ -1434,14 +1434,14 @@
       "world": "daycare",
       "group": "Imagination",
       "title": "Safe story joining and departure",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         31,
         42,
         43
       ],
-      "description": "Joining loads the current story, never restarts others. Preserve completed props/actions; autopilot or NPC takes necessary jobs and every player can exit.",
-      "evidence": "ledger",
+      "description": "The Adventure has one shared kingdom story for four, nine prepared NPCs, optional roles, free joining/departure and saved checkpoints. Other stories and the general picture mat remain planned.",
+      "evidence": "adventure",
       "extraSource": ""
     },
     {
@@ -3683,12 +3683,12 @@
       "world": "daycare",
       "group": "Nine imagination stories",
       "title": "The Adventure: a magical kingdom",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         42
       ],
-      "description": "choose royal explorer, horse/rider helper, or wand keeper. Blocks become castle walls, a rug becomes a meadow, and picture food becomes a picnic for the kingdom. Simple Play taps the wand to wake a statue or places a food item. Explore mode finds three supplies, opens a bridge, and invites everyone to a feast. Reuse building, delivery, riding, and prop transformations. Freeze NPC statues by default; do not immobilize a child's avatar as a punishment. If children opt into a freeze-play variant later, include an immediate self-release control. Costume and role swaps must not reset the kingdom's food table or bridge. Roles support four family players and NPC substitutes.",
-      "evidence": "ledger",
+      "description": "The Adventure has one shared kingdom story for four, nine prepared NPCs, optional roles, free joining/departure and saved checkpoints. Other stories and the general picture mat remain planned.",
+      "evidence": "adventure",
       "extraSource": ""
     },
     {

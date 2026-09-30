@@ -26,6 +26,7 @@ class Program
         foreach(var m in w.ReadKingdom().members.Where(m=>m.attending))w.ReleaseKingdom(m.actor);var clock=w.ReadKingdom().clock;w.AdvanceIdle(1,out _);Require(w.ReadKingdom().clock==clock,"empty story clock ran");
         Do(w,"one","start");Require(w.ReadKingdom().round==round+1,"resume rerolled round");
         Require(!Cmd(w,"one",SoloAction.Kingdom,"wand","wand").Accepted,"out-of-step action accepted");
+        var boundary=w.Snapshot();boundary.kingdom.phase=KingdomPhase.Queen;boundary.kingdom.supplies=boundary.kingdom.boards=7;boundary.kingdom.started=0;boundary.kingdom.clock=15.7447122;boundary.kingdom.distractedUntil=23.7447122;SoloWorld.Validate(boundary);
         Require(!WorldLayout.Destination(KingdomAdventure.Zone),"story added main world bubble");
         Console.WriteLine("PASS migration, four shared contributors, late join, independent exit/disconnect, JSON checkpoint, empty suspension, resume, replay and invalid action.");
     }

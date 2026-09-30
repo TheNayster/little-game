@@ -1,0 +1,9 @@
+{
+  "build": 305,
+  "passed": true,
+  "checks": [
+    "empty suspension, native saved checkpoint reopening and explicit shared replay"
+  ],
+  "checkpointOnly": true,
+  "scope": "disposable release server and four native clients; no physical-device or live-server update"
+}

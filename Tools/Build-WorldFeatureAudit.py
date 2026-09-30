@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'adventure':'implementation/daycare-the-adventure-2026-09-30.html',
  'pond':'implementation/backyard-pond-2026-09-30.html',
  'hiding':'implementation/hide-and-seek-hide-to-join-2026-09-30.html',
  'hideresearch':'implementation/hide-and-seek-research-2026-09-28.html',
@@ -257,6 +258,11 @@ for m in re.finditer(r'^### (IMG-\d+) — (.*?)\n(.*?)(?=^### |\Z)',section(42),
     paragraphs=[x for x in m[3].split('\n\n') if x.startswith('**Our game:**') or x.startswith('Reuse ')]
     add('STORY-'+m[1],'daycare','Nine imagination stories',m[2],'plan',[42],' '.join(paragraphs).replace('**Our game:** ','')+' Roles support four family players and NPC substitutes.','ledger')
 
+for feature in features:
+    if feature['id'] in ('STORY-IMG-07','D-08','D-09'):
+        feature['status']='part';feature['evidence']='adventure'
+        feature['description']='The Adventure has one shared kingdom story for four, nine prepared NPCs, optional roles, free joining/departure and saved checkpoints. Other stories and the general picture mat remain planned.'
+
 # Recipe targets remain partial until bespoke gestures, album and physical acceptance are finished.
 for feature in features:
     if feature['id'].startswith(('PIZ-', 'CAK-', 'MEAL-')):
@@ -409,7 +415,7 @@ TRACK_STATUS={
 'HIDE-01':'part','HIDE-02':'plan','NPC-01':'part','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'part',
 'JOIN-01':'part','WORLD-01':'part','WORLD-02':'part','ITEM-02':'part','ITEM-03':'part','STOCK-01':'part','ROOM-02':'plan','NET-02':'part',
 'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'part','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',
-'DAY-01':'plan','LEARN-01':'plan','IMG-01':'plan'}
+'DAY-01':'plan','LEARN-01':'plan','IMG-01':'part'}
 TRACK_STATUS.update({'ROOM-02':'part', 'SECRET-01':'part'})
 TRACK_MAP={
 'CHAR-01':'G-18, G-20; Character roster','CHAR-02':'G-18, G-19; Character roster','FAMILY-01':'G-01, G-26, O-01, O-10',

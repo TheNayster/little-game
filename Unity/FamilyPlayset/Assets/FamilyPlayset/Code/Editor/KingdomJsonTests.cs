@@ -17,6 +17,8 @@ namespace LittleWeeps.EditorTools
             var snapshot=JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(world.Snapshot()));SoloWorld.Validate(snapshot);
             if(snapshot.kingdom.round!=1 || !snapshot.kingdom.members[0].attending || snapshot.kingdom.members.Skip(1).Any(m=>m.attending) || snapshot.worldId!=prior.worldId)throw new InvalidOperationException("Unity JSON lost shared kingdom identity or membership.");
             if(SoloWorld.Restore(snapshot).ReadKingdom().round!=1)throw new InvalidOperationException("Kingdom checkpoint did not reopen.");
+            var boundary=snapshot.kingdom;boundary.phase=KingdomPhase.Queen;boundary.supplies=boundary.boards=7;boundary.clock=15.7447122;boundary.distractedUntil=23.7447122;
+            SoloWorld.Validate(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(snapshot)));
             if(Resources.Load<Texture2D>("Scenery/daycare-adventure")==null)throw new InvalidOperationException("Missing kingdom panorama.");
             Debug.Log("Kingdom JSON passed: additive upgrade, four memberships, authoritative clock, saved round and retained world.");
         }
