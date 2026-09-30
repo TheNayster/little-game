@@ -84,6 +84,7 @@ def main():
     # choosing replacements. Preserve that preview separately from final scope.
     rects=json.loads((ROOT/'SourceArt/Books/art-rects.json').read_text(encoding='utf-8'))
     voices=[];effects=[];library=[]
+    dinosaur_calls=json.loads((ROOT/'SourceAudio/Books/dinosaur-call-jobs-2026-09-30.json').read_text())
     def export(book):
         book['artRects']=rects[book['id']]
         folder=BOOKS/book['id'];folder.mkdir(parents=True,exist_ok=True)
@@ -96,7 +97,7 @@ def main():
     pages=[dict(title='Hello, Dinosaurs!',caption='Twelve prehistoric animals to meet.',speech='Hello, dinosaur explorers! Let us meet twelve amazing prehistoric animals. Tap a picture to hear its name. The sound button plays an imagined animal call.',species=-1)]
     for i,(name,caption,speech,prompt) in enumerate(DINOSAURS):
         pages.append(dict(title=name,caption=caption,speech=speech,species=i))
-        effects.append(dict(prompt=prompt,output=f'SourceAudio/Books/hello-dinosaurs/effect-{i}.wav'))
+        effects.append(dinosaur_calls[i])
     pages.append(dict(title='Who will you choose?',caption='Tap an animal to hear its name again.',speech='Which animal would you like to meet again? Some lived millions of years apart. Their real voices are a mystery, so our sounds are made for imagination.',species=-1))
     export(dict(id='hello-dinosaurs',revision=2,title='Hello, Dinosaurs!',locale='en-US',kind='dinosaurs',pages=pages,names=[v[0] for v in DINOSAURS],notes='Original text. Illustrative colours and imaginative calls; no claim animals coexisted. Pterosaurs are flying reptiles.'))
     for id,title,story,prompt in STORIES:

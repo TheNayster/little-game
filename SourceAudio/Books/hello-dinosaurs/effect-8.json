@@ -1,12 +1,15 @@
 {
-  "prompt": "Gentle seabird-like chirrup followed by two soft leathery wing flaps, an imaginary flying reptile, quiet background.",
+  "prompt": "A Pteranodon flying reptile gives two raspy bird-like squawks and a short rising croaking cry. Distinct close dry animal vocalization starting immediately, expressive and playful, not piercing or frightening. No wing flaps or ambience.",
   "negative_prompt": "Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing",
-  "seed": 9634,
+  "seed": 309308,
   "model": "MMAudio large_44k_v2",
   "model_sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74",
   "model_license": "CC-BY-NC-4.0",
   "source": "https://github.com/hkchengrex/MMAudio",
   "generated": true,
   "kind": "Imaginative sound design; not an authentic extinct-animal recording",
-  "sha256": "2e375f2e448f9258d6cae3fbe44d5f3af677c89fe48707ac795decebcea9a30f"
+  "seconds": 3.5,
+  "loudness": -18.0,
+  "highpass": 90.0,
+  "sha256": "aca01be0332ab4597493f8a0593afb3397c95c021daeb9dea299cfab4111f150"
 }

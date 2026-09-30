@@ -106,25 +106,5 @@
     "loudness": -18,
     "highpass": 90,
     "output": "SourceAudio/Books/hello-dinosaurs/effect-11.wav"
-  },
-  {
-    "prompt": "Soft construction vehicle engine idling and a short gravel tumble, gentle toy-like outdoor work sounds, no voices.",
-    "output": "SourceAudio/Books/little-bridge/effect-0.wav"
-  },
-  {
-    "prompt": "A soft science fiction rocket whoosh with a gentle electronic radio bleep, playful calm space adventure, no voices or music.",
-    "output": "SourceAudio/Books/rocket-moon/effect-0.wav"
-  },
-  {
-    "prompt": "Gentle garden birds chirping with a little water trickle and soft leaves rustling, peaceful close outdoor sounds.",
-    "output": "SourceAudio/Books/fairy-garden/effect-0.wav"
-  },
-  {
-    "prompt": "A delicate short magical shimmer made of soft tiny glass bell chimes, warm and gentle, no tune or voices.",
-    "output": "SourceAudio/Books/princess-star/effect-0.wav"
-  },
-  {
-    "prompt": "Soft underwater bubbles rising with a gentle water swish, calm close aquatic sound, no voices or music.",
-    "output": "SourceAudio/Books/mermaid-shell/effect-0.wav"
   }
 ]

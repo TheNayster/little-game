@@ -1,12 +1,15 @@
 {
-  "prompt": "A soft low animal coo followed by a little breathy snuffle, gentle imaginary herbivore, quiet background.",
+  "prompt": "A Stegosaurus dinosaur makes three low throaty pulsing grunts with a soft raspy exhale. Distinct textured animal voice, close dry creature call starting immediately. Playful prehistoric animal. No footsteps or ambience.",
   "negative_prompt": "Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing",
-  "seed": 9628,
+  "seed": 309302,
   "model": "MMAudio large_44k_v2",
   "model_sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74",
   "model_license": "CC-BY-NC-4.0",
   "source": "https://github.com/hkchengrex/MMAudio",
   "generated": true,
   "kind": "Imaginative sound design; not an authentic extinct-animal recording",
-  "sha256": "40d5145ec5e8000268b887f32743a6487af91b4c86a5e7bbf1cfb843c6619d7b"
+  "seconds": 3.5,
+  "loudness": -18.0,
+  "highpass": 90.0,
+  "sha256": "f4b89b1cb5e069dc17ed47a5d91835b8ac0c524b551034e692e4b429490e610c"
 }

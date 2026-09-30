@@ -1,12 +1,15 @@
 {
-  "prompt": "Two soft curious bird-like clucks and a small chirp, gentle feathered animal, close and dry, quiet background.",
+  "prompt": "A small feathered Velociraptor makes three quick raspy chirrups followed by a short rough trilling growl. Distinct organic bird-like dinosaur voice, curious and playful, close dry call starting immediately, not piercing or frightening. No ambience.",
   "negative_prompt": "Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing",
-  "seed": 9637,
+  "seed": 309311,
   "model": "MMAudio large_44k_v2",
   "model_sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74",
   "model_license": "CC-BY-NC-4.0",
   "source": "https://github.com/hkchengrex/MMAudio",
   "generated": true,
   "kind": "Imaginative sound design; not an authentic extinct-animal recording",
-  "sha256": "cd4676ca186e768c58983515db564590ae5c4073d5ba0a1d43c144b7e6f3a12f"
+  "seconds": 3.5,
+  "loudness": -18.0,
+  "highpass": 90.0,
+  "sha256": "3c52187f17d92fb01eacca4b8b976f1d5e6b8ebe42a845591d7b310f308081ec"
 }

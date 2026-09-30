@@ -6,7 +6,7 @@ namespace LittleWeeps.Client
     public sealed partial class SoloScreen
     {
         private RectTransform bookOptions;
-        private Text bookWordsLabel,bookReplay,bookSound;
+        private Text bookWordsLabel,bookRestart,bookSound;
         private Button bookPrevious,bookNext;
         private ReaderPictureControl bookPlayPicture,bookHeadingCard;
         private bool bookWordsOn=true;
@@ -39,7 +39,7 @@ namespace LittleWeeps.Client
             bookPrevious=BookControl("<","Back","back",.047f,20,80,()=>TurnBook(reader.Page-1),true).transform.parent.GetComponent<Button>();
             bookNext=BookControl(">","Next","next",.953f,20,80,()=>TurnBook(reader.Page+1),true).transform.parent.GetComponent<Button>();
             bookPlay=BookControl("Read to me","Read to me","play",.28f,-319,216,ToggleBookPlay,true);
-            bookReplay=BookControl("Replay","Read again","replay",.5f,-319,216,()=>{PauseBook();reader.Sample=0;ToggleBookPlay();},true);
+            bookRestart=BookControl("Start again","Start again","replay",.5f,-319,216,RestartBook,true);
             bookSound=BookControl("Hear sound","Hear sound","sound",.72f,-319,216,PlayBookEffect,true);
             ReaderDrawing(readerFrame,"Page number card",new Vector2(0,-385),new Vector2(92,28),"card",new Color(1,.985f,.94f,.78f));
             bookCounter=BookText("",20,new Vector2(0,-385),new Vector2(160,28));bookCounter.color=new Color(.17f,.34f,.33f);Destroy(bookCounter.GetComponent<Shadow>());

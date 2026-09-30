@@ -1,0 +1,50 @@
+[
+  {
+    "species": 0,
+    "sha256": "ed43b44a51d445e133cd4df65b974acf9847b2b1599e16706912f6996b77128a"
+  },
+  {
+    "species": 1,
+    "sha256": "31bc18af800cde1829225f4ab9961e68774afcb6f0cacd1791c1df0c0296bbc2"
+  },
+  {
+    "species": 2,
+    "sha256": "f4b89b1cb5e069dc17ed47a5d91835b8ac0c524b551034e692e4b429490e610c"
+  },
+  {
+    "species": 3,
+    "sha256": "68c9f52ab6574ff53a4d05540df92b4d80b0889ac6d8b1c6e0e1a52e477d5c46"
+  },
+  {
+    "species": 4,
+    "sha256": "508facf17ec7361824045e8c68f26f94aa0f3669c4bcdbdaea616ea155c12940"
+  },
+  {
+    "species": 5,
+    "sha256": "f00f5e50438964d4902f5af2c30d363fc0c7833fdd29f70d7409867192a3728b"
+  },
+  {
+    "species": 6,
+    "sha256": "20e3389fe21c3109530f58e54515f21bda4a1f11e2a8bad972d59cf91525741a"
+  },
+  {
+    "species": 7,
+    "sha256": "2fd66d89ca2bad6b6b68a8e3ac82138b6d27de20211eb65f06ae56a9db05514c"
+  },
+  {
+    "species": 8,
+    "sha256": "aca01be0332ab4597493f8a0593afb3397c95c021daeb9dea299cfab4111f150"
+  },
+  {
+    "species": 9,
+    "sha256": "12e15c8ba4aa9a366ba35a48641594fb012d3b60294bb5a91c1fc95cbe39edf2"
+  },
+  {
+    "species": 10,
+    "sha256": "d525546b2fa4f28f3801f1f81b1378e6da3feb434c4d22a2ed05630d3e850a31"
+  },
+  {
+    "species": 11,
+    "sha256": "3c52187f17d92fb01eacca4b8b976f1d5e6b8ebe42a845591d7b310f308081ec"
+  }
+]

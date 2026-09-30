@@ -56,3 +56,24 @@ No physical speaker-route, A10 performance, child usability or sustained mixed-d
 The requested final catalog remains dinosaurs, snakes/reptiles, cars/trucks, Hello Kitty, Tangled and unicorns. This controls pass does not approve or replace the installed original story drafts or narrator.
 
 Next bounded implementation: apply the accepted picture controls to the native coloring workspace, preserving its eighteen pages, four independent creations and undo/redo. Cooking controls, remaining science activities and the full Home backlog remain required. Review the current reader and science candidates on devices when deployment is requested.
+
+
+## September 30: restart the whole book and hear dinosaur calls
+
+BOOK-01 / H-19 / H-20: Windows candidate **230** replaces the current-page Replay action with a large **Start again** button. It returns any of the six installed books to page one and starts narration if voice is enabled. Once the last narration finishes, the main action reads **Read book again**, which also restarts from page one. Books do not loop automatically. Opening remains quiet, and restarting changes only that reader's local bookmark.
+
+Tapping a dinosaur now plays its pronunciation followed by its species call. With voice off, it plays just the call; Sounds off still suppresses effects. The separate **Dinosaur call** action remains available. Restart, page/title changes and closing cancel obsolete audio before new reading starts.
+
+### Research applied to the sound design
+
+Exact extinct-animal voices are unknown. [Carnegie Museum's paleoacoustics interview](https://carnegiemnh.org/what-did-dinosaurs-sound-like-paleoacoustics/) discusses crocodilian growls, bird-like booms and modern-animal ingredients in imaginative dinosaur sound design. [Natural History Museum's Diplodocus explanation](https://www.nhm.ac.uk/discover/quick-questions/what-did-diplodocus-sound-like.html) also distinguishes evidence from speculation. Accordingly these are original imagined calls, not authentic recordings or claims about exact dinosaur voices.
+
+The user's existing PC audio environment generated twelve distinct calls: T-Rex, Triceratops, Stegosaurus, Brachiosaurus, Diplodocus, Ankylosaurus, Brontosaurus, Spinosaurus, Pteranodon, Quetzalcoatlus, Parasaurolophus and Velociraptor. Pterosaurs remain identified as flying reptiles. Prompts differentiate growls, bellows, grunts, honks, croaks, squawks and chirrups; phone-oriented mastering uses 90 Hz high-pass, -18 LUFS and short fades. All calls are 3.5-second mono 32 kHz PCM16, about 2.7 MB combined.
+
+Generation uses the already installed [MMAudio large_44k_v2](https://github.com/hkchengrex/MMAudio), with CC-BY-NC-4.0 model attribution recorded per asset. Reproducible prompts/seeds/mastering live in `SourceAudio/Books/dinosaur-call-jobs-2026-09-30.json`; each output has a provenance JSON. The content/effects tools preserve these jobs on regeneration. Existing narration and picture assets remain.
+
+### Targeted verification and delivery
+
+[Five focused native checks](evidence/book-restart230-2026-09-30/results.json) pass on a disposable loopback server/client: restart across all six titles; names followed by T-Rex/Spinosaurus/Pteranodon calls; cancellation and muted restart; finished-book restart; and all twelve distinct source/runtime WAV matches. [Call hashes](evidence/book-restart230-2026-09-30/calls.json) and [asset properties](evidence/book-restart230-2026-09-30/call-assets.json) record the generated content. [Native phone-sized capture](evidence/book-restart230-2026-09-30/restart-phone.png) confirms the accepted translucent control style.
+
+Windows client/server release **230** built successfully. This reader-only change adds no save/schema/network contract; schema 32/content 33 remain from 229. No phone, iPad, live-server rollout or physical listening acceptance is claimed. The full commercial qualification suites were not repeated, following the user's targeted-check preference. Next bounded task is installing this reader update when requested; final story subjects and the wider Home backlog remain open. Preserve the main integration hold.

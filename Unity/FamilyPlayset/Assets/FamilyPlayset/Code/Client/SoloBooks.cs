@@ -215,6 +215,15 @@ namespace LittleWeeps.Client
         {if(!reader.Open)return;PauseBook();reader.Close();ReleaseBookMedia();readerOverlay.gameObject.SetActive(false);bookOptions.gameObject.SetActive(false);stick.gameObject.SetActive(JoystickMode && !MenuOpen);CancelPointers();}
         private void TurnBook(int page)
         {if(!reader.Open || page<0 || page>=reader.Pages)return;PauseBook();reader.Turn(page);ShowBookPage();SaveBookmark();}
+        private void RestartBook()
+        {
+            if(!reader.Open || applicationPaused)return;
+            // A deliberate restart invalidates old name/effect/page requests,
+            // resets only this local bookmark and works with narration muted.
+            TurnBook(0);bookOptions.gameObject.SetActive(false);
+            if(Narration.VoiceEnabled){reader.Play();StartBookSpeech();}
+            SaveBookmark();UpdateBookControls();
+        }
         private void ShowBookPage()
         {
             StopBookName();StopBookEffect();bookAutoAt=-1;pageAudio=null;ReleaseBook(ref bookPageLease);bookPagePending=true;
@@ -249,6 +258,7 @@ namespace LittleWeeps.Client
         private void ToggleBookPlay()
         {
             if(!reader.Open || applicationPaused)return;if(reader.Playing){PauseBook();return;}if(!Narration.VoiceEnabled)return;
+            if(reader.Page==reader.Pages-1 && pageAudio!=null && reader.Sample>=pageAudio.samples-1){RestartBook();return;}
             if(!bookPagePending && (pageAudio==null || pageAudio.loadState!=AudioDataLoadState.Loaded))ShowBookPage();
             StopBookName();StopBookEffect();if(pageAudio!=null && reader.Sample>=pageAudio.samples-1)reader.Sample=0;
             reader.Play();bookAutoAt=-1;StartBookSpeech();UpdateBookControls();
@@ -263,7 +273,7 @@ namespace LittleWeeps.Client
         private void BookName(int index)
         {
             if(!reader.Open || applicationPaused || !DinosaurBook || index<0 || index>=bookContent.names.Length)return;bookSelected=index;bookMotionUntil=Time.unscaledTime+1.6f;
-            if(!Narration.VoiceEnabled)return;CaptureBookSample();StopBookName();StopBookEffect();bookName=index;bookNamePending=true;bookAutoAt=-1;
+            if(!Narration.VoiceEnabled){PlayBookEffect();return;}CaptureBookSample();StopBookName();StopBookEffect();bookName=index;bookNamePending=true;bookAutoAt=-1;
             bookNameLease=AcquireBook(BookPath+"audio/name-"+index);StartCoroutine(LoadBookName(bookNameGeneration,reader.Generation,bookNameLease));UpdateBookControls();
         }
         private IEnumerator LoadBookName(int generation,int intent,BookLease lease)
@@ -290,10 +300,12 @@ namespace LittleWeeps.Client
         private void UpdateBookControls()
         {
             if(bookPlay==null)return;
-            bookPlay.text=reader.Playing?(bookPagePending?"Cancel":"Pause"):reader.Sample>0?"Keep reading":"Read to me";
+            var finished=reader.Page==reader.Pages-1 && pageAudio!=null && reader.Sample>=pageAudio.samples-1;
+            bookPlay.text=reader.Playing?(bookPagePending?"Cancel":"Pause"):finished?"Read book again":reader.Sample>0?"Keep reading":"Read to me";
             bookPlayPicture.Icon=reader.Playing?(bookPagePending?"cancel":"pause"):"play";bookPlayPicture.SetVerticesDirty();
             bookPlay.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
-            bookReplay.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
+            bookRestart.transform.parent.GetComponent<Button>().interactable=true;
+            bookSound.text=DinosaurBook?"Dinosaur call":"Hear sound";
             bookSound.transform.parent.GetComponent<Button>().interactable=bookEffectsOn;
             bookPrevious.interactable=reader.Page>0;bookNext.interactable=reader.Page<reader.Pages-1;
             bookAuto.text=reader.AutoTurn?"Auto pages on":"Auto pages off";bookVoiceLabel.text=Narration.VoiceEnabled?"Voice on":"Voice off";bookEffectsLabel.text=bookEffectsOn?"Sounds on":"Sounds off";
@@ -344,13 +356,13 @@ namespace LittleWeeps.Client
             if(bookWasSpeaking && readerVoice!=null && !readerVoice.isPlaying && !applicationPaused)
             {
                 bookWasSpeaking=false;
-                if(bookName>=0){StopBookName();if(reader.Playing)StartBookSpeech();}
+                if(bookName>=0){StopBookName();if(bookEffectsOn)PlayBookEffect();else if(reader.Playing)StartBookSpeech();}
                 else if(reader.Playing && pageAudio!=null){reader.Sample=pageAudio.samples-1;readerVoice.clip=null;bookAutoAt=reader.AutoTurn && reader.Page<reader.Pages-1?Time.unscaledTime+1:-1;if(bookAutoAt<0)reader.Pause();SaveBookmark();}
                 UpdateBookControls();
             }
             if(bookWasEffect && readerEffects!=null && !readerEffects.isPlaying && !applicationPaused){StopBookEffect();if(reader.Playing)StartBookSpeech();UpdateBookControls();}
             if(bookAutoAt>=0 && Time.unscaledTime>=bookAutoAt){TurnBook(reader.Page+1);reader.Play();StartBookSpeech();UpdateBookControls();}
-            if(readerEffects!=null)readerEffects.volume=(VerifyRun!=null || familyTestMuted || shared?.MutedTest==true)?0:(BookSpeaking ? .13f : .45f);
+            if(readerEffects!=null)readerEffects.volume=(VerifyRun!=null || familyTestMuted || shared?.MutedTest==true)?0:(BookSpeaking ? .13f : DinosaurBook ? .65f : .45f);
             var phase=Mathf.Clamp01((bookMotionUntil-Time.unscaledTime)/1.6f);var moving=DinosaurBook && !quietStill && phase>0;
             bookFocus.rectTransform.anchoredPosition=new Vector2(moving?Mathf.Sin((1-phase)*Mathf.PI*4)*8:0,(DinosaurBook?80:0)+(moving?Mathf.Abs(Mathf.Sin((1-phase)*Mathf.PI*4))*5:0));
         }

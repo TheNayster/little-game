@@ -57,7 +57,7 @@ def main():
         openbook(a,'hello-dinosaurs');button(a,'More reading options');button(a,'Auto pages on');require(not info(a)['bookAuto'],'Auto preference not disabled');button(a,'Reading options done')
         while info(a)['bookPage']>0:button(a,'<')
         ready(a);button(a,'Read to me');wait(lambda:info(a)['bookSpeaking'],'cover narration');wait(lambda:not info(a)['bookPlaying'],'manual narration completes',30);require(info(a)['bookPage']==0,'Manual mode advanced')
-        button(a,'More reading options');button(a,'Auto pages on');button(a,'Reading options done');button(a,'Replay');wait(lambda:info(a)['bookPage']==1,'auto page turns after real narration',30);button(a,'Read to me');quiet(a)
+        button(a,'More reading options');button(a,'Auto pages on');button(a,'Reading options done');button(a,'Start again');wait(lambda:info(a)['bookPage']==1,'auto page turns after real narration',30);button(a,'Read to me');quiet(a)
         record('manual mode stays on page and optional automatic mode follows actual narration completion')
         # Exercise every installed page. Disabled arrows must not wrap.
         pages=0
@@ -76,7 +76,7 @@ def main():
         for width,height,label in [(1024,768,'tablet'),(1280,591,'phone')]:
             a.input('resize',x=width,y=height);time.sleep(.4);s=info(a)
             controls={v['name']:v for v in s['controls']}
-            for name in ['Our books','More reading options','Close','<','>','Read to me','Replay','Hear sound']:
+            for name in ['Our books','More reading options','Close','<','>','Read to me','Start again','Hear sound']:
                 r=controls[name]['bounds'];require(r['x']>=0 and r['y']>=0 and r['x']+r['width']<=s['screenWidth']+1 and r['y']+r['height']<=s['screenHeight']+1,'Control outside screen '+name);require(r['width']>=44 and r['height']>=44,'Tiny control '+name)
             home.capture(a,out,'story-'+label);button(a,'More reading options');home.capture(a,out,'options-'+label);button(a,'Reading options done')
         button(a,'Our books');button(a,'Choose hello-dinosaurs');ready(a)

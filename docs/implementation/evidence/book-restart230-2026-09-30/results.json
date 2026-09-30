@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build": 230,
+  "checks": [
+    "Start again returns all six books to page one and starts narration",
+    "T-Rex Spinosaurus and Pteranodon taps say their names then play calls",
+    "Restart cancels old calls; voice-off restart remains quiet; closing cancels playback",
+    "Completed narration offers Read book again and restarts the entire book",
+    "All twelve distinct generated calls match runtime assets"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false,
+  "physicalAudioVerified": false
+}

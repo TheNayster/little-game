@@ -30,9 +30,12 @@ def main():
         dest=(ROOT/e['output']).resolve()
         if not dest.is_relative_to(ROOT) or dest.suffix!='.wav':raise ValueError('Invalid output')
         seed=e.get('seed',9626+i);meta=dest.with_suffix('.json')
+        seconds=float(e.get('seconds',4));loudness=float(e.get('loudness',-24));highpass=float(e.get('highpass',0))
+        if not 1<=seconds<=8 or not -30<=loudness<=-16 or not 0<=highpass<=200:raise ValueError('Invalid mastering settings')
         if dest.exists() and meta.exists():
             old=json.loads(meta.read_text())
-            if old.get('prompt')==e['prompt'] and old.get('model_sha256')==model_hash and old.get('seed')==seed:continue
+            if (old.get('prompt')==e['prompt'] and old.get('model_sha256')==model_hash and old.get('seed')==seed
+                and old.get('seconds',4)==seconds and old.get('loudness',-24)==loudness and old.get('highpass',0)==highpass):continue
         print(f'Rendering {i+1}/{len(entries)}: {dest.name}',flush=True)
         negative='Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing'
         with torch.inference_mode():
@@ -42,12 +45,14 @@ def main():
         if not np.isfinite(wave).all():raise ValueError('Invalid audio')
         raw=WORK/'raw'/('effect-'+dest.stem+'.wav');raw.parent.mkdir(exist_ok=True,parents=True);sf.write(raw,wave,44100,subtype='FLOAT')
         dest.parent.mkdir(exist_ok=True,parents=True)
-        subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(raw),'-t','4',
-            '-af','afade=t=in:d=0.08,afade=t=out:st=3.5:d=0.5,loudnorm=I=-24:TP=-6:LRA=7',
+        filters=(f'highpass=f={highpass},' if highpass else '')+f'afade=t=in:d=0.06,afade=t=out:st={seconds-.3}:d=0.3,loudnorm=I={loudness}:TP=-3:LRA=7'
+        subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(raw),'-t',str(seconds),
+            '-af',filters,
             '-ac','1','-ar','32000','-c:a','pcm_s16le',str(dest)],check=True)
         meta.write_text(json.dumps(dict(prompt=e['prompt'],negative_prompt=negative,seed=seed,model='MMAudio large_44k_v2',
             model_sha256=model_hash,model_license='CC-BY-NC-4.0',source='https://github.com/hkchengrex/MMAudio',
             generated=True,kind='Imaginative sound design; not an authentic extinct-animal recording',
+            seconds=seconds,loudness=loudness,highpass=highpass,
             sha256=hashlib.sha256(dest.read_bytes()).hexdigest()),indent=2)+'\n')
         print('Saved '+str(dest),flush=True)
 
