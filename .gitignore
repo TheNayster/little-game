@@ -21,6 +21,9 @@ LocalData/
 .vs/
 .idea/
 *.csproj
+!Tools/SeagullRules.Tests/SeagullRules.Tests.csproj
+Tools/SeagullRules.Tests/bin/
+Tools/SeagullRules.Tests/obj/
 !Tools/ParkPlay.Tests/ParkPlay.Tests.csproj
 Tools/ParkPlay.Tests/bin/
 Tools/ParkPlay.Tests/obj/
