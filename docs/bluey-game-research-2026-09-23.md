@@ -1811,6 +1811,8 @@ Reuse section 34's current parent-seeker default, optional child seeker, Come ou
 
 ## 40. Daycare: a sixth world with an optional pretend day
 
+**Current implementation — September 30:** Calypso now has authored shared greeting/reading/observing/helping/resting routines and a local story/help choice. A four-guest picnic-counting table supports up to four contributors, independent exits and saved progress. [Scoped implementation](implementation/daycare-calypso-counting-2026-09-30.html). The full classmate/zone/day-board requirement remains partial.
+
 **Daycare remains one of five destinations:** Heeler Home (including Backyard Garden), Playground & Park, The Creek, The Beach, and Daycare. Its rooms and imagination destinations are subareas, so they do not each need another world bubble.
 
 Use Calypso as the main teacher and combine a classroom, play yard, book corner, art/sensory tables, pretend kitchen, quiet cushion nook, and imagination mat. The show places the older children at Calypso's school; our all-ages daycare is an intentional family-game adaptation where the entire requested child roster can gather. It is not a claim that every show's child attends the same canonical classroom. The official character page identifies Calypso as Bluey's teacher and emphasizes encouraging imaginative play. [Calypso character reference](https://www.bluey.tv/characters/calypso/)

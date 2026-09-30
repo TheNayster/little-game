@@ -69,3 +69,5 @@ Tools/PondRules.Tests/bin/
 Tools/PondRules.Tests/obj/
 
 !Tools/KingdomRules.Tests/KingdomRules.Tests.csproj
+
+!Tools/DaycareRules.Tests/DaycareRules.Tests.csproj

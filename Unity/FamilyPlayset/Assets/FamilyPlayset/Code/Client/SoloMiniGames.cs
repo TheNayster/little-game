@@ -10,6 +10,7 @@ namespace LittleWeeps.Client
         private Image miniGamesHidePicture;
         private Text miniGamesHideHint;
         private Button miniGamesHideChoice;
+        private RectTransform miniGamesPicnic;
         private RectTransform miniGamesKingdom;private Text miniGamesKingdomHint;
         private readonly System.Collections.Generic.List<RectTransform> miniGamesPondCards=new System.Collections.Generic.List<RectTransform>();
         public bool MiniGamesOpen=>miniGamesMenu!=null && miniGamesMenu.gameObject.activeSelf;
@@ -55,11 +56,15 @@ namespace LittleWeeps.Client
                 label.rectTransform.anchoredPosition=new Vector2(0,-43);label.rectTransform.sizeDelta=new Vector2(310,55);label.fontSize=32;miniGamesPondCards.Add(card);
                 PondPicture(card,name+" menu picture",new Vector2(0,25),new Vector2(175,100),feed?"feeding-icon":"fishing-icon");
             }
-            var adventure=Button(miniGamesContent,"The Adventure",new Vector2(0,-145),new Vector2(700,250),ChooseKingdom,new Color(.86f,.82f,.98f));
+            var adventure=Button(miniGamesContent,"The Adventure",new Vector2(0,-65),new Vector2(700,110),ChooseKingdom,new Color(.86f,.82f,.98f));
             miniGamesKingdom=(RectTransform)adventure.transform.parent;miniGamesKingdom.anchorMin=miniGamesKingdom.anchorMax=new Vector2(.5f,1);
-            adventure.rectTransform.anchoredPosition=new Vector2(105,45);adventure.rectTransform.sizeDelta=new Vector2(435,70);adventure.fontSize=38;
-            var portrait=Rect(miniGamesKingdom,"Chloe adventure picture",new Vector2(-215,-45),new Vector2(180,210));var chloe=portrait.gameObject.AddComponent<GameCharacterVisual>();chloe.Select("chloe");chloe.PresentFrame(new CharacterFrame(CharacterPose.Wave,0,false),0);portrait.localScale=Vector3.one*.8f;
-            miniGamesKingdomHint=Label(miniGamesKingdom,"Save the kingdom together!",26,new Vector2(105,-45),new Vector2(435,100));
+            adventure.rectTransform.anchoredPosition=new Vector2(65,22);adventure.rectTransform.sizeDelta=new Vector2(500,50);adventure.fontSize=30;
+            var portrait=Rect(miniGamesKingdom,"Chloe adventure picture",new Vector2(-265,0),new Vector2(120,140));var chloe=portrait.gameObject.AddComponent<GameCharacterVisual>();chloe.Select("chloe");chloe.PresentFrame(new CharacterFrame(CharacterPose.Wave,0,false),0);portrait.localScale=Vector3.one*.65f;
+            miniGamesKingdomHint=Label(miniGamesKingdom,"Save the kingdom together!",22,new Vector2(65,-25),new Vector2(500,40));
+            var picnic=Button(miniGamesContent,"Picnic counting",new Vector2(0,-190),new Vector2(700,110),ChoosePicnic,new Color(.82f,.91f,.62f));
+            miniGamesPicnic=(RectTransform)picnic.transform.parent;miniGamesPicnic.anchorMin=miniGamesPicnic.anchorMax=new Vector2(.5f,1);picnic.fontSize=30;picnic.rectTransform.anchoredPosition=new Vector2(65,20);picnic.rectTransform.sizeDelta=new Vector2(500,50);
+            Panel(miniGamesPicnic,"Picnic plate picture",new Vector2(-265,0),new Vector2(85,65),Color.white,false,true);
+            Label(miniGamesPicnic,"Set the table with Calypso!",22,new Vector2(65,-25),new Vector2(500,40));
             Button(miniGamesFrame,"Back to play",new Vector2(0,-200),new Vector2(300,75),CloseMiniGames,Color.white);
             miniGamesMenu.gameObject.SetActive(false);
         }
@@ -98,7 +103,7 @@ namespace LittleWeeps.Client
             if(WorldLoading || applicationPaused){CloseMiniGames();return;}
             miniGamesFrame.localScale=Vector3.one*Mathf.Min(safe.rect.width/900,safe.rect.height/600);
             miniGamesHidePicture.sprite=parent;
-            var daycare=CurrentArea=="daycare" || CurrentArea==KingdomAdventure.Zone;miniGamesHideChoice.gameObject.SetActive(!daycare);foreach(var card in miniGamesPondCards)card.gameObject.SetActive(!daycare);miniGamesKingdom.gameObject.SetActive(daycare);
+            var daycare=CurrentArea=="daycare" || CurrentArea==KingdomAdventure.Zone;var home=CurrentArea=="garden" || HomeRooms.Internal(CurrentArea);miniGamesHideChoice.gameObject.SetActive(home);foreach(var card in miniGamesPondCards)card.gameObject.SetActive(home);miniGamesKingdom.gameObject.SetActive(daycare);miniGamesPicnic.gameObject.SetActive(CurrentArea=="daycare");
             miniGamesKingdomHint.text=KingdomGame!=null && KingdomGame.phase>KingdomPhase.Ready?"Join our adventure where it is now!":"Save the kingdom together!";
             var counting=HideGame.phase==HidePhase.Counting;var ready=HideAndSeek.NextRound(HideGame);
             miniGamesHideChoice.interactable=inZone && !hideSending && (counting || ready);
@@ -106,6 +111,6 @@ namespace LittleWeeps.Client
         }
 
         private void ResetMiniGames()
-        {miniGamesButton=null;miniGamesMenu=null;miniGamesFrame=null;miniGamesContent=null;miniGamesHidePicture=null;miniGamesHideHint=null;miniGamesHideChoice=null;miniGamesKingdom=null;miniGamesKingdomHint=null;miniGamesPondCards.Clear();}
+        {miniGamesButton=null;miniGamesMenu=null;miniGamesFrame=null;miniGamesContent=null;miniGamesHidePicture=null;miniGamesHideHint=null;miniGamesHideChoice=null;miniGamesKingdom=null;miniGamesPicnic=null;miniGamesKingdomHint=null;miniGamesPondCards.Clear();}
     }
 }

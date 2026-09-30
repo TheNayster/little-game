@@ -1328,13 +1328,13 @@
       "world": "daycare",
       "group": "World foundation",
       "title": "Long daycare scenery",
-      "status": "scene",
+      "status": "part",
       "chapters": [
         3,
         40
       ],
-      "description": "Walkable scenic shell exists. Calypso, classmates, lessons, day board and story sessions are not implemented.",
-      "evidence": "scene",
+      "description": "Calypso has a shared teacher routine and local story/help choices. Four prepared picnic guests receive a plate each in one shared four-player counting activity; late joins/exits and saved progress work. Full zones/classmates, eleven other lessons and deeper counting remain planned.",
+      "evidence": "calypso",
       "extraSource": ""
     },
     {
@@ -1342,12 +1342,12 @@
       "world": "daycare",
       "group": "Rooms and routine",
       "title": "Classroom and activity zones",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         40
       ],
-      "description": "Classroom, yard, book corner, art/sensory tables, pretend kitchen, quiet cushions and imagination mat; no extra top-level world bubbles.",
-      "evidence": "ledger",
+      "description": "Calypso has a shared teacher routine and local story/help choices. Four prepared picnic guests receive a plate each in one shared four-player counting activity; late joins/exits and saved progress work. Full zones/classmates, eleven other lessons and deeper counting remain planned.",
+      "evidence": "calypso",
       "extraSource": ""
     },
     {
@@ -1355,13 +1355,13 @@
       "world": "daycare",
       "group": "Rooms and routine",
       "title": "Calypso and available classmates",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         4,
         40
       ],
-      "description": "Teacher greeting/reading/observing/helping/resting routines; illustrated friend board and full requested child roster spread across zones. NPCs yield essential toys.",
-      "evidence": "ledger",
+      "description": "Calypso has a shared teacher routine and local story/help choices. Four prepared picnic guests receive a plate each in one shared four-player counting activity; late joins/exits and saved progress work. Full zones/classmates, eleven other lessons and deeper counting remain planned.",
+      "evidence": "calypso",
       "extraSource": ""
     },
     {
@@ -1408,12 +1408,12 @@
       "world": "daycare",
       "group": "Learning",
       "title": "Spoken lessons and adjustable help",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         41
       ],
-      "description": "Show, invite, wait, acknowledge and optional demonstration; skill-specific assistance, no grades/streak loss, microphones or reading requirements; language-specific reviewed examples.",
-      "evidence": "ledger",
+      "description": "Calypso has a shared teacher routine and local story/help choices. Four prepared picnic guests receive a plate each in one shared four-player counting activity; late joins/exits and saved progress work. Full zones/classmates, eleven other lessons and deeper counting remain planned.",
+      "evidence": "calypso",
       "extraSource": ""
     },
     {
@@ -2377,12 +2377,12 @@
       "world": "daycare",
       "group": "Twelve learning stations",
       "title": "Picnic counting",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         41
       ],
-      "description": "Simple play: Give each of 1–3 pictured guests one plate; count each committed placement aloud Deeper play: Prepare sets up to 5 or 10 as appropriate; ask how many altogether and show the set, not just a numeral",
-      "evidence": "ledger",
+      "description": "Calypso has a shared teacher routine and local story/help choices. Four prepared picnic guests receive a plate each in one shared four-player counting activity; late joins/exits and saved progress work. Full zones/classmates, eleven other lessons and deeper counting remain planned.",
+      "evidence": "calypso",
       "extraSource": ""
     },
     {

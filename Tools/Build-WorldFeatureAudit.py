@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'calypso':'implementation/daycare-calypso-counting-2026-09-30.html',
  'adventure':'implementation/daycare-the-adventure-2026-09-30.html',
  'pond':'implementation/backyard-pond-2026-09-30.html',
  'hiding':'implementation/hide-and-seek-hide-to-join-2026-09-30.html',
@@ -263,6 +264,11 @@ for feature in features:
         feature['status']='part';feature['evidence']='adventure'
         feature['description']='The Adventure has one shared kingdom story for four, nine prepared NPCs, optional roles, free joining/departure and saved checkpoints. Other stories and the general picture mat remain planned.'
 
+for feature in features:
+    if feature['id'] in ('D-01','D-02','D-03','D-07','LRN-05'):
+        feature['status']='part';feature['evidence']='calypso'
+        feature['description']='Calypso has a shared teacher routine and local story/help choices. Four prepared picnic guests receive a plate each in one shared four-player counting activity; late joins/exits and saved progress work. Full zones/classmates, eleven other lessons and deeper counting remain planned.'
+
 # Recipe targets remain partial until bespoke gestures, album and physical acceptance are finished.
 for feature in features:
     if feature['id'].startswith(('PIZ-', 'CAK-', 'MEAL-')):
@@ -415,7 +421,7 @@ TRACK_STATUS={
 'HIDE-01':'part','HIDE-02':'plan','NPC-01':'part','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'part',
 'JOIN-01':'part','WORLD-01':'part','WORLD-02':'part','ITEM-02':'part','ITEM-03':'part','STOCK-01':'part','ROOM-02':'plan','NET-02':'part',
 'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'part','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',
-'DAY-01':'plan','LEARN-01':'plan','IMG-01':'part'}
+'DAY-01':'part','LEARN-01':'part','IMG-01':'part'}
 TRACK_STATUS.update({'ROOM-02':'part', 'SECRET-01':'part'})
 TRACK_MAP={
 'CHAR-01':'G-18, G-20; Character roster','CHAR-02':'G-18, G-19; Character roster','FAMILY-01':'G-01, G-26, O-01, O-10',

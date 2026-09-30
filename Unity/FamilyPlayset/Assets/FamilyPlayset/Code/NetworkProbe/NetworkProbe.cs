@@ -66,7 +66,7 @@ namespace LittleWeeps.NetworkProbe
         public long InputAck(string actor)=>inputAcks.TryGetValue(actor,out var ack)?ack:0;
         public event Action MotionReceived;
         [Serializable] public sealed class MovingPlayer {public string actor,zone;public long visit,input;public float x,y;public double stairs;}
-        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;public int kingdomRound,kingdomPhase;public double kingdomClock;}
+        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;public int kingdomRound,kingdomPhase;public double kingdomClock;public int daycareRound,daycarePhase;public double daycareClock;}
         [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public double seconds;}
         private CheckpointStore store;
         private FileStream authorityLock;
@@ -340,7 +340,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithKingdom(world);
+            world=SoloWorld.WithDaycare(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -558,6 +558,7 @@ namespace LittleWeeps.NetworkProbe
             }
             if(frame.time>parkTime && frame.park!=null){Latest.view.park=frame.park;parkTime=frame.time;}
             if(Latest.view.kingdom!=null && frame.kingdomRound==Latest.view.kingdom.round && frame.kingdomPhase==(int)Latest.view.kingdom.phase && KeepyRules.Finite(frame.kingdomClock) && frame.kingdomClock>Latest.view.kingdom.clock)Latest.view.kingdom.clock=frame.kingdomClock;
+            if(Latest.view.daycare!=null && frame.daycareRound==Latest.view.daycare.round && frame.daycarePhase==Latest.view.daycare.phase && KeepyRules.Finite(frame.daycareClock) && frame.daycareClock>Latest.view.daycare.clock){var delta=frame.daycareClock-Latest.view.daycare.clock;Latest.view.daycare.clock=frame.daycareClock;if(Latest.view.daycare.phase==1 && !Latest.view.daycare.members.Any(m=>m.attending))Latest.view.daycare.started+=delta;}
             MotionReceived?.Invoke();
             WriteJson(Path.Combine(output,"view.json"),Latest);
         }
@@ -583,7 +584,7 @@ namespace LittleWeeps.NetworkProbe
             // Positions describe the completed simulation step, not the later
             // packet-send instant. Otherwise 30 Hz simulation sampled at 20 Hz
             // creates an artificial alternating fast/slow interpolation speed.
-            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,kingdomRound=view.kingdom?.round??0,kingdomPhase=(int)(view.kingdom?.phase??KingdomPhase.Ready),kingdomClock=view.kingdom?.clock??0,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
+            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,kingdomRound=view.kingdom?.round??0,kingdomPhase=(int)(view.kingdom?.phase??KingdomPhase.Ready),kingdomClock=view.kingdom?.clock??0,daycareRound=view.daycare?.round??0,daycarePhase=view.daycare?.phase??0,daycareClock=view.daycare?.clock??0,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
             foreach(var peer in network.ConnectedClientsIds){Send(MotionMessage,peer,frame,NetworkDelivery.UnreliableSequenced);motionPackets++;}
             // Diagnostics are deliberately not durable checkpoints.
             WriteJson(Path.Combine(output,"view.json"),Current());

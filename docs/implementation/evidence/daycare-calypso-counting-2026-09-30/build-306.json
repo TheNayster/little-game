@@ -1,0 +1,31 @@
+{
+    "utc": "2026-09-30T22:04:05.3329037Z",
+    "contract": 17,
+    "content": 47,
+    "schema": 39,
+    "gardenPresentation": true,
+    "builds": [
+        {
+            "role": "Server",
+            "version": "0.0.306",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\AdventureWork\\source\\Builds\\NetworkProbe\\G3-0.0.306\\Server\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": true
+        },
+        {
+            "role": "Client",
+            "version": "0.0.306",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\AdventureWork\\source\\Builds\\NetworkProbe\\G3-0.0.306\\Client\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": false
+        }
+    ]
+}

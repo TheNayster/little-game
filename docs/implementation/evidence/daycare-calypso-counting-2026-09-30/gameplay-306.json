@@ -1,0 +1,11 @@
+{
+  "build": 306,
+  "passed": true,
+  "checks": [
+    "Calypso choices, direct world menu and four players sharing the current picnic",
+    "shared committed counting, late rejoin, independent leave/disconnect and common completion",
+    "authoritative teacher progresses into her reading routine",
+    "empty suspension, native saved checkpoint reopen and explicit shared replay"
+  ],
+  "scope": "disposable release authority and four native clients; no physical-device or live-server update"
+}

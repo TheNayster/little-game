@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "gameplayBuild": 306,
+  "finalVisualBuild": 307,
+  "gameplay": "gameplay-306.json",
+  "visual": "visual-307.json",
+  "scope": "focused four native release clients, teacher routine, independent departures, saved reopening and replay; separate final layout pass; no devices/live authority updated"
+}

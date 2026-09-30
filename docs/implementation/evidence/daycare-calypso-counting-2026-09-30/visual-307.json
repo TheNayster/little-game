@@ -1,0 +1,9 @@
+{
+  "build": 307,
+  "passed": true,
+  "checks": [
+    "final four-player table layout and settled Calypso reading pose"
+  ],
+  "visualOnly": true,
+  "scope": "disposable release authority and four native clients; no physical-device or live-server update"
+}

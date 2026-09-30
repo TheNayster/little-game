@@ -2,7 +2,7 @@
 
 Collected from the project docs on September 30, 2026. This file gathers the recorded daycare goals so the family can choose a first feature. This is the scope list, with current progress recorded below; it does not approve every proposed detail in the older research.
 
-The current status is **walkable scenery and The Adventure prototype exist; teaching routines, learning stations and the other eight imagination stories remain planned**. [The Adventure implementation](implementation/daycare-the-adventure-2026-09-30.html) supports one shared story for up to four players who can come and go freely. The existing scenery runs from a timber playroom to an outdoor cubby garden. The September 30 complete character selector provides reusable character artwork, but it does not establish working daycare classmates or teacher behavior.
+The current status is **walkable scenery, The Adventure, Calypso routines and shared picnic counting exist; the day board, full classmates, eleven other learning stations and eight other stories remain planned**. [The Adventure implementation](implementation/daycare-the-adventure-2026-09-30.html) supports one shared story for up to four players who can come and go freely. The existing scenery runs from a timber playroom to an outdoor cubby garden. The September 30 complete character selector provides reusable character artwork, but it does not establish working daycare classmates or teacher behavior.
 
 ## The daycare you wanted
 
@@ -68,7 +68,7 @@ The older research sometimes says “both children” or describes separate acti
 
 ## A suggested first feature
 
-**My recommendation is Calypso plus a shared picnic-counting table.** This is a proposed starting point for discussion, not an implementation already authorized by this documentation request.
+**Calypso plus a shared picnic-counting table is now implemented as the next bounded slice.** Four pictured friends receive a plate each; players may tap a place or use the large arrow. [Implementation and evidence](implementation/daycare-calypso-counting-2026-09-30.html). Deeper counting and draggable-plate variants remain planned.
 
 Use a small part of the existing playroom: Calypso, one obvious picnic picture, a shared table with places/tools for four players, pictured guests and draggable plates. Calypso gives a short spoken invitation; placing a plate makes something visible happen and counts that committed placement once. The family can set the table together, skip the prompt or leave independently. Start with one to three guests and optional extra counting, rather than producing all twelve lessons at once.
 
@@ -92,4 +92,4 @@ For the first implementation, use one focused check of the changed activity, inc
 - [Scenic-world implementation](implementation/scenic-worlds-2026-09-25.md): evidence for the existing timber playroom and outdoor cubby garden.
 - [Toca and Piknik interaction research](toca-piknik-interaction-research-2026-09-23.md): daycare's ready toy/learning table and accessible starting space.
 
-Documentation only: no game code, artwork, saves, devices or live server changed. This file is the task record; implementation remains the next discussion.
+Documentation only: no game code, artwork, saves, devices or live server changed. The original collection was documentation only. Later progress includes The Adventure and the Calypso/counting prototype; their separate implementation records contain evidence.
