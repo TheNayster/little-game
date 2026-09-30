@@ -747,6 +747,8 @@ Use authored sprite states for dough/cake shapes, bounded topping sockets or a c
 
 ## 20. The water feature and fishing mini-game
 
+**Done in source — candidate 285:** shared four-player backyard fishing and feeding, direct menu travel/start, random bites, easy Reel in, painted fish close-up and Release. Full-size placement follows the user’s trampoline-to-picnic-table correction. Native phone/iPad views and shared interactions pass. Creek fishing and device delivery remain open. [Implementation](implementation/backyard-pond-2026-09-30.html).
+
 ### What is verified in the show
 
 The official **Tradies** episode page confirms Sparky and Chippy install a pond in the Heeler backyard. Their character page identifies it as a fishpond. Its exact finished shape and fish species require the episode artwork reference; the fishing and feeding loop is our game adaptation. [Tradies, season 3 episode 32](https://www.bluey.tv/watch/season-3/tradies/), [The Tradies](https://www.bluey.tv/characters/the-tradies/).

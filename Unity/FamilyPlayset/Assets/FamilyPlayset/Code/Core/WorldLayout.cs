@@ -11,6 +11,7 @@ namespace LittleWeeps.Core
         // admit clients that can select characters they cannot validate.
         // Content 39 admits the complete 37-character research roster.
         // Content 41 requires the replicated outfit fields and roar commands.
+        // Content 42 adds authoritative shared pond fishing/feeding and the moved picnic cover.
         // Content 44 adds the shared kingdom story zone, commands and saved progress.
         public const int Schema=38, ScenerySchema=3, Content=44;
         public const float TileWidth=2400, SceneHeight=800;

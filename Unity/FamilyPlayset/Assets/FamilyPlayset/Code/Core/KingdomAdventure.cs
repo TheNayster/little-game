@@ -51,7 +51,7 @@ namespace LittleWeeps.Core
         public KingdomState ReadKingdom()=>state.kingdom?.Copy();
         public static SoloWorld WithKingdom(SoloWorld world)
         {
-            world=WithOutfits(world);if(world.Schema>=KingdomAdventure.Schema)return world;
+            world=WithPond(world);if(world.Schema>=KingdomAdventure.Schema)return world;
             var s=world.Snapshot();s.kingdom=new KingdomState{members=s.players.Select((p,i)=>new KingdomMember{actor=p.id,role=i}).ToArray()};
             s.schema=KingdomAdventure.Schema;s.revision++;Validate(s);return new SoloWorld(s);
         }

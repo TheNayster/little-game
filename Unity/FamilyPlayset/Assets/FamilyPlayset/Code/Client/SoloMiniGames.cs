@@ -10,8 +10,8 @@ namespace LittleWeeps.Client
         private Image miniGamesHidePicture;
         private Text miniGamesHideHint;
         private Button miniGamesHideChoice;
-        private RectTransform miniGamesKingdom;
-        private Text miniGamesKingdomHint;
+        private RectTransform miniGamesKingdom;private Text miniGamesKingdomHint;
+        private readonly System.Collections.Generic.List<RectTransform> miniGamesPondCards=new System.Collections.Generic.List<RectTransform>();
         public bool MiniGamesOpen=>miniGamesMenu!=null && miniGamesMenu.gameObject.activeSelf;
 
         private void BuildMiniGames()
@@ -42,12 +42,19 @@ namespace LittleWeeps.Client
             scroll.horizontal=false;scroll.vertical=true;scroll.movementType=ScrollRect.MovementType.Clamped;
             // Register additional area games here when they exist. The balloon and
             // prototype quests keep their own direct interactions outside this menu.
-            var choice=Button(miniGamesContent,"Hide & seek",new Vector2(0,-145),new Vector2(700,250),ChooseHideMiniGame,new Color(.76f,.9f,.99f));
+            var choice=Button(miniGamesContent,"Hide & seek",new Vector2(0,-52),new Vector2(700,90),ChooseHideMiniGame,new Color(.76f,.9f,.99f));
             var root=(RectTransform)choice.transform.parent;root.anchorMin=root.anchorMax=new Vector2(.5f,1);
-            choice.rectTransform.anchoredPosition=new Vector2(120,45);choice.rectTransform.sizeDelta=new Vector2(405,70);choice.fontSize=40;
+            choice.rectTransform.anchoredPosition=new Vector2(65,15);choice.rectTransform.sizeDelta=new Vector2(480,40);choice.fontSize=30;
             miniGamesHideChoice=root.GetComponent<Button>();
-            miniGamesHidePicture=HomePicture(root,"Hide and seek picture",new Vector2(-220,0),new Vector2(210,210),banditFrames[5]);
-            miniGamesHideHint=Label(root,"Hide while a parent counts!",26,new Vector2(120,-45),new Vector2(405,100));
+            miniGamesHidePicture=HomePicture(root,"Hide and seek picture",new Vector2(-268,0),new Vector2(75,75),banditFrames[5]);
+            miniGamesHideHint=Label(root,"Hide while a parent counts!",20,new Vector2(65,-23),new Vector2(480,37));
+            foreach(var feeding in new[]{false,true}){
+                var feed=feeding;var name=feed?"Feed fish":"Fishing";
+                var label=Button(miniGamesContent,name,new Vector2(feed?180:-180,-200),new Vector2(340,180),()=>ChoosePondMiniGame(feed),feed?new Color(.83f,.91f,.65f):new Color(.75f,.9f,.99f));
+                var card=(RectTransform)label.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);
+                label.rectTransform.anchoredPosition=new Vector2(0,-43);label.rectTransform.sizeDelta=new Vector2(310,55);label.fontSize=32;miniGamesPondCards.Add(card);
+                PondPicture(card,name+" menu picture",new Vector2(0,25),new Vector2(175,100),feed?"feeding-icon":"fishing-icon");
+            }
             var adventure=Button(miniGamesContent,"The Adventure",new Vector2(0,-145),new Vector2(700,250),ChooseKingdom,new Color(.86f,.82f,.98f));
             miniGamesKingdom=(RectTransform)adventure.transform.parent;miniGamesKingdom.anchorMin=miniGamesKingdom.anchorMax=new Vector2(.5f,1);
             adventure.rectTransform.anchoredPosition=new Vector2(105,45);adventure.rectTransform.sizeDelta=new Vector2(435,70);adventure.fontSize=38;
@@ -59,7 +66,7 @@ namespace LittleWeeps.Client
 
         private void ShowMiniGames()
         {
-            if(!Ready || MenuOpen || TravelPending )return;
+            if(!Ready || MenuOpen || TravelPending)return;
             CloseNavigation();CancelPointers();Narration.Stop();hideApproach=-1;
             miniGamesMenu.gameObject.SetActive(true);miniGamesMenu.SetAsLastSibling();
             stick.gameObject.SetActive(false);
@@ -73,7 +80,7 @@ namespace LittleWeeps.Client
 
         private void ChooseHideMiniGame()
         {
-            if(!Ready || hideSending )return;
+            if(!Ready || hideSending || !HideAndSeek.Zone(ReadPlayer(Actor)))return;
             var state=HideGame;if(state==null)return;
             if(state.phase!=HidePhase.Counting && !HideAndSeek.NextRound(state))return;
             // Dismiss before submitting: only the existing server command starts
@@ -86,20 +93,19 @@ namespace LittleWeeps.Client
         {
             if(miniGamesButton==null)return;
             var inZone=HideAndSeek.Zone(ReadPlayer(Actor));
-            var daycare=CurrentArea=="daycare" || CurrentArea==KingdomAdventure.Zone;
-            miniGamesButton.gameObject.SetActive((inZone || daycare) && !MenuOpen && !applicationPaused);
+            miniGamesButton.gameObject.SetActive(!MenuOpen && !applicationPaused);
             if(!MiniGamesOpen)return;
-            if((!inZone && !daycare) || WorldLoading || applicationPaused){CloseMiniGames();return;}
+            if(WorldLoading || applicationPaused){CloseMiniGames();return;}
             miniGamesFrame.localScale=Vector3.one*Mathf.Min(safe.rect.width/900,safe.rect.height/600);
             miniGamesHidePicture.sprite=parent;
-            miniGamesHideChoice.gameObject.SetActive(inZone);miniGamesKingdom.gameObject.SetActive(daycare && SceneSchema>=KingdomAdventure.Schema);
+            var daycare=CurrentArea=="daycare" || CurrentArea==KingdomAdventure.Zone;miniGamesHideChoice.gameObject.SetActive(!daycare);foreach(var card in miniGamesPondCards)card.gameObject.SetActive(!daycare);miniGamesKingdom.gameObject.SetActive(daycare);
             miniGamesKingdomHint.text=KingdomGame!=null && KingdomGame.phase>KingdomPhase.Ready?"Join our adventure where it is now!":"Save the kingdom together!";
             var counting=HideGame.phase==HidePhase.Counting;var ready=HideAndSeek.NextRound(HideGame);
-            miniGamesHideChoice.interactable=!hideSending && (counting || ready);
-            miniGamesHideHint.text=counting?"Go hide before zero!":ready?"Hide while a parent counts!":"A round is playing.\nChoose it when everyone is found.";
+            miniGamesHideChoice.interactable=inZone && !hideSending && (counting || ready);
+            miniGamesHideHint.text=!inZone?"Play Hide & seek at Home.":counting?"Go hide before zero!":ready?"Hide while a parent counts!":"A round is playing.\nChoose it when everyone is found.";
         }
 
         private void ResetMiniGames()
-        {miniGamesButton=null;miniGamesMenu=null;miniGamesFrame=null;miniGamesContent=null;miniGamesHidePicture=null;miniGamesHideHint=null;miniGamesHideChoice=null;miniGamesKingdom=null;miniGamesKingdomHint=null;}
+        {miniGamesButton=null;miniGamesMenu=null;miniGamesFrame=null;miniGamesContent=null;miniGamesHidePicture=null;miniGamesHideHint=null;miniGamesHideChoice=null;miniGamesKingdom=null;miniGamesKingdomHint=null;miniGamesPondCards.Clear();}
     }
 }

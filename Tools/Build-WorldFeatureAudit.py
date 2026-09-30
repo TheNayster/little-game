@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'pond':'implementation/backyard-pond-2026-09-30.html',
  'hiding':'implementation/hide-and-seek-hide-to-join-2026-09-30.html',
  'hideresearch':'implementation/hide-and-seek-research-2026-09-28.html',
  'worldmusic':'implementation/world-music-2026-09-28.html',
@@ -168,8 +169,8 @@ Y-08|yard|Furniture and equipment|Expanded shed shelves, hooks and bins|plan|51|
 Y-09|yard|Furniture and equipment|Tree swing and hanging/resting seats|plan|5|Authored seat/rope grips, readable arc, safe entry/exit and four-person activity design. Current painted swing is not a usable ride.|ledger
 Y-10|yard|Furniture and equipment|Wading pool and splash play|plan|3,5|Shallow valid play zone, front-water occlusion, paddling/splashing response and easy exits. Existing pool art alone is decoration.|ledger
 Y-11|yard|Furniture and equipment|Wagon, toy car and cargo|plan|3,51|Load, carry/roll, unload and wash compatible toys with retained cargo. Handholding and other advanced responses need their own implementation.|ledger
-Y-12|yard|Fishing|Backyard fishpond catch-and-release|plan|20,47|Toy rods, visible fish, forgiving cast/reel, observation bowl and release; five proposed fish designs and picture discovery album. Four usable roles/tools, exclusive catch identity.|ledger
-Y-13|yard|Fishing|Fishing cancellation and discovery|plan|20,31|No missed-bite penalty or deadline; a full bowl offers release/another spot. Leaving releases unfinished catches; completed discoveries remain.|ledger
+Y-12|yard|Fishing|Backyard fishpond catch-and-release|play|20,47|Done in source, candidate 285: four shared rods, random bites, easy Reel in, painted fish close-up/Release and feeding. Two pictured menu choices immediately travel/start. Physical review remains.|pond
+Y-13|yard|Fishing|Fishing cancellation and release|play|20,31|Done in source: missed bites retry; release, walking, travel, leaving and disconnect return only the player’s catch/rod while siblings continue. Temporary leases clear after recovery.|pond
 P-01|park|World foundation|Long park and playground scenery|scene|3,39|Walkable scenic shell exists. Playground machinery, NPC games and riding are planned; painted equipment must not be reported as working rides.|scene
 C-01|creek|World foundation|Long creek scenery and inherited water fixture|part|3,38|Walkable creek exists with a second instance of the garden water rules. That fixture does not implement creek fishing, stones, boats or nature discovery.|core
 B-01|beach|World foundation|Long beach scenery|scene|3,37|Walkable scenic shell exists. Interactive waves, animals, shells and the ten named beach activities remain planned.|scene
@@ -404,7 +405,7 @@ for feature in features:
         feature['status']='part';feature['description']=PARK_PROGRESS_NOTES[feature['id']];feature['evidence']='park'
 
 TRACK_STATUS={
-'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'part','FISH-01':'plan','CLEAN-01':'part',
+'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'part','FISH-01':'part','CLEAN-01':'part',
 'HIDE-01':'part','HIDE-02':'plan','NPC-01':'part','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'part',
 'JOIN-01':'part','WORLD-01':'part','WORLD-02':'part','ITEM-02':'part','ITEM-03':'part','STOCK-01':'part','ROOM-02':'plan','NET-02':'part',
 'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'part','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',
