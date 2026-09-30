@@ -747,28 +747,21 @@ Use authored sprite states for dough/cake shapes, bounded topping sockets or a c
 
 ### What is verified in the show
 
-The official **Tradies** episode page says Sparky and Chippy install a pond in the Heeler backyard, and their character page specifically calls it a **fishpond**. That is the verified house feature to use for this activity. [Tradies, season 3 episode 32](https://www.bluey.tv/watch/season-3/tradies/), [The Tradies character reference](https://www.bluey.tv/characters/the-tradies/)
+The official **Tradies** episode page confirms Sparky and Chippy install a pond in the Heeler backyard. Their character page identifies it as a fishpond. Its exact finished shape and fish species require the episode artwork reference; the fishing and feeding loop is our game adaptation. [Tradies, season 3 episode 32](https://www.bluey.tv/watch/season-3/tradies/), [The Tradies](https://www.bluey.tv/characters/the-tradies/).
 
-There is also a separate fountain associated with the school: **Barky Boats** explicitly describes Bluey and Mackenzie racing bark there. Keep those references distinct. We have verified the backyard fishpond's identity, not that the house has a particular fountain jet, exact dimensions, or specific fish species. Use episode imagery when drawing the final pond; any added spout is our adaptation. [Barky Boats, season 2 episode 30](https://www.bluey.tv/watch/season-2/barky-boats/)
+### Confirmed user choices September 30
 
-Catching fish at this pond is our proposed mini-game; the official references above do not establish that the children play this exact fishing game there. **Rug Island** provides a separate show reference for imaginative fishing. [Rug Island](https://www.bluey.tv/watch/season-2/rug-island/)
+Use one shared backyard pond for up to four players, with continuously running water during ordinary play. Each player can take a rod, cast into the pond, wait for a random fish bite and tap **Reel in** for an easy catch. Show a fish close-up with **Release**, returning that same fish to the pond. Offer **Feed fish** so players can sprinkle food and watch fish gather while siblings continue fishing. These choices replace the earlier two-rod and observation-bowl proposal; a fixed five-species collection and discovery album are outside the confirmed request.
 
-### Proposed catch, discover, and release loop
+### Recommended implementation
 
-Put two short toy rods and an observation bowl beside the pond. Tap a rod or the fishing picture to start. Choose a visible fish, guide the float, see a generous bite cue, then bring the catch to the observation bowl and release it back into the same pond. Start with five visually distinct fish designs using shape, pattern, and color; these are game designs, not a verified list of species in the show.
+Separate the painted pond into background, fish, animated water, flowing cascade and front-bank layers. Recommend soft blue-green water, a small continuous cascade, localized splashes, gentle ripples and quiet trickling audio. Confirm the final stones, planting and crossing against the finished episode shot before calling the artwork show-accurate. Keep all four characters visibly grounded around the same pond.
 
-| Simple Play | Explore & Stories | Together |
-| --- | --- | --- |
-| Tap a fish or broad ripple zone; automatically cast nearby | Drag to a chosen zone; choose an optional picture target | Each child has a rod and can fish independently |
-| Fish approach slowly; tap a large reel picture or use assisted retrieval | Follow a short forgiving reel/drag cue, with no rapid tapping requirement | One catches while the other looks after the observation bowl |
-| No missed-bite punishment, running clock, or line management | Optional collection of five different picture stamps, with no deadline | Shared discovery album recognizes each unique fish type without competition |
-| Release with a large fish-to-water arrow | Compare shapes/patterns, then release and try another | Either can stop without ending the sibling's turn |
+The PC/VPS authority chooses fish identities, random bite timing, catch reservations, feeding consumption and releases. Clients animate the water, fish, line, float and splash. Only one catch may own a fish; fish already biting or caught do not also consume food. Other fish remain available for feeding and fishing. Suggested states are **swimming → approaching → biting → caught → released**. Water continues while nobody plays.
 
-Use a small pool of fish agents following authored pond paths. The host chooses availability, bite, reservation, and catch results; clients animate fish, float, line, and splash. Approximate motion is fine, but catch identity and ownership must agree. Only one rod can reserve a fish at a time; gently guide the other rod to another available fish. The observation bowl has a visible capacity. A catch cannot complete into a full bowl; offer release or another empty spot.
+Recommend large tap targets, a visible float dip as well as a soft bite sound, no rapid-tapping requirement and no missed-bite punishment. Leaving, traveling or disconnecting releases only that player's unfinished catch and rod; siblings continue. This is open-ended shared play with no round countdown. Bite wait limits and fish designs are tuning/art proposals, not approved collection requirements.
 
-Proposed fish states: **swimming → approaching → reserved → caught → observation → released**. Canceling a cast, leaving the area, closing a session, or losing the connection releases the reservation and returns unfinished catches to a valid water state. Never attach a fish permanently to a destroyed rod. The discovery album can save progress without removing fish from future play.
-
-Both this pond and later Barky Boats can reuse water visuals, but keep their interaction zones explicit: fish-catching targets, boat-floating targets, and bucket-filling targets must not compete unpredictably for the same drop.
+**Status: planned and unbuilt.** The existing painted pond is scenery only. [Scoped pond research, sources and future acceptance](implementation/backyard-pond-research-2026-09-30.html) record the requested fishing and feeding work. Barky Boats remains a separate school-fountain reference; bucket and boat activities are not added by this request.
 
 ## 21. Five cleanup games that remain playful
 

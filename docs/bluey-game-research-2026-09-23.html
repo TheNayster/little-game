@@ -1713,45 +1713,14 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Use authored sprite states for dough/cake shapes, bounded topping sockets or a clamped decoration surface, simple fill masks, and short heat animations. Avoid a full fluid or soft-body simulation for cooking. Check missing ingredients, full trays, overlapping drops, simultaneous serving, app suspension, and walking away mid-bake. No live LLM is required to decide a recipe or calculate its result.</p>
 <h2 id="20-the-water-feature-and-fishing-mini-game">20. The water feature and fishing mini-game</h2>
 <h3 id="what-is-verified-in-the-show">What is verified in the show</h3>
-<p>The official <strong>Tradies</strong> episode page says Sparky and Chippy install a pond in the Heeler backyard, and their character page specifically calls it a <strong>fishpond</strong>. That is the verified house feature to use for this activity. <a href="https://www.bluey.tv/watch/season-3/tradies/">Tradies, season 3 episode 32</a>, <a href="https://www.bluey.tv/characters/the-tradies/">The Tradies character reference</a></p>
-<p>There is also a separate fountain associated with the school: <strong>Barky Boats</strong> explicitly describes Bluey and Mackenzie racing bark there. Keep those references distinct. We have verified the backyard fishpond's identity, not that the house has a particular fountain jet, exact dimensions, or specific fish species. Use episode imagery when drawing the final pond; any added spout is our adaptation. <a href="https://www.bluey.tv/watch/season-2/barky-boats/">Barky Boats, season 2 episode 30</a></p>
-<p>Catching fish at this pond is our proposed mini-game; the official references above do not establish that the children play this exact fishing game there. <strong>Rug Island</strong> provides a separate show reference for imaginative fishing. <a href="https://www.bluey.tv/watch/season-2/rug-island/">Rug Island</a></p>
-<h3 id="proposed-catch-discover-and-release-loop">Proposed catch, discover, and release loop</h3>
-<p>Put two short toy rods and an observation bowl beside the pond. Tap a rod or the fishing picture to start. Choose a visible fish, guide the float, see a generous bite cue, then bring the catch to the observation bowl and release it back into the same pond. Start with five visually distinct fish designs using shape, pattern, and color; these are game designs, not a verified list of species in the show.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
-<thead>
-<tr>
-<th>Simple Play</th>
-<th>Explore &amp; Stories</th>
-<th>Together</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tap a fish or broad ripple zone; automatically cast nearby</td>
-<td>Drag to a chosen zone; choose an optional picture target</td>
-<td>Each child has a rod and can fish independently</td>
-</tr>
-<tr>
-<td>Fish approach slowly; tap a large reel picture or use assisted retrieval</td>
-<td>Follow a short forgiving reel/drag cue, with no rapid tapping requirement</td>
-<td>One catches while the other looks after the observation bowl</td>
-</tr>
-<tr>
-<td>No missed-bite punishment, running clock, or line management</td>
-<td>Optional collection of five different picture stamps, with no deadline</td>
-<td>Shared discovery album recognizes each unique fish type without competition</td>
-</tr>
-<tr>
-<td>Release with a large fish-to-water arrow</td>
-<td>Compare shapes/patterns, then release and try another</td>
-<td>Either can stop without ending the sibling's turn</td>
-</tr>
-</tbody>
-</table></div>
-<p>Use a small pool of fish agents following authored pond paths. The host chooses availability, bite, reservation, and catch results; clients animate fish, float, line, and splash. Approximate motion is fine, but catch identity and ownership must agree. Only one rod can reserve a fish at a time; gently guide the other rod to another available fish. The observation bowl has a visible capacity. A catch cannot complete into a full bowl; offer release or another empty spot.</p>
-<p>Proposed fish states: <strong>swimming → approaching → reserved → caught → observation → released</strong>. Canceling a cast, leaving the area, closing a session, or losing the connection releases the reservation and returns unfinished catches to a valid water state. Never attach a fish permanently to a destroyed rod. The discovery album can save progress without removing fish from future play.</p>
-<p>Both this pond and later Barky Boats can reuse water visuals, but keep their interaction zones explicit: fish-catching targets, boat-floating targets, and bucket-filling targets must not compete unpredictably for the same drop.</p>
+<p>The official <strong>Tradies</strong> episode page confirms Sparky and Chippy install a pond in the Heeler backyard. Their character page identifies it as a fishpond. Its exact finished shape and fish species require the episode artwork reference; the fishing and feeding loop is our game adaptation. <a href="https://www.bluey.tv/watch/season-3/tradies/">Tradies, season 3 episode 32</a>, <a href="https://www.bluey.tv/characters/the-tradies/">The Tradies</a>.</p>
+<h3 id="confirmed-user-choices-september-30">Confirmed user choices September 30</h3>
+<p>Use one shared backyard pond for up to four players, with continuously running water during ordinary play. Each player can take a rod, cast into the pond, wait for a random fish bite and tap <strong>Reel in</strong> for an easy catch. Show a fish close-up with <strong>Release</strong>, returning that same fish to the pond. Offer <strong>Feed fish</strong> so players can sprinkle food and watch fish gather while siblings continue fishing. These choices replace the earlier two-rod and observation-bowl proposal; a fixed five-species collection and discovery album are outside the confirmed request.</p>
+<h3 id="recommended-implementation">Recommended implementation</h3>
+<p>Separate the painted pond into background, fish, animated water, flowing cascade and front-bank layers. Recommend soft blue-green water, a small continuous cascade, localized splashes, gentle ripples and quiet trickling audio. Confirm the final stones, planting and crossing against the finished episode shot before calling the artwork show-accurate. Keep all four characters visibly grounded around the same pond.</p>
+<p>The PC/VPS authority chooses fish identities, random bite timing, catch reservations, feeding consumption and releases. Clients animate the water, fish, line, float and splash. Only one catch may own a fish; fish already biting or caught do not also consume food. Other fish remain available for feeding and fishing. Suggested states are <strong>swimming → approaching → biting → caught → released</strong>. Water continues while nobody plays.</p>
+<p>Recommend large tap targets, a visible float dip as well as a soft bite sound, no rapid-tapping requirement and no missed-bite punishment. Leaving, traveling or disconnecting releases only that player's unfinished catch and rod; siblings continue. This is open-ended shared play with no round countdown. Bite wait limits and fish designs are tuning/art proposals, not approved collection requirements.</p>
+<p><strong>Status: planned and unbuilt.</strong> The existing painted pond is scenery only. <a href="implementation/backyard-pond-research-2026-09-30.html">Scoped pond research, sources and future acceptance</a> record the requested fishing and feeding work. Barky Boats remains a separate school-fountain reference; bucket and boat activities are not added by this request.</p>
 <h2 id="21-five-cleanup-games-that-remain-playful">21. Five cleanup games that remain playful</h2>
 <p><strong>Daddy Robot</strong> turns tidying into pretend play; <strong>Duck Cake</strong> connects helping with a warm response; <strong>Bin Night</strong> shows a recurring family chore; <strong>Rain</strong> includes muddy tracks. These supply themes, not a reason to enforce chores in our app. <a href="https://www.bluey.tv/watch/season-1/daddy-robot/">Daddy Robot</a>, <a href="https://www.bluey.tv/watch/season-2/duck-cake/">Duck Cake</a>, <a href="https://www.bluey.tv/watch/season-2/bin-night/">Bin Night</a>, <a href="https://www.bluey.tv/watch/season-3/rain/">Rain</a></p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
