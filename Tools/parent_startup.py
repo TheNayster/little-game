@@ -10,7 +10,7 @@ import threading
 from parent_server import OperationError, operation_lock
 from shared_garden_runtime import ROOT, read
 
-HELPER_PROTOCOL = 2
+HELPER_PROTOCOL = 3
 SHORTCUT = 'Little Weeps Server.lnk'
 
 
@@ -134,6 +134,8 @@ class ParentStartup:
                 shortcut_tool('create', self.path, self.expected)
                 if self.registration() != 'configured':
                     raise OperationError('Shortcut verification failed. Inspect the startup setting before relying on it.')
+                from pc_server_watchdog import launch
+                launch(self.controller)
                 return dict(result='startup-configured')
 
     def disable(self):

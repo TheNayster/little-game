@@ -8,6 +8,8 @@ import subprocess
 import sys
 import uuid
 from shared_garden_runtime import ROOT,read,write,wait,require
+from pc_server_installation import bundle, install, installed
+from server_release import compare, network_release
 
 
 def process(pid):
@@ -17,17 +19,34 @@ def process(pid):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--build',type=int,required=True);p.add_argument('--family',required=True);args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--build',type=int,required=True);p.add_argument('--family',required=True)
+    p.add_argument('--replace-compatible',action='store_true',help='Explicit server bug-fix deployment; app-only updates must not use this')
+    args=p.parse_args()
     require(args.build>=83,'Persistent build required');world=uuid.UUID(args.family).hex;require(world==args.family,'Invalid world')
     root=ROOT/'LocalData/FamilyLAN'/world;latest=read(root/'latest-server.json');require(latest,'No existing server record')
-    firewall=read(ROOT/f'LocalData/Verification/server-firewall-{args.build}.json')
-    require(firewall and firewall['passed'] and firewall['build']==args.build,'Complete the reviewed local-network firewall setup first')
+    compatibility=compare(network_release(ROOT,latest['build']),network_release(ROOT,args.build))
+    if compatibility['result']=='app-only' and not args.replace_compatible:
+        print(json.dumps(dict(compatibility,operation='server-unchanged'),indent=2));return
+    require(compatibility['result']!='review-required' or args.replace_compatible,'Shared sources changed without a compatibility change; review the server release explicitly')
+    installation=installed(ROOT)
+    if installation and installation['family']==world:
+        from parent_server import ParentServer
+        controller=ParentServer(world,installation['build'])
+        require(controller.network_prepared(force=True),'Repair the reusable PC-server network permission first')
+    else:
+        firewall=read(ROOT/f'LocalData/Verification/server-firewall-{args.build}.json')
+        require(firewall and firewall['passed'] and firewall['build']==args.build,'Complete the reviewed local-network firewall setup first')
     output=root/latest['instanceId'];native=process(latest['pid'])
     if native:
-        expected=ROOT/f"Builds/NetworkProbe/G3-0.0.{latest['build']}/Server/LittleWeepsNetwork.exe"
+        expected=bundle(ROOT,world,latest['build'])[0]/'Server/LittleWeepsNetwork.exe'
         require(native['ExecutablePath'].lower()==str(expected).lower() and str(root/(latest['instanceId']+'.config.json')) in native['CommandLine'],'PID no longer identifies this family server')
-        view=read(output/'view.json');require(view and not view['connected'],'Players are connected; leave their session running and retry after play')
-        old_control=read(output/'control.json') or {};write(output/'control.json',dict(serial=old_control.get('serial',0)+1,kind='quit'))
+        # The game guards this stop again, closing a player-join race after our
+        # preflight. Never use an unconditional quit during occupied family play.
+        from parent_server import ParentServer
+        controller=ParentServer(world,latest['build'])
+        snapshot=controller.snapshot()
+        require(snapshot['state']=='ready' and snapshot['players']==0,'Players are connected or server status is uncertain; leave it running')
+        controller.stop(snapshot['instanceId'])
         wait(lambda:process(latest['pid']) is None,'old server exits',25)
     backup=ROOT/'LocalData/ServerBackups'/f'{world}-{uuid.uuid4().hex}';backup.mkdir(parents=True)
     for path in (root/'server-world').iterdir():
@@ -37,6 +56,7 @@ def main():
     saved=(backup/'world.save').read_text(encoding='utf-8-sig');header,digest,payload=saved.split('\n',2)
     require(header=='LITTLEWEEPS-SOLO-1' and hashlib.sha256(payload.encode()).hexdigest()==digest,'Saved checkpoint failed verification; no replacement started')
     before=json.loads(payload)
+    if installation and installation['family']==world:install(ROOT,world,args.build)
     subprocess.run([sys.executable,str(ROOT/'Tools/Start-FamilyLAN.py'),'--build',str(args.build),'--family',world],check=True,timeout=60)
     new=read(root/'latest-server.json');new_output=root/new['instanceId']
     after=wait(lambda:read(new_output/'view.json'),'restored authority view')['view']
@@ -47,7 +67,8 @@ def main():
         return old==new
     # Presentation intentionally excludes durable receipts; verify the checkpoint itself.
     restored=json.loads((root/'server-world/world.save').read_text(encoding='utf-8-sig').split('\n',2)[2])
-    require(retained(before,restored),'Restored checkpoint differs from the idle source; backup retained for review')
+    expected=dict(before,schema=restored['schema'])
+    require(restored['schema']>=before['schema'] and retained(expected,restored),'Restored checkpoint differs from the idle source; backup retained for review')
     require(new['persistentServer'] and read(new_output/'status.json')['persistentServer'],'Persistent mode not acknowledged')
     result=dict(passed=True,build=args.build,previousBuild=latest['build'],utc=datetime.now(timezone.utc).isoformat(),
                 backup=str(backup),worldFieldsPreserved=True,playerCount=len(after['players']),toyCount=len(after['toys']),

@@ -1,0 +1,20 @@
+{
+  "serverBuild": 227,
+  "serverState": "ready",
+  "playersObserved": 2,
+  "port": 63648,
+  "appOnlyRestartPreservedProcessAndInstallation": true,
+  "firewallVerified": true,
+  "startup": "configured",
+  "watchdogVerified": true,
+  "recovery": "healthy",
+  "checkpoint": "verified",
+  "unitTests": 7,
+  "physicalPlatformsNotIdentified": true,
+  "beforeLoginNotTested": true,
+  "unitTestsPassed": 7,
+  "statusObservationDeleteSharingTestPassed": true,
+  "deployed": "2026-09-30",
+  "routerReservationConfigured": false,
+  "notes": "Two enrolled players observed; platforms not identified. Compatible no-op preserves PID/instance/port/installation. No deliberate occupied crash drill."
+}

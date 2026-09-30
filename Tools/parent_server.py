@@ -19,6 +19,8 @@ import time
 import uuid
 
 from shared_garden_runtime import ROOT, read, write, wait
+from pc_server_installation import installed, executable
+from server_release import ReleaseError, network_release
 
 
 class OperationError(RuntimeError):
@@ -73,6 +75,19 @@ def checkpoint_bytes(path):
         return file.read(1024 * 1024 + 1), os.fstat(file.fileno()).st_mtime
 
 
+# Unity publishes disposable status observations using File.Replace too.
+# Use the same delete-sharing reader as checkpoints; ordinary Python open
+# can otherwise make older deployed authorities exit during a status poll.
+def read(path):
+    for attempt in range(6):
+        try:
+            raw, _ = checkpoint_bytes(path)
+            return json.loads(raw.decode('utf-8-sig'))
+        except (FileNotFoundError, PermissionError):
+            if attempt == 5:return None
+            time.sleep(.01)
+
+
 @contextmanager
 def operation_lock(folder, name='parent-operations.lock'):
     # Serialize operations across tabs AND separate controller processes. The
@@ -103,6 +118,7 @@ class ParentServer:
         self.isolated = public.get('purpose') == 'isolated parent-control acceptance'
         self.process_reader = process_reader
         self.mutex = threading.Lock()
+        self.network_check = None
 
     def processes(self):
         matches = []
@@ -127,6 +143,11 @@ class ParentServer:
             version = re.fullmatch(r'G3-0\.0\.(\d+)', exe.parent.parent.name)
             build = int(version[1]) if version else 0
             expected = ROOT / f'Builds/NetworkProbe/G3-0.0.{build}/Server/LittleWeepsNetwork.exe'
+            if exe == executable(ROOT).resolve():
+                installation = installed(ROOT)
+                if not installation or installation['family'] != self.family:
+                    raise OperationError('Installed server identity cannot be verified.')
+                build = installation['build']; expected = executable(ROOT)
             if not name or config.get('runId') != self.family or config.get('instanceId') != instance or exe != expected.resolve():
                 raise OperationError('A server process for this world could not be verified. Controls are locked.')
             matches.append(dict(pid=native['ProcessId'], instanceId=instance, build=build,
@@ -143,12 +164,13 @@ class ParentServer:
                 raise ValueError('Oversize save')
             header, digest, payload = raw.decode('utf-8-sig').split('\n', 2)
             body = json.loads(payload)
-            if header != 'LITTLEWEEPS-SOLO-1' or hashlib.sha256(payload.encode()).hexdigest() != digest or body.get('schema') not in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27):
+            schema = body.get('schema'); supported = network_release(ROOT, self.build)['schema']
+            if header != 'LITTLEWEEPS-SOLO-1' or hashlib.sha256(payload.encode()).hexdigest() != digest or type(schema) is not int or not 2 <= schema <= supported:
                 raise ValueError('Unverified save')
             return dict(state='verified', savedAt=datetime.fromtimestamp(stamp, timezone.utc).isoformat(), revision=body['revision'])
         except FileNotFoundError:
             return dict(state='missing', savedAt=None, revision=None)
-        except (OSError, ValueError, KeyError):
+        except (OSError, ValueError, KeyError, ReleaseError):
             return dict(state='unverified', savedAt=None, revision=None)
 
     def snapshot(self):
@@ -195,12 +217,23 @@ class ParentServer:
                 result['message'] = 'Ready for family play. Safe stop controls require the prepared server update.'
             elif profiles:
                 result['message'] = 'Family members are playing. Stop is protected until everyone leaves.'
-        except (OSError, ValueError, KeyError, subprocess.SubprocessError, OperationError) as error:
+        except (OSError, ValueError, KeyError, subprocess.SubprocessError, OperationError, ReleaseError) as error:
             result.update(state='unreachable', canStart=False, canStop=False,
                           message=str(error) if isinstance(error, OperationError) else 'Server status could not be verified. No action was taken.')
         return result
 
-    def network_prepared(self):
+    def network_prepared(self, force=False):
+        installation = installed(ROOT)
+        if installation and installation['family'] == self.family:
+            if installation['build'] != self.build:return False
+            now = time.monotonic()
+            if force or self.network_check is None or now-self.network_check[0] > 30:
+                # Verify the live OS rule, rather than trusting a success marker
+                # from another build. Cache only for inexpensive status polling.
+                result = subprocess.run(['powershell.exe','-NoProfile','-File',str(ROOT/'Tools/Enable-PCServerFirewall.ps1'),'-VerifyOnly'],
+                                        capture_output=True,text=True,timeout=15,creationflags=subprocess.CREATE_NO_WINDOW)
+                self.network_check = (now,result.returncode == 0)
+            return self.network_check[1]
         permission = read(ROOT / f'LocalData/Verification/server-firewall-{self.build}.json')
         return bool(permission and permission.get('passed') is True and permission.get('build') == self.build)
 
@@ -230,6 +263,8 @@ class ParentServer:
             if not state['canStart']:
                 raise OperationError('Start is blocked until server and save status can be verified.')
             if expected_intent is None: self.save_intent(True)
+            if not self.isolated and not self.network_prepared(force=True):
+                raise OperationError('The reusable PC-server network permission needs its one-time setup or repair.')
             # Preserve the selected world and protected enrollment. This helper
             # verifies every build artifact and the native persistent-mode ack.
             result = subprocess.run([sys.executable, str(ROOT / 'Tools/Start-FamilyLAN.py'),

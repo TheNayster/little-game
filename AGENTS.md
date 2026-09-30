@@ -29,6 +29,14 @@
 - One verification pass is the default. Repeat or broaden only after a relevant failure, further code changes or a concrete unresolved risk. Use existing evidence for unchanged source. Before expensive additional checks, briefly state what specific uncertainty they resolve; do not turn hypothetical risks into gates.
 - Keep tool output and progress concise. Use short records for small changes; avoid repeated repository/history scans and new comprehensive reports for routine installs. Preserve saves, enrollment and signing identity; never uninstall, clear data or downgrade as a shortcut. Report actual blockers and unverified limits honestly.
 
+## Shared PC server and app updates — September 30
+
+- Read `docs/server-update-policy.md` before every app/server rollout, even if this chat read AGENTS earlier. Multiple user chats share this checkout and the live family server. Re-read the rollout record before acting; do not use a chat's cached server build or endpoint as authority.
+- Compatible app releases must leave the existing server process, endpoint, firewall, enrollment and parent-helper selection alone. App build numbers do not need to equal the server build. Shared protocol/content compatibility does need to match; never bypass admission checks to conceal a mismatch.
+- Do not bump shared compatibility for artwork, sound, menus or other client-only presentation changes. When shared rules/messages/save fields change, record the reason and prepare a coordinated server update. Missing compatibility metadata means unknown, not permission to replace a server.
+- PC availability means awake and connected. Use the existing recovery/parent intent and selected family. Never create a fresh family, reset a save, change sleep settings silently or restart occupied family play to apply an app-only update.
+- The persistent PC server is installed; its actual baseline, checked commands and limitations are recorded in `docs/server-update-policy.md`. Other chats may build content and follow that policy; never treat a newer app build as authorization to replace the live server. Preserve unrelated concurrent edits and the existing main integration hold.
+
 ## Git delivery and project records
 
 - The user wants Git maintained and completed work pushed as part of each project task. Check the working tree, current branch and `origin` before editing; preserve unrelated user changes.

@@ -16,6 +16,14 @@ if ($summary.result -ne 'Succeeded' -or $summary.platform -ne 'Android' -or $sum
 $hash=(Get-FileHash -LiteralPath $apk -Algorithm SHA256).Hash.ToLowerInvariant()
 $manifest=@(Get-Content -LiteralPath (Join-Path $folder 'artifact-manifest.json') -Raw | ConvertFrom-Json)
 if (@($manifest | Where-Object { $_.path -eq 'LittleWeeps.apk' -and $_.sha256 -eq $hash }).Count -ne 1) { throw 'Signed artifact does not match its manifest.' }
+if ($BuildProfile -eq 'G3') {
+    # App deployment is intentionally separate from server deployment. Even an
+    # incompatible client never changes the server, firewall or helper selection.
+    $plan=@(& python (Join-Path $PSScriptRoot 'Plan-FamilyUpdate.py') --client-build $BuildNumber --platform android)
+    if ($LASTEXITCODE -ne 0) { throw 'The read-only family compatibility check failed.' }
+    $familyUpdate=($plan -join "`n") | ConvertFrom-Json
+    Write-Output ("Family update: "+$familyUpdate.result+". "+$familyUpdate.message)
+}
 $adb=$device.adb
 $serial=if ($Serial) { $Serial } else { $device.endpoint }
 # Unity may restart ADB while building. Reuse the existing pairing and endpoint.

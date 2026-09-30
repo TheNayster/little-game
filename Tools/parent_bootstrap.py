@@ -12,6 +12,7 @@ import webbrowser
 from parent_server import ParentServer, OperationError, operation_lock
 from parent_startup import HELPER_PROTOCOL, ParentStartup, process_alive, state_folder
 from shared_garden_runtime import ROOT, read
+from pc_server_installation import installed
 
 
 def controller_for(isolated_family=None):
@@ -23,7 +24,9 @@ def controller_for(isolated_family=None):
     settings = read(folder/'settings.json')
     if not isinstance(settings, dict):
         raise OperationError('Parent server settings are not configured.')
-    controller = ParentServer(settings.get('family'), settings.get('build'))
+    installation = installed(ROOT)
+    build = installation['build'] if installation and installation['family']==settings.get('family') else settings.get('build')
+    controller = ParentServer(settings.get('family'), build)
     if (isolated_family is None and controller.isolated) or (isolated_family is not None and
             (not controller.isolated or controller.family != isolated_family)):
         raise OperationError('Parent launcher scope does not match the selected family.')
@@ -113,6 +116,11 @@ def main():
     args=parser.parse_args()
     try:
         record=ensure_dashboard(controller_for(args.isolated_family),args.at_signin)
+        if record:
+            controller=controller_for(args.isolated_family)
+            if ParentStartup(controller).registration()=='configured':
+                from pc_server_watchdog import launch
+                launch(controller)
         if record and not args.no_browser and not args.at_signin:
             webbrowser.open(record['url'])
         print('Parent helper ready.' if record else 'Sign-in launch skipped; the saved startup/recovery choice is off.')

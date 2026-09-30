@@ -83,3 +83,8 @@ Acceptance target: app-only updates leave the same live server instance and endp
 ## 8. Evidence and next task
 
 Research consists of source inspection and the primary documentation linked above. [Source inventory](evidence/pc-server-reliability-2026-09-30/source-audit.json) records the inspected file hashes and scope. No runtime, boot, firewall or four-client acceptance was performed for this research. The next bounded implementation is release classification and an unchanged-server compatibility check. It does not require a VPS, another Home activity, a new family identity or a blanket full-game qualification.
+
+
+## September 30 applied implementation
+
+The research-only findings above have now been applied to the PC installation. [Current cross-chat update policy, deployment evidence and limits](../server-update-policy.md) is the authority for rollouts. Stable installation/path/port, reusable OS permission, sign-in startup, recovery and watchdog are enabled on release 227. Seven focused tests pass. Compatible app-only requests preserve the running authority. Newer shared content and older installed clients still need coordinated updates; no device rollout was performed here.
