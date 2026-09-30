@@ -63,3 +63,7 @@ Thumbs.db
 !Tools/OutfitRules.Tests/OutfitRules.Tests.csproj
 Tools/OutfitRules.Tests/bin/
 Tools/OutfitRules.Tests/obj/
+
+!Tools/PondRules.Tests/PondRules.Tests.csproj
+Tools/PondRules.Tests/bin/
+Tools/PondRules.Tests/obj/

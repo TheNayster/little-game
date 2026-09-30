@@ -1,0 +1,13 @@
+{
+  "build": 285,
+  "passed": true,
+  "checks": [
+    "separate Fishing and Feed fish picture cards fit phone and iPad menu",
+    "moved picnic table retains its working hiding spot and independent exit",
+    "one menu tap travels from Home to four distinct pond spots and automatically casts",
+    "four independent random bites reserve distinct fish and one Reel in tap opens each close-up",
+    "release returns same fish; feeding gathers other fish while siblings retain catches",
+    "independent disconnect and Leave pond preserve remaining players",
+    "Feed fish menu starts its activity immediately and normal water continues when the player stops"
+  ]
+}
