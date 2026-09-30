@@ -70,3 +70,7 @@ Tools/BathroomRules.Tests/obj/
 !Tools/PondRules.Tests/PondRules.Tests.csproj
 Tools/PondRules.Tests/bin/
 Tools/PondRules.Tests/obj/
+
+!Tools/FasterSeek.Tests/FasterSeek.Tests.csproj
+Tools/FasterSeek.Tests/bin/
+Tools/FasterSeek.Tests/obj/

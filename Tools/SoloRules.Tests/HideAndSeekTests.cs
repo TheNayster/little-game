@@ -76,9 +76,11 @@ static partial class Program
             var before=Encode(w.Snapshot());Check(!Hide(w,"invite").Accepted && !Hide(w,"join").Accepted && before==Encode(w.Snapshot()));
             Advance(w,100);Check(Hide(w,"invite").Accepted && HideAndSeek.Parent(w.ReadHideAndSeek())=="Chilli");
         });
-        Test("identical search observations produce identical targets with occupants in different covers",()=>{
-            var a=HideWorld();var b=HideWorld();StartHide(a);StartHide(b);HideAt(a,"first",4);HideAt(b,"first",5);
-            for(var i=0;i<300;i++){a.AdvanceIdle(.1,out _);b.AdvanceIdle(.1,out _);var x=a.ReadHideAndSeek();var y=b.ReadHideAndSeek();if(x.hiders[0].mode==HiderMode.Found || y.hiders[0].mode==HiderMode.Found)break;Check(x.target==y.target && x.phase==y.phase && x.x==y.x);}
+        Test("far hiders guide direction while empty covers on the way still receive inspections",()=>{
+            var w=HideWorld();StartHide(w);HideAt(w,"first",9);Advance(w,15.5);
+            Check(w.ReadHideAndSeek().target==4);
+            var inspected=0;for(var i=0;i<500 && w.ReadHideAndSeek().hiders[0].mode!=HiderMode.Found;i++){w.AdvanceIdle(.05,out _);inspected|=w.ReadHideAndSeek().visited;}
+            Check(w.ReadHideAndSeek().hiders[0].mode==HiderMode.Found && (inspected & (1<<7))!=0 && (inspected & (1<<8))!=0 && (inspected & (1<<6))==0);
         });
         Test("come out and walking release cover without dropping or duplicating the held item",()=>{
             var w=HideWorld();Good(w,SoloAction.Grab,"bucket-1");StartHide(w);HideAt(w,"first",1);Good(w,SoloAction.ChangeAvatar,value:"orange-pup");Check(HideAndSeek.Hidden(w.ReadHideAndSeek(),"first"));Check(Hide(w,"out").Accepted);Check(w.ReadToys().Single(t=>t.id=="bucket-1").holder=="first" && w.ReadPlayer("first").y==50);HideAt(w,"first",3);Check(Walking.AdvanceLocal(w,"first",WalkMode.Direction,1,0,.1f));Check(!HideAndSeek.Hidden(w.ReadHideAndSeek(),"first"));SoloWorld.Validate(w.Snapshot());
@@ -123,10 +125,10 @@ static partial class Program
             }
             Check(left && right && travelPause);
         });
-        Test("ten authored covers span first level and remain independent of hidden occupancy",()=>{
+        Test("ten authored covers span first level and checked covers are skipped",()=>{
             Check(HideAndSeek.SlotX.Length==10 && HideAndSeek.SlotX.Distinct().Count()==10 && HideAndSeek.SlotX.Min()<-6900 && HideAndSeek.SlotX.Max()>4200);
             var w=HideWorld();StartHide(w);HideAt(w,"first",6);Check(HideAndSeek.Hidden(w.ReadHideAndSeek(),"first"));Check(Hide(w,"out").Accepted);HideAt(w,"first",7);SoloWorld.Validate(w.Snapshot());
-            var s=w.ReadHideAndSeek();var first=HideAndSeek.NextSlot(s);s.hiders[0].slot=9;Check(first==HideAndSeek.NextSlot(s));s.visited|=1<<first;Check(HideAndSeek.NextSlot(s)!=first);
+            var s=w.ReadHideAndSeek();var first=HideAndSeek.NextSlot(s);s.visited|=1<<first;Check(HideAndSeek.NextSlot(s)!=first);
             Check(!HideAndSeek.Zone(new SoloPlayer{zone="upstairs",x=100,y=50}) && !HideAndSeek.Zone(new SoloPlayer{zone="garden",stairs=1}));
         });
         Test("deployed schema 30 personal timer migrates safely without losing held objects or rooms",()=>{

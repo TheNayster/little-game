@@ -149,7 +149,7 @@ namespace LittleWeeps.Client
             banditRoot.Find("Bandit invitation tap").gameObject.SetActive(!active);
             banditX=Mathf.MoveTowards(banditX,s.x,HideAndSeek.Speed*1.5f*Time.unscaledDeltaTime);if(Mathf.Abs(banditX-s.x)>800)banditX=s.x;
             banditRoot.anchoredPosition=ToBoard(banditX,HideAndSeek.RailY);banditRoot.localScale=Vector3.one*sceneScale;
-            var frame=s.phase==HidePhase.Counting?3:s.phase==HidePhase.Inspecting?4:s.phase==HidePhase.Found?5:s.phase==HidePhase.Walking?1+(int)(s.clock*3)%2:0;
+            var frame=s.phase==HidePhase.Counting?3:s.phase==HidePhase.Inspecting?4:s.phase==HidePhase.Found?5:s.phase==HidePhase.Walking?1+(int)(s.clock*5)%2:0;
             var parent=HideAndSeek.Parent(s,s.phase==HidePhase.Idle);var frames=parent=="Chilli"?chilliFrames:banditFrames;
             banditPicture.sprite=frames[frame];banditPicture.rectTransform.localScale=new Vector3(HideAndSeek.Facing(s),1,1);
             var invitedParent=HideAndSeek.Parent(s,true);var invitationFrames=invitedParent=="Chilli"?chilliFrames:banditFrames;
@@ -174,7 +174,7 @@ namespace LittleWeeps.Client
                 var root=hideProps[i];root.gameObject.SetActive(shown);root.anchoredPosition=ToBoard(HidePropX[i],HideGround(i));root.localScale=Vector3.one*sceneScale;
                 if(i==1 || i==5)continue;
                 var mine=own.slot>=0 && HideAndSeek.Props[own.slot]==i;
-                var inspecting=s.target>=0 && HideAndSeek.Props[s.target]==i && s.phase==HidePhase.Inspecting && s.age>.7;
+                var inspecting=s.target>=0 && HideAndSeek.Props[s.target]==i && s.phase==HidePhase.Inspecting && s.age>HideAndSeek.InspectSeconds*.5;
                 hidePictures[i].sprite=HideCoverSprite(i,mine || inspecting);
                 hidePictures[i].color=mine?new Color(1,1,1,.42f):Color.white;
             }

@@ -28,8 +28,8 @@ namespace LittleWeeps.Core
     public static class HideAndSeek
     {
         public const int Schema=28, ExpansionSchema=29, CountSchema=30, TogetherSchema=31, HidingWindowSchema=32;
-        public const double CountSeconds=15, InspectSeconds=1.35, ReactionSeconds=1.25;
-        public const float StartX=-3660, RailY=50, Speed=420, GlanceDistance=1100;
+        public const double CountSeconds=15, InspectSeconds=.55, ReactionSeconds=.6;
+        public const float StartX=-3660, RailY=50, Speed=900, GlanceDistance=1100;
         // Preserve the six original slot IDs for schema-28 saves.
         public static readonly float[] SlotX={-4900,-4050,-3870,-3560,-3430,-3150,-7040,-470,2910,4310};
         public static readonly float[] GroundY={245,200,200,245,245,245,120,130,120,180};
@@ -47,12 +47,23 @@ namespace LittleWeeps.Core
         public static bool NextRound(HideState s)=>s.phase==HidePhase.Idle || s.phase!=HidePhase.Counting && Complete(s);
         public static bool Playing(HiderState h)=>h!=null && (h.mode==HiderMode.Preparing || h.mode==HiderMode.Hidden || h.mode==HiderMode.Found);
         public static string Parent(HideState s,bool preview=false)=>((s.round+(preview && NextRound(s)?1:0))%2==0 && s.round+(preview && NextRound(s)?1:0)>0)?"Chilli":"Bandit";
-        public static double LookSeconds(HideState s)=>.9+.15*(((long)s.round+s.pass+(s.target+1))%3);
+        public static double LookSeconds(HideState s)=>.25+.05*(((long)s.round+s.pass+(s.target+1))%3);
         public static int Facing(HideState s)=>s.phase==HidePhase.Looking && s.age<LookSeconds(s)*.5?-s.direction:s.direction;
-        // The small repeatable variation changes nearby choices each round.
-        // No occupancy, identity or hidden coordinates are an input.
+        // The requested faster search heads toward the nearest remaining hider,
+        // physically inspecting unvisited covers on the way before any reveal.
         public static int NextSlot(HideState s,int schema=WorldLayout.Schema)
         {
+            var hidden=s.hiders.Where(Eligible).Where(h=>h.slot>=0 && h.slot<SlotX.Length && (s.visited & (1<<h.slot))==0)
+                .OrderBy(h=>Math.Abs(CoverX(h.slot,schema)-s.x)).ThenBy(h=>h.slot).FirstOrDefault();
+            if(hidden!=null)
+            {
+                var goal=CoverX(hidden.slot,schema);var direction=Math.Sign(goal-s.x);
+                // A nearby empty cover is still checked; covers behind us or
+                // past the destination do not cause a cross-house detour.
+                return Enumerable.Range(0,SlotX.Length).Where(i=>(s.visited & (1<<i))==0 &&
+                    (direction==0?CoverX(i,schema)==goal:(CoverX(i,schema)-s.x)*direction>=0 && (goal-CoverX(i,schema))*direction>=0))
+                    .OrderBy(i=>Math.Abs(CoverX(i,schema)-s.x)).ThenBy(i=>i).First();
+            }
             var best=-1;var score=double.MaxValue;
             for(var i=0;i<SlotX.Length;i++)
             {

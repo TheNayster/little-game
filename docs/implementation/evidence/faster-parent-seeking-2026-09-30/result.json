@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build": 320,
+  "checks": [
+    "All four share the fifteen-second hiding window; one departure preserves the others",
+    "Parent heads toward distant hiders and inspects covers along the way"
+  ],
+  "searchSeconds": 18.7,
+  "visitedMask": 956,
+  "content": 49,
+  "physicalDevicesTested": false,
+  "liveFamilyTouched": false
+}

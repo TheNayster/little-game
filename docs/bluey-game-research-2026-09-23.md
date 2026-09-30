@@ -1463,6 +1463,8 @@ Keep the camera steady and the exit visible. If any player leaves, the room and 
 
 ## 34. Hide-and-seek with enterable furniture and gentle clues
 
+**September 30 faster-search correction:** the user wants Bandit and Chilli to seek faster and head toward distant hiders, checking hiding spots on the way. This supersedes the older occupancy-independent route proposal below. The current parent walks to and inspects each selected cover before finding anyone; there is no reveal from across the room. The common hiding window remains 15 seconds. [Implementation and measured checks](implementation/faster-parent-seeking-2026-09-30.md).
+
 The [September 28 applied research](implementation/hide-and-seek-research-2026-09-28.html) elaborates the latest menu/countdown request, actual spot contracts, fair search observations, four-player timing and bounded build slices. It preserves the requirements below. The subsequent [HS-1 report](implementation/hide-and-seek-2026-09-28.html) records the first working loop and measured compact-area coverage; the [first-level expansion](implementation/hide-and-seek-first-level-2026-09-28.html) applies the fifteen-second count, ten covers, alternating parents, independent parent-follow cameras and larger Hide controls. Broader defaults still require playtesting.
 
 The official episode provides the family hide-and-seek premise; our parent roles, furniture mechanics, clue timing, and late joining are game designs. [Bluey: Hide and Seek](https://www.bluey.tv/watch/season-1/hide-and-seek/)
@@ -1512,7 +1514,7 @@ Use an authored search director plus a simple parent state machine: **count/prep
 | Around 10–20 seconds | Inspect nearby furniture; find an early hider if appropriate; keep the other child active |
 | By roughly 20–30 seconds | Complete the remaining reachable search path or follow a clear clue, approach the spot, and reveal the ready hider |
 
-A parent can prioritize a **deliberately emitted clue** as an observation. With automatic clues disabled, use a bounded route covering all legal spots rather than silently using the exact occupied coordinate. Randomize among routes that still meet the measured budget; endless random wandering cannot support the requested short search.
+The current faster-search director uses the nearest remaining occupied cover to choose a heading, then physically checks each unvisited cover between the parent and that destination. It recalculates after each inspection, skips empty areas behind or beyond the destination, and preserves independent withdrawal. Deliberately emitted clues remain a later option; the earlier occupancy-independent route proposal is superseded by the September 30 user correction.
 
 The 30-second goal starts when that child is ready for searching, excluding the time a three-year-old spends choosing a place. It is a pacing target for a valid reachable hider, not a guarantee while they repeatedly move between rooms or the network is unavailable. Do not punish movement or remove the exit button to force the timing. Keep elapsed search time when someone swaps hiding spots so repeated swaps do not accidentally restart every hint and parent decision.
 
