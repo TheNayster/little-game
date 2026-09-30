@@ -3,17 +3,22 @@ import argparse
 import importlib.util
 from pathlib import Path
 import time
+import re
 from shared_garden_runtime import Run, wait, require, write
 
 spec=importlib.util.spec_from_file_location('home',Path(__file__).with_name('Test-HomeWorld.py'))
 home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
-CAST=[('Bluey','blue-pup','bluey'),('Bingo','orange-pup','bingo'),('Muffin','muffin','muffin'),
-      ('Socks','socks','socks'),('Bandit','bandit','bandit'),('Chilli','chilli','chilli')]
+ROOT=Path(__file__).resolve().parents[1]
+CAST=[(name,avatar,art) for avatar,art,name in re.findall(
+    r'new Entry\("([^"]+)","([^"]+)","([^"]+)"',
+    (ROOT/'Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/PlayableCharacters.cs').read_text())]
+assert len(CAST)==37
 
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('build',type=int)
-    parser.add_argument('--departure-only',action='store_true');args=parser.parse_args()
+    parser.add_argument('--departure-only',action='store_true')
+    parser.add_argument('--visual-only',action='store_true');args=parser.parse_args()
     run=Run(args.build);folder=run.path/'character-roster';folder.mkdir();checks=[]
     print('EVIDENCE '+str(folder),flush=True)
     try:
@@ -35,7 +40,7 @@ def main():
         for width,height,label in ([] if args.departure_only else [(1280,591,'phone'),(1024,768,'tablet')]):
             a.input('resize',x=width,y=height);home.ready(a)
             a.input('touchButton',text='Characters')
-            for name,avatar,art in CAST:
+            for name,avatar,art in (CAST if not args.visual_only else [c for c in CAST if c[0] in {'Bluey','Bandit','Judo','Hercules','Mia','Captain'}]):
                 state=reveal(name);before=dict(player(a));toys=authority()['view']['toys']
                 a.input('touchButton',text=name)
                 wait(lambda:player(a)['avatar']==avatar,'selected '+name)
@@ -45,11 +50,14 @@ def main():
                 require(authority()['view']['toys']==toys,'Selection changed belongings')
                 home.capture(a,folder,label+'-'+art)
             a.input('touchButton',text='Close characters')
-            checks.append(label+': horizontal browsing and all six pictured selections preserve state')
+            checks.append(label+(': representative tall portraits and final entries fit the shelf' if args.visual_only else ': horizontal browsing and all 37 pictured selections preserve state'))
+        if args.visual_only:
+            write(folder/'result.json',dict(passed=True,build=args.build,checks=checks,liveFamilyTouched=False))
+            print('PASS '+str(folder/'result.json'),flush=True);return
         for c in clients:
-            require(home.command(c,1,value='muffin')['accepted'],'Duplicate favorite rejected')
-        wait(lambda:all(p['avatar']=='muffin' for p in authority()['view']['players']),'four favorites')
-        wait(lambda:all(c.input('inspect')['character']=='muffin' for c in clients),'four rendered favorites')
+            require(home.command(c,1,value='captain')['accepted'],'Duplicate favorite rejected')
+        wait(lambda:all(p['avatar']=='captain' for p in authority()['view']['players']),'four favorites')
+        wait(lambda:all(c.input('inspect')['character']=='captain' for c in clients),'four rendered favorites')
         try:clients[0].close()
         except Exception:
             print('Departure exit code: '+str(clients[0].process.returncode),flush=True);raise
