@@ -1,0 +1,338 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zoo world research and animal model sheets</title><style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f7f6ed;color:#243951;font:17px/1.65 system-ui,sans-serif}
+main{max-width:1150px;margin:28px auto;padding:30px;background:white;border-radius:18px}h1{font-size:clamp(32px,5vw,54px);line-height:1.15;color:#204967}
+h2{margin-top:44px;padding-top:16px;border-top:3px solid #d5e7d1}a{color:#145d86;text-underline-offset:3px}img{display:block;width:100%;height:auto;border:1px solid #dce4e6;border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{padding:12px;text-align:left;vertical-align:top;border-bottom:1px solid #dce4e6}th{background:#edf5f2}.table-scroll{overflow-x:auto}
+.toc{background:#edf5f2;padding:16px 24px;border-radius:12px}.toc ul{columns:2}p,li{overflow-wrap:anywhere}li{margin-bottom:8px}nav{font-size:14px}
+@media(max-width:700px){main{padding:18px;margin:0;border-radius:0}.toc ul{columns:1}}@media print{body{background:white;font-size:11pt}main{margin:0;padding:0}.toc{display:none}h2{break-after:avoid}img{max-height:350px;object-fit:contain}.table-scroll{overflow:visible}table{min-width:0;font-size:9pt}}
+</style></head><body><main><nav><a href="zoo-world-research-2026-09-30.md">Editable research</a> · <a href="../current-decisions.md">Project decisions</a></nav><h1 id="zoo-world-research-and-animal-model-sheets">Zoo world research and animal model sheets</h1>
+<p>September 30, 2026. Design and art research for Little Weeps, following the user's request for a zoo the children can travel through, living dinosaurs, animals doing their own activities, animal sounds, and a food bucket beside every exhibit. The user confirmed that the art should fit the Bluey show style.</p>
+<p><strong>Recommended direction:</strong> a connected illustrated zoo with four areas: Savanna Trail, Living Dinosaur Valley, Aquarium and Penguin Cove, and Reptile Garden. Every creature has an everyday routine and a gentle feeding response. Up to four family players can visit and feed the same animals together, with independent travel and cameras. This document proposes a 16-species starter roster; it does not limit later additions to those species.</p>
+<p><strong>Status:</strong> four draft model sheets and a written animation/feeding contract are complete. Zoo scenes, rigs, animation clips, audio files, server rules and playable feeding are not implemented. These generated drawings are visual development references, not approved final sprites or frame-perfect animation turnarounds. Preserve the current Home work and main integration hold. Zoo is a requested additional destination; the existing five destinations remain intact until the chooser is deliberately expanded during implementation.</p>
+<p><a href="../../SourceArt/Zoo/ModelSheets/README.md">Model sheet source folder</a> · <a href="../current-decisions.md">Current project decisions</a> · <a href="../bluey-game-research-2026-09-23.html">Existing feature goals</a></p>
+<div class="toc">
+<ul>
+<li><a href="#games-and-design-lessons">Games and design lessons</a></li>
+<li><a href="#traveling-through-the-zoo">Traveling through the zoo</a></li>
+<li><a href="#savanna-model-sheet-and-behavior">Savanna model sheet and behavior</a></li>
+<li><a href="#living-dinosaur-model-sheet-and-behavior">Living dinosaur model sheet and behavior</a></li>
+<li><a href="#aquarium-model-sheet-and-behavior">Aquarium model sheet and behavior</a></li>
+<li><a href="#reptile-model-sheet-and-behavior">Reptile model sheet and behavior</a></li>
+<li><a href="#feeding-from-the-bucket">Feeding from the bucket</a></li>
+<li><a href="#animation-contract">Animation contract</a></li>
+<li><a href="#free-sounds-and-pc-recording-plan">Free sounds and PC recording plan</a></li>
+<li><a href="#first-implementation-and-acceptance">First implementation and acceptance</a></li>
+</ul>
+</div>
+<h2 id="games-and-design-lessons">Games and design lessons</h2>
+<p>These findings come from public developer descriptions and support pages. The games were not installed or directly played for this research; their internal AI and performance are unknown.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Published behavior</th>
+<th>Proposed use in Little Weeps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://sagomini.com/apps/zoo/">Sago Mini Zoo</a> and its <a href="https://sagomini.com/workspace/uploads/files/sagomini-zoo-animalspecies.pdf">species guide</a></td>
+<td>An animal-focused children's play space, with a varied named animal cast in the official guide.</td>
+<td>Make the zoo easy to explore, give individual animals recognizable personalities, and mix land and water exhibits. Our dinosaur and bucket mechanics are our own proposal.</td>
+</tr>
+<tr>
+<td><a href="https://budgestudios.freshdesk.com/en/support/solutions/articles/12000094826-how-to-play-">Bluey Let's Play support</a></td>
+<td>Players discover scene possibilities by tapping, dragging and stacking items.</td>
+<td>Keep the feeding gesture tangible: take food, carry it, put it in a feeding spot, watch the animal respond. Avoid a management dashboard.</td>
+</tr>
+<tr>
+<td><a href="https://www.planetzoogame.com/en-us/update-notes/pc/1-10-0">Planet Zoo animal behavior update</a></td>
+<td>Species can investigate habitat changes, use climbing frames, and respond to other animals' calls.</td>
+<td>Give each species a small set of meaningful routines and reactions. Use occasional neighbor responses rather than making every animal start the same loop together.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The synthesis is our design judgment: borrow children's games' direct interaction and zoo simulations' observable behavior, then simplify both to fit this existing 2D family game. No ticket prices, staff scheduling or compulsory objectives are needed for the requested zoo visit.</p>
+<h2 id="traveling-through-the-zoo">Traveling through the zoo</h2>
+<p>Enter through a zoo gate from the existing destination chooser. A picture map shows four clearly different areas, with paths and arrows connecting them. Walk between neighboring exhibits or use the map for longer travel. The younger child can tap one big animal portrait to move near its viewing and feeding area; the older child can explore the continuous paths. Both views show the same shared zoo.</p>
+<p>Savanna Trail has roomy planted enclosures and shady resting spots. Dinosaur Valley has live, breathing animals among ferns and broad trees. The aquarium includes tanks with different swimming depths and a separate land/water penguin habitat. Reptile Garden has warm rocks, branches, shaded hides and a pond. Rest places and moving places both matter: an animal resting with breathing or blinking still feels alive.</p>
+<p>Children stay on visitor paths. Each exhibit has its own food bucket and a clear feeding station connected to the animal side. A raised leaf holder works for giraffes and Brachiosaurus; a chute reaches the aquarium; low trays suit grazers and reptiles. The bucket is visible beside the exhibit, not hidden in a menu. Animal silhouettes on the bucket and food identify what belongs there without requiring reading.</p>
+<h2 id="savanna-model-sheet-and-behavior">Savanna model sheet and behavior</h2>
+<p><img alt="Savanna animals with front side back and feeding poses" src="../../SourceArt/Zoo/ModelSheets/savanna-model-sheet.png" /></p>
+<p>The natural behavior column summarizes the linked zoo material. The animation and food presentation columns are proposed game choices, not a complete real animal diet.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Creature</th>
+<th>Natural behavior reference</th>
+<th>Proposed everyday animation</th>
+<th>Proposed feeding response and bucket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>African elephant</td>
+<td>Flexible trunk, moving ears, social behavior and plant feeding. <a href="https://animals.sandiegozoo.org/animals/elephant">San Diego Zoo</a></td>
+<td>Heavy alternating steps, ear flap, trunk exploration, shade rest, a brief water spray.</td>
+<td>Notice leaves, turn, walk slowly, reach with trunk, lift one portion to mouth and chew. Bucket contains leafy branches and plant portions.</td>
+</tr>
+<tr>
+<td>Giraffe</td>
+<td>Browses leaves using its long tongue. <a href="https://zoo.sandiegozoo.org/animals/giraffe">San Diego Zoo</a></td>
+<td>Long measured steps, look around, browse a tree, rest.</td>
+<td>Approach a raised leaf holder, lower/stretch neck, use tongue, chew. Bucket contains leafy twigs.</td>
+</tr>
+<tr>
+<td>Plains zebra</td>
+<td>Grazing, herd relationships, grooming and distinct stripe patterns. <a href="https://animals.sandiegozoo.org/animals/zebra">San Diego Zoo</a></td>
+<td>Wander near a companion, lower head to graze, ear twitch, tail flick, rest.</td>
+<td>Walk to low trough, bend neck and nibble hay. Bucket contains grass hay.</td>
+</tr>
+<tr>
+<td>Lion</td>
+<td>Social big cat and meat eater. <a href="https://animals.sandiegozoo.org/animals/lion">San Diego Zoo</a></td>
+<td>Nap, breathe, stretch, groom a paw, walk to shade, occasional call.</td>
+<td>Wake/notice, rise, approach slowly, lower head to prepared meat portions. No hunting scene is needed for feeding.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="living-dinosaur-model-sheet-and-behavior">Living dinosaur model sheet and behavior</h2>
+<p><img alt="Living dinosaur front side back and feeding poses" src="../../SourceArt/Zoo/ModelSheets/living-dinosaurs-model-sheet.png" /></p>
+<p>These are <strong>live animals in the game</strong>, rather than toy dinosaurs or fossils. Their diet and broad anatomy use museum references. Their exact colors, daily routines, social behavior and calls are creative reconstructions. Mixing these animals in one park is a fantasy zoo, not a claim that they all lived together.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Creature</th>
+<th>Museum reference</th>
+<th>Proposed everyday animation</th>
+<th>Proposed feeding response and bucket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tyrannosaurus rex</td>
+<td>Carnivore moving on two legs. <a href="https://www.nhm.ac.uk/discover/dino-directory/tyrannosaurus.html">Natural History Museum</a></td>
+<td>Balanced two-leg walk, horizontal torso and raised tail, head turn, sniff, resting breaths.</td>
+<td>Turn toward food, take slow heavy steps, lower jaw to prepared meat portions. Keep two short arms with two fingers each; do not use a kangaroo stance or drag the tail.</td>
+</tr>
+<tr>
+<td>Triceratops</td>
+<td>Four-legged herbivore with three horns and a frill. <a href="https://www.nhm.ac.uk/discover/dino-directory/triceratops.html">Natural History Museum</a></td>
+<td>Graze low plants, walk, rub gently against a trunk, rest.</td>
+<td>Approach a low foliage tray and crop leaves with beak. Bucket contains foliage; no charging response.</td>
+</tr>
+<tr>
+<td>Brachiosaurus</td>
+<td>Four-legged long-necked plant eater. <a href="https://www.nhm.ac.uk/discover/dino-directory/brachiosaurus.html">Natural History Museum</a></td>
+<td>Measured walk, high browsing, slow neck sweep, rest.</td>
+<td>Walk to raised browse rack, reach neck toward leaves, take a portion. Preserve longer forelimbs in the final rig.</td>
+</tr>
+<tr>
+<td>Stegosaurus</td>
+<td>Four-legged plant eater with plates and tail spikes. <a href="https://www.nhm.ac.uk/discover/dino-directory/stegosaurus.html">Natural History Museum</a></td>
+<td>Slow walk, low browsing, breathing, mild tail balance.</td>
+<td>Walk to low plant tray, lower small head, crop foliage. Keep tail spikes away from the feeding edge; colors and plate motion are authored choices.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="aquarium-model-sheet-and-behavior">Aquarium model sheet and behavior</h2>
+<p><img alt="Aquarium creatures and penguins with turnaround and feeding poses" src="../../SourceArt/Zoo/ModelSheets/aquarium-model-sheet.png" /></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Creature</th>
+<th>Natural behavior reference</th>
+<th>Proposed everyday animation</th>
+<th>Proposed feeding response and bucket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clownfish</td>
+<td>Close relationship with host anemones. <a href="https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/clownfish">Monterey Bay Aquarium</a></td>
+<td>Fin paddling, short swim excursions near an anemone, turn and hover.</td>
+<td>Swim toward a small pellet cloud from a chute; take pellets one at a time. Bucket contains pictured aquarium feed.</td>
+</tr>
+<tr>
+<td>Regal blue tang</td>
+<td>Reef fish and algae feeding. <a href="https://aquarium.org/animals/blue-tang/">Oregon Coast Aquarium</a></td>
+<td>Tail-driven swimming, gentle turns, inspect reef and graze.</td>
+<td>Approach a seaweed holder, nibble, return to reef. This is Paracanthurus hepatus with black body markings and a yellow tail; do not confuse it with the Atlantic blue tang.</td>
+</tr>
+<tr>
+<td>Adult zebra shark</td>
+<td>Can rest on the bottom; adults have spots, juveniles stripes; eats invertebrates and small fish. <a href="https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/zebra-shark">Monterey Bay Aquarium</a></td>
+<td>Rest on sand with breathing, slow tail strokes, inspect a rock opening.</td>
+<td>Swim gently to a feeding location and take a prepared seafood portion. Its game food can show fish/shrimp; no rushing or lunging at visitors.</td>
+</tr>
+<tr>
+<td>African penguin</td>
+<td>Underwater swimming, beach activity and fish feeding. <a href="https://sandiegozoowildlifealliance.org/story-hub/zoonooz/whos-who">San Diego Zoo Wildlife Alliance</a></td>
+<td>Waddle, preen, slide into pool, swim using flippers, climb out.</td>
+<td>Waddle or swim to a reachable tray, take and swallow a fish. Keep the pink eye patch and breast band.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Fish move through tank space with fin/tail motion, not land footsteps. The feeding cloud stays underwater and within reachable tank bounds. Keep mouth, fin and body deformation subtle rather than making every fish talk.</p>
+<h2 id="reptile-model-sheet-and-behavior">Reptile model sheet and behavior</h2>
+<p><img alt="Reptile front side back and feeding poses" src="../../SourceArt/Zoo/ModelSheets/reptile-model-sheet.png" /></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Creature</th>
+<th>Natural behavior reference</th>
+<th>Proposed everyday animation</th>
+<th>Proposed feeding response and bucket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Green iguana</td>
+<td>Plant-eating lizard; use species-specific rather than generic reptile food. <a href="https://animals.sandiegozoo.org/animals/iguana">San Diego Zoo iguana reference</a></td>
+<td>Warm-rock rest, breathing, slow crawl, branch climb, head turn.</td>
+<td>Crawl to a shallow greens bowl and bite a leaf. Bucket contains leaves and vegetables.</td>
+</tr>
+<tr>
+<td>Leopard gecko</td>
+<td>Insect feeding and exploration were studied directly. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10705344/">Published behavior study</a></td>
+<td>Peek from a shaded hide, slow steps, tongue lick, inspect nearby rocks.</td>
+<td>Look toward bowl, approach, take one stylized insect and swallow. Bucket contains insect portions. Tiny quick feeding movements can follow a slow approach.</td>
+</tr>
+<tr>
+<td>Galapagos tortoise</td>
+<td>Plant feeding and neck reach. <a href="https://sdzwildlifeexplorers.org/animals/galapagos-tortoise">San Diego Zoo Wildlife Explorers</a></td>
+<td>Slow deliberate steps, grazing, shell breathing movement, shade rest.</td>
+<td>Extend neck, take several slow steps, crop greens in a low dish. Put its starting rest anchor near the feeder to keep a slow pace enjoyable.</td>
+</tr>
+<tr>
+<td>Nile crocodile</td>
+<td>Water/land movement, tail-driven swimming, basking and swallowing food. <a href="https://animals.sandiegozoo.org/animals/crocodilian">San Diego Zoo crocodilians</a></td>
+<td>Float, blink, swim, crawl onto a warm bank and rest.</td>
+<td>Swim/crawl toward a waterside tray and swallow a prepared fish portion. No mammalian chewing loop, attack or visitor chase. The reference describes crocodilians broadly, so species-specific refinements remain for production.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The iguana page returned an access error during the full-page check; its indexed description and the broader <a href="https://animals.sandiegozoo.org/animals/lizard">lizard reference</a> support this preliminary brief. Verify species detail again before producing its final animation rig. Resting and shaded routines should differ from the gecko's; not every lizard is a daytime sunbather.</p>
+<h2 id="feeding-from-the-bucket">Feeding from the bucket</h2>
+<ol>
+<li>The child taps the bucket beside an exhibit. It opens with large pictured portions appropriate to that exhibit. A tap takes a portion into their hand; dragging is also available. Replenishment is automatic so a sibling cannot empty the exhibit for everyone.</li>
+<li>Taking food makes nearby eligible animals turn or look toward the feeding area. Food held far away does not pull an animal out of its enclosure. The child can carry it to one of four pictured feeding places along the viewing edge, or tap that place to walk there.</li>
+<li>When the child reaches a feeding place while holding food, an animal reserves a reachable animal-side eating spot and approaches at its gentle species pace. Dropping food in a tray/chute can also invite an animal without a player continuing to hold it. Do not teleport it into place.</li>
+<li>Food is only consumed after a valid offer or placement within reach. Align mouth, trunk or beak to the portion; animate contact; remove exactly that portion; play a bite/swallow sound. Fish use the chute and a finite pellet cloud. The child sees the food disappear for a clear reason.</li>
+<li>The animal pauses briefly, gives a mild satisfied reaction, and resumes its routine. A recent eater can wait while another creature approaches. The zoo does not punish children for leaving or require them to prevent starvation.</li>
+</ol>
+<p><strong>Proposed pacing, to test with the children:</strong> visible notice within roughly 0.5–1.5 seconds, a nearby approach around 3–8 seconds, then 2–4 seconds of eating. Tortoises may take longer; use a closer resting location instead of making them sprint. These are game tuning suggestions, not measured animal speeds or proven preschool timings.</p>
+<p>Four players use the same exhibit and animals. Four offer places and a fair queue prevent one player locking the activity. A single animal eats one portion at a time; siblings can see whose portion it is considering. Additional animals serve other places where space permits. Reservations release when a player walks away, changes area, disconnects or cancels. A changed/canceled target cannot make a stale command consume somebody else's food. Joining late sees the current routine and feeding state; another player's travel does not reset the exhibit.</p>
+<h2 id="animation-contract">Animation contract</h2>
+<p>Every creature needs breathing/idle, locomotion, turn, notice food, approach start/stop, eat or swallow, satisfied reaction, and return to routine. Add at least two species-specific activities from the tables. Penguin and crocodile additionally need land/water entry and exit; fish need swimming, turning and hovering/resting as appropriate. A quiet animal may rest often, but must never appear as a frozen decorative object.</p>
+<p>Preserve one stable silhouette, palette and individual marking map through every view. The generated sheets contain some shading and pose/marking differences; simplify shading, resolve spot/stripe continuity, and check limb/finger counts against references when tracing the editable final artwork. Turnarounds are drawn at cell scale for readability, not an accurate cross-species height chart. Correct Brachiosaurus forelimb proportions, stegosaur plate rows, reptile toes and fish fin placement during final cleanup.</p>
+<p>Produce layered editable 2D sources with body, head, jaw/beak, eyes, near/far limbs, tail and distinctive parts separated. Use trunk sections and ears for elephant; neck/head segments for giraffe and sauropod; fins for fish; flippers for penguin; shell separate from tortoise head/limbs. Store mouth/food sockets, foot or swimming pivots, resting/feeding anchors and bounds beside the artwork. A finished reference sheet alone is not an animation asset.</p>
+<p>The server selects shared animal state, target, reserved feeding place, consumed portion and timing. Clients interpolate movement and play the same identified reactions locally. Choose different initial routine phases and bounded variation so a herd does not march in synchrony. Keep existing PC/VPS authority, private offline solo and server-owned world on reconnect. Far-away exhibits can use cheaper simulation; loading one shows the current state rather than replaying every missed animation or call. Performance must be measured on the existing older iPads; no frame-rate claim has been made.</p>
+<h2 id="free-sounds-and-pc-recording-plan">Free sounds and PC recording plan</h2>
+<p>These are <strong>license-checked candidates</strong>, not downloaded, auditioned or integrated audio. Freesound currently shows login-to-download. Its <a href="https://freesound.org/help/faq/">license FAQ</a> explains its license categories; keep the original page, author, license, file checksum and edit recipe for every selected sound. Prefer CC0 and retain credits even where attribution is optional. Listening access alone is not a game asset license.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Candidate reviewed</th>
+<th>Listed license and type</th>
+<th>Intended use and limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://freesound.org/people/vataaa/sounds/148873/">Voice elephant by vataaa</a></td>
+<td>CC0; MP3, approximately 7.4 seconds</td>
+<td>Elephant call candidate. Species/recording provenance and tone need listening review; trim and soften only after selection.</td>
+</tr>
+<tr>
+<td><a href="https://freesound.org/people/stratcat322/sounds/270383/">lion growls by stratcat322</a></td>
+<td>CC0; WAV, approximately 5 seconds; edited from a linked source</td>
+<td>Lion response candidate. It is already processed; inspect the original and reject it if frightening or unsuitable.</td>
+</tr>
+<tr>
+<td><a href="https://freesound.org/people/Breviceps/sounds/705839/">Penguin Squeak by Breviceps</a></td>
+<td>CC0; WAV, 0.6 seconds; cartoon tag</td>
+<td>Short stylized penguin response candidate, not verified African penguin field audio.</td>
+</tr>
+<tr>
+<td><a href="https://freesound.org/people/Ovkovko/sounds/825609/">CrocodilianTypeGrowl by Ovkovko</a></td>
+<td>CC0; designed with an instrument rubbing technique</td>
+<td>Designed reptile/dinosaur effect candidate; do not label it a real crocodile recording.</td>
+</tr>
+<tr>
+<td><a href="https://www.nhm.ac.uk/schools/teaching-resources/key-stage-1/dinosaurs-and-fossils/jurassic-sounds.html">Natural History Museum Jurassic sounds</a></td>
+<td>Reconstruction examples; a game redistribution license was not established</td>
+<td>Listen as a design reference only. Do not include these recordings in the app on this evidence.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reject the search result named Zebra-II-64-26 as an animal lead: the name alone does not establish a zebra recording. The <a href="https://animals.sandiegozoo.org/animals/zebra">zoo zebra page</a> describes brays, barks and softer sounds and includes a listening reference, but app reuse permission was not established. No verified free call is claimed for giraffe, zebra, iguana, gecko or tortoise in this research.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Creature group</th>
+<th>Sound events required</th>
+<th>Free source or original PC plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elephant</td>
+<td>Occasional call, heavy steps, leaf pickup/chew, water spray</td>
+<td>Elephant candidate plus recorded leaves, foot taps and water.</td>
+</tr>
+<tr>
+<td>Giraffe</td>
+<td>Quiet chewing, hoof steps, branch movement; optional stylized breath</td>
+<td>Record twig/leaf movement and soft breaths. A designed response is not proof of a natural giraffe call.</td>
+</tr>
+<tr>
+<td>Zebra</td>
+<td>Hooves, hay crunch, occasional bray/snort</td>
+<td>Record footsteps/hay; make a gentle designed vocal effect if a usable recording is not found.</td>
+</tr>
+<tr>
+<td>Lion</td>
+<td>Occasional low call, paws, grooming/stretch, feeding</td>
+<td>Audition the CC0 growl; record movement/eating Foley.</td>
+</tr>
+<tr>
+<td>Four dinosaurs</td>
+<td>Different low calls/breaths, steps, foliage or prepared-food eating</td>
+<td>Original PC effects: low voiced breaths for T. rex, rounded short hum for Triceratops, longer breath for Brachiosaurus, soft chuff for Stegosaurus. All four calls are speculative game sounds.</td>
+</tr>
+<tr>
+<td>Clownfish, blue tang, zebra shark</td>
+<td>Water, fin/water movement, pellets/seaweed/seafood feeding</td>
+<td>Original water and feeding effects. Give all three audible responses without claiming invented roars are their natural calls.</td>
+</tr>
+<tr>
+<td>Penguin</td>
+<td>Short call, waddle, splash, fish swallow</td>
+<td>Cartoon squeak candidate; original splash/steps. Natural species call remains a separate sourcing task.</td>
+</tr>
+<tr>
+<td>Iguana, gecko, tortoise</td>
+<td>Light steps, leaf/insect eating, breathing and movement</td>
+<td>Original PC Foley; mostly quiet animals. Optional cartoon reaction must be labeled designed.</td>
+</tr>
+<tr>
+<td>Crocodile</td>
+<td>Water entry, tail swish, movement, gulp; occasional designed low sound</td>
+<td>Original water/Foley; instrument growl candidate only if gentle and clearly classified as designed.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use the user's PC for original recording and editing where a usable free asset is missing. <a href="https://manual.audacityteam.org/man/record.html">Audacity's official recording guide</a> documents microphone recording. A future recording session can capture three to five variations of leaves, soft footsteps, water, bowl taps and voiced breaths; remove unwanted room noise, trim silence, use short fades and match perceived loudness. Keep editable originals in SourceAudio/Zoo and export compact game copies later. No microphone capture, software installation or voice generation was performed for this research.</p>
+<p>Proposed playback rules: occasional calls rather than continuous roaring; nearby exhibits louder than distant ones; local music ducking during a call; a tap-to-hear response; and independent mute settings. Avoid repeated identical clips and a room full of overlapping calls when four children feed at once. Every species has sound feedback, but sounds can come from eating, water and movement as well as vocalization.</p>
+<h2 id="first-implementation-and-acceptance">First implementation and acceptance</h2>
+<p>Start with one integrated Savanna exhibit containing an elephant and giraffe, their own buckets, routine anchors and four shared feeding places. Prove the complete visit → take food → slowly approach → eat → resume sequence before expanding the content. Then add zebra/lion, dinosaurs, aquarium/penguins and reptiles using the same contract with species-specific changes.</p>
+<ul>
+<li>Confirm that zoo travel preserves held items and existing saves, and leaves the current destinations accessible.</li>
+<li>Watch every species long enough to see locomotion, rest, at least two distinct activities and a feeding reaction. Confirm foot/fin contact, full tails, correct food and mouth/trunk alignment.</li>
+<li>Test four real clients feeding the same exhibit, simultaneous offers to one animal, late joining, walking away, cancellation, disconnect and independent area travel. No duplicate consumption, permanent reservation or reset for the remaining players.</li>
+<li>Check fish food reachability, land/water transitions, feeders behind barriers and the tortoise's slow approach. If routing fails, return the offered portion and release the spot without teleporting an animal.</li>
+<li>Check muted and audible reactions, clip overlap and listening comfort on physical devices. Preserve the difference between recordings and designed sounds in the asset catalog.</li>
+<li>Check reconnect/server restart and the existing older iPads' frame rate and memory. Observe both children using the buckets; tune targets and pacing from their behavior.</li>
+</ul>
+<p><strong>Research handoff:</strong> the four images below the category headings, the prompt manifest and this behavior/feeding/audio brief are the deliverables. Further species, final visual approval, editable sprite cleanup, animation and playable integration remain future production work. This report records the new requested zoo scope without replacing the active Home implementation sequence or claiming a device update.</p></main></body></html>
