@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 825" role="img" aria-labelledby="title desc">
+<title id="title">Proposed zoo entrance and sixteen exhibit layout</title>
+<desc id="desc">An entrance plaza connects to four scrolling trails. Savanna connects to Dinosaurs, then Reptiles, then Aquarium, then back to Savanna. Every connection is bidirectional. Each trail contains four species, each with one bucket and four offer places.</desc>
+<style>text{font-family:system-ui,sans-serif;fill:#243951} .trail{fill:#edf5f2;stroke:#a0b8b0} .route{fill:none;stroke:#708c83;stroke-width:2} .title{font-size:22px;font-weight:600} .label{font-size:18px} .note{font-size:15px}</style>
+<rect width="1080" height="825" fill="#fff"/>
+<text x="40" y="42" class="title">Zoo world: proposed travel layout</text>
+<text x="40" y="74" class="note">Side-on scrolling play • connection map, not an overhead game camera</text>
+<path class="route" d="M520 265 H560 M800 410 V480 M520 625 H560 M280 410 V480"/>
+<path class="route" d="M280 410 L540 445 L800 410 M280 480 L540 445 L800 480"/>
+<rect x="398" y="416" width="284" height="58" rx="12" fill="#dcebd8" stroke="#708c83"/>
+<text x="540" y="441" text-anchor="middle" class="label">Entrance plaza / Zoo map</text>
+<text x="540" y="463" text-anchor="middle" class="note">Four trail gates • Home exit</text>
+<rect class="trail" x="40" y="120" width="480" height="290" rx="12"/>
+<text x="60" y="156" class="title">Savanna Trail</text>
+<text x="60" y="201" class="label">1. African elephant</text>
+<text x="60" y="243" class="label">2. Giraffe</text>
+<text x="60" y="285" class="label">3. Plains zebra</text>
+<text x="60" y="327" class="label">4. Lion</text>
+<text x="60" y="370" class="note">Each exhibit: 1 food bucket + 4 shared offer places</text>
+<text x="60" y="394" class="note">Four 2400-wide panels • all paths bidirectional</text>
+<rect class="trail" x="560" y="120" width="480" height="290" rx="12"/>
+<text x="580" y="156" class="title">Living Dinosaur Valley</text>
+<text x="580" y="201" class="label">1. Brachiosaurus</text>
+<text x="580" y="243" class="label">2. Triceratops</text>
+<text x="580" y="285" class="label">3. Stegosaurus</text>
+<text x="580" y="327" class="label">4. Tyrannosaurus rex</text>
+<text x="580" y="370" class="note">Each exhibit: 1 food bucket + 4 shared offer places</text>
+<text x="580" y="394" class="note">Four 2400-wide panels • all paths bidirectional</text>
+<rect class="trail" x="40" y="480" width="480" height="290" rx="12"/>
+<text x="60" y="516" class="title">Aquarium and Penguin Cove</text>
+<text x="60" y="561" class="label">1. Clownfish</text>
+<text x="60" y="603" class="label">2. Regal blue tang</text>
+<text x="60" y="645" class="label">3. Adult zebra shark</text>
+<text x="60" y="687" class="label">4. African penguin</text>
+<text x="60" y="730" class="note">Each exhibit: 1 food bucket + 4 shared offer places</text>
+<text x="60" y="754" class="note">Four 2400-wide panels • all paths bidirectional</text>
+<rect class="trail" x="560" y="480" width="480" height="290" rx="12"/>
+<text x="580" y="516" class="title">Reptile Garden</text>
+<text x="580" y="561" class="label">1. Galapagos tortoise</text>
+<text x="580" y="603" class="label">2. Leopard gecko</text>
+<text x="580" y="645" class="label">3. Green iguana</text>
+<text x="580" y="687" class="label">4. Nile crocodile</text>
+<text x="580" y="730" class="note">Each exhibit: 1 food bucket + 4 shared offer places</text>
+<text x="580" y="754" class="note">Four 2400-wide panels • all paths bidirectional</text>
+<text x="40" y="807" class="note">Design proposal • species routines sourced individually • geometry and pacing await playtesting</text>
+</svg>

@@ -1,0 +1,118 @@
+{
+  "date": "2026-09-30",
+  "scope": "Deep zoo design and integration research only",
+  "checkoutHead": "6bac29a273fbc6042a952543255c9adc0d939e37",
+  "sourceIncludesConcurrentWorkingCopies": true,
+  "codeFiles": [
+    {
+      "path": "Unity/FamilyPlayset/ProjectSettings/ProjectVersion.txt",
+      "sha256": "7a43a06dfe51c4e3933c5a7848320925ce96e667f8c7736557d13a02007e9860"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Packages/manifest.json",
+      "sha256": "2f28cfa90e43aef239d7c7394c937e22bdd286a82c7ea793203e5d7464ac69f4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
+      "sha256": "331796b550eaf84d96f4debce69274dd0ad769e77067cf7acac4f515f6d9f621"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
+      "sha256": "396c9161686d1e339b750f77b15174e11e7dc10db7a996f5f9ad63eab6140790"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs",
+      "sha256": "46f932d1136c28e67b21d0fbe1f1ae86cedf2d8a8013459fc554c0c6006fa4f0"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs",
+      "sha256": "a7cb8bac2d81e6598efc1b58d21912788f54e8e4943baf7fa07c2e4cad354f8a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs",
+      "sha256": "4c4677f00a85b857c94fc5429da140445c65c80c961a21d633cb12416daf3b67"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloTravelScreen.cs",
+      "sha256": "89fb17cea8f6521b60c75d64709ca243c89d06d93c213740d996b8d35e4a999e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs",
+      "sha256": "e2a4f4e4cc26b3b8dce9200446b73a99a950cd6b152e15b1d43f66cb3120a4b4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
+      "sha256": "fe32128d1b84e233a31efe67e8447efcf7500433a5f5494bb8ef4e1ae6740a76"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterSheetView.cs",
+      "sha256": "6479d3371239781b04691c3426ceab2e9b4e5a0771a48ee4f1ddf00655f9049a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloWorldMusic.cs",
+      "sha256": "824d2443a2379ea7f247618ea4c30eeaf7eeeb6fa16dcd8786f1a7c29d2b7de2"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs",
+      "sha256": "41df623652275072ffa7aebd93e1b3dbdcdf9d1a59ebb54a84348d946710f9fa"
+    }
+  ],
+  "layout": {
+    "passed": true,
+    "species": 16,
+    "trails": 4,
+    "proposedPanels": 17,
+    "buckets": 16,
+    "sharedOfferPlaces": 64,
+    "connectedBidirectionalGraph": true
+  },
+  "visualReview": {
+    "mapSvg": "passed",
+    "reportImages": "passed: SVG map and all four 1536-wide PNG model sheets loaded completely",
+    "interactiveSelection": "passed, elephant to penguin changes food, feeder and habitat",
+    "narrowViewportWidth": 320,
+    "fragmentClientWidth": 288,
+    "fragmentScrollWidth": 288
+  },
+  "officialZooMap": {
+    "url": "https://zoo.sandiegozoo.org/sites/default/files/2026-08/08-10-26_ZooMap_web.pdf",
+    "sha256": "69e107598993d95bdc6ebc0a1ca279f5745ab55e805b9028f018789dbabc7615",
+    "review": "Rendered with Poppler and visually inspected; page 1",
+    "claims": "Named habitat regions, entrance and connecting paths; no child usability/dimension claims"
+  },
+  "existingBookCalls": [
+    {
+      "path": "SourceAudio/Books/hello-dinosaurs/effect-0.wav",
+      "exists": true,
+      "sha256": "ed43b44a51d445e133cd4df65b974acf9847b2b1599e16706912f6996b77128a"
+    },
+    {
+      "path": "SourceAudio/Books/hello-dinosaurs/effect-1.wav",
+      "exists": true,
+      "sha256": "31bc18af800cde1829225f4ab9961e68774afcb6f0cacd1791c1df0c0296bbc2"
+    },
+    {
+      "path": "SourceAudio/Books/hello-dinosaurs/effect-2.wav",
+      "exists": true,
+      "sha256": "f4b89b1cb5e069dc17ed47a5d91835b8ac0c524b551034e692e4b429490e610c"
+    },
+    {
+      "path": "SourceAudio/Books/hello-dinosaurs/effect-3.wav",
+      "exists": true,
+      "sha256": "68c9f52ab6574ff53a4d05540df92b4d80b0889ac6d8b1c6e0e1a52e477d5c46"
+    }
+  ],
+  "globalDocumentAudit": {
+    "passed": false,
+    "zooRelatedErrors": [],
+    "externalError": "Unclassified docs/server-update-policy.md from concurrent work",
+    "report": "docs-validation.json"
+  },
+  "limits": [
+    "Design proposal, not implementation",
+    "Final geometry, durations and creature population unmeasured",
+    "Sound candidates not auditioned or Zoo-integrated",
+    "Dinosaur routines and voices reconstructed",
+    "No Unity build, gameplay, multiplayer or device test"
+  ]
+}

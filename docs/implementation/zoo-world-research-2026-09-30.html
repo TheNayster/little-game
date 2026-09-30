@@ -8,22 +8,78 @@ table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{p
 </style></head><body><main><nav><a href="zoo-world-research-2026-09-30.md">Editable research</a> · <a href="../current-decisions.md">Project decisions</a></nav><h1 id="zoo-world-research-and-animal-model-sheets">Zoo world research and animal model sheets</h1>
 <p>September 30, 2026. Design and art research for Little Weeps, following the user's request for a zoo the children can travel through, living dinosaurs, animals doing their own activities, animal sounds, and a food bucket beside every exhibit. The user confirmed that the art should fit the Bluey show style.</p>
 <p><strong>Recommended direction:</strong> a connected illustrated zoo with four areas: Savanna Trail, Living Dinosaur Valley, Aquarium and Penguin Cove, and Reptile Garden. Every creature has an everyday routine and a gentle feeding response. Up to four family players can visit and feed the same animals together, with independent travel and cameras. This document proposes a 16-species starter roster; it does not limit later additions to those species.</p>
-<p><strong>Status:</strong> four draft model sheets and a written animation/feeding contract are complete. Zoo scenes, rigs, animation clips, audio files, server rules and playable feeding are not implemented. These generated drawings are visual development references, not approved final sprites or frame-perfect animation turnarounds. Preserve the current Home work and main integration hold. Zoo is a requested additional destination; the existing five destinations remain intact until the chooser is deliberately expanded during implementation.</p>
+<p><strong>Status, expanded after the user's request for deep research:</strong> four draft model sheets, an exhibit-by-exhibit layout, a reviewed travel map, a source-backed design study and a project-specific integration plan are complete. Zoo scenes, rigs, animation clips, zoo audio integration, server rules and playable feeding are not implemented. These generated drawings are visual development references, not approved final sprites or frame-perfect animation turnarounds. Preserve the current Home work and main integration hold. Zoo is a requested additional destination; the existing five destinations remain intact until the chooser is deliberately expanded during implementation.</p>
 <p><a href="../../SourceArt/Zoo/ModelSheets/README.md">Model sheet source folder</a> · <a href="../current-decisions.md">Current project decisions</a> · <a href="../bluey-game-research-2026-09-23.html">Existing feature goals</a></p>
 <div class="toc">
 <ul>
+<li><a href="#evidence-and-limits-of-this-research">Evidence and limits of this research</a></li>
 <li><a href="#games-and-design-lessons">Games and design lessons</a></li>
 <li><a href="#traveling-through-the-zoo">Traveling through the zoo</a></li>
+<li><a href="#concrete-layout-for-all-sixteen-species">Concrete layout for all sixteen species</a></li>
+<li><a href="#how-this-fits-the-actual-game-code">How this fits the actual game code</a></li>
 <li><a href="#savanna-model-sheet-and-behavior">Savanna model sheet and behavior</a></li>
 <li><a href="#living-dinosaur-model-sheet-and-behavior">Living dinosaur model sheet and behavior</a></li>
 <li><a href="#aquarium-model-sheet-and-behavior">Aquarium model sheet and behavior</a></li>
 <li><a href="#reptile-model-sheet-and-behavior">Reptile model sheet and behavior</a></li>
 <li><a href="#feeding-from-the-bucket">Feeding from the bucket</a></li>
 <li><a href="#animation-contract">Animation contract</a></li>
+<li><a href="#building-natural-routines-and-reliable-feeding">Building natural routines and reliable feeding</a></li>
+<li><a href="#turning-model-sheets-into-game-assets">Turning model sheets into game assets</a></li>
+<li><a href="#loading-memory-and-audio-integration">Loading, memory and audio integration</a></li>
 <li><a href="#free-sounds-and-pc-recording-plan">Free sounds and PC recording plan</a></li>
 <li><a href="#first-implementation-and-acceptance">First implementation and acceptance</a></li>
 </ul>
 </div>
+<h2 id="evidence-and-limits-of-this-research">Evidence and limits of this research</h2>
+<p>The deeper pass checked the actual <strong>Little Weeps</strong> Unity project, not the unrelated Meeps project. Code was inspected at branch <code>codex/home-science-coloring</code>, HEAD <code>c1dd74264d4298cc866744867e444c5becd4eac8</code>, together with the concurrent working copies on September 30. Unity is <code>6000.3.24f1</code>; the manifest includes uGUI 2.0.0, Netcode for GameObjects 2.13.2 and Transport 2.7.4. Findings below describe the code read at that point; line numbers may move with other chats' work.</p>
+<p>This report distinguishes <strong>verified behavior</strong> in local code or a primary source, <strong>proposed design</strong> derived from it, and <strong>unmeasured values</strong> requiring final artwork or playtesting. A source does not establish a game mechanic merely because it mentions feeding. No public source establishes the best approach duration for these children, the final creature population, or this project's device performance. Those values remain open; they are not filled with guesses.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Material actually reviewed</th>
+<th>Finding that affects this game</th>
+<th>What it does not establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://sagomini.com/article/zoo-letter-to-parents/">Sago Mini Zoo designer Davin Risk's letter</a></td>
+<td>The team visited Toronto Zoo, designed distinct habitat types and recognizable animal shapes/markings, and treated objects as a physical playset for open-ended exploration and care.</td>
+<td>Its animal AI, pathfinding, multiplayer rules and our bucket mechanic are not documented there.</td>
+</tr>
+<tr>
+<td>Three published screenshots on the <a href="https://sagomini.com/apps/zoo/">official Sago Zoo page</a></td>
+<td>Visually reviewed Arctic glass-front water habitat, jungle perches at different heights and a savanna scene with foreground water. These demonstrate layered habitat composition and land/water separation.</td>
+<td>A still image cannot prove autonomous routines, movement speed, hit targets or feeding ownership. No screenshot is imported as game artwork.</td>
+</tr>
+<tr>
+<td><a href="https://zoo.sandiegozoo.org/sites/default/files/2026-08/08-10-26_ZooMap_web.pdf">San Diego Zoo's current official map, August 10, 2026</a>, linked from <a href="https://zoo.sandiegozoo.org/plan-your-visit">Plan your visit</a></td>
+<td>Downloaded the PDF, rendered its page with Poppler and visually reviewed it. Named habitat areas, branching/connecting paths, entrance and recognizable map landmarks support an entrance-plus-trails structure.</td>
+<td>The illustrated real zoo is neither a preschool usability study nor a template for our dimensions. Its hills, service routes and commercial facilities do not become game requirements.</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/UICanvas.html">Unity uGUI Canvas manual, installed package family</a> and <a href="https://unity.com/how-to/unity-ui-optimization-tips">Unity UI optimization guidance</a></td>
+<td>UI hierarchy controls drawing order; changing UI can dirty Canvas geometry/batching. Existing game code confirms UI-based art and sibling sorting.</td>
+<td>Adding SpriteRenderer sorting or an Animator alone does not solve this UI game's animal depth or performance.</td>
+</tr>
+<tr>
+<td><a href="https://www.gameaipro.com/GameAIPro/GameAIPro_Chapter10_Building_Utility_Decisions_into_Your_Existing_Behavior_Tree.pdf">Bill Merrill, Game AI Pro chapter 10</a>, sections 10.6–10.8</td>
+<td>Valid behaviors can be ranked or selected with weighted utility; evaluation can be separated from execution and cached between evaluations. This supports selecting purposeful routines without changing them every frame.</td>
+<td>It gives no measured species activity budgets or child-friendly timing values. A full behavior-tree framework is not required by the paper or by this game.</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/videos/play/wwdc2024/10085/">Apple's game touch-control session</a>, <a href="https://developer.apple.com/design/tips/">Apple design tips</a> and <a href="https://developer.android.com/guide/topics/ui/accessibility/apps">Android accessibility guidance</a></td>
+<td>Direct touch actions need readable placement and adequate hit areas; Apple gives a 44-point baseline, Android 48 dp. Controls must avoid obscuring the play area.</td>
+<td>These units are platform UI measurements, not Unity world coordinates. They do not guarantee that this family's children understand a bucket.</td>
+</tr>
+<tr>
+<td><a href="https://playtestwithkids.org/method/pain-points/">Playtest with Kids: pain points</a> and <a href="https://playtestwithkids.org/case-study/jump-and-spell-in-sago-mini-school/">Sago Mini's documented early prototype study</a></td>
+<td>Observe actions and nonverbal confusion, not just answers to questions. Sago tested a mechanic with placeholder art before polishing it.</td>
+<td>Their study is about another game, not evidence that our zoo's proposed controls or pacing work.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The animal/museum sources are linked beside each species below. Additional species-specific iguana and Nile crocodile evidence was found in this pass; the earlier broad reptile references are no longer the only support. Dinosaur diet/anatomy have fossil evidence, but exact voices, colors, gaits and daily schedules are not known from these directory pages.</p>
 <h2 id="games-and-design-lessons">Games and design lessons</h2>
 <p>These findings come from public developer descriptions and support pages. The games were not installed or directly played for this research; their internal AI and performance are unknown.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
@@ -54,9 +110,179 @@ table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{p
 </table></div>
 <p>The synthesis is our design judgment: borrow children's games' direct interaction and zoo simulations' observable behavior, then simplify both to fit this existing 2D family game. No ticket prices, staff scheduling or compulsory objectives are needed for the requested zoo visit.</p>
 <h2 id="traveling-through-the-zoo">Traveling through the zoo</h2>
-<p>Enter through a zoo gate from the existing destination chooser. A picture map shows four clearly different areas, with paths and arrows connecting them. Walk between neighboring exhibits or use the map for longer travel. The younger child can tap one big animal portrait to move near its viewing and feeding area; the older child can explore the continuous paths. Both views show the same shared zoo.</p>
+<p>Proposed travel: enter through a zoo gate from the existing destination chooser. A picture map shows four clearly different areas, with paths and arrows connecting them. Walk between neighboring exhibits or use the map for longer travel. A child can tap a big animal portrait for an explicit trip near its viewing and feeding area, or explore the paths. Both options show the same shared zoo.</p>
 <p>Savanna Trail has roomy planted enclosures and shady resting spots. Dinosaur Valley has live, breathing animals among ferns and broad trees. The aquarium includes tanks with different swimming depths and a separate land/water penguin habitat. Reptile Garden has warm rocks, branches, shaded hides and a pond. Rest places and moving places both matter: an animal resting with breathing or blinking still feels alive.</p>
 <p>Children stay on visitor paths. Each exhibit has its own food bucket and a clear feeding station connected to the animal side. A raised leaf holder works for giraffes and Brachiosaurus; a chute reaches the aquarium; low trays suit grazers and reptiles. The bucket is visible beside the exhibit, not hidden in a menu. Animal silhouettes on the bucket and food identify what belongs there without requiring reading.</p>
+<h2 id="concrete-layout-for-all-sixteen-species">Concrete layout for all sixteen species</h2>
+<p><img alt="Proposed entrance and four-trail zoo layout" src="../../SourceArt/Zoo/Layout/zoo-layout.svg" /></p>
+<p><a href="../../SourceArt/Zoo/Layout/zoo-layout.json">Editable exhibit and connection data</a> · <a href="../../SourceArt/Zoo/Layout/README.md">Layout notes</a></p>
+<p><strong>Proposed topology:</strong> choose Zoo from the existing world menu and arrive in an entrance plaza with four illustrated trail gates and a zoo map. Each trail contains four consecutive exhibits. Trail ends connect Savanna → Dinosaurs → Reptiles → Aquarium → Savanna; every connection works in both directions. Each trail also connects to the entrance. This gives both short visits and a full loop. Players can return through a trail entrance or explicitly use the zoo map to return to the plaza; another player's trip never moves the group.</p>
+<p>This is a <strong>connection map</strong>, not a change to an overhead camera. The playable scenes retain the game's current side-on scroll, ground walking and independent cameras. Gate travel is an explicit proximity-checked action, not a hidden teleport when a child reaches the screen edge. Two gates at a junction need distinct landmarks and hit areas. Opening the map does not pause shared animals or start a private session.</p>
+<p><strong>Proposed panel allocation:</strong> one existing-size logical panel per species, plus one entrance panel: 17 panels in total. The verified convention is 2400 × 800 logical units; four panels make each trail x=0 through 9600. Each exhibit starts at 0, 2400, 4800 or 7200, with its local coordinates added to that start. These are design dimensions chosen to reuse the renderer's panel convention, not measured zoological enclosure dimensions or implemented bounds. Exact feeder, path and creature coordinates remain unset until full silhouettes and authored art can be checked together.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Trail and proposed order</th>
+<th>Habitat must provide</th>
+<th>Feeding layout and movement route</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Savanna 1: African elephant</td>
+<td>Open walking space, shade/rest, browse and water interaction anchor. Trunk reach needs clearance.</td>
+<td>Bucket beside viewing edge; four child places facing animal-side trays. Ground route ends at a trunk pickup point; the animal stays behind the barrier.</td>
+</tr>
+<tr>
+<td>Savanna 2: giraffe</td>
+<td>High browse tree, full neck visibility and turning space.</td>
+<td>Raised leaf rack beyond the edge; animal approaches on ground, then neck/tongue reach. The child action activates a reachable rack, not direct unsafe hand contact.</td>
+</tr>
+<tr>
+<td>Savanna 3: plains zebra</td>
+<td>Grass patches, shade and room for companion spacing.</td>
+<td>Low hay trough and four offer places. Separate grass/rest/feeder anchors allow grazing and movement without always circling.</td>
+</tr>
+<tr>
+<td>Savanna 4: lion</td>
+<td>Resting rock, shaded floor and a clear route from rest to feeder.</td>
+<td>Prepared meat tray beyond barrier. Wake/rise before approach; no visitor chase or hunting requirement.</td>
+</tr>
+<tr>
+<td>Dinosaur 1: Brachiosaurus</td>
+<td>Canopy browse, full neck and tail clearance.</td>
+<td>Raised foliage rack; ground approach and an independent neck reach. Large silhouette must fit the visible scene rather than be cropped into a panel.</td>
+</tr>
+<tr>
+<td>Dinosaur 2: Triceratops</td>
+<td>Low browse, rest and a wide turn.</td>
+<td>Low foliage tray. Keep horns/frill clear of the visitor-side layer and show beak contact.</td>
+</tr>
+<tr>
+<td>Dinosaur 3: Stegosaurus</td>
+<td>Low foliage and a route with room for the full tail.</td>
+<td>Low plant tray. Body turns must not swing clipped tail spikes into the visitor path.</td>
+</tr>
+<tr>
+<td>Dinosaur 4: T. rex</td>
+<td>Wide route, rest and unobstructed biped/tail silhouette.</td>
+<td>Prepared meat tray beyond barrier. Two-foot locomotion and head/jaw reach; daily routines are reconstructions.</td>
+</tr>
+<tr>
+<td>Aquarium 1: clownfish</td>
+<td>Anemone and a short underwater excursion/return route.</td>
+<td>Bucket operates a chute; pellets arrive at a defined underwater outlet, within tank bounds.</td>
+</tr>
+<tr>
+<td>Aquarium 2: regal blue tang</td>
+<td>Reef, algae grazing anchor and turning space.</td>
+<td>Seaweed holder underwater. Tail-driven approach; no land walking or surface-food target it cannot reach.</td>
+</tr>
+<tr>
+<td>Aquarium 3: adult zebra shark</td>
+<td>Sandy bottom rest, broad swim route and rock opening.</td>
+<td>Seafood tray delivered underwater. Resting is valid behavior; do not require perpetual circling.</td>
+</tr>
+<tr>
+<td>Aquarium 4: African penguin</td>
+<td>Dry preening/rest rock, pool, connected entry and exit anchors.</td>
+<td>Pool-edge fish tray reachable by the authored land/water route. Swimming uses flippers; walking uses feet.</td>
+</tr>
+<tr>
+<td>Reptile 1: Galapagos tortoise</td>
+<td>Grass, shade and a nearby rest anchor.</td>
+<td>Low greens dish. Shorten the authored route if waiting feels too long; preserve deliberate steps.</td>
+</tr>
+<tr>
+<td>Reptile 2: leopard gecko</td>
+<td>Shaded hide, rocks and close exploration/scent anchors.</td>
+<td>Low insect bowl. Slow notice/approach followed by a brief species-specific capture/swallow. No generic daytime sunbathing loop.</td>
+</tr>
+<tr>
+<td>Reptile 3: green iguana</td>
+<td>Strong branches/perch for basking, shade and a connected crawl/climb route.</td>
+<td>Greens bowl reachable from perch. Route must include descent/climb links rather than sliding through a branch.</td>
+</tr>
+<tr>
+<td>Reptile 4: Nile crocodile</td>
+<td>Dry basking bank, pond and connected water entry/exit.</td>
+<td>Fish tray at water feeding edge. Bank → entry → swim → feeder is valid; a straight line across a fence is not.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The order is a design choice: large/recognizable entry exhibits, then different movement and feeding styles within each trail. Dinosaur herbivores appear before T. rex. The map sources support identifiable habitat zones and connected paths, but do not prove this ordering is optimal. Nothing in the design excludes adding more species later.</p>
+<p><strong>Exhibit composition:</strong> clean rear scenery → rear plants/rocks → animal bodies and coordinated environment parts → habitat barrier/glass and feeding delivery parts → visitor path, bucket and characters → only the required foreground covers. Keep a continuous walkable visitor band and a clear view of the food outlet. Animal resting places may be higher/back from that band. Aquarium glass is a foreground habitat layer; it must not tint or block the visitor characters and bucket. Climbing perches and raised racks need authored occlusion pieces.</p>
+<p>There are <strong>16 buckets and 64 shared child offer places</strong> in this proposal. Four places mean four players can participate in one exhibit, not four separate animals or private simulations. One creature accepts one portion at a time with a fair shared queue; a species group can serve multiple offers if final art and bounds support it. The final number of individual creatures per species is intentionally not invented in this research.</p>
+<h2 id="how-this-fits-the-actual-game-code">How this fits the actual game code</h2>
+<p>All source paths below are in <code>Unity/FamilyPlayset/Assets/FamilyPlayset/Code/</code>. These are inspected integration points, not files already changed for the zoo.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Inspected source and symbol</th>
+<th>Verified current behavior</th>
+<th>Required zoo integration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs">Core/WorldLayout.cs</a>, <code>Area</code>, <code>Destination</code>, <code>Place</code>, <code>MaxX</code>, <code>Position</code></td>
+<td>Zoo is absent. Existing non-internal worlds generally end at 4800; internal Home rooms at 2400. Destinations exclude internal Home rooms.</td>
+<td>Add a Zoo layout helper and five valid zone IDs: <code>zoo</code>, <code>zoo-savanna</code>, <code>zoo-dinosaurs</code>, <code>zoo-aquarium</code>, <code>zoo-reptiles</code>. Only <code>zoo</code> is a global chooser destination; its internal trails report Zoo as their place and use their own 9600 bounds. Gate arrival must use the selected endpoint.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs">Client/SoloNavigation.cs</a>, <code>WorldIds</code>, label array, <code>BuildWorldBubble</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloTravelScreen.cs">SoloTravelScreen.cs</a></td>
+<td>Five destination pictures are hardcoded. Travel validates a destination, resolves its icon/label, waits for authority and scenery readiness.</td>
+<td>Add a sixth Zoo picture/label and preserve all five entries. Internal gate routing needs its own validated command; global <code>Destination</code> must not expose each exhibit as a separate world.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs">Client/SoloScenery.cs</a>, <code>SceneTiles</code>, <code>VisibleTiles</code>, camera clamp and resource requests</td>
+<td>Background tiles are explicit records, loaded through <code>Resources/Scenery</code>. The renderer limits resident/requested panoramas to three. Camera is local.</td>
+<td>Register the hub and 16 exhibit tile IDs; use zoo zone bounds and the existing loading window. Release departing trail scenery. Do not load all 17 backgrounds together. Animal/prop/audio caches need their own measured limits.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterSheetView.cs">Client/CharacterSheetView.cs</a>, <code>Configure</code>, <code>Present</code>, frame validation</td>
+<td>Character art uses UI <code>RawImage</code> UV crops, with a 16-pose avatar sheet and 8 walking frames. Those frame requirements belong to avatars.</td>
+<td>Make an animal visual adapter with species-specific clips and sockets. Reuse UI texture/frame techniques, not Bluey pose enums or avatar frame counts as biological requirements. No installed 2D Animation package was found in the manifest.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs">Client/SoloScreen.cs</a>, <code>ToBoard</code>, <code>SortDepth</code> (around lines 583 and 615)</td>
+<td>Ground positions map through <code>(y * .45 - 250)</code>; depth is sorted by ground anchor, part and stable key, then UI sibling index.</td>
+<td>Add animal/feeder/barrier depth contributions. Keep body articulation separate from ground depth. Tank/climb display coordinates need an adapter; a swimming height must not be treated as a visitor floor position. SpriteRenderer <code>SortingGroup</code> cannot order these UI RawImages.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs">Core/SharedMovement.cs</a>, <code>AdvanceLocal</code>, <code>MovementAuthority.Tick</code>, <code>Walking.Step</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">SoloWorld.cs</a>, <code>SetWalkingPosition</code>, <code>Apply(Move)</code></td>
+<td>Generic walking clamps y to 35–455 and x to area bounds. Bedroom-specific routing is applied separately. A painted fence has no collision effect.</td>
+<td>Implement the same pure Zoo visitor-path projection/routing for private solo, shared walking and transaction movement. Server validation also checks path/gate reachability. Client-only collision would leave shared players able to cross habitats.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">Core/SoloWorld.cs</a>, <code>ToyKind</code>, <code>HasUsefulInteraction</code>, <code>Validate</code></td>
+<td><code>Bucket</code> stores water and serves taps/plants; toy count is schema-constrained. There are no zoo actions or animal states.</td>
+<td>Give zoo buckets a dedicated station/portion contract. Recommended: store bounded zoo portions/reservations inside Zoo state and expose them through a client carry adapter. If implemented as new <code>SoloToy</code> kinds instead, stock counts, enum validators, travel and migration all need deliberate extension.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">Core/SoloWorld.cs</a>, <code>SoloSnapshot</code>, <code>Clone</code>, <code>Validate</code>, upgrades</td>
+<td>Snapshot state is manually cloned and validated; omitting a new field from <code>Clone</code> loses it on snapshot/reopen.</td>
+<td>Add detached deep copies, validation and an idempotent Zoo migration to both private saves and server loads. Keep old object IDs, positions and player data intact. Validate animal route bounds and reservation/portion ownership, not just field presence.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">Core/SoloWorld.cs</a>, <code>TravelPlayer</code> (around line 312)</td>
+<td>Personal toys/kitchen food remain at departure; general tools reset to legacy rack coordinates. Travel increments the player's visit.</td>
+<td><strong>Correction to the initial report:</strong> current global travel does not preserve a carried item in the hand. Proposed zoo-specific behavior settles that player's portion at its source station and releases only that player's offer. Do not run food buckets through the garden water-bucket reset.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs">Core/FamilySession.cs</a>, <code>AdvanceIdle</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs">NetworkProbe/NetworkProbe.cs</a>, <code>TickMovement</code></td>
+<td>World idle advancement is gated on connected players. Visible maintenance changes immediately save and publish. Player movement has a separate 30 Hz simulation / 20 Hz packet lane.</td>
+<td>Use server-owned creature segments/phases plus client interpolation, or a dedicated bounded motion lane. Do not label every footstep/frame a visible maintenance transaction, which would cause continual checkpoint/full-view writes. An empty server currently does not keep simulating; settle/resume instead of claiming 24/7 animals.</td>
+</tr>
+<tr>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloWorldMusic.cs">Client/SoloWorldMusic.cs</a>, <code>TickWorldMusic</code>, <code>WorldMusicPlayer</code></td>
+<td>Unknown areas fall back to Home music. Two local 2D AudioSources crossfade; narration/books already affect local ducking.</td>
+<td>Add explicit Zoo/trail music mapping and a separate bounded effect player. Combine animal-call ducking with existing narration/book logic instead of overriding it. Local camera/area controls audible distance; shared events identify sounds, not one global volume for all players.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Architecture decision:</strong> reuse the scrolling UI world with internal trail zones. A single 38,400-unit corridor for 16 exhibits would require more extensive bounds/long-trip handling and gives no entrance choice. Separate global worlds for every animal would clutter the chooser and break the requested sense of one zoo. A new 3D/NavMesh animal world would replace the established art/view/control model. The internal-zone choice follows existing room/travel and streaming patterns while requiring new Zoo routing rules; it is a recommendation, not a benchmarked comparison.</p>
+<p>Gate commands should identify the source zone, destination endpoint, actor and current visit. The authority checks proximity and permitted connections before moving just that player. New schema/content changes must use the project's compatibility policy and coordinated PC/VPS update; choose version numbers at implementation time because other chats are changing them. This research performs no server update.</p>
 <h2 id="savanna-model-sheet-and-behavior">Savanna model sheet and behavior</h2>
 <p><img alt="Savanna animals with front side back and feeding poses" src="../../SourceArt/Zoo/ModelSheets/savanna-model-sheet.png" /></p>
 <p>The natural behavior column summarizes the linked zoo material. The animation and food presentation columns are proposed game choices, not a complete real animal diet.</p>
@@ -98,7 +324,7 @@ table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{p
 </table></div>
 <h2 id="living-dinosaur-model-sheet-and-behavior">Living dinosaur model sheet and behavior</h2>
 <p><img alt="Living dinosaur front side back and feeding poses" src="../../SourceArt/Zoo/ModelSheets/living-dinosaurs-model-sheet.png" /></p>
-<p>These are <strong>live animals in the game</strong>, rather than toy dinosaurs or fossils. Their diet and broad anatomy use museum references. Their exact colors, daily routines, social behavior and calls are creative reconstructions. Mixing these animals in one park is a fantasy zoo, not a claim that they all lived together.</p>
+<p>These are planned as <strong>live animals in the game</strong>, rather than toy dinosaurs or fossils. Their diet and broad anatomy use museum references. Their exact colors, daily routines, social behavior and calls are creative reconstructions. Mixing these animals in one park is a fantasy zoo, not a claim that they all lived together.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
 <thead>
 <tr>
@@ -212,7 +438,8 @@ table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{p
 </tr>
 </tbody>
 </table></div>
-<p>The iguana page returned an access error during the full-page check; its indexed description and the broader <a href="https://animals.sandiegozoo.org/animals/lizard">lizard reference</a> support this preliminary brief. Verify species detail again before producing its final animation rig. Resting and shaded routines should differ from the gecko's; not every lizard is a daytime sunbather.</p>
+<p><strong>Deeper species checks:</strong> <a href="https://zoo.sandiegozoo.org/animals/reptile-mesa">San Diego Zoo's green-iguana exhibit description</a> directly describes sturdy shrubs used for basking and vegetation the iguanas would otherwise eat. This supports an actual perch/plant exhibit rather than a generic reptile floor. <a href="https://www.crocodilesoftheworld.co.uk/latest-news/kajsa-rescued-swedish-greenhouse-nile-croc-thriving-at-zoo/">Crocodiles of the World's account of its Nile group</a> describes basking on land, then swimming and feeding in water. A connected bank/pool route is therefore species-specific. Our gentle tray approach remains a deliberate game adaptation.</p>
+<p>The <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10705344/">leopard-gecko study</a> followed 18 animals across baseline, small-insect feeding intervention and later observation. It found sustained increases in activity and a smaller change in behavioral diversity. This supports giving geckos exploration, inspection and food-seeking opportunities, not simply replaying a crawl forever. It does not establish every gecko's behavior or a game's feeding duration. Resting and shaded routines should differ from the iguana's; not every lizard is a daytime sunbather.</p>
 <h2 id="feeding-from-the-bucket">Feeding from the bucket</h2>
 <ol>
 <li>The child taps the bucket beside an exhibit. It opens with large pictured portions appropriate to that exhibit. A tap takes a portion into their hand; dragging is also available. Replenishment is automatic so a sibling cannot empty the exhibit for everyone.</li>
@@ -221,13 +448,118 @@ table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{p
 <li>Food is only consumed after a valid offer or placement within reach. Align mouth, trunk or beak to the portion; animate contact; remove exactly that portion; play a bite/swallow sound. Fish use the chute and a finite pellet cloud. The child sees the food disappear for a clear reason.</li>
 <li>The animal pauses briefly, gives a mild satisfied reaction, and resumes its routine. A recent eater can wait while another creature approaches. The zoo does not punish children for leaving or require them to prevent starvation.</li>
 </ol>
-<p><strong>Proposed pacing, to test with the children:</strong> visible notice within roughly 0.5–1.5 seconds, a nearby approach around 3–8 seconds, then 2–4 seconds of eating. Tortoises may take longer; use a closer resting location instead of making them sprint. These are game tuning suggestions, not measured animal speeds or proven preschool timings.</p>
+<p><strong>Pacing remains unmeasured.</strong> The child must see a notice/turn response when taking food, then continuous slow approach and visible mouth/trunk contact. Select route lengths and durations after final art and observing the children. No source reviewed establishes numeric timing for this family. Tortoises can start from a nearby rest anchor rather than be made to sprint. Measure whether the child notices the response, stays engaged and understands what to do next before setting the values.</p>
 <p>Four players use the same exhibit and animals. Four offer places and a fair queue prevent one player locking the activity. A single animal eats one portion at a time; siblings can see whose portion it is considering. Additional animals serve other places where space permits. Reservations release when a player walks away, changes area, disconnects or cancels. A changed/canceled target cannot make a stale command consume somebody else's food. Joining late sees the current routine and feeding state; another player's travel does not reset the exhibit.</p>
 <h2 id="animation-contract">Animation contract</h2>
 <p>Every creature needs breathing/idle, locomotion, turn, notice food, approach start/stop, eat or swallow, satisfied reaction, and return to routine. Add at least two species-specific activities from the tables. Penguin and crocodile additionally need land/water entry and exit; fish need swimming, turning and hovering/resting as appropriate. A quiet animal may rest often, but must never appear as a frozen decorative object.</p>
 <p>Preserve one stable silhouette, palette and individual marking map through every view. The generated sheets contain some shading and pose/marking differences; simplify shading, resolve spot/stripe continuity, and check limb/finger counts against references when tracing the editable final artwork. Turnarounds are drawn at cell scale for readability, not an accurate cross-species height chart. Correct Brachiosaurus forelimb proportions, stegosaur plate rows, reptile toes and fish fin placement during final cleanup.</p>
 <p>Produce layered editable 2D sources with body, head, jaw/beak, eyes, near/far limbs, tail and distinctive parts separated. Use trunk sections and ears for elephant; neck/head segments for giraffe and sauropod; fins for fish; flippers for penguin; shell separate from tortoise head/limbs. Store mouth/food sockets, foot or swimming pivots, resting/feeding anchors and bounds beside the artwork. A finished reference sheet alone is not an animation asset.</p>
 <p>The server selects shared animal state, target, reserved feeding place, consumed portion and timing. Clients interpolate movement and play the same identified reactions locally. Choose different initial routine phases and bounded variation so a herd does not march in synchrony. Keep existing PC/VPS authority, private offline solo and server-owned world on reconnect. Far-away exhibits can use cheaper simulation; loading one shows the current state rather than replaying every missed animation or call. Performance must be measured on the existing older iPads; no frame-rate claim has been made.</p>
+<h2 id="building-natural-routines-and-reliable-feeding">Building natural routines and reliable feeding</h2>
+<p><strong>Proposed animal state:</strong> stable individual ID, species ID, exhibit ID, current routine, route segment, phase age, facing, deterministic variation seed, next decision boundary and optional reserved offer ID. Content definitions hold authored habitat graphs, resting/browsing/feeding anchors and matching animation/sound identifiers. State must be independent of whether a client has loaded that animal's art. A client cannot decide that a portion was eaten merely because its animation reached a frame.</p>
+<p>Use a small readable state machine for execution, with species-specific weighted choice between eligible routine anchors. The <a href="https://www.gameaipro.com/GameAIPro/GameAIPro_Chapter10_Building_Utility_Decisions_into_Your_Existing_Behavior_Tree.pdf">Game AI Pro utility-selector chapter</a> supplies the general decision approach; the following zoo states and priorities are this project's proposal. Evaluate when a routine completes or a relevant event occurs, retain a commitment while walking/eating, and use minimum commitment/hysteresis to prevent constant switching. No hunger decay or hidden score should require children to maintain the zoo. Feeding temporarily interrupts a routine; care remains open play.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>State/event</th>
+<th>Shared rule</th>
+<th>What the child sees</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Routine / rest</td>
+<td>Choose a valid species anchor and a traversable route. Idle can include breathing, eye/ear movement or preening.</td>
+<td>Animal performs a recognizable activity rather than moving randomly or remaining a frozen drawing.</td>
+</tr>
+<tr>
+<td>Take food</td>
+<td>Create one bounded portion tied to player and source exhibit. Nearby eligible animals notice, but do not leave their habitat or abandon another accepted meal.</td>
+<td>Food enters hand; animal looks/turns toward that exhibit's feeding edge. Bucket visibly replenishes.</td>
+</tr>
+<tr>
+<td>Offer food</td>
+<td>Validate player/visit, exhibit, food kind, ownership, distance and free child slot; assign offer sequence.</td>
+<td>Correct place lights up and a shared response identifies whose portion is next.</td>
+</tr>
+<tr>
+<td>Reserve and approach</td>
+<td>Fairly reserve one compatible animal-side eating anchor and exactly one portion. Keep offer order stable; do not reorder on every retry or frame.</td>
+<td>Animal walks/swims/climbs along its route toward the food. Others continue routines or wait.</td>
+</tr>
+<tr>
+<td>Contact / consume</td>
+<td>Server advances to a valid contact phase and commits one consumption transaction with existing receipt/replay safeguards.</td>
+<td>Mouth, trunk or beak reaches the food; the portion disappears with an appropriate feeding sound.</td>
+</tr>
+<tr>
+<td>Finish / resume</td>
+<td>Release reservation, select next valid routine or next queued offer without stranding other players.</td>
+<td>Chew/swallow ends; animal turns away or considers the next child.</td>
+</tr>
+<tr>
+<td>Cancel / move away / travel / disconnect</td>
+<td>Release only that actor's reservation; return unconsumed station food according to its ownership rule. Revalidate at contact.</td>
+<td>Animal slows/stops/returns naturally; siblings' accepted offers continue.</td>
+</tr>
+<tr>
+<td>Route unavailable / blocked feeder</td>
+<td>Reject or unwind the offer and return its unconsumed portion. No permanent reservation, teleport or consumption at distance.</td>
+<td>Child retains food and can retry at an available place.</td>
+</tr>
+<tr>
+<td>Join/reconnect</td>
+<td>Read the authority's current phase, offer and segment. Play current activity from its phase; suppress old one-shot calls/bites.</td>
+<td>Newcomer sees the same zoo; nobody's activity restarts because they joined.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reservation invariants: one portion has one owner/location; one animal has at most one accepted meal; one offer slot has at most one participant; consumption increments once even if the command is repeated; an invalid visit never consumes an item. A queued player changing trails affects only their offer. A placed tray portion can remain a shared offering after the player steps away if explicitly represented as tray-owned; it must not simultaneously remain player-owned. Decide and encode that distinction, rather than treating all departure as the same cancellation.</p>
+<p><strong>Creature movement graphs differ from visitor paths.</strong> Ground creatures route between floor anchors with body-bound clearance. Aquarium graphs include swimming depth and a tank polygon. The adult zebra shark has a sandy bottom rest anchor. Penguin/crocodile graphs have typed land/water links with matched transition animations. Iguana graphs include climb links and perch contact. Long tails/necks need swept bounds during turns, not just center-point containment. Aquarium pellets expire or are consumed within the tank; they must not chase a moving player through the scene.</p>
+<p>The simplest initial network model is a server-issued route segment with start/end, phase start, duration and monotonic state sequence; clients interpolate presentation. Feeding, phase boundaries and meaningful routine changes are reliable shared state events. If curved paths or disturbances need extra snapshots, add a bounded animal motion message alongside the existing motion lane. Do not send articulated joints, blink timers or every animation frame. All clients derive art from species/clip/time, while the authority owns contact, food and cancellation.</p>
+<p>Keep continuous creature motion out of global inventory revision churn. Persist current recoverable phase/segment through the server's checkpoint scheme and immediately persist discrete consumption. A restart must not duplicate a partially eaten portion. The existing <code>AdvanceIdle</code> connection gate means the no-player case needs a defined settled checkpoint/resume behavior. There is no researched need to simulate each missed step or play every missed sound after the PC wakes.</p>
+<h2 id="turning-model-sheets-into-game-assets">Turning model sheets into game assets</h2>
+<p>The four existing generated sheets are <strong>visual references</strong>. They cannot be dropped into Unity as animation-ready models. Their front/side/back views do not supply a continuous walk cycle or all occlusion parts. The requested Bluey direction is flat, clean, recognizable 2D art; draft shading and inconsistent markings need cleanup, and the user has not approved the final animal designs.</p>
+<ol>
+<li>Clean an editable species master: stable proportions, silhouette, marking map and palette against the linked zoo/museum material. Keep near/far limbs and jaw/eyes/tail plus species-specific parts separate. Create a relative size study beside existing Bluey/Bingo artwork; the current equal-sized sheet cells are not a scale chart.</li>
+<li>Make reusable pose/clip definitions for rest/idle, left/right movement, turn, notice, approach stop, contact/eat or swallow and resume. Preserve asymmetric markings when changing facing. Species-specific activities come from the tables, with dinosaurs' reconstructions explicitly identified. Select actual frame counts from the required motion and test footprint, not the avatars' fixed eight-frame convention.</li>
+<li>Author feet, mouth/trunk/beak, body-ground, swim pivot and contact sockets with per-frame coordinates. Put food at the socket during contact; use floor contact and distance-driven locomotion to prevent sliding. Crocodiles/fish swallow instead of using mammalian chewing; penguin/crocodile transition clips match route-link endpoints.</li>
+<li>Export trimmed UI atlas frames plus pivot/crop/clip metadata. The existing <code>RawImage.uvRect</code> method can show frames from a shared texture. A separate animal adapter supports whole-frame clips and, where useful, a few coordinated UI layers for trunk/neck/jaw. No new SpriteSkin package is a prerequisite. If bone deformation is later chosen, evaluate its fit with UI rendering and editable source before adopting a different pipeline.</li>
+<li>Separate clean scenic bases from interactive buckets, food, feeders, glass/fences and occlusion covers. Keep authoritative hotspot/route definitions adjacent to the art, but do not bake usable duplicates into a background. Produce a first elephant/giraffe scene at actual camera scale and check full silhouettes, readable feeding contact and four nearby children before expanding.</li>
+</ol>
+<p>Clip metadata should include ID, frames, duration basis, looping flag, motion/contact markers, root pivot, sockets and visual bounds. Displayed eating markers synchronize the illustration to the shared phase; they do not independently delete authoritative food. Preserve source artwork, export recipe and asset provenance alongside runtime copies.</p>
+<h2 id="loading-memory-and-audio-integration">Loading, memory and audio integration</h2>
+<p>The existing <a href="../../SourceArt/Scenery/README.md">scenery contract</a> uses 2172 × 724 source panoramas, ASTC 6×6 mobile imports, no mipmaps/readable CPU copy and a three-panorama residency window. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/TextureFormat.ASTC_6x6.html">Unity 6000.3's ASTC format definition</a> specifies 128 bits per 6×6 block. This permits a <strong>format-storage estimate</strong>, not a game memory/FPS claim:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
+<thead>
+<tr>
+<th>Texture example, if imported with the existing format</th>
+<th>Calculation</th>
+<th>Estimated compressed base-level payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One 2172 × 724 panorama</td>
+<td>ceil(2172/6) × ceil(724/6) × 16 bytes</td>
+<td>700,832 bytes, approximately 0.668 MiB</td>
+</tr>
+<tr>
+<td>Three such panoramas</td>
+<td>3 × 700,832</td>
+<td>2,102,496 bytes, approximately 2.005 MiB</td>
+</tr>
+<tr>
+<td>Example 2048 × 2048 animal atlas</td>
+<td>ceil(2048/6)² × 16 bytes</td>
+<td>1,871,424 bytes, approximately 1.785 MiB</td>
+</tr>
+</tbody>
+</table></div>
+<p>These numbers exclude platform padding, Unity objects, transient decoded images, GPU copies, unsupported-format fallback, audio, material/Canvas overhead and all other game content. The example atlas size is illustrative, not an assigned production budget. Final atlas count and frame packing are unknown until clips exist. Load visible/nearby species, release departed trail assets, and avoid combining all 16 species into one permanently resident atlas.</p>
+<p>Unity's <a href="https://unity.com/how-to/unity-ui-optimization-tips">UI performance guidance</a> explains that Canvas changes can rebuild geometry/batches and suggests separating content by update behavior. Apply that to a measured animated-animal layer, clean backgrounds and controls; excessive individual Canvases can trade rebuild savings for batches. Use the existing depth contract and profile the first animated exhibit before picking granularity. Disable decorative animal/feeder raycast targets and reserve hits for the bucket, offer places and intentional tap-to-hear actions, so habitat layers do not intercept walking/panning.</p>
+<p>Animal effect playback should use local 2D sources, consistent with the current Canvas and music pipeline. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/AudioSource-spatialBlend.html">Unity's spatialBlend API</a> defines zero as 2D. Derive pan/attenuation from logical animal position relative to <strong>that player's</strong> camera and area, not arbitrary RectTransform world distances. Limit simultaneous calls, keep eating/movement responsive, cancel clips on departure and discard stale event IDs after reconnect. Combine call ducking with existing book/narration settings. Source pool sizes, gains and call spacing remain listening/profile decisions.</p>
+<p><strong>PC fallback already has a concrete precedent:</strong> another task has now produced the four requested dinosaur species' original calls for the book. <a href="native-reader-controls-2026-09-28.md#september-30-restart-the-whole-book-and-hear-dinosaur-calls">The book implementation record</a> and <a href="../../SourceAudio/Books/dinosaur-call-jobs-2026-09-30.json">saved jobs</a> record T. rex, Triceratops, Stegosaurus and Brachiosaurus, their prompts, seeds and mastering. The files exist under <code>SourceAudio/Books/hello-dinosaurs/</code>. They are imaginative generated calls, with MMAudio/model provenance; zoo reuse would retain those records and require a listening/comfort check. They are not newly generated or integrated into Zoo by this research. Other species' missing calls/Foley can use the same existing PC workflow or original microphone recording after selection.</p>
 <h2 id="free-sounds-and-pc-recording-plan">Free sounds and PC recording plan</h2>
 <p>These are <strong>license-checked candidates</strong>, not downloaded, auditioned or integrated audio. Freesound currently shows login-to-download. Its <a href="https://freesound.org/help/faq/">license FAQ</a> explains its license categories; keep the original page, author, license, file checksum and edit recipe for every selected sound. Prefer CC0 and retain credits even where attribution is optional. Listening access alone is not a game asset license.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>
@@ -326,13 +658,15 @@ table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{p
 <p>Use the user's PC for original recording and editing where a usable free asset is missing. <a href="https://manual.audacityteam.org/man/record.html">Audacity's official recording guide</a> documents microphone recording. A future recording session can capture three to five variations of leaves, soft footsteps, water, bowl taps and voiced breaths; remove unwanted room noise, trim silence, use short fades and match perceived loudness. Keep editable originals in SourceAudio/Zoo and export compact game copies later. No microphone capture, software installation or voice generation was performed for this research.</p>
 <p>Proposed playback rules: occasional calls rather than continuous roaring; nearby exhibits louder than distant ones; local music ducking during a call; a tap-to-hear response; and independent mute settings. Avoid repeated identical clips and a room full of overlapping calls when four children feed at once. Every species has sound feedback, but sounds can come from eating, water and movement as well as vocalization.</p>
 <h2 id="first-implementation-and-acceptance">First implementation and acceptance</h2>
-<p>Start with one integrated Savanna exhibit containing an elephant and giraffe, their own buckets, routine anchors and four shared feeding places. Prove the complete visit → take food → slowly approach → eat → resume sequence before expanding the content. Then add zebra/lion, dinosaurs, aquarium/penguins and reptiles using the same contract with species-specific changes.</p>
+<p>The first bounded implementation should connect the Zoo entrance to <strong>two adjacent Savanna exhibits</strong>, elephant and giraffe, with separate buckets and four shared offer places in each. This tests trunk contact, raised browsing, streaming between panels and the full visit → take food → slowly approach → eat → resume sequence. It does not substitute for the remaining fourteen species. Expand through zebra/lion, the four living dinosaurs, aquarium/penguin transitions and reptiles using the common contract plus the species-specific routes.</p>
 <ul>
-<li>Confirm that zoo travel preserves held items and existing saves, and leaves the current destinations accessible.</li>
+<li>Confirm the sixth world picture and internal gates; all five existing destinations remain accessible. Check private/shared walking cannot cross habitat boundaries. A sibling's travel leaves other players' animals/offers running.</li>
+<li>Run a focused older-save migration/clone/reopen check: existing possessions stay intact, Zoo state is added once, and zoo travel applies its explicitly authored portion-return rule. Current global travel leaves carried items at departure; preserve that baseline for unrelated areas.</li>
 <li>Watch every species long enough to see locomotion, rest, at least two distinct activities and a feeding reaction. Confirm foot/fin contact, full tails, correct food and mouth/trunk alignment.</li>
-<li>Test four real clients feeding the same exhibit, simultaneous offers to one animal, late joining, walking away, cancellation, disconnect and independent area travel. No duplicate consumption, permanent reservation or reset for the remaining players.</li>
+<li>Use one representative four-client scenario: all offer to the same creature, one cancels/travels, another completes, and a late join/reconnect sees the resulting state. Check fair ordering, exactly-once consumption and remaining players' continuity. Test restart only for the new consumption/save contract; do not repeat unrelated whole-game suites.</li>
 <li>Check fish food reachability, land/water transitions, feeders behind barriers and the tortoise's slow approach. If routing fails, return the offered portion and release the spot without teleporting an animal.</li>
 <li>Check muted and audible reactions, clip overlap and listening comfort on physical devices. Preserve the difference between recordings and designed sounds in the asset catalog.</li>
-<li>Check reconnect/server restart and the existing older iPads' frame rate and memory. Observe both children using the buckets; tune targets and pacing from their behavior.</li>
+<li>Profile the integrated scene on an existing older iPad: resident scenery/animal assets, UI rebuild/batches, memory and movement frame time. No device result is claimed yet. Observe the children discovering a bucket, noticing the animal and offering food; record missed targets, parent help, abandoned waits and pan/walk mistakes before assigning timings or target sizes.</li>
 </ul>
-<p><strong>Research handoff:</strong> the four images below the category headings, the prompt manifest and this behavior/feeding/audio brief are the deliverables. Further species, final visual approval, editable sprite cleanup, animation and playable integration remain future production work. This report records the new requested zoo scope without replacing the active Home implementation sequence or claiming a device update.</p></main></body></html>
+<p><strong>Research handoff:</strong> four model-sheet drafts, their prompt manifest, a 16-exhibit layout and editable connection data, reviewed primary sources, actual-code integration points, shared routine/feeding rules and an art/audio production plan. Design-data checks and document/link checks do not establish playable behavior. Remaining production work is final visual approval/cleanup, actual routes and hit targets, clips/sockets, audio selection, migration/server rules, playable integration and the focused checks above. The requested zoo is recorded without replacing the active Home sequence or claiming a device/server update.</p>
+<p><strong>Checks for this research pass:</strong> the layout renderer verifies 16 unique species, four contiguous panels per trail, 16 buckets, 64 shared offer places and a connected bidirectional portal graph. The SVG was visually inspected; the interactive exhibit study was checked for selection changes and readable layout at 320-pixel browser width, with no horizontal overflow. The generated report loads its map and four model sheets. <a href="evidence/zoo-research-2026-09-30/docs-validation.json">The document audit</a> checked 127 rendered pages and more than 3700 local links with no zoo-related error; its overall result remains failed because the concurrent <code>docs/server-update-policy.md</code> record is unclassified. That unrelated file was left untouched. <a href="evidence/zoo-research-2026-09-30/deep-research-validation.json">Research evidence</a> records source/code provenance and the limits of these checks. No Unity build or gameplay/device test was performed for documentation-only research.</p></main></body></html>

@@ -1,0 +1,47 @@
+{
+  "status": "Researched design proposal; not runtime content or playtest-approved geometry",
+  "date": "2026-09-30",
+  "coordinateBasis": "WorldLayout.TileWidth=2400 and SceneHeight=800, verified in the existing project",
+  "globalDestination": "zoo",
+  "hub": {"zone": "zoo", "sceneryId": "zoo-entrance", "minX": 0, "maxX": 2400},
+  "panelWidth": 2400,
+  "panelHeight": 800,
+  "foodBucketsPerExhibit": 1,
+  "sharedOfferSlotsPerExhibit": 4,
+  "portals": [
+    {"a": "zoo", "b": "zoo-savanna", "kind": "hub-to-trail-start", "bidirectional": true},
+    {"a": "zoo", "b": "zoo-dinosaurs", "kind": "hub-to-trail-start", "bidirectional": true},
+    {"a": "zoo", "b": "zoo-aquarium", "kind": "hub-to-trail-start", "bidirectional": true},
+    {"a": "zoo", "b": "zoo-reptiles", "kind": "hub-to-trail-start", "bidirectional": true},
+    {"a": "zoo-savanna", "b": "zoo-dinosaurs", "kind": "a-end-to-b-start", "bidirectional": true},
+    {"a": "zoo-dinosaurs", "b": "zoo-reptiles", "kind": "a-end-to-b-start", "bidirectional": true},
+    {"a": "zoo-reptiles", "b": "zoo-aquarium", "kind": "a-end-to-b-start", "bidirectional": true},
+    {"a": "zoo-aquarium", "b": "zoo-savanna", "kind": "a-end-to-b-start", "bidirectional": true}
+  ],
+  "trails": [
+    {"zone": "zoo-savanna", "name": "Savanna Trail", "minX": 0, "maxX": 9600, "exhibits": [
+      {"id": "elephant", "name": "African elephant", "xStart": 0, "sceneryId": "zoo-elephant", "space": "land", "food": "Leafy branches and plant portions", "feeder": "Trunk pickup tray", "anchors": ["shade", "browse", "water spray", "feeding edge"], "routine": "Walk, explore with trunk, flap ears, rest", "source": "https://animals.sandiegozoo.org/animals/elephant"},
+      {"id": "giraffe", "name": "Giraffe", "xStart": 2400, "sceneryId": "zoo-giraffe", "space": "land", "food": "Leafy twigs", "feeder": "Raised browse rack", "anchors": ["tree browse", "open walking lane", "rest", "raised feeder"], "routine": "Walk, browse, look around, rest", "source": "https://zoo.sandiegozoo.org/animals/giraffe"},
+      {"id": "zebra", "name": "Plains zebra", "xStart": 4800, "sceneryId": "zoo-zebra", "space": "land", "food": "Grass hay", "feeder": "Low trough", "anchors": ["grass patch", "companion space", "shade", "low trough"], "routine": "Graze, wander, groom, flick tail", "source": "https://animals.sandiegozoo.org/animals/zebra"},
+      {"id": "lion", "name": "Lion", "xStart": 7200, "sceneryId": "zoo-lion", "space": "land", "food": "Prepared meat portions", "feeder": "Tray beyond barrier", "anchors": ["resting rock", "shade", "walk route", "feeding edge"], "routine": "Nap, stretch, groom paw, walk", "source": "https://animals.sandiegozoo.org/animals/lion"}
+    ]},
+    {"zone": "zoo-dinosaurs", "name": "Living Dinosaur Valley", "minX": 0, "maxX": 9600, "exhibits": [
+      {"id": "brachiosaurus", "name": "Brachiosaurus", "xStart": 0, "sceneryId": "zoo-brachiosaurus", "space": "land", "food": "High foliage", "feeder": "Raised browse rack", "anchors": ["high canopy", "neck clearance", "rest", "raised feeder"], "routine": "Walk, reach high foliage, rest; reconstructed", "source": "https://www.nhm.ac.uk/discover/dino-directory/brachiosaurus.html"},
+      {"id": "triceratops", "name": "Triceratops", "xStart": 2400, "sceneryId": "zoo-triceratops", "space": "land", "food": "Low foliage", "feeder": "Low leaf tray", "anchors": ["browse patch", "wide turn", "rest", "low tray"], "routine": "Walk, crop foliage, rest; reconstructed", "source": "https://www.nhm.ac.uk/discover/dino-directory/triceratops.html"},
+      {"id": "stegosaurus", "name": "Stegosaurus", "xStart": 4800, "sceneryId": "zoo-stegosaurus", "space": "land", "food": "Low foliage", "feeder": "Low leaf tray", "anchors": ["low browse", "tail clearance", "rest", "low tray"], "routine": "Walk, browse, breathe, rest; reconstructed", "source": "https://www.nhm.ac.uk/discover/dino-directory/stegosaurus.html"},
+      {"id": "tyrannosaurus", "name": "Tyrannosaurus rex", "xStart": 7200, "sceneryId": "zoo-tyrannosaurus", "space": "land", "food": "Prepared meat portions", "feeder": "Tray beyond barrier", "anchors": ["wide turn", "tail clearance", "rest", "feeding edge"], "routine": "Balanced biped walk, head turn, rest; reconstructed", "source": "https://www.nhm.ac.uk/discover/dino-directory/tyrannosaurus.html"}
+    ]},
+    {"zone": "zoo-aquarium", "name": "Aquarium and Penguin Cove", "minX": 0, "maxX": 9600, "exhibits": [
+      {"id": "clownfish", "name": "Clownfish", "xStart": 0, "sceneryId": "zoo-clownfish", "space": "tank", "food": "Pictured aquarium feed", "feeder": "Underwater pellet chute", "anchors": ["host anemone", "short swim loop", "hover", "pellet outlet"], "routine": "Paddle fins, hover near anemone, turn", "source": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/clownfish"},
+      {"id": "blue-tang", "name": "Regal blue tang", "xStart": 2400, "sceneryId": "zoo-blue-tang", "space": "tank", "food": "Seaweed portion", "feeder": "Underwater seaweed holder", "anchors": ["reef route", "algae patch", "turn clearance", "seaweed holder"], "routine": "Tail-driven swim, inspect reef, graze", "source": "https://aquarium.org/animals/blue-tang/"},
+      {"id": "zebra-shark", "name": "Adult zebra shark", "xStart": 4800, "sceneryId": "zoo-zebra-shark", "space": "tank", "food": "Prepared seafood portions", "feeder": "Underwater delivery tray", "anchors": ["sand rest", "rock opening", "broad swim route", "feeding shelf"], "routine": "Rest on sand, breathe, swim slowly", "source": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/zebra-shark"},
+      {"id": "penguin", "name": "African penguin", "xStart": 7200, "sceneryId": "zoo-penguin", "space": "land-water", "food": "Fish portions", "feeder": "Reachable pool-edge tray", "anchors": ["dry preen rock", "water entry", "pool loop", "feeding edge"], "routine": "Waddle, preen, swim with flippers, climb out", "source": "https://sandiegozoowildlifealliance.org/story-hub/zoonooz/whos-who"}
+    ]},
+    {"zone": "zoo-reptiles", "name": "Reptile Garden", "minX": 0, "maxX": 9600, "exhibits": [
+      {"id": "tortoise", "name": "Galapagos tortoise", "xStart": 0, "sceneryId": "zoo-tortoise", "space": "land", "food": "Greens", "feeder": "Low greens dish", "anchors": ["nearby rest", "grass", "shade", "low dish"], "routine": "Deliberate steps, graze, extend neck, rest", "source": "https://sdzwildlifeexplorers.org/animals/galapagos-tortoise"},
+      {"id": "gecko", "name": "Leopard gecko", "xStart": 2400, "sceneryId": "zoo-gecko", "space": "land", "food": "Small stylized insect portions", "feeder": "Low insect bowl", "anchors": ["shaded hide", "rock exploration", "scent inspect", "insect bowl"], "routine": "Peek from hide, explore, inspect, take insect", "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10705344/"},
+      {"id": "iguana", "name": "Green iguana", "xStart": 4800, "sceneryId": "zoo-iguana", "space": "climb", "food": "Leaves and vegetables", "feeder": "Reachable greens bowl", "anchors": ["basking perch", "branch route", "shade", "greens bowl"], "routine": "Bask, breathe, crawl and climb", "source": "https://zoo.sandiegozoo.org/animals/reptile-mesa"},
+      {"id": "crocodile", "name": "Nile crocodile", "xStart": 7200, "sceneryId": "zoo-crocodile", "space": "land-water", "food": "Prepared fish portions", "feeder": "Waterside delivery tray", "anchors": ["basking bank", "water entry", "swim loop", "water feeding edge"], "routine": "Bask on bank, float, swim, swallow", "source": "https://www.crocodilesoftheworld.co.uk/latest-news/kajsa-rescued-swedish-greenhouse-nile-croc-thriving-at-zoo/"}
+    ]}
+  ]
+}

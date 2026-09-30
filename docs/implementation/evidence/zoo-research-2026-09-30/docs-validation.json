@@ -1,5 +1,5 @@
 {
-  "passed": true,
+  "passed": false,
   "decision": "PC/VPS authority; private offline solo; server wins on reconnect",
   "activeEntries": 82,
   "historicalRecords": 48,
@@ -59,8 +59,13 @@
     "MEAL": 5
   },
   "renderedPages": 127,
-  "localLinksChecked": 3680,
+  "localLinksChecked": 3714,
   "conflictingPhraseRegressionCases": 6,
-  "errors": [],
+  "errors": [
+    [
+      "docs/server-update-policy.md",
+      "unclassified authored record"
+    ]
+  ],
   "limits": "Local document consistency/link checks and manually reviewed scope; not live device, runtime or external-source revalidation."
 }
