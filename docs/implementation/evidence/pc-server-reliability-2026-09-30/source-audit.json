@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-30",
+  "recordedUtc": "2026-09-30T17:22:42.332534+00:00",
+  "sourceCommit": "f37e86790b85502f66af3ccf936b15c7e6cc0de9",
+  "kind": "source review and primary-document research",
+  "runtimeChanges": false,
+  "liveAvailabilityChecked": false,
+  "currentSourceSchema": 32,
+  "parentStatusSupportedSchemaMaximum": 27,
+  "sources": [
+    {
+      "path": "Tools/Start-FamilyLAN.py",
+      "sha256": "e822e2711f0be0af744562892151c91c5ccbc7899396cd6989b01e2538814fbe"
+    },
+    {
+      "path": "Tools/Restart-FamilyServer.py",
+      "sha256": "c04240fd75e4003d0a08d6cdcc6e9852b8f06fe4920d6e090dc24169530b60bb"
+    },
+    {
+      "path": "Tools/Enable-FamilyServerFirewall.ps1",
+      "sha256": "043e68d1a9a06549802996d2b070ce9a4bb9d08ac12d79c9517d9eed2d9334c6"
+    },
+    {
+      "path": "Tools/parent_server.py",
+      "sha256": "bfc5098fc80aaf8154b4892fe52df6596c4349ff44081564b2177ece3751b73d"
+    },
+    {
+      "path": "Tools/parent_startup.py",
+      "sha256": "1d8858344e2faad8f3e87a99150ca0c5dd97852a5dd7f4c758aa17bc66a9d902"
+    },
+    {
+      "path": "Tools/parent_bootstrap.py",
+      "sha256": "d2d2090296e0f9afc4dbc659a36cde123298ce12b3c4fd895de0ccac741d14b4"
+    },
+    {
+      "path": "Tools/server_supervisor.py",
+      "sha256": "1c2a5589ab3d54aee2ee3589ece39015949859c2269ba25b9f2533385b311469"
+    },
+    {
+      "path": "Tools/parent_operations.py",
+      "sha256": "e17cf4eff9f7affd68a90fe2d025e964c0dd02fe6acd96c45f059b0d61bee7f3"
+    },
+    {
+      "path": "Tools/family_pairing.py",
+      "sha256": "403a43fea9734d41388ff1e2c51624895673f9b5b280a7d281a279fb7df77f9f"
+    },
+    {
+      "path": "Tools/server_recovery.py",
+      "sha256": "09203f53e3bca6ed5bcacfe6d703c10a945c4981ecb24ba2a6f5f373d886e848"
+    },
+    {
+      "path": "Tools/portable_recovery.py",
+      "sha256": "bd30ad25015d6235a8c75156172981430ed788e3816820c472b7f142dd30a20a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs",
+      "sha256": "41df623652275072ffa7aebd93e1b3dbdcdf9d1a59ebb54a84348d946710f9fa"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
+      "sha256": "331796b550eaf84d96f4debce69274dd0ad769e77067cf7acac4f515f6d9f621"
+    }
+  ],
+  "acceptance": "No deployment or runtime qualification. Next task: app/server release classification and one unchanged-server compatibility check."
+}

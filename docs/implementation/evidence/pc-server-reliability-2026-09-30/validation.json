@@ -1,0 +1,15 @@
+{
+  "researchChecksPassed": true,
+  "headings": 8,
+  "tables": 2,
+  "localLinksExist": true,
+  "sourceHashesMatch": true,
+  "rendererSyntaxValid": true,
+  "browserRenderingVerified": false,
+  "fullPlanConsistencyPassed": true,
+  "runtimeChanges": false,
+  "activeEntries": 82,
+  "renderedPages": 127,
+  "localLinksChecked": 3680,
+  "validationNote": "Initial global check observed an unrelated concurrent unclassified zoo report. Its owning task registered it; the subsequent global check passed."
+}
