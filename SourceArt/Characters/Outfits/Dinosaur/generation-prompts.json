@@ -1,0 +1,18 @@
+{
+  "mode": "built-in image_gen",
+  "date": "2026-09-30",
+  "entries": [
+    {
+      "id": "bluey",
+      "prompt": "Use case: identity-preserve. Asset: production candidate 2D dinosaur onesie animation/model sheet for the private Little Weeps game. Reference image is Bluey's accepted animation sheet; preserve his exact recognizable face, muzzle, eye shapes, facial markings, rectangular proportions, cheerful personality and clean flat-color dark-outline illustration style. Draw Bluey actually WEARING a charming sewn dinosaur hooded onesie, not painted fur and not pasted geometric ornaments. Cozy leaf-green fabric over torso, sleeves, legs and feet, soft pale cream oval belly panel, fitted padded cuffs, a plush dinosaur tail replacing the exposed dog tail, cream soft triangular plates sewn down the hood/back/tail. A rounded dinosaur-head hood covers the dog ears and wraps around the face with a generous oval opening; Bluey's complete original eyes, eyebrows, cheek markings and muzzle remain visible. Hood has a friendly little dinosaur eye and rounded snout above the forehead; tiny soft cream teeth at hood edge. Thoughtful professional cartoon costume design, comfortable and cute, recognizable as Bluey in a dinosaur outfit. Green suit fabric is consistently green in every pose, pale cream accents, preserve all Bluey blue facial colors. Transparent 4-column x 4-row atlas exactly SIXTEEN separate full-body poses, consistent scale, generous gutters, each entire hood/tail/feet safely inside its cell, no labels, no text, no shadows, no background, no grid. Pose order row-major: row1 right three-quarter idle smiling; same idle blinking; gentle wave near hand; second gentle wave. Row2 and row3: eight small relaxed right-facing walking cycle phases from right-leg forward contact through passing/down/up to left-leg forward contact and back, subtle small arm swings, grounded feet; keep a right three-quarter face. Row4: seated on invisible bench with knees/feet forward; standing carrying-ready near hand at waist with no prop; playful dinosaur roar with mouth open and little claw hands lifted; second playful roar with arms a little wider. Keep character head/body sizes identical across poses, no exaggerated walk, no generic dinosaur replacing Bluey. All empty space must have true clean transparent alpha, no color speckles or fringe.",
+      "outputHint": "Generated images are saved to C:\\Users\\sephi\\.codex\\generated_images\\01a0f3cd-5d8e-7d23-ad41-e2dfe39afefe as C:\\Users\\sephi\\.codex\\generated_images\\01a0f3cd-5d8e-7d23-ad41-e2dfe39afefe\\exec-45feed09-b672-4af0-86de-3b47184a8462.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "tool": "built-in image_gen",
+      "transparentBackground": true
+    },
+    {
+      "id": "bingo",
+      "tool": "built-in image_gen",
+      "transparentBackground": true
+    }
+  ]
+}

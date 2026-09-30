@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace LittleWeeps.Client
 {
-    public enum CharacterPose { Idle, Walk, Wave, Carry, Sit, Bounce, Dance, BalloonTap, Rest }
+    public enum CharacterPose { Idle, Walk, Wave, Carry, Sit, Bounce, Dance, BalloonTap, Rest, Roar }
 
     public readonly struct CharacterFrame
     {

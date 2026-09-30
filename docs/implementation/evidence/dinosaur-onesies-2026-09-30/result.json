@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build": 262,
+  "checks": [
+    "phone: repeat tap opens outfit/color window; four colors, live preview and close",
+    "ipad: repeat tap opens outfit/color window; four colors, live preview and close",
+    "Bluey and Bingo render their prepared onesie sheets",
+    "native roar plays approved installed T-Rex audio to same-area siblings, with a repeat cooldown",
+    "one player exits; siblings keep dressing/roaring; normal outfit removes roar"
+  ],
+  "liveFamilyTouched": false
+}

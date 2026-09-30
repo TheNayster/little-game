@@ -11,6 +11,10 @@ namespace LittleWeeps.Client
         private CharacterArt art;
         private RectTransform facing, picture, shadow;
         private RawImage image;
+        private CharacterArt outfitArt;
+        private Material clothMaterial;
+        private string outfit="",outfitColor="green";
+        public string Outfit => outfit;
         private float time, cycle;
         // Match the requested 2x travel increase while preserving the
         // quieter step rhythm the user accepted in build 123.
@@ -20,6 +24,7 @@ namespace LittleWeeps.Client
         public float WalkPhase => cycle;
         public float WalkWeight => Frame.Speed > 1 && (Frame.Pose == CharacterPose.Walk || Frame.Pose == CharacterPose.Carry) ? 1 : 0;
         public string CharacterId => art.characterId;
+        public float SupportScale => art.scale;
         public string SourceHash => art.sheetSha256;
         public string WalkSourceHash => art.walkSheetSha256;
         public bool IsWalkDrawing => image.texture == art.walkSheet;
@@ -45,6 +50,20 @@ namespace LittleWeeps.Client
             image = picture.gameObject.AddComponent<RawImage>();
             image.texture = art.sheet; image.raycastTarget = false;
         }
+
+        public void Wear(string id,string colorId)
+        {
+            if(outfit==id && outfitColor==colorId)return;
+            outfit=id??"";outfitColor=colorId??"green";
+            outfitArt=outfit==""?null:Resources.Load<CharacterArt>("CharacterOutfitArt/"+outfit+"/"+art.characterId);
+            if(outfit!="" && outfitArt==null)throw new InvalidOperationException("Missing prepared outfit sheet: "+outfit+"/"+art.characterId);
+            if(outfit=="dinosaur" && clothMaterial==null)
+                clothMaterial=new Material(Resources.Load<Shader>("CharacterOutfits/DinosaurCloth"));
+            image.material=outfit=="dinosaur" && outfitColor!="green"?clothMaterial:null;
+            if(clothMaterial!=null)clothMaterial.SetColor("_Cloth",CharacterOutfitPalette.Cloth(outfitColor));
+            Present(Frame,0);
+        }
+        private void OnDestroy(){if(clothMaterial!=null)Destroy(clothMaterial);}
 
         public void Present(CharacterFrame frame, float dt)
         {
@@ -83,20 +102,22 @@ namespace LittleWeeps.Client
             else if (frame.Pose == CharacterPose.BalloonTap)
             {index=frame.UseSeconds<.22f?2:3;offset.y=Mathf.Sin(Mathf.Clamp01(frame.UseSeconds/.38f)*Mathf.PI)*2;}
             else if (frame.Pose == CharacterPose.Wave) index = 2 + (int)(time * 4) % 2;
+            else if (frame.Pose == CharacterPose.Roar) index = 14 + (int)(time * 4) % 2;
             else if (frame.Pose == CharacterPose.Carry && !moving) index = 13;
             FrameIndex = index;
             // Only walking changes atlas. Keep the already accepted appearance
             // for idle and home actions rather than regenerating those poses.
             var walking = index >= 4 && index < 12;
-            var texture = walking ? art.walkSheet : art.sheet;
+            var drawingArt=outfitArt??art;
+            var texture = walking ? drawingArt.walkSheet : drawingArt.sheet;
             image.texture = texture;
-            var drawing = walking ? art.walkFrames[index - 4] : art.frames[index];
+            var drawing = walking ? drawingArt.walkFrames[index - 4] : drawingArt.frames[index];
             var crop = drawing.pixels.Value;
             image.uvRect = new Rect(crop.x / texture.width, 1 - crop.yMax / texture.height,
                 crop.width / texture.width, crop.height / texture.height);
             picture.pivot = new Vector2((drawing.ground.x - crop.x) / crop.width,
                 (crop.yMax - drawing.ground.y) / crop.height);
-            picture.sizeDelta = crop.size * (180 / (walking ? art.walkReferenceHeight : art.referenceHeight));
+            picture.sizeDelta = crop.size * (180 / (walking ? drawingArt.walkReferenceHeight : drawingArt.referenceHeight));
             var resting=frame.Pose==CharacterPose.Rest;
             facing.localRotation=Quaternion.Euler(0,0,resting?90:0);
             facing.anchoredPosition = resting?new Vector2(-65,210):offset;

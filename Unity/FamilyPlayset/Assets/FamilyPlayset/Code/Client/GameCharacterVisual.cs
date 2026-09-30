@@ -11,10 +11,32 @@ namespace LittleWeeps.Client
         private readonly CharacterMotion motion = new CharacterMotion();
         private CharacterSheetView view;
         private string useKey="";private float useAge;
+        private int lastRoar=-1;
+        private float roarUntil;
+        private AudioSource roarAudio;
+        public bool RoarPlaying=>roarAudio!=null && roarAudio.isPlaying;
+        public string Outfit=>view==null?"":view.Outfit;
         public string CharacterId => view == null ? "" : view.CharacterId;
         public CharacterFrame Frame => view == null ? default : view.Frame;
         public int LayerCount => view == null ? 0 : view.GetComponentsInChildren<Graphic>(true).Length;
         public CharacterSheetView ActiveView => view;
+        public void Wear(string id,string color){view?.Wear(id,color);if(id!="dinosaur")SilenceRoar();}
+        public void ObserveRoar(int sequence,bool sounds)
+        {
+            if(lastRoar<0){lastRoar=sequence;return;}
+            if(lastRoar==sequence)return;
+            lastRoar=sequence;
+            if(Core.CharacterOutfits.Find(Outfit)?.CanRoar!=true)return;
+            roarUntil=Time.unscaledTime+1.1f;
+            if(!sounds)return;
+            if(roarAudio==null){roarAudio=gameObject.AddComponent<AudioSource>();roarAudio.playOnAwake=false;roarAudio.spatialBlend=0;roarAudio.volume=.55f;}
+            roarAudio.clip=Resources.Load<AudioClip>("Books/"+Core.HomeBooks.Title+"/audio/effect-0");
+            if(roarAudio.clip!=null){roarAudio.Stop();roarAudio.Play();}
+        }
+        public void SilenceRoar(){if(roarAudio!=null)roarAudio.Stop();roarUntil=0;}
+        private void OnDisable(){SilenceRoar();lastRoar=-1;}
+        private void OnApplicationPause(bool paused){if(paused)SilenceRoar();}
+        private void OnApplicationFocus(bool focused){if(!focused)SilenceRoar();}
 
         public void Select(string savedAvatar)
         {
@@ -49,6 +71,7 @@ namespace LittleWeeps.Client
         public void PresentHome(Vector2 point,string continuity,bool held,float dt,Core.SoloPlayer player,Core.HomeState home,Core.KeepyState balloon=null)
         {
             if(view==null)return;
+            Wear(player.outfit,player.outfitColor);
             var frame=motion.Observe(point,continuity,held,false,dt);
             if(Core.BedroomFurniture.Seat(player.fixture))
                 frame=new CharacterFrame(player.fixture==Core.BedroomFurniture.Bed?CharacterPose.Rest:CharacterPose.Sit,0,false,(float)player.useSeconds);
@@ -71,6 +94,8 @@ namespace LittleWeeps.Client
             }
             if(player.stairs>0)frame=new CharacterFrame(held?CharacterPose.Carry:CharacterPose.Walk,Core.Walking.Speed,true,travel:frame.Travel,resetMotion:frame.ResetMotion);
             if(!Core.HomeLayout.Usable(player.fixture))useKey="";
+            if(Time.unscaledTime<roarUntil && frame.Pose==CharacterPose.Idle && player.activity=="" && string.IsNullOrEmpty(player.fixture))
+                frame=new CharacterFrame(CharacterPose.Roar,0,frame.FaceLeft);
             PresentFrame(frame,dt);
         }
 

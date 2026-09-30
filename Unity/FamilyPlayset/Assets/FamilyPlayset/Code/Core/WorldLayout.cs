@@ -10,7 +10,8 @@ namespace LittleWeeps.Core
         // Existing save fields/schema stay intact; older authorities must not
         // admit clients that can select characters they cannot validate.
         // Content 39 admits the complete 37-character research roster.
-        public const int Schema=33, ScenerySchema=3, Content=39;
+        // Content 41 requires the replicated outfit fields and roar commands.
+        public const int Schema=35, ScenerySchema=3, Content=41;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id);

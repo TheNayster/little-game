@@ -33,7 +33,7 @@ namespace LittleWeeps.NetworkProbe
         {public double time;public Vector2 visual,authority,ground;public float phase,weight;public int drawing;public bool faceLeft;public string pose;}
         [Serializable] private sealed class MotionEvidence {public string actor,build;public MotionSample[] samples;}
         [Serializable] private sealed class Step {public int serial;public string action,role,text;public float x,y;public int finger=11;}
-        [Serializable] private sealed class PlayerView {public string id;public Vector2 position;public bool visible;}
+        [Serializable] private sealed class PlayerView {public string id,outfit;public Vector2 position;public bool visible,roarPlaying;}
         [Serializable] private sealed class ToyView {public string id,label;public Vector2 position;public float alpha;}
         [Serializable] private sealed class ControlView {public string name;public Rect bounds;public bool enabled;}
         [Serializable] private sealed class Evidence
@@ -42,6 +42,7 @@ namespace LittleWeeps.NetworkProbe
             public string error,build,actor,feedback,dragging,zone,savePath,adventure,pendingRequest;public int pendingArchives;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
             public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray,activeCharacterVisible;public string character;public int characterLayers;public ControlView[] controls;
+            public bool outfitsOpen,roarPlaying;public string outfit,outfitColor;
             public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
             public float homePoseAge;public string homePose;public bool homeMusicPlaying,musicMuted;public string worldMusicTrack;public bool worldMusicPlaying;public float worldMusicVolume,worldMusicSignal;public int worldMusicClipCount,worldMusicSample;public LittleWeeps.Core.HomeState home;
             public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
@@ -275,6 +276,7 @@ namespace LittleWeeps.NetworkProbe
                     });
                 evidence.boardBounds=Bounds(screen.Board);evidence.boardLayoutWidth=screen.Board.rect.width;
                 var active=screen.Board.Find("Player character").GetComponentInChildren<GameCharacterVisual>();
+                evidence.outfitsOpen=screen.OutfitsOpen;evidence.outfit=active.Outfit;evidence.outfitColor=screen.ReadPlayer(screen.Actor).outfitColor;evidence.roarPlaying=active.RoarPlaying;
                 evidence.activeCharacterVisible=active.GetComponentsInChildren<Graphic>().Where(i=>i.enabled).All(i=>
                 {var r=Bounds(i.rectTransform);var clip=evidence.boardBounds;return r.xMin>=clip.xMin-2 && r.xMax<=clip.xMax+2 && r.yMin>=clip.yMin-2 && r.yMax<=clip.yMax+2;});
                 // Scrollable content can extend past the viewport. Check the
@@ -291,7 +293,8 @@ namespace LittleWeeps.NetworkProbe
                 evidence.players=(screen.Shared?probe.Latest.view.players:screen.World.Snapshot().players).Select(p=>
                 {
                     var rect=screen.Board.Find(p.id==screen.Actor?"Player character":"Friend-"+p.id) as RectTransform;
-                    return new PlayerView{id=p.id,visible=rect!=null && rect.gameObject.activeSelf,position=rect==null?Vector2.zero:BoardPosition(rect)};
+                    var visual=rect==null?null:rect.GetComponentInChildren<GameCharacterVisual>();
+                    return new PlayerView{id=p.id,outfit=visual?.Outfit??"",roarPlaying=visual!=null && visual.RoarPlaying,visible=rect!=null && rect.gameObject.activeSelf,position=rect==null?Vector2.zero:BoardPosition(rect)};
                 }).ToArray();
                 evidence.toys=screen.ReadToys().Select(t=>
                 {

@@ -6,10 +6,12 @@ using System.Linq;
 namespace LittleWeeps.Core
 {
     public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball, Plush, Block, Book, TeaCup, TeaPot, Ingredient, KitchenTool, Cookware, Plate }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor, DecorateRoom, SecretRoom, ReturnBedroom, RoomObject, Kitchen, Discovery, HideAndSeek, Park }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor, DecorateRoom, SecretRoom, ReturnBedroom, RoomObject, Kitchen, Discovery, HideAndSeek, Park, ChangeOutfit=23, Roar=24 }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
+        public string outfit="", outfitColor="green";
+        public int roar;
         public string zone = "garden";
         public long visit;
         public string fixture = "";
@@ -217,13 +219,13 @@ namespace LittleWeeps.Core
         public static void Validate(SoloSnapshot s)
         {
             NormalizeKitchenInline(s);
-            NormalizeHideInline(s);
+            NormalizeHideInline(s);NormalizeOutfits(s);
             if (s == null || s.schema < 1 || s.schema > WorldLayout.Schema) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
                 s.toys == null || s.toys.Length != (s.schema==1?5:s.schema<4?10:s.schema<BedroomFurniture.Schema?11:27+(s.schema>=SecretRooms.Schema?(s.secrets??Array.Empty<SecretRoomState>()).Count(r=>r!=null && r.created)*6:0)+HomeBooks.ExtraStock(s.schema)+RoomPlay.ExtraStock(s)+(s.schema>=Kitchen.Schema?Kitchen.StockCount:0)+(s.schema>=CakeFlow.Schema?1:0)+(s.schema>=ParkPlay.Schema?2:0)) || s.receipts == null || s.receipts.Length > 128) throw new InvalidOperationException("Invalid solo world record.");
             var ids = new HashSet<string>();
             foreach (var p in s.players)
-                if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !Activity(p.activity) || !WorldLayout.Position(AreaOf(p.zone),s.schema,p.x,p.y) ||
+                if (p == null || !Id(p.id) || !ids.Add(p.id) || !Avatar(p.avatar) || !ValidOutfit(p,s.schema) || !Activity(p.activity) || !WorldLayout.Position(AreaOf(p.zone),s.schema,p.x,p.y) ||
                     !ValidArea(p.zone,s.schema) || !HomeRooms.ValidTransit(p) || s.schema<HomeRooms.Schema && p.stairs!=0 || p.visit<0 || p.visit==long.MaxValue || (s.schema==1 && p.visit!=0)) throw new InvalidOperationException("Invalid player record.");
             ids.Clear();
             foreach (var t in s.toys)
@@ -275,6 +277,7 @@ namespace LittleWeeps.Core
             if(double.IsNaN(seconds) || double.IsInfinity(seconds) || seconds<0 || seconds>1)throw new ArgumentOutOfRangeException(nameof(seconds));
             visibleChange=false;if(seconds==0)return false;
             if(state.revision>=long.MaxValue-1)throw new InvalidOperationException("World revision limit reached.");
+            AdvanceRoarCooldowns(seconds);
             var changed=AdvanceHome(seconds);
             changed|=AdvancePark(seconds,out var parkVisible);visibleChange|=parkVisible;
             changed|=AdvanceHideAndSeek(seconds,activePlayers,out var hideVisible);visibleChange|=hideVisible;
@@ -374,7 +377,13 @@ namespace LittleWeeps.Core
                     player.x=floorPoint.X;player.y=floorPoint.Y;break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
-                    player.avatar = c.value; break;
+                    player.avatar = c.value;
+                    if(!CharacterOutfits.Available(player.avatar))player.outfit="";
+                    break;
+                case SoloAction.ChangeOutfit:
+                    var outfitError=ApplyOutfit(player,c);if(outfitError!=null)return Reject(outfitError);outcome="outfit-changed";break;
+                case SoloAction.Roar:
+                    var roarError=ApplyRoar(player);if(roarError!=null)return Reject(roarError);outcome="roared";break;
                 case SoloAction.StartActivity:
                     if(player.zone!="garden" && player.zone!="creek")return Reject("unknown-activity");
                     if ((!Activity(c.value) && c.value!=KeepyRules.Activity) || c.value == "") return Reject("unknown-activity");

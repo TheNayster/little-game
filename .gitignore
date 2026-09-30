@@ -59,3 +59,7 @@ __pycache__/
 *.secrets.*
 .DS_Store
 Thumbs.db
+
+!Tools/OutfitRules.Tests/OutfitRules.Tests.csproj
+Tools/OutfitRules.Tests/bin/
+Tools/OutfitRules.Tests/obj/

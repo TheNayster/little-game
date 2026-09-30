@@ -24,6 +24,7 @@ namespace LittleWeeps.Client
 
         private void ResetNavigation()
         {
+            ResetOutfits();
             ResetTravelScreen();
             worlds=null;characterTray=null;familyCircle=null;worldButton=null;
             worldBubbles.Clear();avatarMarkers.Clear();pickerCharacters.Clear();worldBadges.Clear();
@@ -115,9 +116,10 @@ namespace LittleWeeps.Client
                 var menuScale=1.18f/Mathf.Max(1,entry.Scale);
                 PickerCharacter(card.transform,id,new Vector2(0,-80+45*menuScale),menuScale);
                 Label(card.transform,name,25,new Vector2(0,-124),new Vector2(190,38)).fontStyle=FontStyle.Bold;
-                NavButton(card,()=>{if(!ActionPending && ReadPlayer(Actor).avatar!=id)ChooseAvatar(id);});
+                NavButton(card,()=>{if(ActionPending)return;if(ReadPlayer(Actor).avatar==id)ShowOutfits();else ChooseAvatar(id);});
             }
             characterTray.gameObject.SetActive(false);
+            BuildOutfits();
             BuildTravelScreen();
         }
         private void BuildWorldBubble(int index)
@@ -146,6 +148,7 @@ namespace LittleWeeps.Client
         public void ShowCharacters(bool open)
         {
             if(WorldLoading)return;
+            if(!open)CloseOutfits();
             lastLocalAction=Time.realtimeSinceStartup;
             if(open && !CharactersOpen)
             {CloseMiniGames();navigationCamera=cameraX;navigationManualCamera=manualCamera;CancelPointers();Narration.Stop();menu.SetActive(false);characterTray.SetAsLastSibling();}
@@ -156,6 +159,7 @@ namespace LittleWeeps.Client
         }
         private void CloseNavigation()
         {
+            CloseOutfits();
             CloseMiniGames();
             if(CharactersOpen){cameraX=navigationCamera;manualCamera=navigationManualCamera;characterTray.gameObject.SetActive(false);}
             LayoutWorldViewport();
@@ -170,6 +174,7 @@ namespace LittleWeeps.Client
         }
         private void AnimateNavigation()
         {
+            PresentOutfits();
             foreach(var character in pickerCharacters)if(character!=null && character.gameObject.activeInHierarchy)
                 character.Present(Vector2.zero,"picker/"+character.CharacterId,false,applicationPaused?0:Time.unscaledDeltaTime);
         }

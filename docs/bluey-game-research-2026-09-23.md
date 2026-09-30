@@ -239,6 +239,8 @@ Keep five main destinations: Heeler Home (house and backyard), Playground & Park
 
 ## 4. Character roster and pictures
 
+**Dinosaur outfits — September 30:** Bluey and Bingo are the first characters with wearable model-sheet outfits. Tap the already-selected character to open an outfit window; choose Normal clothes or Dinosaur, then pink, blue, green or red. Dinosaur wear enables an optional Roar button. The same catalog/window can serve future prepared outfits, but the user explicitly keeps other characters' outfit changes disabled for now. The rejected geometric overlay is replaced with generated hooded costume sheets. [Approved design, exact prompts and research](../SourceArt/Characters/Outfits/Dinosaur/README.md) · [Windows 262 native phone/iPad and four-player evidence](implementation/evidence/dinosaur-onesies-2026-09-30/result.json). No physical device/server rollout or wider roster acceptance is claimed.
+
 The illustrated guide contains **34 verified official portrait entries**, including Bandit, Chilli, a group portrait for the Terriers, and three older child characters. This is a researched starting catalog, not a claim to cover every named or unnamed child ever shown. The character system should let us add missing favorites without rewriting game code.
 
 | Group | Characters to support |
