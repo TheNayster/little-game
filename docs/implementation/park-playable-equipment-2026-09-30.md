@@ -2,6 +2,10 @@
 
 September 30, 2026 — PRK-01, PRK-02, PRK-05, part of PRK-04/PRK-11, plus fountain and bench fixtures.
 
+## Current list and rollout
+
+The [updated park inventory](../bluey-game-research-2026-09-23.html#updated-park-completion-and-remaining-list-september-30) records all original PRK-01–12 activities, the earlier ball-basket picture quest and the later fountain/bench request, with built and remaining behavior kept separate.
+
 ## What changed
 
 The playhouse, swings, roundabout, drinking fountain and seating are separate interactive objects. Clean background plates remove their painted copies while retaining the trees, paths and gazebo. The original panoramas remain available for older compatible source and as art references. The new layer appears only in saves that have the park migration.
@@ -32,7 +36,7 @@ The ladder foot/top, platform, slide lip and landing come from the actual equipm
 
 Native Windows **235** server/client builds pass the gameplay checks; **250** compiles the final contact/depth correction and supplies the final four-rider foreground capture. Six focused four-client groups check climb/landing, four swing seats and same-seat rejection, one shared roundabout with stop/restart and independent departure, fountain/bucket transfer, bench/picnic seating and independent major-world travel. Phone and iPad captures are from the actual release player. The focused core check verifies additive migration, preserved identities/placements, four-player occupancy, departures, stop/restart, water contents and saved-world restore with temporary leases released.
 
-Park itself adds schema **33** and two park props. The same checkout's concurrent zoo work advances the Windows 235/250 manifests to schema **34/content 35**; the park evidence does not qualify zoo gameplay. This is an incompatible shared-content update and requires a coordinated rollout under [server update policy](../server-update-policy.md). No mobile build, device installation or live-server change is claimed here.
+Park itself adds schema **33** and two park props. The same checkout's concurrent zoo work advances the Windows 235/250 manifests to schema **34/content 35**; the park evidence does not qualify zoo gameplay. This is an incompatible shared-content update and requires a coordinated rollout under [server update policy](../server-update-policy.md). Android 260 was subsequently built, signed and installed in place on September 30; its exact installed hash and launch were verified and the park was visible. This does not qualify all physical park interactions. The live server and iPads were not updated. [Android installation receipt](evidence/park-play-2026-09-30/android-260-installation.json).
 
 Remaining park work: seesaw, monkey bars/branching climbing, tag, park hiding arena, shadow stepping, buildable trail, bikes/scooters, actual picnic/pretend orders, musical statues/follow-the-leader, spoken park help, physical child visual acceptance and A10 performance. Optional pushing a sibling/NPC and dedicated drinking poses also remain open.
 
