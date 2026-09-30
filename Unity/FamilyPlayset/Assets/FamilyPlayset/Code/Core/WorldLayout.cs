@@ -12,7 +12,8 @@ namespace LittleWeeps.Core
         // Content 39 admits the complete 37-character research roster.
         // Content 41 requires the replicated outfit fields and roar commands.
         // Content 42 adds authoritative shared pond fishing/feeding and the moved picnic cover.
-        public const int Schema=36, ScenerySchema=3, Content=42;
+        // Content 43 adds shared creek boats, decorations and authoritative voyages.
+        public const int Schema=37, ScenerySchema=3, Content=43;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id);

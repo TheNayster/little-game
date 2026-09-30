@@ -105,6 +105,7 @@ namespace LittleWeeps.Client
             }
             if(followParent)
             {manualCamera=false;cameraX=Mathf.Lerp(cameraX,HideGame.x,1-Mathf.Exp(-9*Time.unscaledDeltaTime));}
+            else if(BoatCameraFollowing){manualCamera=false;groundPan=false;cameraX=Mathf.Lerp(cameraX,BoatCameraX,1-Mathf.Exp(-Time.unscaledDeltaTime*3));}
             else if(PondCameraFollowing){manualCamera=false;groundPan=false;cameraX=PondFishing.X;}
             else if(CharactersOpen)cameraX=position.x;
             else if(!manualCamera)

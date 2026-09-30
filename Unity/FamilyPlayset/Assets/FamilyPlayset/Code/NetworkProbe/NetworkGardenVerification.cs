@@ -46,6 +46,7 @@ namespace LittleWeeps.NetworkProbe
             public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
             public float homePoseAge;public string homePose;public bool homeMusicPlaying,musicMuted;public string worldMusicTrack;public bool worldMusicPlaying;public float worldMusicVolume,worldMusicSignal;public int worldMusicClipCount,worldMusicSample;public LittleWeeps.Core.HomeState home;
             public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
+            public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
@@ -263,6 +264,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.secretDoorVisible=screen.SecretDoorVisible;evidence.secretDoorInteractive=screen.SecretDoorInteractive;evidence.quietStill=screen.QuietStill;evidence.quietBrightness=screen.QuietBrightness;evidence.quietMusicLevel=screen.QuietMusicLevel;evidence.quietEffectsLevel=screen.QuietEffectsLevel;evidence.quietPhase=screen.QuietPhase;
                 evidence.sceneryReady=screen.SceneryReady;evidence.place=screen.CurrentPlace;evidence.cameraX=screen.CameraX;evidence.pendingScenery=screen.PendingScenery;evidence.residentScenery=screen.ResidentScenery;
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
+                evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;
                 evidence.hideAndSeek=screen.HideGame;
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();

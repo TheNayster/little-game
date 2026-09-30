@@ -4,15 +4,15 @@ This file collects the creek additions recorded in the game docs so we can choos
 
 ## What the docs say already exists
 
-The creek has a long walkable scenic level: bush bank followed by a stepping-stone pool, with independent camera movement and travel. The implementation reports retain prototype props and a water fixture using the garden rules. Painted logs, rocks and water do not establish working creek activities. The all-world feature audit lists all ten creek activities below as planned; this review found no later creek activity completion record.
+The creek has a long walkable scenic level: bush bank followed by a stepping-stone pool, with independent camera movement and travel. The implementation reports retain prototype props and a water fixture using the garden rules. Painted logs, rocks and water do not establish working creek activities. The original audit listed all ten creek activities as planned. The September 30 boat task now implements a first playable slice: three hulls, decoration, leaf passengers, two landings and retrieval. [Research and native evidence](implementation/creek-boats-2026-09-30.md). The other creek activities remain planned.
 
 The world-music report also records the creek track, Pebbles and Ripples. This is existing source/build evidence, not a fresh check of installed devices.
 
 Sources: [Scenic worlds implementation](implementation/scenic-worlds-2026-09-25.md), [all-world feature audit](all-world-features-audit-2026-09-26.md#the-creek), [world music](implementation/world-music-2026-09-28.md).
 
-## The ten planned creek activities
+## The ten recorded creek activities
 
-These are the additions in [the main goal sheet, section 38](bluey-game-research-2026-09-23.md#38-the-creek-rocks-water-and-gentle-discovery). All remain planned in the creek audit.
+These are the additions in [the main goal sheet, section 38](bluey-game-research-2026-09-23.md#38-the-creek-rocks-water-and-gentle-discovery). Boat play now has a first playable slice; the other nine remain planned.
 
 | Feature | Basic play | Further play recorded in the docs |
 | --- | --- | --- |
@@ -52,7 +52,7 @@ Sources: [current decisions](current-decisions.md), [project instructions](../AG
 
 ## Suggested first feature
 
-**Start with rock collection and washing, CRK-01.** It adds a clear interaction to the existing creek: pick up a chunky rock, rinse it, see its revealed pattern and place it in a display. The same collected rocks can then feed **rock towers, CRK-04**, as the next task.
+**Boat play was selected and its first slice is now implemented.** For a later task, rock collection and washing, CRK-01, remains a suggested option. It adds a clear interaction to the existing creek: pick up a chunky rock, rinse it, see its revealed pattern and place it in a display. The same collected rocks can then feed **rock towers, CRK-04**, as the next task.
 
 A focused first check should show four players using the same creek, shared pickup ownership, one player leaving while the others continue, and a saved display reopening. This is the proposed acceptance scope for future implementation; no gameplay checks or builds were run for this documentation task.
 
@@ -60,4 +60,4 @@ If movement is the preferred starting point, **log crossing, CRK-03**, is anothe
 
 ## Review record
 
-Collected the creek catalog, earlier quest variations, documented implementation status and later shared-play corrections from the local docs. Checked feature names and source links. This task creates the planning file only; choosing the first implementation task remains the next step.
+Collected the creek catalog, earlier quest variations, documented implementation status and later shared-play corrections from the local docs. Checked feature names and source links. The original task created this planning file. The September 30 follow-up selected boat play and completed its first slice in development source. Physical-device delivery and family playtesting remain open.
