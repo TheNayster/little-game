@@ -1656,6 +1656,8 @@ The official **The Beach** synopsis provides useful anchors: shell discovery, fo
 
 ### Ten beach activities
 
+**Sea visitor art follow-up:** the user requested a light-brown Hispanic mermaid and emerging/airborne/re-entry sheets. [Three-pose model sheets](implementation/sea-visitor-models-2026-09-30.html) now supply distinct drawings for each visitor, selected by the existing shared event clock. Windows 307 is a client-presentation follow-up with no schema/content change; no device/live-server rollout.
+
 **Latest September 30 implementation:** BCH-03 now has shared moving foam, wet-only footprint washing, four-player walking paw trails, touch ripples and the newly requested random whale/dolphin/mermaid jumps. Windows 304/305, focused core/Unity JSON and native four-client evidence are recorded in [Waves and footprints](implementation/beach-waves-2026-09-30.html). The eight activities other than BCH-02/03 remain planned; no device/live-server rollout, family acceptance open.
 
 **September 30 implementation:** BCH-02 has a first playable shared slice in isolated Windows **295**: six silver gulls react to approaching/tapping players, fly between sand patches, leave a bird-track trail and settle. Focused migration/Unity JSON plus one native four-client phone/tablet check pass, including independent departure. [Research and scoped evidence](implementation/seagull-surprise-2026-09-30.html). Gull calls/idle-pose polish and family visual acceptance remain open. No device/server delivery; keep the other nine activities planned. Older two-child examples below are superseded by the current requirement for up to four players together.

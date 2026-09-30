@@ -2,6 +2,8 @@
 
 September 30, 2026 · BCH-03 / OUT-01 / G7-B · User-prioritized implementation following Seagull surprise.
 
+**Later artwork correction:** [Sea visitor model sheets](sea-visitor-models-2026-09-30.html) add the user's light-brown Hispanic mermaid direction and three distinct emerging/airborne/re-entry drawings per visitor. The single-drawing descriptions and captures below record the initial 304/305 milestone; the follow-up is presentation only.
+
 The user requested waves and walking footprints, plus whales, dolphins and mermaids jumping out at random intervals. This first playable slice shares those interactions across up to four players in the same beach world, with the same rules available for private offline play.
 
 ## Applied research

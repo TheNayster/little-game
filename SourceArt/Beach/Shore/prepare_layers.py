@@ -5,6 +5,8 @@ from xml.etree.ElementTree import Element, SubElement, tostring
 from PIL import Image
 root=Path(__file__).resolve().parent
 for path in root.glob('*.png'):
+    if path.stem.endswith('-poses-v2'):
+        continue  # These use the three named layers in prepare_model_sheets.py.
     with Image.open(path) as image:
         w,h=image.size
         if image.mode=='RGBA':

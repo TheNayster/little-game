@@ -1,0 +1,79 @@
+{
+  "sheets": [
+    {
+      "name": "whale",
+      "width": 1536,
+      "height": 1024,
+      "frames": [
+        {
+          "x": 112,
+          "y": 40,
+          "width": 494,
+          "height": 468
+        },
+        {
+          "x": 885,
+          "y": 74,
+          "width": 585,
+          "height": 422
+        },
+        {
+          "x": 188,
+          "y": 542,
+          "width": 483,
+          "height": 440
+        }
+      ]
+    },
+    {
+      "name": "dolphin",
+      "width": 1536,
+      "height": 1024,
+      "frames": [
+        {
+          "x": 156,
+          "y": 42,
+          "width": 431,
+          "height": 453
+        },
+        {
+          "x": 825,
+          "y": 126,
+          "width": 622,
+          "height": 322
+        },
+        {
+          "x": 173,
+          "y": 535,
+          "width": 467,
+          "height": 427
+        }
+      ]
+    },
+    {
+      "name": "mermaid",
+      "width": 1536,
+      "height": 1024,
+      "frames": [
+        {
+          "x": 198,
+          "y": 29,
+          "width": 372,
+          "height": 494
+        },
+        {
+          "x": 834,
+          "y": 97,
+          "width": 596,
+          "height": 331
+        },
+        {
+          "x": 117,
+          "y": 543,
+          "width": 553,
+          "height": 460
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,430 @@
+{
+  "seagulls": {
+    "phase": 0,
+    "clock": 28.335885200000003,
+    "age": 0.0,
+    "calmUntil": 11.4570559,
+    "from": 2,
+    "to": 2,
+    "trailFrom": 0,
+    "flights": 1,
+    "nearby": []
+  },
+  "visibleSeagulls": 6,
+  "visibleGullTracks": 16,
+  "shore": {
+    "clock": 28.285842900000002,
+    "nextVisit": 61.33976961849881,
+    "visitStarted": 28.1084303,
+    "random": 1866760884,
+    "visits": 1,
+    "serial": 1,
+    "visitor": 0,
+    "visitX": 1007.3687133789062,
+    "right": false,
+    "prints": [],
+    "walkers": [
+      {
+        "actor": "player-1",
+        "remainder": 0.0,
+        "left": false
+      },
+      {
+        "actor": "player-2",
+        "remainder": 0.0,
+        "left": false
+      }
+    ],
+    "ripples": []
+  },
+  "visibleSandPrints": 0,
+  "visibleSeaVisitor": true,
+  "seaVisitorPose": 0,
+  "serial": 28,
+  "visiblePlayers": 2,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 10,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.307",
+  "actor": "player-1",
+  "feedback": "Welcome to the beach. Your friends can join you here!",
+  "dragging": "",
+  "zone": "beach",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "outfit": "",
+      "position": {
+        "x": 1050.0,
+        "y": 300.0000305175781
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-2",
+      "outfit": "",
+      "position": {
+        "x": 1050.0,
+        "y": 300.0000305175781
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-3",
+      "outfit": "",
+      "position": {
+        "x": 640.0,
+        "y": 100.0
+      },
+      "visible": false,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-4",
+      "outfit": "",
+      "position": {
+        "x": 820.0,
+        "y": 100.0
+      },
+      "visible": false,
+      "roarPlaying": false
+    }
+  ],
+  "toys": [],
+  "screenWidth": 1280,
+  "screenHeight": 591,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -2.108901389874518e-05,
+    "y": 7.62939453125e-06,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardLayoutWidth": 1732.6566162109375,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "bluey",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Splash water 4",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 531.8999633789062,
+        "y": 289.9593811035156,
+        "width": 177.300048828125,
+        "height": 73.875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 8",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1241.0999755859375,
+        "y": 289.9593811035156,
+        "width": 38.9000244140625,
+        "height": 73.875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1147.0250244140625,
+        "y": 526.728759765625,
+        "width": 118.199951171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 2",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 177.29998779296875,
+        "y": 289.9593811035156,
+        "width": 177.29998779296875,
+        "height": 73.875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1170.6650390625,
+        "y": 31.766263961791992,
+        "width": 88.64990234375,
+        "height": 88.64999389648438
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 977.112548828125,
+        "y": 526.728759765625,
+        "width": 155.137451171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 31.76620101928711,
+        "y": 506.7825012207031,
+        "width": 62.054996490478516,
+        "height": 62.055023193359375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 7",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1063.7999267578125,
+        "y": 289.9593811035156,
+        "width": 177.300048828125,
+        "height": 73.875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 3",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 354.5999755859375,
+        "y": 289.9593811035156,
+        "width": 177.29998779296875,
+        "height": 73.875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 6",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 886.4999389648438,
+        "y": 289.9593811035156,
+        "width": 177.29998779296875,
+        "height": 73.875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 1",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": -2.108901389874518e-05,
+        "y": 289.9593811035156,
+        "width": 177.2999725341797,
+        "height": 73.875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 5",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 709.199951171875,
+        "y": 289.9593811035156,
+        "width": 177.300048828125,
+        "height": 73.875
+      },
+      "enabled": true
+    }
+  ],
+  "outfitsOpen": false,
+  "roarPlaying": false,
+  "outfit": "",
+  "outfitColor": "green",
+  "worldLoading": false,
+  "loadingDestination": "beach",
+  "loadingFailure": "",
+  "travelStages": [
+    "loading-screen",
+    "gestures-settled",
+    "travel-requested",
+    "authority-confirmed",
+    "scenery-ready",
+    "destination-presented",
+    "ready"
+  ],
+  "homePoseAge": 0.0,
+  "homePose": "Idle",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "worldMusicTrack": "beach",
+  "worldMusicPlaying": true,
+  "worldMusicVolume": 0.41999998688697815,
+  "worldMusicSignal": 0.02033122442662716,
+  "worldMusicClipCount": 1,
+  "worldMusicSample": 1246559,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 36.33164978027344,
+  "hideAndSeek": {
+    "round": 0,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 0,
+    "age": 0.0,
+    "count": 0.0,
+    "clock": 0.0,
+    "walked": 0.0,
+    "x": -3660.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "beach",
+  "cameraX": 866.3283081054688,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "beach-dunes-shore",
+    "beach-rockpools-shore"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Beach shore ambience",
+    "Player character",
+    "Friend-player-2",
+    "Beach gull 1",
+    "Beach gull 3",
+    "Beach gull 5",
+    "Beach bird tracks 5",
+    "Beach bird tracks 15",
+    "Beach bird tracks 13",
+    "Beach bird tracks 1",
+    "Beach bird tracks 11",
+    "Beach bird tracks 3",
+    "Beach bird tracks 9",
+    "Beach bird tracks 7",
+    "Beach gull 0",
+    "Beach gull 2",
+    "Beach gull 4",
+    "Beach bird tracks 4",
+    "Beach bird tracks 10",
+    "Beach bird tracks 2",
+    "Beach bird tracks 12",
+    "Beach bird tracks 0",
+    "Beach bird tracks 14",
+    "Beach bird tracks 8",
+    "Beach bird tracks 6"
+  ],
+  "bookAuto": false,
+  "bookWords": true,
+  "bookOptions": false,
+  "bookEffect": false,
+  "bookEffectPending": false,
+  "bookNaming": false,
+  "bookTitle": "hello-dinosaurs",
+  "bookTextures": 0,
+  "bookAudio": 0,
+  "discoveryOpen": false,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "Menu",
+    "Tap to walk"
+  ]
+}

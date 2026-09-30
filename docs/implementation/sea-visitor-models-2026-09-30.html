@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Beach waves and sea visitors</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sea visitor model sheets</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -14,32 +14,47 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 .wheel .scene-note{position:absolute;top:25%;left:7%;width:48%;font-size:17px}.place-rail{position:absolute;right:0;top:0;bottom:23%;width:39%;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 8px;background:#cbecf7;border-left:4px solid white}.place-rail .stage{position:relative;transform:none!important;left:auto;top:auto;width:126px;min-height:126px;flex-shrink:0}.cast-diagram{position:absolute;left:0;right:0;bottom:0;height:23%;background:#b8e2f7;border-top:4px solid white;display:flex;align-items:center;padding:18px;font-weight:700;font-size:16px}
- main{max-width:1000px;margin:auto;padding:30px 24px} main img{max-width:100%;height:auto;border-radius:16px;background:#e8f4f6}</style></head><body><main><h1 id="the-beach-waves-footprints-and-random-sea-visitors">The Beach: waves, footprints and random sea visitors</h1>
-<p>September 30, 2026 · BCH-03 / OUT-01 / G7-B · User-prioritized implementation following Seagull surprise.</p>
-<p><strong>Later artwork correction:</strong> <a href="sea-visitor-models-2026-09-30.html">Sea visitor model sheets</a> add the user's light-brown Hispanic mermaid direction and three distinct emerging/airborne/re-entry drawings per visitor. The single-drawing descriptions and captures below record the initial 304/305 milestone; the follow-up is presentation only.</p>
-<p>The user requested waves and walking footprints, plus whales, dolphins and mermaids jumping out at random intervals. This first playable slice shares those interactions across up to four players in the same beach world, with the same rules available for private offline play.</p>
-<h2 id="applied-research">Applied research</h2>
-<p>NOAA describes the swash zone as beach that becomes wet and dry as waves advance and return. This supports a readable incoming foam edge, shallow wash and retreat rather than a fluid simulation. The game uses a gentle nine-second cycle and erases only temporary wet-sand footprints. That timing and the small wash range are authored play choices. <a href="https://www.weather.gov/safety/ripcurrent-science">NOAA shoreline glossary</a>.</p>
-<p>NOAA records humpback breaching and dolphin leaping as surface behaviors. They support distinct whale and dolphin silhouettes and an offshore rise/arc/re-entry animation. Our smiling drawings, appearance rates and positions are fictional staging rather than a wildlife simulation. Mermaids are explicitly the requested fantasy visitor. <a href="https://www.fisheries.noaa.gov/species/humpback-whale">Humpback behavior</a> · <a href="https://www.fisheries.noaa.gov/species/spinner-dolphin?page=1">Dolphin aerial behavior</a>.</p>
-<p>The original goal sheet already specifies layered 2D waves, touch ripples, wet-only footprint fading, independent exits and protection of saved creations. The code does not touch castles, room records, stored pictures or inventory. Castles/toy bobbing remain separate future activity work. <a href="../bluey-game-research-2026-09-23.md#37-the-beach-collecting-building-and-playing-together">Goal sheet section 37</a>.</p>
-<h2 id="what-exists">What exists</h2>
-<ul>
-<li>Continuous moving foam and shallow-water ribbons on both beach stretches, aligned with new unobstructed shoreline art.</li>
-<li>Actual authoritative walking emits alternating paw prints every 30 world units. All four players share the same trail field; each child has a 48-print allocation. Dry prints gradually retire after three active beach minutes. Wet prints fade over 1.3 seconds when washed.</li>
-<li>Tapping the illustrated water makes shared expanding ripples. Distance checks, a short input cooldown, one ripple per child and a two-second lifetime bound repeated taps.</li>
-<li>One whale, dolphin or mermaid rises, arcs, lands and splashes offshore. The initial wait and subsequent quiet gaps are random <strong>18–42 active beach seconds</strong>; each event lasts 4.8 seconds. Consecutive sightings use different types. The authority chooses one type, direction and position near an occupied beach stretch; clients do not roll their own animals.</li>
-<li>A saved random generator and next-event time retain the common schedule across save reopen. Empty beaches pause without a wall-clock catch-up burst. A player travelling/disconnecting does not restart siblings' event or wipe their trails.</li>
-<li>Generated source PNGs, exact prompts and named editable OpenRaster layers are retained. Whale, dolphin and mermaid animation currently transforms one prepared drawing per visitor. <a href="../../SourceArt/Beach/Shore/README.md">Artwork and prompts</a>.</li>
-<li>Beach character presentation removes the legacy 45-unit lab art offset so feet meet the authoritative footprint/wet-sand plane. Other areas keep their existing alignment.</li>
-</ul>
-<h2 id="shared-state-and-delivery">Shared state and delivery</h2>
-<p>Schema <strong>40</strong>, content <strong>46</strong>, protocol <strong>3</strong>. These IDs are above the concurrent schema-37/content-44 candidates inspected when starting. The candidate continues the isolated seagull implementation on <code>codex/beach-waves</code>; it does not integrate the concurrent pond, Zoo, creek-boats, wheels or Daycare branches. Future integration must reconcile each candidate's distinct schema/content meaning and preserve every field.</p>
-<p>The snapshot adds <code>shore</code> and copies/validates its trails, ripples, walking remainder and sighting schedule. A separate reliable shore stream batches changed state at most four times per second and sends a clock sample about once a second. This avoids putting growing trail arrays in the existing 1200-byte walking datagrams. Clients interpolate presentation between authority samples and retain newer shore state when an older reliable snapshot arrives.</p>
-<p>No phone, iPad or live-family-server rollout occurred. Compatibility requires a coordinated future server update under the existing policy. The main integration hold remains in force.</p>
-<h2 id="verification">Verification</h2>
-<p>Focused core checks pass for additive migration with retained profiles/rooms/objects, four shared trails, alternating paws, wet-only washing, nearby ripple/range limits, randomized three-type schedules, no immediate repeat, independent departure, JSON reopen, 48-print bounds, empty-beach pause and detached reads. The actual Unity JSON checks also pass for legacy migration, RNG and all three visitor records with prints/ripples. <a href="evidence/beach-waves-2026-09-30/core.json">Core evidence</a>.</p>
-<p>Windows <strong>304</strong> client/server release builds have zero errors/warnings. One native four-client disposable loopback family passes real joystick footprints, shared trails, washing, real water taps, a common random sighting, independent travel/disconnection and observing all three requested visitors. Phone 960×640 / 1280×591 and tablet 1024×768 layouts render clean transparency and remain within the three-tile scenery-cache budget. <a href="evidence/beach-waves-2026-09-30/native-304/result.json">Native result</a>.</p>
-<p>Windows <strong>305</strong> adds only the beach character-floor alignment correction after inspecting those captures. Its focused follow-up checks the changed floor interaction and phone/tablet presentation; the shared rules/network source are identical to 304. <a href="evidence/beach-waves-2026-09-30/build-summary.json">Final build</a> · <a href="evidence/beach-waves-2026-09-30/native-305/result.json">Floor follow-up</a>.</p>
-<p><img alt="Four players and shared footprints" src="evidence/beach-waves-2026-09-30/native-305/01-four-trails-tablet.png" /></p>
-<p><img alt="Mermaid offshore" src="evidence/beach-waves-2026-09-30/native-304/06-mermaid-phone.png" /></p>
-<p>The eight other named beach activities remain planned. Gull calls and richer visitor poses/sounds are optional polish; family art acceptance and actual-device delivery remain open.</p></main></body></html>
+ main{max-width:1000px;margin:auto;padding:30px 24px} main img{max-width:100%;height:auto;border-radius:16px;background:#e8f4f6}</style></head><body><main><h1 id="sea-visitor-model-sheets-and-mermaid-correction">Sea visitor model sheets and mermaid correction</h1>
+<p>September 30, 2026 · BCH-03 / OUT-01 · Client artwork/presentation follow-up.</p>
+<p>The initial mermaid's darker brown skin was an implementation artwork choice, not a user-specified requirement. The user requested a Hispanic mermaid with light-brown skin and asked whether emerging, airborne and re-entry model sheets existed. At that point each visitor used one drawing translated and rotated along an arc. This follow-up prepares three distinct drawings for <strong>each</strong> visitor and uses them in the actual animation.</p>
+<p>The mermaid now has the requested light warm brown/honey-tan skin on her face, arms, hands and exposed belly throughout all three poses. Coral curly hair, lavender short-sleeve top and turquoise tail remain.</p>
+<h2 id="three-drawings-per-visitor">Three drawings per visitor</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Runtime timing during a jump</th>
+<th>Drawing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emerging</td>
+<td>0–1 second</td>
+<td>Head/upper body rise, tail trailing down; arms/flippers follow ascent</td>
+</tr>
+<tr>
+<td>Airborne</td>
+<td>1–2.75 seconds</td>
+<td>Curved midair body with open limbs/flippers and flexed tail</td>
+</tr>
+<tr>
+<td>Re-entering</td>
+<td>2.75–4 seconds</td>
+<td>Head/body dive down, streamlined arms/flippers and tail lifted behind</td>
+</tr>
+</tbody>
+</table>
+<p>The same authoritative event clock selects the frame for everyone. The existing world event lasts 4.8 seconds including its finishing splash; random quiet gaps remain 18–42 active beach seconds. The sea surface clips the lower body during emergence and clips the head/body as the creature dives back. The drawings contain full bodies and transparent surrounding pixels; the game supplies water and splashes separately.</p>
+<h3 id="mermaid-light-brown-skin">Mermaid — light brown skin</h3>
+<p><img alt="Mermaid emerging, airborne and re-entering model sheet" src="../../SourceArt/Beach/Shore/mermaid-poses-v2.png" /></p>
+<h3 id="whale">Whale</h3>
+<p><img alt="Whale emerging, airborne and re-entering model sheet" src="../../SourceArt/Beach/Shore/whale-poses-v2.png" /></p>
+<h3 id="dolphin">Dolphin</h3>
+<p><img alt="Dolphin emerging, airborne and re-entering model sheet" src="../../SourceArt/Beach/Shore/dolphin-poses-v2.png" /></p>
+<p>Each atlas is arranged emerging at upper left, airborne at upper right and re-entry at lower left. The lower-right cell is unused. <a href="../../SourceArt/Beach/Shore/README.md">Named editable OpenRaster layers and measured frame bounds</a> · <a href="../../SourceArt/Beach/Shore/pose-prompts-v2.json">Exact built-in image-generation prompts</a>.</p>
+<h2 id="verification-and-delivery">Verification and delivery</h2>
+<p>Windows <strong>307</strong> client/server release builds compile the new sheets and runtime frame map. A focused native phone/tablet presentation pass observes all nine frames in real shared random events; shared wave/sighting rules and wire/save contracts are unchanged from the preceding checked candidate. <a href="evidence/sea-visitor-models-2026-09-30/result.json">Native result</a> · <a href="evidence/sea-visitor-models-2026-09-30/build-summary.json">Build result</a> · <a href="evidence/sea-visitor-models-2026-09-30/source-check.json">Runtime source comparison</a>.</p>
+<p><img alt="New mermaid airborne in the native tablet scene" src="evidence/sea-visitor-models-2026-09-30/mermaid-airborne.png" /></p>
+<p>Schema 40/content 46/protocol 3 remain unchanged. No phone, iPad or live-server rollout; the candidate continues on <code>codex/beach-waves</code> with the existing main integration hold.</p>
+<p>These are generated model-sheet candidates with three key drawings, not a full frame-by-frame swimming sequence. Additional transition frames, creature sounds and family art acceptance remain open. <a href="beach-waves-2026-09-30.html">Earlier waves and footprints research/evidence</a>.</p></main></body></html>

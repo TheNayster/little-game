@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "build": 307,
+  "checks": [
+    "whale uses three distinct stage drawings in a real shared event",
+    "dolphin uses three distinct stage drawings in a real shared event",
+    "mermaid uses three distinct stage drawings in a real shared event"
+  ],
+  "layouts": [
+    "phone 1280x591",
+    "tablet 1024x768"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}
