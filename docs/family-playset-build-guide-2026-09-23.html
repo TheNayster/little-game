@@ -990,6 +990,7 @@ Status: pending
 </table></div>
 <p>The current tracker contains 35 top-level feature IDs. The coverage validator checks that all appear in this map. The full research includes additional detail, proposed counts and acceptance conditions; follow the linked goal-sheet sections when implementing each row rather than treating this summary as a replacement specification.</p>
 <h2 id="18-current-work-record-and-research-basis">18. Current work record and research basis</h2>
+<p><strong>Home checklist reconciliation — September 30:</strong> refreshed the <a href="home-world-feature-tracker.html">Home tracker</a>, <a href="all-world-features-audit-2026-09-26.html">all-world inventory</a> and Home-related master rows against scoped implementation records through candidate 233. Done-in-source notes now distinguish staged cooking, furnished/secret-room play, books, coloring/storage, native labs and shared hiding from remaining content and physical acceptance. Original research IDs/catalogs and full-acceptance checkboxes are preserved; no game, device, server or save change. The four-member portrait is artwork-only until a successful native scene check. Next: bathroom/laundry or another explicitly selected missing Home feature; retain the full backlog and main integration hold.</p>
 <p><strong>Family picture repair (ART-HOME-02) — September 30:</strong> the living-room wall portrait above the couch now depicts all four Heelers: Bandit and Chilli behind Bluey and Bingo, with separate recognizable faces. Built-in image_gen edited the picture interior while retaining its frame and surrounding room composition. <a href="../SourceArt/Home/FamilyPortrait/README.md">Editable raster source, prompt and limits</a>. Artwork inspection passes. Windows build attempt 234 was blocked by unrelated concurrent <code>SoloPark.cs:134</code> CS1503 (float/Vector2 mismatch), so native scene verification and a fresh release remain pending. No device or server update; schema 32/content 33 unchanged. Preserve unrelated work and the main integration hold. Next: focused living-room check after the park source compiles, then family visual review on the next requested app update.</p>
 <p><strong>Approved dinosaur sounds — September 30:</strong> the user approved eight Myinstants/Pixabay previews for the dinosaur book. Windows candidate <strong>233</strong> integrates T-Rex, Triceratops, Stegosaurus, Brachiosaurus, Spinosaurus, Pteranodon, Parasaurolophus and Velociraptor. Parasaurolophus uses source seconds 10–18, Stegosaurus uses the first seven seconds, and Brachiosaurus/Spinosaurus/Pteranodon use the approved 3.2-second stretches. All eight pass one focused native loading/playback/cancellation check; approved-file regeneration protection also passes. <a href="implementation/native-reader-controls-2026-09-28.html#september-30-listening-approved-site-calls">Approval, sources and evidence</a>. Four species still lack approved replacements and keep their existing assets: Diplodocus, Ankylosaurus, Brontosaurus and Quetzalcoatlus. Schema 32/content 33 unchanged; no device or live-server rollout. Preserve the main integration hold. Next: device delivery when requested and selection of the four remaining calls.</p>
 <p><strong>Play-screen cleanup (G2 / NAV-REF-02) — September 30:</strong> candidate <strong>232</strong> removes the persistent Little Weeps title and places Tap to walk/Joystick and Menu together in one top-right safe-area row with equal-height, separated touch targets. Windows release compilation and one focused native pass verify no title, aligned controls within the safe area, movement toggling and menu open/close at Android-wide, iPad 7, iPad Air, portrait and return-to-landscape dimensions. <a href="implementation/evidence/play-controls-2026-09-30/result.json">Evidence</a>. Schema 32/content 33 unchanged; no devices or live server updated. Preserve the main integration hold and unrelated ongoing work. Next: include this presentation change in the next requested device update, then accept family playtesting; the Home backlog remains open.</p>
@@ -1364,13 +1365,13 @@ Status: pending
 </tr>
 <tr>
 <td><strong>ACT-01</strong></td>
-<td><strong>Partial:</strong> optional garden/cleanup prompts and free exit; deployed authority 91 / Android 83 rearm completed fixtures while retaining partial progress and activity choice</td>
-<td>Apple client cue update and broader repeat-play acceptance; picture picker, reusable invitations/membership/checkpoints and nonblocking join/switch for all activities. G6/G7.</td>
+<td><strong>Partial: existing free object play and the Games picture menu (231) containing Hide &amp; seek; Back cancels without starting.</strong></td>
+<td>General optional invitations/replay/resume and further mini games remain. Keepy Uppy starts by tapping its balloon.</td>
 </tr>
 <tr>
 <td><strong>COOK-01</strong></td>
-<td><strong>Partial</strong></td>
-<td>Four trays, durable food and all fifteen prototype recipes. Candidate 171 adds staged chocolate cake and relevant normal ingredients; the remaining recipe families, audio guidance, orders, album, drinks and physical acceptance remain open. <a href="implementation/chocolate-cake-flow-2026-09-27.html">Implementation</a>.</td>
+<td><strong>Partial: all five cakes, five pizzas and five pan/pot meals have distinct staged preparation through 212; serving/tasting/washing and same-food storage/retrieval (205) are implemented.</strong></td>
+<td>Drinks/blender, picture orders, picnic packing, recipe/photo album, cheese-stretch/interaction polish and physical family acceptance. <a href="implementation/meal-preparation-2026-09-28.html">Evidence</a>.</td>
 </tr>
 <tr>
 <td><strong>FISH-01</strong></td>
@@ -1379,53 +1380,53 @@ Status: pending
 </tr>
 <tr>
 <td><strong>CLEAN-01</strong></td>
-<td><strong>Partial:</strong> sponge cleans the garden puddle</td>
-<td>Toys, dishes, spills, laundry and garden sorting with creation protection and multiplayer cancellation. G6/G7.</td>
+<td><strong>Partial: native kitchen washing/reuse, legacy puddle cleaning, owner toy tidy and five-minute temporary cleanup in 200.</strong></td>
+<td>The richer shared toy-sort/Daddy Robot, sponge/rinse/rack, mop/footprints, laundry and garden-helper games remain. Automatic returns do not implement those mini games.</td>
 </tr>
 <tr>
 <td><strong>HIDE-01</strong></td>
-<td><strong>Partial:</strong> Bandit and Chilli alternate fifteen-second counting and first-level searches for one broadcast countdown and hiding before zero to join for up to four players; hidden players follow the parent locally.</td>
-<td><a href="implementation/hide-and-seek-first-level-2026-09-28.html">Implementation and qualification</a>. Perception/clue options, upstairs search and physical acceptance remain. G6/G7.</td>
+<td><strong>Partial: alternating Bandit/Chilli, one common 15-second hide-to-join count, ten first-level covers, parent-follow cameras, look pauses and independent withdrawal in 229.</strong></td>
+<td>Parent speech, wider clues/upstairs routes and physical acceptance. <a href="implementation/hide-and-seek-hide-to-join-2026-09-30.html">Evidence</a>.</td>
 </tr>
 <tr>
 <td><strong>HIDE-02</strong></td>
-<td><strong>Not built</strong></td>
-<td>Optional child seeker; hidden avatars cannot leak through names, targeting or switching. G6/G7.</td>
+<td><strong>Planned: human seeker and role swaps are not implemented.</strong></td>
+<td>Picture role choice, up to three human hiders, human-seeker concealment filtering and safe NPC takeover if the seeker leaves.</td>
 </tr>
 <tr>
 <td><strong>NPC-01</strong></td>
-<td><strong>Partial role foundation:</strong> separate Bandit/Chilli seekers alternate counting, walking, looking, inspecting and friendly finds.</td>
-<td>Everyday parent routines, richer requests and upstairs navigation remain. <a href="implementation/hide-and-seek-first-level-2026-09-28.html">First-level expansion</a>. G6/G7.</td>
+<td><strong>Partial: Bandit and Chilli act as NPC hide-and-seek parents independently of player avatar choice.</strong></td>
+<td>Ambient roaming, reading, gardening, food preparation and eligible tidying between games remain.</td>
 </tr>
 <tr>
 <td><strong>CAT-01</strong></td>
-<td><strong>Partial:</strong> SHOW-25 Keepy Uppy exists in 130; outdoor/faster-fall revision 132 passes core/native checks and awaits installation. The other 31 catalog cards remain planned.</td>
-<td>Full source catalog and status: <a href="all-world-features-audit-2026-09-26.html">all-world audit</a>. Qualify four-device delivery and implement selected later activities with art/audio, saves and cancellation. G6/G7-E.</td>
+<td><strong>Partial: shared Keepy Uppy and NPC Hide &amp; seek work; pizza/duck-cake/burger/fort/dance systems cover narrower portions of other show cards.</strong></td>
+<td>Remaining show activity wrappers and games, with one shared start/progression where rounds apply. The catalog is a backlog, not a list of completed engines.</td>
 </tr>
 <tr>
 <td><strong>BOOK-01</strong></td>
-<td><strong>Partial:</strong> shared rack and native picture reader with four local bookmarks; 198 controls verified on Windows, final content/device qualification pending</td>
-<td>Reading nook, pickup overlay, narration controls, interactive pages/names and approved books offline. G6/G7-A.</td>
+<td><strong>Partial: six draft books/54 pages, independent bookmarks/narration, picture controls and whole-book restart through 230; eight approved dinosaur calls in 233.</strong></td>
+<td>Five revised requested subjects, four dinosaur call replacements, full reading-nook finish and physical audio/A10 acceptance. <a href="implementation/native-reader-controls-2026-09-28.html">Evidence</a>.</td>
 </tr>
 <tr>
 <td><strong>TV-01</strong></td>
-<td><strong>Partial:</strong> separate single-clip foundation fixture with persistent bookmark and playback controls</td>
-<td>House TV, thumbnails/library/import, per-child/per-video catalog, failures, transitions and media retention. G6/G7-A.</td>
+<td><strong>Development only: separate single-clip video/bookmark fixture; the Home TV library is not integrated.</strong></td>
+<td>Home TV/remote, parent file importer, thumbnails, per-clip resume, playback navigation and independent offline viewing.</td>
 </tr>
 <tr>
 <td><strong>DINO-01</strong></td>
-<td><strong>Not built</strong></td>
-<td>Proposed 20 toy types, spoken names, animation, accessible storage and shared interactions. G6/G7-A.</td>
+<td><strong>Planned: full twenty-type native toy catalog is not built; dinosaur book/ice-rescue toys are separate narrower features.</strong></td>
+<td>Reviewed toy art/animation, selection, names, carry/place/rotate/store, washing/nests and book links.</td>
 </tr>
 <tr>
 <td><strong>DINO-02</strong></td>
-<td><strong>Not built</strong></td>
-<td>Discovery Mat: dig/brush/wash/arrange and five optional invitations. G6/G7-A.</td>
+<td><strong>Planned: full Dinosaur Discovery Mat is not built.</strong></td>
+<td>Dig/brush/name/wash/arrange and the five dinosaur invitations. The implemented hammer/ice-rescue science tray does not close this scope.</td>
 </tr>
 <tr>
 <td><strong>LAB-01</strong></td>
-<td><strong>Partial:</strong> <a href="implementation/home-mixing-2026-09-27.html">candidate 178</a> adds four mixing variants to the saved float/magnet/RGB trays downstairs</td>
-<td>Five stations, deeper interactions, carryable creations, final artwork and physical four-device/A10 qualification. G6/G7-A.</td>
+<td><strong>Partial: native float/magnets/RGB, four chemistry variants, ice rescue (191), bubbles (192), liquid colors (194) and adjustable saved marble ramps (216).</strong></td>
+<td>Native shadow theatre, string/vibration sound and seed growth; deeper harbor/magnet/light play, portable creations and physical acceptance. Browser previews remain separate.</td>
 </tr>
 <tr>
 <td><strong>JOIN-01</strong></td>
@@ -1434,13 +1435,13 @@ Status: pending
 </tr>
 <tr>
 <td><strong>WORLD-01</strong></td>
-<td><strong>Partial:</strong> six long scenic destinations in Windows 110; Home/Garden share one persistent property, now one Heeler Home menu entry in 118, with independent cameras and versioned retained saves.</td>
-<td>Interactive room branches, full world activities, physical four-device travel and iPad memory/frame-time qualification. G3–G7.</td>
+<td><strong>Partial: connected Home/backyard, independent cameras/loading, stairs/landing, four furnished bedrooms and four optional secret rooms are implemented.</strong></td>
+<td>Bathroom/laundry, wider world activities and final physical travel/performance acceptance; the existing room branches are not unbuilt.</td>
 </tr>
 <tr>
 <td><strong>WORLD-02</strong></td>
-<td><strong>Partial:</strong> garden travel leaves another player's movement/drag/cleanup intact</td>
-<td>Apply to cooking, riding, books, hiding and all later activities; four-device checks. G3/G6/G7.</td>
+<td><strong>Partial: scoped native Home evidence covers independent cooking, reading, labs, rooms, Keepy Uppy and NPC hiding departures.</strong></td>
+<td>Continue applying independent exits to each future activity; physical mixed-device acceptance remains separate.</td>
 </tr>
 <tr>
 <td><strong>ITEM-02</strong></td>
@@ -1449,18 +1450,18 @@ Status: pending
 </tr>
 <tr>
 <td><strong>ITEM-03</strong></td>
-<td><strong>Partial:</strong> five-minute science inactivity resets, kitchen/book returns, legacy garden repeats, storage closure and resting-balloon return in candidate 200. Shared clocks/cues and personal creation protection are included</td>
-<td>Native/device qualification is recorded in the <a href="implementation/home-idle-cleanup-2026-09-28.html">cleanup report</a>. General loans, creation/food archives, spoken cues and full future-station policies remain open; this does not complete G5.</td>
+<td><strong>Partial: five-minute temporary returns/resets protect held items, rooms, food and art in 200; 205 adds explicit same-food/picture collections.</strong></td>
+<td>General typed loans, nested hoarding bounds and wider spoken cues/future-stock policies remain; creation storage is already implemented.</td>
 </tr>
 <tr>
 <td><strong>STOCK-01</strong></td>
-<td><strong>Partial constraint only:</strong> garden tools stay in their area when a player travels</td>
-<td>Per-player essential station stock, loan bounds and nested-container checks. One bucket per test area does not satisfy this feature. G5.</td>
+<td><strong>Partial: four-place sofa/trampoline, four kitchen tool/tray/hob sets, per-profile science workspaces and bounded room toys exist.</strong></td>
+<td>Full future station stock, portable/nested loan rules and wider anti-hoarding behavior; the old single garden bucket is only a prototype.</td>
 </tr>
 <tr>
 <td><strong>ROOM-02</strong></td>
-<td><strong>Not built</strong></td>
-<td>Personal catalogs, loose-prop limits, clear exits, toy storage, protected creation shelf and safe visitors. G5/G7-A.</td>
+<td><strong>Partial: personal chests/shelves, owner tidy, creation-protecting toy stacks and kept-picture bedroom display exist through 205.</strong></td>
+<td>Full personal/dinosaur catalogs, free furnishing, portable creations and broader loan controls.</td>
 </tr>
 <tr>
 <td><strong>NET-02</strong></td>
@@ -1474,18 +1475,18 @@ Status: pending
 </tr>
 <tr>
 <td><strong>ROOM-01</strong></td>
-<td><strong>Partial, candidate 142:</strong> four profile-owned furnished destinations, usable beds/cushions, shelf/chest storage, bounded personal toys, owner decoration/Together/undo and persistence.</td>
-<td>BED-4 visual/device qualification; broader furnishing/catalog/creation/reader features and four secret rooms remain open. G5/G6/G7-A.</td>
+<td><strong>Partial: four owned furnished bedrooms with visits, owner/Together decoration, undo, storage, cuddle/tuck/stack/tea play and saved decor choices in 155.</strong></td>
+<td>Free furniture placement, richer catalogs and final physical/visual acceptance. <a href="implementation/room-object-play-2026-09-26.html">Evidence</a>.</td>
 </tr>
 <tr>
 <td><strong>SECRET-01</strong></td>
-<td><strong>Not built</strong></td>
-<td>Four optional mini-door plush rooms, shared visits, exits, saved layouts and stars/aurora effects. G5/G6/G7-A.</td>
+<td><strong>Partial: four optional persistent star-door secret rooms with reliable exits, four visitors, plush/fort/tea/storage, stars/aurora and local calm controls in 146/155.</strong></td>
+<td>Broader catalog/large cuddle-pillow art refinement and physical listening/visual acceptance. <a href="implementation/secret-rooms-2026-09-26.html">Evidence</a>.</td>
 </tr>
 <tr>
 <td><strong>HIDE-03</strong></td>
-<td><strong>Partial:</strong> ten first-level slots, cutaways, held-prop concealment, safe Come out, checked-point memory and look pauses.</td>
-<td><a href="implementation/hide-and-seek-first-level-2026-09-28.html">Evidence</a>. Configurable clues, wider furniture/room graph and physical qualification remain. G6/G7.</td>
+<td><strong>Partial: ten first-level covers, cutaways, held-prop concealment, safe exits, remembered checked covers and look pauses.</strong></td>
+<td>Configurable sight/sound clues, speech, upstairs/wider room graph and physical acceptance. <a href="implementation/hide-and-seek-hide-to-join-2026-09-30.html">Evidence</a>.</td>
 </tr>
 <tr>
 <td><strong>TRAVEL-01</strong></td>

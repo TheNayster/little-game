@@ -647,11 +647,11 @@
     "ITEM-02": "part",
     "ITEM-03": "part",
     "STOCK-01": "part",
-    "ROOM-02": "plan",
+    "ROOM-02": "part",
     "NET-02": "part",
     "REMOTE-01": "plan",
     "ROOM-01": "part",
-    "SECRET-01": "plan",
+    "SECRET-01": "part",
     "HIDE-03": "part",
     "TRAVEL-01": "part",
     "AUTO-01": "part",
@@ -683,26 +683,26 @@
   },
   "inventoryEntries": 339,
   "statusCounts": {
-    "Partial": 93,
+    "Partial": 109,
     "Playable prototype": 12,
-    "Planned": 218,
+    "Planned": 203,
     "Development only": 1,
     "Optional idea": 8,
-    "Scenery only": 4,
+    "Scenery only": 3,
     "Retired": 3
   },
   "sources": [
     {
       "path": "docs/bluey-game-research-2026-09-23.md",
-      "sha256": "4cff5df8b2a68bced38107f49604615ba725a0174b5fa7545d2e2b8d49a87201"
+      "sha256": "b276b3e5766d03152b801de325c0cf9968a5c9573590b6de268adf6128788b8a"
     },
     {
       "path": "docs/current-decisions.md",
-      "sha256": "d4085878b9c40831e9cf9a72bbdf526bda809150df4012995de9320a087b6104"
+      "sha256": "c649ba9ae401e20d35bfe397aacc0bab0190bea447e1d994cba9064e9b3bd21f"
     },
     {
       "path": "docs/family-playset-build-guide-2026-09-23.md",
-      "sha256": "feb20b137ba89eae0107785d4db13fc43313b0b7c019fccfd85c18ad07e101ff"
+      "sha256": "7085ee19607a32ddbad986e419442d5cda59d9d5d8ffb3d463852c887a94a74e"
     },
     {
       "path": "docs/bluey-lets-play-reference-study-2026-09-25.md",
@@ -714,15 +714,15 @@
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
-      "sha256": "331796b550eaf84d96f4debce69274dd0ad769e77067cf7acac4f515f6d9f621"
+      "sha256": "ff303241bb6df0f3d21b76aa89b42adc612f6aae22d4de0c113e99fdabd6b8bd"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
-      "sha256": "396c9161686d1e339b750f77b15174e11e7dc10db7a996f5f9ad63eab6140790"
+      "sha256": "64a9bd79ecfbc50f168398eea248a038f77306f047b36cadc50ed682355260b6"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs",
-      "sha256": "82ba55dbfca5f8f8fbee87714a3a7e0807931cc0f05fc2250fc0ff068f683bbf"
+      "sha256": "e64be1ce7d13a1d40a38b430a795cb8cff029de3d0a7d64dc6074c6e9fad0cf6"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs",
@@ -730,11 +730,11 @@
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs",
-      "sha256": "82a3f43acc7aa409bc1c53611e587057457d8283c95d24579d967f56cbf30b08"
+      "sha256": "af741bc36a980cfbdf96411d19009eeecc073c4066a677ad787116a9904c6d74"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
-      "sha256": "278bdd74cc246056b61fb9d8526ab6a9cc59fe299b954d39d5a5b05b7886c561"
+      "sha256": "4717b2f7cdea5bd26c3f18369e6ecc21c872e006a990b18c0d77860047f58487"
     },
     {
       "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Runtime/FoundationVideo.cs",
