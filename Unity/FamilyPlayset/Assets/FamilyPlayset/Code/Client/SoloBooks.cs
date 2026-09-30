@@ -35,6 +35,8 @@ namespace LittleWeeps.Client
         private bool bookPagePending,bookNamePending,bookEffectPending,bookWasEffect,bookWasSpeaking,bookAwaitingSpeech,bookEffectsOn=true;
         private float bookSpeechDeadline;
         private float bookAutoAt=-1,bookNextSave,bookMotionUntil;
+        private long bookLastUseUtc;
+        private void TouchBook()=>bookLastUseUtc=DateTime.UtcNow.Ticks;
         private string readAfterDrop;
         public bool BookOpen=>reader.Open;
         public bool BookLibraryOpen=>bookLibrary!=null && bookLibrary.gameObject.activeSelf;
@@ -158,7 +160,8 @@ namespace LittleWeeps.Client
             if(!Ready || !IsBook(copyId) || MenuOpen || WorldLoading || TravelPending)return;
             if(reader.Open)CloseBook();
             CancelPointers();CancelStairApproach();CancelDoorApproach();CloseNavigation();Narration.Stop();ReadBookContent(HomeBooks.Index(copyId));
-            var key=BookKey;reader.Begin(PlayerPrefs.GetInt(key+"page",0),PlayerPrefs.GetInt(key+"sample",0),PlayerPrefs.GetInt(key+"revision",bookContent.revision),bookContent.pages.Length,bookContent.revision);reader.AutoTurn=PlayerPrefs.GetInt(key+"auto",0)!=0;bookOptions.gameObject.SetActive(false);
+            var key=BookKey;long.TryParse(PlayerPrefs.GetString(key+"last-use-utc","0"),out var lastUse);var expired=HomeBooks.BookmarkExpired(lastUse,DateTime.UtcNow.Ticks);
+            reader.Begin(expired?0:PlayerPrefs.GetInt(key+"page",0),expired?0:PlayerPrefs.GetInt(key+"sample",0),PlayerPrefs.GetInt(key+"revision",bookContent.revision),bookContent.pages.Length,bookContent.revision);reader.AutoTurn=PlayerPrefs.GetInt(key+"auto",0)!=0;bookOptions.gameObject.SetActive(false);TouchBook();
             readerOverlay.gameObject.SetActive(true);readerOverlay.SetAsLastSibling();stick.gameObject.SetActive(false);
             ShowBookPage();StartBookArt();SaveBookmark();
         }
@@ -203,14 +206,15 @@ namespace LittleWeeps.Client
         private void SaveBookmark()
         {
             if(!reader.Open)return;CaptureBookSample();var key=BookKey;
-            PlayerPrefs.SetInt(key+"revision",reader.ContentRevision);PlayerPrefs.SetInt(key+"page",reader.Page);PlayerPrefs.SetInt(key+"sample",Math.Max(0,reader.Sample));PlayerPrefs.SetInt(key+"auto",reader.AutoTurn?1:0);PlayerPrefs.Save();bookNextSave=Time.unscaledTime+5;
+            // Periodic autosaves preserve inactivity; saving is not reading.
+            PlayerPrefs.SetString(key+"last-use-utc",bookLastUseUtc.ToString());PlayerPrefs.SetInt(key+"revision",reader.ContentRevision);PlayerPrefs.SetInt(key+"page",reader.Page);PlayerPrefs.SetInt(key+"sample",Math.Max(0,reader.Sample));PlayerPrefs.SetInt(key+"auto",reader.AutoTurn?1:0);PlayerPrefs.Save();bookNextSave=Time.unscaledTime+5;
         }
         private void StopBookName()
         {bookNameGeneration++;bookNamePending=false;bookName=-1;if(readerVoice!=null){readerVoice.Stop();readerVoice.clip=null;}nameAudio=null;ReleaseBook(ref bookNameLease);bookWasSpeaking=bookAwaitingSpeech=false;}
         private void StopBookEffect()
         {bookEffectGeneration++;bookEffectPending=bookWasEffect=false;if(readerEffects!=null){readerEffects.Stop();readerEffects.clip=null;}effectAudio=null;ReleaseBook(ref bookEffectLease);}
-        private void PauseBook()
-        {if(!reader.Open)return;CaptureBookSample();reader.Pause();StopBookName();StopBookEffect();bookAutoAt=-1;SaveBookmark();UpdateBookControls();}
+        private void PauseBook(bool used=true)
+        {if(!reader.Open)return;if(used)TouchBook();CaptureBookSample();reader.Pause();StopBookName();StopBookEffect();bookAutoAt=-1;SaveBookmark();UpdateBookControls();}
         private void CloseBook()
         {if(!reader.Open)return;PauseBook();reader.Close();ReleaseBookMedia();readerOverlay.gameObject.SetActive(false);bookOptions.gameObject.SetActive(false);stick.gameObject.SetActive(JoystickMode && !MenuOpen);CancelPointers();}
         private void TurnBook(int page)
@@ -257,7 +261,7 @@ namespace LittleWeeps.Client
         }
         private void ToggleBookPlay()
         {
-            if(!reader.Open || applicationPaused)return;if(reader.Playing){PauseBook();return;}if(!Narration.VoiceEnabled)return;
+            if(!reader.Open || applicationPaused)return;TouchBook();if(reader.Playing){PauseBook();return;}if(!Narration.VoiceEnabled)return;
             if(reader.Page==reader.Pages-1 && pageAudio!=null && reader.Sample>=pageAudio.samples-1){RestartBook();return;}
             if(!bookPagePending && (pageAudio==null || pageAudio.loadState!=AudioDataLoadState.Loaded))ShowBookPage();
             StopBookName();StopBookEffect();if(pageAudio!=null && reader.Sample>=pageAudio.samples-1)reader.Sample=0;
@@ -272,7 +276,7 @@ namespace LittleWeeps.Client
         {readerVoice.Play();bookWasSpeaking=false;bookAwaitingSpeech=true;bookSpeechDeadline=Time.unscaledTime+3;RecordBookAudio("play-requested");}
         private void BookName(int index)
         {
-            if(!reader.Open || applicationPaused || !DinosaurBook || index<0 || index>=bookContent.names.Length)return;bookSelected=index;bookMotionUntil=Time.unscaledTime+1.6f;
+            if(!reader.Open || applicationPaused || !DinosaurBook || index<0 || index>=bookContent.names.Length)return;TouchBook();bookSelected=index;bookMotionUntil=Time.unscaledTime+1.6f;
             if(!Narration.VoiceEnabled){PlayBookEffect();return;}CaptureBookSample();StopBookName();StopBookEffect();bookName=index;bookNamePending=true;bookAutoAt=-1;
             bookNameLease=AcquireBook(BookPath+"audio/name-"+index);StartCoroutine(LoadBookName(bookNameGeneration,reader.Generation,bookNameLease));UpdateBookControls();
         }
@@ -346,6 +350,10 @@ namespace LittleWeeps.Client
             foreach(var t in ReadToys())if(t.id!=dragging && t.zone==CurrentArea && HomeBooks.Slot(t.container)>=0)toys[t.id].anchoredPosition=BookSupportPicture(HomeBooks.Slot(t.container));
             var scale=Vector3.one*Mathf.Min(safe.rect.width/1200,safe.rect.height/800);if(BookLibraryOpen){bookLibrary.SetAsLastSibling();bookLibraryFrame.localScale=scale;}
             if(!reader.Open)return;readerOverlay.SetAsLastSibling();LayoutBookReader();
+            if(!applicationPaused){
+                if(readerVoice!=null && readerVoice.isPlaying || readerEffects!=null && readerEffects.isPlaying)TouchBook();
+                else if((reader.Page!=0 || reader.Sample!=0) && HomeBooks.BookmarkExpired(bookLastUseUtc,DateTime.UtcNow.Ticks))TurnBook(0);
+            }
             if(Time.unscaledTime>=bookNextSave)SaveBookmark();
             ObserveBookAudio();
             if(bookAwaitingSpeech && !applicationPaused)

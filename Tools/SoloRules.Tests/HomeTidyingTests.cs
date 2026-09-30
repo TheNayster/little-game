@@ -7,6 +7,34 @@ static partial class Program
     static SoloWorld TidyWorld()=>SoloWorld.WithHomeTidying(LiquidWorld());
     static void HomeTidyingTests()
     {
+        Test("station cleanup upgrade preserves pages kept pictures and existing timers",()=>{
+            var old=SoloWorld.WithHideAndSeek(TidyWorld());Check(Discover(old,"fill:0:5").Accepted && Liquid(old,"red").Accepted);Advance(old,40);
+            var before=old.Snapshot();var w=SoloWorld.WithStationTidying(old);var after=w.Snapshot();Check(after.schema==HomeTidying.StationResetSchema && ReferenceEquals(w,SoloWorld.WithStationTidying(w)));
+            after.schema=before.schema;after.revision--;Check(Encode(after)==Encode(before));Advance(w,299);Check(Workspace(w).pages[0].colors[0]==5);Advance(w,6);Check(Workspace(w).pages[0].colors.All(v=>v==0));
+        });
+        Test("all eighteen unused working pages clear history with cue and reject late fills",()=>{
+            var w=SoloWorld.WithStationTidying(TidyWorld());for(var i=0;i<18;i++)Check(Discover(w,"fill:0:5",page:i).Accepted);
+            var stale=Command(w,SoloAction.Discovery,"first",Discovery.PageToken(0,Workspace(w).pages[0]),"fill:1:1");Advance(w,299);Check(Workspace(w).pages.All(p=>p.colors[0]==5));Advance(w,1);Check(w.ReadTidyCues().Count()==18);Advance(w,4);Check(Workspace(w).pages[0].colors[0]==5);Advance(w,1);
+            Check(Workspace(w).pages.All(p=>p.colors.All(v=>v==0) && p.undo.Length==0 && p.redo.Length==0));stale.expectedRevision=w.Revision;Check(w.Apply(stale).Outcome=="page-changed");SoloWorld.Validate(w.Snapshot());
+        });
+        Test("four connected artists renew only their own page and independent departure keeps siblings",()=>{
+            var w=SoloWorld.WithStationTidying(TidyWorld());var session=new FamilySession(w);var ids=w.Snapshot().players.Select(p=>p.id).ToArray();
+            for(var i=0;i<4;i++){Check(session.Attach((ulong)(i+1),ids[i],out _));Check(Discover(w,"fill:0:5",ids[i]).Accepted);}
+            Check(Discover(w,"fill:0:4","second",page:1).Accepted);for(var i=0;i<300;i++)session.AdvanceIdle(1,out _);
+            Check(HomeTidying.CueKeys(session.View()).Contains(HomeTidying.Page("first",0)));Check(Discover(w,"fill:1:1","second").Accepted);Check(Discover(w,"visit:page0","third").Accepted);session.Detach(4);
+            for(var i=0;i<5;i++)session.AdvanceIdle(1,out _);
+            Check(Workspace(w).pages[0].colors.All(v=>v==0) && Workspace(w,"fourth").pages[0].colors.All(v=>v==0));Check(Workspace(w,"second").pages[0].colors[0]==5 && Workspace(w,"third").pages[0].colors[0]==5 && Workspace(w,"second").pages[1].colors.All(v=>v==0));
+            Check(!Discover(w,"visit:page18").Accepted);SoloWorld.Validate(w.Snapshot());
+        });
+        Test("saved displayed pictures survive paper cleanup and clocks survive reopening",()=>{
+            var w=SoloWorld.WithStationTidying(TidyWorld());Check(Discover(w,"fill:0:5").Accepted && Discover(w,"save-picture").Accepted);
+            var kept=w.ReadCreations().pictures.Single();Check(w.Apply(Command(w,SoloAction.Discovery,"first",kept.key.ToString(),"display-picture")).Accepted);var stored=CreationJson(w.ReadCreations());Advance(w,250);
+            w=SoloWorld.Restore(Decode(Encode(w.Snapshot())));Advance(w,54);Check(Workspace(w).pages[0].colors[0]==5);Advance(w,1);Check(Workspace(w).pages[0].colors.All(v=>v==0));Check(CreationJson(w.ReadCreations())==stored);
+        });
+        Test("science tool-only changes reset to fresh defaults after unused grace",()=>{
+            var w=SoloWorld.WithStationTidying(TidyWorld());Check(Bubbles(w,"size").Accepted && Bubbles(w,"shape").Accepted && Bubbles(w,"air").Accepted && Mix(w,"vessel").Accepted && Ice(w,"dinosaur").Accepted);Advance(w,305);
+            var d=Workspace(w);Check(!d.bubbles[0].current.water && !d.bubbles[0].current.big && !d.bubbles[0].current.square && !d.bubbles[0].current.strong && !d.mixtures[0].volcano && d.ice[0].current.toy==0);
+        });
         Test("home tidying migration preserves every old record and starts with full grace",()=>{
             var old=LiquidWorld();Check(Liquid(old,"red").Accepted && Discover(old,"fill:0:5").Accepted);var before=old.Snapshot();var w=SoloWorld.WithHomeTidying(old);var s=w.Snapshot();Check(s.schema==22 && s.homeIdleTimers.Length==0);s.schema=21;s.revision--;Check(Encode(s)==Encode(before));Check(ReferenceEquals(w,SoloWorld.WithHomeTidying(w)));Advance(w,299);Check(LiquidColorLab.Volume(LiquidTray(w).current)==1 && w.ReadTidyCues().Length==0);
         });

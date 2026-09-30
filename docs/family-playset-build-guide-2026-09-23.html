@@ -1,6 +1,4 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Family Playset — ground-up build guide</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Little Weeps — family-playset-build-guide-2026-09-23</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -16,47 +14,7 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 .wheel .scene-note{position:absolute;top:25%;left:7%;width:48%;font-size:17px}.place-rail{position:absolute;right:0;top:0;bottom:23%;width:39%;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 8px;background:#cbecf7;border-left:4px solid white}.place-rail .stage{position:relative;transform:none!important;left:auto;top:auto;width:126px;min-height:126px;flex-shrink:0}.cast-diagram{position:absolute;left:0;right:0;bottom:0;height:23%;background:#b8e2f7;border-top:4px solid white;display:flex;align-items:center;padding:18px;font-weight:700;font-size:16px}
-
-.build-intro{padding:42px 0 24px}.build-intro h1{font-size:clamp(34px,4.6vw,58px);margin:0 0 18px}.build-intro p{max-width:890px}.build-status{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}.build-status span{border-radius:20px;background:#e7f0f1;padding:6px 14px;font-size:14px}.build-status .next{background:#ffe6b3}.topbar nav{flex-wrap:wrap}.report code{overflow-wrap:anywhere}.report pre{overflow-x:auto;max-width:100%;background:#edf2f1;padding:20px;border-radius:12px}.report pre code{white-space:pre;overflow-wrap:normal;font-size:13px}.build-roadmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;padding:0;margin:0 0 36px;gap:12px}.build-roadmap li{background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px}.build-roadmap a{text-decoration:none;display:block}.build-roadmap small{display:block;letter-spacing:.07em;font-size:11px;font-weight:700;margin-bottom:8px}.build-roadmap strong{display:block;font-size:16px;line-height:1.4}.build-roadmap span{display:block;font-size:13px;margin-top:8px;color:#596a6b}.build-callout{border-left:4px solid #d3a13c;padding:16px 20px;background:#fff6e4;border-radius:0 12px 12px 0;margin-bottom:30px}.build-callout p{margin:4px 0}.build-callout a{font-weight:700}
-@media(max-width:900px){.build-roadmap{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:620px){.build-roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}.build-intro h1{font-size:38px}.build-roadmap li{padding:14px}}
-@media print{.build-roadmap,.build-callout{break-inside:avoid}.report pre{white-space:pre-wrap}.report pre code{white-space:pre-wrap}.build-roadmap{grid-template-columns:repeat(5,minmax(0,1fr))}}
-</style></head><body>
-<header class="topbar"><a class="brand" href="bluey-game-research-2026-09-23.html">THE FAMILY PLAYSET</a><nav aria-label="Build guide navigation"><a href="bluey-game-research-2026-09-23.html">Goal sheet</a><a href="#8-ordered-phases-and-completion-gates">Build order</a><a href="#9-first-implementation-work-queue">Next tasks</a><a href="#18-current-work-record-and-research-basis">Current status</a><a href="#19-implementation-audit-and-remaining-work">Audit &amp; remaining work</a></nav></header>
-<main class="wrap" id="top"><div class="build-intro"><p class="eyebrow">Ground-up production guide · Audited 25 September 2026</p><h1>One clear build order.<br>A foundation for the whole game.</h1><p class="intro">The Family Playset is our goal sheet. This guide turns it into a practical sequence: prove the foundations, finish a representative playable area, expand the content, and deliver reliable updates to the family's devices.</p></div>
-<div class="build-status"><span>35 feature IDs mapped</span><span>9 active phases; G4 retired</span><span>4-device admission verified</span><span class="next">G1 / G2 / G3 gates open</span></div>
-<ol class="build-roadmap" aria-label="Production sequence">
-<li><a href="#7-android-ios-and-pc-build-pipeline"><small>G1</small><strong>Establish the project</strong><span>Builds, devices, saves and updates.</span></a></li>
-<li><a href="#8-ordered-phases-and-completion-gates"><small>G2–G5</small><strong>Prove shared play</strong><span>Touch, server play and persistent rooms.</span></a></li>
-<li><a href="#g6-the-representative-finished-slice"><small>G6</small><strong>Finish one slice</strong><span>Real art, voices, activities and child testing.</span></a></li>
-<li><a href="#12-content-batch-order-after-the-foundations-pass"><small>G7</small><strong>Build the full content</strong><span>Six content regions, five destinations and activity batches.</span></a></li>
-<li><a href="#15-family-delivery-updates-and-recovery"><small>G8–G9</small><strong>Deliver and maintain</strong><span>Signed releases, backups and safe updates.</span></a></li>
-</ol>
-<div class="build-callout"><p><strong>Current build summary:</strong> Candidate <strong>229</strong>, schema 32/content 33, changes hide-and-seek to Start → one broadcast 15-second countdown → hide before zero to join. Only hidden participants are sought; coming out/moving after zero withdraws only that child. All 304 core groups pass and the Windows release server/client builds; five native four-client groups and two private-solo groups pass, including ignored nonhiders, individual withdrawal and cold reopen. No 229 Android/iPad artifact or device rollout has been made. Production server/devices remain last recorded at <strong>227</strong>; no fresh live check is claimed. <a href="implementation/hide-and-seek-hide-to-join-2026-09-30.html">Evidence and rollout boundary</a>. Preserve the wider Home backlog and main integration hold.</p><p><a href="#19-implementation-audit-and-remaining-work">Audit and remaining work</a> · <a href="#9-first-implementation-work-queue">Next task and acceptance</a> · <a href="implementation/g3-outage-failures-2026-09-25.html">Windows 91 evidence</a> · <a href="implementation/g3-mobile-recovery-builds-2026-09-25.html">Historical mobile 91 preparation</a> · <a href="implementation/g3-persistent-server-2026-09-24.html">Server lifetime proof (83)</a></p></div>
-<div class="report-layout"><aside class="contents"><h3>In this build guide</h3><div class="toc">
-<ul>
-<li><a href="#1-two-documents-with-different-jobs">1. Two documents with different jobs</a></li>
-<li><a href="#2-what-professional-teams-do-and-how-we-apply-it">2. What professional teams do, and how we apply it</a></li>
-<li><a href="#3-foundation-requirements-we-must-preserve">3. Foundation requirements we must preserve</a></li>
-<li><a href="#4-project-home-folders-and-source-control">4. Project home, folders and source control</a></li>
-<li><a href="#5-architecture-before-feature-expansion">5. Architecture before feature expansion</a></li>
-<li><a href="#6-data-ownership-and-contracts-to-settle-early">6. Data ownership and contracts to settle early</a></li>
-<li><a href="#7-android-ios-and-pc-build-pipeline">7. Android, iOS and PC build pipeline</a></li>
-<li><a href="#8-ordered-phases-and-completion-gates">8. Ordered phases and completion gates</a></li>
-<li><a href="#9-first-implementation-work-queue">9. First implementation work queue</a></li>
-<li><a href="#10-the-working-method-that-prevents-jumping-around">10. The working method that prevents jumping around</a></li>
-<li><a href="#11-art-audio-and-content-production-pipeline">11. Art, audio and content production pipeline</a></li>
-<li><a href="#12-content-batch-order-after-the-foundations-pass">12. Content batch order after the foundations pass</a></li>
-<li><a href="#13-test-strategy-and-the-evidence-required">13. Test strategy and the evidence required</a></li>
-<li><a href="#14-performance-interruptions-and-diagnostics">14. Performance, interruptions and diagnostics</a></li>
-<li><a href="#15-family-delivery-updates-and-recovery">15. Family delivery, updates and recovery</a></li>
-<li><a href="#16-risks-decisions-and-change-control">16. Risks, decisions and change control</a></li>
-<li><a href="#17-coverage-of-the-family-playset-goal-sheet">17. Coverage of the Family Playset goal sheet</a></li>
-<li><a href="#18-current-work-record-and-research-basis">18. Current work record and research basis</a></li>
-<li><a href="#19-implementation-audit-and-remaining-work">19. Implementation audit and remaining work</a></li>
-</ul>
-</div>
-</aside><article class="report">
+main{max-width:1100px;margin:32px auto;padding:24px}img{max-width:100%}table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid #c9dadf}code{overflow-wrap:anywhere}</style></head><body><main><h1 id="the-family-playset-ground-up-build-guide">The Family Playset — ground-up build guide</h1>
 <p><strong>Persistent PC server installed — September 30:</strong> release <strong>227</strong> now uses one permanent executable path, retained game port, reusable verified LAN firewall rule and corrected parent selection. Sign-in startup, native crash recovery and helper watchdog are enabled; Stop/Pause remains respected. Compatible app updates leave the server alone. <a href="server-update-policy.md">Mandatory cross-chat rollout policy and acceptance</a>. Seven focused tests and real deployment checks pass; two enrolled players were observed. Candidates 229–231/content 33 still require a coordinated update from installed content 31. No device update, pre-login service, sleep-policy change or router reservation was made. Preserve the main integration hold.</p>
 <p><strong>PC server/update research — September 30:</strong> the user clarifies availability while the PC is awake and connected, with compatible app releases leaving the existing server running. <a href="implementation/pc-server-reliability-research-2026-09-30.html">Applied findings and implementation contract</a> cover app/server release classification, a permanent server path/port and reusable firewall permission, lagging helper schema support, and startup/crash recovery. This is research only; no runtime, device, firewall or startup change was made. Release classification is the next bounded server task. Preserve the Home backlog and current main integration hold.</p>
 <p><strong>Hide to join — September 30 user correction:</strong> starting Hide &amp; seek immediately broadcasts one server-owned 15-second countdown to everyone on the server. Players join by entering a hiding spot before zero; no acceptance or readiness lobby is required. The parent searches only for players still hidden at zero. Other players keep playing and are ignored. Go hide is an optional explicit trip downstairs, using only the remaining shared time. Coming out, moving, leaving or disconnecting after zero withdraws only that hider; no re-hide or personal restart during the search. Bandit and Chilli still alternate. Candidate 229 uses schema 32/content 33. <a href="implementation/hide-and-seek-hide-to-join-2026-09-30.html">Implementation and verification</a>. No device or live-server rollout has occurred; preserve the main integration hold.</p>
@@ -104,7 +62,7 @@
 <p><strong>Item–item scope:</strong> include <a href="bluey-lets-play-reference-study-2026-09-25.html#19-itemitem-interactions-containers-and-shed-storage">shed/container storage and combinations</a> in G5 contracts and the G6 representative scene. Prove storing a filled can and a toy, closing/reopening, visiting Creek, save/restart and shared retrieval without duplication or loss. A decorated/filled object keeps its state; borrowed-item cleanup protects personal contents.</p>
 <p><strong>Explicit radio behavior:</strong> radio on → music plays → nearby idle characters automatically dance; radio off → music stops and characters settle. Walking or starting another action overrides dancing, and busy siblings keep their activity. Preserve mute, character-switch, save/reopen and shared/offline rules. This is ordinary object-driven free play; musical statues is an optional game layered on top. <a href="bluey-lets-play-reference-study-2026-09-25.html#20-sound-expression-and-pace">Detailed reaction and acceptance contract</a>.</p>
 <h2 id="1-two-documents-with-different-jobs">1. Two documents with different jobs</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Document</th>
@@ -134,14 +92,14 @@
 <td>At the end of each meaningful work session</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The user's latest instructions take priority. The goal sheet controls product scope; this guide controls the default build sequence. Earlier milestone lists in the research are background to this consolidated sequence. A later phase means <strong>not yet</strong>, not <strong>removed</strong>. If a required feature fails its proof, record the failure and revisit the design; do not quietly weaken the requirement.</p>
 <p>Keep the current feature IDs from <a href="bluey-game-research-2026-09-23.html#16-expanded-feature-tracker">goal-sheet section 16</a>. Each implementation task names its goal IDs and acceptance evidence. General requirements without existing IDs—such as build setup, input, menu accessibility and installation—are explicitly covered by this guide too.</p>
 <h2 id="2-what-professional-teams-do-and-how-we-apply-it">2. What professional teams do, and how we apply it</h2>
 <p>There is no single process used by every company. This guide adapts published production guidance and a commercial Unity studio's account to a small family project.</p>
 <p>Unity describes pre-production, production, post-production and ongoing operations; its pre-production guidance emphasizes establishing the design and resolving decisions before large-scale creation. Unity's USC course uses milestones and a <strong>vertical slice</strong>, a small playable portion that represents the intended final experience. Our technical proofs precede the polished slice because the hardest requirements are shared state and mobile recovery. <a href="https://learn.unity.com/course/job-seeker-s-guide-to-learning-unity/tutorial/the-real-time-production-cycle">Unity production cycle</a>, <a href="https://learn.unity.com/course/design-and-publish-your-original-game-unity-usc-games-unlocked/unit/milestones">Unity/USC milestones</a></p>
 <p>In its published Unity workflow, <strong>Mega Cat Studios</strong> describes focused components, explicit dependencies, smaller additive scenes, reusable prefabs and asset validation. This is useful evidence from a working studio, not proof that its exact architecture fits our game. We adopt the separation of responsibilities and adapt it for independent rooms, older iPads and a headless PC server. <a href="https://unity.com/blog/scaling-workflows-lessons-from-medium-to-large-projects">Mega Cat Studios workflow account</a></p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Common production discipline</th>
@@ -178,7 +136,7 @@
 <td>Preserve signing identities, saves, media, diagnostics and a tested update route</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>These disciplines do not require a commercial launch. Our delivery target is the family's devices. Responsibilities still exist: the user directs the experience and evaluates it with the children; implementation work covers engineering, asset integration, testing and documentation. The guide does not assume a staffed studio or paid cloud services.</p>
 <h2 id="3-foundation-requirements-we-must-preserve">3. Foundation requirements we must preserve</h2>
 <p>The <a href="bluey-game-research-2026-09-23.html#1-your-requirements-now-recorded">goal sheet</a> remains authoritative. These requirements have architectural consequences from the first prototype:</p>
@@ -252,7 +210,7 @@ Command request ------&gt; local authority OR network adapter to authority
 
 Offline solo and the dedicated PC/VPS use the same world-rule code; clients present and interact with the server world.
 </code></pre>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Module</th>
@@ -292,14 +250,14 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <td>Runtime dependencies on UnityEditor</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Use assembly definitions to enforce useful dependency directions and isolate editor/platform code. Start with these broad responsibilities; split further only for a demonstrated dependency or build-time benefit. The core should be testable without Unity rendering or the network SDK. Unity documents that assembly definitions restrict dependencies and can isolate code compilation. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/assembly-definitions-intro.html">Assembly definitions</a></p>
 <p><strong>Scene model:</strong> a persistent bootstrap/session root plus local area views loaded as needed. The authority retains logical state for every occupied area, including areas its own camera cannot see. Logical bounds, hiding spots, seats and interaction anchors cannot depend on reading pixels or a loaded render texture. A global scene replacement must not transport all players together.</p>
 <p><strong>Content model:</strong> ScriptableObjects can author character/item/recipe definitions; a separate runtime model stores the current bucket fill, child's creation or quest state. Do not use a mutable shared definition asset as the save for two children. Unity's player does not save edits back into those authored assets as a persistence system. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html">ScriptableObject data behavior</a></p>
 <p><strong>No multiplayer retrofit:</strong> even the solo bucket prototype sends an action through the same rule boundary that a remote player will use. Presentation may immediately highlight or animate a tentative action, but durable results come from accepted world state. We are not relying on identical 2D physics results on every platform.</p>
 <h2 id="6-data-ownership-and-contracts-to-settle-early">6. Data ownership and contracts to settle early</h2>
 <p>These are proposed implementation contracts, drawn from the existing shared-world and recovery requirements. They should receive small tests before large scenes exist.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Data</th>
@@ -340,7 +298,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <td>Local content files; not ordinary gameplay network packets</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Define separate versions for <strong>application build</strong>, <strong>network protocol</strong>, <strong>content catalog</strong>, and <strong>save schema</strong>. A later app update might change one without changing all four. Reject an incompatible connection gracefully while retaining solo play; never interpret an unknown save schema as a blank world.</p>
 <p>Commands carry a request ID, player identity, relevant object/room identity and expected state/revision. The authority orders accepted actions and rejects stale ownership. Repeated delivery must not pour twice, duplicate a fish or complete the same return twice. Movement/drag visual updates can be coalesced; final placements and creations require explicit accepted results.</p>
 <p>Saving distinguishes state accepted in memory, state replicated to a client, and state successfully persisted. Do not describe an in-memory acknowledgement as crash-proof. Use versioned records, validated checkpoints, a last-known-good backup and an explicit migration path; keep a small journal where needed for recovery. Checkpoint frequency and durability boundaries are prototype decisions to measure.</p>
@@ -349,7 +307,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <h2 id="7-android-ios-and-pc-build-pipeline">7. Android, iOS and PC build pipeline</h2>
 <p><strong>Working baseline:</strong> Unity <strong>6000.3.24f1</strong>, NGO <strong>2.13.2</strong>, Transport <strong>2.7.4 embedded patch 1</strong>, Input System <strong>1.20.0</strong> remain pinned. Server/helper 91 are deployed; iPad 7 runs 95, Samsung 83, iPad 9/iPhone 79. Prepared <strong>98</strong> has 410 matching runtime/package files across Windows, signed Android and Apple export. Windows and Android-emulator recovery tests and Apple native compilation pass; physical 98 installation is pending. <a href="implementation/g3-offline-authority-and-hitch-review-2026-09-25.html">Current qualification</a>. Strict Android 16 KB RELRO, unattended renewal and sustained mobile qualification remain open.</p>
 <p>Keep everyday creation on <strong>Windows</strong>. Build Android and the Windows server there. Our verified export route also generates the iOS Xcode project on Windows and transfers that export to the <strong>M1 Pro Mac</strong> for native compilation/signing. Unity does not need to be installed on the Mac for this route; if the Mac later exports directly from source, use the identical Unity patch. Record source revision, export hash and native build result together. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/iphone-BuildProcess.html">Unity iOS build process</a></p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Platform build profiles</th>
@@ -389,7 +347,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <td>Headless server with local config, saves and logs</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Unity Build Profiles are versionable assets for different platform/configuration combinations. Save these settings instead of relying on whatever someone last selected in the editor. Command-line builds must name the project and intended build profile/target explicitly. The first automation can be local scripts on Windows and Mac; a paid cloud build service is not required by this plan. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/build-profiles.html">Build Profiles</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/build-command-line.html">Command-line builds</a></p>
 <p>Freeze the editor version, resolved package lockfile, Android toolchain supplied for that editor, Mac/Xcode versions, scripting backend, architectures and graphics settings after qualification. Commit the manifest and lockfile; package upgrades are deliberate changes with affected-device retesting. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/upm-conflicts-auto.html">Unity package lock files</a></p>
 <p>Each artifact record includes source commit, build number, platform/profile, toolchain versions, protocol/content/save versions, checksum, logs, native symbols and passed tests. Windows and Mac produce platform-specific artifacts from the same source revision; their output files are not expected to be identical.</p>
@@ -399,7 +357,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <p><strong>Dependency sequence:</strong> G0 → G1 → G2 → G3 → G5 → G6 → G7 → G8 → G9. <strong>G4 is retired by explicit user decision; keep its ID without an exit gate.</strong> Independent art/import work can run while physical/deployment checks wait; integrated features still need their actual rules, save and performance dependencies. Renewal observation can overlap and remains an open release check.</p>
 <p><strong>September 25 user-authorized overlap:</strong> while physical build 98 qualification waits, independent character/animation and room/item contract preparation may proceed; device-host work is retired. This does not authorize claiming missing mobile gates passed or batch-producing the full game. Continue one bounded implementation task at a time, with its own evidence.</p>
 <p><strong>Actual sequence:</strong> provisional Windows G2/G3 work was authorized while earlier device/renewal checks remained open. Both iPads later passed the solo garden; four physical clients joined the family server. This is scoped proof, not closure of G1–G3. Prepare art independently now; prove persistent room/item contracts before integrating those systems broadly.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Gate</th>
@@ -470,7 +428,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <td>Unrelated refactors inside a bug fix; optional travel work displacing a required failure</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="g1-prove-the-build-and-update-route">G1: prove the build and update route</h3>
 <p><strong>Original G1 startup scope, now largely completed:</strong> inventory the real Android/Mac toolchains, create the isolated project and verify its connector, introduce a visible build number, tiny persisted value, stable profile and separate test/family paths. Do not recreate the project or repeat inventory as new work. The current device ledger in section 19 identifies the evidence and remaining gaps.</p>
 <p>Build and launch on both iPads and Android; also establish the iPhone as the fourth test client before G3 can pass. Make a second release-configured build that visibly changes the build number while preserving the test save. Record the signing identity and installation route. A simulator or editor launch does not satisfy the device check.</p>
@@ -488,7 +446,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <p><strong>Current queue, updated September 25.</strong> The original startup work is largely present: separate project/repository, recorded tool versions, stable app identities, named build profiles, repeatable builders, native device launches, and scoped save/update proofs. Automatic renewal and independent backup/restore remain open. Section 19 separates completed checks from full gate completion; older implementation records retain their dated evidence.</p>
 <p>Complete one bounded task at a time. Each row below will take multiple tasks; it is a dependency order, not permission to start them all together.</p>
 <p><strong>Completed user-directed corrections:</strong> all four clients now run 101, with Bluey/Bingo and restored solo Creek navigation. The original family server/helper remains 91. In-place saves and enrollment were retained. The user accepts the Android character prototype but notes stiffness. Focused physical continuity and sustained performance remain open. <a href="implementation/character-phone-switch-2026-09-25.html">Delivery record</a>.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Order</th>
@@ -533,7 +491,7 @@ Offline solo and the dedicated PC/VPS use the same world-rule code; clients pres
 <td>Expand the six-world/full-cast content in section 12; close device, renewal, update, offline and recovery checks. No G4 gate exists.</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Foundation checks to close alongside that sequence:</strong> complete free renewal on both iPads and observe an actual unattended refresh; choose an independent backup destination and prove a restore; finish native Android 16 KB qualification; complete remaining current-build phone acceptance; measure sustained frame times/memory on the A10. Samsung now runs 128 and iPhone 101; earlier retained-save/enrollment evidence remains scoped to its recorded builds. G2 also needs structured child usability, assistance styles and authored movement/interaction contracts before its gate closes. The user reports children are playing; that alone is not an observed usability study. These are tracked work, not a reason to repeat already-passed smoke checks every session.</p>
 <p><strong>G3-OPS-01 result:</strong> the parent page, safe lifecycle actions and isolated acceptance are complete within scope. It uses fresh native observations and validated process identity, verifies the checkpoint checksum, rejects duplicate starts, and has an authoritative occupied-stop guard. The real dashboard monitors existing 83 without stopping it. <a href="implementation/g3-parent-controls-2026-09-24.html">Implementation and test record</a>.</p>
 <p><strong>Deployment follow-up, September 25:</strong> server 83 → 91 completed in an empty session with a verified protected backup and exact executable/local-network permission. Every original world field, four player records and ten items were preserved. The old helper was deliberately retired; helper 91 selected the same game instance, made a verified backup and enabled recovery with healthy status. Actual sign-in startup remains Off; no live crash or OS sign-in/reboot was injected. <a href="implementation/evidence/ipad91-2026-09-25/server91-deployment.json">Server</a> · <a href="implementation/evidence/ipad91-2026-09-25/parent91-activation.json">Helper</a>.</p>
@@ -597,7 +555,7 @@ Status: pending
 <p>Use consistent large icons, repeatable spoken hints, visual feedback and an obvious exit. Each touch belongs to one UI control, walk command or draggable prop until release/cancellation. Opening a book, TV or settings panel must not set the entire shared world's time scale to zero. Language, movement mode and assistance settings remain local to the child.</p>
 <p>Apple's game-design guidance recommends aiming for 44-by-44-point touch targets on iPhone/iPad. Treat that as general platform guidance, not a preschool usability result or a literal Unity-pixel value. Use larger, well-spaced critical controls and check their physical size and reach on the actual devices with both children. Phone layouts need intentional placement, not simply a shrunk tablet screen. <a href="https://developer.apple.com/videos/play/wwdc2024/10085/">Apple game touch-design guidance</a></p>
 <h3 id="asset-standards">Asset standards</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Asset type</th>
@@ -647,13 +605,13 @@ Status: pending
 <td>UI accommodates text/audio differences; Spanish receives its own content review</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Generate or record voices outside the running game, then review and import them. A live LLM or ComfyUI server is not a dependency of ordinary play. Check dinosaur names and educational content before recording a large batch. Retain scripts and source audio so corrections do not require reverse engineering finished clips.</p>
 <p>Use shared prefabs and data definitions for reusable stations. A new pizza should mostly be a new recipe/content entry after cooking rules exist. Add custom code only for genuinely different behavior. Validate missing IDs, duplicate IDs, invalid references, missing English narration, oversized textures, missing exit paths and unclassified return policies before a content batch can ship.</p>
 <p>Addressables groups should separate always-needed UI, area art, character content and language/media sets. Gameplay required offline must be present locally. Each load has an owner and a matching release; cancelling a transition must not leak its handles or instantiate a late result into the wrong room. Unity's Addressables documentation describes reference counting and explicit releases; unloading can also depend on bundle references, so measure actual memory recovery. <a href="https://docs.unity3d.com/Packages/com.unity.addressables@2.10/manual/memory-assets.html">Addressables memory management</a></p>
 <h2 id="12-content-batch-order-after-the-foundations-pass">12. Content batch order after the foundations pass</h2>
 <p>These batches preserve the complete goal sheet while avoiding simultaneous unfinished worlds. Finish a batch's playable behavior and checks before opening another large content batch. Limited shared-asset preparation can run alongside it.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Batch</th>
@@ -693,12 +651,12 @@ Status: pending
 <td>English family builds can arrive first; language switching remains local to each player; translated educational material is reviewed separately</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Necessary characters enter earlier batches as needed; G7-E closes the remaining roster gaps rather than withholding character choice until the end. The six-world bubble browser remains extensible from G2, but playable builds should not present broken entry buttons to content that does not exist yet.</p>
 <p>Counts such as six distinct books (three boyish and three girly themes) and 20 dinosaur types are production batches in the goal sheet. Science now has nine tracked stations after the user's SCI-09 mixing request. Track approved scope explicitly. The 15 cooking variants and nine named imagination stories are concrete requested content. Do not inflate progress by counting the same fishing system in two places as two finished engines.</p>
 <h2 id="13-test-strategy-and-the-evidence-required">13. Test strategy and the evidence required</h2>
 <p>Use a small test pyramid adapted to this game's risks: many fast state-rule checks, fewer system integration checks, and targeted real-device sessions. Unity's Test Framework supports Edit/Play Mode tests; use the core version tied to the selected editor, not a separately guessed version from an old tutorial. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.test-framework.html">Unity 6.3 Test Framework</a></p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Test layer</th>
@@ -743,11 +701,11 @@ Status: pending
 <td>Installed version, visible content/data and matching artifact record</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Apple specifically recommends testing release builds, actual devices, app updates and operation without the debugger; debugger attachment changes lifecycle/watchdog behavior. Our family signing route may differ from a store release, but those testing principles still apply. <a href="https://developer.apple.com/documentation/xcode/testing-a-release-build">Apple release testing</a></p>
 <p>Android's core quality guidance covers lifecycle, media, stability and responsiveness. Apply relevant checks to this game; its store/account requirements are not being imported as product features. In particular, exercise lock/unlock, app switching, interrupted audio/video, layout changes and restoration. <a href="https://developer.android.com/docs/quality-guidelines/core-app-quality">Android core quality</a></p>
 <h3 id="required-device-matrix">Required device matrix</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Device</th>
@@ -776,7 +734,7 @@ Status: pending
 <td>Headless startup, saves, restart, all four clients and failure/recovery scenarios</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The four-human test uses all four mobile clients; the dedicated PC/VPS is additional. No mobile authority role is required. Editor clones accelerate iteration but do not replace physical qualification.</p>
 <p>An acceptance record should contain test ID, goal ID, source/build versions, device/OS, starting save, steps, expected/actual result, result status and attached logs where useful. A short video may illustrate the result, but the test record still needs reproducible steps.</p>
 <h2 id="14-performance-interruptions-and-diagnostics">14. Performance, interruptions and diagnostics</h2>
@@ -801,7 +759,7 @@ Status: pending
 <p>Keep backups for world/profile records, imported media manifests/files where needed, source assets and signing material. Test one restore into a separate test location. A copy that has never been restored is not evidence of a working recovery procedure.</p>
 <p>The current server runs on the home network. After reliability qualification, the owned VPS is the preferred future shared host, with parent-provisioned remote endpoints and verified migration. Select direct authenticated/encrypted access or a private route based on actual VPS/network tests. Local solo content and ordinary speech do not require internet; do not give children a server-setup flow. <a href="implementation/vps-hosting-plan-2026-09-24.html">Hosting decision</a>.</p>
 <h2 id="16-risks-decisions-and-change-control">16. Risks, decisions and change control</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Risk or unanswered question</th>
@@ -856,12 +814,12 @@ Status: pending
 <td>Use a qualified alternative behind the same interface; record the replacement and affected tests</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Record major choices as short decision notes: <strong>context → choice → alternatives considered → reason → consequence → evidence → revisit trigger</strong>. Keep a stable decision ID. Initial decisions are: new isolated Universal 2D project; one authoritative rule model; independent logical rooms; local media/bookmarks; free-first packages; early client offline/rejoin proof; and the G0–G9 sequence.</p>
 <p>Changing a package or pipeline must have a concrete reason. Do not replace the network framework, save format, scene model or artwork pipeline mid-feature without identifying migration work and retesting affected contracts. The user can change the goal; the guide then records the effect on dependencies rather than scattering partial edits across unrelated systems.</p>
 <h2 id="17-coverage-of-the-family-playset-goal-sheet">17. Coverage of the Family Playset goal sheet</h2>
 <p>Every feature ID in the current section-16 tracker has a route below. The phase shown introduces/proves it; full content completion still needs its G7 batch and G8 release checks. This is a coverage map, not a completion report.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Goal IDs / requirement</th>
@@ -986,14 +944,14 @@ Status: pending
 <td>G9 separate experiment if pursued</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The current tracker contains 35 top-level feature IDs. The coverage validator checks that all appear in this map. The full research includes additional detail, proposed counts and acceptance conditions; follow the linked goal-sheet sections when implementing each row rather than treating this summary as a replacement specification.</p>
 <h2 id="18-current-work-record-and-research-basis">18. Current work record and research basis</h2>
+<p><strong>COL-02 / COL-05 / LAB-01 / BOOK-01 — reusable stations and reader pages, September 30:</strong> <a href="implementation/station-idle-reset-2026-09-30.html">Candidate 236</a> gives every working coloring page an independent five-minute clock plus five-second cue, preserves kept/displayed copies, resets science settings-only changes and expires all six local reader bookmarks after five unused minutes. Periodic autosaves/backgrounding do not renew book use. All 310 core groups and Windows release compilation pass; focused native evidence is recorded with the implementation. Shared schema 35/content 36 requires coordinated rollout. Work is isolated from concurrent Park/Zoo edits; apply their migrations before <code>WithStationTidying</code> on integration. No physical-device/live-server update; preserve the main hold. Next: integrate the checked changes before the requested current app rollout; retain the Home backlog.</p>
 <p><strong>Approved dinosaur sounds — September 30:</strong> the user approved eight Myinstants/Pixabay previews for the dinosaur book. Windows candidate <strong>233</strong> integrates T-Rex, Triceratops, Stegosaurus, Brachiosaurus, Spinosaurus, Pteranodon, Parasaurolophus and Velociraptor. Parasaurolophus uses source seconds 10–18, Stegosaurus uses the first seven seconds, and Brachiosaurus/Spinosaurus/Pteranodon use the approved 3.2-second stretches. All eight pass one focused native loading/playback/cancellation check; approved-file regeneration protection also passes. <a href="implementation/native-reader-controls-2026-09-28.html#september-30-listening-approved-site-calls">Approval, sources and evidence</a>. Four species still lack approved replacements and keep their existing assets: Diplodocus, Ankylosaurus, Brontosaurus and Quetzalcoatlus. Schema 32/content 33 unchanged; no device or live-server rollout. Preserve the main integration hold. Next: device delivery when requested and selection of the four remaining calls.</p>
-
 <p><strong>Play-screen cleanup (G2 / NAV-REF-02) — September 30:</strong> candidate <strong>232</strong> removes the persistent Little Weeps title and places Tap to walk/Joystick and Menu together in one top-right safe-area row with equal-height, separated touch targets. Windows release compilation and one focused native pass verify no title, aligned controls within the safe area, movement toggling and menu open/close at Android-wide, iPad 7, iPad Air, portrait and return-to-landscape dimensions. <a href="implementation/evidence/play-controls-2026-09-30/result.json">Evidence</a>. Schema 32/content 33 unchanged; no devices or live server updated. Preserve the main integration hold and unrelated ongoing work. Next: include this presentation change in the next requested device update, then accept family playtesting; the Home backlog remains open.</p>
 <p><strong>Games menu — September 30:</strong> candidate <strong>231</strong> replaces the top Hide &amp; seek launcher with <strong>Games</strong>. Its scrollable picture menu has one entry, Hide &amp; seek. A selection closes the menu and starts the existing server-owned countdown; Back or an outside tap dismisses without starting or changing participation. The menu blocks only its owner's movement/input, never pauses the shared world, and remains a place to add later area mini games. Windows release compilation and three focused native groups pass: phone/iPad layout and cancellation, one selection broadcasting to all four clients, and independent menu-owner departure with sibling controls/hiding retained. <a href="implementation/evidence/mini-games-menu-2026-09-30/result.json">Evidence</a>. Shared schema 32/content 33 unchanged; no device/live-server rollout. Preserve the main integration hold. Next: install the compatible app candidate when the relevant device is available; keep the existing Home backlog.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Activity category</th>
@@ -1018,7 +976,7 @@ Status: pending
 <td>Current direct controls remain. May be removed later; do not add them to the Games menu or confuse them with finished gardening/cleanup content.</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Dinosaur audio review — September 30:</strong> the user rejected candidate 230 calls as random noise. Twelve replacements are prepared as standalone WAV/MP3 auditions from CC0 recordings/effects and original horn synthesis, with researched sound families and a listening page under <code>SourceAudio/Books/DinosaurPreviews/2026-09-30/</code>. Subjective quality is pending user listening; basic asset checks do not establish acceptance. <a href="implementation/native-reader-controls-2026-09-28.html#september-30-rejected-calls-and-preview-only-replacements">Research and preview record</a>. Do not add these sounds to the app before presenting them and receiving the user's selection. No runtime/build/device/server changes.</p>
 <p><strong>Whole-book restart and dinosaur calls — September 30:</strong> candidate <strong>230</strong> adds Start again across all six books and Read book again after the final narration. Dinosaur taps say the name then play one of twelve distinct calls generated locally on the PC from researched animal-inspired sound design. <a href="implementation/native-reader-controls-2026-09-28.html#september-30-restart-the-whole-book-and-hear-dinosaur-calls">Applied research and five focused native checks</a>. Windows release built; schema 32/content 33 unchanged. No device or live-server installation, or physical listening acceptance. Final book subjects and the wider Home backlog remain open; preserve the main integration hold.</p>
 <p><strong>PC server/update research — September 30:</strong> the user clarifies availability while the PC is awake and connected, with compatible app releases leaving the existing server running. <a href="implementation/pc-server-reliability-research-2026-09-30.html">Applied findings and implementation contract</a> cover app/server release classification, a permanent server path/port and reusable firewall permission, lagging helper schema support, and startup/crash recovery. This is research only; no runtime, device, firewall or startup change was made. Release classification is the next bounded server task. Preserve the Home backlog and current main integration hold.</p>
@@ -1039,7 +997,7 @@ Status: pending
 <p><strong>Current build summary:</strong> Candidate <strong>229</strong>, schema 32/content 33, changes hide-and-seek to Start → one broadcast 15-second countdown → hide before zero to join. Only hidden participants are sought; coming out/moving after zero withdraws only that child. All 304 core groups pass and the Windows release server/client builds; five native four-client groups and two private-solo groups pass, including ignored nonhiders, individual withdrawal and cold reopen. No 229 Android/iPad artifact or device rollout has been made. Production server/devices remain last recorded at <strong>227</strong>; no fresh live check is claimed. <a href="implementation/hide-and-seek-hide-to-join-2026-09-30.html">Evidence and rollout boundary</a>. Preserve the wider Home backlog and main integration hold.</p>
 <p><strong>Device priority:</strong> iPads first, Android second. The A2197 iPad 7 is the minimum performance baseline; A2602 iPad 9 is the other primary play device. Test core controls, layouts, media, saves and client/solo transitions on both. Android and iPhone testing remain part of the mixed-device acceptance gates.</p>
 <p><strong>Earlier solo-device milestone, 24 September (build 56):</strong> the user tried the two Windows player windows and reported positive feedback. The Mac has now compiled/signed <strong>solo garden 56</strong>, and the iPad 9 update from 20 → 56 passed with all original preferences retained. Physical layout, walking, watering, speech, joystick plus dragging, menu/screen-lock cancellation, remembered voice/movement settings and Wi-Fi-off solo play passed. Closing and reopening retained the complete garden snapshot exactly. The older iPad 7 now also runs the garden: repeated checks were reported successful, and an actual restart retained its entire save and preferences. Its separate app-inventory query has a recorded CoreDevice error. Child usability, sustained measured performance and additional feature checks remain open. See the <a href="implementation/ipad-garden-2026-09-24.md">iPad garden evidence</a> and <a href="implementation/return-home-checklist-2026-09-24.md">return-home checklist</a>. Mobile multiplayer was not in that 56 export; subsequent 79/83 family builds and mixed-device evidence are recorded below. G1/G2/G3 are not complete.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Field</th>
@@ -1092,7 +1050,7 @@ Status: pending
 <td>Four mixed clients, independent rooms, automatic PC/VPS joining, private offline solo and the full content goal sheet. G4/AUTO-02 retired.</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The original September 23 production research used the 54-section goal sheet, its feature tracker, architecture/media chapters and supporting audit/package/network reports. That source review covered Unity's production/milestone guidance, Mega Cat Studios' published workflow, Unity project/assembly/data/build/package documentation, Apple release/device/touch guidance, Android lifecycle/signing/installation guidance, Git LFS and Addressables memory management. Citations appear next to the findings they support. The September 25 implementation audit checks local source, requirements and retained evidence; it does not claim a fresh revalidation of every external citation.</p>
 <p>The folder <code>docs/bluey-research/build-guide-review-2026-09-23</code> records the original source URLs, retrieval evidence and selected excerpts. Earlier package recommendations are research candidates; the actual installed baseline and later qualification are recorded in sections 7 and 19. The precise folder structure, task method, phase order, coverage mapping and acceptance gates are <strong>our implementation plan</strong>, not a claim that a vendor or every company prescribes them.</p>
 <p>No calendar promise is made. After G6, use actual asset/task throughput and discovered defect work to estimate subsequent batches. Keep the work record current so the next session starts from evidence and the next dependency, not from memory or whichever feature seems most interesting that day.</p>
@@ -1103,7 +1061,7 @@ Status: pending
 <p><strong>How to read status:</strong> <strong>Passed proof</strong> means a named, bounded check passed in the stated environment. <strong>Partial</strong> means useful implementation exists but the full requirement is not accepted. <strong>Not built</strong> means research/design only. <strong>Optional later</strong> applies only to explicitly optional work. None of the 35 complete feature requirements is being marked fully accepted today.</p>
 <h3 id="completed-proofs-we-can-build-on">Completed proofs we can build on</h3>
 <p>Each row describes that particular proof and its limits, not a claim that later rows have not happened. Current per-device versions and remaining work are consolidated in the device ledger below.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Scoped work completed</th>
@@ -1218,7 +1176,7 @@ Status: pending
 <td>An integrated house TV, thumbnail library, content import or multiple-video acceptance</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>September 25 continuation update:</strong> <a href="implementation/g3-local-continuation-2026-09-25.html">G3-REC-02</a> qualifies automatic local adventures, cold resume and safe family reunion on Windows 90. Six native groups, 67 core checks, compatibility, movement and restore regression evidence are linked there. This is historical build-90 evidence; 95/98 supersede the slow transition. G3 qualification and G5 remain open; G4 is retired.</p>
 <p><strong>Earlier client-recovery update:</strong> <a href="implementation/g3-client-recovery-2026-09-24.html">G3-REC-01</a> delivers complete, durably acknowledged replicas to capable Windows 88 clients while preserving 79/83 compatibility. Complete replicas are retained recovery evidence. Prepared 98 local continuation does not wait for one; device hosting is removed.</p>
 <p><strong>Historical September 24 parent-workflow proof:</strong> <a href="implementation/g3-parent-recovery-panel-2026-09-24.html">G3-OPS-05</a> had a verified 83 backup and selected 85 pending activation. The later deployment/activation of 91 supersedes that old next step; see section 18.</p>
@@ -1228,7 +1186,7 @@ Status: pending
 <p><strong>September 24 parent-controls proof:</strong> <a href="implementation/g3-parent-controls-2026-09-24.html">G3-OPS-01 parent controls</a> passed isolated native/browser checks on 84 before this audit. The last recorded family deployment is 83; this does not change completed device evidence or close G3.</p>
 <p><strong>Subsequent implementation, September 25:</strong> the <a href="implementation/g3-outage-failures-2026-09-25.html">Windows 91 outage failure report</a> supersedes the audit's “next G3-REC-03” status. The audit JSON remains an immutable record at its cited baseline; the queue and ledgers here reflect later work. The failed-archive retry is verified while the process remains alive; a disk that refuses all writes cannot preserve that in-memory batch through a kill. This is not an operation journal or automatic branch merge.</p>
 <h3 id="phase-gates-done-versus-open">Phase gates: done versus open</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Phase</th>
@@ -1288,10 +1246,10 @@ Status: pending
 <td>Maintain qualified releases and separately consider optional AR/travel refinements. The owned VPS milestone follows server readiness and need not wait for G9 or all content. Present prototype bug fixes do not complete this phase.</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="device-and-toolchain-ledger">Device and toolchain ledger</h3>
 <p>These are the last recorded checks, not newly contacted devices. The two iPad OS values below come from native observations on September 24 and supersede the earlier user-reported order.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Device / target</th>
@@ -1331,13 +1289,13 @@ Status: pending
 <td>Physical Android/iPad lifecycle, touch/audio and sustained measurements; native ARM64 16 KB qualification. This emulator does not resolve the failed strict RELRO check.</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Earlier mobile delivery — 101:</strong> all four physical clients updated. Strict Apple signature, all six bridges and all three device profiles verified; retained documents/preferences and native runtimes checked. First Mac signing failed; user-run local helper completed it. The iPhone used USB and its original player identity was restored, without creating a new family/profile. <a href="implementation/character-phone-switch-2026-09-25.html">Evidence</a>. Native ARM64 16 KB and unattended Apple renewal remain open.</p>
 <p>Pinned project: <strong>Unity 6000.3.24f1, NGO 2.13.2, Unity Transport 2.7.4 with local embedded patch 1, Input System 1.20.0, URP 17.3.0 and UGUI 2.0.0</strong>. The transport patch changes one original vendor file, preserves notices and has regression evidence plus scoped native mobile admission/play; sustained mobile load, interruptions and route qualification remain open. Addressables, Localization and 2D Animation remain candidates, not installed/qualified subsystems. Mac inventory is <strong>M1 Pro, macOS 26.3.1, Xcode 26.6</strong>; everyday creation remains on Windows. <code>manifest.json</code>, <code>packages-lock.json</code>, <a href="implementation/ipad-garden-2026-09-24.md">native build evidence</a>.</p>
 <p><strong>Installation gap:</strong> the working manual USB refresh is useful, but unattended wireless renewal is not solved, and neither iPad has a proven Windows renewal cycle. Keep the requirement open before relying on these apps for unattended family use. Git/local backups and signing recovery copies also do not establish an independent off-device backup and successful restore.</p>
 <h3 id="all-35-feature-requirements-implementation-status">All 35 feature requirements: implementation status</h3>
 <p>The original acceptance wording remains in <a href="bluey-game-research-2026-09-23.html#16-expanded-feature-tracker">goal-sheet section 16</a>. These rows identify what the prototype does and what must still be delivered, rather than replacing those acceptance checks.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Goal ID</th>
@@ -1522,9 +1480,9 @@ Status: pending
 <td>Picture play mat, roles/NPC substitutes and all nine requested stories, independent exit and progress. G6 foundations → G7-D.</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="requirements-outside-the-feature-id-table">Requirements outside the feature-ID table</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Build guide table"><table>
+<table>
 <thead>
 <tr>
 <th>Requirement / content inventory</th>
@@ -1573,7 +1531,7 @@ Status: pending
 <td>Scoped save/restart/update proofs exist. Sustained device profiling, interrupted loading/media, all-content offline checks, independent backups and automatic renewal remain required.</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="temporary-implementation-choices-and-gaps-to-resolve">Temporary implementation choices and gaps to resolve</h3>
 <p>Code files below are under <code>Unity/FamilyPlayset/Assets/FamilyPlayset/Code</code>; the audit index records their exact relative paths and hashes.</p>
 <ol>
@@ -1609,5 +1567,4 @@ Status: pending
 <li>Preserved 55 goal chapters, 35 feature IDs (including retired AUTO-02), six worlds and the character/activity inventories, personal rooms and secret rooms. Retirement is not reported as implementation completion.</li>
 <li>Made ART-PREP-02 the next independent work; focused 98 signing and device checks stay on the return list. No mobile-host gate blocks the fun-content preparation.</li>
 <li>Archived the unfinished host-99 experiment locally, restored its source to the pre-experiment baseline and excluded its build from deployment. No live server, device, family save or installed app was changed by this audit.</li>
-</ul></article></div>
-<footer class="footer"><p>Production research dated September 23; implementation audit updated September 25. The architecture and gates are our project method. Completed checks link to dated evidence; this audit made no app, device, server or save changes. Implementation results have separate dated records.</p><a href="family-playset-build-guide-2026-09-23.md">Editable build guide</a><a href="bluey-game-research-2026-09-23.html">Feature goal sheet</a><a href="family-playset-package-research-2026-09-23.html">Package research</a></footer></main></body></html>
+</ul></main></body></html>

@@ -1,7 +1,4 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Bluey playset for your iPads — research & picture board</title>
-<style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Little Weeps — bluey-game-research-2026-09-23</title><style>
 :root{--ink:#203e52;--blue:#23658e;--muted:#5d7482;--cream:#fcfaf5;--line:#d9e4e8;--sky:#e8f3fa;--accent:#f1b968}
 *{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:82px}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:hover{color:#144163}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid #bc6318;outline-offset:4px}h1,h2,h3{line-height:1.2;letter-spacing:-.025em}p{margin:0 0 1.2em}h2{font-size:30px;margin:0 0 20px}h3{font-size:23px;margin:30px 0 15px}small{font-size:13px}strong{font-weight:650}
 .topbar{position:sticky;top:0;z-index:10;background:#fcfaf5f5;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px max(24px,calc((100vw - 1280px)/2));display:flex;align-items:center;gap:26px;flex-wrap:wrap;font-size:14px}.brand{font-weight:750;letter-spacing:.03em;margin-right:auto;text-decoration:none}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{text-decoration:none}.wrap{max-width:1280px;margin:auto;padding:0 30px}
@@ -17,192 +14,7 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media print{.topbar,.contents,.gallery-tools,.control-row{display:none}.hero{min-height:0}.hero-art{height:200px}.wrap{max-width:none;padding:0}.stage-layout{grid-template-columns:1fr 1fr}.wheel{max-width:420px}.characters{grid-template-columns:repeat(5,1fr)}.character{break-inside:avoid}.report-layout{display:block}.report table{font-size:10px}.table-scroll{overflow:visible!important}.report th,.report td{min-width:0}.section{break-before:page}.footer{margin-top:20px}body{font-size:11pt;background:white}}
 .wheel .scene-note{position:absolute;top:25%;left:7%;width:48%;font-size:17px}.place-rail{position:absolute;right:0;top:0;bottom:23%;width:39%;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 8px;background:#cbecf7;border-left:4px solid white}.place-rail .stage{position:relative;transform:none!important;left:auto;top:auto;width:126px;min-height:126px;flex-shrink:0}.cast-diagram{position:absolute;left:0;right:0;bottom:0;height:23%;background:#b8e2f7;border-top:4px solid white;display:flex;align-items:center;padding:18px;font-weight:700;font-size:16px}
-</style></head><body>
-<header class="topbar"><a class="brand" href="#top">THE FAMILY PLAYSET</a><nav aria-label="Guide navigation"><a href="family-playset-build-guide-2026-09-23.html">Build guide</a><a href="family-playset-package-research-2026-09-23.html">Packages</a><a href="family-playset-technical-research-2026-09-23.html">Technical research</a><a href="family-playset-feasibility-audit-2026-09-23.html">Feasibility audit</a><a href="#places">Six worlds</a><a href="#characters">Characters</a><a href="#research">Research</a></nav></header>
-<main id="top" class="wrap">
-<section class="hero"><div><p class="eyebrow">Bluey game research · 23 September 2026</p><h1>Little adventures.<br>A world to play in.</h1><p class="intro">A personal illustrated playset for your family: choose a friend, explore together, move things around, and discover what happens.</p><div class="tags"><span class="tag">Ages 3 & 6</span><span class="tag">1–4 family players</span><span class="tag">iPad · iPhone · Android</span><span class="tag">2D dollhouse</span><span class="tag">English first + Spanish</span></div></div>
-<div class="hero-art" aria-label="Official Bluey and Bingo character references"><img src="https://www.bluey.tv/wp-content/uploads/2023/07/Bluey.png" alt="Bluey" width="250" height="320"><img src="https://www.bluey.tv/wp-content/uploads/2023/07/B2.png" alt="Bingo" width="220" height="270"></div></section>
-<div class="summary"><article><h3>Make it in Unity 2D</h3><p>A fresh project with reusable touch and object rules. Blender is optional for this illustrated style.</p></article><article><h3>Shared play, with offline solo.</h3><p>The prototype connects automatically to the home PC. Your owned VPS is the next hosting target after server readiness. Devices remain clients; full offline solo is required and travel co-op needs a route to the designated server.</p></article><article><h3>Let the characters speak</h3><p>Generate and review voice clips on your Windows PC, then include them in the game for offline play.</p></article></div>
-<div class="note"><strong>New: simpler play and richer objects.</strong> The <a href="toca-piknik-interaction-research-2026-09-23.html">Toca Boca + Piknik research supplement</a> combines close-up Simple Play for your younger child with Explore &amp; Stories for your older child. Try its object explorer to see how one bucket, fruit, sponge, or ball can support several kinds of play.</div>
-<div class="note" id="latest-features"><strong>Current scope: PC/VPS shared play and private offline solo.</strong> <a href="current-decisions.md">Current decisions</a> override older proposals. Device hosting, automatic host switching and offline imports are removed. The <a href="family-playset-build-guide-2026-09-23.html#18-current-work-record-and-research-basis">current work record</a> carries implementation and deployment status. Samsung has 130 installed, with 16 saved records retained and Keepy Uppy verified. Build 132 adds a backyard balloon spawn, higher toss and faster descent; core and native four-player checks pass, but its Android installation awaits the phone's wireless connection. The PC server/helper and both iPads remain on content-5 build 128; the iPhone remains 101. Android uses private solo until the coordinated content-6 rollout. <a href="implementation/keepy-uppy-2026-09-26.html">Keepy Uppy evidence and delivery limits</a>. The <a href="implementation/integrated-home-2026-09-26.html">layered sofa, trampoline and shed</a> are implemented; kitchen supports and the wider house inventory follow this minigame's acceptance. Sustained physical play and older-iPad performance remain open.</div>
-<div class="note"><strong>Shared items find their way home.</strong> The goal is that <a href="#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">unused borrowed props return automatically</a> while personal decorations and saved creations stay protected. Build 83 implements timers for the garden tools and completed stations. The wider catalog, containers, protected creations, stocked stations and bedroom limits remain planned.</div>
-<div class="note"><strong>One shared world, freedom to explore.</strong> Everyone can <a href="#50-one-shared-world-independent-travel-and-shared-items">travel independently and meet in the same existing area</a>. Leaving never pauses or moves the players who stay. A bucket held by one player is visible to everyone nearby and unavailable until released. Includes the creek/playground example, Unity design, and required tests. Windows proofs and scoped two-iPad travel/reunion feedback establish the prototype behavior; updated-device lifecycle, sustained performance and content acceptance remain open.</div>
-<div class="note"><strong>Future hosting: your owned VPS.</strong> The <a href="#55-future-hosting-on-your-owned-vps">VPS plan</a> follows server reliability work and can precede finished content. It would support automatic family connections at home or over travel internet. Travel connectivity remains lower priority; full offline solo and signing renewal remain. Mobile devices never host. No VPS deployment has occurred.</div>
-<div class="note"><strong>The whole family can join.</strong> Plan for <a href="#47-up-to-four-family-players-across-ipad-iphone-and-android">1–4 players across iPad, iPhone, and Android</a>, including your Galaxy S26 Ultra. Everyone may choose any available character, including Bandit and Chilli, and switch during play. See the <a href="#48-android-build-phone-layout-and-four-player-acceptance">phone build and four-player test plan</a>. All four physical devices were admitted together on build 79, with scoped play feedback. The complete character roster and sustained updated-device qualification remain planned.</div>
-<div class="note"><strong>Open the app and connect automatically.</strong> Clients <a href="#44-automatic-family-connection-to-pc-or-vps">join the designated PC/VPS</a>. <a href="#45-server-authority-offline-continuation-and-reconnecting">Offline play stays private</a>; reconnecting uses server state without imports. Four-device admission already has scoped proof. No device-hosting gate blocks the next isolated Unity character animation work.</div>
-<div class="note"><strong>Outdoor adventures and Daycare.</strong> Explore <a href="#37-the-beach-collecting-building-and-playing-together">10 beach activities</a>, <a href="#38-the-creek-rocks-water-and-gentle-discovery">10 creek activities</a>, and <a href="#39-playground-and-park-equipment-that-really-works">12 park activities</a>. <a href="#40-daycare-a-sixth-world-with-an-optional-pretend-day">Daycare is the sixth world</a>: an optional pretend day, 2–3 rotating games, <a href="#41-daycare-learning-short-playful-and-spoken">12 learning stations</a>, and <a href="#42-the-imagination-mat-nine-stories-that-become-playable-worlds">nine imagination stories with spoken roles</a>. <a href="#43-building-saving-and-testing-the-outdoor-and-daycare-expansion">Build and acceptance plan</a>. Research and design only; game implementation is pending.</div>
-<div class="note"><strong>Science, their own rooms, and road-trip play.</strong> Explore <a href="#30-a-simple-and-playful-science-corner">eight science activities</a>, <a href="#31-joining-and-leaving-without-restarting-play">joining and leaving anytime</a>, <a href="#32-four-personal-bedrooms-with-shared-updates">four player-owned bedrooms</a>, <a href="#33-secret-plush-rooms-with-stars-and-northern-lights">secret plush rooms with northern lights</a>, and <a href="#34-hide-and-seek-with-enterable-furniture-and-gentle-clues">closets, drawers, giggles, and parent-led hide-and-seek</a>. The <a href="#35-road-trip-play-hotspot-co-op-and-coming-home">travel plan</a> requires full offline play even when hotspot co-op is unavailable. <a href="#36-integration-milestones-and-acceptance-for-this-expansion">Build and device checks</a> keep every feature tracked as planned until tested.</div>
-<div class="note"><strong>Books, TV, and a room full of dinosaurs.</strong> Open the plan for a <a href="#25-reading-nook-and-interactive-books">talking bookshelf</a>, <a href="#26-dinosaur-books-and-spoken-names">six proposed books and an eight-page dinosaur story</a>, a <a href="#27-tv-corner-and-local-video-library">TV clip library</a>, and <a href="#28-dinosaur-toy-room-and-discovery-mini-game">20 dinosaur toys plus the Discovery Mat mini-game</a>. Each child can read, watch, or play independently. The house content remains planned. A separate single-clip playback/bookmark fixture has passed scoped checks; the TV library is not built.</div>
-<div class="note"><strong>More ways to play together.</strong> The <a href="#16-expanded-feature-tracker">main feature tracker</a> also covers changing characters during play, freely switching activities, cooking <a href="#19-kitchen-five-pizzas-five-cakes-five-meals">15 recipes</a>, fishing at the <a href="#20-the-water-feature-and-fishing-mini-game">backyard pond</a>, cleanup, roaming parents, and <a href="#22-hide-and-seek-and-parents-with-everyday-routines">hide-and-seek</a>. Browse <a href="#23-show-games-and-activities-catalog">32 show-inspired activity ideas</a> with simpler and deeper ways to play.</div>
-<section class="section" id="places"><p class="eyebrow">Choose somewhere to play</p><h2>Six world bubbles.</h2><p class="section-lead">A clickable activity diagram with places browsing vertically and characters across the bottom. Choosing a world in the game opens a loading screen until ready. Circular scene art and the family-circle/down-arrow control follow the <a href="bluey-lets-play-reference-study-2026-09-25.html">eight user references</a>; the symbols below are diagram labels, not proposed final artwork.</p>
-<div class="stage-layout"><div class="wheel" aria-label="Combined chooser layout diagram"><p class="scene-note">Your current scene stays behind the chooser.</p><div class="place-rail" aria-label="Browse places vertically"><button class="stage" data-stage="0" aria-pressed="true" style="--bubble:#ffe1aa"><span aria-hidden="true">🏠</span><strong>Heeler Home + Backyard</strong></button>
-<button class="stage" data-stage="1" aria-pressed="false" style="--bubble:#f8d6c8"><span aria-hidden="true">🛝</span><strong>Playground &amp; Park</strong></button>
-<button class="stage" data-stage="2" aria-pressed="false" style="--bubble:#c7e6eb"><span aria-hidden="true">⛵</span><strong>The Creek</strong></button>
-<button class="stage" data-stage="3" aria-pressed="false" style="--bubble:#f5e5b3"><span aria-hidden="true">🐚</span><strong>The Beach</strong></button>
-<button class="stage" data-stage="4" aria-pressed="false" style="--bubble:#e5d9f5"><span aria-hidden="true">🎨</span><strong>Daycare</strong></button></div><div class="cast-diagram">↓ &nbsp; Bluey &nbsp; · &nbsp; Bingo &nbsp; · &nbsp; More characters →</div></div>
-<div class="quest-preview"><div class="eyebrow">Selected world: <span id="center-name">Heeler Home + Backyard</span></div><h3 id="stage-title">Heeler Home + Backyard</h3><p id="free-play"></p><div class="control-row" role="group" aria-label="Quest assistance"><span class="label">Assistance</span><button class="toggle" data-difficulty="easy" aria-pressed="true">Simple</button><button class="toggle" data-difficulty="explorer" aria-pressed="false">Explorer</button></div><div class="control-row" role="group" aria-label="Prompt language"><span class="label">Text preview</span><button class="toggle" data-locale="en" aria-pressed="true">English</button><button class="toggle" data-locale="es" aria-pressed="false">Español</button></div><div class="prompt" aria-live="polite"><span class="label">Spoken-line draft</span><p id="quest-line"></p></div><div class="recipe" id="recipe"></div><div class="demo-disclaimer">Research preview only. These controls change the example text; no game or generated voice is included yet.</div></div></div></section>
-<section class="section" id="characters"><p class="eyebrow">A growing cast of friends</p><h2>Character picture board</h2><p class="section-lead">34 official portrait references, including Bandit, Chilli, the Terriers together, and three older children. Everyone can choose any available character. Tap a card for its source. The playable roster will use individual avatars and can expand for missing favorites.</p><div class="gallery-tools"><label><span class="sr-only">Find a character: </span><input id="character-search" type="search" placeholder="Bluey, Bingo, Rusty…" autocomplete="off"></label><span class="gallery-count" id="gallery-count">34 reference entries</span></div><div class="characters"><a class="character" href="https://www.bluey.tv/characters/bluey/" target="_blank" rel="noopener noreferrer" data-name="bluey">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Bluey.png" alt="Bluey, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Bluey</strong><small>Heeler kids</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/bingo/" target="_blank" rel="noopener noreferrer" data-name="bingo">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/B2.png" alt="Bingo, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Bingo</strong><small>Heeler kids</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/muffin/" target="_blank" rel="noopener noreferrer" data-name="muffin">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Muffin-1.png" alt="Muffin, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Muffin</strong><small>Heeler kids</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/socks/" target="_blank" rel="noopener noreferrer" data-name="socks">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Socks-1.png" alt="Socks, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Socks</strong><small>Heeler kids</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/chloe/" target="_blank" rel="noopener noreferrer" data-name="chloe">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Untitled-1.png" alt="Chloe, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Chloe</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/coco/" target="_blank" rel="noopener noreferrer" data-name="coco">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Coco.png" alt="Coco, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Coco</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/honey/" target="_blank" rel="noopener noreferrer" data-name="honey">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Honey.png" alt="Honey, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Honey</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/indy/" target="_blank" rel="noopener noreferrer" data-name="indy">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/InDY.png" alt="Indy, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Indy</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/mackenzie/" target="_blank" rel="noopener noreferrer" data-name="mackenzie">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/MACKENZIE-1.png" alt="Mackenzie, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Mackenzie</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/rusty/" target="_blank" rel="noopener noreferrer" data-name="rusty">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Rusty-1.png" alt="Rusty, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Rusty</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/jack/" target="_blank" rel="noopener noreferrer" data-name="jack">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Jack-1.png" alt="Jack, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Jack</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/snickers/" target="_blank" rel="noopener noreferrer" data-name="snickers">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Snickers.png" alt="Snickers, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Snickers</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/winton/" target="_blank" rel="noopener noreferrer" data-name="winton">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Winton.png" alt="Winton, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Winton</strong><small>School friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/the-terriers/" target="_blank" rel="noopener noreferrer" data-name="the terriers">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Terr.png" alt="The Terriers, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>The Terriers</strong><small>Three separate avatars planned</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/lucky/" target="_blank" rel="noopener noreferrer" data-name="lucky">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/LUCKY.png" alt="Lucky, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Lucky</strong><small>Neighbours and friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/chucky/" target="_blank" rel="noopener noreferrer" data-name="chucky">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/CHUCKY.png" alt="Chucky, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Chucky</strong><small>Neighbours and friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/judo/" target="_blank" rel="noopener noreferrer" data-name="judo">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Judo.png" alt="Judo, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Judo</strong><small>Neighbours and friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/pom-pom/" target="_blank" rel="noopener noreferrer" data-name="pom pom">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/POM.png" alt="Pom Pom, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Pom Pom</strong><small>Neighbours and friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/lila/" target="_blank" rel="noopener noreferrer" data-name="lila">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/LILA.png" alt="Lila, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Lila</strong><small>Kindy friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/missy/" target="_blank" rel="noopener noreferrer" data-name="missy">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Missy-1.png" alt="Missy, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Missy</strong><small>Kindy friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/buddy/" target="_blank" rel="noopener noreferrer" data-name="buddy">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Buddy.png" alt="Buddy, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Buddy</strong><small>Kindy friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/bentley/" target="_blank" rel="noopener noreferrer" data-name="bentley">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Bentley.png" alt="Bentley, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Bentley</strong><small>Kindy friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/juniper/" target="_blank" rel="noopener noreferrer" data-name="juniper">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2026/03/Juniper1.png" alt="Juniper, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Juniper</strong><small>Kindy friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/winnie/" target="_blank" rel="noopener noreferrer" data-name="winnie">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2025/09/B2.png" alt="Winnie, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Winnie</strong><small>Neighbours and friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/jean-luc/" target="_blank" rel="noopener noreferrer" data-name="jean-luc">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Jean-Luc-1.png" alt="Jean-Luc, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Jean-Luc</strong><small>Neighbours and friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/lulu/" target="_blank" rel="noopener noreferrer" data-name="lulu">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2025/12/luluu-head-1.png" alt="Lulu, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Lulu</strong><small>Head reference only</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/dusty/" target="_blank" rel="noopener noreferrer" data-name="dusty">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2024/01/Dusty-1.png" alt="Dusty, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Dusty</strong><small>Younger siblings and friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/dougie/" target="_blank" rel="noopener noreferrer" data-name="dougie">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Dougie.png" alt="Dougie, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Dougie</strong><small>Younger siblings and friends</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/hercules/" target="_blank" rel="noopener noreferrer" data-name="hercules">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2025/09/hercules.png" alt="Hercules, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Hercules</strong><small>More child characters</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/digger/" target="_blank" rel="noopener noreferrer" data-name="digger">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2024/01/Digger.png" alt="Digger, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Digger</strong><small>Older child characters</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/mia/" target="_blank" rel="noopener noreferrer" data-name="mia">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2025/02/MIA.png" alt="Mia, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Mia</strong><small>Older child characters</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/captain/" target="_blank" rel="noopener noreferrer" data-name="captain">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2025/01/captainn.png" alt="Captain, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Captain</strong><small>Older child characters</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/bandit/" target="_blank" rel="noopener noreferrer" data-name="bandit">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Bandit.png" alt="Bandit, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Bandit</strong><small>Heeler parents · selectable by everyone</small><span class="source-link">Official reference ↗</span></a>
-<a class="character" href="https://www.bluey.tv/characters/chilli/" target="_blank" rel="noopener noreferrer" data-name="chilli">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://www.bluey.tv/wp-content/uploads/2023/07/Chilli.png" alt="Chilli, official character reference" width="180" height="165"><span class="image-fallback" hidden>Open official picture ↗</span></div>
-      <strong>Chilli</strong><small>Heeler parents · selectable by everyone</small><span class="source-link">Official reference ↗</span></a></div><p id="no-results" hidden>No matching character in this reference set.</p><div class="note"><strong>Still to verify:</strong> Pretzel's official portrait. The Terriers need three separate game avatars; Lulu's current reference is a head portrait. These are reference pictures, not finished animation rigs. Images load from bluey.tv and require internet in this document.</div></section>
-<section class="section" id="research"><p class="eyebrow">From idea to a reliable family game</p><h2>The complete research & build guide</h2><p class="section-lead">The main record: automatic item returns, stocked areas, protected creations, tidy bedrooms, independent travel within one shared world, exclusive shared items, remote home-PC hosting, private connection options, 1–4-player Android/iPad/iPhone cross-play, open character choice, automatic PC/VPS connection, private offline continuation, outdoor activities, daycare, playful learning, imagination stories, science play, independent bedrooms, secret aurora rooms, flexible co-op, full offline travel, narrated books, TV, dinosaurs, cooking, hiding, show activities, sources, and device checks.</p><div class="report-layout"><aside class="contents"><h3>In this guide</h3><div class="toc">
-<ul>
-<li><a href="#1-your-requirements-now-recorded">1. Your requirements, now recorded</a></li>
-<li><a href="#2-what-makes-this-kind-of-game-work">2. What makes this kind of game work</a></li>
-<li><a href="#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">3. Six content regions, five destinations and eighteen starter quest ideas</a></li>
-<li><a href="#4-character-roster-and-pictures">4. Character roster and pictures</a></li>
-<li><a href="#5-touch-movement-and-object-interaction">5. Touch movement and object interaction</a></li>
-<li><a href="#6-reusable-item-rules-bucket-water-plant">6. Reusable item rules: bucket → water → plant</a></li>
-<li><a href="#7-two-ipads-together-choose-home-wi-fi-first">7. Two iPads together: choose home Wi-Fi first</a></li>
-<li><a href="#8-spoken-english-and-spanish-using-your-pc-and-comfyui">8. Spoken English and Spanish, using your PC and ComfyUI</a></li>
-<li><a href="#9-github-templates-and-components-what-is-actually-useful">9. GitHub templates and components: what is actually useful</a></li>
-<li><a href="#10-project-structure-and-coding-plan">10. Project structure and coding plan</a></li>
-<li><a href="#11-menus-settings-saves-and-recovery">11. Menus, settings, saves, and recovery</a></li>
-<li><a href="#12-performance-and-crashes-on-the-older-ipad">12. Performance and crashes on the older iPad</a></li>
-<li><a href="#13-required-acceptance-checks">13. Required acceptance checks</a></li>
-<li><a href="#14-build-order-and-completion-gates">14. Build order and completion gates</a></li>
-<li><a href="#15-decisions-to-make-after-the-first-prototype">15. Decisions to make after the first prototype</a></li>
-<li><a href="#16-expanded-feature-tracker">16. Expanded feature tracker</a></li>
-<li><a href="#17-changing-characters-without-stopping-the-game">17. Changing characters without stopping the game</a></li>
-<li><a href="#18-quests-that-are-easy-to-start-and-easy-to-leave">18. Quests that are easy to start and easy to leave</a></li>
-<li><a href="#19-kitchen-five-pizzas-five-cakes-five-meals">19. Kitchen: five pizzas, five cakes, five meals</a></li>
-<li><a href="#20-the-water-feature-and-fishing-mini-game">20. The water feature and fishing mini-game</a></li>
-<li><a href="#21-five-cleanup-games-that-remain-playful">21. Five cleanup games that remain playful</a></li>
-<li><a href="#22-hide-and-seek-and-parents-with-everyday-routines">22. Hide-and-seek and parents with everyday routines</a></li>
-<li><a href="#23-show-games-and-activities-catalog">23. Show games and activities catalog</a></li>
-<li><a href="#24-integration-build-sequence-and-acceptance-for-the-new-features">24. Integration, build sequence, and acceptance for the new features</a></li>
-<li><a href="#25-reading-nook-and-interactive-books">25. Reading nook and interactive books</a></li>
-<li><a href="#26-dinosaur-books-and-spoken-names">26. Dinosaur books and spoken names</a></li>
-<li><a href="#27-tv-corner-and-local-video-library">27. TV corner and local video library</a></li>
-<li><a href="#28-dinosaur-toy-room-and-discovery-mini-game">28. Dinosaur toy room and discovery mini-game</a></li>
-<li><a href="#29-building-and-testing-books-tv-and-dinosaurs">29. Building and testing books, TV, and dinosaurs</a></li>
-<li><a href="#30-a-simple-and-playful-science-corner">30. A simple and playful science corner</a></li>
-<li><a href="#31-joining-and-leaving-without-restarting-play">31. Joining and leaving without restarting play</a></li>
-<li><a href="#32-four-personal-bedrooms-with-shared-updates">32. Four personal bedrooms with shared updates</a></li>
-<li><a href="#33-secret-plush-rooms-with-stars-and-northern-lights">33. Secret plush rooms with stars and northern lights</a></li>
-<li><a href="#34-hide-and-seek-with-enterable-furniture-and-gentle-clues">34. Hide-and-seek with enterable furniture and gentle clues</a></li>
-<li><a href="#35-road-trip-play-hotspot-co-op-and-coming-home">35. Road-trip play, hotspot co-op, and coming home</a></li>
-<li><a href="#36-integration-milestones-and-acceptance-for-this-expansion">36. Integration milestones and acceptance for this expansion</a></li>
-<li><a href="#37-the-beach-collecting-building-and-playing-together">37. The beach: collecting, building, and playing together</a></li>
-<li><a href="#38-the-creek-rocks-water-and-gentle-discovery">38. The creek: rocks, water, and gentle discovery</a></li>
-<li><a href="#39-playground-and-park-equipment-that-really-works">39. Playground and park: equipment that really works</a></li>
-<li><a href="#40-daycare-a-sixth-world-with-an-optional-pretend-day">40. Daycare: a sixth world with an optional pretend day</a></li>
-<li><a href="#41-daycare-learning-short-playful-and-spoken">41. Daycare learning: short, playful, and spoken</a></li>
-<li><a href="#42-the-imagination-mat-nine-stories-that-become-playable-worlds">42. The imagination mat: nine stories that become playable worlds</a></li>
-<li><a href="#43-building-saving-and-testing-the-outdoor-and-daycare-expansion">43. Building, saving, and testing the outdoor and daycare expansion</a></li>
-<li><a href="#44-automatic-family-connection-to-pc-or-vps">44. Automatic family connection to PC or VPS</a></li>
-<li><a href="#45-server-authority-offline-continuation-and-reconnecting">45. Server authority, offline continuation and reconnecting</a></li>
-<li><a href="#46-automatic-multiplayer-implementation-and-verification-plan">46. Automatic multiplayer implementation and verification plan</a></li>
-<li><a href="#47-up-to-four-family-players-across-ipad-iphone-and-android">47. Up to four family players across iPad, iPhone, and Android</a></li>
-<li><a href="#48-android-build-phone-layout-and-four-player-acceptance">48. Android build, phone layout, and four-player acceptance</a></li>
-<li><a href="#49-reaching-your-home-pc-from-a-road-trip">49. Reaching your home PC from a road trip</a></li>
-<li><a href="#50-one-shared-world-independent-travel-and-shared-items">50. One shared world, independent travel, and shared items</a></li>
-<li><a href="#51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">51. Automatic item returns, stocked areas, and tidy bedrooms</a></li>
-<li><a href="#52-feasibility-audit-and-current-priorities">52. Feasibility audit and current priorities</a></li>
-<li><a href="#53-source-backed-networking-and-recovery-review">53. Source-backed networking and recovery review</a></li>
-<li><a href="#54-templates-packages-and-the-free-starting-setup">54. Templates, packages and the free starting setup</a></li>
-<li><a href="#55-future-hosting-on-your-owned-vps">55. Future hosting on your owned VPS</a></li>
-</ul>
-</div>
-</aside><article class="report">
+main{max-width:1100px;margin:32px auto;padding:24px}img{max-width:100%}table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid #c9dadf}code{overflow-wrap:anywhere}</style></head><body><main><h1 id="a-bluey-playset-for-your-family">A Bluey playset for your family</h1>
 <p><strong>Activity organization — September 30 user decision:</strong> replace the top Hide &amp; seek launcher with a <strong>Games</strong> menu, containing <strong>Hide &amp; seek only for now</strong>. Selecting a game closes the menu and starts it. Add future menu-based mini games to their own area's list as they are implemented. <strong>Keepy Uppy stays direct object play</strong> and starts by tapping its balloon. <strong>Watering/Grow a flower and Splash cleanup are legacy prototype activities, potentially removable later</strong>; leave them outside this menu and keep the current controls until the user requests removal. This categorization does not cancel the finished game's gardening or cleanup goals.</p>
 <p><strong>PC server/update research — September 30:</strong> the user clarifies availability while the PC is awake and connected, with compatible app releases leaving the existing server running. <a href="implementation/pc-server-reliability-research-2026-09-30.html">Applied findings and implementation contract</a> cover app/server release classification, a permanent server path/port and reusable firewall permission, lagging helper schema support, and startup/crash recovery. This is research only; no runtime, device, firewall or startup change was made. Release classification is the next bounded server task. Preserve the Home backlog and current main integration hold.</p>
 <p><strong>Hide to join — September 30 user correction:</strong> starting Hide &amp; seek immediately broadcasts one server-owned 15-second countdown to everyone on the server. Players join by entering a hiding spot before zero; no acceptance or readiness lobby is required. The parent searches only for players still hidden at zero. Other players keep playing and are ignored. Go hide is an optional explicit trip downstairs, using only the remaining shared time. Coming out, moving, leaving or disconnecting after zero withdraws only that hider; no re-hide or personal restart during the search. Bandit and Chilli still alternate. Candidate 229 uses schema 32/content 33. <a href="implementation/hide-and-seek-hide-to-join-2026-09-30.html">Implementation and verification</a>. No device or live-server rollout has occurred; preserve the main integration hold.</p>
@@ -248,7 +60,7 @@
 <p><strong>Base experience and character–item behavior:</strong> the user wants the commercial mobile playset as the foundation for a cooler private family version. The <a href="bluey-lets-play-reference-study-2026-09-25.html#18-characterobject-interaction-specification">broader catalog and interaction specification</a> cover games, locations, cast, audio and character actions. Sitting, trampoline jumping and dancing are explicit priorities: use correct poses, contact points, expressions and clear exits. Four-device play and the original enhancements remain required; no public release or monetization is planned.</p>
 <p><strong>Scene composition correction — September 26:</strong> The user identified duplicated painted and interactive furniture. <a href="implementation/integrated-home-2026-09-26.html">First integrated home pass</a> now implements clean living-room/tree/shed bases and one layered placement for the existing sofa, trampoline and shed, with local rear/occupant/front ordering. Existing slot IDs and saves are preserved. Native/device evidence is maintained in that report. <strong>ART-HOME-02 remains partial:</strong> separate kitchen surfaces/interiors and other planned supports before food/bedroom expansion; complete contact/seam polish and physical A10 qualification. The accepted 2-times speed stays the shared default for all current and future characters.</p>
 <h2 id="1-your-requirements-now-recorded">1. Your requirements, now recorded</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Area</th>
@@ -413,10 +225,10 @@
 <td>Keep the agreed free automatic signing-renewal setup as a required family-installation step</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>I interpret the bucket example as watering a <strong>plant</strong>. The six requested worlds appear below, including the new Daycare. Difficulty assistance should be adjustable per child, rather than permanently tied to age.</p>
 <h3 id="your-test-devices">Your test devices</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Device</th>
@@ -463,7 +275,7 @@
 <td>Unity, artwork, coding, voice generation, and agreed home family-game server</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The model identification and hardware are supported by Apple's <a href="https://support.apple.com/en-us/108043">iPad model list</a>, <a href="https://support.apple.com/en-us/111911">iPad 7 specifications</a>, <a href="https://support.apple.com/en-us/111898">iPad 9 specifications</a>, and <a href="https://support.apple.com/en-us/111870">iPhone specifications</a>. Samsung identifies <strong>SM-S948U1 as Galaxy S26 Ultra</strong> in its <a href="https://doc.samsungmobile.com/SM-S948U1/037285260311/eng.html">official update record</a>. That firmware page alone does not establish the installed OS. The table now includes later native inventory: <a href="family-playset-build-guide-2026-09-23.html#device-and-toolchain-ledger">device/toolchain ledger</a>. The iPad observations correct the originally reported OS order; Samsung and Mac versions are recorded too. These are retained observations, not new measurements made during this audit.</p>
 <p><strong>Both iPads must work on iPadOS 18.</strong> A successful test on the newer iPhone is useful but cannot qualify the iPads. Any optional native plugin must be tested on the older OS and physical hardware.</p>
 <p><strong>Explicit radio behavior:</strong> radio on → music plays → nearby idle characters automatically dance; radio off → music stops and characters settle. Walking or starting another action overrides dancing, and busy siblings keep their activity. Preserve mute, character-switch, save/reopen and shared/offline rules. This is ordinary object-driven free play; musical statues is an optional game layered on top. <a href="bluey-lets-play-reference-study-2026-09-25.html#20-sound-expression-and-pace">Detailed reaction and acceptance contract</a>.</p>
@@ -492,7 +304,7 @@
 <p>For early testing, use roughly 15–90 seconds for a simple invitation and 2–5 minutes for a longer sequence. These are design targets, not research-established limits for every child.</p>
 <h2 id="3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas">3. Six content regions, five destinations and eighteen starter quest ideas</h2>
 <p>All six content regions remain available through five unlocked destinations: Heeler Home includes its backyard; the others are Park, Creek, Beach and Daycare. Completing a quest can add a sticker or a celebratory animation, but should not block another area or remove a favorite toy. Each location needs satisfying free play even when no quest is active.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Location</th>
@@ -532,13 +344,13 @@
 <td>Connects activities from all worlds while preserving personal choice</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Connected house and backyard — user clarification, September 25:</strong> Home and Backyard are entrances into one continuous family property, from the front of the house through its fully usable rooms, kitchen/dining area and veranda to the far backyard and shed. Sideways exploration should feel like one long dollhouse level; doors/stairs connect bedroom and other room branches without returning to the world menu. Retain cooking, living/TV, reading, science/dinosaur play, personal bedrooms, secret rooms, garden equipment, radio/dancing and durable shed storage. Use one Heeler Home bubble for the house and backyard, as implemented in revision 118; selecting it within the property retains the current location. The earlier two-bubble proposal is superseded. Each player has an independent camera and can remain indoors while another explores outside. Art/room chunks may load around the camera for the older iPad, but crossing between them must preserve object IDs, held items, container contents and authority. This is the required G5/G6 layout, not a claim that the full property is implemented by the menu milestone.</p>
 <p><strong>World-art sequence — latest user direction:</strong> first build attractive Bluey-style walkable scenery for all six worlds. Add no new activity features to the other worlds yet. After those visual shells, concentrate sustained room and interaction development on Bluey's connected house/backyard property. Keep existing functioning play and the full feature backlog; defer other-world feature implementation rather than delete it.</p>
 <p><strong>Combined chooser — latest user decision, September 25:</strong> the lower-right family circle opens one menu (moved away from the left joystick after the user’s phone test), with full-body characters browsing horizontally along the bottom and circular place thumbnails browsing vertically down the side. The down arrow closes both. Tapping an available place opens a loading screen on that device, prepares the destination and its current state, then enables play only when ready. This supersedes the separate full-screen staggered world browser as our navigation layout; R6 still guides the circular scene artwork. No second Play button is required. Browsing either axis must not accidentally select an entry. Other players continue independently.</p>
 <p><strong>Long worlds and loading:</strong> all six scenic destinations are implemented in <a href="implementation/scenic-worlds-2026-09-25.html">SCENIC-01 / native Windows 110</a>, with twelve panoramas, local walking/panning cameras and a maximum of three loaded/requested background textures. Home and Backyard share one continuous persistent property, presented as one Heeler Home menu destination in revision 118. Major-world travel waits for shared acknowledgement, applicable saves and visible texture readiness; distant art is released. Physical iPad memory/frame-time qualification and Apple rollout remain pending; Android 119 contains the scenic home. Separate loading controls working memory, not installed storage. The implementation uses Unity Resources loading; Addressables is not installed.</p>
 <p>These locations and quest scripts are proposed original game content. They are not a claim that any particular episode or commercial game contains these exact objectives.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Area / quest</th>
@@ -657,14 +469,14 @@
 <td>Immediate audio + pattern</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Keep water shallow and stylized, and use forgiving animation rather than precarious physics for slides, swings, and boats. A toy can fall or spill without making the child lose progress. Every quest should be restartable, skippable, and repeatable.</p>
 <h3 id="the-combined-character-and-five-destination-chooser">The combined character and five-destination chooser</h3>
 <p><strong>Updated navigation decision, September 25:</strong> one family-circle/down-arrow chooser combines horizontal full-body characters with vertical scene-filled world circles. Selecting a usable world opens a local loading screen until ready. This supersedes the separate staggered browser, central preview and second Play button. The <a href="bluey-lets-play-reference-study-2026-09-25.html#5-main-world-menu-contract">reference study</a> records the contract; <a href="implementation/combined-chooser-2026-09-25.html">native 105 evidence</a> qualifies the prototype on Windows.</p>
 <p>Keep five main destinations: Heeler Home (house and backyard), Playground &amp; Park, The Creek, The Beach and Daycare. These preserve all six content regions. House rooms are subareas. Use recognizable scene thumbnails with optional short labels and spoken names. Preserve large targets and safe areas on both landscape iPads and phones. Only the selecting player travels; siblings keep playing in their current areas. The Creek entrance must remain available throughout the menu replacement. Development builds must distinguish unfinished previews from usable destinations.</p>
 <h2 id="4-character-roster-and-pictures">4. Character roster and pictures</h2>
 <p>The illustrated guide contains <strong>34 verified official portrait entries</strong>, including Bandit, Chilli, a group portrait for the Terriers, and three older child characters. This is a researched starting catalog, not a claim to cover every named or unnamed child ever shown. The character system should let us add missing favorites without rewriting game code.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Group</th>
@@ -697,7 +509,7 @@
 <td>Hercules; optionally older children Digger, Mia, and Captain</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Use the <a href="https://www.bluey.tv/characters/">official character directory</a> and the individual source links on the picture cards. The machine-readable <a href="bluey-research/character-references.json">character reference catalog</a> records the page and portrait URL for every entry. The attempted official Pretzel page returned 404; keep him in the requested roster and verify another reference instead of silently dropping him. Lulu's current official reference is a head portrait, so it does not establish a complete body design.</p>
 <h3 id="turning-references-into-playable-characters">Turning references into playable characters</h3>
 <p>A portrait is a visual reference. A usable game character also needs facing poses, animation, feet and hand anchors, and a touch area. Build a small art specification before producing the full roster:</p>
@@ -720,7 +532,7 @@
 <p>The chosen illustrated style does not require modeling every character in 3D. Use layered 2D artwork exported to transparent PNG sprites; retain editable vector or layered source files. Blender remains useful for blocking out a room's perspective, rendering a prop as flat artwork, or an eventual AR presentation. Unity handles the actual interactions, menus, animation, sound, saves, and iPad application.</p>
 <h2 id="5-touch-movement-and-object-interaction">5. Touch movement and object interaction</h2>
 <p>Both movement modes should feed the same character controller. The preference can differ on each iPad; multiplayer should not force both children to use the same mode.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Input</th>
@@ -757,7 +569,7 @@
 <td>Move close if needed, then play the prepared interaction</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Separate walking from dragging.</strong> A tap that began on an item must not also send the character walking behind it. Decide what owns each finger when it touches the screen: menu/UI first, then joystick, then interactive prop, then floor. Hold that ownership until release or cancellation. Track actual pointer/finger IDs so two fingers do not steal each other's actions.</p>
 <p>Unity's Input System provides touch handling, UI integration, and an on-screen stick. These are appropriate building blocks; they do not supply the game's gesture priorities or object rules. <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.19/manual/Touch.html">Touch input</a>, <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.19/manual/UISupport.html">UI input</a>, <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.19/manual/OnScreen.html">on-screen controls</a></p>
 <p>Use simple authored floor polygons and a small path graph or grid for tap walking. A drawn perspective room is not automatically a navigable floor. Tables, counters, doorways, and character-only floor areas need explicit interaction and walk regions. Clamp joystick movement to the same legal floor used by tap walking.</p>
@@ -768,7 +580,7 @@
 <p>Use authored interaction states for carrying, sitting, swinging, and pouring. Constantly simulating every furniture item as a free rigidbody creates more instability than this style needs. Selective 2D physics is useful for balls, falling toys, and light effects.</p>
 <h2 id="6-reusable-item-rules-bucket-water-plant">6. Reusable item rules: bucket → water → plant</h2>
 <p>Give objects capabilities, then define compatible recipes as data. For example: <code>Pickable</code>, <code>Container</code>, <code>Fillable</code>, <code>Pourable</code>, <code>Wettable</code>, <code>Growable</code>, <code>SnapSurface</code>, and <code>Floatable</code>. An object can have several capabilities. Avoid writing a completely separate script for every pair of toys.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Object</th>
@@ -808,7 +620,7 @@
 <td>Place on water, float along a gentle path</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>For transfer, use a bounded amount:</p>
 <p><code>transferred = min(source amount, destination free capacity, requested amount)</code></p>
 <p>Subtract it once from the source and add it once to the destination. A water stream particle effect illustrates this operation; it is not the source of truth. We do not need real fluid simulation to make pouring satisfying.</p>
@@ -827,7 +639,7 @@
 <p>Test both iPads as clients of the designated PC/VPS, then loss/rejoin and offline solo independently. One player closing their app must not interrupt another player.</p>
 <h3 id="selected-connection-plan">Selected connection plan</h3>
 <p>Bluetooth is removed. Use the ordinary authenticated Wi-Fi/IP client path to PC/VPS; offline solo remains usable without that connection.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Approach</th>
@@ -857,7 +669,7 @@
 <td>Outside the selected implementation scope</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The Multipeer Connectivity material is historical API research only; no native peer transport or peer-host prototype is planned.</p>
 <p><a id="finding-the-other-ipad"></a></p>
 <h3 id="finding-the-designated-family-server">Finding the designated family server</h3>
@@ -874,7 +686,7 @@
 <p><strong>Yes: local AI tools can help produce the voices.</strong> Use an LLM to draft short dialogue and translations, and a text-to-speech model to generate the actual audio. Render the clips on Windows, listen to them, and bundle the approved recordings in Unity. The iPads then play normal audio clips, with no live AI server or internet connection required.</p>
 <p>The locally observed RTX 5090 has approximately 32 GB VRAM, making local voice auditions a reasonable next experiment. This is not a compatibility test: the installed ComfyUI environment, PyTorch/CUDA versions, and chosen node still need checking before installation or upgrades.</p>
 <h3 id="tools-worth-auditioning">Tools worth auditioning</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Candidate</th>
@@ -904,7 +716,7 @@
 <td>Alternative workflow if its dependencies fit the existing install</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The FL wrapper documents multilingual support, but that does <strong>not</strong> establish compatibility with every newly released upstream Chatterbox checkpoint. Its Turbo expression tags are documented for English. Verify the exact wrapper and model pair before choosing it for Spanish. Kokoro's official catalog lists three Spanish stock voices; audition them rather than assuming they sound like the intended child characters. <a href="https://github.com/filliptm/ComfyUI_Fill-ChatterBox">FL node documentation</a>, <a href="https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md">Kokoro voice catalog</a></p>
 <p>Generated voices can be distinct, expressive character voices, but matching the show's performances convincingly is an audition problem, not a capability established by a model's language list. Start by comparing six short lines and choosing consistent voices. No voice models or custom nodes were installed during this research.</p>
 <h3 id="production-workflow">Production workflow</h3>
@@ -918,7 +730,7 @@
 <li>Have a fluent Spanish speaker review instructions and recordings before treating the Spanish option as finished.</li>
 </ol>
 <p>Menu narration can announce character and location names. Speaking characters should also have greetings, action responses, and celebration lines so they feel alive. Quest-giver dialogue can be shared across the roster; we do not have to regenerate every possible instruction for every selectable avatar. Preserve non-speaking/signing characterization where appropriate while providing a spoken guide.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Line ID</th>
@@ -965,13 +777,13 @@
 <td>Demonstration</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Spanish drafts above use words common in Spain; the family's preferred dialect is still open. For Latin American Spanish, terms such as “cubeta” and “llave” may fit better. Pick a consistent dialect before recording the full set.</p>
 <p><strong>English-first rollout:</strong> implement both locale IDs immediately, finish the complete English playable, then add and review Spanish audio. During development, missing Spanish lines can fall back visibly to English for adult testing. Do not present the Spanish option as complete while core spoken instructions are missing. Each player can choose their own language.</p>
 <p>Keep speech readable through sound: lower music during dialogue, prioritize one instruction at a time, stop obsolete prompts when changing stages, and provide replay. A speaker queue should prevent repeated object touches from producing a wall of overlapping voices. Keep visual hints available even with voices muted.</p>
 <h2 id="9-github-templates-and-components-what-is-actually-useful">9. GitHub templates and components: what is actually useful</h2>
 <p>The following is a source inspection dated September 23, 2026. “Last commit” identifies the inspected repository snapshot, not guaranteed active support. A README, package declaration, or old editor version cannot establish iOS/IL2CPP compatibility. Full commit hashes and selected source excerpts are saved in <a href="bluey-research/github-evidence.json">the repository evidence</a> and <a href="bluey-research/multiplayer-evidence.json">the multiplayer evidence</a>.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Repository</th>
@@ -1048,7 +860,7 @@
 <td>Historical Apple networking reference; not a qualified Windows/iPad transport</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="specific-code-findings-that-change-the-recommendation">Specific code findings that change the recommendation</h3>
 <ul>
 <li><strong>Playground's actual project file is newer than its README baseline.</strong> Inspect <code>ProjectVersion.txt</code> rather than assuming the README's Unity 2022 reference is current. Its example movement is keyboard-oriented; selecting the template does not finish iPad controls. <a href="https://github.com/Unity-Technologies/UnityPlayground/blob/3d8acd7432ee115f28e05f2b1af39fa783376b4a/ProjectSettings/ProjectVersion.txt">Inspected project version</a></li>
@@ -1063,7 +875,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Use Unity <strong>6.3 LTS</strong>, with <strong>6000.3.24f1</strong> as the concrete patch selected in the earlier research. Keep Windows and Mac on the same tested patch. Recheck release notes when creating the project and before family deployment. The patch's published known issues include a <strong>2D Renderer black screen when Bloom is active</strong>, directly relevant to this style: leave Bloom off in the initial project and test the actual renderer on both iPads. <a href="https://unity.com/releases/editor/whats-new/6000.3.24f1">Official patch notes</a></p>
 <p>The project now exists separately at <code>C:\Users\sephi\Desktop\Little weeps game\Unity\FamilyPlayset</code>. Keep the unrelated <code>Meeps game</code> project untouched. The pinned editor/packages and scoped device proof are in the build guide; no new project or template import is needed.</p>
 <p>Choose released, editor-compatible package versions and lock the resolved dependency set. Unity's package pages can list prerelease alternatives; that is not a reason to choose the newest number automatically. The inspected Boss Room package combination is evidence of that sample's setup, not certification of our complete game. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.netcode.gameobjects.html">Unity 6.3 NGO package page</a></p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Layer</th>
@@ -1104,7 +916,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Versioned world save, per-player preferences, backups and migrations</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>A useful flow is: <strong>touch intent → validated world action → state change → quest/audio/animation feedback → save checkpoint</strong>. Multiplayer uses the same action path, with host validation. This keeps a pretty animation from accidentally becoming the only evidence that a task completed.</p>
 <p>Use ScriptableObjects for editable definitions and normal runtime state objects for a particular session. A quest asset should describe a quest; it should not directly hold shared mutable progress across both children's profiles. Give every persistent object, recipe, character, line, and quest a stable identifier.</p>
 <p>For fifteen short quests, a compact definition can contain: ID, stage, invitation line, ordered or unordered steps, required world-event conditions, hint image/line, and completion effect. Add branching dialogue later if the content actually requires it.</p>
@@ -1125,7 +937,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 - Use simple lighting and limited transparent overlap. Keep full-screen post-processing and Bloom off initially.
 - Use a provisional active-memory goal below roughly 400 MiB, then revise from device profiling. This is our conservative starting budget, <strong>not an Apple-published safe memory limit</strong>.</p>
 <p>Apple can terminate a memory-heavy app without the same report as a conventional crash. Capture both crash reports and jetsam reports, retain the exact build's symbols, and use Xcode to diagnose the cause. <a href="https://developer.apple.com/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports">Apple jetsam analysis</a>, <a href="https://developer.apple.com/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs">crash reports and device logs</a></p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Failure mode</th>
@@ -1170,11 +982,11 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Guard OS availability; test a real iPadOS 18 release build early</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Personal use still deserves release-build testing. Test the same signed artifact the children will use, not only editor play mode or a development build. <a href="https://developer.apple.com/documentation/xcode/testing-a-release-build">Apple guidance on testing a release build</a></p>
 <h2 id="13-required-acceptance-checks">13. Required acceptance checks</h2>
 <p>These are future build gates. None are claimed complete by this research.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Test</th>
@@ -1251,10 +1063,10 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Build version and symbols retained; any crash or jetsam event investigated</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Also watch each child play without coaching for a short session. Record where they hesitate, where an object fails to respond as expected, and whether they understand spoken hints. Adjust interaction size and timing from observation rather than assuming a framework solves child usability.</p>
 <h2 id="14-build-order-and-completion-gates">14. Build order and completion gates</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Milestone</th>
@@ -1299,7 +1111,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Both exact iPads pass release checks and automatic renewal verification</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>A two-character experiment is much smaller than a polished game with dozens of characters, six illustrated locations, multiplayer, and two voiced languages. Plan the full game as a sequence of content batches; artwork, animation, and listening to voice output will be substantial work. An accurate schedule comes after the first two device experiments reveal the networking and art-production costs.</p>
 <p>AR remains an optional later presentation—for example, putting the dollhouse on a table—rather than a dependency of the initial illustrated playset. Keep game rules separate from camera/presentation so an AR experiment can reuse them. The earlier <a href="ipad-game-research-2026-09-23.md">iPad platform and AR research</a> contains the device and deployment detail.</p>
 <h3 id="preserve-the-installation-renewal-requirement">Preserve the installation-renewal requirement</h3>
@@ -1311,7 +1123,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p><strong>All-world checklist, September 26:</strong> the <a href="all-world-features-audit-2026-09-26.html">consolidated feature audit</a> lists every named world/activity/recipe/toy/story catalog, current status, sources, and all 35 requirement routes. It distinguishes scenery, playable prototypes and unbuilt content.</p>
 <h2 id="16-expanded-feature-tracker">16. Expanded feature tracker</h2>
 <p>Added September 23, 2026, following the Toca/Piknik research. This is the main record of the new requirements. <strong>These rows specify the finished requirements, not current implementation status.</strong> The <a href="family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status">September 24 implementation audit</a> tracks every ID as partial, not built or optional later, with evidence and remaining acceptance. No complete feature row is accepted yet. Episode facts below come from the official Bluey site. Controls, recipes, timing, AI behavior, and multiplayer rules are our proposed adaptations, not claims about existing Bluey games or the show's internal production technology.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID</th>
@@ -1532,7 +1344,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>All nine support solo and shared play, role/character changes, independent exit, and saved progress</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The expanded tracker covers all 55 chapters and 35 feature IDs. AUTO-02 is explicitly retired; AUTO-01 automatic PC/VPS connection remains required. The six-region content inventory is unchanged; house/backyard use one of five menu destinations.</p>
 <h2 id="17-changing-characters-without-stopping-the-game">17. Changing characters without stopping the game</h2>
 <h3 id="what-the-child-sees">What the child sees</h3>
@@ -1557,7 +1369,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Use one large <strong>Let's play</strong> picture button, separate from the character portrait. Open a sheet of large illustrations: pizza, cake, fish, hide-and-seek, cleanup, balloon, and other available activities. Show a few cards per page, with a plain picture arrow for more. A card speaks its short invitation when selected and has an obvious Play triangle. Favorites and activities in the current area appear first. Simple Play can show three nearby suggestions and a More button; this is a layout to test with the children, not a fixed developmental rule.</p>
 <p>Also allow a direct start from the world: tap the recipe book to cook, the fishing rod to fish, or the parent portrait at the hiding-game mat to invite a seeker. Both routes invoke the same activity. Start ordinary activities within two deliberate taps from the world, without mandatory dialogue trees. Parent actors can walk over after the activity starts; finding a parent across the house must not be an entry requirement.</p>
 <p>The active activity shows a small picture badge with <strong>listen again</strong>, <strong>choose another</strong>, and <strong>all done</strong> controls. Keep their positions stable and provide spoken labels. Walking away never puts up a barrier. Briefly moving elsewhere can tuck the prompt away while the activity remains resumable; choosing another activity explicitly parks the previous personal activity. Do not ask the child to confirm every switch or label it failure.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Child action</th>
@@ -1597,7 +1409,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Do not register them as a participant without their action</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>All done means stop participating, not erase the world. A cake stays on the counter, a half-decorated pot stays decorated, and a puzzle can be resumed if its required objects still exist. A new invitation is not permission to remove the other child's plate. Cleanup never becomes a condition for entering the next game.</p>
 <h3 id="keep-objectives-separate-from-toys">Keep objectives separate from toys</h3>
 <p>An activity observes completed world events such as <code>FoodServed</code>, <code>FishReleased</code>, <code>ToyStored</code>, or <code>PlayerFound</code>. The toys work without the activity. Quests should usually recognize a valid existing object or a completed step instead of forcing a child to undo work and repeat it in an arbitrary order. Specific performances, such as catching a new fish this round, should clearly require a new event.</p>
@@ -1615,7 +1427,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p><strong>Implementation checkpoint, September 27:</strong> <a href="implementation/home-kitchen-2026-09-27.html">Kitchen prototype</a> adds usable fixtures, four independent work/dining places and persistent preparation/heat/serve/taste/wash for all 15 recipes. The detailed behaviors below remain the full goal; a playable path does not complete custom shape/effect, orders, album, drink or physical qualification requirements.</p>
 <p>Interpret the request as <strong>three food families with at least five distinct recipes each: 15 minimum</strong>, plus mix-and-match creation. Every recipe below is proposed game content. The show supports the themes: pretend pizza making and delivery in <a href="https://www.bluey.tv/watch/season-3/pizza-girls/">Pizza Girls</a>, the birthday bake in <a href="https://www.bluey.tv/watch/season-2/duck-cake/">Duck Cake</a>, restaurant roles in <a href="https://www.bluey.tv/watch/season-2/fancy-restaurant/">Fancy Restaurant</a>, and kitchen café play in <a href="https://www.bluey.tv/watch/season-3/pavlova/">Pavlova</a>. It does not establish this whole proposed menu as canonical food.</p>
 <h3 id="the-initial-menu">The initial menu</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID</th>
@@ -1700,7 +1512,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Stir colorful vegetables, scoop rice, combine and decorate the plate</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>These should differ in both assembly and appearance. Do not count five recolors of one item as five complete cooking activities. At the same time, reuse a small set of good interactions: spread, chop, pour, mix, shape, heat, decorate, cut, plate, carry, taste, and wash. The show’s backyard mud-pizza game can later reuse the pizza assembly system with a separate pretend-material set; it is distinct from our kitchen-food activity.</p>
 <h3 id="how-a-cooking-session-feels">How a cooking session feels</h3>
 <p>For Simple Play, open a close-up worktop with large ingredients and the next useful tool ready. A swipe chops with broad snapping; a large circular scribble stirs without needing a perfect circle. Dropping a tray in the oven starts an automatic short bake with an obvious visual change. Supply a tap alternative for each demanding gesture. Let the child skip to decorating a ready-made base whenever wanted.</p>
@@ -1718,7 +1530,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Catching fish at this pond is our proposed mini-game; the official references above do not establish that the children play this exact fishing game there. <strong>Rug Island</strong> provides a separate show reference for imaginative fishing. <a href="https://www.bluey.tv/watch/season-2/rug-island/">Rug Island</a></p>
 <h3 id="proposed-catch-discover-and-release-loop">Proposed catch, discover, and release loop</h3>
 <p>Put two short toy rods and an observation bowl beside the pond. Tap a rod or the fishing picture to start. Choose a visible fish, guide the float, see a generous bite cue, then bring the catch to the observation bowl and release it back into the same pond. Start with five visually distinct fish designs using shape, pattern, and color; these are game designs, not a verified list of species in the show.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Simple Play</th>
@@ -1748,13 +1560,13 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Either can stop without ending the sibling's turn</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Use a small pool of fish agents following authored pond paths. The host chooses availability, bite, reservation, and catch results; clients animate fish, float, line, and splash. Approximate motion is fine, but catch identity and ownership must agree. Only one rod can reserve a fish at a time; gently guide the other rod to another available fish. The observation bowl has a visible capacity. A catch cannot complete into a full bowl; offer release or another empty spot.</p>
 <p>Proposed fish states: <strong>swimming → approaching → reserved → caught → observation → released</strong>. Canceling a cast, leaving the area, closing a session, or losing the connection releases the reservation and returns unfinished catches to a valid water state. Never attach a fish permanently to a destroyed rod. The discovery album can save progress without removing fish from future play.</p>
 <p>Both this pond and later Barky Boats can reuse water visuals, but keep their interaction zones explicit: fish-catching targets, boat-floating targets, and bucket-filling targets must not compete unpredictably for the same drop.</p>
 <h2 id="21-five-cleanup-games-that-remain-playful">21. Five cleanup games that remain playful</h2>
 <p><strong>Daddy Robot</strong> turns tidying into pretend play; <strong>Duck Cake</strong> connects helping with a warm response; <strong>Bin Night</strong> shows a recurring family chore; <strong>Rain</strong> includes muddy tracks. These supply themes, not a reason to enforce chores in our app. <a href="https://www.bluey.tv/watch/season-1/daddy-robot/">Daddy Robot</a>, <a href="https://www.bluey.tv/watch/season-2/duck-cake/">Duck Cake</a>, <a href="https://www.bluey.tv/watch/season-2/bin-night/">Bin Night</a>, <a href="https://www.bluey.tv/watch/season-3/rain/">Rain</a></p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Activity</th>
@@ -1795,7 +1607,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Recognize generated cleanup props separately from the sibling's sandcastle, shell art, or boat</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Always keep an All done picture. A pleasing clean patch, a squeak, or a parent's brief thanks is enough feedback. Optional stickers can celebrate discoveries but unlock nothing essential. Do not keep spawning mess faster than a child can remove it, and do not make a single missed tiny patch prevent a satisfying end. Use generous completion thresholds and tidy the last visual flecks automatically in Simple Play.</p>
 <p>Give each mess patch/object a stable ID and remaining amount. The host applies cleaning once and emits one completion event; two simultaneous sponges can both visibly scrub without counting the same dirt twice. A cleanup session operates on an explicit set of eligible objects. Parking or leaving that activity leaves the world as it is. Automatic session cleanup may remove only its disposable temporary props after participants release them; valuable creations remain saved. Separately, section 51 adds the confirmed world housekeeping policy: eligible unused shared loans return home, while personal objects and saved creations remain protected.</p>
 <h2 id="22-hide-and-seek-and-parents-with-everyday-routines">22. Hide-and-seek and parents with everyday routines</h2>
@@ -1833,7 +1645,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p><strong>32 possible activities, grounded in 30 distinct official episode pages.</strong> Some are named games; others adapt an activity shown in the episode. Each first column links its source. Only the short “show reference” column states what the source establishes. The age adaptations, locations, cooperative roles, controls, and build priorities are our design proposals. Ground's Lava / Postman and Obstacle Course / Memory Snap intentionally share episode sources but describe different play systems.</p>
 <p>Priority <strong>A</strong> means a strong early candidate after the shared interaction foundation; <strong>B</strong> means a later content batch; <strong>C</strong> means more specialized movement, animation, or coordination work. These labels prioritize production, not the children's access to released activities. Kitchen, fishing, cleanup, both hiding modes, and free switching remain required regardless of this optional show backlog.</p>
 <h3 id="household-pretend-play">Household pretend play</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID / official episode</th>
@@ -1901,9 +1713,9 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Wearables, poses, spill cleanup; <strong>B</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="cooking-serving-and-making-things">Cooking, serving, and making things</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID / official episode</th>
@@ -1971,9 +1783,9 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Prop arrangement, pretend variants; <strong>B</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="magic-music-and-shared-toys">Magic, music, and shared toys</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID / official episode</th>
@@ -2041,11 +1853,11 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Authored floppy poses, joint contribution; <strong>C</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Barky Boats is included here as another gentle turn-taking activity. Its school-fountain setting is separate from the backyard fishing pond. Our first adaptation can use the already planned creek/water tray; recreating a school location is optional later work.</p>
 <p>Temporary magic effects must not freeze the sibling's controls indefinitely. Target consenting parent actors by default. A child can opt into a playful effect and always cancel it. When an activity is left, remove its temporary gameplay restrictions while retaining intentional dress-up choices. Musical games need a host clock and forgiving input windows; compare the actual iPad audio/visual timing before using accuracy judgments. The younger child's version should remain fun even if they never follow a beat.</p>
 <h3 id="outdoor-movement-and-family-routines">Outdoor, movement, and family routines</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID / official episode</th>
@@ -2113,14 +1925,14 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Cleanup tags, route and container; <strong>B</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Catalog count note:</strong> this first 32-card selection uses 30 distinct episode pages. Postman and Obstacle Course each provide two cards; the remaining entries are single cards. Card count is not a claim of 32 unrelated engines or 32 episodes.</p>
 <p>The <a href="bluey-research/activity-research-evidence.json">activity source and design catalog</a> records the source URLs, page-check results, and these proposed adaptations in a machine-readable format for later content work.</p>
 <p>A useful additional candidate is <a href="https://www.bluey.tv/watch/season-1/pirates/">Pirates</a>, which supplies a swing-ship adventure with parent roles. A gentle adaptation could have one child steer while the other spots picture landmarks. This needs more bespoke character animation and camera comfort testing than the earliest activities.</p>
 <p><strong>September 26 order update:</strong> the user selected Keepy Uppy as the first home minigame. Finish and qualify its four-player free play before returning to kitchen/cleanup/fishing/parent-seeker activities, Shops and Magic Xylophone. All new shared features support four players; the sofa and trampoline use four closer spots without enlarging their artwork. Do not build all 32 before children can try a finished small area. Unfinished ideas stay visible here as planned backlog, not as dead buttons in the children's app.</p>
 <h2 id="24-integration-build-sequence-and-acceptance-for-the-new-features">24. Integration, build sequence, and acceptance for the new features</h2>
 <h3 id="one-activity-framework">One activity framework</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>System</th>
@@ -2155,13 +1967,13 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Authority to award catches, consume ingredients, or mark another child found</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>This separation lets a child switch from Bingo to Muffin, park a cooking invitation, and start fishing while their cake remains on the counter. The revised requirements in sections 31–33 now require independent room/location travel. Prove it in the house first, then across the six finished locations; the sibling's activity must remain active.</p>
 <p>Keep definitions in editable assets and store runtime state in a versioned save. Add chosen avatar, parked activity checkpoints, dish variants/decorations, fish discoveries, cleanup state, and parent task IDs as needed. Do not save raw network connection IDs as the permanent identity of a child. On load, rebuild references by stable IDs and release stale temporary reservations. A hide-and-seek round can safely resume at an explicit setup checkpoint; do not restore a half-running count with missing participants.</p>
 <p>Network commands should carry activity/session ID, acting player, target object IDs, expected state revision, and an idempotency key where a retry could duplicate a result. The host applies each valid state change once. Replicate the resulting state for reconnects, not only an animation trigger. Important interactions must remain correct even if a cosmetic effect is dropped.</p>
 <h3 id="updated-production-batches">Updated production batches</h3>
 <p>These refine section 14; they do not change the Windows/Mac build split or the required signing-renewal setup.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Batch</th>
@@ -2211,9 +2023,9 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>All original gates plus the new checks below pass</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="required-new-checks">Required new checks</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Scenario</th>
@@ -2298,7 +2110,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Stable measured responsiveness and bounded memory, effects, audio, and object counts</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Add play observations: can the younger child change character and start a different game without reading; can either child leave without asking for adult help; does the parent search feel understandable; do finished foods remain interesting toys; and does each sibling find something to do while the other is occupied? These outcomes matter more than quest completion percentages.</p>
 <p><strong>Tracking rule:</strong> mark a feature implemented only when code and content exist, and mark it device-verified only after the relevant physical iPad checks. This update is research and design work; no Unity systems, scenes, or iPad build were changed.</p>
 <h2 id="25-reading-nook-and-interactive-books">25. Reading nook and interactive books</h2>
@@ -2317,7 +2129,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <li>A persistent house/close button returns to the room and saves the page. Opening another book is always allowed. Finished books remain replayable.</li>
 </ol>
 <p>The play and close controls need consistent locations, generous spacing, and large hit areas. Start with the project's large preschool touch targets, then check their actual physical size on both 10.2-inch iPads. Spoken button labels and clear icons carry the meaning; written labels are additional help. Hide the joystick and block taps from falling through into the room while the reader is open.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Mode</th>
@@ -2337,7 +2149,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>More things to inspect, optional picture-finding invitations, and replayable names; nothing prevents turning the page</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Research finding:</strong> a meta-analysis of 43 studies involving 2,147 children found small benefits from technology-enhanced stories overall, with useful results from multimedia features but distraction from many interactive additions. This supports keeping movement related to the story and limiting competing tasks. The proposed one-to-three-hotspot limit is our design choice, not a number established by the study. <a href="https://journals.sagepub.com/doi/full/10.3102/0034654314566989">Takacs, Swart &amp; Bus, 2015</a></p>
 <h3 id="sharing-the-house-without-sharing-a-playback-cursor">Sharing the house without sharing a playback cursor</h3>
 <p>The physical book prop has a world object ID; its readable content has a separate book ID. Moving a book does not erase another player's access to its pages. All four players may read the same title independently on different pages, or mix reading with other activities. A local reading panel must not pause the PC/VPS world or set global game time to zero.</p>
@@ -2346,7 +2158,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <h2 id="26-dinosaur-books-and-spoken-names">26. Dinosaur books and spoken names</h2>
 <h3 id="six-distinct-starter-books">Six distinct starter books</h3>
 <p><strong>Book subjects — latest user correction, September 26:</strong> the six books are <strong>dinosaurs; snakes and reptiles; cars and trucks; Hello Kitty; Tangled; and unicorns</strong>. The user explicitly rejected the assistant-selected space, fairy-garden, invented-princess and mermaid subjects. Use familiar Hello Kitty and Tangled characters/stories; Tangled follows Rapunzel, not an invented replacement princess. The specific unicorn story/character is awaiting the user’s reply. All four players can read all six. Rapunzel’s speaking voice remains the requested locally generated narrator reference. Do not produce further assets for the superseded subjects or treat their draft output as accepted.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Working title</th>
@@ -2386,12 +2198,12 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>User requested unicorns; ask which familiar story/character or picture-book direction before inventing one.</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The dinosaur book uses twelve creature introductions plus cover and final choice page. Pteranodon and Quetzalcoatlus are identified as flying reptiles. The other five books require revised storyboards for the user-selected subjects; their length is not yet finalized. Boyish/girly is planning shorthand for the requested theme balance, not a rule about who enjoys or can read a book.</p>
 <h3 id="first-book-original-storyboard-expanded-by-the-latest-request">First book: original storyboard, expanded by the latest request</h3>
 <p>The original eight-page draft below is historical content guidance. Expand it to fourteen pages to include the requested additional creatures; do not omit them to preserve the old page target.</p>
 <p>The following narration is a short original draft. The museum links are factual references; final art, pronunciations, audio, and translations still require review.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Page</th>
@@ -2441,7 +2253,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Six portrait buttons replay names; home returns to the room; no mandatory quiz</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Factual references for those pages: <a href="https://www.nhm.ac.uk/discover/dino-directory/tyrannosaurus.html">Tyrannosaurus</a>, <a href="https://www.nhm.ac.uk/discover/dino-directory/triceratops.html">Triceratops</a>, <a href="https://www.nhm.ac.uk/discover/dino-directory/stegosaurus.html">Stegosaurus</a>, <a href="https://www.nhm.ac.uk/discover/dino-directory/brachiosaurus.html">Brachiosaurus</a>, <a href="https://www.nhm.ac.uk/discover/dino-directory/diplodocus.html">Diplodocus</a>, and <a href="https://www.nhm.ac.uk/discover/dino-directory/ankylosaurus.html">Ankylosaurus</a>. These sources also give pronunciation guides. For example, the museum renders Triceratops as “tri-SERRA-tops” and Brachiosaurus as “BRAK-ee-oh-sore-us”; the saved reference catalog includes guides for all 20 toys.</p>
 <h3 id="make-speech-predictable">Make speech predictable</h3>
 <p>Use pre-generated, reviewed recordings, stored locally. The existing ComfyUI/Windows voice workflow can produce candidate narration and dinosaur names. Generate one sentence or short passage at a time so a pronunciation can be fixed without rerecording a whole book. Keep lossless masters for editing, then use suitable Unity audio import settings for shipping. No cloud voice call should be required when a child presses Play.</p>
@@ -2462,7 +2274,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <h3 id="controls-and-remembering-each-childs-place">Controls and remembering each child's place</h3>
 <p><strong>Playback clarification, September 23, 2026:</strong> the intended behavior is to remember each child's position in each video, including after leaving the TV, changing rooms, or closing and reopening the game. This is an explicit planned feature, not something Unity saves automatically.</p>
 <p>Use large picture controls for <strong>Play/Pause</strong>, <strong>back/forward 10 seconds</strong> (proposed step size), <strong>previous/next video</strong>, <strong>Start over</strong>, and <strong>Back to videos / Return to game</strong>. A simple seek bar allows choosing another part of the clip. Clamp skips to the clip's valid time range. Manual next/previous opens the chosen clip and respects its bookmark; reaching the end of a clip does not automatically start another.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>What the child does</th>
@@ -2507,7 +2319,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Uses that sibling's separate position, without changing the first child's playback</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Save design:</strong> store a small bookmark under stable child-profile ID + clip ID + content version/hash, with position in seconds and completion state. Keep it in persistent app storage, separate from communal room state and toy cleanup. Normal app updates should preserve it. Deleting the app or explicitly resetting its data is a different operation. The initial guarantee is return on the same device/profile; automatic bookmark transfer between devices would be a separate sync feature, not implied by joining the shared world.</p>
 <p>Checkpoint on pause, completed seek/skip, clip change, leaving the TV, and lifecycle suspension/focus-loss events. Also checkpoint during playback approximately <strong>every five seconds</strong>, an initial tuning proposal. Write a recoverable record with a previous valid copy; serialize writes so an older asynchronous save cannot replace a newer bookmark. Do not depend on a quit callback: mobile termination can occur without it. After a sudden crash or force-close, restore the last successfully written checkpoint, so a short portion may repeat rather than restarting the whole video. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/MonoBehaviour.OnApplicationQuit.html">Unity mobile quit limitations</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/MonoBehaviour.OnApplicationPause.html">Pause/resume callback</a></p>
 <p><strong>Unity implementation:</strong> prepare the file, verify seeking support, restore the saved time and wait for the seek/first-frame state before offering playback. Save the displayed playback time, and capture it before calling Stop. Setting VideoPlayer.time starts an asynchronous seek; do not enqueue a seek on every slider movement. Coalesce slider requests and ignore obsolete callbacks after changing videos. Decode/seek accuracy and speed must be checked with our actual clips on both iPads. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Video.VideoPlayer.html">VideoPlayer API</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Video.VideoPlayer-time.html">Playback time and seek behavior</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Video.VideoPlayer-seekCompleted.html">Seek completion</a></p>
@@ -2518,7 +2330,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p><strong>Proposed first encoding target:</strong> MP4 container, H.264 video, AAC-LC audio, 1280×720 at up to 30 fps, ordinary SDR color, and a modest bitrate. Start around 2–3 Mbps combined audio/video and assess quality on the iPads; these are proposed settings, not measured results. Apple lists H.264/AAC support for the seventh-generation iPad, while Unity stresses checking the actual target platform's decoder support. Windows playback alone cannot qualify a clip for either iPad. <a href="https://support.apple.com/en-us/111911">iPad 7 media specifications</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/video-sources-compatibility-target-platforms.html">Unity target-platform video compatibility</a></p>
 <p>Preserve the clip's aspect ratio with letterboxing on the iPad screen rather than cropping faces or stretching the picture. Do not start with 4K, HDR, or several concurrent decoders. At a combined 3 Mbps, ten minutes is approximately <strong>225 MB</strong>, calculated as bitrate × time ÷ eight, excluding small container overhead. Storage use and decoded runtime memory are different budgets; do not read entire movies into a managed byte array.</p>
 <h3 id="add-clips-without-rebuilding-the-game-each-time">Add clips without rebuilding the game each time</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Route</th>
@@ -2543,7 +2355,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Versioned manifest and explicit import; keep this separate from gameplay networking</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Apple's document picker allows choosing files from outside an app's sandbox; import/copy is simpler than keeping a permanent external-file reference. A small native iOS bridge or a separately evaluated Unity plugin will be needed. The archived Apple guide explains the model; use the current API when implementing rather than copying its old setup steps verbatim. <a href="https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/DocumentPickerProgrammingGuide/Introduction/Introduction.html">Apple document picker overview</a>, <a href="https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller">current UIDocumentPickerViewController API</a></p>
 <p>The importer should copy into a temporary location, check available space, probe the video, and only then commit the file and manifest entry. A cancelled picker, inaccessible provider, unsupported clip, duplicate file, or interrupted copy should leave the existing library intact. Files supplied through a cloud provider must be fully copied onto the iPad before being advertised as available offline.</p>
 <p>Record a stable clip ID, relative filename, title, duration, thumbnail, content hash, and optional language/subtitle metadata. Use a hash to recognize duplicate content even if filenames differ. Keep imported media separate from world saves. Preserve both during normal in-place app updates and the agreed signing renewal; removal/reinstallation is not a data-preserving update strategy.</p>
@@ -2557,7 +2369,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <h3 id="a-collection-of-20-different-toys">A collection of 20 different toys</h3>
 <p>Use a low toy shelf, wide floor mat, toy wash basin, blocks, pretend plants, rocks, and a sand tray. All dinosaur types should be reachable without completing quests. Show a manageable tray of about six at a time, with large picture category tabs and a “show all” collection view. This limits visual clutter without locking away favorites.</p>
 <p>The following museum pages were checked and their names, English pronunciation guides, and basic catalog fields saved in the <a href="bluey-research/dinosaur-reference-catalog.json">dinosaur reference catalog</a>. The toy behaviors below are <strong>our proposed playful animations</strong>, not assertions about how the real animals behaved. Target 20 types for the collection; make the first six fully functional before expanding.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Dinosaur toy and factual source</th>
@@ -2667,11 +2479,11 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Expansion</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>For any factual “learn more” mode, separately review each animal's anatomy, diet, period, and scale before production. Use the museum references to guide silhouettes and feather choices rather than copying movie depictions. Color schemes and toy sounds can be imaginative; do not narrate uncertain details as established facts. If flying or marine prehistoric reptiles are added later, give them an <strong>Other prehistoric animals</strong> category: pterosaurs and marine reptiles are not dinosaurs. <a href="https://www.nhm.ac.uk/discover/what-are-dinosaurs.html">Natural History Museum: what are dinosaurs?</a></p>
 <h3 id="give-each-toy-connected-uses">Give each toy connected uses</h3>
 <p>Every toy uses the existing draggable-object system: pick up, carry, place, rotate/flip through a simple control, put in a basket, and set on a supported surface. Add a reusable dinosaur component for name audio, a few animation clips, and a dirt level. A speaker button repeats its name; optionally announce it once when picked up, with a cooldown so sorting toys does not become constant overlapping speech.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Child action</th>
@@ -2711,12 +2523,12 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Shared dinosaur ID; opening the book never consumes or removes the toy</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Food is pretend play in the first toy version. If later teaching diets, use reviewed animal-specific food rules rather than presenting every dinosaur as eating the same thing. A toy may still join an imaginative picnic without the narrator calling that a scientific fact.</p>
 <h3 id="dinosaur-discovery-mat-the-required-mini-game">Dinosaur Discovery Mat: the required mini-game</h3>
 <p><strong>Main loop:</strong> uncover a hidden toy → brush it → hear its name → wash it if desired → place it in a little world you build. The toy remains usable after the activity. The discovery mat is also a sandbox; the child can skip digging and take any dinosaur from the shelf.</p>
 <p>In Simple Play, one broad swipe or tap reveals a toy; brushes snap generously to it; naming is automatic after the reveal but replayable. There is no timer, failure sound, required reading, or hunt through a long inventory. Explore &amp; Stories can use several brushing strokes, more scenery pieces, and optional requests from a parent character. Assistance changes the required input, not which toys are available.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Optional invitation</th>
@@ -2751,13 +2563,13 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Arrange an order, lead the toys along a short path, then tuck them into cushion nests</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>These activities add to the show's game catalog; they are original dinosaur play concepts, not claims that all occur in specific Bluey episodes. Use toy replicas in the digging tray. A future fossil assembly activity would need separately sourced anatomical reference art; do not accidentally teach an invented skeleton as a real one.</p>
 <p><strong>Co-op rules:</strong> each toy has a stable instance ID. The host grants one drag owner at a time, with a clear visual cue when a sibling is holding it. Another child can work on a different toy or the scenery immediately. Offer a deliberate “another toy” action for duplicates so both can choose T. rex; retries must not silently spawn extras. Dirt, location, container membership, and discovered-name state synchronize; individual narration and camera close-ups stay local. Leaving the mat preserves the arrangement and releases tools/reservations.</p>
 <p>Keep finished toy art modular by body family, but preserve recognizable silhouettes. Animate only visible toys; pool footprints, bubbles, and dust with a strict cap. A target of 20 available types does not mean twenty complex rigs, constantly running effects, or unlimited spawned instances on the A10 iPad.</p>
 <h2 id="29-building-and-testing-books-tv-and-dinosaurs">29. Building and testing books, TV, and dinosaurs</h2>
 <h3 id="shared-parts-and-saved-state">Shared parts and saved state</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Component</th>
@@ -2802,7 +2614,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Participants, event progress, tool reservations; free exit and resume</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>This extends the existing architecture instead of making each book, dinosaur, or mini-game a separate application. No new backend is required. Audio/video libraries, room simulation, and networking still need memory and lifecycle coordination on each device.</p>
 <h3 id="build-order-for-these-additions">Build order for these additions</h3>
 <ol>
@@ -2815,7 +2627,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 </ol>
 <p>The older iPad remains the performance baseline as client and solo player, including book/video loading. Load only needed pages and release old textures. The PC/VPS keeps other players running. Final budgets require device measurements.</p>
 <h3 id="acceptance-checklist">Acceptance checklist</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Scenario</th>
@@ -2892,7 +2704,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Saved book pages, toy arrangements, and imported media remain usable; verify on both iPads</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Evidence and status:</strong> the museum reference catalog records 20 successfully retrieved dinosaur pages and pronunciation fields; the <a href="bluey-research/books-tv-dinosaurs-evidence.json">books, media, and dinosaurs evidence index</a> links the primary research and technical sources and separates sourced capabilities from proposed designs. No book artwork, narration, video imports, dinosaur assets, Unity implementation, or new iPad build was produced by this research update. Each tracker row remains planned until its content and device checks are complete.</p>
 <h2 id="30-a-simple-and-playful-science-corner">30. A simple and playful science corner</h2>
 <p><strong>Native marble ramps — September 28:</strong> <a href="implementation/marble-ramps-2026-09-28.html">Candidate 216</a> adds three adjustable ramps, wood/felt/rubber resistance, four independent courses and releases, deliberate kept layouts, restore/undo and five-minute temporary cleanup. Schema 27/content 28. All 282 core groups, 24 Unity JSON round trips, six native groups and private-solo reopen pass. It also fixes safe waiting-flip food storage and the new ramp completion-time serialization error found in the disposable test server. Independent production recovery remains blocked by Windows policy. No device rollout; retain the full Home backlog and main integration hold.</p>
@@ -2908,7 +2720,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p><strong>Latest addition — mixing reactions:</strong> the user explicitly requests mixing materials such as vinegar and baking soda and seeing something happen. SCI-09 below extends the original eight-station scope to nine. <a href="implementation/home-science-play-design-2026-09-27.html#sci-09-mix-and-discover">Researched mixing process and variations</a>. <a href="implementation/home-mixing-2026-09-27.html">Candidate 178 implementation</a> now includes fizz/foam, indicator colors, oil/water and oobleck with four independent saved workspaces. Physical/device acceptance remains open; the wider nine-station catalog is not finished.</p>
 <h3 id="nine-science-activities">Nine science activities</h3>
 <p><strong>New prototype collection, September 27:</strong> the user accepted fourteen playful activity concepts and requested deeper research and prototypes before detailing them. <a href="implementation/science-playground-research-2026-09-27.html">SP-01–14 research, scientific rules, implementation limits and evidence</a> · <a href="implementation/home-science-playground.html">Playground</a>. Lava jars, dinosaur ice rescue, marble playground, stretchy slime, magic milk, drawing robot, balloon rocket, foam fountain, wind tubes, circuits, weather, bubbles, rainbow mirrors and family chain reactions each have a retained workspace for four local players. Some extend SCI-03/04/06/09; others add concepts under LAB-01. Browser prototypes are not completed Home stations; the original nine below and their remaining requirements are retained.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID and station</th>
@@ -2973,7 +2785,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Vinegar and baking soda produce carbon dioxide; soap retains bubbles rather than creating extra gas. Preserve consumed ingredients and distinguish chemical reactions from physical mixing; not every combination fizzes</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Factual source notes:</strong> the <a href="https://www.pbs.org/video/sink-or-float-prek-kindergarten-science-m2z0ne/">PBS sink-or-float activity</a> and <a href="https://www.pbs.org/video/ramps-npt3-nanhcu/">ramp activity</a> support observing and comparing those effects. The National MagLab describes ferromagnetic materials in its <a href="https://nationalmaglab.org/about-the-maglab/around-the-lab/maglab-dictionary/permanent-magnet/">permanent-magnet explanation</a>; our limited prop list should be checked against those material distinctions before recording any factual lines.</p>
 <p>The Exploratorium explains <a href="https://www.exploratorium.edu/snacks/colored-shadows">additive colored lights and shadows</a>, <a href="https://annex.exploratorium.edu/ronh/bubbles/shape_of_bubbles.html">why free bubbles tend toward spheres</a>, and <a href="https://www.exploratorium.edu/snacks/sound-sandwich">vibration, length, tension, and pitch</a>. NASA's <a href="https://science.nasa.gov/eclips/videos/do-plants-need-soil/">plant-growing explanation</a> supplies the reference for the seed station. These are sources for the underlying ideas, not claims that their physical activities or lesson levels were designed for this game's three-year-old audience.</p>
 <h3 id="make-the-experiments-feel-like-toys">Make the experiments feel like toys</h3>
@@ -2986,12 +2798,13 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>The PC or local solo authority calculates results. Clients display interpolation, splashes, bubbles, light, and sound; they do not independently decide whether the same boat sank. Unity physics on two devices should not be assumed to produce identical results from identical inputs. Bound the number of balls, bubbles, dust particles, and simultaneous sounds. An offline iPad runs these same rules locally.</p>
 <p><strong>First science prototype:</strong> float tub, magnet trail, and color lights. They test three distinct interactions while reusing the existing container, drag, and touch systems. Complete those before adding the other five stations.</p>
 <h3 id="shared-downstairs-coloring-and-drawing">Shared downstairs coloring and drawing</h3>
+<p><strong>September 30 correction — five-minute reusable papers and books:</strong> working coloring pages clear colors and undo/redo after five unused minutes and the brief cleanup cue; deliberately kept/displayed folder pictures remain protected. Science settings-only changes also reset. Each of all six local book bookmarks returns to page one after five unused minutes, including time while closed, so an expired book opens ready and quiet. Active reading/coloring refreshes only its own book/page. This supersedes older blanket protection for working sheets and indefinitely retained reading positions. <a href="implementation/station-idle-reset-2026-09-30.html">Implementation and scoped evidence</a>.</p>
 <p><strong>Four cake families — September 28:</strong> <a href="implementation/cake-families-2026-09-28.html">Cake activities 207</a> adds duck assembly, heart molds, chosen rainbow layers and carrot preparation, with stage-specific ingredients, pictured assistance and preserved food/portions. Schema 24/content 25. All 259 core and six native four-player groups pass, including cold restart/rejoin. Independent recovery qualification is open because Windows Application Control blocked the validator from starting; no data-invalid result or world replacement occurred. No device rollout. Five pizza paths, five meals and the next ramp activity follow; preserve the full backlog and main integration hold.</p>
 <p><strong>Creation/food storage — September 28:</strong> <a href="implementation/home-creation-storage-2026-09-28.html">Creation/food storage 205</a> adds four kept-picture places and two saved-food places per profile, owner-controlled bedroom display, recoverable picture removal and exact food/portion preservation. Schema 23/content 24. Seven native creation groups and four native rule groups pass. All 254 core and seven isolated recovery groups also pass. No device rollout. Remaining cooking stages follow this bounded slice, then the next Home activity; preserve the full backlog and main integration hold.</p>
 <p><strong>Native controls — September 28:</strong> <a href="implementation/native-coloring-controls-2026-09-28.html">Candidate 202</a> applies the accepted picture style to Pictures/Undo/Redo/Back/Next/Home, a six-preview chooser and readable save feedback. Six native groups preserve eighteen pages and four independent histories. No device rollout. <a href="implementation/home-finishing-research-2026-09-28.html">The user-approved finishing sequence</a> continues with creation/food storage, remaining cooking stages and another Home activity.</p>
 <p><strong>September 27 visual correction:</strong> the user rejects schematic science and a six-page coloring limit. <a href="implementation/workshop-visuals-2026-09-27.html">The applied workshop correction</a> adds illustrated equipment and twelve official Bluey pages, for eighteen total, with additive per-profile save migration. Final visual/physical acceptance and blank drawing remain open.</p>
 <p>This newly requested area sits beside the living room and shared science bay. Four players can use their own papers at once, regardless of chosen avatar. It does not replace narrated books. The working default includes coloring pages and blank drawing paper; the optional preference question remains open. Final art/themes need review.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Coloring ID</th>
@@ -3041,14 +2854,14 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Bounded artwork updates, private offline saves, authoritative reunion, recovery and A10/touch verification</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Scientific coloring distinction:</strong> RGB light mixing is not crayon or paint mixing. Keep the systems and explanations distinct. There is no correct-color score or required completion percentage. The <a href="implementation/home-science-coloring-research-2026-09-27.html">applied specification</a> records the source-to-decision mapping, drawing-data/network constraints and acceptance sequence.</p>
 <h2 id="31-joining-and-leaving-without-restarting-play">31. Joining and leaving without restarting play</h2>
 <p><strong>Clarified in section 50:</strong> this applies across all locations, not only rooms in the house. A player at the creek can independently enter the playground where another is already playing; both then see the same players and objects. Departing changes only the departing player's participation and view.</p>
 <p><strong>Confirmed home design: a small Windows game server keeps the family world alive; both iPads are players.</strong> You confirmed that the PC can stay on while they play. Either child can start first, the other can join later, and either can close their app without making the remaining iPad become the server. No second player is required to begin.</p>
 <p>Unity supports a Dedicated Server build target for Windows, macOS, and Linux, optimized to remove unnecessary presentation work. That makes a small Windows server an appropriate implementation candidate; actual CPU, memory, sleep behavior, and stability still need testing. Use a packaged build, not an open Unity Editor, for family play. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/dedicated-server-introduction.html">Unity Dedicated Server</a></p>
 <h3 id="three-different-actions-all-supported">Three different actions, all supported</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>What the child does</th>
@@ -3069,7 +2882,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Attach/detach their player connection; PC simulation continues; persist room changes and release abandoned grabs</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The first player sees a small arrival animation or portrait indicator, not a full-screen pause or a forced lobby. The second player loads on their own iPad. “Join me” is an optional picture invitation; finding a sibling should not require abandoning a half-made cake. Arrival near an activity gives a free nearby interaction position, never the exact coordinates or held object of another player.</p>
 <h3 id="joining-an-already-running-world">Joining an already-running world</h3>
 <ol>
@@ -3080,7 +2893,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <li>Join an activity when the child chooses it. Supply its current state, not a replay of every past sound, celebration, or animation.</li>
 </ol>
 <p>Unity's <code>NetworkVariable</code> state synchronizes to late joiners, unlike an isolated one-time RPC event. Its scene manager also provides client synchronization and completion events. Those facilities help, but our room saves, activity semantics, snapshot revisions, and content checks remain application code. Initialize visuals from current values as well as subscribing to later changes. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.5/manual/basics/networkvariable.html">Unity NetworkVariables</a>, <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/scenemanagement/using-networkscenemanager.html">Unity NetworkSceneManager</a></p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Activity in progress</th>
@@ -3120,7 +2933,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Stop only that child's audio/video; the world remains active</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Store activity participants as a changing set, not a fixed “must have two players” array. Do not reset completion targets, delete a station, or despawn a dish just because its creator left. Shared creations are server-owned world objects; players receive temporary interaction reservations. Unity's ownership/despawn settings require explicit care for objects that must survive their creator disconnecting. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.5/manual/basics/object-spawning.html">Unity object spawning and lifetime</a></p>
 <h3 id="pc-server-lifecycle">PC server lifecycle</h3>
 <p>As refined in section 44, propose automatic server startup with Windows sign-in after parent setup, plus a separate <strong>Family Game Status</strong> desktop shortcut with a small parent panel: running world, connected children, last save, and stop. The existing Connect Unity + Blender shortcut connects development tools; it should not be required for the children's game. During implementation, start the server hidden by default, bind it to the home network, and configure only the necessary local firewall access. No router port forwarding or public hosting is required.</p>
@@ -3136,7 +2949,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <h3 id="ownership-visiting-and-decorating">Ownership, visiting, and decorating</h3>
 <p>The room owner controls permanent style changes by default. Visitors can play with loose toys and sit/read; an optional <strong>Decorate together</strong> picture enables shared furniture arranging. This is a proposed way to protect a child's chosen layout while still allowing play, not a requirement for an adult approval each time they visit. Room owners can undo recent decoration operations. Do not let a visitor accidentally remove the only exit or the other child's bedroom.</p>
 <p>Use forgiving placement: clear legal surfaces, large snap areas, and an immediate preview. Keep doors, entry anchors, and the required walk strip clear. Place oversized furniture only in fitting slots in Simple Play; Explore can allow more flexible positioning within validated bounds. A lamp's light, a drawer's contents, and a plush toy's pose are interactive state, not just a static wallpaper swap.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Identity/state</th>
@@ -3181,7 +2994,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Validate, commit once, replicate, and make reversible where practical</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Connected example:</strong> A moves their dinosaur plush from the bed to the shelf. The server validates the move, stores it, and sends the accepted update. B sees the new position immediately if visiting; if elsewhere, B sees the latest room state when entering. A simultaneous wall-color change in B's room cannot overwrite A's room because they have different room/object IDs.</p>
 <h3 id="independent-rooms-in-unity">Independent rooms in Unity</h3>
 <p>Treat a room as a logical world zone, not as a command to reload everybody's Unity scene. For the first house implementation, keep authoritative room data and necessary collision/navigation structures in a persistent world; load the small home zones together or retain lightweight zone representations. Each client enables only its own current room's camera, visuals, local effects, and audible neighborhood. Do not disable the server's simulation root merely because a room is off camera.</p>
@@ -3216,7 +3029,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>The official episode provides the family hide-and-seek premise; our parent roles, furniture mechanics, clue timing, and late joining are game designs. <a href="https://www.bluey.tv/watch/season-1/hide-and-seek/">Bluey: Hide and Seek</a></p>
 <p><strong>Default: Bandit or Chilli seeks, up to four players may hide, and each child can enter a designated closet, oversized play drawer, tent, curtain alcove, or other clearly fitting spot.</strong> Child-seeker mode remains a picture-selectable alternative. The parent's job is a short, friendly search, not winning against a preschooler.</p>
 <h3 id="settings-that-mean-separate-things">Settings that mean separate things</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Setting</th>
@@ -3251,7 +3064,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>More rooms later; explicitly choose a larger search rather than changing it mid-round</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>These are tunable starting values, not timings established by a study. Test both children and retain their preferences. Turning off sound must not make the game unusable: an optional little door wiggle or localized visual cue can represent an enabled hint. Clue settings should change deliberate hints, not accidentally reveal hidden avatars or their nameplates.</p>
 <h3 id="hiding-inside-furniture">Hiding inside furniture</h3>
 <p>Author a <code>HideSpotDefinition</code> for each valid spot: stable ID, room, approach anchor, entry pose, interior pose, exit anchor, seeker inspection anchor, capacity, door/drawer animation, cover mask, and audio emitter. Use large illustrated furniture that visibly fits the avatar. Ordinary tiny drawers remain prop containers; an enterable play drawer gets an obvious hiding picture when the child is eligible to hide.</p>
@@ -3269,7 +3082,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Give parents a few original, reviewed lines such as “Where could those puppies be?”, “Was that a little giggle?”, and “There you are!” Limit chatter to moments with meaning. Local narration arbitration keeps a parent call from competing with another foreground voice. The server uses recorded-duration metadata and gameplay timers, not an AudioSource completing on a headless PC.</p>
 <h3 id="a-short-search-that-feels-understandable">A short search that feels understandable</h3>
 <p>Use an authored search director plus a simple parent state machine: <strong>count/prepare → look around → walk → inspect → react → find → continue</strong>. Start with perhaps six legal spots in one compact area; measure the longest route through them, including inspections. A spot list whose route cannot fit within the target duration must be shortened or moved closer together.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Time from a hider becoming ready for search</th>
@@ -3294,7 +3107,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Complete the remaining reachable search path or follow a clear clue, approach the spot, and reveal the ready hider</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>A parent can prioritize a <strong>deliberately emitted clue</strong> as an observation. With automatic clues disabled, use a bounded route covering all legal spots rather than silently using the exact occupied coordinate. Randomize among routes that still meet the measured budget; endless random wandering cannot support the requested short search.</p>
 <p>The 30-second goal starts when that child is ready for searching, excluding the time a three-year-old spends choosing a place. It is a pacing target for a valid reachable hider, not a guarantee while they repeatedly move between rooms or the network is unavailable. Do not punish movement or remove the exit button to force the timing. Keep elapsed search time when someone swaps hiding spots so repeated swaps do not accidentally restart every hint and parent decision.</p>
 <p>No involuntary forced reveal from across the room. If navigation fails, replan to an alternate inspection anchor. If the spot becomes invalid, show an understandable come-out/nearby-spot recovery, never an invisible teleport-and-found event. Preserve clear causes: the parent heard something, walked over, checked, and found the child.</p>
@@ -3307,7 +3120,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p><strong>Travel priority:</strong> full offline solo is required. Internet/hotspot access to the designated PC/VPS is optional later. Device-hosted travel sessions, authority switching and offline imports are removed.</p>
 <p><strong>Confirmed requirement: your phone hotspot may be available, but if the children cannot play together, each must still be able to do everything else.</strong> <a href="#49-reaching-your-home-pc-from-a-road-trip">Section 49</a> now also adds your requested optional internet connection to the always-on home PC. The PC remains optional for ordinary play; installed solo content needs no login or remote service. Full offline play is part of the core product, not a reduced demo.</p>
 <h3 id="shared-play-and-private-solo">Shared play and private solo</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Mode</th>
@@ -3342,10 +3155,10 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>No effect; private saves stay separate</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Remote play is optional. Start local play without waiting for the designated server; the hotspot provides only a possible route to that server.</p>
 <h3 id="what-full-offline-mode-includes">What full offline mode includes</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Feature</th>
@@ -3382,7 +3195,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Store locally during play, including without a successful network connection at startup</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The one thing offline solo cannot reproduce is the other human child's live actions. Provide a solo/NPC version wherever a game normally has complementary roles. Keep the same toy system and activity definitions so “offline” does not become a separately maintained, incomplete game.</p>
 <h3 id="using-your-iphone-hotspot">Using your iPhone hotspot</h3>
 <p>Personal Hotspot can provide the mobile devices an internet route. Remote play requires testing the actual route to the configured PC/VPS, not Bonjour between iPads. <a href="https://support.apple.com/en-us/111785">Apple Personal Hotspot</a>.</p>
@@ -3414,7 +3227,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Keep this as part of the existing free deployment workflow, not a requirement to buy a membership. Travel readiness includes both playable local content and a verified installation that remains valid for the trip.</p>
 <h2 id="36-integration-milestones-and-acceptance-for-this-expansion">36. Integration milestones and acceptance for this expansion</h2>
 <h3 id="implementation-batches">Implementation batches</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Batch</th>
@@ -3464,10 +3277,10 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>No offline imports, duplicated communal items or lost private creations</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Establish reusable rules before producing dozens of rooms/science variants. Continue with the existing pinned Unity project; no restart, new template or package upgrade is implied.</p>
 <h3 id="required-test-scenarios">Required test scenarios</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Test</th>
@@ -3556,14 +3369,14 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>New expiry, successful app launch, room saves and imported clips preserved on both iPads</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Observe the children as well as logs: can the younger child make something happen in a few taps, join without instructions, find Come out, and get back from a secret room? Does the older child have useful choices without controlling the younger child's camera? Do parent calls and rattles create anticipation rather than frustration? These observations determine whether the proposed timings and controls are actually fun.</p>
 <p><strong>Research status:</strong> this expansion is recorded in the main tracker and the <a href="bluey-research/science-rooms-travel-evidence.json">science, rooms, hiding, and travel evidence index</a>. Scientific references, documented engine capabilities, and platform constraints are distinguished from our proposed game behavior. No dedicated server, networking change, room, science mini-game, signing tool, or new iPad build has been implemented by this research update.</p>
 <h2 id="37-the-beach-collecting-building-and-playing-together">37. The beach: collecting, building, and playing together</h2>
 <p><strong>Expansion recorded September 23, 2026.</strong> Sections 37–43 add 32 outdoor activity designs, Daycare as the sixth world, a flexible pretend day, 12 learning stations, and all nine requested imagination stories. These are proposed designs, not finished games. The same activity can appear in a world, on the general activity picker, or in a daycare invitation. Those appearances are not separate mini-games. I interpret “freezeb” as <strong>Frisbee / flying disc</strong>.</p>
 <p>The official <strong>The Beach</strong> synopsis provides useful anchors: shell discovery, following footprints, birds and small beach animals, and waves changing the shoreline. Our sandcastle, disc, ball, and café rules below are new adaptations. <a href="https://www.bluey.tv/watch/season-1/the-beach/">The Beach, S1E26</a></p>
 <h3 id="ten-beach-activities">Ten beach activities</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID / activity</th>
@@ -3623,7 +3436,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Add a tail, choose a wind ribbon, or fly two kites through broad cloud shapes; automatic recovery and no tangled-string simulation</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="make-the-beach-objects-connect">Make the beach objects connect</h3>
 <p>A shell can be <strong>collected → rinsed in a bucket → placed on a castle → used in a pattern → saved on a bedroom shelf</strong>. A bucket works at the tap, shoreline fill zone, castle station, and rinse tray. A beach ball works on sand, in a shallow splash zone, and in the park. This is the Toca-style interaction goal: useful combinations across activities rather than a separate animation for every toy.</p>
 <p>Represent sand as a small set of authored states—dry, damp, moulded, decorated—with contents and attachments. The younger child receives prefilled moulds; the older child can assemble the sequence. Never require an exact water ratio or make a slightly overfilled bucket ruin the activity. Repeated taps should visibly respond without adding unlimited objects.</p>
@@ -3634,7 +3447,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <h2 id="38-the-creek-rocks-water-and-gentle-discovery">38. The creek: rocks, water, and gentle discovery</h2>
 <p>The official <strong>The Creek</strong> episode supports exploring a natural play space and a pretend mud spa. <strong>Barky Boats</strong> provides a separate school-play inspiration for small boats, while <strong>Piggyback</strong> offers playful movement along a walk. The creek activities below combine those themes with original touch interactions. <a href="https://www.bluey.tv/watch/season-1/the-creek/">The Creek, S1E29</a>, <a href="https://www.bluey.tv/watch/season-2/barky-boats/">Barky Boats, S2E30</a>, <a href="https://www.bluey.tv/watch/season-2/piggyback/">Piggyback, S2E18</a></p>
 <h3 id="ten-creek-activities">Ten creek activities</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID / activity</th>
@@ -3694,7 +3507,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Arrange a creek scene, choose a recorded caption, and take the card home; reuse the drawing/creation-save system</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="build-reliable-movement-and-water-play">Build reliable movement and water play</h3>
 <p>The illustrated log is a <strong>special traversal path</strong>, not a narrow physics collider the children must balance on. Entering reserves a start anchor and selects a walking animation; the game controls the character along a legal curve. Walking away/cancel moves them to the nearest valid bank. Use two noncolliding lanes or staggered animation spacing so a stationary avatar cannot block the sibling forever. A log crossing remains usable with joystick or tap walking; items stay in a stable carrying pose.</p>
 <p>Rock stacking uses authored support points, generous snapping, and a bounded tower height. Keep a free decorative placement area for the older child, but separate it from the assisted tower slots. A shared placement command checks support, stack version, and slot ownership before committing. A failed placement returns the rock to the child's hand. Do not rely on networked rigidbody contacts to decide whether an entire tower collapses.</p>
@@ -3704,7 +3517,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <h2 id="39-playground-and-park-equipment-that-really-works">39. Playground and park: equipment that really works</h2>
 <p>Make the equipment the attraction: a child should be able to approach a swing or slide and use it immediately, without first accepting a quest. The official <strong>See Saw</strong> story supports cooperative equipment play; <strong>Bike</strong> supports trying different playground challenges; <strong>Shadowlands</strong> supports an imaginative movement game in the park. <a href="https://www.bluey.tv/watch/season-2/see-saw/">See Saw, S2E27</a>, <a href="https://www.bluey.tv/watch/season-1/bike/">Bike, S1E11</a>, <a href="https://www.bluey.tv/watch/season-1/shadowlands/">Shadowlands, S1E5</a></p>
 <h3 id="twelve-park-activities">Twelve park activities</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID / activity</th>
@@ -3774,7 +3587,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Take turns selecting a movement; NPCs follow; moving during a pause is funny and never eliminates anyone</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="equipment-as-a-reusable-system">Equipment as a reusable system</h3>
 <p>Each usable item needs entry anchors, seat/hand anchors, a motion curve, a valid exit anchor, supported poses, and optional co-op roles. Use <strong>Available → Reserved → Boarding → In use → Exiting → Available</strong>. Reservation has a short timeout; a disconnect, cancelled navigation, failed animation, or missing asset releases it. If both tap one seat at once, resolve once on the authority and visibly offer the adjacent seat. Avoid making the second child wait through a long queue.</p>
 <p>Attach the avatar to a semantic seat anchor while the ride animates. Keep its logical position, seated pose, occupied seat, and motion phase synchronized; do not repeatedly reparent network objects in response to each local animation frame. Switching character rebinds the rig to the same seat. Exiting should be possible at any point: decelerate briefly if needed, then place the child at the safe exit. Do not wait for the sibling to finish or for a global round timer.</p>
@@ -3789,7 +3602,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <p>Use Calypso as the main teacher and combine a classroom, play yard, book corner, art/sensory tables, pretend kitchen, quiet cushion nook, and imagination mat. The show places the older children at Calypso's school; our all-ages daycare is an intentional family-game adaptation where the entire requested child roster can gather. It is not a claim that every show's child attends the same canonical classroom. The official character page identifies Calypso as Bluey's teacher and emphasizes encouraging imaginative play. <a href="https://www.bluey.tv/characters/calypso/">Calypso character reference</a></p>
 <p><strong>Proposed default while the timing preference is unconfirmed:</strong> a short pretend day, about 20–30 minutes if a child follows the invitations, with unlimited free play and the ability to pause, skip, repeat, or leave. These minutes are a design estimate, not a recommended screen-time duration. Morning/afternoon are story phases, not real-clock deadlines. Nothing is missed because the family launches at night or spends an hour decorating.</p>
 <h3 id="a-day-that-feels-planned-without-becoming-compulsory">A day that feels planned without becoming compulsory</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Picture on the day board</th>
@@ -3839,7 +3652,7 @@ Apple peer-to-peer plugin references above are historical comparisons, outside t
 <td>Stay, repeat a favorite, go home, or close the app without finishing a checklist</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The 2–3 adventure cards are the daily random mini-game picks; books, snack, music, and free-play stations are routine choices around them. Both children see the plan, but each has their own current card and participation. One can paint while the other takes a beach trip. Calypso offers one short spoken invitation at a natural pause; she does not keep calling over a child's active book narration or interrupting a slide.</p>
 <h3 id="selecting-the-23-activities-fairly">Selecting the 2–3 activities fairly</h3>
 <p>Give each existing mini-game a stable ID, activity family, origin world, available settings, assistance variants, local-content status, NPC fallback, and estimated length. The candidate pool spans <strong>all six worlds</strong>, including home cooking, backyard fishing, science, dinosaurs, beach, creek, park, and imagination stories. A recipe variant is not automatically a different family; avoid “three pizza games” as the entire random day.</p>
@@ -3865,7 +3678,7 @@ JoinDay(playerId, dayId):
 <p>The learning design should blend freely chosen play with brief demonstrations and guided practice. NAEYC describes that combination and emphasizes adapting help to individual children rather than requiring everyone to follow an identical path. These principles inform our design; they do not validate an unbuilt app or establish a particular session length. <a href="https://www.naeyc.org/node/3812">NAEYC: teaching to enhance development and learning</a></p>
 <p>Head Start's preschool literacy framework includes sound awareness, letters and print, and understanding/retelling stories. Its music guidance connects rhythm, movement, and patterns. We can turn these into spoken, touch-based activities without requiring reading to navigate. The framework covers preschool development; the proposed six-year-old extensions below are our adjustable game content, not a claim that all six-year-olds have the same skills. <a href="https://headstart.gov/school-readiness/article/literacy-preschool">Head Start literacy</a>, <a href="https://headstart.gov/teaching-practices/play-head-start-way/1-2-3-dance-me">Head Start music and patterns</a></p>
 <h3 id="twelve-starter-lesson-cards">Twelve starter lesson cards</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>ID / station</th>
@@ -3935,7 +3748,7 @@ JoinDay(playerId, dayId):
 <td>Try a second material, compare outcomes, and explain using picture choices; reuse section 30's reviewed science rules</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Start with roughly 1–3 minutes of guided content per invitation, but allow repetition and unstructured play indefinitely. Assistance is per skill and per child: a child can enjoy complex dinosaur stories while needing simpler counting. The age labels suggest starting settings only. Do not give the younger child a locked “baby mode” that hides favorite characters or stories.</p>
 <h3 id="what-the-teacher-actually-does">What the teacher actually does</h3>
 <p>Use a small authored teaching loop: <strong>show → invite → wait → acknowledge → optionally demonstrate</strong>. For counting: Calypso shows three guests, says an original line such as “Let's give each friend a plate,” and the plate tray lights gently. Each actual new placement speaks the next number once. Moving the same plate around must not count it twice. If the child puts all plates in a pile, acknowledge the action and optionally demonstrate one guest/one plate rather than announcing failure.</p>
@@ -3998,7 +3811,7 @@ JoinDay(playerId, dayId):
 <h2 id="43-building-saving-and-testing-the-outdoor-and-daycare-expansion">43. Building, saving, and testing the outdoor and daycare expansion</h2>
 <h3 id="one-activity-framework-many-settings">One activity framework, many settings</h3>
 <p>Use Unity <code>ScriptableObject</code> assets to author definitions: activity ID, pictures, spoken prompts, tools, prop rules, simple/explorer variants, valid zones, roles, NPC fallback, completion suggestions, cancellation, and save schema version. Keep runtime progress in separate serializable state. Unity documents ScriptableObjects as shared asset data and distinguishes editor asset saving from runtime persistence in a built application. A ScriptableObject asset is not the iPad save-file system. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/class-ScriptableObject.html">Unity ScriptableObject manual</a></p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Planned data type</th>
@@ -4043,7 +3856,7 @@ JoinDay(playerId, dayId):
 <td>Backdrop transition and transformation effects</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The same fishing definition powers backyard and creek variants; the same recipe system powers home, café, and Calypso's town. Daycare selects existing definitions and gives them a new invitation/context. It does not require rebuilding 32 outdoor games as 32 more daycare implementations. Avoid tying completion to an exact avatar, mandatory second human, or the teacher physically standing beside a prop.</p>
 <h3 id="shared-state-and-late-joining">Shared state and late joining</h3>
 <p>Authority validates commands such as JoinActivity, TakeRole, ReserveSeat, PlaceComponent, CatchFish, and LeaveActivity using player ID, session ID, object ID, expected revision, and a unique operation ID. Retried commands must not produce duplicate shells, towers, rewards, or deliveries. Only a short active gesture owns a prop; stable created objects should not disappear with their creator's network connection.</p>
@@ -4054,7 +3867,7 @@ JoinDay(playerId, dayId):
 <p>Keep offline creations in private saves. Do not add reconciliation/import workflows as a dependency for outdoor content.</p>
 <p>One client leaving never stops the PC/VPS simulation. A client losing its route continues private solo; remaining connected players continue together.</p>
 <h3 id="a-practical-production-order">A practical production order</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Batch</th>
@@ -4094,10 +3907,10 @@ JoinDay(playerId, dayId):
 <td>Expands tested systems; review every voice line and touch target</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Retain the full requested backlog even while prototyping only representative activities. Finished art, individual character rigs, animation, voice review, and device testing remain significant work; a data-driven framework reduces repeated coding but does not automatically produce all content.</p>
 <h3 id="acceptance-checklist-for-this-expansion">Acceptance checklist for this expansion</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Test</th>
@@ -4178,13 +3991,13 @@ JoinDay(playerId, dayId):
 <td></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Observe enjoyment as well as correctness: does the younger child discover several uses for one object? Can the older child invent a story without directing every action for the younger child? Can both explain their role from its picture and spoken line? Tune proposed timings and assistance based on that observation.</p>
 <p><strong>Evidence and status:</strong> official episode pages support the story inspirations; NAEYC and Head Start inform the learning approach; Unity documentation supports the selected API concepts. Our mechanics, numeric budgets, schedule, roles, networking design, and teaching scripts are proposals requiring implementation and physical-device tests. The <a href="bluey-research/outdoors-daycare-evidence.json">outdoors and daycare source index</a> keeps these sources together. No game assets, Unity systems, servers, or device builds were installed or changed by this research update.</p>
 <p><a id="44-automatic-family-connection-and-ipad-hosting"></a></p>
 <h2 id="44-automatic-family-connection-to-pc-or-vps">44. Automatic family connection to PC or VPS</h2>
 <p>The September 25 user decision replaces the earlier mobile-authority proposal. <strong>AUTO-01 stays required; AUTO-02 is retired.</strong> Devices are clients of one designated shared server. No Host/Join menu, peer election, mobile host enrollment or background device server is needed.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Situation</th>
@@ -4213,14 +4026,14 @@ JoinDay(playerId, dayId):
 <td>Parent-controlled migration of the same family world; retire old writer before enabling new one</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Connection, visiting a sibling and joining a mini-game are distinct actions. A sibling portrait can offer a visit, but never teleports everyone or reveals a hide-and-seek hiding spot. Books, videos and settings stay local while the server keeps simulating other areas.</p>
 <p>Use native DNS-SD/Bonjour discovery for the enrolled home PC and a parent-configured authenticated endpoint for the future VPS. Discovery metadata is not authentication. Foreground retries must be bounded and independent of movement, rendering and saving; a denied network permission must leave solo usable. Do not scan IP ranges or create a new discovery browser every frame. <a href="https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy">Apple local-network privacy</a>, <a href="https://developer.android.com/develop/connectivity/wifi/use-nsd">Android NSD</a>, <a href="https://learn.microsoft.com/en-us/windows/win32/api/windns/nf-windns-dnsserviceregister">Windows DNS-SD</a>.</p>
 <p>Bluetooth and router-free peer networking are removed. A hotspot can provide a remote internet route, not an iPad authority. Initial system permissions and parent enrollment remain one-time setup, never repeated child-facing connection chores.</p>
 <p><a id="45-automatic-host-selection-recovery-and-save-reconciliation"></a></p>
 <h2 id="45-server-authority-offline-continuation-and-reconnecting">45. Server authority, offline continuation and reconnecting</h2>
 <p><strong>One shared authority:</strong> the designated PC/VPS owns connected world state. Independent local worlds may differ. They never become a shared server or upload their history into it.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Client state</th>
@@ -4253,13 +4066,13 @@ JoinDay(playerId, dayId):
 <td>Save the local/profile state as appropriate; stop unnecessary networking and resume with a new attempt generation</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Ignore callbacks from cancelled attempts. Retry networking outside the frame-critical movement path. Do not require a complete recovery replica, proof of every prior server action, or a successful disk write before local input becomes usable. Responsive local simulation and durable background saving have distinct responsibilities; failed saves need a recoverable record, not frozen controls.</p>
 <p>A client closing does not stop the server. Its temporary holds/roles expire or release there. If the server stops, its restart/restore workflow preserves canonical data; clients continue separate solo games until it is available. A disconnected client cannot know whether a remote server has stopped, and must never promote itself based on a timeout.</p>
 <p>Connected bedroom changes sync through server revisions. Private bedroom/creation edits remain local, without automatic merge, import, conflict selection or replay on reconnect. Local media bookmarks and preferences remain local. The retained checkpoint experiments can inform server disaster recovery; they are not a requirement for simple offline play.</p>
 <p>The live-state model stays separate from disposable network objects and visual scenes. NGO cleanup can destroy network representations on shutdown, so those objects cannot be the sole durable world record. <a href="https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/blob/ddd715da4695a278a143d9af3530fd60a3814b73/com.unity.netcode.gameobjects/Runtime/Core/NetworkManager.cs#L1659">Inspected NGO shutdown source</a>. This remains useful evidence without adopting the old mobile-host migration proposal.</p>
 <h2 id="46-automatic-multiplayer-implementation-and-verification-plan">46. Automatic multiplayer implementation and verification plan</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Check</th>
@@ -4304,13 +4117,13 @@ JoinDay(playerId, dayId):
 <td>Only one canonical writer; old enrollment/world retained through a verified controlled cutover</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Four-device admission and scoped independent shared play already have physical evidence. Build 95's smoother offline walking passed on iPad 7; prepared 98's transition fix needs physical acceptance and rollout. Follow the <a href="implementation/return-checklist-ipad-lan-2026-09-24.html">current return checklist</a>. Device-host roles, election and handoff tests are removed; their earlier experiment records remain historical.</p>
 <p>Independent character/art preparation may continue while device checks wait. G5 adds persistent bedrooms, protected creations and reusable item rules; G6 integrates one polished slice, then G7 expands to six worlds. Do not restore G4 as a hidden dependency for those activities.</p>
 <h2 id="47-up-to-four-family-players-across-ipad-iphone-and-android">47. Up to four family players across iPad, iPhone, and Android</h2>
 <p><strong>Yes: three or four people can play together, including Android mixed with iOS/iPadOS.</strong> Plan for <strong>1–4 human players</strong>, one per device, with the two children's iPads as the required baseline and parent phones joining the same world. Your Android phone is a supported design direction, not merely a fallback behind the iPhone; its model is confirmed as Samsung Galaxy S26 Ultra (SM-S948U1), while its installed Android version and physical-device qualification remain pending. Unity's current Netcode for GameObjects documentation lists both iOS and Android as supported platforms. This establishes engine support, not certification of our unbuilt game. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/index.html">Unity NGO supported platforms</a></p>
 <p>This expands the earlier two-player design. Pair examples remain useful scenarios, never capacity limits. <strong>Latest room correction, September 26:</strong> provide four personal bedrooms and four optional secret rooms, one set per persistent player profile, including parents. Add missing rooms without replacing existing identities or contents. A visitor uses the owner's existing room; joining, leaving or choosing the same avatar never duplicates or reassigns rooms. All Home activities, tools, independent media sessions and local settings support all four profiles. The <a href="home-world-feature-tracker.md">Home tracker</a> is the maintained Home completion checklist.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Family combination</th>
@@ -4355,7 +4168,7 @@ JoinDay(playerId, dayId):
 <td>Configured private route to the same home PC, with usable internet</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The phone and iPad run separate platform builds from the same Unity project, with the same gameplay rules, protocol version, stable content IDs, and compatible save schema. Phone art compression and UI layout may differ without creating a different game world. Do not serialize platform file paths, local asset handles, or native pointers as shared object identities. Send explicit game values and IDs; retain one authority for shared outcomes rather than expecting Android and iPad physics to simulate identically.</p>
 <h3 id="automatic-discovery-can-work-across-the-platforms">Automatic discovery can work across the platforms</h3>
 <p>Use a small common discovery interface with native adapters: Apple Network framework/Bonjour on iPads and iPhone, Android <code>NsdManager</code>, and the existing planned Windows DNS-SD registration. Android's NSD implements DNS-SD and is specifically documented for finding services on other platforms and for multiplayer games. Each adapter locates the same declared service, then uses the same family authentication, compatibility checks, and direct gameplay protocol. <a href="https://developer.android.com/develop/connectivity/wifi/use-nsd">Android network service discovery</a></p>
@@ -4366,7 +4179,7 @@ JoinDay(playerId, dayId):
 <p>Use 1–4 human slots keyed by permanent profile ID. The dedicated PC/VPS consumes zero player slots. Reserve pending admission atomically, recognize valid reconnects and reject a fifth client without evicting anyone; solo remains available. <a href="https://docs.unity3d.com/Packages/com.unity.netcode.gameobjects@2.13/manual/basics/connection-approval.html">Unity connection approval</a>.</p>
 <p>Make parent profiles distinct from Child A and Child B. If a parent uses the Android phone today and iPhone tomorrow, that may be one parent profile with a controlled device handoff; it should not create two simultaneous copies of that person. For four simultaneous players, use four distinct active profiles. Keep avatars independent: several people can choose the same favorite character, with clear per-player markers.</p>
 <p><strong>Confirmed: add Bandit and Chilli, and let every player choose any available character.</strong> Neither age nor parent/child profile restricts the chooser. Keep human-controlled parent visuals separate from NPC parent jobs: a person choosing Bandit must not make the autonomous seeker disappear, steal that person's controls, or halt another child's quest. Recommended presentation: retain a clearly marked NPC story actor, distinct from the human player badge. If a suitable unused helper is available, that helper can lead a new invitation; an already running activity keeps its actor. Thus even four players choosing Bandit cannot remove the NPC seeker or steal a player’s controls. Switching avatars does not change who is hiding, seeking, cooking, or decorating. Use shared gameplay dimensions for fair hiding/navigation, with separate parent-size art and attachment anchors tested on small furniture. The source picture board now includes official <a href="https://www.bluey.tv/characters/bandit/">Bandit</a> and <a href="https://www.bluey.tv/characters/chilli/">Chilli</a> references.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Activity/system</th>
@@ -4415,7 +4228,7 @@ JoinDay(playerId, dayId):
 <td>A responsive list of up to four portraits; distinguish profile identity, connection state, character, and activity role</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="four-clients-remain-independent-of-the-server-process">Four clients remain independent of the server process</h3>
 <p>A client’s hardware capability affects rendering, input and media performance; it never makes that device eligible to host. The designated PC/VPS remains authoritative until a parent-controlled server migration.</p>
 <p>If any client leaves, the other connected clients continue on the same server. If the server is unreachable, each disconnected client continues separate solo; no successor election occurs.</p>
@@ -4431,7 +4244,7 @@ JoinDay(playerId, dayId):
 <p>Use the same landscape world with phone-aware UI scaling, safe-area padding, and camera framing. Keep the joystick away from gesture navigation, keep the item drag area clear, and avoid placing Home/Return or player portraits under a notch. Do not simply shrink every iPad control until four portraits fit. Unity's <code>Screen.safeArea</code> supplies the usable rectangle; respecting it still needs layout work and physical testing. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Screen-safeArea.html">Unity safe area</a></p>
 <p>Each device renders its own view, so adding parents does not divide the iPad into four tiny screens. More humans do increase visible rigs, object commands, simulation, snapshots, and audio events. Keep the A10's stable 30 FPS target. Retest the earlier daycare NPC budget with four visible human avatars and with four independent zones; reduce background animation/detail before restricting meaningful play. Desktop success does not establish sustained A10 client/solo performance.</p>
 <h3 id="qualification-matrix">Qualification matrix</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Test</th>
@@ -4500,7 +4313,7 @@ JoinDay(playerId, dayId):
 <td>Load current server rooms; retain each private continuation separately, without importing edits or duplicating shared props</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Build order: keep the original two-iPad interaction prototype, add <strong>Android as the third player early</strong>, then use the iPhone as a fourth test device before expanding all content. This exposes cross-platform assumptions before they spread through the project. The Android phone is confirmed as Galaxy S26 Ultra (SM-S948U1), and unrestricted selection from the available roster including Bandit and Chilli is confirmed. The build guide now records installed device/toolchain versions and scoped physical results.</p>
 <p><strong>Current target:</strong> four mixed clients, independent activities, automatic PC/VPS joining and full offline solo. Remote hotspot routing is later optional. The <a href="bluey-research/four-player-cross-platform-evidence.json">source index</a> is historical research; current scoped physical proof is in the build guide.</p>
 <h2 id="49-reaching-your-home-pc-from-a-road-trip">49. Reaching your home PC from a road trip</h2>
@@ -4508,7 +4321,7 @@ JoinDay(playerId, dayId):
 <p><strong>Confirmed expansion: your PC is basically always on and may host the family world while players are away from home.</strong> Add an optional internet route to that same server, supporting 1–4 players across the iPads, Android, and iPhone. This supersedes the earlier nearby-only boundary. Full offline play remains required: a working home PC cannot compensate for a road with no usable internet.</p>
 <p>Recommended first experiment: <strong>a private Tailscale connection between the family devices and the Windows game server</strong>. It gives the existing direct game protocol a private route across different networks. Tailscale has official clients for <a href="https://tailscale.com/docs/install/windows">Windows</a>, <a href="https://tailscale.com/docs/install/ios">iOS/iPadOS</a>, and <a href="https://tailscale.com/docs/install/android">Android</a>. This is a proposed integration, not installed networking or proof that our game already connects.</p>
 <h3 id="how-the-family-would-use-it">How the family would use it</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Situation</th>
@@ -4543,11 +4356,11 @@ JoinDay(playerId, dayId):
 <td>Installed activities and saves remain local; reconnect uses server state without imports</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The road-trip route is: <strong>iPad game → phone hotspot → cellular internet → private connection → home internet/router → Windows game server</strong>. The return path carries world updates. The Android phone can also be a player. Installing a VPN on the hotspot phone alone is not our proposed setup: install and enroll the client on each game device that must reach the PC. This avoids depending on the phone forwarding tethered traffic into its own VPN. Test the hotspot provider playing at the same time.</p>
 <p>Your PC runs the world simulation and saves. Each mobile device still renders its own picture and plays its installed voices, books, music, and video clips. This is not screen streaming; the A10 iPad still needs its own rendering and memory budget. Keep media out of routine gameplay packets, and measure actual cellular data use before a long trip.</p>
 <h3 id="why-start-with-tailscale-and-what-are-the-alternatives">Why start with Tailscale, and what are the alternatives?</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Approach</th>
@@ -4572,7 +4385,7 @@ JoinDay(playerId, dayId):
 <td>Adds router/ISP reachability and maintenance work; not the first implementation experiment</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Tailscale ordinarily avoids manual inbound port forwarding. It attempts direct connections and can carry traffic through an encrypted relay when the networks prevent a direct route. Relaying can increase latency; working through a relay is not the same as a guaranteed low-latency connection. <a href="https://tailscale.com/docs/reference/faq/firewall-ports">Firewall guidance</a>, <a href="https://tailscale.com/docs/reference/connection-types">connection types</a></p>
 <p>As checked September 23, 2026, Tailscale's Personal plan is <strong>$0</strong>, with up to six users and unlimited user devices, which fits the proposed family setup. Tailscale account/device enrollment is separate from the game's four player profiles. No paid game-server rental is needed for this proposed home-PC route; home internet, mobile data, electricity, and service availability still matter. <a href="https://tailscale.com/pricing">Current Tailscale pricing</a></p>
 <p>Unity describes Relay primarily for a host/listen-server pattern. A PC-as-host Relay experiment must verify the intended headless process, service authentication, idle allocation lifetime, and four-client capacity; it is not a dedicated hosting service or an automatic replacement for our server. Automatic joining would also require a private way to find the family's current allocation, rather than asking children to enter a join code every time. Unity currently includes free Relay usage with paid overages, so estimate actual traffic rather than promising unlimited free service. <a href="https://docs.unity.com/relay/relay-servers">Relay operation</a>, <a href="https://unity.com/products/gaming-services/pricing">UGS pricing</a></p>
@@ -4599,7 +4412,7 @@ JoinDay(playerId, dayId):
 <li>Test automatic startup, routes, cellular interruptions, and signing renewal together.</li>
 <li>Keep Tailscale if that experience qualifies; otherwise prototype Relay with private family rendezvous. Continue using the same world logic and offline branch model.</li>
 </ol>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Test</th>
@@ -4648,12 +4461,12 @@ JoinDay(playerId, dayId):
 <td>Record cellular bytes, latency/loss, A10 frame time, phone heat/battery, and reconnect outcomes</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Status:</strong> optional remote home-PC hosting is now part of the plan. Tailscale is the first proposed connection experiment, with Relay as an alternative; neither is installed or configured by this research. The <a href="bluey-research/remote-home-server-evidence.json">remote home-server evidence index</a> records the sources and unresolved device tests.</p>
 <h2 id="50-one-shared-world-independent-travel-and-shared-items">50. One shared world, independent travel, and shared items</h2>
 <p><strong>Confirmed: all 1–4 players share one family world while connected, and every player chooses where to go independently.</strong> They can be in different locations or together in the same location. Nobody must follow a leader, stay near a sibling, finish a quest, or wait for another player to move. This is a requirement for the finished game, including the creek, playground, home rooms, bedrooms, secret rooms, and imagination destinations.</p>
 <h3 id="your-creek-and-playground-example-step-by-step">Your creek and playground example, step by step</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Action</th>
@@ -4690,7 +4503,7 @@ JoinDay(playerId, dayId):
 <td>Player 2 continues in the same playground with no reset, forced move, or interrupted controls</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Entering a location joins the <strong>existing shared location</strong>, not a fresh private copy. Being in the same area does not require identical camera framing; ordinary furniture occlusion and intentional hide-and-seek concealment still apply. A visit arrives at a safe entrance, not on top of the other avatar or inside their hiding place. The location bubble browser always supports independent travel; a friend portrait is an optional shortcut, never a required invitation or permission step.</p>
 <p>All four players, including parents, may enter any of the four personal bedrooms or four created secret rooms. Each has their own profile-owned rooms; decoration ownership protects permanent edits without locking visitors out. For imagination stories, a visit targets the actual running story instance. “Visit their Space game” must not secretly create a different spaceship. A deliberate new story can have a distinct instance, with a clear picture-based choice when more than one is running. Leaving an optional bounded mini-game ends only that player's participation; it does not restrict travel.</p>
 <h3 id="keep-world-state-separate-from-loaded-artwork">Keep world state separate from loaded artwork</h3>
@@ -4726,7 +4539,7 @@ JoinDay(playerId, dayId):
 <p>Single-holder rules apply within one authority. Private solo copies do not share live holds, and are never imported. Normal area travel changes a subscription, not authority or another player’s world.</p>
 <h3 id="required-proof-before-expanding-all-six-locations">Required proof before expanding all six locations</h3>
 <p>Build a two-zone test with a creek, playground, one portable bucket, one water source, one plant, and up to four avatars. This adds a required early milestone after the first shared-object scene, before producing the full content catalog.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Acceptance test</th>
@@ -4779,7 +4592,7 @@ JoinDay(playerId, dayId):
 <td>Measure arrival time, frame-time spikes, bandwidth, and holding consistency; ordinary travel remains independent</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Status:</strong> these are explicit design and acceptance requirements, not implemented gameplay. The <a href="bluey-research/shared-world-evidence.json">independent-travel and shared-item evidence index</a> records the Unity sources; document checks do not substitute for the physical-device tests above.</p>
 <h2 id="51-automatic-item-returns-stocked-areas-and-tidy-bedrooms">51. Automatic item returns, stocked areas, and tidy bedrooms</h2>
 <p><strong>September 28 decision:</strong> the user selects <strong>five minutes</strong> without meaningful use, then the brief five-second cleanup cue. This supersedes the earlier three-minute timing proposal for the installed Home systems. <a href="implementation/home-idle-cleanup-2026-09-28.html">Applied implementation and qualification</a> uses independent experiment/item clocks, same-object returns, protected personal content and PC/VPS authority. New future activities must adopt the policy deliberately; it is not a whole-room wipe.</p>
@@ -4789,7 +4602,7 @@ JoinDay(playerId, dayId):
 <p>Toca Boca's official reset guidance says rebuilding removes the house/furniture and an app reset clears progress while retaining specified categories. That makes a broad reset unsuitable as our everyday housekeeping tool. Its current Lost &amp; Found provides recovery and distinguishes items already in the world from items available to retrieve. Container recovery follows special rules so returning a box does not also reproduce everything previously removed from it. These are useful precedents for category-specific recovery, a simple picture inventory, and tracking a prop's identity through containers. They do not establish an automatic inactivity timer. <a href="https://tocaboca.helpshift.com/hc/en/3-toca-boca-world/faq/68-what-happens-if-i-reset-my-world-or-rebuild-my-home-1616575224/">Toca reset guidance</a>, <a href="https://tocaboca.helpshift.com/hc/en/3-toca-boca-world/faq/382-post-office-upgrade-the-all-new-lost-found-display-1780413382/">Lost &amp; Found</a>, <a href="https://tocaboca.helpshift.com/hc/en/3-toca-boca-world/faq/406-where-are-my-gifts/">gift/container recovery rules</a></p>
 <p>Toca also acknowledges unwanted bunched furniture during stability recovery. Our design lesson is to prevent excessive live clutter and retain recoverable item records, rather than treating a heap in the middle of the bedroom as successful recovery. That is an inference for our game, not a claim about Toca's internal algorithms. <a href="https://tocaboca.helpshift.com/hc/en/3-toca-boca-world/faq/317-bunched-items-in-hd-homes-stability-improvements/">Official stability note</a></p>
 <h3 id="different-objects-need-different-rules">Different objects need different rules</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Item category</th>
@@ -4834,7 +4647,7 @@ JoinDay(playerId, dayId):
 <td>Fade/clean according to activity rules after use; do not mistake a child's art or collection for litter</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Mark borrowable items with a small home/basket symbol in the relevant interface and use a short spoken cue when returning one. There should be no reading requirement, punishment, lost reward, or “you made too much mess” message. The three-year-old can keep choosing dinosaurs and playing; tidying is optional.</p>
 <h3 id="keep-useful-equipment-available-even-before-the-timer-expires">Keep useful equipment available even before the timer expires</h3>
 <p>An inactivity timer alone cannot prevent hoarding: a child can keep handling items, pack them into a bag, or repeatedly take another one. Use three complementary controls:</p>
@@ -4867,7 +4680,7 @@ JoinDay(playerId, dayId):
 <p>Pooling can reuse visual/effect objects to reduce allocation churn, but it is not a game inventory or anti-hoarding system. Unity's pool creates an instance if none is available; its maximum retained size therefore does not cap all live items. Enforce gameplay supply and room budgets separately. Clear old listeners, references, contents visuals, and timers when reusing a view; an old timer must not return a new toy that reused that object. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Pool.ObjectPool_1.html">Unity ObjectPool</a></p>
 <p>Offline play applies the same return policies within its private save. Rejoining loads the server’s item identities, contents and timers; private returns or creations are never imported. Keep local creations recoverable separately, and log committed return reasons/revisions for diagnosis.</p>
 <h3 id="acceptance-before-release">Acceptance before release</h3>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Test</th>
@@ -4924,7 +4737,7 @@ JoinDay(playerId, dayId):
 <td>Bounded live objects, memory, listeners, save growth, and frame-time spikes; no growing hallway/room heap</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>Decision/status:</strong> automatic return after inactivity is confirmed; three-minute timing, five-second cue, four-loan allowance, and bedroom budget are proposed tuning values. Item-category rules, safe return transactions, protected storage, and the tests above are researched plans, not implemented features. Sources are saved in the <a href="bluey-research/item-return-evidence.json">item-return evidence index</a>.</p>
 <h2 id="52-feasibility-audit-and-current-priorities">52. Feasibility audit and current priorities</h2>
 <p>The game remains feasible as a staged custom Unity project. The latest architecture is simpler: one PC/VPS authority, four clients and independent offline solo. <a href="current-decisions.md">Current decisions</a> supersede the old mobile-host and merge proposals. The <a href="family-playset-feasibility-audit-2026-09-23.html">feasibility report</a> and <a href="family-playset-build-guide-2026-09-23.html">build guide</a> now use the same scope.</p>
@@ -4940,7 +4753,7 @@ JoinDay(playerId, dayId):
 <p><strong>Budget confirmed:</strong> free first; consider an optional package around $20 only if it saves substantial work. The following table records research candidates. Installed versions are recorded in <a href="current-decisions.md">current decisions</a> and the manifest/lockfile; no package change is implied by this audit.</p>
 <p><strong>Recommendation:</strong> create this game from Unity's <strong>Universal 2D template</strong>, then reuse focused packages and build the particular playset rules. The template configures URP's 2D renderer. It is a suitable foundation, while the quests, interactive toys and shared family world remain our game code. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/urp/creating-a-new-project-with-urp.html">Unity's template documentation</a></p>
 <p>The <a href="family-playset-package-research-2026-09-23.html">full package and template report</a> contains the version matrix, evidence, device qualifications, costs and installation order. Its <a href="family-playset-package-research-2026-09-23.md">editable source</a> stays in this project's docs.</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Research table"><table>
+<table>
 <thead>
 <tr>
 <th>Need</th>
@@ -4990,7 +4803,7 @@ JoinDay(playerId, dayId):
 <td>Add only for a demonstrated need</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>The linked report cites the Unity 6000.3 catalog for each official version. <strong>New qualification finding:</strong> editor 6000.3.24f1 release notes list NGO 2.13.2, whereas the later 2.13.3 catalog status conflicts with its published release/registry labeling. Keep the networking framework candidate, resolve the version/status difference in the exact editor, then test and lock the dependencies. The prior technical source findings do not certify a production package set.</p>
 <p>Unity Playground and Boss Room remain useful source references. TopDown Engine's included four-player demo is local to one application; Adventure Creator needs custom co-op integration and adaptation of global cutscene behavior. None is a verified ready-made replacement for the full family playset. The comparison and primary sources are in the detailed report.</p>
 <p><strong>Only paid shortlist item:</strong> DOTween Pro, approximately <strong>$15 USD regular price before tax</strong>; a $7.50 sale was visible during research. Its visual authoring tools may help when we have many repetitive animations, but start with Free. <a href="https://marketplace.unity.com/packages/tools/visual-scripting/dotween-pro-32416">Publisher listing</a></p>
@@ -4999,36 +4812,4 @@ JoinDay(playerId, dayId):
 <p><strong>User decision:</strong> once the server is ready, plan to run it on the VPS you already own. This removes dependence on the home PC for the normal shared world. The apps should automatically connect to that enrolled family server from home internet or a road-trip hotspot, allowing up to four iPad/iPhone/Android players with the same independent movement, shared objects and saved progress.</p>
 <p>Travel multiplayer needs an internet route to the designated server. Without one, full independent offline solo remains available. Device hosting and offline imports are removed. VPS deployment remains planned after reliability qualification, without blocking isolated art/content preparation.</p>
 <p>The <a href="implementation/vps-hosting-plan-2026-09-24.html">VPS hosting plan</a> records the code review, primary sources, migration gate and acceptance checks. Core game authority rules can be reused. The apps need remote endpoint discovery/configuration; a Linux VPS needs its own server build/platform adapters; the current Windows-protected credentials require controlled migration. Preserve the existing family world and identities, and stop the PC authority before the VPS accepts canonical writes.</p>
-<p><strong>Sequence:</strong> qualify reliability/save recovery → inventory VPS → build an isolated remote proof → test home/hotspot and offline failure → migrate during an agreed no-player window. Keep the current PC server working during preparation. The user confirms the VPS has suitable capacity and will share OS/connection details later; that does not block current work. No remote login, upload or configuration was performed. Earlier home-PC routing proposals are retained as alternatives rather than the selected destination.</p></article></div></section>
-<footer class="footer"><p>Prepared for your family's iPads and phones. Research checked 23 September 2026; implementation status audited 25 September against local source and retained evidence. External sources were not freshly revalidated. Proposed designs are distinguished from source findings and untested integrations in the guide.</p><a href="bluey-game-research-2026-09-23.md">Editable Markdown report</a><a href="bluey-research/character-references.json">Character sources</a><a href="bluey-research/github-evidence.json">Repository evidence</a><a href="bluey-research/outdoors-daycare-evidence.json">Outdoor &amp; daycare sources</a><a href="bluey-research/automatic-multiplayer-evidence.json">Automatic multiplayer sources</a><a href="bluey-research/four-player-cross-platform-evidence.json">Four-player &amp; Android sources</a><a href="bluey-research/remote-home-server-evidence.json">Remote home-server sources</a><a href="bluey-research/shared-world-evidence.json">Shared-world sources</a><a href="bluey-research/item-return-evidence.json">Item-return sources</a><a href="ipad-game-research-2026-09-23.md">iPad build & renewal plan</a></footer>
-</main>
-<script>
-const stages = [{"name": "Heeler Home + Backyard", "esName": "La casa y el jardín", "icon": "🏠", "color": "#ffe1aa", "free": "One connected property: cooking, science, dinosaurs, talking books, personal bedrooms and secret plush rooms inside; flowers, movable toys, balloons and the sandpit outside.", "easy": "Put a cup on the table.", "explorer": "Set out two cups, pour pretend tea, and bring a snack.", "esEasy": "Pon una taza en la mesa.", "esExplorer": "Coloca dos tazas, sirve el té de juguete y trae algo para comer.", "rule": "Place → fill → serve"}, {"name": "Playground & Park", "esName": "El parque", "icon": "🛝", "color": "#f8d6c8", "free": "Working swings, slide, seesaw, climbing, tag, hide-and-seek, picnics, and your own play trail.", "easy": "Put a ball in the basket.", "explorer": "Find three picture-matched balls and put them in their baskets.", "esEasy": "Pon una pelota en la cesta.", "esExplorer": "Busca tres pelotas que coincidan con los dibujos y ponlas en sus cestas.", "rule": "Pick up → match → place"}, {"name": "The Creek", "esName": "El arroyo", "icon": "⛵", "color": "#c7e6eb", "free": "Collect and stack rocks, fish, cross a log, float boats, and discover little creatures.", "easy": "Put a paper boat in the water.", "explorer": "Give your boat a leaf passenger and guide it to the landing.", "esEasy": "Pon un barquito de papel en el agua.", "esExplorer": "Sube una hoja al barquito y guíalo hasta la orilla.", "rule": "Attach → float → deliver"}, {"name": "The Beach", "esName": "La playa", "icon": "🐚", "color": "#f5e5b3", "free": "Collect shells, build castles, startle seagulls, watch waves, and play ball or flying disc.", "easy": "Lift a filled mould to reveal a sandcastle.", "explorer": "Mix sand with a little water, make a castle, and add a shell.", "esEasy": "Levanta el molde lleno para descubrir un castillo de arena.", "esExplorer": "Mezcla arena con un poco de agua, haz un castillo y añade una concha.", "rule": "Fill → mould → decorate"}, {"name": "Daycare", "esName": "La guardería", "icon": "🎨", "color": "#e5d9f5", "free": "Meet the whole cast, choose a playful lesson, join an optional pretend day, or step into an imagination story.", "easy": "Give one friend a plate.", "explorer": "Count the friends, set their places, then choose a story and a role together.", "esEasy": "Dale un plato a un amigo.", "esExplorer": "Cuenta a los amigos, prepara sus lugares y elijan una historia y un papel para jugar.", "rule": "Choose → imagine → play"}];
-let selected = 0, difficulty = 'easy', locale = 'en';
-function renderStage(){
- const stage = stages[selected];
- document.getElementById('center-name').textContent = locale === 'es' ? stage.esName : stage.name;
- document.getElementById('stage-title').textContent = stage.name;
- document.getElementById('free-play').textContent = stage.free;
- document.getElementById('quest-line').textContent = locale === 'es' ? stage[difficulty === 'easy' ? 'esEasy' : 'esExplorer'] : stage[difficulty];
- document.getElementById('quest-line').lang = locale;
- document.getElementById('recipe').textContent = 'Reusable interaction: ' + stage.rule;
- document.querySelectorAll('[data-stage]').forEach(b=>b.setAttribute('aria-pressed', Number(b.dataset.stage) === selected));
- document.querySelectorAll('[data-difficulty]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.difficulty === difficulty));
- document.querySelectorAll('[data-locale]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.locale === locale));
-}
-document.querySelectorAll('[data-stage]').forEach(b=>b.addEventListener('click',()=>{selected=Number(b.dataset.stage);renderStage()}));
-document.querySelectorAll('[data-difficulty]').forEach(b=>b.addEventListener('click',()=>{difficulty=b.dataset.difficulty;renderStage()}));
-document.querySelectorAll('[data-locale]').forEach(b=>b.addEventListener('click',()=>{locale=b.dataset.locale;renderStage()}));
-document.getElementById('character-search').addEventListener('input',e=>{
- const q=e.target.value.toLocaleLowerCase().trim();let count=0;
- document.querySelectorAll('.character').forEach(c=>{c.hidden=!c.dataset.name.includes(q);if(!c.hidden)count++});
- document.getElementById('gallery-count').textContent=count+' reference '+(count===1?'entry':'entries');
- document.getElementById('no-results').hidden=count!==0;
-});
-document.querySelectorAll('.portrait img').forEach(img=>{
- const fallback=()=>{img.hidden=true;img.nextElementSibling.hidden=false};
- img.addEventListener('error',fallback);if(img.complete && !img.naturalWidth)fallback();
-});
-renderStage();
-</script></body></html>
+<p><strong>Sequence:</strong> qualify reliability/save recovery → inventory VPS → build an isolated remote proof → test home/hotspot and offline failure → migrate during an agreed no-player window. Keep the current PC server working during preparation. The user confirms the VPS has suitable capacity and will share OS/connection details later; that does not block current work. No remote login, upload or configuration was performed. Earlier home-PC routing proposals are retained as alternatives rather than the selected destination.</p></main></body></html>

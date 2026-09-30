@@ -6,6 +6,10 @@ static partial class Program
 {
     static void BookTests()
     {
+        Test("bookmarks expire after five unused minutes including closed app time",()=>{
+            var now=DateTime.UtcNow.Ticks;Check(HomeBooks.BookmarkExpired(0,now));Check(!HomeBooks.BookmarkExpired(now,now+TimeSpan.FromSeconds(299).Ticks));Check(HomeBooks.BookmarkExpired(now,now+TimeSpan.FromSeconds(300).Ticks));Check(!HomeBooks.BookmarkExpired(now,now-1));
+            var reader=new BookCursor();reader.Begin(4,120,2);reader.AutoTurn=true;reader.Begin(HomeBooks.BookmarkExpired(now,now+TimeSpan.FromMinutes(6).Ticks)?0:reader.Page,0,2);Check(reader.Page==0 && reader.Sample==0 && !reader.Playing && reader.AutoTurn);
+        });
         Test("installed 147 four-book save upgrades without moving or replacing its copies",()=>{
             var s=SoloWorld.WithBooks(SecretWorld()).Snapshot();s.schema=10;
             s.toys=s.toys.Where(t=>t.kind!=ToyKind.Book || HomeBooks.Available(t.id,10)).ToArray();

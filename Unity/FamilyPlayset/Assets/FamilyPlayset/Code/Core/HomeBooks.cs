@@ -7,6 +7,7 @@ namespace LittleWeeps.Core
     // identities. Reading never locks a page cursor in the shared world.
     public static class HomeBooks
     {
+        public static bool BookmarkExpired(long lastUseUtc,long nowUtc)=>lastUseUtc<=0 || nowUtc>=lastUseUtc && nowUtc-lastUseUtc>=TimeSpan.FromSeconds(HomeTidying.IdleSeconds).Ticks;
         public const int FirstSchema=10, Schema=11;
         public const string Title="hello-dinosaurs", CopyId="living-book-hello";
         public static readonly string[] Titles={Title,"little-bridge","rocket-moon","fairy-garden","princess-star","mermaid-shell"};
