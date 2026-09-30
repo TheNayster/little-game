@@ -608,6 +608,14 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 
 ## 18. Current work record and research basis
 
+**Games menu — September 30:** candidate **231** replaces the top Hide & seek launcher with **Games**. Its scrollable picture menu has one entry, Hide & seek. A selection closes the menu and starts the existing server-owned countdown; Back or an outside tap dismisses without starting or changing participation. The menu blocks only its owner's movement/input, never pauses the shared world, and remains a place to add later area mini games. Windows release compilation and three focused native groups pass: phone/iPad layout and cancellation, one selection broadcasting to all four clients, and independent menu-owner departure with sibling controls/hiding retained. [Evidence](implementation/evidence/mini-games-menu-2026-09-30/result.json). Shared schema 32/content 33 unchanged; no device/live-server rollout. Preserve the main integration hold. Next: install the compatible app candidate when the relevant device is available; keep the existing Home backlog.
+
+| Activity category | Current entries | Launch and future decision |
+| --- | --- | --- |
+| **Menu mini games** | Hide & seek only | Games → choose the card → menu closes and the game starts. Add later mini games per area when implemented. |
+| **Direct object play** | Keepy Uppy | Tap the balloon to start; leave it outside the Games menu. |
+| **Legacy prototype activities** | Grow a flower/watering; Splash cleanup | Current direct controls remain. May be removed later; do not add them to the Games menu or confuse them with finished gardening/cleanup content. |
+
 **Dinosaur audio review — September 30:** the user rejected candidate 230 calls as random noise. Twelve replacements are prepared as standalone WAV/MP3 auditions from CC0 recordings/effects and original horn synthesis, with researched sound families and a listening page under `SourceAudio/Books/DinosaurPreviews/2026-09-30/`. Subjective quality is pending user listening; basic asset checks do not establish acceptance. [Research and preview record](implementation/native-reader-controls-2026-09-28.html#september-30-rejected-calls-and-preview-only-replacements). Do not add these sounds to the app before presenting them and receiving the user's selection. No runtime/build/device/server changes.
 
 

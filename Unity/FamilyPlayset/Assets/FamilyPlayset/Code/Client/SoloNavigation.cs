@@ -145,7 +145,7 @@ namespace LittleWeeps.Client
             if(WorldLoading)return;
             lastLocalAction=Time.realtimeSinceStartup;
             if(open && !CharactersOpen)
-            {navigationCamera=cameraX;navigationManualCamera=manualCamera;CancelPointers();Narration.Stop();menu.SetActive(false);characterTray.SetAsLastSibling();}
+            {CloseMiniGames();navigationCamera=cameraX;navigationManualCamera=manualCamera;CancelPointers();Narration.Stop();menu.SetActive(false);characterTray.SetAsLastSibling();}
             if(!open && CharactersOpen){cameraX=navigationCamera;manualCamera=navigationManualCamera;}
             characterTray.gameObject.SetActive(open);stick.gameObject.SetActive(JoystickMode && !MenuOpen);familyCircle.gameObject.SetActive(!MenuOpen);
             LayoutWorldViewport();
@@ -153,6 +153,7 @@ namespace LittleWeeps.Client
         }
         private void CloseNavigation()
         {
+            CloseMiniGames();
             if(CharactersOpen){cameraX=navigationCamera;manualCamera=navigationManualCamera;characterTray.gameObject.SetActive(false);}
             LayoutWorldViewport();
             if(familyCircle!=null)familyCircle.gameObject.SetActive(true);

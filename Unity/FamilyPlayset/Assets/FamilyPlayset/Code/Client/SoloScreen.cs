@@ -24,7 +24,7 @@ namespace LittleWeeps.Client
         public RectTransform Board { get; private set; }
         public bool JoystickMode { get; private set; }
         public SoloNarration Narration {get;private set;}
-        public bool MenuOpen => HideCardOpen || CollectionOpen || DiscoveryOpen || BookOpen || BookLibraryOpen || menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
+        public bool MenuOpen => MiniGamesOpen || HideCardOpen || CollectionOpen || DiscoveryOpen || BookOpen || BookLibraryOpen || menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
         public readonly Dictionary<string, SoloPointerSurface> Surfaces = new Dictionary<string, SoloPointerSurface>();
         private readonly Dictionary<string, RectTransform> toys = new Dictionary<string, RectTransform>();
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
@@ -252,6 +252,8 @@ namespace LittleWeeps.Client
             areaLabel=Label(safe,"",17,new Vector2(-245,313),new Vector2(350,34));
             movementLabel=Button(safe,JoystickMode?"Joystick":"Tap to walk",new Vector2(285,343),new Vector2(210,64),ToggleMovement,Cream);
             Button(safe,"Menu",new Vector2(500,343),new Vector2(160,64),()=>SetMenu(true),Cream);
+            // Legacy prototype activities: kept for now, may be removed later.
+            // These are not entries in the new Games menu; Keepy Uppy stays balloon-triggered.
             var garden=Button(safe,"Grow a flower",new Vector2(-380,265),new Vector2(245,48),()=>StartActivity("garden"),new Color(.86f,.93f,.74f));
             garden.rectTransform.anchoredPosition=new Vector2(22,0);garden.rectTransform.sizeDelta=new Vector2(191,48);
             var blossom=Panel(garden.transform.parent,"Flower picture",new Vector2(-93,0),new Vector2(33,33),new Color(.96f,.52f,.61f),false,true);

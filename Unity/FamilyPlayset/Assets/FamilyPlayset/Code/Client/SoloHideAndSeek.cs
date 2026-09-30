@@ -16,10 +16,10 @@ namespace LittleWeeps.Client
         private readonly List<RectTransform> hideHits=new List<RectTransform>();
         private readonly List<Outline> hideGlows=new List<Outline>();
         private RectTransform banditRoot,hideHud,hideCard,hideCardFrame,hideBigCountRoot;
-        private Image banditPicture,hideInvitePicture,hideStartPicture,hideParentPicture;
+        private Image banditPicture,hideInvitePicture,hideParentPicture;
         private Text hideInviteText,hidePlay;
         private Text hideCount,hideBigCount;
-        private Text hideStatus,hideExit,hideDone,hideStart,hideBack,hideRequest;
+        private Text hideStatus,hideExit,hideDone,hideBack,hideRequest;
         private RectTransform hideRequestRoot;
         private int hideCardRound=-1;
         private readonly List<Image> hideReadyPictures=new List<Image>();
@@ -81,8 +81,7 @@ namespace LittleWeeps.Client
             hideStatus=Label(card.transform,"",24,new Vector2(37,0),new Vector2(270,70));
             hideCount=Label(card.transform,"",42,new Vector2(-134,0),new Vector2(90,70));hideCount.fontStyle=FontStyle.Bold;
             hideParentPicture=HomePicture(card.transform,"Current parent",new Vector2(-134,0),new Vector2(70,70),banditFrames[0]);
-            hideStart=Button(hideHud,"Hide & seek",Vector2.zero,new Vector2(265,78),ShowHideCard,new Color(.76f,.9f,.99f));
-            hideStartPicture=HomePicture(hideStart.transform.parent,"Parent button picture",new Vector2(-96,0),new Vector2(68,68),banditFrames[3]);hideStart.rectTransform.anchoredPosition=new Vector2(27,0);hideStart.rectTransform.sizeDelta=new Vector2(196,78);
+            BuildMiniGames();
             hideExit=Button(hideHud,"Come out",new Vector2(289,0),new Vector2(186,76),()=>{if(OwnHider?.mode==HiderMode.Found && HideAndSeek.NextRound(HideGame))ShowHideCard();else if(OwnHider?.slot>=0)SendHide("out");},new Color(.75f,.9f,.99f));
             hideDone=Button(hideHud,"All done",new Vector2(-289,0),new Vector2(186,76),()=>SendHide("leave"),new Color(.97f,.88f,.72f));
             hideBigCountRoot=Rect(safe,"Big hide countdown",Vector2.zero,new Vector2(250,185));hideBigCountRoot.anchorMin=hideBigCountRoot.anchorMax=new Vector2(.5f,.60f);hideBigCountRoot.anchoredPosition=Vector2.zero;
@@ -154,14 +153,16 @@ namespace LittleWeeps.Client
             var parent=HideAndSeek.Parent(s,s.phase==HidePhase.Idle);var frames=parent=="Chilli"?chilliFrames:banditFrames;
             banditPicture.sprite=frames[frame];banditPicture.rectTransform.localScale=new Vector3(HideAndSeek.Facing(s),1,1);
             var invitedParent=HideAndSeek.Parent(s,true);var invitationFrames=invitedParent=="Chilli"?chilliFrames:banditFrames;
-            hideStartPicture.sprite=invitationFrames[3];hideInvitePicture.sprite=invitationFrames[5];hideParentPicture.sprite=frames[0];
+            hideInvitePicture.sprite=invitationFrames[5];hideParentPicture.sprite=frames[0];
+            PresentMiniGames(invitationFrames[5]);
             hideInviteText.text=counting?parent+" is counting!\nHide before zero to join.":
                 HideAndSeek.NextRound(s)?invitedParent+" will count to 15.\nEveryone can hide to join!":parent+" is finding the hidden players.\nJoin the next round!";
             hidePlay.text=counting?"Go hide":HideAndSeek.NextRound(s)?"Start hide & seek":"Round in progress";
             hidePlay.transform.parent.GetComponent<Button>().interactable=!hideSending && (counting || HideAndSeek.NextRound(s));
             hideBack.text="Back";
             for(var i=0;i<hideReadyPictures.Count;i++)hideReadyPictures[i].color=i<hiddenCount?new Color(.58f,.89f,.66f):new Color(.82f,.84f,.84f);
-            hideRequestRoot.gameObject.SetActive(counting && own.mode==HiderMode.Away && !HideCardOpen && !WorldLoading && !applicationPaused);
+            hideRequestRoot.gameObject.SetActive(counting && own.mode==HiderMode.Away && !MenuOpen && !applicationPaused);
+            hideRequestRoot.anchoredPosition=new Vector2(0,HideAndSeek.Zone(ReadPlayer(Actor))?-150:-65);
             hideRequest.text="Hide before zero — Go hide!";
             if(hideRequestRoot.gameObject.activeSelf){hideRequestRoot.SetAsLastSibling();hideRequest.transform.parent.GetComponent<Button>().interactable=!hideSending;}
             var sofaMine=own.slot==1 || own.slot==2;
@@ -189,12 +190,12 @@ namespace LittleWeeps.Client
             }
             hideHud.anchoredPosition=new Vector2(0,active?-142:-60);
             var inZone=HideAndSeek.Zone(ReadPlayer(Actor));hideHud.gameObject.SetActive(inZone && !MenuOpen && !hideRequestRoot.gameObject.activeSelf);
-            hideStart.transform.parent.gameObject.SetActive(!active);hideStatus.transform.parent.gameObject.SetActive(active);
+            hideHud.gameObject.SetActive(hideHud.gameObject.activeSelf && active);hideStatus.transform.parent.gameObject.SetActive(active);
             hideExit.transform.parent.gameObject.SetActive(active);hideDone.transform.parent.gameObject.SetActive(active);
             hideExit.text=own.mode==HiderMode.Found?(HideAndSeek.NextRound(s)?"Play together":"Friends hiding"):own.slot>=0?"Come out":"Pick a spot";
             var exitButton=hideExit.transform.parent.GetComponent<Button>();exitButton.interactable=own.mode==HiderMode.Found && HideAndSeek.NextRound(s) || own.slot>=0;
             var count=s.phase==HidePhase.Counting?(int)Math.Ceiling(s.count):0;
-            hideBigCountRoot.gameObject.SetActive(count>0 && !WorldLoading && !applicationPaused && !HideCardOpen);hideBigCount.text=count>0?count.ToString():"";
+            hideBigCountRoot.gameObject.SetActive(count>0 && !WorldLoading && !applicationPaused && !HideCardOpen && !MiniGamesOpen);hideBigCount.text=count>0?count.ToString():"";
             hideCount.text=own.mode==HiderMode.Found?"✓":"";hideParentPicture.gameObject.SetActive(own.mode!=HiderMode.Found);
             hideStatus.text=own.mode==HiderMode.Found?"Found you!":count>0?(own.slot>=0?"You're hidden!":"Time to hide!"):own.slot>=0?(parent+(s.phase==HidePhase.Looking?" is looking around":" is searching")+"\nYou're hidden!"):"Tap a hiding spot";
             if((active || counting) && own.cycle==lastHideCycle && !applicationPaused && !MenuOpen && !BookSpeaking && (!Shared || shared.Connected))
@@ -217,6 +218,7 @@ namespace LittleWeeps.Client
         }
         private void ResetHideAndSeek()
         {
+            ResetMiniGames();
             hideFrame=null;hideFrameNumber=-1;hideRevision=-1;hideApproach=-1;hideSending=false;lastHideCycle=-1;lastHideCount=-1;hideCardRound=-1;hideReadyPictures.Clear();hideProps.Clear();hidePictures.Clear();hideHits.Clear();hideGlows.Clear();
             if(hideChime!=null){hideChime.Stop();Destroy(hideChime);hideChime=null;}
             foreach(var sprite in hideSprites)Destroy(sprite);hideSprites.Clear();

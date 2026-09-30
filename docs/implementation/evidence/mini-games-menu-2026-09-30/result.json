@@ -1,0 +1,9 @@
+{
+  "build": 231,
+  "passed": true,
+  "checks": [
+    "phone and iPad picture menu contains only hide-and-seek; Back starts nothing",
+    "one card tap closes menu and broadcasts one shared countdown to four clients",
+    "leaving with menu open keeps sibling controls and hidden participant intact"
+  ]
+}
