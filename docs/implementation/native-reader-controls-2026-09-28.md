@@ -88,3 +88,25 @@ Twelve standalone auditions now live in `SourceAudio/Books/DinosaurPreviews/2026
 [Scientific consultant Darren Naish's sound-design account](https://darrennaish.wordpress.com/wp-content/uploads/2023/11/evolve-magazine-prehistoric-planet-naish-2023.pdf) describes recorded crocodilian/bird comparisons and lowered large-bird voices. [Sandia's crest research](https://newsreleases.sandia.gov/scientists-use-digital-paleontology-to-produce-voice-of-parasaurolophus-dinosaur/) motivates a separate resonant horn direction for Parasaurolophus; our horn is original stylized synthesis, not Sandia audio or a physical reconstruction. The auditions combine CC0 artist-made roars/pterosaur effects with CC0 animal growls, pig grunts and goose calls. Pitch, layering and timing are explicit in the design manifest. These are imagined voices, with cinematic effects clearly identified, not exact species reconstructions.
 
 The new clips pass only duration/non-silent finite-sample/peak checks. This environment cannot supply audio input to the agent, so **no subjective listening review is claimed**. The user receives the playable auditions; their listening choice is the next step before any runtime integration. Preserve the accepted book controls and full Home backlog.
+
+
+## September 30: listening-approved site calls
+
+The user selected Myinstants/Pixabay sounds, requested the edits below, listened to the updated previews and said **“yes! use these sounds.”** Eight approved clips now replace their corresponding source and Unity Resources WAVs. Existing name-then-call playback, Sound/Voice preferences, cancellation and independent reading remain unchanged. Pteranodon uses the main stretched preview; the optional two-call alternative was not installed.
+
+| Species | Approved duration/edit |
+| --- | --- |
+| T-Rex | Original, 6.50 seconds |
+| Triceratops | Original, 2.52 seconds |
+| Stegosaurus | First 7 seconds |
+| Brachiosaurus | 3.2-second stretch, original pitch |
+| Spinosaurus | 3.2-second stretch, original pitch |
+| Pteranodon | 3.2-second stretch, original pitch |
+| Parasaurolophus | Source seconds 10–18, 8 seconds |
+| Velociraptor | Original, 8.02 seconds |
+
+[Approved sources, exact edits and hashes](../../SourceAudio/Books/ApprovedDinosaurCalls/2026-09-30/manifest.json) retain per-clip provenance. These are site-labeled sound effects for imaginative play, not verified extinct-animal recordings. Myinstants reuse licenses are unverified; Stegosaurus is listed under the Pixabay Content License. Approved MP3s are retained alongside mono 32 kHz PCM16 source/runtime conversions. The effects generator validates and preserves user-approved WAVs instead of replacing them with old MMAudio prompts. The earlier full restart check now reads each asset's recorded duration rather than assuming every call lasts 3.5 seconds.
+
+Windows release **233** [built successfully](evidence/approved-dinosaur-calls233-2026-09-30/build-summary.json). [One focused native pass](evidence/approved-dinosaur-calls233-2026-09-30/results.json) verifies all eight source/runtime hashes, encoding and edited durations; the book loads and plays all eight after their spoken names, the two trimmed longer calls complete, and closing cancels playback. The regeneration guard was separately exercised with the eight approved jobs and preserved all eight. User listening is the audio-quality acceptance; no agent listening or physical-device check is claimed.
+
+Diplodocus, Ankylosaurus, Brontosaurus and Quetzalcoatlus still lack approved replacements; their existing runtime assets remain unchanged and are not newly approved. No narration, illustration, save, shared compatibility or server process change was made. No phone/iPad installation. Schema 32/content 33 and the main integration hold remain. Next: deliver the app when requested and find/select the remaining four calls.

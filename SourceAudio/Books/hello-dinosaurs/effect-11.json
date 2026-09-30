@@ -1,15 +1,14 @@
 {
-  "prompt": "A small feathered Velociraptor makes three quick raspy chirrups followed by a short rough trilling growl. Distinct organic bird-like dinosaur voice, curious and playful, close dry call starting immediately, not piercing or frightening. No ambience.",
-  "negative_prompt": "Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing",
-  "seed": 309311,
-  "model": "MMAudio large_44k_v2",
-  "model_sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74",
-  "model_license": "CC-BY-NC-4.0",
-  "source": "https://github.com/hkchengrex/MMAudio",
-  "generated": true,
-  "kind": "Imaginative sound design; not an authentic extinct-animal recording",
-  "seconds": 3.5,
-  "loudness": -18.0,
-  "highpass": 90.0,
-  "sha256": "3c52187f17d92fb01eacca4b8b976f1d5e6b8ebe42a845591d7b310f308081ec"
+  "species": "Velociraptor",
+  "source": "https://www.myinstants.com/en/instant/velociraptor-roar/",
+  "rights": "Reuse license not verified",
+  "generated": false,
+  "user_approved": true,
+  "approval": "September 30: yes! use these sounds",
+  "approved_mp3": "SourceAudio/Books/ApprovedDinosaurCalls/2026-09-30/velociraptor.mp3",
+  "edit": "Original downloaded clip",
+  "seconds": 8.01959375,
+  "kind": "Site-labeled imaginative dinosaur sound effect; not an authentic extinct-animal recording",
+  "sha256": "c6f9d25225b96a4b36451d7d5618ce7653ab21a9c8fb0673bd2251176be68f6d",
+  "preview_sha256": "af285c3982c80c239d3f560b8e1a79279144bfa0875e3591321eacb1ebd0ba96"
 }

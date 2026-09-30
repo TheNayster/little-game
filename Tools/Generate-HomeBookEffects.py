@@ -10,6 +10,21 @@ os.environ.setdefault('HF_HUB_DISABLE_SYMLINKS_WARNING','1')
 def main():
     p=argparse.ArgumentParser();p.add_argument('manifest',type=Path);args=p.parse_args()
     entries=json.loads(args.manifest.resolve().read_text())
+    # Listening-approved downloads must never be replaced by the old generated
+    # prompts when the book's jobs are rebuilt. A missing/corrupt approved asset
+    # is an explicit repair, not permission to synthesize a different voice.
+    pending=[]
+    for entry in entries:
+        dest=(ROOT/entry['output']).resolve();meta=dest.with_suffix('.json')
+        if not dest.is_relative_to(ROOT) or dest.suffix!='.wav':raise ValueError('Invalid output')
+        old=json.loads(meta.read_text()) if meta.exists() else {}
+        if old.get('user_approved'):
+            if not dest.exists() or hashlib.sha256(dest.read_bytes()).hexdigest()!=old['sha256']:
+                raise ValueError('Approved audio needs restoration: '+str(dest))
+            print('Keeping approved call: '+dest.name,flush=True)
+        else:pending.append(entry)
+    entries=pending
+    if not entries:return
     import torch, soundfile as sf, numpy as np
     from mmaudio.eval_utils import all_model_cfg,generate
     from mmaudio.model.networks import get_my_mmaudio

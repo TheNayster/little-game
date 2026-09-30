@@ -60,10 +60,11 @@ def main():
             require(source.read_bytes()==runtime.read_bytes(),'Runtime call differs from generated source')
             with wave.open(str(source)) as wav:
                 require(wav.getnchannels()==1 and wav.getframerate()==32000 and wav.getsampwidth()==2,'Wrong call encoding')
-                require(3.4<wav.getnframes()/wav.getframerate()<3.6,'Wrong call duration')
+                expected=json.loads(source.with_suffix('.json').read_text())['seconds']
+                require(abs(wav.getnframes()/wav.getframerate()-expected)<.03,'Wrong call duration')
             calls.append(dict(species=species,sha256=digest))
         require(len({v['sha256'] for v in calls})==12,'Calls are duplicated')
-        write(out/'calls.json',calls);record('All twelve distinct generated calls match runtime assets')
+        write(out/'calls.json',calls);record('All twelve distinct calls match their recorded source assets')
         passed=True
     finally:
         run.close();write(out/'results.json',dict(passed=passed,build=args.build,checks=checks,liveFamilyTouched=False,physicalDevicesTested=False,physicalAudioVerified=False))

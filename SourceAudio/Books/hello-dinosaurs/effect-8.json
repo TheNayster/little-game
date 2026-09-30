@@ -1,15 +1,14 @@
 {
-  "prompt": "A Pteranodon flying reptile gives two raspy bird-like squawks and a short rising croaking cry. Distinct close dry animal vocalization starting immediately, expressive and playful, not piercing or frightening. No wing flaps or ambience.",
-  "negative_prompt": "Speech, words, talking, narration, screaming, scary horror, loud harsh distortion, music, singing",
-  "seed": 309308,
-  "model": "MMAudio large_44k_v2",
-  "model_sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74",
-  "model_license": "CC-BY-NC-4.0",
-  "source": "https://github.com/hkchengrex/MMAudio",
-  "generated": true,
-  "kind": "Imaginative sound design; not an authentic extinct-animal recording",
-  "seconds": 3.5,
-  "loudness": -18.0,
-  "highpass": 90.0,
-  "sha256": "aca01be0332ab4597493f8a0593afb3397c95c021daeb9dea299cfab4111f150"
+  "species": "Pteranodon",
+  "source": "https://www.myinstants.com/en/instant/pteranodon-2350/",
+  "rights": "Reuse license not verified",
+  "generated": false,
+  "user_approved": true,
+  "approval": "September 30: yes! use these sounds",
+  "approved_mp3": "SourceAudio/Books/ApprovedDinosaurCalls/2026-09-30/pteranodon-v2.mp3",
+  "edit": "Stretched to 3.2 seconds, original pitch",
+  "seconds": 3.2,
+  "kind": "Site-labeled imaginative dinosaur sound effect; not an authentic extinct-animal recording",
+  "sha256": "85f5fba624cf9ae1fbe6752d6972206738a48e2e3a98b0ff885e1c93897a4283",
+  "preview_sha256": "8a7c5c227c9d29ea0505acc5c9c754ee7aec00372c519b011a83d611733ac664"
 }
