@@ -1,0 +1,21 @@
+{
+  "task": "ART-HOME-02",
+  "date": "2026-09-30",
+  "generator": "Built-in image_gen",
+  "scope": "Repair the large living-room family portrait with Bandit, Chilli, Bluey and Bingo.",
+  "prompt": "Use case: precise-object-edit. Asset type: production 2D game living-room panorama. Image 1 is the edit target, the existing 2172x724 living-room background. Images 2 and 3 are official appearance references for Bandit and Chilli; image 4 is the accepted Bluey reference. Fix ONLY the large framed family picture on the yellow wall immediately to the right of the left window, above the empty couch space and left of the lamp/bookcase. Its interior currently has malformed overlapping figures and only three characters. Redraw the interior as a clear, warmly smiling family photograph of EXACTLY FOUR recognizable Heeler family members: adult dad Bandit (blue, dark navy patches, tan muzzle), adult mum Chilli (orange/tan with brown patches and cream muzzle), their older daughter Bluey (small blue child with navy patches), and younger daughter Bingo (smaller orange child with cream muzzle). Parents in back side by side, children in front side by side. Four separate clearly readable faces, correct ears and eyes, correct relative sizes, no fused bodies, no duplicates. Simple light blue photograph background, clean flat Bluey TV-style shapes and outlines. Keep the existing brown rectangular frame, white mat, wall mounting position, picture outer size and perspective exactly unchanged. Outside that one picture interior, preserve every original pixel as closely as possible: same window, plants, wall, floorboards, lamp, bookcase, stairs, small other wall pictures, cabinet, door, room edges, lighting and geometry. No new furniture, no sofa, no characters in the room itself, no text, no UI. Keep the full panoramic extent and 3:1 aspect ratio. Opaque background.",
+  "references": [
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-living.png (edit target)",
+    "SourceArt/Home/HideAndSeek/bandit-reference.png",
+    "SourceArt/Home/HideAndSeek/chilli-reference.png",
+    "SourceArt/Characters/SelectedReference/bluey-movement-sheet.png"
+  ],
+  "output": "C:/Users/sephi/.codex/generated_images/01a0f38c-c735-7d90-a1ed-dadddc89ccb4/exec-af4eb27f-7322-4851-9322-13794c544a3b.png",
+  "source": "SourceArt/Home/FamilyPortrait/home-living.png",
+  "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-living.png",
+  "dimensions": [
+    2172,
+    724
+  ],
+  "acceptance": "Four members and unchanged room composition visually inspected; family visual acceptance remains pending."
+}
