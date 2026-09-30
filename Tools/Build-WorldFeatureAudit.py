@@ -389,6 +389,20 @@ for feature in features:
     if feature['id'] in HOME_PROGRESS_NOTES:
         feature['status'], feature['description'], feature['evidence'] = HOME_PROGRESS_NOTES[feature['id']]
 
+# September 30 playable park slice; retain the unimplemented deeper games.
+EVIDENCE['park']='implementation/park-playable-equipment-2026-09-30.html'
+PARK_PROGRESS_NOTES={
+ 'P-01': 'Clean backgrounds support real park equipment in Windows 235/250; other outdoor activities and mobile visual acceptance remain.',
+ 'PRK-01': 'Four usable swing seats across two frames, seat-aligned pendulum motion and independent exit. Optional pushes/NPC play and physical acceptance remain.',
+ 'PRK-02': 'Tap ladder/platform for an authored climb and slide with contact anchors and automatic landing. Toy passengers/extra routes and physical acceptance remain.',
+ 'PRK-04': 'The playhouse ladder/platform works as the slide approach. Monkey bars, branching climbs and hand-grip drawings remain unimplemented.',
+ 'PRK-05': 'Four places on one shared roundabout, bounded acceleration/braking and independent departure. Optional ground pushing/NPC play remain.',
+ 'PRK-11': 'Picnic table seating is usable; food arrangement/orders/serving are still planned. Drinking fountain and a fillable park bucket are additional fixtures.'
+}
+for feature in features:
+    if feature['id'] in PARK_PROGRESS_NOTES:
+        feature['status']='part';feature['description']=PARK_PROGRESS_NOTES[feature['id']];feature['evidence']='park'
+
 TRACK_STATUS={
 'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'part','FISH-01':'plan','CLEAN-01':'part',
 'HIDE-01':'part','HIDE-02':'plan','NPC-01':'part','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'part',

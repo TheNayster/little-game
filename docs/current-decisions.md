@@ -1,5 +1,7 @@
 # Current project decisions
 
+**Playable park equipment — September 30:** the latest user request prioritizes the playhouse/slide, swings, roundabout, fountain and benches. Park rules add schema 33, four real swing seats and four shared ride/seating places, independent exit, automatic climb/slide and fountain/bucket water. Clean panoramas replace painted equipment when this layer is active. The floating-character review led to explicit support contact points, a slide route fitted to the artwork and seat-aligned swing rotation. Windows 235 gameplay and Windows 250 final contact/depth captures pass, with focused core/four-client evidence; the combined checkout manifest includes concurrent zoo work at schema 34/content 35. No mobile/live-server rollout or final child visual acceptance. The Games menu remains Hide & seek only. [Research, evidence and remaining park scope](implementation/park-playable-equipment-2026-09-30.html). Preserve the main integration hold.
+
 **Server status-write crash corrected — September 30:** installed **227-status-io-1** keeps baseline content 31/schema 30, port and firewall; only the networking assembly status writer changed. Earlier helper changes alone did not stop the repeated failure. Four-client locked-file testing and the installed two-device test retain the authority through 48/51 conflicts. [Cause, established hosting options and scoped acceptance](server-update-policy.md#september-30-status-write-crash-correction). Do not reinstall unpatched 227; compatible app updates still leave the server alone.
 
 

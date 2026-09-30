@@ -47,7 +47,7 @@ namespace LittleWeeps.Core
             copy.revision++;Validate(copy);return new SoloWorld(copy);
         }
         private void ClearFixture(SoloPlayer p)
-        {SettleCuddle(p);p.fixture="";p.useSeconds=0;}
+        {SettleCuddle(p);p.fixture="";p.useSeconds=0;p.rideStarted=0;}
         // A lease is temporary, including across app suspension, travel and
         // recovery. The furniture and stored item state are durable.
         public bool ReleaseFixture(string actor)
@@ -77,6 +77,7 @@ namespace LittleWeeps.Core
                     (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:
                      (BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || !SecretRooms.Furnished(p.zone) || (SecretRooms.Index(p.zone)>=0?p.fixture==BedroomFurniture.Bed:SecretRooms.FortIndex(p.fixture)>=0) ||
                       p.x!=BedroomFurniture.SeatX(p.fixture,SecretRooms.Furnishings(s).Single(r=>r.id==p.zone).layout) || p.y!=BedroomFurniture.SeatY(p.fixture):
+                      ParkPlay.Usable(p.fixture)?s.schema<ParkPlay.Schema || p.zone!="park" || p.x!=ParkPlay.X(p.fixture) || p.y!=ParkPlay.Y(p.fixture):
                       !HomeLayout.Usable(p.fixture) || Kitchen.Seat(p.fixture) && s.schema<Kitchen.Schema || p.zone!="garden" || p.x!=HomeLayout.X(p.fixture,s.schema) || p.y!=HomeLayout.Y(p.fixture)) || s.toys.Any(t=>t.holder==p.id && !(s.schema>=RoomPlay.Schema && BedroomFurniture.Seat(p.fixture) && t.kind==ToyKind.Plush))))
                     throw new InvalidOperationException("Invalid home occupancy.");
             if(s.players.Where(p=>!string.IsNullOrEmpty(p.fixture)).GroupBy(p=>p.zone+"/"+p.fixture).Any(g=>g.Count()>1))
@@ -106,6 +107,7 @@ namespace LittleWeeps.Core
         // Returns a rejection without mutation, or commits a validated action.
         private string ApplyHome(SoloCommand c,SoloPlayer player)
         {
+            if(player.zone=="park")return ApplyParkFixture(c,player);
             if(SecretRooms.Furnished(player.zone))return ApplyBedroomFixture(c,player);
             if(state.home==null || player.zone!="garden")return "wrong-area";
             if(c.action==SoloAction.LeaveFixture){ClearFixture(player);return null;}

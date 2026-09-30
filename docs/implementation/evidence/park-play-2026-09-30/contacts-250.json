@@ -1,0 +1,6 @@
+{
+  "build": 250,
+  "passed": true,
+  "scope": "identical support-depth key for four bodies and foreground handles; earlier gameplay native checks retained",
+  "retry": "idempotent inspect/resize/capture only after diagnostic replacement error"
+}

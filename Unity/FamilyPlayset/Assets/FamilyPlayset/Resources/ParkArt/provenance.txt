@@ -1,0 +1,5 @@
+Generated September 30, 2026 using imagegen.
+References: original Scenery/park-playground.png and park-picnic.png.
+Clean plates: remove playhouse/slide, swing frame/seats, roundabout, fountain, picnic tables and bench; preserve trees, landscape, paths and gazebo.
+Equipment atlas: matching purple-roof playhouse/mint slide, two-seat swing frame, chain/bucket seat, roundabout platform and separate handle/seat, purple drinking fountain, green bench and picnic table. Transparent background.
+Original scenic resources are retained. Geometry and semantic contact anchors are in SoloPark.cs; gameplay authority is ParkPlay.cs. Generated artwork remains pending family visual acceptance.

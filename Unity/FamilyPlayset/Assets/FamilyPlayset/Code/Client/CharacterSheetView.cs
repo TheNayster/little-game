@@ -106,6 +106,16 @@ namespace LittleWeeps.Client
             shadow.localScale = frame.Pose == CharacterPose.Bounce ? Vector3.one * Mathf.Lerp(1, .6f, Mathf.Clamp01((offset.y - 84) / 108)) : Vector3.one;
         }
 
+        public void AttachToSupport(float angle)
+        {
+            // Park anchors describe the actual contact point in the equipment
+            // art. Remove the Home sofa's 60-unit lift and ground-only shadow.
+            // The selected-sheet joint is 45 below the avatar root.
+            facing.anchoredPosition=new Vector2(0,45);
+            facing.localRotation=Quaternion.Euler(0,0,angle);
+            shadow.gameObject.SetActive(false);
+        }
+
         private static RectTransform Rect(string name, Transform parent)
         {
             var rect = new GameObject(name, typeof(RectTransform)).GetComponent<RectTransform>();

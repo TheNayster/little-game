@@ -130,6 +130,7 @@ namespace LittleWeeps.Core
         }
         private static bool ValidToyLocation(SoloToy t,int schema)
         {
+            if(t.id=="tap-park" || t.id=="bucket-park")return schema>=ParkPlay.Schema && t.zone=="park" && (t.id=="tap-park"?t.kind==ToyKind.Tap:t.kind==ToyKind.Bucket);
             if(Kitchen.Kind(t.kind))return schema>=Kitchen.Schema && Kitchen.Identity(t) && HomeRooms.Property(t.zone);
             if(t.kind==ToyKind.Book)return schema>=HomeBooks.FirstSchema && HomeBooks.Index(t.id)>=0 && HomeRooms.Property(t.zone);
             if(BedroomFurniture.Personal(t.kind))return schema>=BedroomFurniture.Schema && BedroomLayout.Index(t.personalRoom)>=0 && HomeRooms.Property(t.zone);

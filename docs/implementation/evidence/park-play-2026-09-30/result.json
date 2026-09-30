@@ -1,0 +1,11 @@
+{
+  "build": 235,
+  "passed": true,
+  "checks": [
+    "native tap starts climb/platform/slide and lands automatically",
+    "four native swing targets, exclusive seats and phone/iPad composition",
+    "one shared moving roundabout, shared stop/restart and independent departure",
+    "native fountain tap and shared bucket water transfer",
+    "bench/picnic seating and independent major-world travel"
+  ]
+}

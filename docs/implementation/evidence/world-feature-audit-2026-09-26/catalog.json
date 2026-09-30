@@ -1286,13 +1286,13 @@
       "world": "park",
       "group": "World foundation",
       "title": "Long park and playground scenery",
-      "status": "scene",
+      "status": "part",
       "chapters": [
         3,
         39
       ],
-      "description": "Walkable scenic shell exists. Playground machinery, NPC games and riding are planned; painted equipment must not be reported as working rides.",
-      "evidence": "scene",
+      "description": "Clean backgrounds support real park equipment in Windows 235/250; other outdoor activities and mobile visual acceptance remain.",
+      "evidence": "park",
       "extraSource": ""
     },
     {
@@ -2169,12 +2169,12 @@
       "world": "park",
       "group": "Twelve park activities",
       "title": "Swings",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         39
       ],
-      "description": "Simple play: Tap a seat to sit and swing gently; large Get off picture Deeper play: Tap Push or choose a gentle/faster preset; push a sibling or NPC; four real seats across two two-seat frames",
-      "evidence": "ledger",
+      "description": "Four usable swing seats across two frames, seat-aligned pendulum motion and independent exit. Optional pushes/NPC play and physical acceptance remain.",
+      "evidence": "park",
       "extraSource": ""
     },
     {
@@ -2182,12 +2182,12 @@
       "world": "park",
       "group": "Twelve park activities",
       "title": "Slide",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         39
       ],
-      "description": "Simple play: Tap the ladder or slide picture; character climbs and slides Deeper play: Add a toy passenger or use a second slide lane; replay without navigating a tiny ladder hitbox",
-      "evidence": "ledger",
+      "description": "Tap ladder/platform for an authored climb and slide with contact anchors and automatic landing. Toy passengers/extra routes and physical acceptance remain.",
+      "evidence": "park",
       "extraSource": ""
     },
     {
@@ -2208,12 +2208,12 @@
       "world": "park",
       "group": "Twelve park activities",
       "title": "Climbing tower and monkey bars",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         39
       ],
-      "description": "Simple play: Tap the next large hand/foot picture; assisted traversal Deeper play: Choose among two short routes, carry a flag to the platform, then slide down",
-      "evidence": "ledger",
+      "description": "The playhouse ladder/platform works as the slide approach. Monkey bars, branching climbs and hand-grip drawings remain unimplemented.",
+      "evidence": "park",
       "extraSource": ""
     },
     {
@@ -2221,12 +2221,12 @@
       "world": "park",
       "group": "Twelve park activities",
       "title": "Roundabout",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         39
       ],
-      "description": "Simple play: Sit and tap a large Start/Stop picture Deeper play: One child pushes while another rides, swap whenever wanted; gentle capped speed and stationary camera",
-      "evidence": "ledger",
+      "description": "Four places on one shared roundabout, bounded acceleration/braking and independent departure. Optional ground pushing/NPC play remain.",
+      "evidence": "park",
       "extraSource": ""
     },
     {
@@ -2299,12 +2299,12 @@
       "world": "park",
       "group": "Twelve park activities",
       "title": "Picnic and pretend shop",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         39
       ],
-      "description": "Simple play: Arrange ready snacks on a blanket Deeper play: Serve picture orders, share fruit, pour drinks, tidy plates; reuse kitchen, container, and cleanup systems",
-      "evidence": "ledger",
+      "description": "Picnic table seating is usable; food arrangement/orders/serving are still planned. Drinking fountain and a fillable park bucket are additional fixtures.",
+      "evidence": "park",
       "extraSource": ""
     },
     {

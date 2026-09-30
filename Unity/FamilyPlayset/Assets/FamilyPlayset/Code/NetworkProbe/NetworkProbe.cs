@@ -66,7 +66,7 @@ namespace LittleWeeps.NetworkProbe
         public long InputAck(string actor)=>inputAcks.TryGetValue(actor,out var ack)?ack:0;
         public event Action MotionReceived;
         [Serializable] public sealed class MovingPlayer {public string actor,zone;public long visit,input;public float x,y;public double stairs;}
-        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;}
+        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;}
         [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public double seconds;}
         private CheckpointStore store;
         private FileStream authorityLock;
@@ -340,7 +340,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithHideAndSeek(world);
+            world=SoloWorld.WithPark(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -453,7 +453,7 @@ namespace LittleWeeps.NetworkProbe
             {network.DisconnectClient(sender,"invalid-message");}
             catch(Exception e){Fail(e);}
         }
-        private double keepyTime;
+        private double keepyTime,parkTime;
         private void ReceiveState(ulong sender,FastBufferReader reader)
         {
             if(config.role!="client" || sender!=NetworkManager.ServerClientId || failed || applicationPaused || retryPending || localOnly || !network.IsConnectedClient)return;
@@ -483,6 +483,7 @@ namespace LittleWeeps.NetworkProbe
                     }
                     if(Latest!=null && Latest.epoch==state.epoch && keepyTime>state.time)state.view.keepy=Latest.view.keepy?.Copy();
                     else keepyTime=state.time;
+                    if(Latest!=null && Latest.epoch==state.epoch && parkTime>state.time)state.view.park=Latest.view.park?.Copy();else parkTime=state.time;
                     seenSequence=state.sequence;Latest=state;WriteJson(Path.Combine(output,"view.json"),state);
                 }
                 Received?.Invoke(state);
@@ -543,9 +544,9 @@ namespace LittleWeeps.NetworkProbe
                 if(!string.IsNullOrEmpty(p.fixture))
                 {
                     var bedroom=BedroomFurniture.Seat(p.fixture)?SecretRooms.Furnishings(Latest.view).FirstOrDefault(r=>r.id==p.zone):null;
-                    var supportX=bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):HomeLayout.X(p.fixture);
-                    var supportY=bedroom!=null?BedroomFurniture.SeatY(p.fixture):HomeLayout.Y(p.fixture);
-                    if(sample.x!=supportX || sample.y!=supportY){p.fixture="";p.useSeconds=0;}
+                    var supportX=bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):ParkPlay.Usable(p.fixture)?ParkPlay.X(p.fixture):HomeLayout.X(p.fixture);
+                    var supportY=bedroom!=null?BedroomFurniture.SeatY(p.fixture):ParkPlay.Usable(p.fixture)?ParkPlay.Y(p.fixture):HomeLayout.Y(p.fixture);
+                    if(sample.x!=supportX || sample.y!=supportY){p.fixture="";p.useSeconds=0;p.rideStarted=0;}
                 }
                 if(!KeepyRules.Finite(sample.stairs) || sample.stairs<0 || sample.stairs>=HomeRooms.StairDuration)throw new InvalidDataException("Invalid stair sample.");
                 p.x=sample.x;p.y=sample.y;p.stairs=sample.stairs;positionTimes[p.id]=frame.time;inputAcks[p.id]=sample.input;
@@ -555,6 +556,7 @@ namespace LittleWeeps.NetworkProbe
                 SoloWorld.ValidateKeepy(new SoloSnapshot{schema=WorldLayout.Schema,players=Latest.view.players,keepy=frame.keepy});
                 Latest.view.keepy=frame.keepy;keepyTime=frame.time;
             }
+            if(frame.time>parkTime && frame.park!=null){Latest.view.park=frame.park;parkTime=frame.time;}
             MotionReceived?.Invoke();
             WriteJson(Path.Combine(output,"view.json"),Latest);
         }
@@ -580,7 +582,7 @@ namespace LittleWeeps.NetworkProbe
             // Positions describe the completed simulation step, not the later
             // packet-send instant. Otherwise 30 Hz simulation sampled at 20 Hz
             // creates an artificial alternating fast/slow interpolation speed.
-            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
+            var frame=new MotionFrame{epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
             foreach(var peer in network.ConnectedClientsIds){Send(MotionMessage,peer,frame,NetworkDelivery.UnreliableSequenced);motionPackets++;}
             // Diagnostics are deliberately not durable checkpoints.
             WriteJson(Path.Combine(output,"view.json"),Current());

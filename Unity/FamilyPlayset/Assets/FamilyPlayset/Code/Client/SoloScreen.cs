@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithHideAndSeek(World);
+                World = SoloWorld.WithPark(World);
                 // Restore releases interrupted holds, hiding roles and fixture/stair
                 // leases. Persist every revision-changing restore, including an
                 // otherwise idle player who has just come out of cover.
@@ -305,7 +305,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -589,7 +589,7 @@ namespace LittleWeeps.Client
             RecordPlayFrame();
             if(!Ready)return;
             AnimateNavigation();
-            EnsureToyViews();AnimateTravelScreen();TickScenery();TickHome();TickKeepy();
+            EnsureToyViews();AnimateTravelScreen();TickScenery();TickHome();TickKeepy();TickPark();
             if(shared!=null && shared.Connected)
             {
                 var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
@@ -612,7 +612,7 @@ namespace LittleWeeps.Client
             PresentBedrooms();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
-            PresentHideAndSeek();
+            PresentHideAndSeek();PresentPark();
         }
         private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
@@ -630,6 +630,7 @@ namespace LittleWeeps.Client
                 var hider=HideAndSeek.Player(HideGame,id);
                 if(hider?.mode==HiderMode.Hidden){Add(root,ToBoard(player.x,HideAndSeek.GroundY[hider.slot]).y,1,id);return;}
                 var fixture=player?.fixture??"";
+                if(ParkPlay.Usable(fixture)){var ground=ParkPlayerGround(fixture);Add(root,ground,1,id);return;}
                 if(SecretRooms.FortIndex(fixture)>=0 && secretFort!=null){Add(root,secretFort.anchoredPosition.y,1,id);return;}
                 if(BedroomFurniture.Seat(fixture) && FurnishedRoom!=null){var key=fixture==BedroomFurniture.Bed?"bed":"cushion-"+BedroomFurniture.CushionIndex(fixture);if(bedroomFurniture.TryGetValue(key,out var furniture)){Add(root,furniture.anchoredPosition.y,1,id);return;}}
                 if(Kitchen.Seat(fixture)){Add(root,ToBoard(0,130).y,1,id);return;}
@@ -637,7 +638,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
+            AddParkDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);
@@ -719,7 +720,7 @@ namespace LittleWeeps.Client
             DrawTea(t,root);DrawKitchenItem(t,root);
             if(t.kind==ToyKind.Bucket){var handle=Panel(root,"Handle",new Vector2(0,27),new Vector2(65,50),Ink,false,true);handle.sprite=hintRing;Panel(root,"Bucket",Vector2.zero,new Vector2(80,70),new Color(.98f,.67f,.28f));fills[t.id]=Panel(root,"Water",new Vector2(0,3),new Vector2(58,10),new Color(.32f,.68f,.91f));}
             if(t.kind==ToyKind.Sponge){Panel(root,"Sponge",Vector2.zero,new Vector2(92,53),new Color(1,.87f,.39f));for(var i=0;i<4;i++)Panel(root,"Hole",new Vector2(-27+i*18,(i%2)*15-8),new Vector2(8,8),new Color(.78f,.58f,.25f),false,true);}
-            if(t.kind==ToyKind.Tap){Panel(root,"Tap pipe",new Vector2(-14,5),new Vector2(28,100),new Color(.47f,.61f,.68f));Panel(root,"Spout",new Vector2(14,40),new Vector2(74,26),new Color(.59f,.71f,.76f));Panel(root,"Handle",new Vector2(-14,66),new Vector2(67,18),new Color(.29f,.5f,.61f));Panel(root,"Drop",new Vector2(40,6),new Vector2(20,28),new Color(.29f,.65f,.88f),false,true);}
+            if(t.kind==ToyKind.Tap && t.id!="tap-park"){Panel(root,"Tap pipe",new Vector2(-14,5),new Vector2(28,100),new Color(.47f,.61f,.68f));Panel(root,"Spout",new Vector2(14,40),new Vector2(74,26),new Color(.59f,.71f,.76f));Panel(root,"Handle",new Vector2(-14,66),new Vector2(67,18),new Color(.29f,.5f,.61f));Panel(root,"Drop",new Vector2(40,6),new Vector2(20,28),new Color(.29f,.65f,.88f),false,true);}
             if(t.kind==ToyKind.Plant){Panel(root,"Stem",new Vector2(0,23),new Vector2(10,79),new Color(.27f,.51f,.29f));Panel(root,"Leaf",new Vector2(-19,32),new Vector2(40,20),new Color(.38f,.66f,.33f),false,true);Panel(root,"Pot",new Vector2(0,-22),new Vector2(76,54),new Color(.8f,.43f,.3f));fills[t.id]=Panel(root,"Bloom",new Vector2(0,64),new Vector2(68,68),new Color(.96f,.52f,.61f),false,true);Panel(fills[t.id].transform,"Pollen",Vector2.zero,new Vector2(26,26),new Color(1,.84f,.35f),false,true);}
             if(t.kind==ToyKind.Ball){Panel(root,"Ball outline",Vector2.zero,new Vector2(86,86),Ink,false,true);Panel(root,"Ball",Vector2.zero,new Vector2(80,80),new Color(.97f,.66f,.29f),false,true);Panel(root,"Ball stripe",Vector2.zero,new Vector2(24,78),new Color(.35f,.76f,.84f),false,true);}
             if(t.kind==ToyKind.Book){var cover=HomePicture(root,"Picture book",Vector2.zero,new Vector2(130,170),BookCoverSprite(HomeBooks.Index(t.id)));cover.preserveAspect=true;}

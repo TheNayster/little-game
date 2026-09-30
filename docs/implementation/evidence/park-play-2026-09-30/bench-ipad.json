@@ -1,0 +1,331 @@
+{
+  "serial": 46,
+  "visiblePlayers": 3,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 10,
+  "passed": true,
+  "ready": true,
+  "pending": true,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.235",
+  "actor": "player-1",
+  "feedback": "Splash! Your bucket is full.",
+  "dragging": "",
+  "zone": "park",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "0f8e38937f81480696b71a142ac7bdd0",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "position": {
+        "x": 4122.0,
+        "y": 362.2221984863281
+      },
+      "visible": true
+    },
+    {
+      "id": "player-2",
+      "position": {
+        "x": 2624.600830078125,
+        "y": 258.6424865722656
+      },
+      "visible": true
+    },
+    {
+      "id": "player-3",
+      "position": {
+        "x": 2452.1455078125,
+        "y": 388.62518310546875
+      },
+      "visible": true
+    },
+    {
+      "id": "player-4",
+      "position": {
+        "x": 2548.0,
+        "y": 180.00001525878906
+      },
+      "visible": false
+    }
+  ],
+  "toys": [
+    {
+      "id": "tap-park",
+      "label": "",
+      "position": {
+        "x": 3070.0,
+        "y": 249.99998474121094
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "bucket-park",
+      "label": "",
+      "position": {
+        "x": 3070.002197265625,
+        "y": 179.99998474121094
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -7.62939453125e-06,
+    "y": -5.7220458984375e-06,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "bluey",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Sit for picnic",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": -7.62939453125e-06,
+        "y": 205.44000244140625,
+        "width": 286.9310302734375,
+        "height": 192.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 696.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Get off",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 308.0,
+        "y": 32.0,
+        "width": 176.0,
+        "height": 56.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 905.5999755859375,
+        "y": 34.399993896484375,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sit on bench",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 414.1310729980469,
+        "y": 219.83998107910156,
+        "width": 441.6000061035156,
+        "height": 220.8000030517578
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.1607956886291504,
+  "homePose": "Sit",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "worldMusicTrack": "park",
+  "worldMusicPlaying": true,
+  "worldMusicVolume": 0.41999998688697815,
+  "worldMusicSignal": 0.008845467120409012,
+  "worldMusicClipCount": 1,
+  "worldMusicSample": 1068748,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 37.45143127441406,
+  "hideAndSeek": {
+    "round": 0,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 0,
+    "age": 0.0,
+    "count": 0.0,
+    "clock": 0.0,
+    "walked": 0.0,
+    "x": -3660.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "park",
+  "cameraX": 4101.94677734375,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "park-picnic",
+    "park-playground"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Park roundabout handle 2",
+    "Friend-player-3",
+    "Park fountain",
+    "tap-park",
+    "Park bench",
+    "Park picnic",
+    "Park slide",
+    "Park swing",
+    "Park swing seat 0",
+    "Park swing seat 1",
+    "Park swing seat 2",
+    "Park swing seat 3",
+    "Player character",
+    "Park playhouse front rail",
+    "Park roundabout handle 3",
+    "Park roundabout",
+    "bucket-park",
+    "Park roundabout handle 1",
+    "Friend-player-2",
+    "Park roundabout handle 0"
+  ],
+  "bookAuto": false,
+  "bookWords": true,
+  "bookOptions": false,
+  "bookEffect": false,
+  "bookEffectPending": false,
+  "bookNaming": false,
+  "bookTitle": "hello-dinosaurs",
+  "bookTextures": 0,
+  "bookAudio": 0,
+  "discoveryOpen": false,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "Tap to walk",
+    "",
+    "",
+    "Menu",
+    "Get off"
+  ]
+}

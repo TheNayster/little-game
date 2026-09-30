@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace LittleWeeps.Client
 {
-    // Visual-only adapter. Legacy avatar IDs remain the save/network contract.
+    // Visual-only adapter. The roster maps stable saved IDs to prepared art.
     // The existing toy/pointer system continues to draw and own actual props.
     public sealed class GameCharacterVisual : MonoBehaviour
     {
@@ -18,7 +18,9 @@ namespace LittleWeeps.Client
 
         public void Select(string savedAvatar)
         {
-            var id = savedAvatar == "orange-pup" ? "bingo" : "bluey";
+            var entry = Core.PlayableCharacters.Find(savedAvatar);
+            if (entry == null) throw new InvalidOperationException("Unknown character: " + savedAvatar);
+            var id = entry.ArtId;
             if (CharacterId == id) return;
             var art = Resources.Load<CharacterArt>("CharacterArt/" + id);
             if (art == null) throw new InvalidOperationException("Missing built character artwork: " + id);
@@ -35,6 +37,9 @@ namespace LittleWeeps.Client
         {
             if (view != null) view.Present(frame, dt);
         }
+
+        public void PresentSupported(CharacterFrame frame,float dt,float angle=0)
+        {PresentFrame(frame,dt);view?.AttachToSupport(angle);}
 
         public void Present(Vector2 displayedPosition, string continuity, bool held, float dt)
         {

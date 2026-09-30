@@ -21,6 +21,9 @@ LocalData/
 .vs/
 .idea/
 *.csproj
+!Tools/ParkPlay.Tests/ParkPlay.Tests.csproj
+Tools/ParkPlay.Tests/bin/
+Tools/ParkPlay.Tests/obj/
 !Tools/SoloRules.Tests/SoloRules.Tests.csproj
 !Tools/RecoveryValidator/RecoveryValidator.csproj
 !Tools/HostingModel.Tests/HostingModel.Tests.csproj

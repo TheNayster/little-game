@@ -68,6 +68,7 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/WindowsBonjour.cs" Link="WindowsBonjour.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/WindowsPairingVault.cs" Link="WindowsPairingVault.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs" Link="SoloWorld.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkPlay.cs" Link="ParkPlay.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs" Link="HomeWorld.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs" Link="KeepyUppy.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs" Link="FamilySession.cs" />
