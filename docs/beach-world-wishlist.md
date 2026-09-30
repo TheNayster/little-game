@@ -2,11 +2,11 @@
 
 Reviewed September 30, 2026. This file collects the beach additions recorded in the Little Weeps docs so the family can choose the next activity to build. The ten named activities below are existing planned designs; their detailed mechanics are proposals from the goal sheet, rather than proof that every detail has received separate user approval.
 
-The documented beach foundation is a long walkable world from the dunes and shoreline to the rock pools, plus the original **Seashell Skipping** music. The feature audit records the beach as scenery only: the ten interactive activities remain planned. Rock pools in the background do not establish a playable rock-pool activity. [Scenery record](implementation/scenic-worlds-2026-09-25.md) · [Music record](implementation/world-music-2026-09-28.md) · [Beach audit](all-world-features-audit-2026-09-26.md#the-beach)
+The documented beach foundation is a long walkable world from the dunes and shoreline to the rock pools, plus the original **Seashell Skipping** music. The first review recorded scenery only; the Seagull surprise update below now adds the first interaction in a built candidate. Rock pools in the background do not establish a playable rock-pool activity. [Scenery record](implementation/scenic-worlds-2026-09-25.md) · [Music record](implementation/world-music-2026-09-28.md) · [Beach audit](all-world-features-audit-2026-09-26.md#the-beach)
 
 ## Ten planned beach activities
 
-All ten remain **Planned** in the beach feature inventory. IDs are retained so future work can refer to the existing goal sheet.
+**September 30 update:** BCH-02 Seagull surprise has a first playable shared slice in Windows 295, with focused core/Unity JSON and four-client phone/tablet checks. Gull sounds/idle polish and family acceptance remain open; no phone/server delivery occurred. [Implementation](implementation/seagull-surprise-2026-09-30.md). The other nine remain **Planned**. IDs are retained so future work can refer to the existing goal sheet.
 
 | Activity | What to add |
 | --- | --- |
@@ -59,4 +59,4 @@ Source: [Outdoor production order](bluey-game-research-2026-09-23.md#a-practical
 
 ## Review record
 
-This is a documentation-only consolidation of the goal sheet, beach audit, current decisions, build-guide work record, interaction supplement, reference study and scenery/music evidence. No game code, build, device, save or live server changed. The existing main integration hold remains in effect. Next: the family chooses the first beach feature; all ten activities remain in the backlog.
+The initial review consolidated the goal sheet, beach audit, current decisions, build-guide work record, interaction supplement, reference study and scenery/music evidence without changing the game. The user then chose Seagull surprise; its first slice is recorded above. The existing main integration hold remains in effect. Next: family playtesting of that slice on requested delivery; all ten activities remain tracked.

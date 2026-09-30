@@ -39,7 +39,7 @@ This is the consolidated feature checklist from the **55-chapter Family Playset 
 | Heeler Home — backyard | Connected yard; water loop, four-place trampoline, radio, shed slots, shared balloon and downstairs/backyard hiding covers | Pond fishing, sand/mud, swing, pool, hose/can/plant expansion, wagon, richer storage and show activities |
 | Playground & Park | Long walkable scenery | All 12 equipment/game activities and shared supporting props |
 | The Creek | Long scenery plus inherited garden-rule water fixture | All 10 distinct creek activities, including fishing, boats, crossings and nature play |
-| The Beach | Long walkable scenery | All 10 beach activities, including collecting, sand, water and throwing games |
+| The Beach | Long walkable scenery and first shared Seagull surprise slice | Gull calls/idle polish and family acceptance; the other nine beach activities |
 | Daycare | Long walkable scenery | Teacher/full cast, optional day, 12 learning stations and nine imagination stories |
 
 ## Complete inventory
@@ -471,14 +471,14 @@ Each entry links back to its research section and the relevant implementation re
 
 | Feature | Status | Planned behavior and audit finding |
 | --- | --- | --- |
-| **B-01 — Long beach scenery** | Scenery only | Walkable scenic shell exists. Interactive waves, animals, shells and the ten named beach activities remain planned.<br>[Research §3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [Research §37](bluey-game-research-2026-09-23.html#37-the-beach-collecting-building-and-playing-together) · [Implementation evidence](implementation/scenic-worlds-2026-09-25.html) |
+| **B-01 — Long beach scenery** | Partial | Long walkable scenery plus the first BCH-02 shared gull interaction in Windows 295. Other nine beach activities, interactive waves and remaining collection/building content remain planned.<br>[Research §3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [Research §37](bluey-game-research-2026-09-23.html#37-the-beach-collecting-building-and-playing-together) · [Implementation evidence](implementation/seagull-surprise-2026-09-30.html) |
 
 ### Ten beach activities
 
 | Feature | Status | Planned behavior and audit finding |
 | --- | --- | --- |
 | **BCH-01 — Shell treasure** | Planned | Simple play: Pick up any shell; tap to hear its gentle sound; drop it in a large tray Deeper play: Sort by shape, decorate a castle, make a pattern, or bring a favorite to a bedroom shelf; both children contribute<br>[Research §37](bluey-game-research-2026-09-23.html#37-the-beach-collecting-building-and-playing-together) · [Implementation evidence](family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status) |
-| **BCH-02 — Seagull surprise** | Planned | Simple play: Walk near a small flock or tap a nearby bird; birds flap away and settle again Deeper play: Follow their footprints to another patch of sand; invite the sibling to approach from the other side; no hitting, capturing, or score for repeated chasing<br>[Research §37](bluey-game-research-2026-09-23.html#37-the-beach-collecting-building-and-playing-together) · [Implementation evidence](family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status) |
+| **BCH-02 — Seagull surprise** | Partial | Simple play: Walk near a small flock or tap a nearby bird; birds flap away and settle again Deeper play: Follow their footprints to another patch of sand; invite the sibling to approach from the other side; no hitting, capturing, or score for repeated chasing Windows 295 implements six shared silver gulls, approach/tap, notice/takeoff/flight/landing, alternate sand patches and tracks. Focused core/Unity JSON and four-client phone/tablet checks pass, including independent departure and a calm period. Calls/idle polish and family visual acceptance remain open; no device/server rollout.<br>[Research §37](bluey-game-research-2026-09-23.html#37-the-beach-collecting-building-and-playing-together) · [Implementation evidence](implementation/seagull-surprise-2026-09-30.html) |
 | **BCH-03 — Waves and footprints** | Planned | Simple play: Watch foam roll in; tap the water for ripples; walk to leave prints Deeper play: Draw a trail and watch the next wave erase only the wet-sand part; count waves together if wanted; no timer or required dodging<br>[Research §37](bluey-game-research-2026-09-23.html#37-the-beach-collecting-building-and-playing-together) · [Implementation evidence](family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status) |
 | **BCH-04 — Sandcastle workshop** | Planned | Simple play: Lift a ready-filled mould; add a flag or shell Deeper play: Scoop sand → add a little water → press mould → lift → decorate; one child prepares towers while the other joins them with walls<br>[Research §37](bluey-game-research-2026-09-23.html#37-the-beach-collecting-building-and-playing-together) · [Implementation evidence](family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status) |
 | **BCH-05 — Beach ball** | Planned | Simple play: Tap or drag-release a ball for a gentle bounce or roll Deeper play: Tap the sibling/NPC to pass, roll through a big hoop, or keep a shared rally going with generous automatic catches<br>[Research §37](bluey-game-research-2026-09-23.html#37-the-beach-collecting-building-and-playing-together) · [Implementation evidence](family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status) |
@@ -730,7 +730,7 @@ These broad requirements are not marked complete merely because a smaller protot
 | TRAVEL-01 | Full offline solo on trips; optional internet/hotspot connection to PC/VPS | Partial | O-03, O-07, O-12 |
 | AUTO-01 | Automatic family discovery and joining | Partial | O-01, O-05 |
 | AUTO-02 | **Retired by user decision, September 25: device hosting and automatic host switching** | Retired | R-01 |
-| OUT-01 | Beach, creek, and park play | Planned | BCH, CRK, PRK; B-01, C-01, P-01 |
+| OUT-01 | Beach, creek, and park play | Partial | BCH, CRK, PRK; B-01, C-01, P-01 |
 | DAY-01 | Daycare as the sixth world | Planned | D-01–D-06 |
 | LEARN-01 | Spoken playful learning | Planned | D-07; LRN-01–12 |
 | IMG-01 | Nine imagination stories | Planned | D-08, D-09; STORY-IMG-01–09 |

@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "baseCommit": "0cee84251cad1b6c061a7cae520f61d6cd814465",
+  "build": 295,
+  "schema": 37,
+  "content": 42,
+  "files": [
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloHome.cs",
+      "sha256": "c7c4bf1414411fcebe1ceaf41efea76264711eb3995d4971e11eaf27c4118f62"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs",
+      "sha256": "8379768ea31b9ab648df9f098f1eff8366923b4bb0b581f565a71e19ea7bdf2f"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSeagulls.cs",
+      "sha256": "a3513d1ca1be6aa20533c702ad7cc677eca02885736278f983849c8499132012"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/BeachSeagulls.cs",
+      "sha256": "f79da022f015ee3553dcfa1e8b3eeae0bb3bb1132b909c8488ba0ab463421ef1"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs",
+      "sha256": "a657b7e5cfbfe95412be84250598930ac612f671a410bcc8e7e95f202364c5b7"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
+      "sha256": "8d2f782982f4674496b785cc6c5df9f92acb493cd5f3e354d6980035d0d038b7"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/NetworkProbeBuild.cs",
+      "sha256": "7200155e012cc572c24382a96ef80d9d74e5cb9405148c38afa8437093305914"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/SeagullArtImport.cs",
+      "sha256": "eefbc4dc7485c9e9a5edfcfcb92a8dad085031da54c69af9365fe3f46c2fb2d4"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/SeagullJsonTests.cs",
+      "sha256": "290619d76221c72eec31160c8ce9ad0e2cf66b24f05b3155bee33a28b54f3b61"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs",
+      "sha256": "adaee85f549deed24f08abf5232fa0d9714d9acf4c8f5a52d770306983dcf0d5"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs",
+      "sha256": "eaad42be8f963de0e36cf9a9d2ca1829942d09e7de24075819927996e00cec1d"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/BeachArt/seagull-poses.png",
+      "sha256": "b0ecb2cc59a48798a9ea153ab1447d0babad4a9201751933492a62704b69a6e7"
+    }
+  ],
+  "unityJson": "legacy schema and all five phases passed",
+  "failedAttempt294": "verification field needed fully qualified SeagullState; corrected before 295"
+}

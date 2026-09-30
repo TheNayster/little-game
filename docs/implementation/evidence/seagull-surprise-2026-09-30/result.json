@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build": 295,
+  "checks": [
+    "beach picture travel and six resting birds visible to four clients",
+    "one shared approach/takeoff/flight across four clients",
+    "independent world travel/disconnect, landing, footprints and calm with nearby sibling",
+    "nearby real UGUI bird tap starts a new shared encounter",
+    "travel hides beach birds independently"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

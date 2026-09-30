@@ -1,0 +1,1 @@
+{"passed":true,"schema":37,"content":42,"checks":["additive migration and retained rooms/objects","one flock for four approaches","flight spam ignored","independent travel/disconnect","landing and calm while player remains near","nearby tap","mid-flight JSON reopen","copy isolation and malformed-state rejection","other-world tap rejection","bounded flight path"]}

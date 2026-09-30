@@ -1314,13 +1314,13 @@
       "world": "beach",
       "group": "World foundation",
       "title": "Long beach scenery",
-      "status": "scene",
+      "status": "part",
       "chapters": [
         3,
         37
       ],
-      "description": "Walkable scenic shell exists. Interactive waves, animals, shells and the ten named beach activities remain planned.",
-      "evidence": "scene",
+      "description": "Long walkable scenery plus the first BCH-02 shared gull interaction in Windows 295. Other nine beach activities, interactive waves and remaining collection/building content remain planned.",
+      "evidence": "seagulls",
       "extraSource": ""
     },
     {
@@ -1922,12 +1922,12 @@
       "world": "beach",
       "group": "Ten beach activities",
       "title": "Seagull surprise",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         37
       ],
-      "description": "Simple play: Walk near a small flock or tap a nearby bird; birds flap away and settle again Deeper play: Follow their footprints to another patch of sand; invite the sibling to approach from the other side; no hitting, capturing, or score for repeated chasing",
-      "evidence": "ledger",
+      "description": "Simple play: Walk near a small flock or tap a nearby bird; birds flap away and settle again Deeper play: Follow their footprints to another patch of sand; invite the sibling to approach from the other side; no hitting, capturing, or score for repeated chasing Windows 295 implements six shared silver gulls, approach/tap, notice/takeoff/flight/landing, alternate sand patches and tracks. Focused core/Unity JSON and four-client phone/tablet checks pass, including independent departure and a calm period. Calls/idle polish and family visual acceptance remain open; no device/server rollout.",
+      "evidence": "seagulls",
       "extraSource": ""
     },
     {

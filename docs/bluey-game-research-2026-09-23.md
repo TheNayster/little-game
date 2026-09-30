@@ -1656,6 +1656,8 @@ The official **The Beach** synopsis provides useful anchors: shell discovery, fo
 
 ### Ten beach activities
 
+**September 30 implementation:** BCH-02 has a first playable shared slice in isolated Windows **295**: six silver gulls react to approaching/tapping players, fly between sand patches, leave a bird-track trail and settle. Focused migration/Unity JSON plus one native four-client phone/tablet check pass, including independent departure. [Research and scoped evidence](implementation/seagull-surprise-2026-09-30.html). Gull calls/idle-pose polish and family visual acceptance remain open. No device/server delivery; keep the other nine activities planned. Older two-child examples below are superseded by the current requirement for up to four players together.
+
 | ID / activity | Simple Play | Explore & Stories / together |
 | --- | --- | --- |
 | BCH-01 Shell treasure | Pick up any shell; tap to hear its gentle sound; drop it in a large tray | Sort by shape, decorate a castle, make a pattern, or bring a favorite to a bedroom shelf; both children contribute |

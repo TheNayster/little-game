@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'seagulls':'implementation/seagull-surprise-2026-09-30.html',
  'hiding':'implementation/hide-and-seek-hide-to-join-2026-09-30.html',
  'hideresearch':'implementation/hide-and-seek-research-2026-09-28.html',
  'worldmusic':'implementation/world-music-2026-09-28.html',
@@ -258,6 +259,13 @@ for m in re.finditer(r'^### (IMG-\d+) — (.*?)\n(.*?)(?=^### |\Z)',section(42),
 
 # Recipe targets remain partial until bespoke gestures, album and physical acceptance are finished.
 for feature in features:
+    if feature['id']=='BCH-02':
+        feature['status']='part';feature['evidence']='seagulls'
+        feature['description']+=' Windows 295 implements six shared silver gulls, approach/tap, notice/takeoff/flight/landing, alternate sand patches and tracks. Focused core/Unity JSON and four-client phone/tablet checks pass, including independent departure and a calm period. Calls/idle polish and family visual acceptance remain open; no device/server rollout.'
+    if feature['id']=='B-01':
+        feature['status']='part';feature['evidence']='seagulls'
+        feature['description']='Long walkable scenery plus the first BCH-02 shared gull interaction in Windows 295. Other nine beach activities, interactive waves and remaining collection/building content remain planned.'
+for feature in features:
     if feature['id'].startswith(('PIZ-', 'CAK-', 'MEAL-')):
         feature['status']='part';feature['evidence']='kitchen'
         feature['description']+=' A complete prototype prepare/heat/serve/taste/wash path now exists; special animation and physical qualification remain open.'
@@ -410,6 +418,7 @@ TRACK_STATUS={
 'REMOTE-01':'plan','ROOM-01':'part','SECRET-01':'plan','HIDE-03':'part','TRAVEL-01':'part','AUTO-01':'part','AUTO-02':'retired','OUT-01':'plan',
 'DAY-01':'plan','LEARN-01':'plan','IMG-01':'plan'}
 TRACK_STATUS.update({'ROOM-02':'part', 'SECRET-01':'part'})
+TRACK_STATUS.update({'OUT-01':'part'})
 TRACK_MAP={
 'CHAR-01':'G-18, G-20; Character roster','CHAR-02':'G-18, G-19; Character roster','FAMILY-01':'G-01, G-26, O-01, O-10',
 'ACT-01':'G-11–G-13; QUEST-01–18','COOK-01':'H-07–H-11; PIZ, CAK, MEAL','FISH-01':'Y-12, Y-13; CRK-02',
@@ -470,7 +479,7 @@ This is the consolidated feature checklist from the **55-chapter Family Playset 
 | Heeler Home — backyard | Connected yard; water loop, four-place trampoline, radio, shed slots, shared balloon and downstairs/backyard hiding covers | Pond fishing, sand/mud, swing, pool, hose/can/plant expansion, wagon, richer storage and show activities |
 | Playground & Park | Long walkable scenery | All 12 equipment/game activities and shared supporting props |
 | The Creek | Long scenery plus inherited garden-rule water fixture | All 10 distinct creek activities, including fishing, boats, crossings and nature play |
-| The Beach | Long walkable scenery | All 10 beach activities, including collecting, sand, water and throwing games |
+| The Beach | Long walkable scenery and first shared Seagull surprise slice | Gull calls/idle polish and family acceptance; the other nine beach activities |
 | Daycare | Long walkable scenery | Teacher/full cast, optional day, 12 learning stations and nine imagination stories |
 
 ## Complete inventory
