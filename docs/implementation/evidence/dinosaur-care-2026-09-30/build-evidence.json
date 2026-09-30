@@ -1,0 +1,30 @@
+{
+  "build": 335,
+  "schema": 37,
+  "content": 40,
+  "unity": "6000.3.24f1",
+  "runtimeSourceFiles": 154,
+  "runtimeSourceMatches": true,
+  "roles": [
+    {
+      "role": "Server",
+      "version": "0.0.335",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "role": "Client",
+      "version": "0.0.335",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    }
+  ],
+  "unityJsonChecks": [
+    "DINOSAUR_CARE_JSON_PASS",
+    "DINOSAUR_JSON_PASS"
+  ],
+  "physicalDevicesTested": false,
+  "liveFamilyTouched": false
+}

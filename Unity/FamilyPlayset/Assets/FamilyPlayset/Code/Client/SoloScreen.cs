@@ -507,7 +507,7 @@ namespace LittleWeeps.Client
         {
             foreach(var surface in Surfaces.Values)surface.Cancel();
             if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
-            zooApproach=false;destination=null;stickDirection=Vector2.zero;
+            dinosaurCareApproach=false;zooApproach=false;destination=null;stickDirection=Vector2.zero;
             shared?.Walk(WalkMode.Stop);
         }
         private void Update()
@@ -516,7 +516,7 @@ namespace LittleWeeps.Client
             TickWorldMusic();
             if(Ready)TickCake();
             if(Ready){TickMixing();TickBubbleLab();TickLiquidColors();TickMarbleRamps();}
-            if(Ready){CheckStairInput();CheckDoorInput();CheckHideInput();CheckZooInput();}
+            if(Ready){CheckStairInput();CheckDoorInput();CheckHideInput();CheckZooInput();CheckDinosaurCareInput();}
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
             if(shared!=null)
             {
@@ -529,6 +529,7 @@ namespace LittleWeeps.Client
                 if(!shared.Connected)return;
                 FinishTravel();
                 if(MenuOpen || TravelPending || StairBusy || doorSubmitted)shared.Walk(WalkMode.Stop);
+                else if(dinosaurCareApproach)shared.Walk(WalkMode.Destination,dinosaurCareEntry.x,dinosaurCareEntry.y);
                 else if(zooApproach)shared.Walk(WalkMode.Destination,zooEntry.x,zooEntry.y);
                 else if(hideApproach>=0)shared.Walk(WalkMode.Destination,HideEntry.x,HideEntry.y);
                 else if(doorApproach)shared.Walk(WalkMode.Destination,DoorEntry.x,DoorEntry.y);
@@ -551,8 +552,8 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=StairBusy || doorSubmitted?WalkMode.Stop:zooApproach || hideApproach>=0 || doorApproach || stairApproach?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
-            var input=zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):JoystickMode?stickDirection:destination??Vector2.zero;
+            var mode=StairBusy || doorSubmitted?WalkMode.Stop:dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
                 dirty=true;lastLocalAction=now;
@@ -613,7 +614,7 @@ namespace LittleWeeps.Client
             PresentBedrooms();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
-            PresentHideAndSeek();PresentPark();PresentDinosaurRiders();
+            PresentHideAndSeek();PresentPark();PresentDinosaurRiders();PresentDinosaurPetters();
         }
         private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
@@ -640,7 +641,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddDinosaurDepth(Add);AddZooDepth(Add);AddParkDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
+            AddDinosaurDepth(Add);AddDinosaurCareDepth(Add);AddZooDepth(Add);AddParkDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);

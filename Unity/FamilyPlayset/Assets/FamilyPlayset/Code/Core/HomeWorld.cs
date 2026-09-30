@@ -108,7 +108,7 @@ namespace LittleWeeps.Core
         // Returns a rejection without mutation, or commits a validated action.
         private string ApplyHome(SoloCommand c,SoloPlayer player)
         {
-            if(player.zone==DinosaurRides.Area && c.action==SoloAction.LeaveFixture){ClearFixture(player);return null;}
+            if(player.zone==DinosaurRides.Area && c.action==SoloAction.LeaveFixture){CancelDinosaurCare(player.id);ClearFixture(player);return null;}
             if(player.zone=="park")return ApplyParkFixture(c,player);
             if(SecretRooms.Furnished(player.zone))return ApplyBedroomFixture(c,player);
             if(state.home==null || player.zone!="garden")return "wrong-area";

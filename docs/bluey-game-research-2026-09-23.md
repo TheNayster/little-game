@@ -2538,3 +2538,8 @@ The user requests a sixth menu destination: a zoo with moving animals, living di
 ### Dinosaur World riding expansion — September 30
 
 The user requests a separate Dinosaur World with several rideable dinosaurs and the already approved Home-book sounds. [Applied primary-source research and model sheets](implementation/dinosaur-world-research-2026-09-30.html) covers four starter species, a two-panel valley, measured saddle/foot registration, server-owned movement/roaming and exclusive mounts for four children playing together. The seventh picture destination adds to WORLD-01, WORLD-02 and FAMILY-01. It does not replace the twenty dinosaur toys or Dinosaur Discovery Mat, or close the full outdoor backlog. Schema/content values belong to the isolated Dinosaur World branch; reconcile concurrent changes before any coordinated rollout. Preserve the main integration hold.
+
+
+### Dinosaur World feeding and petting — September 30
+
+The next requested expansion adds food buckets, the full take → walk → offer → approach → eat flow, and hand-picture petting for all four starter rideable species. Both interactions use four shared authority-owned turns with independent exits; repeated food taps retain the flow. Contact/facing, existing sounds and riding remain part of WORLD-02/FAMILY-01, with portions extending ITEM-02. [Implementation and focused evidence](implementation/dinosaur-world-research-2026-09-30.html#feeding-and-petting-expansion-september-30). Preserve the separate twenty dinosaur toys, Discovery Mat, full Home/outdoor backlog and main integration hold.

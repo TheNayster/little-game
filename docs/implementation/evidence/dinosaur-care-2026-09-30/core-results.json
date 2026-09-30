@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "command": "dotnet run --project Tools/DinosaurRules.Tests",
+  "groups": 13,
+  "ridingGroups": 8,
+  "careGroups": 5
+}

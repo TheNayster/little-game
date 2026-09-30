@@ -6,8 +6,8 @@ namespace LittleWeeps.Core
     // its coordinates left of the original garden preserves every saved prop.
     public static class WorldLayout
     {
-        // Content 39 adds server-owned dinosaur mounts; schema 36 persists their positions and random stream.
-        public const int Schema=36, ScenerySchema=3, Content=39;
+        // Content 40/schema 37 add shared dinosaur feeding and petting leases and progress.
+        public const int Schema=37, ScenerySchema=3, Content=40;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id) || id==DinosaurRides.Area || ZooLayout.Area(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id) && !ZooCatalog.Trail(id);

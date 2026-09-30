@@ -51,14 +51,14 @@ namespace LittleWeeps.Client
             NavButton(call,()=>DinosaurAction("call",DinosaurRides.SpeciesOf(ReadPlayer(Actor).fixture)));
             Panel(call.transform,"Voice bubble",new Vector2(-8,6),new Vector2(65,47),Cream,false,true);
             for(var i=0;i<3;i++)Panel(call.transform,"Voice mark "+i,new Vector2(30+i*10,-17+i*15),new Vector2(6,18),Ink,false,true);
-            TickDinosaurWorld();
+            BuildDinosaurCare();TickDinosaurWorld();
         }
         private void DinosaurAction(string value,string id)
         {
             if(ActionPending)return;
             var p=ReadPlayer(Actor);if(value=="mount" && p.fixture==DinosaurRides.Fixture(id))return;
             CancelPointers();destination=null;manualCamera=false;shared?.Walk(WalkMode.Stop);
-            void Finish(SoloResult r){if(!r.Accepted){message.text=r.Outcome=="dinosaur-busy"?"Someone is riding. Choose another dinosaur.":r.Outcome=="put-down-toy"?"Put down your toy first.":r.Outcome=="dinosaur-speaking"?"Listen to the dinosaur.":r.Outcome;}Render();}
+            void Finish(SoloResult r){if(!r.Accepted){message.text=r.Outcome=="dinosaur-busy" || r.Outcome=="dinosaur-taking-care"?"This dinosaur is busy. Choose another one.":r.Outcome=="put-down-toy"?"Put down your toy first.":r.Outcome=="dinosaur-speaking"?"Listen to the dinosaur.":r.Outcome;}Render();}
             if(Shared)SubmitShared(SoloAction.Dinosaur,"",id,value,0,0,Finish);else Finish(Command(SoloAction.Dinosaur,target:id,value:value));
         }
         private void TickDinosaurWorld()
@@ -79,7 +79,8 @@ namespace LittleWeeps.Client
                 if(dinosaurPrevious.TryGetValue(a.species,out var previous))moving|=Vector2.Distance(previous,point)>.02f;
                 dinosaurPrevious[a.species]=point;
                 var speaking=Dinosaurs.clock-a.lastCall<1.2;
-                var frame=speaking?6:moving?(int)(Time.unscaledTime*5)%4:4;
+                var care=Dinosaurs.care?.FirstOrDefault(f=>f.species==a.species && DinosaurCareRules.Active(f));
+                var frame=care?.phase==DinosaurCarePhase.Pet?7:care?.phase==DinosaurCarePhase.Eat?4:speaking?6:moving?(int)(Time.unscaledTime*5)%4:4;
                 var landmark=DinosaurLandmarks.Get(a.species,frame);var size=DinosaurSize(a.species);
                 var root=(RectTransform)image.transform.parent;root.anchoredPosition=ToBoard(point.x,point.y);root.localScale=Vector3.one*sceneScale;
                 // Register the actual foot and cushion in every pose. Generated
@@ -91,6 +92,7 @@ namespace LittleWeeps.Client
                 if(!dinosaurCalls.TryGetValue(a.species,out var heard)){dinosaurCalls[a.species]=a.calls;}
                 else if(heard!=a.calls){dinosaurCalls[a.species]=a.calls;if(Dinosaurs.clock-a.lastCall<1.5)PlayDinosaurCall(a.species,point.x);}
             }
+            TickDinosaurCare();
             if(!visible){
                 foreach(var image in dinosaurPictures.Values)image.texture=null;
                 foreach(var texture in dinosaurTextures.Values)if(texture!=null)Resources.UnloadAsset(texture);dinosaurTextures.Clear();dinosaurPrevious.Clear();
@@ -134,7 +136,7 @@ namespace LittleWeeps.Client
         }
         private void ResetDinosaurWorld()
         {
-            ResetDinosaurSound();foreach(var voice in dinosaurVoices)if(voice!=null)Destroy(voice);Array.Clear(dinosaurVoices,0,2);
+            ResetDinosaurCare();ResetDinosaurSound();foreach(var voice in dinosaurVoices)if(voice!=null)Destroy(voice);Array.Clear(dinosaurVoices,0,2);
             foreach(var texture in dinosaurTextures.Values)if(texture!=null)Resources.UnloadAsset(texture);dinosaurTextures.Clear();
             if(dinosaurRiders!=null)Resources.UnloadAsset(dinosaurRiders);dinosaurRiders=null;
             dinosaurPictures.Clear();dinosaurSeats.Clear();dinosaurPrevious.Clear();dinosaurCalls.Clear();dinosaurControls=null;

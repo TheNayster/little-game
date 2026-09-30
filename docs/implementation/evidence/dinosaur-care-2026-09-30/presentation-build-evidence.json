@@ -1,0 +1,25 @@
+{
+  "build": 336,
+  "schema": 37,
+  "content": 40,
+  "runtimeSourceFiles": 154,
+  "runtimeSourceMatches": true,
+  "onlyChangeFromGameplay335": "Child-friendly busy-dinosaur message; all gameplay rules/controls unchanged.",
+  "nativeMessageCheckPassed": true,
+  "roles": [
+    {
+      "role": "Server",
+      "version": "0.0.336",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "role": "Client",
+      "version": "0.0.336",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    }
+  ]
+}

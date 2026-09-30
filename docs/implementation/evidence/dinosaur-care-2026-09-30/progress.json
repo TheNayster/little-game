@@ -1,0 +1,65 @@
+{
+  "animals": [
+    {
+      "species": "tyrannosaurus",
+      "random": 263405672,
+      "x": 659.4682006835938,
+      "y": 172.17886352539062,
+      "targetX": 886.5650634765625,
+      "targetY": 96.74617767333984,
+      "left": false,
+      "wandering": true,
+      "pause": 0.0,
+      "lastCall": -10.0,
+      "calls": 0,
+      "fed": 1,
+      "petted": 1
+    },
+    {
+      "species": "triceratops",
+      "random": 3227114777,
+      "x": 1514.2606201171875,
+      "y": 150.0,
+      "targetX": 1514.2606201171875,
+      "targetY": 150.0,
+      "left": false,
+      "wandering": false,
+      "pause": 4.0,
+      "lastCall": 108.44909179999999,
+      "calls": 2,
+      "fed": 5,
+      "petted": 2
+    },
+    {
+      "species": "brachiosaurus",
+      "random": 2657814468,
+      "x": 3085.825927734375,
+      "y": 175.0948944091797,
+      "targetX": 2952.26708984375,
+      "targetY": 158.0702667236328,
+      "left": true,
+      "wandering": true,
+      "pause": 0.0,
+      "lastCall": -10.0,
+      "calls": 0,
+      "fed": 1,
+      "petted": 1
+    },
+    {
+      "species": "parasaurolophus",
+      "random": 1574729658,
+      "x": 3910.392333984375,
+      "y": 106.04460906982422,
+      "targetX": 3708.90185546875,
+      "targetY": 130.3309783935547,
+      "left": true,
+      "wandering": true,
+      "pause": 0.0,
+      "lastCall": -10.0,
+      "calls": 0,
+      "fed": 1,
+      "petted": 1
+    }
+  ],
+  "profileIdLength": 32
+}

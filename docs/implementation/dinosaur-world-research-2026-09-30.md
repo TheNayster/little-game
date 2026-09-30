@@ -68,3 +68,25 @@ Windows **306** passes six [native four-client groups](evidence/dinosaur-world-2
 
 
 ![Bingo riding the Triceratops in the native tablet view](evidence/dinosaur-world-2026-09-30/triceratops-mounted.png)
+
+
+## Feeding and petting expansion — September 30
+
+The four rideable dinosaurs now have food buckets and circular hand-and-heart pictures. T. rex receives the existing prepared-meat picture; the three plant eaters receive leaves, matching the species evidence above. These are friendly fantasy interactions. The approved Home-book calls and original model sheets are retained unchanged.
+
+A food tap walks to the bucket, reserves one portion and one of four shared contact spots, carries the food to a fitted tray, then lets the dinosaur approach and eat. Repeated taps during either walk, an offered portion or eating preserve the original turn. One portion increments the shared dinosaur's meal count once. Contact spots retain a common spacing near the animal and stay clear of the bucket; the long neck uses a tall feeder. Buckets render behind children so an overlapping station cannot cover a child's face. Their separate transparent touch regions stay above the child, and food buttons bypass the shared handler's pointer cancellation until the repeated-tap guard decides whether a new walk is needed.
+
+A hand-picture tap walks close, reserves a shared turn, lets the dinosaur approach, then plays the child's existing raised-arm movement while the dinosaur rests and hearts float above it. Repeated taps retain the turn. Each dinosaur serves its queued children in ticket order, including mixed feeding and petting; four different dinosaurs can be cared for together. A ridden dinosaur waits until its rider gets off. Tapping food while on your own ride gets off before starting the walk. Care completion makes the dinosaur available for riding again.
+
+The authority owns positions, turn order, contact phase, consumption and cumulative feeding/petting counts. Clients use the existing compact motion lane for moving bodies and the reliable state lane for discrete care events. The new `DinosaurCare` leases are temporary, per player. Departure, disconnect or application pause removes that player's turn; siblings retain theirs. An interrupted held portion can be resumed by tapping food and expires after a minute. Recovery retains dinosaur positions, random streams and completed care counts while clearing unfinished turns, so closing the game cannot feed the same portion twice.
+
+This branch adds **schema 37/content 40** above its riding schema 36/content 39. Schema-36 migration adds four empty care records without regenerating the dinosaurs or changing the older world. These isolated values must be reconciled with concurrent main-checkout schemas before coordinated rollout; no persistent family/server or physical-device update is performed.
+
+Thirteen focused core groups cover the riding baseline and the new care rules, including all four species, repeated taps, four shared slots, independent departures, malformed care and schema-36 recovery. Unity checks the new care records, cumulative meal counts, recovery and upgrade in addition to the existing riding assets/JSON. Windows **335** passes four native four-client groups: real repeated food taps across both walks/approach/eating for all four species, all four hand-picture petting interactions, four shared tickets with independent travel/disconnect and two sibling meals, and pause/release followed by ride → feed → ride. The checks use disposable full-length profile IDs and an isolated loopback server. All individual care screenshots were inspected. The native results and screenshots are recorded under [feeding/petting evidence](evidence/dinosaur-care-2026-09-30/results.json). Existing family artwork acceptance and the wider Dinosaur World roster remain separate.
+
+
+![Bingo feeding Triceratops](evidence/dinosaur-care-2026-09-30/triceratops-feeding.png)
+
+![Bluey petting T. rex](evidence/dinosaur-care-2026-09-30/tyrannosaurus-petting.png)
+
+Build **336** changes only the busy-dinosaur prompt to “This dinosaur is busy. Choose another one.” [Release source verification](evidence/dinosaur-care-2026-09-30/presentation-build-evidence.json) confirms all 154 runtime files; a [real picture-tap check](evidence/dinosaur-care-2026-09-30/message-results.json) verifies the prompt. The shared gameplay rules and controls match the four-client 335 evidence above.

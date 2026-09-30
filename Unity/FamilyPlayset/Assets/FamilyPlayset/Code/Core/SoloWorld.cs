@@ -118,7 +118,7 @@ namespace LittleWeeps.Core
         {
             Validate(snapshot);
             var copy = Clone(snapshot);
-            SuspendRestoredHide(copy);SuspendZoo(copy);
+            SuspendRestoredHide(copy);SuspendZoo(copy);SuspendDinosaurCare(copy);
             copy.homeTidyCues=Array.Empty<int>();
             // A pointer lease never survives closing the app or a recovered save.
             if (copy.toys.Any(t => !string.IsNullOrEmpty(t.holder)))
@@ -326,7 +326,7 @@ namespace LittleWeeps.Core
             // at departure. This is shared by normal travel and accepted invites.
             foreach(var held in state.toys.Where(t=>t.holder==player.id))
             {held.holder="";if(BedroomFurniture.Personal(held.kind) || Kitchen.Kind(held.kind)){held.x=player.x;held.y=Math.Max(35,Math.Min(250,player.y-65));Touch(held);continue;}if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
-            CancelZoo(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
+            CancelZoo(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
         }
         public SoloResult Apply(SoloCommand c)
         {

@@ -37,5 +37,6 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/HomeWorld.cs" Link="HomeWorld.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs" Link="KeepyUppy.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurWorld.cs" Link="Core/DinosaurWorld.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurCare.cs" Link="Core/DinosaurCare.cs" />
   </ItemGroup>
 </Project>

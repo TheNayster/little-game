@@ -79,5 +79,6 @@
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs" Link="SharedMovement.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/CheckpointStore.cs" Link="CheckpointStore.cs" />
     <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurWorld.cs" Link="Core/DinosaurWorld.cs" />
+    <Compile Include="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurCare.cs" Link="Core/DinosaurCare.cs" />
   </ItemGroup>
 </Project>

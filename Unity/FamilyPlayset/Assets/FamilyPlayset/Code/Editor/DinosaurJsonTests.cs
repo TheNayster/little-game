@@ -17,6 +17,21 @@ namespace LittleWeeps.EditorTools
                 Act(SoloAction.Travel,DinosaurRides.Area);Act(SoloAction.Dinosaur,"mount",DinosaurRides.Species[i]);}
             var encoded=JsonUtility.ToJson(w.Snapshot());var decoded=JsonUtility.FromJson<SoloSnapshot>(encoded);SoloWorld.Validate(decoded);var recovered=SoloWorld.Restore(decoded);
             Need(recovered.ReadPlayers().All(p=>p.fixture==""),"leases released");Need(JsonUtility.ToJson(recovered.ReadDinosaurWorld())==JsonUtility.ToJson(w.ReadDinosaurWorld()),"positions/RNG retained");
+            var careWorld=SoloWorld.WithDinosaurWorld(SoloWorld.Create("one","two","three","four"));
+            foreach(var who in before.players.Select(p=>p.id)){
+                var i=Array.IndexOf(before.players.Select(p=>p.id).ToArray(),who);var id=DinosaurRides.Species[i];
+                void CareAct(SoloAction action,string value="",string target="",float x=0,float y=0){var p=careWorld.ReadPlayer(who);var r=careWorld.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=who,expectedRevision=careWorld.Revision,zone=p.zone,visit=p.visit,action=action,value=value,target=target,x=x,y=y});Need(r.Accepted,r.Outcome);}
+                CareAct(SoloAction.Travel,DinosaurRides.Area);CareAct(SoloAction.Move,x:DinosaurCareRules.BucketX(id),y:100);CareAct(SoloAction.Dinosaur,"take",id);
+                var f=careWorld.ReadDinosaurWorld().care[i];CareAct(SoloAction.Move,x:f.x,y:f.y);CareAct(SoloAction.Dinosaur,"offer",id);
+            }
+            for(var t=0;t<120;t++)careWorld.AdvanceIdle(.1,out _);
+            Need(careWorld.ReadDinosaurWorld().animals.All(a=>a.fed==1),"four feeding counts");
+            var careDecoded=JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(careWorld.Snapshot()));SoloWorld.Validate(careDecoded);var careRestored=SoloWorld.Restore(careDecoded);
+            Need(careRestored.ReadDinosaurWorld().animals.All(a=>a.fed==1) && careRestored.ReadDinosaurWorld().care.All(f=>f.phase==DinosaurCarePhase.None),"care JSON recovery");
+            var version36=careWorld.Snapshot();version36.schema=36;version36.dinosaurWorld.care=null;version36.dinosaurWorld.nextCareTicket=0;foreach(var animal in version36.dinosaurWorld.animals)animal.fed=0;
+            var prior36=SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(version36)));var upgraded=SoloWorld.WithDinosaurWorld(prior36);
+            Need(upgraded.Schema==37 && upgraded.ReadDinosaurWorld().care.Length==4,"schema 36 care upgrade");
+            Debug.Log("DINOSAUR_CARE_JSON_PASS: four meals, care records/progress, recovery and schema 36 upgrade");
             Debug.Log("DINOSAUR_JSON_PASS: assets, additive migration, four mounts, uint RNG roundtrip and released recovery leases");
         }
         static void Need(bool ok,string name){if(!ok)throw new InvalidOperationException(name);}

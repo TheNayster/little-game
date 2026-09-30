@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build": 335,
+  "checks": [
+    "all four species use real bucket controls; repeated taps through both walks/approach/eating retain one portion and one meal",
+    "four dinosaur hand pictures walk into contact, animate the child/animal and display affection; repeat taps retain one pet turn",
+    "four shared feeding slots/tickets; travel and disconnect release only their own turns while two siblings finish",
+    "application pause releases petting; a food tap gets off an owned ride before feeding; completed care permits riding again"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false,
+  "profileIdLength": 32,
+  "visualReview": "All four species feeding/petting captures inspected; bucket/child overlap corrected; pet arm and affection hearts visible."
+}
