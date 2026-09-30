@@ -81,6 +81,7 @@ namespace LittleWeeps.Client
                 label.rectTransform.anchoredPosition=new Vector2(0,-43);label.rectTransform.sizeDelta=new Vector2(310,55);label.fontSize=32;
                 PondPicture(card,name+" menu picture",new Vector2(0,25),new Vector2(175,100),feed?"feeding-icon":"fishing-icon");
             }
+            AddTagChoice();
             Button(miniGamesFrame,"Back to play",new Vector2(0,-200),new Vector2(300,75),CloseMiniGames,Color.white);
             miniGamesMenu.gameObject.SetActive(false);
         }

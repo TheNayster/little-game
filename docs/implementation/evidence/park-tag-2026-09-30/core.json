@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "shared countdown and late joins",
+    "contact and no instant tag-back",
+    "avatar change",
+    "deep copy and optional old-save field",
+    "temporary round cleared on JSON restore",
+    "independent disconnect/travel/leave",
+    "NPC fallback",
+    "swept crossing",
+    "invalid state rejected",
+    "continuous countdown does not churn durable revision",
+    "active-round cleanup increases revision for persistence"
+  ],
+  "finalBuild": 308
+}

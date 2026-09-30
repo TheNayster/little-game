@@ -13,7 +13,8 @@ namespace LittleWeeps.Core
         // Content 41 requires the replicated outfit fields and roar commands.
         // Content 42 adds authoritative shared pond fishing/feeding and the moved picnic cover.
         // Content 44 adds exclusive bicycle/scooter leases and horizontal riding.
-        public const int Schema=36, ScenerySchema=3, Content=44;
+        // Content 45 adds one shared voluntary park tag session and authority contact rules.
+        public const int Schema=36, ScenerySchema=3, Content=45;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id);

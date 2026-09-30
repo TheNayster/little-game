@@ -1,0 +1,9 @@
+{
+  "build": 306,
+  "passed": true,
+  "checks": [
+    "park picture menu starts one shared countdown; voluntary siblings join; nearby bystander ignored",
+    "fourth arrival preserves game; native tap contact swaps one role with grace; joystick and avatar switch work",
+    "phone/tablet controls; tagger disconnect, area departure and All done preserve siblings; Bandit fallback and spoken hint"
+  ]
+}

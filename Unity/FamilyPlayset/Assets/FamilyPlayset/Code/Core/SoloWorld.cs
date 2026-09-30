@@ -119,6 +119,7 @@ namespace LittleWeeps.Core
         {
             Validate(snapshot);
             var copy = Clone(snapshot);
+            SuspendRestoredTag(copy);
             SuspendRestoredHide(copy);SuspendPond(copy);
             copy.homeTidyCues=Array.Empty<int>();
             // A pointer lease never survives closing the app or a recovered save.
@@ -282,6 +283,7 @@ namespace LittleWeeps.Core
             AdvanceRoarCooldowns(seconds);
             var changed=AdvanceHome(seconds);
             changed|=AdvancePond(seconds,activePlayers,out var pondVisible);visibleChange|=pondVisible;
+            changed|=AdvanceTag(seconds,activePlayers,out var tagVisible);visibleChange|=tagVisible;
             changed|=AdvancePark(seconds,out var parkVisible);visibleChange|=parkVisible;
             changed|=AdvanceHideAndSeek(seconds,activePlayers,out var hideVisible);visibleChange|=hideVisible;
             changed|=AdvanceKitchen(seconds,out var kitchenVisible);visibleChange|=kitchenVisible;
@@ -453,6 +455,7 @@ namespace LittleWeeps.Core
                 default: return Reject("unknown-action");
             }
             AfterPondAction(c,player);AfterHideAction(c,player);
+            AfterTagAction(c,player);
             TouchHomeAction(c,player);
             state.revision++;
             var receipt = new SoloReceipt { requestId = c.requestId, fingerprint = c.Fingerprint(), outcome = outcome, revision = Revision };

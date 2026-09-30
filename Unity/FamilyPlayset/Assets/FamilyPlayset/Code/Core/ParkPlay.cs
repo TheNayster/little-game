@@ -6,7 +6,8 @@ namespace LittleWeeps.Core
     [Serializable] public sealed class ParkState
     {
         public double clock, angle, speed, targetSpeed, waterUntil;
-        public ParkState Copy() => (ParkState)MemberwiseClone();
+        public TagState tag;
+        public ParkState Copy(){var p=(ParkState)MemberwiseClone();p.tag=tag?.Copy();return p;}
     }
     // Ride coordinates are stable leases. Animated height never enters walking,
     // inventory or collision coordinates; every client evaluates the same clock.
@@ -56,6 +57,7 @@ namespace LittleWeeps.Core
                 !KeepyRules.Finite(p.speed) || p.speed<0 || p.speed>ParkPlay.TurnSpeed || (p.targetSpeed!=0 && p.targetSpeed!=ParkPlay.TurnSpeed) ||
                 !KeepyRules.Finite(p.waterUntil) || p.waterUntil<0 || !s.toys.Any(t=>t.id=="tap-park" && t.kind==ToyKind.Tap && t.zone=="park" && t.x==ParkPlay.FountainX && t.y==ParkPlay.FountainY) ||
                 !s.toys.Any(t=>t.id=="bucket-park" && t.kind==ToyKind.Bucket && t.zone=="park"))throw new InvalidOperationException("Invalid park state.");
+            ValidateTag(s);
             foreach(var player in s.players)
                 if(!KeepyRules.Finite(player.rideStarted) || player.rideStarted<0 || player.rideStarted>p.clock || (!ParkPlay.Usable(player.fixture) && player.rideStarted!=0))throw new InvalidOperationException("Invalid park ride clock.");
         }
@@ -73,6 +75,7 @@ namespace LittleWeeps.Core
         private string ParkOperation(SoloCommand c,SoloPlayer p)
         {
             if(state.park==null || p.zone!="park")return "wrong-area";
+            if(c.value!=null && c.value.StartsWith("tag-",StringComparison.Ordinal))return TagOperation(c,p);
             if(c.value=="water"){state.park.waterUntil=state.park.clock+4;return null;}
             if(c.value=="turn" || c.value=="stop"){state.park.targetSpeed=c.value=="turn"?ParkPlay.TurnSpeed:0;return null;}
             return "invalid-park-action";

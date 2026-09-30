@@ -2234,12 +2234,12 @@
       "world": "park",
       "group": "Twelve park activities",
       "title": "Tag",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         39
       ],
-      "description": "Simple play: Chase or evade a friendly NPC in a small visible zone Deeper play: Invite sibling, choose who starts, optional roles swap after each touch; no eliminations or scoreboard requirement",
-      "evidence": "ledger",
+      "description": "Windows 306/308: one shared tag session for four, voluntary/late joins, automatic contact and grace, Bandit fallback, independent exits and spoken hints pass focused checks. Family/device review and tuning remain open.",
+      "evidence": "park-tag",
       "extraSource": ""
     },
     {

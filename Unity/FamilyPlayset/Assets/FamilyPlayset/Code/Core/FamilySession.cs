@@ -34,6 +34,7 @@ namespace LittleWeeps.Core
             if(!connections.TryGetValue(connection,out var profile))return false;
             connections.Remove(connection);
             world.ReleasePond(profile);world.ReleaseHideAndSeek(profile);
+            world.ReleaseTag(profile);
             world.ReleaseFixture(profile);
             world.CancelStairs(profile);
             foreach(var toy in world.ReadToys().Where(t=>t.holder==profile))

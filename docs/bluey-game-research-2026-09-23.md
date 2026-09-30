@@ -1757,7 +1757,7 @@ This reconciles the original twelve-activity research catalog, the earlier pictu
 | **PRK-03 Seesaw** | Not built | Four-player seesaw play with NPC substitutes, bouncing and optional toy passengers; no comparing children's weights |
 | **PRK-04 Climbing and monkey bars** | The playhouse ladder/platform works | Assisted monkey bars, additional short routes and carrying a flag up to the platform |
 | **PRK-05 Merry-go-round** | One shared ride, four places, Stop / turn and independent exit | Ground pushing by a sibling/NPC and role swapping |
-| **PRK-06 Tag** | Not built in the park | Shared chase/touch/role-swap play, friendly NPC fallback, no eliminations |
+| **PRK-06 Tag** | First shared implementation: four voluntary participants, common countdown, automatic role swaps, protection, Bandit fallback and independent exits; Windows 306 gameplay checks pass; final 308 also marks cleared sessions for saving | Family/device acceptance and tuning; additional optional variants remain planned |
 | **PRK-07 Park hide-and-seek** | House hide-and-seek exists; a park arena does not | Bushes, playhouse curtains and a tunnel alcove, parent seeker by default, optional child seeker and configurable clues; one shared 15-second hiding window |
 | **PRK-08 Shadow stepping** | Not built | Shadowlands-style connected shadow paths and a movable parasol; grass gives a playful response rather than failure |
 | **PRK-09 Build a play trail** | Not built | Movable stepping pads, low tunnel, flags and hoops; walk/test each other's course and rearrange it |

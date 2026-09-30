@@ -393,7 +393,9 @@ for feature in features:
 # September 30 playable park slice; retain the unimplemented deeper games.
 EVIDENCE['park']='implementation/park-playable-equipment-2026-09-30.html'
 EVIDENCE['park-wheels']='implementation/park-bikes-scooters-2026-09-30.html'
+EVIDENCE['park-tag']='implementation/park-tag-2026-09-30.html'
 PARK_PROGRESS_NOTES={
+ 'PRK-06': 'Windows 306/308: one shared tag session for four, voluntary/late joins, automatic contact and grace, Bandit fallback, independent exits and spoken hints pass focused checks. Family/device review and tuning remain open.',
  'PRK-10': 'Windows 276: four exclusive bikes/scooters, joystick/tap both ways and independent exits pass native checks. Corrected Bluey/Bingo seat/deck poses await family review; remaining cast art, wheel rotation, bells, deliveries and loops remain open.',
  'P-01': 'Clean backgrounds support real park equipment in Windows 235/250; other outdoor activities and mobile visual acceptance remain.',
  'PRK-01': 'Four usable swing seats across two frames, seat-aligned pendulum motion and independent exit. Optional pushes/NPC play and physical acceptance remain.',
@@ -404,7 +406,7 @@ PARK_PROGRESS_NOTES={
 }
 for feature in features:
     if feature['id'] in PARK_PROGRESS_NOTES:
-        feature['status']='part';feature['description']=PARK_PROGRESS_NOTES[feature['id']];feature['evidence']='park-wheels' if feature['id']=='PRK-10' else 'park'
+        feature['status']='part';feature['description']=PARK_PROGRESS_NOTES[feature['id']];feature['evidence']='park-tag' if feature['id']=='PRK-06' else 'park-wheels' if feature['id']=='PRK-10' else 'park'
 
 TRACK_STATUS={
 'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'part','FISH-01':'part','CLEAN-01':'part',

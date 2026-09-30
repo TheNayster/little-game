@@ -174,6 +174,7 @@ namespace LittleWeeps.Client
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
                 World = SoloWorld.WithPond(World);
+                World = SoloWorld.WithTag(World);
                 // Restore releases interrupted holds, hiding roles and fixture/stair
                 // leases. Persist every revision-changing restore, including an
                 // otherwise idle player who has just come out of cover.
@@ -305,7 +306,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildPond();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -405,7 +406,7 @@ namespace LittleWeeps.Client
             listenLabel.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
         }
         public void SetMenu(bool open) { if(WorldLoading)return;lastLocalAction=Time.realtimeSinceStartup;if(open){CloseNavigation();CancelPointers();Narration.Stop();SaveNow();ExportPlayPerformance();} menu.SetActive(open);if(open)menu.transform.SetAsLastSibling();stick.gameObject.SetActive(JoystickMode && !MenuOpen); }
-        public void Listen(){var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
+        public void Listen(){if(ParkTag.Member(TagGame,Actor)){Narration.Speak("tag-hint");return;}var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
         { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return FromBoard(local); }
         public Vector2 ScreenPoint(float x,float y) => RectTransformUtility.WorldToScreenPoint(null,Board.TransformPoint(ToBoard(x,y)));
@@ -613,7 +614,7 @@ namespace LittleWeeps.Client
             PresentBedrooms();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
-            PresentHideAndSeek();PresentPark();PresentWheels();
+            PresentHideAndSeek();PresentPark();PresentWheels();PresentTag();
         }
         private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
@@ -640,7 +641,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddPondDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
+            AddPondDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddTagDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);

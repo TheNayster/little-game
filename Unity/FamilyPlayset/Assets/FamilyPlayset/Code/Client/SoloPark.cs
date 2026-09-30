@@ -83,7 +83,7 @@ namespace LittleWeeps.Client
         }
         private void ResetPark()
         {
-            ResetWheels();
+            ResetWheels();ResetTag();
             foreach(var sprite in parkSprites)Destroy(sprite);parkSprites.Clear();
             if(parkTexture!=null)Resources.UnloadAsset(parkTexture);parkTexture=null;parkObjects.Clear();parkDrops.Clear();
             Array.Clear(parkSwings,0,4);Array.Clear(parkHandles,0,4);parkControls=null;parkRail=null;parkSampleClock=-1;parkClockWorld="";
