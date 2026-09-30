@@ -12,6 +12,9 @@ assert len(trails) == 4 and data['panelWidth'] == 2400 and data['panelHeight'] =
 species = [e['id'] for t in trails for e in t['exhibits']]
 assert len(species) == 16 and len(set(species)) == 16
 assert data['foodBucketsPerExhibit'] == 1 and data['sharedOfferSlotsPerExhibit'] == 4
+assert all(data['animalMovementPolicy'].get(key) for key in (
+    'routineChoice', 'destinationChoice', 'routeChoice', 'repeatControl',
+    'individualVariation', 'habitatLimits', 'feedingOverride', 'sharedAuthority', 'persistence'))
 zones = {data['hub']['zone'], *(t['zone'] for t in trails)}
 assert len(zones) == 5
 graph = defaultdict(set)

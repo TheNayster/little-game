@@ -6,6 +6,8 @@
 
 The proposed 2400-by-800 logical panels reuse the verified project's panel convention. Four panels per trail require new zoo bounds of 0 through 9600; those bounds are not implemented. The hub contributes one additional panel. No seventeen-panel runtime or performance result is claimed.
 
+**September 30 user clarification:** animals should vary their activities and routes. `animalMovementPolicy` specifies species-appropriate weighted random choices, different reachable destinations and alternative paths, recent-choice memory and independent animal phases. The illustrated connection line is not a mandatory patrol. Random destinations must remain inside the appropriate habitat and clear the full body; feeding temporarily overrides exploration, then a fresh routine is selected. The shared server makes these decisions once for everyone.
+
 Regenerate the diagram with `python Tools/Render-ZooLayout.py`. The renderer checks roster uniqueness, panel assignments, feeding places and the travel graph before writing the SVG. It validates this design data only.
 
 The integration rationale, local code evidence, source limitations, animation production plan and shared feeding contract are in [the zoo research](../../../docs/implementation/zoo-world-research-2026-09-30.md).

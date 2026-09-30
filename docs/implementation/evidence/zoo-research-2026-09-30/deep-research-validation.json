@@ -114,5 +114,14 @@
     "Sound candidates not auditioned or Zoo-integrated",
     "Dinosaur routines and voices reconstructed",
     "No Unity build, gameplay, multiplayer or device test"
-  ]
+  ],
+  "animalVariationFollowup": {
+    "date": "2026-09-30",
+    "status": "Design clarification only",
+    "layoutPolicyValidationPassed": true,
+    "latestDocumentAuditPassed": true,
+    "localLinksChecked": 3716,
+    "runtimeImplemented": false,
+    "originalAuditRetained": "globalDocumentAudit records the initial broader audit, not this later pass"
+  }
 }

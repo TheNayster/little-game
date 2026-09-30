@@ -8,6 +8,19 @@
   "panelHeight": 800,
   "foodBucketsPerExhibit": 1,
   "sharedOfferSlotsPerExhibit": 4,
+  "animalMovementPolicy": {
+    "status": "User-requested variation, 2026-09-30; design only",
+    "routineChoice": "Weighted random choice among species-appropriate eligible activities",
+    "destinationChoice": "Choose a reachable anchor and vary the destination within its authored clearance-safe region",
+    "routeChoice": "Choose among valid alternative graph paths; do not force a fixed anchor order or repeated lap",
+    "repeatControl": "Track recent activities and routes to reduce immediate repeats; retain a commitment while executing",
+    "individualVariation": "Independent per-animal random state, starting phase and bounded pauses; species-specific movement limits",
+    "habitatLimits": "Stay inside land, tank, climb or land-water bounds; never randomize through barriers or invalid transitions",
+    "feedingOverride": "Notice food, choose a valid slow approach to the reserved feeder, eat once, then select a fresh routine",
+    "sharedAuthority": "PC/VPS chooses and publishes each animal's decisions so all four clients see the same animal",
+    "persistence": "Save random generator state and recent-choice history; resume decisions instead of reseeding on every load",
+    "previewMeaning": "Exhibit preview lines illustrate possible connections, not mandatory patrol routes"
+  },
   "portals": [
     {"a": "zoo", "b": "zoo-savanna", "kind": "hub-to-trail-start", "bidirectional": true},
     {"a": "zoo", "b": "zoo-dinosaurs", "kind": "hub-to-trail-start", "bidirectional": true},
