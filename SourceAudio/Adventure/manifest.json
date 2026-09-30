@@ -1,0 +1,62 @@
+[
+  {
+    "id": "step-1",
+    "text": "Our kingdom needs a picnic! Let's help together.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "e9340a483cb66291ce7df5ee6cce810f807e5a87f586e576bfee7530e7094259",
+    "duration": 3.36,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-2",
+    "text": "Tap the fruit to gather our picnic supplies.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "d74c69816de4e7a5ec1ac0b917e667110394310195b036e08e067ebac5fb2ff1",
+    "duration": 2.24,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-3",
+    "text": "Tap the planks to open our bridge.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "c6c07bf0f09dc2a1e02874c2cbf8dc1ef20924e1d727fc6384d666dbd4342928",
+    "duration": 1.84,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-4",
+    "text": "Toss the magic ball. While the queen watches it, take her wand.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "3a61687561583b8844fa2b3047f9325a9b440c6bb40be1b45fe42b25f2e73eca",
+    "duration": 4.24,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-5",
+    "text": "Tap our frozen friends to wake them with the wand.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "fc573e035e80fe0c2dff630b192ec12d3ad2412d3d2268307fc9fbd0bc4d825c",
+    "duration": 2.64,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-6",
+    "text": "You saved the kingdom! Let's have a picnic together.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "e3fb68980d2a72b48e236d22d819a1c73c07cb7f159ac1594b79b6a9cc8d1da2",
+    "duration": 3.36,
+    "status": "generated candidate; family listening pending"
+  }
+]

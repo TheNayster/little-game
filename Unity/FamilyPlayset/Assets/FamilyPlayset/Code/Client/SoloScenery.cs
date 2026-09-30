@@ -27,6 +27,7 @@ namespace LittleWeeps.Client
             new SceneTile("park-playground","park",0),new SceneTile("park-picnic","park",2400),
             new SceneTile("creek-bank","creek",0),new SceneTile("creek-crossing","creek",2400),
             new SceneTile("beach-dunes","beach",0),new SceneTile("beach-rockpools","beach",2400),
+            new SceneTile("daycare-adventure",KingdomAdventure.Zone,0),
             new SceneTile("daycare-playroom","daycare",0),new SceneTile("daycare-garden","daycare",2400)
         };
         private readonly Dictionary<string,RawImage> scenicImages=new Dictionary<string,RawImage>();
