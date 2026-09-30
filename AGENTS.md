@@ -20,6 +20,15 @@
 - Character art must follow the existing official reference catalog and the recognizable 2D Bluey style in the goal sheet and Toca/Piknik supplement. The user rejected the generic blue-pup workshop on September 25. Animation/compilation checks do not establish visual acceptance. Use Bluey and Bingo for the first character test, preserve editable layered sources, and do not replace the requested cast with generic lookalikes or describe generated drafts as approved.
 - Keep platform builds, saved data, shared-world recovery and actual-device qualification in the sequence. The PC/VPS is the sole shared authority; keep automatic joining, four mixed clients and independent areas. Do not use the old project's connector as proof this new project is connected.
 
+## Proportionate checks and token use — September 30 user preference
+
+- This is a private family game. Optimize for useful changes and quick updates with targeted verification, not a full commercial-release qualification on each task. This latest preference supersedes older blanket testing/rollout checklists for routine updates.
+- Routine device update: build the requested current release once (or use an already verified identical current artifact), install in place, confirm the intended version and launch. Do not add research, full gameplay suites, server redesign or repeat qualification. Accept the user's playtesting as visible behavior evidence.
+- Small visual/control change: compilation plus one focused visual/interaction check. Gameplay change: one targeted check of the changed behavior. Multiplayer changes need one representative four-client check of shared behavior and independent departure, not every unrelated activity.
+- Save/schema, pairing, recovery or server-startup changes warrant focused retention/migration or connection checks for the affected contract. Do not run full save-directory/hash audits, recovery drills, sustained play or all-device qualification when those systems did not change.
+- One verification pass is the default. Repeat or broaden only after a relevant failure, further code changes or a concrete unresolved risk. Use existing evidence for unchanged source. Before expensive additional checks, briefly state what specific uncertainty they resolve; do not turn hypothetical risks into gates.
+- Keep tool output and progress concise. Use short records for small changes; avoid repeated repository/history scans and new comprehensive reports for routine installs. Preserve saves, enrollment and signing identity; never uninstall, clear data or downgrade as a shortcut. Report actual blockers and unverified limits honestly.
+
 ## Git delivery and project records
 
 - The user wants Git maintained and completed work pushed as part of each project task. Check the working tree, current branch and `origin` before editing; preserve unrelated user changes.
