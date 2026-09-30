@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build": 305,
+  "checks": [
+    "four children create and see one shared dry-sand trail field",
+    "native joystick walking emits shared footsteps without growing motion datagrams",
+    "moving wave washes wet prints; dry sand and sibling trails remain",
+    "real native water tap creates a bounded shared ripple",
+    "focused beach floor correction: four trails, wet washing, walking and phone/tablet captures"
+  ],
+  "visualFloorOnly": true,
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

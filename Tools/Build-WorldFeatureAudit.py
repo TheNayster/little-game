@@ -23,6 +23,7 @@ WORLD = {'all':'Across all worlds', 'home':'Heeler Home — house', 'yard':'Heel
 STATUS = {'play':'Playable prototype', 'part':'Partial', 'plan':'Planned', 'dev':'Development only',
           'scene':'Scenery only', 'optional':'Optional idea', 'retired':'Retired'}
 EVIDENCE = {
+ 'shore':'implementation/beach-waves-2026-09-30.html',
  'seagulls':'implementation/seagull-surprise-2026-09-30.html',
  'hiding':'implementation/hide-and-seek-hide-to-join-2026-09-30.html',
  'hideresearch':'implementation/hide-and-seek-research-2026-09-28.html',
@@ -263,8 +264,11 @@ for feature in features:
         feature['status']='part';feature['evidence']='seagulls'
         feature['description']+=' Windows 295 implements six shared silver gulls, approach/tap, notice/takeoff/flight/landing, alternate sand patches and tracks. Focused core/Unity JSON and four-client phone/tablet checks pass, including independent departure and a calm period. Calls/idle polish and family visual acceptance remain open; no device/server rollout.'
     if feature['id']=='B-01':
-        feature['status']='part';feature['evidence']='seagulls'
-        feature['description']='Long walkable scenery plus the first BCH-02 shared gull interaction in Windows 295. Other nine beach activities, interactive waves and remaining collection/building content remain planned.'
+        feature['status']='part';feature['evidence']='shore'
+        feature['description']='Long walkable scenery plus BCH-02 gulls and BCH-03 shared waves, four-player footprints, ripples and random whale/dolphin/mermaid sightings in Windows 304/305. Other eight beach activities and family/device acceptance remain planned.'
+    if feature['id']=='BCH-03':
+        feature['status']='part';feature['evidence']='shore'
+        feature['description']+=' Windows 304/305 implements shared foam/washing, four-player walking paw trails, real water taps and random offshore whale/dolphin/mermaid jumps. Core/Unity JSON and native four-client checks pass. Device delivery, family acceptance and optional sound/pose polish remain.'
 for feature in features:
     if feature['id'].startswith(('PIZ-', 'CAK-', 'MEAL-')):
         feature['status']='part';feature['evidence']='kitchen'
@@ -479,7 +483,7 @@ This is the consolidated feature checklist from the **55-chapter Family Playset 
 | Heeler Home — backyard | Connected yard; water loop, four-place trampoline, radio, shed slots, shared balloon and downstairs/backyard hiding covers | Pond fishing, sand/mud, swing, pool, hose/can/plant expansion, wagon, richer storage and show activities |
 | Playground & Park | Long walkable scenery | All 12 equipment/game activities and shared supporting props |
 | The Creek | Long scenery plus inherited garden-rule water fixture | All 10 distinct creek activities, including fishing, boats, crossings and nature play |
-| The Beach | Long walkable scenery and first shared Seagull surprise slice | Gull calls/idle polish and family acceptance; the other nine beach activities |
+| The Beach | Shared gulls, waves, four-player paw prints, touch ripples and random sea visitors | Family/device acceptance, sound/pose polish and the other eight beach activities |
 | Daycare | Long walkable scenery | Teacher/full cast, optional day, 12 learning stations and nine imagination stories |
 
 ## Complete inventory

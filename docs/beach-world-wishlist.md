@@ -2,17 +2,17 @@
 
 Reviewed September 30, 2026. This file collects the beach additions recorded in the Little Weeps docs so the family can choose the next activity to build. The ten named activities below are existing planned designs; their detailed mechanics are proposals from the goal sheet, rather than proof that every detail has received separate user approval.
 
-The documented beach foundation is a long walkable world from the dunes and shoreline to the rock pools, plus the original **Seashell Skipping** music. The first review recorded scenery only; the Seagull surprise update below now adds the first interaction in a built candidate. Rock pools in the background do not establish a playable rock-pool activity. [Scenery record](implementation/scenic-worlds-2026-09-25.md) · [Music record](implementation/world-music-2026-09-28.md) · [Beach audit](all-world-features-audit-2026-09-26.md#the-beach)
+The beach has a long walkable world and the original **Seashell Skipping** music, with shared gulls and the new waves/footprints slice in built candidates. Rock pools remain in the original background reference; the new playable shore variants clear obstructions to the wet-sand strip. [Scenery record](implementation/scenic-worlds-2026-09-25.md) · [Music record](implementation/world-music-2026-09-28.md) · [Beach audit](all-world-features-audit-2026-09-26.md#the-beach)
 
 ## Ten planned beach activities
 
-**September 30 update:** BCH-02 Seagull surprise has a first playable shared slice in Windows 295, with focused core/Unity JSON and four-client phone/tablet checks. Gull sounds/idle polish and family acceptance remain open; no phone/server delivery occurred. [Implementation](implementation/seagull-surprise-2026-09-30.md). The other nine remain **Planned**. IDs are retained so future work can refer to the existing goal sheet.
+**September 30 update:** BCH-02 Seagull surprise and BCH-03 Waves and footprints have first shared playable slices. Windows 304/305 adds wet-sand washing, four-player paw trails, touch ripples and random whale/dolphin/mermaid jumps with focused core/Unity JSON and native four-client checks. [Waves record](implementation/beach-waves-2026-09-30.md) · [Gulls record](implementation/seagull-surprise-2026-09-30.md). Sound/pose polish, family acceptance and device/server delivery remain open. The other eight remain **Planned**.
 
 | Activity | What to add |
 | --- | --- |
 | **BCH-01 Shell treasure** | Pick up shells, hear a gentle sound and put them in a tray. Sort by shape, decorate castles, make patterns and carry a favorite to a bedroom shelf. |
 | **BCH-02 Seagull surprise** | Approach or tap a flock so the birds flap away and settle again. Follow their footprints and approach together. No capturing, hitting or chase score. |
-| **BCH-03 Waves and footprints** | Moving foam, touch ripples and footprints left by walking. Waves erase the wet-sand part of a trail. No compulsory timer or wave dodging. |
+| **BCH-03 Waves and footprints — partial** | Shared moving foam, touch ripples and walking paw prints; waves erase only wet-sand trails. Random whale, dolphin and mermaid jumps are included. No compulsory timer or wave dodging. |
 | **BCH-04 Sandcastle workshop** | Scoop sand, add water, press a mould, lift it and decorate with flags or shells. Offer ready-filled moulds for easier play. Players can contribute towers and walls to a shared castle or build separate creations. |
 | **BCH-05 Beach ball** | Gentle bouncing and rolling, passes to family players or an NPC, a large hoop target and an optional shared rally with forgiving catches. |
 | **BCH-06 Flying disc** | Choose a pictured receiver and tap Throw. Offer optional drag-and-release aiming, wide catch areas and an NPC partner for solo play. Misses land nearby. The older note interpreted “freezeb” as Frisbee; this remains the recorded interpretation. |
@@ -21,7 +21,7 @@ The documented beach foundation is a long walkable world from the dunes and shor
 | **BCH-09 Beach picnic café** | Pack a basket, arrange a blanket, plate snacks, pour drinks, serve picture orders and wash the props. Reuse the kitchen and cleanup interactions. |
 | **BCH-10 Kite meadow** | Tap to launch a kite and use a large handle to make it swoop. Add a tail, choose a wind ribbon and fly together through broad cloud shapes. Automatic recovery; no tangled-string simulation. |
 
-Source: [Goal sheet section 37](bluey-game-research-2026-09-23.md#37-the-beach-collecting-building-and-playing-together). The [beach audit](all-world-features-audit-2026-09-26.md#ten-beach-activities) independently lists all ten as planned.
+Source: [Goal sheet section 37](bluey-game-research-2026-09-23.md#37-the-beach-collecting-building-and-playing-together). The [beach audit](all-world-features-audit-2026-09-26.md#ten-beach-activities) tracks partial implementations and the remaining planned activities.
 
 ## Three optional beach invitations
 

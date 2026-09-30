@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "build": 304,
+  "checks": [
+    "four children create and see one shared dry-sand trail field",
+    "native joystick walking emits shared footsteps without growing motion datagrams",
+    "moving wave washes wet prints; dry sand and sibling trails remain",
+    "real native water tap creates a bounded shared ripple",
+    "one common random sighting for four players; independent travel/disconnect preserve it",
+    "whale, dolphin and mermaid each jump from the offshore water in native phone/tablet scene"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

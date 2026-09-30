@@ -53,6 +53,7 @@ namespace LittleWeeps.Core
         public HomeState home;
         public ParkState park;
         public SeagullState seagulls;
+        public BeachShoreState shore;
         public HideState hideAndSeek;
         public KitchenState kitchen;
         public DiscoveryWorkspace[] discovery=Array.Empty<DiscoveryWorkspace>();
@@ -171,7 +172,7 @@ namespace LittleWeeps.Core
             if(!string.IsNullOrEmpty(p.fixture)){ClearFixture(p);state.revision++;}
             var h=HideAndSeek.Player(state.hideAndSeek,actor);
             if(h!=null && h.mode!=HiderMode.Away){h.idle=0;if(h.mode==HiderMode.Hidden){ExitHide(p,h,false);state.revision++;}}
-            p.x=x;p.y=y;return true;
+            BeachFootsteps(p,x,y);p.x=x;p.y=y;return true;
         }
         // Presentation reads do not need the durable command receipt history.
         // Return detached copies so a view cannot mutate the authority.
@@ -203,7 +204,7 @@ namespace LittleWeeps.Core
         }
         private static SoloSnapshot Clone(SoloSnapshot s)
         {
-            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, homeCreations=s.homeCreations,home=s.home?.Copy(),park=s.park?.Copy(),seagulls=s.seagulls?.Copy(),hideAndSeek=s.hideAndSeek?.Copy(),kitchen=s.kitchen?.Copy(),discovery=(s.discovery??Array.Empty<DiscoveryWorkspace>()).Select(w=>w.Copy()).ToArray(),keepy=s.keepy?.Copy(),
+            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, homeCreations=s.homeCreations,home=s.home?.Copy(),park=s.park?.Copy(),seagulls=s.seagulls?.Copy(),shore=s.shore?.Copy(),hideAndSeek=s.hideAndSeek?.Copy(),kitchen=s.kitchen?.Copy(),discovery=(s.discovery??Array.Empty<DiscoveryWorkspace>()).Select(w=>w.Copy()).ToArray(),keepy=s.keepy?.Copy(),
                 players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
                 bedrooms=(s.bedrooms??Array.Empty<BedroomState>()).Select(r=>r.Copy()).ToArray(),
                 secrets=(s.secrets??Array.Empty<SecretRoomState>()).Select(r=>r.Copy()).ToArray(),
@@ -247,7 +248,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>(s.schema>=HomeTidying.Schema?HomeTidying.IdleSeconds:ToolIdleSeconds)+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateHideAndSeek(s);ValidateCreations(s);ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);ValidatePark(s);ValidateSeagulls(s);
+            ValidateHideAndSeek(s);ValidateCreations(s);ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);ValidatePark(s);ValidateSeagulls(s);ValidateShore(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -281,6 +282,7 @@ namespace LittleWeeps.Core
             AdvanceRoarCooldowns(seconds);
             var changed=AdvanceHome(seconds);
             changed|=AdvanceSeagulls(seconds,activePlayers,out var gullVisible);visibleChange|=gullVisible;
+            changed|=AdvanceShore(seconds,activePlayers,out var shoreVisible);visibleChange|=shoreVisible;
             changed|=AdvancePark(seconds,out var parkVisible);visibleChange|=parkVisible;
             changed|=AdvanceHideAndSeek(seconds,activePlayers,out var hideVisible);visibleChange|=hideVisible;
             changed|=AdvanceKitchen(seconds,out var kitchenVisible);visibleChange|=kitchenVisible;
@@ -378,7 +380,7 @@ namespace LittleWeeps.Core
                     TravelPlayer(player,c.value);outcome="area-entered";break;
                 case SoloAction.Move:
                     ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(player.zone)?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
-                    player.x=floorPoint.X;player.y=floorPoint.Y;break;
+                    BeachFootsteps(player,floorPoint.X,floorPoint.Y);player.x=floorPoint.X;player.y=floorPoint.Y;break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
                     player.avatar = c.value;

@@ -71,6 +71,9 @@ namespace LittleWeeps.Client
         public void PresentHome(Vector2 point,string continuity,bool held,float dt,Core.SoloPlayer player,Core.HomeState home,Core.KeepyState balloon=null)
         {
             if(view==null)return;
+            // The new shoreline/prints use the authoritative floor directly.
+            // Remove the legacy lab art offset only on this illustrated beach.
+            ((RectTransform)view.transform).anchoredPosition=new Vector2(0,player.zone=="beach"?0:-45);
             Wear(player.outfit,player.outfitColor);
             var frame=motion.Observe(point,continuity,held,false,dt);
             if(Core.BedroomFurniture.Seat(player.fixture))

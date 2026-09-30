@@ -1,0 +1,3 @@
+Hide-and-seek Unity JSON: old schema and legacy 20-second state plus ten hidden-slot round trips passed.
+Seagull Unity JSON: legacy migration and all five phases retain objects and flock.
+Beach shore Unity JSON: additive migration, RNG, all three sightings, prints/ripples and previous objects retained.

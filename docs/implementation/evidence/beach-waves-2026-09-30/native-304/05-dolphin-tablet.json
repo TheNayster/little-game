@@ -1,0 +1,972 @@
+{
+  "seagulls": {
+    "phase": 0,
+    "clock": 22.095624400000005,
+    "age": 0.0,
+    "calmUntil": 12.6428747,
+    "from": 2,
+    "to": 2,
+    "trailFrom": 0,
+    "flights": 1,
+    "nearby": []
+  },
+  "visibleSeagulls": 6,
+  "visibleGullTracks": 16,
+  "shore": {
+    "clock": 22.095624400000005,
+    "nextVisit": 45.69753015119772,
+    "visitStarted": 21.0308922,
+    "random": 334047873,
+    "visits": 1,
+    "serial": 57,
+    "visitor": 1,
+    "visitX": 1028.8385009765625,
+    "right": true,
+    "prints": [
+      {
+        "actor": "player-1",
+        "x": 446.2247314453125,
+        "y": 114.56929016113281,
+        "angle": -60.945396423339844,
+        "left": true,
+        "born": 2.401028499999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 472.4494323730469,
+        "y": 129.13858032226562,
+        "angle": -60.945396423339844,
+        "left": false,
+        "born": 2.401028499999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 498.6741638183594,
+        "y": 143.70787048339844,
+        "angle": -60.945396423339844,
+        "left": true,
+        "born": 2.401028499999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 524.8988647460938,
+        "y": 158.27716064453125,
+        "angle": -60.945396423339844,
+        "left": false,
+        "born": 2.401028499999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 551.1235961914062,
+        "y": 172.846435546875,
+        "angle": -60.945396423339844,
+        "left": true,
+        "born": 2.401028499999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 577.3483276367188,
+        "y": 187.4157257080078,
+        "angle": -60.945396423339844,
+        "left": false,
+        "born": 2.401028499999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 604.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 2.539251499999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 634.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 2.539251499999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 664.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 2.747699100000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 694.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 2.900943999999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 724.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 3.102796099999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 754.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 3.319200599999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 784.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 3.4557126999999994,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 814.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 3.622768600000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 844.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 3.622768600000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-2",
+        "x": 800.0,
+        "y": 245.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 4.0189650000000015,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-2",
+        "x": 830.0,
+        "y": 245.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 4.203370100000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-2",
+        "x": 860.0,
+        "y": 245.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 4.356478800000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-2",
+        "x": 890.0,
+        "y": 245.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 4.509635500000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-2",
+        "x": 920.0,
+        "y": 245.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 4.6971135,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-2",
+        "x": 950.0,
+        "y": 245.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 5.093315100000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-2",
+        "x": 980.0,
+        "y": 245.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 5.093315100000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-2",
+        "x": 1010.0,
+        "y": 245.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 5.2478929,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 970.0,
+        "y": 290.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 5.598187200000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1000.0,
+        "y": 290.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 5.7513358,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1030.0,
+        "y": 290.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 5.951258500000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1060.0,
+        "y": 290.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 6.102642200000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1090.0,
+        "y": 290.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 6.2513969,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1120.0,
+        "y": 290.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 6.401668600000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1150.0,
+        "y": 290.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 6.401668600000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1180.0,
+        "y": 290.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 6.602912700000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1140.0,
+        "y": 335.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 6.9056104000000005,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1170.0,
+        "y": 335.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 7.057480699999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1200.0,
+        "y": 335.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 7.2604905,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1230.0,
+        "y": 335.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 7.448119000000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1260.0,
+        "y": 335.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 7.598974999999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1290.0,
+        "y": 335.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 7.803173399999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1320.0,
+        "y": 335.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 7.803173399999999,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1350.0,
+        "y": 335.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 7.9563883,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 874.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 8.8528472,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 904.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 8.952794100000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 934.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 9.0195084,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 964.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 9.1195351,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 994.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 9.219956,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 1024.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 9.2761997,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 1054.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": false,
+        "born": 9.376308600000002,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-1",
+        "x": 1084.08740234375,
+        "y": 200.0,
+        "angle": -90.0,
+        "left": true,
+        "born": 9.4429803,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1174.7908935546875,
+        "y": 312.8204650878906,
+        "angle": 24.10223388671875,
+        "left": true,
+        "born": 9.600251700000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1162.5399169921875,
+        "y": 340.20501708984375,
+        "angle": 24.10223388671875,
+        "left": false,
+        "born": 9.600251700000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1150.2889404296875,
+        "y": 367.5895690917969,
+        "angle": 24.10223388671875,
+        "left": true,
+        "born": 9.600251700000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1138.037841796875,
+        "y": 394.97412109375,
+        "angle": 24.10223388671875,
+        "left": false,
+        "born": 9.600251700000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-3",
+        "x": 1125.786865234375,
+        "y": 422.358642578125,
+        "angle": 24.10223388671875,
+        "left": true,
+        "born": 9.600251700000001,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1334.6566162109375,
+        "y": 349.53094482421875,
+        "angle": 54.46232223510742,
+        "left": true,
+        "born": 13.869441400000005,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1310.24462890625,
+        "y": 366.9681091308594,
+        "angle": 54.46232223510742,
+        "left": false,
+        "born": 13.869441400000005,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1285.8326416015625,
+        "y": 384.4052429199219,
+        "angle": 54.46232223510742,
+        "left": true,
+        "born": 13.869441400000005,
+        "washed": -1.0
+      },
+      {
+        "actor": "player-4",
+        "x": 1261.420654296875,
+        "y": 401.8424072265625,
+        "angle": 54.46232223510742,
+        "left": false,
+        "born": 13.869441400000005,
+        "washed": -1.0
+      }
+    ],
+    "walkers": [
+      {
+        "actor": "player-1",
+        "remainder": 12.91357421875,
+        "left": true
+      },
+      {
+        "actor": "player-2",
+        "remainder": 5.0,
+        "left": false
+      },
+      {
+        "actor": "player-3",
+        "remainder": 28.146575927734375,
+        "left": false
+      },
+      {
+        "actor": "player-4",
+        "remainder": 14.034881591796875,
+        "left": false
+      }
+    ],
+    "ripples": []
+  },
+  "visibleSandPrints": 56,
+  "visibleSeaVisitor": true,
+  "serial": 19,
+  "visiblePlayers": 4,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 10,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.304",
+  "actor": "player-4",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "beach",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "outfit": "",
+      "position": {
+        "x": 1097.0010986328125,
+        "y": 199.99996948242188
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-2",
+      "outfit": "",
+      "position": {
+        "x": 1015.0,
+        "y": 244.99996948242188
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-3",
+      "outfit": "",
+      "position": {
+        "x": 1275.0,
+        "y": 479.9999694824219
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-4",
+      "outfit": "",
+      "position": {
+        "x": 1250.0,
+        "y": 410.0
+      },
+      "visible": true,
+      "roarPlaying": false
+    }
+  ],
+  "toys": [],
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -7.62939453125e-06,
+    "y": -5.7220458984375e-06,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "bluey",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 696.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 3",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": -7.62939453125e-06,
+        "y": 376.79998779296875,
+        "width": 25.28022003173828,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 905.5999755859375,
+        "y": 34.399993896484375,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 5",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 255.68020629882812,
+        "y": 376.79998779296875,
+        "width": 230.4000244140625,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 6",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 486.0802001953125,
+        "y": 376.79998779296875,
+        "width": 230.4000244140625,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 8",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 946.8803100585938,
+        "y": 376.79998779296875,
+        "width": 77.11968994140625,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 7",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 716.4802856445312,
+        "y": 376.79998779296875,
+        "width": 230.4000244140625,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Splash water 4",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 25.28022003173828,
+        "y": 376.79998779296875,
+        "width": 230.4000244140625,
+        "height": 96.0
+      },
+      "enabled": true
+    }
+  ],
+  "outfitsOpen": false,
+  "roarPlaying": false,
+  "outfit": "",
+  "outfitColor": "green",
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.0,
+  "homePose": "Idle",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "worldMusicTrack": "beach",
+  "worldMusicPlaying": true,
+  "worldMusicVolume": 0.41999998688697815,
+  "worldMusicSignal": 0.03865974023938179,
+  "worldMusicClipCount": 1,
+  "worldMusicSample": 937977,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 25.605466842651367,
+  "hideAndSeek": {
+    "round": 0,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 0,
+    "age": 0.0,
+    "count": 0.0,
+    "clock": 0.0,
+    "walked": 0.0,
+    "x": -3660.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "beach",
+  "cameraX": 1226.999755859375,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "beach-dunes-shore",
+    "beach-rockpools-shore"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Beach shore ambience",
+    "Friend-player-3",
+    "Sand footprint 51",
+    "Player character",
+    "Sand footprint 55",
+    "Sand footprint 50",
+    "Sand footprint 54",
+    "Sand footprint 49",
+    "Sand footprint 53",
+    "Sand footprint 52",
+    "Sand footprint 48",
+    "Sand footprint 31",
+    "Sand footprint 32",
+    "Sand footprint 33",
+    "Sand footprint 34",
+    "Sand footprint 35",
+    "Sand footprint 36",
+    "Sand footprint 37",
+    "Sand footprint 38",
+    "Sand footprint 47",
+    "Sand footprint 23",
+    "Sand footprint 24",
+    "Sand footprint 25",
+    "Sand footprint 26",
+    "Sand footprint 27",
+    "Sand footprint 28",
+    "Sand footprint 29",
+    "Sand footprint 30",
+    "Beach gull 1",
+    "Beach gull 3",
+    "Beach gull 5",
+    "Sand footprint 15",
+    "Sand footprint 16",
+    "Sand footprint 17",
+    "Sand footprint 18",
+    "Sand footprint 19",
+    "Sand footprint 20",
+    "Sand footprint 21",
+    "Sand footprint 22",
+    "Friend-player-2",
+    "Beach bird tracks 15",
+    "Beach bird tracks 3",
+    "Beach bird tracks 5",
+    "Beach bird tracks 13",
+    "Beach bird tracks 11",
+    "Beach bird tracks 9",
+    "Beach bird tracks 1",
+    "Beach bird tracks 7",
+    "Beach gull 0",
+    "Beach gull 2",
+    "Beach gull 4",
+    "Beach bird tracks 0",
+    "Beach bird tracks 2",
+    "Beach bird tracks 6",
+    "Beach bird tracks 8",
+    "Beach bird tracks 10",
+    "Beach bird tracks 12",
+    "Beach bird tracks 14",
+    "Beach bird tracks 4",
+    "Sand footprint 10",
+    "Sand footprint 11",
+    "Sand footprint 12",
+    "Sand footprint 13",
+    "Sand footprint 14",
+    "Sand footprint 39",
+    "Sand footprint 40",
+    "Sand footprint 41",
+    "Sand footprint 42",
+    "Sand footprint 43",
+    "Sand footprint 44",
+    "Sand footprint 45",
+    "Sand footprint 46",
+    "Sand footprint 6",
+    "Sand footprint 7",
+    "Sand footprint 8",
+    "Sand footprint 9",
+    "Friend-player-1",
+    "Sand footprint 5",
+    "Sand footprint 4",
+    "Sand footprint 3",
+    "Sand footprint 2",
+    "Sand footprint 1",
+    "Sand footprint 0"
+  ],
+  "bookAuto": false,
+  "bookWords": true,
+  "bookOptions": false,
+  "bookEffect": false,
+  "bookEffectPending": false,
+  "bookNaming": false,
+  "bookTitle": "hello-dinosaurs",
+  "bookTextures": 0,
+  "bookAudio": 0,
+  "discoveryOpen": false,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "Menu",
+    "Tap to walk"
+  ]
+}

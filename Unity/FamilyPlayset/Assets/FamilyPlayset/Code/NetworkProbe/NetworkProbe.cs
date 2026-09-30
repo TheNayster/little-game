@@ -20,7 +20,7 @@ namespace LittleWeeps.NetworkProbe
         // Unity includes empty inline food records. Bound the full four-room,
         // twelve-dish reliable view separately from the 1200-byte motion stream.
         private const int Protocol=3, Content=WorldLayout.Content, MaxWireBytes=131072;
-        private const string WalkMessage="littleweeps.walk.v1", MotionMessage="littleweeps.motion.v1";
+        private const string WalkMessage="littleweeps.walk.v1", MotionMessage="littleweeps.motion.v1",ShoreMessage="littleweeps.shore.v1";
         private const string CommandMessage="littleweeps.probe.command.v1", StateMessage="littleweeps.probe.state.v1", PoseMessage="littleweeps.probe.pose.v1";
         private static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
         private Config config;
@@ -67,6 +67,8 @@ namespace LittleWeeps.NetworkProbe
         public event Action MotionReceived;
         [Serializable] public sealed class MovingPlayer {public string actor,zone;public long visit,input;public float x,y;public double stairs;}
         [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;public SeagullState seagulls;}
+        [Serializable] private sealed class ShoreFrame {public string epoch;public double time;public BeachShoreState shore;}
+        private double shoreTime,nextShoreSend,lastShoreSend;private long lastShoreSerial=-1;
         [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public double seconds;}
         private CheckpointStore store;
         private FileStream authorityLock;
@@ -226,6 +228,7 @@ namespace LittleWeeps.NetworkProbe
             network.CustomMessagingManager.RegisterNamedMessageHandler(PoseMessage,ReceivePose);
             network.CustomMessagingManager.RegisterNamedMessageHandler(WalkMessage,ReceiveWalk);
             network.CustomMessagingManager.RegisterNamedMessageHandler(MotionMessage,ReceiveMotion);
+            network.CustomMessagingManager.RegisterNamedMessageHandler(ShoreMessage,ReceiveShore);
             network.CustomMessagingManager.RegisterNamedMessageHandler(ActivityMessage,ReceiveActivity);
             RegisterRecoveryMessages();
         }
@@ -340,7 +343,7 @@ namespace LittleWeeps.NetworkProbe
             var saved=store.Load();
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
-            world=SoloWorld.WithSeagulls(world);
+            world=SoloWorld.WithShore(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -485,6 +488,7 @@ namespace LittleWeeps.NetworkProbe
                     else keepyTime=state.time;
                     if(Latest!=null && Latest.epoch==state.epoch && parkTime>state.time)state.view.park=Latest.view.park?.Copy();else parkTime=state.time;
                     if(Latest!=null && Latest.epoch==state.epoch && seagullTime>state.time)state.view.seagulls=Latest.view.seagulls?.Copy();else seagullTime=state.time;
+                    if(Latest!=null && Latest.epoch==state.epoch && shoreTime>state.time)state.view.shore=Latest.view.shore?.Copy();else shoreTime=state.time;
                     seenSequence=state.sequence;Latest=state;WriteJson(Path.Combine(output,"view.json"),state);
                 }
                 Received?.Invoke(state);
@@ -562,6 +566,13 @@ namespace LittleWeeps.NetworkProbe
             MotionReceived?.Invoke();
             WriteJson(Path.Combine(output,"view.json"),Latest);
         }
+        private void ReceiveShore(ulong sender,FastBufferReader reader)
+        {
+            if(config.role!="client" || sender!=NetworkManager.ServerClientId || Latest==null)return;
+            var frame=JsonUtility.FromJson<ShoreFrame>(Read(reader));
+            if(frame==null || frame.epoch!=Latest.epoch || frame.time<=shoreTime || frame.shore==null)return;
+            Latest.view.shore=frame.shore;shoreTime=frame.time;MotionReceived?.Invoke();
+        }
         private void TickMovement(double now)
         {
             if(config.role=="client")
@@ -581,6 +592,13 @@ namespace LittleWeeps.NetworkProbe
             if(positionDirty && ((stepped && !moved) || now-lastPositionSave>=1))SaveAuthority();
             if(now<nextMotionSend)return;nextMotionSend=Math.Max(nextMotionSend+.05,now);
             var view=session.View();
+            // Footprint arrays use their own bounded reliable stream, leaving
+            // the existing 1200-byte position datagram budget unchanged.
+            if(view.shore!=null && now>=nextShoreSend && (view.shore.serial!=lastShoreSerial || now-lastShoreSend>=1)){
+                nextShoreSend=now+.25;lastShoreSend=now;lastShoreSerial=view.shore.serial;
+                var shoreFrame=new ShoreFrame{epoch=epoch,time=ServerClock-accumulator,shore=view.shore};
+                foreach(var peer in network.ConnectedClientsIds)Send(ShoreMessage,peer,shoreFrame);
+            }
             // Positions describe the completed simulation step, not the later
             // packet-send instant. Otherwise 30 Hz simulation sampled at 20 Hz
             // creates an artificial alternating fast/slow interpolation speed.

@@ -1319,8 +1319,8 @@
         3,
         37
       ],
-      "description": "Long walkable scenery plus the first BCH-02 shared gull interaction in Windows 295. Other nine beach activities, interactive waves and remaining collection/building content remain planned.",
-      "evidence": "seagulls",
+      "description": "Long walkable scenery plus BCH-02 gulls and BCH-03 shared waves, four-player footprints, ripples and random whale/dolphin/mermaid sightings in Windows 304/305. Other eight beach activities and family/device acceptance remain planned.",
+      "evidence": "shore",
       "extraSource": ""
     },
     {
@@ -1935,12 +1935,12 @@
       "world": "beach",
       "group": "Ten beach activities",
       "title": "Waves and footprints",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         37
       ],
-      "description": "Simple play: Watch foam roll in; tap the water for ripples; walk to leave prints Deeper play: Draw a trail and watch the next wave erase only the wet-sand part; count waves together if wanted; no timer or required dodging",
-      "evidence": "ledger",
+      "description": "Simple play: Watch foam roll in; tap the water for ripples; walk to leave prints Deeper play: Draw a trail and watch the next wave erase only the wet-sand part; count waves together if wanted; no timer or required dodging Windows 304/305 implements shared foam/washing, four-player walking paw trails, real water taps and random offshore whale/dolphin/mermaid jumps. Core/Unity JSON and native four-client checks pass. Device delivery, family acceptance and optional sound/pose polish remain.",
+      "evidence": "shore",
       "extraSource": ""
     },
     {

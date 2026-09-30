@@ -24,6 +24,9 @@ LocalData/
 !Tools/SeagullRules.Tests/SeagullRules.Tests.csproj
 Tools/SeagullRules.Tests/bin/
 Tools/SeagullRules.Tests/obj/
+!Tools/ShoreRules.Tests/ShoreRules.Tests.csproj
+Tools/ShoreRules.Tests/bin/
+Tools/ShoreRules.Tests/obj/
 !Tools/ParkPlay.Tests/ParkPlay.Tests.csproj
 Tools/ParkPlay.Tests/bin/
 Tools/ParkPlay.Tests/obj/

@@ -12,7 +12,8 @@ namespace LittleWeeps.Core
         // Content 39 admits the complete 37-character research roster.
         // Content 41 requires the replicated outfit fields and roar commands.
         // Content 42 adds the shared beach flock and its proximity/tap rules.
-        public const int Schema=37, ScenerySchema=3, Content=42;
+        // Content 46 adds shared waves, footprint/ripple state and sea sightings.
+        public const int Schema=40, ScenerySchema=3, Content=46;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id);
