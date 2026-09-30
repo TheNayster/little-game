@@ -63,10 +63,10 @@ namespace LittleWeeps.Core
         {
             if(state.park==null)return "wrong-area";
             if(c.action==SoloAction.LeaveFixture){ClearFixture(p);return null;}
-            if(c.action!=SoloAction.UseFixture || !ParkPlay.Usable(c.target))return "invalid-fixture";
+            if(c.action!=SoloAction.UseFixture || !(ParkPlay.Usable(c.target) || ParkWheels.Usable(c.target)))return "invalid-fixture";
             if(state.players.Any(v=>v.id!=p.id && v.zone=="park" && v.fixture==c.target))return "fixture-busy";
             foreach(var t in state.toys.Where(t=>t.holder==p.id)){t.holder="";t.container="";t.x=p.x;t.y=Math.Max(35,p.y-65);Touch(t);}
-            ClearFixture(p);p.fixture=c.target;p.activity="";p.rideStarted=state.park.clock;p.x=ParkPlay.X(c.target);p.y=ParkPlay.Y(c.target);
+            ClearFixture(p);p.fixture=c.target;p.activity="";p.rideStarted=ParkWheels.Usable(c.target)?0:state.park.clock;p.x=ParkWheels.Usable(c.target)?ParkWheels.ParkX(ParkWheels.Index(c.target)):ParkPlay.X(c.target);p.y=ParkWheels.Usable(c.target)?ParkWheels.Lane(c.target):ParkPlay.Y(c.target);
             if(ParkPlay.Station(c.target)=="roundabout")state.park.targetSpeed=ParkPlay.TurnSpeed;
             return null;
         }

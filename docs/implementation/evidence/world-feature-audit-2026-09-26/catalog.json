@@ -2286,12 +2286,12 @@
       "world": "park",
       "group": "Twelve park activities",
       "title": "Bike and scooter loop",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         39
       ],
-      "description": "Simple play: Tap a destination on a broad loop; assisted riding Deeper play: Choose a loop, ring a bell, deliver a picnic item; auto-steer and no traffic/collision punishment",
-      "evidence": "ledger",
+      "description": "Windows 276: four exclusive bikes/scooters, joystick/tap both ways and independent exits pass native checks. Corrected Bluey/Bingo seat/deck poses await family review; remaining cast art, wheel rotation, bells, deliveries and loops remain open.",
+      "evidence": "park-wheels",
       "extraSource": ""
     },
     {

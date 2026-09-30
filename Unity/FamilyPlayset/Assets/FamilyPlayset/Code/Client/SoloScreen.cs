@@ -536,7 +536,7 @@ namespace LittleWeeps.Client
                 else if(destination.HasValue)
                 {
                     var player=ReadPlayer(Actor);
-                    if(Vector2.Distance(new Vector2(player.x,player.y),destination.Value)<1){destination=null;shared.Walk(WalkMode.Stop);}
+                    if(ParkWheels.Usable(player.fixture)?Mathf.Abs(player.x-Mathf.Clamp(destination.Value.x,ParkWheels.MinX,ParkWheels.MaxX))<1:Vector2.Distance(new Vector2(player.x,player.y),destination.Value)<1){destination=null;shared.Walk(WalkMode.Stop);}
                     else shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
                 }
                 else shared.Walk(WalkMode.Stop);
@@ -556,7 +556,7 @@ namespace LittleWeeps.Client
             {
                 dirty=true;lastLocalAction=now;
                 var p=ReadPlayer(Actor);avatar.anchoredPosition=ToBoard(p.x,p.y);SortDepth();
-                if(!JoystickMode && destination.HasValue && Vector2.Distance(new Vector2(p.x,p.y),destination.Value)<1)destination=null;
+                if(!JoystickMode && destination.HasValue && (ParkWheels.Usable(p.fixture)?Mathf.Abs(p.x-Mathf.Clamp(destination.Value.x,ParkWheels.MinX,ParkWheels.MaxX))<1:Vector2.Distance(new Vector2(p.x,p.y),destination.Value)<1))destination=null;
             }
             if(dirty && Time.realtimeSinceStartup>=nextSave){SaveDuringPlay();nextSave=Time.realtimeSinceStartup+1;}
         }
@@ -613,7 +613,7 @@ namespace LittleWeeps.Client
             PresentBedrooms();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
-            PresentHideAndSeek();PresentPark();
+            PresentHideAndSeek();PresentPark();PresentWheels();
         }
         private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
@@ -631,6 +631,7 @@ namespace LittleWeeps.Client
                 var hider=HideAndSeek.Player(HideGame,id);
                 if(hider?.mode==HiderMode.Hidden){Add(root,ToBoard(player.x,HideAndSeek.GroundY[hider.slot]).y,1,id);return;}
                 var fixture=player?.fixture??"";
+                if(ParkWheels.Usable(fixture)){Add(root,WheelsGround(fixture),1,id);return;}
                 if(ParkPlay.Usable(fixture)){var ground=ParkPlayerGround(fixture);Add(root,ground,1,id);return;}
                 if(SecretRooms.FortIndex(fixture)>=0 && secretFort!=null){Add(root,secretFort.anchoredPosition.y,1,id);return;}
                 if(BedroomFurniture.Seat(fixture) && FurnishedRoom!=null){var key=fixture==BedroomFurniture.Bed?"bed":"cushion-"+BedroomFurniture.CushionIndex(fixture);if(bedroomFurniture.TryGetValue(key,out var furniture)){Add(root,furniture.anchoredPosition.y,1,id);return;}}
@@ -639,7 +640,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddPondDepth(Add);AddParkDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
+            AddPondDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);

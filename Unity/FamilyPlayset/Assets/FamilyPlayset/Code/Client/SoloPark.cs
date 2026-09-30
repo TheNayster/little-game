@@ -79,10 +79,11 @@ namespace LittleWeeps.Client
             parkControls=Rect(safe,"Park ride controls",new Vector2(0,-safe.rect.height/2+75),new Vector2(530,75)).gameObject;
             Button(parkControls.transform,"Get off",new Vector2(-145,0),new Vector2(220,70),()=>HomeAction(SoloAction.LeaveFixture,""),Cream);
             Button(parkControls.transform,"Stop / turn",new Vector2(125,0),new Vector2(260,70),()=>HomeAction(SoloAction.Park,"",Park.targetSpeed==0?"turn":"stop"),Cream).transform.parent.name="Roundabout speed";
-            TickPark();
+            BuildWheels();TickPark();
         }
         private void ResetPark()
         {
+            ResetWheels();
             foreach(var sprite in parkSprites)Destroy(sprite);parkSprites.Clear();
             if(parkTexture!=null)Resources.UnloadAsset(parkTexture);parkTexture=null;parkObjects.Clear();parkDrops.Clear();
             Array.Clear(parkSwings,0,4);Array.Clear(parkHandles,0,4);parkControls=null;parkRail=null;parkSampleClock=-1;parkClockWorld="";

@@ -546,7 +546,7 @@ namespace LittleWeeps.NetworkProbe
                     var bedroom=BedroomFurniture.Seat(p.fixture)?SecretRooms.Furnishings(Latest.view).FirstOrDefault(r=>r.id==p.zone):null;
                     var supportX=bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):ParkPlay.Usable(p.fixture)?ParkPlay.X(p.fixture):HomeLayout.X(p.fixture);
                     var supportY=bedroom!=null?BedroomFurniture.SeatY(p.fixture):ParkPlay.Usable(p.fixture)?ParkPlay.Y(p.fixture):HomeLayout.Y(p.fixture);
-                    if(sample.x!=supportX || sample.y!=supportY){p.fixture="";p.useSeconds=0;p.rideStarted=0;}
+                    if(!ParkWheels.Usable(p.fixture) && (sample.x!=supportX || sample.y!=supportY)){p.fixture="";p.useSeconds=0;p.rideStarted=0;}
                 }
                 if(!KeepyRules.Finite(sample.stairs) || sample.stairs<0 || sample.stairs>=HomeRooms.StairDuration)throw new InvalidDataException("Invalid stair sample.");
                 p.x=sample.x;p.y=sample.y;p.stairs=sample.stairs;positionTimes[p.id]=frame.time;inputAcks[p.id]=sample.input;

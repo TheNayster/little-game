@@ -77,6 +77,7 @@ namespace LittleWeeps.Core
                     (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:
                      (BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || !SecretRooms.Furnished(p.zone) || (SecretRooms.Index(p.zone)>=0?p.fixture==BedroomFurniture.Bed:SecretRooms.FortIndex(p.fixture)>=0) ||
                       p.x!=BedroomFurniture.SeatX(p.fixture,SecretRooms.Furnishings(s).Single(r=>r.id==p.zone).layout) || p.y!=BedroomFurniture.SeatY(p.fixture):
+                      ParkWheels.Usable(p.fixture)?s.schema<ParkPlay.Schema || !ParkWheels.Valid(p):
                       ParkPlay.Usable(p.fixture)?s.schema<ParkPlay.Schema || p.zone!="park" || p.x!=ParkPlay.X(p.fixture) || p.y!=ParkPlay.Y(p.fixture):
                       !HomeLayout.Usable(p.fixture) || Kitchen.Seat(p.fixture) && s.schema<Kitchen.Schema || p.zone!="garden" || p.x!=HomeLayout.X(p.fixture,s.schema) || p.y!=HomeLayout.Y(p.fixture)) || s.toys.Any(t=>t.holder==p.id && !(s.schema>=RoomPlay.Schema && BedroomFurniture.Seat(p.fixture) && t.kind==ToyKind.Plush))))
                     throw new InvalidOperationException("Invalid home occupancy.");

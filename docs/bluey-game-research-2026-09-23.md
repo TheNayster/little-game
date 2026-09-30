@@ -1761,7 +1761,7 @@ This reconciles the original twelve-activity research catalog, the earlier pictu
 | **PRK-07 Park hide-and-seek** | House hide-and-seek exists; a park arena does not | Bushes, playhouse curtains and a tunnel alcove, parent seeker by default, optional child seeker and configurable clues; one shared 15-second hiding window |
 | **PRK-08 Shadow stepping** | Not built | Shadowlands-style connected shadow paths and a movable parasol; grass gives a playful response rather than failure |
 | **PRK-09 Build a play trail** | Not built | Movable stepping pads, low tunnel, flags and hoops; walk/test each other's course and rearrange it |
-| **PRK-10 Bikes and scooters** | Not built | Broad assisted riding loops, a bell and simple picnic deliveries without punishing collisions |
+| **PRK-10 Bikes and scooters** | First riding implementation: four bikes/four scooters, exclusive leases, joystick or tap left/right, Get off, independent departure; Bluey/Bingo riding-pose candidates | Family visual/device acceptance, other characters’ dedicated riding poses, bell, optional loops and picnic deliveries |
 | **PRK-11 Picnic and pretend shop** | Picnic seating works | Picnic basket/blanket, ready snacks, fruit sharing, pouring drinks, picture orders, serving and plate cleanup |
 | **PRK-12 Music games** | Not built | Musical statues and follow-the-leader, Dance/pose pictures, player/NPC turn taking and no eliminations |
 | Earlier park picture quest: ball basket | Not built | Simple Play: put one ball in a basket; Explore: find three picture-matched balls and sort them |

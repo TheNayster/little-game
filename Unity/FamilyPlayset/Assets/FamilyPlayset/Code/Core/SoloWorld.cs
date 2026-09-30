@@ -168,7 +168,8 @@ namespace LittleWeeps.Core
             if(p.x==x && p.y==y)return false;
             if(state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(zone)){var floor=BedroomFurniture.Floor(x,y);x=floor.X;y=floor.Y;}
             if(p.x==x && p.y==y)return false;
-            if(!string.IsNullOrEmpty(p.fixture)){ClearFixture(p);state.revision++;}
+            var ridingFloor=ParkWheels.Floor(p,x,y);x=ridingFloor.X;y=ridingFloor.Y;
+            if(!string.IsNullOrEmpty(p.fixture) && !ParkWheels.Usable(p.fixture)){ClearFixture(p);state.revision++;}
             var h=HideAndSeek.Player(state.hideAndSeek,actor);
             if(h!=null && h.mode!=HiderMode.Away){h.idle=0;if(h.mode==HiderMode.Hidden){ExitHide(p,h,false);state.revision++;}}
             p.x=x;p.y=y;return true;
@@ -377,8 +378,8 @@ namespace LittleWeeps.Core
                     if(player.visit>=long.MaxValue-1)return Reject("visit-limit");
                     TravelPlayer(player,c.value);outcome="area-entered";break;
                 case SoloAction.Move:
-                    ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(player.zone)?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
-                    player.x=floorPoint.X;player.y=floorPoint.Y;break;
+                    if(!ParkWheels.Usable(player.fixture))ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(player.zone)?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
+                    floorPoint=ParkWheels.Floor(player,floorPoint.X,floorPoint.Y);player.x=floorPoint.X;player.y=floorPoint.Y;break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
                     player.avatar = c.value;

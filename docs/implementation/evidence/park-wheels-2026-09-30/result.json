@@ -1,0 +1,9 @@
+{
+  "build": 276,
+  "passed": true,
+  "checks": [
+    "four native bike mounts, exclusive leases, tap both ways and joystick",
+    "four native scooter mounts, exclusive leases, tap both ways and joystick",
+    "native get-off, phone layout, disconnect and independent area departure"
+  ]
+}
