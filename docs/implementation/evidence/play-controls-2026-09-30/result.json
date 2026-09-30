@@ -1,0 +1,11 @@
+{
+  "build": 232,
+  "passed": true,
+  "checks": [
+    "android-wide: no title, aligned separated safe-area controls, both touch actions work",
+    "ipad-7: no title, aligned separated safe-area controls, both touch actions work",
+    "ipad-air: no title, aligned separated safe-area controls, both touch actions work",
+    "portrait: no title, aligned separated safe-area controls, both touch actions work",
+    "android-return: no title, aligned separated safe-area controls, both touch actions work"
+  ]
+}

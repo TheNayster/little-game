@@ -248,10 +248,13 @@ namespace LittleWeeps.Client
         }
         private void BuildScreen()
         {
-            Label(safe,"Little Weeps",36,new Vector2(-245,351),new Vector2(330,58));
             areaLabel=Label(safe,"",17,new Vector2(-245,313),new Vector2(350,34));
-            movementLabel=Button(safe,JoystickMode?"Joystick":"Tap to walk",new Vector2(285,343),new Vector2(210,64),ToggleMovement,Cream);
-            Button(safe,"Menu",new Vector2(500,343),new Vector2(160,64),()=>SetMenu(true),Cream);
+            // One safe-area corner anchor keeps both controls on the same row,
+            // including the first frame and tablet/phone orientation changes.
+            var controls=Rect(safe,"Play controls",new Vector2(-20,-23),new Vector2(390,64));
+            controls.anchorMin=controls.anchorMax=Vector2.one;controls.pivot=Vector2.one;
+            movementLabel=Button(controls,JoystickMode?"Joystick":"Tap to walk",new Vector2(-90,0),new Vector2(210,64),ToggleMovement,Cream);
+            Button(controls,"Menu",new Vector2(115,0),new Vector2(160,64),()=>SetMenu(true),Cream);
             // Legacy prototype activities: kept for now, may be removed later.
             // These are not entries in the new Games menu; Keepy Uppy stays balloon-triggered.
             var garden=Button(safe,"Grow a flower",new Vector2(-380,265),new Vector2(245,48),()=>StartActivity("garden"),new Color(.86f,.93f,.74f));
@@ -784,8 +787,6 @@ namespace LittleWeeps.Client
             Canvas.ForceUpdateCanvases();
             LayoutWorldViewport();
             stick.anchoredPosition=new Vector2(-safe.rect.width/2+102,-safe.rect.height/2+110);
-            movementLabel.transform.parent.GetComponent<RectTransform>().anchoredPosition=new Vector2(safe.rect.width/2-300,safe.rect.height/2-55);
-            safe.Find("Menu").GetComponent<RectTransform>().anchoredPosition=new Vector2(safe.rect.width/2-100,safe.rect.height/2-55);
             ((RectTransform)menu.transform).sizeDelta=safe.rect.size;
             LayoutNavigation();
             if(avatar!=null)Render();

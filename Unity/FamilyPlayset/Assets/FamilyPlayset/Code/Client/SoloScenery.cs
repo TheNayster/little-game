@@ -68,11 +68,10 @@ namespace LittleWeeps.Client
             Label(sceneryCurtain.transform,"Getting your place ready…",30,Vector2.zero,new Vector2(900,70));
             // The old diagnostic lab chrome stays available to verification via
             // model state; it no longer occupies the child's illustrated world.
-            foreach(var name in new[]{"Little Weeps","Grow a flower","Splash cleanup","Free play"})
+            foreach(var name in new[]{"Grow a flower","Splash cleanup","Free play"})
             {
                 var item=safe.Find(name);if(item==null)continue;
-                if(name=="Little Weeps")item.gameObject.SetActive(false);
-                else {item.SetParent(menu.transform,false);((RectTransform)item).anchoredPosition=new Vector2(name=="Grow a flower"?-280:name=="Splash cleanup"?0:260,320);}
+                item.SetParent(menu.transform,false);((RectTransform)item).anchoredPosition=new Vector2(name=="Grow a flower"?-280:name=="Splash cleanup"?0:260,320);
             }
             areaLabel.gameObject.SetActive(false);activity.gameObject.SetActive(false);message.gameObject.SetActive(false);saveLabel.gameObject.SetActive(false);
             listenLabel.transform.parent.gameObject.SetActive(false);
