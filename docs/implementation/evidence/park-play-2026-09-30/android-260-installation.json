@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-30",
+  "version": "0.0.260",
+  "operation": "updated",
+  "previousBuild": 227,
+  "package": "com.littleweeps.familyplayset",
+  "installedApkHashMatched": true,
+  "apkSha256": "6be5e26d4507138c5e8f88684e33ab98c1819af5969a3eb74dc99c8868abbd58",
+  "launchVerified": true,
+  "visibleUpdatedParkVerified": true,
+  "installationMethod": "In-place adb install -r; no uninstall or data clearing",
+  "existingSavedRecordsIndependentlyRechecked": false,
+  "installedServer": 227,
+  "serverStatusHotfix": "227-status-io-1",
+  "serverChanged": false,
+  "compatibility": "Installer reports unknown: no matching compiled server contract for these exact Android shared sources; latest shared content requires coordinated rollout before family play",
+  "buildResult": "Succeeded",
+  "development": false,
+  "errors": 0,
+  "warnings": 0,
+  "sourceEvidence": "Builds/AndroidSigned/G3-0.0.260/source-manifest.json",
+  "native16KbQualified": false
+}
