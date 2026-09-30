@@ -1,0 +1,41 @@
+{
+  "build": 288,
+  "schema": 37,
+  "combinedContent": 44,
+  "isolatedBoatContent": 43,
+  "coreChecks": [
+    "additive retained-state migration",
+    "four shared boats and two docks",
+    "protected edits and idempotent replay",
+    "independent departure",
+    "retrieval and JSON reopen",
+    "stale-area rejection"
+  ],
+  "unityJsonPassed": true,
+  "releaseErrors": 0,
+  "releaseWarnings": 0,
+  "visualReview": "Phone and iPad workbench, sailing, both reachable dock views and water contact checked.",
+  "boatSourceMatchesArtifact": true,
+  "files": [
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CreekBoats.cs",
+      "sha256": "78e88ce12ace1998498828b19da81b166cd068095aba56bd58720578ab46345a"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekBoats.cs",
+      "sha256": "fa957494bf0118d68f01b51ce9569ac84f65582e907f67688e409d0f90536883"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/CreekBoatJsonTests.cs",
+      "sha256": "21c84e2e1e1d25f251b50d7c548e510703d779ea6a171453d180e76e21ae5a56"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/CreekBoatArt/boats.png",
+      "sha256": "5af7f6a2c86e179d4145a305bc1419f57f870a1699dfded6b7623a3927855e9a"
+    }
+  ],
+  "devicesUpdated": false,
+  "liveServerUpdated": false,
+  "isolatedCoreCompilationPassed": true,
+  "isolatedCoreExecution": "Blocked by Windows Application Control (0x800711C7); no bypass attempted. Shared-checkout core and native release-player checks passed."
+}

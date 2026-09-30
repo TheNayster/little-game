@@ -1,0 +1,10 @@
+{
+  "build": 288,
+  "passed": true,
+  "checks": [
+    "four players prepare leaf, bark and paper boats, colours, passengers, flowers and two landings",
+    "four decorated boats render in one river with replicated routes and attachments",
+    "departing player leaves siblings active and all boats complete their voyage to reachable docks",
+    "retrieve, change hull and relaunch retain decorations; independent travel leaves sibling play intact"
+  ]
+}

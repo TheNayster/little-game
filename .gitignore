@@ -67,3 +67,7 @@ Tools/OutfitRules.Tests/obj/
 !Tools/PondRules.Tests/PondRules.Tests.csproj
 Tools/PondRules.Tests/bin/
 Tools/PondRules.Tests/obj/
+
+!Tools/CreekBoats.Tests/CreekBoats.Tests.csproj
+Tools/CreekBoats.Tests/bin/
+Tools/CreekBoats.Tests/obj/

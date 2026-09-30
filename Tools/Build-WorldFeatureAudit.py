@@ -390,6 +390,11 @@ for feature in features:
     if feature['id'] in HOME_PROGRESS_NOTES:
         feature['status'], feature['description'], feature['evidence'] = HOME_PROGRESS_NOTES[feature['id']]
 
+EVIDENCE['creek-fishing']='implementation/creek-fishing-2026-09-30.html'
+for feature in features:
+    if feature['id']=='CRK-02':
+        feature.update(status='part',description='Done in source, Windows 293: reused pond rules across a larger shared creek reach, 20 fish, four bank spots, random bites, easy Reel in, close-up/Release, feeding and independent exits. Float choices, species album and physical acceptance remain.',evidence='creek-fishing')
+
 # September 30 playable park slice; retain the unimplemented deeper games.
 EVIDENCE['park']='implementation/park-playable-equipment-2026-09-30.html'
 EVIDENCE['park-wheels']='implementation/park-bikes-scooters-2026-09-30.html'

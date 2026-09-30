@@ -9,6 +9,32 @@ static class Program
     {var p=w.ReadPlayer(actor);return w.Apply(new SoloCommand{actor=actor,requestId=request??Guid.NewGuid().ToString("N"),expectedRevision=w.Revision,zone=p.zone,visit=p.visit,action=SoloAction.Pond,value=op,x=PondFishing.X,y=100});}
     static void Tick(SoloWorld w,double seconds){for(var t=0.0;t<seconds;t+=.05)w.AdvanceIdle(.05,out _,w.ReadPlayers().Select(p=>p.id).ToArray());}
     static PondRod Rod(SoloWorld w,string id)=>w.ReadPond().rods.Single(r=>r.actor==id);
+    static void CreekChecks()
+    {
+        var old=SoloWorld.WithCreekBoats(SoloWorld.Create("one","two","three","four"));
+        Require(Send(old,"one","start-feeding").Accepted,"Home setup");
+        var before=old.Snapshot();var w=SoloWorld.WithCreekFishing(old);var s=w.Snapshot();
+        Require(s.schema==38 && s.worldId==before.worldId && s.pond.nextFood==before.pond.nextFood && s.pond.rods[0].mode==PondMode.Feeding && s.creekBoats.boats.Length==4,"Creek upgrade lost existing activity");
+        Require(s.creekFishing.fish.Length==20 && CreekFishing.RadiusX>PondFishing.RadiusX*2,"Creek isn't expanded");
+        SoloResult Creek(string actor,string op,float x=3600,float y=100){var p=w.ReadPlayer(actor);return w.Apply(new SoloCommand{actor=actor,requestId=Guid.NewGuid().ToString("N"),expectedRevision=w.Revision,zone=p.zone,visit=p.visit,action=SoloAction.CreekFishing,value=op,x=x,y=y});}
+        PondRod R(string actor)=>w.ReadCreekFishing().rods.Single(r=>r.actor==actor);
+        foreach(var p in w.ReadPlayers()){Require(Creek(p.id,"start-fishing").Accepted,"Creek start");Require(w.ReadPlayer(p.id).zone=="creek" && Math.Abs(w.ReadPlayer(p.id).x-CreekFishing.BankX(R(p.id).slot))<1,"Bank placement");}
+        Require(w.ReadPond().rods.All(r=>r.mode==PondMode.None),"Travel retained backyard lease");
+        Require(Creek("one","cast",4250,100).Accepted,"Wide creek cast rejected");Require(!Creek("one","cast",3600,250).Accepted,"Dry-bank cast accepted");
+        Tick(w,11.2);Require(w.ReadCreekFishing().rods.All(r=>r.cast==PondCast.Bite),"Creek bites failed");
+        foreach(var p in w.ReadPlayers())Require(Creek(p.id,"reel").Accepted,"Creek reel");
+        Require(w.ReadCreekFishing().rods.Select(r=>r.fish).Distinct().Count()==4,"Duplicated creek catch");
+        Require(Creek("one","release").Accepted && Creek("one","start-feeding").Accepted,"Creek release/feed");
+        for(var i=0;i<15;i++)Require(Creek("one","feed").Accepted,"Bounded creek feeding rejected");
+        Require(w.ReadCreekFishing().food.Length<=8 && R("two").cast==PondCast.Caught,"Food growth or sibling catch lost");
+        var family=new FamilySession(w);for(ulong i=1;i<=4;i++)Require(family.Attach(i,new[]{"one","two","three","four"}[i-1],out _),"Attach creek");
+        family.Detach(4);Require(R("four").mode==PondMode.None && R("three").cast==PondCast.Caught,"Departure reset creek");
+        var saved=w.Snapshot();var restored=SoloWorld.Restore(saved);SoloWorld.Validate(restored.Snapshot());
+        Require(restored.ReadCreekFishing().fish.Length==20 && restored.ReadCreekFishing().rods.All(r=>r.mode==PondMode.None) && saved.creekFishing.rods[2].cast==PondCast.Caught,"Creek reopen or snapshot mutated");
+        Require(Send(w,"two","start-fishing").Accepted && R("two").mode==PondMode.None && R("three").cast==PondCast.Caught,"Home travel disturbed creek sibling");
+        var bad=w.Snapshot();bad.creekFishing.fish[0].x=9999;var rejected=false;try{SoloWorld.Validate(bad);}catch(InvalidOperationException){rejected=true;}Require(rejected,"Invalid creek geometry accepted");
+        Console.WriteLine("PASS creek upgrade, 20 shared fish, wide casts, four exclusive catches, feeding, departure, home separation and reopen");
+    }
     static void Main()
     {
         var old=SoloWorld.WithOutfits(SoloWorld.Create("one","two","three","four"));var before=old.Snapshot();
@@ -50,6 +76,7 @@ static class Program
         s=w.Snapshot();s.pond.rods.Single(r=>r.actor=="one").slot=Rod(w,"three").slot;
         var invalid=false;try{SoloWorld.Validate(s);}catch(InvalidOperationException){invalid=true;}Require(invalid,"Corrupt shared leases accepted");
         Console.WriteLine("PASS restore releases temporary leases and validation rejects duplicate pond slots");
+        CreekChecks();
         Console.WriteLine("ALL PASS");
     }
 }

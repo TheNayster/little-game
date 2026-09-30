@@ -1,0 +1,33 @@
+{
+  "build": 293,
+  "schema": 38,
+  "content": 45,
+  "isolatedSource": true,
+  "coreGroupsPassed": 7,
+  "unityLegacyJsonPassed": true,
+  "nativeChecks": [
+    "creek-only picture cards fit phone and iPad",
+    "four shared bank spots auto-cast into one 20-fish creek",
+    "four distinct random bites, easy reel and painted catch close-up",
+    "release and feeding coexist with sibling catches",
+    "departure, direct feeding and Homeworld pond preserve creek siblings and separate fish",
+    "existing boats remain playable alongside creek fishing"
+  ],
+  "visualReview": "Phone/iPad menus, four bank spots, softened fish and close-up inspected.",
+  "builds": [
+    {
+      "role": "Server",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "role": "Client",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    }
+  ],
+  "devicesUpdated": false,
+  "liveServerUpdated": false
+}

@@ -4,20 +4,20 @@ This file collects the creek additions recorded in the game docs so we can choos
 
 ## What the docs say already exists
 
-The creek has a long walkable scenic level: bush bank followed by a stepping-stone pool, with independent camera movement and travel. The implementation reports retain prototype props and a water fixture using the garden rules. Painted logs, rocks and water do not establish working creek activities. The all-world feature audit lists all ten creek activities below as planned; this review found no later creek activity completion record.
+The creek has a long walkable scenic level: bush bank followed by a stepping-stone pool, with independent camera movement and travel. The implementation reports retain prototype props and a water fixture using the garden rules. Painted logs, rocks and water do not establish working creek activities. The original audit listed all ten creek activities as planned. The September 30 boat task now implements a first playable slice: three hulls, decoration, leaf passengers, two landings and retrieval. [Research and native evidence](implementation/creek-boats-2026-09-30.md). Creek fishing now reuses the Homeworld pond flow across a larger shared reach with 20 fish; the other eight activities remain planned. [Implementation](implementation/creek-fishing-2026-09-30.md).
 
 The world-music report also records the creek track, Pebbles and Ripples. This is existing source/build evidence, not a fresh check of installed devices.
 
 Sources: [Scenic worlds implementation](implementation/scenic-worlds-2026-09-25.md), [all-world feature audit](all-world-features-audit-2026-09-26.md#the-creek), [world music](implementation/world-music-2026-09-28.md).
 
-## The ten planned creek activities
+## The ten recorded creek activities
 
-These are the additions in [the main goal sheet, section 38](bluey-game-research-2026-09-23.md#38-the-creek-rocks-water-and-gentle-discovery). All remain planned in the creek audit.
+These are the additions in [the main goal sheet, section 38](bluey-game-research-2026-09-23.md#38-the-creek-rocks-water-and-gentle-discovery). Boat play and creek fishing now have first playable slices; the other eight remain planned.
 
 | Feature | Basic play | Further play recorded in the docs |
 | --- | --- | --- |
 | **CRK-01 Rock collection and washing** | Pick up a rock and rinse it to reveal its pattern. | Sort by size, appearance or pattern; display favorites and use collected rocks in towers. |
-| **CRK-02 Creek fishing** | Assisted fish selection and a generous catch cue. | Choose a float, catch, observe and release; share a picture album and reuse the backyard fishing mechanics in a creek setting. |
+| **CRK-02 Creek fishing** | Done in source: four shared bank spots, 20 fish, random bites, easy Reel in, close-up/Release and feeding across a larger creek reach. | Float choices and a shared picture album remain future ideas. Physical playtesting remains open. [Evidence](implementation/creek-fishing-2026-09-30.md). |
 | **CRK-03 Log crossing** | Tap the far bank and automatically walk across the log. | Carry a leaf parcel, pause at a wide lookout and let siblings follow. No precision balance, fall punishment or forced speed. |
 | **CRK-04 Rock towers** | Drop rocks onto a broad base with generous snapping. | Arrange different sizes, add a leaf flag or make linked towers. Knock down only the chosen creation deliberately. |
 | **CRK-05 Leaf and bark boats** | Launch a ready boat and watch it float. | Add a leaf passenger, decorate boats, choose a branch route, guide them to a dock or cooperate on a delivery route. No elimination race. |
@@ -46,13 +46,13 @@ The [Toca/Piknik interaction supplement](toca-piknik-interaction-research-2026-0
 - **Shared objects and protected creations:** one holder/catch per object, no duplication, and no reset of another player's tower or postcard. Cancelled crossings return the player to a valid bank; abandoned catches release reservations; boats stop at reachable docks.
 - **Persistent creek creations:** retain rock displays, finished towers, boat decorations and postcards. Moving boats save a logical route/checkpoint and resume at a reachable dock when necessary. Connected play uses the PC/VPS world; offline creations remain in separate local saves.
 
-The original creek fishing plan includes observation and an album. The later [backyard pond scope](current-decisions.md) has a narrower cast, random bite, Reel in, close-up and Release flow, with optional feeding; its observation bowl and fixed collection were excluded. Preserve the creek ideas as backlog, but choose the creek fishing flow explicitly when that task starts rather than assuming every old pond detail is approved.
+The original creek fishing plan includes observation and an album. The later [backyard pond scope](current-decisions.md) has a narrower cast, random bite, Reel in, close-up and Release flow, with optional feeding; its observation bowl and fixed collection were excluded. The user selected the existing Homeworld pond flow for the creek on September 30, at a larger scale. The implemented loop follows that choice; float choices and a species album remain backlog.
 
 Sources: [current decisions](current-decisions.md), [project instructions](../AGENTS.md), goal-sheet sections 38 and 50, and the [build guide outdoor batch](family-playset-build-guide-2026-09-23.md).
 
 ## Suggested first feature
 
-**Start with rock collection and washing, CRK-01.** It adds a clear interaction to the existing creek: pick up a chunky rock, rinse it, see its revealed pattern and place it in a display. The same collected rocks can then feed **rock towers, CRK-04**, as the next task.
+**Boat play was selected and its first slice is now implemented.** For a later task, rock collection and washing, CRK-01, remains a suggested option. It adds a clear interaction to the existing creek: pick up a chunky rock, rinse it, see its revealed pattern and place it in a display. The same collected rocks can then feed **rock towers, CRK-04**, as the next task.
 
 A focused first check should show four players using the same creek, shared pickup ownership, one player leaving while the others continue, and a saved display reopening. This is the proposed acceptance scope for future implementation; no gameplay checks or builds were run for this documentation task.
 
@@ -60,4 +60,4 @@ If movement is the preferred starting point, **log crossing, CRK-03**, is anothe
 
 ## Review record
 
-Collected the creek catalog, earlier quest variations, documented implementation status and later shared-play corrections from the local docs. Checked feature names and source links. This task creates the planning file only; choosing the first implementation task remains the next step.
+Collected the creek catalog, earlier quest variations, documented implementation status and later shared-play corrections from the local docs. Checked feature names and source links. The original task created this planning file. The September 30 follow-up selected boat play and completed its first slice in development source. Physical-device delivery and family playtesting remain open.

@@ -81,6 +81,13 @@ namespace LittleWeeps.Client
                 label.rectTransform.anchoredPosition=new Vector2(0,-43);label.rectTransform.sizeDelta=new Vector2(310,55);label.fontSize=32;
                 PondPicture(card,name+" menu picture",new Vector2(0,25),new Vector2(175,100),feed?"feeding-icon":"fishing-icon");
             }
+            if(SceneSchema>=CreekFishing.Schema)foreach(var feeding in new[]{false,true}){
+                var feed=feeding;var name=feed?"Feed creek fish":"Creek fishing";
+                var label=MiniGameChoice("creek",name,new Vector2(feed?180:-180,-150),new Vector2(340,230),()=>ChooseCreekFishingMiniGame(feed),feed?new Color(.83f,.91f,.65f):new Color(.75f,.9f,.99f));
+                var card=(RectTransform)label.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);
+                label.rectTransform.anchoredPosition=new Vector2(0,-63);label.rectTransform.sizeDelta=new Vector2(310,70);label.fontSize=30;
+                PondPicture(card,name+" menu picture",new Vector2(0,35),new Vector2(210,125),feed?"feeding-icon":"fishing-icon");
+            }
             Button(miniGamesFrame,"Back to play",new Vector2(0,-200),new Vector2(300,75),CloseMiniGames,Color.white);
             miniGamesMenu.gameObject.SetActive(false);
         }
