@@ -16,8 +16,8 @@ namespace LittleWeeps.Client
         private float doorDeadline;
         private long doorEntranceRevision;
         private bool doorApproach,doorSubmitted;
-        private string DoorPreload=>SecretRooms.Index(doorTarget)>=0?"home-secret":doorTarget==HomeRooms.Landing?"home-upstairs":BedroomLayout.Index(doorTarget)>=0?"home-bedroom":null;
-        private Vector2 DoorEntry=>SecretRooms.Route(doorSource,doorTarget)?new Vector2(SecretRooms.Index(doorSource)>=0?BedroomLayout.ExitX:SecretRooms.DoorX(LocalSecret?.slot??0),SecretRooms.Index(doorSource)>=0?BedroomLayout.DoorY:SecretRooms.DoorY):new Vector2(BedroomLayout.DoorX(doorSource,doorTarget),BedroomLayout.DoorY);
+        private string DoorPreload=>doorTarget==BathroomLayout.Area?"home-bathroom":SecretRooms.Index(doorTarget)>=0?"home-secret":doorTarget==HomeRooms.Landing?"home-upstairs":BedroomLayout.Index(doorTarget)>=0?"home-bedroom":null;
+        private Vector2 DoorEntry=>BathroomLayout.Route(doorSource,doorTarget)?new Vector2(doorSource==BathroomLayout.Area?BathroomLayout.ExitX:BathroomLayout.HallX,BedroomLayout.DoorY):SecretRooms.Route(doorSource,doorTarget)?new Vector2(SecretRooms.Index(doorSource)>=0?BedroomLayout.ExitX:SecretRooms.DoorX(LocalSecret?.slot??0),SecretRooms.Index(doorSource)>=0?BedroomLayout.DoorY:SecretRooms.DoorY):new Vector2(BedroomLayout.DoorX(doorSource,doorTarget),BedroomLayout.DoorY);
         public BedroomState[] Bedrooms=>HasWorld?(Shared?shared.View.bedrooms:World.ReadBedrooms()):Array.Empty<BedroomState>();
 
         private void BuildBedrooms()
@@ -42,7 +42,7 @@ namespace LittleWeeps.Client
         public void RequestBedroom(string target)
         {
             if(!Ready || MenuOpen || TravelPending || WorldLoading || StairBusy || doorSubmitted ||
-                !(BedroomLayout.Route(CurrentArea,target) || SecretRooms.Route(CurrentArea,target)))return;
+                !(BathroomLayout.Route(CurrentArea,target) || BedroomLayout.Route(CurrentArea,target) || SecretRooms.Route(CurrentArea,target)))return;
             CancelStairApproach();doorSource=CurrentArea;doorTarget=target;doorApproach=true;doorEntranceRevision=LocalSecret?.entranceRevision??0;
             doorDeadline=Time.realtimeSinceStartup+30;manualCamera=false;destination=DoorEntry;
         }

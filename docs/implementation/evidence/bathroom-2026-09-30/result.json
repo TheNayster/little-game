@@ -1,0 +1,22 @@
+{
+  "build": 318,
+  "checks": [
+    {
+      "check": "Hallway picture door and four shared bath places at phone/iPad sizes",
+      "passed": true
+    },
+    {
+      "check": "Splash, get out and sink coexist with sibling bath play",
+      "passed": true
+    },
+    {
+      "check": "Independent hallway exit and disconnect preserve remaining bathers",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "No device installation",
+    "Laundry, clothing wet/dry state, movable bath toys and shower interaction remain planned"
+  ]
+}

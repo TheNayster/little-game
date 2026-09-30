@@ -341,6 +341,7 @@ namespace LittleWeeps.NetworkProbe
             if(saved.Status==CheckpointStatus.Corrupt || saved.Status==CheckpointStatus.Unsupported)throw new InvalidDataException("Server checkpoint is blocked.");
             var world=saved.Status==CheckpointStatus.Missing?SoloWorld.Create(config.slots.Select(s=>s.profile).ToArray()):SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(saved.Payload));
             world=SoloWorld.WithPond(world);
+            world=SoloWorld.WithBathroom(world);
             if(saved.Status==CheckpointStatus.Missing && config.presentation)
                 for(var i=0;i<config.slots.Length;i++)world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=config.slots[i].profile,expectedRevision=world.Revision,action=SoloAction.Move,x=280+i*180,y=100});
             if(!world.Snapshot().players.Select(p=>p.id).OrderBy(s=>s).SequenceEqual(config.slots.Select(s=>s.profile).OrderBy(s=>s)))throw new InvalidDataException("Roster does not match checkpoint.");
@@ -544,8 +545,8 @@ namespace LittleWeeps.NetworkProbe
                 if(!string.IsNullOrEmpty(p.fixture))
                 {
                     var bedroom=BedroomFurniture.Seat(p.fixture)?SecretRooms.Furnishings(Latest.view).FirstOrDefault(r=>r.id==p.zone):null;
-                    var supportX=bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):ParkPlay.Usable(p.fixture)?ParkPlay.X(p.fixture):HomeLayout.X(p.fixture);
-                    var supportY=bedroom!=null?BedroomFurniture.SeatY(p.fixture):ParkPlay.Usable(p.fixture)?ParkPlay.Y(p.fixture):HomeLayout.Y(p.fixture);
+                    var supportX=BathroomLayout.Usable(p.fixture)?BathroomLayout.X(p.fixture):bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):ParkPlay.Usable(p.fixture)?ParkPlay.X(p.fixture):HomeLayout.X(p.fixture);
+                    var supportY=BathroomLayout.Usable(p.fixture)?BathroomLayout.Y:bedroom!=null?BedroomFurniture.SeatY(p.fixture):ParkPlay.Usable(p.fixture)?ParkPlay.Y(p.fixture):HomeLayout.Y(p.fixture);
                     if(!ParkWheels.Usable(p.fixture) && (sample.x!=supportX || sample.y!=supportY)){p.fixture="";p.useSeconds=0;p.rideStarted=0;}
                 }
                 if(!KeepyRules.Finite(sample.stairs) || sample.stairs<0 || sample.stairs>=HomeRooms.StairDuration)throw new InvalidDataException("Invalid stair sample.");

@@ -6,6 +6,8 @@
 
 **Current devices:** Samsung, both iPads and iPhone run **101**. All were updated in place; saves/settings and original family identities are retained. The original server/helper **91** is running and all four players joined. The user accepts the character prototype and notes animation stiffness. [Current update and evidence](character-phone-switch-2026-09-25.html).
 
+**Bathroom candidate — September 30:** the first shared room is a source/native-test candidate, not installed on these devices. After a requested matching rollout, check four bathers, sink use, hallway exits and phone/iPad controls. [Scope and evidence](bathroom-2026-09-30.html). Laundry and movable towels/toys remain incomplete.
+
 ## Focused play checks
 
 1. Try Bluey/Bingo, enter Creek and return to Garden on the updated Apple devices. Softer animation remains polish work.

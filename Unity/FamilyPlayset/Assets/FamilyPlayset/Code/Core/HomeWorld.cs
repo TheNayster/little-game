@@ -75,7 +75,8 @@ namespace LittleWeeps.Core
             foreach(var p in s.players)
                 if(double.IsNaN(p.useSeconds) || double.IsInfinity(p.useSeconds) || p.useSeconds<0 || p.useSeconds>86400 ||
                     (string.IsNullOrEmpty(p.fixture)?p.useSeconds!=0:
-                     (BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || !SecretRooms.Furnished(p.zone) || (SecretRooms.Index(p.zone)>=0?p.fixture==BedroomFurniture.Bed:SecretRooms.FortIndex(p.fixture)>=0) ||
+                     (BathroomLayout.Usable(p.fixture)?s.schema<BathroomLayout.Schema || p.zone!=BathroomLayout.Area || p.x!=BathroomLayout.X(p.fixture) || p.y!=BathroomLayout.Y:
+                      BedroomFurniture.Seat(p.fixture)?s.schema<BedroomFurniture.Schema || !SecretRooms.Furnished(p.zone) || (SecretRooms.Index(p.zone)>=0?p.fixture==BedroomFurniture.Bed:SecretRooms.FortIndex(p.fixture)>=0) ||
                       p.x!=BedroomFurniture.SeatX(p.fixture,SecretRooms.Furnishings(s).Single(r=>r.id==p.zone).layout) || p.y!=BedroomFurniture.SeatY(p.fixture):
                       ParkWheels.Usable(p.fixture)?s.schema<ParkPlay.Schema || !ParkWheels.Valid(p):
                       ParkPlay.Usable(p.fixture)?s.schema<ParkPlay.Schema || p.zone!="park" || p.x!=ParkPlay.X(p.fixture) || p.y!=ParkPlay.Y(p.fixture):
@@ -108,6 +109,7 @@ namespace LittleWeeps.Core
         // Returns a rejection without mutation, or commits a validated action.
         private string ApplyHome(SoloCommand c,SoloPlayer player)
         {
+            if(player.zone==BathroomLayout.Area)return ApplyBathroom(c,player);
             if(player.zone=="park")return ApplyParkFixture(c,player);
             if(SecretRooms.Furnished(player.zone))return ApplyBedroomFixture(c,player);
             if(state.home==null || player.zone!="garden")return "wrong-area";

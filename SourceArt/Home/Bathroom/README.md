@@ -1,0 +1,19 @@
+# Heeler bathroom — first room artwork
+
+Prepared September 30, 2026 with the built-in image_gen tool for H-06.
+
+The visual reference is the [official bathroom wallpaper](https://www.bluey.tv/wp-content/uploads/2025/04/bathroom.png), linked by [Bluey's House Wallpapers](https://www.bluey.tv/make/blueys-house-wallpapers/). The reference was visually inspected; it is retained only in ignored local research storage. [Burger Shop](https://www.bluey.tv/watch/season-2/burger-shop/) supplies the shared bath/toy/towel play reference.
+
+- `bathroom-room-v1.png`: wide room adaptation; runtime copy `Resources/Scenery/home-bathroom.png`.
+- `hallway-bathroom-v1.png`: existing hallway with the far-right window replaced by a mint bathroom door; four bedroom doors retained. Runtime copy `Resources/BathroomArt/hallway.png`.
+- Front-rim masking uses editable normalized polygons in `SoloBathroom.cs`, sampling the room's original pixels; water, ripples and droplets are separate runtime layers.
+
+Upstairs entry and the extra bath width are game layout choices. The official image does not establish a definitive floor plan. This is a generated adaptation awaiting family visual acceptance, not an exact show frame or a completed laundry feature.
+
+## Exact room prompt
+
+Use case: illustration-story. Asset type: final layered-ready bathroom room backdrop for a private 2D Bluey family playset game. Input image is the OFFICIAL Bluey Heeler bathroom visual reference, not an edit target. Reconstruct the identifiable bathroom in an attractive wide side-on 3:1 game panorama (2400x800 composition), in the show's crisp hand-drawn 2D style with flat pastel shading, fine colored outlines. Faithfully keep cream vertical wall paneling, pale turquoise rectangular lower wall tiles, white tiled floor with tiny charcoal corner diamonds, a small white rectangular wall-hung sink and exposed blue-grey pipe on the LEFT, tall rounded aqua mirror, orange brackets holding round frosted globe lamps, orange towel ring with coral towel, teal toothbrush cup; central broad white claw-foot bathtub with orange/gold claw feet and two orange rim handles, blue-grey faucet, blue fish and yellow star bath stickers; pale window above tub with turquoise top/bottom and pink-lavender middle panes; two small diamond glass wall plant shelves; a leafy pot on a mint stool beside tub; glass shower enclosure RIGHT with muted lavender-blue metal frame and big shower head, towel beside it. Adapt to side-on camera with straight horizontal wall/floor boundary around 65% image height, bathroom fixtures fully within frame with bottom front floor clear for four walking characters. Reserve leftmost 12% for a plain mint door to hallway. Tub spans x=32%-65%, rim at y=57%, feet at y=76%; sink x=19%-30%; shower x=79%-96%. No characters, no writing, no interface, no gradients or realistic textures. No laundry machines, no toilet added. Keep functional fixtures visually separated with ample walking floor. It should clearly look like this bathroom, not a generic spa. Exact wide panorama with attractive coherent clean readable shapes.
+
+## Exact hallway edit prompt
+
+Use case: precise-object-edit. Edit target: existing game's upstairs hallway panorama. Keep identical 3:1 dimensions, same camera, stairs, banister, floor, ceiling, all wall artwork, ALL FOUR existing colored bedroom doors unchanged. Change ONLY the narrow tall window at the far RIGHT (last 10% of image) into a FIFTH mint-green bathroom door in the same hand-drawn 2D Bluey style and perspective. Door frame fits x91%-99.3%, top at y9%, bottom at existing door floor level y57%. Simple two recessed panels, round orange doorknob, and tiny blue fish/star emblem on door upper panel (no words). Fill old window shape with this closed door. Do not modify the other four doors. Do not add UI, characters or text. Preserve every pixel outside the far-right window's frame and its new door outline as far as possible.

@@ -73,7 +73,9 @@ namespace LittleWeeps.Client
             if(view==null)return;
             Wear(player.outfit,player.outfitColor);
             var frame=motion.Observe(point,continuity,held,false,dt);
-            if(Core.BedroomFurniture.Seat(player.fixture))
+            if(Core.BathroomLayout.Usable(player.fixture))
+                frame=new CharacterFrame(CharacterPose.Idle,0,false,(float)player.useSeconds);
+            else if(Core.BedroomFurniture.Seat(player.fixture))
                 frame=new CharacterFrame(player.fixture==Core.BedroomFurniture.Bed?CharacterPose.Rest:CharacterPose.Sit,0,false,(float)player.useSeconds);
             else if(!held && Core.HomeLayout.Usable(player.fixture))
             {

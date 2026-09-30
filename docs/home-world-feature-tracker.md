@@ -113,7 +113,7 @@ Updated September 26, 2026. Maintained completion checklist for the connected ho
 | Shared 15-second hide-to-join, alternating parents and ten covers; Games picker | [Hide to join 229](implementation/hide-and-seek-hide-to-join-2026-09-30.html), [menu 231](implementation/evidence/mini-games-menu-2026-09-30/result.json) | Human seeker, ambient parent routines, speech/clues and upstairs search |
 | Title removal and aligned movement/Menu row; repaired four-member wall portrait artwork | [Controls 232](implementation/evidence/play-controls-2026-09-30/result.json), [portrait source/limits](../SourceArt/Home/FamilyPortrait/README.md) | Portrait native scene/build verification was blocked by concurrent park compilation; device delivery is separate |
 
-**Still unbuilt in native Home:** bathroom/laundry/dressing; TV video library/importer; twenty dinosaur toys and Discovery Mat; blender/drinks/cafe; blank/freehand art; shadow/string/seed science; garden hose/can/plant expansion, sand/mud, swing, wading pool, wagon/cargo; human-seeker and ambient parents. Browser previews and decorative pictures do not establish these features.
+**Still unbuilt in native Home:** bathroom expansion/laundry/dressing (first bath/sink room is partial); TV video library/importer; twenty dinosaur toys and Discovery Mat; blender/drinks/cafe; blank/freehand art; shadow/string/seed science; garden hose/can/plant expansion, sand/mud, swing, wading pool, wagon/cargo; human-seeker and ambient parents. Browser previews and decorative pictures do not establish these features.
 
 ## How to use this file
 
@@ -232,7 +232,7 @@ House/hall → kitchen/dining → veranda → backyard → far shed stays one pr
 Provide real bath/splash space with front-water masking, towels, storage, washable items, dressing and bedtime connections. The laundry activity below adds wash/hang/dry/return state; an empty illustrated bathroom is insufficient.
 
 
-- [ ] **H-06 — Bathroom and laundry spaces** — *Planned*. Not built in the native Home game: usable bathroom/laundry, bath/splash masking, towels, dressing and washable clothing with wash/hang/dry/return states. Illustrated space or prototype cleanup is not this room. [Implementation evidence](family-playset-build-guide-2026-09-23.html#all-35-feature-requirements-implementation-status). Sources: [§3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [§21](bluey-game-research-2026-09-23.html#21-five-cleanup-games-that-remain-playful).
+- [ ] **H-06 — Bathroom and laundry spaces** — *Partial*. First bathroom room built in source: connected upstairs door, show-reference artwork, four bath/sink places, splash/rim masking and independent exits. Remaining: usable shower/faucet/drain, movable towels/toys/storage, dressing and washable clothing with laundry wash/hang/dry/return states. No physical-device acceptance. [Research and evidence](implementation/bathroom-2026-09-30.html). Sources: [§3](bluey-game-research-2026-09-23.html#3-six-content-regions-five-destinations-and-eighteen-starter-quest-ideas) · [§21](bluey-game-research-2026-09-23.html#21-five-cleanup-games-that-remain-playful).
 
 
 ## Kitchen, dining and all 15 recipes

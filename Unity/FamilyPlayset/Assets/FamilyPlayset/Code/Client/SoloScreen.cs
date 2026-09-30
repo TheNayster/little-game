@@ -77,7 +77,7 @@ namespace LittleWeeps.Client
         }
         private void ResetPresentation()
         {
-            CancelPointers();CancelStairApproach();ResetBedrooms();ResetBedroomFurniture();ResetRoomPlay();ResetCollections();ResetDiscovery();ResetKitchen();ResetBooks();ResetSecrets();stairControl=null;stairFront=null;stairVisuals.Clear();Narration?.Stop();ResetScenery();ResetHome();
+            CancelPointers();CancelStairApproach();ResetBedrooms();ResetBathroom();ResetBedroomFurniture();ResetRoomPlay();ResetCollections();ResetDiscovery();ResetKitchen();ResetBooks();ResetSecrets();stairControl=null;stairFront=null;stairVisuals.Clear();Narration?.Stop();ResetScenery();ResetHome();
             // Keep one canvas, event system and narration source across switches.
             // Disable old children now so deferred Destroy cannot receive input.
             foreach(Transform child in safe){child.gameObject.SetActive(false);Destroy(child.gameObject);}
@@ -174,6 +174,7 @@ namespace LittleWeeps.Client
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
                 World = SoloWorld.WithPond(World);
+                World = SoloWorld.WithBathroom(World);
                 // Restore releases interrupted holds, hiding roles and fixture/stair
                 // leases. Persist every revision-changing restore, including an
                 // otherwise idle player who has just come out of cover.
@@ -305,7 +306,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildPond();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildPond();BuildBathroom();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -610,7 +611,7 @@ namespace LittleWeeps.Client
                 visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
             }
             PresentRooms();
-            PresentBedrooms();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();
+            PresentBedrooms();PresentBathroom();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
             PresentHideAndSeek();PresentPark();PresentWheels();
@@ -631,6 +632,7 @@ namespace LittleWeeps.Client
                 var hider=HideAndSeek.Player(HideGame,id);
                 if(hider?.mode==HiderMode.Hidden){Add(root,ToBoard(player.x,HideAndSeek.GroundY[hider.slot]).y,1,id);return;}
                 var fixture=player?.fixture??"";
+                if(BathroomLayout.Usable(fixture)){Add(root,ToBoard(0,BathroomLayout.Y).y,1,id);return;}
                 if(ParkWheels.Usable(fixture)){Add(root,WheelsGround(fixture),1,id);return;}
                 if(ParkPlay.Usable(fixture)){var ground=ParkPlayerGround(fixture);Add(root,ground,1,id);return;}
                 if(SecretRooms.FortIndex(fixture)>=0 && secretFort!=null){Add(root,secretFort.anchoredPosition.y,1,id);return;}
@@ -640,7 +642,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddPondDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
+            AddPondDepth(Add);AddBathroomDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);

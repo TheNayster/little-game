@@ -769,6 +769,8 @@ Recommend large tap targets, a visible float dip as well as a soft bite sound, n
 
 ## 21. Five cleanup games that remain playful
 
+**Bathroom start — September 30:** [Official reference and first playable room](implementation/bathroom-2026-09-30.html) adds shared four-person bath/sink play and an upstairs doorway. H-06 remains partial: faucet/drain/shower, towels/toys/storage, laundry wash/hang/dry/return, clothing and bedtime connections remain required. No device/server rollout or family visual acceptance.
+
 **Daddy Robot** turns tidying into pretend play; **Duck Cake** connects helping with a warm response; **Bin Night** shows a recurring family chore; **Rain** includes muddy tracks. These supply themes, not a reason to enforce chores in our app. [Daddy Robot](https://www.bluey.tv/watch/season-1/daddy-robot/), [Duck Cake](https://www.bluey.tv/watch/season-2/duck-cake/), [Bin Night](https://www.bluey.tv/watch/season-2/bin-night/), [Rain](https://www.bluey.tv/watch/season-3/rain/)
 
 | Activity | Simple Play | Deeper / shared play | Implementation and recovery |

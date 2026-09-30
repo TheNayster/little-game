@@ -21,7 +21,7 @@ namespace LittleWeeps.Client
             new SceneTile("home-secret",SecretRooms.Id(2),0),new SceneTile("home-secret",SecretRooms.Id(3),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(0),0),new SceneTile("home-bedroom",BedroomLayout.Id(1),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(2),0),new SceneTile("home-bedroom",BedroomLayout.Id(3),0),
-            new SceneTile("home-upstairs",HomeRooms.Landing,0),
+            new SceneTile("home-upstairs",HomeRooms.Landing,0),new SceneTile("home-bathroom",BathroomLayout.Area,0),
             new SceneTile("home-discovery","garden",-7200),new SceneTile("home-living","garden",-4800),new SceneTile("home-kitchen","garden",-2400),
             new SceneTile("garden-tree","garden",0),new SceneTile("garden-shed","garden",2400),
             new SceneTile("park-playground","park",0),new SceneTile("park-picnic","park",2400),
@@ -105,6 +105,7 @@ namespace LittleWeeps.Client
             }
             if(followParent)
             {manualCamera=false;cameraX=Mathf.Lerp(cameraX,HideGame.x,1-Mathf.Exp(-9*Time.unscaledDeltaTime));}
+            else if(CurrentArea==BathroomLayout.Area && BathroomLayout.Bath(ReadPlayer(Actor).fixture)){manualCamera=false;groundPan=false;cameraX=1190;}
             else if(PondCameraFollowing){manualCamera=false;groundPan=false;cameraX=PondFishing.X;}
             else if(CharactersOpen)cameraX=position.x;
             else if(!manualCamera)
@@ -134,7 +135,7 @@ namespace LittleWeeps.Client
             foreach(var pair in scenicImages.ToArray())if(!wanted.Any(t=>t.id==pair.Key))
             {var texture=pair.Value.texture;pair.Value.texture=null;Destroy(pair.Value.gameObject);scenicImages.Remove(pair.Key);Resources.UnloadAsset(texture);}
             foreach(var tile in wanted)if(!scenicImages.ContainsKey(tile.id) && !scenicRequests.ContainsKey(tile.id) && scenicImages.Count+scenicRequests.Count<3)
-                scenicRequests[tile.id]=Resources.LoadAsync<Texture2D>(SceneSchema>=PondFishing.Schema && tile.id=="garden-tree"?"PondArt/garden-tree-clean":SceneSchema>=PondFishing.Schema && tile.id=="garden-shed"?"PondArt/garden-clean":SceneSchema>=ParkPlay.Schema && (tile.id=="park-playground" || tile.id=="park-picnic")?"ParkArt/"+(tile.id=="park-playground"?"playground-clean":"picnic-clean"):"Scenery/"+(tile.id=="home-kitchen" && SceneSchema>=Kitchen.Schema?"home-kitchen-working":tile.id));
+                scenicRequests[tile.id]=Resources.LoadAsync<Texture2D>(SceneSchema>=PondFishing.Schema && tile.id=="garden-tree"?"PondArt/garden-tree-clean":SceneSchema>=PondFishing.Schema && tile.id=="garden-shed"?"PondArt/garden-clean":SceneSchema>=ParkPlay.Schema && (tile.id=="park-playground" || tile.id=="park-picnic")?"ParkArt/"+(tile.id=="park-playground"?"playground-clean":"picnic-clean"):SceneSchema>=BathroomLayout.Schema && tile.id=="home-upstairs"?"BathroomArt/hallway":"Scenery/"+(tile.id=="home-kitchen" && SceneSchema>=Kitchen.Schema?"home-kitchen-working":tile.id));
             foreach(var tile in wanted.OrderBy(t=>t.start))if(scenicImages.TryGetValue(tile.id,out var image))
             {
                 image.gameObject.SetActive(tile.area==CurrentArea);
