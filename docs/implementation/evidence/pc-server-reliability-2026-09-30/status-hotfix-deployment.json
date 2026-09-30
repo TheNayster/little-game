@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "result": "started",
+  "build": 227,
+  "statusHotfix": "227-status-io-1",
+  "portPreserved": true,
+  "firewallChanged": false,
+  "saveUnchangedDuringPublication": true,
+  "checkpoint": "verified",
+  "players": 0
+}

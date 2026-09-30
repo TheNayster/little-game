@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "fourClients": true,
+  "heldViewSeconds": 2,
+  "sameAuthorityPid": true,
+  "diagnosticConflicts": 48,
+  "independentDeparture": true,
+  "baselineContent": 31,
+  "baselineSchema": 30,
+  "saveStillReadable": true,
+  "physicalDevicesTested": false
+}

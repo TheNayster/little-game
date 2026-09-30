@@ -723,19 +723,7 @@ namespace LittleWeeps.NetworkProbe
         }
         private void WriteJson<T>(string path,T value)
         {
-            try
-            {
-                var temp=path+".pending";File.WriteAllText(temp,JsonUtility.ToJson(value,true),Utf8);
-                if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);
-            }
-            catch(IOException e) when((e.HResult&0xffff)==32 || (e.HResult&0xffff)==33)
-            {
-                // These files are disposable observations, never saved game
-                // state. A Windows observer briefly holding a file must not
-                // stop the server; the next observation replaces it. Durable
-                // CheckpointStore errors retain their separate failure path.
-                diagnosticWriteConflicts++;
-            }
+            if(!DiagnosticFileWriter.TryWrite(path,JsonUtility.ToJson(value,true),Utf8))diagnosticWriteConflicts++;
         }
         private void WriteStatus(string status,string reason)
         {ConnectionStatus=status;if(output!=null)WriteJson(Path.Combine(output,"status.json"),new Status{role=config.role,runId=config.runId,instanceId=config.instanceId,build=Application.version,status=status,reason=reason,pid=System.Diagnostics.Process.GetCurrentProcess().Id,persistentServer=config.persistentServer});}

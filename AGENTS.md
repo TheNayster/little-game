@@ -31,6 +31,8 @@
 
 ## Shared PC server and app updates — September 30
 
+- Installed server 227 has status hotfix `227-status-io-1`. Preserve it during compatible app updates; future server builds must include `DiagnosticFileWriter` and its `WriteJson` call. The policy records the corrected crash evidence; the original helper-only correction was insufficient. Do not restore the unpatched original 227 assembly into the live slot.
+
 - Read `docs/server-update-policy.md` before every app/server rollout, even if this chat read AGENTS earlier. Multiple user chats share this checkout and the live family server. Re-read the rollout record before acting; do not use a chat's cached server build or endpoint as authority.
 - Compatible app releases must leave the existing server process, endpoint, firewall, enrollment and parent-helper selection alone. App build numbers do not need to equal the server build. Shared protocol/content compatibility does need to match; never bypass admission checks to conceal a mismatch.
 - Do not bump shared compatibility for artwork, sound, menus or other client-only presentation changes. When shared rules/messages/save fields change, record the reason and prepare a coordinated server update. Missing compatibility metadata means unknown, not permission to replace a server.

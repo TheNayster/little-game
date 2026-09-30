@@ -1,5 +1,8 @@
 # The Family Playset — ground-up build guide
 
+**Server status-write crash corrected — September 30:** installed **227-status-io-1** keeps baseline content 31/schema 30, port and firewall; only the networking assembly status writer changed. Earlier helper changes alone did not stop the repeated failure. Four-client locked-file testing and the installed two-device test retain the authority through 48/51 conflicts. [Cause, established hosting options and scoped acceptance](server-update-policy.md#september-30-status-write-crash-correction). Do not reinstall unpatched 227; compatible app updates still leave the server alone.
+
+
 **Persistent PC server installed — September 30:** release **227** now uses one permanent executable path, retained game port, reusable verified LAN firewall rule and corrected parent selection. Sign-in startup, native crash recovery and helper watchdog are enabled; Stop/Pause remains respected. Compatible app updates leave the server alone. [Mandatory cross-chat rollout policy and acceptance](server-update-policy.md). Seven focused tests and real deployment checks pass; two enrolled players were observed. Candidates 229–231/content 33 still require a coordinated update from installed content 31. No device update, pre-login service, sleep-policy change or router reservation was made. Preserve the main integration hold.
 
 

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "samePid": true,
+  "sameInstance": true,
+  "playersBefore": 2,
+  "playersAfter": 2,
+  "deliberateStatusLockSeconds": 2,
+  "conflictsSkipped": 51,
+  "port": 63648,
+  "checkpoint": "verified",
+  "state": "ready",
+  "build": 227,
+  "hotfix": "227-status-io-1"
+}
