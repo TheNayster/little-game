@@ -1,0 +1,217 @@
+{
+  "source": "SourceArt/Characters/ModelSheets/dusty.png",
+  "sourceSha256": "25a06888325e1fb5a61010f6504d07eec5024b2f8cf8eeecea2831e3500ebeb8",
+  "width": 1254,
+  "height": 1254,
+  "referenceHeight": 291,
+  "frames": [
+    {
+      "name": "front",
+      "pixels": {
+        "x": 76,
+        "y": 19,
+        "width": 207,
+        "height": 295
+      },
+      "ground": {
+        "x": 191.0,
+        "y": 314
+      }
+    },
+    {
+      "name": "three-quarter",
+      "pixels": {
+        "x": 391,
+        "y": 11,
+        "width": 205,
+        "height": 303
+      },
+      "ground": {
+        "x": 501.5,
+        "y": 314
+      }
+    },
+    {
+      "name": "profile",
+      "pixels": {
+        "x": 698,
+        "y": 13,
+        "width": 212,
+        "height": 301
+      },
+      "ground": {
+        "x": 794.5,
+        "y": 314
+      }
+    },
+    {
+      "name": "back",
+      "pixels": {
+        "x": 1019,
+        "y": 14,
+        "width": 180,
+        "height": 300
+      },
+      "ground": {
+        "x": 1103.5,
+        "y": 314
+      }
+    },
+    {
+      "name": "blink",
+      "pixels": {
+        "x": 67,
+        "y": 325,
+        "width": 211,
+        "height": 302
+      },
+      "ground": {
+        "x": 182.5,
+        "y": 626
+      }
+    },
+    {
+      "name": "wave",
+      "pixels": {
+        "x": 383,
+        "y": 325,
+        "width": 244,
+        "height": 302
+      },
+      "ground": {
+        "x": 498.5,
+        "y": 627
+      }
+    },
+    {
+      "name": "sit",
+      "pixels": {
+        "x": 703,
+        "y": 355,
+        "width": 211,
+        "height": 272
+      },
+      "ground": {
+        "x": 809.0,
+        "y": 627
+      }
+    },
+    {
+      "name": "carry",
+      "pixels": {
+        "x": 1013,
+        "y": 326,
+        "width": 186,
+        "height": 301
+      },
+      "ground": {
+        "x": 1106.5,
+        "y": 627
+      }
+    },
+    {
+      "name": "contact-right",
+      "pixels": {
+        "x": 71,
+        "y": 637,
+        "width": 208,
+        "height": 301
+      },
+      "ground": {
+        "x": 175.0,
+        "y": 936
+      }
+    },
+    {
+      "name": "passing-left",
+      "pixels": {
+        "x": 389,
+        "y": 643,
+        "width": 204,
+        "height": 289
+      },
+      "ground": {
+        "x": 489.5,
+        "y": 930
+      }
+    },
+    {
+      "name": "contact-left",
+      "pixels": {
+        "x": 706,
+        "y": 646,
+        "width": 205,
+        "height": 291
+      },
+      "ground": {
+        "x": 810.0,
+        "y": 935
+      }
+    },
+    {
+      "name": "passing-right",
+      "pixels": {
+        "x": 1019,
+        "y": 646,
+        "width": 193,
+        "height": 285
+      },
+      "ground": {
+        "x": 1123.0,
+        "y": 929
+      }
+    },
+    {
+      "name": "dance-left",
+      "pixels": {
+        "x": 46,
+        "y": 947,
+        "width": 255,
+        "height": 284
+      },
+      "ground": {
+        "x": 162.5,
+        "y": 1229
+      }
+    },
+    {
+      "name": "dance-right",
+      "pixels": {
+        "x": 367,
+        "y": 940,
+        "width": 251,
+        "height": 291
+      },
+      "ground": {
+        "x": 479.5,
+        "y": 1229
+      }
+    },
+    {
+      "name": "reach",
+      "pixels": {
+        "x": 687,
+        "y": 944,
+        "width": 253,
+        "height": 285
+      },
+      "ground": {
+        "x": 803.5,
+        "y": 1227
+      }
+    },
+    {
+      "name": "happy",
+      "pixels": {
+        "x": 1010,
+        "y": 940,
+        "width": 194,
+        "height": 292
+      },
+      "ground": {
+        "x": 1109.5,
+        "y": 1230
+      }
+    }
+  ]
+}

@@ -1,0 +1,446 @@
+{
+  "mode": "built-in image_gen",
+  "date": "2026-09-30",
+  "entries": [
+    {
+      "id": "bluey",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: bluey. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\bluey.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-402eada6-f557-4d2c-9536-3607362cb682.png"
+    },
+    {
+      "id": "bingo",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: bingo. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\bingo.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-5ac52fe4-e0eb-4025-9566-fe670e9ae4fe.png"
+    },
+    {
+      "id": "muffin",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: muffin. Official identity reference is image 2. Use ordinary fur without the purple costume.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\muffin.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-066dab99-e3f0-4350-8ee0-2d81a930c09a.png"
+    },
+    {
+      "id": "socks",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: socks. Official identity reference is image 2. ",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\socks.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-74fed093-8a75-4541-b48f-4235d60cd083.png"
+    },
+    {
+      "id": "bandit",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: bandit. Official identity reference is image 2. ",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\bandit.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-99276950-1a55-4afd-9299-2c14ea286945.png"
+    },
+    {
+      "id": "chilli",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: chilli. Official identity reference is image 2. ",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\chilli.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-548c1f7d-7ad3-485c-81f2-d3cc18b594e4.png"
+    },
+    {
+      "id": "chloe",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: chloe. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\chloe.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-d051f32c-213b-4a34-b8f9-100454155fc4.png"
+    },
+    {
+      "id": "coco",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: coco. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\coco.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-4cd8b86d-eb65-4e61-a95f-38b1d87ed902.png"
+    },
+    {
+      "id": "honey",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: honey. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\honey.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-d34b5527-088d-45e0-88da-a5c694189382.png"
+    },
+    {
+      "id": "indy",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: indy. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\indy.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-3f350263-55fc-4718-950e-a64a7d167cd0.png"
+    },
+    {
+      "id": "mackenzie",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: mackenzie. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\mackenzie.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-852211c1-f68d-4181-bfd2-164fd2977eb4.png"
+    },
+    {
+      "id": "rusty",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: rusty. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\rusty.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-3f45d8ac-2420-46e8-aa9a-67669ff79266.png"
+    },
+    {
+      "id": "jack",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: jack. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\jack.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-b842c20b-6910-45b5-b1e6-33ab863925fd.png"
+    },
+    {
+      "id": "snickers",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: snickers. Preserve the long narrow dachshund body, tiny legs, floppy ears, yellow-green cap; never give him Bluey's square body.\nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\snickers.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-c3e64f6d-3198-47ee-a2ca-dcbf10fae2d0.png"
+    },
+    {
+      "id": "winton",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: winton. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\winton.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-b9f5713d-c401-4e37-bfce-e392beec16dc.png"
+    },
+    {
+      "id": "terrier-1",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: terrier-1. Only Terrier 1 in all sixteen cells. In image 2 use the light grey/white brother at front left. Do not include the other two brothers.\nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\the-terriers.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-90ae14af-b514-4922-88a8-245305c293ba.png"
+    },
+    {
+      "id": "terrier-2",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: terrier-2. Only Terrier 2 in all sixteen cells. In image 2 use the darkest charcoal/white brother behind in the middle. Do not include the other two brothers.\nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\the-terriers.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-51c1a182-9778-41cf-8bef-5c5830e7f157.png"
+    },
+    {
+      "id": "terrier-3",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: terrier-3. Only Terrier 3 in all sixteen cells. In image 2 use the grey/cream brother at front right. Do not include the other two brothers.\nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\the-terriers.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-5fb2338f-c9c5-48c1-98ec-84134c55c945.png"
+    },
+    {
+      "id": "lucky",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: lucky. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\lucky.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-b5ad481b-1ce8-47e8-9fba-87a7a1fe7efe.png"
+    },
+    {
+      "id": "chucky",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: chucky. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\chucky.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-862b086a-4024-44a0-848b-45b99e7a6759.png"
+    },
+    {
+      "id": "judo",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: judo. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\judo.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-20379eba-c4c5-423f-9d35-f005f595a66e.png"
+    },
+    {
+      "id": "pom-pom",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: pom-pom. Preserve tiny fluffy rounded white pomeranian body and tiny ears, never give her Bluey's rectangular body.\nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\pom-pom.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-55987920-0b96-4883-98cd-0b93b284a000.png"
+    },
+    {
+      "id": "lila",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: lila. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\lila.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-77181e93-ac46-444b-a83a-d90e052c9628.png"
+    },
+    {
+      "id": "missy",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: missy. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\missy.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-dc5c0244-0f42-4027-860c-ec0b17666ae9.png"
+    },
+    {
+      "id": "buddy",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: buddy. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\buddy.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-327835b7-a782-4ace-b9d0-4da07f0237cf.png"
+    },
+    {
+      "id": "bentley",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: bentley. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\bentley.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-f508a417-1ce0-4e83-8994-7522c1af3ed1.png"
+    },
+    {
+      "id": "juniper",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: juniper. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\juniper.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-9d914da6-7381-47f9-aa27-92b7c81aef90.png"
+    },
+    {
+      "id": "winnie",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: winnie. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\winnie.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-31f6a89b-abfd-4e26-ab2c-b36f41b8b906.png"
+    },
+    {
+      "id": "jean-luc",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: jean-luc. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\jean-luc.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-a97fd8e8-e7e6-4444-9b1d-dd9e136dd9c2.png"
+    },
+    {
+      "id": "lulu",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: lulu. The official reference establishes only the head. The small Jack Russell body is a provisional study requiring full-body reference review.\nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\lulu.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-53ace588-5c23-4874-b0ec-6d29991a3f32.png"
+    },
+    {
+      "id": "dusty",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: dusty. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\dusty.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-95474f88-31c6-4523-ab97-c37e72a0b8dc.png"
+    },
+    {
+      "id": "dougie",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: dougie. Preserve Dougie's identity as a deaf child; the wave is a simple greeting, never label generated gestures as authentic Auslan.\nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\dougie.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-54031303-08e4-4f1e-8f21-ec5beab14123.png"
+    },
+    {
+      "id": "hercules",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: hercules. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\hercules.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-43965917-4860-4cd6-8209-2c9123a7f2eb.png"
+    },
+    {
+      "id": "pretzel",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: pretzel. Pretzel from Bluey: brown Chihuahua school friend, tan/brown compact fur, cream muzzle and chest, large upright ears. Missing verified official full-body reference: this is a provisional likeness study for review.\nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-6af19712-1373-42e1-99ed-579d57fb5961.png"
+    },
+    {
+      "id": "digger",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: digger. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\digger.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-663ae2ec-2dee-4f49-a8c5-c580eae824b1.png"
+    },
+    {
+      "id": "mia",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: mia. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\mia.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-dbe53e5f-3f0a-4ab6-9ec3-6a6c7ccc2cdc.png"
+    },
+    {
+      "id": "captain",
+      "arguments": {
+        "prompt": "Use case: stylized-concept. Asset: individual 2D CHARACTER MODEL SHEET for Little Weeps. Transform the style reference into the named character, using the second official reference to preserve the exact character's recognizable silhouette, facial markings, ears, muzzle, tail, and proportions. Match the clean flat-color outlined Bluey television illustration and existing friendly game art; never simply recolor Bluey. A transparent 4-column by 4-row sheet with exactly sixteen isolated full-body drawings, evenly sized cells and generous gutters. No labels, no text, no props, no background, no grid, no cast shadows. Consistent scale within all cells, entire ears/tails/feet inside each cell. Row 1 left-to-right: front standing, right three-quarter standing smiling (this is the menu pose), strict right profile standing, rear standing. Row 2: right three-quarter standing with both eyes closed; right three-quarter friendly wave; right three-quarter seated on an invisible seat with knees and feet forward; right three-quarter carry-ready with empty near hand at waist. Row 3: four small relaxed right-facing walking poses, alternating contact right leg forward, passing left leg lifting, contact left leg forward, passing right leg lifting. Keep small arm/leg swings. Row 4: happy dance leaning left with arms raised; happy dance leaning right with arms raised; near hand reaching forward; happy smile. Preserve true alpha edges and original character anatomy. Treat this as a production candidate, precise likeness more important than ornament.\nCharacter: captain. \nClean alpha: all space outside the character outlines must be fully transparent; remove stray blue pixels, speckles, fringe and noise present in the style reference.",
+        "referenced_image_paths": [
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\SourceArt\\Characters\\AnimationSheets\\bluey-actions.png",
+          "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\CharacterRosterReferences\\captain.png"
+        ],
+        "transparent_background": true
+      },
+      "generatedPath": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f3ad-2597-71f1-aa16-8b8b403dd58a\\exec-6de5479e-6288-4719-a402-4e1a05ac7444.png"
+    }
+  ]
+}

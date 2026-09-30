@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "build": 253,
+  "checks": [
+    "four clients choose the same favorite; one exits and siblings continue changing characters"
+  ],
+  "liveFamilyTouched": false
+}

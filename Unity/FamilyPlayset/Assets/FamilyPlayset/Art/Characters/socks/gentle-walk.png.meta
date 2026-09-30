@@ -1,0 +1,3497 @@
+fileFormatVersion: 2
+guid: ceee5963a8c27244887dc7e951645763
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1728411249337220362
+    second: gentle-walk_0
+  - first:
+      213: -8538681510983780493
+    second: gentle-walk_1
+  - first:
+      213: 8507377207703860156
+    second: gentle-walk_2
+  - first:
+      213: -6845389869826141936
+    second: gentle-walk_3
+  - first:
+      213: -5685311542680903017
+    second: gentle-walk_4
+  - first:
+      213: 5580525060862508406
+    second: gentle-walk_5
+  - first:
+      213: -6884937568343594125
+    second: gentle-walk_6
+  - first:
+      213: 3157555259298873607
+    second: gentle-walk_7
+  - first:
+      213: 1954688575568363930
+    second: gentle-walk_8
+  - first:
+      213: -4544711571964702381
+    second: gentle-walk_9
+  - first:
+      213: 2740939482752143805
+    second: gentle-walk_10
+  - first:
+      213: -6104366806525943098
+    second: gentle-walk_11
+  - first:
+      213: 7844653911990140847
+    second: gentle-walk_12
+  - first:
+      213: -4497337875261386647
+    second: gentle-walk_13
+  - first:
+      213: -7856564209522490761
+    second: gentle-walk_14
+  - first:
+      213: -2421728961260701169
+    second: gentle-walk_15
+  - first:
+      213: -4058823687915702276
+    second: gentle-walk_16
+  - first:
+      213: 1130839869861719814
+    second: gentle-walk_17
+  - first:
+      213: 3150897497572741065
+    second: gentle-walk_18
+  - first:
+      213: 1243787863961045498
+    second: gentle-walk_19
+  - first:
+      213: 5115413564635613838
+    second: gentle-walk_20
+  - first:
+      213: 6762690368406765916
+    second: gentle-walk_21
+  - first:
+      213: 2002537180519258599
+    second: gentle-walk_22
+  - first:
+      213: -4617524036502065838
+    second: gentle-walk_23
+  - first:
+      213: 7504214756447554893
+    second: gentle-walk_24
+  - first:
+      213: -2434987510867891750
+    second: gentle-walk_25
+  - first:
+      213: 2112494857363589834
+    second: gentle-walk_26
+  - first:
+      213: 8811585112023378212
+    second: gentle-walk_27
+  - first:
+      213: -6964004661488347427
+    second: gentle-walk_28
+  - first:
+      213: 1927895099983708329
+    second: gentle-walk_29
+  - first:
+      213: -1172243357834337769
+    second: gentle-walk_30
+  - first:
+      213: 1207840781658168643
+    second: gentle-walk_31
+  - first:
+      213: 7247467441498743995
+    second: gentle-walk_32
+  - first:
+      213: -3006224739136308589
+    second: gentle-walk_33
+  - first:
+      213: -5067520637799511721
+    second: gentle-walk_34
+  - first:
+      213: 1790240284090758460
+    second: gentle-walk_35
+  - first:
+      213: -5936897267410308860
+    second: gentle-walk_36
+  - first:
+      213: 4116861118893242302
+    second: gentle-walk_37
+  - first:
+      213: -3124145335555495048
+    second: gentle-walk_38
+  - first:
+      213: -7712060694104166807
+    second: gentle-walk_39
+  - first:
+      213: 4776446169317338333
+    second: gentle-walk_40
+  - first:
+      213: -881896122999566422
+    second: gentle-walk_41
+  - first:
+      213: -2032573758607589733
+    second: gentle-walk_42
+  - first:
+      213: 4333434129315921715
+    second: gentle-walk_43
+  - first:
+      213: -3844422470347710331
+    second: gentle-walk_44
+  - first:
+      213: 49307312175487646
+    second: gentle-walk_45
+  - first:
+      213: 2862105076391036820
+    second: gentle-walk_46
+  - first:
+      213: 5312660143858566535
+    second: gentle-walk_47
+  - first:
+      213: 3633747055447972801
+    second: gentle-walk_48
+  - first:
+      213: -801434164533036924
+    second: gentle-walk_49
+  - first:
+      213: 8506786457060002412
+    second: gentle-walk_50
+  - first:
+      213: 6353867667799115387
+    second: gentle-walk_51
+  - first:
+      213: -2534979392197636794
+    second: gentle-walk_52
+  - first:
+      213: -1587921761726114440
+    second: gentle-walk_53
+  - first:
+      213: 2800524038119125993
+    second: gentle-walk_54
+  - first:
+      213: -4791840233837897155
+    second: gentle-walk_55
+  - first:
+      213: -1121338159217282064
+    second: gentle-walk_56
+  - first:
+      213: -8710245411969419120
+    second: gentle-walk_57
+  - first:
+      213: 8126276735250163726
+    second: gentle-walk_58
+  - first:
+      213: -3767746869638287698
+    second: gentle-walk_59
+  - first:
+      213: -7454004033993922702
+    second: gentle-walk_60
+  - first:
+      213: -2847320466172855590
+    second: gentle-walk_61
+  - first:
+      213: -2601880886199402662
+    second: gentle-walk_62
+  - first:
+      213: -860042556473405170
+    second: gentle-walk_63
+  - first:
+      213: 3554509542163941410
+    second: gentle-walk_64
+  - first:
+      213: -2986537820801715718
+    second: gentle-walk_65
+  - first:
+      213: 6982102788121972556
+    second: gentle-walk_66
+  - first:
+      213: -7354415504542037507
+    second: gentle-walk_67
+  - first:
+      213: -6047180004918302538
+    second: gentle-walk_68
+  - first:
+      213: -8532917932893514018
+    second: gentle-walk_69
+  - first:
+      213: 1548421403897985343
+    second: gentle-walk_70
+  - first:
+      213: 5056273962129683991
+    second: gentle-walk_71
+  - first:
+      213: -6129630097296212877
+    second: gentle-walk_72
+  - first:
+      213: -1255849572240916763
+    second: gentle-walk_73
+  - first:
+      213: -4067018966031517373
+    second: gentle-walk_74
+  - first:
+      213: -5346726183261063269
+    second: gentle-walk_75
+  - first:
+      213: 9198942993951359341
+    second: gentle-walk_76
+  - first:
+      213: -8743959424850586792
+    second: gentle-walk_77
+  - first:
+      213: 3281214406802011926
+    second: gentle-walk_78
+  - first:
+      213: 3815836940626920006
+    second: gentle-walk_79
+  - first:
+      213: 129778482081494038
+    second: gentle-walk_80
+  - first:
+      213: 897111010957577057
+    second: gentle-walk_81
+  - first:
+      213: -2486423763503759283
+    second: gentle-walk_82
+  - first:
+      213: 6873465987113798631
+    second: gentle-walk_83
+  - first:
+      213: 1567370325467250739
+    second: gentle-walk_84
+  - first:
+      213: -3745518149609510987
+    second: gentle-walk_85
+  - first:
+      213: 3049967936231697439
+    second: gentle-walk_86
+  - first:
+      213: -7074001076547134107
+    second: gentle-walk_87
+  - first:
+      213: 742962370699845503
+    second: gentle-walk_88
+  - first:
+      213: 420496930305911793
+    second: gentle-walk_89
+  - first:
+      213: -1530542931501090316
+    second: gentle-walk_90
+  - first:
+      213: 5181080050452192049
+    second: gentle-walk_91
+  - first:
+      213: 6450701784092800418
+    second: gentle-walk_92
+  - first:
+      213: -2910024042050009597
+    second: gentle-walk_93
+  - first:
+      213: 3999328052272641754
+    second: gentle-walk_94
+  - first:
+      213: -6992593988690580635
+    second: gentle-walk_95
+  - first:
+      213: 1544439318596345892
+    second: gentle-walk_96
+  - first:
+      213: 2112727905083927878
+    second: gentle-walk_97
+  - first:
+      213: 5343837285535094576
+    second: gentle-walk_98
+  - first:
+      213: -4266784722324535004
+    second: gentle-walk_99
+  - first:
+      213: -929095161868804596
+    second: gentle-walk_100
+  - first:
+      213: -6808481882936506878
+    second: gentle-walk_101
+  - first:
+      213: 603379774284331552
+    second: gentle-walk_102
+  - first:
+      213: 2424046020416348756
+    second: gentle-walk_103
+  - first:
+      213: 2868913462048839368
+    second: gentle-walk_104
+  - first:
+      213: -8845925488950630592
+    second: gentle-walk_105
+  - first:
+      213: -129395467528229566
+    second: gentle-walk_106
+  - first:
+      213: -7929843595106397442
+    second: gentle-walk_107
+  - first:
+      213: -6627644875706812253
+    second: gentle-walk_108
+  - first:
+      213: 8965648216095268272
+    second: gentle-walk_109
+  - first:
+      213: -5819222309768598923
+    second: gentle-walk_110
+  - first:
+      213: -8898786310188689260
+    second: gentle-walk_111
+  - first:
+      213: -3604652002208932620
+    second: gentle-walk_112
+  - first:
+      213: 7956343816474454497
+    second: gentle-walk_113
+  - first:
+      213: 713627728259014077
+    second: gentle-walk_114
+  - first:
+      213: -3089476695119280243
+    second: gentle-walk_115
+  - first:
+      213: 6865057725979273471
+    second: gentle-walk_116
+  - first:
+      213: 4798039063553505339
+    second: gentle-walk_117
+  - first:
+      213: -8275803346379520753
+    second: gentle-walk_118
+  - first:
+      213: 748035839796678770
+    second: gentle-walk_119
+  - first:
+      213: -6775412892394778070
+    second: gentle-walk_120
+  - first:
+      213: 7049787275876920847
+    second: gentle-walk_121
+  - first:
+      213: -7829420831547062214
+    second: gentle-walk_122
+  - first:
+      213: 133654860019411506
+    second: gentle-walk_123
+  - first:
+      213: -6198557000043309432
+    second: gentle-walk_124
+  - first:
+      213: -939395429478302631
+    second: gentle-walk_125
+  - first:
+      213: 114075466124975418
+    second: gentle-walk_126
+  - first:
+      213: 5233377318674892659
+    second: gentle-walk_127
+  - first:
+      213: -2213787115838894330
+    second: gentle-walk_128
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gentle-walk_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 323
+        height: 1244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0db88eafdc8cf710800000000000000
+      internalID: 1728411249337220362
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_1
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 515
+        width: 339
+        height: 727
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 377bd97d762808980800000000000000
+      internalID: -8538681510983780493
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_2
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 901
+        width: 241
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb371731f76401670800000000000000
+      internalID: 8507377207703860156
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_3
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 1197
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01194fb8e2a4001a0800000000000000
+      internalID: -6845389869826141936
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_4
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1201
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 792a3152647b911b0800000000000000
+      internalID: -5685311542680903017
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_5
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 1177
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67dffd8d9f1027d40800000000000000
+      internalID: 5580525060862508406
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_6
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 1195
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37b632272c9c370a0800000000000000
+      internalID: -6884937568343594125
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_7
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 903
+        width: 305
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7010d2567c3e1db20800000000000000
+      internalID: 3157555259298873607
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_8
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 1113
+        width: 40
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a91444137e2702b10800000000000000
+      internalID: 1954688575568363930
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_9
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 1105
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 351df6a77e0fde0c0800000000000000
+      internalID: -4544711571964702381
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_10
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 1100
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1d84cffe5c90620800000000000000
+      internalID: 2740939482752143805
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_11
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 1098
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c2e5565bbee84ba0800000000000000
+      internalID: -6104366806525943098
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_12
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1074
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faffc029b2fcddc60800000000000000
+      internalID: 7844653911990140847
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_13
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 1080
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9609226c70f3691c0800000000000000
+      internalID: -4497337875261386647
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_14
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 1045
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7724d503a70e7f290800000000000000
+      internalID: -7856564209522490761
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_15
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1062
+        width: 27
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0ab7c1375a446ed0800000000000000
+      internalID: -2421728961260701169
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_16
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 1048
+        width: 38
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf7f7d34c592ca7c0800000000000000
+      internalID: -4058823687915702276
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_17
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 1046
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60fe4f4cedc81bf00800000000000000
+      internalID: 1130839869861719814
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_18
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1058
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cf8d72749c3abb20800000000000000
+      internalID: 3150897497572741065
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_19
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1012
+        width: 20
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af9075fe872d24110800000000000000
+      internalID: 1243787863961045498
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_20
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 1040
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8a025fc8899df640800000000000000
+      internalID: 5115413564635613838
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_21
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 1002
+        width: 20
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5147de4f07e9dd50800000000000000
+      internalID: 6762690368406765916
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_22
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 950
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e9dc5ea4f07acb10800000000000000
+      internalID: 2002537180519258599
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_23
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 923
+        width: 32
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25d677e7a524befb0800000000000000
+      internalID: -4617524036502065838
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_24
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 966
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4d0d4cdf83542860800000000000000
+      internalID: 7504214756447554893
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_25
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 918
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad9e43e82cf253ed0800000000000000
+      internalID: -2434987510867891750
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_26
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 913
+        width: 33
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aca0ffa51e6115d10800000000000000
+      internalID: 2112494857363589834
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_27
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 925
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 429264e39f9094a70800000000000000
+      internalID: 8811585112023378212
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_28
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 891
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd692d148a2ea5f90800000000000000
+      internalID: -6964004661488347427
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_29
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 593
+        width: 269
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a0ceb6016241ca10800000000000000
+      internalID: 1927895099983708329
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_30
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 590
+        width: 297
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71229f970ea5bbfe0800000000000000
+      internalID: -1172243357834337769
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_31
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 869
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34d17ff9acc13c010800000000000000
+      internalID: 1207840781658168643
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_32
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 883
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb4edb34d3d249460800000000000000
+      internalID: 7247467441498743995
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_33
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 885
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39af9c4078eb746d0800000000000000
+      internalID: -3006224739136308589
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_34
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 843
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 759cffb24dc8ca9b0800000000000000
+      internalID: -5067520637799511721
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_35
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 757
+        width: 17
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c35f2d3ad0638d810800000000000000
+      internalID: 1790240284090758460
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_36
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 797
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 401750ce367eb9da0800000000000000
+      internalID: -5936897267410308860
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_37
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 763
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb7bf352067022930800000000000000
+      internalID: 4116861118893242302
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_38
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 742
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87b6587ae5ec4a4d0800000000000000
+      internalID: -3124145335555495048
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_39
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 722
+        width: 24
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96e2ba1b8a149f490800000000000000
+      internalID: -7712060694104166807
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_40
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 718
+        width: 62
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddc6feafb78594240800000000000000
+      internalID: 4776446169317338333
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_41
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 722
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaf01db0620e2c3f0800000000000000
+      internalID: -881896122999566422
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_42
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 714
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9ef9628fe8dac3e0800000000000000
+      internalID: -2032573758607589733
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_43
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 727
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33ffd6f8163732c30800000000000000
+      internalID: 4333434129315921715
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_44
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 714
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5802560c12ed5aac0800000000000000
+      internalID: -3844422470347710331
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_45
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 644
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9a9c0b3dbc2fa000800000000000000
+      internalID: 49307312175487646
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_46
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 609
+        width: 73
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4974124276d38b720800000000000000
+      internalID: 2862105076391036820
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_47
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 585
+        width: 59
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 785c01fc04c5ab940800000000000000
+      internalID: 5312660143858566535
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_48
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 638
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cb199bc1b9ad6230800000000000000
+      internalID: 3633747055447972801
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_49
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 602
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4887520afdbb0e4f0800000000000000
+      internalID: -801434164533036924
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_50
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 575
+        width: 51
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6a4a29363d2e0670800000000000000
+      internalID: 8506786457060002412
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_51
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 584
+        width: 43
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b768109caf87d2850800000000000000
+      internalID: 6353867667799115387
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_52
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 612
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64dcf177ca1f1dcd0800000000000000
+      internalID: -2534979392197636794
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_53
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 294
+        width: 222
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 875d335229196f9e0800000000000000
+      internalID: -1587921761726114440
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_54
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 576
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3780d56c57dd620800000000000000
+      internalID: 2800524038119125993
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_55
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 578
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3adaa112b6ff7db0800000000000000
+      internalID: -4791840233837897155
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_56
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 578
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f373c2a2e43070f0800000000000000
+      internalID: -1121338159217282064
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_57
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 578
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 098361952fdfe1780800000000000000
+      internalID: -8710245411969419120
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_58
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 290
+        width: 260
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e086b17c2a556c070800000000000000
+      internalID: 8126276735250163726
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_59
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 576
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaeae973f2646bbc0800000000000000
+      internalID: -3767746869638287698
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_60
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 582
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 277a677f2de0e8890800000000000000
+      internalID: -7454004033993922702
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_61
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 564
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ada311c2f194c78d0800000000000000
+      internalID: -2847320466172855590
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_62
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 298
+        width: 229
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5fb43e8e1344ebd0800000000000000
+      internalID: -2601880886199402662
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_63
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 568
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e011fa10ad38014f0800000000000000
+      internalID: -860042556473405170
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_64
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 549
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2280b639897245130800000000000000
+      internalID: 3554509542163941410
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_65
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 544
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af138d2ecafad86d0800000000000000
+      internalID: -2986537820801715718
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_66
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 530
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4f46473e7965e060800000000000000
+      internalID: 6982102788121972556
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_67
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 526
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df98521601edfe990800000000000000
+      internalID: -7354415504542037507
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_68
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 521
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b8eff923d9141ca0800000000000000
+      internalID: -6047180004918302538
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_69
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 511
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed65250795cf49980800000000000000
+      internalID: -8532917932893514018
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_70
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 490
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3973fd10191d7510800000000000000
+      internalID: 1548421403897985343
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_71
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 475
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 716fbc7116e7b2640800000000000000
+      internalID: 5056273962129683991
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_72
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 417
+        width: 57
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37cbd1617ed2feaa0800000000000000
+      internalID: -6129630097296212877
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_73
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 469
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eef043c773529ee0800000000000000
+      internalID: -1255849572240916763
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_74
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 439
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3493ae26ccb0f87c0800000000000000
+      internalID: -4067018966031517373
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_75
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 415
+        width: 85
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b97b17f4ddc9cc5b0800000000000000
+      internalID: -5346726183261063269
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_76
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 468
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d610a873ae539af70800000000000000
+      internalID: 9198942993951359341
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_77
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 427
+        width: 24
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8531a570b3737a680800000000000000
+      internalID: -8743959424850586792
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_78
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 418
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 617f35d4e17398d20800000000000000
+      internalID: 3281214406802011926
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_79
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 407
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64281e6fa7394f430800000000000000
+      internalID: 3815836940626920006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_80
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 429
+        width: 40
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 614f4f387d01dc100800000000000000
+      internalID: 129778482081494038
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_81
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 409
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16bc73c16bd237c00800000000000000
+      internalID: 897111010957577057
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_82
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 409
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d40c44fb2c27e7dd0800000000000000
+      internalID: -2486423763503759283
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_83
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 389
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ebc5a9e5e4736f50800000000000000
+      internalID: 6873465987113798631
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_84
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 369
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 330c6f8b10b60c510800000000000000
+      internalID: 1567370325467250739
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_85
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 359
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b72fb8661f350cc0800000000000000
+      internalID: -3745518149609510987
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_86
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 357
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1ceb67bda9a35a20800000000000000
+      internalID: 3049967936231697439
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_87
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 367
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56d5da3208914dd90800000000000000
+      internalID: -7074001076547134107
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_88
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 263
+        width: 84
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7fdb0bf6588f4a00800000000000000
+      internalID: 742962370699845503
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_89
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 276
+        width: 83
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fba600fab7e5d500800000000000000
+      internalID: 420496930305911793
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_90
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 290
+        width: 31
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f9746e105b62cae0800000000000000
+      internalID: -1530542931501090316
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_91
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 323
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13bd018fad4e6e740800000000000000
+      internalID: 5181080050452192049
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_92
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 299
+        width: 21
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a574d8681f758950800000000000000
+      internalID: 6450701784092800418
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_93
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 9
+        width: 284
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30643cd3d848d97d0800000000000000
+      internalID: -2910024042050009597
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_94
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 296
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad637f79ca7708730800000000000000
+      internalID: 3999328052272641754
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_95
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 216
+        width: 33
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56be09dc0d055fe90800000000000000
+      internalID: -6992593988690580635
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_96
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 244
+        width: 26
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 420e412a063fe6510800000000000000
+      internalID: 1544439318596345892
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_97
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 208
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d259106dae15d10800000000000000
+      internalID: 2112727905083927878
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_98
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 215
+        width: 39
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0379ec5c2bf192a40800000000000000
+      internalID: 5343837285535094576
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_99
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 0
+        width: 283
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42948c4c6e559c4c0800000000000000
+      internalID: -4266784722324535004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_100
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 248
+        width: 32
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0e96427fd03b13f0800000000000000
+      internalID: -929095161868804596
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_101
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 0
+        width: 238
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20603e3ecc96381a0800000000000000
+      internalID: -6808481882936506878
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_102
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 214
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a7fd635b2af5800800000000000000
+      internalID: 603379774284331552
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_103
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 208
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 452ad1e2301f3a120800000000000000
+      internalID: 2424046020416348756
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_104
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 211
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c6d1c4f79d60d720800000000000000
+      internalID: 2868913462048839368
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_105
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 140
+        width: 43
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0472681b2a5fc3580800000000000000
+      internalID: -8845925488950630592
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_106
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 146
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24d2f62028b443ef0800000000000000
+      internalID: -129395467528229566
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_107
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 122
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef2d64da34983f190800000000000000
+      internalID: -7929843595106397442
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_108
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 121
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a8be0ea910e504a0800000000000000
+      internalID: -6627644875706812253
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_109
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 132
+        width: 37
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd197dec816c6c70800000000000000
+      internalID: 8965648216095268272
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_110
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 128
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ae63d0428fd3fa0800000000000000
+      internalID: -5819222309768598923
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_111
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 138
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4981819aff8218480800000000000000
+      internalID: -8898786310188689260
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_112
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 144
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fc9f6d2a14b9fdc0800000000000000
+      internalID: -3604652002208932620
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_113
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 135
+        width: 21
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e9e5dbeb8c9a6e60800000000000000
+      internalID: 7956343816474454497
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_114
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 107
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd5fbc43a057e900800000000000000
+      internalID: 713627728259014077
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_115
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 100
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8741958059ff15d0800000000000000
+      internalID: -3089476695119280243
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_116
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 103
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff8ab8f01a5954f50800000000000000
+      internalID: 6865057725979273471
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_117
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 85
+        width: 12
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b38fd817b1f069240800000000000000
+      internalID: 4798039063553505339
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_118
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 59
+        width: 27
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f054f0c14b0762d80800000000000000
+      internalID: -8275803346379520753
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_119
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 77
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 270975e02ae816a00800000000000000
+      internalID: 748035839796678770
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_120
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 35
+        width: 63
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a22153e3fd5e8f1a0800000000000000
+      internalID: -6775412892394778070
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_121
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 67
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e66b01d20e5d160800000000000000
+      internalID: 7049787275876920847
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_122
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 63
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38089a5c3f485390800000000000000
+      internalID: -7829420831547062214
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_123
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 22
+        width: 24
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23a26f51366dad100800000000000000
+      internalID: 133654860019411506
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_124
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 47
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8865864ff3d4af9a0800000000000000
+      internalID: -6198557000043309432
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_125
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 31
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95cf15285d896f2f0800000000000000
+      internalID: -939395429478302631
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_126
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 27
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3d57f33807459100800000000000000
+      internalID: 114075466124975418
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_127
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 22
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 377043791f0b0a840800000000000000
+      internalID: 5233377318674892659
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gentle-walk_128
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 26
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60f0618e85c0741e0800000000000000
+      internalID: -2213787115838894330
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      gentle-walk_0: 1728411249337220362
+      gentle-walk_1: -8538681510983780493
+      gentle-walk_10: 2740939482752143805
+      gentle-walk_100: -929095161868804596
+      gentle-walk_101: -6808481882936506878
+      gentle-walk_102: 603379774284331552
+      gentle-walk_103: 2424046020416348756
+      gentle-walk_104: 2868913462048839368
+      gentle-walk_105: -8845925488950630592
+      gentle-walk_106: -129395467528229566
+      gentle-walk_107: -7929843595106397442
+      gentle-walk_108: -6627644875706812253
+      gentle-walk_109: 8965648216095268272
+      gentle-walk_11: -6104366806525943098
+      gentle-walk_110: -5819222309768598923
+      gentle-walk_111: -8898786310188689260
+      gentle-walk_112: -3604652002208932620
+      gentle-walk_113: 7956343816474454497
+      gentle-walk_114: 713627728259014077
+      gentle-walk_115: -3089476695119280243
+      gentle-walk_116: 6865057725979273471
+      gentle-walk_117: 4798039063553505339
+      gentle-walk_118: -8275803346379520753
+      gentle-walk_119: 748035839796678770
+      gentle-walk_12: 7844653911990140847
+      gentle-walk_120: -6775412892394778070
+      gentle-walk_121: 7049787275876920847
+      gentle-walk_122: -7829420831547062214
+      gentle-walk_123: 133654860019411506
+      gentle-walk_124: -6198557000043309432
+      gentle-walk_125: -939395429478302631
+      gentle-walk_126: 114075466124975418
+      gentle-walk_127: 5233377318674892659
+      gentle-walk_128: -2213787115838894330
+      gentle-walk_13: -4497337875261386647
+      gentle-walk_14: -7856564209522490761
+      gentle-walk_15: -2421728961260701169
+      gentle-walk_16: -4058823687915702276
+      gentle-walk_17: 1130839869861719814
+      gentle-walk_18: 3150897497572741065
+      gentle-walk_19: 1243787863961045498
+      gentle-walk_2: 8507377207703860156
+      gentle-walk_20: 5115413564635613838
+      gentle-walk_21: 6762690368406765916
+      gentle-walk_22: 2002537180519258599
+      gentle-walk_23: -4617524036502065838
+      gentle-walk_24: 7504214756447554893
+      gentle-walk_25: -2434987510867891750
+      gentle-walk_26: 2112494857363589834
+      gentle-walk_27: 8811585112023378212
+      gentle-walk_28: -6964004661488347427
+      gentle-walk_29: 1927895099983708329
+      gentle-walk_3: -6845389869826141936
+      gentle-walk_30: -1172243357834337769
+      gentle-walk_31: 1207840781658168643
+      gentle-walk_32: 7247467441498743995
+      gentle-walk_33: -3006224739136308589
+      gentle-walk_34: -5067520637799511721
+      gentle-walk_35: 1790240284090758460
+      gentle-walk_36: -5936897267410308860
+      gentle-walk_37: 4116861118893242302
+      gentle-walk_38: -3124145335555495048
+      gentle-walk_39: -7712060694104166807
+      gentle-walk_4: -5685311542680903017
+      gentle-walk_40: 4776446169317338333
+      gentle-walk_41: -881896122999566422
+      gentle-walk_42: -2032573758607589733
+      gentle-walk_43: 4333434129315921715
+      gentle-walk_44: -3844422470347710331
+      gentle-walk_45: 49307312175487646
+      gentle-walk_46: 2862105076391036820
+      gentle-walk_47: 5312660143858566535
+      gentle-walk_48: 3633747055447972801
+      gentle-walk_49: -801434164533036924
+      gentle-walk_5: 5580525060862508406
+      gentle-walk_50: 8506786457060002412
+      gentle-walk_51: 6353867667799115387
+      gentle-walk_52: -2534979392197636794
+      gentle-walk_53: -1587921761726114440
+      gentle-walk_54: 2800524038119125993
+      gentle-walk_55: -4791840233837897155
+      gentle-walk_56: -1121338159217282064
+      gentle-walk_57: -8710245411969419120
+      gentle-walk_58: 8126276735250163726
+      gentle-walk_59: -3767746869638287698
+      gentle-walk_6: -6884937568343594125
+      gentle-walk_60: -7454004033993922702
+      gentle-walk_61: -2847320466172855590
+      gentle-walk_62: -2601880886199402662
+      gentle-walk_63: -860042556473405170
+      gentle-walk_64: 3554509542163941410
+      gentle-walk_65: -2986537820801715718
+      gentle-walk_66: 6982102788121972556
+      gentle-walk_67: -7354415504542037507
+      gentle-walk_68: -6047180004918302538
+      gentle-walk_69: -8532917932893514018
+      gentle-walk_7: 3157555259298873607
+      gentle-walk_70: 1548421403897985343
+      gentle-walk_71: 5056273962129683991
+      gentle-walk_72: -6129630097296212877
+      gentle-walk_73: -1255849572240916763
+      gentle-walk_74: -4067018966031517373
+      gentle-walk_75: -5346726183261063269
+      gentle-walk_76: 9198942993951359341
+      gentle-walk_77: -8743959424850586792
+      gentle-walk_78: 3281214406802011926
+      gentle-walk_79: 3815836940626920006
+      gentle-walk_8: 1954688575568363930
+      gentle-walk_80: 129778482081494038
+      gentle-walk_81: 897111010957577057
+      gentle-walk_82: -2486423763503759283
+      gentle-walk_83: 6873465987113798631
+      gentle-walk_84: 1567370325467250739
+      gentle-walk_85: -3745518149609510987
+      gentle-walk_86: 3049967936231697439
+      gentle-walk_87: -7074001076547134107
+      gentle-walk_88: 742962370699845503
+      gentle-walk_89: 420496930305911793
+      gentle-walk_9: -4544711571964702381
+      gentle-walk_90: -1530542931501090316
+      gentle-walk_91: 5181080050452192049
+      gentle-walk_92: 6450701784092800418
+      gentle-walk_93: -2910024042050009597
+      gentle-walk_94: 3999328052272641754
+      gentle-walk_95: -6992593988690580635
+      gentle-walk_96: 1544439318596345892
+      gentle-walk_97: 2112727905083927878
+      gentle-walk_98: 5343837285535094576
+      gentle-walk_99: -4266784722324535004
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

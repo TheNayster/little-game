@@ -1,0 +1,217 @@
+{
+  "source": "SourceArt/Characters/ModelSheets/bandit.png",
+  "sourceSha256": "87484d991294e836ba48afa3f0658abce42dd99a5173fe3eadbc8929ae7283f1",
+  "width": 1254,
+  "height": 1254,
+  "referenceHeight": 299,
+  "frames": [
+    {
+      "name": "front",
+      "pixels": {
+        "x": 86,
+        "y": 6,
+        "width": 197,
+        "height": 303
+      },
+      "ground": {
+        "x": 196.0,
+        "y": 307
+      }
+    },
+    {
+      "name": "three-quarter",
+      "pixels": {
+        "x": 393,
+        "y": 7,
+        "width": 198,
+        "height": 302
+      },
+      "ground": {
+        "x": 502.0,
+        "y": 307
+      }
+    },
+    {
+      "name": "profile",
+      "pixels": {
+        "x": 679,
+        "y": 7,
+        "width": 198,
+        "height": 301
+      },
+      "ground": {
+        "x": 777.5,
+        "y": 306
+      }
+    },
+    {
+      "name": "back",
+      "pixels": {
+        "x": 984,
+        "y": 7,
+        "width": 169,
+        "height": 302
+      },
+      "ground": {
+        "x": 1068.5,
+        "y": 307
+      }
+    },
+    {
+      "name": "blink",
+      "pixels": {
+        "x": 82,
+        "y": 317,
+        "width": 207,
+        "height": 307
+      },
+      "ground": {
+        "x": 210.0,
+        "y": 622
+      }
+    },
+    {
+      "name": "wave",
+      "pixels": {
+        "x": 377,
+        "y": 318,
+        "width": 242,
+        "height": 309
+      },
+      "ground": {
+        "x": 499.0,
+        "y": 626
+      }
+    },
+    {
+      "name": "sit",
+      "pixels": {
+        "x": 675,
+        "y": 361,
+        "width": 224,
+        "height": 259
+      },
+      "ground": {
+        "x": 783.5,
+        "y": 618
+      }
+    },
+    {
+      "name": "carry",
+      "pixels": {
+        "x": 962,
+        "y": 318,
+        "width": 199,
+        "height": 305
+      },
+      "ground": {
+        "x": 1083.0,
+        "y": 621
+      }
+    },
+    {
+      "name": "contact-right",
+      "pixels": {
+        "x": 76,
+        "y": 629,
+        "width": 216,
+        "height": 301
+      },
+      "ground": {
+        "x": 195.5,
+        "y": 928
+      }
+    },
+    {
+      "name": "passing-left",
+      "pixels": {
+        "x": 371,
+        "y": 628,
+        "width": 196,
+        "height": 304
+      },
+      "ground": {
+        "x": 490.0,
+        "y": 930
+      }
+    },
+    {
+      "name": "contact-left",
+      "pixels": {
+        "x": 671,
+        "y": 628,
+        "width": 205,
+        "height": 303
+      },
+      "ground": {
+        "x": 790.5,
+        "y": 929
+      }
+    },
+    {
+      "name": "passing-right",
+      "pixels": {
+        "x": 988,
+        "y": 628,
+        "width": 191,
+        "height": 302
+      },
+      "ground": {
+        "x": 1102.0,
+        "y": 928
+      }
+    },
+    {
+      "name": "dance-left",
+      "pixels": {
+        "x": 59,
+        "y": 940,
+        "width": 246,
+        "height": 294
+      },
+      "ground": {
+        "x": 177.0,
+        "y": 1232
+      }
+    },
+    {
+      "name": "dance-right",
+      "pixels": {
+        "x": 383,
+        "y": 940,
+        "width": 227,
+        "height": 294
+      },
+      "ground": {
+        "x": 483.0,
+        "y": 1232
+      }
+    },
+    {
+      "name": "reach",
+      "pixels": {
+        "x": 663,
+        "y": 940,
+        "width": 277,
+        "height": 294
+      },
+      "ground": {
+        "x": 795.5,
+        "y": 1232
+      }
+    },
+    {
+      "name": "happy",
+      "pixels": {
+        "x": 975,
+        "y": 940,
+        "width": 194,
+        "height": 296
+      },
+      "ground": {
+        "x": 1090.0,
+        "y": 1234
+      }
+    }
+  ]
+}

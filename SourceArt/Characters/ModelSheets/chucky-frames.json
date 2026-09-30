@@ -1,0 +1,217 @@
+{
+  "source": "SourceArt/Characters/ModelSheets/chucky.png",
+  "sourceSha256": "8e60b546474bd31dc31d7ed7c6018f84cf6c54df750f425d9713381da2d59716",
+  "width": 1254,
+  "height": 1254,
+  "referenceHeight": 288,
+  "frames": [
+    {
+      "name": "front",
+      "pixels": {
+        "x": 63,
+        "y": 20,
+        "width": 221,
+        "height": 292
+      },
+      "ground": {
+        "x": 171.0,
+        "y": 310
+      }
+    },
+    {
+      "name": "three-quarter",
+      "pixels": {
+        "x": 379,
+        "y": 18,
+        "width": 217,
+        "height": 295
+      },
+      "ground": {
+        "x": 486.0,
+        "y": 311
+      }
+    },
+    {
+      "name": "profile",
+      "pixels": {
+        "x": 689,
+        "y": 15,
+        "width": 198,
+        "height": 298
+      },
+      "ground": {
+        "x": 793.0,
+        "y": 311
+      }
+    },
+    {
+      "name": "back",
+      "pixels": {
+        "x": 970,
+        "y": 17,
+        "width": 216,
+        "height": 295
+      },
+      "ground": {
+        "x": 1077.5,
+        "y": 310
+      }
+    },
+    {
+      "name": "blink",
+      "pixels": {
+        "x": 62,
+        "y": 321,
+        "width": 234,
+        "height": 299
+      },
+      "ground": {
+        "x": 181.0,
+        "y": 618
+      }
+    },
+    {
+      "name": "wave",
+      "pixels": {
+        "x": 376,
+        "y": 324,
+        "width": 243,
+        "height": 296
+      },
+      "ground": {
+        "x": 483.5,
+        "y": 618
+      }
+    },
+    {
+      "name": "sit",
+      "pixels": {
+        "x": 676,
+        "y": 359,
+        "width": 230,
+        "height": 262
+      },
+      "ground": {
+        "x": 787.5,
+        "y": 619
+      }
+    },
+    {
+      "name": "carry",
+      "pixels": {
+        "x": 985,
+        "y": 322,
+        "width": 240,
+        "height": 299
+      },
+      "ground": {
+        "x": 1111.5,
+        "y": 619
+      }
+    },
+    {
+      "name": "contact-right",
+      "pixels": {
+        "x": 62,
+        "y": 634,
+        "width": 220,
+        "height": 289
+      },
+      "ground": {
+        "x": 174.0,
+        "y": 921
+      }
+    },
+    {
+      "name": "passing-left",
+      "pixels": {
+        "x": 389,
+        "y": 635,
+        "width": 210,
+        "height": 283
+      },
+      "ground": {
+        "x": 492.0,
+        "y": 916
+      }
+    },
+    {
+      "name": "contact-left",
+      "pixels": {
+        "x": 686,
+        "y": 634,
+        "width": 218,
+        "height": 288
+      },
+      "ground": {
+        "x": 800.0,
+        "y": 920
+      }
+    },
+    {
+      "name": "passing-right",
+      "pixels": {
+        "x": 1003,
+        "y": 636,
+        "width": 212,
+        "height": 285
+      },
+      "ground": {
+        "x": 1111.0,
+        "y": 919
+      }
+    },
+    {
+      "name": "dance-left",
+      "pixels": {
+        "x": 55,
+        "y": 944,
+        "width": 237,
+        "height": 279
+      },
+      "ground": {
+        "x": 167.5,
+        "y": 1221
+      }
+    },
+    {
+      "name": "dance-right",
+      "pixels": {
+        "x": 365,
+        "y": 941,
+        "width": 249,
+        "height": 282
+      },
+      "ground": {
+        "x": 506.0,
+        "y": 1221
+      }
+    },
+    {
+      "name": "reach",
+      "pixels": {
+        "x": 673,
+        "y": 940,
+        "width": 265,
+        "height": 280
+      },
+      "ground": {
+        "x": 794.5,
+        "y": 1218
+      }
+    },
+    {
+      "name": "happy",
+      "pixels": {
+        "x": 995,
+        "y": 940,
+        "width": 210,
+        "height": 280
+      },
+      "ground": {
+        "x": 1097.0,
+        "y": 1218
+      }
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "source": "SourceArt/Characters/ModelSheets/judo.png",
+  "sourceSha256": "02d0395142c73a30d5b9125e01760830513de18f18d208c95c8aebe7c52f0e66",
+  "width": 1254,
+  "height": 1254,
+  "referenceHeight": 290,
+  "frames": [
+    {
+      "name": "front",
+      "pixels": {
+        "x": 73,
+        "y": 19,
+        "width": 199,
+        "height": 294
+      },
+      "ground": {
+        "x": 181.5,
+        "y": 311
+      }
+    },
+    {
+      "name": "three-quarter",
+      "pixels": {
+        "x": 387,
+        "y": 17,
+        "width": 193,
+        "height": 296
+      },
+      "ground": {
+        "x": 490.0,
+        "y": 311
+      }
+    },
+    {
+      "name": "profile",
+      "pixels": {
+        "x": 681,
+        "y": 18,
+        "width": 190,
+        "height": 293
+      },
+      "ground": {
+        "x": 771.5,
+        "y": 309
+      }
+    },
+    {
+      "name": "back",
+      "pixels": {
+        "x": 997,
+        "y": 21,
+        "width": 177,
+        "height": 290
+      },
+      "ground": {
+        "x": 1081.5,
+        "y": 309
+      }
+    },
+    {
+      "name": "blink",
+      "pixels": {
+        "x": 67,
+        "y": 321,
+        "width": 209,
+        "height": 304
+      },
+      "ground": {
+        "x": 182.0,
+        "y": 623
+      }
+    },
+    {
+      "name": "wave",
+      "pixels": {
+        "x": 388,
+        "y": 322,
+        "width": 224,
+        "height": 302
+      },
+      "ground": {
+        "x": 489.5,
+        "y": 622
+      }
+    },
+    {
+      "name": "sit",
+      "pixels": {
+        "x": 670,
+        "y": 355,
+        "width": 211,
+        "height": 265
+      },
+      "ground": {
+        "x": 790.5,
+        "y": 618
+      }
+    },
+    {
+      "name": "carry",
+      "pixels": {
+        "x": 980,
+        "y": 322,
+        "width": 192,
+        "height": 305
+      },
+      "ground": {
+        "x": 1081.0,
+        "y": 625
+      }
+    },
+    {
+      "name": "contact-right",
+      "pixels": {
+        "x": 65,
+        "y": 634,
+        "width": 222,
+        "height": 298
+      },
+      "ground": {
+        "x": 179.5,
+        "y": 930
+      }
+    },
+    {
+      "name": "passing-left",
+      "pixels": {
+        "x": 382,
+        "y": 636,
+        "width": 215,
+        "height": 297
+      },
+      "ground": {
+        "x": 486.0,
+        "y": 931
+      }
+    },
+    {
+      "name": "contact-left",
+      "pixels": {
+        "x": 676,
+        "y": 635,
+        "width": 197,
+        "height": 295
+      },
+      "ground": {
+        "x": 785.5,
+        "y": 928
+      }
+    },
+    {
+      "name": "passing-right",
+      "pixels": {
+        "x": 982,
+        "y": 637,
+        "width": 209,
+        "height": 294
+      },
+      "ground": {
+        "x": 1091.0,
+        "y": 929
+      }
+    },
+    {
+      "name": "dance-left",
+      "pixels": {
+        "x": 51,
+        "y": 940,
+        "width": 244,
+        "height": 293
+      },
+      "ground": {
+        "x": 176.0,
+        "y": 1231
+      }
+    },
+    {
+      "name": "dance-right",
+      "pixels": {
+        "x": 350,
+        "y": 940,
+        "width": 241,
+        "height": 293
+      },
+      "ground": {
+        "x": 478.5,
+        "y": 1231
+      }
+    },
+    {
+      "name": "reach",
+      "pixels": {
+        "x": 664,
+        "y": 940,
+        "width": 254,
+        "height": 293
+      },
+      "ground": {
+        "x": 785.0,
+        "y": 1231
+      }
+    },
+    {
+      "name": "happy",
+      "pixels": {
+        "x": 990,
+        "y": 940,
+        "width": 192,
+        "height": 293
+      },
+      "ground": {
+        "x": 1091.5,
+        "y": 1231
+      }
+    }
+  ]
+}

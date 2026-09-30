@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "build": 253,
+  "modelSheetCount": 37,
+  "playableCount": 6,
+  "menuChecks": [
+    "phone-bandit",
+    "phone-bingo",
+    "phone-bluey",
+    "phone-chilli",
+    "phone-muffin",
+    "phone-socks",
+    "tablet-bandit",
+    "tablet-bingo",
+    "tablet-bluey",
+    "tablet-chilli",
+    "tablet-muffin",
+    "tablet-socks"
+  ],
+  "core": "Six character IDs, state/possessions/rooms/progress retention, JSON save/reopen, rejection and independent departure passed.",
+  "departure": {
+    "passed": true,
+    "build": 253,
+    "checks": [
+      "four clients choose the same favorite; one exits and siblings continue changing characters"
+    ],
+    "liveFamilyTouched": false
+  },
+  "existingBlueyBingoRasterBytesUnchanged": true,
+  "candidateSchema": 34,
+  "candidateContent": 36,
+  "rollout": "This task did not install devices or change the live server.",
+  "diagnosticNotes": [
+    "An initial final-build run encountered a transient diagnostic read; fresh-read retry added to harness.",
+    "One full run completed all twelve chooser captures, then one client reported a nonzero exit despite stopped status. A separate four-client departure retry passed. Earlier full candidate 251/252 runs also passed.",
+    "fullCharactersInTray counts horizontally offscreen scroll entries; its false value does not assess vertical portrait fit. Final phone/tablet screenshots were inspected for ears, feet and label separation."
+  ],
+  "limits": [
+    "Generated candidate likeness/alpha cleanup and family review remain open.",
+    "Only four new roster characters are playable.",
+    "First new walk cycles repeat four drawings; left-facing asymmetrical markings are mirrored.",
+    "Current checkout has concurrent later changes; candidate 253 evidence applies to its captured source."
+  ]
+}

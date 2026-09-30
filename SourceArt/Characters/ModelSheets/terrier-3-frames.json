@@ -1,0 +1,217 @@
+{
+  "source": "SourceArt/Characters/ModelSheets/terrier-3.png",
+  "sourceSha256": "444264ecb4dbbdc665ff3c44ffec901bdb78123fc5e8990e390e9e258146b73d",
+  "width": 1254,
+  "height": 1254,
+  "referenceHeight": 302,
+  "frames": [
+    {
+      "name": "front",
+      "pixels": {
+        "x": 80,
+        "y": 8,
+        "width": 220,
+        "height": 306
+      },
+      "ground": {
+        "x": 202.0,
+        "y": 314
+      }
+    },
+    {
+      "name": "three-quarter",
+      "pixels": {
+        "x": 388,
+        "y": 13,
+        "width": 215,
+        "height": 301
+      },
+      "ground": {
+        "x": 513.0,
+        "y": 314
+      }
+    },
+    {
+      "name": "profile",
+      "pixels": {
+        "x": 679,
+        "y": 10,
+        "width": 222,
+        "height": 304
+      },
+      "ground": {
+        "x": 817.5,
+        "y": 314
+      }
+    },
+    {
+      "name": "back",
+      "pixels": {
+        "x": 972,
+        "y": 15,
+        "width": 209,
+        "height": 299
+      },
+      "ground": {
+        "x": 1077.5,
+        "y": 313
+      }
+    },
+    {
+      "name": "blink",
+      "pixels": {
+        "x": 88,
+        "y": 323,
+        "width": 220,
+        "height": 304
+      },
+      "ground": {
+        "x": 199.0,
+        "y": 627
+      }
+    },
+    {
+      "name": "wave",
+      "pixels": {
+        "x": 380,
+        "y": 331,
+        "width": 247,
+        "height": 296
+      },
+      "ground": {
+        "x": 510.0,
+        "y": 627
+      }
+    },
+    {
+      "name": "sit",
+      "pixels": {
+        "x": 674,
+        "y": 393,
+        "width": 234,
+        "height": 234
+      },
+      "ground": {
+        "x": 794.0,
+        "y": 627
+      }
+    },
+    {
+      "name": "carry",
+      "pixels": {
+        "x": 982,
+        "y": 323,
+        "width": 208,
+        "height": 304
+      },
+      "ground": {
+        "x": 1091.0,
+        "y": 627
+      }
+    },
+    {
+      "name": "contact-right",
+      "pixels": {
+        "x": 82,
+        "y": 648,
+        "width": 219,
+        "height": 291
+      },
+      "ground": {
+        "x": 210.5,
+        "y": 937
+      }
+    },
+    {
+      "name": "passing-left",
+      "pixels": {
+        "x": 398,
+        "y": 649,
+        "width": 194,
+        "height": 285
+      },
+      "ground": {
+        "x": 511.5,
+        "y": 932
+      }
+    },
+    {
+      "name": "contact-left",
+      "pixels": {
+        "x": 687,
+        "y": 650,
+        "width": 211,
+        "height": 290
+      },
+      "ground": {
+        "x": 822.0,
+        "y": 940
+      }
+    },
+    {
+      "name": "passing-right",
+      "pixels": {
+        "x": 1010,
+        "y": 650,
+        "width": 182,
+        "height": 285
+      },
+      "ground": {
+        "x": 1119.0,
+        "y": 933
+      }
+    },
+    {
+      "name": "dance-left",
+      "pixels": {
+        "x": 64,
+        "y": 940,
+        "width": 240,
+        "height": 298
+      },
+      "ground": {
+        "x": 208.0,
+        "y": 1236
+      }
+    },
+    {
+      "name": "dance-right",
+      "pixels": {
+        "x": 398,
+        "y": 941,
+        "width": 229,
+        "height": 296
+      },
+      "ground": {
+        "x": 532.5,
+        "y": 1235
+      }
+    },
+    {
+      "name": "reach",
+      "pixels": {
+        "x": 688,
+        "y": 949,
+        "width": 252,
+        "height": 286
+      },
+      "ground": {
+        "x": 834.5,
+        "y": 1233
+      }
+    },
+    {
+      "name": "happy",
+      "pixels": {
+        "x": 998,
+        "y": 940,
+        "width": 203,
+        "height": 301
+      },
+      "ground": {
+        "x": 1115.5,
+        "y": 1239
+      }
+    }
+  ]
+}

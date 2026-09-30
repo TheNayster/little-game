@@ -25,6 +25,9 @@ LocalData/
 Tools/ParkPlay.Tests/bin/
 Tools/ParkPlay.Tests/obj/
 !Tools/SoloRules.Tests/SoloRules.Tests.csproj
+!Tools/CharacterRoster.Tests/CharacterRoster.Tests.csproj
+Tools/CharacterRoster.Tests/bin/
+Tools/CharacterRoster.Tests/obj/
 !Tools/RecoveryValidator/RecoveryValidator.csproj
 !Tools/HostingModel.Tests/HostingModel.Tests.csproj
 !Tools/HostingRestore.Tests/HostingRestore.Tests.csproj

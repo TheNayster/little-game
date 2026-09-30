@@ -1,0 +1,217 @@
+{
+  "source": "SourceArt/Characters/ModelSheets/lucky.png",
+  "sourceSha256": "b0077a974ce61ca1fe38e97f9a6d3a8cc7bbbe2a6e3444d6f9235791b566b0fd",
+  "width": 1254,
+  "height": 1254,
+  "referenceHeight": 291,
+  "frames": [
+    {
+      "name": "front",
+      "pixels": {
+        "x": 81,
+        "y": 19,
+        "width": 205,
+        "height": 295
+      },
+      "ground": {
+        "x": 194.5,
+        "y": 313
+      }
+    },
+    {
+      "name": "three-quarter",
+      "pixels": {
+        "x": 383,
+        "y": 19,
+        "width": 200,
+        "height": 295
+      },
+      "ground": {
+        "x": 492.5,
+        "y": 312
+      }
+    },
+    {
+      "name": "profile",
+      "pixels": {
+        "x": 680,
+        "y": 21,
+        "width": 218,
+        "height": 293
+      },
+      "ground": {
+        "x": 804.5,
+        "y": 312
+      }
+    },
+    {
+      "name": "back",
+      "pixels": {
+        "x": 1010,
+        "y": 24,
+        "width": 194,
+        "height": 289
+      },
+      "ground": {
+        "x": 1104.5,
+        "y": 311
+      }
+    },
+    {
+      "name": "blink",
+      "pixels": {
+        "x": 74,
+        "y": 337,
+        "width": 212,
+        "height": 289
+      },
+      "ground": {
+        "x": 193.0,
+        "y": 624
+      }
+    },
+    {
+      "name": "wave",
+      "pixels": {
+        "x": 382,
+        "y": 336,
+        "width": 244,
+        "height": 290
+      },
+      "ground": {
+        "x": 492.5,
+        "y": 624
+      }
+    },
+    {
+      "name": "sit",
+      "pixels": {
+        "x": 681,
+        "y": 364,
+        "width": 209,
+        "height": 252
+      },
+      "ground": {
+        "x": 787.0,
+        "y": 614
+      }
+    },
+    {
+      "name": "carry",
+      "pixels": {
+        "x": 1003,
+        "y": 336,
+        "width": 199,
+        "height": 291
+      },
+      "ground": {
+        "x": 1109.5,
+        "y": 625
+      }
+    },
+    {
+      "name": "contact-right",
+      "pixels": {
+        "x": 61,
+        "y": 648,
+        "width": 222,
+        "height": 284
+      },
+      "ground": {
+        "x": 197.5,
+        "y": 930
+      }
+    },
+    {
+      "name": "passing-left",
+      "pixels": {
+        "x": 377,
+        "y": 653,
+        "width": 208,
+        "height": 274
+      },
+      "ground": {
+        "x": 497.5,
+        "y": 925
+      }
+    },
+    {
+      "name": "contact-left",
+      "pixels": {
+        "x": 684,
+        "y": 649,
+        "width": 197,
+        "height": 277
+      },
+      "ground": {
+        "x": 791.0,
+        "y": 924
+      }
+    },
+    {
+      "name": "passing-right",
+      "pixels": {
+        "x": 998,
+        "y": 651,
+        "width": 204,
+        "height": 275
+      },
+      "ground": {
+        "x": 1111.5,
+        "y": 924
+      }
+    },
+    {
+      "name": "dance-left",
+      "pixels": {
+        "x": 59,
+        "y": 944,
+        "width": 248,
+        "height": 284
+      },
+      "ground": {
+        "x": 164.5,
+        "y": 1226
+      }
+    },
+    {
+      "name": "dance-right",
+      "pixels": {
+        "x": 363,
+        "y": 944,
+        "width": 244,
+        "height": 283
+      },
+      "ground": {
+        "x": 495.0,
+        "y": 1225
+      }
+    },
+    {
+      "name": "reach",
+      "pixels": {
+        "x": 672,
+        "y": 948,
+        "width": 268,
+        "height": 279
+      },
+      "ground": {
+        "x": 818.0,
+        "y": 1225
+      }
+    },
+    {
+      "name": "happy",
+      "pixels": {
+        "x": 999,
+        "y": 941,
+        "width": 190,
+        "height": 285
+      },
+      "ground": {
+        "x": 1099.0,
+        "y": 1224
+      }
+    }
+  ]
+}

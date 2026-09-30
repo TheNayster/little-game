@@ -31,7 +31,8 @@ namespace LittleWeeps.Core
             }
         }
         public static bool HigherHit(KeepyState b)=>b.lastHitter!="" && Variation(b,1)>.55f;
-        public static float HandHeight(string avatar)=>avatar=="orange-pup"?108:132;
+        public static float HandHeight(string avatar)=>avatar=="orange-pup"?108:
+            132*(PlayableCharacters.Find(avatar)?.Scale??1);
         public static bool Under(SoloPlayer p,KeepyState b)=>p.zone=="garden" &&
             string.IsNullOrEmpty(p.fixture) && Math.Abs(p.x-b.x)<=ReachX && Math.Abs(p.y-b.y)<=ReachDepth;
         public static bool Finite(double n)=>!double.IsNaN(n) && !double.IsInfinity(n);

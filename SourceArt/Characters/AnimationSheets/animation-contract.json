@@ -667,6 +667,1338 @@
           }
         ]
       }
+    },
+    {
+      "id": "muffin",
+      "displayName": "Muffin",
+      "scale": 0.8,
+      "source": "SourceArt/Characters/ModelSheets/muffin.png",
+      "sourceSha256": "b996ca9d9b5d5bfbbbd9209a3ed8ae4d8c0ba27df0f7318956dcb496de201d82",
+      "width": 1254,
+      "height": 1254,
+      "referenceHeight": 293,
+      "frames": [
+        {
+          "name": "idle",
+          "pixels": {
+            "x": 401,
+            "y": 17,
+            "width": 186,
+            "height": 297
+          },
+          "ground": {
+            "x": 503.0,
+            "y": 314
+          }
+        },
+        {
+          "name": "blink",
+          "pixels": {
+            "x": 86,
+            "y": 329,
+            "width": 203,
+            "height": 298
+          },
+          "ground": {
+            "x": 204.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "wave-a",
+          "pixels": {
+            "x": 400,
+            "y": 330,
+            "width": 227,
+            "height": 297
+          },
+          "ground": {
+            "x": 507.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "wave-b",
+          "pixels": {
+            "x": 400,
+            "y": 330,
+            "width": 227,
+            "height": 297
+          },
+          "ground": {
+            "x": 507.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-0",
+          "pixels": {
+            "x": 82,
+            "y": 644,
+            "width": 213,
+            "height": 292
+          },
+          "ground": {
+            "x": 195.0,
+            "y": 934
+          }
+        },
+        {
+          "name": "walk-1",
+          "pixels": {
+            "x": 82,
+            "y": 644,
+            "width": 213,
+            "height": 292
+          },
+          "ground": {
+            "x": 195.0,
+            "y": 934
+          }
+        },
+        {
+          "name": "walk-2",
+          "pixels": {
+            "x": 397,
+            "y": 645,
+            "width": 193,
+            "height": 289
+          },
+          "ground": {
+            "x": 499.0,
+            "y": 932
+          }
+        },
+        {
+          "name": "walk-3",
+          "pixels": {
+            "x": 397,
+            "y": 645,
+            "width": 193,
+            "height": 289
+          },
+          "ground": {
+            "x": 499.0,
+            "y": 932
+          }
+        },
+        {
+          "name": "walk-4",
+          "pixels": {
+            "x": 692,
+            "y": 644,
+            "width": 190,
+            "height": 291
+          },
+          "ground": {
+            "x": 800.5,
+            "y": 933
+          }
+        },
+        {
+          "name": "walk-5",
+          "pixels": {
+            "x": 692,
+            "y": 644,
+            "width": 190,
+            "height": 291
+          },
+          "ground": {
+            "x": 800.5,
+            "y": 933
+          }
+        },
+        {
+          "name": "walk-6",
+          "pixels": {
+            "x": 1006,
+            "y": 644,
+            "width": 179,
+            "height": 291
+          },
+          "ground": {
+            "x": 1103.5,
+            "y": 933
+          }
+        },
+        {
+          "name": "walk-7",
+          "pixels": {
+            "x": 1006,
+            "y": 644,
+            "width": 179,
+            "height": 291
+          },
+          "ground": {
+            "x": 1103.5,
+            "y": 933
+          }
+        },
+        {
+          "name": "sit",
+          "pixels": {
+            "x": 699,
+            "y": 373,
+            "width": 203,
+            "height": 254
+          },
+          "ground": {
+            "x": 802.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "carry",
+          "pixels": {
+            "x": 992,
+            "y": 330,
+            "width": 185,
+            "height": 297
+          },
+          "ground": {
+            "x": 1093.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "dance-a",
+          "pixels": {
+            "x": 59,
+            "y": 940,
+            "width": 241,
+            "height": 289
+          },
+          "ground": {
+            "x": 192.0,
+            "y": 1227
+          }
+        },
+        {
+          "name": "dance-b",
+          "pixels": {
+            "x": 386,
+            "y": 940,
+            "width": 240,
+            "height": 291
+          },
+          "ground": {
+            "x": 498.0,
+            "y": 1229
+          }
+        }
+      ],
+      "walk": {
+        "source": "SourceArt/Characters/ModelSheets/muffin.png",
+        "sourceSha256": "b996ca9d9b5d5bfbbbd9209a3ed8ae4d8c0ba27df0f7318956dcb496de201d82",
+        "width": 1254,
+        "height": 1254,
+        "referenceHeight": 293,
+        "frames": [
+          {
+            "name": "walk-0",
+            "pixels": {
+              "x": 82,
+              "y": 644,
+              "width": 213,
+              "height": 292
+            },
+            "ground": {
+              "x": 195.0,
+              "y": 934
+            }
+          },
+          {
+            "name": "walk-1",
+            "pixels": {
+              "x": 82,
+              "y": 644,
+              "width": 213,
+              "height": 292
+            },
+            "ground": {
+              "x": 195.0,
+              "y": 934
+            }
+          },
+          {
+            "name": "walk-2",
+            "pixels": {
+              "x": 397,
+              "y": 645,
+              "width": 193,
+              "height": 289
+            },
+            "ground": {
+              "x": 499.0,
+              "y": 932
+            }
+          },
+          {
+            "name": "walk-3",
+            "pixels": {
+              "x": 397,
+              "y": 645,
+              "width": 193,
+              "height": 289
+            },
+            "ground": {
+              "x": 499.0,
+              "y": 932
+            }
+          },
+          {
+            "name": "walk-4",
+            "pixels": {
+              "x": 692,
+              "y": 644,
+              "width": 190,
+              "height": 291
+            },
+            "ground": {
+              "x": 800.5,
+              "y": 933
+            }
+          },
+          {
+            "name": "walk-5",
+            "pixels": {
+              "x": 692,
+              "y": 644,
+              "width": 190,
+              "height": 291
+            },
+            "ground": {
+              "x": 800.5,
+              "y": 933
+            }
+          },
+          {
+            "name": "walk-6",
+            "pixels": {
+              "x": 1006,
+              "y": 644,
+              "width": 179,
+              "height": 291
+            },
+            "ground": {
+              "x": 1103.5,
+              "y": 933
+            }
+          },
+          {
+            "name": "walk-7",
+            "pixels": {
+              "x": 1006,
+              "y": 644,
+              "width": 179,
+              "height": 291
+            },
+            "ground": {
+              "x": 1103.5,
+              "y": 933
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "socks",
+      "displayName": "Socks",
+      "scale": 0.66,
+      "source": "SourceArt/Characters/ModelSheets/socks.png",
+      "sourceSha256": "b9694b017dab3849055e73d88bfcd3d58c73e9791750a514f5d87063247b4c92",
+      "width": 1254,
+      "height": 1254,
+      "referenceHeight": 297,
+      "frames": [
+        {
+          "name": "idle",
+          "pixels": {
+            "x": 384,
+            "y": 13,
+            "width": 193,
+            "height": 301
+          },
+          "ground": {
+            "x": 496.0,
+            "y": 314
+          }
+        },
+        {
+          "name": "blink",
+          "pixels": {
+            "x": 76,
+            "y": 336,
+            "width": 212,
+            "height": 291
+          },
+          "ground": {
+            "x": 203.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "wave-a",
+          "pixels": {
+            "x": 379,
+            "y": 338,
+            "width": 245,
+            "height": 289
+          },
+          "ground": {
+            "x": 501.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "wave-b",
+          "pixels": {
+            "x": 379,
+            "y": 338,
+            "width": 245,
+            "height": 289
+          },
+          "ground": {
+            "x": 501.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-0",
+          "pixels": {
+            "x": 75,
+            "y": 668,
+            "width": 208,
+            "height": 272
+          },
+          "ground": {
+            "x": 194.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-1",
+          "pixels": {
+            "x": 75,
+            "y": 668,
+            "width": 208,
+            "height": 272
+          },
+          "ground": {
+            "x": 194.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-2",
+          "pixels": {
+            "x": 385,
+            "y": 668,
+            "width": 195,
+            "height": 272
+          },
+          "ground": {
+            "x": 498.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-3",
+          "pixels": {
+            "x": 385,
+            "y": 668,
+            "width": 195,
+            "height": 272
+          },
+          "ground": {
+            "x": 498.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-4",
+          "pixels": {
+            "x": 683,
+            "y": 668,
+            "width": 193,
+            "height": 272
+          },
+          "ground": {
+            "x": 793.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-5",
+          "pixels": {
+            "x": 683,
+            "y": 668,
+            "width": 193,
+            "height": 272
+          },
+          "ground": {
+            "x": 793.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-6",
+          "pixels": {
+            "x": 993,
+            "y": 668,
+            "width": 185,
+            "height": 272
+          },
+          "ground": {
+            "x": 1098.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-7",
+          "pixels": {
+            "x": 993,
+            "y": 668,
+            "width": 185,
+            "height": 272
+          },
+          "ground": {
+            "x": 1098.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "sit",
+          "pixels": {
+            "x": 686,
+            "y": 364,
+            "width": 209,
+            "height": 263
+          },
+          "ground": {
+            "x": 803.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "carry",
+          "pixels": {
+            "x": 977,
+            "y": 337,
+            "width": 202,
+            "height": 290
+          },
+          "ground": {
+            "x": 1091.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "dance-a",
+          "pixels": {
+            "x": 76,
+            "y": 951,
+            "width": 232,
+            "height": 293
+          },
+          "ground": {
+            "x": 192.0,
+            "y": 1242
+          }
+        },
+        {
+          "name": "dance-b",
+          "pixels": {
+            "x": 372,
+            "y": 949,
+            "width": 246,
+            "height": 294
+          },
+          "ground": {
+            "x": 470.0,
+            "y": 1241
+          }
+        }
+      ],
+      "walk": {
+        "source": "SourceArt/Characters/ModelSheets/socks.png",
+        "sourceSha256": "b9694b017dab3849055e73d88bfcd3d58c73e9791750a514f5d87063247b4c92",
+        "width": 1254,
+        "height": 1254,
+        "referenceHeight": 297,
+        "frames": [
+          {
+            "name": "walk-0",
+            "pixels": {
+              "x": 75,
+              "y": 668,
+              "width": 208,
+              "height": 272
+            },
+            "ground": {
+              "x": 194.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-1",
+            "pixels": {
+              "x": 75,
+              "y": 668,
+              "width": 208,
+              "height": 272
+            },
+            "ground": {
+              "x": 194.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-2",
+            "pixels": {
+              "x": 385,
+              "y": 668,
+              "width": 195,
+              "height": 272
+            },
+            "ground": {
+              "x": 498.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-3",
+            "pixels": {
+              "x": 385,
+              "y": 668,
+              "width": 195,
+              "height": 272
+            },
+            "ground": {
+              "x": 498.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-4",
+            "pixels": {
+              "x": 683,
+              "y": 668,
+              "width": 193,
+              "height": 272
+            },
+            "ground": {
+              "x": 793.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-5",
+            "pixels": {
+              "x": 683,
+              "y": 668,
+              "width": 193,
+              "height": 272
+            },
+            "ground": {
+              "x": 793.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-6",
+            "pixels": {
+              "x": 993,
+              "y": 668,
+              "width": 185,
+              "height": 272
+            },
+            "ground": {
+              "x": 1098.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-7",
+            "pixels": {
+              "x": 993,
+              "y": 668,
+              "width": 185,
+              "height": 272
+            },
+            "ground": {
+              "x": 1098.0,
+              "y": 940
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bandit",
+      "displayName": "Bandit",
+      "scale": 1.35,
+      "source": "SourceArt/Characters/ModelSheets/bandit.png",
+      "sourceSha256": "87484d991294e836ba48afa3f0658abce42dd99a5173fe3eadbc8929ae7283f1",
+      "width": 1254,
+      "height": 1254,
+      "referenceHeight": 298,
+      "frames": [
+        {
+          "name": "idle",
+          "pixels": {
+            "x": 393,
+            "y": 7,
+            "width": 198,
+            "height": 302
+          },
+          "ground": {
+            "x": 502.0,
+            "y": 307
+          }
+        },
+        {
+          "name": "blink",
+          "pixels": {
+            "x": 82,
+            "y": 317,
+            "width": 207,
+            "height": 307
+          },
+          "ground": {
+            "x": 210.0,
+            "y": 622
+          }
+        },
+        {
+          "name": "wave-a",
+          "pixels": {
+            "x": 377,
+            "y": 318,
+            "width": 242,
+            "height": 309
+          },
+          "ground": {
+            "x": 499.0,
+            "y": 626
+          }
+        },
+        {
+          "name": "wave-b",
+          "pixels": {
+            "x": 377,
+            "y": 318,
+            "width": 242,
+            "height": 309
+          },
+          "ground": {
+            "x": 499.0,
+            "y": 626
+          }
+        },
+        {
+          "name": "walk-0",
+          "pixels": {
+            "x": 76,
+            "y": 629,
+            "width": 216,
+            "height": 301
+          },
+          "ground": {
+            "x": 195.5,
+            "y": 928
+          }
+        },
+        {
+          "name": "walk-1",
+          "pixels": {
+            "x": 76,
+            "y": 629,
+            "width": 216,
+            "height": 301
+          },
+          "ground": {
+            "x": 195.5,
+            "y": 928
+          }
+        },
+        {
+          "name": "walk-2",
+          "pixels": {
+            "x": 371,
+            "y": 628,
+            "width": 196,
+            "height": 304
+          },
+          "ground": {
+            "x": 490.0,
+            "y": 930
+          }
+        },
+        {
+          "name": "walk-3",
+          "pixels": {
+            "x": 371,
+            "y": 628,
+            "width": 196,
+            "height": 304
+          },
+          "ground": {
+            "x": 490.0,
+            "y": 930
+          }
+        },
+        {
+          "name": "walk-4",
+          "pixels": {
+            "x": 671,
+            "y": 628,
+            "width": 205,
+            "height": 303
+          },
+          "ground": {
+            "x": 790.5,
+            "y": 929
+          }
+        },
+        {
+          "name": "walk-5",
+          "pixels": {
+            "x": 671,
+            "y": 628,
+            "width": 205,
+            "height": 303
+          },
+          "ground": {
+            "x": 790.5,
+            "y": 929
+          }
+        },
+        {
+          "name": "walk-6",
+          "pixels": {
+            "x": 988,
+            "y": 628,
+            "width": 191,
+            "height": 302
+          },
+          "ground": {
+            "x": 1102.0,
+            "y": 928
+          }
+        },
+        {
+          "name": "walk-7",
+          "pixels": {
+            "x": 988,
+            "y": 628,
+            "width": 191,
+            "height": 302
+          },
+          "ground": {
+            "x": 1102.0,
+            "y": 928
+          }
+        },
+        {
+          "name": "sit",
+          "pixels": {
+            "x": 675,
+            "y": 361,
+            "width": 224,
+            "height": 259
+          },
+          "ground": {
+            "x": 783.5,
+            "y": 618
+          }
+        },
+        {
+          "name": "carry",
+          "pixels": {
+            "x": 962,
+            "y": 318,
+            "width": 199,
+            "height": 305
+          },
+          "ground": {
+            "x": 1083.0,
+            "y": 621
+          }
+        },
+        {
+          "name": "dance-a",
+          "pixels": {
+            "x": 59,
+            "y": 940,
+            "width": 246,
+            "height": 294
+          },
+          "ground": {
+            "x": 177.0,
+            "y": 1232
+          }
+        },
+        {
+          "name": "dance-b",
+          "pixels": {
+            "x": 383,
+            "y": 940,
+            "width": 227,
+            "height": 294
+          },
+          "ground": {
+            "x": 483.0,
+            "y": 1232
+          }
+        }
+      ],
+      "walk": {
+        "source": "SourceArt/Characters/ModelSheets/bandit.png",
+        "sourceSha256": "87484d991294e836ba48afa3f0658abce42dd99a5173fe3eadbc8929ae7283f1",
+        "width": 1254,
+        "height": 1254,
+        "referenceHeight": 298,
+        "frames": [
+          {
+            "name": "walk-0",
+            "pixels": {
+              "x": 76,
+              "y": 629,
+              "width": 216,
+              "height": 301
+            },
+            "ground": {
+              "x": 195.5,
+              "y": 928
+            }
+          },
+          {
+            "name": "walk-1",
+            "pixels": {
+              "x": 76,
+              "y": 629,
+              "width": 216,
+              "height": 301
+            },
+            "ground": {
+              "x": 195.5,
+              "y": 928
+            }
+          },
+          {
+            "name": "walk-2",
+            "pixels": {
+              "x": 371,
+              "y": 628,
+              "width": 196,
+              "height": 304
+            },
+            "ground": {
+              "x": 490.0,
+              "y": 930
+            }
+          },
+          {
+            "name": "walk-3",
+            "pixels": {
+              "x": 371,
+              "y": 628,
+              "width": 196,
+              "height": 304
+            },
+            "ground": {
+              "x": 490.0,
+              "y": 930
+            }
+          },
+          {
+            "name": "walk-4",
+            "pixels": {
+              "x": 671,
+              "y": 628,
+              "width": 205,
+              "height": 303
+            },
+            "ground": {
+              "x": 790.5,
+              "y": 929
+            }
+          },
+          {
+            "name": "walk-5",
+            "pixels": {
+              "x": 671,
+              "y": 628,
+              "width": 205,
+              "height": 303
+            },
+            "ground": {
+              "x": 790.5,
+              "y": 929
+            }
+          },
+          {
+            "name": "walk-6",
+            "pixels": {
+              "x": 988,
+              "y": 628,
+              "width": 191,
+              "height": 302
+            },
+            "ground": {
+              "x": 1102.0,
+              "y": 928
+            }
+          },
+          {
+            "name": "walk-7",
+            "pixels": {
+              "x": 988,
+              "y": 628,
+              "width": 191,
+              "height": 302
+            },
+            "ground": {
+              "x": 1102.0,
+              "y": 928
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "chilli",
+      "displayName": "Chilli",
+      "scale": 1.25,
+      "source": "SourceArt/Characters/ModelSheets/chilli.png",
+      "sourceSha256": "2f316799ac9ba71e47234cfd62f03ae2462149d98a1607420355f8d4ccc0f4f7",
+      "width": 1254,
+      "height": 1254,
+      "referenceHeight": 304,
+      "frames": [
+        {
+          "name": "idle",
+          "pixels": {
+            "x": 384,
+            "y": 6,
+            "width": 190,
+            "height": 308
+          },
+          "ground": {
+            "x": 494.5,
+            "y": 314
+          }
+        },
+        {
+          "name": "blink",
+          "pixels": {
+            "x": 53,
+            "y": 320,
+            "width": 217,
+            "height": 307
+          },
+          "ground": {
+            "x": 182.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "wave-a",
+          "pixels": {
+            "x": 368,
+            "y": 321,
+            "width": 254,
+            "height": 306
+          },
+          "ground": {
+            "x": 501.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "wave-b",
+          "pixels": {
+            "x": 368,
+            "y": 321,
+            "width": 254,
+            "height": 306
+          },
+          "ground": {
+            "x": 501.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-0",
+          "pixels": {
+            "x": 75,
+            "y": 636,
+            "width": 216,
+            "height": 301
+          },
+          "ground": {
+            "x": 193.5,
+            "y": 935
+          }
+        },
+        {
+          "name": "walk-1",
+          "pixels": {
+            "x": 75,
+            "y": 636,
+            "width": 216,
+            "height": 301
+          },
+          "ground": {
+            "x": 193.5,
+            "y": 935
+          }
+        },
+        {
+          "name": "walk-2",
+          "pixels": {
+            "x": 386,
+            "y": 636,
+            "width": 204,
+            "height": 297
+          },
+          "ground": {
+            "x": 500.5,
+            "y": 931
+          }
+        },
+        {
+          "name": "walk-3",
+          "pixels": {
+            "x": 386,
+            "y": 636,
+            "width": 204,
+            "height": 297
+          },
+          "ground": {
+            "x": 500.5,
+            "y": 931
+          }
+        },
+        {
+          "name": "walk-4",
+          "pixels": {
+            "x": 687,
+            "y": 636,
+            "width": 213,
+            "height": 299
+          },
+          "ground": {
+            "x": 807.5,
+            "y": 933
+          }
+        },
+        {
+          "name": "walk-5",
+          "pixels": {
+            "x": 687,
+            "y": 636,
+            "width": 213,
+            "height": 299
+          },
+          "ground": {
+            "x": 807.5,
+            "y": 933
+          }
+        },
+        {
+          "name": "walk-6",
+          "pixels": {
+            "x": 1006,
+            "y": 635,
+            "width": 204,
+            "height": 301
+          },
+          "ground": {
+            "x": 1125.5,
+            "y": 934
+          }
+        },
+        {
+          "name": "walk-7",
+          "pixels": {
+            "x": 1006,
+            "y": 635,
+            "width": 204,
+            "height": 301
+          },
+          "ground": {
+            "x": 1125.5,
+            "y": 934
+          }
+        },
+        {
+          "name": "sit",
+          "pixels": {
+            "x": 683,
+            "y": 349,
+            "width": 215,
+            "height": 278
+          },
+          "ground": {
+            "x": 794.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "carry",
+          "pixels": {
+            "x": 1012,
+            "y": 322,
+            "width": 188,
+            "height": 305
+          },
+          "ground": {
+            "x": 1122.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "dance-a",
+          "pixels": {
+            "x": 47,
+            "y": 942,
+            "width": 230,
+            "height": 296
+          },
+          "ground": {
+            "x": 158.0,
+            "y": 1236
+          }
+        },
+        {
+          "name": "dance-b",
+          "pixels": {
+            "x": 404,
+            "y": 940,
+            "width": 222,
+            "height": 298
+          },
+          "ground": {
+            "x": 501.5,
+            "y": 1236
+          }
+        }
+      ],
+      "walk": {
+        "source": "SourceArt/Characters/ModelSheets/chilli.png",
+        "sourceSha256": "2f316799ac9ba71e47234cfd62f03ae2462149d98a1607420355f8d4ccc0f4f7",
+        "width": 1254,
+        "height": 1254,
+        "referenceHeight": 304,
+        "frames": [
+          {
+            "name": "walk-0",
+            "pixels": {
+              "x": 75,
+              "y": 636,
+              "width": 216,
+              "height": 301
+            },
+            "ground": {
+              "x": 193.5,
+              "y": 935
+            }
+          },
+          {
+            "name": "walk-1",
+            "pixels": {
+              "x": 75,
+              "y": 636,
+              "width": 216,
+              "height": 301
+            },
+            "ground": {
+              "x": 193.5,
+              "y": 935
+            }
+          },
+          {
+            "name": "walk-2",
+            "pixels": {
+              "x": 386,
+              "y": 636,
+              "width": 204,
+              "height": 297
+            },
+            "ground": {
+              "x": 500.5,
+              "y": 931
+            }
+          },
+          {
+            "name": "walk-3",
+            "pixels": {
+              "x": 386,
+              "y": 636,
+              "width": 204,
+              "height": 297
+            },
+            "ground": {
+              "x": 500.5,
+              "y": 931
+            }
+          },
+          {
+            "name": "walk-4",
+            "pixels": {
+              "x": 687,
+              "y": 636,
+              "width": 213,
+              "height": 299
+            },
+            "ground": {
+              "x": 807.5,
+              "y": 933
+            }
+          },
+          {
+            "name": "walk-5",
+            "pixels": {
+              "x": 687,
+              "y": 636,
+              "width": 213,
+              "height": 299
+            },
+            "ground": {
+              "x": 807.5,
+              "y": 933
+            }
+          },
+          {
+            "name": "walk-6",
+            "pixels": {
+              "x": 1006,
+              "y": 635,
+              "width": 204,
+              "height": 301
+            },
+            "ground": {
+              "x": 1125.5,
+              "y": 934
+            }
+          },
+          {
+            "name": "walk-7",
+            "pixels": {
+              "x": 1006,
+              "y": 635,
+              "width": 204,
+              "height": 301
+            },
+            "ground": {
+              "x": 1125.5,
+              "y": 934
+            }
+          }
+        ]
+      }
     }
   ]
 }

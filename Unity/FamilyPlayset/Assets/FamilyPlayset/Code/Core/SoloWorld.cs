@@ -212,7 +212,7 @@ namespace LittleWeeps.Core
         }
         private static bool Id(string s) => !string.IsNullOrWhiteSpace(s) && s.Length <= 128 && !s.Contains("|");
         public static bool Position(float x, float y) => !float.IsNaN(x) && !float.IsInfinity(x) && !float.IsNaN(y) && !float.IsInfinity(y) && x >= 0 && x <= Width && y >= 0 && y <= Height;
-        private static bool Avatar(string s) => s == "blue-pup" || s == "orange-pup";
+        private static bool Avatar(string s) => PlayableCharacters.Contains(s);
         private static bool Activity(string s) => s == "" || s == "garden" || s == "cleanup";
         public static void Validate(SoloSnapshot s)
         {

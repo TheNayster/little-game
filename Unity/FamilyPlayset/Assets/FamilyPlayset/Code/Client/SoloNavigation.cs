@@ -102,15 +102,18 @@ namespace LittleWeeps.Client
             Panel(close.transform,"Blue arrow tab",Vector2.zero,new Vector2(100,98),new Color(.33f,.76f,.94f));Arrow(close.transform);NavButton(close,()=>ShowCharacters(false));
             trayViewport=Plain(trayPanel,"Cast viewport",Vector2.zero,Vector2.zero,Color.clear,true).rectTransform;
             Stretch(trayViewport);trayViewport.offsetMin=new Vector2(168,0);trayViewport.offsetMax=new Vector2(-24,0);trayViewport.gameObject.AddComponent<RectMask2D>();
-            var cast=Rect(trayViewport,"Full body cast",Vector2.zero,new Vector2(650,300));cast.anchorMin=cast.anchorMax=new Vector2(0,0);cast.pivot=Vector2.zero;
+            var cast=Rect(trayViewport,"Full body cast",Vector2.zero,new Vector2(PlayableCharacters.All.Count*270+80,300));cast.anchorMin=cast.anchorMax=new Vector2(0,0);cast.pivot=Vector2.zero;
             characterScroll=trayViewport.gameObject.AddComponent<ScrollRect>();characterScroll.viewport=trayViewport;characterScroll.content=cast;characterScroll.vertical=false;characterScroll.movementType=ScrollRect.MovementType.Clamped;
-            for(var i=0;i<2;i++)
+            for(var i=0;i<PlayableCharacters.All.Count;i++)
             {
-                var id=i==0?"blue-pup":"orange-pup";var name=i==0?"Bluey":"Bingo";
+                var entry=PlayableCharacters.All[i];var id=entry.AvatarId;var name=entry.Name;
                 var card=Plain(cast,name,new Vector2(150+i*270,150),new Vector2(210,292),Color.clear,true);
                 card.rectTransform.anchorMin=card.rectTransform.anchorMax=Vector2.zero;
                 var marker=Panel(card.transform,"Selected character",new Vector2(0,-80),new Vector2(146,30),new Color(1,.86f,.39f),false,true);avatarMarkers.Add(id,marker);
-                PickerCharacter(card.transform,id,new Vector2(0,-24),1.45f);
+                // The visual adapter places its ground joint 45 units below
+                // its root. Compensate after scaling so feet clear the label.
+                var menuScale=1.18f/Mathf.Max(1,entry.Scale);
+                PickerCharacter(card.transform,id,new Vector2(0,-80+45*menuScale),menuScale);
                 Label(card.transform,name,25,new Vector2(0,-124),new Vector2(190,38)).fontStyle=FontStyle.Bold;
                 NavButton(card,()=>{if(!ActionPending && ReadPlayer(Actor).avatar!=id)ChooseAvatar(id);});
             }

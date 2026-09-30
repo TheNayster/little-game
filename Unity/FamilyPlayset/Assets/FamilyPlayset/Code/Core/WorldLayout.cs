@@ -6,7 +6,10 @@ namespace LittleWeeps.Core
     // its coordinates left of the original garden preserves every saved prop.
     public static class WorldLayout
     {
-        public const int Schema=33, ScenerySchema=3, Content=34;
+        // Content 36 admits the prepared Heeler roster's additional avatar IDs.
+        // Existing save fields/schema stay intact; older authorities must not
+        // admit clients that can select characters they cannot validate.
+        public const int Schema=33, ScenerySchema=3, Content=36;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id);
