@@ -608,6 +608,9 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 
 ## 18. Current work record and research basis
 
+**Dinosaur audio review — September 30:** the user rejected candidate 230 calls as random noise. Twelve replacements are prepared as standalone WAV/MP3 auditions from CC0 recordings/effects and original horn synthesis, with researched sound families and a listening page under `SourceAudio/Books/DinosaurPreviews/2026-09-30/`. Subjective quality is pending user listening; basic asset checks do not establish acceptance. [Research and preview record](implementation/native-reader-controls-2026-09-28.html#september-30-rejected-calls-and-preview-only-replacements). Do not add these sounds to the app before presenting them and receiving the user's selection. No runtime/build/device/server changes.
+
+
 **Whole-book restart and dinosaur calls — September 30:** candidate **230** adds Start again across all six books and Read book again after the final narration. Dinosaur taps say the name then play one of twelve distinct calls generated locally on the PC from researched animal-inspired sound design. [Applied research and five focused native checks](implementation/native-reader-controls-2026-09-28.html#september-30-restart-the-whole-book-and-hear-dinosaur-calls). Windows release built; schema 32/content 33 unchanged. No device or live-server installation, or physical listening acceptance. Final book subjects and the wider Home backlog remain open; preserve the main integration hold.
 
 

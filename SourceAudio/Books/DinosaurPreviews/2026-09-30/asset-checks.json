@@ -1,0 +1,103 @@
+{
+  "previewOnly": true,
+  "installed": false,
+  "listeningAccepted": false,
+  "checks": [
+    {
+      "id": "t-rex",
+      "species": "T-Rex",
+      "seconds": 3.8,
+      "peak": 0.7542040388478982,
+      "rms": 0.12,
+      "sha256": "769eefa00dcc474edf29213907568143cdb19c79831c9ef76692d49a864645ef"
+    },
+    {
+      "id": "triceratops",
+      "species": "Triceratops",
+      "seconds": 3.5,
+      "peak": 0.5152875562035181,
+      "rms": 0.11999999999999998,
+      "sha256": "ecda49f0abed314d37ea2bdc1ed0381c07d7a42c1b93383f4b5539d95708a177"
+    },
+    {
+      "id": "stegosaurus",
+      "species": "Stegosaurus",
+      "seconds": 3.3,
+      "peak": 0.6873068123873802,
+      "rms": 0.12000000000000001,
+      "sha256": "d7188879d75278709472cff063aaa2b68c79fdc84fa93809aa172eb5a132307e"
+    },
+    {
+      "id": "brachiosaurus",
+      "species": "Brachiosaurus",
+      "seconds": 3.8,
+      "peak": 0.76,
+      "rms": 0.09107796331457413,
+      "sha256": "85419bce7d734d6ae3b0fe81c526c31760f49618450258e8c616c72de7bf9ce3"
+    },
+    {
+      "id": "diplodocus",
+      "species": "Diplodocus",
+      "seconds": 3.8,
+      "peak": 0.76,
+      "rms": 0.08716035940859426,
+      "sha256": "5f6374699f642f1bd8aa46bd0eb34b052b6ec80c85a08923d05184521a784b04"
+    },
+    {
+      "id": "ankylosaurus",
+      "species": "Ankylosaurus",
+      "seconds": 3.2,
+      "peak": 0.5607023629001733,
+      "rms": 0.12,
+      "sha256": "68c1dd0dbf3953701eec9448a5408a2e8ceba451cfd5c401221ab06d6c3ed51e"
+    },
+    {
+      "id": "brontosaurus",
+      "species": "Brontosaurus",
+      "seconds": 4.0,
+      "peak": 0.76,
+      "rms": 0.090246720595576,
+      "sha256": "3a7374ebdb1653c45fdc358007858662f7d660b79200ed71230be6dcbeff562b"
+    },
+    {
+      "id": "spinosaurus",
+      "species": "Spinosaurus",
+      "seconds": 3.9,
+      "peak": 0.76,
+      "rms": 0.08964809279636393,
+      "sha256": "1c6dadc9aeca7dd344b12be4a5c2f98c47e73f875af47d98f6ece836875bacdf"
+    },
+    {
+      "id": "pteranodon",
+      "species": "Pteranodon",
+      "seconds": 3.2,
+      "peak": 0.76,
+      "rms": 0.10328915718207332,
+      "sha256": "b70345187d96127fdcafe1aa8c92ed04b453a763998a658b585f20f51c545294"
+    },
+    {
+      "id": "quetzalcoatlus",
+      "species": "Quetzalcoatlus",
+      "seconds": 3.9,
+      "peak": 0.76,
+      "rms": 0.1094982185197254,
+      "sha256": "bd09ea41caf010be891ee6cc83a9c05671e8472d52cc778e981c8bcf6ee30f1b"
+    },
+    {
+      "id": "parasaurolophus",
+      "species": "Parasaurolophus",
+      "seconds": 3.4,
+      "peak": 0.6703005973610063,
+      "rms": 0.12,
+      "sha256": "ddb60f10c7cc5a25029e7d342eac496614b13e3c8381860cbb0fd33004bb508c"
+    },
+    {
+      "id": "velociraptor",
+      "species": "Velociraptor",
+      "seconds": 3.3,
+      "peak": 0.76,
+      "rms": 0.08820733203768114,
+      "sha256": "49310942fc79af7b043f85deb0199f420e70fc1d79ea35af72c4eb05499e6e3b"
+    }
+  ]
+}

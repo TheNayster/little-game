@@ -1,0 +1,100 @@
+{
+  "date": "2026-09-30",
+  "scope": "Preview drafts only; do not integrate or build app until the user has heard and chosen sounds.",
+  "goals": [
+    "BOOK-01",
+    "H-19",
+    "H-20"
+  ],
+  "sources": [
+    {
+      "id": "roar",
+      "file": "sources/roar.mp3",
+      "author": "Alessandrobraz",
+      "url": "https://freesound.org/people/Alessandrobraz/sounds/708641/",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "description": "Artist-made two-version dinosaur roar; cinematic effect",
+      "sha256": "cec0d631fbfd146e91a4ecf55330630386203f2065605fd5164498f6d92a3f73",
+      "quality": "Public HQ MP3 preview source; not a lossless original"
+    },
+    {
+      "id": "growl",
+      "file": "sources/growl.mp3",
+      "author": "stratcat322",
+      "url": "https://freesound.org/people/stratcat322/sounds/270383/",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "description": "Edited lion growls, based on CC0 original by roman_cgr",
+      "sha256": "651b17a4886fdfd3f1f774b5ba002c394193bad8fe2339b130ac9607722f7086",
+      "quality": "Public HQ MP3 preview source; not a lossless original"
+    },
+    {
+      "id": "pterosaur",
+      "file": "sources/pterosaur.mp3",
+      "author": "dinodilopho",
+      "url": "https://freesound.org/people/dinodilopho/sounds/263530/",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "description": "Human-made pterosaur effect",
+      "sha256": "7086fbf4e91dda9caa776744d95d7c0d15eeaa0dca6ff0335adc7a197a116c9f",
+      "quality": "Public HQ MP3 preview source; not a lossless original"
+    },
+    {
+      "id": "pig",
+      "file": "sources/pig.mp3",
+      "author": "wwstudioswastaken",
+      "url": "https://freesound.org/people/wwstudioswastaken/sounds/612686/",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "description": "Recorded pig grunt",
+      "sha256": "23870d56c42e8a3a67970555f58947657adffc018dde96c42a8ccdfa8434b1ac",
+      "quality": "Public HQ MP3 preview source; not a lossless original"
+    },
+    {
+      "id": "alligator",
+      "file": "sources/alligator.mp3",
+      "author": "D.jones",
+      "url": "https://freesound.org/people/D.jones/sounds/527844/",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "description": "Recorded alligator growls",
+      "sha256": "ac5c7002d21b49862f22702aef775628cbfaae6914ea216bf1d2faf9570d6d4d",
+      "quality": "Public HQ MP3 preview source; not a lossless original"
+    },
+    {
+      "id": "goose",
+      "file": "sources/goose.mp3",
+      "author": "antique98",
+      "url": "https://freesound.org/people/antique98/sounds/160686/",
+      "license": "CC0-1.0",
+      "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "description": "Recorded goose call",
+      "sha256": "60f10a0af140290f31ef55df2f02533b978693838ab6c9c98d906a5caa9b936b",
+      "quality": "Public HQ MP3 preview source; not a lossless original"
+    }
+  ],
+  "findings": [
+    {
+      "url": "https://darrennaish.wordpress.com/wp-content/uploads/2023/11/evolve-magazine-prehistoric-planet-naish-2023.pdf",
+      "finding": "Scientific consultant Darren Naish describes using crocodilian/bird comparisons and lowering recorded large-bird calls to create varied resonant animal voices for Prehistoric Planet.",
+      "applied": "Keep recognizable recorded vocal articulation; use restrained pitch changes and separate roar, grunt, bellow and squawk families."
+    },
+    {
+      "url": "https://carnegiemnh.org/what-did-dinosaurs-sound-like-paleoacoustics/",
+      "finding": "Museum expert interview distinguishes closed-mouth animal booms/growls from cinematic roars; film effects are composites of existing animal recordings.",
+      "applied": "T-Rex and Spinosaurus are clearly labeled cinematic designs, with a recorded growl layer; these are not claimed as exact scientific reconstructions."
+    },
+    {
+      "url": "https://newsreleases.sandia.gov/scientists-use-digital-paleontology-to-produce-voice-of-parasaurolophus-dinosaur/",
+      "finding": "CT-based Parasaurolophus crest modeling supports possible low resonant tones; missing soft tissue means the reconstruction is approximate.",
+      "applied": "A stylized horn family instead of assigning the same roar to this dinosaur. Our audible horn is original synthesis, not Sandia audio or a replicated crest model."
+    }
+  ],
+  "acceptance": {
+    "subjectiveListening": "Pending user review. This agent cannot hear tool-returned audio in the current environment.",
+    "objective": "Check finite samples, peak level, duration and separate files only. No gameplay/device suites or build.",
+    "replacementOf230": "User rejected the previous generated calls; candidate 230 is not listening-approved."
+  },
+  "appModified": false
+}
