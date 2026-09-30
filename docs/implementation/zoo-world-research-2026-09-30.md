@@ -346,3 +346,12 @@ No live-family save, installed server, Android or physical iPad was changed. Pho
 ![T. rex reaches its food](evidence/zoo-all-species-2026-09-30/tyrannosaurus-feeding.png)
 
 ![Clownfish reaches its pellets](evidence/zoo-all-species-2026-09-30/clownfish-feeding.png)
+
+
+## Repeat food taps and quicker approaches — September 30
+
+The user asks that clicking food again keep feeding running and that animals reach the food a little faster. A second food tap no longer sends the return command or restarts an active bucket/offering walk. Already offered food retains its ticket and place; an unoffered held portion can resume its original place after an interrupted walk. Normal departure still releases only that player's offer.
+
+Authoritative food approaches use 1.4 times each species' previous approach speed and a 1.5-second minimum segment. Native measurement of the same 338.85-unit approach is 5.76 seconds instead of 8.07. Schema 35 fields are unchanged; isolated content 38 records this shared rule tuning. Concurrent combined-game compatibility still needs reconciliation before delivery.
+
+Windows **281** compiles and passes the existing Unity JSON checks. [Two targeted native groups](evidence/zoo-repeat-food-2026-09-30/results.json) pass actual repeated food taps while walking to the bucket, walking to offer, approaching and eating; one exact portion completes. Four clients preserve their distinct food tickets and slots through repeat taps; one leaves and three siblings complete once. Existing all-species art/portal evidence remains applicable. No live family, installed server or physical device was changed.

@@ -6,8 +6,8 @@ namespace LittleWeeps.Core
     // its coordinates left of the original garden preserves every saved prop.
     public static class WorldLayout
     {
-        // Content 37 adds sixteen exhibits, new portals and species food rules.
-        public const int Schema=35, ScenerySchema=3, Content=37;
+        // Content 38 retains the sixteen exhibits and speeds authoritative food approaches.
+        public const int Schema=35, ScenerySchema=3, Content=38;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id) || ZooLayout.Area(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id) && !ZooCatalog.Trail(id);

@@ -118,9 +118,15 @@ namespace LittleWeeps.Client
         {
             if(ActionPending)return;
             var food=Zoo?.food.Single(f=>f.actor==Actor);
-            if(op=="take" && food?.species!="" && food!=null){
-                if(food.species==target && !food.offered){op="offer";entry=new Vector2(ZooLayout.SlotX(target,food.slot),100);}
-                else {SendZoo("return","",_=>{});return;}
+            if(op=="take"){
+                // Repeated food taps must not replace the active walk or return
+                // an offered portion. Resume a held portion only after a walk
+                // was interrupted; its original species and slot stay intact.
+                if(zooApproach && (zooOperation=="take" || zooOperation=="offer"))return;
+                if(food!=null && food.species!=""){
+                    if(food.offered)return;
+                    op="offer";target=food.species;entry=new Vector2(ZooLayout.SlotX(target,food.slot),100);
+                }
             }
             CancelPointers();manualCamera=false;zooApproach=true;zooOperation=op;zooSpecies=target;zooEntry=entry;
             var p=ReadPlayer(Actor);zooApproachArea=p.zone;zooApproachVisit=p.visit;

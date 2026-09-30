@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": 281,
+  "checks": [
+    "repeat taps during both walks, approach and eating preserve one portion; authority approaches 40% faster",
+    "four-player repeat taps preserve tickets/slots; one leaves and three siblings complete once"
+  ],
+  "observedStages": [
+    "approaching",
+    "eating",
+    "walking-to-bucket",
+    "walking-to-offer"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}
