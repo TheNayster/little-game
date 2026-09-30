@@ -1,0 +1,16 @@
+{
+  "build": 289,
+  "passed": true,
+  "checks": [
+    "Current-world cards only: home",
+    "Current-world cards only: home",
+    "Current-world cards only: home-upstairs",
+    "Current-world cards only: park",
+    "Current-world cards only: creek",
+    "Current-world cards only: beach",
+    "Current-world cards only: daycare",
+    "Current-world cards only: zoo",
+    "Current-world cards only: home",
+    "Home selection still starts fishing; a world change dismisses the old menu"
+  ]
+}

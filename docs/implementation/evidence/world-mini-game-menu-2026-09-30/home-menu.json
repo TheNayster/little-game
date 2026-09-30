@@ -1,0 +1,1338 @@
+{
+  "serial": 78,
+  "visiblePlayers": 1,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 12,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": true,
+  "shared": true,
+  "error": "",
+  "build": "0.0.289",
+  "actor": "player-1",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "garden",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "outfit": "",
+      "position": {
+        "x": -4380.0,
+        "y": 99.99996185302734
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-2",
+      "outfit": "",
+      "position": {
+        "x": 459.99981689453125,
+        "y": 99.99996185302734
+      },
+      "visible": false,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-3",
+      "outfit": "",
+      "position": {
+        "x": 639.9998168945312,
+        "y": 99.99996185302734
+      },
+      "visible": false,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-4",
+      "outfit": "",
+      "position": {
+        "x": 820.0001831054688,
+        "y": 99.99996185302734
+      },
+      "visible": false,
+      "roarPlaying": false
+    }
+  ],
+  "toys": [
+    {
+      "id": "bucket-1",
+      "label": "",
+      "position": {
+        "x": 359.99981689453125,
+        "y": 129.99998474121094
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "sponge-1",
+      "label": "",
+      "position": {
+        "x": 559.9998168945312,
+        "y": 119.99996948242188
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "tap-1",
+      "label": "",
+      "position": {
+        "x": 150.00022888183594,
+        "y": 340.0000305175781
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plant-1",
+      "label": "",
+      "position": {
+        "x": 810.0001831054688,
+        "y": 330.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "puddle-1",
+      "label": "",
+      "position": {
+        "x": 679.9998168945312,
+        "y": 140.0
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ball-1",
+      "label": "",
+      "position": {
+        "x": 3349.999755859375,
+        "y": 129.99998474121094
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-hello",
+      "label": "",
+      "position": {
+        "x": -4635.0,
+        "y": 797.77783203125
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-little-bridge",
+      "label": "",
+      "position": {
+        "x": -4500.0,
+        "y": 797.77783203125
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-rocket-moon",
+      "label": "",
+      "position": {
+        "x": -4365.0,
+        "y": 797.77783203125
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-fairy-garden",
+      "label": "",
+      "position": {
+        "x": -4635.0,
+        "y": 588.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-princess-star",
+      "label": "",
+      "position": {
+        "x": -4500.0,
+        "y": 588.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "living-book-mermaid-shell",
+      "label": "",
+      "position": {
+        "x": -4365.0,
+        "y": 588.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-dough",
+      "label": " 16",
+      "position": {
+        "x": -1229.9998779296875,
+        "y": 1061.1112060546875
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-sauce",
+      "label": " 16",
+      "position": {
+        "x": -1158.0,
+        "y": 1061.1112060546875
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-cheese",
+      "label": " 16",
+      "position": {
+        "x": -1086.0001220703125,
+        "y": 1061.1112060546875
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-pepperoni",
+      "label": " 16",
+      "position": {
+        "x": -1229.9998779296875,
+        "y": 870.0000610351562
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-capsicum",
+      "label": " 16",
+      "position": {
+        "x": -1158.0,
+        "y": 870.0000610351562
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-mushroom",
+      "label": " 16",
+      "position": {
+        "x": -1086.0001220703125,
+        "y": 870.0000610351562
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-tomato",
+      "label": " 16",
+      "position": {
+        "x": -1229.9998779296875,
+        "y": 678.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-ham",
+      "label": " 16",
+      "position": {
+        "x": -1158.0,
+        "y": 678.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-pineapple",
+      "label": " 16",
+      "position": {
+        "x": -1086.0001220703125,
+        "y": 678.888916015625
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-flour",
+      "label": " 16",
+      "position": {
+        "x": -1229.9998779296875,
+        "y": 487.7778015136719
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-egg",
+      "label": " 16",
+      "position": {
+        "x": -1158.0,
+        "y": 487.7778015136719
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-milk",
+      "label": " 16",
+      "position": {
+        "x": -1086.0001220703125,
+        "y": 487.7778015136719
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-icing",
+      "label": " 16",
+      "position": {
+        "x": -2565.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-chocolate",
+      "label": " 16",
+      "position": {
+        "x": -2505.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-strawberry",
+      "label": " 16",
+      "position": {
+        "x": -2445.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-sprinkles",
+      "label": " 16",
+      "position": {
+        "x": -2384.999755859375,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-carrot",
+      "label": " 16",
+      "position": {
+        "x": -2325.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-bun",
+      "label": " 16",
+      "position": {
+        "x": -2265.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-patty",
+      "label": " 16",
+      "position": {
+        "x": -2205.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-lettuce",
+      "label": " 16",
+      "position": {
+        "x": -2145.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-pasta",
+      "label": " 16",
+      "position": {
+        "x": -2085.0,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-broth",
+      "label": " 16",
+      "position": {
+        "x": -2025.0001220703125,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-rice",
+      "label": " 16",
+      "position": {
+        "x": -1964.9998779296875,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-banana",
+      "label": " 16",
+      "position": {
+        "x": -1905.0001220703125,
+        "y": 601.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-popcorn",
+      "label": " 16",
+      "position": {
+        "x": -2565.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "cookware-0",
+      "label": " ",
+      "position": {
+        "x": -2500.0,
+        "y": 761.1111450195312
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-0",
+      "label": " ",
+      "position": {
+        "x": -740.0001220703125,
+        "y": 385.5555725097656
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-4",
+      "label": " ",
+      "position": {
+        "x": -2505.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spoon-0",
+      "label": " ",
+      "position": {
+        "x": -2600.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-knife-0",
+      "label": " ",
+      "position": {
+        "x": -2552.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-roller-0",
+      "label": " ",
+      "position": {
+        "x": -2504.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spatula-0",
+      "label": " ",
+      "position": {
+        "x": -2456.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "cookware-1",
+      "label": " ",
+      "position": {
+        "x": -2320.0,
+        "y": 761.1111450195312
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-1",
+      "label": " ",
+      "position": {
+        "x": -560.0001220703125,
+        "y": 385.5555725097656
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-5",
+      "label": " ",
+      "position": {
+        "x": -2445.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spoon-1",
+      "label": " ",
+      "position": {
+        "x": -2408.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-knife-1",
+      "label": " ",
+      "position": {
+        "x": -2359.999755859375,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-roller-1",
+      "label": " ",
+      "position": {
+        "x": -2311.999755859375,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spatula-1",
+      "label": " ",
+      "position": {
+        "x": -2263.999755859375,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "cookware-2",
+      "label": " ",
+      "position": {
+        "x": -2140.0,
+        "y": 761.1111450195312
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-2",
+      "label": " ",
+      "position": {
+        "x": -380.0001525878906,
+        "y": 385.5555725097656
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-6",
+      "label": " ",
+      "position": {
+        "x": -2384.999755859375,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spoon-2",
+      "label": " ",
+      "position": {
+        "x": -2215.999755859375,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-knife-2",
+      "label": " ",
+      "position": {
+        "x": -2167.999755859375,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-roller-2",
+      "label": " ",
+      "position": {
+        "x": -2120.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spatula-2",
+      "label": " ",
+      "position": {
+        "x": -2072.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "cookware-3",
+      "label": " ",
+      "position": {
+        "x": -1960.0001220703125,
+        "y": 761.1111450195312
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-3",
+      "label": " ",
+      "position": {
+        "x": -200.0001678466797,
+        "y": 385.5555725097656
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "plate-7",
+      "label": " ",
+      "position": {
+        "x": -2325.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spoon-3",
+      "label": " ",
+      "position": {
+        "x": -2023.9998779296875,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-knife-3",
+      "label": " ",
+      "position": {
+        "x": -1976.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-roller-3",
+      "label": " ",
+      "position": {
+        "x": -1928.0,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "utensil-spatula-3",
+      "label": " ",
+      "position": {
+        "x": -1880.0001220703125,
+        "y": 972.2222290039062
+      },
+      "alpha": 1.0
+    },
+    {
+      "id": "ingredient-cake-mix",
+      "label": " 16",
+      "position": {
+        "x": -2265.0,
+        "y": 381.111083984375
+      },
+      "alpha": 1.0
+    }
+  ],
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -7.62939453125e-06,
+    "y": -5.7220458984375e-06,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "bluey",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Mini games menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": -7.62939453125e-06,
+        "y": -5.7220458984375e-06,
+        "width": 1024.0,
+        "height": 768.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Fishing",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 113.77778625488281,
+        "y": 241.7777557373047,
+        "width": 386.844482421875,
+        "height": 204.8000030517578
+      },
+      "enabled": true
+    },
+    {
+      "name": "Read shared books",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 204.79998779296875,
+        "y": 288.4800109863281,
+        "width": 384.0,
+        "height": 52.79998779296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 696.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Choose a game",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 45.51110076904297,
+        "y": 93.86666107177734,
+        "width": 932.977783203125,
+        "height": 580.2667236328125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Back to play",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 341.3333435058594,
+        "y": 113.77776336669922,
+        "width": 341.3333435058594,
+        "height": 85.33333587646484
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 905.5999755859375,
+        "y": 34.399993896484375,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Feed fish",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 523.3777465820312,
+        "y": 241.7777557373047,
+        "width": 386.844482421875,
+        "height": 204.8000030517578
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sit middle right",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 915.5199584960938,
+        "y": 167.99996948242188,
+        "width": 63.3599853515625,
+        "height": 211.20001220703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Hide & seek",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 113.77777099609375,
+        "y": 461.368896484375,
+        "width": 796.4444580078125,
+        "height": 102.4000244140625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sit right",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 979.5200805664062,
+        "y": 167.99996948242188,
+        "width": 44.47991943359375,
+        "height": 211.20001220703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sit left",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 787.5200805664062,
+        "y": 167.99996948242188,
+        "width": 63.3599853515625,
+        "height": 211.20001220703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sit middle left",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 851.5200805664062,
+        "y": 167.99996948242188,
+        "width": 63.3599853515625,
+        "height": 211.20001220703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    }
+  ],
+  "outfitsOpen": false,
+  "roarPlaying": false,
+  "outfit": "",
+  "outfitColor": "green",
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.0,
+  "homePose": "Idle",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "worldMusicTrack": "home",
+  "worldMusicPlaying": true,
+  "worldMusicVolume": 0.1251661628484726,
+  "worldMusicSignal": 0.008861462585628033,
+  "worldMusicClipCount": 2,
+  "worldMusicSample": 22579,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 13.384690284729004,
+  "pond": {
+    "clock": 13.2349781,
+    "random": 506676528,
+    "nextFood": 0,
+    "fish": [
+      {
+        "id": 0,
+        "random": 1621571077,
+        "fromX": -81.74530792236328,
+        "fromY": -27.16348648071289,
+        "x": -101.89288330078125,
+        "y": 9.244961738586426,
+        "started": 12.3243902,
+        "duration": 4.887757188381571
+      },
+      {
+        "id": 1,
+        "random": 611336396,
+        "fromX": -95.06202697753906,
+        "fromY": 27.576189041137695,
+        "x": -220.2333221435547,
+        "y": 22.554189682006836,
+        "started": 12.876174500000001,
+        "duration": 3.711689233014288
+      },
+      {
+        "id": 2,
+        "random": 3983487105,
+        "fromX": 46.31588363647461,
+        "fromY": -18.105106353759766,
+        "x": -245.1242218017578,
+        "y": 16.612152099609375,
+        "started": 12.2975545,
+        "duration": 7.637389334299925
+      },
+      {
+        "id": 3,
+        "random": 3807959832,
+        "fromX": -152.48257446289062,
+        "fromY": 23.625343322753906,
+        "x": 162.05551147460938,
+        "y": 20.82703399658203,
+        "started": 6.700199299999999,
+        "duration": 7.433048694495356
+      },
+      {
+        "id": 4,
+        "random": 3565486984,
+        "fromX": 57.057979583740234,
+        "fromY": 11.567285537719727,
+        "x": 244.52902221679688,
+        "y": 15.577292442321777,
+        "started": 13.1080128,
+        "duration": 7.150773148087499
+      },
+      {
+        "id": 5,
+        "random": 2610806249,
+        "fromX": 20.8170108795166,
+        "fromY": -5.737977981567383,
+        "x": -152.8441925048828,
+        "y": 16.540050506591797,
+        "started": 13.2349781,
+        "duration": 6.039378497758736
+      },
+      {
+        "id": 6,
+        "random": 4073796589,
+        "fromX": 260.43511962890625,
+        "fromY": -6.0782036781311035,
+        "x": -50.8939094543457,
+        "y": -9.743557929992676,
+        "started": 6.183346799999998,
+        "duration": 7.742523410763248
+      },
+      {
+        "id": 7,
+        "random": 2405092037,
+        "fromX": 135.33970642089844,
+        "fromY": 0.2692233622074127,
+        "x": 252.10626220703125,
+        "y": 15.64893627166748,
+        "started": 8.4343246,
+        "duration": 5.799895635759434
+      }
+    ],
+    "rods": [
+      {
+        "actor": "player-1",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": -180.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-2",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-3",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-4",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      }
+    ],
+    "food": []
+  },
+  "pondCloseup": false,
+  "pondWaterPlaying": false,
+  "zoo": {
+    "animals": [
+      {
+        "species": "elephant",
+        "owner": "",
+        "random": 1251832822,
+        "sequence": 3,
+        "fed": 0,
+        "previous": 1,
+        "phase": 1,
+        "age": 0.49846060000000136,
+        "duration": 5.446345473737757,
+        "fromX": 1050.5643310546875,
+        "fromY": 413.310791015625,
+        "toX": 825.060546875,
+        "toY": 345.3061828613281,
+        "consumed": false
+      },
+      {
+        "species": "giraffe",
+        "owner": "",
+        "random": 1338677000,
+        "sequence": 2,
+        "fed": 0,
+        "previous": 1,
+        "phase": 1,
+        "age": 3.0624809000000006,
+        "duration": 15.718650187534257,
+        "fromX": 3300.0,
+        "fromY": 360.0,
+        "toX": 3983.708984375,
+        "toY": 310.5414733886719,
+        "consumed": false
+      }
+    ],
+    "food": [
+      {
+        "actor": "player-1",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-2",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-3",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-4",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      }
+    ],
+    "nextTicket": 0
+  },
+  "visibleZooAnimals": 0,
+  "hideAndSeek": {
+    "round": 0,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 0,
+    "age": 0.0,
+    "count": 0.0,
+    "clock": 0.0,
+    "walked": 0.0,
+    "x": -3660.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "home",
+  "cameraX": -4380.0,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "home-discovery",
+    "home-kitchen",
+    "home-living"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Home stairs",
+    "Kitchen counter",
+    "Kitchen fridge",
+    "Kitchen oven",
+    "Cupboard door 0",
+    "Cupboard door 1",
+    "Cupboard door 2",
+    "Cupboard door 3",
+    "cookware-0",
+    "cookware-1",
+    "cookware-2",
+    "cookware-3",
+    "utensil-knife-0",
+    "utensil-knife-1",
+    "utensil-knife-2",
+    "utensil-knife-3",
+    "utensil-roller-0",
+    "utensil-roller-1",
+    "utensil-roller-2",
+    "utensil-roller-3",
+    "utensil-spatula-0",
+    "utensil-spatula-1",
+    "utensil-spatula-2",
+    "utensil-spatula-3",
+    "utensil-spoon-0",
+    "utensil-spoon-1",
+    "utensil-spoon-2",
+    "utensil-spoon-3",
+    "Discovery coloring table",
+    "Discovery science bench",
+    "tap-1",
+    "plant-1",
+    "Home shed",
+    "Home shed front",
+    "Hiding curtain",
+    "Hiding wardrobe",
+    "Hiding tent",
+    "Shared living-room book rack",
+    "living-book-fairy-garden",
+    "living-book-hello",
+    "living-book-little-bridge",
+    "living-book-mermaid-shell",
+    "living-book-princess-star",
+    "living-book-rocket-moon",
+    "Book rack lips",
+    "Home trampoline",
+    "Backyard fish pond",
+    "Home trampoline front",
+    "Home sofa",
+    "Home sofa front",
+    "Hiding sofa nook",
+    "Hiding garden bush",
+    "Radio garden",
+    "Radio living",
+    "Keepy Uppy balloon",
+    "puddle-1",
+    "Kitchen dining",
+    "Dining table front",
+    "ball-1",
+    "bucket-1",
+    "plate-0",
+    "plate-1",
+    "plate-2",
+    "plate-3",
+    "Hiding dining nook",
+    "sponge-1",
+    "Hiding folding screen",
+    "Hiding blanket bench",
+    "Player character",
+    "Bandit seeker NPC"
+  ],
+  "bookAuto": false,
+  "bookWords": true,
+  "bookOptions": false,
+  "bookEffect": false,
+  "bookEffectPending": false,
+  "bookNaming": false,
+  "bookTitle": "hello-dinosaurs",
+  "bookTextures": 0,
+  "bookAudio": 0,
+  "discoveryOpen": false,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "1",
+    "",
+    "",
+    "Tap to walk",
+    "",
+    "",
+    "3",
+    "",
+    "Coloring",
+    "2",
+    "Hide while a parent counts!",
+    "",
+    "",
+    "",
+    "Feed fish",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Hide & seek",
+    "",
+    "",
+    "4",
+    "",
+    "Upstairs \u2191",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Home games",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Science",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Fishing",
+    "",
+    "",
+    "",
+    "Our books",
+    "Back to play",
+    "",
+    "4",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "2",
+    "",
+    "",
+    "Cook",
+    "",
+    "Menu",
+    "1",
+    "",
+    "3",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ]
+}
