@@ -1,5 +1,7 @@
 # Daycare The Adventure mini game
 
+**Later cast update:** Windows 309 uses random, distinct prepared child NPCs with a saved shared cast and new friends on replay. Players can be anyone without affecting NPC selection. Fixed character names and earlier captures below describe builds 305–307. [Current cast behavior and evidence](daycare-random-npcs-2026-09-30.html).
+
 The user requested research and implementation of The Adventure, reuse of prepared characters as NPCs, and a Daycare Games menu entry that starts the story directly. They reaffirmed that up to four players must come and go freely. This is the first bounded imagination-story implementation under IMG-01 and G7-D; the other eight stories remain planned.
 
 ## Research and adaptation

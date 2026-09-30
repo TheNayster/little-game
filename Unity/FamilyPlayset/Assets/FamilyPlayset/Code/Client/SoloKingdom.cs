@@ -19,6 +19,7 @@ namespace LittleWeeps.Client
         private int kingdomSpoken=-1,kingdomSpokenRound=-1;
         private readonly List<AudioClip> kingdomAudio=new List<AudioClip>();
         public KingdomState KingdomGame=>HasWorld?(Shared?shared.View.kingdom:World.ReadKingdom()):null;
+        public string[] KingdomNpcArt=>kingdomNpcs.Select(n=>n.visual.CharacterId).ToArray();
         public int VisibleKingdomNpcs=>kingdomNpcs.Count(v=>v.root!=null && v.root.gameObject.activeInHierarchy);
         private KingdomMember KingdomOwn=>KingdomGame?.members.FirstOrDefault(m=>m.actor==Actor);
         private bool KingdomArea=>CurrentArea==KingdomAdventure.Zone;
@@ -48,9 +49,9 @@ namespace LittleWeeps.Client
         private void BuildKingdom()
         {
             if(SceneSchema<KingdomAdventure.Schema)return;
-            for(var i=0;i<KingdomAdventure.Cast.Length;i++){
-                var root=Rect(Board,"Adventure NPC "+KingdomAdventure.Cast[i],Vector2.zero,new Vector2(160,220));
-                var visual=root.gameObject.AddComponent<GameCharacterVisual>();visual.Select(KingdomAdventure.Cast[i]);
+            for(var i=0;i<9;i++){
+                var root=Rect(Board,"Adventure NPC role "+i,Vector2.zero,new Vector2(160,220));
+                var visual=root.gameObject.AddComponent<GameCharacterVisual>();visual.Select(KingdomGame.npcCast[i]);
                 kingdomNpcs.Add((root,visual));
                 if(i==0 || i==5){var crown=Panel(root,"Pretend crown",new Vector2(0,142),new Vector2(80,20),new Color(1,.82f,.24f),false);for(var j=0;j<3;j++)Panel(crown.transform,"Crown point",new Vector2((j-1)*27,14),new Vector2(18,25),new Color(1,.82f,.24f),false);}
                 if(i>=6){var index=i-6;HomeHit(root,"Wake friend "+(index+1),new Vector2(0,65),new Vector2(180,225),()=>RequestKingdom("friend-"+index,"wake"),false);}
@@ -95,6 +96,7 @@ namespace LittleWeeps.Client
             var scale=Mathf.Min(1,safe.rect.width/1100);kingdomHud.localScale=kingdomControls.localScale=Vector3.one*scale;
             for(var i=0;i<kingdomNpcs.Count;i++){
                 var npc=kingdomNpcs[i];npc.root.gameObject.SetActive(visible);if(!visible)continue;
+                npc.visual.Select(g.npcCast[i]);
                 var point=KingdomAdventure.NpcPoint(g,i);npc.root.anchoredPosition=ToBoard(point.X,point.Y);npc.root.localScale=Vector3.one*sceneScale*.85f;
                 var frozen=KingdomAdventure.Frozen(g,i);npc.visual.Present(npc.root.anchoredPosition,"kingdom/"+g.round+"/"+i,false,Time.unscaledDeltaTime);
                 if(frozen || g.phase==KingdomPhase.Feast && g.clock-g.started>=5 || i==0 && g.phase==KingdomPhase.Welcome || i==1 && g.phase==KingdomPhase.Supplies || i>=2 && i<=4 && g.phase==KingdomPhase.Bridge)

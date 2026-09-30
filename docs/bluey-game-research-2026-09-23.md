@@ -1811,6 +1811,9 @@ Reuse section 34's current parent-seeker default, optional child seeker, Come ou
 
 ## 40. Daycare: a sixth world with an optional pretend day
 
+**NPC cast preference — September 30:** Daycare games use random, distinct prepared child characters. The Adventure now draws nine friends and picnic counting four; no repeated faces within either cast, including multiple Terriers. Player choices never affect NPC selection; anyone can play as the same character as an NPC. Keep the same saved cast as players come and go or reopen; a new shared round selects different friends. Calypso stays the teacher. [Implemented change](implementation/daycare-random-npcs-2026-09-30.html).
+
+
 **Current implementation — September 30:** Calypso now has authored shared greeting/reading/observing/helping/resting routines and a local story/help choice. A four-guest picnic-counting table supports up to four contributors, independent exits and saved progress. [Scoped implementation](implementation/daycare-calypso-counting-2026-09-30.html). The full classmate/zone/day-board requirement remains partial.
 
 **Daycare remains one of five destinations:** Heeler Home (including Backyard Garden), Playground & Park, The Creek, The Beach, and Daycare. Its rooms and imagination destinations are subareas, so they do not each need another world bubble.

@@ -21,6 +21,7 @@ namespace LittleWeeps.Client
         private int daycareApproach=-1,daycareSeenRound=-1,daycareSeenPhase=-1,daycareSeenCount=-1;
         private long daycareGreetingVisit=-1;
         public DaycareState DaycareGame=>HasWorld?(Shared?shared.View.daycare:World.ReadDaycare()):null;
+        public string[] PicnicNpcArt=>daycareGuests.Select(n=>n.CharacterId).ToArray();
         public int DaycareRoutine=>DaycareGame==null?-1:DaycareTeacher.Routine(DaycareGame);
         private bool TeacherCardOpen=>daycareTeacherCard!=null && daycareTeacherCard.gameObject.activeSelf;
         public bool CalypsoVisible=>daycareTeacher!=null && daycareTeacher.gameObject.activeInHierarchy;
@@ -65,7 +66,7 @@ namespace LittleWeeps.Client
             teacherRoutineLabel=Label(daycareTeacher,"",19,new Vector2(0,300),new Vector2(270,60));
             daycareTable=Rect(Board,"Daycare picnic table",Vector2.zero,new Vector2(740,240));
             for(var i=0;i<4;i++){
-                var index=i;var child=Rect(daycareTable,"Picnic guest "+DaycareTeacher.Guests[i],new Vector2((i-1.5f)*150,70),new Vector2(160,210));var guest=child.gameObject.AddComponent<GameCharacterVisual>();guest.Select(DaycareTeacher.Guests[i]);child.localScale=Vector3.one*.72f;daycareGuests.Add(guest);
+                var index=i;var child=Rect(daycareTable,"Picnic guest place "+(i+1),new Vector2((i-1.5f)*150,70),new Vector2(160,210));var guest=child.gameObject.AddComponent<GameCharacterVisual>();guest.Select(DaycareGame.guests[i]);child.localScale=Vector3.one*.72f;daycareGuests.Add(guest);
             }
             Plain(daycareTable,"Table left leg",new Vector2(-270,-35),new Vector2(22,110),new Color(.62f,.39f,.22f));Plain(daycareTable,"Table right leg",new Vector2(270,-35),new Vector2(22,110),new Color(.62f,.39f,.22f));
             Panel(daycareTable,"Shared picnic tabletop",new Vector2(0,40),new Vector2(710,110),new Color(.88f,.65f,.4f),false);
@@ -102,7 +103,7 @@ namespace LittleWeeps.Client
             teacherRoutineLabel.text=new[]{"Calypso · hello","Calypso · reading","Calypso · watching play","Calypso · helping","Calypso · resting"}[routine];
             daycareTable.anchoredPosition=ToBoard(1445,180);daycareTable.localScale=Vector3.one*sceneScale;
             for(var i=0;i<4;i++){
-                daycareGuests[i].PresentFrame(new CharacterFrame(d.phase==3?CharacterPose.Wave:CharacterPose.Sit,0,i%2==0,(float)d.clock),Time.unscaledDeltaTime);
+                daycareGuests[i].Select(d.guests[i]);daycareGuests[i].PresentFrame(new CharacterFrame(d.phase==3?CharacterPose.Wave:CharacterPose.Sit,0,i%2==0,(float)d.clock),Time.unscaledDeltaTime);
                 var graphic=daycarePlates[i].GetComponentInChildren<Image>();graphic.color=(d.plates&(1<<i))!=0?Color.white:new Color(1,1,1,.35f);daycarePlates[i].GetComponentInChildren<Button>().interactable=d.phase==2 && PicnicOwn && (d.plates&(1<<i))==0;
             }
             daycareNext.gameObject.SetActive(d.phase==2);daycareNext.interactable=!daycareSending;daycareReplay.gameObject.SetActive(d.phase==3);daycareReplay.interactable=d.clock-d.started>=2 && !daycareSending;

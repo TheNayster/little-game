@@ -14,7 +14,8 @@ namespace LittleWeeps.Core
         // Content 42 adds authoritative shared pond fishing/feeding and the moved picnic cover.
         // Content 45 adds the shared kingdom story zone, commands and saved progress.
         // Content 47 adds Calypso routines and the shared picnic-counting checkpoint.
-        public const int Schema=39, ScenerySchema=3, Content=47;
+        // Content 48 persists distinct randomized NPC casts for Daycare games.
+        public const int Schema=40, ScenerySchema=3, Content=48;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || id==KingdomAdventure.Zone || HomeRooms.Internal(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id) && id!=KingdomAdventure.Zone;

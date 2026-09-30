@@ -1,0 +1,13 @@
+{
+  "build": 309,
+  "passed": true,
+  "checks": [
+    "four players see four distinct random guests; late joins and two matching player avatars preserve them",
+    "independent leave/disconnect retains cast; shared replay draws four new guests",
+    "nine distinct random Adventure roles render identically on four clients despite two players matching an NPC",
+    "Adventure independent exits and rejoin preserve the shared cast and progress",
+    "native saved reopening preserves both exact NPC casts and the Adventure checkpoint"
+  ],
+  "scope": "disposable Windows authority and four native clients; no device or live-server update",
+  "runId": "7fb76a77de7047a6b3c68a13042ef3b9"
+}

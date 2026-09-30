@@ -13,12 +13,12 @@ namespace LittleWeeps.Core
         public double clock, started, helpUntil;
         public int round, phase, plates;
         public DaycareMember[] members;
-        public DaycareState Copy()=>new DaycareState{clock=clock,started=started,helpUntil=helpUntil,round=round,phase=phase,plates=plates,members=members.Select(m=>m.Copy()).ToArray()};
+        public string[] guests;
+        public DaycareState Copy()=>new DaycareState{clock=clock,started=started,helpUntil=helpUntil,round=round,phase=phase,plates=plates,guests=guests?.ToArray(),members=members.Select(m=>m.Copy()).ToArray()};
     }
     public static class DaycareTeacher
     {
         public const int Schema=39;
-        public static readonly string[] Guests={"honey","coco","rusty","mackenzie"};
         public static readonly WalkPoint[] Anchors={new WalkPoint(600,240),new WalkPoint(920,260),new WalkPoint(1700,260),new WalkPoint(1400,260),new WalkPoint(1050,260)};
         public static int Routine(DaycareState s)=>s.helpUntil>s.clock?3:(int)(s.clock/18)%5;
         public static WalkPoint Point(DaycareState s)
@@ -56,7 +56,7 @@ namespace LittleWeeps.Core
             if(c.value=="leave"){member.attending=false;return null;}
             if(c.value=="start" || c.value=="replay"){
                 if(c.value=="replay" && (d.phase!=3 || d.clock-d.started<2))return "picnic-not-finished";
-                if(d.phase==0 || c.value=="replay"){if(d.round>=int.MaxValue-1)return "round-limit";d.round++;d.phase=1;d.plates=0;d.started=d.clock;}
+                if(d.phase==0 || c.value=="replay"){if(d.round>=int.MaxValue-1)return "round-limit";if(state.schema>=DaycareNpcCasts.Schema)d.guests=DaycareNpcCasts.Pick(4,d.guests);d.round++;d.phase=1;d.plates=0;d.started=d.clock;}
                 member.attending=true;p.x=1120+Array.IndexOf(d.members,member)*160;p.y=110;return null;
             }
             if(c.value!="plate" || !member.attending || d.phase!=2 || !int.TryParse(c.target,out var index) || index<0 || index>3)return "try-current-picnic-step";

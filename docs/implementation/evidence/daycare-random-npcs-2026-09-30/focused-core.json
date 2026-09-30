@@ -1,0 +1,7 @@
+{
+  "build": 309,
+  "unityJson": "NPC cast JSON passed: distinct shared casts, retained progress and exact identities after reopening.",
+  "daycareCore": "PASS: full pool retains Bluey/Bingo, two players may match NPC, distinct casts, prior NPC exclusion and saved identity; shared picnic rules retained.",
+  "adventureCore": "PASS: player may match NPC without reroll; distinct cast and disjoint shared replay; shared story rules retained.",
+  "docsValidation": true
+}

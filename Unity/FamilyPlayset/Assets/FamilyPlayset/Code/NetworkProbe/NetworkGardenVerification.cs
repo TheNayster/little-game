@@ -48,7 +48,7 @@ namespace LittleWeeps.NetworkProbe
             public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
             public LittleWeeps.Core.DaycareState daycare;public int daycareRoutine;public bool calypsoVisible;
-            public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;
+            public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;public string[] kingdomNpcArt,picnicNpcArt;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
             public bool bookAuto,bookWords,bookOptions,bookEffect,bookEffectPending,bookNaming;public string bookTitle;public int bookTextures,bookAudio;
@@ -267,6 +267,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
                 evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;
                 evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;
+                evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;
                 evidence.kingdom=screen.KingdomGame;evidence.visibleKingdomNpcs=screen.VisibleKingdomNpcs;
                 evidence.hideAndSeek=screen.HideGame;
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();

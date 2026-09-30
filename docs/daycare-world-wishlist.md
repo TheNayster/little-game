@@ -4,6 +4,8 @@ Collected from the project docs on September 30, 2026. This file gathers the rec
 
 The current status is **walkable scenery, The Adventure, Calypso routines and shared picnic counting exist; the day board, full classmates, eleven other learning stations and eight other stories remain planned**. [The Adventure implementation](implementation/daycare-the-adventure-2026-09-30.html) supports one shared story for up to four players who can come and go freely. The existing scenery runs from a timber playroom to an outdoor cubby garden. The September 30 complete character selector provides reusable character artwork, but it does not establish working daycare classmates or teacher behavior.
 
+**NPC cast preference — September 30:** Daycare games use random, distinct prepared child characters. The Adventure now draws nine friends and picnic counting four; no repeated faces within either cast, including multiple Terriers. Player choices never affect NPC selection; anyone can play as the same character as an NPC. Keep the same saved cast as players come and go or reopen; a new shared round selects different friends. Calypso stays the teacher. [Implemented change](implementation/daycare-random-npcs-2026-09-30.html).
+
 ## The daycare you wanted
 
 1. **A playable daycare with several connected areas.** Classroom, outdoor play yard, book corner, art and sensory tables, pretend kitchen, quiet cushion nook and imagination mat. These are areas within Daycare rather than separate destinations in the main world menu.

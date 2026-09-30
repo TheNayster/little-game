@@ -1,0 +1,27 @@
+{
+  "avatarIds": [
+    "muffin",
+    "jack",
+    "dusty",
+    "terrier-3",
+    "buddy",
+    "orange-pup",
+    "missy",
+    "indy",
+    "snickers"
+  ],
+  "renderedArt": [
+    "muffin",
+    "jack",
+    "dusty",
+    "terrier-3",
+    "buddy",
+    "bingo",
+    "missy",
+    "indy",
+    "snickers"
+  ],
+  "players": [
+    "player-1"
+  ]
+}

@@ -1,5 +1,7 @@
 # Calypso and shared picnic counting
 
+**Later cast update:** Windows 309 uses random, distinct prepared child NPCs with a saved shared cast and new friends on replay. Players can be anyone without affecting NPC selection. Fixed character names and earlier captures below describe builds 305–307. [Current cast behavior and evidence](daycare-random-npcs-2026-09-30.html).
+
 This is the next bounded Daycare slice after The Adventure, under DAY-01, LEARN-01, LRN-05 and NPC-01/G7-C. It adds Calypso and one usable lesson without claiming the full school or twelve-station batch complete.
 
 ## Research and adaptation

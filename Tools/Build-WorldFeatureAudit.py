@@ -262,12 +262,12 @@ for m in re.finditer(r'^### (IMG-\d+) — (.*?)\n(.*?)(?=^### |\Z)',section(42),
 for feature in features:
     if feature['id'] in ('STORY-IMG-07','D-08','D-09'):
         feature['status']='part';feature['evidence']='adventure'
-        feature['description']='The Adventure has one shared kingdom story for four, nine prepared NPCs, optional roles, free joining/departure and saved checkpoints. Other stories and the general picture mat remain planned.'
+        feature['description']='The Adventure has one shared kingdom story for four, nine distinct random prepared child NPCs with saved casts, optional roles, free joining/departure and saved checkpoints. Other stories and the general picture mat remain planned.'
 
 for feature in features:
     if feature['id'] in ('D-01','D-02','D-03','D-07','LRN-05'):
         feature['status']='part';feature['evidence']='calypso'
-        feature['description']='Calypso has a shared teacher routine and local story/help choices. Four prepared picnic guests receive a plate each in one shared four-player counting activity; late joins/exits and saved progress work. Full zones/classmates, eleven other lessons and deeper counting remain planned.'
+        feature['description']='Calypso has a shared teacher routine and local story/help choices. Four distinct random prepared picnic guests keep one saved cast and receive a plate each in one shared four-player counting activity; late joins/exits and saved progress work. Full zones/classmates, eleven other lessons and deeper counting remain planned.'
 
 # Recipe targets remain partial until bespoke gestures, album and physical acceptance are finished.
 for feature in features:

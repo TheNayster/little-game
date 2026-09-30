@@ -17,13 +17,13 @@ namespace LittleWeeps.Core
         public KingdomPhase phase;
         public double clock, started, distractedUntil;
         public KingdomMember[] members;
-        public KingdomState Copy()=>new KingdomState{round=round,supplies=supplies,boards=boards,rescued=rescued,phase=phase,clock=clock,started=started,distractedUntil=distractedUntil,members=members.Select(m=>m.Copy()).ToArray()};
+        public string[] npcCast;
+        public KingdomState Copy()=>new KingdomState{round=round,supplies=supplies,boards=boards,rescued=rescued,phase=phase,clock=clock,started=started,distractedUntil=distractedUntil,npcCast=npcCast?.ToArray(),members=members.Select(m=>m.Copy()).ToArray()};
     }
     public static class KingdomAdventure
     {
         public const int Schema=38;
         public const string Zone="imagination-adventure";
-        public static readonly string[] Cast={"chloe","coco","terrier-1","terrier-2","terrier-3","winton","honey","rusty","mackenzie"};
         public static readonly string[] Roles={"Explorer","Builder","Wand helper","Picnic helper"};
         public static WalkPoint Prop(string id)
         {
@@ -79,7 +79,8 @@ namespace LittleWeeps.Core
                 if(player.zone!="daycare" && player.zone!=KingdomAdventure.Zone)return "wrong-area";
                 if(c.value=="replay" && (g.phase!=KingdomPhase.Feast || g.clock-g.started<6))return "story-not-finished";
                 if(g.phase==KingdomPhase.Ready || c.value=="replay"){
-                    if(g.round>=int.MaxValue-1)return "round-limit";g.round++;g.supplies=g.boards=g.rescued=0;g.distractedUntil=0;KingdomPhaseTo(KingdomPhase.Welcome);}
+                    if(g.round>=int.MaxValue-1)return "round-limit";if(state.schema>=DaycareNpcCasts.Schema)g.npcCast=DaycareNpcCasts.Pick(9,g.npcCast);
+                    g.round++;g.supplies=g.boards=g.rescued=0;g.distractedUntil=0;KingdomPhaseTo(KingdomPhase.Welcome);}
                 if(player.zone!=KingdomAdventure.Zone)TravelPlayer(player,KingdomAdventure.Zone);
                 m.attending=true;player.x=420+Array.IndexOf(g.members,m)*75;player.y=150;return null;}
             if(player.zone!=KingdomAdventure.Zone || !m.attending)return "not-in-adventure";
