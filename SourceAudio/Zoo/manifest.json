@@ -1,0 +1,142 @@
+{
+  "records": [
+    {
+      "id": "elephant",
+      "type": "recorded animal call",
+      "author": "vataaa",
+      "sourcePage": "https://freesound.org/people/vataaa/sounds/148873/",
+      "media": "https://cdn.freesound.org/previews/148/148873_2378499-hq.mp3",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "bbbf27a710a4557de0e67b70249c6c2a28a497c18aa402e609f132257e0dba56",
+      "runtimeSha256": "73c56ec04eef076258ec55f1e6709acaae862cc379f6961cd8e0413b99422a9c",
+      "edit": "trim, mono 22050 Hz, loudness target -25 LUFS, peak -8 dB, fades",
+      "seconds": 3.0
+    },
+    {
+      "id": "lion",
+      "type": "recorded animal call",
+      "author": "stratcat322",
+      "sourcePage": "https://freesound.org/people/stratcat322/sounds/270383/",
+      "media": "https://cdn.freesound.org/previews/270/270383_1808829-hq.mp3",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "651b17a4886fdfd3f1f774b5ba002c394193bad8fe2339b130ac9607722f7086",
+      "runtimeSha256": "6d0471421604715fa6ce9dd3b888db4a6eef186c23cbbb0083832570dd5a2b39",
+      "edit": "trim, mono 22050 Hz, loudness target -25 LUFS, peak -8 dB, fades",
+      "seconds": 2.2
+    },
+    {
+      "id": "zebra",
+      "type": "recorded animal call",
+      "author": "TheKingOfGeeks360",
+      "sourcePage": "https://freesound.org/people/TheKingOfGeeks360/sounds/850661/",
+      "media": "https://cdn.freesound.org/previews/850/850661_15895934-hq.mp3",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "27676ec134bbb99e047872f65d474387f628a5c4a9366a716845c82847403633",
+      "runtimeSha256": "7aa42808b70223d24653d30e31c638e44d3274caf015c98bd70107024bc9d681",
+      "edit": "trim, mono 22050 Hz, loudness target -25 LUFS, peak -8 dB, fades",
+      "seconds": 3.0
+    },
+    {
+      "id": "penguin",
+      "type": "cartoon call",
+      "author": "Breviceps",
+      "sourcePage": "https://freesound.org/people/Breviceps/sounds/705839/",
+      "media": "https://cdn.freesound.org/previews/705/705839_9159316-hq.mp3",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "eb7492a570d27754665363f4832444b43651bc7b1a48d248fe8b887d2fdae783",
+      "runtimeSha256": "f22133a876a64d1f951574cfe50c161474b090cfaa5c1887bb52f5a27c7f2484",
+      "edit": "trim, mono 22050 Hz, loudness target -25 LUFS, peak -8 dB, fades",
+      "seconds": 0.6
+    },
+    {
+      "id": "feeding",
+      "type": "original PC-designed activity Foley",
+      "source": "Tools/Prepare-ZooAudio.py",
+      "license": "original project asset",
+      "runtimeSha256": "79bb2da575411ceb38396a9eb4d9282310e03955ad8829dedb3223e3b5ce498a",
+      "description": "quiet rustle/feeding movement; not an animal vocal field recording"
+    },
+    {
+      "id": "water",
+      "type": "original PC-designed activity Foley",
+      "source": "Tools/Prepare-ZooAudio.py",
+      "license": "original project asset",
+      "runtimeSha256": "49d678730da29377bb7c27438494dc687e5e5fcface31b7e292e47472ffd0df5",
+      "description": "water bubbles and soft splashes"
+    },
+    {
+      "id": "giraffe",
+      "type": "original PC-designed activity Foley",
+      "source": "Tools/Prepare-ZooAudio.py",
+      "license": "original project asset",
+      "runtimeSha256": "bea81f6185bcacbc83b3905470e7a8ff4ed6831d454628a1189b2744f2d5eda8",
+      "description": "quiet rustle/feeding movement; not an animal vocal field recording"
+    },
+    {
+      "id": "tortoise",
+      "type": "original PC-designed activity Foley",
+      "source": "Tools/Prepare-ZooAudio.py",
+      "license": "original project asset",
+      "runtimeSha256": "eda2ec45c87ee5438e9bc942b61685fec2ef017e915f86cf88b8acefab2ef22c",
+      "description": "quiet rustle/feeding movement; not an animal vocal field recording"
+    },
+    {
+      "id": "gecko",
+      "type": "original PC-designed activity Foley",
+      "source": "Tools/Prepare-ZooAudio.py",
+      "license": "original project asset",
+      "runtimeSha256": "4d96389d8de62b1352e7923c2f2138059f71e4f83a2f16d1d6578d8551e13917",
+      "description": "quiet rustle/feeding movement; not an animal vocal field recording"
+    },
+    {
+      "id": "iguana",
+      "type": "original PC-designed activity Foley",
+      "source": "Tools/Prepare-ZooAudio.py",
+      "license": "original project asset",
+      "runtimeSha256": "3981dc976f834221b0747ed920389020b01cedef2e1585e93a81528b5f80e86f",
+      "description": "quiet rustle/feeding movement; not an animal vocal field recording"
+    },
+    {
+      "id": "crocodile",
+      "type": "original PC-designed activity Foley",
+      "source": "Tools/Prepare-ZooAudio.py",
+      "license": "original project asset",
+      "runtimeSha256": "49d678730da29377bb7c27438494dc687e5e5fcface31b7e292e47472ffd0df5",
+      "description": "water bubbles and soft splashes"
+    },
+    {
+      "id": "tyrannosaurus",
+      "type": "user-approved reconstructed dinosaur book call",
+      "runtimeResource": "Books/hello-dinosaurs/audio/effect-0",
+      "runtimeSha256": "0e3884c24df6ceebbe10ccc82f1f26b55692af344fbc6a5ebd751a3de835d1ab",
+      "approvalManifest": "SourceAudio/Books/ApprovedDinosaurCalls/2026-09-30/manifest.json"
+    },
+    {
+      "id": "triceratops",
+      "type": "user-approved reconstructed dinosaur book call",
+      "runtimeResource": "Books/hello-dinosaurs/audio/effect-1",
+      "runtimeSha256": "2ba5ced7b5f984834e7f43d9d949e96b456c1fa0add8d1abf116464e4dcefe65",
+      "approvalManifest": "SourceAudio/Books/ApprovedDinosaurCalls/2026-09-30/manifest.json"
+    },
+    {
+      "id": "stegosaurus",
+      "type": "user-approved reconstructed dinosaur book call",
+      "runtimeResource": "Books/hello-dinosaurs/audio/effect-2",
+      "runtimeSha256": "4710c47a27c97c2894a9bd22c06dad9ae0dc51736238b338832afaebe2863290",
+      "approvalManifest": "SourceAudio/Books/ApprovedDinosaurCalls/2026-09-30/manifest.json"
+    },
+    {
+      "id": "brachiosaurus",
+      "type": "user-approved reconstructed dinosaur book call",
+      "runtimeResource": "Books/hello-dinosaurs/audio/effect-3",
+      "runtimeSha256": "3ea8bcd392d0041fd9a5aa79263c08bb59ed728eb5ce552078238051a5aa2539",
+      "approvalManifest": "SourceAudio/Books/ApprovedDinosaurCalls/2026-09-30/manifest.json"
+    }
+  ],
+  "simultaneousSources": 2,
+  "quietSpecies": "Fish and quiet reptiles use activity Foley, without invented field calls."
+}

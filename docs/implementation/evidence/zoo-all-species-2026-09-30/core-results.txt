@@ -1,0 +1,8 @@
+PASS additive migration and detached state
+PASS schema 34 retains elephant/giraffe and adds fourteen animals without moving possessions
+PASS varied bounded routes and repeatable persisted authority stream
+PASS four shared feed slots and one consumption per portion
+PASS departure and restore retain sibling state and completed feeding
+PASS disconnected player releases only their food
+PASS all sixteen foods consumed once, all trails and bidirectional ring gates
+PASS every animal varies its bounded routine independently

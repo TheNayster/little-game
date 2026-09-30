@@ -1,0 +1,588 @@
+{
+  "serial": 44,
+  "visiblePlayers": 1,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 12,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.278",
+  "actor": "player-4",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "zoo-aquarium",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "position": {
+        "x": 8250.0,
+        "y": 99.99996185302734
+      },
+      "visible": false
+    },
+    {
+      "id": "player-2",
+      "position": {
+        "x": 8250.0,
+        "y": 99.99996185302734
+      },
+      "visible": false
+    },
+    {
+      "id": "player-3",
+      "position": {
+        "x": 8256.0,
+        "y": 99.99996185302734
+      },
+      "visible": false
+    },
+    {
+      "id": "player-4",
+      "position": {
+        "x": 8250.0009765625,
+        "y": 99.99996185302734
+      },
+      "visible": true
+    }
+  ],
+  "toys": [],
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -7.62939453125e-06,
+    "y": -5.7220458984375e-06,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "bluey",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 696.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Take fish for penguin",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 806.7181396484375,
+        "y": 187.1999969482422,
+        "width": 144.0,
+        "height": 182.40000915527344
+      },
+      "enabled": true
+    },
+    {
+      "name": "Hear penguin",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 212.4781036376953,
+        "y": 279.8399963378906,
+        "width": 249.6000213623047,
+        "height": 268.8000183105469
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 905.5999755859375,
+        "y": 34.399993896484375,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.0,
+  "homePose": "Idle",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "worldMusicTrack": "creek",
+  "worldMusicPlaying": true,
+  "worldMusicVolume": 0.41999998688697815,
+  "worldMusicSignal": 0.00430105347186327,
+  "worldMusicClipCount": 1,
+  "worldMusicSample": 1025471,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 149.20648193359375,
+  "zoo": {
+    "animals": [
+      {
+        "species": "elephant",
+        "owner": "",
+        "random": 2042622456,
+        "sequence": 23,
+        "fed": 1,
+        "previous": 0,
+        "phase": 0,
+        "age": 0.904517900000002,
+        "duration": 7.80468081026447,
+        "fromX": 1224.2344970703125,
+        "fromY": 333.2452392578125,
+        "toX": 1224.2344970703125,
+        "toY": 333.2452392578125,
+        "consumed": false
+      },
+      {
+        "species": "giraffe",
+        "owner": "",
+        "random": 1568605589,
+        "sequence": 20,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 5.857208600000007,
+        "duration": 6.921755592087692,
+        "fromX": 3212.583984375,
+        "fromY": 313.48614501953125,
+        "toX": 3212.583984375,
+        "toY": 313.48614501953125,
+        "consumed": false
+      },
+      {
+        "species": "zebra",
+        "owner": "",
+        "random": 2862701579,
+        "sequence": 20,
+        "fed": 1,
+        "previous": 1,
+        "phase": 1,
+        "age": 0.3663041000000078,
+        "duration": 10.811403051726796,
+        "fromX": 6592.9013671875,
+        "fromY": 414.5202941894531,
+        "toX": 5932.587890625,
+        "toY": 308.12725830078125,
+        "consumed": false
+      },
+      {
+        "species": "lion",
+        "owner": "",
+        "random": 1542608057,
+        "sequence": 20,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 0.9499334000000204,
+        "duration": 6.873331415204641,
+        "fromX": 8115.0,
+        "fromY": 270.0,
+        "toX": 8115.0,
+        "toY": 270.0,
+        "consumed": false
+      },
+      {
+        "species": "brachiosaurus",
+        "owner": "",
+        "random": 2878155044,
+        "sequence": 21,
+        "fed": 1,
+        "previous": 1,
+        "phase": 1,
+        "age": 2.4210510000000056,
+        "duration": 3.0,
+        "fromX": 1354.21337890625,
+        "fromY": 306.7418518066406,
+        "toX": 1407.00244140625,
+        "toY": 340.2826232910156,
+        "consumed": false
+      },
+      {
+        "species": "triceratops",
+        "owner": "",
+        "random": 3447069244,
+        "sequence": 17,
+        "fed": 1,
+        "previous": 1,
+        "phase": 1,
+        "age": 3.915389900000008,
+        "duration": 12.694696545540737,
+        "fromX": 4081.677001953125,
+        "fromY": 412.93768310546875,
+        "toX": 3569.36376953125,
+        "toY": 409.87103271484375,
+        "consumed": false
+      },
+      {
+        "species": "stegosaurus",
+        "owner": "",
+        "random": 1959945792,
+        "sequence": 16,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 2.7895692000000167,
+        "duration": 7.6506835230744175,
+        "fromX": 5549.52099609375,
+        "fromY": 302.6226806640625,
+        "toX": 5549.52099609375,
+        "toY": 302.6226806640625,
+        "consumed": false
+      },
+      {
+        "species": "tyrannosaurus",
+        "owner": "",
+        "random": 2795297167,
+        "sequence": 22,
+        "fed": 1,
+        "previous": 1,
+        "phase": 1,
+        "age": 3.581735000000009,
+        "duration": 3.8042046684210553,
+        "fromX": 8174.0,
+        "fromY": 270.0,
+        "toX": 8057.5146484375,
+        "toY": 414.4313049316406,
+        "consumed": false
+      },
+      {
+        "species": "clownfish",
+        "owner": "",
+        "random": 4161478055,
+        "sequence": 22,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 11.074992600000002,
+        "duration": 11.751356914581581,
+        "fromX": 1389.298095703125,
+        "fromY": 325.7706604003906,
+        "toX": 1389.298095703125,
+        "toY": 325.7706604003906,
+        "consumed": false
+      },
+      {
+        "species": "blue-tang",
+        "owner": "",
+        "random": 4227872449,
+        "sequence": 22,
+        "fed": 1,
+        "previous": 0,
+        "phase": 0,
+        "age": 1.1830021000000102,
+        "duration": 11.875026110530605,
+        "fromX": 3877.867431640625,
+        "fromY": 340.349365234375,
+        "toX": 3877.867431640625,
+        "toY": 340.349365234375,
+        "consumed": false
+      },
+      {
+        "species": "zebra-shark",
+        "owner": "",
+        "random": 3253891703,
+        "sequence": 16,
+        "fed": 1,
+        "previous": 1,
+        "phase": 1,
+        "age": 1.1332253000000208,
+        "duration": 3.0,
+        "fromX": 6459.046875,
+        "fromY": 337.75048828125,
+        "toX": 6381.12841796875,
+        "toY": 409.8328552246094,
+        "consumed": false
+      },
+      {
+        "species": "penguin",
+        "owner": "player-4",
+        "random": 69176953,
+        "sequence": 23,
+        "fed": 0,
+        "previous": 1,
+        "phase": 6,
+        "age": 0.0,
+        "duration": 4.0,
+        "fromX": 8196.0,
+        "fromY": 270.0,
+        "toX": 8196.0,
+        "toY": 270.0,
+        "consumed": false
+      },
+      {
+        "species": "tortoise",
+        "owner": "",
+        "random": 2916037171,
+        "sequence": 18,
+        "fed": 1,
+        "previous": 0,
+        "phase": 0,
+        "age": 4.504143100000022,
+        "duration": 9.431542492804942,
+        "fromX": 1394.0947265625,
+        "fromY": 307.005859375,
+        "toX": 1394.0947265625,
+        "toY": 307.005859375,
+        "consumed": false
+      },
+      {
+        "species": "gecko",
+        "owner": "",
+        "random": 1451824131,
+        "sequence": 13,
+        "fed": 1,
+        "previous": 0,
+        "phase": 0,
+        "age": 3.291897400000011,
+        "duration": 6.704233175773227,
+        "fromX": 3030.112548828125,
+        "fromY": 354.4585876464844,
+        "toX": 3030.112548828125,
+        "toY": 354.4585876464844,
+        "consumed": false
+      },
+      {
+        "species": "iguana",
+        "owner": "",
+        "random": 3322223220,
+        "sequence": 22,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 0.22689700000000812,
+        "duration": 10.188122966836236,
+        "fromX": 5595.123046875,
+        "fromY": 350.0881652832031,
+        "toX": 5595.123046875,
+        "toY": 350.0881652832031,
+        "consumed": false
+      },
+      {
+        "species": "crocodile",
+        "owner": "",
+        "random": 3848433387,
+        "sequence": 19,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 6.908978400000024,
+        "duration": 11.168265782103004,
+        "fromX": 8083.0,
+        "fromY": 270.0,
+        "toX": 8083.0,
+        "toY": 270.0,
+        "consumed": false
+      }
+    ],
+    "food": [
+      {
+        "actor": "player-1",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-2",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-3",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-4",
+        "species": "penguin",
+        "slot": 0,
+        "ticket": 16,
+        "offered": true
+      }
+    ],
+    "nextTicket": 16
+  },
+  "visibleZooAnimals": 1,
+  "zooTextures": 1,
+  "zooAudioClips": 2,
+  "zooSoundPlaying": true,
+  "hideAndSeek": {
+    "round": 0,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 0,
+    "age": 0.0,
+    "count": 0.0,
+    "clock": 0.0,
+    "walked": 0.0,
+    "x": -3660.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "zoo",
+  "cameraX": 8378.001953125,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "zoo-penguin",
+    "zoo-zebra-shark"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Zoo held portion player-4",
+    "Zoo animal penguin",
+    "Next Zoo trail",
+    "Previous Zoo trail",
+    "Zoo entrance gateway",
+    "Zoo food bucket penguin",
+    "Zoo offering spot penguin 0",
+    "Zoo offering spot penguin 1",
+    "Zoo offering spot penguin 2",
+    "Zoo offering spot penguin 3",
+    "Player character"
+  ],
+  "bookAuto": false,
+  "bookWords": true,
+  "bookOptions": false,
+  "bookEffect": false,
+  "bookEffectPending": false,
+  "bookNaming": false,
+  "bookTitle": "hello-dinosaurs",
+  "bookTextures": 0,
+  "bookAudio": 0,
+  "discoveryOpen": false,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "To Savanna",
+    "To Reptile Garden",
+    "Tap to walk",
+    "Zoo entrance",
+    "Menu",
+    "African penguin\nComing for your food"
+  ]
+}

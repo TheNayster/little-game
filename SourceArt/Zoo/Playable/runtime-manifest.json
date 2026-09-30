@@ -1,0 +1,277 @@
+{
+  "generator": "built-in image_gen",
+  "grid": [
+    4,
+    2
+  ],
+  "poses": [
+    "move-1",
+    "move-2",
+    "move-3",
+    "move-4",
+    "rest",
+    "notice",
+    "reach",
+    "chew"
+  ],
+  "artStatus": "generated playable artwork; family visual acceptance and layered production cleanup are separate",
+  "species": [
+    {
+      "id": "elephant",
+      "name": "Elephant",
+      "trail": "ZooLayout.Savanna",
+      "panel": 0,
+      "food": "Leaves",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/elephant.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/elephant.png",
+      "sha256": "8a46809687c968944007429fa565b59356dc3ebc82624de645bab0b1d24fdced",
+      "size": 540.0,
+      "eatingSocket": [
+        140,
+        294
+      ],
+      "eatingFrameOverride": 7
+    },
+    {
+      "id": "giraffe",
+      "name": "Giraffe",
+      "trail": "ZooLayout.Savanna",
+      "panel": 1,
+      "food": "Leaves",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/giraffe.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/giraffe.png",
+      "sha256": "9d6bf8597fcf3c59b735d6658a49bfded0610155f7739ff87f5742ea0d417d5e",
+      "size": 480.0,
+      "eatingSocket": [
+        145.0,
+        330.0
+      ]
+    },
+    {
+      "id": "zebra",
+      "name": "Zebra",
+      "trail": "ZooLayout.Savanna",
+      "panel": 2,
+      "food": "Hay",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/zebra.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/zebra.png",
+      "sha256": "395593153fafa604eb107da457ac3fd3c1792a60b9db264d94302ab5bf056d40",
+      "size": 470.0,
+      "eatingSocket": [
+        215.0,
+        112.0
+      ]
+    },
+    {
+      "id": "lion",
+      "name": "Lion",
+      "trail": "ZooLayout.Savanna",
+      "panel": 3,
+      "food": "Meat",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/lion.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/lion.png",
+      "sha256": "96771914167f25b54fab5535db0c88bf13fc5c6d345a0ea61c6b005bbad54ba8",
+      "size": 470.0,
+      "eatingSocket": [
+        200.0,
+        315.0
+      ]
+    },
+    {
+      "id": "brachiosaurus",
+      "name": "Brachiosaurus",
+      "trail": "Dinosaurs",
+      "panel": 0,
+      "food": "Leaves",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/brachiosaurus.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/brachiosaurus.png",
+      "sha256": "1cdbbb0b3f51b64f809a5a859c6a08dcf0059728668e8d458ce4756bf86b68db",
+      "size": 560.0,
+      "eatingSocket": [
+        217.0,
+        497.0
+      ]
+    },
+    {
+      "id": "triceratops",
+      "name": "Triceratops",
+      "trail": "Dinosaurs",
+      "panel": 1,
+      "food": "Leaves",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/triceratops-v2.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/triceratops.png",
+      "sha256": "aa363eb40d04af64cfddb01eaeb04af10f72400be8359dc5e2b03fa43ceab4f6",
+      "size": 520.0,
+      "eatingSocket": [
+        158.0,
+        190.0
+      ]
+    },
+    {
+      "id": "stegosaurus",
+      "name": "Stegosaurus",
+      "trail": "Dinosaurs",
+      "panel": 2,
+      "food": "Leaves",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/stegosaurus.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/stegosaurus.png",
+      "sha256": "3c412d0ad1f865fa7131c5f15f9438eae36f19ee4c7194e7b500c2d08b01f240",
+      "size": 520.0,
+      "eatingSocket": [
+        232.0,
+        277.0
+      ]
+    },
+    {
+      "id": "tyrannosaurus",
+      "name": "T. rex",
+      "trail": "Dinosaurs",
+      "panel": 3,
+      "food": "Meat",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/tyrannosaurus-v2.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/tyrannosaurus.png",
+      "sha256": "9ab9a446653a4c8fd0282312595d18c3a3d85ea50b921970f916781938cf4c4a",
+      "size": 550.0,
+      "eatingSocket": [
+        141.0,
+        322.0
+      ]
+    },
+    {
+      "id": "clownfish",
+      "name": "Clownfish",
+      "trail": "Aquarium",
+      "panel": 0,
+      "food": "Pellets",
+      "habitat": "Tank",
+      "source": "SourceArt/Zoo/Playable/clownfish.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/clownfish.png",
+      "sha256": "85b00e2955856a41e88e5a19a268181c45e81cee945fe78a12d215b4ac1e7d55",
+      "size": 290.0,
+      "eatingSocket": [
+        120.0,
+        195.0
+      ]
+    },
+    {
+      "id": "blue-tang",
+      "name": "Blue tang",
+      "trail": "Aquarium",
+      "panel": 1,
+      "food": "Seaweed",
+      "habitat": "Tank",
+      "source": "SourceArt/Zoo/Playable/blue-tang.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/blue-tang.png",
+      "sha256": "20baba83efd5d136aaa41eddbb97baa47459151f9018bd120353a34ebb991ac6",
+      "size": 330.0,
+      "eatingSocket": [
+        77.0,
+        203.0
+      ]
+    },
+    {
+      "id": "zebra-shark",
+      "name": "Zebra shark",
+      "trail": "Aquarium",
+      "panel": 2,
+      "food": "Fish",
+      "habitat": "Tank",
+      "source": "SourceArt/Zoo/Playable/zebra-shark-v2.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/zebra-shark.png",
+      "sha256": "ce5a2387b241dd6ff9f4322491c747571712add28a117f377e6690423ed043a9",
+      "size": 610.0,
+      "eatingSocket": [
+        182.0,
+        340.0
+      ]
+    },
+    {
+      "id": "penguin",
+      "name": "African penguin",
+      "trail": "Aquarium",
+      "panel": 3,
+      "food": "Fish",
+      "habitat": "LandWater",
+      "source": "SourceArt/Zoo/Playable/penguin.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/penguin.png",
+      "sha256": "ef7421692fec95b657c960ea974bf632ee6038b54304b5a9555286c1f543c8d7",
+      "size": 400.0,
+      "eatingSocket": [
+        119.0,
+        312.0
+      ]
+    },
+    {
+      "id": "tortoise",
+      "name": "Galapagos tortoise",
+      "trail": "Reptiles",
+      "panel": 0,
+      "food": "Leaves",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/tortoise.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/tortoise.png",
+      "sha256": "26f8a9f40a86f2db24c0f80284a3aaaabea2216aa3a49128b5fb10a2adef9efe",
+      "size": 370.0,
+      "eatingSocket": [
+        164.0,
+        219.0
+      ]
+    },
+    {
+      "id": "gecko",
+      "name": "Leopard gecko",
+      "trail": "Reptiles",
+      "panel": 1,
+      "food": "Insects",
+      "habitat": "Land",
+      "source": "SourceArt/Zoo/Playable/gecko.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/gecko.png",
+      "sha256": "c46a6e4646eb70bdc4a7570ea080bbb8035b6ab9487d97702214b6be20b16109",
+      "size": 320.0,
+      "eatingSocket": [
+        81.0,
+        157.0
+      ]
+    },
+    {
+      "id": "iguana",
+      "name": "Green iguana",
+      "trail": "Reptiles",
+      "panel": 2,
+      "food": "Leaves",
+      "habitat": "Climb",
+      "source": "SourceArt/Zoo/Playable/iguana.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/iguana.png",
+      "sha256": "4bbbf81c0c96c759f192913304e3ff7814461e5326b9a469238f62cb311429f4",
+      "size": 450.0,
+      "eatingSocket": [
+        150.0,
+        286.0
+      ]
+    },
+    {
+      "id": "crocodile",
+      "name": "Nile crocodile",
+      "trail": "Reptiles",
+      "panel": 3,
+      "food": "Fish",
+      "habitat": "LandWater",
+      "source": "SourceArt/Zoo/Playable/crocodile.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/crocodile.png",
+      "sha256": "f030f94222d6f947ba1464c0328cd79b90be03725f71f4f79487c6110607138d",
+      "size": 590.0,
+      "eatingSocket": [
+        232.0,
+        379.0
+      ]
+    }
+  ]
+}

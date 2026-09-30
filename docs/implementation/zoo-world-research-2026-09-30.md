@@ -314,3 +314,35 @@ Animal vocal assets are not integrated yet. Candidate 230 dinosaur calls remain 
 ![Giraffe eating from a raised browse tray](evidence/zoo-first-slice-2026-09-30/giraffe-feed-phone.png)
 
 ![Elephant with the corrected atlas, without the neighboring trunk](evidence/zoo-first-slice-2026-09-30/elephant-phone.png)
+
+
+## All sixteen playable exhibits — September 30
+
+All fourteen remaining species use the shared routine/feeding template with species-specific art, movement limits, food and mouth sockets. The sixth world destination contains an entrance and four connected 9600-unit trails, with four exhibits each. Internal portals form a bidirectional ring, and every trail returns to the entrance. The gate camera starts centered on four large touchable picture circles: elephant, long-neck dinosaur, fish and crocodile. Choosing a trail requires no reading.
+
+| Trail | Playable species | Food |
+| --- | --- | --- |
+| Savanna | Elephant, giraffe, plains zebra, lion | Leaves, leaves, hay, prepared meat |
+| Dinosaur Valley | Brachiosaurus, Triceratops, Stegosaurus, T. rex | Leaves, leaves, leaves, prepared meat |
+| Aquarium | Clownfish, blue tang, zebra shark, African penguin | Pellets, seaweed, prepared fish, prepared fish |
+| Reptile Garden | Galapagos tortoise, leopard gecko, green iguana, Nile crocodile | Leaves, insects, leaves, prepared fish |
+
+These are child-facing portions from the researched diet groups, not real keeper feeding instructions. Animals persist independent random streams and avoid immediately repeating an activity. Species speeds, wandering radii and habitat heights differ. Fish hover/swim; penguin/crocodile have land and water movement poses; iguana uses a higher climbing band. Motion stays inside each habitat. Multi-animal social groups and precise locomotion over rocks are future enrichment rather than claimed implemented behavior.
+
+Each exhibit has a repeatable bucket and four leased offering places. Native bucket taps walk the child to a free place and offer the right food. The server owns notices, slow approaches, exact consumption and ticket order. Leaving releases only that player’s food. Eating sockets and raised trays are fitted to the rendered poses; the tortoise radius includes all four reachable food places. The legacy elephant reaching trunk crosses a cell boundary, so feeding uses its intact curled-trunk pose. [Retained PNG sources and exact image_gen prompts](../../SourceArt/Zoo/Playable/README.md) include compact repaired T. rex, Triceratops and zebra shark atlases with full tails.
+
+[The audio manifest](../../SourceAudio/Zoo/manifest.json) records public source pages, authors, CC0 licenses, trims and hashes. Elephant, zebra and lion use animal recordings; penguin uses a cartoon squeak. Dinosaurs reuse the later user-approved book calls, not rejected candidate 230. Fish, giraffe and quieter reptiles use original PC-designed rustles, bubbles and splashes. Those are activity Foley rather than field vocal recordings. Automatic calls are throttled, playback uses at most two sources and narration ducks Zoo effects. Every species plays a sound when tapped. At most three nearby animal atlases load in a trail; four gate pictures load only at the entrance and release on departure.
+
+Migration from schema 34 to **35** preserves the original two animals, feeding history, saved RNG, food records and wider world possessions while adding fourteen animals. Shared content **37** accounts for additional species, zones, bounds and authoritative approach behavior. The client-only circle refinement adds no further compatibility change. The installed family server remains untouched, and admission checks are preserved.
+
+[Native all-species evidence](evidence/zoo-all-species-2026-09-30/native-all-species.json) passes all sixteen rendered exhibits, actual bucket taps, one exact consumption per portion and sound playback on Windows **278**. A four-client T. rex queue preserves three sibling offers when one leaves. All eight directional trail links, visitor bounds and texture/audio release pass. Eight focused core groups cover migration, schema-34 retention, saved random variation, four slots, idempotency, disconnect/travel/restore, every food and feeding socket bounds. Unity JSON checks pass. An earlier native pass caught PNGs importing as cubemaps; the importers now explicitly choose `Texture2D`, and the release build checks all atlas/background resources. Windows **280** contains the final circle fit and elephant contact correction, checked by a focused menu/contact pass without repeating unchanged full-Zoo gameplay.
+
+The completed source is isolated on `codex/zoo-all-species`, based on the pushed first-slice commit. Concurrent wardrobe/pond/creek work in the shared checkout has advanced its schema/content separately; their migration order and compatibility numbers must be reconciled before a combined release. This branch does not replace that concurrent checkout or bypass the main integration hold. [Final scoped result](evidence/zoo-all-species-2026-09-30/results.json).
+
+No live-family save, installed server, Android or physical iPad was changed. Phone/tablet dimensions are native Windows viewport simulations. Generated drawings remain subject to family visual acceptance and optional layered production cleanup; every starter species is implemented.
+
+![Four animal picture circles](evidence/zoo-all-species-2026-09-30/four-trail-entrance.png)
+
+![T. rex reaches its food](evidence/zoo-all-species-2026-09-30/tyrannosaurus-feeding.png)
+
+![Clownfish reaches its pellets](evidence/zoo-all-species-2026-09-30/clownfish-feeding.png)

@@ -7,7 +7,7 @@ namespace LittleWeeps.EditorTools
         {
             if(!assetPath.Contains("/Resources/ZooArt/") && !assetPath.EndsWith("/WorldMenu/zoo.png"))return;
             var t=(TextureImporter)assetImporter;t.textureType=assetPath.Contains("/WorldMenu/")?TextureImporterType.Sprite:TextureImporterType.Default;
-            t.alphaSource=TextureImporterAlphaSource.FromInput;t.alphaIsTransparency=true;t.mipmapEnabled=false;t.maxTextureSize=2048;t.textureCompression=TextureImporterCompression.Uncompressed;
+            t.textureShape=TextureImporterShape.Texture2D;t.alphaSource=TextureImporterAlphaSource.FromInput;t.alphaIsTransparency=true;t.mipmapEnabled=false;t.npotScale=TextureImporterNPOTScale.None;t.maxTextureSize=2048;t.textureCompression=TextureImporterCompression.Uncompressed;
         }
     }
 }

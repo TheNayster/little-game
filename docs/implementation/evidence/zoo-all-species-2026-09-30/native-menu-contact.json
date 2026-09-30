@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "build": 280,
+  "checks": [
+    "four illustrated circle choices visible on phone/tablet; each opens its own trail",
+    "four trail exhibits render, feed once and play sound: elephant, brachiosaurus, tortoise, clownfish"
+  ],
+  "speciesSeen": [
+    "elephant",
+    "clownfish",
+    "brachiosaurus",
+    "tortoise"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false,
+  "menuOnly": false,
+  "contactOnly": true
+}

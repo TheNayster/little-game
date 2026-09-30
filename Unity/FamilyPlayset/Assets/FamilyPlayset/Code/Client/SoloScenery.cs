@@ -21,7 +21,23 @@ namespace LittleWeeps.Client
             new SceneTile("home-secret",SecretRooms.Id(2),0),new SceneTile("home-secret",SecretRooms.Id(3),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(0),0),new SceneTile("home-bedroom",BedroomLayout.Id(1),0),
             new SceneTile("home-bedroom",BedroomLayout.Id(2),0),new SceneTile("home-bedroom",BedroomLayout.Id(3),0),
-            new SceneTile("zoo-entrance",ZooLayout.Entrance,0),new SceneTile("zoo-elephant",ZooLayout.Savanna,0),new SceneTile("zoo-giraffe",ZooLayout.Savanna,2400),
+            new SceneTile("zoo-entrance",ZooLayout.Entrance,0),
+            new SceneTile("zoo-elephant",ZooLayout.Savanna,0),
+            new SceneTile("zoo-giraffe",ZooLayout.Savanna,2400),
+            new SceneTile("zoo-zebra",ZooLayout.Savanna,4800),
+            new SceneTile("zoo-lion",ZooLayout.Savanna,7200),
+            new SceneTile("zoo-brachiosaurus",ZooCatalog.Dinosaurs,0),
+            new SceneTile("zoo-triceratops",ZooCatalog.Dinosaurs,2400),
+            new SceneTile("zoo-stegosaurus",ZooCatalog.Dinosaurs,4800),
+            new SceneTile("zoo-tyrannosaurus",ZooCatalog.Dinosaurs,7200),
+            new SceneTile("zoo-clownfish",ZooCatalog.Aquarium,0),
+            new SceneTile("zoo-blue-tang",ZooCatalog.Aquarium,2400),
+            new SceneTile("zoo-zebra-shark",ZooCatalog.Aquarium,4800),
+            new SceneTile("zoo-penguin",ZooCatalog.Aquarium,7200),
+            new SceneTile("zoo-tortoise",ZooCatalog.Reptiles,0),
+            new SceneTile("zoo-gecko",ZooCatalog.Reptiles,2400),
+            new SceneTile("zoo-iguana",ZooCatalog.Reptiles,4800),
+            new SceneTile("zoo-crocodile",ZooCatalog.Reptiles,7200),
             new SceneTile("home-upstairs",HomeRooms.Landing,0),
             new SceneTile("home-discovery","garden",-7200),new SceneTile("home-living","garden",-4800),new SceneTile("home-kitchen","garden",-2400),
             new SceneTile("garden-tree","garden",0),new SceneTile("garden-shed","garden",2400),
@@ -95,7 +111,7 @@ namespace LittleWeeps.Client
             var player=ReadPlayer(Actor);
             var position=shared!=null && shared.Connected?shared.VisualPosition(Actor):new Vector2(player.x,player.y);
             if(cameraArea!=player.zone || cameraVisit!=player.visit)
-            {cameraArea=player.zone;cameraVisit=player.visit;cameraX=position.x;manualCamera=false;}
+            {cameraArea=player.zone;cameraVisit=player.visit;cameraX=player.zone==ZooLayout.Entrance?1200:position.x;manualCamera=player.zone==ZooLayout.Entrance;}
             var followParent=FollowingHideParent;
             if(followParent!=hideCameraFollowing)
             {

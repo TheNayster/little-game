@@ -12,10 +12,15 @@ namespace LittleWeeps.Client
         private readonly List<RectTransform> zooObjects=new List<RectTransform>();
         private readonly Dictionary<string,RawImage> zooAnimals=new Dictionary<string,RawImage>();
         private readonly Dictionary<string,Texture2D> zooTextures=new Dictionary<string,Texture2D>();
+        private readonly Dictionary<string,RawImage> zooGatePictures=new Dictionary<string,RawImage>();
+        private readonly Dictionary<string,Texture2D> zooGateTextures=new Dictionary<string,Texture2D>();
         private readonly Dictionary<string,(int sequence,double age,float sampled)> zooSamples=new Dictionary<string,(int,double,float)>();
         private readonly Dictionary<string,RectTransform> zooLeaves=new Dictionary<string,RectTransform>();
         private readonly Dictionary<string,Text> zooSigns=new Dictionary<string,Text>();
-        private RectTransform zooEntrance,zooExit;
+        private readonly Dictionary<string,RectTransform> zooBuckets=new Dictionary<string,RectTransform>();
+        private readonly Dictionary<string,RectTransform[]> zooRails=new Dictionary<string,RectTransform[]>();
+        private RectTransform zooEntrance,zooExit,zooPrevious,zooNext;
+        private Text zooPreviousLabel,zooNextLabel;
         private bool zooApproach;
         private Vector2 zooEntry;
         private string zooOperation,zooSpecies,zooApproachArea;
@@ -23,48 +28,90 @@ namespace LittleWeeps.Client
         private ZooState Zoo=>HasWorld?(Shared?shared.View.zoo:World.ReadZoo()):null;
         public ZooState ZooGame=>Zoo;
         public int VisibleZooAnimals=>zooAnimals.Values.Count(i=>i.gameObject.activeInHierarchy);
+        public int ZooTextureCount=>zooTextures.Count;
         private RectTransform ZooObject(string name)
         {var r=Rect(Board,name,Vector2.zero,Vector2.zero);zooObjects.Add(r);return r;}
-        private void ZooLeaf(Transform parent,Vector2 point,float scale=1)
+        private void ZooFoodPicture(Transform parent,ZooFoodKind kind,Vector2 at,float scale=1)
         {
-            var stem=Plain(parent,"Leaf stem",point,new Vector2(9,50)*scale,new Color(.31f,.49f,.23f));stem.rectTransform.localRotation=Quaternion.Euler(0,0,-20);
-            for(var i=0;i<3;i++){
-                var leaf=Panel(parent,"Browse leaf "+i,point+new Vector2((i%2==0?14:-14)*scale,(i-1)*14*scale),new Vector2(38,18)*scale,new Color(.39f,.66f,.28f),false,true);
-                leaf.rectTransform.localRotation=Quaternion.Euler(0,0,i%2==0?25:-25);leaf.raycastTarget=false;
+            if(kind==ZooFoodKind.Leaves || kind==ZooFoodKind.Seaweed){
+                Plain(parent,"Food stem",at,new Vector2(7,48)*scale,new Color(.31f,.49f,.23f));
+                for(var i=0;i<3;i++){
+                    var leaf=Panel(parent,"Food leaf "+i,at+new Vector2((i%2==0?14:-14)*scale,(i-1)*14*scale),new Vector2(kind==ZooFoodKind.Seaweed?19:38,18)*scale,new Color(.39f,.66f,.28f),false,true);
+                    leaf.rectTransform.localRotation=Quaternion.Euler(0,0,i%2==0?25:-25);
+                }
+            }else if(kind==ZooFoodKind.Hay){
+                for(var i=0;i<6;i++){var h=Plain(parent,"Hay "+i,at+new Vector2((i-3)*7,0)*scale,new Vector2(5,48)*scale,new Color(.87f,.72f,.3f));h.rectTransform.localRotation=Quaternion.Euler(0,0,(i-3)*8);}
+            }else if(kind==ZooFoodKind.Pellets){
+                for(var i=0;i<5;i++)Panel(parent,"Pellet "+i,at+new Vector2((i%3-1)*17,(i/3)*17)*scale,new Vector2(13,13)*scale,new Color(.86f,.61f,.3f),false,true);
+            }else if(kind==ZooFoodKind.Meat){
+                Panel(parent,"Prepared meat",at,new Vector2(54,32)*scale,new Color(.83f,.46f,.45f),false,true);
+                Panel(parent,"Meat center",at,new Vector2(15,13)*scale,Cream,false,true);
+            }else if(kind==ZooFoodKind.Fish){
+                Panel(parent,"Fish portion",at,new Vector2(49,22)*scale,new Color(.45f,.69f,.83f),false,true);
+                Panel(parent,"Fish tail",at+new Vector2(-25,0)*scale,new Vector2(17,25)*scale,new Color(.34f,.56f,.72f),false,true);
+                Panel(parent,"Fish eye",at+new Vector2(15,3)*scale,new Vector2(5,5)*scale,Ink,false,true);
+            }else{
+                Panel(parent,"Small insect",at,new Vector2(24,14)*scale,new Color(.55f,.39f,.22f),false,true);
+                for(var i=0;i<4;i++)Plain(parent,"Insect leg "+i,at+new Vector2((i/2==0?-8:8),(i%2==0?-9:9))*scale,new Vector2(3,14)*scale,new Color(.55f,.39f,.22f));
             }
         }
         private void BuildZoo()
         {
             if(Zoo==null)return;
-            zooEntrance=ZooObject("Zoo savanna gateway");
-            Button(zooEntrance,"Visit the savanna",new Vector2(0,140),new Vector2(340,85),()=>ZooWalk("gate",ZooLayout.Savanna,new Vector2(1200,100)),Cream);
-            Label(zooEntrance,"Elephants & giraffes",28,new Vector2(0,235),new Vector2(420,55));
+            zooEntrance=ZooObject("Zoo trail gateways");
+            for(var i=0;i<ZooCatalog.Trails.Length;i++){
+                var area=ZooCatalog.Trails[i];var label=area==ZooLayout.Savanna?"Visit the savanna":"Visit "+ZooCatalog.Name(area);
+                var at=new Vector2(i%2==0?-300:300,i<2?150:420);
+                Panel(zooEntrance,"Trail shadow",at+new Vector2(0,-8),Vector2.one*250,new Color(.24f,.43f,.35f,.22f),false,true);
+                var rim=Panel(zooEntrance,label,at,Vector2.one*246,Cream,true,true);
+                // The same picture circles as the world menu: the whole circle
+                // is touchable, and the label is retained as an accessible name.
+                NavButton(rim,()=>ZooWalk("gate",area,new Vector2(ZooCatalog.EntranceX(area),100)));
+                var colors=new[]{new Color(.91f,.81f,.53f),new Color(.72f,.86f,.61f),new Color(.74f,.87f,.63f),new Color(.58f,.83f,.94f)};
+                var face=Panel(rim.transform,"Animal picture circle",Vector2.zero,Vector2.one*228,colors[i],false,true);
+                face.gameObject.AddComponent<Mask>().showMaskGraphic=true;
+                var species=new[]{"elephant","brachiosaurus","crocodile","clownfish"}[i];
+                var icon=Rect(face.transform,"Picture "+species,Vector2.zero,Vector2.one*210).gameObject.AddComponent<RawImage>();
+                icon.raycastTarget=false;icon.uvRect=new Rect(.0023f,0,.2454f,.5f);zooGatePictures.Add(species,icon);
+                if(species=="brachiosaurus")icon.rectTransform.sizeDelta=Vector2.one*180;
+                if(species=="clownfish")icon.rectTransform.sizeDelta=Vector2.one*230;
+            }
+
             zooExit=ZooObject("Zoo entrance gateway");
             Button(zooExit,"Zoo entrance",new Vector2(0,100),new Vector2(245,76),()=>ZooWalk("gate",ZooLayout.Entrance,new Vector2(200,100)),Cream);
-            foreach(var species in ZooLayout.Species){
-                var root=ZooObject("Zoo animal "+species);var image=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*400).gameObject.AddComponent<RawImage>();
+            zooPrevious=ZooObject("Previous Zoo trail");
+            var previous=Button(zooPrevious,"Previous trail",new Vector2(0,220),new Vector2(340,76),()=>ZooWalk("gate",ZooCatalog.Previous(CurrentArea),new Vector2(200,100)),Cream);
+            zooPreviousLabel=previous.GetComponentInChildren<Text>();
+            zooNext=ZooObject("Next Zoo trail");
+            var next=Button(zooNext,"Next trail",new Vector2(0,100),new Vector2(340,76),()=>ZooWalk("gate",ZooCatalog.Next(CurrentArea),new Vector2(9200,100)),Cream);
+            zooNextLabel=next.GetComponentInChildren<Text>();
+            foreach(var info in ZooCatalog.All){
+                var species=info.id;var root=ZooObject("Zoo animal "+species);
+                var image=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*info.size).gameObject.AddComponent<RawImage>();
                 image.raycastTarget=false;image.rectTransform.pivot=new Vector2(.5f,0);zooAnimals.Add(species,image);
-                var bucket=ZooObject("Zoo food bucket "+species);
-                // Interactive food and rail are separate from the painted
-                // background, so shared offers never duplicate scenery props.
-                var tub=Panel(bucket,"Food bucket",new Vector2(0,62),new Vector2(100,91),new Color(.62f,.77f,.81f),false);
+                HomeHit(root,"Hear "+species,new Vector2(0,info.size*.4f),new Vector2(info.size*.65f,info.size*.7f),()=>ZooCall(species));
+                var bucket=ZooObject("Zoo food bucket "+species);zooBuckets.Add(species,bucket);
+                Panel(bucket,"Food bucket",new Vector2(0,62),new Vector2(100,91),new Color(.62f,.77f,.81f),false);
                 Panel(bucket,"Bucket rim",new Vector2(0,110),new Vector2(111,20),new Color(.37f,.57f,.63f),false,true);
-                ZooLeaf(bucket,new Vector2(0,118),1.2f);
-                HomeHit(bucket,"Take leaves for "+species,new Vector2(0,95),new Vector2(150,190),()=>ZooWalk("take",species,new Vector2(ZooLayout.BucketX(species),100)));
-                var name=species=="elephant"?"Elephant":"Giraffe";
-                zooSigns.Add(species,Label(bucket,name,25,new Vector2(0,220),new Vector2(420,65)));
+                ZooFoodPicture(bucket,info.food,new Vector2(0,118),1.2f);
+                HomeHit(bucket,"Take "+info.FoodName+" for "+species,new Vector2(0,95),new Vector2(150,190),()=>ZooWalk("take",species,new Vector2(ZooLayout.BucketX(species),100)));
+                zooSigns.Add(species,Label(bucket,info.name,24,new Vector2(0,200),new Vector2(460,65)));
+                var rails=new RectTransform[4];zooRails.Add(species,rails);
                 for(var i=0;i<4;i++){
-                    var rail=ZooObject("Zoo offering spot "+species+" "+i);
+                    var rail=ZooObject("Zoo offering spot "+species+" "+i);rails[i]=rail;
                     Plain(rail,"Rail post",new Vector2(0,76),new Vector2(14,135),new Color(.62f,.45f,.3f));
                     Plain(rail,"Rail",new Vector2(0,112),new Vector2(102,15),new Color(.73f,.57f,.39f));
-                    var height=species=="giraffe"?400f:220f;
-                    Plain(rail,"Browse feeder pole",new Vector2(65,height/2),new Vector2(9,height),new Color(.68f,.53f,.35f));
-                    Plain(rail,"Browse tray",new Vector2(65,height-18),new Vector2(72,14),new Color(.53f,.67f,.55f));
-                    Panel(rail,"Stand here",new Vector2(0,0),new Vector2(72,18),new Color(.99f,.84f,.4f,.7f),false,true);
+                    var height=info.FeedHeight;
+                    Plain(rail,info.habitat==ZooHabitat.Tank?"Aquarium delivery chute":"Feeder support",new Vector2(65,height/2),new Vector2(info.habitat==ZooHabitat.Tank?16:9,height),new Color(.68f,.63f,.5f));
+                    Plain(rail,"Feeding tray",new Vector2(65,height-18),new Vector2(72,14),new Color(.53f,.67f,.55f));
+                    Panel(rail,"Stand here",Vector2.zero,new Vector2(72,18),new Color(.99f,.84f,.4f,.7f),false,true);
                 }
             }
             var snapshot=Shared?shared.View:World.Snapshot();
-            foreach(var p in snapshot.players){var r=ZooObject("Zoo held browse "+p.id);ZooLeaf(r,Vector2.zero,.7f);zooLeaves.Add(p.id,r);}
+            foreach(var player in snapshot.players){
+                var r=ZooObject("Zoo held portion "+player.id);zooLeaves.Add(player.id,r);
+                foreach(ZooFoodKind kind in Enum.GetValues(typeof(ZooFoodKind))){var shape=Rect(r,"Food "+(int)kind,Vector2.zero,Vector2.zero);ZooFoodPicture(shape,kind,Vector2.zero,.8f);}
+            }
             TickZoo();
         }
         private void ZooWalk(string op,string target,Vector2 entry)
@@ -100,55 +147,73 @@ namespace LittleWeeps.Client
         }
         private void TickZoo()
         {
-            if(zooEntrance==null)return;var z=Zoo;var entrance=CurrentArea==ZooLayout.Entrance;var habitat=CurrentArea==ZooLayout.Savanna;
-            zooEntrance.gameObject.SetActive(entrance);zooEntrance.anchoredPosition=ToBoard(1200,100);zooEntrance.localScale=Vector3.one*sceneScale;
-            zooExit.gameObject.SetActive(habitat);zooExit.anchoredPosition=ToBoard(200,100);zooExit.localScale=Vector3.one*sceneScale;
-            if(!habitat && zooTextures.Count>0){foreach(var image in zooAnimals.Values)image.texture=null;foreach(var t in zooTextures.Values)Resources.UnloadAsset(t);zooTextures.Clear();zooSamples.Clear();}
+            if(zooEntrance==null)return;var z=Zoo;var entrance=CurrentArea==ZooLayout.Entrance;var habitat=ZooCatalog.Trail(CurrentArea);
+            void Place(RectTransform r,bool shown,float x){r.gameObject.SetActive(shown);r.anchoredPosition=ToBoard(x,100);r.localScale=Vector3.one*sceneScale;}
+            Place(zooEntrance,entrance,1200);
+            foreach(var picture in zooGatePictures){
+                if(entrance && !zooGateTextures.ContainsKey(picture.Key)){
+                    var texture=Resources.Load<Texture2D>("ZooArt/"+picture.Key);zooGateTextures.Add(picture.Key,texture);picture.Value.texture=texture;
+                }else if(!entrance && zooGateTextures.TryGetValue(picture.Key,out var texture)){
+                    picture.Value.texture=null;if(texture!=null)Resources.UnloadAsset(texture);zooGateTextures.Remove(picture.Key);
+                }
+            }
+            Place(zooExit,habitat,200);Place(zooPrevious,habitat,200);Place(zooNext,habitat,9200);
+            if(habitat){zooPreviousLabel.text="To "+ZooCatalog.Name(ZooCatalog.Previous(CurrentArea));zooNextLabel.text="To "+ZooCatalog.Name(ZooCatalog.Next(CurrentArea));}
+            var half=Board.rect.width/(2*sceneScale);
+            var visible=ZooCatalog.All.Where(i=>i.area==CurrentArea && Math.Abs(i.Center-cameraX)<half+1200).OrderBy(i=>Math.Abs(i.Center-cameraX)).Take(3).Select(i=>i.id).ToArray();
+            foreach(var id in zooTextures.Keys.Where(id=>!visible.Contains(id)).ToArray()){
+                zooAnimals[id].texture=null;Resources.UnloadAsset(zooTextures[id]);zooTextures.Remove(id);zooSamples.Remove(id);
+            }
             foreach(var a in z.animals){
-                var image=zooAnimals[a.species];image.transform.parent.gameObject.SetActive(habitat);
-                if(!habitat)continue;
+                var info=ZooCatalog.Get(a.species);var shown=visible.Contains(a.species);var image=zooAnimals[a.species];image.transform.parent.gameObject.SetActive(shown);
+                if(!shown)continue;
                 if(!zooTextures.TryGetValue(a.species,out var texture)){texture=Resources.Load<Texture2D>("ZooArt/"+a.species);zooTextures.Add(a.species,texture);image.texture=texture;}
+                if(texture==null)continue;
                 var now=Time.realtimeSinceStartup;
                 if(!zooSamples.TryGetValue(a.species,out var sample) || sample.sequence!=a.sequence || sample.age!=a.age){sample=(a.sequence,a.age,now);zooSamples[a.species]=sample;}
                 var extra=Shared?Math.Max(0,now-sample.sampled):0;var point=ZooLayout.Point(a,extra);var root=(RectTransform)image.transform.parent;
                 root.anchoredPosition=ToBoard(point.X,point.Y);root.localScale=Vector3.one*sceneScale;
                 var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach;
-                var frame=moving && a.age+extra<a.duration?(int)((a.age+extra)*5)%4:a.phase==ZooPhase.Notice?5:a.phase==ZooPhase.Eat?((a.age+extra)<1.4?6:7):a.phase==ZooPhase.Browse?7:4;
-                var inset=a.species=="elephant"?9f/texture.width:0;
+                var frame=moving && a.age+extra<a.duration?(int)((a.age+extra)*5)%4:a.phase==ZooPhase.Notice?5:a.phase==ZooPhase.Eat?((a.age+extra)<1.4?6:7):a.phase==ZooPhase.Browse?(a.species=="gecko"?4:5):a.phase==ZooPhase.Drink?4:4;
+                // The legacy reaching trunk extends across its atlas cell. The
+                // intact curled-trunk pose holds food at the same fitted socket.
+                if(a.species=="elephant" && a.phase==ZooPhase.Eat)frame=7;
+                if(moving && info.habitat==ZooHabitat.LandWater)frame=(int)((a.age+extra)*4)%2+(point.Y>=370?2:0);
+                var inset=(a.species=="elephant"?9f:4f)/texture.width;
                 image.uvRect=new Rect(frame%4*.25f+inset,frame<4?.5f:0,.25f-2*inset,.5f);
-                image.rectTransform.sizeDelta=a.species=="elephant"?new Vector2(540*(1-8*inset),540):new Vector2(480,480);
-                // Facing the offer guarantees a readable reach pose. Walking
-                // direction is a presentation reflection of the server segment.
+                image.rectTransform.sizeDelta=new Vector2(info.size*(1-8*inset),info.size);
                 var left=moving && a.toX<a.fromX;
-                image.rectTransform.localScale=new Vector3(left?-1:1,1,1);
-                image.rectTransform.anchoredPosition=new Vector2(0,a.species=="elephant"?-55:-10);
+                var breathing=moving?1:1+(float)Math.Sin((a.age+extra)*2+a.random%17)*.006f;
+                image.rectTransform.localScale=new Vector3(left?-1:1,breathing,1);
+                image.rectTransform.anchoredPosition=new Vector2(0,info.footOffset+(info.habitat==ZooHabitat.Tank?(float)Math.Sin((a.age+extra)*2)*3:0));
             }
-            foreach(var species in ZooLayout.Species){
-                var center=ZooLayout.Center(species);var bucket=zooObjects.Single(r=>r.name=="Zoo food bucket "+species);
-                bucket.gameObject.SetActive(habitat);bucket.anchoredPosition=ToBoard(ZooLayout.BucketX(species),100);bucket.localScale=Vector3.one*sceneScale;
-                var animal=z.animals.Single(a=>a.species==species);
-                zooSigns[species].text=(species=="elephant"?"Elephant":"Giraffe")+(animal.owner==""?"\nTap the leaves":animal.owner==Actor?"\nComing for your leaves":"\nTaking turns");
-                for(var i=0;i<4;i++){var r=zooObjects.Single(v=>v.name=="Zoo offering spot "+species+" "+i);r.gameObject.SetActive(habitat);r.anchoredPosition=ToBoard(ZooLayout.SlotX(species,i),100);r.localScale=Vector3.one*sceneScale;}
+            foreach(var info in ZooCatalog.All){
+                var shown=visible.Contains(info.id);Place(zooBuckets[info.id],shown,ZooLayout.BucketX(info.id));
+                var animal=z.animals.Single(a=>a.species==info.id);
+                zooSigns[info.id].text=info.name+(animal.owner==""?"\nTap the "+info.FoodName:animal.owner==Actor?"\nComing for your food":"\nTaking turns");
+                for(var i=0;i<4;i++)Place(zooRails[info.id][i],shown,ZooLayout.SlotX(info.id,i));
             }
             foreach(var f in z.food){
-                var r=zooLeaves[f.actor];var a=z.animals.FirstOrDefault(v=>v.owner==f.actor);r.gameObject.SetActive(habitat && f.species!="" && a?.consumed!=true);
-                if(!r.gameObject.activeSelf)continue;
-                var p=ReadPlayer(f.actor);r.anchoredPosition=ToBoard(p.x,p.y)+new Vector2(65,f.species=="giraffe" && f.offered?400:220)*sceneScale;r.localScale=Vector3.one*sceneScale;
+                var r=zooLeaves[f.actor];var a=z.animals.FirstOrDefault(v=>v.owner==f.actor);var shown=f.species!="" && visible.Contains(f.species) && a?.consumed!=true;r.gameObject.SetActive(shown);
+                if(!shown)continue;
+                var info=ZooCatalog.Get(f.species);foreach(Transform child in r)child.gameObject.SetActive(child.name=="Food "+(int)info.food);
+                var p=ReadPlayer(f.actor);r.anchoredPosition=ToBoard(p.x,p.y)+new Vector2(65,f.offered?info.FeedHeight:70)*sceneScale;r.localScale=Vector3.one*sceneScale;
             }
-            SortDepth();
+            TickZooAudio(z,visible);SortDepth();
         }
         private void AddZooDepth(Action<RectTransform,float,int,string> add)
         {
             foreach(var r in zooObjects){var ground=r.anchoredPosition.y;var part=0;
-                if(r.name.StartsWith("Zoo held browse")){ground-=260*sceneScale;part=4;}
+                if(r.name.StartsWith("Zoo held portion")){ground-=260*sceneScale;part=4;}
                 add(r,ground,part,r.name);
             }
         }
         private void ResetZoo()
         {
+            ResetZooAudio();foreach(var t in zooGateTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooGateTextures.Clear();zooGatePictures.Clear();
             foreach(var r in zooObjects)if(r!=null)Destroy(r.gameObject);zooObjects.Clear();
-            foreach(var t in zooTextures.Values)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();
-            zooEntrance=null;zooExit=null;zooApproach=false;
+            foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
+            zooEntrance=null;zooExit=null;zooNext=null;zooPrevious=null;zooApproach=false;
         }
     }
 }

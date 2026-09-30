@@ -1,7 +1,7 @@
 # /// script
 # dependencies = ["cryptography"]
 # ///
-"""Focused Zoo menu, feeding and independent departure in an isolated family."""
+"""Historical first-slice (Windows 253) Zoo acceptance. Test-ZooSpecies.py verifies the expanded four-trail Zoo."""
 import argparse, importlib.util, time
 from pathlib import Path
 import shared_garden_runtime

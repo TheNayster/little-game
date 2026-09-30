@@ -1,0 +1,175 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "name": "zebra",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Plains zebra, black and white stripes, compact horse body, short upright mane, dark muzzle, full tasselled tail. Grazing and ear flick.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-ca665866-51a4-42d6-9cf6-7848d9282f57.png",
+      "savedSource": "SourceArt/Zoo/Playable/zebra.png",
+      "sourceSha256": "395593153fafa604eb107da457ac3fd3c1792a60b9db264d94302ab5bf056d40"
+    },
+    {
+      "name": "lion",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Friendly male lion, golden tawny coat, rounded brown mane, full tufted tail, four paws. Relaxed resting and paw grooming.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-f232602c-ea0f-49f3-9388-8db704c43859.png",
+      "savedSource": "SourceArt/Zoo/Playable/lion.png",
+      "sourceSha256": "96771914167f25b54fab5535db0c88bf13fc5c6d345a0ea61c6b005bbad54ba8"
+    },
+    {
+      "name": "brachiosaurus",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Green Brachiosaurus, very tall upright neck, small head, forelegs longer than rear, full tail, four pillar legs. Tall browsing head, NEVER giraffe markings.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-7f954b3e-1603-4f73-bbd0-2ef6aa781544.png",
+      "savedSource": "SourceArt/Zoo/Playable/brachiosaurus.png",
+      "sourceSha256": "1cdbbb0b3f51b64f809a5a859c6a08dcf0059728668e8d458ce4756bf86b68db"
+    },
+    {
+      "name": "triceratops",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Teal Triceratops, exactly three horns, broad neck frill, four sturdy feet and full tail. Head low to foliage.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-6e56e92d-a6e0-49ce-8cd3-d50cf1091ab2.png",
+      "savedSource": "SourceArt/Zoo/Playable/triceratops.png",
+      "sourceSha256": "04ed4139f018e62a33e2090c0b22d43e7fa9ed5490b13926305751799cce0231"
+    },
+    {
+      "name": "stegosaurus",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Purple Stegosaurus, small head, two alternating rows of back plates, four feet and four tail spikes. All tail spikes kept inside its cell.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-e364066f-1036-4445-af71-092379d75578.png",
+      "savedSource": "SourceArt/Zoo/Playable/stegosaurus.png",
+      "sourceSha256": "3c412d0ad1f865fa7131c5f15f9438eae36f19ee4c7194e7b500c2d08b01f240"
+    },
+    {
+      "name": "tyrannosaurus",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Warm orange Tyrannosaurus rex, horizontal torso balanced on TWO hind legs, long raised balancing tail, TWO tiny arms each with TWO fingers. Friendly round eye, no aggression, meat feeding.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-ad8a0f34-4550-43aa-ac9f-4d4ba292829e.png",
+      "savedSource": "SourceArt/Zoo/Playable/tyrannosaurus.png",
+      "sourceSha256": "39247f816d3085f304405364f41dc9d5f303ea4aa11e04727f480708207e1ff5"
+    },
+    {
+      "name": "clownfish",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Orange clownfish with three white black-bordered bands, full fins and tail. Swimming animation with alternating tail and fin paddling. No feet or legs.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-63f0ddc0-2338-4d4f-b15f-b71299750a00.png",
+      "savedSource": "SourceArt/Zoo/Playable/clownfish.png",
+      "sourceSha256": "85b00e2955856a41e88e5a19a268181c45e81cee945fe78a12d215b4ac1e7d55"
+    },
+    {
+      "name": "zebra-shark",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Adult zebra shark, sandy tan body with dark SPOTS (not juvenile stripes), rounded head and extremely long full tail, all five fins. Slow swimming then resting on sand. No feet.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-ecfe42cf-b8bf-4c02-85ca-f99c092dd08e.png",
+      "savedSource": "SourceArt/Zoo/Playable/zebra-shark.png",
+      "sourceSha256": "b5f4c277598ca729b914bfd01491c980ef4eebd4737ef745dab462395f3e950d"
+    },
+    {
+      "name": "penguin",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: African penguin, black back, white belly with one black chest band, black feet, pink bare patch above eye. Frames 1-2 waddling, frames 3-4 horizontal swimming with flippers; rest preening on land, notice and fish swallow.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-7c3d3ccd-7914-43e9-9461-3978b9e633d8.png",
+      "savedSource": "SourceArt/Zoo/Playable/penguin.png",
+      "sourceSha256": "ef7421692fec95b657c960ea974bf632ee6038b54304b5a9555286c1f543c8d7"
+    },
+    {
+      "name": "tortoise",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Galapagos tortoise, high brown domed shell, thick short dark legs, blunt head and short tail. Slow deliberate crawl, neck reaching toward greens then nibbling.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-13db63bc-4daa-4174-8a0a-1bc34db976ad.png",
+      "savedSource": "SourceArt/Zoo/Playable/tortoise.png",
+      "sourceSha256": "26f8a9f40a86f2db24c0f80284a3aaaabea2216aa3a49128b5fb10a2adef9efe"
+    },
+    {
+      "name": "gecko",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Leopard gecko, yellow cream skin with dark leopard spots, thick full segmented-looking tail, four short feet, eyelids. Slow exploration, peeking and small insect swallowing.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-05b8c5c9-b395-4f9f-a94a-58dee77a9bfd.png",
+      "savedSource": "SourceArt/Zoo/Playable/gecko.png",
+      "sourceSha256": "c46a6e4646eb70bdc4a7570ea080bbb8035b6ab9487d97702214b6be20b16109"
+    },
+    {
+      "name": "iguana",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Green iguana, green body, back crest, cheek scale, rounded dewlap, four feet and long full striped tail. Slow crawl, head look and leaf bite.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-9ce222b0-5645-4953-81ab-f1220fba7c1d.png",
+      "savedSource": "SourceArt/Zoo/Playable/iguana.png",
+      "sourceSha256": "4bbbf81c0c96c759f192913304e3ff7814461e5326b9a469238f62cb311429f4"
+    },
+    {
+      "name": "crocodile",
+      "transparent": true,
+      "prompt": "Use case: illustration-story. Asset type: transparent runtime animal animation atlas for a flat 2D Bluey-style children's zoo game. Wide image aspect ratio EXACTLY 2:1. EXACTLY FOUR equal SQUARE columns by TWO equal SQUARE rows, eight individual poses of ONE same animal, no grid lines or text. Each complete animal including its full tail fits entirely in the central 76% of its own square cell; generous transparent gutters on ALL FOUR sides, nothing extends into any neighbor. Same drawing size and anatomy in every cell, side profile facing RIGHT. Bottom of feet or fins at 85% down each cell. Flat solid cartoon colors, clean soft dark outlines, friendly recognizable shape, simple markings; no photorealism, no 3D, no gradients, no props, no scenery, no food, no shadow blobs, no labels, no watermark. Fully transparent background. Top row left-to-right: four different locomotion phases. Bottom row left-to-right: relaxed rest, alert looking at food, mouth/head reaching to food on right, mouth closing/swallowing. Species anatomy and behavior: Nile crocodile, olive green scales, broad long snout, four short limbs and full long powerful tail. Frames 1-2 crawling, frames 3-4 floating/swimming, warm bank rest, fish swallow, friendly no attack.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-9aef0d57-8ee7-4dd1-832f-ea492a63cd2e.png",
+      "savedSource": "SourceArt/Zoo/Playable/crocodile.png",
+      "sourceSha256": "f030f94222d6f947ba1464c0328cd79b90be03725f71f4f79487c6110607138d"
+    },
+    {
+      "name": "zoo-dinosaur-valley",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset type: runtime habitat panorama for a flat 2D Bluey-style zoo game. Aspect ratio 3:1 wide. Cheerful flat Australian cartoon shapes, soft simple colors, clean edges, no text, no animals, no people, no buckets, no feeders, no foreground barriers. All interactive props are separate game objects. Large empty animal space at middle-lower half; a continuous visitor walkway across bottom 25%, clear horizontal edges. Sunny living dinosaur valley, distant rounded hills, tree ferns, broad leafy prehistoric trees, warm pale sandy empty animal ground, no lava, no danger.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-efefccd0-d43f-4690-a475-57645040a6d6.png",
+      "savedSource": "SourceArt/Zoo/Playable/zoo-dinosaur-valley.png",
+      "sourceSha256": "5d5d42c03aeebc3d261373c9e7e144e1644a32da1de1f8d740530711c2cf7290"
+    },
+    {
+      "name": "zoo-reef",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset type: runtime habitat panorama for a flat 2D Bluey-style zoo game. Aspect ratio 3:1 wide. Cheerful flat Australian cartoon shapes, soft simple colors, clean edges, no text, no animals, no people, no buckets, no feeders, no foreground barriers. All interactive props are separate game objects. Large empty animal space at middle-lower half; a continuous visitor walkway across bottom 25%, clear horizontal edges. Indoor aquarium panorama: large clear blue underwater tank occupying upper 75%, soft light rays, reef coral near left and right edges, small anemone toward left, spacious middle with flat sandy underwater bottom. Outside tank foreground visitor floor across bottom quarter. No fish and no painted feeding pipes.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-c49fda7a-e5b7-4a72-85a2-afe8e0a7b4c4.png",
+      "savedSource": "SourceArt/Zoo/Playable/zoo-reef.png",
+      "sourceSha256": "a9459525e98110f51fe72442ed0bf536a134a6a349e41884f1e35f04976e5690"
+    },
+    {
+      "name": "zoo-reptile-garden",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset type: runtime habitat panorama for a flat 2D Bluey-style zoo game. Aspect ratio 3:1 wide. Cheerful flat Australian cartoon shapes, soft simple colors, clean edges, no text, no animals, no people, no buckets, no feeders, no foreground barriers. All interactive props are separate game objects. Large empty animal space at middle-lower half; a continuous visitor walkway across bottom 25%, clear horizontal edges. Warm reptile garden: rounded sunning rocks near edges, leafy branch perch along back, shaded hollow toward left, low grasses, large empty center for lizards and tortoises, pale sand animal ground.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-872e3561-1a7d-462e-b374-a2091e5951de.png",
+      "savedSource": "SourceArt/Zoo/Playable/zoo-reptile-garden.png",
+      "sourceSha256": "4d623dded9a5d601f221b4efb41cf9b4e42bd2220ff47e36ef4d6ed75f4ec72a"
+    },
+    {
+      "name": "zoo-cove",
+      "transparent": false,
+      "prompt": "Use case: illustration-story. Asset type: runtime habitat panorama for a flat 2D Bluey-style zoo game. Aspect ratio 3:1 wide. Cheerful flat Australian cartoon shapes, soft simple colors, clean edges, no text, no animals, no people, no buckets, no feeders, no foreground barriers. All interactive props are separate game objects. Large empty animal space at middle-lower half; a continuous visitor walkway across bottom 25%, clear horizontal edges. Calm zoo pool and animal bank panorama. Empty smooth tan dry bank across middle-lower habitat with a shallow turquoise pool beyond it spanning middle. Soft rocks and leaves at edges, clear usable empty central bank and pool. No animals. Pool water only in middle habitat; the foreground visitor walkway is completely dry.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-6d026269-b4f1-4b52-9ba3-a9eec102ff15.png",
+      "savedSource": "SourceArt/Zoo/Playable/zoo-cove.png",
+      "sourceSha256": "7f744cf97651c8f03c21c6963b8abd8099f52211dda499187e45b7fbe2318f8f"
+    },
+    {
+      "name": "blue-tang",
+      "transparent": true,
+      "prompt": "Transparent sprite sheet for a child's cartoon zoo. 2:1 landscape canvas, exactly 4 columns and 2 rows of equal square cells. In each cell a single complete small royal blue regal tang fish with black side marking and yellow tail. Eight slightly different poses of the same friendly fish: four swimming poses then rest, notice, reach and nibble. All face right. Each fish, including its full tail and fins, fits within the central 70% of its cell, generous empty transparent margins; no part crosses a cell boundary. Flat colored cartoon drawing with neat dark outline. No text, no scenery, no other animals, no grid, no watermark. Actual transparent background.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-a0dd1032-2592-4cb2-ba86-ea390068aec7.png",
+      "savedSource": "SourceArt/Zoo/Playable/blue-tang.png",
+      "sourceSha256": "20baba83efd5d136aaa41eddbb97baa47459151f9018bd120353a34ebb991ac6"
+    }
+  ],
+  "repairs": [
+    {
+      "name": "tyrannosaurus",
+      "prompt": "Edit this transparent 4-column by 2-row animal animation atlas. Keep exactly the same eight poses, colors, anatomy, side-facing direction, transparent background and overall 2:1 canvas. Make EVERY complete animal including full tail and horns MUCH SMALLER within its square cell: the silhouette must occupy at most 65% of cell WIDTH, with at least 17.5% transparent clearance on both horizontal sides. Center each pose within its own square, feet at 80% down its cell. No silhouette touches a cell boundary or canvas edge. Preserve the complete tails, never crop them, and do not add text or props. This fixes neighbor-frame overlap; generous transparent margins are essential.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-b2726523-52ee-4c7a-aae2-b194972062e9.png",
+      "savedSource": "SourceArt/Zoo/Playable/tyrannosaurus-v2.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/tyrannosaurus.png",
+      "sourceSha256": "9ab9a446653a4c8fd0282312595d18c3a3d85ea50b921970f916781938cf4c4a"
+    },
+    {
+      "name": "triceratops",
+      "prompt": "Edit this transparent 4-column by 2-row animal animation atlas. Keep exactly the same eight poses, colors, anatomy, side-facing direction, transparent background and overall 2:1 canvas. Make EVERY complete animal including full tail and horns MUCH SMALLER within its square cell: the silhouette must occupy at most 65% of cell WIDTH, with at least 17.5% transparent clearance on both horizontal sides. Center each pose within its own square, feet at 80% down its cell. No silhouette touches a cell boundary or canvas edge. Preserve the complete tails, never crop them, and do not add text or props. This fixes neighbor-frame overlap; generous transparent margins are essential.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-dda99389-d259-4f3b-bd27-84cf82879972.png",
+      "savedSource": "SourceArt/Zoo/Playable/triceratops-v2.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/triceratops.png",
+      "sourceSha256": "aa363eb40d04af64cfddb01eaeb04af10f72400be8359dc5e2b03fa43ceab4f6"
+    },
+    {
+      "name": "zebra-shark",
+      "prompt": "Edit this transparent 4-column by 2-row ADULT SPOTTED ZEBRA SHARK animation atlas. Preserve all eight poses, anatomy, colors and actual transparent background. Each complete shark including its very long FULL tail must be visibly MUCH SMALLER: keep it within the CENTRAL 65% WIDTH of each equal square cell. Leave at least 17.5% transparent clearance on BOTH sides. No part touches any cell boundary or the outer canvas. Center each complete shark in its cell. Keep aspect ratio 2:1 and the 4 by 2 grid. Do not crop tails, add words or scenery. No overlapping cells. This is for frame-by-frame animation and generous empty gutters are essential.",
+      "path": "C:\\Users\\sephi\\.codex\\generated_images\\01a0f347-1eb2-7e50-be9d-8a25017294ea\\exec-5de42e03-c94c-4a22-add3-ab5f9b87fec0.png",
+      "savedSource": "SourceArt/Zoo/Playable/zebra-shark-v2.png",
+      "runtime": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/ZooArt/zebra-shark.png",
+      "sourceSha256": "ce5a2387b241dd6ff9f4322491c747571712add28a117f377e6690423ed043a9"
+    }
+  ]
+}

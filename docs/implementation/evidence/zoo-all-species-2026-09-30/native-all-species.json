@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "build": 278,
+  "checks": [
+    "four illustrated circle choices visible on phone/tablet; each opens its own trail",
+    "four trail exhibits render, feed once and play sound: elephant, brachiosaurus, tortoise, clownfish",
+    "four trail exhibits render, feed once and play sound: giraffe, triceratops, gecko, blue-tang",
+    "four trail exhibits render, feed once and play sound: zebra, stegosaurus, iguana, zebra-shark",
+    "four trail exhibits render, feed once and play sound: lion, tyrannosaurus, crocodile, penguin",
+    "four-player dinosaur queue keeps siblings feeding when one leaves",
+    "all bidirectional trail links, visitor boundary and texture/audio departure release"
+  ],
+  "speciesSeen": [
+    "clownfish",
+    "brachiosaurus",
+    "tortoise",
+    "elephant",
+    "giraffe",
+    "blue-tang",
+    "gecko",
+    "triceratops",
+    "iguana",
+    "stegosaurus",
+    "zebra",
+    "zebra-shark",
+    "crocodile",
+    "tyrannosaurus",
+    "lion",
+    "penguin"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

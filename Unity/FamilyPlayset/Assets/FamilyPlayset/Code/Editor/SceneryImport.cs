@@ -9,7 +9,7 @@ namespace LittleWeeps.EditorTools
         {
             if(!assetPath.StartsWith("Assets/FamilyPlayset/Resources/Scenery/"))return;
             var importer=(TextureImporter)assetImporter;
-            importer.textureType=TextureImporterType.Default;importer.mipmapEnabled=false;
+            importer.textureShape=TextureImporterShape.Texture2D;importer.textureType=TextureImporterType.Default;importer.mipmapEnabled=false;
             importer.isReadable=false;importer.maxTextureSize=4096;
             importer.wrapMode=TextureWrapMode.Clamp;importer.filterMode=FilterMode.Bilinear;
             importer.textureCompression=TextureImporterCompression.Compressed;

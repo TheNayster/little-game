@@ -1,0 +1,605 @@
+{
+  "serial": 54,
+  "visiblePlayers": 4,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 12,
+  "passed": true,
+  "ready": true,
+  "pending": true,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.278",
+  "actor": "player-4",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "zoo-dinosaurs",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "65f13a5362e245b2b1faedcc6c938700",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "position": {
+        "x": 8250.0,
+        "y": 99.99996185302734
+      },
+      "visible": true
+    },
+    {
+      "id": "player-2",
+      "position": {
+        "x": 8350.0,
+        "y": 99.99996185302734
+      },
+      "visible": true
+    },
+    {
+      "id": "player-3",
+      "position": {
+        "x": 8452.0,
+        "y": 99.99996185302734
+      },
+      "visible": true
+    },
+    {
+      "id": "player-4",
+      "position": {
+        "x": 8550.005859375,
+        "y": 99.99996185302734
+      },
+      "visible": true
+    }
+  ],
+  "toys": [],
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -7.62939453125e-06,
+    "y": -5.7220458984375e-06,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "bluey",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Next trail",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 894.0819702148438,
+        "y": 246.71998596191406,
+        "width": 129.91802978515625,
+        "height": 72.96000671386719
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 696.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Hear tyrannosaurus",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": -7.62939453125e-06,
+        "y": 328.3891296386719,
+        "width": 307.0709228515625,
+        "height": 369.6000061035156
+      },
+      "enabled": true
+    },
+    {
+      "name": "Take meat for tyrannosaurus",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 562.8818969726562,
+        "y": 187.1999969482422,
+        "width": 144.0,
+        "height": 182.40000915527344
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 905.5999755859375,
+        "y": 34.399993896484375,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    }
+  ],
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.0,
+  "homePose": "Idle",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "worldMusicTrack": "yard",
+  "worldMusicPlaying": true,
+  "worldMusicVolume": 0.41999998688697815,
+  "worldMusicSignal": 0.06676272302865982,
+  "worldMusicClipCount": 1,
+  "worldMusicSample": 213561,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 162.6459197998047,
+  "zoo": {
+    "animals": [
+      {
+        "species": "elephant",
+        "owner": "",
+        "random": 3725503845,
+        "sequence": 25,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 3.559852400000011,
+        "duration": 10.93929166694621,
+        "fromX": 1270.414794921875,
+        "fromY": 365.3922424316406,
+        "toX": 1270.414794921875,
+        "toY": 365.3922424316406,
+        "consumed": false
+      },
+      {
+        "species": "giraffe",
+        "owner": "",
+        "random": 734359107,
+        "sequence": 22,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 3.707372700000008,
+        "duration": 5.367850428765605,
+        "fromX": 3659.96826171875,
+        "fromY": 324.33251953125,
+        "toX": 3659.96826171875,
+        "toY": 324.33251953125,
+        "consumed": false
+      },
+      {
+        "species": "zebra",
+        "owner": "",
+        "random": 1120195059,
+        "sequence": 21,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 3.026438500000012,
+        "duration": 6.086525893324643,
+        "fromX": 5932.587890625,
+        "fromY": 308.12725830078125,
+        "toX": 5932.587890625,
+        "toY": 308.12725830078125,
+        "consumed": false
+      },
+      {
+        "species": "lion",
+        "owner": "",
+        "random": 2533392775,
+        "sequence": 22,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 4.5347393000000125,
+        "duration": 8.718811764549187,
+        "fromX": 8018.30126953125,
+        "fromY": 317.51104736328125,
+        "toX": 8018.30126953125,
+        "toY": 317.51104736328125,
+        "consumed": false
+      },
+      {
+        "species": "brachiosaurus",
+        "owner": "",
+        "random": 848179455,
+        "sequence": 23,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 3.707372700000008,
+        "duration": 5.579857347900946,
+        "fromX": 1407.00244140625,
+        "fromY": 340.2826232910156,
+        "toX": 1407.00244140625,
+        "toY": 340.2826232910156,
+        "consumed": false
+      },
+      {
+        "species": "triceratops",
+        "owner": "",
+        "random": 1776892383,
+        "sequence": 18,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 4.693448800000027,
+        "duration": 7.30971997867099,
+        "fromX": 3569.36376953125,
+        "fromY": 409.87103271484375,
+        "toX": 3569.36376953125,
+        "toY": 409.87103271484375,
+        "consumed": false
+      },
+      {
+        "species": "stegosaurus",
+        "owner": "",
+        "random": 2552674789,
+        "sequence": 18,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 3.9353706000000273,
+        "duration": 8.754727314402054,
+        "fromX": 5663.44189453125,
+        "fromY": 371.937255859375,
+        "toX": 5663.44189453125,
+        "toY": 371.937255859375,
+        "consumed": false
+      },
+      {
+        "species": "tyrannosaurus",
+        "owner": "player-3",
+        "random": 808440188,
+        "sequence": 25,
+        "fed": 1,
+        "previous": 1,
+        "phase": 4,
+        "age": 0.5019440000000088,
+        "duration": 1.2,
+        "fromX": 8239.7802734375,
+        "fromY": 365.7156066894531,
+        "toX": 8239.7802734375,
+        "toY": 365.7156066894531,
+        "consumed": false
+      },
+      {
+        "species": "clownfish",
+        "owner": "",
+        "random": 2481829350,
+        "sequence": 24,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 3.293345200000005,
+        "duration": 8.622767401072842,
+        "fromX": 1389.298095703125,
+        "fromY": 325.7706604003906,
+        "toX": 1389.298095703125,
+        "toY": 325.7706604003906,
+        "consumed": false
+      },
+      {
+        "species": "blue-tang",
+        "owner": "",
+        "random": 1082351591,
+        "sequence": 23,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 2.788030100000015,
+        "duration": 6.016036941207954,
+        "fromX": 3877.867431640625,
+        "fromY": 340.349365234375,
+        "toX": 3877.867431640625,
+        "toY": 340.349365234375,
+        "consumed": false
+      },
+      {
+        "species": "zebra-shark",
+        "owner": "",
+        "random": 2637941556,
+        "sequence": 18,
+        "fed": 1,
+        "previous": 3,
+        "phase": 3,
+        "age": 1.5335515000000157,
+        "duration": 8.913549044382187,
+        "fromX": 6381.12841796875,
+        "fromY": 409.8328552246094,
+        "toX": 6381.12841796875,
+        "toY": 409.8328552246094,
+        "consumed": false
+      },
+      {
+        "species": "penguin",
+        "owner": "",
+        "random": 1449931885,
+        "sequence": 25,
+        "fed": 1,
+        "previous": 1,
+        "phase": 1,
+        "age": 2.296668100000005,
+        "duration": 3.9472960093420113,
+        "fromX": 8196.0,
+        "fromY": 270.0,
+        "toX": 8293.578125,
+        "toY": 404.40234375,
+        "consumed": false
+      },
+      {
+        "species": "tortoise",
+        "owner": "",
+        "random": 946790146,
+        "sequence": 20,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 4.862452500000018,
+        "duration": 5.763534073197175,
+        "fromX": 1320.134033203125,
+        "fromY": 309.6944274902344,
+        "toX": 1320.134033203125,
+        "toY": 309.6944274902344,
+        "consumed": false
+      },
+      {
+        "species": "gecko",
+        "owner": "",
+        "random": 3684021597,
+        "sequence": 14,
+        "fed": 1,
+        "previous": 2,
+        "phase": 2,
+        "age": 10.0595907,
+        "duration": 10.862024958911825,
+        "fromX": 3030.112548828125,
+        "fromY": 354.4585876464844,
+        "toX": 3030.112548828125,
+        "toY": 354.4585876464844,
+        "consumed": false
+      },
+      {
+        "species": "iguana",
+        "owner": "",
+        "random": 3324399674,
+        "sequence": 23,
+        "fed": 1,
+        "previous": 1,
+        "phase": 1,
+        "age": 3.519103800000011,
+        "duration": 8.29916102842486,
+        "fromX": 5595.123046875,
+        "fromY": 350.0881652832031,
+        "toX": 5903.39453125,
+        "toY": 404.86297607421875,
+        "consumed": false
+      },
+      {
+        "species": "crocodile",
+        "owner": "",
+        "random": 2769030638,
+        "sequence": 20,
+        "fed": 1,
+        "previous": 1,
+        "phase": 1,
+        "age": 9.210643300000015,
+        "duration": 10.42631576071001,
+        "fromX": 8083.0,
+        "fromY": 270.0,
+        "toX": 8439.76171875,
+        "toY": 417.4847106933594,
+        "consumed": false
+      }
+    ],
+    "food": [
+      {
+        "actor": "player-1",
+        "species": "tyrannosaurus",
+        "slot": 0,
+        "ticket": 17,
+        "offered": true
+      },
+      {
+        "actor": "player-2",
+        "species": "tyrannosaurus",
+        "slot": 1,
+        "ticket": 18,
+        "offered": true
+      },
+      {
+        "actor": "player-3",
+        "species": "tyrannosaurus",
+        "slot": 2,
+        "ticket": 19,
+        "offered": true
+      },
+      {
+        "actor": "player-4",
+        "species": "tyrannosaurus",
+        "slot": 3,
+        "ticket": 20,
+        "offered": true
+      }
+    ],
+    "nextTicket": 20
+  },
+  "visibleZooAnimals": 1,
+  "zooTextures": 1,
+  "zooAudioClips": 2,
+  "zooSoundPlaying": true,
+  "hideAndSeek": {
+    "round": 0,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 0,
+    "age": 0.0,
+    "count": 0.0,
+    "clock": 0.0,
+    "walked": 0.0,
+    "x": -3660.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "zoo",
+  "cameraX": 8631.998046875,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "zoo-stegosaurus",
+    "zoo-tyrannosaurus"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Zoo animal tyrannosaurus",
+    "Zoo held portion player-1",
+    "Zoo held portion player-2",
+    "Zoo held portion player-3",
+    "Zoo held portion player-4",
+    "Next Zoo trail",
+    "Previous Zoo trail",
+    "Zoo entrance gateway",
+    "Zoo food bucket tyrannosaurus",
+    "Zoo offering spot tyrannosaurus 0",
+    "Zoo offering spot tyrannosaurus 1",
+    "Zoo offering spot tyrannosaurus 2",
+    "Zoo offering spot tyrannosaurus 3",
+    "Friend-player-1",
+    "Friend-player-2",
+    "Friend-player-3",
+    "Player character"
+  ],
+  "bookAuto": false,
+  "bookWords": true,
+  "bookOptions": false,
+  "bookEffect": false,
+  "bookEffectPending": false,
+  "bookNaming": false,
+  "bookTitle": "hello-dinosaurs",
+  "bookTextures": 0,
+  "bookAudio": 0,
+  "discoveryOpen": false,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "To Reptile Garden",
+    "To Savanna",
+    "T. rex\nTaking turns",
+    "Tap to walk",
+    "Zoo entrance",
+    "Menu"
+  ]
+}

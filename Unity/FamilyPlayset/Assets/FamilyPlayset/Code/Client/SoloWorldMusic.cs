@@ -20,6 +20,7 @@ namespace LittleWeeps.Client
             if(worldMusic==null || !Ready)return;
             var area=CurrentArea;
             var track=area=="garden"?(ReadPlayer(Actor).x>150?"yard":"home"):
+                ZooLayout.Area(area)?(area==ZooCatalog.Aquarium?"creek":"yard"):
                 area=="park" || area=="creek" || area=="beach" || area=="daycare"?area:"home";
             // Keep a margin around the veranda boundary so tiny steps don't
             // repeatedly restart both scores.

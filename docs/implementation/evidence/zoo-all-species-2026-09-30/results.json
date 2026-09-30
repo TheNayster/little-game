@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "scope": "Sixteen-species Zoo with picture gate menu",
+  "goalIds": [
+    "WORLD-01",
+    "WORLD-02",
+    "FAMILY-01",
+    "ITEM-02"
+  ],
+  "fullGameplayBuild": 278,
+  "finalBuild": 280,
+  "coreGroups": 8,
+  "nativeFullGroups": 7,
+  "nativeFinalGroups": 2,
+  "speciesCount": 16,
+  "trails": 4,
+  "offeringPlaces": 64,
+  "sourceBase": "177d94923b7e79fa7adea8a79955114f32f4c1d1",
+  "familySaveTouched": false,
+  "physicalDevicesTested": false,
+  "limits": [
+    "Generated art awaits family visual acceptance; layered cleanup optional.",
+    "Separate Zoo branch; main integration hold preserved.",
+    "Concurrent wardrobe/pond/creek schemas must be reconciled before combined delivery."
+  ]
+}
