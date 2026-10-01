@@ -72,3 +72,5 @@ Tools/DinosaurRules.Tests/obj/
 
 # Authored Tag rule-check project (Unity-generated projects stay ignored).
 !Tools/TagRules.Tests/TagRules.Tests.csproj
+Tools/TagRules.Tests/bin/
+Tools/TagRules.Tests/obj/
