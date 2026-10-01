@@ -1714,6 +1714,8 @@ Fishing has one owner per fish/catch transaction. Two children selecting the sam
 
 ## 39. Playground and park: equipment that really works
 
+**Park vehicle parking (PRK-10) — September 30:** four bikes and four scooters now use two marked bays on the right-hand foreground lawn, clear of the playhouse, slide landing and swings. Windows **349** compiles; focused four-client riding/return and phone/tablet checks pass. Includes the corrected group Tag game. [Layout and evidence](implementation/park-wheel-parking-2026-09-30.html). Pending content53/schema42 coordinated delivery; no device/live-server update in this task. Preserve the main integration hold.
+
 **September 30 Tag correction (PRK-06):** one Start includes every connected player in the park; arrivals automatically enter the same game. Human players tag each other, and Bandit is only the one-participant fallback. Independent exits remain. Remove all Tag speech and its Listen control. [Checked implementation and update status](implementation/park-tag-group-2026-09-30.html).
 
 ### September 30 applied physics review and current park request

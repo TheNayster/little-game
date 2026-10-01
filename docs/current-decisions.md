@@ -255,3 +255,6 @@ The user means the character looks rigid and uptight while walking. **116 was vi
 ## Consolidated world feature audit — September 26
 
 The [all-world feature checklist](all-world-features-audit-2026-09-26.html) audits all 55 research chapters and 35 master requirements against the current source and retained evidence. It lists each recipe, world activity, dinosaur, book, science station, story, character and shared system, with explicit playable/partial/scenery/planned/development/optional/retired status. No device or server work occurred. Build 132 remains ready but uninstalled while the family is away; Home remains the development priority.
+
+
+**Park vehicle parking (PRK-10) — September 30:** four bikes and four scooters now use two marked bays on the right-hand foreground lawn, clear of the playhouse, slide landing and swings. Windows **349** compiles; focused four-client riding/return and phone/tablet checks pass. Includes the corrected group Tag game. [Layout and evidence](implementation/park-wheel-parking-2026-09-30.html). Pending content53/schema42 coordinated delivery; no device/live-server update in this task. Preserve the main integration hold.

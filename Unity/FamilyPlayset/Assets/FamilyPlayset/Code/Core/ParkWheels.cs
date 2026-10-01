@@ -10,7 +10,11 @@ namespace LittleWeeps.Core
         public static string Id(int i)=>"park-wheels-"+(i<4?"bike-":"scooter-")+(i%4);
         public static bool Usable(string id)=>Index(id)>=0;
         public static float Lane(string id)=>85+(Index(id)%4)*18;
-        public static float ParkX(int i)=>420+i*240;
+        // Park on the right-hand foreground lawn, clear of the slide landing and
+        // swing approaches. Parking is presentation height; riding stays on its
+        // existing ground lanes and never writes this height to a player save.
+        public const float ParkingY=0;
+        public static float ParkX(int i)=>2500+i*280;
         public static bool Valid(SoloPlayer p)=>p.zone=="park" && p.x>=MinX && p.x<=MaxX && p.y==Lane(p.fixture);
         public static WalkPoint Floor(SoloPlayer p,float x,float y)=>Usable(p.fixture)?new WalkPoint(Math.Max(MinX,Math.Min(MaxX,x)),Lane(p.fixture)):new WalkPoint(x,y);
         public static WalkPoint Step(SoloPlayer p,float x,float y,WalkInput input,float dt,int schema)

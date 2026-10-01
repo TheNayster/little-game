@@ -1,0 +1,10 @@
+{
+  "build": 349,
+  "passed": true,
+  "checks": [
+    "parked vehicles clear the playhouse, slide landing and swing approaches; native equipment touches work",
+    "four native bike mounts, exclusive leases, tap both ways and joystick",
+    "four native scooter mounts, exclusive leases, tap both ways and joystick",
+    "native get-off, phone layout, disconnect and independent area departure"
+  ]
+}
