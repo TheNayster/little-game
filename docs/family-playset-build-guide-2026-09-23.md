@@ -618,6 +618,9 @@ The current tracker contains 35 top-level feature IDs. The coverage validator ch
 
 ## 18. Current work record and research basis
 
+**Six Daycare wishlist additions — October 1:** Toy vet, Build-and-test playground, Pretend café, Family band, Treasure hunt and Puppet theatre are added with the user's simple/deeper play examples for ages three and six. Each remains one shared activity for up to four with independent join/leave, picture/spoken help, optional Calypso demonstrations and varied saved NPCs unaffected by player choices. [Daycare wishlist](daycare-world-wishlist.md#new-daycare-activities-requested-october-1). Planning only; no implementation or priority order selected.
+
+
 **Playable Daycare sandpit (DAY-01 / LEARN-01 / FAMILY-01) — October 1:** Sandcastle club adds four shared moulds, scoop/water/tip experiments, decorations, a joined castle and Calypso's spoken demonstration. Saved varied classmates ignore player choices; late joins and independent exits retain progress. The painted background pit is removed. [Candidate383, checks and limits](implementation/daycare-sandpit-2026-10-01.md). Schema46/content60 adds saved lesson state; no device/live-server update. Other invitations and learning stations remain open.
 
 **Adventure story encounters (IMG-01 / IMG-07, FAMILY-01) — September 30:** candidate376 adds spoken random-NPC conversations, optional packing help, bridge/stone routes, ball/invitation queen encounters, two rescue spells and an ending/journal that remembers shared choices. Rapid next-prop taps now wait for a pending pickup reply. Core/Unity migration and six native gameplay groups across two four-player runs pass; one first-run Windows shutdown exit remains unqualified. [Scope, evidence and limits](implementation/daycare-story-encounters-2026-09-30.md). Schema45/content59 retains the combined360 worlds. No device/live-server update; eight other stories, mounted role mechanics and family playtesting remain.
