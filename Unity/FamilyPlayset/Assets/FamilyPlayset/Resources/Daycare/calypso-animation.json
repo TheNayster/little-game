@@ -161,5 +161,13 @@
       }
     }
   ],
-  "sourceSha256": "0208277c25c9fbc8fe29ca81b246dae32f84b6e08da7779835ecb0c6caeac9c8"
+  "sourceSha256": "0208277c25c9fbc8fe29ca81b246dae32f84b6e08da7779835ecb0c6caeac9c8",
+  "poseSize": {
+    "x": 2172,
+    "y": 724
+  },
+  "walkSize": {
+    "x": 1774,
+    "y": 887
+  }
 }

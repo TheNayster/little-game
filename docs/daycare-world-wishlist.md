@@ -36,6 +36,10 @@ Each activity must support up to four players together, late joining and indepen
 
 These additions extend the existing wishlist. **Treasure hunt is implemented in Windows candidate400 as The Windblown Map**, selected by the user: a separate island story with picture/riddle clues, map pieces, windchimes, digging and picture locks. [Research, four-player checks and limits](implementation/daycare-treasure-hunt-2026-10-01.md). Device/live-server delivery and family visual approval remain pending. **Animal care clinic is implemented in Windows candidate407**, following the user’s correction to living household pets and all four existing small dinosaurs. Shared washing, brushing, bandaging and cuddling use a focused treatment view, with Calypso and a separate Friends queue. [Vet-game comparison, phone layout and checks](implementation/daycare-animal-clinic-2026-10-01.md). Build-and-test playground, Pretend café, Family band and Puppet theatre remain planned. Device/live-server delivery and family visual acceptance are separate.
 
+## Reused games added to Daycare — October 1
+
+**Hide & seek with Calypso** and **Tag with friends** are implemented as separate Daycare-menu maps. Both include four varied random NPCs, optional join/decline cards for siblings currently in Daycare, one shared round for up to four humans and independent exits. Calypso finds everyone; NPCs choose random covers. Tag NPCs actually flee/chase and swap the star. [Native checks, screenshots and delivery limits](implementation/daycare-hide-and-tag-2026-10-01.md). Physical delivery and family acceptance remain separate.
+
 ## The twelve learning stations
 
 These are the recorded starter designs. Existing Home book/science systems can be reused, but the corresponding daycare teaching activities remain planned.
@@ -111,4 +115,4 @@ For the first implementation, use one focused check of the changed activity, inc
 - [Scenic-world implementation](implementation/scenic-worlds-2026-09-25.md): evidence for the existing timber playroom and outdoor cubby garden.
 - [Toca and Piknik interaction research](toca-piknik-interaction-research-2026-09-23.md): daycare's ready toy/learning table and accessible starting space.
 
-Documentation only: no game code, artwork, saves, devices or live server changed. This file is the task record; implementation remains the next discussion.
+This wishlist originated as a documentation-only collection. Later implemented additions and their scoped checks are recorded above; unfinished lessons/stories remain planned.

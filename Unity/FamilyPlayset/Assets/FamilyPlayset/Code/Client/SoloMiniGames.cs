@@ -36,7 +36,7 @@ namespace LittleWeeps.Client
             foreach(var choice in miniGamesChoices){var show=choice.world==world;choice.root.gameObject.SetActive(show);if(show)count++;}
             miniGamesHeading.text=MiniGamesWorldName+" games";
             miniGamesEmpty.gameObject.SetActive(count==0);
-            miniGamesContent.sizeDelta=new Vector2(740,world=="daycare" && SceneSchema>=TreasureHunt.Schema?(SceneSchema>=DaycareVet.Schema?500:400):300);
+            miniGamesContent.sizeDelta=new Vector2(740,world=="daycare" && SceneSchema>=TreasureHunt.Schema?(SceneSchema>=DaycarePlay.Schema?700:SceneSchema>=DaycareVet.Schema?500:400):300);
             miniGamesContent.anchoredPosition=Vector2.zero;
         }
 
@@ -101,6 +101,7 @@ namespace LittleWeeps.Client
 
             if(SceneSchema>=DaycareSandpit.Schema){var sand=MiniGameChoice("daycare","Sandcastle club",new Vector2(0,-250-offset),new Vector2(700,90),ChooseSandpit,new Color(1,.87f,.61f));var card=(RectTransform)sand.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);var bucket=DrawSandBucket(card,new Vector2(-270,-20),0,2,true);bucket.rectTransform.localScale=Vector3.one*.55f;sand.rectTransform.anchoredPosition=new Vector2(65,0);sand.rectTransform.sizeDelta=new Vector2(480,90);}
 
+            AddDaycarePlayChoices();
             Button(miniGamesFrame,"Back to play",new Vector2(0,-200),new Vector2(300,75),CloseMiniGames,Color.white);
             miniGamesMenu.gameObject.SetActive(false);
         }
@@ -136,7 +137,7 @@ namespace LittleWeeps.Client
         {
             if(miniGamesButton==null)return;
             var inZone=HideAndSeek.Zone(ReadPlayer(Actor));
-            miniGamesButton.gameObject.SetActive(!MenuOpen && !applicationPaused && CurrentArea!=DaycareVet.Zone);
+            miniGamesButton.gameObject.SetActive(!MenuOpen && !applicationPaused && CurrentArea!=DaycareVet.Zone && !DaycarePlay.Area(CurrentArea));
             if(!MiniGamesOpen)return;
             if(WorldLoading || applicationPaused || miniGamesOpenedWorld!=MiniGamesWorld){CloseMiniGames();return;}
             miniGamesFrame.localScale=Vector3.one*Mathf.Min(safe.rect.width/900,safe.rect.height/600);

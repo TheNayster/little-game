@@ -1,0 +1,16 @@
+{
+  "build": 412,
+  "passed": true,
+  "checks": [
+    "Daycare scroll menu opens a separate map; four varied NPCs move into distinct random covers; compact invitations accept/decline without forced travel; a human can match an NPC avatar",
+    "four humans share one round and teacher walk cycle; Calypso visits covers and reveals four NPCs and a human; moving out/independent Return protect the other players"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "focused corrected teacher artwork, camera and hiding replay controls; rules/Core/network unchanged from fully checked411; isolated release authority and four Windows native clients with actual phone/tablet UI touches; physical devices and live server unchanged"
+}

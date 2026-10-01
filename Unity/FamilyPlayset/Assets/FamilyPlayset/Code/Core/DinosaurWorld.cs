@@ -28,13 +28,13 @@ namespace LittleWeeps.Core
         public static string Fixture(string species)=>"dinosaur-"+species;
         public static string SpeciesOf(string fixture)=>Species.FirstOrDefault(s=>Fixture(s)==fixture)??"";
         public static bool Usable(string fixture)=>SpeciesOf(fixture)!="";
-        public static WalkPoint Floor(string area,float x,float y)=>area==Area?new WalkPoint(Math.Max(280,Math.Min(4520,x)),Math.Max(70,Math.Min(230,y))):new WalkPoint(x,y);
+        public static WalkPoint Floor(string area,float x,float y){var at=area==Area?new WalkPoint(Math.Max(280,Math.Min(4520,x)),Math.Max(70,Math.Min(230,y))):new WalkPoint(x,y);return DaycarePlay.Floor(area,at.X,at.Y);}
         public static WalkPoint Step(SoloPlayer p,float x,float y,WalkInput input,float dt,int schema)
         {
             // Both authority and client prediction use the same bounds. Ordinary
             // walking tuning is unchanged; riding uses the accepted baseline too.
             var next=ParkWheels.Step(p,x,y,input,dt,schema);
-            return Floor(p.zone,next.X,next.Y);
+            var point=Floor(p.zone,next.X,next.Y);return DaycarePlay.Floor(p.zone,point.X,point.Y);
         }
         internal static double Roll(DinosaurMount a)
         {var n=a.random;n^=n<<13;n^=n>>17;n^=n<<5;a.random=n;return n/(double)uint.MaxValue;}
@@ -66,6 +66,7 @@ namespace LittleWeeps.Core
             if(s.sandpit==null)s.sandpit=NewSandpit(s);
             if(s.treasure==null)s.treasure=NewTreasure(s);
             if(s.vet==null)s.vet=NewVet(s);
+            if(s.hideClub==null)s.hideClub=NewDaycarePlay(s);if(s.tagClub==null)s.tagClub=NewDaycarePlay(s);
             s.schema=WorldLayout.Schema;s.revision++;Validate(s);return new SoloWorld(s);
         }
         private static void NormalizeDinosaurInline(SoloSnapshot s)

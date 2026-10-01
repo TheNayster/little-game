@@ -10,6 +10,7 @@ namespace LittleWeeps.Client
         [Serializable] private sealed class Data
         {
             public float referenceHeight,walkReferenceHeight;
+            public Vector2 poseSize,walkSize;
             public CharacterArt.SheetFrame[] poses,walk;
         }
         private RawImage picture;
@@ -40,7 +41,12 @@ namespace LittleWeeps.Client
             Drawing=Walking?4+Mathf.Min(7,Mathf.FloorToInt(phase*8)):Mathf.Clamp(restingPose,0,3);
             var texture=Walking?walking:poses;
             var drawing=Walking?data.walk[Drawing-4]:data.poses[Drawing];var crop=drawing.pixels.Value;
-            picture.texture=texture;picture.uvRect=new Rect(crop.x/texture.width,1-crop.yMax/texture.height,crop.width/texture.width,crop.height/texture.height);
+            // Metadata measures original pixels; Unity may downsample a sheet
+            // to 2048 pixels. Normalize against the original sheet dimensions,
+            // otherwise the far-right sitting pose is sampled beyond its cell.
+            var sheet=Walking?data.walkSize:data.poseSize;
+            if(sheet.x<=0 || sheet.y<=0)sheet=new Vector2(texture.width,texture.height);
+            picture.texture=texture;picture.uvRect=new Rect(crop.x/sheet.x,1-crop.yMax/sheet.y,crop.width/sheet.x,crop.height/sheet.y);
             var rect=picture.rectTransform;
             rect.pivot=new Vector2((drawing.ground.x-crop.x)/crop.width,(crop.yMax-drawing.ground.y)/crop.height);
             rect.sizeDelta=crop.size*(270/(Walking?data.walkReferenceHeight:data.referenceHeight));

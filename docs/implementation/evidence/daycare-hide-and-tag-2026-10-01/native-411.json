@@ -1,0 +1,24 @@
+{
+  "build": 411,
+  "passed": true,
+  "checks": [
+    "Daycare scroll menu opens a separate map; four varied NPCs move into distinct random covers; compact invitations accept/decline without forced travel; a human can match an NPC avatar",
+    "four humans share one round and teacher walk cycle; Calypso visits covers and reveals four NPCs and a human; moving out/independent Return protect the other players",
+    "Tag supports four invited humans plus four animated NPCs, authority contact swaps the star, and independent departure/reconnect retain the common cast",
+    "cold saved-server reopening preserves both NPC casts, random hiding choices, common rounds and independent exits"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "isolated release authority and four Windows native clients with actual phone/tablet UI touches; physical devices and live server unchanged"
+}

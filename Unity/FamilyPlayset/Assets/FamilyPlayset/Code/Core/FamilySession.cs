@@ -22,13 +22,14 @@ namespace LittleWeeps.Core
             if(!world.Snapshot().players.Any(p=>p.id==profile)){reason="unknown-profile";return false;}
             if(connections.ContainsValue(profile)){reason="profile-already-connected";return false;}
             if(connections.Count>=4){reason="family-full";return false;}
-            connections.Add(connection,profile);world.JoinVetGroup(ConnectedPlayers);world.JoinTreasureGroup(ConnectedPlayers);world.JoinKingdomGroup(ConnectedPlayers);world.JoinPicnicGroup(ConnectedPlayers);world.JoinSandpitGroup(ConnectedPlayers);return true;
+            connections.Add(connection,profile);world.InviteDaycarePlay(ConnectedPlayers);world.JoinVetGroup(ConnectedPlayers);world.JoinTreasureGroup(ConnectedPlayers);world.JoinKingdomGroup(ConnectedPlayers);world.JoinPicnicGroup(ConnectedPlayers);world.JoinSandpitGroup(ConnectedPlayers);return true;
         }
         public SoloResult Submit(ulong connection,SoloCommand command)
         {
             if(!connections.TryGetValue(connection,out var profile))return new SoloResult(false,"not-connected",world.Revision);
             if(command==null || command.actor!=profile)return new SoloResult(false,"wrong-player",world.Revision);
             var result=world.Apply(command);
+            if(result.Accepted && command.action==SoloAction.DaycarePlay){world.InviteDaycarePlay(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
             if(result.Accepted && command.action==SoloAction.Park && command.value=="tag-join")
                 world.IncludeNearbyTagPlayers(ConnectedPlayers);
             if(result.Accepted && command.action==SoloAction.Kingdom && (command.value=="start" || command.value=="replay")){world.JoinKingdomGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
@@ -43,7 +44,7 @@ namespace LittleWeeps.Core
             if(!connections.TryGetValue(connection,out var profile))return false;
             connections.Remove(connection);
             world.ReleaseCreekFishing(profile);world.ReleaseCreekBoats(profile);world.ReleasePond(profile);world.ReleaseHideAndSeek(profile);world.ReleaseZoo(profile);
-            world.ReleaseTag(profile);
+            world.ReleaseTag(profile);world.ReleaseDaycarePlay(profile);
             world.ReleaseDinosaurCare(profile);
             world.ReleaseVet(profile);world.ReleaseTreasure(profile);world.ReleaseSandpit(profile);world.ReleaseDaycare(profile);world.ReleaseKingdom(profile);
             world.ReleaseWaveRide(profile);
@@ -64,7 +65,7 @@ namespace LittleWeeps.Core
             visibleChange=false;
             // An empty family world does not age items while everybody is away.
             if(connections.Count==0)return false;
-            var joined=world.JoinVetGroup(ConnectedPlayers);joined|=world.JoinTreasureGroup(ConnectedPlayers);joined|=world.JoinKingdomGroup(ConnectedPlayers);joined|=world.JoinPicnicGroup(ConnectedPlayers);joined|=world.JoinSandpitGroup(ConnectedPlayers);var advanced=world.AdvanceIdle(seconds,out visibleChange,ConnectedPlayers);visibleChange|=joined;return joined || advanced;
+            var joined=world.InviteDaycarePlay(ConnectedPlayers);joined|=world.JoinVetGroup(ConnectedPlayers);joined|=world.JoinTreasureGroup(ConnectedPlayers);joined|=world.JoinKingdomGroup(ConnectedPlayers);joined|=world.JoinPicnicGroup(ConnectedPlayers);joined|=world.JoinSandpitGroup(ConnectedPlayers);var advanced=world.AdvanceIdle(seconds,out visibleChange,ConnectedPlayers);visibleChange|=joined;return joined || advanced;
         }
         // A client view is not a successor/recovery checkpoint: receipts stay on
         // the authority. Full recovery replication is a later, separate contract.

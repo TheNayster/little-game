@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-01T23:39:02.7836367Z",
+  "contract": 17,
+  "content": 64,
+  "schema": 49,
+  "builds": [
+    {
+      "role": "Server",
+      "version": "0.0.412",
+      "unity": "6000.3.24f1",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": true
+    },
+    {
+      "role": "Client",
+      "version": "0.0.412",
+      "unity": "6000.3.24f1",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": false
+    }
+  ],
+  "sourceComparison": {
+    "changed": [
+      "Tools/Test-DaycarePlay.py",
+      "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/TeacherWalkView.cs",
+      "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Daycare/calypso-animation.json",
+      "Unity/FamilyPlayset/ProjectSettings/ProjectSettings.asset"
+    ],
+    "coreAndNetworkIdentical": true
+  }
+}

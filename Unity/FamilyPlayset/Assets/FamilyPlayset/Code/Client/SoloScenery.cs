@@ -46,6 +46,7 @@ namespace LittleWeeps.Client
             new SceneTile("park-playground","park",0),new SceneTile("park-picnic","park",2400),
             new SceneTile("creek-bank","creek",0),new SceneTile("creek-crossing","creek",2400),
             new SceneTile("beach-dunes-shore","beach",0),new SceneTile("beach-rockpools-shore","beach",2400),
+            new SceneTile("daycare-hide-garden",DaycarePlay.HideZone,0),new SceneTile("daycare-tag-green",DaycarePlay.TagZone,0),
             new SceneTile("daycare-adventure",KingdomAdventure.Zone,0),
             new SceneTile("daycare-vet",DaycareVet.Zone,0),
             new SceneTile("treasure-cove",TreasureHunt.Zone,0),new SceneTile("treasure-grove",TreasureHunt.Zone,2400),
@@ -117,17 +118,18 @@ namespace LittleWeeps.Client
             var position=shared!=null && shared.Connected?shared.VisualPosition(Actor):new Vector2(player.x,player.y);
             if(cameraArea!=player.zone || cameraVisit!=player.visit)
             {cameraArea=player.zone;cameraVisit=player.visit;cameraX=player.zone==ZooLayout.Entrance?1200:position.x;manualCamera=player.zone==ZooLayout.Entrance;}
-            var followParent=FollowingHideParent;
+            var followParent=FollowingHideParent || FollowingClubTeacher;
+            var seekerX=FollowingClubTeacher?clubTeacherMotion.Point.x:HideGame.x;
             if(followParent!=hideCameraFollowing)
             {
                 // Switch viewpoints locally; never move the hidden player or fly
                 // across the whole property when entering/leaving a hiding spot.
                 hideCameraFollowing=followParent;manualCamera=false;groundPan=false;
-                cameraX=followParent?HideGame.x:position.x;
+                cameraX=followParent?seekerX:position.x;
             }
             if(OwnWaveRider!=null){manualCamera=false;cameraX=WaveRide.x+(float)Math.Sin(WaveDisplayAge*.6)*65;}
             else if(followParent)
-            {manualCamera=false;cameraX=Mathf.Lerp(cameraX,HideGame.x,1-Mathf.Exp(-9*Time.unscaledDeltaTime));}
+            {manualCamera=false;cameraX=Mathf.Lerp(cameraX,seekerX,1-Mathf.Exp(-9*Time.unscaledDeltaTime));}
             else if(BoatCameraFollowing){manualCamera=false;groundPan=false;cameraX=Mathf.Lerp(cameraX,BoatCameraX,1-Mathf.Exp(-Time.unscaledDeltaTime*3));}
             else if(CreekFishingCameraFollowing){manualCamera=false;groundPan=false;cameraX=CreekFishing.X;}
             else if(CurrentArea==BathroomLayout.Area && BathroomLayout.Bath(ReadPlayer(Actor).fixture)){manualCamera=false;groundPan=false;cameraX=1190;}
@@ -160,7 +162,7 @@ namespace LittleWeeps.Client
             foreach(var pair in scenicImages.ToArray())if(!wanted.Any(t=>t.id==pair.Key))
             {var texture=pair.Value.texture;pair.Value.texture=null;Destroy(pair.Value.gameObject);scenicImages.Remove(pair.Key);Resources.UnloadAsset(texture);}
             foreach(var tile in wanted)if(!scenicImages.ContainsKey(tile.id) && !scenicRequests.ContainsKey(tile.id) && scenicImages.Count+scenicRequests.Count<3)
-                scenicRequests[tile.id]=Resources.LoadAsync<Texture2D>(SceneSchema>=PondFishing.Schema && tile.id=="garden-tree"?"PondArt/garden-tree-clean":SceneSchema>=PondFishing.Schema && tile.id=="garden-shed"?"PondArt/garden-clean":SceneSchema>=ParkPlay.Schema && (tile.id=="park-playground" || tile.id=="park-picnic")?"ParkArt/"+(tile.id=="park-playground"?"playground-clean":"picnic-clean"):SceneSchema>=BathroomLayout.Schema && tile.id=="home-upstairs"?"BathroomArt/hallway":"Scenery/"+(tile.id=="home-kitchen" && SceneSchema>=Kitchen.Schema?"home-kitchen-working":tile.id));
+                scenicRequests[tile.id]=Resources.LoadAsync<Texture2D>(tile.id=="daycare-hide-garden"?"PondArt/garden-tree-clean":tile.id=="daycare-tag-green"?"ParkArt/picnic-clean":SceneSchema>=PondFishing.Schema && tile.id=="garden-tree"?"PondArt/garden-tree-clean":SceneSchema>=PondFishing.Schema && tile.id=="garden-shed"?"PondArt/garden-clean":SceneSchema>=ParkPlay.Schema && (tile.id=="park-playground" || tile.id=="park-picnic")?"ParkArt/"+(tile.id=="park-playground"?"playground-clean":"picnic-clean"):SceneSchema>=BathroomLayout.Schema && tile.id=="home-upstairs"?"BathroomArt/hallway":"Scenery/"+(tile.id=="home-kitchen" && SceneSchema>=Kitchen.Schema?"home-kitchen-working":tile.id));
             foreach(var tile in wanted.OrderBy(t=>t.start))if(scenicImages.TryGetValue(tile.id,out var image))
             {
                 image.gameObject.SetActive(tile.area==CurrentArea);

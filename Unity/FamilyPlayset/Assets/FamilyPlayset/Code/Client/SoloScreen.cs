@@ -84,7 +84,7 @@ namespace LittleWeeps.Client
             Surfaces.Clear();toys.Clear();fills.Clear();targetRings.Clear();targetArrows.Clear();
             resetCues.Clear();layoutPositions.Clear();
             friends.Clear();holders.Clear();travelButtons.Clear();fence.Clear();
-            ResetVet();ResetTreasure();ResetSandpit();ResetDaycare();ResetKingdom();ResetNavigation();
+            ResetDaycarePlay();ResetVet();ResetTreasure();ResetSandpit();ResetDaycare();ResetKingdom();ResetNavigation();
             Board=null;avatar=null;menu=null;connecting=null;dragging=null;requestedArea=null;travelSubmitted=false;
             grabConfirmed=false;gestureEnded=false;gestureCancelled=false;dropSubmitted=false;renderedSequence=-1;
         }
@@ -322,7 +322,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildTreasure();BuildVet();BuildSeagulls();BuildShore();BuildWaveRide();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildTreasure();BuildVet();BuildDaycarePlay();BuildSeagulls();BuildShore();BuildWaveRide();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -533,7 +533,7 @@ namespace LittleWeeps.Client
             TickWorldMusic();
             if(Ready)TickCake();
             if(Ready){TickMixing();TickBubbleLab();TickLiquidColors();TickMarbleRamps();}
-            if(Ready){CheckKingdomInput();CheckDaycareInput();CheckSandpitInput();CheckTreasureInput();CheckStairInput();CheckDoorInput();CheckHideInput();CheckZooInput();CheckDinosaurCareInput();}
+            if(Ready){CheckKingdomInput();CheckDaycareInput();CheckSandpitInput();CheckTreasureInput();CheckDaycarePlayInput();CheckStairInput();CheckDoorInput();CheckHideInput();CheckZooInput();CheckDinosaurCareInput();}
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
             if(shared!=null)
             {
@@ -548,6 +548,7 @@ namespace LittleWeeps.Client
                 if(MenuOpen || VetOwn || OwnWaveRider!=null || TravelPending || StairBusy || doorSubmitted)shared.Walk(WalkMode.Stop);
                 else if(dinosaurCareApproach)shared.Walk(WalkMode.Destination,dinosaurCareEntry.x,dinosaurCareEntry.y);
                 else if(zooApproach)shared.Walk(WalkMode.Destination,zooEntry.x,zooEntry.y);
+                else if(clubApproach>=0 && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
                 else if(hideApproach>=0)shared.Walk(WalkMode.Destination,HideEntry.x,HideEntry.y);
                 else if(doorApproach)shared.Walk(WalkMode.Destination,DoorEntry.x,DoorEntry.y);
                 else if(stairApproach)shared.Walk(WalkMode.Destination,HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea));
@@ -570,8 +571,8 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=VetOwn || OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
-            var input=dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
+            var mode=VetOwn || OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:clubApproach>=0 || dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=clubApproach>=0?destination??Vector2.zero:dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
                 dirty=true;lastLocalAction=now;
@@ -636,7 +637,7 @@ namespace LittleWeeps.Client
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
             PresentKingdomHops();
-            PresentHideAndSeek();PresentPark();PresentWheels();PresentTag();PresentDinosaurRiders();PresentDinosaurPetters();PresentWaveRide();
+            PresentHideAndSeek();PresentPark();PresentWheels();PresentTag();PresentDaycarePlay();PresentDinosaurRiders();PresentDinosaurPetters();PresentWaveRide();
         }
         private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
@@ -667,7 +668,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddCreekFishingDepth(Add);AddCreekBoatDepth(Add);AddPondDepth(Add);AddBathroomDepth(Add);AddZooDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddTagDepth(Add);AddDinosaurDepth(Add);AddDinosaurCareDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);AddKingdomDepth(Add);AddDaycareDepth(Add);AddSandpitDepth(Add);AddTreasureDepth(Add);AddShoreDepth(Add);AddSeagullDepth(Add);AddWaveRideDepth(Add);
+            AddCreekFishingDepth(Add);AddCreekBoatDepth(Add);AddPondDepth(Add);AddBathroomDepth(Add);AddZooDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddTagDepth(Add);AddDaycarePlayDepth(Add);AddDinosaurDepth(Add);AddDinosaurCareDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);AddKingdomDepth(Add);AddDaycareDepth(Add);AddSandpitDepth(Add);AddTreasureDepth(Add);AddShoreDepth(Add);AddSeagullDepth(Add);AddWaveRideDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);
@@ -725,7 +726,7 @@ namespace LittleWeeps.Client
                 if(resetCues.TryGetValue(t.id,out var cue))cue.SetActive(t.resetPending || tidyCues.Contains(HomeTidying.Item(t.id)));
             }
             if(shared!=null)RenderFriends();
-            PresentHiddenPlayers();
+            PresentHiddenPlayers();PresentClubHidden();
             // Larger y is farther back on the illustrated floor plane.
             SortDepth();
             activity.text=p.activity==""?"Free play Â· walk, drag, discover":p.activity=="garden"?(toyStates.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(toyStates.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");

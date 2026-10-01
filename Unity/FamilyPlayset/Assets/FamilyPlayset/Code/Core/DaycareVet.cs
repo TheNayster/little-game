@@ -66,7 +66,7 @@ namespace LittleWeeps.Core
         public bool JoinVetGroup(string[] connected)
         {
             var g=state.vet;if(g==null || g.round==0 || !g.members.Any(m=>m.attending && connected.Contains(m.actor)) && !state.players.Any(p=>p.zone==DaycareVet.Zone && connected.Contains(p.id)))return false;var changed=false;
-            foreach(var id in connected){var p=state.players.Single(v=>v.id==id);var m=g.members.Single(v=>v.actor==id);if(m.attending || m.declined || p.zone!="daycare" && p.zone!=DaycareVet.Zone)continue;TravelPlayer(p,DaycareVet.Zone);m.attending=true;m.declined=false;DeclineOtherDaycare(id);changed=true;}
+            foreach(var id in connected){var p=state.players.Single(v=>v.id==id);var m=g.members.Single(v=>v.actor==id);if(m.attending || m.declined || DaycarePlay.Member(state.hideClub,id)?.invited==true || DaycarePlay.Member(state.tagClub,id)?.invited==true || p.zone!="daycare" && p.zone!=DaycareVet.Zone)continue;TravelPlayer(p,DaycareVet.Zone);m.attending=true;m.declined=false;DeclineOtherDaycare(id);changed=true;}
             if(changed)state.revision++;return changed;
         }
         private string VetOperation(SoloCommand c,SoloPlayer p)

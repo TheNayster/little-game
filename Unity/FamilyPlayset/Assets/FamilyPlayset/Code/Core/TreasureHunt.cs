@@ -49,11 +49,11 @@ namespace LittleWeeps.Core
         public bool JoinTreasureGroup(string[] connected)
         {
             var g=state.treasure;if(g==null || g.phase==0 || !g.members.Any(m=>m.attending && connected.Contains(m.actor)) && !state.players.Any(p=>p.zone==TreasureHunt.Zone && connected.Contains(p.id)))return false;var changed=false;
-            foreach(var id in connected){var p=state.players.Single(v=>v.id==id);var m=g.members.Single(v=>v.actor==id);if(m.attending || m.declined || p.zone!="daycare" && p.zone!=TreasureHunt.Zone)continue;TravelPlayer(p,TreasureHunt.Zone);m.attending=true;m.declined=false;var at=TreasureHunt.Point(g,TreasureHunt.Next(g));p.x=Math.Max(120,at.X-150+Array.IndexOf(g.members,m)*55);p.y=230;DeclineOtherDaycare(p.id);changed=true;}
+            foreach(var id in connected){var p=state.players.Single(v=>v.id==id);var m=g.members.Single(v=>v.actor==id);if(m.attending || m.declined || DaycarePlay.Member(state.hideClub,id)?.invited==true || DaycarePlay.Member(state.tagClub,id)?.invited==true || p.zone!="daycare" && p.zone!=TreasureHunt.Zone)continue;TravelPlayer(p,TreasureHunt.Zone);m.attending=true;m.declined=false;var at=TreasureHunt.Point(g,TreasureHunt.Next(g));p.x=Math.Max(120,at.X-150+Array.IndexOf(g.members,m)*55);p.y=230;DeclineOtherDaycare(p.id);changed=true;}
             if(changed)state.revision++;return changed;
         }
         private void DeclineOtherDaycare(string actor)
-        {state.kingdom.members.Single(m=>m.actor==actor).declined=true;state.daycare.members.Single(m=>m.actor==actor).declined=true;state.sandpit.members.Single(m=>m.actor==actor).declined=true;}
+        {state.kingdom.members.Single(m=>m.actor==actor).declined=true;state.daycare.members.Single(m=>m.actor==actor).declined=true;state.sandpit.members.Single(m=>m.actor==actor).declined=true;if(state.vet!=null && !state.vet.members.Single(m=>m.actor==actor).attending)state.vet.members.Single(m=>m.actor==actor).declined=true;if(state.treasure!=null && !state.treasure.members.Single(m=>m.actor==actor).attending)state.treasure.members.Single(m=>m.actor==actor).declined=true;}
         private void TreasurePhase(int phase){state.treasure.phase=phase;state.treasure.started=state.treasure.clock;if(phase==4)state.treasure.demoAt=state.treasure.clock;}
         private string TreasureOperation(SoloCommand c,SoloPlayer p)
         {
