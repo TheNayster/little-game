@@ -253,3 +253,6 @@ The user means the character looks rigid and uptight while walking. **116 was vi
 ## Consolidated world feature audit — September 26
 
 The [all-world feature checklist](all-world-features-audit-2026-09-26.html) audits all 55 research chapters and 35 master requirements against the current source and retained evidence. It lists each recipe, world activity, dinosaur, book, science station, story, character and shared system, with explicit playable/partial/scenery/planned/development/optional/retired status. No device or server work occurred. Build 132 remains ready but uninstalled while the family is away; Home remains the development priority.
+
+
+**Daycare repair358 — September30:** fixes joystick fruit pickup/delivery, overlapping touch areas, automatic four-player entry/world return, stage-specific NPC jobs, Calypso route/pose stability and visible shared plate setting. Eight native release groups plus focused core/Unity migration checks pass. Protocol3/content53/schema43 is isolated on `codex/daycare-adventure-repair`; includes installed347 Zoo arrivals. No live server or device update; main integration hold remains. [Repair and evidence](implementation/daycare-repair-2026-09-30.md).

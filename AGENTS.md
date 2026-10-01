@@ -10,6 +10,8 @@
 
 ## Game implementation workflow
 
+- Daycare Adventure and picnic: one start joins connected players already in Daycare. Arriving or returning from another world joins the active shared group; explicit Leave/Return respects the independent exit for that visit. Keep one progress checkpoint and NPC cast for up to four players.
+
 - Read `docs/current-decisions.md` first. The user explicitly selected PC/VPS-only multiplayer on September 25: clients never host, offline solo stays private, and reconnecting loads the authoritative server world without importing offline edits. G4/AUTO-02 are retired, not pending gates. Do not revive retired scope from old research or experiments.
 - Treat `docs/bluey-game-research-2026-09-23.md` as the feature goal sheet and `docs/family-playset-build-guide-2026-09-23.md` as the default implementation sequence. The user's latest instructions take precedence.
 - Before implementation, read the build guide's current work record and the goal-sheet sections for the task. Follow the active phase and its dependencies; later phases do not remove required features.

@@ -906,3 +906,6 @@ September30 — Dinosaur riding341 preserves equipped onesie art/color instead o
 September30 — Phone and both iPads341 installed in place with retained saves/preferences. Mac native compilation/signature pass after local key approval. All three devices verified connected together to retained server340/protocol3/content52/schema42,131 items. [Current delivery](implementation/dinosaur-rider-outfits-341-2026-09-30.md).
 
 September30 — Gabriel iPad342: the onesie roar now ignores reader-only sound mute. Native Release/signing and in-place save/preference retention pass, runtime342 is connected to retained server340 with131 items. [Evidence](implementation/onesie-roar-book-setting-342-2026-09-30.md). Physical listening confirmation pending.
+
+
+**Daycare repair358 — September30:** fixes joystick fruit pickup/delivery, overlapping touch areas, automatic four-player entry/world return, stage-specific NPC jobs, Calypso route/pose stability and visible shared plate setting. Eight native release groups plus focused core/Unity migration checks pass. Protocol3/content53/schema43 is isolated on `codex/daycare-adventure-repair`; includes installed347 Zoo arrivals. No live server or device update; main integration hold remains. [Repair and evidence](implementation/daycare-repair-2026-09-30.md).

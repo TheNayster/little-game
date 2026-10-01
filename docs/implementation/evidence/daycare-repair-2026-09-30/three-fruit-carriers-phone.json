@@ -1,0 +1,327 @@
+{
+  "visiblePlayers": 3,
+  "pending": false,
+  "build": "0.0.358",
+  "actor": "player-1",
+  "zone": "imagination-adventure",
+  "screenWidth": 1280,
+  "screenHeight": 591,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "controlsInSafeArea": true,
+  "controls": [
+    {
+      "name": "Wake friend 1",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1236.298095703125,
+        "y": 190.68984985351562,
+        "width": 43.701904296875,
+        "height": 141.28594970703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Change role",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 338.9593811035156,
+        "y": 22.162504196166992,
+        "width": 173.60623168945312,
+        "height": 51.712493896484375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Games",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 542.1156005859375,
+        "y": 517.8637084960938,
+        "width": 195.768798828125,
+        "height": 57.62255859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Return to daycare",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 687.6493530273438,
+        "y": 22.162504196166992,
+        "width": 203.15625,
+        "height": 51.712493896484375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Listen again",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 523.6468505859375,
+        "y": 22.162504196166992,
+        "width": 158.831298828125,
+        "height": 51.712493896484375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Put fruit in basket",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 251.17495727539062,
+        "y": 118.20001220703125,
+        "width": 147.75,
+        "height": 110.8125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1170.6650390625,
+        "y": 31.766263961791992,
+        "width": 88.64990234375,
+        "height": 88.64999389648438
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 31.76620101928711,
+        "y": 506.7825012207031,
+        "width": 62.054996490478516,
+        "height": 62.055023193359375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Next adventure task",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 839.4625244140625,
+        "y": 448.4212341308594,
+        "width": 73.875,
+        "height": 56.14501953125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 977.112548828125,
+        "y": 526.728759765625,
+        "width": 155.137451171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1147.0250244140625,
+        "y": 526.728759765625,
+        "width": 118.199951171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    }
+  ],
+  "homePose": "Carry",
+  "daycare": {
+    "clock": 7.025072900000001,
+    "started": 0.0,
+    "helpUntil": 0.0,
+    "round": 0,
+    "phase": 0,
+    "plates": 0,
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": false
+      },
+      {
+        "actor": "player-2",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": false
+      },
+      {
+        "actor": "player-3",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": false
+      },
+      {
+        "actor": "player-4",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": false
+      }
+    ],
+    "guests": [
+      "bentley",
+      "dusty",
+      "jean-luc",
+      "chloe"
+    ]
+  },
+  "daycareRoutine": 0,
+  "calypsoPose": 1,
+  "calypsoMoving": false,
+  "calypsoWorldPoint": {
+    "x": 600.0,
+    "y": 240.0
+  },
+  "kingdom": {
+    "round": 1,
+    "supplies": 0,
+    "boards": 0,
+    "rescued": 0,
+    "phase": 2,
+    "clock": 5.352965399999999,
+    "started": 1.025517899999997,
+    "distractedUntil": 0.0,
+    "members": [
+      {
+        "actor": "player-1",
+        "role": 0,
+        "attending": true,
+        "declined": false,
+        "carrying": "fruit-0"
+      },
+      {
+        "actor": "player-2",
+        "role": 1,
+        "attending": true,
+        "declined": false,
+        "carrying": "fruit-1"
+      },
+      {
+        "actor": "player-3",
+        "role": 2,
+        "attending": true,
+        "declined": false,
+        "carrying": "fruit-2"
+      },
+      {
+        "actor": "player-4",
+        "role": 3,
+        "attending": false,
+        "declined": false,
+        "carrying": ""
+      }
+    ],
+    "npcCast": [
+      "lucky",
+      "lulu",
+      "winton",
+      "jean-luc",
+      "blue-pup",
+      "digger",
+      "buddy",
+      "bentley",
+      "missy"
+    ],
+    "boardAt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "wakeAt": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "kingdomNpcArt": [
+    "lucky",
+    "lulu",
+    "winton",
+    "jean-luc",
+    "bluey",
+    "digger",
+    "buddy",
+    "bentley",
+    "missy"
+  ],
+  "picnicNpcArt": [
+    "",
+    "",
+    "",
+    ""
+  ],
+  "kingdomNpcJobs": [
+    "Guide",
+    "Carry fruit",
+    "Bridge helper",
+    "Bridge helper",
+    "Bridge helper",
+    "Guard wand",
+    "Frozen friend",
+    "Frozen friend",
+    "Frozen friend"
+  ],
+  "kingdomNpcPoses": [
+    "Idle",
+    "Carry",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle"
+  ],
+  "kingdomNpcPoints": [
+    {
+      "x": 950.0,
+      "y": 300.0
+    },
+    {
+      "x": 564.6817626953125,
+      "y": 267.2022705078125
+    },
+    {
+      "x": 1230.0,
+      "y": 330.0
+    },
+    {
+      "x": 1390.0,
+      "y": 340.0
+    },
+    {
+      "x": 1540.0,
+      "y": 330.0
+    },
+    {
+      "x": 2110.0,
+      "y": 340.0
+    },
+    {
+      "x": 1750.0,
+      "y": 330.0
+    },
+    {
+      "x": 1930.0,
+      "y": 340.0
+    },
+    {
+      "x": 2300.0,
+      "y": 330.0
+    }
+  ],
+  "cameraX": 866.3283081054688
+}

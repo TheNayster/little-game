@@ -523,7 +523,7 @@ namespace LittleWeeps.Client
         {
             foreach(var surface in Surfaces.Values)surface.Cancel();
             if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
-            dinosaurCareApproach=false;zooApproach=false;destination=null;stickDirection=Vector2.zero;
+            dinosaurCareApproach=false;zooApproach=false;kingdomApproach="";daycareApproach=-1;destination=null;stickDirection=Vector2.zero;
             shared?.Walk(WalkMode.Stop);
         }
         private void Update()
@@ -550,6 +550,7 @@ namespace LittleWeeps.Client
                 else if(hideApproach>=0)shared.Walk(WalkMode.Destination,HideEntry.x,HideEntry.y);
                 else if(doorApproach)shared.Walk(WalkMode.Destination,DoorEntry.x,DoorEntry.y);
                 else if(stairApproach)shared.Walk(WalkMode.Destination,HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea));
+                else if((kingdomApproach!="" || daycareApproach>=0) && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
                 else if(JoystickMode)shared.Walk(stickDirection.sqrMagnitude>.0001f?WalkMode.Direction:WalkMode.Stop,stickDirection.x,stickDirection.y);
                 else if(destination.HasValue)
                 {
@@ -568,8 +569,8 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=StairBusy || doorSubmitted?WalkMode.Stop:dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
-            var input=dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):JoystickMode?stickDirection:destination??Vector2.zero;
+            var mode=StairBusy || doorSubmitted?WalkMode.Stop:dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
                 dirty=true;lastLocalAction=now;
@@ -626,7 +627,8 @@ namespace LittleWeeps.Client
                 if(player.stairs>0)point=StairPoint(player);
                 // Book sound controls apply only to the reader, not the outfit roar.
                 visual.Wear(player.outfit,player.outfitColor);visual.ObserveRoar(player.roar,!applicationPaused);
-                visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
+                var storyHold=player.zone==KingdomAdventure.Zone && !string.IsNullOrEmpty(KingdomGame?.members.FirstOrDefault(m=>m.actor==id)?.carrying) || player.zone=="daycare" && DaycareGame?.members.FirstOrDefault(m=>m.actor==id)?.carryingPlate==true;
+                visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id) || storyHold,applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
             }
             PresentRooms();
             PresentBedrooms();PresentBathroom();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();

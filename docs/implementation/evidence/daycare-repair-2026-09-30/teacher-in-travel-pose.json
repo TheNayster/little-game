@@ -1,0 +1,338 @@
+{
+  "visiblePlayers": 4,
+  "pending": false,
+  "build": "0.0.358",
+  "actor": "player-1",
+  "zone": "daycare",
+  "screenWidth": 1280,
+  "screenHeight": 591,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "controlsInSafeArea": true,
+  "controls": [
+    {
+      "name": "Games",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 542.1156005859375,
+        "y": 517.8637084960938,
+        "width": 195.768798828125,
+        "height": 57.62255859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Ask Calypso",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 814.3600463867188,
+        "y": 184.31813049316406,
+        "width": 162.5250244140625,
+        "height": 217.93125915527344
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 31.76620101928711,
+        "y": 506.7825012207031,
+        "width": 62.054996490478516,
+        "height": 62.055023193359375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Place picnic plate 4",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1110.2000732421875,
+        "y": 163.26376342773438,
+        "width": 99.731201171875,
+        "height": 73.875
+      },
+      "enabled": false
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1147.0250244140625,
+        "y": 526.728759765625,
+        "width": 118.199951171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Joystick",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 977.112548828125,
+        "y": 526.728759765625,
+        "width": 155.137451171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Place picnic plate 2",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 888.5750732421875,
+        "y": 163.26376342773438,
+        "width": 99.731201171875,
+        "height": 73.875
+      },
+      "enabled": false
+    },
+    {
+      "name": "Join picnic table",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 731.5906982421875,
+        "y": 100.47000885009766,
+        "width": 524.512451171875,
+        "height": 66.48749542236328
+      },
+      "enabled": true
+    },
+    {
+      "name": "Place picnic plate 1",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 777.7625732421875,
+        "y": 163.26376342773438,
+        "width": 99.731201171875,
+        "height": 73.875
+      },
+      "enabled": false
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1170.6650390625,
+        "y": 31.766263961791992,
+        "width": 88.64990234375,
+        "height": 88.64999389648438
+      },
+      "enabled": true
+    },
+    {
+      "name": "Place picnic plate 3",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 999.3875732421875,
+        "y": 163.26376342773438,
+        "width": 99.731201171875,
+        "height": 73.875
+      },
+      "enabled": false
+    },
+    {
+      "name": "Take picnic plate",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 580.1469116210938,
+        "y": 146.2725067138672,
+        "width": 125.5875244140625,
+        "height": 103.42498779296875
+      },
+      "enabled": true
+    }
+  ],
+  "homePose": "Idle",
+  "daycare": {
+    "clock": 72.64741900000008,
+    "started": 58.574011500000125,
+    "helpUntil": 0.0,
+    "round": 1,
+    "phase": 3,
+    "plates": 15,
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": true
+      },
+      {
+        "actor": "player-2",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": true
+      },
+      {
+        "actor": "player-3",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": true
+      },
+      {
+        "actor": "player-4",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": true
+      }
+    ],
+    "guests": [
+      "terrier-3",
+      "hercules",
+      "chucky",
+      "jack"
+    ]
+  },
+  "daycareRoutine": 4,
+  "calypsoPose": 0,
+  "calypsoMoving": true,
+  "calypsoWorldPoint": {
+    "x": 1312.039794921875,
+    "y": 260.0
+  },
+  "kingdom": {
+    "round": 2,
+    "supplies": 0,
+    "boards": 0,
+    "rescued": 0,
+    "phase": 1,
+    "clock": 68.37755270000008,
+    "started": 61.61540270000001,
+    "distractedUntil": 0.0,
+    "members": [
+      {
+        "actor": "player-1",
+        "role": 0,
+        "attending": false,
+        "declined": true,
+        "carrying": ""
+      },
+      {
+        "actor": "player-2",
+        "role": 1,
+        "attending": false,
+        "declined": true,
+        "carrying": ""
+      },
+      {
+        "actor": "player-3",
+        "role": 2,
+        "attending": false,
+        "declined": true,
+        "carrying": ""
+      },
+      {
+        "actor": "player-4",
+        "role": 3,
+        "attending": false,
+        "declined": true,
+        "carrying": ""
+      }
+    ],
+    "npcCast": [
+      "jack",
+      "hercules",
+      "terrier-3",
+      "coco",
+      "dusty",
+      "pretzel",
+      "mia",
+      "juniper",
+      "orange-pup"
+    ],
+    "boardAt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "wakeAt": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "kingdomNpcArt": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "picnicNpcArt": [
+    "terrier-3",
+    "hercules",
+    "chucky",
+    "jack"
+  ],
+  "kingdomNpcJobs": [
+    "Guide",
+    "Picnic helper",
+    "Bridge helper",
+    "Bridge helper",
+    "Bridge helper",
+    "Guard wand",
+    "Frozen friend",
+    "Frozen friend",
+    "Frozen friend"
+  ],
+  "kingdomNpcPoses": [
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle"
+  ],
+  "kingdomNpcPoints": [
+    {
+      "x": 350.0,
+      "y": 310.0
+    },
+    {
+      "x": 682.738525390625,
+      "y": 316.36444091796875
+    },
+    {
+      "x": 817.03076171875,
+      "y": 278.3787841796875
+    },
+    {
+      "x": 952.9103393554688,
+      "y": 313.8494567871094
+    },
+    {
+      "x": 1087.1766357421875,
+      "y": 277.1705322265625
+    },
+    {
+      "x": 1223.090087890625,
+      "y": 310.007568359375
+    },
+    {
+      "x": 1356.9456787109375,
+      "y": 279.0484313964844
+    },
+    {
+      "x": 1492.91015625,
+      "y": 313.8494567871094
+    },
+    {
+      "x": 1627.6376953125,
+      "y": 272.6030578613281
+    }
+  ],
+  "cameraX": 966.0194091796875
+}

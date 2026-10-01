@@ -1,0 +1,18 @@
+{
+  "build": 358,
+  "runId": "0d644b87e5864b4ba1e664f3991af65f",
+  "passed": true,
+  "checks": [
+    "one start automatically joins all three Daycare players; the Park player stays in Park",
+    "direct fruit touches work in joystick mode; three visible exclusive holds become three basket deliveries",
+    "late travel through the real world menu automatically joins the current Adventure",
+    "builders carry and construct the crossing; guard follows the ball; rescues and common feast work after independent exit/disconnect",
+    "all nine NPCs remain in the settled celebration pose across twelve samples",
+    "native reopening retains the shared ending/cast; deliberate replay selects new friends",
+    "all four players automatically join picnic, carry visible plates and share four counted places; independent exit retains sibling plates and NPC cast",
+    "Calypso follows a bounded smooth route with one standing drawing throughout movement"
+  ],
+  "teacherOnly": false,
+  "joinOnly": false,
+  "scope": "disposable release server and four native clients, direct UGUI fruit/basket/world-menu controls; no live server/device installation"
+}

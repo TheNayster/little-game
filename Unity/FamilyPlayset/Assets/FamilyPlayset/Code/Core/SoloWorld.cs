@@ -345,11 +345,15 @@ namespace LittleWeeps.Core
         }
         private void TravelPlayer(SoloPlayer player,string destination)
         {
+            // Declining an activity protects this visit. Returning from another
+            // world is a fresh arrival and may join the family's current game.
+            var daycareArrival=destination=="daycare" && WorldLayout.Place(player)!="daycare";
             // Settle station tools at their racks; personal items and food stay
             // at departure. This is shared by normal travel and accepted invites.
             foreach(var held in state.toys.Where(t=>t.holder==player.id))
             {held.holder="";if(BedroomFurniture.Personal(held.kind) || Kitchen.Kind(held.kind)){held.x=player.x;held.y=Math.Max(35,Math.Min(250,player.y-65));Touch(held);continue;}if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
-            if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).attending=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).attending=false;
+            if(state.daycare!=null){var picnic=state.daycare.members.Single(m=>m.actor==player.id);if(picnic.attending)picnic.declined=true;picnic.attending=false;picnic.carryingPlate=false;}if(state.kingdom!=null){var member=state.kingdom.members.Single(m=>m.actor==player.id);if(member.attending)member.declined=true;member.attending=false;member.carrying="";}
+            if(daycareArrival){if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).declined=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).declined=false;}
             CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);CancelZoo(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
         }
         public SoloResult Apply(SoloCommand c)

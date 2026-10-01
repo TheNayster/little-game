@@ -69,3 +69,6 @@ Tools/ZooRules.Tests/obj/
 !Tools/DinosaurRules.Tests/DinosaurRules.Tests.csproj
 Tools/DinosaurRules.Tests/bin/
 Tools/DinosaurRules.Tests/obj/
+!Tools/AdventureRepair.Tests/AdventureRepair.Tests.csproj
+Tools/AdventureRepair.Tests/bin/
+Tools/AdventureRepair.Tests/obj/

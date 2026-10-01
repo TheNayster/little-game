@@ -60,7 +60,7 @@ namespace LittleWeeps.Core
             x=200;arrival=420;
             if(from==ZooLayout.Entrance && Trail(target)){x=EntranceX(target);return true;}
             if(!Trail(from))return false;
-            if(target==ZooLayout.Entrance)return true;
+            if(target==ZooLayout.Entrance){arrival=ZooLayout.EntranceArrivalX;return true;}
             if(target==Next(from)){x=9200;return true;}
             if(target==Previous(from)){arrival=9000;return true;}
             return false;
