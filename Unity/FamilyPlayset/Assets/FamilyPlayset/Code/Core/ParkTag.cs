@@ -41,6 +41,7 @@ namespace LittleWeeps.Core
     }
     public sealed partial class SoloWorld
     {
+        private readonly HashSet<string> tagOptOut=new HashSet<string>();
         private readonly Dictionary<string,WalkPoint> tagPrevious=new Dictionary<string,WalkPoint>();
         public TagState ReadTag()=>state.park?.tag?.Copy();
         public static SoloWorld WithTag(SoloWorld world)
@@ -64,17 +65,34 @@ namespace LittleWeeps.Core
         {
             if(state.park?.tag==null || p.zone!="park")return "wrong-area";
             var t=state.park.tag;
-            if(c.value=="tag-leave"){CancelTag(p.id);return null;}
+            if(c.value=="tag-leave"){tagOptOut.Add(p.id);CancelTag(p.id);return null;}
             if(c.value!="tag-join")return "invalid-tag-action";
-            if(ParkTag.Member(t,p.id))return null;
+            tagOptOut.Remove(p.id);if(ParkTag.Member(t,p.id))return null;
+            AddTagMember(p);return null;
+        }
+        private void AddTagMember(SoloPlayer p)
+        {
+            var t=state.park.tag;
             // Joining a game releases only this child's support and held props.
             ClearFixture(p);p.activity="";
             foreach(var toy in state.toys.Where(v=>v.holder==p.id)){toy.holder="";toy.x=p.x;toy.y=Math.Max(35,p.y-65);Touch(toy);}
-            if(t.phase==TagPhase.Idle){t.phase=TagPhase.Counting;t.starts=t.clock+ParkTag.CountSeconds;t.it=p.id;t.turns=0;t.npcX=Math.Max(40,Math.Min(4760,p.x+220));t.npcY=Math.Max(40,Math.Min(320,p.y));tagPrevious.Clear();}
+            if(t.phase==TagPhase.Idle){t.phase=TagPhase.Counting;t.starts=t.clock+ParkTag.CountSeconds;t.it=p.id;t.turns=0;tagOptOut.Clear();t.npcX=Math.Max(40,Math.Min(4760,p.x+220));t.npcY=Math.Max(40,Math.Min(320,p.y));tagPrevious.Clear();}
             t.members=t.members.Concat(new[]{new TagMember{actor=p.id,safeUntil=t.clock+ParkTag.GraceSeconds}}).ToArray();
             if(t.it==ParkTag.Npc && t.members.Length>1){t.it=t.members[0].actor;t.grace=t.clock+ParkTag.GraceSeconds;}
-            tagPrevious.Remove(p.id);return null;
+            tagPrevious.Remove(p.id);
         }
+        // Presence comes from the authority's admitted connections, never all
+        // saved profiles. Solo keeps its one real player and NPC fallback.
+        private bool IncludeTagPlayers(string[] connected)
+        {
+            var t=state.park?.tag;if(t==null || t.phase==TagPhase.Idle || connected==null)return false;
+            var changed=false;
+            foreach(var p in state.players.Where(p=>connected.Contains(p.id) && p.zone=="park" && p.stairs==0))
+                if(!tagOptOut.Contains(p.id) && !ParkTag.Member(t,p.id)){AddTagMember(p);changed=true;}
+            return changed;
+        }
+        public void IncludeNearbyTagPlayers(string[] connected)
+        {if(IncludeTagPlayers(connected))state.revision++;}
         private bool CancelTag(string actor)
         {
             var t=state.park?.tag;if(!ParkTag.Member(t,actor))return false;
@@ -85,18 +103,20 @@ namespace LittleWeeps.Core
             return true;
         }
         public bool ReleaseTag(string actor)
-        {var changed=CancelTag(actor);if(changed)state.revision++;return changed;}
+        {tagOptOut.Remove(actor);var changed=CancelTag(actor);if(changed)state.revision++;return changed;}
         private void AfterTagAction(SoloCommand c,SoloPlayer p)
         {
+            if(p.zone!="park")tagOptOut.Remove(p.id);
             if(!ParkTag.Member(state.park?.tag,p.id))return;
-            if(!ParkTag.Eligible(p) || c.action==SoloAction.Grab || c.action==SoloAction.StartActivity || c.action==SoloAction.LeaveActivity)CancelTag(p.id);
+            if(!ParkTag.Eligible(p) || c.action==SoloAction.Grab || c.action==SoloAction.StartActivity || c.action==SoloAction.LeaveActivity){CancelTag(p.id);if(p.zone=="park")tagOptOut.Add(p.id);else tagOptOut.Remove(p.id);}
         }
         private bool AdvanceTag(double dt,string[] active,out bool visible)
         {
             visible=false;var t=state.park?.tag;if(t==null || t.phase==TagPhase.Idle)return false;
-            active=active??state.players.Select(p=>p.id).ToArray();
+            var connected=active;active=active??t.members.Select(m=>m.actor).ToArray();
             foreach(var m in t.members.ToArray())if(!active.Contains(m.actor) || !ParkTag.Eligible(state.players.Single(p=>p.id==m.actor)))visible|=CancelTag(m.actor);
             if(t.phase==TagPhase.Idle)return visible;
+            visible|=IncludeTagPlayers(connected);
             t.clock+=dt;
             if(t.phase==TagPhase.Counting){if(t.clock<t.starts)return true;visible=true;t.phase=TagPhase.Playing;t.grace=t.clock+ParkTag.GraceSeconds;tagPrevious.Clear();}
             var points=t.members.ToDictionary(m=>m.actor,m=>{var p=state.players.Single(v=>v.id==m.actor);return new WalkPoint(p.x,p.y);});

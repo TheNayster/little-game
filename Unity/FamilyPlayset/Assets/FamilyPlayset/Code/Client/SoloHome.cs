@@ -136,6 +136,7 @@ namespace LittleWeeps.Client
         {
             ResetCreekFishing();ResetCreekBoats();ResetPond();ResetDinosaurWorld();ResetZoo();ResetPark();ResetHideAndSeek();
             ResetShore();ResetSeagulls();
+            ResetWaveRide();
             if(worldMusic!=null){Destroy(worldMusic);worldMusic=null;}
             if(homeMusic!=null){homeMusic.Stop();Destroy(homeMusic);homeMusic=null;}
             foreach(var sprite in homeSprites)Destroy(sprite);

@@ -1,5 +1,7 @@
 # Current project decisions
 
+**Combined worlds360 — September30:** integrates completed Home, Park, Creek, Daycare and Beach updates with Zoo/Dinosaur and faster movement. Windows/four-client world check and copied real-save migration pass. Protocol3/content58/schema44 needs coordinated devices/server; mobile build/install is underway, live347 retained. [Source/evidence/delivery](implementation/combined-world-release-360-2026-09-30.md). Preserve the main integration hold.
+
 **Movement speed348 — September30:** the user approved483 floor units/second (+15%). Windows client/server compile; one native four-player check measures479.61–483.89 with independent departure passing. Content56 aligns client prediction and authority; protocol3/schema42 unchanged. [Evidence and pending delivery](implementation/movement-speed-348-2026-09-30.md). No mobile installation or live-server update; gate-only347 is installed; preserve the main integration hold.
 
 **Zoo main-gate arrivals347 — September30:** world-menu entry and return from trails now use the center of the main entrance arch (1200/100). Windows and four unchanged341 clients pass arrival, return and independent-departure checks. Reviewed compatible server fix retains protocol3/content52/schema42; server347 is now installed after the family became idle, with131 items, enrollment, endpoint and recovery retained. Physical next-entry confirmation is pending. [Evidence/review](implementation/zoo-main-gate-arrival-347-2026-09-30.md). Preserve the main integration hold.

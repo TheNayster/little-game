@@ -52,7 +52,7 @@ namespace LittleWeeps.Core
                 legacy.schema=Math.Max(legacy.schema,DinosaurCareRules.Schema);legacy.revision++;Validate(legacy);world=new SoloWorld(legacy);
             }
             // Older releases used overlapping schema numbers in separate branches.
-            // Ensure each saved module by its own presence, then publish format 42.
+            // Ensure each saved module by its own presence before publishing the combined schema.
             world=WithCreekFishing(world);world=WithNpcCasts(world);world=WithShore(world);
             world=WithStationTidying(world);world=WithBathroom(world);world=WithTag(world);world=WithZoo(world);
             if(world.Schema>=WorldLayout.Schema)return world;
@@ -60,6 +60,8 @@ namespace LittleWeeps.Core
             foreach(var ch in s.worldId)seed=unchecked((seed^ch)*16777619);
             if(s.dinosaurWorld==null)s.dinosaurWorld=new DinosaurWorldState{animals=DinosaurRides.Species.Select((id,i)=>new DinosaurMount{species=id,random=(seed^(uint)(i+1)*2654435761u)|1u,x=600+i*1200,targetX=600+i*1200,pause=3+i*2}).ToArray()};
             if(s.dinosaurWorld.care==null || s.dinosaurWorld.care.Length==0)s.dinosaurWorld.care=s.players.Select(p=>new DinosaurCare{actor=p.id}).ToArray();
+            // Sea rides are additive; initialize them before raising the shared format.
+            if(s.shore.ride==null)s.shore.ride=new WaveRideState();
             s.schema=WorldLayout.Schema;s.revision++;Validate(s);return new SoloWorld(s);
         }
         private static void NormalizeDinosaurInline(SoloSnapshot s)

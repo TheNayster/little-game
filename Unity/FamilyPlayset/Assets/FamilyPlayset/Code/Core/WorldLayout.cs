@@ -6,8 +6,8 @@ namespace LittleWeeps.Core
     // its coordinates left of the original garden preserves every saved prop.
     public static class WorldLayout
     {
-        // Content 56 keeps walking prediction aligned with the requested 483-unit speed; saved schema stays 42.
-        public const int Schema=42, ScenerySchema=3, Content=56;
+        // Combined family updates: shared hiding, Tag, Daycare repair, sea rides and 483-unit movement.
+        public const int Schema=44, ScenerySchema=3, Content=58;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || id==KingdomAdventure.Zone || HomeRooms.Internal(id) || id==DinosaurRides.Area || ZooLayout.Area(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id) && !ZooCatalog.Trail(id) && id!=KingdomAdventure.Zone;

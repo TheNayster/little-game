@@ -1,0 +1,92 @@
+[
+  {
+    "id": "hello",
+    "text": "Hello! You can play here, hear a story, or help our friends get ready for a picnic.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "3c854ac9b98d1f78b9bf7768e957e13f927b31a426c02d5f896cc423eab8304b",
+    "duration": 4.16,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "story",
+    "text": "A little bird found a seed. Her friends brought water and sunshine. Together they grew a tree, with room for every friend.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "f7324a0e28cdbe845c8f189f72ba4f543d9c31b55a7bbd7c5f019639ba8c4823",
+    "duration": 8.24,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "one",
+    "text": "One plate. One friend is ready.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "3f1c3c1ca7b519831ea069cefd23507172638e903e2bc0c7a8023f27db24a66a",
+    "duration": 2.24,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "two",
+    "text": "Two plates. Two friends are ready.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "3e761f604c0acf7a59533a260148ee6f9b9719a115cdadf7509d38f089cf26d9",
+    "duration": 2.8,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "three",
+    "text": "Three plates. Three friends are ready.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "083d0114f45fd7516a8119a886f38490fa25009da882bf2598e3740907bd2cce",
+    "duration": 2.8,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "four",
+    "text": "Four plates. Every friend is ready for our picnic!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "d54a78772e0a7b2ec0a398be3824fc7f7c3c343118f164ec1190173f70a4e64f",
+    "duration": 3.28,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "done",
+    "text": "Our picnic is ready! Four plates for four friends. You can play again or go and explore.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "6f40f4477639e83aa05b27f0ade1cabf01aa15085e1f284b9bd0a9c2002fd241",
+    "duration": 6.08,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "help",
+    "text": "Take a plate from the stack marked Plates. Carry it to a green place at the table and tap to give it to a friend. We'll count together! You can also use the big arrow.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "7ac4c2ce441fc93d8058e725b349ca14c05e3301fdc0c69837de4f014a6d653f",
+    "duration": 9.6,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "invite",
+    "text": "Four friends need plates for their picnic. Tap the plate stack to take one, then tap a green place to give it to a friend. Let's count four plates together!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "99c2a1f32354c27695952aceec9d6f458e88e97e4d040a648051d16e62cc6cd0",
+    "duration": 10.72,
+    "status": "generated candidate; family listening pending"
+  }
+]

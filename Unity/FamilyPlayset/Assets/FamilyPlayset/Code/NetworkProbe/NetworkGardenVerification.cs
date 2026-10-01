@@ -29,6 +29,9 @@ namespace LittleWeeps.NetworkProbe
         private Vector2 mousePoint;
         private string traceActor;
         private readonly List<MotionSample> motionTrace=new List<MotionSample>();
+        private string boatTraceActor;private readonly List<BoatSample> boatTrace=new List<BoatSample>();
+        [Serializable] private sealed class BoatSample {public double time,clock,authority;public Vector2 position;public int phase;}
+        [Serializable] private sealed class BoatEvidence {public string actor,build;public BoatSample[] samples;}
         [Serializable] private sealed class MotionSample
         {public double time;public Vector2 visual,authority,ground;public float phase,weight;public int drawing;public bool faceLeft;public string pose;}
         [Serializable] private sealed class MotionEvidence {public string actor,build;public MotionSample[] samples;}
@@ -39,9 +42,9 @@ namespace LittleWeeps.NetworkProbe
         [Serializable] private sealed class Evidence
         {
             public LittleWeeps.Core.SeagullState seagulls;public int visibleSeagulls,visibleGullTracks;
-            public LittleWeeps.Core.BeachShoreState shore;public int visibleSandPrints;public bool visibleSeaVisitor;public int seaVisitorPose=-1;
+            public LittleWeeps.Core.BeachShoreState shore;public int visibleSandPrints,visibleWaveRiders;public bool visibleSeaVisitor;public int seaVisitorPose=-1;
             public int serial,visiblePlayers,canvases,narrators,audioSources;public bool passed,ready,pending,connected,menuOpen,shared;
-            public bool tagSpeaking;public string tagCue;
+            public bool tagNpcVisible;public bool tagSpeaking;public string tagCue;
             public string error,build,actor,feedback,dragging,zone,savePath,adventure,pendingRequest;public int pendingArchives;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
             public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray,activeCharacterVisible;public string character;public int characterLayers;public ControlView[] controls;
@@ -54,8 +57,8 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
-            public LittleWeeps.Core.DaycareState daycare;public int daycareRoutine;public bool calypsoVisible;
-            public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;public string[] kingdomNpcArt,picnicNpcArt;
+            public LittleWeeps.Core.DaycareState daycare;public int daycareRoutine,calypsoPose;public bool calypsoVisible,calypsoMoving;public Vector2 calypsoWorldPoint;
+            public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;public string[] kingdomNpcArt,picnicNpcArt,kingdomNpcJobs,kingdomNpcPoses;public Vector2[] kingdomNpcPoints;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
             public bool bookAuto,bookWords,bookOptions,bookEffect,bookEffectPending,bookNaming;public string bookTitle;public int bookTextures,bookAudio;
@@ -148,6 +151,8 @@ namespace LittleWeeps.NetworkProbe
                         InputSystem.QueueStateEvent(mouse,new MouseState{position=point}.WithButton(MouseButton.Left,false));
                     }
                 }
+                else if(step.action=="boatTraceStart"){boatTraceActor=step.role;boatTrace.Clear();}
+                else if(step.action=="boatTraceStop"){File.WriteAllText(Path.Combine(probe.Output,"boat-trace.json"),JsonUtility.ToJson(new BoatEvidence{actor=boatTraceActor,build=Application.version,samples=boatTrace.ToArray()},true));boatTraceActor=null;}
                 else if(step.action=="traceStart"){traceActor=step.role;motionTrace.Clear();}
                 else if(step.action=="walkChecks")WalkAnimationVerification.Run(screen.Board,probe.Output);
                 else if(step.action=="walkFilm")StartCoroutine(WalkFilm());
@@ -236,6 +241,10 @@ namespace LittleWeeps.NetworkProbe
         }
         private void LateUpdate()
         {
+            if(boatTraceActor!=null && screen.Ready && boatTrace.Count<1800){
+                var boat=screen.CreekBoatGame?.boats.FirstOrDefault(b=>b.actor==boatTraceActor);var drawing=screen.Board.Find("Creek boat "+boatTraceActor) as RectTransform;
+                if(boat!=null && drawing!=null && drawing.gameObject.activeInHierarchy)boatTrace.Add(new BoatSample{time=screen.CreekBoatVisualTime,clock=screen.CreekBoatVisualClock,authority=screen.CreekBoatGame.clock,position=BoardPosition(drawing),phase=(int)boat.phase});
+            }
             if(traceActor==null || !screen.Ready || motionTrace.Count>=1800)return;
             var p=screen.ReadPlayer(traceActor);
             var rect=screen.Board.Find(traceActor==screen.Actor?"Player character":"Friend-"+traceActor) as RectTransform;
@@ -277,15 +286,16 @@ namespace LittleWeeps.NetworkProbe
                 evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;
                 evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;
-                evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;
-                evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;
+                evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;evidence.calypsoMoving=screen.CalypsoMoving;evidence.calypsoPose=screen.CalypsoPose;evidence.calypsoWorldPoint=screen.CalypsoWorldPoint;
+                evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;evidence.kingdomNpcJobs=screen.KingdomNpcJobs;evidence.kingdomNpcPoses=screen.KingdomNpcPoses;evidence.kingdomNpcPoints=screen.KingdomNpcPoints;
                 evidence.kingdom=screen.KingdomGame;evidence.visibleKingdomNpcs=screen.VisibleKingdomNpcs;
                 evidence.hideAndSeek=screen.HideGame;
                 evidence.seagulls=screen.Seagulls;evidence.visibleSeagulls=screen.VisibleSeagulls;evidence.visibleGullTracks=screen.VisibleGullTracks;
-                evidence.shore=screen.Shore;evidence.visibleSandPrints=screen.VisibleSandPrints;evidence.visibleSeaVisitor=screen.VisibleSeaVisitor;evidence.seaVisitorPose=screen.SeaVisitorPose;
+                evidence.shore=screen.Shore;evidence.visibleWaveRiders=screen.VisibleWaveRiders;evidence.visibleSandPrints=screen.VisibleSandPrints;evidence.visibleSeaVisitor=screen.VisibleSeaVisitor;evidence.seaVisitorPose=screen.SeaVisitorPose;
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();
                 evidence.discoveryOpen=screen.DiscoveryOpen;evidence.bookOpen=screen.BookOpen;evidence.bookReady=screen.BookPageReady;evidence.bookPlaying=screen.BookPlaying;evidence.bookSpeaking=screen.BookSpeaking;evidence.bookPage=screen.BookPageNumber;evidence.bookSample=screen.BookSample;
                 evidence.bookAuto=screen.BookAutoTurn;evidence.bookWords=screen.BookWordsVisible;evidence.bookOptions=screen.BookOptionsOpen;evidence.bookEffect=screen.BookEffectPlaying;evidence.bookEffectPending=screen.BookEffectPending;evidence.bookNaming=screen.BookNaming;evidence.bookTitle=screen.BookTitleId;evidence.bookTextures=screen.BookResidentTextures;evidence.bookAudio=screen.BookResidentAudio;
+                evidence.tagNpcVisible=screen.TagNpcVisible;
                 evidence.tagSpeaking=screen.Narration.GetComponent<AudioSource>()?.isPlaying==true;evidence.tagCue=screen.Narration.GetComponent<AudioSource>()?.clip?.name??"";
                 evidence.visibleText=FindObjectsByType<Text>(FindObjectsSortMode.None).Where(t=>t.gameObject.activeInHierarchy).Select(t=>t.text).ToArray();
                 evidence.fullCharactersInTray=screen.CharactersOpen && FindObjectsByType<GameCharacterVisual>(FindObjectsSortMode.None)

@@ -179,6 +179,7 @@ namespace LittleWeeps.Core
             var zooFloor=ZooLayout.Floor(zone,x,y);x=zooFloor.X;y=zooFloor.Y;
             var ridingFloor=ParkWheels.Floor(p,x,y);x=ridingFloor.X;y=ridingFloor.Y;
             if(p.x==x && p.y==y)return false;
+            if(LeaveWaveRide(p))state.revision++;
             if(!string.IsNullOrEmpty(p.fixture) && !ParkWheels.Usable(p.fixture) && !DinosaurRides.Usable(p.fixture)){ClearFixture(p);state.revision++;}
             var h=HideAndSeek.Player(state.hideAndSeek,actor);
             if(h!=null && h.mode!=HiderMode.Away){h.idle=0;if(h.mode==HiderMode.Hidden){ExitHide(p,h,false);state.revision++;}}
@@ -261,7 +262,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>(s.schema>=HomeTidying.Schema?HomeTidying.IdleSeconds:ToolIdleSeconds)+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateHideAndSeek(s);ValidateCreations(s);ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);ValidatePark(s);ValidateZoo(s);ValidatePond(s);ValidateCreekBoats(s);ValidateFishing(s,s.creekFishing,CreekFishing.Habitat,CreekFishing.Schema);ValidateDinosaurWorld(s);ValidateKingdom(s);ValidateDaycare(s);ValidateNpcCasts(s);ValidateSeagulls(s);ValidateShore(s);
+            ValidateHideAndSeek(s);ValidateCreations(s);ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);ValidatePark(s);ValidateZoo(s);ValidatePond(s);ValidateCreekBoats(s);ValidateFishing(s,s.creekFishing,CreekFishing.Habitat,CreekFishing.Schema);ValidateDinosaurWorld(s);ValidateKingdom(s);ValidateDaycare(s);ValidateNpcCasts(s);ValidateSeagulls(s);ValidateShore(s);ValidateWaveRide(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -345,11 +346,16 @@ namespace LittleWeeps.Core
         }
         private void TravelPlayer(SoloPlayer player,string destination)
         {
+            // Declining an activity protects this visit. Returning from another
+            // world is a fresh arrival and may join the family's current game.
+            var daycareArrival=destination=="daycare" && WorldLayout.Place(player)!="daycare";
+            LeaveWaveRide(player);
             // Settle station tools at their racks; personal items and food stay
             // at departure. This is shared by normal travel and accepted invites.
             foreach(var held in state.toys.Where(t=>t.holder==player.id))
             {held.holder="";if(BedroomFurniture.Personal(held.kind) || Kitchen.Kind(held.kind)){held.x=player.x;held.y=Math.Max(35,Math.Min(250,player.y-65));Touch(held);continue;}if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
-            if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).attending=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).attending=false;
+            if(state.daycare!=null){var picnic=state.daycare.members.Single(m=>m.actor==player.id);if(picnic.attending)picnic.declined=true;picnic.attending=false;picnic.carryingPlate=false;}if(state.kingdom!=null){var member=state.kingdom.members.Single(m=>m.actor==player.id);if(member.attending)member.declined=true;member.attending=false;member.carrying="";}
+            if(daycareArrival){if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).declined=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).declined=false;}
             CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);CancelZoo(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
         }
         public SoloResult Apply(SoloCommand c)
@@ -416,6 +422,7 @@ namespace LittleWeeps.Core
                     if(player.visit>=long.MaxValue-1)return Reject("visit-limit");
                     TravelPlayer(player,c.value);outcome="area-entered";break;
                 case SoloAction.Move:
+                    LeaveWaveRide(player);
                     if(!ParkWheels.Usable(player.fixture) && !DinosaurRides.Usable(player.fixture))ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(player.zone)?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
                     floorPoint=ParkWheels.Floor(player,floorPoint.X,floorPoint.Y);floorPoint=ZooLayout.Floor(player.zone,floorPoint.X,floorPoint.Y);floorPoint=DinosaurRides.Floor(player.zone,floorPoint.X,floorPoint.Y);BeachFootsteps(player,floorPoint.X,floorPoint.Y);var oldX=player.x;player.x=floorPoint.X;player.y=floorPoint.Y;SyncDinosaurRider(player,oldX);break;
                 case SoloAction.ChangeAvatar:

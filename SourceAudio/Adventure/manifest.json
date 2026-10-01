@@ -1,0 +1,62 @@
+[
+  {
+    "id": "step-1",
+    "text": "Our royal picnic is across the river, but the bridge is broken! Three friends are frozen in a pretend spell. Bring food, build a crossing, then distract the playful queen and borrow her wand. Together, we can wake our friends!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "1a3fd48e9e229323d86fffb1e641689e5d570d94af601355e243f330bc8757fe",
+    "duration": 16.4,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-2",
+    "text": "First we need food for the feast. Tap a fruit to pick it up, then tap the glowing basket to pack it. Our picnic helper is bringing extra food!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "4b46f2ec3029004d6afbba6ce2e495f2433f758c3b733ea520ec78c0c5c9556b",
+    "duration": 8.72,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-3",
+    "text": "The river blocks our way. Bring the three planks to our bridge builders. They'll help us make a safe crossing!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "1096c669c9e6eef568a284bd9589409f33eced33357f2633748853a34019984b",
+    "duration": 6.32,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-4",
+    "text": "The queen is guarding her magic wand. She loves a bouncy ball! Toss the ball, then get her wand while she watches it.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "2ed9cad9640a3f590e677d4d88f0db67097cf4f89d96bfbd78aedfe8584c8f76",
+    "duration": 6.88,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-5",
+    "text": "The wand can break the pretend spell! Tap each frozen friend to wake them. Let's bring everyone back to our feast.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "3f2e339c603731e4f54dab4175a201b37d6e513f1dd1d49d5aeee7690d48f8a4",
+    "duration": 6.96,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-6",
+    "text": "You brought food, built the bridge and woke our friends! Now everyone can share the royal picnic. Thank you, adventurers!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "0032eb6cce85aaf1fb6bcbdfc2bebe4bd625b470e420138affd5f96d6dd4c083",
+    "duration": 7.92,
+    "status": "generated candidate; family listening pending"
+  }
+]

@@ -93,6 +93,9 @@ namespace LittleWeeps.Client
         public void PresentSupported(CharacterFrame frame,float dt,float angle=0)
         {PresentFrame(frame,dt);view?.AttachToSupport(angle);}
 
+        public void PresentBeachRide(CharacterFrame frame,float dt,float angle)
+        {if(view!=null)((RectTransform)view.transform).anchoredPosition=new Vector2(0,-45);PresentSupported(frame,dt,angle);}
+
         public void Present(Vector2 displayedPosition, string continuity, bool held, float dt)
         {
             if (view != null) PresentFrame(motion.Observe(displayedPosition, continuity, held, false, dt), dt);

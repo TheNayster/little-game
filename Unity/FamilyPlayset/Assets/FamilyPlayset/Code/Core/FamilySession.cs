@@ -22,13 +22,18 @@ namespace LittleWeeps.Core
             if(!world.Snapshot().players.Any(p=>p.id==profile)){reason="unknown-profile";return false;}
             if(connections.ContainsValue(profile)){reason="profile-already-connected";return false;}
             if(connections.Count>=4){reason="family-full";return false;}
-            connections.Add(connection,profile);return true;
+            connections.Add(connection,profile);world.JoinKingdomGroup(ConnectedPlayers);world.JoinPicnicGroup(ConnectedPlayers);return true;
         }
         public SoloResult Submit(ulong connection,SoloCommand command)
         {
             if(!connections.TryGetValue(connection,out var profile))return new SoloResult(false,"not-connected",world.Revision);
             if(command==null || command.actor!=profile)return new SoloResult(false,"wrong-player",world.Revision);
-            return world.Apply(command);
+            var result=world.Apply(command);
+            if(result.Accepted && command.action==SoloAction.Park && command.value=="tag-join")
+                world.IncludeNearbyTagPlayers(ConnectedPlayers);
+            if(result.Accepted && command.action==SoloAction.Kingdom && (command.value=="start" || command.value=="replay")){world.JoinKingdomGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
+            if(result.Accepted && command.action==SoloAction.Daycare && (command.value=="start" || command.value=="replay")){world.JoinPicnicGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
+            return result;
         }
         public bool Detach(ulong connection)
         {
@@ -38,6 +43,7 @@ namespace LittleWeeps.Core
             world.ReleaseTag(profile);
             world.ReleaseDinosaurCare(profile);
             world.ReleaseDaycare(profile);world.ReleaseKingdom(profile);
+            world.ReleaseWaveRide(profile);
             world.ReleaseFixture(profile);
             world.CancelStairs(profile);
             foreach(var toy in world.ReadToys().Where(t=>t.holder==profile))
@@ -54,7 +60,8 @@ namespace LittleWeeps.Core
         {
             visibleChange=false;
             // An empty family world does not age items while everybody is away.
-            return connections.Count>0 && world.AdvanceIdle(seconds,out visibleChange,ConnectedPlayers);
+            if(connections.Count==0)return false;
+            var joined=world.JoinKingdomGroup(ConnectedPlayers);joined|=world.JoinPicnicGroup(ConnectedPlayers);var advanced=world.AdvanceIdle(seconds,out visibleChange,ConnectedPlayers);visibleChange|=joined;return joined || advanced;
         }
         // A client view is not a successor/recovery checkpoint: receipts stay on
         // the authority. Full recovery replication is a later, separate contract.
