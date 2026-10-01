@@ -1,0 +1,9 @@
+# Zoo main-gate arrivals — server347
+
+The Zoo reused the generic x420/y100 arrival at the left edge of the scene, although its main entrance arch is centered at x1200. World-menu entry now arrives at x1200/y100 on the clear path in front of that arch. Returning from any Zoo trail uses the same entrance coordinate. Other destinations and inter-trail arrivals remain unchanged.
+
+Windows347 Release compiles. A focused native check uses four unchanged341 clients with347 authority: all four world-menu arrivals and a real trail-return button reach the gate; an independent departure leaves siblings in place. The screenshot confirms the character is centered in front of the arch. Private evidence: LocalData/SharedGarden/5f3424fe0b6f4c44ae979af08bd76783/gate-arrival/results.json.
+
+Compatibility review: only three shared source files differ from340 (WorldLayout, ZooWorld, ZooSpecies), defining these legal arrival coordinates. Existing clients read the authority’s returned position and do not use ArrivalX in shared presentation. No message, admission rule, save field, zone bounds or movement prediction changes. Protocol3/content52/schema42 remain compatible; the test with unchanged clients confirms it. The source-digest planner correctly reports review-required; this explicit server bug-fix review uses the supported replace-compatible path without bypassing admission. Server publication must wait for zero connected players under the existing policy. Device apps341/342 need no rebuild for shared arrivals.
+
+Live deployment is deferred at the user’s request until the family finishes playing. Server340 remains installed; the idle monitor exited with two devices still playing and made no deployment. The active thread follow-up apply-zoo-gate-fix-after-play checks every five minutes, applies only when no players are connected, and pauses after completion. Device apps need no reinstall.

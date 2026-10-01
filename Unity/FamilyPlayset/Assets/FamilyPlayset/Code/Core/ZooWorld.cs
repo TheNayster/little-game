@@ -35,6 +35,8 @@ namespace LittleWeeps.Core
     {
         public const int Schema=34;
         public const string Entrance="zoo",Savanna="zoo-savanna";
+        // Center of the main entrance arch, on its clear foreground path.
+        public const float EntranceArrivalX=1200;
         public static readonly string[] Species=ZooCatalog.All.Select(s=>s.id).ToArray();
         public static bool Area(string id)=>id==Entrance || ZooCatalog.Trail(id);
         public static float Center(string species)=>ZooCatalog.Get(species).Center;
