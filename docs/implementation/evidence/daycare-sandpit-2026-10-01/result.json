@@ -1,0 +1,24 @@
+{
+  "build": 383,
+  "runId": "9ba3b7bf3f5e43cda32c6f0369ec2ac6",
+  "gameplayPassed": true,
+  "checks": [
+    "real scoop/tip pictures work in joystick mode, including rapid next taps and dry sand crumbling",
+    "Calypso comes to the real sandpit and demonstrates; a late fourth player shares the same lesson and varied classmates",
+    "four players build one castle with small/big buckets, water and decorations; independent exit keeps the three siblings and all towers",
+    "world departure and return retain the same shared castle and cast",
+    "only a deliberate new lesson clears the castle and chooses different classmates"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "isolated release server/four clients; actual phone/tablet picture touches, rapid queued actions, teacher demonstration, late arrival, independent exit/return and new lesson; no device/live-server update",
+  "runtimeSourceAndAssetFilesMatched": 217,
+  "content": 60,
+  "schema": 46,
+  "diagnosticLimit": "All processes exited zero; pre-existing ResetCreekBoats OnDestroy null-reference messages remain during client shutdown. No sandpit gameplay exceptions found."
+}

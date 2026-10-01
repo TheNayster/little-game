@@ -1,0 +1,76 @@
+{
+  "build": "0.0.383",
+  "actor": "player-1",
+  "sandpit": {
+    "round": 0,
+    "phase": 0,
+    "started": 0.0,
+    "teacherX": 0.0,
+    "teacherY": 0.0,
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": false,
+        "declined": false
+      },
+      {
+        "actor": "player-2",
+        "attending": false,
+        "declined": false
+      },
+      {
+        "actor": "player-3",
+        "attending": false,
+        "declined": false
+      },
+      {
+        "actor": "player-4",
+        "attending": false,
+        "declined": false
+      }
+    ],
+    "moulds": [
+      {
+        "scoops": 0,
+        "decoration": 0,
+        "wet": false,
+        "built": false
+      },
+      {
+        "scoops": 0,
+        "decoration": 0,
+        "wet": false,
+        "built": false
+      },
+      {
+        "scoops": 0,
+        "decoration": 0,
+        "wet": false,
+        "built": false
+      },
+      {
+        "scoops": 0,
+        "decoration": 0,
+        "wet": false,
+        "built": false
+      }
+    ],
+    "friends": [
+      "hercules",
+      "terrier-1"
+    ]
+  },
+  "sandpitNpcArt": [
+    "",
+    ""
+  ],
+  "calypsoWorldPoint": {
+    "x": 600.0,
+    "y": 240.0
+  },
+  "calypsoPose": 1,
+  "calypsoMoving": false,
+  "sandpitSelection": 0,
+  "tagCue": "hello",
+  "tagSpeaking": false
+}

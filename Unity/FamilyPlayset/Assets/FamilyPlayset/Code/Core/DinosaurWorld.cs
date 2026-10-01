@@ -63,6 +63,7 @@ namespace LittleWeeps.Core
             if(s.kingdom.rescueStyle==null || s.kingdom.rescueStyle.Length==0)s.kingdom.rescueStyle=new int[3];
             // Sea rides are additive; initialize them before raising the shared format.
             if(s.shore.ride==null)s.shore.ride=new WaveRideState();
+            if(s.sandpit==null)s.sandpit=NewSandpit(s);
             s.schema=WorldLayout.Schema;s.revision++;Validate(s);return new SoloWorld(s);
         }
         private static void NormalizeDinosaurInline(SoloSnapshot s)

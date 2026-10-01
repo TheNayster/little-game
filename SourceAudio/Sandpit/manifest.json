@@ -1,0 +1,62 @@
+[
+  {
+    "id": "count",
+    "text": "One scoop. Two scoops! Our small bucket is full.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "ccde51bf8cb8348584ce19a0fd4f242daf4ec24b49fd671945fb535f774d7b98",
+    "duration": 4.0,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "water",
+    "text": "A little water helps the sand stick together.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "9fa75c11aebd009e56c1555b564b61043fae608fe1ab642fcb2ebadd2a6a541d",
+    "duration": 2.4,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "tip",
+    "text": "Press, turn, lift! A sand tower!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "0e0566299e07778427eda208bbceb8e80882f7ee2c32b69bb18c1ee75d8e5f41",
+    "duration": 3.44,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "play",
+    "text": "Your turn! The small bucket takes two scoops. The big bucket takes three. Add a little water, then turn it over. Let us build one castle together!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "4656204dc16051f630580c4693f3f1377ff75966e335bbaec80ca259cb1df8f0",
+    "duration": 10.4,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "crumble",
+    "text": "The dry sand crumbled! That is okay. Fill it again and add a little water before you turn it over.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "e008e94c4c02d6c1d664d96ea11806c6c73e01e93892602d5296dd4d9553b263",
+    "duration": 6.16,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "done",
+    "text": "One, two, three, four towers! You built our castle together. Which bucket held more sand? Now you can add flags and shells, or make another castle.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "f590c7051433cc9cfc4992cd7c190dd7421c99381daa17735933326a301552ce",
+    "duration": 10.48,
+    "status": "generated candidate; family listening pending"
+  }
+]

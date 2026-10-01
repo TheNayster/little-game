@@ -59,6 +59,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
+            public LittleWeeps.Core.SandpitState sandpit; public string[] sandpitNpcArt;public int sandpitSelection;
             public LittleWeeps.Core.DaycareState daycare;public int daycareRoutine,calypsoPose;public bool calypsoVisible,calypsoMoving;public Vector2 calypsoWorldPoint;
             public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;public string kingdomApproach;public string[] lastTouchTargets,kingdomNpcArt,picnicNpcArt,kingdomNpcJobs,kingdomNpcPoses;public Vector2[] kingdomNpcPoints;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
@@ -289,7 +290,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;
                 evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;
-                evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;evidence.calypsoMoving=screen.CalypsoMoving;evidence.calypsoPose=screen.CalypsoPose;evidence.calypsoWorldPoint=screen.CalypsoWorldPoint;
+                evidence.sandpit=screen.SandpitGame;evidence.sandpitNpcArt=screen.SandpitNpcArt;evidence.sandpitSelection=screen.SandpitSelection;evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;evidence.calypsoMoving=screen.CalypsoMoving;evidence.calypsoPose=screen.CalypsoPose;evidence.calypsoWorldPoint=screen.CalypsoWorldPoint;
                 evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;evidence.kingdomNpcJobs=screen.KingdomNpcJobs;evidence.kingdomNpcPoses=screen.KingdomNpcPoses;evidence.kingdomNpcPoints=screen.KingdomNpcPoints;
                 evidence.kingdom=screen.KingdomGame;evidence.visibleKingdomNpcs=screen.VisibleKingdomNpcs;
                 evidence.kingdomApproach=screen.KingdomApproach;evidence.lastTouchTargets=lastTouchTargets;

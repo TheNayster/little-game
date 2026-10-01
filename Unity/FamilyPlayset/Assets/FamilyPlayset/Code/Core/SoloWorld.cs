@@ -6,7 +6,7 @@ using System.Linq;
 namespace LittleWeeps.Core
 {
     public enum ToyKind { Bucket, Sponge, Tap, Plant, Puddle, Ball, Plush, Block, Book, TeaCup, TeaPot, Ingredient, KitchenTool, Cookware, Plate }
-    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor, DecorateRoom, SecretRoom, ReturnBedroom, RoomObject, Kitchen, Discovery, HideAndSeek, Park, Zoo, Dinosaur, ChangeOutfit, Roar, Pond, CreekBoat, CreekFishing, Kingdom, Daycare, Beach }
+    public enum SoloAction { Move, ChangeAvatar, Grab, Drop, CancelGrab, StartActivity, LeaveActivity, Travel, UseFixture, LeaveFixture, SetFixture, UseStairs, CancelStairs, EnterDoor, DecorateRoom, SecretRoom, ReturnBedroom, RoomObject, Kitchen, Discovery, HideAndSeek, Park, Zoo, Dinosaur, ChangeOutfit, Roar, Pond, CreekBoat, CreekFishing, Kingdom, Daycare, Beach, Sandpit }
     [Serializable] public sealed class SoloPlayer
     {
         public string id, avatar = "blue-pup", activity = "";
@@ -62,6 +62,7 @@ namespace LittleWeeps.Core
         public HideState hideAndSeek;
         public KingdomState kingdom;
         public DaycareState daycare;
+        public SandpitState sandpit;
         public KitchenState kitchen;
         public DiscoveryWorkspace[] discovery=Array.Empty<DiscoveryWorkspace>();
         public KeepyState keepy;
@@ -215,7 +216,7 @@ namespace LittleWeeps.Core
         }
         private static SoloSnapshot Clone(SoloSnapshot s)
         {
-            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, homeCreations=s.homeCreations,home=s.home?.Copy(),seagulls=s.seagulls?.Copy(),shore=s.shore?.Copy(),kingdom=s.kingdom?.Copy(),daycare=s.daycare?.Copy(),park=s.park?.Copy(),zoo=s.zoo?.Copy(),dinosaurWorld=s.dinosaurWorld?.Copy(),pond=s.pond?.Copy(),creekBoats=s.creekBoats?.Copy(),creekFishing=s.creekFishing?.Copy(),hideAndSeek=s.hideAndSeek?.Copy(),kitchen=s.kitchen?.Copy(),discovery=(s.discovery??Array.Empty<DiscoveryWorkspace>()).Select(w=>w.Copy()).ToArray(),keepy=s.keepy?.Copy(),
+            var copy=new SoloSnapshot { schema = s.schema, revision = s.revision, worldId = s.worldId, homeCreations=s.homeCreations,home=s.home?.Copy(),seagulls=s.seagulls?.Copy(),shore=s.shore?.Copy(),kingdom=s.kingdom?.Copy(),daycare=s.daycare?.Copy(),sandpit=s.sandpit?.Copy(),park=s.park?.Copy(),zoo=s.zoo?.Copy(),dinosaurWorld=s.dinosaurWorld?.Copy(),pond=s.pond?.Copy(),creekBoats=s.creekBoats?.Copy(),creekFishing=s.creekFishing?.Copy(),hideAndSeek=s.hideAndSeek?.Copy(),kitchen=s.kitchen?.Copy(),discovery=(s.discovery??Array.Empty<DiscoveryWorkspace>()).Select(w=>w.Copy()).ToArray(),keepy=s.keepy?.Copy(),
                 players=s.players.Select(p=>p.Copy()).ToArray(),toys=s.toys.Select(t=>t.Copy()).ToArray(),receipts=s.receipts.Select(r=>r.Copy()).ToArray(),
                 bedrooms=(s.bedrooms??Array.Empty<BedroomState>()).Select(r=>r.Copy()).ToArray(),
                 secrets=(s.secrets??Array.Empty<SecretRoomState>()).Select(r=>r.Copy()).ToArray(),
@@ -234,7 +235,7 @@ namespace LittleWeeps.Core
             NormalizeKitchenInline(s);
             NormalizeHideInline(s);NormalizeZooInline(s);NormalizeOutfits(s);NormalizePond(s);NormalizeCreekBoats(s);NormalizeCreekFishing(s);
             NormalizeDinosaurInline(s);
-            NormalizeKingdom(s);NormalizeDaycare(s);
+            NormalizeKingdom(s);NormalizeDaycare(s);NormalizeSandpit(s);
             NormalizeHideInline(s);NormalizeOutfits(s);
             if (s == null || s.schema < 1 || s.schema > WorldLayout.Schema) throw new InvalidOperationException("Unsupported solo save schema.");
             if (!Id(s.worldId) || s.revision < 0 || s.revision == long.MaxValue || s.players == null || s.players.Length < 1 || s.players.Length > 4 ||
@@ -262,7 +263,7 @@ namespace LittleWeeps.Core
                 if(timer==null || !ids.Add(timer.item??"") || !s.toys.Any(t=>t.id==timer.item && t.kind!=ToyKind.Tap) ||
                     double.IsNaN(timer.seconds) || double.IsInfinity(timer.seconds) || timer.seconds<0 || timer.seconds>(s.schema>=HomeTidying.Schema?HomeTidying.IdleSeconds:ToolIdleSeconds)+ResetCueSeconds)
                     throw new InvalidOperationException("Invalid idle timer.");
-            ValidateHideAndSeek(s);ValidateCreations(s);ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);ValidatePark(s);ValidateZoo(s);ValidatePond(s);ValidateCreekBoats(s);ValidateFishing(s,s.creekFishing,CreekFishing.Habitat,CreekFishing.Schema);ValidateDinosaurWorld(s);ValidateKingdom(s);ValidateDaycare(s);ValidateNpcCasts(s);ValidateSeagulls(s);ValidateShore(s);ValidateWaveRide(s);
+            ValidateHideAndSeek(s);ValidateCreations(s);ValidateHomeTidying(s);ValidateBedrooms(s);ValidateSecrets(s);ValidateBooks(s);ValidateFurnishings(s);ValidateRoomPlay(s);ValidateKitchen(s);ValidateDiscovery(s);ValidateHome(s);ValidateKeepy(s);ValidatePark(s);ValidateZoo(s);ValidatePond(s);ValidateCreekBoats(s);ValidateFishing(s,s.creekFishing,CreekFishing.Habitat,CreekFishing.Schema);ValidateDinosaurWorld(s);ValidateKingdom(s);ValidateDaycare(s);ValidateNpcCasts(s);ValidateSeagulls(s);ValidateShore(s);ValidateWaveRide(s);ValidateSandpit(s);
         }
         private static bool ValidArea(string zone,int schema)=>schema==1?AreaOf(zone)=="garden":schema==2?zone=="garden" || zone=="creek":KnownArea(zone);
         private void Touch(SoloToy toy)
@@ -303,7 +304,8 @@ namespace LittleWeeps.Core
             changed|=AdvanceZoo(seconds,activePlayers,out var zooVisible);visibleChange|=zooVisible;
             changed|=AdvanceTag(seconds,activePlayers,out var tagVisible);visibleChange|=tagVisible;
             changed|=AdvanceKingdom(seconds,activePlayers,out var kingdomVisible);visibleChange|=kingdomVisible;
-            changed|=AdvanceDaycare(seconds,activePlayers,out var daycareVisible);visibleChange|=daycareVisible;
+            var daycareAdvanced=AdvanceDaycare(seconds,activePlayers,out var daycareVisible);changed|=daycareAdvanced;visibleChange|=daycareVisible;
+            if(daycareAdvanced){changed|=AdvanceSandpit(seconds,activePlayers,out var sandVisible);visibleChange|=sandVisible;}
             changed|=AdvanceSeagulls(seconds,activePlayers,out var gullVisible);visibleChange|=gullVisible;
             changed|=AdvanceShore(seconds,activePlayers,out var shoreVisible);visibleChange|=shoreVisible;
             changed|=AdvancePark(seconds,out var parkVisible);visibleChange|=parkVisible;
@@ -355,6 +357,7 @@ namespace LittleWeeps.Core
             foreach(var held in state.toys.Where(t=>t.holder==player.id))
             {held.holder="";if(BedroomFurniture.Personal(held.kind) || Kitchen.Kind(held.kind)){held.x=player.x;held.y=Math.Max(35,Math.Min(250,player.y-65));Touch(held);continue;}if(HomeRooms.Internal(held.zone))held.zone="garden";held.x=held.kind==ToyKind.Ball?3350:held.kind==ToyKind.Bucket?360:560;held.y=held.kind==ToyKind.Sponge?120:130;Touch(held);}
             if(state.daycare!=null){var picnic=state.daycare.members.Single(m=>m.actor==player.id);if(picnic.attending)picnic.declined=true;picnic.attending=false;picnic.carryingPlate=false;}if(state.kingdom!=null){var member=state.kingdom.members.Single(m=>m.actor==player.id);if(member.attending)member.declined=true;member.attending=false;member.carrying="";}
+            if(state.sandpit!=null){var sand=state.sandpit.members.Single(m=>m.actor==player.id);if(sand.attending)sand.declined=true;sand.attending=false;if(daycareArrival)sand.declined=false;}
             if(daycareArrival){if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).declined=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).declined=false;}
             CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);CancelZoo(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
         }
@@ -400,6 +403,8 @@ namespace LittleWeeps.Core
                     var pondError=PondOperation(c,player);if(pondError!=null)return Reject(pondError);outcome="pond-played";break;
                 case SoloAction.Zoo:
                     var zooError=ZooOperation(c,player);if(zooError!=null)return Reject(zooError);outcome="zoo-played";break;
+                case SoloAction.Sandpit:
+                    var sandpitError=SandpitOperation(c,player);if(sandpitError!=null)return Reject(sandpitError);outcome="sandpit-played";break;
                 case SoloAction.Daycare:
                     var daycareError=DaycareOperation(c,player);if(daycareError!=null)return Reject(daycareError);outcome="daycare-played";break;
                 case SoloAction.Kingdom:

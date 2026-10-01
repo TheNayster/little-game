@@ -72,3 +72,6 @@ Tools/DinosaurRules.Tests/obj/
 !Tools/AdventureRepair.Tests/AdventureRepair.Tests.csproj
 Tools/AdventureRepair.Tests/bin/
 Tools/AdventureRepair.Tests/obj/
+!Tools/Sandpit.Tests/Sandpit.Tests.csproj
+Tools/Sandpit.Tests/bin/
+Tools/Sandpit.Tests/obj/

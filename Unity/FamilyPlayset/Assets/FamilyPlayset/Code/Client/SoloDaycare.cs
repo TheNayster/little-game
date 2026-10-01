@@ -97,6 +97,7 @@ namespace LittleWeeps.Client
             Label(daycareTeacherCard,"Hello from Calypso",36,new Vector2(0,160),new Vector2(650,65));
             var options=new[]{"Hear a story","Help me","Picnic counting","Back to play"};
             for(var i=0;i<4;i++){var option=i;Button(daycareTeacherCard,options[i],new Vector2(i%2==0?-165:165,i<2?50:-80),new Vector2(300,95),()=>{CloseTeacherCard();if(option==0)Narration.Speak("daycare-story");else if(option==1)SendDaycare("help");else if(option==2)ChoosePicnic();},i==2?new Color(.82f,.91f,.62f):Color.white).fontSize=27;}
+            Button(daycareTeacherCard,"Sandcastle club",new Vector2(0,-180),new Vector2(600,65),ChooseSandpit,new Color(1,.87f,.61f)).fontSize=27;
             CloseTeacherCard();
             foreach(var id in new[]{"hello","story","help","invite","one","two","three","four","done"}){var clip=Resources.Load<AudioClip>("Daycare/"+id);if(clip!=null){daycareAudio.Add(clip);Narration.AddClip("daycare-"+id,clip);}}
             TickDaycare();
@@ -111,13 +112,13 @@ namespace LittleWeeps.Client
             var scale=Mathf.Min(1,safe.rect.width/1100);daycareHud.localScale=daycareControls.localScale=Vector3.one*scale;daycareTeacherCard.localScale=Vector3.one*Mathf.Min(safe.rect.width/800,safe.rect.height/520);
             if(d.clock!=calypsoSample){calypsoSample=d.clock;calypsoSampleAt=Time.unscaledTime;}
             calypsoClock=Math.Max(calypsoClock,d.clock+(Shared && shared.Connected?Math.Min(.35,Time.unscaledTime-calypsoSampleAt):0));
-            var point=DaycareTeacher.Point(d,calypsoClock);var target=new Vector2(point.X,point.Y);var dt=Mathf.Min(Time.unscaledDeltaTime,.1f);
+            var point=SandpitTeacherActive?DaycareSandpit.TeacherPoint(SandpitGame,calypsoClock):DaycareTeacher.Point(d,calypsoClock);var target=new Vector2(point.X,point.Y);var dt=Mathf.Min(Time.unscaledDeltaTime,.1f);
             if(calypsoWorldPoint==Vector2.zero)calypsoWorldPoint=target;var prior=calypsoWorldPoint;calypsoWorldPoint=Vector2.MoveTowards(prior,target,180*dt);
             daycareTeacher.anchoredPosition=ToBoard(calypsoWorldPoint.x,calypsoWorldPoint.y);daycareTeacher.localScale=Vector3.one*sceneScale;
             // Keep a grounded standing drawing throughout travel. Switching to
             // sitting/reading before arrival made the moving teacher pop poses.
-            CalypsoMoving=Vector2.Distance(prior,calypsoWorldPoint)>dt;var routine=DaycareTeacher.Routine(d,calypsoClock);var pose=CalypsoMoving?0:routine==1?2:routine==4?3:routine==0 || routine==3?1:0;CalypsoPose=pose;calypsoPicture.uvRect=new Rect(pose*.25f,0,.25f,1);
-            teacherRoutineLabel.text=new[]{"Calypso · hello","Calypso · reading","Calypso · watching play","Calypso · helping","Calypso · resting"}[routine];
+            CalypsoMoving=Vector2.Distance(prior,calypsoWorldPoint)>dt;var routine=SandpitTeacherActive?3:DaycareTeacher.Routine(d,calypsoClock);var pose=CalypsoMoving?0:routine==1?2:routine==4?3:routine==0 || routine==3?1:0;CalypsoPose=pose;calypsoPicture.uvRect=new Rect(pose*.25f,0,.25f,1);
+            teacherRoutineLabel.text=SandpitTeacherActive?"Calypso · sandcastle teacher":new[]{"Calypso · hello","Calypso · reading","Calypso · watching play","Calypso · helping","Calypso · resting"}[routine];
             daycareTable.anchoredPosition=ToBoard(1445,180);daycareTable.localScale=Vector3.one*sceneScale;
             var tray=DaycareTeacher.Tray;daycarePlateTray.anchoredPosition=ToBoard(tray.X,tray.Y);daycarePlateTray.localScale=Vector3.one*sceneScale;
             foreach(var pair in daycareHeldPlates){if(!pair.Value.gameObject.activeSelf)continue;var player=ReadPlayer(pair.Key);var at=Shared?shared.VisualPosition(pair.Key):new Vector2(player.x,player.y);pair.Value.rectTransform.anchoredPosition=ToBoard(at.x,at.y)+new Vector2(45,90)*sceneScale;pair.Value.rectTransform.localScale=Vector3.one*sceneScale;}

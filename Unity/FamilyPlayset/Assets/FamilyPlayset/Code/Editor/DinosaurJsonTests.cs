@@ -28,7 +28,7 @@ namespace LittleWeeps.EditorTools
             Need(careWorld.ReadDinosaurWorld().animals.All(a=>a.fed==1),"four feeding counts");
             var careDecoded=JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(careWorld.Snapshot()));SoloWorld.Validate(careDecoded);var careRestored=SoloWorld.Restore(careDecoded);
             Need(careRestored.ReadDinosaurWorld().animals.All(a=>a.fed==1) && careRestored.ReadDinosaurWorld().care.All(f=>f.phase==DinosaurCarePhase.None),"care JSON recovery");
-            var version36=careWorld.Snapshot();version36.schema=36;version36.creekBoats=null;version36.creekFishing=null;version36.kingdom=null;version36.daycare=null;version36.seagulls=null;version36.shore=null;version36.dinosaurWorld.care=null;version36.dinosaurWorld.nextCareTicket=0;foreach(var animal in version36.dinosaurWorld.animals)animal.fed=0;
+            var version36=careWorld.Snapshot();version36.schema=36;version36.creekBoats=null;version36.creekFishing=null;version36.kingdom=null;version36.daycare=null;version36.sandpit=null;version36.seagulls=null;version36.shore=null;version36.dinosaurWorld.care=null;version36.dinosaurWorld.nextCareTicket=0;foreach(var animal in version36.dinosaurWorld.animals)animal.fed=0;
             var prior36=SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(version36)));var upgraded=SoloWorld.WithDinosaurWorld(prior36);
             Need(upgraded.Schema==WorldLayout.Schema && upgraded.ReadDinosaurWorld().care.Length==4,"schema 36 care upgrade");
             Debug.Log("DINOSAUR_CARE_JSON_PASS: four meals, care records/progress, recovery and schema 36 upgrade");

@@ -53,7 +53,7 @@ namespace LittleWeeps.Core
         public bool ReleaseDaycare(string actor)
         {var m=state.daycare?.members.FirstOrDefault(v=>v.actor==actor);if(m==null || !m.attending)return false;m.attending=false;m.carryingPlate=false;state.revision++;return true;}
         public bool JoinPicnicGroup(string[] connected)
-        {var d=state.daycare;if(d==null || d.phase==0 || !d.members.Any(m=>m.attending && connected.Contains(m.actor)))return false;var changed=false;foreach(var id in connected){var p=state.players.Single(v=>v.id==id);var m=d.members.Single(v=>v.actor==id);if(WorldLayout.Place(p)!="daycare" || m.attending || m.declined)continue;if(p.zone==KingdomAdventure.Zone)TravelPlayer(p,"daycare");m.attending=true;p.x=1120+Array.IndexOf(d.members,m)*160;p.y=110;changed=true;}if(changed)state.revision++;return changed;}
+        {var d=state.daycare;if(d==null || d.phase==0 || !d.members.Any(m=>m.attending && connected.Contains(m.actor)))return false;var changed=false;foreach(var id in connected){var p=state.players.Single(v=>v.id==id);var m=d.members.Single(v=>v.actor==id);if(WorldLayout.Place(p)!="daycare" || state.sandpit?.members.Any(v=>v.actor==id && v.attending)==true || m.attending || m.declined)continue;if(p.zone==KingdomAdventure.Zone)TravelPlayer(p,"daycare");m.attending=true;p.x=1120+Array.IndexOf(d.members,m)*160;p.y=110;changed=true;}if(changed)state.revision++;return changed;}
         private string DaycareOperation(SoloCommand c,SoloPlayer p)
         {
             var d=state.daycare;if(d==null)return "daycare-unavailable";if(p.zone!="daycare")return "wrong-area";var member=d.members.Single(m=>m.actor==p.id);
@@ -62,7 +62,7 @@ namespace LittleWeeps.Core
             if(c.value=="start" || c.value=="replay"){
                 if(c.value=="replay" && (d.phase!=3 || d.clock-d.started<2))return "picnic-not-finished";
                 if(d.phase==0 || c.value=="replay"){if(d.round>=int.MaxValue-1)return "round-limit";if(state.schema>=DaycareNpcCasts.Schema)d.guests=DaycareNpcCasts.Pick(4,d.guests);d.round++;d.phase=1;d.plates=0;d.started=d.clock;foreach(var m in d.members){m.carryingPlate=false;m.declined=false;}}
-                member.attending=true;member.declined=false;p.x=1120+Array.IndexOf(d.members,member)*160;p.y=110;return null;
+                ReleaseSandpit(p.id);if(state.sandpit!=null)state.sandpit.members.Single(m=>m.actor==p.id).declined=true;member.attending=true;member.declined=false;p.x=1120+Array.IndexOf(d.members,member)*160;p.y=110;return null;
             }
             if(c.value=="take-plate" && member.attending && d.phase==2){var tray=DaycareTeacher.Tray;if(Math.Abs(p.x-tray.X)>130 || Math.Abs(p.y-tray.Y)>140)return "walk-closer";member.carryingPlate=true;return null;}
             if(c.value!="plate" || !member.attending || d.phase!=2 || !int.TryParse(c.target,out var index) || index<0 || index>3)return "try-current-picnic-step";

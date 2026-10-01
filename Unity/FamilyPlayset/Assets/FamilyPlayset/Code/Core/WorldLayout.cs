@@ -6,8 +6,8 @@ namespace LittleWeeps.Core
     // its coordinates left of the original garden preserves every saved prop.
     public static class WorldLayout
     {
-        // Retain the combined family worlds and add saved Adventure story choices.
-        public const int Schema=45, ScenerySchema=3, Content=59;
+        // Retain earlier worlds and add the shared Daycare sandcastle lesson.
+        public const int Schema=46, ScenerySchema=3, Content=60;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || id==KingdomAdventure.Zone || HomeRooms.Internal(id) || id==DinosaurRides.Area || ZooLayout.Area(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id) && !ZooCatalog.Trail(id) && id!=KingdomAdventure.Zone;
