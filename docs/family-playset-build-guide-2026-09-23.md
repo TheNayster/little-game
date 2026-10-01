@@ -915,3 +915,5 @@ September30 — **Combined worlds360 — September30:** integrates completed Hom
 
 
 October1 UTC delivery360: both iPads updated in place and verified connected to server360 (protocol3/content58/schema44), retaining131 items, saves/settings, family, enrollment and endpoint. Automatic recovery and parent helper360 verified. Fresh signed Android FamilyLAN360 is ready; Samsung installation awaits ADB reconnection. [Delivery](implementation/combined-world-release-360-2026-09-30.md). Latest branch policy supersedes earlier main integration holds.
+
+Samsung delivery360 complete: updated in place from341, exact installed signed APK verified, launched and connected with131 shared items; visible retained dinosaur outfit/backyard checked. Server360 was unchanged. Both iPads and phone now match.
