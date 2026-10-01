@@ -1,5 +1,7 @@
 # Current project decisions
 
+**Movement speed348 — September30:** the user approved483 floor units/second (+15%). Windows client/server compile; one native four-player check measures479.61–483.89 with independent departure passing. Content56 aligns client prediction and authority; protocol3/schema42 unchanged. [Evidence and pending delivery](implementation/movement-speed-348-2026-09-30.md). No mobile installation or live-server update; preserve the deferred gate-only347 follow-up and main integration hold.
+
 **Zoo main-gate arrivals347 — September30:** world-menu entry and return from trails now use the center of the main entrance arch (1200/100). Windows and four unchanged341 clients pass arrival, return and independent-departure checks. Reviewed compatible server fix retains protocol3/content52/schema42; live340 replacement waits for zero connected players. [Evidence/review](implementation/zoo-main-gate-arrival-347-2026-09-30.md). Preserve the main integration hold.
 
 **Onesie roar342 — September30:** Gabriel’s saved book-effects=0 incorrectly muted the outfit roar. The reader preference no longer gates the roar button. Signed342 is installed in place on his iPad with saves/preferences retained and actual342/connected status; server340/content52/schema42 remains ready. Phone/newer iPad341 stay compatible. [Evidence](implementation/onesie-roar-book-setting-342-2026-09-30.md). The user confirms the roar is fixed.

@@ -28,7 +28,7 @@
 
 **Current home implementation:** [Build 128](implementation/integrated-home-2026-09-26.html) is installed on Samsung with all eight saved records retained. Clean living-room/tree/shed bases remove the painted duplicates; one layered sofa, trampoline and shed now draw occupants and contents at the correct local depth. Six native home groups pass, including stored-item visibility and offline reopen. Kitchen supports/interiors and the wider house inventory remain next. Server/helper and both iPads now also run 128; iPhone remains 101. See the current family rollout below. User visual acceptance of the new scene composition remains open.
 
-**Accepted movement:** 420 floor units/second, **2 times the original speed**, remains the shared default for every current and future character. The user tested build 125 and clarified “Lots better.” Keep its calmer artwork and animation cadence; avatar size/selection must never override gameplay speed. [Movement evidence](implementation/movement-speed-2026-09-26.html).
+**Accepted movement — September30:** the user approved **483 floor units/second**, a 15% increase from 420, as the shared default for every current and future character. The new source is prepared; installed apps/server remain at 420 until coordinated delivery. The user tested build 125 and clarified “Lots better.” Keep its calmer artwork and animation cadence; avatar size/selection must never override gameplay speed. [Movement evidence](implementation/movement-speed-2026-09-26.html).
 
 Feature goal sheet and supporting research • September 23, 2026
 

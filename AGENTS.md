@@ -50,3 +50,5 @@
 - End meaningful work with a clear status: what changed, relevant validation and any unpushed or unfinished work. This workflow applies while working on the project; it does not imply an unattended background sync service.
 
 - When architecture changes, audit the goal sheet, phase/feature ledgers, return checklist, companion research and generated-page renderers. Run `Tools/Test-PlanConsistency.py` after rendering. Preserve dated evidence without treating its superseded instructions as current requirements.
+
+- September 30 latest movement preference: the user approved a 15% increase from 420 to 483 floor units/second for every character. Preserve one shared Walking.Speed. This supersedes the earlier 420 baseline; delivery is recorded in current decisions.
