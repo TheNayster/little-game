@@ -67,7 +67,7 @@ namespace LittleWeeps.NetworkProbe
         public event Action MotionReceived;
         [Serializable] public sealed class MovingPlayer {public string actor,zone;public long visit,input;public float x,y;public double stairs;}
         [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public DinosaurMotion dinosaurs;}
-        [Serializable] private sealed class ActivityMotionFrame {public string epoch;public double time;public KeepyState keepy;public ParkState park;public SeagullState seagulls;public int kingdomRound,kingdomPhase;public double kingdomClock;public int daycareRound,daycarePhase;public double daycareClock;public int treasureRound,treasurePhase;public double treasureClock;}
+        [Serializable] private sealed class ActivityMotionFrame {public string epoch;public double time;public KeepyState keepy;public ParkState park;public SeagullState seagulls;public int kingdomRound,kingdomPhase;public double kingdomClock;public int daycareRound,daycarePhase;public double daycareClock;public int treasureRound,treasurePhase;public double treasureClock;public int vetRound;public double vetClock;}
         private double nextActivityMotionSend,nextAmbientPublish,nextViewObservation;
         private bool ambientDirty;
         [Serializable] public sealed class DinosaurMotion {public double clock;public int[] points;public int left,wandering,riders;}
@@ -596,6 +596,7 @@ namespace LittleWeeps.NetworkProbe
             }
             if(frame.time>parkTime && frame.park!=null){Latest.view.park=frame.park;parkTime=frame.time;}
             if(Latest.view.kingdom!=null && frame.kingdomRound==Latest.view.kingdom.round && frame.kingdomPhase==(int)Latest.view.kingdom.phase && KeepyRules.Finite(frame.kingdomClock) && frame.kingdomClock>Latest.view.kingdom.clock)Latest.view.kingdom.clock=frame.kingdomClock;
+            if(Latest.view.vet!=null && frame.vetRound==Latest.view.vet.round && KeepyRules.Finite(frame.vetClock) && frame.vetClock>Latest.view.vet.clock)Latest.view.vet.clock=frame.vetClock;
             if(Latest.view.treasure!=null && frame.treasureRound==Latest.view.treasure.round && frame.treasurePhase==Latest.view.treasure.phase && KeepyRules.Finite(frame.treasureClock) && frame.treasureClock>Latest.view.treasure.clock)Latest.view.treasure.clock=frame.treasureClock;
             if(Latest.view.daycare!=null && frame.daycareRound==Latest.view.daycare.round && frame.daycarePhase==Latest.view.daycare.phase && KeepyRules.Finite(frame.daycareClock) && frame.daycareClock>Latest.view.daycare.clock){var delta=frame.daycareClock-Latest.view.daycare.clock;Latest.view.daycare.clock=frame.daycareClock;if(Latest.view.daycare.phase==1 && !Latest.view.daycare.members.Any(m=>m.attending))Latest.view.daycare.started+=delta;}
             if(frame.time>seagullTime && frame.seagulls!=null){Latest.view.seagulls=frame.seagulls;seagullTime=frame.time;}
@@ -651,7 +652,7 @@ namespace LittleWeeps.NetworkProbe
                 nextActivityMotionSend=now+.1;
                 var activity=new ActivityMotionFrame{epoch=epoch,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,seagulls=view.seagulls,
                     kingdomRound=view.kingdom?.round??0,kingdomPhase=(int)(view.kingdom?.phase??KingdomPhase.Ready),kingdomClock=view.kingdom?.clock??0,
-                    daycareRound=view.daycare?.round??0,daycarePhase=view.daycare?.phase??0,daycareClock=view.daycare?.clock??0,treasureRound=view.treasure?.round??0,treasurePhase=view.treasure?.phase??0,treasureClock=view.treasure?.clock??0};
+                    daycareRound=view.daycare?.round??0,daycarePhase=view.daycare?.phase??0,daycareClock=view.daycare?.clock??0,treasureRound=view.treasure?.round??0,treasurePhase=view.treasure?.phase??0,treasureClock=view.treasure?.clock??0,vetRound=view.vet?.round??0,vetClock=view.vet?.clock??0};
                 foreach(var peer in network.ConnectedClientsIds)Send(ActivityMotionMessage,peer,activity);
             }
             // Diagnostics are deliberately not durable checkpoints.

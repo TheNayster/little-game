@@ -20,7 +20,7 @@ namespace LittleWeeps.Client
             if(worldMusic==null || !Ready)return;
             var area=CurrentArea;
             var track=area=="garden"?(ReadPlayer(Actor).x>150?"yard":"home"):
-                area==TreasureHunt.Zone?"treasure":area==KingdomAdventure.Zone?"daycare":
+                area==TreasureHunt.Zone?"treasure":area==KingdomAdventure.Zone || area==DaycareVet.Zone?"daycare":
                 area==DinosaurRides.Area?"yard":
                 ZooLayout.Area(area)?(area==ZooCatalog.Aquarium?"creek":"yard"):
                 area=="park" || area=="creek" || area=="beach" || area=="daycare"?area:"home";

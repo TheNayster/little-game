@@ -22,7 +22,7 @@ namespace LittleWeeps.Core
             if(!world.Snapshot().players.Any(p=>p.id==profile)){reason="unknown-profile";return false;}
             if(connections.ContainsValue(profile)){reason="profile-already-connected";return false;}
             if(connections.Count>=4){reason="family-full";return false;}
-            connections.Add(connection,profile);world.JoinTreasureGroup(ConnectedPlayers);world.JoinKingdomGroup(ConnectedPlayers);world.JoinPicnicGroup(ConnectedPlayers);world.JoinSandpitGroup(ConnectedPlayers);return true;
+            connections.Add(connection,profile);world.JoinVetGroup(ConnectedPlayers);world.JoinTreasureGroup(ConnectedPlayers);world.JoinKingdomGroup(ConnectedPlayers);world.JoinPicnicGroup(ConnectedPlayers);world.JoinSandpitGroup(ConnectedPlayers);return true;
         }
         public SoloResult Submit(ulong connection,SoloCommand command)
         {
@@ -33,6 +33,7 @@ namespace LittleWeeps.Core
                 world.IncludeNearbyTagPlayers(ConnectedPlayers);
             if(result.Accepted && command.action==SoloAction.Kingdom && (command.value=="start" || command.value=="replay")){world.JoinKingdomGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
             if(result.Accepted && command.action==SoloAction.Daycare && (command.value=="start" || command.value=="replay")){world.JoinPicnicGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
+            if(result.Accepted && command.action==SoloAction.Vet && (command.value=="start" || command.value=="replay")){world.JoinVetGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
             if(result.Accepted && command.action==SoloAction.Treasure && (command.value=="start" || command.value=="replay")){world.JoinTreasureGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
             if(result.Accepted && command.action==SoloAction.Sandpit && (command.value=="start" || command.value=="replay")){world.JoinSandpitGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
             return result;
@@ -44,7 +45,7 @@ namespace LittleWeeps.Core
             world.ReleaseCreekFishing(profile);world.ReleaseCreekBoats(profile);world.ReleasePond(profile);world.ReleaseHideAndSeek(profile);world.ReleaseZoo(profile);
             world.ReleaseTag(profile);
             world.ReleaseDinosaurCare(profile);
-            world.ReleaseTreasure(profile);world.ReleaseSandpit(profile);world.ReleaseDaycare(profile);world.ReleaseKingdom(profile);
+            world.ReleaseVet(profile);world.ReleaseTreasure(profile);world.ReleaseSandpit(profile);world.ReleaseDaycare(profile);world.ReleaseKingdom(profile);
             world.ReleaseWaveRide(profile);
             world.ReleaseFixture(profile);
             world.CancelStairs(profile);
@@ -63,7 +64,7 @@ namespace LittleWeeps.Core
             visibleChange=false;
             // An empty family world does not age items while everybody is away.
             if(connections.Count==0)return false;
-            var joined=world.JoinTreasureGroup(ConnectedPlayers);joined|=world.JoinKingdomGroup(ConnectedPlayers);joined|=world.JoinPicnicGroup(ConnectedPlayers);joined|=world.JoinSandpitGroup(ConnectedPlayers);var advanced=world.AdvanceIdle(seconds,out visibleChange,ConnectedPlayers);visibleChange|=joined;return joined || advanced;
+            var joined=world.JoinVetGroup(ConnectedPlayers);joined|=world.JoinTreasureGroup(ConnectedPlayers);joined|=world.JoinKingdomGroup(ConnectedPlayers);joined|=world.JoinPicnicGroup(ConnectedPlayers);joined|=world.JoinSandpitGroup(ConnectedPlayers);var advanced=world.AdvanceIdle(seconds,out visibleChange,ConnectedPlayers);visibleChange|=joined;return joined || advanced;
         }
         // A client view is not a successor/recovery checkpoint: receipts stay on
         // the authority. Full recovery replication is a later, separate contract.

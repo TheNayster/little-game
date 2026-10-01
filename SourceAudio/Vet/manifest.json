@@ -1,0 +1,72 @@
+[
+  {
+    "id": "welcome",
+    "text": "Welcome to our animal care clinic! Little dinosaurs and pets are waiting. Choose a friend. Look at the pictures to see what they need. Everyone can help!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "538171632ec00485d79ef72d36a627324a4bf5b189014d51ef9b059f201a9bce",
+    "duration": 9.6,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "wash",
+    "text": "Choose the sponge. Gently rub the muddy spots. See the bubbles? Keep rubbing until each spot is clean.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "721f7bfcdd64390bc35a1c5f5116fe6408b4c23d5f9ca3844222a4d2069ce03b",
+    "duration": 8.32,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "brush",
+    "text": "Choose the brush. Brush the little tufts or dusty patches gently until they disappear.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "4df48ab050c207e628b3d4fd00384dabdf77766b87cd68a7da66abfd564a8c3e",
+    "duration": 5.84,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "bandage",
+    "text": "Clean the mud first. Then drag a bandage onto the little peach patch. There we go!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "c2c5deb2ba3ce8157ca62063aa223e1093637c0e4640a92ffb48e3ce6b8063ee",
+    "duration": 5.76,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "cuddle",
+    "text": "Choose the heart. Gently stroke or tap your friend for a cuddle. One, two, three!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "07f03c94d8bfc1cb86039736faa9aab1f28153a8cf940a82044f07d3b0af0193",
+    "duration": 5.76,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "ready",
+    "text": "Our friend feels lovely! Send them home. Now you can choose another waiting animal for the empty bed.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "0babc6a9b4dacc6a492c7177ae984ca69b08ef53fa78d9c1ebfc6d60c2768b7a",
+    "duration": 7.44,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "done",
+    "text": "All eight animals feel cared for! The pets and little dinosaurs are ready to play. You all helped. Would you like another clinic day?",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "df6473185e5f7842c126f28df130a3efbae72f8c3e746c83c7ef754bf25e95e3",
+    "duration": 9.04,
+    "status": "generated candidate; family listening pending"
+  }
+]

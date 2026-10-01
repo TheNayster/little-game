@@ -1,0 +1,39 @@
+{
+  "records": [
+    {
+      "id": "puppy",
+      "author": "ipears1",
+      "sourcePage": "https://freesound.org/people/ipears1/sounds/118072/",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "f953ce735d079f5de013ffdc4fa30bbd7677a8f1035a4c3e47d505128f3959f7",
+      "runtimeSha256": "d895224498ce6341244f1d5f35aa37589acec5b4f9a1fd14e223d096fc21d946",
+      "seconds": 1.4,
+      "edit": "mono22.05kHz, quiet loudness normalization, trim and edge fades"
+    },
+    {
+      "id": "kitten",
+      "author": "tuberatanka",
+      "sourcePage": "https://freesound.org/people/tuberatanka/sounds/110011/",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "2890268279c76f06dc0b7c2b59313becf63a152a1addcede5ee5161cee9eb45a",
+      "runtimeSha256": "616b152767c89181dc6d0921907fe1c92cd46608255f9e236c9043e48d0fdfec",
+      "seconds": 1.544,
+      "edit": "mono22.05kHz, quiet loudness normalization, trim and edge fades"
+    },
+    {
+      "id": "guinea-pig",
+      "author": "RICHERlandTV",
+      "sourcePage": "https://freesound.org/people/RICHERlandTV/sounds/435748/",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "c3fbd339cc8f5cb8004e3b9adf8fe5f12371b3cf21a8c3c47af8943bf62d521e",
+      "runtimeSha256": "235a67586abc7cc6d96900e24df44d708c3b391d9728d936378c48f04f4109e8",
+      "seconds": 1.548,
+      "edit": "mono22.05kHz, quiet loudness normalization, trim and edge fades"
+    }
+  ],
+  "rabbit": "Reuses original ZooAudio/tortoise rustle Foley; no invented rabbit vocalization.",
+  "dinosaurs": "Reuses all four DinosaurWorldAudio assets, without regenerating approved calls."
+}

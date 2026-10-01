@@ -62,6 +62,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
+            public LittleWeeps.Core.VetState vet;public int vetSelected,vetTool,vetDrawing,vetQueued;public bool vetWalking,vetSoundPlaying;public string[] vetNpcArt;public string vetFeedback;
             public LittleWeeps.Core.TreasureState treasure;public string[] treasureNpcArt;public Vector2[] treasureNpcPoints;public string treasureApproach;public bool treasureMystery;public int treasureDemoNote;public bool treasureTonePlaying;public string treasureFeedback;
             public LittleWeeps.Core.SandpitState sandpit; public string[] sandpitNpcArt;public int sandpitSelection;
             public LittleWeeps.Core.DaycareState daycare;public int daycareRoutine,calypsoPose,calypsoDrawing;public bool calypsoVisible,calypsoMoving,calypsoWalkPlaying;public Vector2 calypsoWorldPoint;
@@ -100,6 +101,7 @@ namespace LittleWeeps.NetworkProbe
         }
         private Vector2 Point(Step step)
         {
+            if(step.role=="vet")return screen.VetScreenPoint(step.x,step.y);
             if(step.role=="discovery")return screen.DiscoveryScreenPoint(step.x,step.y);
             if(step.role=="colors")return screen.LiquidScreenPoint(step.x,step.y);
             if(step.role=="ramps")return screen.RampScreenPoint(step.x,step.y);
@@ -307,6 +309,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;
                 evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;
+                evidence.vet=screen.VetGame;evidence.vetSelected=screen.VetSelected;evidence.vetTool=screen.VetTool;evidence.vetDrawing=screen.VetDrawing;evidence.vetWalking=screen.VetWalking;evidence.vetQueued=screen.VetQueued;evidence.vetSoundPlaying=screen.VetSoundPlaying;evidence.vetNpcArt=screen.VetNpcArt;evidence.vetFeedback=screen.VetFeedback;
                 evidence.treasure=screen.TreasureGame;evidence.treasureNpcArt=screen.TreasureNpcArt;evidence.treasureNpcPoints=screen.TreasureNpcPoints;evidence.treasureApproach=screen.TreasureApproach;evidence.treasureMystery=screen.TreasureMystery;evidence.treasureDemoNote=screen.TreasureDemoNote;evidence.treasureTonePlaying=screen.TreasureTonePlaying;evidence.treasureFeedback=screen.TreasureFeedback;
                 evidence.sandpit=screen.SandpitGame;evidence.sandpitNpcArt=screen.SandpitNpcArt;evidence.sandpitSelection=screen.SandpitSelection;evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;evidence.calypsoMoving=screen.CalypsoMoving;evidence.calypsoPose=screen.CalypsoPose;evidence.calypsoDrawing=screen.CalypsoDrawing;evidence.calypsoWalkPlaying=screen.CalypsoWalkPlaying;evidence.calypsoWorldPoint=screen.CalypsoWorldPoint;
                 evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;evidence.kingdomNpcJobs=screen.KingdomNpcJobs;evidence.kingdomNpcPoses=screen.KingdomNpcPoses;evidence.kingdomNpcPoints=screen.KingdomNpcPoints;

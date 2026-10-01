@@ -36,7 +36,7 @@ namespace LittleWeeps.Client
             foreach(var choice in miniGamesChoices){var show=choice.world==world;choice.root.gameObject.SetActive(show);if(show)count++;}
             miniGamesHeading.text=MiniGamesWorldName+" games";
             miniGamesEmpty.gameObject.SetActive(count==0);
-            miniGamesContent.sizeDelta=new Vector2(740,world=="daycare" && SceneSchema>=TreasureHunt.Schema?400:300);
+            miniGamesContent.sizeDelta=new Vector2(740,world=="daycare" && SceneSchema>=TreasureHunt.Schema?(SceneSchema>=DaycareVet.Schema?500:400):300);
             miniGamesContent.anchoredPosition=Vector2.zero;
         }
 
@@ -90,8 +90,10 @@ namespace LittleWeeps.Client
                 PondPicture(card,name+" menu picture",new Vector2(0,35),new Vector2(210,125),feed?"feeding-icon":"fishing-icon");
             }
             AddTagChoice();
-            if(SceneSchema>=TreasureHunt.Schema){var hunt=MiniGameChoice("daycare","Treasure hunt",new Vector2(0,-50),new Vector2(700,90),ChooseTreasure,new Color(1,.87f,.61f));var card=(RectTransform)hunt.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);var map=TreasurePicture(card,"Treasure hunt map picture",new Vector2(-275,0),new Vector2(90,75),"map");map.rectTransform.localScale=Vector3.one*.75f;hunt.rectTransform.anchoredPosition=new Vector2(60,0);}
-            var offset=SceneSchema>=TreasureHunt.Schema?100:0;
+            if(SceneSchema>=DaycareVet.Schema){var vet=MiniGameChoice("daycare","Animal care clinic",new Vector2(0,-50),new Vector2(700,90),ChooseVet,new Color(.77f,.95f,.83f));var card=(RectTransform)vet.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);VetIcon(card,"Animal care menu picture",new Vector2(-270,0),new Vector2(85,70),2);vet.rectTransform.anchoredPosition=new Vector2(60,0);}
+            var vetOffset=SceneSchema>=DaycareVet.Schema?100:0;
+            if(SceneSchema>=TreasureHunt.Schema){var hunt=MiniGameChoice("daycare","Treasure hunt",new Vector2(0,-50-vetOffset),new Vector2(700,90),ChooseTreasure,new Color(1,.87f,.61f));var card=(RectTransform)hunt.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);var map=TreasurePicture(card,"Treasure hunt map picture",new Vector2(-275,0),new Vector2(90,75),"map");map.rectTransform.localScale=Vector3.one*.75f;hunt.rectTransform.anchoredPosition=new Vector2(60,0);}
+            var offset=(SceneSchema>=TreasureHunt.Schema?100:0)+vetOffset;
             var adventure=MiniGameChoice("daycare","The Adventure",new Vector2(0,-50-offset),new Vector2(700,90),ChooseKingdom,new Color(.86f,.82f,.98f));
             var adventureCard=(RectTransform)adventure.transform.parent;adventureCard.anchorMin=adventureCard.anchorMax=new Vector2(.5f,1);
             var picnic=MiniGameChoice("daycare","Picnic counting",new Vector2(0,-150-offset),new Vector2(700,90),ChoosePicnic,new Color(.82f,.91f,.62f));
@@ -134,7 +136,7 @@ namespace LittleWeeps.Client
         {
             if(miniGamesButton==null)return;
             var inZone=HideAndSeek.Zone(ReadPlayer(Actor));
-            miniGamesButton.gameObject.SetActive(!MenuOpen && !applicationPaused);
+            miniGamesButton.gameObject.SetActive(!MenuOpen && !applicationPaused && CurrentArea!=DaycareVet.Zone);
             if(!MiniGamesOpen)return;
             if(WorldLoading || applicationPaused || miniGamesOpenedWorld!=MiniGamesWorld){CloseMiniGames();return;}
             miniGamesFrame.localScale=Vector3.one*Mathf.Min(safe.rect.width/900,safe.rect.height/600);
