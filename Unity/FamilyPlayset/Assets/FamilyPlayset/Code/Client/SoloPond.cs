@@ -26,8 +26,10 @@ namespace LittleWeeps.Client
         private AudioSource pondAudio,pondBiteAudio;
         private int pondPreviousFish=-1;
         private bool pondSending;
-        private double pondSampleClock=-1,pondDisplayClock;
-        private string pondWorld="";
+        private double pondDisplayClock;
+        private readonly BoatVisualClock pondClock=new BoatVisualClock();
+        public double PondVisualClock=>pondDisplayClock;
+        public double PondVisualTime=>pondClock.SampleTime;
         public PondState PondGame=>HasWorld?(Shared?shared.View.pond:World.ReadPond()):null;
         private bool PondCameraFollowing=>CurrentArea=="garden" && OwnPond!=null && OwnPond.mode!=PondMode.None;
         public bool PondCloseup=>pondCloseup!=null && pondCloseup.gameObject.activeSelf;
@@ -126,8 +128,10 @@ namespace LittleWeeps.Client
         {
             var p=PondGame;if(p==null || pondRoot==null)return;
             var worldId=Shared?shared.View.worldId:World.WorldId;
-            if(pondWorld!=worldId || p.clock<pondSampleClock){pondWorld=worldId;pondDisplayClock=p.clock;}
-            pondSampleClock=p.clock;pondDisplayClock=Math.Max(p.clock,Math.Min(p.clock+.12,pondDisplayClock+Math.Min(.1,Time.unscaledDeltaTime)));
+            // Routes already describe the whole swim. Full world snapshots only
+            // arrive on changes, so a short prediction cap freezes valid routes.
+            // Correct timing gradually; keep bites, catches and routes authoritative.
+            pondDisplayClock=pondClock.Sample(worldId,p.clock,Time.realtimeSinceStartupAsDouble,Shared && !applicationPaused);
             var visible=CurrentArea=="garden";pondRoot.gameObject.SetActive(visible);
             pondRoot.anchoredPosition=ToBoard(PondFishing.X,PondFishing.WaterY)+Vector2.up*(PondFishing.WaterLift*sceneScale);pondRoot.localScale=Vector3.one*sceneScale;
             var clock=(float)pondDisplayClock;
@@ -190,7 +194,7 @@ namespace LittleWeeps.Client
             if(pondSprite!=null)Destroy(pondSprite);if(pondTexture!=null)Resources.UnloadAsset(pondTexture);
             if(pondAudio!=null){pondAudio.Stop();Destroy(pondAudio);}if(pondBiteAudio!=null)Destroy(pondBiteAudio);
             pondSprite=null;pondTexture=null;pondRoot=null;pondControls=null;pondChoices=null;pondCloseup=null;pondLines.Clear();pondCatches.Clear();pondPellets.Clear();
-            Array.Clear(pondFish,0,pondFish.Length);pondSending=false;pondWorld="";pondSampleClock=-1;pondPreviousFish=-1;
+            Array.Clear(pondFish,0,pondFish.Length);pondSending=false;pondClock.Reset();pondPreviousFish=-1;
         }
     }
 }

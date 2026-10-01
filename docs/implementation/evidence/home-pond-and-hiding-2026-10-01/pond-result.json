@@ -1,0 +1,20 @@
+{
+  "build": 404,
+  "passed": true,
+  "checks": {
+    "phone": {
+      "frames": 607,
+      "movingFishFrames": 3848,
+      "frozenFishFrames": 0,
+      "routeChanges": 18,
+      "maximumRouteChangeDistance": 1.7834166384253327
+    },
+    "ipad": {
+      "frames": 606,
+      "movingFishFrames": 3839,
+      "frozenFishFrames": 0,
+      "routeChanges": 18,
+      "maximumRouteChangeDistance": 2.427469844144645
+    }
+  }
+}

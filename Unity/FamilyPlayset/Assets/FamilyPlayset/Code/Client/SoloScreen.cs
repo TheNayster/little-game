@@ -725,6 +725,7 @@ namespace LittleWeeps.Client
                 if(resetCues.TryGetValue(t.id,out var cue))cue.SetActive(t.resetPending || tidyCues.Contains(HomeTidying.Item(t.id)));
             }
             if(shared!=null)RenderFriends();
+            PresentHiddenPlayers();
             // Larger y is farther back on the illustrated floor plane.
             SortDepth();
             activity.text=p.activity==""?"Free play Â· walk, drag, discover":p.activity=="garden"?(toyStates.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(toyStates.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");
