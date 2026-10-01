@@ -33,6 +33,7 @@ namespace LittleWeeps.Core
         {
             if(!connections.TryGetValue(connection,out var profile))return false;
             connections.Remove(connection);
+            world.ReleaseWaveRide(profile);
             world.ReleaseHideAndSeek(profile);
             world.ReleaseFixture(profile);
             world.CancelStairs(profile);

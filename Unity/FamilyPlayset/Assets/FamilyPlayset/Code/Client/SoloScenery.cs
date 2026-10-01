@@ -103,7 +103,8 @@ namespace LittleWeeps.Client
                 hideCameraFollowing=followParent;manualCamera=false;groundPan=false;
                 cameraX=followParent?HideGame.x:position.x;
             }
-            if(followParent)
+            if(OwnWaveRider!=null){manualCamera=false;cameraX=WaveRide.x+(float)Math.Sin(WaveDisplayAge*.6)*65;}
+            else if(followParent)
             {manualCamera=false;cameraX=Mathf.Lerp(cameraX,HideGame.x,1-Mathf.Exp(-9*Time.unscaledDeltaTime));}
             else if(CharactersOpen)cameraX=position.x;
             else if(!manualCamera)

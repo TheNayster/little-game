@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "build": 350,
+  "checks": [
+    "Beach Games picture menu: four ready seats and all three visitor choices",
+    "One Start broadcasts the same countdown/round to four clients",
+    "Four visitors carry four visible players; phone/tablet captures and shared splash reward",
+    "All done, travel and disconnect leave the remaining rider on the common route",
+    "Automatic shore return restores walking; deliberate replay and empty lobby exit"
+  ],
+  "layouts": [
+    "phone 1280x591",
+    "tablet 1024x768"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false
+}

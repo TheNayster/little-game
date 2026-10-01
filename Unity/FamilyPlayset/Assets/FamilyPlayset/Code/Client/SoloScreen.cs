@@ -24,7 +24,7 @@ namespace LittleWeeps.Client
         public RectTransform Board { get; private set; }
         public bool JoystickMode { get; private set; }
         public SoloNarration Narration {get;private set;}
-        public bool MenuOpen => OutfitsOpen || MiniGamesOpen || HideCardOpen || CollectionOpen || DiscoveryOpen || BookOpen || BookLibraryOpen || menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
+        public bool MenuOpen => WaveRideCardOpen || OutfitsOpen || MiniGamesOpen || HideCardOpen || CollectionOpen || DiscoveryOpen || BookOpen || BookLibraryOpen || menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
         public readonly Dictionary<string, SoloPointerSurface> Surfaces = new Dictionary<string, SoloPointerSurface>();
         private readonly Dictionary<string, RectTransform> toys = new Dictionary<string, RectTransform>();
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
@@ -173,7 +173,7 @@ namespace LittleWeeps.Client
                 World = snapshot==null ? SoloWorld.Create(offlineActor ?? Guid.NewGuid().ToString("N")) : SoloWorld.Restore(snapshot);
                 // The existing additive area upgrade preserves the old garden,
                 // player and receipts while adding the missing Creek station.
-                World = SoloWorld.WithShore(World);
+                World = SoloWorld.WithWaveRides(World);
                 // Restore releases interrupted holds, hiding roles and fixture/stair
                 // leases. Persist every revision-changing restore, including an
                 // otherwise idle player who has just come out of cover.
@@ -305,7 +305,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildSeagulls();BuildShore();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildSeagulls();BuildShore();BuildWaveRide();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -528,7 +528,7 @@ namespace LittleWeeps.Client
                 saveLabel.text=string.Join("   ·   ",shared.View.players.Where(p=>shared.Players.Contains(p.id)).Select(p=>p.id.Replace("player-","Player ")+": "+p.zone))+"   ·   "+shared.Status;
                 if(!shared.Connected)return;
                 FinishTravel();
-                if(MenuOpen || TravelPending || StairBusy || doorSubmitted)shared.Walk(WalkMode.Stop);
+                if(MenuOpen || OwnWaveRider!=null || TravelPending || StairBusy || doorSubmitted)shared.Walk(WalkMode.Stop);
                 else if(hideApproach>=0)shared.Walk(WalkMode.Destination,HideEntry.x,HideEntry.y);
                 else if(doorApproach)shared.Walk(WalkMode.Destination,DoorEntry.x,DoorEntry.y);
                 else if(stairApproach)shared.Walk(WalkMode.Destination,HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea));
@@ -550,7 +550,7 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=StairBusy || doorSubmitted?WalkMode.Stop:hideApproach>=0 || doorApproach || stairApproach?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var mode=OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:hideApproach>=0 || doorApproach || stairApproach?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
             var input=hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
@@ -613,7 +613,7 @@ namespace LittleWeeps.Client
             PresentBedrooms();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
-            PresentHideAndSeek();PresentPark();
+            PresentHideAndSeek();PresentPark();PresentWaveRide();
         }
         private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
@@ -627,6 +627,8 @@ namespace LittleWeeps.Client
             void Player(string id,RectTransform root)
             {
                 var player=HasWorld?ReadPlayer(id):null;
+                var rider=BeachWaveRide.Rider(Shore?.ride,id);
+                if(rider!=null && waveSupports[rider.seat]!=null){Add(root,WaveGround(rider.seat),1,"wave-rider-"+rider.seat);return;}
                 if(player!=null && player.stairs>0){Add(root,ToBoard(HomeRooms.EntryX(player.zone),HomeRooms.EntryY(player.zone)).y,1,id);return;}
                 var hider=HideAndSeek.Player(HideGame,id);
                 if(hider?.mode==HiderMode.Hidden){Add(root,ToBoard(player.x,HideAndSeek.GroundY[hider.slot]).y,1,id);return;}
@@ -639,7 +641,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddShoreDepth(Add);AddSeagullDepth(Add);AddParkDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
+            AddShoreDepth(Add);AddWaveRideDepth(Add);AddSeagullDepth(Add);AddParkDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);
@@ -699,6 +701,9 @@ namespace LittleWeeps.Client
             // Larger y is farther back on the illustrated floor plane.
             SortDepth();
             activity.text=p.activity==""?"Free play · walk, drag, discover":p.activity=="garden"?(toyStates.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(toyStates.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");
+            // A reliable reply can render between presentation updates. Keep
+            // supported riders attached when it refreshes the ground positions.
+            PresentWaveRide();
         }
         private void DrawToy(SoloToy t)
         {

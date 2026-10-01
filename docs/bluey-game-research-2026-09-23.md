@@ -1656,6 +1656,8 @@ The official **The Beach** synopsis provides useful anchors: shell discovery, fo
 
 ### Ten beach activities
 
+**New requested mini-game:** [Ride the waves](implementation/beach-wave-ride-2026-09-30.html) extends BCH-03. Up to four children choose whale/dolphin/mermaid visitors in one ready convoy, share a countdown and three waves, add cooperative splashes and return independently. Windows 350 is the isolated candidate; schema 43/content 55 requires coordinated future delivery. Other eight beach activities remain planned, with family visual acceptance open.
+
 **Sea visitor art follow-up:** the user requested a light-brown Hispanic mermaid and emerging/airborne/re-entry sheets. [Three-pose model sheets](implementation/sea-visitor-models-2026-09-30.html) now supply distinct drawings for each visitor, selected by the existing shared event clock. Windows 307 is a client-presentation follow-up with no schema/content change; no device/live-server rollout.
 
 **Latest September 30 implementation:** BCH-03 now has shared moving foam, wet-only footprint washing, four-player walking paw trails, touch ripples and the newly requested random whale/dolphin/mermaid jumps. Windows 304/305, focused core/Unity JSON and native four-client evidence are recorded in [Waves and footprints](implementation/beach-waves-2026-09-30.html). The eight activities other than BCH-02/03 remain planned; no device/live-server rollout, family acceptance open.

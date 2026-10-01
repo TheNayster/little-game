@@ -265,10 +265,10 @@ for feature in features:
         feature['description']+=' Windows 295 implements six shared silver gulls, approach/tap, notice/takeoff/flight/landing, alternate sand patches and tracks. Focused core/Unity JSON and four-client phone/tablet checks pass, including independent departure and a calm period. Calls/idle polish and family visual acceptance remain open; no device/server rollout.'
     if feature['id']=='B-01':
         feature['status']='part';feature['evidence']='shore'
-        feature['description']='Long walkable scenery plus BCH-02 gulls and BCH-03 shared waves, four-player footprints, ripples and random whale/dolphin/mermaid sightings in Windows 304/305. Other eight beach activities and family/device acceptance remain planned.'
+        feature['description']='Long walkable scenery plus BCH-02 gulls and BCH-03 shared waves, four-player footprints, ripples and random whale/dolphin/mermaid sightings in Windows 304/305. The new Ride the waves mini-game extends BCH-03 with one four-player ready lobby, countdown, convoy and independent exits. Other eight beach activities and family/device acceptance remain planned.'
     if feature['id']=='BCH-03':
         feature['status']='part';feature['evidence']='shore'
-        feature['description']+=' Windows 304/305 implements shared foam/washing, four-player walking paw trails, real water taps and random offshore whale/dolphin/mermaid jumps. Core/Unity JSON and native four-client checks pass. Device delivery, family acceptance and optional sound/pose polish remain.'
+        feature['description']+=' Windows 304/305 implements shared foam/washing, four-player walking paw trails, real water taps and random offshore whale/dolphin/mermaid jumps. The new Ride the waves Games entry extends this with visitor choices, a common four-player ready lobby/countdown/three-wave convoy, cooperative splashes and independent exits. Device delivery, family acceptance and optional sound polish remain.'
 for feature in features:
     if feature['id'].startswith(('PIZ-', 'CAK-', 'MEAL-')):
         feature['status']='part';feature['evidence']='kitchen'

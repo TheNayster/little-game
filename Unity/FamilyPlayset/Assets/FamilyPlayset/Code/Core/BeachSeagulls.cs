@@ -70,6 +70,7 @@ namespace LittleWeeps.Core
         }
         private string SeagullOperation(SoloCommand c,SoloPlayer p)
         {
+            if(c.value.StartsWith("ride-",StringComparison.Ordinal))return WaveRideOperation(c,p);
             if(c.value=="ripple")return ShoreOperation(c,p);
             var g=state.seagulls;if(g==null || c.value!="hello")return "unknown-beach-action";
             if(c.target!="flock" || !BeachSeagulls.Near(p,g.from,BeachSeagulls.TapRadius))return "walk-near-the-birds";

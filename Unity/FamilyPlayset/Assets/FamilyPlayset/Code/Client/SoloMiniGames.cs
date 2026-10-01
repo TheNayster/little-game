@@ -52,7 +52,7 @@ namespace LittleWeeps.Client
 
         private void ShowMiniGames()
         {
-            if(!Ready || MenuOpen || TravelPending || !HideAndSeek.Zone(ReadPlayer(Actor)))return;
+            if(!Ready || MenuOpen || TravelPending || !(HideAndSeek.Zone(ReadPlayer(Actor)) || CurrentArea=="beach" && WaveRide!=null))return;
             CloseNavigation();CancelPointers();Narration.Stop();hideApproach=-1;
             miniGamesMenu.gameObject.SetActive(true);miniGamesMenu.SetAsLastSibling();
             stick.gameObject.SetActive(false);
@@ -78,7 +78,8 @@ namespace LittleWeeps.Client
         private void PresentMiniGames(Sprite parent)
         {
             if(miniGamesButton==null)return;
-            var inZone=HideAndSeek.Zone(ReadPlayer(Actor));
+            var hideZone=HideAndSeek.Zone(ReadPlayer(Actor));var beach=CurrentArea=="beach" && WaveRide!=null;var inZone=hideZone || beach;
+            miniGamesHideChoice.gameObject.SetActive(hideZone);if(waveMenuChoice!=null)waveMenuChoice.gameObject.SetActive(beach);
             miniGamesButton.gameObject.SetActive(inZone && !MenuOpen && !applicationPaused);
             if(!MiniGamesOpen)return;
             if(!inZone || WorldLoading || applicationPaused){CloseMiniGames();return;}

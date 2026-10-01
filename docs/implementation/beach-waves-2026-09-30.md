@@ -45,3 +45,7 @@ Windows **305** adds only the beach character-floor alignment correction after i
 ![Mermaid offshore](evidence/beach-waves-2026-09-30/native-304/06-mermaid-phone.png)
 
 The eight other named beach activities remain planned. Gull calls and richer visitor poses/sounds are optional polish; family art acceptance and actual-device delivery remain open.
+
+## Requested riding follow-up
+
+[Ride the waves mini-game](beach-wave-ride-2026-09-30.html) extends these visitors with a beach Games entry, one four-player lobby/countdown/convoy and independent returns. Its Windows 350/schema 43/content 55 evidence is separate from the original 304/305 shoreline milestone below. The random sightings and their three-stage art remain available.

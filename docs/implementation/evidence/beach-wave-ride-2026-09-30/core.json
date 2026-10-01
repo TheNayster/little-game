@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "schema": 43,
+  "content": 55,
+  "checks": [
+    "additive migration and existing shore timing",
+    "four ready together and all visitors",
+    "shared start/countdown and stale start rejection",
+    "checkpoint reopen and nested isolation",
+    "common waves and bounded cooperative splash",
+    "explicit leave/travel/disconnect protect sibling progression",
+    "late boarding rejected",
+    "automatic return and deliberate replay",
+    "moving exit and invalid duplicate seat"
+  ]
+}

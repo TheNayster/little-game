@@ -17,6 +17,7 @@ namespace LittleWeeps.EditorTools
             HideAndSeekJsonTests.Run();
             SeagullJsonTests.Run();
             ShoreJsonTests.Run();
+            WaveRideJsonTests.Run();
             const string scenePath="Assets/FamilyPlayset/Scenes/NetworkProbe.unity";
             if(!File.Exists(scenePath))
             {

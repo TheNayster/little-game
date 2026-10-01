@@ -6,6 +6,8 @@ The beach has a long walkable world and the original **Seashell Skipping** music
 
 ## Ten planned beach activities
 
+**New requested mini-game, September 30:** Ride the waves extends BCH-03 with a beach Games menu entry: choose whale/dolphin/mermaid, get ready in one four-player convoy, share a countdown and three waves, add cooperative splashes and return independently. [Implementation and delivery status](implementation/beach-wave-ride-2026-09-30.html). The other eight named beach activities stay planned.
+
 **September 30 update:** BCH-02 Seagull surprise and BCH-03 Waves and footprints have first shared playable slices. Windows 304/305 adds wet-sand washing, four-player paw trails, touch ripples and random whale/dolphin/mermaid jumps with focused core/Unity JSON and native four-client checks. [Waves record](implementation/beach-waves-2026-09-30.md) · [Gulls record](implementation/seagull-surprise-2026-09-30.md). Sound/pose polish, family acceptance and device/server delivery remain open. The other eight remain **Planned**.
 
 | Activity | What to add |
@@ -40,7 +42,7 @@ Source: [Starter quest ideas](bluey-game-research-2026-09-23.md#3-six-content-re
 - Connect the toys: collect a shell, rinse it in a bucket, decorate a castle, use it in a pattern and carry it home. Buckets should fill, pour and rinse across compatible stations. Carrying a shell between worlds must preserve one object, without duplication.
 - Keep sand play forgiving: dry, damp, moulded and decorated states; no exact water ratio required. Repeated input must not create unlimited toys.
 - Keep saved castles and pictures protected. Waves can fade footprints or wash a deliberately disposable practice castle, but must not erase saved creations. Players must not overwrite another player's completed tower or decoration.
-- Offer direct object play with large touch targets, optional spoken help and easy exits. The current Games menu contains Hide & seek only; listing a beach activity here does not add it to that menu.
+- Offer direct object play with large touch targets, optional spoken help and easy exits. Games offers Hide & seek in its existing areas and the new Ride the waves at the beach; other listed beach activities are still planned.
 - Install beach art, ambience, prompts and solo partners locally. Private offline play uses the same activity rules; reconnecting resumes the authoritative PC/VPS world, without merging offline edits.
 
 Sources: [Beach object and co-op rules](bluey-game-research-2026-09-23.md#make-the-beach-objects-connect) · [Outdoor persistence rules](bluey-game-research-2026-09-23.md#43-building-saving-and-testing-the-outdoor-and-daycare-expansion) · [Current decisions](current-decisions.md) · [Project instructions](../AGENTS.md).

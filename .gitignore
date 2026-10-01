@@ -69,3 +69,6 @@ Thumbs.db
 !Tools/OutfitRules.Tests/OutfitRules.Tests.csproj
 Tools/OutfitRules.Tests/bin/
 Tools/OutfitRules.Tests/obj/
+!Tools/WaveRide.Tests/WaveRide.Tests.csproj
+Tools/WaveRide.Tests/bin/
+Tools/WaveRide.Tests/obj/

@@ -1319,7 +1319,7 @@
         3,
         37
       ],
-      "description": "Long walkable scenery plus BCH-02 gulls and BCH-03 shared waves, four-player footprints, ripples and random whale/dolphin/mermaid sightings in Windows 304/305. Other eight beach activities and family/device acceptance remain planned.",
+      "description": "Long walkable scenery plus BCH-02 gulls and BCH-03 shared waves, four-player footprints, ripples and random whale/dolphin/mermaid sightings in Windows 304/305. The new Ride the waves mini-game extends BCH-03 with one four-player ready lobby, countdown, convoy and independent exits. Other eight beach activities and family/device acceptance remain planned.",
       "evidence": "shore",
       "extraSource": ""
     },
@@ -1939,7 +1939,7 @@
       "chapters": [
         37
       ],
-      "description": "Simple play: Watch foam roll in; tap the water for ripples; walk to leave prints Deeper play: Draw a trail and watch the next wave erase only the wet-sand part; count waves together if wanted; no timer or required dodging Windows 304/305 implements shared foam/washing, four-player walking paw trails, real water taps and random offshore whale/dolphin/mermaid jumps. Core/Unity JSON and native four-client checks pass. Device delivery, family acceptance and optional sound/pose polish remain.",
+      "description": "Simple play: Watch foam roll in; tap the water for ripples; walk to leave prints Deeper play: Draw a trail and watch the next wave erase only the wet-sand part; count waves together if wanted; no timer or required dodging Windows 304/305 implements shared foam/washing, four-player walking paw trails, real water taps and random offshore whale/dolphin/mermaid jumps. The new Ride the waves Games entry extends this with visitor choices, a common four-player ready lobby/countdown/three-wave convoy, cooperative splashes and independent exits. Device delivery, family acceptance and optional sound polish remain.",
       "evidence": "shore",
       "extraSource": ""
     },
