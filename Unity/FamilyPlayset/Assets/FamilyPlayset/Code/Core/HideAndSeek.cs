@@ -35,7 +35,7 @@ namespace LittleWeeps.Core
         public static readonly float[] GroundY={245,200,200,245,245,245,120,130,120,180};
         public static readonly string[] Names={"Curtain","Sofa left","Sofa right","Wardrobe left","Wardrobe right","Tent","Folding screen","Dining table","Blanket bench","Garden bush"};
         public static readonly int[] Props={0,1,1,2,2,3,4,5,6,7};
-        public const int AllChecked=(1<<10)-1;
+        public const int Capacity=4, AllChecked=(1<<10)-1;
         // Preserve old checkpoint anchors; the pond layout moves the picnic cover right.
         public static float CoverX(int slot,int schema=WorldLayout.Schema)=>slot==8 && schema>=36?3150:SlotX[slot];
         public static float HiddenY(int slot)=>slot<6?320:slot==7?150:GroundY[slot]+65;
@@ -91,7 +91,7 @@ namespace LittleWeeps.Core
                 if(!Enum.IsDefined(typeof(HiderMode),p.mode) || p.cycle<0 || p.slot< -1 || p.slot>=slots || (p.mode==HiderMode.Hidden)!=(p.slot>=0) ||
                     !Finite(p.preparation) || p.preparation<0 || p.preparation>maxCount || !Finite(p.idle) || p.idle<0 || p.idle>300)
                     throw new InvalidOperationException("Invalid hider state.");
-            if(h.hiders.Where(p=>p.slot>=0).GroupBy(p=>p.slot).Any(g=>g.Count()>1))throw new InvalidOperationException("Hide space occupied twice.");
+            if(h.hiders.Where(p=>p.slot>=0).GroupBy(p=>p.slot).Any(g=>g.Count()>Capacity))throw new InvalidOperationException("Hide space exceeds capacity.");
             if((h.phase==HidePhase.Walking || h.phase==HidePhase.Inspecting) && h.target<0)throw new InvalidOperationException("Missing inspection target.");
             if(schema>=TogetherSchema && (h.hiders.Any(p=>p.preparation!=0) ||
                 h.phase==HidePhase.Lobby && (h.count!=0 || !h.hiders.Any(p=>p.actor==h.organizer && p.mode==HiderMode.Ready) || h.hiders.Any(Playing)) ||
@@ -184,7 +184,7 @@ namespace LittleWeeps.Core
             if(c.value=="out"){ExitHide(player,h,true);FinishEmptyHide();return null;}
             if(s.phase!=HidePhase.Counting)return "hiding-time-ended";
             if(c.value!="hide" || !int.TryParse(c.target,out var slot) || slot<0 || slot>=HideAndSeek.SlotX.Length)return "invalid-hide-space";
-            if(s.hiders.Any(p=>p.actor!=player.id && p.slot==slot))return "hide-space-busy";
+            if(s.hiders.Count(p=>p.actor!=player.id && p.slot==slot)>=HideAndSeek.Capacity)return "hide-space-busy";
             if(Math.Abs(player.x-HideAndSeek.CoverX(slot,state.schema))>170)return "walk-to-hide-space";
             if(h.mode!=HiderMode.Hidden && h.cycle==int.MaxValue)return "round-limit";
             ClearFixture(player);player.activity="";player.x=HideAndSeek.CoverX(slot,state.schema);player.y=HideAndSeek.HiddenY(slot);
@@ -247,8 +247,9 @@ namespace LittleWeeps.Core
             else if(s.phase==HidePhase.Inspecting && s.age>=HideAndSeek.InspectSeconds)
             {
                 s.visited|=1<<s.target;s.cursor=(s.cursor+1)%HideAndSeek.SlotX.Length;
-                var found=s.hiders.FirstOrDefault(p=>p.slot==s.target && HideAndSeek.Eligible(p));
-                if(found!=null){ExitHide(state.players.Single(p=>p.id==found.actor),found,true);found.mode=HiderMode.Found;found.preparation=0;s.phase=HidePhase.Found;s.age=0;}
+                // One physical inspection reveals everybody sharing this cover.
+                var found=s.hiders.Where(p=>p.slot==s.target && HideAndSeek.Eligible(p)).ToArray();
+                if(found.Length>0){foreach(var hider in found){ExitHide(state.players.Single(p=>p.id==hider.actor),hider,true);hider.mode=HiderMode.Found;hider.preparation=0;}s.phase=HidePhase.Found;s.age=0;}
                 else NextHideInspection();
             }
             else if(s.phase==HidePhase.Found && s.age>=HideAndSeek.ReactionSeconds)NextHideInspection();

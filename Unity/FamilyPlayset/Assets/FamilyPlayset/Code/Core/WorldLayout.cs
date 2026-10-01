@@ -16,7 +16,8 @@ namespace LittleWeeps.Core
         // Content 46 admits the shared bathroom room and four bath/sink fixture leases.
         // Content 49 speeds parent seeking and directs cover checks toward remaining hiders.
         // Content 54 fixes the seeker counting/start anchor independently of the organizer.
-        public const int Schema=39, ScenerySchema=3, Content=54;
+        // Content 55 allows four hiders per cover and finds its occupants together.
+        public const int Schema=39, ScenerySchema=3, Content=55;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id);

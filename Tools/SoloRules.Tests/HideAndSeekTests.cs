@@ -29,8 +29,8 @@ static partial class Program
             var w=HideWorld();var actors=w.Snapshot().players.Select(p=>p.id).ToArray();StartHide(w,actors);for(var i=0;i<4;i++)HideAt(w,actors[i],i);
             Check(w.Snapshot().players.Length==4 && w.ReadHideAndSeek().hiders.All(p=>p.mode==HiderMode.Hidden));Advance(w,9);Check(w.ReadHideAndSeek().phase==HidePhase.Counting);Advance(w,100);Check(w.ReadHideAndSeek().hiders.All(p=>p.mode==HiderMode.Found));SoloWorld.Validate(w.Snapshot());
         });
-        Test("same-slot race has one winner duplicate requests never rejoin restart or move possessions",()=>{
-            var w=HideWorld();StartHide(w,"first","second");HideAt(w,"first",2);Good(w,SoloAction.Move,x:HideAndSeek.SlotX[2],y:50,actor:"second");Check(!Hide(w,"hide","second",2).Accepted);
+        Test("same-slot hiding shares the cover and duplicate requests never restart or move possessions",()=>{
+            var w=HideWorld();StartHide(w,"first","second");HideAt(w,"first",2);Good(w,SoloAction.Move,x:HideAndSeek.SlotX[2],y:50,actor:"second");Check(Hide(w,"hide","second",2).Accepted && HideAndSeek.Hidden(w.ReadHideAndSeek(),"first") && HideAndSeek.Hidden(w.ReadHideAndSeek(),"second"));
             var c=Command(w,SoloAction.HideAndSeek,value:"out");Check(w.Apply(c).Accepted);Advance(w,1);var before=Encode(w.Snapshot());Check(w.Apply(c).Duplicate && before==Encode(w.Snapshot()));Check(Hide(w,"join").Accepted && w.ReadHideAndSeek().count<HideAndSeek.CountSeconds);
         });
         Test("start immediately opens one fifteen-second window and hiding joins without accepting",()=>{

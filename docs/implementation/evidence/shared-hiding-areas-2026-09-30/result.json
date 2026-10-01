@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "build": 353,
+  "content": 55,
+  "checks": [
+    "All four share an existing cover and see all four children through the transparent cover at phone/iPad sizes",
+    "Same-cover visibility is private; moving or leaving preserves the other co-hiders",
+    "One physical inspection finds all occupants together; parent camera continues through the remaining search"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false,
+  "coreChecks": [
+    "All ten existing spots admit four hiders",
+    "One inspection finds every occupant of a shared spot",
+    "Independent departure preserves remaining occupants"
+  ],
+  "jsonChecks": [
+    "Legacy unique-occupant checkpoints validate",
+    "Four co-hiders round-trip in Unity JSON and cold reopen safely clears temporary roles"
+  ],
+  "schema": 39
+}

@@ -111,6 +111,8 @@ namespace LittleWeeps.Client
             hideTick=Resources.Load<AudioClip>("HideAndSeek/tick");hideFound=Resources.Load<AudioClip>("HideAndSeek/reveal");hideAudio.Add(hideTick);hideAudio.Add(hideFound);
             foreach(var id in new[]{"start","ready","found","count1","count2","count3","count4","count5"}){var clip=Resources.Load<AudioClip>("HideAndSeek/"+id);if(clip!=null){hideAudio.Add(clip);Narration.AddClip("hide-"+id,clip);}}
         }
+        private HiderState[] SharedHiders(HideState s,HiderState own)=>own?.mode==HiderMode.Hidden?
+            s.hiders.Where(h=>h.mode==HiderMode.Hidden && h.slot==own.slot).OrderBy(h=>h.actor,StringComparer.Ordinal).ToArray():Array.Empty<HiderState>();
         private void ShowHideCard()
         {
             if(!Ready || TravelPending || WorldLoading)return;
@@ -133,7 +135,7 @@ namespace LittleWeeps.Client
         private void SendHide(string op,int slot=-1)
         {
             if(!Ready || hideSending || !HideInHomeWorld && op!="leave" && op!="out")return;hideSending=true;
-            void Done(SoloResult result){hideSending=false;if(result.Accepted && (op=="invite" || op=="join")){hideCardRound=HideGame.round;hideCard.gameObject.SetActive(false);}else if(!result.Accepted){homeFeedback.text=result.Outcome=="hide-space-busy"?"Someone is there. Pick another hiding spot!":result.Outcome=="invitation-ended" || result.Outcome=="round-in-progress" || result.Outcome=="hiding-time-ended"?"This round has started. Join the next one!":"Please try again.";homeFeedbackUntil=Time.unscaledTime+3;}if(HasWorld)Render();}
+            void Done(SoloResult result){hideSending=false;if(result.Accepted && (op=="invite" || op=="join")){hideCardRound=HideGame.round;hideCard.gameObject.SetActive(false);}else if(!result.Accepted){homeFeedback.text=result.Outcome=="hide-space-busy"?"That hiding area is full.":result.Outcome=="invitation-ended" || result.Outcome=="round-in-progress" || result.Outcome=="hiding-time-ended"?"This round has started. Join the next one!":"Please try again.";homeFeedbackUntil=Time.unscaledTime+3;}if(HasWorld)Render();}
             var target=(op=="join" || op=="start"?hideCardRound:slot).ToString();
             if(Shared){if(!SubmitShared(SoloAction.HideAndSeek,"",target,op,0,0,Done))hideSending=false;}else Done(Command(SoloAction.HideAndSeek,target:target,value:op));
         }
@@ -186,8 +188,14 @@ namespace LittleWeeps.Client
             var diningMine=own.slot==7;
             kitchenFixtures["dining"].root.GetComponentInChildren<Image>().color=diningMine?new Color(1,1,1,.42f):Color.white;
             kitchenDiningFront.GetComponentInChildren<HomeArtPart>().color=diningMine?new Color(1,1,1,.42f):Color.white;
-            foreach(var friend in friends){var p=ReadPlayer(friend.Key);friend.Value.root.gameObject.SetActive(p.zone==CurrentArea && shared.Players.Contains(friend.Key) && !HideAndSeek.Hidden(s,friend.Key));}
-            if(own.mode==HiderMode.Hidden){avatar.anchoredPosition=ToBoard(HideAndSeek.CoverX(own.slot,SceneSchema),HideAndSeek.HiddenY(own.slot));characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
+            var together=SharedHiders(s,own);
+            foreach(var friend in friends){var p=ReadPlayer(friend.Key);var sharedCover=together.Any(h=>h.actor==friend.Key);friend.Value.root.gameObject.SetActive(p.zone==CurrentArea && shared.Players.Contains(friend.Key) && (!HideAndSeek.Hidden(s,friend.Key) || sharedCover));}
+            for(var i=0;i<together.Length;i++)
+            {
+                var h=together[i];var point=ToBoard(HideAndSeek.CoverX(h.slot,SceneSchema)+(i-(together.Length-1)*.5f)*55,HideAndSeek.HiddenY(h.slot));
+                if(h.actor==Actor){avatar.anchoredPosition=point;characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
+                else if(friends.TryGetValue(h.actor,out var friend)){friend.root.anchoredPosition=point;friend.view.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
+            }
             for(var i=0;i<HideAndSeek.SlotX.Length;i++)
             {
                 var visible=shown && counting && own.slot<0 && !MenuOpen;hideHits[i].gameObject.SetActive(visible);

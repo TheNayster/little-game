@@ -1463,6 +1463,8 @@ Keep the camera steady and the exit visible. If any player leaves, the room and 
 
 ## 34. Hide-and-seek with enterable furniture and gentle clues
 
+**Shared hiding areas — September 30 latest request:** allow up to four occupants in each existing spot. Show co-hiders directly through the transparent cover, with distinct drawing positions. Only children sharing that spot see one another while hidden; there is no separate hiding-view window. One parent inspection finds its entire group, and independent exits preserve all remaining occupants. The fixed house counting anchor, Home-world boundary and parent-follow camera through the full search remain.
+
 **World boundary and camera — September 30 latest correction:** Home hide-and-seek entry cards, invitations, countdowns and spoken prompts must appear only within Home (including its internal rooms). Other worlds keep their own games and receive no Home-game prompts. The server may retain one common round state without showing it outside Home. Found hiders keep watching the parent until the whole round ends; explicit departure releases only that viewer. This supersedes the earlier cross-world invitation/countdown presentation.
 
 **September 30 faster-search correction:** the user wants Bandit and Chilli to seek faster and head toward distant hiders, checking hiding spots on the way. This supersedes the older occupancy-independent route proposal below. The current parent walks to and inspects each selected cover before finding anyone; there is no reveal from across the room. The common hiding window remains 15 seconds. [Implementation and measured checks](implementation/faster-parent-seeking-2026-09-30.md).

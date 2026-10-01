@@ -44,6 +44,18 @@ static class Program
             Check(HideAndSeek.Parent(w.ReadHideAndSeek())=="Chilli" && w.ReadHideAndSeek().x==HideAndSeek.StartX,"Other parent used player-relative start");
         }
         Console.WriteLine("PASS far-left/far-right organizers, stationary counting, unchanged children and both parents start at the authored Home spot");
+        for(var slot=0;slot<HideAndSeek.SlotX.Length;slot++)
+        {
+            var shared=Start(slot,slot,slot,slot);SoloWorld.Validate(shared.Snapshot());
+            Check(shared.ReadHideAndSeek().hiders.Count(h=>h.slot==slot)==4,"Existing cover rejected shared occupants");
+            var ticks=0;
+            while(shared.ReadHideAndSeek().hiders.All(h=>h.mode!=HiderMode.Found) && ticks++<600)shared.AdvanceIdle(.05,out _);
+            Check(shared.ReadHideAndSeek().hiders.All(h=>h.mode==HiderMode.Found) && (shared.ReadHideAndSeek().visited&(1<<slot))!=0,"One inspection did not find the entire shared cover");
+        }
+        var exit=Start(5,5,5,5);Good(Send(exit,"one",SoloAction.HideAndSeek,"leave"));
+        Check(exit.ReadHideAndSeek().hiders.Count(h=>h.mode==HiderMode.Hidden)==3,"Shared-cover exit removed siblings");Finish(exit);
+        Check(HideAndSeek.Player(exit.ReadHideAndSeek(),"one").mode==HiderMode.Away && exit.ReadHideAndSeek().hiders.Count(h=>h.mode==HiderMode.Found)==3,"Parent found withdrawn hider or lost siblings");
+        Console.WriteLine("PASS all ten covers hold four, one inspection finds the whole group, and independent departure preserves three co-hiders");
         var right=Start(9);var rightSeconds=Finish(right);var mask=right.ReadHideAndSeek().visited;
         foreach(var slot in new[]{3,4,5,7,8,9})Check((mask&(1<<slot))!=0,"Skipped cover on way right: "+slot);
         foreach(var slot in new[]{0,1,2,6})Check((mask&(1<<slot))==0,"Unnecessary left detour: "+slot);

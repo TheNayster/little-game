@@ -22,6 +22,14 @@ namespace LittleWeeps.EditorTools
                 var copy=JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(s));SoloWorld.Validate(copy);
                 var restored=SoloWorld.Restore(copy);if(restored.ReadHideAndSeek().phase!=HidePhase.Idle || restored.ReadPlayer("one").y!=50)throw new InvalidOperationException("Hiding restore failed.");
             }
+            // Shared cover occupancy adds no fields; old unique-occupant saves
+            // and new four-occupant snapshots use the same JSON shape.
+            s.hideAndSeek.phase=HidePhase.Counting;s.hideAndSeek.count=10;s.hideAndSeek.target=-1;
+            for(var i=0;i<4;i++){s.hideAndSeek.hiders[i].mode=HiderMode.Hidden;s.hideAndSeek.hiders[i].slot=5;s.players[i].x=HideAndSeek.SlotX[5];s.players[i].y=HideAndSeek.HiddenY(5);}
+            var sharing=JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(s));SoloWorld.Validate(sharing);
+            if(sharing.hideAndSeek.hiders.Length!=4 || sharing.hideAndSeek.hiders[3].slot!=5)throw new InvalidOperationException("Shared cover JSON lost occupants.");
+            var reopened=SoloWorld.Restore(sharing);SoloWorld.Validate(reopened.Snapshot());
+            foreach(var p in reopened.ReadPlayers())if(p.y!=50)throw new InvalidOperationException("Shared-cover reopen left stale hidden placement.");
             Debug.Log("Hide-and-seek Unity JSON: old schema and legacy 20-second state plus ten hidden-slot round trips passed.");
         }
     }
