@@ -28,7 +28,10 @@ namespace LittleWeeps.Core
         {
             if(!connections.TryGetValue(connection,out var profile))return new SoloResult(false,"not-connected",world.Revision);
             if(command==null || command.actor!=profile)return new SoloResult(false,"wrong-player",world.Revision);
-            return world.Apply(command);
+            var result=world.Apply(command);
+            if(result.Accepted && command.action==SoloAction.Park && command.value=="tag-join")
+                world.IncludeNearbyTagPlayers(ConnectedPlayers);
+            return result;
         }
         public bool Detach(ulong connection)
         {

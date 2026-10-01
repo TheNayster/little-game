@@ -1714,6 +1714,8 @@ Fishing has one owner per fish/catch transaction. Two children selecting the sam
 
 ## 39. Playground and park: equipment that really works
 
+**September 30 Tag correction (PRK-06):** one Start includes every connected player in the park; arrivals automatically enter the same game. Human players tag each other, and Bandit is only the one-participant fallback. Independent exits remain. Remove all Tag speech and its Listen control. [Checked implementation and update status](implementation/park-tag-group-2026-09-30.html).
+
 ### September 30 applied physics review and current park request
 
 **Implementation status:** Windows 235 gameplay checks and the Windows 250 final contact/depth capture pass. PRK-01/02/05 now have four-player equipment rules, with benches/picnic seating and fountain/bucket water. Background copies are replaced by clean plates in schema 33. The parent flagged floating character placement; the follow-up explicitly binds foot/seat contact points to the equipment artwork, removes the Home-specific sitting lift, rotates riders with swing seats and adds a foreground playhouse rail. Physical visual acceptance and coordinated device/server rollout remain pending. This does not complete the other park games. [Park implementation and research](implementation/park-playable-equipment-2026-09-30.html).

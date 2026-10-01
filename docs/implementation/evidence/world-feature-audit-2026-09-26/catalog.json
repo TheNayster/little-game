@@ -2234,12 +2234,12 @@
       "world": "park",
       "group": "Twelve park activities",
       "title": "Tag",
-      "status": "plan",
+      "status": "part",
       "chapters": [
         39
       ],
-      "description": "Simple play: Chase or evade a friendly NPC in a small visible zone Deeper play: Invite sibling, choose who starts, optional roles swap after each touch; no eliminations or scoreboard requirement",
-      "evidence": "ledger",
+      "description": "Windows 346: one Start includes the connected park group, arrivals join automatically, humans tag each other and exits remain independent. No Tag speech. Core/four-client checks pass; device/server update pending.",
+      "evidence": "park-tag-group",
       "extraSource": ""
     },
     {

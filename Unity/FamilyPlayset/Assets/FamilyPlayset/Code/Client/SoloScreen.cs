@@ -421,7 +421,7 @@ namespace LittleWeeps.Client
             listenLabel.transform.parent.GetComponent<Button>().interactable=Narration.VoiceEnabled;
         }
         public void SetMenu(bool open) { if(WorldLoading)return;lastLocalAction=Time.realtimeSinceStartup;if(open){CloseNavigation();CancelPointers();Narration.Stop();SaveNow();ExportPlayPerformance();} menu.SetActive(open);if(open)menu.transform.SetAsLastSibling();stick.gameObject.SetActive(JoystickMode && !MenuOpen); }
-        public void Listen(){if(ParkTag.Member(TagGame,Actor)){Narration.Speak("tag-hint");return;}var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
+        public void Listen(){if(ParkTag.Member(TagGame,Actor))return;var activityId=ReadPlayer(Actor).activity;Narration.Speak(activityId==""?"freeplay":activityId);}
         private Vector2 BoardPoint(Vector2 screen)
         { RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var local);return FromBoard(local); }
         public Vector2 ScreenPoint(float x,float y) => RectTransformUtility.WorldToScreenPoint(null,Board.TransformPoint(ToBoard(x,y)));

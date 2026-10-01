@@ -13,29 +13,26 @@ namespace LittleWeeps.Client
         private Text tagHint,tagJoinText,tagCount;
         private GameCharacterVisual tagNpcVisual;
         private readonly Dictionary<string,Text> tagMarkers=new Dictionary<string,Text>();
-        private string tagSpokenRole="",tagVisualWorld="";
+        private string tagVisualWorld="";
         private Vector2 tagNpcPoint,tagNpcVelocity;
         private bool tagSending;
         private TagState tagFrame;private int tagFrameNumber=-1;private long tagFrameRevision=-1;
+        public bool TagNpcVisible=>tagNpc!=null && tagNpc.gameObject.activeInHierarchy;
         public TagState TagGame {get{if(!HasWorld)return null;if(Shared)return shared.View.park?.tag;
             if(tagFrameNumber!=Time.frameCount || tagFrameRevision!=World.Revision){tagFrame=World.ReadTag();tagFrameNumber=Time.frameCount;tagFrameRevision=World.Revision;}return tagFrame;}}
         private void SendTag(bool leave=false)
         {
             if(tagSending || !Ready || TravelPending)return;
-            CloseMiniGames();CancelPointers();destination=null;tagSending=true;
-            void Done(SoloResult result){tagSending=false;if(result.Accepted && !leave)Narration.Speak("tag-hint");Render();}
+            CloseMiniGames();CancelPointers();Narration.Stop();destination=null;tagSending=true;
+            void Done(SoloResult result){tagSending=false;Render();}
             if(Shared){if(!SubmitShared(SoloAction.Park,"","",leave?"tag-leave":"tag-join",0,0,Done))tagSending=false;}
             else Done(Command(SoloAction.Park,value:leave?"tag-leave":"tag-join"));
         }
         private void BuildTag()
         {
-            foreach(var id in new[]{"tag-hint","tag-it","tag-run"})Narration.AddClip(id,Resources.Load<AudioClip>("ParkTag/en-US/"+id));
             tagNpc=Rect(Board,"Tag Bandit playmate",Vector2.zero,Vector2.zero);tagNpcVisual=tagNpc.gameObject.AddComponent<GameCharacterVisual>();tagNpcVisual.Select("bandit");
             tagHud=Rect(safe,"Tag controls",Vector2.zero,new Vector2(780,90));tagHud.anchorMin=tagHud.anchorMax=new Vector2(.5f,0);tagHud.anchoredPosition=new Vector2(0,130);
-            tagHint=Label(tagHud,"",25,new Vector2(-95,0),new Vector2(350,80));
-            var hint=Button(tagHud,"Tag hint",new Vector2(-330,0),new Vector2(110,80),()=>Narration.Speak("tag-hint"),new Color(.77f,.88f,.96f));
-            hint.text="Listen";hint.fontSize=18;hint.rectTransform.anchoredPosition=new Vector2(0,-22);
-            for(var n=0;n<3;n++)Panel(hint.transform.parent,"Voice bar",new Vector2(-12+n*12,14),new Vector2(7,16+n*8),Ink);
+            tagHint=Label(tagHud,"",25,new Vector2(-150,0),new Vector2(430,80));
             tagJoinText=Button(tagHud,"Join tag",new Vector2(225,0),new Vector2(255,80),()=>SendTag(ParkTag.Member(TagGame,Actor)),Cream);
             tagCount=Label(safe,"",95,new Vector2(0,100),new Vector2(350,145));tagCount.fontStyle=FontStyle.Bold;tagCount.color=new Color(.85f,.35f,.07f);
             foreach(var id in AllPlayersForTag().Select(p=>p.id).Concat(new[]{ParkTag.Npc})){
@@ -59,8 +56,6 @@ namespace LittleWeeps.Client
             tagNpc.gameObject.SetActive(visible && t.members.Length==1);
             if(visible){tagHint.text=!own?"Friends are playing tag!":t.phase==TagPhase.Counting?"Get ready together!":t.it==Actor?"You have the star. Chase a friend!":"Run! Follow the orange star.";
                 tagJoinText.text=own?"All done":"Join tag";tagCount.text=Math.Max(1,Math.Ceiling(t.starts-t.clock)).ToString();
-                var role=own && !MenuOpen && t.phase==TagPhase.Playing?(t.it==Actor?"tag-it":"tag-run"):"";
-                if(role!=tagSpokenRole){tagSpokenRole=role;if(role!="")Narration.Speak(role);}
                 if(tagNpc.gameObject.activeSelf){var world=Shared?shared.View.worldId:World.WorldId;
                     var target=new Vector2(t.npcX,t.npcY);
                     if(tagVisualWorld!=world){tagVisualWorld=world;tagNpcPoint=target;tagNpcVelocity=Vector2.zero;}
@@ -68,7 +63,7 @@ namespace LittleWeeps.Client
                     tagNpc.anchoredPosition=ToBoard(tagNpcPoint.x,tagNpcPoint.y);tagNpc.localScale=Vector3.one*sceneScale;
                     tagNpcVisual.Present(tagNpcPoint,world+"/tag",false,Time.unscaledDeltaTime);
                 }
-            }else tagSpokenRole="";
+            }
             foreach(var pair in tagMarkers){var id=pair.Key;var show=visible && (id==ParkTag.Npc?t.members.Length==1:ParkTag.Member(t,id));
                 pair.Value.transform.parent.gameObject.SetActive(show);if(!show)continue;
                 RectTransform body=id==ParkTag.Npc?tagNpc:id==Actor?avatar:friends.TryGetValue(id,out var friend)?friend.root:null;
@@ -81,6 +76,6 @@ namespace LittleWeeps.Client
         private void AddTagDepth(Action<RectTransform,float,int,string> add)
         {if(tagNpc!=null)add(tagNpc,tagNpc.anchoredPosition.y,1,ParkTag.Npc);foreach(var p in tagMarkers)if(p.Value!=null)add((RectTransform)p.Value.transform.parent,-10000,2,p.Key+"-tag-marker");}
         private void ResetTag()
-        {tagHud=null;tagNpc=null;tagNpcVisual=null;tagHint=null;tagJoinText=null;tagCount=null;tagMarkers.Clear();tagSpokenRole="";tagVisualWorld="";tagNpcVelocity=Vector2.zero;tagFrame=null;tagFrameNumber=-1;tagFrameRevision=-1;tagSending=false;}
+        {tagHud=null;tagNpc=null;tagNpcVisual=null;tagHint=null;tagJoinText=null;tagCount=null;tagMarkers.Clear();tagVisualWorld="";tagNpcVelocity=Vector2.zero;tagFrame=null;tagFrameNumber=-1;tagFrameRevision=-1;tagSending=false;}
     }
 }

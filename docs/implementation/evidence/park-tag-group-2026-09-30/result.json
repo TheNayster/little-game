@@ -1,0 +1,9 @@
+{
+  "build": 346,
+  "passed": true,
+  "checks": [
+    "one picture-card start enrolls every connected park player; other area unaffected; no NPC or Tag speech",
+    "fourth auto-arrival preserves countdown; human contact swaps roles with grace; joystick and avatar switch work",
+    "phone/tablet controls; tagger disconnect, area departure and All done preserve siblings; Bandit only for one player; no Tag narration"
+  ]
+}

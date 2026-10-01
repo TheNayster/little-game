@@ -403,6 +403,11 @@ for feature in features:
     if feature['id'] in PARK_PROGRESS_NOTES:
         feature['status']='part';feature['description']=PARK_PROGRESS_NOTES[feature['id']];feature['evidence']='park'
 
+EVIDENCE['park-tag-group']='implementation/park-tag-group-2026-09-30.html'
+for feature in features:
+    if feature['id']=='PRK-06':
+        feature.update(status='part',description='Windows 346: one Start includes the connected park group, arrivals join automatically, humans tag each other and exits remain independent. No Tag speech. Core/four-client checks pass; device/server update pending.',evidence='park-tag-group')
+
 TRACK_STATUS={
 'CHAR-01':'part','CHAR-02':'part','FAMILY-01':'part','ACT-01':'part','COOK-01':'part','FISH-01':'plan','CLEAN-01':'part',
 'HIDE-01':'part','HIDE-02':'plan','NPC-01':'part','CAT-01':'part','BOOK-01':'part','TV-01':'dev','DINO-01':'plan','DINO-02':'plan','LAB-01':'part',

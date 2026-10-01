@@ -41,7 +41,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.SeagullState seagulls;public int visibleSeagulls,visibleGullTracks;
             public LittleWeeps.Core.BeachShoreState shore;public int visibleSandPrints;public bool visibleSeaVisitor;public int seaVisitorPose=-1;
             public int serial,visiblePlayers,canvases,narrators,audioSources;public bool passed,ready,pending,connected,menuOpen,shared;
-            public bool tagSpeaking;public string tagCue;
+            public bool tagNpcVisible;public bool tagSpeaking;public string tagCue;
             public string error,build,actor,feedback,dragging,zone,savePath,adventure,pendingRequest;public int pendingArchives;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
             public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray,activeCharacterVisible;public string character;public int characterLayers;public ControlView[] controls;
@@ -286,6 +286,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();
                 evidence.discoveryOpen=screen.DiscoveryOpen;evidence.bookOpen=screen.BookOpen;evidence.bookReady=screen.BookPageReady;evidence.bookPlaying=screen.BookPlaying;evidence.bookSpeaking=screen.BookSpeaking;evidence.bookPage=screen.BookPageNumber;evidence.bookSample=screen.BookSample;
                 evidence.bookAuto=screen.BookAutoTurn;evidence.bookWords=screen.BookWordsVisible;evidence.bookOptions=screen.BookOptionsOpen;evidence.bookEffect=screen.BookEffectPlaying;evidence.bookEffectPending=screen.BookEffectPending;evidence.bookNaming=screen.BookNaming;evidence.bookTitle=screen.BookTitleId;evidence.bookTextures=screen.BookResidentTextures;evidence.bookAudio=screen.BookResidentAudio;
+                evidence.tagNpcVisible=screen.TagNpcVisible;
                 evidence.tagSpeaking=screen.Narration.GetComponent<AudioSource>()?.isPlaying==true;evidence.tagCue=screen.Narration.GetComponent<AudioSource>()?.clip?.name??"";
                 evidence.visibleText=FindObjectsByType<Text>(FindObjectsSortMode.None).Where(t=>t.gameObject.activeInHierarchy).Select(t=>t.text).ToArray();
                 evidence.fullCharactersInTray=screen.CharactersOpen && FindObjectsByType<GameCharacterVisual>(FindObjectsSortMode.None)
