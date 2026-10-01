@@ -29,6 +29,8 @@ namespace LittleWeeps.Core
             if(!connections.TryGetValue(connection,out var profile))return new SoloResult(false,"not-connected",world.Revision);
             if(command==null || command.actor!=profile)return new SoloResult(false,"wrong-player",world.Revision);
             var result=world.Apply(command);
+            if(result.Accepted && command.action==SoloAction.Park && command.value=="tag-join")
+                world.IncludeNearbyTagPlayers(ConnectedPlayers);
             if(result.Accepted && command.action==SoloAction.Kingdom && (command.value=="start" || command.value=="replay")){world.JoinKingdomGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
             if(result.Accepted && command.action==SoloAction.Daycare && (command.value=="start" || command.value=="replay")){world.JoinPicnicGroup(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
             return result;
@@ -41,6 +43,7 @@ namespace LittleWeeps.Core
             world.ReleaseTag(profile);
             world.ReleaseDinosaurCare(profile);
             world.ReleaseDaycare(profile);world.ReleaseKingdom(profile);
+            world.ReleaseWaveRide(profile);
             world.ReleaseFixture(profile);
             world.CancelStairs(profile);
             foreach(var toy in world.ReadToys().Where(t=>t.holder==profile))

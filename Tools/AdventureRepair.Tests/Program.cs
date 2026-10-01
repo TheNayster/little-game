@@ -30,6 +30,6 @@ class Program {
  Need(Cmd(1,SoloAction.Daycare,"start").Accepted,"picnic start");Need(w.ReadDaycare().members.All(m=>m.attending),"picnic automatic group");for(int i=0;i<3;i++)family.AdvanceIdle(1,out _);
  for(int i=1;i<=4;i++){var tray=DaycareTeacher.Tray;Need(Cmd(i,SoloAction.Move,x:tray.X,y:tray.Y).Accepted,"tray move");Need(Cmd(i,SoloAction.Daycare,"take-plate").Accepted,"take plate");Need(w.ReadDaycare().members[i-1].carryingPlate,"plate held");var place=DaycareTeacher.Plate(i-1);Need(Cmd(i,SoloAction.Move,x:place.X,y:place.Y).Accepted,"place move");Need(Cmd(i,SoloAction.Daycare,"plate",(i-1).ToString()).Accepted,"place plate");}
  Need(w.ReadDaycare().phase==3 && w.ReadDaycare().plates==15 && w.ReadDaycare().members.All(m=>!m.carryingPlate),"four counted plates");SoloWorld.Validate(w.Snapshot());
- Console.WriteLine("PASS42 upgrade, same-world automatic and late joins, explicit departure, saved fruit holds/delivery, exclusive pickup, returning fruit, timed builder/rescue jobs, shared finish/replay and independent disconnect; four-player shared plate pickup/carry/place/count.");
+ Console.WriteLine("PASS42 upgrade, same-world automatic and late joins, explicit departure, saved fruit holds/delivery, exclusive pickup, returning fruit, timed builder/rescue jobs, shared finish/replay and independent disconnect; four-player shared plate pickup/carry/place/count; assisted packing respects holds, stone hops, kind queen encounter, saved choices and both spell styles.");
  }
 }

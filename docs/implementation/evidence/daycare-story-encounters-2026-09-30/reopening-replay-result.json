@@ -1,0 +1,10 @@
+{
+  "build": 376,
+  "runId": "fa8f1d7ec9a74ee3b2c239586af8b18f",
+  "passed": true,
+  "checks": [
+    "a separate native reopening retains the complete kind-story checkpoint and saved cast",
+    "checkpoint reopening retains choices; replay picks new NPCs and the manual food/bridge/ball path finishes with a different story"
+  ],
+  "scope": "two story paths on one isolated native four-client activity pass; real UI conversations and props, late entry, independent departure, saved choices and reopening; no device/live-server update"
+}

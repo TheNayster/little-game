@@ -1,0 +1,1663 @@
+{
+  "seagulls": {
+    "phase": 0,
+    "clock": 0.0,
+    "age": 0.0,
+    "calmUntil": 0.0,
+    "from": 0,
+    "to": 0,
+    "trailFrom": 0,
+    "flights": 0,
+    "nearby": []
+  },
+  "visibleSeagulls": 0,
+  "visibleGullTracks": 0,
+  "shore": {
+    "clock": 0.0,
+    "nextVisit": 36.01716604130742,
+    "visitStarted": 0.0,
+    "random": 3224297454,
+    "visits": 0,
+    "serial": 0,
+    "visitor": 0,
+    "visitX": 0.0,
+    "right": true,
+    "prints": [],
+    "walkers": [],
+    "ripples": [],
+    "ride": {
+      "phase": 0,
+      "round": 0,
+      "splashes": 0,
+      "age": 0.0,
+      "x": 1200.0,
+      "riders": []
+    }
+  },
+  "visibleSandPrints": 0,
+  "visibleWaveRiders": 0,
+  "visibleSeaVisitor": false,
+  "seaVisitorPose": -1,
+  "serial": 15,
+  "visiblePlayers": 3,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 14,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "tagNpcVisible": false,
+  "tagSpeaking": true,
+  "tagCue": "talk-food",
+  "error": "",
+  "build": "0.0.376",
+  "actor": "player-2",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "imagination-adventure",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "outfit": "",
+      "position": {
+        "x": 676.232421875,
+        "y": 176.50682067871094
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-2",
+      "outfit": "",
+      "position": {
+        "x": 578.640625,
+        "y": 224.22116088867188
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-3",
+      "outfit": "",
+      "position": {
+        "x": 570.0,
+        "y": 150.0
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-4",
+      "outfit": "",
+      "position": {
+        "x": 420.0,
+        "y": 100.0
+      },
+      "visible": false,
+      "roarPlaying": false
+    }
+  ],
+  "toys": [],
+  "screenWidth": 1280,
+  "screenHeight": 591,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -2.108901389874518e-05,
+    "y": 7.62939453125e-06,
+    "width": 1280.0,
+    "height": 591.0
+  },
+  "boardLayoutWidth": 1732.6566162109375,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": true,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "bluey",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Talk to adventure friend 7",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1244.1473388671875,
+        "y": 323.8125915527344,
+        "width": 35.8526611328125,
+        "height": 34.53656005859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Talk to adventure friend 4",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 978.197265625,
+        "y": 327.136962890625,
+        "width": 97.330322265625,
+        "height": 34.53656005859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Gather fruit 3",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 725.8218383789062,
+        "y": 144.7949981689453,
+        "width": 129.28125,
+        "height": 125.58750915527344
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 31.76620101928711,
+        "y": 506.7825012207031,
+        "width": 62.054996490478516,
+        "height": 62.055023193359375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Story map",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 651.0812377929688,
+        "y": 386.3662414550781,
+        "width": 221.625,
+        "height": 44.32501220703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Talk to adventure friend 1",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 609.5703125,
+        "y": 314.1662902832031,
+        "width": 97.330322265625,
+        "height": 34.53656005859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1170.6650390625,
+        "y": 31.766263961791992,
+        "width": 88.64990234375,
+        "height": 88.64999389648438
+      },
+      "enabled": true
+    },
+    {
+      "name": "Talk to adventure friend 2",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 401.6398620605469,
+        "y": 305.1736755371094,
+        "width": 97.330322265625,
+        "height": 34.53656005859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Listen",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 303.0263366699219,
+        "y": 45.62105941772461,
+        "width": 248.84213256835938,
+        "height": 47.69473648071289
+      },
+      "enabled": true
+    },
+    {
+      "name": "Talk to a friend",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 407.29376220703125,
+        "y": 386.3662414550781,
+        "width": 221.625,
+        "height": 44.32501220703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Games",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 542.1156005859375,
+        "y": 517.8637084960938,
+        "width": 195.768798828125,
+        "height": 57.62255859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Talk to adventure friend 3",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 859.997314453125,
+        "y": 323.8125915527344,
+        "width": 97.330322265625,
+        "height": 34.53656005859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1147.0250244140625,
+        "y": 526.728759765625,
+        "width": 118.199951171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Gather fruit 2",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 592.8468627929688,
+        "y": 171.38999938964844,
+        "width": 129.28125,
+        "height": 125.58750915527344
+      },
+      "enabled": true
+    },
+    {
+      "name": "Return to daycare",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 687.6493530273438,
+        "y": 22.162504196166992,
+        "width": 203.15625,
+        "height": 51.712493896484375
+      },
+      "enabled": true
+    },
+    {
+      "name": "I'll gather food",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 655.5526123046875,
+        "y": 105.75790405273438,
+        "width": 404.368408203125,
+        "height": 72.57894897460938
+      },
+      "enabled": true
+    },
+    {
+      "name": "Listen again",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 523.6468505859375,
+        "y": 22.162504196166992,
+        "width": 158.831298828125,
+        "height": 51.712493896484375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Change role",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 338.9593811035156,
+        "y": 22.162504196166992,
+        "width": 173.60623168945312,
+        "height": 51.712493896484375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Back to exploring",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 645.1842041015625,
+        "y": 45.62105941772461,
+        "width": 362.894775390625,
+        "height": 47.69473648071289
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 977.112548828125,
+        "y": 526.728759765625,
+        "width": 155.137451171875,
+        "height": 47.280029296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Wake friend 1",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1236.298095703125,
+        "y": 190.68984985351562,
+        "width": 43.701904296875,
+        "height": 141.28594970703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Next adventure task",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 839.4625244140625,
+        "y": 448.4212341308594,
+        "width": 73.875,
+        "height": 56.14501953125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Help me pack",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 220.07894897460938,
+        "y": 105.75790405273438,
+        "width": 404.3684387207031,
+        "height": 72.57894897460938
+      },
+      "enabled": true
+    },
+    {
+      "name": "Talk to adventure friend 5",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1089.009765625,
+        "y": 323.8125915527344,
+        "width": 97.330322265625,
+        "height": 34.53656005859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Put fruit in basket",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 251.17495727539062,
+        "y": 118.20001220703125,
+        "width": 147.75,
+        "height": 110.8125
+      },
+      "enabled": true
+    }
+  ],
+  "outfitsOpen": false,
+  "roarPlaying": false,
+  "outfit": "",
+  "outfitColor": "green",
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.0,
+  "homePose": "Walk",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "worldMusicTrack": "home",
+  "worldMusicPlaying": true,
+  "worldMusicVolume": 0.41999998688697815,
+  "worldMusicSignal": 0.023362528532743454,
+  "worldMusicClipCount": 1,
+  "worldMusicSample": 181574,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 19.06291389465332,
+  "dinosaurWorld": {
+    "clock": 22.9391374,
+    "animals": [
+      {
+        "species": "tyrannosaurus",
+        "random": 3638696853,
+        "x": 510.3796691894531,
+        "y": 124.73432159423828,
+        "targetX": 510.3796691894531,
+        "targetY": 124.73432159423828,
+        "left": true,
+        "wandering": false,
+        "pause": 6.402832144340433,
+        "lastCall": -10.0,
+        "calls": 0,
+        "fed": 0,
+        "petted": 0
+      },
+      {
+        "species": "triceratops",
+        "random": 2668772963,
+        "x": 1447.6575927734375,
+        "y": 109.67034149169922,
+        "targetX": 1447.6575927734375,
+        "targetY": 109.67034149169922,
+        "left": true,
+        "wandering": false,
+        "pause": 8.193729115088075,
+        "lastCall": -10.0,
+        "calls": 0,
+        "fed": 0,
+        "petted": 0
+      },
+      {
+        "species": "brachiosaurus",
+        "random": 2054241663,
+        "x": 2646.024169921875,
+        "y": 168.3131561279297,
+        "targetX": 2646.024169921875,
+        "targetY": 168.3131561279297,
+        "left": true,
+        "wandering": false,
+        "pause": 6.999057569825968,
+        "lastCall": -10.0,
+        "calls": 0,
+        "fed": 0,
+        "petted": 0
+      },
+      {
+        "species": "parasaurolophus",
+        "random": 1521760299,
+        "x": 4394.14501953125,
+        "y": 130.63833618164062,
+        "targetX": 4424.193359375,
+        "targetY": 128.974365234375,
+        "left": false,
+        "wandering": true,
+        "pause": 0.0,
+        "lastCall": -10.0,
+        "calls": 0,
+        "fed": 0,
+        "petted": 0
+      }
+    ],
+    "care": [
+      {
+        "actor": "player-1",
+        "species": "",
+        "kind": "",
+        "slot": -1,
+        "ticket": 0,
+        "x": 0.0,
+        "y": 100.0,
+        "phase": 0,
+        "started": 0.0,
+        "consumed": false
+      },
+      {
+        "actor": "player-2",
+        "species": "",
+        "kind": "",
+        "slot": -1,
+        "ticket": 0,
+        "x": 0.0,
+        "y": 100.0,
+        "phase": 0,
+        "started": 0.0,
+        "consumed": false
+      },
+      {
+        "actor": "player-3",
+        "species": "",
+        "kind": "",
+        "slot": -1,
+        "ticket": 0,
+        "x": 0.0,
+        "y": 100.0,
+        "phase": 0,
+        "started": 0.0,
+        "consumed": false
+      },
+      {
+        "actor": "player-4",
+        "species": "",
+        "kind": "",
+        "slot": -1,
+        "ticket": 0,
+        "x": 0.0,
+        "y": 100.0,
+        "phase": 0,
+        "started": 0.0,
+        "consumed": false
+      }
+    ],
+    "nextCareTicket": 0
+  },
+  "dinosaurTextures": 0,
+  "dinosaurSoundPlaying": false,
+  "dinosaurSeat": {
+    "x": 0.0,
+    "y": 0.0
+  },
+  "zoo": {
+    "animals": [
+      {
+        "species": "elephant",
+        "owner": "",
+        "random": 366393937,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 3.0,
+        "fromX": 1000.0,
+        "fromY": 360.0,
+        "toX": 1000.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "giraffe",
+        "owner": "",
+        "random": 3079614595,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 5.0,
+        "fromX": 3400.0,
+        "fromY": 360.0,
+        "toX": 3400.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "zebra",
+        "owner": "",
+        "random": 1363652339,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 7.0,
+        "fromX": 5800.0,
+        "fromY": 360.0,
+        "toX": 5800.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "lion",
+        "owner": "",
+        "random": 4080805157,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 9.0,
+        "fromX": 8200.0,
+        "fromY": 360.0,
+        "toX": 8200.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "brachiosaurus",
+        "owner": "",
+        "random": 2633278357,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 11.0,
+        "fromX": 1000.0,
+        "fromY": 360.0,
+        "toX": 1000.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "triceratops",
+        "owner": "",
+        "random": 1051531719,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 13.0,
+        "fromX": 3400.0,
+        "fromY": 360.0,
+        "toX": 3400.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "stegosaurus",
+        "owner": "",
+        "random": 3630534711,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 15.0,
+        "fromX": 5800.0,
+        "fromY": 360.0,
+        "toX": 5800.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "tyrannosaurus",
+        "owner": "",
+        "random": 2052722281,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 17.0,
+        "fromX": 8200.0,
+        "fromY": 360.0,
+        "toX": 8200.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "clownfish",
+        "owner": "",
+        "random": 68322521,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 19.0,
+        "fromX": 1000.0,
+        "fromY": 360.0,
+        "toX": 1000.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "blue-tang",
+        "owner": "",
+        "random": 2781545227,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 21.0,
+        "fromX": 3400.0,
+        "fromY": 360.0,
+        "toX": 3400.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "zebra-shark",
+        "owner": "",
+        "random": 1199831419,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 23.0,
+        "fromX": 5800.0,
+        "fromY": 360.0,
+        "toX": 5800.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "penguin",
+        "owner": "",
+        "random": 3782768557,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 25.0,
+        "fromX": 8200.0,
+        "fromY": 360.0,
+        "toX": 8200.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "tortoise",
+        "owner": "",
+        "random": 2201021981,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 27.0,
+        "fromX": 1000.0,
+        "fromY": 360.0,
+        "toX": 1000.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "gecko",
+        "owner": "",
+        "random": 753493071,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 29.0,
+        "fromX": 3400.0,
+        "fromY": 360.0,
+        "toX": 3400.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "iguana",
+        "owner": "",
+        "random": 3466715839,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 31.0,
+        "fromX": 5800.0,
+        "fromY": 360.0,
+        "toX": 5800.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "crocodile",
+        "owner": "",
+        "random": 1754683633,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 33.0,
+        "fromX": 8200.0,
+        "fromY": 360.0,
+        "toX": 8200.0,
+        "toY": 360.0,
+        "consumed": false
+      }
+    ],
+    "food": [
+      {
+        "actor": "player-1",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-2",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-3",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-4",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      }
+    ],
+    "nextTicket": 0
+  },
+  "visibleZooAnimals": 0,
+  "zooTextures": 0,
+  "zooAudioClips": 0,
+  "zooSoundPlaying": false,
+  "creekBoats": {
+    "clock": 22.9391374,
+    "boats": [
+      {
+        "actor": "player-1",
+        "slot": 0,
+        "hull": 0,
+        "colour": 0,
+        "dock": 0,
+        "trips": 0,
+        "passenger": false,
+        "flower": false,
+        "attending": false,
+        "phase": 0,
+        "started": 0.0
+      },
+      {
+        "actor": "player-2",
+        "slot": 1,
+        "hull": 1,
+        "colour": 1,
+        "dock": 0,
+        "trips": 0,
+        "passenger": false,
+        "flower": false,
+        "attending": false,
+        "phase": 0,
+        "started": 0.0
+      },
+      {
+        "actor": "player-3",
+        "slot": 2,
+        "hull": 2,
+        "colour": 2,
+        "dock": 0,
+        "trips": 0,
+        "passenger": false,
+        "flower": false,
+        "attending": false,
+        "phase": 0,
+        "started": 0.0
+      },
+      {
+        "actor": "player-4",
+        "slot": 3,
+        "hull": 0,
+        "colour": 3,
+        "dock": 0,
+        "trips": 0,
+        "passenger": false,
+        "flower": false,
+        "attending": false,
+        "phase": 0,
+        "started": 0.0
+      }
+    ]
+  },
+  "boatWorkshopOpen": false,
+  "ownCreekBoatInView": false,
+  "visibleCreekBoats": 0,
+  "creekFishing": {
+    "clock": 0.0,
+    "random": 276181249,
+    "nextFood": 0,
+    "fish": [
+      {
+        "id": 0,
+        "random": 1320575063,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -178.58175659179688,
+        "y": 15.563776969909668,
+        "started": 0.0,
+        "duration": 4.53735170991564
+      },
+      {
+        "id": 1,
+        "random": 580181067,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -19.85577392578125,
+        "y": -19.921184539794922,
+        "started": 0.0,
+        "duration": 3.675419656484253
+      },
+      {
+        "id": 2,
+        "random": 4046986826,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 492.3348388671875,
+        "y": -8.439506530761719,
+        "started": 0.0,
+        "duration": 7.711312738878492
+      },
+      {
+        "id": 3,
+        "random": 65754276,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -210.997802734375,
+        "y": 9.490800857543945,
+        "started": 0.0,
+        "duration": 3.0765480520381936
+      },
+      {
+        "id": 4,
+        "random": 175923488,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 18.20621109008789,
+        "y": -4.531006336212158,
+        "started": 0.0,
+        "duration": 3.204801894772053
+      },
+      {
+        "id": 5,
+        "random": 3390669756,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 610.1221313476562,
+        "y": -5.8501362800598145,
+        "started": 0.0,
+        "duration": 6.947259109454988
+      },
+      {
+        "id": 6,
+        "random": 490057972,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 346.1425476074219,
+        "y": -1.3730812072753906,
+        "started": 0.0,
+        "duration": 3.5705025653751807
+      },
+      {
+        "id": 7,
+        "random": 3297013662,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -379.0644226074219,
+        "y": -6.822763442993164,
+        "started": 0.0,
+        "duration": 6.838229066188966
+      },
+      {
+        "id": 8,
+        "random": 4278962006,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 287.7537841796875,
+        "y": 6.1824870109558105,
+        "started": 0.0,
+        "duration": 7.981367391296981
+      },
+      {
+        "id": 9,
+        "random": 3961771325,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -324.1292419433594,
+        "y": -18.84500503540039,
+        "started": 0.0,
+        "duration": 7.61210883911981
+      },
+      {
+        "id": 10,
+        "random": 206271698,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 578.0263671875,
+        "y": -6.508710861206055,
+        "started": 0.0,
+        "duration": 3.240131861120493
+      },
+      {
+        "id": 11,
+        "random": 2505229457,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 28.607444763183594,
+        "y": -13.94396686553955,
+        "started": 0.0,
+        "duration": 5.916470935548766
+      },
+      {
+        "id": 12,
+        "random": 1887896027,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -459.5287170410156,
+        "y": -11.551810264587402,
+        "started": 0.0,
+        "duration": 5.197800236101681
+      },
+      {
+        "id": 13,
+        "random": 1428280697,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 224.94020080566406,
+        "y": -15.688149452209473,
+        "started": 0.0,
+        "duration": 4.662737570391673
+      },
+      {
+        "id": 14,
+        "random": 3772297187,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -306.58489990234375,
+        "y": 3.720315456390381,
+        "started": 0.0,
+        "duration": 7.3915319115369424
+      },
+      {
+        "id": 15,
+        "random": 3487216431,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 282.02459716796875,
+        "y": 3.129605293273926,
+        "started": 0.0,
+        "duration": 7.059654231895612
+      },
+      {
+        "id": 16,
+        "random": 2883700502,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 466.44171142578125,
+        "y": 10.15084457397461,
+        "started": 0.0,
+        "duration": 6.357069220709864
+      },
+      {
+        "id": 17,
+        "random": 2202809108,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 473.435302734375,
+        "y": 9.446398735046387,
+        "started": 0.0,
+        "duration": 5.564407312908305
+      },
+      {
+        "id": 18,
+        "random": 4214169374,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -662.5112915039062,
+        "y": -0.39777371287345886,
+        "started": 0.0,
+        "duration": 7.905938840216477
+      },
+      {
+        "id": 19,
+        "random": 1554432887,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -233.28709411621094,
+        "y": 0.5068239569664001,
+        "started": 0.0,
+        "duration": 4.809598048406094
+      }
+    ],
+    "rods": [
+      {
+        "actor": "player-1",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-2",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-3",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-4",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      }
+    ],
+    "food": []
+  },
+  "creekFishingCloseup": false,
+  "creekFishingWaterPlaying": false,
+  "pond": {
+    "clock": 17.7875676,
+    "random": 2346828769,
+    "nextFood": 0,
+    "fish": [
+      {
+        "id": 0,
+        "random": 2882136833,
+        "fromX": -35.486602783203125,
+        "fromY": 19.270904541015625,
+        "x": 240.4257049560547,
+        "y": -17.49001121520996,
+        "started": 14.851941100000005,
+        "duration": 6.355248870410781
+      },
+      {
+        "id": 1,
+        "random": 3315210230,
+        "fromX": 123.37229919433594,
+        "fromY": 2.6193673610687256,
+        "x": 13.802342414855957,
+        "y": -21.471996307373047,
+        "started": 11.775430700000005,
+        "duration": 6.859412659392556
+      },
+      {
+        "id": 2,
+        "random": 3253948789,
+        "fromX": 103.55037689208984,
+        "fromY": -9.093600273132324,
+        "x": -245.1043701171875,
+        "y": 14.079428672790527,
+        "started": 13.794064700000002,
+        "duration": 6.788094955679982
+      },
+      {
+        "id": 3,
+        "random": 3665609724,
+        "fromX": -40.91212844848633,
+        "fromY": 31.3807373046875,
+        "x": 30.442934036254883,
+        "y": -16.799436569213867,
+        "started": 15.521564800000002,
+        "duration": 7.267331358107582
+      },
+      {
+        "id": 4,
+        "random": 3513850944,
+        "fromX": -114.4364242553711,
+        "fromY": -9.437959671020508,
+        "x": 165.56668090820312,
+        "y": -16.523202896118164,
+        "started": 14.2608808,
+        "duration": 7.090660885928818
+      },
+      {
+        "id": 5,
+        "random": 1048905437,
+        "fromX": 212.56678771972656,
+        "fromY": -12.647958755493164,
+        "x": -52.816932678222656,
+        "y": -6.636722087860107,
+        "started": 15.0686038,
+        "duration": 4.221086640428073
+      },
+      {
+        "id": 6,
+        "random": 2703685309,
+        "fromX": 98.63922882080078,
+        "fromY": -32.9528923034668,
+        "x": -155.782470703125,
+        "y": -18.941829681396484,
+        "started": 15.352045600000002,
+        "duration": 6.147503954392743
+      },
+      {
+        "id": 7,
+        "random": 3325239549,
+        "fromX": -95.7447509765625,
+        "fromY": -11.049188613891602,
+        "x": 90.92044830322266,
+        "y": 10.39107894897461,
+        "started": 14.951839600000001,
+        "duration": 6.871088323386173
+      }
+    ],
+    "rods": [
+      {
+        "actor": "player-1",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-2",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-3",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-4",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      }
+    ],
+    "food": []
+  },
+  "pondCloseup": false,
+  "pondWaterPlaying": false,
+  "daycare": {
+    "clock": 5.1005,
+    "started": 0.0,
+    "helpUntil": 0.0,
+    "round": 0,
+    "phase": 0,
+    "plates": 0,
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": false
+      },
+      {
+        "actor": "player-2",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": false
+      },
+      {
+        "actor": "player-3",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": false
+      },
+      {
+        "actor": "player-4",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": false
+      }
+    ],
+    "guests": [
+      "winton",
+      "indy",
+      "chucky",
+      "lucky"
+    ]
+  },
+  "daycareRoutine": 0,
+  "calypsoPose": 1,
+  "calypsoVisible": false,
+  "calypsoMoving": false,
+  "calypsoWorldPoint": {
+    "x": 600.0,
+    "y": 240.0
+  },
+  "kingdom": {
+    "round": 1,
+    "supplies": 0,
+    "boards": 0,
+    "rescued": 0,
+    "phase": 2,
+    "clock": 4.239550600000001,
+    "started": 0.7236528,
+    "distractedUntil": 0.0,
+    "members": [
+      {
+        "actor": "player-1",
+        "role": 0,
+        "attending": true,
+        "declined": false,
+        "carrying": "fruit-0",
+        "hopAt": -10.0
+      },
+      {
+        "actor": "player-2",
+        "role": 1,
+        "attending": true,
+        "declined": false,
+        "carrying": "",
+        "hopAt": -10.0
+      },
+      {
+        "actor": "player-3",
+        "role": 2,
+        "attending": true,
+        "declined": false,
+        "carrying": "",
+        "hopAt": -10.0
+      },
+      {
+        "actor": "player-4",
+        "role": 3,
+        "attending": false,
+        "declined": false,
+        "carrying": "",
+        "hopAt": -10.0
+      }
+    ],
+    "npcCast": [
+      "dougie",
+      "dusty",
+      "pom-pom",
+      "missy",
+      "coco",
+      "chloe",
+      "hercules",
+      "honey",
+      "socks"
+    ],
+    "boardAt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "wakeAt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "crossing": 0,
+    "queenPlan": 0,
+    "helpedSupplies": 0,
+    "foodHelp": false,
+    "helpAt": 0.0,
+    "queenAt": 0.0,
+    "rescueStyle": [
+      0,
+      0,
+      0
+    ]
+  },
+  "visibleKingdomNpcs": 9,
+  "kingdomApproach": "",
+  "lastTouchTargets": [
+    "Talk to a friend",
+    "Garden"
+  ],
+  "kingdomNpcArt": [
+    "dougie",
+    "dusty",
+    "pom-pom",
+    "missy",
+    "coco",
+    "chloe",
+    "hercules",
+    "honey",
+    "socks"
+  ],
+  "picnicNpcArt": [
+    "",
+    "",
+    "",
+    ""
+  ],
+  "kingdomNpcJobs": [
+    "Guide",
+    "Carry fruit",
+    "Bridge helper",
+    "Bridge helper",
+    "Bridge helper",
+    "Guard wand",
+    "Frozen friend",
+    "Frozen friend",
+    "Frozen friend"
+  ],
+  "kingdomNpcPoses": [
+    "Walk",
+    "Carry",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle"
+  ],
+  "kingdomNpcPoints": [
+    {
+      "x": 891.0125732421875,
+      "y": 300.9831237792969
+    },
+    {
+      "x": 609.5499877929688,
+      "y": 273.9324951171875
+    },
+    {
+      "x": 1230.0,
+      "y": 330.0
+    },
+    {
+      "x": 1390.0,
+      "y": 340.0
+    },
+    {
+      "x": 1540.0,
+      "y": 330.0
+    },
+    {
+      "x": 2110.0,
+      "y": 340.0
+    },
+    {
+      "x": 1750.0,
+      "y": 330.0
+    },
+    {
+      "x": 1930.0,
+      "y": 340.0
+    },
+    {
+      "x": 2300.0,
+      "y": 330.0
+    }
+  ],
+  "hideAndSeek": {
+    "round": 0,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 0,
+    "age": 0.0,
+    "count": 0.0,
+    "clock": 0.0,
+    "walked": 0.0,
+    "x": -3660.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "daycare",
+  "cameraX": 866.3283081054688,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "daycare-adventure"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Story landmark 0",
+    "Story landmark 1",
+    "Story landmark 2",
+    "Story landmark 3",
+    "Adventure NPC role 3",
+    "Adventure NPC role 5",
+    "Adventure NPC role 7",
+    "Adventure NPC role 2",
+    "Adventure NPC role 4",
+    "Adventure NPC role 6",
+    "Adventure NPC role 8",
+    "Adventure NPC role 0",
+    "Adventure NPC role 1",
+    "Adventure prop fruit-1",
+    "Player character",
+    "Adventure prop fruit-2",
+    "Friend-player-1",
+    "Carried Adventure prop player-1",
+    "Friend-player-3",
+    "Shared picnic basket"
+  ],
+  "bookAuto": false,
+  "bookWords": true,
+  "bookOptions": false,
+  "bookEffect": false,
+  "bookEffectPending": false,
+  "bookNaming": false,
+  "bookTitle": "hello-dinosaurs",
+  "bookTextures": 0,
+  "bookAudio": 0,
+  "discoveryOpen": false,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "The kingdom needs food for the feast. You can carry fruit to our basket. Would you like me to help pack while you explore?",
+    "I'll gather food",
+    "Please help us!",
+    "Talk to a friend",
+    "Talk to me!",
+    "Castle camp",
+    "Story map",
+    "Games",
+    "Menu",
+    "Builder",
+    "Joystick",
+    "Need a crossing?",
+    "Bring it to our basket!",
+    "Dusty \u00b7 Orchard friend",
+    "Listen again",
+    "Listen",
+    ">",
+    "Who goes there?",
+    "River crossing",
+    "Fruit orchard",
+    "Need a crossing?",
+    "Please help us!",
+    "Return to daycare",
+    "Queen's grove",
+    "Need a crossing?",
+    "Back to exploring",
+    "First, pack food for the feast. Tap a fruit.",
+    "Help me pack",
+    "Please help us!"
+  ]
+}

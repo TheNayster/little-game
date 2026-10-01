@@ -30,7 +30,7 @@ namespace LittleWeeps.Core
     public static class KingdomAdventure
     {
         public const int Schema=38;
-        public const int StorySchema=44;
+        public const int StorySchema=45;
         public const string Zone="imagination-adventure";
         public static readonly string[] Roles={"Explorer","Builder","Wand helper","Picnic helper"};
         public static string Name(KingdomState s,int index)=>PlayableCharacters.Find(s.npcCast[index]).Name;
@@ -40,6 +40,7 @@ namespace LittleWeeps.Core
         {
             switch(id){case "fruit-0":return new WalkPoint(710,180);case "fruit-1":return new WalkPoint(890,260);case "fruit-2":return new WalkPoint(1070,180);
                 case "board-0":return new WalkPoint(1240,180);case "board-1":return new WalkPoint(1370,200);case "board-2":return new WalkPoint(1500,180);
+                case "site-0":return new WalkPoint(440,100);case "site-1":return new WalkPoint(900,260);case "site-2":return new WalkPoint(1660,190);case "site-3":return new WalkPoint(2160,210);
                 case "basket":return new WalkPoint(440,100);case "ball":return new WalkPoint(1840,190);case "wand":return new WalkPoint(2130,210);
                 case "friend-0":return new WalkPoint(1750,330);case "friend-1":return new WalkPoint(1930,340);case "friend-2":return new WalkPoint(2300,330);
                 default:return new WalkPoint(-1000,-1000);}

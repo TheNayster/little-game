@@ -19,6 +19,8 @@ namespace LittleWeeps.Client
             var age=g.clock+(Shared && shared.Connected?Math.Min(.35,Time.unscaledTime-kingdomClockAt):0)-member.hopAt;
             if(age>=0 && age<.75 && visual.ActiveView!=null)((RectTransform)visual.ActiveView.transform).anchoredPosition=new Vector2(0,-45+(float)Math.Sin(age/.75*Math.PI)*70);
         }
+        private void PresentKingdomHops()
+        {PresentKingdomHop(Actor,characterVisual);foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)PresentKingdomHop(friend.Key,friend.Value.view);}
         private void BuildKingdomStoryControls()
         {
             kingdomEncounterControls=Rect(safe,"Adventure encounters",Vector2.zero,new Vector2(680,66));
@@ -72,8 +74,8 @@ namespace LittleWeeps.Client
             if(!KingdomArea || MenuOpen)return;var g=KingdomGame;
             var words="OUR QUEST: wake three frozen friends and bring everyone home.\n\n"+(g.phase>KingdomPhase.Supplies?"Food packed. ":"Visit the orchard. ")+(g.phase>KingdomPhase.Bridge?(g.crossing==2?"We crossed the stones. ":"We built the bridge. "):"Find a way across the river. ")+(g.phase>=KingdomPhase.Rescue?(g.queenPlan==2?"The queen is invited! ":"We found the wand! "):"Meet the queen. ")+"\nFriends awake: "+Enumerable.Range(0,3).Count(i=>(g.rescued&(1<<i))!=0)+" / 3";
             var card=KingdomCard("Our kingdom story",words,-1);
-            var choices=new[]{("Castle",0),("Orchard",1),("River",2),("Queen",5)};
-            for(var i=0;i<choices.Length;i++){var choice=choices[i];var at=new Vector2(-315+i*210,-155);Button(card,choice.Item1,at,new Vector2(195,65),()=>RequestKingdom("npc-"+choice.Item2,"talk"),new Color(.81f,.9f,.96f)).fontSize=23;}
+            var choices=new[]{("Castle",0),("Orchard",1),("River",2),("Queen",3)};
+            for(var i=0;i<choices.Length;i++){var choice=choices[i];var at=new Vector2(-315+i*210,-155);Button(card,choice.Item1,at,new Vector2(195,65),()=>RequestKingdom("site-"+choice.Item2,"visit"),new Color(.81f,.9f,.96f)).fontSize=23;}
             Button(card,"Back to exploring",new Vector2(0,-222),new Vector2(330,46),CloseKingdomTalk,Color.white).fontSize=22;
         }
         private void DrawKingdomCrossingProp(RectTransform prop,bool stone)

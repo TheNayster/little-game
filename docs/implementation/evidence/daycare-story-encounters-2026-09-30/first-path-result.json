@@ -1,0 +1,12 @@
+{
+  "build": 376,
+  "runId": "fa8f1d7ec9a74ee3b2c239586af8b18f",
+  "passed": false,
+  "checks": [
+    "spoken orchard conversation starts a shared NPC packing job while preserving a sibling fruit hold",
+    "one shared stone route includes a late fourth player and remains completable after independent departure",
+    "talking to the lonely queen changes her job and shares the wand without a ball timer",
+    "rescue conversations offer two spells and the shared ending/journal retain the chosen story"
+  ],
+  "scope": "two story paths on one isolated native four-client activity pass; real UI conversations and props, late entry, independent departure, saved choices and reopening; no device/live-server update"
+}

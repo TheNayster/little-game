@@ -6,8 +6,8 @@ namespace LittleWeeps.Core
     // its coordinates left of the original garden preserves every saved prop.
     public static class WorldLayout
     {
-        // Saved story choices affect shared helper, crossing and queen behavior.
-        public const int Schema=44, ScenerySchema=3, Content=57;
+        // Retain the combined family worlds and add saved Adventure story choices.
+        public const int Schema=45, ScenerySchema=3, Content=59;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || id==KingdomAdventure.Zone || HomeRooms.Internal(id) || id==DinosaurRides.Area || ZooLayout.Area(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id) && !ZooCatalog.Trail(id) && id!=KingdomAdventure.Zone;

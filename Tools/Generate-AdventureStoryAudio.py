@@ -44,7 +44,7 @@ for folder,lines in entries.items():
         waves,sr=model.generate_voice_design(text=text,language='English',instruct=prompt,max_new_tokens=1800)
         wave=np.asarray(waves[0],dtype=np.float32).squeeze()
         assert np.isfinite(wave).all() and .15<len(wave)/sr<30
-        raw=WORK/'raw'/(folder.lower()+'-repair-'+name+'.wav');sf.write(raw,wave,sr)
+        raw=WORK/'raw'/(folder.lower()+'-story-'+name+'.wav');sf.write(raw,wave,sr)
         dest=ROOT/'Unity/FamilyPlayset/Assets/FamilyPlayset/Resources'/folder/(name+'.wav')
         subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(raw),'-af','loudnorm=I=-20:TP=-3:LRA=7','-ac','1','-ar','24000',str(dest)],check=True)
         records=[r for r in records if r['id']!=name]

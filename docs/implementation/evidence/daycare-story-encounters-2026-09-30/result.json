@@ -1,0 +1,16 @@
+{
+  "build": 376,
+  "gameplayPassed": true,
+  "completeFirstRunPassed": false,
+  "checks": [
+    "spoken orchard conversation starts a shared NPC packing job while preserving a sibling fruit hold",
+    "one shared stone route includes a late fourth player and remains completable after independent departure",
+    "talking to the lonely queen changes her job and shares the wand without a ball timer",
+    "rescue conversations offer two spells and the shared ending/journal retain the chosen story",
+    "a separate native reopening retains the complete kind-story checkpoint and saved cast",
+    "checkpoint reopening retains choices; replay picks new NPCs and the manual food/bridge/ball path finishes with a different story"
+  ],
+  "runtimeSourceFilesMatched": 346,
+  "scope": "native shared activity on four release clients; real props, conversations, two choices/routes, independent exit, late entry and actual save reopening; no devices/live-server changed",
+  "limit": "First run completed its four gameplay groups but one Windows client returned a nonzero code after writing stopped during shutdown. Native quit remains unqualified; the separate same-checkpoint reopening/replay run passes."
+}

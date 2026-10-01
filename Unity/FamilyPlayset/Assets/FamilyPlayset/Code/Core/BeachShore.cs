@@ -27,7 +27,8 @@ namespace LittleWeeps.Core
         public SandPrint[] prints=Array.Empty<SandPrint>();
         public ShoreWalker[] walkers=Array.Empty<ShoreWalker>();
         public ShoreRipple[] ripples=Array.Empty<ShoreRipple>();
-        public BeachShoreState Copy(){var s=(BeachShoreState)MemberwiseClone();s.prints=prints.Select(p=>p.Copy()).ToArray();s.walkers=walkers.Select(p=>p.Copy()).ToArray();s.ripples=ripples.Select(p=>p.Copy()).ToArray();return s;}
+        public WaveRideState ride;
+        public BeachShoreState Copy(){var s=(BeachShoreState)MemberwiseClone();s.prints=prints.Select(p=>p.Copy()).ToArray();s.walkers=walkers.Select(p=>p.Copy()).ToArray();s.ripples=ripples.Select(p=>p.Copy()).ToArray();s.ride=ride?.Copy();return s;}
     }
     public static class BeachShore
     {
@@ -99,8 +100,9 @@ namespace LittleWeeps.Core
         private bool AdvanceShore(double dt,string[] active,out bool visible)
         {
             visible=false;var g=state.shore;if(g==null)return false;
+            var rideChanged=AdvanceWaveRide(dt,active,out var rideVisible);visible|=rideVisible;
             var watchers=state.players.Where(p=>p.zone=="beach" && (active==null || active.Contains(p.id))).OrderBy(p=>p.id,StringComparer.Ordinal).ToArray();
-            if(watchers.Length==0)return false;
+            if(watchers.Length==0)return rideChanged;
             g.clock+=dt;var water=BeachShore.WaterY(g.clock);
             foreach(var print in g.prints)if(print.washed<0 && print.y>=BeachShore.WetY && print.y>=water){print.washed=g.clock;g.serial++;}
             var prints=g.prints.Where(p=>BeachShore.PrintAlpha(p,g.clock)>0).ToArray();var ripples=g.ripples.Where(p=>g.clock-p.born<2).ToArray();

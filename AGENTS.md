@@ -1,6 +1,6 @@
 # Project boundary
 
-- This game's GitHub home is the private repository `https://github.com/TheNayster/little-weeps-game`, with Git remote `origin`. Use this repository for this game's source/history; never substitute a repository from the unrelated old project. Keep credentials, signing material, generated builds and local saved worlds out of commits. Preserve Git LFS media when pushing or restoring.
+- This game's GitHub home is the private repository `https://github.com/TheNayster/little-game`, with Git remote `origin`. Use this repository for this game's source/history; never substitute a repository from the unrelated old project. Keep credentials, signing material, generated builds and local saved worlds out of commits. Preserve Git LFS media when pushing or restoring.
 - Personal TV source videos belong in `Media/TV/`. Its contents are ignored except `README.md`; never force-add personal clips, thumbnails, subtitles or local catalogs. The separate generated foundation test clip remains tracked. Folder preparation does not mean the TV importer is implemented.
 
 - This directory is the new home for the family game described in `docs/bluey-game-research-2026-09-23.md`.
@@ -39,7 +39,7 @@
 - Compatible app releases must leave the existing server process, endpoint, firewall, enrollment and parent-helper selection alone. App build numbers do not need to equal the server build. Shared protocol/content compatibility does need to match; never bypass admission checks to conceal a mismatch.
 - Do not bump shared compatibility for artwork, sound, menus or other client-only presentation changes. When shared rules/messages/save fields change, record the reason and prepare a coordinated server update. Missing compatibility metadata means unknown, not permission to replace a server.
 - PC availability means awake and connected. Use the existing recovery/parent intent and selected family. Never create a fresh family, reset a save, change sleep settings silently or restart occupied family play to apply an app-only update.
-- The persistent PC server is installed; its actual baseline, checked commands and limitations are recorded in `docs/server-update-policy.md`. Other chats may build content and follow that policy; never treat a newer app build as authorization to replace the live server. Preserve unrelated concurrent edits and the existing main integration hold.
+- The persistent PC server is installed; its actual baseline, checked commands and limitations are recorded in `docs/server-update-policy.md`. Other chats may build content and follow that policy; never treat a newer app build as authorization to replace the live server. Preserve unrelated concurrent edits; completed source follows the Git branch lifecycle below.
 
 ## Git delivery and project records
 
@@ -48,7 +48,17 @@
 - For implementation milestones, update the main build guide and relevant evidence with what changed, what actually passed, remaining limits and the next task. Documentation-only or repository-maintenance tasks need an appropriate record, not unrelated game tests.
 - Review the diff and run checks appropriate to the change before committing. Stage only relevant files. Respect `.gitignore`, preserve tracked Git LFS assets, and never force-add private media, signing keys, credentials, generated builds or local saves.
 - Push completed, checked commits to this private `origin` and verify the remote branch points to the intended commit. Keep `main` synchronized with completed work through a safe fast-forward or normal integration. Keep incomplete or failing work off `main`; identify it clearly if checkpointed on a development branch.
-- Do not force-push, rewrite shared history, delete branches or discard changes as routine cleanup. Reconcile concurrent updates without overwriting them. Report a genuine push/authentication/conflict blocker instead of claiming the work is uploaded.
+- Do not force-push, rewrite shared history or discard changes. Delete completed branches after verified main integration under the branch lifecycle below. Reconcile concurrent updates without overwriting them. Report a genuine push/authentication/conflict blocker instead of claiming the work is uploaded.
 - End meaningful work with a clear status: what changed, relevant validation and any unpushed or unfinished work. This workflow applies while working on the project; it does not imply an unattended background sync service.
 
 - When architecture changes, audit the goal sheet, phase/feature ledgers, return checklist, companion research and generated-page renderers. Run `Tools/Test-PlanConsistency.py` after rendering. Preserve dated evidence without treating its superseded instructions as current requirements.
+
+- September 30 latest movement preference: the user approved a 15% increase from 420 to 483 floor units/second for every character. Preserve one shared Walking.Speed. This supersedes the earlier 420 baseline; delivery is recorded in current decisions.
+
+## Git branch lifecycle — September 30 user instruction
+
+- Finished, appropriately checked work must be integrated into `main` and pushed to `origin/main` as part of the same task. Verify the remote commit, then delete the finished task branch both on GitHub and locally. Do not leave completed branches behind.
+- Use `main` directly for small, isolated work when the checkout is clean and concurrent edits will not be mixed. Create a temporary task branch only when unfinished work, concurrent tasks or a risky change actually needs isolation; reuse the existing task branch instead of making a branch per build, test or follow-up.
+- Older blanket main-integration holds and the old prohibition on routine branch deletion are superseded by this user instruction for completed source delivery. Source integration does not authorize device installation, server replacement or deployment; those retain their own requirements.
+- Preserve unrelated edits and unfinished work. If a finished branch is still checked out, move a clean checkout safely onto `main` before deleting it; do not reset, discard or detach someone else's active edits to force cleanup. Record a specific blocker and finish cleanup when it is resolved.
+- Keep `main` current through fast-forward or normal integration. Never force-push `main`, rewrite shared history, commit private media/secrets/builds/saves, or erase unique work just to reduce the branch count. Report the final main commit and any branches that genuinely remain unfinished.

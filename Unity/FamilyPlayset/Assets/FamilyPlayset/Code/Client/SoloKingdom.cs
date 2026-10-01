@@ -33,11 +33,12 @@ namespace LittleWeeps.Client
         public string[] KingdomNpcJobs=>KingdomGame==null?Array.Empty<string>():Enumerable.Range(0,9).Select(i=>KingdomAdventure.NpcJob(KingdomGame,i,KingdomGame.clock)).ToArray();
         public string[] KingdomNpcPoses=>kingdomNpcs.Select(n=>n.visual.Frame.Pose.ToString()).ToArray();
         public Vector2[] KingdomNpcPoints=>kingdomNpcPoints.ToArray();
+        public string KingdomApproach=>kingdomApproach;
         private KingdomMember KingdomOwn=>KingdomGame?.members.FirstOrDefault(m=>m.actor==Actor);
         private bool KingdomArea=>CurrentArea==KingdomAdventure.Zone;
         private void SendKingdom(string op,string target="")
         {
-            if(!Ready || TravelPending || kingdomSending)return;
+            if(!Ready || TravelPending || kingdomSending && op!="leave")return;
             kingdomSending=true;destination=null;kingdomApproach="";manualCamera=false;CancelPointers();shared?.Walk(WalkMode.Stop);
             void Done(SoloResult result){kingdomSending=false;if(!result.Accepted){homeFeedback.text=result.Outcome=="fruit-already-taken"?"Your friend has that fruit. Pick another!":result.Outcome=="bring-fruit-to-basket"?"Bring your fruit to the basket first.":"Try the glowing picture again.";homeFeedbackUntil=Time.unscaledTime+2;}Render();}
             if(Shared){if(!SubmitShared(SoloAction.Kingdom,"",target,op,0,0,Done))kingdomSending=false;}
@@ -47,17 +48,20 @@ namespace LittleWeeps.Client
         {CloseMiniGames();CloseNavigation();Narration.Stop();SendKingdom("start");}
         private void RequestKingdom(string target,string op)
         {
-            if(!Ready || MenuOpen || kingdomSending || KingdomOwn?.attending!=true)return;
+            if(!Ready || MenuOpen || KingdomOwn?.attending!=true)return;
             CloseKingdomTalk();CancelPointers();var point=KingdomAdventure.ActionPoint(KingdomGame,target);kingdomApproach=target;kingdomOperation=op;manualCamera=false;destination=new Vector2(point.X,point.Y);
         }
         private void CheckKingdomInput()
         {
             if(kingdomApproach=="")return;
             if(!KingdomArea || MenuOpen || applicationPaused || stickDirection.sqrMagnitude>.1f){kingdomApproach="";destination=null;return;}
+            // Preserve the next pictured action while the earlier pickup reply
+            // catches up with the visible shared hold. Never send it twice.
+            if(kingdomSending || ActionPending)return;
             var p=ReadPlayer(Actor);var point=KingdomAdventure.ActionPoint(KingdomGame,kingdomApproach);
             destination=new Vector2(point.X,point.Y);
             if(Math.Abs(p.x-point.X)>65 || Math.Abs(p.y-point.Y)>65)return;
-            var target=kingdomApproach;var op=kingdomOperation;if(op=="talk"){kingdomApproach="";destination=null;shared?.Walk(WalkMode.Stop);ShowKingdomTalk(int.Parse(target.Substring(4)));}else SendKingdom(op,target);
+            var target=kingdomApproach;var op=kingdomOperation;if(op=="visit"){kingdomApproach="";destination=null;shared?.Walk(WalkMode.Stop);return;}if(op=="talk"){kingdomApproach="";destination=null;shared?.Walk(WalkMode.Stop);ShowKingdomTalk(int.Parse(target.Substring(4)));}else SendKingdom(op,target);
         }
         private void BuildKingdom()
         {

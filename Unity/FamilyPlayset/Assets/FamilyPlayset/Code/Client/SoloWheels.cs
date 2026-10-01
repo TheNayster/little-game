@@ -15,12 +15,18 @@ namespace LittleWeeps.Client
         private readonly bool[] wheelLeft=new bool[8];
         private readonly float[] wheelLastX=new float[8];
         private GameObject wheelsExit;
+        private readonly RectTransform[] wheelParking=new RectTransform[2];
         private void BuildWheels()
         {
             wheelsTexture=Resources.Load<Texture2D>("ParkArt/bikes-scooters");
             if(wheelsTexture==null)throw new InvalidOperationException("Missing park vehicle artwork");
             riderTexture=Resources.Load<Texture2D>("ParkArt/rider-poses");
             if(riderTexture==null)throw new InvalidOperationException("Missing riding poses");
+            for(var bay=0;bay<2;bay++){
+                var pad=Rect(Board,bay==0?"Bicycle parking bay":"Scooter parking bay",Vector2.zero,Vector2.zero);wheelParking[bay]=pad;
+                Panel(pad,"Parking surface",new Vector2(0,8),new Vector2(1110,58),new Color(.84f,.82f,.68f),false,true).raycastTarget=false;
+                for(var line=0;line<5;line++)Panel(pad,"Parking divider "+line,new Vector2((line-2)*280,8),new Vector2(5,36),new Color(.97f,.95f,.84f)).raycastTarget=false;
+            }
             for(var i=0;i<8;i++){
                 var slot=i;var root=Rect(Board,"Park vehicle "+i,Vector2.zero,Vector2.zero);wheelVehicles[i]=root;
                 var bike=i<4;var unit=bike?220f/940:200f/790;
@@ -47,19 +53,24 @@ namespace LittleWeeps.Client
         private void ResetWheels()
         {
             foreach(var sprite in wheelsSprites)if(sprite!=null)Destroy(sprite);wheelsSprites.Clear();Array.Clear(wheelPhase,0,8);Array.Clear(wheelVehicles,0,8);Array.Clear(wheelTargets,0,8);Array.Clear(wheelLeft,0,8);
+            Array.Clear(wheelParking,0,2);
             if(wheelsTexture!=null)Resources.UnloadAsset(wheelsTexture);wheelsTexture=null;if(riderTexture!=null)Resources.UnloadAsset(riderTexture);riderTexture=null;wheelsExit=null;
         }
         private void PresentWheels()
         {
             if(wheelsExit==null || !HasWorld)return;var list=ReadPlayersForWheels();
             wheelsExit.SetActive(CurrentArea=="park" && !MenuOpen && ParkWheels.Usable(ReadPlayer(Actor).fixture));
+            for(var bay=0;bay<2;bay++){
+                var pad=wheelParking[bay];pad.gameObject.SetActive(CurrentArea=="park" && !WorldLoading);
+                pad.anchoredPosition=ToBoard((ParkWheels.ParkX(bay*4)+ParkWheels.ParkX(bay*4+3))/2,ParkWheels.ParkingY);pad.localScale=Vector3.one*sceneScale;
+            }
             for(var i=0;i<8;i++){
                 var root=wheelVehicles[i];var rider=list.FirstOrDefault(p=>p.zone=="park" && p.fixture==ParkWheels.Id(i));
                 root.gameObject.SetActive(CurrentArea=="park" && !WorldLoading);if(!root.gameObject.activeSelf)continue;
                 // A rider's moving hitbox must not block an available parked
                 // vehicle underneath it. Dismount uses the explicit exit button.
                 wheelTargets[i].SetActive(rider==null);
-                var point=rider==null?new Vector2(ParkWheels.ParkX(i),ParkWheels.Lane(ParkWheels.Id(i))):Shared && shared.Connected?shared.VisualPosition(rider.id):new Vector2(rider.x,rider.y);
+                var point=rider==null?new Vector2(ParkWheels.ParkX(i),ParkWheels.ParkingY):Shared && shared.Connected?shared.VisualPosition(rider.id):new Vector2(rider.x,rider.y);
                 var delta=point.x-wheelLastX[i];if(Mathf.Abs(delta)>.05f)wheelLeft[i]=delta<0;wheelLastX[i]=point.x;
                 if(rider!=null && Mathf.Abs(delta)<100)wheelPhase[i]+=Mathf.Abs(delta)/170;
                 var size=1f;GameCharacterVisual visual=null;RectTransform body=null;
@@ -87,6 +98,9 @@ namespace LittleWeeps.Client
         private SoloPlayer[] ReadPlayersForWheels()=>Shared?shared.View.players:World.ReadPlayers();
         private float WheelsGround(string id)=>wheelVehicles[ParkWheels.Index(id)].anchoredPosition.y;
         private void AddWheelsDepth(Action<RectTransform,float,int,string> add)
-        {for(var i=0;i<8;i++)if(wheelVehicles[i]!=null)add(wheelVehicles[i],wheelVehicles[i].anchoredPosition.y,0,ParkWheels.Id(i));}
+        {
+            for(var bay=0;bay<2;bay++)if(wheelParking[bay]!=null)add(wheelParking[bay],wheelParking[bay].anchoredPosition.y, -1,"park-wheel-parking-"+bay);
+            for(var i=0;i<8;i++)if(wheelVehicles[i]!=null)add(wheelVehicles[i],wheelVehicles[i].anchoredPosition.y,0,ParkWheels.Id(i));
+        }
     }
 }
