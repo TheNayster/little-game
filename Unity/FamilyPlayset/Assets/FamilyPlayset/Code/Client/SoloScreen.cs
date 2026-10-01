@@ -624,7 +624,8 @@ namespace LittleWeeps.Client
                 var player=ReadPlayer(id);
                 var point=shared!=null && shared.Connected?shared.VisualPosition(id):new Vector2(player.x,player.y);
                 if(player.stairs>0)point=StairPoint(player);
-                visual.Wear(player.outfit,player.outfitColor);visual.ObserveRoar(player.roar,bookEffectsOn && !applicationPaused);
+                // Book sound controls apply only to the reader, not the outfit roar.
+                visual.Wear(player.outfit,player.outfitColor);visual.ObserveRoar(player.roar,!applicationPaused);
                 visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id),applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
             }
             PresentRooms();
