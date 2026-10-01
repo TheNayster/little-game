@@ -4,7 +4,7 @@ from pathlib import Path
 from shared_garden_runtime import Run,wait,require,write
 spec=importlib.util.spec_from_file_location('home',Path(__file__).with_name('Test-HomeWorld.py'));home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('build',type=int);parser.add_argument('--preview',action='store_true');args=parser.parse_args();run=Run(args.build,extended_test_lifetime=True);runs=[run];out=run.path/'vet';out.mkdir();clients=[];checks=[];passed=False;finger=60
+ parser=argparse.ArgumentParser();parser.add_argument('build',type=int);parser.add_argument('--preview',action='store_true');parser.add_argument('--layout',action='store_true');args=parser.parse_args();run=Run(args.build,extended_test_lifetime=True);runs=[run];out=run.path/'vet';out.mkdir();clients=[];checks=[];passed=False;finger=60
  print('EVIDENCE '+str(out),flush=True)
  def state():return server.state()['view']['vet']
  def patient(i):return state()['patients'][i]
@@ -42,6 +42,17 @@ def main():
   select(a,0);capture(a,'living-puppy-phone');select(c,4);capture(c,'small-existing-trex-tablet');button(a,'Calypso: show me');time.sleep(.5);capture(a,'calypso-sponge-demonstration-phone');require(patient(0)['washed']==[0,0,0],'Demonstration solved care')
   record('actual Daycare menu starts one shared clinic; living household pets and small existing dinosaurs, pictures and Calypso demonstration render on phone/tablet')
   if args.preview:passed=True;return
+  if args.layout:
+   friends(a);capture(a,'friends-sheet-phone');select(a,0)
+   for tool in ['wash','brush']:
+    for n in range(3):scrub(a,0,tool,n)
+   for n in range(3):
+    count=patient(0)['cuddles'];tap(a,0,'cuddle',2,lambda:patient(0)['cuddles']>count)
+   capture(a,'final-comfortable-puppy-phone');select(c,0);capture(c,'final-comfortable-puppy-tablet')
+   cmd(d,7,value='daycare');wait(lambda:member(d)['attending'],'late fourth on final layout');home.ready(d);button(d,'Return to Daycare');wait(lambda:not member(d)['attending'],'independent exit on final layout')
+   button(a,'Send friend home');wait(lambda:patient(0)['bed']==-2,'final layout All better sends patient home')
+   record('final layout: large readable tool labels, separate Friends choices, completed cuddle hearts clear the instruction strip, actual care and All better taps, late fourth and independent departure');passed=True;return
+
   select(b,4);button(b,'Vet tool bandage');x,y=spot(4,2);b.input('touch-begin',role='vet',x=x,y=y,finger=99);b.input('touch-end',role='vet',x=x,y=y,finger=99);wait(lambda:'Clean' in b.input('inspect')['vetFeedback'],'clean-before-bandage hint');require(not patient(4)['bandaged'],'Dirty dinosaur bandaged')
   tap(a,0,'wash',0,lambda:patient(0)['washed'][0]==1);select(b,0);tap(b,0,'wash',0,lambda:patient(0)['washed'][0]==2);capture(a,'two-players-share-washing-phone')
   button(a,'Vet tool brush');require(a.input('inspect')['vetTool']==1,'Pictured need cannot choose its care tool');a.input('application-pause');require(a.input('inspect')['vetQueued']==0 and not a.input('inspect')['vetSoundPlaying'],'Pause did not cancel care/audio');a.input('application-resume');home.ready(a)
@@ -74,6 +85,6 @@ def main():
     if v.process.poll() is not None:continue
     try:capture(v,'failure-'+str(i+1))
     except Exception:pass
-  run.close();write(out/'result.json',dict(build=args.build,runId=run.run_id,gameplayPassed=passed,checks=checks,exitCodes=[v.process.returncode for r in runs for v in r.instances],scope='visual preview only' if args.preview else 'isolated release authority/four native clients; actual phone/tablet pointer gestures, all pets/dinosaurs, shared care, arrival/departure, reconnect and saved-server reopen; no device/live-server rollout'))
+  run.close();write(out/'result.json',dict(build=args.build,runId=run.run_id,gameplayPassed=passed,checks=checks,exitCodes=[v.process.returncode for r in runs for v in r.instances],scope='visual preview only' if args.preview else 'focused final layout/real care gestures/late fourth/independent departure; shared rules and all-eight care covered by the unchanged content63 candidate406 run; no device/live-server rollout' if args.layout else 'isolated release authority/four native clients; actual phone/tablet pointer gestures, all pets/dinosaurs, shared care, arrival/departure, reconnect and saved-server reopen; no device/live-server rollout'))
  print('PASS ALL '+str(len(checks))+' groups',flush=True)
 if __name__=='__main__':main()

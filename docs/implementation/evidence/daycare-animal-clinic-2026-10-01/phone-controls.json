@@ -1,0 +1,75 @@
+{
+  "view": "puppy treatment at 1280x591",
+  "visibleButtons": [
+    {
+      "name": "Calypso: show me",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 218.47792053222656,
+        "y": 110.3779296875,
+        "width": 165.1323699951172,
+        "height": 52.147064208984375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Friends",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 939.4110717773438,
+        "y": 516.255859375,
+        "width": 160.78680419921875,
+        "height": 55.62353515625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Return to Daycare",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 179.8022003173828,
+        "y": 516.255859375,
+        "width": 160.78675842285156,
+        "height": 55.62353515625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Vet tool brush",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 550.9154663085938,
+        "y": 12.167635917663574,
+        "width": 178.1690673828125,
+        "height": 90.38824462890625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Vet tool wash",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 355.36395263671875,
+        "y": 12.167635917663574,
+        "width": 178.16912841796875,
+        "height": 90.38824462890625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Vet tool cuddle",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 746.4669799804688,
+        "y": 12.167635917663574,
+        "width": 178.1690673828125,
+        "height": 90.38824462890625
+      },
+      "enabled": true
+    }
+  ],
+  "duplicateNeedRow": false,
+  "walkingHudVisible": false,
+  "careToolsForPatient": 3,
+  "limits": "Measured native screen pixels, not physical device points."
+}

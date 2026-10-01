@@ -1,0 +1,28 @@
+{
+  "build": 407,
+  "schema": 48,
+  "content": 63,
+  "roles": [
+    {
+      "role": "Server",
+      "version": "0.0.407",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "role": "Client",
+      "version": "0.0.407",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    }
+  ],
+  "runtimeChangeSinceFull406": [
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloVet.cs"
+  ],
+  "change": "Cuddle hearts moved beside the patient so they cannot cover instructions.",
+  "compiledAssetFiles": 1877,
+  "compiledAssetsMatchWorkingFiles": true,
+  "scope": "Core rules/network/save contracts/assets unchanged from the full406 run. Final407 has its own focused visual/gesture/four-client check."
+}

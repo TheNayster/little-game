@@ -1,0 +1,26 @@
+{
+  "build": 406,
+  "gameplayPassed": true,
+  "checks": [
+    "actual Daycare menu starts one shared clinic; living household pets and small existing dinosaurs, pictures and Calypso demonstration render on phone/tablet",
+    "two players really wash the same spot; pictured care order protects bandage; late fourth retains progress and saved varied NPCs despite four identical player avatars",
+    "independent Return and native disconnect/reconnect retain partial animal care",
+    "actual saved server reopens partial care, patient queue, varied cast and independent return; a new arrival rejoins the same clinic",
+    "real rub/brush gestures, tray-to-body bandage drags and cuddles care for all four pets and all four existing dinosaurs; players choose waiting patients and share all eight completions",
+    "completed common clinic stays visible; deliberate replay starts one day, rerolls classmates, and resets only care"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "isolated release authority/four native clients; actual phone/tablet pointer gestures, all pets/dinosaurs, shared care, arrival/departure, reconnect and saved-server reopen; no device/live-server rollout"
+}

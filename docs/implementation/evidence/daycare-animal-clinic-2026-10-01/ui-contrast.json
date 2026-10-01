@@ -1,0 +1,36 @@
+{
+  "foreground": [
+    0.15,
+    0.25,
+    0.29
+  ],
+  "backgrounds": {
+    "cream": [
+      0.98,
+      0.96,
+      0.88
+    ],
+    "white": [
+      1,
+      1,
+      1
+    ],
+    "selected green": [
+      0.69,
+      0.92,
+      0.8
+    ],
+    "blue navigation": [
+      0.81,
+      0.93,
+      1
+    ]
+  },
+  "ratios": {
+    "cream": 10.04,
+    "white": 11.0,
+    "selected green": 8.14,
+    "blue navigation": 9.01
+  },
+  "method": "WCAG relative sRGB luminance; opaque UI color pairs, not physical device acceptance"
+}

@@ -25,7 +25,7 @@ These six additions share the following play goals, with simple play and optiona
 
 | Idea | Your 3-year-old can… | Your 6-year-old can… |
 | --- | --- | --- |
-| **Toy vet** | Wash, brush, bandage and cuddle | Figure out pictured needs and organize care |
+| **Animal care clinic** (originally Toy vet; living pets and little dinos) | Wash, brush, bandage and cuddle | Figure out pictured needs and organize care |
 | **Build-and-test playground** | Add big pieces and launch a car | Design routes, bridges and chain reactions |
 | **Pretend café** | Serve snacks and pour drinks | Assemble picture orders and run the shop |
 | **Family band** | Tap instruments and choose funny sounds | Make patterns and arrange a performance |
@@ -34,7 +34,7 @@ These six additions share the following play goals, with simple play and optiona
 
 Each activity must support up to four players together, late joining and independent leaving while retaining the group's progress. Use clear pictures, spoken help and Calypso's optional demonstrations. Any child NPCs must use a varied random saved cast, independent of player character choices; joining or leaving must not reroll them.
 
-These additions extend the existing wishlist. **Treasure hunt is implemented in Windows candidate400 as The Windblown Map**, selected by the user: a separate island story with picture/riddle clues, map pieces, windchimes, digging and picture locks. [Research, four-player checks and limits](implementation/daycare-treasure-hunt-2026-10-01.md). Device/live-server delivery and family visual approval remain pending. Toy vet, Build-and-test playground, Pretend café, Family band and Puppet theatre remain planned; no next activity is selected.
+These additions extend the existing wishlist. **Treasure hunt is implemented in Windows candidate400 as The Windblown Map**, selected by the user: a separate island story with picture/riddle clues, map pieces, windchimes, digging and picture locks. [Research, four-player checks and limits](implementation/daycare-treasure-hunt-2026-10-01.md). Device/live-server delivery and family visual approval remain pending. **Animal care clinic is implemented in Windows candidate407**, following the user’s correction to living household pets and all four existing small dinosaurs. Shared washing, brushing, bandaging and cuddling use a focused treatment view, with Calypso and a separate Friends queue. [Vet-game comparison, phone layout and checks](implementation/daycare-animal-clinic-2026-10-01.md). Build-and-test playground, Pretend café, Family band and Puppet theatre remain planned. Device/live-server delivery and family visual acceptance are separate.
 
 ## The twelve learning stations
 

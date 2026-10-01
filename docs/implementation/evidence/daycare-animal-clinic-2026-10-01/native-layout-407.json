@@ -1,0 +1,16 @@
+{
+  "build": 407,
+  "gameplayPassed": true,
+  "checks": [
+    "actual Daycare menu starts one shared clinic; living household pets and small existing dinosaurs, pictures and Calypso demonstration render on phone/tablet",
+    "final layout: large readable tool labels, separate Friends choices, completed cuddle hearts clear the instruction strip, actual care and All better taps, late fourth and independent departure"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "focused final layout/real care gestures/late fourth/independent departure; shared rules and all-eight care covered by the unchanged content63 candidate406 run; no device/live-server rollout"
+}
