@@ -28,3 +28,5 @@ Eight remote branches are retained for existing work checkouts. Most have uncomm
 Close each task by integrating its final checked work into current main, verifying origin/main, safely moving its clean checkout to main, then deleting its task branch locally and remotely. Avoid creating another branch for a follow-up that belongs to the same task. A genuine conflict/failure can keep an unfinished branch; report that specific reason.
 
 Local branch refs removed: 67. Remaining local branches: 10, including the AdventureRepair checkout alias.
+
+October1 UTC: the DinosaurWorld delivery completed server360 and both iPads360, with phone installation awaiting its debugging connection. Its final delivery documents were integrated into main and its clean checkout switched to main; the completed task branch is being retired under this policy. Other task checkout edits remain untouched.
