@@ -22,7 +22,7 @@ namespace LittleWeeps.Core
     {
         // Accepted family default for every current and future character.
         // Avatar art/scale must not introduce separate gameplay speed values.
-        public const float Speed=420;
+        public const float Speed=483;
         // Local play owns its world, so it can apply continuous motion each
         // displayed frame without manufacturing inventory receipts. Shared
         // clients must continue to submit input to MovementAuthority instead.

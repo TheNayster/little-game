@@ -629,6 +629,7 @@ namespace LittleWeeps.Client
                 visual.Wear(player.outfit,player.outfitColor);visual.ObserveRoar(player.roar,!applicationPaused);
                 var storyHold=player.zone==KingdomAdventure.Zone && !string.IsNullOrEmpty(KingdomGame?.members.FirstOrDefault(m=>m.actor==id)?.carrying) || player.zone=="daycare" && DaycareGame?.members.FirstOrDefault(m=>m.actor==id)?.carryingPlate==true;
                 visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id) || storyHold,applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
+                PresentKingdomHop(id,visual);
             }
             PresentRooms();
             PresentBedrooms();PresentBathroom();PresentBedroomFurniture();PresentSecrets();PresentBooks();PresentRoomPlay();PresentKitchen();PresentDiscovery();PresentCollections();PresentCreationEntrances();

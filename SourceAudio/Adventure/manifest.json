@@ -1,55 +1,5 @@
 [
   {
-    "id": "step-1",
-    "text": "Our royal picnic is across the river, but the bridge is broken! Three friends are frozen in a pretend spell. Bring food, build a crossing, then distract the playful queen and borrow her wand. Together, we can wake our friends!",
-    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
-    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
-    "seed": 218,
-    "sha256": "1a3fd48e9e229323d86fffb1e641689e5d570d94af601355e243f330bc8757fe",
-    "duration": 16.4,
-    "status": "generated candidate; family listening pending"
-  },
-  {
-    "id": "step-2",
-    "text": "First we need food for the feast. Tap a fruit to pick it up, then tap the glowing basket to pack it. Our picnic helper is bringing extra food!",
-    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
-    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
-    "seed": 218,
-    "sha256": "4b46f2ec3029004d6afbba6ce2e495f2433f758c3b733ea520ec78c0c5c9556b",
-    "duration": 8.72,
-    "status": "generated candidate; family listening pending"
-  },
-  {
-    "id": "step-3",
-    "text": "The river blocks our way. Bring the three planks to our bridge builders. They'll help us make a safe crossing!",
-    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
-    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
-    "seed": 218,
-    "sha256": "1096c669c9e6eef568a284bd9589409f33eced33357f2633748853a34019984b",
-    "duration": 6.32,
-    "status": "generated candidate; family listening pending"
-  },
-  {
-    "id": "step-4",
-    "text": "The queen is guarding her magic wand. She loves a bouncy ball! Toss the ball, then get her wand while she watches it.",
-    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
-    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
-    "seed": 218,
-    "sha256": "2ed9cad9640a3f590e677d4d88f0db67097cf4f89d96bfbd78aedfe8584c8f76",
-    "duration": 6.88,
-    "status": "generated candidate; family listening pending"
-  },
-  {
-    "id": "step-5",
-    "text": "The wand can break the pretend spell! Tap each frozen friend to wake them. Let's bring everyone back to our feast.",
-    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
-    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
-    "seed": 218,
-    "sha256": "3f2e339c603731e4f54dab4175a201b37d6e513f1dd1d49d5aeee7690d48f8a4",
-    "duration": 6.96,
-    "status": "generated candidate; family listening pending"
-  },
-  {
     "id": "step-6",
     "text": "You brought food, built the bridge and woke our friends! Now everyone can share the royal picnic. Thank you, adventurers!",
     "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
@@ -57,6 +7,166 @@
     "seed": 218,
     "sha256": "0032eb6cce85aaf1fb6bcbdfc2bebe4bd625b470e420138affd5f96d6dd4c083",
     "duration": 7.92,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-1",
+    "text": "Welcome to our pretend kingdom! Three friends are frozen beyond the river. The Kindly Queen needs our help. Meet our orchard friend and river helpers, then find out why the other queen took the wand. How will you save the kingdom?",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "f9951ed561ab74e72fb6b5af8061b839783537e36d4e508a06798d28911e9d1a",
+    "duration": 15.2,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-2",
+    "text": "Our journey starts in the orchard. Pack some food for the kingdom, or talk to our friend and ask for help. You can explore together!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "aea309f7694aadabe3b3a7127235043a2525ca7a3f07505a33d5f6ceab6fc777",
+    "duration": 8.24,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-3",
+    "text": "We've reached the river! Our helpers know two ways across. Shall we build a bridge, or hop over the big stepping stones? Talk to a helper and choose.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "d17f59439c2a544722c4f2a8e493e56d670ead4839cf4d9740fe3d13e9f58dbc",
+    "duration": 10.48,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-4",
+    "text": "Here is the Greedy Queen! Why did she freeze our friends? Talk to her. You can play ball to borrow the wand, or invite her to our feast.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "6c109f9c36a2432bd685e8a577d6c3cff963096e8b335350253f0652a099207d",
+    "duration": 9.84,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-5",
+    "text": "We've found the wand! Our frozen friends need us. Talk to them, then try a sparkle spell or a silly dancing spell to wake them.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "5eec27f1428911361cc30439c3618eae47eba1ae71643460111739428f368d36",
+    "duration": 7.92,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-castle",
+    "text": "I'm the Kindly Queen in our pretend kingdom! The other queen froze three of our friends. Can you bring them home? Our orchard friend and river helpers know the way.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "93bb732d2623eba4f81d80b05a0c0581c5454a87818cf211437aa457ed93de0f",
+    "duration": 11.44,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-food",
+    "text": "The kingdom needs food for the feast. You can carry fruit to our basket. Would you like me to help pack while you explore?",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "9b9e145e465a1822e017e00518e1a1c45b04be980a020ed50dc8775a42245763",
+    "duration": 7.44,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-river",
+    "text": "The bridge washed away! We can build it with these planks, or hop over the big stepping stones. Which way shall we go?",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "657eb65b8218cc857e8b92e6c37a6415164dc2bdd247c8b9a9d7649038625f5d",
+    "duration": 7.2,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-queen",
+    "text": "I'm the Greedy Queen! I froze everyone because I wasn't invited. Are you here to take my wand? Hmm! I do love playing ball.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "9b302d28ee8e139bf5788e383249bd766aaf85800082bc54d2d6476102ad3e86",
+    "duration": 8.24,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-rescue",
+    "text": "Brrr! I'm stuck in a pretend spell. You've found the wand! Shall we try a sparkle spell or a silly dancing spell?",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "c011519a452ec4ca7b79607085301753d5556237caab0e4f81cdee02f52c5df6",
+    "duration": 8.0,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-thanks",
+    "text": "I'm awake! Thank you for coming back for me. Let's take all our friends to the feast!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "6ad59f923304813514ecb2b53afdf4b5a1987aeab060562b930d1a629f37c355",
+    "duration": 5.2,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "ending-kind",
+    "text": "You brought food, crossed the river, and invited the lonely queen! Now our friends are awake, and everyone belongs at the feast. You changed our kingdom's story!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "b672b92b4ba1fd11a6e7f3c6c9e874747167cdc1370c413358c324275a8111a7",
+    "duration": 11.44,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "ending-ball",
+    "text": "You brought food, crossed the river, and played ball to find the wand! Now our friends are awake, and the kingdom can celebrate. You saved the day!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "bb1c8445d6c32449d7b72b268f9e6ac8f4db785c91a40f0d6706ee9c8eb1d6a4",
+    "duration": 9.84,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-frozen",
+    "text": "I'm frozen in a pretend spell! Find the queen's wand beyond the river. Please come back for me!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "ac0f31a0d4093c6799d07628bc2f08c372d156d29d711d2b8f247a2fd7e56d21",
+    "duration": 6.56,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-invited",
+    "text": "You invited me? Thank you! I'll meet everyone at the feast. You may borrow my wand to wake our friends.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "968e14bccadfeaf9eebf8de5ce17bdd5c784ffed6120b4bd4af567a6814f33f5",
+    "duration": 7.84,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "talk-helping",
+    "text": "We're helping the kingdom together. Talk to our next friend, or explore and see what you can find!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "d9255ece1f40822f679b49b5db98ec02d4255d38b2d455d31700ba8d181fcdb5",
+    "duration": 6.32,
     "status": "generated candidate; family listening pending"
   }
 ]

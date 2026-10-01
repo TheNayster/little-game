@@ -60,6 +60,7 @@ namespace LittleWeeps.Core
             foreach(var ch in s.worldId)seed=unchecked((seed^ch)*16777619);
             if(s.dinosaurWorld==null)s.dinosaurWorld=new DinosaurWorldState{animals=DinosaurRides.Species.Select((id,i)=>new DinosaurMount{species=id,random=(seed^(uint)(i+1)*2654435761u)|1u,x=600+i*1200,targetX=600+i*1200,pause=3+i*2}).ToArray()};
             if(s.dinosaurWorld.care==null || s.dinosaurWorld.care.Length==0)s.dinosaurWorld.care=s.players.Select(p=>new DinosaurCare{actor=p.id}).ToArray();
+            if(s.kingdom.rescueStyle==null || s.kingdom.rescueStyle.Length==0)s.kingdom.rescueStyle=new int[3];
             s.schema=WorldLayout.Schema;s.revision++;Validate(s);return new SoloWorld(s);
         }
         private static void NormalizeDinosaurInline(SoloSnapshot s)
