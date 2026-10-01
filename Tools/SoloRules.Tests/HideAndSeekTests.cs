@@ -78,7 +78,7 @@ static partial class Program
         });
         Test("far hiders guide direction while empty covers on the way still receive inspections",()=>{
             var w=HideWorld();StartHide(w);HideAt(w,"first",9);Advance(w,15.5);
-            Check(w.ReadHideAndSeek().target==4);
+            Check(w.ReadHideAndSeek().target==3);
             var inspected=0;for(var i=0;i<500 && w.ReadHideAndSeek().hiders[0].mode!=HiderMode.Found;i++){w.AdvanceIdle(.05,out _);inspected|=w.ReadHideAndSeek().visited;}
             Check(w.ReadHideAndSeek().hiders[0].mode==HiderMode.Found && (inspected & (1<<7))!=0 && (inspected & (1<<8))!=0 && (inspected & (1<<6))==0);
         });

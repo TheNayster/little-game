@@ -33,6 +33,17 @@ static class Program
     }
     static void Main()
     {
+        foreach(var organizerX in new[]{-7040f,4310f,-3880f})
+        {
+            var w=SoloWorld.WithPond(SoloWorld.Create("one","two","three","four"));
+            Good(Send(w,"one",SoloAction.Move,x:organizerX));var positions=w.ReadPlayers().Select(p=>p.x).ToArray();
+            Good(Send(w,"one",SoloAction.HideAndSeek,"start"));
+            Check(w.ReadHideAndSeek().x==HideAndSeek.StartX && w.ReadPlayers().Select(p=>p.x).SequenceEqual(positions),"Seeker spawned beside organizer or moved children");
+            Advance(w,10);Check(w.ReadHideAndSeek().x==HideAndSeek.StartX && w.ReadHideAndSeek().phase==HidePhase.Counting,"Seeker drifted while counting");
+            Advance(w,6);Good(Send(w,"two",SoloAction.Move,x:organizerX>0?-7040:4310));Good(Send(w,"two",SoloAction.HideAndSeek,"start"));
+            Check(HideAndSeek.Parent(w.ReadHideAndSeek())=="Chilli" && w.ReadHideAndSeek().x==HideAndSeek.StartX,"Other parent used player-relative start");
+        }
+        Console.WriteLine("PASS far-left/far-right organizers, stationary counting, unchanged children and both parents start at the authored Home spot");
         var right=Start(9);var rightSeconds=Finish(right);var mask=right.ReadHideAndSeek().visited;
         foreach(var slot in new[]{3,4,5,7,8,9})Check((mask&(1<<slot))!=0,"Skipped cover on way right: "+slot);
         foreach(var slot in new[]{0,1,2,6})Check((mask&(1<<slot))==0,"Unnecessary left detour: "+slot);

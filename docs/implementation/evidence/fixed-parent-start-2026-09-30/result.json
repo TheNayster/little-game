@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "build": 350,
+  "checks": [
+    "Backyard organizer starts parent at the authored house spot; counting stays there",
+    "All four share the fifteen-second hiding window; one departure preserves the others",
+    "Parent heads toward distant hiders and inspects covers along the way"
+  ],
+  "searchSeconds": 18.78,
+  "visitedMask": 956,
+  "content": 54,
+  "physicalDevicesTested": false,
+  "liveFamilyTouched": false,
+  "parentStartX": -3660,
+  "organizerStartX": 4310,
+  "schema": 39,
+  "coreChecks": [
+    "Both parents start at the fixed house anchor with organizers at either distant end",
+    "Counting stays at that anchor and never moves children",
+    "Faster directed searching and independent exits remain correct"
+  ]
+}

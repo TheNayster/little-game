@@ -15,7 +15,8 @@ namespace LittleWeeps.Core
         // Content 44 adds exclusive bicycle/scooter leases and horizontal riding.
         // Content 46 admits the shared bathroom room and four bath/sink fixture leases.
         // Content 49 speeds parent seeking and directs cover checks toward remaining hiders.
-        public const int Schema=39, ScenerySchema=3, Content=49;
+        // Content 54 fixes the seeker counting/start anchor independently of the organizer.
+        public const int Schema=39, ScenerySchema=3, Content=54;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || HomeRooms.Internal(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id);

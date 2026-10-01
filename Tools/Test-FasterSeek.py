@@ -24,11 +24,14 @@ def main():
         for v,x in zip(clients,[-3870,4310,3150,-470]):home.ready(v);send(v,0,x=x,y=50)
         a.input('resize',x=1280,y=591);c.input('resize',x=1024,y=768);home.ready(a);home.ready(c)
         # Start through the real Home mini-game card, then opt all four into cover.
-        a.input('touchButton',text='Games');a.input('touchButton',text='Hide & seek')
+        b.input('touchButton',text='Games');b.input('touchButton',text='Hide & seek')
         wait(lambda:state()['phase']==1,'common hiding window');round_id=state()['round']
         require(state()['count']>13,'Fifteen-second window shortened')
+        require(state()['x']==-3660,'Parent spawned beside far-away organizer')
         for v,slot in zip(clients,[2,9,8,7]):send(v,20,target=str(slot),value='hide')
         require(all(h['mode']==2 for h in state()['hiders']),'Not four simultaneous hiders')
+        time.sleep(2);require(state()['phase']==1 and state()['x']==-3660,'Parent drifted toward hiders while counting')
+        passed('Backyard organizer starts parent at the authored house spot; counting stays there')
         wait(lambda:state()['phase']!=1,'hiding deadline',20);started=time.monotonic()
         send(d,20,value='leave');require(hider(d)['mode']==0 and hider(b)['mode']==2 and hider(c)['mode']==2 and state()['round']==round_id,'Departure restarted search')
         passed('All four share the fifteen-second hiding window; one departure preserves the others')

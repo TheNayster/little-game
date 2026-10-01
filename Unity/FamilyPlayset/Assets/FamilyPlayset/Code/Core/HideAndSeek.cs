@@ -170,7 +170,8 @@ namespace LittleWeeps.Core
                 if(!HideAndSeek.Zone(player))return "come-to-first-level";
                 if(s.round==int.MaxValue)return "round-limit";
                 s.round++;s.direction=s.round%2==0?-1:1;s.cursor=0;s.pass=0;s.visited=0;s.walked=0;s.target=-1;
-                s.x=Math.Max(Discovery.MinX+40,Math.Min(4760,player.x+220));s.count=HideAndSeek.CountSeconds;s.age=0;s.clock=0;s.phase=HidePhase.Counting;s.organizer="";
+                // Count at the authored Home spot, independent of the player who starts.
+                s.x=HideAndSeek.StartX;s.count=HideAndSeek.CountSeconds;s.age=0;s.clock=0;s.phase=HidePhase.Counting;s.organizer="";
                 foreach(var peer in s.hiders){peer.mode=HiderMode.Away;peer.slot=-1;peer.preparation=0;peer.idle=0;}
                 return null;
             }
