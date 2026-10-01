@@ -1,0 +1,30 @@
+{
+  "build": 351,
+  "passed": true,
+  "checks": {
+    "phone-voyage": {
+      "samples": 836,
+      "movingSpans": 831,
+      "frozenFrames": 0,
+      "minimumClockRate": 0.9894374957306551,
+      "maximumClockRate": 1.00630770950753,
+      "maximumWorldSpeed": 68.28501132364472
+    },
+    "ipad-voyage": {
+      "samples": 835,
+      "movingSpans": 829,
+      "frozenFrames": 0,
+      "minimumClockRate": 0.9909493388019108,
+      "maximumClockRate": 1.0039366847529143,
+      "maximumWorldSpeed": 56.865824033839964
+    },
+    "phone-retrieval": {
+      "samples": 297,
+      "movingSpans": 292,
+      "frozenFrames": 0,
+      "minimumClockRate": 0.9971731280342089,
+      "maximumClockRate": 1.0034107205489122,
+      "maximumWorldSpeed": 190.64807799802642
+    }
+  }
+}

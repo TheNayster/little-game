@@ -29,6 +29,9 @@ namespace LittleWeeps.NetworkProbe
         private Vector2 mousePoint;
         private string traceActor;
         private readonly List<MotionSample> motionTrace=new List<MotionSample>();
+        private string boatTraceActor;private readonly List<BoatSample> boatTrace=new List<BoatSample>();
+        [Serializable] private sealed class BoatSample {public double time,clock,authority;public Vector2 position;public int phase;}
+        [Serializable] private sealed class BoatEvidence {public string actor,build;public BoatSample[] samples;}
         [Serializable] private sealed class MotionSample
         {public double time;public Vector2 visual,authority,ground;public float phase,weight;public int drawing;public bool faceLeft;public string pose;}
         [Serializable] private sealed class MotionEvidence {public string actor,build;public MotionSample[] samples;}
@@ -148,6 +151,8 @@ namespace LittleWeeps.NetworkProbe
                         InputSystem.QueueStateEvent(mouse,new MouseState{position=point}.WithButton(MouseButton.Left,false));
                     }
                 }
+                else if(step.action=="boatTraceStart"){boatTraceActor=step.role;boatTrace.Clear();}
+                else if(step.action=="boatTraceStop"){File.WriteAllText(Path.Combine(probe.Output,"boat-trace.json"),JsonUtility.ToJson(new BoatEvidence{actor=boatTraceActor,build=Application.version,samples=boatTrace.ToArray()},true));boatTraceActor=null;}
                 else if(step.action=="traceStart"){traceActor=step.role;motionTrace.Clear();}
                 else if(step.action=="walkChecks")WalkAnimationVerification.Run(screen.Board,probe.Output);
                 else if(step.action=="walkFilm")StartCoroutine(WalkFilm());
@@ -236,6 +241,10 @@ namespace LittleWeeps.NetworkProbe
         }
         private void LateUpdate()
         {
+            if(boatTraceActor!=null && screen.Ready && boatTrace.Count<1800){
+                var boat=screen.CreekBoatGame?.boats.FirstOrDefault(b=>b.actor==boatTraceActor);var drawing=screen.Board.Find("Creek boat "+boatTraceActor) as RectTransform;
+                if(boat!=null && drawing!=null && drawing.gameObject.activeInHierarchy)boatTrace.Add(new BoatSample{time=screen.CreekBoatVisualTime,clock=screen.CreekBoatVisualClock,authority=screen.CreekBoatGame.clock,position=BoardPosition(drawing),phase=(int)boat.phase});
+            }
             if(traceActor==null || !screen.Ready || motionTrace.Count>=1800)return;
             var p=screen.ReadPlayer(traceActor);
             var rect=screen.Board.Find(traceActor==screen.Actor?"Player character":"Friend-"+traceActor) as RectTransform;

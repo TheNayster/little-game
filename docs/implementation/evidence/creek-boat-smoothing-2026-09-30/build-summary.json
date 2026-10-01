@@ -1,0 +1,31 @@
+{
+    "utc": "2026-10-01T02:21:40.0267450Z",
+    "contract": 17,
+    "content": 52,
+    "schema": 42,
+    "gardenPresentation": true,
+    "builds": [
+        {
+            "role": "Server",
+            "version": "0.0.351",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\BoatSmoothingTask\\source\\Builds\\NetworkProbe\\G3-0.0.351\\Server\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": true
+        },
+        {
+            "role": "Client",
+            "version": "0.0.351",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\LocalData\\BoatSmoothingTask\\source\\Builds\\NetworkProbe\\G3-0.0.351\\Client\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": false
+        }
+    ]
+}

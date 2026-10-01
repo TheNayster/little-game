@@ -19,7 +19,10 @@ namespace LittleWeeps.Client
         private Button boatAction,boatDecorate;
         private readonly List<(Button button,int hull)> boatHullChoices=new List<(Button,int)>();
         private readonly List<(Image image,int colour)> boatColourChoices=new List<(Image,int)>();
-        private bool boatSending;private double boatSampleClock=-1,boatDisplayClock;private string boatWorld="";
+        private bool boatSending;private double boatDisplayClock;
+        private readonly BoatVisualClock boatClock=new BoatVisualClock();
+        public double CreekBoatVisualClock=>boatDisplayClock;
+        public double CreekBoatVisualTime=>boatClock.SampleTime;
         private static readonly Color[] BoatColours={new Color(1,1,1),new Color(.88f,.97f,1),new Color(1,.88f,.9f),new Color(1,.98f,.77f)};
         public CreekBoatState CreekBoatGame=>HasWorld?(Shared?shared.View.creekBoats:World.ReadCreekBoats()):null;
         public bool BoatWorkshopOpen=>boatWorkshop!=null && boatWorkshop.gameObject.activeSelf;
@@ -121,8 +124,7 @@ namespace LittleWeeps.Client
         {
             var game=CreekBoatGame;if(game==null || boatEntry==null)return;
             var id=Shared?shared.View.worldId:World.WorldId;
-            if(boatWorld!=id || game.clock<boatSampleClock){boatWorld=id;boatDisplayClock=game.clock;}
-            boatSampleClock=game.clock;boatDisplayClock=Math.Max(game.clock,Math.Min(game.clock+.12,boatDisplayClock+Math.Min(.1,Time.unscaledDeltaTime)));
+            boatDisplayClock=boatClock.Sample(id,game.clock,Time.realtimeSinceStartupAsDouble,Shared && !applicationPaused);
             var visible=CurrentArea=="creek";var own=OwnCreekBoat;var playing=visible && own?.attending==true;
             if(BoatWorkshopOpen && (!playing || own.phase!=CreekBoatPhase.Ready || WorldLoading || applicationPaused))CloseBoatWorkshop();
             foreach(var pair in creekBoatViews){var b=game.boats.First(v=>v.actor==pair.Key);var v=pair.Value;v.root.gameObject.SetActive(visible);if(!visible)continue;
@@ -158,7 +160,7 @@ namespace LittleWeeps.Client
             foreach(var v in creekBoatViews.Values)Destroy(v.root.gameObject);foreach(var d in creekDocks)Destroy(d.gameObject);
             creekBoatViews.Clear();creekDocks.Clear();boatHullChoices.Clear();boatColourChoices.Clear();
             if(creekBoatSprites!=null)foreach(var s in creekBoatSprites)Destroy(s);creekBoatSprites=null;if(creekBoatTexture!=null)Resources.UnloadAsset(creekBoatTexture);creekBoatTexture=null;
-            boatWorkshop=null;boatControls=null;boatEntry=null;boatSending=false;boatWorld="";boatSampleClock=-1;
+            boatWorkshop=null;boatControls=null;boatEntry=null;boatSending=false;boatClock.Reset();
         }
     }
     public sealed class CreekBoatRipples : MaskableGraphic
