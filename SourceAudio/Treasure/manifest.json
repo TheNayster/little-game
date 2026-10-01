@@ -1,0 +1,142 @@
+[
+  {
+    "id": "step-1",
+    "text": "Oh no! The wind scattered our treasure map. Three friends are looking after the hiding places. Find the pieces, remember the windchime song, and discover my surprise together!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "1c89306a6e71a3b1eed82e51c4867691f0d6ba2a0a37ed680d6d64a0f9312825",
+    "duration": 13.68,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-2",
+    "text": "Look for the red shell with stripes. Lift it and pick up the map piece underneath.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "880893b4353ec57961ebcd39a327dba9bc7e1d7efd5e3878fc442df6e8bdc216",
+    "duration": 4.56,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-3",
+    "text": "Our next piece is hiding under a flower pot. Find the pot with three purple flowers, lift it, then pick up the piece.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "6538778ccbef8582afec47c6039aaad1778c7757fb0cab5101e08c2328c2a808",
+    "duration": 7.76,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-4",
+    "text": "Listen to the windchimes! Tap the same three pictures in the same order. You can all help with the song.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "5d2114d8d3ca0d79b53376ed203815b4e731d77126f345df139c8afc3d88b671",
+    "duration": 6.8,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "site-0",
+    "text": "Our map is whole! Follow it to the palm cove. Dig at the sandy mound.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "ed22b705a73ff33aed6e38befdad899b9836b80fa87367df0dd0101784c458ae",
+    "duration": 5.04,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "site-1",
+    "text": "Our map is whole! Follow it to the flower grove. Dig at the sandy mound.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "f20fb1650185d4ffdab4304f64c12af3d7c41d6fea206ea640ab964ad571c161",
+    "duration": 5.36,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "site-2",
+    "text": "Our map is whole! Follow it to the windchime lookout. Dig at the sandy mound.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "ce6c925ad6e9022eaf60d408b4575415b2bc03b2d7eeb0d0163037bf1a7b2a05",
+    "duration": 5.6,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-6",
+    "text": "A treasure chest! Each map piece shows one picture. Tap the three chest pictures to match pieces one, two and three. Then open it!",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "6acc7d145939fd3835026f3ecc03126d8deb5e83768e6c68ae7fbf681e2e509e",
+    "duration": 9.44,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "step-7",
+    "text": "You found our treasure! A golden compass, sparkly stars, and a little sailing boat. Every friend helped. Shall we play here, or go on another treasure hunt?",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "9007f208b3eb849e316dc6aee5568e40de3f00eb0b44df2b54b68358242c232e",
+    "duration": 10.48,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "mystery-2",
+    "text": "I wear red stripes and hide beside two plain shells. What is beneath me?",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "29782f2df10fcdbbd2fdfa03798847712e130993c1377310ebcadde022207ab4",
+    "duration": 5.28,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "mystery-3",
+    "text": "My flowers match the tree. Count one, two, three. Which pot am I?",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "1aaabe24fae32f5dc1521e27bc581fd0d7ad7a5d081447e20574e89489228db7",
+    "duration": 7.04,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "mystery-4",
+    "text": "A breeze makes a song. Remember the order to wake the sleeping chimes.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "2b08b511af44ffc3a18a5db692882f11789739b8cf5fa76f9636a635ecb566e2",
+    "duration": 6.08,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "surprise",
+    "text": "A funny find! The treasure is still waiting. Let us try the picture clue.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "47f39eef637967103ecd05d180410101cc82f6db07fdd903c116330dca5934f1",
+    "duration": 4.8,
+    "status": "generated candidate; family listening pending"
+  },
+  {
+    "id": "retry",
+    "text": "Let us listen again. There is no hurry. Copy the windchime pictures one at a time.",
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "prompt": "An original friendly adult female Australian English storyteller, warm, clear and gentle, inviting preschool children into pretend play. Natural medium pitch and an encouraging smile. No imitation of an actor or character, no music, no shouting.",
+    "seed": 218,
+    "sha256": "9d16739c10e5c64b62e55f1e0b5e90919876adba5a8a027e478fb3475f9e8e77",
+    "duration": 5.04,
+    "status": "generated candidate; family listening pending"
+  }
+]

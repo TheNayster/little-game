@@ -90,6 +90,13 @@ namespace LittleWeeps.Client
             if (view != null) view.Present(frame, dt);
         }
 
+        public void PresentNpcFrame(CharacterFrame frame, float dt, float worldScale)
+        {
+            if (view == null) return;
+            view.NpcWorldScale = worldScale;
+            view.Present(frame, dt);
+        }
+
         public void PresentSupported(CharacterFrame frame,float dt,float angle=0)
         {PresentFrame(frame,dt);view?.AttachToSupport(angle);}
 

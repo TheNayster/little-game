@@ -84,7 +84,7 @@ namespace LittleWeeps.Client
             Surfaces.Clear();toys.Clear();fills.Clear();targetRings.Clear();targetArrows.Clear();
             resetCues.Clear();layoutPositions.Clear();
             friends.Clear();holders.Clear();travelButtons.Clear();fence.Clear();
-            ResetSandpit();ResetDaycare();ResetKingdom();ResetNavigation();
+            ResetTreasure();ResetSandpit();ResetDaycare();ResetKingdom();ResetNavigation();
             Board=null;avatar=null;menu=null;connecting=null;dragging=null;requestedArea=null;travelSubmitted=false;
             grabConfirmed=false;gestureEnded=false;gestureCancelled=false;dropSubmitted=false;renderedSequence=-1;
         }
@@ -322,7 +322,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildSeagulls();BuildShore();BuildWaveRide();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildTreasure();BuildSeagulls();BuildShore();BuildWaveRide();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -524,7 +524,7 @@ namespace LittleWeeps.Client
         {
             foreach(var surface in Surfaces.Values)surface.Cancel();
             if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
-            dinosaurCareApproach=false;zooApproach=false;sandpitApproach=-1;kingdomApproach="";daycareApproach=-1;destination=null;stickDirection=Vector2.zero;
+            dinosaurCareApproach=false;zooApproach=false;sandpitApproach=-1;treasureApproach="";kingdomApproach="";daycareApproach=-1;destination=null;stickDirection=Vector2.zero;
             shared?.Walk(WalkMode.Stop);
         }
         private void Update()
@@ -533,7 +533,7 @@ namespace LittleWeeps.Client
             TickWorldMusic();
             if(Ready)TickCake();
             if(Ready){TickMixing();TickBubbleLab();TickLiquidColors();TickMarbleRamps();}
-            if(Ready){CheckKingdomInput();CheckDaycareInput();CheckSandpitInput();CheckStairInput();CheckDoorInput();CheckHideInput();CheckZooInput();CheckDinosaurCareInput();}
+            if(Ready){CheckKingdomInput();CheckDaycareInput();CheckSandpitInput();CheckTreasureInput();CheckStairInput();CheckDoorInput();CheckHideInput();CheckZooInput();CheckDinosaurCareInput();}
             if(safe!=null && lastSafeArea!=Screen.safeArea)UpdateSafeArea();
             if(shared!=null)
             {
@@ -551,7 +551,7 @@ namespace LittleWeeps.Client
                 else if(hideApproach>=0)shared.Walk(WalkMode.Destination,HideEntry.x,HideEntry.y);
                 else if(doorApproach)shared.Walk(WalkMode.Destination,DoorEntry.x,DoorEntry.y);
                 else if(stairApproach)shared.Walk(WalkMode.Destination,HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea));
-                else if((kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0) && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
+                else if((kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!="") && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
                 else if(JoystickMode)shared.Walk(stickDirection.sqrMagnitude>.0001f?WalkMode.Direction:WalkMode.Stop,stickDirection.x,stickDirection.y);
                 else if(destination.HasValue)
                 {
@@ -570,8 +570,8 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
-            var input=dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
+            var mode=OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
                 dirty=true;lastLocalAction=now;
@@ -609,7 +609,7 @@ namespace LittleWeeps.Client
             RecordPlayFrame();
             if(!Ready)return;
             AnimateNavigation();
-            EnsureToyViews();AnimateTravelScreen();TickScenery();TickHome();TickKeepy();TickPark();TickZoo();TickDinosaurWorld();TickPond();TickCreekBoats();TickCreekFishing();TickKingdom();TickDaycare();TickSandpit();TickSeagulls();TickShore();
+            EnsureToyViews();AnimateTravelScreen();TickScenery();TickHome();TickKeepy();TickPark();TickZoo();TickDinosaurWorld();TickPond();TickCreekBoats();TickCreekFishing();TickKingdom();TickDaycare();TickSandpit();TickTreasure();TickSeagulls();TickShore();
             if(shared!=null && shared.Connected)
             {
                 var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);
@@ -667,7 +667,7 @@ namespace LittleWeeps.Client
                 if(home!="" && homeObjects.TryGetValue(home,out var support))Add(root,support.root.anchoredPosition.y,1,id);
                 else Add(root,root.anchoredPosition.y,3,id);
             }
-            AddCreekFishingDepth(Add);AddCreekBoatDepth(Add);AddPondDepth(Add);AddBathroomDepth(Add);AddZooDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddTagDepth(Add);AddDinosaurDepth(Add);AddDinosaurCareDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);AddKingdomDepth(Add);AddDaycareDepth(Add);AddSandpitDepth(Add);AddShoreDepth(Add);AddSeagullDepth(Add);AddWaveRideDepth(Add);
+            AddCreekFishingDepth(Add);AddCreekBoatDepth(Add);AddPondDepth(Add);AddBathroomDepth(Add);AddZooDepth(Add);AddParkDepth(Add);AddWheelsDepth(Add);AddTagDepth(Add);AddDinosaurDepth(Add);AddDinosaurCareDepth(Add);AddHideDepth(Add);AddBedroomDepth(Add);AddSecretDepth(Add);AddBookDepth(Add);AddRoomPlayDepth(Add);AddKitchenDepth(Add);AddDiscoveryDepth(Add);AddKingdomDepth(Add);AddDaycareDepth(Add);AddSandpitDepth(Add);AddTreasureDepth(Add);AddShoreDepth(Add);AddSeagullDepth(Add);AddWaveRideDepth(Add);
             foreach(var pair in homeObjects)
             {
                 var root=pair.Value.root;Add(root,root.anchoredPosition.y,0,pair.Key);

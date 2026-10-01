@@ -30,6 +30,9 @@ namespace LittleWeeps.NetworkProbe
         private string[] lastTouchTargets;
         private Vector2 mousePoint;
         private string traceActor;
+        private double treasureCaptureAt;private int treasureCapture;private bool traceTreasure;private readonly List<TreasureMotionSample> treasureTrace=new List<TreasureMotionSample>();
+        [Serializable] private sealed class TreasureMotionSample {public double time;public float dt;public int frame;public Vector2[] points;public string[] poses;public float[] speeds;public int[] drawings;public float[] phases;public Vector2 teacherPoint;public int teacherDrawing;public bool teacherWalking;}
+        [Serializable] private sealed class TreasureMotionEvidence {public string build;public TreasureMotionSample[] samples;}
         private readonly List<MotionSample> motionTrace=new List<MotionSample>();
         private string boatTraceActor;private readonly List<BoatSample> boatTrace=new List<BoatSample>();
         [Serializable] private sealed class BoatSample {public double time,clock,authority;public Vector2 position;public int phase;}
@@ -59,8 +62,9 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
+            public LittleWeeps.Core.TreasureState treasure;public string[] treasureNpcArt;public Vector2[] treasureNpcPoints;public string treasureApproach;public bool treasureMystery;public int treasureDemoNote;public bool treasureTonePlaying;public string treasureFeedback;
             public LittleWeeps.Core.SandpitState sandpit; public string[] sandpitNpcArt;public int sandpitSelection;
-            public LittleWeeps.Core.DaycareState daycare;public int daycareRoutine,calypsoPose;public bool calypsoVisible,calypsoMoving;public Vector2 calypsoWorldPoint;
+            public LittleWeeps.Core.DaycareState daycare;public int daycareRoutine,calypsoPose,calypsoDrawing;public bool calypsoVisible,calypsoMoving,calypsoWalkPlaying;public Vector2 calypsoWorldPoint;
             public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;public string kingdomApproach;public string[] lastTouchTargets,kingdomNpcArt,picnicNpcArt,kingdomNpcJobs,kingdomNpcPoses;public Vector2[] kingdomNpcPoints;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
@@ -119,6 +123,8 @@ namespace LittleWeeps.NetworkProbe
             {
                 if(!screen.Ready && step.action!="inspect")throw new InvalidOperationException("Garden is not ready.");
                 if(step.action=="performance")await screen.ExportPlayPerformance();
+                else if(step.action=="treasureMotionStart"){treasureTrace.Clear();treasureCaptureAt=0;treasureCapture=0;Directory.CreateDirectory(Path.Combine(probe.Output,"npc-preview"));traceTreasure=true;}
+                else if(step.action=="treasureMotionStop"){traceTreasure=false;File.WriteAllText(Path.Combine(probe.Output,"treasure-motion.json"),JsonUtility.ToJson(new TreasureMotionEvidence{build=Application.version,samples=treasureTrace.ToArray()},true));}
                 else if(step.action=="frameRate")
                 {
                     if(step.x!=30 && step.x!=60)throw new InvalidOperationException("Unsupported test frame rate.");
@@ -245,6 +251,17 @@ namespace LittleWeeps.NetworkProbe
         }
         private void LateUpdate()
         {
+            if(traceTreasure && screen.Ready && treasureTrace.Count<900)
+            {
+                // Use the frame-start clock: wall time inside LateUpdate also
+                // measures scheduling delays unrelated to this frame's travel.
+                treasureTrace.Add(new TreasureMotionSample{time=Time.unscaledTimeAsDouble,dt=Time.unscaledDeltaTime,frame=Time.frameCount,points=screen.TreasureNpcPoints,poses=screen.TreasureNpcPoses,speeds=screen.TreasureNpcSpeeds,drawings=screen.TreasureNpcFrames,phases=screen.TreasureNpcPhases,teacherPoint=screen.NpcTeacherPoint,teacherDrawing=screen.NpcTeacherDrawing,teacherWalking=screen.NpcTeacherWalking});
+                if(Time.unscaledTimeAsDouble>=treasureCaptureAt)
+                {
+                    treasureCaptureAt=Time.unscaledTimeAsDouble+.1;
+                    ScreenCapture.CaptureScreenshot(Path.Combine(probe.Output,"npc-preview",(treasureCapture++).ToString("D4")+".png"));
+                }
+            }
             if(boatTraceActor!=null && screen.Ready && boatTrace.Count<1800){
                 var boat=screen.CreekBoatGame?.boats.FirstOrDefault(b=>b.actor==boatTraceActor);var drawing=screen.Board.Find("Creek boat "+boatTraceActor) as RectTransform;
                 if(boat!=null && drawing!=null && drawing.gameObject.activeInHierarchy)boatTrace.Add(new BoatSample{time=screen.CreekBoatVisualTime,clock=screen.CreekBoatVisualClock,authority=screen.CreekBoatGame.clock,position=BoardPosition(drawing),phase=(int)boat.phase});
@@ -290,7 +307,8 @@ namespace LittleWeeps.NetworkProbe
                 evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;
                 evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;
-                evidence.sandpit=screen.SandpitGame;evidence.sandpitNpcArt=screen.SandpitNpcArt;evidence.sandpitSelection=screen.SandpitSelection;evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;evidence.calypsoMoving=screen.CalypsoMoving;evidence.calypsoPose=screen.CalypsoPose;evidence.calypsoWorldPoint=screen.CalypsoWorldPoint;
+                evidence.treasure=screen.TreasureGame;evidence.treasureNpcArt=screen.TreasureNpcArt;evidence.treasureNpcPoints=screen.TreasureNpcPoints;evidence.treasureApproach=screen.TreasureApproach;evidence.treasureMystery=screen.TreasureMystery;evidence.treasureDemoNote=screen.TreasureDemoNote;evidence.treasureTonePlaying=screen.TreasureTonePlaying;evidence.treasureFeedback=screen.TreasureFeedback;
+                evidence.sandpit=screen.SandpitGame;evidence.sandpitNpcArt=screen.SandpitNpcArt;evidence.sandpitSelection=screen.SandpitSelection;evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;evidence.calypsoMoving=screen.CalypsoMoving;evidence.calypsoPose=screen.CalypsoPose;evidence.calypsoDrawing=screen.CalypsoDrawing;evidence.calypsoWalkPlaying=screen.CalypsoWalkPlaying;evidence.calypsoWorldPoint=screen.CalypsoWorldPoint;
                 evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;evidence.kingdomNpcJobs=screen.KingdomNpcJobs;evidence.kingdomNpcPoses=screen.KingdomNpcPoses;evidence.kingdomNpcPoints=screen.KingdomNpcPoints;
                 evidence.kingdom=screen.KingdomGame;evidence.visibleKingdomNpcs=screen.VisibleKingdomNpcs;
                 evidence.kingdomApproach=screen.KingdomApproach;evidence.lastTouchTargets=lastTouchTargets;

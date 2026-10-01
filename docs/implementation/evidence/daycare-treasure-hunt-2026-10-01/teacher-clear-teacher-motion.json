@@ -1,0 +1,362 @@
+[
+  {
+    "calypsoWorldPoint": {
+      "x": 632.532470703125,
+      "y": 242.0332794189453
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 4,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 644.9877319335938,
+      "y": 242.81173706054688
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 4,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 659.2600708007812,
+      "y": 243.70376586914062
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 5,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 671.7440185546875,
+      "y": 244.4840087890625
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 5,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 700.0258178710938,
+      "y": 246.2516326904297
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 7,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 710.3899536132812,
+      "y": 246.89938354492188
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 7,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 724.308837890625,
+      "y": 247.76930236816406
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 8,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 736.6033935546875,
+      "y": 248.5377197265625
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 9,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 750.6702880859375,
+      "y": 249.41688537597656
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 9,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 763.0030517578125,
+      "y": 250.18768310546875
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 10,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 777.12548828125,
+      "y": 251.07034301757812
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 11,
+    "calypsoWalkPlaying": true,
+    "cameraX": 866.3283081054688,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 829.4638671875,
+      "y": 254.3415069580078
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 5,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 842.0443725585938,
+      "y": 255.1277618408203
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 6,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 856.3947143554688,
+      "y": 256.024658203125
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 7,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 870.7156982421875,
+      "y": 256.91973876953125
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 7,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 883.2264404296875,
+      "y": 257.70166015625
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 8,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 897.5100708007812,
+      "y": 258.5943603515625
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 9,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 909.92431640625,
+      "y": 259.37030029296875
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 9,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 917.4085693359375,
+      "y": 259.8380126953125
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 10,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 919.5761108398438,
+      "y": 259.9735107421875
+    },
+    "calypsoMoving": true,
+    "calypsoPose": 0,
+    "calypsoDrawing": 10,
+    "calypsoWalkPlaying": true,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  },
+  {
+    "calypsoWorldPoint": {
+      "x": 920.0,
+      "y": 260.0
+    },
+    "calypsoMoving": false,
+    "calypsoPose": 2,
+    "calypsoDrawing": 2,
+    "calypsoWalkPlaying": false,
+    "cameraX": 1212.859619140625,
+    "daycareRoutine": 1
+  }
+]

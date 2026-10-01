@@ -19,6 +19,8 @@ namespace LittleWeeps.Client
         // Match the requested 2x travel increase while preserving the
         // quieter step rhythm the user accepted in build 123.
         public const float WalkStride = 320;
+        public float NpcWorldScale { get; set; }
+        public float EffectiveWalkStride => NpcWorldScale > 0 ? 80 * art.scale * NpcWorldScale : WalkStride;
         public CharacterFrame Frame { get; private set; }
         public int FrameIndex { get; private set; }
         public float WalkPhase => cycle;
@@ -80,7 +82,12 @@ namespace LittleWeeps.Client
             {
                 var distance = frame.Travel.magnitude;
                 if (distance == 0) distance = frame.Speed * dt;
-                cycle = Mathf.Repeat(cycle + distance / WalkStride, 1);
+                // NPCs are smaller and often walk slowly. The player stride held
+                // their four distinct poses for seconds. Use their world size,
+                // and cap cadence during fast story transitions.
+                var advance = distance / EffectiveWalkStride;
+                if (NpcWorldScale > 0) advance = Mathf.Min(advance, dt * 1.8f);
+                cycle = Mathf.Repeat(cycle + advance, 1);
             }
             var blink = time % 4.3f > 4.14f;
             var index = moving ? 4 + Mathf.Min(7, Mathf.FloorToInt(cycle * 8)) : blink ? 1 : 0;

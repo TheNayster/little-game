@@ -1,0 +1,32 @@
+{
+  "build": 400,
+  "samples": 260,
+  "seconds": 4.340030201247167,
+  "maxWorldSpeed": 124.69780862902942,
+  "walkFrames": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "movingSamples": 180,
+  "readingFrames": [
+    3
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

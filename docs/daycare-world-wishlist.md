@@ -17,11 +17,11 @@ The current status is **walkable scenery, The Adventure, Calypso routines and sh
 7. **Playful learning with spoken help.** Start with pictures and direct taps or forgiving drags. Offer a demonstration when useful and deeper choices when wanted. Help is per player and per skill, with no compulsory answers, grades, streak loss or age-based character/story locks. Complete English first, then reviewed Spanish, including suitable sound and rhyme examples.
 8. **An imagination mat with all nine stories.** Choose a story picture, hear its premise, choose a pictured role and enter its illustrated space. Favorite character and story role are separate choices. Keep change-role, repeat-instructions and return-to-daycare controls available.
 
-The requested child roster in the goal sheet is Bluey, Bingo, Muffin, Socks, Chloe, Coco, Honey, Indy, Mackenzie, Rusty, Jack, Snickers, Winton, each of the three Terriers, Pretzel, Lucky, Chucky, Judo, Pom Pom, Winnie, Jean-Luc, Lila, Missy, Buddy, Bentley, Juniper, Lulu, Dusty, Dougie and Hercules, with Digger, Mia and Captain included as optional older children in that original roster. The later complete selector includes those older children. Preserve Dougie's visual communication support. Bandit and Chilli remain selectable player characters; Calypso's daycare teaching routine is separate planned work.
+The requested child roster in the goal sheet is Bluey, Bingo, Muffin, Socks, Chloe, Coco, Honey, Indy, Mackenzie, Rusty, Jack, Snickers, Winton, each of the three Terriers, Pretzel, Lucky, Chucky, Judo, Pom Pom, Winnie, Jean-Luc, Lila, Missy, Buddy, Bentley, Juniper, Lulu, Dusty, Dougie and Hercules, with Digger, Mia and Captain included as optional older children in that original roster. The later complete selector includes those older children. Preserve Dougie's visual communication support. Bandit and Chilli remain selectable player characters; Calypso's teacher role is separate from the selectable child roster.
 
 ## New daycare activities requested October 1
 
-These six additions are planned activities, with simple play and optional deeper choices in the same shared activity. Children can choose either level; the age examples do not lock features or characters.
+These six additions share the following play goals, with simple play and optional deeper choices in the same shared activity. Children can choose either level; the age examples do not lock features or characters.
 
 | Idea | Your 3-year-old can… | Your 6-year-old can… |
 | --- | --- | --- |
@@ -34,7 +34,7 @@ These six additions are planned activities, with simple play and optional deeper
 
 Each activity must support up to four players together, late joining and independent leaving while retaining the group's progress. Use clear pictures, spoken help and Calypso's optional demonstrations. Any child NPCs must use a varied random saved cast, independent of player character choices; joining or leaving must not reroll them.
 
-These additions extend the existing wishlist. They have not been implemented, and no build order has been selected.
+These additions extend the existing wishlist. **Treasure hunt is implemented in Windows candidate400 as The Windblown Map**, selected by the user: a separate island story with picture/riddle clues, map pieces, windchimes, digging and picture locks. [Research, four-player checks and limits](implementation/daycare-treasure-hunt-2026-10-01.md). Device/live-server delivery and family visual approval remain pending. Toy vet, Build-and-test playground, Pretend café, Family band and Puppet theatre remain planned; no next activity is selected.
 
 ## The twelve learning stations
 

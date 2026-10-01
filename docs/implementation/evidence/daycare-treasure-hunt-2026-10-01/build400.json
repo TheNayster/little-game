@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-01T16:32:41.1342279Z",
+  "contract": 17,
+  "content": 61,
+  "schema": 47,
+  "gardenPresentation": true,
+  "builds": [
+    {
+      "role": "Server",
+      "version": "0.0.400",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/PC Server Network Probe.asset",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": true
+    },
+    {
+      "role": "Client",
+      "version": "0.0.400",
+      "unity": "6000.3.24f1",
+      "profile": "Assets/BuildProfiles/Windows Network Probe.asset",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": false
+    }
+  ]
+}

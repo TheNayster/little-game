@@ -13,13 +13,14 @@ namespace LittleWeeps.Client
         public int WorldMusicClipCount=>worldMusic==null?0:worldMusic.ClipCount;
         public int WorldMusicSample=>worldMusic==null?0:worldMusic.Sample;
         public float WorldMusicSignal=>worldMusic==null?0:worldMusic.Signal;
-        private float ForegroundDucking=>Narration!=null && Narration.Speaking ? .22f : BookDucking;
+        private float ForegroundDucking=>TreasureTonePlaying?.08f:Narration!=null && Narration.Speaking ? .22f : BookDucking;
 
         private void TickWorldMusic()
         {
             if(worldMusic==null || !Ready)return;
             var area=CurrentArea;
             var track=area=="garden"?(ReadPlayer(Actor).x>150?"yard":"home"):
+                area==TreasureHunt.Zone?"treasure":area==KingdomAdventure.Zone?"daycare":
                 area==DinosaurRides.Area?"yard":
                 ZooLayout.Area(area)?(area==ZooCatalog.Aquarium?"creek":"yard"):
                 area=="park" || area=="creek" || area=="beach" || area=="daycare"?area:"home";

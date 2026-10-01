@@ -41,18 +41,23 @@ TUNES = {
         '3:1 r:.5 5:.5 7:1 5:1', '4:.5 3:.5 1:1 4:1 r:1',
         '2:.5 4:.5 7:1 5:.5 4:.5 2:1', '4:1 2:.5 1:.5 0:1 r:1',
         '3:1 5:1 3:.5 2:.5 0:1', '1:1 4:1 0:1 r:1']),
-    'daycare': (108, 3, 0, 12, 'A Pocket Full of Ideas', [
-        '0:.5 2:.5 4:1 2:.5 0:.5 2:1', '4:1 5:.5 4:.5 2:1 r:1',
-        '3:.5 5:.5 3:1 2:1 0:1', '1:.5 3:.5 4:1 1:1 r:1',
-        '4:1 7:.5 6:.5 5:1 4:1', '2:.5 4:.5 5:1 2:1 r:1',
-        '3:1 2:.5 0:.5 3:1 2:1', '1:1 4:1 0:1 r:1'])}
+    'daycare': (116, 0, 11, 73, 'Sunny Daycare Play', [
+        '0:.5 2:.5 4:.5 r:.5 5:.5 4:.5 2:.5 r:.5', '2:.5 1:.5 0:1 2:.5 4:.5 r:1',
+        '3:.5 5:.5 7:.5 r:.5 5:1 3:1', '4:.5 6:.5 8:.5 6:.5 4:1 r:1',
+        '2:.5 4:.5 5:.5 r:.5 7:.5 5:.5 4:1', '4:.5 2:.5 0:1 2:1 r:1',
+        '3:.5 5:.5 7:1 5:.5 3:.5 r:1', '4:.5 2:.5 1:.5 r:.5 0:2']),
+    'treasure': (122, 5, 11, 45, 'The Windblown Map', [
+        '0:.5 2:.5 4:1 5:.5 4:.5 r:1', '2:.5 4:.5 7:1 4:.5 2:.5 r:1',
+        '3:.5 5:.5 7:.5 5:.5 3:1 r:1', '4:.5 6:.5 8:1 6:.5 4:.5 r:1',
+        '0:.5 2:.5 4:.5 r:.5 7:1 5:1', '4:.5 2:.5 0:.5 2:.5 4:1 r:1',
+        '3:.5 5:.5 7:1 5:.5 3:.5 r:1', '4:.5 2:.5 1:.5 r:.5 0:2'])}
 
 def vlq(n):
     data = [n & 127]
     while (n := n >> 7): data.insert(0, (n & 127) | 128)
     return bytes(data)
 
-def midi(path, bpm, transpose, lead, answer, bars, seed):
+def midi(path, bpm, transpose, lead, answer, bars, seed, bright=False):
     rng = random.Random(seed); events = []
     def event(beat, data): events.append((round(beat * PPQ), data))
     def note(ch, key, beat, length, velocity):
@@ -69,6 +74,7 @@ def midi(path, bpm, transpose, lead, answer, bars, seed):
     degrees = [0,2,4,5,7,9,11]
     def pitch(d): return 60 + transpose + degrees[d % 7] + 12*(d//7)
     progression = [(0,2,4),(5,7,9),(3,5,7),(4,6,8),(0,2,4),(5,7,9),(3,5,7),(4,6,8)]
+    if bright:progression=[(0,2,4),(0,2,4),(3,5,7),(4,6,8),(0,2,4),(0,2,4),(3,5,7),(0,2,4)]
     score_start = rng.getstate()
     for cycle in range(3):
         rng.setstate(score_start)
@@ -83,7 +89,7 @@ def midi(path, bpm, transpose, lead, answer, bars, seed):
                 if degree!='r':
                     key=pitch(int(degree))
                     ch=1 if section==1 else 0
-                    note(ch,key,start+pos,length*.84,67+soft)
+                    note(ch,key,start+pos,length*(.64 if bright else .84),67+soft)
                 pos+=length
             assert abs(pos-4)<.001
             bass=pitch(chord[0])-24
@@ -96,7 +102,7 @@ def midi(path, bpm, transpose, lead, answer, bars, seed):
             if section!=2:
                 for beat in [1,3]:
                     for d in chord:note(3,pitch(d),start+beat,.4,40)
-            if section in [2,3]:
+            if section in [2,3] and not bright:
                 for d in chord:note(5,pitch(d),start+.08,3.8,37)
             if section==3 and bar%2==1:
                 for beat,d in [(2,chord[2]),(2.5,chord[1]),(3,chord[0])]:note(1,pitch(d)+12,start+beat,.4,38)
@@ -112,13 +118,14 @@ def midi(path, bpm, transpose, lead, answer, bars, seed):
     path.write_bytes(b'MThd'+struct.pack('>IHHH',6,0,1,PPQ)+b'MTrk'+struct.pack('>I',len(data))+data)
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--synth',type=Path,required=True);p.add_argument('--font',type=Path,required=True);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--synth',type=Path,required=True);p.add_argument('--font',type=Path,required=True);p.add_argument('--tracks',default='');args=p.parse_args()
     assert hashlib.sha256(args.font.read_bytes()).hexdigest()==FONT_HASH
     SOURCE.mkdir(parents=True,exist_ok=True);OUTPUT.mkdir(parents=True,exist_ok=True)
-    temp=ROOT/'LocalData/MusicStudio/renders';temp.mkdir(parents=True,exist_ok=True);tracks=[]
+    temp=ROOT/'LocalData/MusicStudio/renders';temp.mkdir(parents=True,exist_ok=True);manifest_path=SOURCE/'manifest.json';tracks=json.loads(manifest_path.read_text(encoding='utf-8'))['tracks'] if args.tracks and manifest_path.exists() else []
     for seed,(key,(bpm,transpose,lead,answer,title,bars)) in enumerate(TUNES.items()):
+        if args.tracks and key not in args.tracks.split(','):continue
         score=SOURCE/(key+'.mid');raw=temp/(key+'.wav');out=OUTPUT/(key+'.wav')
-        midi(score,bpm,transpose,lead,answer,bars,seed)
+        midi(score,bpm,transpose,lead,answer,bars,seed,bright=key in ('daycare','treasure'))
         subprocess.run([str(args.synth),'-ni','-q','-r','44100','-g','.6','-o','synth.reverb.room-size=.32','-o','synth.reverb.damp=.4','-o','synth.reverb.level=.18','-o','synth.chorus.active=0','-F',str(raw),str(args.font),str(score)],check=True,capture_output=True)
         with wave.open(str(raw),'rb') as w:
             assert w.getsampwidth()==2 and w.getnchannels()==2
@@ -138,7 +145,7 @@ def main():
         seam=max(abs(samples[n]-samples[-2+n]) for n in range(2))/32768
         assert seam<.02,'Loop discontinuity '+key
         track=dict(id=key,title=title,bpm=bpm,bars=32,seconds=frames/44100,sha256=hashlib.sha256(out.read_bytes()).hexdigest(),peak=max(abs(s) for s in samples)/32768,rms_db=20*math.log10(rms*gain/32768),seam=seam)
-        tracks.append(track);print(json.dumps(track),flush=True)
+        tracks=[t for t in tracks if t['id']!=key];tracks.append(track);print(json.dumps(track),flush=True)
     (SOURCE/'manifest.json').write_text(json.dumps(dict(renderer='FluidSynth 2.6.1',font='GeneralUser GS 2.0.3',font_sha256=FONT_HASH,tracks=tracks),indent=2)+'\n')
 
 if __name__=='__main__':main()

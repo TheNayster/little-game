@@ -1,0 +1,58 @@
+{
+  "build": 400,
+  "samples": 248,
+  "seconds": 4.116780201247167,
+  "metrics": [
+    {
+      "npc": 0,
+      "stillFraction": 0.0,
+      "walkStillSwitches": 0,
+      "maxRenderedSpeed": 42.417143950534275,
+      "maxWalkPoseHoldSeconds": 0.5333361998200417,
+      "drawingIndices": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "npc": 1,
+      "stillFraction": 0.0,
+      "walkStillSwitches": 0,
+      "maxRenderedSpeed": 43.083684866208856,
+      "maxWalkPoseHoldSeconds": 0.5500029027462006,
+      "drawingIndices": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "npc": 2,
+      "stillFraction": 0.0,
+      "walkStillSwitches": 0,
+      "maxRenderedSpeed": 42.13904261144315,
+      "maxWalkPoseHoldSeconds": 0.6333409007638693,
+      "drawingIndices": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  ]
+}

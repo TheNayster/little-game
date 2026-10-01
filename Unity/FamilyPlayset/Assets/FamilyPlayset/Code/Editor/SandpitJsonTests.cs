@@ -5,9 +5,9 @@ using UnityEngine;
 namespace LittleWeeps.EditorTools {
  public static class SandpitJsonTests {
   public static void Run(){
-   var w=SoloWorld.WithDinosaurWorld(SoloWorld.Create("one","two","three","four"));var old=w.Snapshot();old.schema=45;old.sandpit=null;
+   var w=SoloWorld.WithDinosaurWorld(SoloWorld.Create("one","two","three","four"));var old=w.Snapshot();old.schema=45;old.sandpit=null;old.treasure=null;
    var prior=JsonUtility.ToJson(old.kingdom);w=SoloWorld.WithDinosaurWorld(SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(old))));
-   if(w.Schema!=46 || JsonUtility.ToJson(w.ReadKingdom())!=prior || w.Snapshot().worldId!=old.worldId)throw new InvalidOperationException("Sandpit migration changed earlier world.");
+   if(w.Schema!=WorldLayout.Schema || JsonUtility.ToJson(w.ReadKingdom())!=prior || w.Snapshot().worldId!=old.worldId)throw new InvalidOperationException("Sandpit migration changed earlier world.");
    var s=w.Snapshot();s.sandpit.round=1;s.sandpit.phase=3;s.sandpit.teacherX=4020;s.sandpit.teacherY=440;
    for(var i=0;i<4;i++){s.sandpit.moulds[i].scoops=DaycareSandpit.Capacity(i);s.sandpit.moulds[i].wet=true;s.sandpit.moulds[i].built=true;s.sandpit.moulds[i].decoration=i%2+1;}
    var reopened=SoloWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(s)));if(JsonUtility.ToJson(reopened.ReadSandpit())!=JsonUtility.ToJson(s.sandpit))throw new InvalidOperationException("Sand castle JSON retention failed.");

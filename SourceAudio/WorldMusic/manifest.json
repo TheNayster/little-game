@@ -60,12 +60,23 @@
     },
     {
       "id": "daycare",
-      "title": "A Pocket Full of Ideas",
-      "bpm": 108,
+      "title": "Sunny Daycare Play",
+      "bpm": 116,
       "bars": 32,
-      "seconds": 71.11111111111111,
-      "sha256": "149343bf49923eec4991b6cf56e004da1a25946fef81bed6ea0ab21af68c0adf",
-      "peak": 0.4794921875,
+      "seconds": 66.20689342403628,
+      "sha256": "822ef31329c4e05700787eaeef82cc5d633a9810bcc02b5b041cd3171cd96570",
+      "peak": 0.476043701171875,
+      "rms_db": -22.000265076360378,
+      "seam": 0.0
+    },
+    {
+      "id": "treasure",
+      "title": "The Windblown Map",
+      "bpm": 122,
+      "bars": 32,
+      "seconds": 62.950816326530614,
+      "sha256": "de68a2c3868cf4795481a1f42410ecc5e179436de8ab63de1b3c725b4667b9d0",
+      "peak": 0.54864501953125,
       "rms_db": -22.000265076360378,
       "seam": 0.0
     }

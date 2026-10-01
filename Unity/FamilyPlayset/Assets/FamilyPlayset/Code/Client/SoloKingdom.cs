@@ -18,7 +18,7 @@ namespace LittleWeeps.Client
         private bool kingdomSending;
         private int kingdomSpoken=-1,kingdomSpokenRound=-1;
         private readonly List<AudioClip> kingdomAudio=new List<AudioClip>();
-        private readonly List<CharacterMotion> kingdomNpcMotion=new List<CharacterMotion>();
+        private readonly List<NpcLocomotion> kingdomNpcMotion=new List<NpcLocomotion>();
         private readonly List<Vector2> kingdomNpcPoints=new List<Vector2>();
         private readonly List<Image> kingdomNpcCargo=new List<Image>();
         private readonly Dictionary<string,Image> kingdomHolds=new Dictionary<string,Image>();
@@ -26,7 +26,7 @@ namespace LittleWeeps.Client
         private readonly List<RectTransform> kingdomBridge=new List<RectTransform>();
         private RectTransform kingdomBasket;private Image kingdomApple;private Text kingdomGuide;
         private RectTransform kingdomStory;private RawImage kingdomQueenPortrait;private int kingdomPortraitRound=-1;
-        private int kingdomFrame=-1,kingdomClockRound=-1,kingdomClockPhase=-1;private double kingdomClockSample;private float kingdomClockAt;
+        private double kingdomDisplayClock;private int kingdomFrame=-1;private readonly NpcPresentationClock kingdomPresentationClock = new NpcPresentationClock();
         public KingdomState KingdomGame=>HasWorld?(Shared?shared.View.kingdom:World.ReadKingdom()):null;
         public string[] KingdomNpcArt=>kingdomNpcs.Select(n=>n.visual.CharacterId).ToArray();
         public int VisibleKingdomNpcs=>kingdomNpcs.Count(v=>v.root!=null && v.root.gameObject.activeInHierarchy);
@@ -71,7 +71,7 @@ namespace LittleWeeps.Client
                 root.gameObject.SetActive(false);
                 var visual=root.gameObject.AddComponent<GameCharacterVisual>();visual.Select(KingdomGame.npcCast[i]);
                 kingdomNpcs.Add((root,visual));
-                kingdomNpcMotion.Add(new CharacterMotion());kingdomNpcPoints.Add(Vector2.zero);
+                kingdomNpcMotion.Add(new NpcLocomotion());kingdomNpcPoints.Add(Vector2.zero);
                 var cargo=HomePicture(root,"Friend's story prop",new Vector2(40,60),new Vector2(75,65),IngredientSprite("banana"));kingdomNpcCargo.Add(cargo);
                 if(i==0 || i==5){var crown=Panel(root,"Pretend crown",new Vector2(0,142),new Vector2(80,20),new Color(1,.82f,.24f),false);for(var j=0;j<3;j++)Panel(crown.transform,"Crown point",new Vector2((j-1)*27,14),new Vector2(18,25),new Color(1,.82f,.24f),false);}
                 if(i>=6){var index=i-6;HomeHit(root,"Wake friend "+(index+1),new Vector2(0,65),new Vector2(180,225),()=>RequestKingdom("friend-"+index,"wake"),false);}
@@ -130,10 +130,9 @@ namespace LittleWeeps.Client
         {
             if(kingdomHud==null)return;var g=KingdomGame;var visible=KingdomArea && g!=null;
             if(kingdomFrame==Time.frameCount)return;kingdomFrame=Time.frameCount;
-            // Extrapolate only a bounded presentation clock. Packet-sized jumps
-            // must not alternate idle/walk; gameplay still uses the server clock.
-            if(g!=null && (g.clock!=kingdomClockSample || g.round!=kingdomClockRound || (int)g.phase!=kingdomClockPhase)){kingdomClockSample=g.clock;kingdomClockAt=Time.unscaledTime;kingdomClockRound=g.round;kingdomClockPhase=(int)g.phase;}
-            var clock=g==null?0:g.clock+(Shared && shared.Connected?Math.Min(.35,Time.unscaledTime-kingdomClockAt):0);var dt=Mathf.Min(Time.unscaledDeltaTime,.1f);
+            var dt=Mathf.Min(Time.unscaledDeltaTime,.1f);
+            var clock=kingdomDisplayClock=g==null?0:kingdomPresentationClock.Step(g.clock,"kingdom/"+g.round,
+                Shared && shared.Connected,Time.unscaledTimeAsDouble,dt);
             kingdomHud.gameObject.SetActive(visible);kingdomControls.gameObject.SetActive(visible);
             var opening=visible && g.phase==KingdomPhase.Welcome && !MenuOpen;kingdomStory.gameObject.SetActive(opening);kingdomStory.localScale=Vector3.one*Mathf.Min(safe.rect.width/900,safe.rect.height/530);
             if(opening){kingdomStory.SetAsLastSibling();if(kingdomPortraitRound!=g.round){var portrait=Resources.Load<CharacterMenuArt>("CharacterMenu/"+PlayableCharacters.Find(g.npcCast[0]).ArtId);kingdomQueenPortrait.texture=portrait.texture;kingdomQueenPortrait.rectTransform.sizeDelta=portrait.size;kingdomQueenPortrait.rectTransform.pivot=portrait.pivot;kingdomPortraitRound=g.round;}}
@@ -142,15 +141,15 @@ namespace LittleWeeps.Client
                 var npc=kingdomNpcs[i];npc.root.gameObject.SetActive(visible);if(!visible)continue;
                 npc.visual.Select(g.npcCast[i]);
                 var point=KingdomAdventure.NpcPoint(g,i,clock);var worldPoint=new Vector2(point.X,point.Y);
-                if(kingdomNpcPoints[i]==Vector2.zero)kingdomNpcPoints[i]=worldPoint;else kingdomNpcPoints[i]=Vector2.MoveTowards(kingdomNpcPoints[i],worldPoint,230*dt);
-                worldPoint=kingdomNpcPoints[i];npc.root.anchoredPosition=ToBoard(worldPoint.x,worldPoint.y);npc.root.localScale=Vector3.one*sceneScale*.85f;
                 var job=KingdomAdventure.NpcJob(g,i,clock);var frozen=KingdomAdventure.Frozen(g,i);var carrying=job=="Carry fruit" || job=="Carry plank";
-                var frame=kingdomNpcMotion[i].Observe(worldPoint,"kingdom/"+g.round+"/"+i,carrying,false,dt);
+                var frame=kingdomNpcMotion[i].Step(worldPoint,"kingdom/"+g.round+"/"+i,carrying,230,dt);
+                worldPoint=kingdomNpcPoints[i]=kingdomNpcMotion[i].Point;
+                npc.root.anchoredPosition=ToBoard(worldPoint.x,worldPoint.y);npc.root.localScale=Vector3.one*sceneScale*.85f;
                 var joyful=i>=6 && g.rescueStyle[i-6]==2 && clock-g.wakeAt[i-6]<6;
                 var pose=frozen?CharacterPose.Idle:(g.phase==KingdomPhase.Feast || joyful) && frame.Speed<=1?CharacterPose.Dance:frame.Speed>1?frame.Pose:carrying?CharacterPose.Carry:job=="Build bridge" || job=="Show stepping stones" || i==0 && g.phase==KingdomPhase.Welcome?CharacterPose.Wave:CharacterPose.Idle;
                 // Choose one final pose in world coordinates; camera movement
                 // cannot invent NPC travel, and no pose is presented twice.
-                npc.visual.PresentFrame(new CharacterFrame(pose,frame.Speed,frame.FaceLeft,(float)(clock-g.started),frame.Travel,frame.ResetMotion),dt);
+                npc.visual.PresentNpcFrame(new CharacterFrame(pose,frame.Speed,frame.FaceLeft,(float)(clock-g.started),frame.Travel,frame.ResetMotion),dt,.85f);
                 var cargo=kingdomNpcCargo[i];cargo.gameObject.SetActive(carrying);cargo.sprite=job=="Carry fruit"?IngredientSprite("strawberry"):null;cargo.color=job=="Carry fruit"?Color.white:new Color(.7f,.44f,.23f);cargo.rectTransform.sizeDelta=job=="Carry fruit"?new Vector2(60,60):new Vector2(115,35);
                 foreach(var graphic in npc.visual.ActiveView.GetComponentsInChildren<Image>())graphic.color=frozen?new Color(.55f,.76f,.95f):Color.white;
             }
@@ -171,6 +170,6 @@ namespace LittleWeeps.Client
         private void AddKingdomDepth(Action<RectTransform,float,int,string> add)
         {foreach(var npc in kingdomNpcs)if(npc.root.gameObject.activeSelf)add(npc.root,npc.root.anchoredPosition.y,3,npc.root.name);foreach(var prop in kingdomProps)if(prop.Value.gameObject.activeSelf)add(prop.Value,prop.Value.anchoredPosition.y,3,prop.Key);if(kingdomBasket?.gameObject.activeSelf==true)add(kingdomBasket,kingdomBasket.anchoredPosition.y,3,"story-basket");foreach(var plank in kingdomBridge)if(plank.gameObject.activeSelf)add(plank,plank.anchoredPosition.y,2,plank.name);foreach(var pair in kingdomHolds)if(pair.Value.gameObject.activeSelf)add(pair.Value.rectTransform,pair.Value.rectTransform.anchoredPosition.y-90*sceneScale,4,pair.Key);}
         private void ResetKingdom()
-        {ResetKingdomStory();kingdomNpcs.Clear();kingdomProps.Clear();kingdomNpcMotion.Clear();kingdomNpcPoints.Clear();kingdomNpcCargo.Clear();kingdomHolds.Clear();kingdomBasketFruit.Clear();kingdomBridge.Clear();kingdomBasket=null;kingdomStory=null;kingdomPortraitRound=-1;kingdomHud=null;kingdomControls=null;kingdomApproach="";kingdomSending=false;kingdomSpoken=-1;kingdomFrame=-1;foreach(var clip in kingdomAudio)if(clip!=null)Resources.UnloadAsset(clip);kingdomAudio.Clear();}
+        {ResetKingdomStory();kingdomPresentationClock.Reset();kingdomNpcs.Clear();kingdomProps.Clear();kingdomNpcMotion.Clear();kingdomNpcPoints.Clear();kingdomNpcCargo.Clear();kingdomHolds.Clear();kingdomBasketFruit.Clear();kingdomBridge.Clear();kingdomBasket=null;kingdomStory=null;kingdomPortraitRound=-1;kingdomHud=null;kingdomControls=null;kingdomApproach="";kingdomSending=false;kingdomSpoken=-1;kingdomFrame=-1;foreach(var clip in kingdomAudio)if(clip!=null)Resources.UnloadAsset(clip);kingdomAudio.Clear();}
     }
 }

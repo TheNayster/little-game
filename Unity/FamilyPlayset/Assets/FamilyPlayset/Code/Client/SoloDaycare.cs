@@ -10,7 +10,7 @@ namespace LittleWeeps.Client
     public sealed partial class SoloScreen
     {
         private RectTransform daycareTeacher,daycareTable,daycareHud,daycareControls,daycareTeacherCard;
-        private RawImage calypsoPicture;
+        private RawImage calypsoPicture;private TeacherWalkView calypsoWalk;
         private Text daycareHint,teacherRoutineLabel;
         private Button daycareReplay,daycareNext;
         private readonly List<GameCharacterVisual> daycareGuests=new List<GameCharacterVisual>();
@@ -21,8 +21,8 @@ namespace LittleWeeps.Client
         private int daycareApproach=-1,daycareSeenRound=-1,daycareSeenPhase=-1,daycareSeenCount=-1;
         private long daycareGreetingVisit=-1;
         private RectTransform daycarePlateTray;private readonly Dictionary<string,Image> daycareHeldPlates=new Dictionary<string,Image>();
-        private Vector2 calypsoWorldPoint;private double calypsoSample,calypsoClock;private float calypsoSampleAt;private int daycareFrame=-1;
-        public Vector2 CalypsoWorldPoint=>calypsoWorldPoint;public bool CalypsoMoving{get;private set;}public int CalypsoPose{get;private set;}
+        private Vector2 calypsoWorldPoint;private double calypsoClock;private readonly NpcPresentationClock calypsoPresentationClock=new NpcPresentationClock();private readonly NpcLocomotion calypsoLocomotion=new NpcLocomotion();private int daycareFrame=-1;
+        public int CalypsoDrawing=>calypsoWalk==null?-1:calypsoWalk.Drawing;public bool CalypsoWalkPlaying=>calypsoWalk!=null && calypsoWalk.Walking;public Vector2 NpcTeacherPoint=>CurrentArea==TreasureHunt.Zone?treasureTeacherPoint:calypsoWorldPoint;public int NpcTeacherDrawing=>CurrentArea==TreasureHunt.Zone?(treasureTeacherWalk==null?-1:treasureTeacherWalk.Drawing):CalypsoDrawing;public bool NpcTeacherWalking=>CurrentArea==TreasureHunt.Zone?(treasureTeacherWalk!=null && treasureTeacherWalk.Walking):CalypsoWalkPlaying;public Vector2 CalypsoWorldPoint=>calypsoWorldPoint;public bool CalypsoMoving{get;private set;}public int CalypsoPose{get;private set;}
         public DaycareState DaycareGame=>HasWorld?(Shared?shared.View.daycare:World.ReadDaycare()):null;
         public string[] PicnicNpcArt=>daycareGuests.Select(n=>n.CharacterId).ToArray();
         public int DaycareRoutine=>DaycareGame==null?-1:DaycareTeacher.Routine(DaycareGame);
@@ -65,7 +65,7 @@ namespace LittleWeeps.Client
             if(SceneSchema<DaycareTeacher.Schema)return;
             calypsoTexture=Resources.Load<Texture2D>("Daycare/calypso-poses");if(calypsoTexture==null)throw new InvalidOperationException("Missing Calypso artwork.");
             daycareTeacher=Rect(Board,"Calypso teacher",Vector2.zero,new Vector2(220,300));
-            calypsoPicture=Rect(daycareTeacher,"Calypso drawing",new Vector2(0,130),new Vector2(220,294)).gameObject.AddComponent<RawImage>();calypsoPicture.texture=calypsoTexture;calypsoPicture.raycastTarget=false;
+            calypsoPicture=Rect(daycareTeacher,"Calypso drawing",new Vector2(0,130),new Vector2(220,294)).gameObject.AddComponent<RawImage>();calypsoPicture.texture=calypsoTexture;calypsoPicture.raycastTarget=false;calypsoWalk=daycareTeacher.gameObject.AddComponent<TeacherWalkView>();calypsoWalk.Configure(calypsoPicture,calypsoTexture);
             HomeHit(daycareTeacher,"Ask Calypso",new Vector2(0,130),new Vector2(220,295),ShowTeacherCard);
             teacherRoutineLabel=Label(daycareTeacher,"",19,new Vector2(0,300),new Vector2(270,60));
             daycareTable=Rect(Board,"Daycare picnic table",Vector2.zero,new Vector2(740,240));daycareTable.gameObject.SetActive(false);
@@ -110,14 +110,15 @@ namespace LittleWeeps.Client
             daycarePlateTray.gameObject.SetActive(visible && d.phase>0);foreach(var pair in daycareHeldPlates)pair.Value.gameObject.SetActive(visible && d.members.First(m=>m.actor==pair.Key).carryingPlate);
             if(!visible){CloseTeacherCard();daycareApproach=-1;daycareSeenPhase=-1;return;}
             var scale=Mathf.Min(1,safe.rect.width/1100);daycareHud.localScale=daycareControls.localScale=Vector3.one*scale;daycareTeacherCard.localScale=Vector3.one*Mathf.Min(safe.rect.width/800,safe.rect.height/520);
-            if(d.clock!=calypsoSample){calypsoSample=d.clock;calypsoSampleAt=Time.unscaledTime;}
-            calypsoClock=Math.Max(calypsoClock,d.clock+(Shared && shared.Connected?Math.Min(.35,Time.unscaledTime-calypsoSampleAt):0));
-            var point=SandpitTeacherActive?DaycareSandpit.TeacherPoint(SandpitGame,calypsoClock):DaycareTeacher.Point(d,calypsoClock);var target=new Vector2(point.X,point.Y);var dt=Mathf.Min(Time.unscaledDeltaTime,.1f);
-            if(calypsoWorldPoint==Vector2.zero)calypsoWorldPoint=target;var prior=calypsoWorldPoint;calypsoWorldPoint=Vector2.MoveTowards(prior,target,180*dt);
+            var dt=Mathf.Min(Time.unscaledDeltaTime,.1f);
+            calypsoClock=calypsoPresentationClock.Step(d.clock,"daycare",Shared && shared.Connected,Time.unscaledTimeAsDouble,dt);
+            var point=SandpitTeacherActive?DaycareSandpit.TeacherPoint(SandpitGame,calypsoClock):DaycareTeacher.Point(d,calypsoClock);
+            var teacherFrame=calypsoLocomotion.Step(new Vector2(point.X,point.Y),"daycare",false,180,dt);
+            calypsoWorldPoint=calypsoLocomotion.Point;
             daycareTeacher.anchoredPosition=ToBoard(calypsoWorldPoint.x,calypsoWorldPoint.y);daycareTeacher.localScale=Vector3.one*sceneScale;
-            // Keep a grounded standing drawing throughout travel. Switching to
-            // sitting/reading before arrival made the moving teacher pop poses.
-            CalypsoMoving=Vector2.Distance(prior,calypsoWorldPoint)>dt;var routine=SandpitTeacherActive?3:DaycareTeacher.Routine(d,calypsoClock);var pose=CalypsoMoving?0:routine==1?2:routine==4?3:routine==0 || routine==3?1:0;CalypsoPose=pose;calypsoPicture.uvRect=new Rect(pose*.25f,0,.25f,1);
+            // Walking uses alternating feet. Teach/read/sit begins only after
+            // locomotion settles, and every drawing shares the ground anchor.
+            CalypsoMoving=teacherFrame.Pose==CharacterPose.Walk;var routine=SandpitTeacherActive?3:DaycareTeacher.Routine(d,calypsoClock);var pose=CalypsoMoving?0:routine==1?2:routine==4?3:routine==0 || routine==3?1:0;CalypsoPose=pose;calypsoWalk.Present(teacherFrame,pose,dt,1);
             teacherRoutineLabel.text=SandpitTeacherActive?"Calypso · sandcastle teacher":new[]{"Calypso · hello","Calypso · reading","Calypso · watching play","Calypso · helping","Calypso · resting"}[routine];
             daycareTable.anchoredPosition=ToBoard(1445,180);daycareTable.localScale=Vector3.one*sceneScale;
             var tray=DaycareTeacher.Tray;daycarePlateTray.anchoredPosition=ToBoard(tray.X,tray.Y);daycarePlateTray.localScale=Vector3.one*sceneScale;
@@ -137,6 +138,6 @@ namespace LittleWeeps.Client
         private void AddDaycareDepth(Action<RectTransform,float,int,string> add)
         {if(CalypsoVisible){add(daycareTeacher,daycareTeacher.anchoredPosition.y,3,"calypso");add(daycareTable,daycareTable.anchoredPosition.y,3,"picnic-table");if(daycarePlateTray.gameObject.activeSelf)add(daycarePlateTray,daycarePlateTray.anchoredPosition.y,3,"plate-tray");foreach(var pair in daycareHeldPlates)if(pair.Value.gameObject.activeSelf)add(pair.Value.rectTransform,pair.Value.rectTransform.anchoredPosition.y-90*sceneScale,4,pair.Key);}}
         private void ResetDaycare()
-        {daycareTeacher=daycareTable=daycareHud=daycareControls=daycareTeacherCard=null;daycarePlateTray=null;daycareHeldPlates.Clear();daycareGuests.Clear();daycarePlates.Clear();calypsoWorldPoint=Vector2.zero;calypsoClock=calypsoSample=0;daycareFrame=-1;daycareApproach=-1;daycareSending=false;daycareSeenRound=daycareSeenPhase=daycareSeenCount=-1;daycareGreetingVisit=-1;foreach(var clip in daycareAudio)if(clip!=null)Resources.UnloadAsset(clip);daycareAudio.Clear();if(calypsoTexture!=null)Resources.UnloadAsset(calypsoTexture);calypsoTexture=null;}
+        {daycareTeacher=daycareTable=daycareHud=daycareControls=daycareTeacherCard=null;daycarePlateTray=null;daycareHeldPlates.Clear();daycareGuests.Clear();daycarePlates.Clear();calypsoWorldPoint=Vector2.zero;calypsoClock=0;calypsoPresentationClock.Reset();calypsoLocomotion.Reset();daycareFrame=-1;daycareApproach=-1;daycareSending=false;daycareSeenRound=daycareSeenPhase=daycareSeenCount=-1;daycareGreetingVisit=-1;foreach(var clip in daycareAudio)if(clip!=null)Resources.UnloadAsset(clip);daycareAudio.Clear();if(calypsoTexture!=null)Resources.UnloadAsset(calypsoTexture);calypsoTexture=null;}
     }
 }

@@ -36,7 +36,7 @@ namespace LittleWeeps.Client
             foreach(var choice in miniGamesChoices){var show=choice.world==world;choice.root.gameObject.SetActive(show);if(show)count++;}
             miniGamesHeading.text=MiniGamesWorldName+" games";
             miniGamesEmpty.gameObject.SetActive(count==0);
-            miniGamesContent.sizeDelta=new Vector2(740,300);
+            miniGamesContent.sizeDelta=new Vector2(740,world=="daycare" && SceneSchema>=TreasureHunt.Schema?400:300);
             miniGamesContent.anchoredPosition=Vector2.zero;
         }
 
@@ -90,12 +90,14 @@ namespace LittleWeeps.Client
                 PondPicture(card,name+" menu picture",new Vector2(0,35),new Vector2(210,125),feed?"feeding-icon":"fishing-icon");
             }
             AddTagChoice();
-            var adventure=MiniGameChoice("daycare","The Adventure",new Vector2(0,-50),new Vector2(700,90),ChooseKingdom,new Color(.86f,.82f,.98f));
+            if(SceneSchema>=TreasureHunt.Schema){var hunt=MiniGameChoice("daycare","Treasure hunt",new Vector2(0,-50),new Vector2(700,90),ChooseTreasure,new Color(1,.87f,.61f));var card=(RectTransform)hunt.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);var map=TreasurePicture(card,"Treasure hunt map picture",new Vector2(-275,0),new Vector2(90,75),"map");map.rectTransform.localScale=Vector3.one*.75f;hunt.rectTransform.anchoredPosition=new Vector2(60,0);}
+            var offset=SceneSchema>=TreasureHunt.Schema?100:0;
+            var adventure=MiniGameChoice("daycare","The Adventure",new Vector2(0,-50-offset),new Vector2(700,90),ChooseKingdom,new Color(.86f,.82f,.98f));
             var adventureCard=(RectTransform)adventure.transform.parent;adventureCard.anchorMin=adventureCard.anchorMax=new Vector2(.5f,1);
-            var picnic=MiniGameChoice("daycare","Picnic counting",new Vector2(0,-150),new Vector2(700,90),ChoosePicnic,new Color(.82f,.91f,.62f));
+            var picnic=MiniGameChoice("daycare","Picnic counting",new Vector2(0,-150-offset),new Vector2(700,90),ChoosePicnic,new Color(.82f,.91f,.62f));
             var picnicCard=(RectTransform)picnic.transform.parent;picnicCard.anchorMin=picnicCard.anchorMax=new Vector2(.5f,1);
 
-            if(SceneSchema>=DaycareSandpit.Schema){var sand=MiniGameChoice("daycare","Sandcastle club",new Vector2(0,-250),new Vector2(700,90),ChooseSandpit,new Color(1,.87f,.61f));var card=(RectTransform)sand.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);var bucket=DrawSandBucket(card,new Vector2(-270,-20),0,2,true);bucket.rectTransform.localScale=Vector3.one*.55f;sand.rectTransform.anchoredPosition=new Vector2(65,0);sand.rectTransform.sizeDelta=new Vector2(480,90);}
+            if(SceneSchema>=DaycareSandpit.Schema){var sand=MiniGameChoice("daycare","Sandcastle club",new Vector2(0,-250-offset),new Vector2(700,90),ChooseSandpit,new Color(1,.87f,.61f));var card=(RectTransform)sand.transform.parent;card.anchorMin=card.anchorMax=new Vector2(.5f,1);var bucket=DrawSandBucket(card,new Vector2(-270,-20),0,2,true);bucket.rectTransform.localScale=Vector3.one*.55f;sand.rectTransform.anchoredPosition=new Vector2(65,0);sand.rectTransform.sizeDelta=new Vector2(480,90);}
 
             Button(miniGamesFrame,"Back to play",new Vector2(0,-200),new Vector2(300,75),CloseMiniGames,Color.white);
             miniGamesMenu.gameObject.SetActive(false);

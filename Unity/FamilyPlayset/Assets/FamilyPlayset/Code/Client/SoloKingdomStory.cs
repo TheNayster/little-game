@@ -16,7 +16,7 @@ namespace LittleWeeps.Client
         private void PresentKingdomHop(string actor,GameCharacterVisual visual)
         {
             var g=KingdomGame;var member=g?.members.FirstOrDefault(m=>m.actor==actor);if(member?.attending!=true || ReadPlayer(actor).zone!=KingdomAdventure.Zone || g.crossing!=2)return;
-            var age=g.clock+(Shared && shared.Connected?Math.Min(.35,Time.unscaledTime-kingdomClockAt):0)-member.hopAt;
+            var age=kingdomDisplayClock-member.hopAt;
             if(age>=0 && age<.75 && visual.ActiveView!=null)((RectTransform)visual.ActiveView.transform).anchoredPosition=new Vector2(0,-45+(float)Math.Sin(age/.75*Math.PI)*70);
         }
         private void PresentKingdomHops()

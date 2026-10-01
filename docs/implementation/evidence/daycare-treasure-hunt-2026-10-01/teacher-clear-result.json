@@ -1,0 +1,18 @@
+{
+  "build": 400,
+  "runId": "ba8ad906fbbe42368f6664a2ed3990f7",
+  "passed": true,
+  "checks": [
+    "Calypso follows a bounded route with animated walking feet, including camera panning"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "teacherOnly": true,
+  "joinOnly": false,
+  "scope": "disposable release server and four native clients, direct UGUI fruit/basket/world-menu controls; no live server/device installation"
+}

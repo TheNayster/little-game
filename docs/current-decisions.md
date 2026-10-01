@@ -1,5 +1,8 @@
 # Current project decisions
 
+**Treasure hunt and NPC movement (DAY-01 / LEARN-01 / IMG-01 / FAMILY-01) — October 1:** Windows400 adds The Windblown Map as a separate Daycare-menu island activity: pictured/spoken clues, shared map fragments, windchime sequence, digging and picture locks for four players, saved varied NPCs independent of player avatars, late joining and independent departure. Researched NPC presentation gives Adventure, Calypso and Treasure continuous bounded route time, eased world movement and arrival transitions; smaller NPCs have their own walking cadence. Calypso now uses eight walking frames rather than a sliding standing picture. Daycare music is brighter, with a separate original island score. Focused Unity/37-character checks and two native four-player runs (eight groups each) pass. [Research, captures, checks and limits](implementation/daycare-treasure-hunt-2026-10-01.md). Schema47/content61/protocol3; no device/live-server rollout or family visual approval. Five other new wishlist activities remain planned.
+
+
 **Six Daycare wishlist additions — October 1:** Toy vet, Build-and-test playground, Pretend café, Family band, Treasure hunt and Puppet theatre are added with the user's simple/deeper play examples for ages three and six. Each remains one shared activity for up to four with independent join/leave, picture/spoken help, optional Calypso demonstrations and varied saved NPCs unaffected by player choices. [Daycare wishlist](daycare-world-wishlist.md#new-daycare-activities-requested-october-1). Planning only; no implementation or priority order selected.
 
 

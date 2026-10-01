@@ -1,0 +1,29 @@
+{
+  "build": 400,
+  "runId": "3c876c57879449a0a6bce2cf5cb1b92e",
+  "gameplayPassed": true,
+  "checks": [
+    "frame-by-frame NPC motion has no packet jumps or rapid walk/still flicker; brighter Daycare and dedicated treasure music play",
+    "one menu start travels the group; actual riddle/map/help controls work in joystick mode without solving; moving varied NPCs ignore all-Bluey players",
+    "real lift/take pictures share the first map fragment; wrong find is gentle; late fourth travels into the saved hunt",
+    "four children contribute to one hunt; shared tune remembers two notes when a sibling returns independently",
+    "native disconnect/reconnect retains partial tune and cast",
+    "actual saved server reopens the partial hunt, map discoveries, cast and independent return without reset",
+    "real map/dig/lock/open controls complete one chest; wrong places and lock guesses preserve progress",
+    "world return retains ending; deliberate New hunt rerolls distinct NPCs and starts one shared story"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "isolated release server/four clients, actual phone/tablet picture touches, shared discoveries/tune/locks, varied NPC motion, late entry, independent Return, disconnect/reconnect, saved-server reopen and deliberate replay; no device/live-server update"
+}

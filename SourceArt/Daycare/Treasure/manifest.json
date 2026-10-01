@@ -1,0 +1,18 @@
+[
+  {
+    "id": "treasure-cove",
+    "width": 2172,
+    "height": 724,
+    "sha256": "e8c87dc3bc665d31406009675e38ef25910cbc9fbdc2228888c6a4dc6629d1cb",
+    "source": "Built-in imagegen original candidate",
+    "status": "family visual review pending"
+  },
+  {
+    "id": "treasure-grove",
+    "width": 2172,
+    "height": 724,
+    "sha256": "f70886f0dd5a1374015705bf4cda6e6c8e2724f606804fba54ae8a4fe6b88c13",
+    "source": "Built-in imagegen original candidate",
+    "status": "family visual review pending"
+  }
+]

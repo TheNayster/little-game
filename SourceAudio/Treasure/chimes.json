@@ -1,0 +1,23 @@
+[
+  {
+    "id": "note-0",
+    "frequency": 523.25,
+    "method": "Original sine bell: 8ms attack, exponential decay, fundamental plus .25 harmonic at 2.76x",
+    "sha256": "a2acb1e05ec18bf3dfa8ca2fd196be331dca649c6eb01bf26408f2a4849d6b42",
+    "duration": 0.7
+  },
+  {
+    "id": "note-1",
+    "frequency": 659.25,
+    "method": "Original sine bell: 8ms attack, exponential decay, fundamental plus .25 harmonic at 2.76x",
+    "sha256": "72d3ce3c8891a1409c2b68966b57704046a349cb8984c1b64e91849632fca23c",
+    "duration": 0.7
+  },
+  {
+    "id": "note-2",
+    "frequency": 783.99,
+    "method": "Original sine bell: 8ms attack, exponential decay, fundamental plus .25 harmonic at 2.76x",
+    "sha256": "b7fe2cad28c41f9918b7f93646d3ed831509d7c7fcffba8fe1bc26f211107b4d",
+    "duration": 0.7
+  }
+]
