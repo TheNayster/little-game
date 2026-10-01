@@ -69,3 +69,6 @@ Tools/ZooRules.Tests/obj/
 !Tools/DinosaurRules.Tests/DinosaurRules.Tests.csproj
 Tools/DinosaurRules.Tests/bin/
 Tools/DinosaurRules.Tests/obj/
+
+# Authored Tag rule-check project (Unity-generated projects stay ignored).
+!Tools/TagRules.Tests/TagRules.Tests.csproj
