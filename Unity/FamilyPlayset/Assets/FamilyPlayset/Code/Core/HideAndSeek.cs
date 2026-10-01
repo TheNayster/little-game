@@ -31,14 +31,21 @@ namespace LittleWeeps.Core
         public const double CountSeconds=15, InspectSeconds=.55, ReactionSeconds=.6;
         public const float StartX=-3660, RailY=50, Speed=900, GlanceDistance=1100;
         // Preserve the six original slot IDs for schema-28 saves.
-        public static readonly float[] SlotX={-4900,-4050,-3870,-3560,-3430,-3150,-7040,-470,2910,4310};
-        public static readonly float[] GroundY={245,200,200,245,245,245,120,130,120,180};
-        public static readonly string[] Names={"Curtain","Sofa left","Sofa right","Wardrobe left","Wardrobe right","Tent","Folding screen","Dining table","Blanket bench","Garden bush"};
-        public static readonly int[] Props={0,1,1,2,2,3,4,5,6,7};
-        public const int Capacity=4, AllChecked=(1<<10)-1;
+        // Existing IDs remain stable. Each of the eight covers has three
+        // selectable places; all occupants of that cover share its transparency.
+        public static readonly float[] SlotX={-4900,-4050,-3870,-3560,-3430,-3150,-7040,-470,2910,4310,
+            -4980,-4820,-3960,-3495,-3230,-3070,-7120,-6960,-610,-330,3070,3230,4230,4390};
+        public static readonly float[] GroundY={245,200,200,245,245,245,120,130,120,180,
+            245,245,200,245,245,245,120,120,130,130,120,120,180,180};
+        public static readonly string[] Names={"Curtain","Sofa left","Sofa right","Wardrobe left","Wardrobe right","Tent","Folding screen","Dining table","Blanket bench","Garden bush",
+            "Curtain left","Curtain right","Sofa middle","Wardrobe middle","Tent left","Tent right","Screen left","Screen right","Dining left","Dining right","Bench left","Bench right","Bush left","Bush right"};
+        public static readonly int[] Props={0,1,1,2,2,3,4,5,6,7,0,0,1,2,3,3,4,4,5,5,6,6,7,7};
+        public const int Capacity=4, AllChecked=(1<<24)-1;
         // Preserve old checkpoint anchors; the pond layout moves the picnic cover right.
         public static float CoverX(int slot,int schema=WorldLayout.Schema)=>slot==8 && schema>=36?3150:SlotX[slot];
-        public static float HiddenY(int slot)=>slot<6?320:slot==7?150:GroundY[slot]+65;
+        public static float HiddenY(int slot)=>Props[slot]<4?320:Props[slot]==5?150:GroundY[slot]+65;
+        public static bool SameCover(int a,int b)=>a>=0 && b>=0 && Props[a]==Props[b];
+        public static int CoverMask(int slot)=>Enumerable.Range(0,Props.Length).Where(i=>SameCover(i,slot)).Aggregate(0,(mask,i)=>mask | 1<<i);
         public static HiderState Player(HideState s,string actor)=>s?.hiders.FirstOrDefault(p=>p.actor==actor);
         public static bool Hidden(HideState s,string actor)=>Player(s,actor)?.mode==HiderMode.Hidden;
         public static bool Zone(SoloPlayer p)=>p.zone=="garden" && p.stairs==0;
@@ -246,9 +253,9 @@ namespace LittleWeeps.Core
             }
             else if(s.phase==HidePhase.Inspecting && s.age>=HideAndSeek.InspectSeconds)
             {
-                s.visited|=1<<s.target;s.cursor=(s.cursor+1)%HideAndSeek.SlotX.Length;
+                s.visited|=HideAndSeek.CoverMask(s.target);s.cursor=(s.cursor+1)%HideAndSeek.SlotX.Length;
                 // One physical inspection reveals everybody sharing this cover.
-                var found=s.hiders.Where(p=>p.slot==s.target && HideAndSeek.Eligible(p)).ToArray();
+                var found=s.hiders.Where(p=>HideAndSeek.SameCover(p.slot,s.target) && HideAndSeek.Eligible(p)).ToArray();
                 if(found.Length>0){foreach(var hider in found){ExitHide(state.players.Single(p=>p.id==hider.actor),hider,true);hider.mode=HiderMode.Found;hider.preparation=0;}s.phase=HidePhase.Found;s.age=0;}
                 else NextHideInspection();
             }

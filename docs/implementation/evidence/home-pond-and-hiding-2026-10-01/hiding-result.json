@@ -1,0 +1,9 @@
+{
+  "build": 404,
+  "passed": true,
+  "checks": [
+    "wardrobe: all four mutually visible in different/same places; distinct drawing positions; one shared reveal; independent exit",
+    "sofa: all four mutually visible in different/same places; distinct drawing positions; one shared reveal; independent exit",
+    "Players in other covers stay concealed"
+  ]
+}

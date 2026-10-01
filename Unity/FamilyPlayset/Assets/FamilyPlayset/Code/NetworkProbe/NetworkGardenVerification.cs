@@ -37,6 +37,9 @@ namespace LittleWeeps.NetworkProbe
         private string boatTraceActor;private readonly List<BoatSample> boatTrace=new List<BoatSample>();
         [Serializable] private sealed class BoatSample {public double time,clock,authority;public Vector2 position;public int phase;}
         [Serializable] private sealed class BoatEvidence {public string actor,build;public BoatSample[] samples;}
+        private bool tracePond;private readonly List<PondSample> pondTrace=new List<PondSample>();
+        [Serializable] private sealed class PondSample {public double time,clock,authority;public Vector2[] positions;public double[] routes,durations;public bool[] visible;}
+        [Serializable] private sealed class PondEvidence {public string build;public PondSample[] samples;}
         [Serializable] private sealed class MotionSample
         {public double time;public Vector2 visual,authority,ground;public float phase,weight;public int drawing;public bool faceLeft;public string pose;}
         [Serializable] private sealed class MotionEvidence {public string actor,build;public MotionSample[] samples;}
@@ -164,6 +167,8 @@ namespace LittleWeeps.NetworkProbe
                     }
                 }
                 else if(step.action=="boatTraceStart"){boatTraceActor=step.role;boatTrace.Clear();}
+                else if(step.action=="pondTraceStart"){tracePond=true;pondTrace.Clear();}
+                else if(step.action=="pondTraceStop"){File.WriteAllText(Path.Combine(probe.Output,"pond-trace.json"),JsonUtility.ToJson(new PondEvidence{build=Application.version,samples=pondTrace.ToArray()},true));tracePond=false;}
                 else if(step.action=="boatTraceStop"){File.WriteAllText(Path.Combine(probe.Output,"boat-trace.json"),JsonUtility.ToJson(new BoatEvidence{actor=boatTraceActor,build=Application.version,samples=boatTrace.ToArray()},true));boatTraceActor=null;}
                 else if(step.action=="traceStart"){traceActor=step.role;motionTrace.Clear();}
                 else if(step.action=="walkChecks")WalkAnimationVerification.Run(screen.Board,probe.Output);
@@ -253,6 +258,14 @@ namespace LittleWeeps.NetworkProbe
         }
         private void LateUpdate()
         {
+            if(tracePond && screen.Ready && screen.PondGame!=null && pondTrace.Count<3600){
+                var pond=screen.Board.Find("Backyard fish pond");
+                if(pond!=null && pond.gameObject.activeInHierarchy){
+                    var fish=screen.PondGame.fish;var drawings=fish.Select(f=>pond.Find("Pond fish "+f.id) as RectTransform).ToArray();
+                    pondTrace.Add(new PondSample{time=screen.PondVisualTime,clock=screen.PondVisualClock,authority=screen.PondGame.clock,
+                        positions=drawings.Select(d=>d.anchoredPosition).ToArray(),routes=fish.Select(f=>f.started).ToArray(),durations=fish.Select(f=>f.duration).ToArray(),visible=drawings.Select(d=>d.gameObject.activeInHierarchy).ToArray()});
+                }
+            }
             if(traceTreasure && screen.Ready && treasureTrace.Count<900)
             {
                 // Use the frame-start clock: wall time inside LateUpdate also

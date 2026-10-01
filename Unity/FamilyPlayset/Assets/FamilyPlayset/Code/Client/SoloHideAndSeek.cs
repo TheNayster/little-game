@@ -70,12 +70,14 @@ namespace LittleWeeps.Client
             for(var slot=0;slot<HideAndSeek.SlotX.Length;slot++)
             {
                 var index=slot;var prop=HideAndSeek.Props[slot];
-                var spread=slot==1?-24:slot==2?24:slot==3?-64:slot==4?64:0;
-                var hit=Panel(hideProps[prop],"Hide "+HideAndSeek.Names[slot],new Vector2(HideAndSeek.CoverX(slot,SceneSchema)-HidePropX[prop]+spread,prop==1?185:prop==5?105:40),new Vector2(200,104),new Color(.93f,.98f,1,.97f),true);
+                var places=Enumerable.Range(0,HideAndSeek.SlotX.Length).Where(i=>HideAndSeek.Props[i]==prop).OrderBy(i=>HideAndSeek.CoverX(i,SceneSchema)).ToArray();
+                var column=Array.IndexOf(places,slot)-1;
+                var width=prop==1 || prop==5?145:92;
+                var hit=Panel(hideProps[prop],"Hide "+HideAndSeek.Names[slot],new Vector2(column*(width+5),prop==1?185:prop==5?105:40),new Vector2(width,100),new Color(.93f,.98f,1,.97f),true);
                 var glow=hit.gameObject.AddComponent<Outline>();glow.effectDistance=new Vector2(5,-5);hideGlows.Add(glow);
                 NavButton(hit,()=>RequestHide(index));
-                HomePicture(hit.transform,"Pictured cover",new Vector2(-55,0),new Vector2(68,68),HideCoverSprite(prop));
-                Label(hit.transform,"Hide",34,new Vector2(38,0),new Vector2(108,88)).fontStyle=FontStyle.Bold;hideHits.Add(hit.rectTransform);
+                HomePicture(hit.transform,"Pictured cover",new Vector2(0,16),new Vector2(58,52),HideCoverSprite(prop));
+                Label(hit.transform,"Hide",24,new Vector2(0,-27),new Vector2(width,38)).fontStyle=FontStyle.Bold;hideHits.Add(hit.rectTransform);
             }
             banditRoot=Rect(Board,"Bandit seeker NPC",Vector2.zero,Vector2.zero);banditX=HideAndSeek.StartX;
             banditPicture=HomePicture(banditRoot,"Bandit pose",new Vector2(0,93),new Vector2(260,260),banditFrames[0]);
@@ -112,7 +114,20 @@ namespace LittleWeeps.Client
             foreach(var id in new[]{"start","ready","found","count1","count2","count3","count4","count5"}){var clip=Resources.Load<AudioClip>("HideAndSeek/"+id);if(clip!=null){hideAudio.Add(clip);Narration.AddClip("hide-"+id,clip);}}
         }
         private HiderState[] SharedHiders(HideState s,HiderState own)=>own?.mode==HiderMode.Hidden?
-            s.hiders.Where(h=>h.mode==HiderMode.Hidden && h.slot==own.slot).OrderBy(h=>h.actor,StringComparer.Ordinal).ToArray():Array.Empty<HiderState>();
+            s.hiders.Where(h=>h.mode==HiderMode.Hidden && HideAndSeek.SameCover(h.slot,own.slot)).OrderBy(h=>h.actor,StringComparer.Ordinal).ToArray():Array.Empty<HiderState>();
+        private void PresentHiddenPlayers()
+        {
+            var s=HideGame;if(s==null)return;var own=HideAndSeek.Player(s,Actor);var together=SharedHiders(s,own);
+            // Reliable replies also redraw friends before LateUpdate. Apply this
+            // same cover rule there, so generic player rendering cannot expose
+            // unrelated hiders or stack co-hiders on their authority coordinates.
+            foreach(var friend in friends){var p=ReadPlayer(friend.Key);var sharedCover=together.Any(h=>h.actor==friend.Key);friend.Value.root.gameObject.SetActive(p.zone==CurrentArea && shared.Players.Contains(friend.Key) && (!HideAndSeek.Hidden(s,friend.Key) || sharedCover));}
+            for(var i=0;i<together.Length;i++){
+                var h=together[i];var point=ToBoard(HidePropX[HideAndSeek.Props[h.slot]]+(i-(together.Length-1)*.5f)*70,HideAndSeek.HiddenY(h.slot));
+                if(h.actor==Actor){avatar.anchoredPosition=point;characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
+                else if(friends.TryGetValue(h.actor,out var friend)){friend.root.anchoredPosition=point;friend.view.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
+            }
+        }
         private void ShowHideCard()
         {
             if(!Ready || TravelPending || WorldLoading)return;
@@ -172,7 +187,7 @@ namespace LittleWeeps.Client
             hideRequestRoot.anchoredPosition=new Vector2(0,HideAndSeek.Zone(ReadPlayer(Actor))?-150:-65);
             hideRequest.text="Hide before zero — Go hide!";
             if(hideRequestRoot.gameObject.activeSelf){hideRequestRoot.SetAsLastSibling();hideRequest.transform.parent.GetComponent<Button>().interactable=!hideSending;}
-            var sofaMine=own.slot==1 || own.slot==2;
+            var sofaMine=HideAndSeek.SameCover(own.slot,1);
             var sofaRoot=homeObjects["Home sofa"].root;
             sofaRoot.GetComponentInChildren<Image>().color=sofaMine?new Color(1,1,1,.4f):Color.white;
             homeFronts["Home sofa"].GetComponentInChildren<HomeArtPart>().color=sofaMine?new Color(1,1,1,.4f):Color.white;
@@ -185,17 +200,10 @@ namespace LittleWeeps.Client
                 hidePictures[i].sprite=HideCoverSprite(i,mine || inspecting);
                 hidePictures[i].color=mine?new Color(1,1,1,.42f):Color.white;
             }
-            var diningMine=own.slot==7;
+            var diningMine=HideAndSeek.SameCover(own.slot,7);
             kitchenFixtures["dining"].root.GetComponentInChildren<Image>().color=diningMine?new Color(1,1,1,.42f):Color.white;
             kitchenDiningFront.GetComponentInChildren<HomeArtPart>().color=diningMine?new Color(1,1,1,.42f):Color.white;
-            var together=SharedHiders(s,own);
-            foreach(var friend in friends){var p=ReadPlayer(friend.Key);var sharedCover=together.Any(h=>h.actor==friend.Key);friend.Value.root.gameObject.SetActive(p.zone==CurrentArea && shared.Players.Contains(friend.Key) && (!HideAndSeek.Hidden(s,friend.Key) || sharedCover));}
-            for(var i=0;i<together.Length;i++)
-            {
-                var h=together[i];var point=ToBoard(HideAndSeek.CoverX(h.slot,SceneSchema)+(i-(together.Length-1)*.5f)*55,HideAndSeek.HiddenY(h.slot));
-                if(h.actor==Actor){avatar.anchoredPosition=point;characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
-                else if(friends.TryGetValue(h.actor,out var friend)){friend.root.anchoredPosition=point;friend.view.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
-            }
+            PresentHiddenPlayers();
             for(var i=0;i<HideAndSeek.SlotX.Length;i++)
             {
                 var visible=shown && counting && own.slot<0 && !MenuOpen;hideHits[i].gameObject.SetActive(visible);
