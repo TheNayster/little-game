@@ -30,7 +30,8 @@ def main():
         a.input('resize',x=1280,y=591);d.input('resize',x=1024,y=768);time.sleep(3)
         start(a);round_id=state()['round'];samples=[info(v) for v in clients]
         require(all(s['hideAndSeek']['phase']==1 and s['hideAndSeek']['round']==round_id for s in samples),'Different shared rounds')
-        require(all(any(t.isdigit() and 1<=int(t)<=15 for t in s['visibleText']) for s in samples),'Broadcast countdown missing, including other world')
+        require(all(any(t.isdigit() and 1<=int(t)<=15 for t in s['visibleText']) for s in (samples[0],samples[2],samples[3])),'Home countdown missing')
+        require(not any(t.isdigit() and 1<=int(t)<=15 for t in samples[1]['visibleText']) and not any(c['name']=='Join family hide and seek' for c in samples[1]['controls']),'Home invitation/countdown leaked into Park')
         require(all(h['mode']==0 and h['preparation']==0 for h in state()['hiders']),'Starting forced participation')
         require(next(p for p in server.state()['view']['players'] if p['id']==b.profile)['zone']=='park','Broadcast moved nonparticipant')
         hide(c,9);hide(d,8);home.capture(a,out,'broadcast-phone');home.capture(b,out,'broadcast-other-world');home.capture(d,out,'hidden-tablet')
@@ -38,7 +39,7 @@ def main():
         require(hider(a)['mode']==0 and hider(b)['mode']==0,'Nonhiders enrolled at deadline')
         require(not home.command(a,20,target='1',value='hide')['accepted'],'Late hide enrolled in search')
         require(hider(c)['mode']==2 and hider(d)['mode']==2,'Hidden participants missing')
-        record('one start broadcasts fifteen seconds to all four; hiding opts in and nonhiders stay ignored')
+        record('one shared fifteen-second window appears only in Home; hiding opts in and nonhiders stay ignored')
         button(c,'Come out');require(hider(c)['mode']==0 and hider(d)['mode']==2 and state()['round']==round_id,'Coming out changed sibling round')
         wait(lambda:hider(d)['mode']==3,'remaining hider found',110)
         require(hider(a)['mode']==0 and hider(b)['mode']==0 and hider(c)['mode']==0,'Parent found a nonparticipant')
@@ -46,7 +47,7 @@ def main():
         # All four can choose to hide in the same next round; no readiness lobby.
         for v,slot in zip((a,c,d),(6,7,8)):position(v,slot)
         start(a);require(state()['round']==round_id+1,'Parent turn did not advance')
-        button(b,'Join family hide and seek');button(b,'Play hide and seek');wait(lambda:hider(b)['mode']==1,'optional trip downstairs');position(b,9)
+        cmd(b,7,value='home');button(b,'Join family hide and seek');button(b,'Play hide and seek');wait(lambda:hider(b)['mode']==1,'optional trip downstairs');position(b,9)
         for v,slot in zip(clients,(6,9,7,8)):hide(v,slot)
         require(all(h['mode']==2 for h in state()['hiders']) and len({h['slot'] for h in state()['hiders']})==4,'Not four shared hiders')
         require(all(h['preparation']==0 for h in state()['hiders']),'Personal countdown added')

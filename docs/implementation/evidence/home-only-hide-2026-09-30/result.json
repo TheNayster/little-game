@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "build": 344,
+  "checks": [
+    "Home invitation works and its open card closes when leaving Home",
+    "No Home cards, invitation or countdown during active Home round: daycare",
+    "No Home cards, invitation or countdown during active Home round: park",
+    "No Home cards, invitation or countdown during active Home round: creek",
+    "No Home cards, invitation or countdown during active Home round: beach",
+    "Found hiders follow the parent until the full round ends; departure is independent and normal camera returns afterward"
+  ],
+  "content": 49,
+  "worldsTested": [
+    "daycare",
+    "park",
+    "creek",
+    "beach"
+  ],
+  "liveFamilyTouched": false,
+  "physicalDevicesTested": false,
+  "candidateBaseline": {
+    "schema": 39,
+    "content": 49
+  },
+  "zooNativeChecked": false,
+  "limits": [
+    "Isolated candidate baseline predates Zoo; Home-only guard applies to every non-Home world.",
+    "No device or live-server update."
+  ]
+}

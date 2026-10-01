@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "build": "0.0.344",
+  "actor": "player-2",
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "place": "daycare",
+  "cameraX": 533.3333129882812,
+  "controlsInSafeArea": true,
+  "hideAndSeek": {
+    "round": 1,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 1,
+    "age": 1.8498310999999996,
+    "count": 13.1501689,
+    "clock": 1.8498310999999996,
+    "walked": 0.0,
+    "x": 500.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "visibleText": [
+    "Tap to walk",
+    "Games",
+    "Menu"
+  ]
+}
