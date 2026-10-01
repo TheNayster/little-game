@@ -24,6 +24,7 @@ namespace LittleWeeps.Client
 
         private void ResetNavigation()
         {
+            ResetOutfits();
             ResetTravelScreen();
             worlds=null;characterTray=null;familyCircle=null;worldButton=null;
             worldBubbles.Clear();avatarMarkers.Clear();pickerCharacters.Clear();worldBadges.Clear();
@@ -53,11 +54,12 @@ namespace LittleWeeps.Client
             var right=Plain(parent,"Arrow right",new Vector2(11,-9),new Vector2(35,13),Color.white);
             right.rectTransform.localRotation=Quaternion.Euler(0,0,45);
         }
-        private GameCharacterVisual PickerCharacter(Transform parent,string id,Vector2 pos,float scale)
+        private void PickerCharacter(Transform parent,string id,Vector2 pos,float scale)
         {
-            var root=Rect(parent,id+" artwork",pos,Vector2.zero);root.localScale=Vector3.one*scale;
-            var art=root.gameObject.AddComponent<GameCharacterVisual>();art.Select(id);
-            pickerCharacters.Add(art);return art;
+            var entry=PlayableCharacters.Find(id);var portrait=Resources.Load<CharacterMenuArt>("CharacterMenu/"+entry.ArtId);
+            if(portrait==null)throw new InvalidOperationException("Missing character portrait: "+id);
+            var image=Rect(parent,id+" artwork",pos+new Vector2(0,-45*scale),portrait.size*scale).gameObject.AddComponent<RawImage>();
+            image.texture=portrait.texture;image.raycastTarget=false;image.rectTransform.pivot=portrait.pivot;
         }
         private void BuildNavigation()
         {
@@ -113,11 +115,15 @@ namespace LittleWeeps.Client
                 // The visual adapter places its ground joint 45 units below
                 // its root. Compensate after scaling so feet clear the label.
                 var menuScale=1.18f/Mathf.Max(1,entry.Scale);
-                PickerCharacter(card.transform,id,new Vector2(0,-80+45*menuScale),menuScale);
+                var portrait=Resources.Load<CharacterMenuArt>("CharacterMenu/"+entry.ArtId);
+                if(portrait==null)throw new InvalidOperationException("Missing menu portrait: "+entry.ArtId);
+                var image=Rect(card.transform,id+" artwork",new Vector2(0,-80),portrait.size*menuScale).gameObject.AddComponent<RawImage>();
+                image.texture=portrait.texture;image.raycastTarget=false;image.rectTransform.pivot=portrait.pivot;
                 Label(card.transform,name,25,new Vector2(0,-124),new Vector2(190,38)).fontStyle=FontStyle.Bold;
-                NavButton(card,()=>{if(!ActionPending && ReadPlayer(Actor).avatar!=id)ChooseAvatar(id);});
+                NavButton(card,()=>{if(ActionPending)return;if(ReadPlayer(Actor).avatar==id)ShowOutfits();else ChooseAvatar(id);});
             }
             characterTray.gameObject.SetActive(false);
+            BuildOutfits();
             BuildTravelScreen();
         }
         private void BuildWorldBubble(int index)
@@ -146,6 +152,7 @@ namespace LittleWeeps.Client
         public void ShowCharacters(bool open)
         {
             if(WorldLoading)return;
+            if(!open)CloseOutfits();
             lastLocalAction=Time.realtimeSinceStartup;
             if(open && !CharactersOpen)
             {CloseMiniGames();navigationCamera=cameraX;navigationManualCamera=manualCamera;CancelPointers();Narration.Stop();menu.SetActive(false);characterTray.SetAsLastSibling();}
@@ -156,6 +163,7 @@ namespace LittleWeeps.Client
         }
         private void CloseNavigation()
         {
+            CloseOutfits();
             CloseMiniGames();
             if(CharactersOpen){cameraX=navigationCamera;manualCamera=navigationManualCamera;characterTray.gameObject.SetActive(false);}
             LayoutWorldViewport();
@@ -170,6 +178,7 @@ namespace LittleWeeps.Client
         }
         private void AnimateNavigation()
         {
+            PresentOutfits();
             foreach(var character in pickerCharacters)if(character!=null && character.gameObject.activeInHierarchy)
                 character.Present(Vector2.zero,"picker/"+character.CharacterId,false,applicationPaused?0:Time.unscaledDeltaTime);
         }

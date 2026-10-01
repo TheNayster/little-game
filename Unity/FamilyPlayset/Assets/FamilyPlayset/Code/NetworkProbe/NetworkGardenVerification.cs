@@ -33,20 +33,29 @@ namespace LittleWeeps.NetworkProbe
         {public double time;public Vector2 visual,authority,ground;public float phase,weight;public int drawing;public bool faceLeft;public string pose;}
         [Serializable] private sealed class MotionEvidence {public string actor,build;public MotionSample[] samples;}
         [Serializable] private sealed class Step {public int serial;public string action,role,text;public float x,y;public int finger=11;}
-        [Serializable] private sealed class PlayerView {public string id;public Vector2 position;public bool visible;}
+        [Serializable] private sealed class PlayerView {public string id,outfit;public Vector2 position;public bool visible,roarPlaying;}
         [Serializable] private sealed class ToyView {public string id,label;public Vector2 position;public float alpha;}
         [Serializable] private sealed class ControlView {public string name;public Rect bounds;public bool enabled;}
         [Serializable] private sealed class Evidence
         {
+            public LittleWeeps.Core.SeagullState seagulls;public int visibleSeagulls,visibleGullTracks;
+            public LittleWeeps.Core.BeachShoreState shore;public int visibleSandPrints;public bool visibleSeaVisitor;public int seaVisitorPose=-1;
             public int serial,visiblePlayers,canvases,narrators,audioSources;public bool passed,ready,pending,connected,menuOpen,shared;
+            public bool tagSpeaking;public string tagCue;
             public string error,build,actor,feedback,dragging,zone,savePath,adventure,pendingRequest;public int pendingArchives;public PlayerView[] players;public ToyView[] toys;
             public int screenWidth,screenHeight;public Rect safeArea,boardBounds;public float boardLayoutWidth;public bool controlsInSafeArea;
             public bool worldsOpen,charactersOpen,joystickVisible,fullCharactersInTray,activeCharacterVisible;public string character;public int characterLayers;public ControlView[] controls;
+            public bool outfitsOpen,roarPlaying;public string outfit,outfitColor;
             public bool worldLoading;public string loadingDestination,loadingFailure;public string[] travelStages;
             public float homePoseAge;public string homePose;public bool homeMusicPlaying,musicMuted;public string worldMusicTrack;public bool worldMusicPlaying;public float worldMusicVolume,worldMusicSignal;public int worldMusicClipCount,worldMusicSample;public LittleWeeps.Core.HomeState home;
             public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
             public LittleWeeps.Core.DinosaurWorldState dinosaurWorld;public int dinosaurTextures;public bool dinosaurSoundPlaying;public Vector2 dinosaurSeat;
             public LittleWeeps.Core.ZooState zoo;public int visibleZooAnimals,zooTextures,zooAudioClips;public bool zooSoundPlaying;
+            public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
+            public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
+            public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
+            public LittleWeeps.Core.DaycareState daycare;public int daycareRoutine;public bool calypsoVisible;
+            public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;public string[] kingdomNpcArt,picnicNpcArt;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
             public bool bookAuto,bookWords,bookOptions,bookEffect,bookEffectPending,bookNaming;public string bookTitle;public int bookTextures,bookAudio;
@@ -265,10 +274,19 @@ namespace LittleWeeps.NetworkProbe
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
                 evidence.dinosaurWorld=screen.DinosaurGame;evidence.dinosaurTextures=screen.DinosaurTextureCount;evidence.dinosaurSoundPlaying=screen.DinosaurSoundPlaying;evidence.dinosaurSeat=screen.DinosaurSeat;
                 evidence.zoo=screen.ZooGame;evidence.visibleZooAnimals=screen.VisibleZooAnimals;evidence.zooTextures=screen.ZooTextureCount;evidence.zooAudioClips=screen.ZooAudioClipCount;evidence.zooSoundPlaying=screen.ZooSoundPlaying;
+                evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
+                evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;
+                evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;
+                evidence.daycare=screen.DaycareGame;evidence.daycareRoutine=screen.DaycareRoutine;evidence.calypsoVisible=screen.CalypsoVisible;
+                evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;
+                evidence.kingdom=screen.KingdomGame;evidence.visibleKingdomNpcs=screen.VisibleKingdomNpcs;
                 evidence.hideAndSeek=screen.HideGame;
+                evidence.seagulls=screen.Seagulls;evidence.visibleSeagulls=screen.VisibleSeagulls;evidence.visibleGullTracks=screen.VisibleGullTracks;
+                evidence.shore=screen.Shore;evidence.visibleSandPrints=screen.VisibleSandPrints;evidence.visibleSeaVisitor=screen.VisibleSeaVisitor;evidence.seaVisitorPose=screen.SeaVisitorPose;
                 evidence.homeDrawOrder=screen.Board.Cast<Transform>().Where(t=>t.gameObject.activeSelf).Select(t=>t.name).ToArray();
                 evidence.discoveryOpen=screen.DiscoveryOpen;evidence.bookOpen=screen.BookOpen;evidence.bookReady=screen.BookPageReady;evidence.bookPlaying=screen.BookPlaying;evidence.bookSpeaking=screen.BookSpeaking;evidence.bookPage=screen.BookPageNumber;evidence.bookSample=screen.BookSample;
                 evidence.bookAuto=screen.BookAutoTurn;evidence.bookWords=screen.BookWordsVisible;evidence.bookOptions=screen.BookOptionsOpen;evidence.bookEffect=screen.BookEffectPlaying;evidence.bookEffectPending=screen.BookEffectPending;evidence.bookNaming=screen.BookNaming;evidence.bookTitle=screen.BookTitleId;evidence.bookTextures=screen.BookResidentTextures;evidence.bookAudio=screen.BookResidentAudio;
+                evidence.tagSpeaking=screen.Narration.GetComponent<AudioSource>()?.isPlaying==true;evidence.tagCue=screen.Narration.GetComponent<AudioSource>()?.clip?.name??"";
                 evidence.visibleText=FindObjectsByType<Text>(FindObjectsSortMode.None).Where(t=>t.gameObject.activeInHierarchy).Select(t=>t.text).ToArray();
                 evidence.fullCharactersInTray=screen.CharactersOpen && FindObjectsByType<GameCharacterVisual>(FindObjectsSortMode.None)
                     .Where(v=>v.GetComponentsInParent<RectMask2D>().Any(m=>m.name=="Cast viewport")).All(v=>
@@ -279,6 +297,7 @@ namespace LittleWeeps.NetworkProbe
                     });
                 evidence.boardBounds=Bounds(screen.Board);evidence.boardLayoutWidth=screen.Board.rect.width;
                 var active=screen.Board.Find("Player character").GetComponentInChildren<GameCharacterVisual>();
+                evidence.outfitsOpen=screen.OutfitsOpen;evidence.outfit=active.Outfit;evidence.outfitColor=screen.ReadPlayer(screen.Actor).outfitColor;evidence.roarPlaying=active.RoarPlaying;
                 evidence.activeCharacterVisible=active.GetComponentsInChildren<Graphic>().Where(i=>i.enabled).All(i=>
                 {var r=Bounds(i.rectTransform);var clip=evidence.boardBounds;return r.xMin>=clip.xMin-2 && r.xMax<=clip.xMax+2 && r.yMin>=clip.yMin-2 && r.yMax<=clip.yMax+2;});
                 // Scrollable content can extend past the viewport. Check the
@@ -295,7 +314,8 @@ namespace LittleWeeps.NetworkProbe
                 evidence.players=(screen.Shared?probe.Latest.view.players:screen.World.Snapshot().players).Select(p=>
                 {
                     var rect=screen.Board.Find(p.id==screen.Actor?"Player character":"Friend-"+p.id) as RectTransform;
-                    return new PlayerView{id=p.id,visible=rect!=null && rect.gameObject.activeSelf,position=rect==null?Vector2.zero:BoardPosition(rect)};
+                    var visual=rect==null?null:rect.GetComponentInChildren<GameCharacterVisual>();
+                    return new PlayerView{id=p.id,outfit=visual?.Outfit??"",roarPlaying=visual!=null && visual.RoarPlaying,visible=rect!=null && rect.gameObject.activeSelf,position=rect==null?Vector2.zero:BoardPosition(rect)};
                 }).ToArray();
                 evidence.toys=screen.ReadToys().Select(t=>
                 {

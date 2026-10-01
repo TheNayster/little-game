@@ -107,7 +107,9 @@ namespace LittleWeeps.Client
                 var a=Dinosaurs.animals.Single(v=>v.species==species);var root=(RectTransform)dinosaurPictures[species].transform.parent;
                 body.anchoredPosition=root.anchoredPosition+dinosaurSeats[species]*sceneScale;
                 visual.PresentSupported(new CharacterFrame(CharacterPose.Sit,0,a.left,1),Time.unscaledDeltaTime);
-                if(p.avatar=="blue-pup" || p.avatar=="orange-pup"){
+                // The special rider sheet depicts ordinary clothes. Keep the
+                // equipped outfit sheet and its color when sitting on a dinosaur.
+                if(string.IsNullOrEmpty(p.outfit) && (p.avatar=="blue-pup" || p.avatar=="orange-pup")){
                     if(dinosaurRiders==null)dinosaurRiders=Resources.Load<Texture2D>("DinosaurWorld/rider-poses");
                     var row=p.avatar=="orange-pup"?1:0;var cw=dinosaurRiders.width/4f;var ch=dinosaurRiders.height/2f;
                     var cell=new Rect(0,row*ch,cw,ch);var contact=cell.position+new Vector2(190*cw/446,328*ch/446);

@@ -888,3 +888,19 @@ These are bounded prototype choices and explicit unfinished work, not reasons to
 - Preserved 55 goal chapters, 35 feature IDs (including retired AUTO-02), six worlds and the character/activity inventories, personal rooms and secret rooms. Retirement is not reported as implementation completion.
 - Made ART-PREP-02 the next independent work; focused 98 signing and device checks stay on the return list. No mobile-host gate blocks the fun-content preparation.
 - Archived the unfinished host-99 experiment locally, restored its source to the pre-experiment baseline and excluded its build from deployment. No live server, device, family save or installed app was changed by this audit.
+
+
+### Combined family delivery339 — September30
+
+**Combined family delivery339 — September 30:** the server and Samsung phone now use protocol3/content51/schema42, combining the completed Home/Park/Creek/Beach/Daycare work with Zoo16 and Dinosaur riding/feeding/petting. The circular Dinosaur World menu entry is present. Actual legacy saves migrate with retained world identity/items/enrollment; native four-client destinations, rides, care and independent departure pass. The failed336 phone save opening is corrected by339 without reset. iPad339 export is ready on the Mac, but signing requires local keychain unlock; no iPad installation occurred. Keep the main integration hold and other development checkouts intact. [Delivery record](implementation/combined-family-release-339-2026-09-30.md).
+
+
+
+### Travel/feeding and memory correction340 — September30
+
+**Travel/feeding and memory fix340 — September30:** fixes confirmed stale-revision starvation from background Zoo/fish routes, retains transaction checks for real interactions, pauses unobserved habitats, replaces37 animated menu instances with bounded still portraits, leases full character art only for visible player/NPC views, reuses item snapshots and bounds family diagnostic writes. Native four-client travel replies take0.25–0.30s with deliberate test delay; four Zoo offers complete in3.22s, repeated taps and independent exits pass. Server340 retains schema42/port63648 and all131 items/enrollment; content52. [Research and evidence](implementation/travel-feeding-memory-340-2026-09-30.md). No iPad installation; preserve the main integration hold.
+
+
+September30 — Dinosaur riding341 preserves equipped onesie art/color instead of overriding it with ordinary-clothes riding drawings. Windows and the focused native Bluey/Bingo/color/mount/dismount check pass. Shared contract unchanged; server340 retained. [Delivery/evidence](implementation/dinosaur-rider-outfits-341-2026-09-30.md).
+
+September30 — Phone and both iPads341 installed in place with retained saves/preferences. Mac native compilation/signature pass after local key approval. All three devices verified connected together to retained server340/protocol3/content52/schema42,131 items. [Current delivery](implementation/dinosaur-rider-outfits-341-2026-09-30.md).

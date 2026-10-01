@@ -20,7 +20,7 @@ namespace LittleWeeps.NetworkProbe
         // Unity includes empty inline food records. Bound the full four-room,
         // twelve-dish reliable view separately from the 1200-byte motion stream.
         private const int Protocol=3, Content=WorldLayout.Content, MaxWireBytes=131072;
-        private const string WalkMessage="littleweeps.walk.v1", MotionMessage="littleweeps.motion.v1";
+        private const string WalkMessage="littleweeps.walk.v1", MotionMessage="littleweeps.motion.v1",ShoreMessage="littleweeps.shore.v1",ActivityMotionMessage="littleweeps.activity-motion.v1";
         private const string CommandMessage="littleweeps.probe.command.v1", StateMessage="littleweeps.probe.state.v1", PoseMessage="littleweeps.probe.pose.v1";
         private static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
         private Config config;
@@ -66,8 +66,13 @@ namespace LittleWeeps.NetworkProbe
         public long InputAck(string actor)=>inputAcks.TryGetValue(actor,out var ack)?ack:0;
         public event Action MotionReceived;
         [Serializable] public sealed class MovingPlayer {public string actor,zone;public long visit,input;public float x,y;public double stairs;}
-        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public KeepyState keepy;public ParkState park;public DinosaurMotion dinosaurs;}
+        [Serializable] public sealed class MotionFrame {public string epoch;public long sequence;public double time;public MovingPlayer[] players;public DinosaurMotion dinosaurs;}
+        [Serializable] private sealed class ActivityMotionFrame {public string epoch;public double time;public KeepyState keepy;public ParkState park;public SeagullState seagulls;public int kingdomRound,kingdomPhase;public double kingdomClock;public int daycareRound,daycarePhase;public double daycareClock;}
+        private double nextActivityMotionSend,nextAmbientPublish,nextViewObservation;
+        private bool ambientDirty;
         [Serializable] public sealed class DinosaurMotion {public double clock;public int[] points;public int left,wandering,riders;}
+        [Serializable] private sealed class ShoreFrame {public string epoch;public double time;public BeachShoreState shore;}
+        private double shoreTime,nextShoreSend,lastShoreSend;private long lastShoreSerial=-1;
         [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public double seconds;}
         private CheckpointStore store;
         private FileStream authorityLock;
@@ -83,7 +88,7 @@ namespace LittleWeeps.NetworkProbe
         public Config Settings=>config;
         public string Output=>output;
         public bool ConnectedToServer=>network!=null && network.IsConnectedClient && clientReady && !failed && !stopping;
-        public string ConnectionStatus {get;private set;}="Connecting…";
+        public string ConnectionStatus {get;private set;}="Connectingâ€¦";
         public event Action<State> Received;
         public event Action LostConnection;
         [Serializable] public sealed class DragPose {public string actor,item,lease;public float x,y;public long tick;}
@@ -227,6 +232,8 @@ namespace LittleWeeps.NetworkProbe
             network.CustomMessagingManager.RegisterNamedMessageHandler(PoseMessage,ReceivePose);
             network.CustomMessagingManager.RegisterNamedMessageHandler(WalkMessage,ReceiveWalk);
             network.CustomMessagingManager.RegisterNamedMessageHandler(MotionMessage,ReceiveMotion);
+            network.CustomMessagingManager.RegisterNamedMessageHandler(ActivityMotionMessage,ReceiveActivityMotion);
+            network.CustomMessagingManager.RegisterNamedMessageHandler(ShoreMessage,ReceiveShore);
             network.CustomMessagingManager.RegisterNamedMessageHandler(ActivityMessage,ReceiveActivity);
             RegisterRecoveryMessages();
         }
@@ -454,7 +461,7 @@ namespace LittleWeeps.NetworkProbe
             {network.DisconnectClient(sender,"invalid-message");}
             catch(Exception e){Fail(e);}
         }
-        private double keepyTime,parkTime,dinosaurTime;
+        private double keepyTime,parkTime,dinosaurTime,seagullTime;
         private void ReceiveState(ulong sender,FastBufferReader reader)
         {
             if(config.role!="client" || sender!=NetworkManager.ServerClientId || failed || applicationPaused || retryPending || localOnly || !network.IsConnectedClient)return;
@@ -490,7 +497,9 @@ namespace LittleWeeps.NetworkProbe
                     if(Latest!=null && Latest.epoch==state.epoch && keepyTime>state.time)state.view.keepy=Latest.view.keepy?.Copy();
                     else keepyTime=state.time;
                     if(Latest!=null && Latest.epoch==state.epoch && parkTime>state.time)state.view.park=Latest.view.park?.Copy();else parkTime=state.time;
-                    seenSequence=state.sequence;Latest=state;WriteJson(Path.Combine(output,"view.json"),state);
+                    if(Latest!=null && Latest.epoch==state.epoch && seagullTime>state.time)state.view.seagulls=Latest.view.seagulls?.Copy();else seagullTime=state.time;
+                    if(Latest!=null && Latest.epoch==state.epoch && shoreTime>state.time)state.view.shore=Latest.view.shore?.Copy();else shoreTime=state.time;
+                    seenSequence=state.sequence;Latest=state;ObserveView(state);
                 }
                 Received?.Invoke(state);
             }
@@ -550,19 +559,13 @@ namespace LittleWeeps.NetworkProbe
                 if(!string.IsNullOrEmpty(p.fixture) && !DinosaurRides.Usable(p.fixture))
                 {
                     var bedroom=BedroomFurniture.Seat(p.fixture)?SecretRooms.Furnishings(Latest.view).FirstOrDefault(r=>r.id==p.zone):null;
-                    var supportX=bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):ParkPlay.Usable(p.fixture)?ParkPlay.X(p.fixture):HomeLayout.X(p.fixture);
-                    var supportY=bedroom!=null?BedroomFurniture.SeatY(p.fixture):ParkPlay.Usable(p.fixture)?ParkPlay.Y(p.fixture):HomeLayout.Y(p.fixture);
-                    if(sample.x!=supportX || sample.y!=supportY){p.fixture="";p.useSeconds=0;p.rideStarted=0;}
+                    var supportX=BathroomLayout.Usable(p.fixture)?BathroomLayout.X(p.fixture):bedroom!=null?BedroomFurniture.SeatX(p.fixture,bedroom.layout):ParkPlay.Usable(p.fixture)?ParkPlay.X(p.fixture):HomeLayout.X(p.fixture);
+                    var supportY=BathroomLayout.Usable(p.fixture)?BathroomLayout.Y:bedroom!=null?BedroomFurniture.SeatY(p.fixture):ParkPlay.Usable(p.fixture)?ParkPlay.Y(p.fixture):HomeLayout.Y(p.fixture);
+                    if(!ParkWheels.Usable(p.fixture) && (sample.x!=supportX || sample.y!=supportY)){p.fixture="";p.useSeconds=0;p.rideStarted=0;}
                 }
                 if(!KeepyRules.Finite(sample.stairs) || sample.stairs<0 || sample.stairs>=HomeRooms.StairDuration)throw new InvalidDataException("Invalid stair sample.");
                 p.x=sample.x;p.y=sample.y;p.stairs=sample.stairs;positionTimes[p.id]=frame.time;inputAcks[p.id]=sample.input;
             }
-            if(frame.time>keepyTime && frame.keepy!=null)
-            {
-                SoloWorld.ValidateKeepy(new SoloSnapshot{schema=WorldLayout.Schema,players=Latest.view.players,keepy=frame.keepy});
-                Latest.view.keepy=frame.keepy;keepyTime=frame.time;
-            }
-            if(frame.time>parkTime && frame.park!=null){Latest.view.park=frame.park;parkTime=frame.time;}
             if(frame.dinosaurs!=null && frame.dinosaurs.clock==0 && (frame.dinosaurs.points==null || frame.dinosaurs.points.Length==0) && frame.dinosaurs.left==0 && frame.dinosaurs.wandering==0 && frame.dinosaurs.riders==0)frame.dinosaurs=null; // Unity expands null inline objects.
             if(frame.time>dinosaurTime && frame.dinosaurs!=null && Latest.view.dinosaurWorld!=null){
                 var d=frame.dinosaurs;
@@ -578,7 +581,30 @@ namespace LittleWeeps.NetworkProbe
                 dinosaurTime=frame.time;
             }
             MotionReceived?.Invoke();
-            WriteJson(Path.Combine(output,"view.json"),Latest);
+            ObserveView(Latest);
+        }
+        private void ReceiveActivityMotion(ulong sender,FastBufferReader reader)
+        {
+            if(config.role!="client" || sender!=NetworkManager.ServerClientId || Latest==null || failed)return;
+            var frame=JsonUtility.FromJson<ActivityMotionFrame>(Read(reader));
+            if(frame==null || frame.epoch!=Latest.epoch || !KeepyRules.Finite(frame.time))return;
+            if(frame.time>keepyTime && frame.keepy!=null)
+            {
+                SoloWorld.ValidateKeepy(new SoloSnapshot{schema=WorldLayout.Schema,players=Latest.view.players,keepy=frame.keepy});
+                Latest.view.keepy=frame.keepy;keepyTime=frame.time;
+            }
+            if(frame.time>parkTime && frame.park!=null){Latest.view.park=frame.park;parkTime=frame.time;}
+            if(Latest.view.kingdom!=null && frame.kingdomRound==Latest.view.kingdom.round && frame.kingdomPhase==(int)Latest.view.kingdom.phase && KeepyRules.Finite(frame.kingdomClock) && frame.kingdomClock>Latest.view.kingdom.clock)Latest.view.kingdom.clock=frame.kingdomClock;
+            if(Latest.view.daycare!=null && frame.daycareRound==Latest.view.daycare.round && frame.daycarePhase==Latest.view.daycare.phase && KeepyRules.Finite(frame.daycareClock) && frame.daycareClock>Latest.view.daycare.clock){var delta=frame.daycareClock-Latest.view.daycare.clock;Latest.view.daycare.clock=frame.daycareClock;if(Latest.view.daycare.phase==1 && !Latest.view.daycare.members.Any(m=>m.attending))Latest.view.daycare.started+=delta;}
+            if(frame.time>seagullTime && frame.seagulls!=null){Latest.view.seagulls=frame.seagulls;seagullTime=frame.time;}
+            MotionReceived?.Invoke();
+        }
+        private void ReceiveShore(ulong sender,FastBufferReader reader)
+        {
+            if(config.role!="client" || sender!=NetworkManager.ServerClientId || Latest==null)return;
+            var frame=JsonUtility.FromJson<ShoreFrame>(Read(reader));
+            if(frame==null || frame.epoch!=Latest.epoch || frame.time<=shoreTime || frame.shore==null)return;
+            Latest.view.shore=frame.shore;shoreTime=frame.time;MotionReceived?.Invoke();
         }
         private void TickMovement(double now)
         {
@@ -590,7 +616,9 @@ namespace LittleWeeps.NetworkProbe
             var elapsed=Math.Min(.1,Math.Max(0,now-motionClock));
             accumulator+=elapsed;motionClock=now;var moved=false;var stepped=false;
             maintenanceDirty|=session.AdvanceIdle(elapsed,out var maintenanceVisible);
-            if(maintenanceVisible){SaveAuthority();Publish();}
+            ambientDirty|=session.AmbientChanged;
+            if(maintenanceVisible){SaveAuthority();Publish();ambientDirty=false;}
+            else if(ambientDirty && now>=nextAmbientPublish){nextAmbientPublish=now+.25;Publish();ambientDirty=false;}
             else if(maintenanceDirty && now-lastMaintenanceSave>=5)SaveAuthority();
             var beforeWalkingRevision=session.Revision;
             while(accumulator>=1.0/30){stepped=true;moved|=movement.Tick(now,1f/30);accumulator-=1.0/30;}
@@ -599,16 +627,33 @@ namespace LittleWeeps.NetworkProbe
             if(positionDirty && ((stepped && !moved) || now-lastPositionSave>=1))SaveAuthority();
             if(now<nextMotionSend)return;nextMotionSend=Math.Max(nextMotionSend+.05,now);
             var view=session.View();
+            // Footprint arrays use their own bounded reliable stream, leaving
+            // the existing 1200-byte position datagram budget unchanged.
+            if(view.shore!=null && now>=nextShoreSend && (view.shore.serial!=lastShoreSerial || now-lastShoreSend>=1)){
+                nextShoreSend=now+.25;lastShoreSend=now;lastShoreSerial=view.shore.serial;
+                var shoreFrame=new ShoreFrame{epoch=epoch,time=ServerClock-accumulator,shore=view.shore};
+                foreach(var peer in network.ConnectedClientsIds)Send(ShoreMessage,peer,shoreFrame);
+            }
             // Positions describe the completed simulation step, not the later
             // packet-send instant. Otherwise 30 Hz simulation sampled at 20 Hz
             // creates an artificial alternating fast/slow interpolation speed.
             DinosaurMotion dinosaurMotion=null;
             if(view.dinosaurWorld!=null && view.players.Any(p=>p.zone==DinosaurRides.Area)){dinosaurMotion=new DinosaurMotion{clock=view.dinosaurWorld.clock,points=view.dinosaurWorld.animals.SelectMany(a=>new[]{(int)Math.Round(a.x*4),(int)Math.Round(a.y*4)}).ToArray()};
                 for(var i=0;i<4;i++){var a=view.dinosaurWorld.animals[i];if(a.left)dinosaurMotion.left|=1<<i;if(a.wandering)dinosaurMotion.wandering|=1<<i;var rider=Array.FindIndex(view.players,p=>p.fixture==DinosaurRides.Fixture(a.species));dinosaurMotion.riders|=(rider+1)<<(i*3);}}
-            var frame=new MotionFrame{dinosaurs=dinosaurMotion,epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
+            var frame=new MotionFrame{dinosaurs=dinosaurMotion,epoch=epoch,sequence=++motionSequence,time=ServerClock-accumulator,players=view.players.Select(p=>new MovingPlayer{actor=p.id,zone=p.zone,visit=p.visit,x=p.x,y=p.y,stairs=p.stairs,input=movement.Acknowledged(p.id)}).ToArray()};
             foreach(var peer in network.ConnectedClientsIds){Send(MotionMessage,peer,frame,NetworkDelivery.UnreliableSequenced);motionPackets++;}
+            // Combined worlds exceed the position datagram budget when their
+            // activity records are bundled together. Keep positions/rides at
+            // 20 Hz, and send bounded activity state on the fragmented lane.
+            if(now>=nextActivityMotionSend){
+                nextActivityMotionSend=now+.1;
+                var activity=new ActivityMotionFrame{epoch=epoch,time=ServerClock-accumulator,keepy=view.keepy,park=view.park,seagulls=view.seagulls,
+                    kingdomRound=view.kingdom?.round??0,kingdomPhase=(int)(view.kingdom?.phase??KingdomPhase.Ready),kingdomClock=view.kingdom?.clock??0,
+                    daycareRound=view.daycare?.round??0,daycarePhase=view.daycare?.phase??0,daycareClock=view.daycare?.clock??0};
+                foreach(var peer in network.ConnectedClientsIds)Send(ActivityMotionMessage,peer,activity);
+            }
             // Diagnostics are deliberately not durable checkpoints.
-            WriteJson(Path.Combine(output,"view.json"),Current());
+            if(config.verifyGarden || now>=nextViewObservation)ObserveView(Current());
             if(now>=nextMotionEvidence){nextMotionEvidence=now+1;WriteJson(Path.Combine(output,"motion-stats.json"),new MotionMetrics{checkpointWrites=checkpointWrites,motionPackets=motionPackets,diagnosticWriteConflicts=diagnosticWriteConflicts,seconds=now-started});}
         }
         private void ReceivePose(ulong sender,FastBufferReader reader)
@@ -625,6 +670,14 @@ namespace LittleWeeps.NetworkProbe
             }
             catch(ArgumentException){network.DisconnectClient(sender,"invalid-preview");}
             catch(InvalidDataException){network.DisconnectClient(sender,"invalid-preview");}
+        }
+        private void ObserveView(State state)
+        {
+            // Qualification reads every sample; family devices need a bounded
+            // diagnostic trace, not a full-world JSON disk write at 20 Hz.
+            if(!config.verifyGarden && Time.realtimeSinceStartupAsDouble<nextViewObservation)return;
+            nextViewObservation=Time.realtimeSinceStartupAsDouble+.5;
+            WriteJson(Path.Combine(output,"view.json"),state);
         }
         private void Send<T>(string name,ulong peer,T message,NetworkDelivery delivery=NetworkDelivery.ReliableFragmentedSequenced)
         {

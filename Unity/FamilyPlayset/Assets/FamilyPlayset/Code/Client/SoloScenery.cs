@@ -40,12 +40,13 @@ namespace LittleWeeps.Client
             new SceneTile("zoo-gecko",ZooCatalog.Reptiles,2400),
             new SceneTile("zoo-iguana",ZooCatalog.Reptiles,4800),
             new SceneTile("zoo-crocodile",ZooCatalog.Reptiles,7200),
-            new SceneTile("home-upstairs",HomeRooms.Landing,0),
+            new SceneTile("home-upstairs",HomeRooms.Landing,0),new SceneTile("home-bathroom",BathroomLayout.Area,0),
             new SceneTile("home-discovery","garden",-7200),new SceneTile("home-living","garden",-4800),new SceneTile("home-kitchen","garden",-2400),
             new SceneTile("garden-tree","garden",0),new SceneTile("garden-shed","garden",2400),
             new SceneTile("park-playground","park",0),new SceneTile("park-picnic","park",2400),
             new SceneTile("creek-bank","creek",0),new SceneTile("creek-crossing","creek",2400),
-            new SceneTile("beach-dunes","beach",0),new SceneTile("beach-rockpools","beach",2400),
+            new SceneTile("beach-dunes-shore","beach",0),new SceneTile("beach-rockpools-shore","beach",2400),
+            new SceneTile("daycare-adventure",KingdomAdventure.Zone,0),
             new SceneTile("daycare-playroom","daycare",0),new SceneTile("daycare-garden","daycare",2400)
         };
         private readonly Dictionary<string,RawImage> scenicImages=new Dictionary<string,RawImage>();
@@ -124,6 +125,10 @@ namespace LittleWeeps.Client
             }
             if(followParent)
             {manualCamera=false;cameraX=Mathf.Lerp(cameraX,HideGame.x,1-Mathf.Exp(-9*Time.unscaledDeltaTime));}
+            else if(BoatCameraFollowing){manualCamera=false;groundPan=false;cameraX=Mathf.Lerp(cameraX,BoatCameraX,1-Mathf.Exp(-Time.unscaledDeltaTime*3));}
+            else if(CreekFishingCameraFollowing){manualCamera=false;groundPan=false;cameraX=CreekFishing.X;}
+            else if(CurrentArea==BathroomLayout.Area && BathroomLayout.Bath(ReadPlayer(Actor).fixture)){manualCamera=false;groundPan=false;cameraX=1190;}
+            else if(PondCameraFollowing){manualCamera=false;groundPan=false;cameraX=PondFishing.X;}
             else if(CharactersOpen)cameraX=position.x;
             else if(!manualCamera)
             {
@@ -152,7 +157,7 @@ namespace LittleWeeps.Client
             foreach(var pair in scenicImages.ToArray())if(!wanted.Any(t=>t.id==pair.Key))
             {var texture=pair.Value.texture;pair.Value.texture=null;Destroy(pair.Value.gameObject);scenicImages.Remove(pair.Key);Resources.UnloadAsset(texture);}
             foreach(var tile in wanted)if(!scenicImages.ContainsKey(tile.id) && !scenicRequests.ContainsKey(tile.id) && scenicImages.Count+scenicRequests.Count<3)
-                scenicRequests[tile.id]=Resources.LoadAsync<Texture2D>(SceneSchema>=ParkPlay.Schema && (tile.id=="park-playground" || tile.id=="park-picnic")?"ParkArt/"+(tile.id=="park-playground"?"playground-clean":"picnic-clean"):"Scenery/"+(tile.id=="home-kitchen" && SceneSchema>=Kitchen.Schema?"home-kitchen-working":tile.id));
+                scenicRequests[tile.id]=Resources.LoadAsync<Texture2D>(SceneSchema>=PondFishing.Schema && tile.id=="garden-tree"?"PondArt/garden-tree-clean":SceneSchema>=PondFishing.Schema && tile.id=="garden-shed"?"PondArt/garden-clean":SceneSchema>=ParkPlay.Schema && (tile.id=="park-playground" || tile.id=="park-picnic")?"ParkArt/"+(tile.id=="park-playground"?"playground-clean":"picnic-clean"):SceneSchema>=BathroomLayout.Schema && tile.id=="home-upstairs"?"BathroomArt/hallway":"Scenery/"+(tile.id=="home-kitchen" && SceneSchema>=Kitchen.Schema?"home-kitchen-working":tile.id));
             foreach(var tile in wanted.OrderBy(t=>t.start))if(scenicImages.TryGetValue(tile.id,out var image))
             {
                 image.gameObject.SetActive(tile.area==CurrentArea);

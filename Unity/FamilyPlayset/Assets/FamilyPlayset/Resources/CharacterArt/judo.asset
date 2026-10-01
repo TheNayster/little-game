@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5cc53ca3900a148bf90546814953d9, type: 3}
+  m_Name: judo
+  m_EditorClassIdentifier: LittleWeeps.Client::LittleWeeps.Client.CharacterArt
+  characterId: judo
+  displayName: Judo
+  scale: 1
+  groundX: 0
+  groundY: 0
+  layers: []
+  profileLayers: []
+  sheet: {fileID: 2800000, guid: 370a465f3c6e88d4a990c5801b230253, type: 3}
+  walkSheet: {fileID: 2800000, guid: 785ea1ddbc82a6e42a876e441eb707d6, type: 3}
+  shadowSprite: {fileID: 21300000, guid: d24b8e0639d44bcc81b2aeacb103f57f, type: 3}
+  sheetSha256: 02d0395142c73a30d5b9125e01760830513de18f18d208c95c8aebe7c52f0e66
+  walkSheetSha256: 02d0395142c73a30d5b9125e01760830513de18f18d208c95c8aebe7c52f0e66
+  referenceHeight: 292
+  walkReferenceHeight: 292
+  frames:
+  - name: idle
+    pixels:
+      x: 387
+      y: 17
+      width: 193
+      height: 296
+    ground: {x: 490, y: 311}
+  - name: blink
+    pixels:
+      x: 67
+      y: 321
+      width: 209
+      height: 304
+    ground: {x: 182, y: 623}
+  - name: wave-a
+    pixels:
+      x: 388
+      y: 322
+      width: 224
+      height: 302
+    ground: {x: 489.5, y: 622}
+  - name: wave-b
+    pixels:
+      x: 388
+      y: 322
+      width: 224
+      height: 302
+    ground: {x: 489.5, y: 622}
+  - name: walk-0
+    pixels:
+      x: 65
+      y: 634
+      width: 222
+      height: 298
+    ground: {x: 179.5, y: 930}
+  - name: walk-1
+    pixels:
+      x: 65
+      y: 634
+      width: 222
+      height: 298
+    ground: {x: 179.5, y: 930}
+  - name: walk-2
+    pixels:
+      x: 382
+      y: 636
+      width: 215
+      height: 297
+    ground: {x: 486, y: 931}
+  - name: walk-3
+    pixels:
+      x: 382
+      y: 636
+      width: 215
+      height: 297
+    ground: {x: 486, y: 931}
+  - name: walk-4
+    pixels:
+      x: 676
+      y: 635
+      width: 197
+      height: 295
+    ground: {x: 785.5, y: 928}
+  - name: walk-5
+    pixels:
+      x: 676
+      y: 635
+      width: 197
+      height: 295
+    ground: {x: 785.5, y: 928}
+  - name: walk-6
+    pixels:
+      x: 982
+      y: 637
+      width: 209
+      height: 294
+    ground: {x: 1091, y: 929}
+  - name: walk-7
+    pixels:
+      x: 982
+      y: 637
+      width: 209
+      height: 294
+    ground: {x: 1091, y: 929}
+  - name: sit
+    pixels:
+      x: 670
+      y: 355
+      width: 211
+      height: 265
+    ground: {x: 790.5, y: 618}
+  - name: carry
+    pixels:
+      x: 980
+      y: 322
+      width: 192
+      height: 305
+    ground: {x: 1081, y: 625}
+  - name: dance-a
+    pixels:
+      x: 51
+      y: 940
+      width: 244
+      height: 293
+    ground: {x: 176, y: 1231}
+  - name: dance-b
+    pixels:
+      x: 350
+      y: 940
+      width: 241
+      height: 293
+    ground: {x: 478.5, y: 1231}
+  walkFrames:
+  - name: walk-0
+    pixels:
+      x: 65
+      y: 634
+      width: 222
+      height: 298
+    ground: {x: 179.5, y: 930}
+  - name: walk-1
+    pixels:
+      x: 65
+      y: 634
+      width: 222
+      height: 298
+    ground: {x: 179.5, y: 930}
+  - name: walk-2
+    pixels:
+      x: 382
+      y: 636
+      width: 215
+      height: 297
+    ground: {x: 486, y: 931}
+  - name: walk-3
+    pixels:
+      x: 382
+      y: 636
+      width: 215
+      height: 297
+    ground: {x: 486, y: 931}
+  - name: walk-4
+    pixels:
+      x: 676
+      y: 635
+      width: 197
+      height: 295
+    ground: {x: 785.5, y: 928}
+  - name: walk-5
+    pixels:
+      x: 676
+      y: 635
+      width: 197
+      height: 295
+    ground: {x: 785.5, y: 928}
+  - name: walk-6
+    pixels:
+      x: 982
+      y: 637
+      width: 209
+      height: 294
+    ground: {x: 1091, y: 929}
+  - name: walk-7
+    pixels:
+      x: 982
+      y: 637
+      width: 209
+      height: 294
+    ground: {x: 1091, y: 929}

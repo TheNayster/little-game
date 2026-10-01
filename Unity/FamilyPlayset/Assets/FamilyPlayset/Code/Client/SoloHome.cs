@@ -134,7 +134,8 @@ namespace LittleWeeps.Client
         }
         private void ResetHome()
         {
-            ResetDinosaurWorld();ResetZoo();ResetPark();ResetHideAndSeek();
+            ResetCreekFishing();ResetCreekBoats();ResetPond();ResetDinosaurWorld();ResetZoo();ResetPark();ResetHideAndSeek();
+            ResetShore();ResetSeagulls();
             if(worldMusic!=null){Destroy(worldMusic);worldMusic=null;}
             if(homeMusic!=null){homeMusic.Stop();Destroy(homeMusic);homeMusic=null;}
             foreach(var sprite in homeSprites)Destroy(sprite);

@@ -50,5 +50,5 @@ MonoBehaviour:
         m_Architecture: 0
         m_CreateSolution: 0
         m_CopyPDBFiles: 0
-        m_WindowsDevicePortalAddress:
-        m_WindowsDevicePortalUsername:
+        m_WindowsDevicePortalAddress: 
+        m_WindowsDevicePortalUsername: 

@@ -33,7 +33,7 @@ namespace LittleWeeps.Core
         {
             // Both authority and client prediction use the same bounds. Ordinary
             // walking tuning is unchanged; riding uses the accepted baseline too.
-            var next=Walking.Step(x,y,input,dt,WorldLayout.MinX(p.zone,schema)+40,WorldLayout.MaxX(p.zone,schema)-40);
+            var next=ParkWheels.Step(p,x,y,input,dt,schema);
             return Floor(p.zone,next.X,next.Y);
         }
         internal static double Roll(DinosaurMount a)
@@ -45,17 +45,28 @@ namespace LittleWeeps.Core
         public DinosaurWorldState ReadDinosaurWorld()=>state.dinosaurWorld?.Copy();
         public static SoloWorld WithDinosaurWorld(SoloWorld world)
         {
-            world=WithZoo(world);if(world.Schema>=DinosaurCareRules.Schema)return world;
+            // Upgrade a ride-only checkpoint before another module raises its
+            // schema above the old care boundary. Retain the animals and RNG.
+            if(world.state.dinosaurWorld!=null && (world.state.dinosaurWorld.care==null || world.state.dinosaurWorld.care.Length==0)){
+                var legacy=world.Snapshot();legacy.dinosaurWorld.care=legacy.players.Select(p=>new DinosaurCare{actor=p.id}).ToArray();
+                legacy.schema=Math.Max(legacy.schema,DinosaurCareRules.Schema);legacy.revision++;Validate(legacy);world=new SoloWorld(legacy);
+            }
+            // Older releases used overlapping schema numbers in separate branches.
+            // Ensure each saved module by its own presence, then publish format 42.
+            world=WithCreekFishing(world);world=WithNpcCasts(world);world=WithShore(world);
+            world=WithStationTidying(world);world=WithBathroom(world);world=WithTag(world);world=WithZoo(world);
+            if(world.Schema>=WorldLayout.Schema)return world;
             var s=world.Snapshot();uint seed=2166136261;
             foreach(var ch in s.worldId)seed=unchecked((seed^ch)*16777619);
             if(s.dinosaurWorld==null)s.dinosaurWorld=new DinosaurWorldState{animals=DinosaurRides.Species.Select((id,i)=>new DinosaurMount{species=id,random=(seed^(uint)(i+1)*2654435761u)|1u,x=600+i*1200,targetX=600+i*1200,pause=3+i*2}).ToArray()};
-            s.dinosaurWorld.care=s.players.Select(p=>new DinosaurCare{actor=p.id}).ToArray();
-            s.schema=DinosaurCareRules.Schema;s.revision++;Validate(s);return new SoloWorld(s);
+            if(s.dinosaurWorld.care==null || s.dinosaurWorld.care.Length==0)s.dinosaurWorld.care=s.players.Select(p=>new DinosaurCare{actor=p.id}).ToArray();
+            s.schema=WorldLayout.Schema;s.revision++;Validate(s);return new SoloWorld(s);
         }
         private static void NormalizeDinosaurInline(SoloSnapshot s)
-        {if(s!=null && s.schema<DinosaurRides.Schema && s.dinosaurWorld!=null && s.dinosaurWorld.clock==0 && (s.dinosaurWorld.animals==null || s.dinosaurWorld.animals.Length==0))s.dinosaurWorld=null;}
+        {if(s!=null && s.schema<WorldLayout.Schema && s.dinosaurWorld!=null && s.dinosaurWorld.clock==0 && (s.dinosaurWorld.animals==null || s.dinosaurWorld.animals.Length==0))s.dinosaurWorld=null;}
         private static void ValidateDinosaurWorld(SoloSnapshot s)
         {
+            if(s.dinosaurWorld==null && s.schema<WorldLayout.Schema)return;
             if(s.schema<DinosaurRides.Schema){if(s.dinosaurWorld!=null || s.players.Any(p=>p.zone==DinosaurRides.Area || DinosaurRides.Usable(p.fixture)))throw new InvalidOperationException("Dinosaur World requires schema 36.");return;}
             var d=s.dinosaurWorld;
             if(d==null || !HideAndSeek.Finite(d.clock) || d.clock<0 || d.animals==null || !d.animals.Select(a=>a?.species).SequenceEqual(DinosaurRides.Species))throw new InvalidOperationException("Invalid Dinosaur World.");

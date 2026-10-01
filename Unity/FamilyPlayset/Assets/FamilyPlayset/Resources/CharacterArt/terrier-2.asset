@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5cc53ca3900a148bf90546814953d9, type: 3}
+  m_Name: terrier-2
+  m_EditorClassIdentifier: LittleWeeps.Client::LittleWeeps.Client.CharacterArt
+  characterId: terrier-2
+  displayName: Terrier 2
+  scale: 0.86
+  groundX: 0
+  groundY: 0
+  layers: []
+  profileLayers: []
+  sheet: {fileID: 2800000, guid: 380a0aa31c3f2fb4f9077b36a071aa71, type: 3}
+  walkSheet: {fileID: 2800000, guid: f895639920da77c44b737937d8fc9c48, type: 3}
+  shadowSprite: {fileID: 21300000, guid: 46c5c07819714c9290a5eedfd1e38454, type: 3}
+  sheetSha256: 6f44ff692964bbaefed12f2b30b21cfd7a48634c7a083702c5f0da324444d24b
+  walkSheetSha256: 6f44ff692964bbaefed12f2b30b21cfd7a48634c7a083702c5f0da324444d24b
+  referenceHeight: 283
+  walkReferenceHeight: 283
+  frames:
+  - name: idle
+    pixels:
+      x: 400
+      y: 23
+      width: 203
+      height: 287
+    ground: {x: 513, y: 308}
+  - name: blink
+    pixels:
+      x: 93
+      y: 322
+      width: 214
+      height: 301
+    ground: {x: 210, y: 621}
+  - name: wave-a
+    pixels:
+      x: 393
+      y: 321
+      width: 234
+      height: 303
+    ground: {x: 504.5, y: 622}
+  - name: wave-b
+    pixels:
+      x: 393
+      y: 321
+      width: 234
+      height: 303
+    ground: {x: 504.5, y: 622}
+  - name: walk-0
+    pixels:
+      x: 83
+      y: 635
+      width: 205
+      height: 294
+    ground: {x: 202.5, y: 927}
+  - name: walk-1
+    pixels:
+      x: 83
+      y: 635
+      width: 205
+      height: 294
+    ground: {x: 202.5, y: 927}
+  - name: walk-2
+    pixels:
+      x: 402
+      y: 634
+      width: 191
+      height: 291
+    ground: {x: 513.5, y: 923}
+  - name: walk-3
+    pixels:
+      x: 402
+      y: 634
+      width: 191
+      height: 291
+    ground: {x: 513.5, y: 923}
+  - name: walk-4
+    pixels:
+      x: 693
+      y: 634
+      width: 197
+      height: 290
+    ground: {x: 816, y: 922}
+  - name: walk-5
+    pixels:
+      x: 693
+      y: 634
+      width: 197
+      height: 290
+    ground: {x: 816, y: 922}
+  - name: walk-6
+    pixels:
+      x: 1002
+      y: 635
+      width: 188
+      height: 293
+    ground: {x: 1117.5, y: 926}
+  - name: walk-7
+    pixels:
+      x: 1002
+      y: 635
+      width: 188
+      height: 293
+    ground: {x: 1117.5, y: 926}
+  - name: sit
+    pixels:
+      x: 708
+      y: 377
+      width: 201
+      height: 244
+    ground: {x: 804, y: 619}
+  - name: carry
+    pixels:
+      x: 1003
+      y: 325
+      width: 200
+      height: 297
+    ground: {x: 1115, y: 620}
+  - name: dance-a
+    pixels:
+      x: 53
+      y: 940
+      width: 258
+      height: 294
+    ground: {x: 218, y: 1232}
+  - name: dance-b
+    pixels:
+      x: 369
+      y: 940
+      width: 258
+      height: 295
+    ground: {x: 460.5, y: 1233}
+  walkFrames:
+  - name: walk-0
+    pixels:
+      x: 83
+      y: 635
+      width: 205
+      height: 294
+    ground: {x: 202.5, y: 927}
+  - name: walk-1
+    pixels:
+      x: 83
+      y: 635
+      width: 205
+      height: 294
+    ground: {x: 202.5, y: 927}
+  - name: walk-2
+    pixels:
+      x: 402
+      y: 634
+      width: 191
+      height: 291
+    ground: {x: 513.5, y: 923}
+  - name: walk-3
+    pixels:
+      x: 402
+      y: 634
+      width: 191
+      height: 291
+    ground: {x: 513.5, y: 923}
+  - name: walk-4
+    pixels:
+      x: 693
+      y: 634
+      width: 197
+      height: 290
+    ground: {x: 816, y: 922}
+  - name: walk-5
+    pixels:
+      x: 693
+      y: 634
+      width: 197
+      height: 290
+    ground: {x: 816, y: 922}
+  - name: walk-6
+    pixels:
+      x: 1002
+      y: 635
+      width: 188
+      height: 293
+    ground: {x: 1117.5, y: 926}
+  - name: walk-7
+    pixels:
+      x: 1002
+      y: 635
+      width: 188
+      height: 293
+    ground: {x: 1117.5, y: 926}

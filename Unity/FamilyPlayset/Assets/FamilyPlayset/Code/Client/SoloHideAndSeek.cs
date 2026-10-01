@@ -36,8 +36,8 @@ namespace LittleWeeps.Client
         private bool HideCardOpen=>hideCard!=null && hideCard.gameObject.activeSelf;
         private HiderState OwnHider=>HideAndSeek.Player(HideGame,Actor);
         private bool FollowingHideParent=>HasWorld && CurrentArea=="garden" && OwnHider?.mode==HiderMode.Hidden;
-        private Vector2 HideEntry=>new Vector2(HideAndSeek.SlotX[Mathf.Clamp(hideApproach,0,HideAndSeek.SlotX.Length-1)],HideAndSeek.RailY);
-        private static readonly float[] HidePropX={HideAndSeek.SlotX[0],HomeLayout.SofaX,-3495,-3150,-7040,Kitchen.DiningX,2910,4310};
+        private Vector2 HideEntry=>new Vector2(HideAndSeek.CoverX(Mathf.Clamp(hideApproach,0,HideAndSeek.SlotX.Length-1),SceneSchema),HideAndSeek.RailY);
+        private float[] HidePropX=>new[]{HideAndSeek.SlotX[0],HomeLayout.SofaX,-3495,-3150,-7040,Kitchen.DiningX,HideAndSeek.CoverX(8,SceneSchema),4310f};
         private static readonly Vector2[] HideSizes={new Vector2(240,325),new Vector2(570,285),new Vector2(325,325),new Vector2(260,280),new Vector2(300,300),new Vector2(900,300),new Vector2(350,300),new Vector2(350,310)};
         private static float HideGround(int prop)=>prop==1?HomeLayout.SofaY:prop==4 || prop==6?120:prop==5?130:prop==7?180:245;
         private Sprite HideCoverSprite(int prop,bool open=false)
@@ -67,7 +67,7 @@ namespace LittleWeeps.Client
             {
                 var index=slot;var prop=HideAndSeek.Props[slot];
                 var spread=slot==1?-24:slot==2?24:slot==3?-64:slot==4?64:0;
-                var hit=Panel(hideProps[prop],"Hide "+HideAndSeek.Names[slot],new Vector2(HideAndSeek.SlotX[slot]-HidePropX[prop]+spread,prop==1?185:prop==5?105:40),new Vector2(200,104),new Color(.93f,.98f,1,.97f),true);
+                var hit=Panel(hideProps[prop],"Hide "+HideAndSeek.Names[slot],new Vector2(HideAndSeek.CoverX(slot,SceneSchema)-HidePropX[prop]+spread,prop==1?185:prop==5?105:40),new Vector2(200,104),new Color(.93f,.98f,1,.97f),true);
                 var glow=hit.gameObject.AddComponent<Outline>();glow.effectDistance=new Vector2(5,-5);hideGlows.Add(glow);
                 NavButton(hit,()=>RequestHide(index));
                 HomePicture(hit.transform,"Pictured cover",new Vector2(-55,0),new Vector2(68,68),HideCoverSprite(prop));
@@ -149,7 +149,7 @@ namespace LittleWeeps.Client
             banditRoot.Find("Bandit invitation tap").gameObject.SetActive(!active);
             banditX=Mathf.MoveTowards(banditX,s.x,HideAndSeek.Speed*1.5f*Time.unscaledDeltaTime);if(Mathf.Abs(banditX-s.x)>800)banditX=s.x;
             banditRoot.anchoredPosition=ToBoard(banditX,HideAndSeek.RailY);banditRoot.localScale=Vector3.one*sceneScale;
-            var frame=s.phase==HidePhase.Counting?3:s.phase==HidePhase.Inspecting?4:s.phase==HidePhase.Found?5:s.phase==HidePhase.Walking?1+(int)(s.clock*3)%2:0;
+            var frame=s.phase==HidePhase.Counting?3:s.phase==HidePhase.Inspecting?4:s.phase==HidePhase.Found?5:s.phase==HidePhase.Walking?1+(int)(s.clock*5)%2:0;
             var parent=HideAndSeek.Parent(s,s.phase==HidePhase.Idle);var frames=parent=="Chilli"?chilliFrames:banditFrames;
             banditPicture.sprite=frames[frame];banditPicture.rectTransform.localScale=new Vector3(HideAndSeek.Facing(s),1,1);
             var invitedParent=HideAndSeek.Parent(s,true);var invitationFrames=invitedParent=="Chilli"?chilliFrames:banditFrames;
@@ -174,7 +174,7 @@ namespace LittleWeeps.Client
                 var root=hideProps[i];root.gameObject.SetActive(shown);root.anchoredPosition=ToBoard(HidePropX[i],HideGround(i));root.localScale=Vector3.one*sceneScale;
                 if(i==1 || i==5)continue;
                 var mine=own.slot>=0 && HideAndSeek.Props[own.slot]==i;
-                var inspecting=s.target>=0 && HideAndSeek.Props[s.target]==i && s.phase==HidePhase.Inspecting && s.age>.7;
+                var inspecting=s.target>=0 && HideAndSeek.Props[s.target]==i && s.phase==HidePhase.Inspecting && s.age>HideAndSeek.InspectSeconds*.5;
                 hidePictures[i].sprite=HideCoverSprite(i,mine || inspecting);
                 hidePictures[i].color=mine?new Color(1,1,1,.42f):Color.white;
             }
@@ -182,7 +182,7 @@ namespace LittleWeeps.Client
             kitchenFixtures["dining"].root.GetComponentInChildren<Image>().color=diningMine?new Color(1,1,1,.42f):Color.white;
             kitchenDiningFront.GetComponentInChildren<HomeArtPart>().color=diningMine?new Color(1,1,1,.42f):Color.white;
             foreach(var friend in friends){var p=ReadPlayer(friend.Key);friend.Value.root.gameObject.SetActive(p.zone==CurrentArea && shared.Players.Contains(friend.Key) && !HideAndSeek.Hidden(s,friend.Key));}
-            if(own.mode==HiderMode.Hidden){avatar.anchoredPosition=ToBoard(HideAndSeek.SlotX[own.slot],HideAndSeek.HiddenY(own.slot));characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
+            if(own.mode==HiderMode.Hidden){avatar.anchoredPosition=ToBoard(HideAndSeek.CoverX(own.slot,SceneSchema),HideAndSeek.HiddenY(own.slot));characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
             for(var i=0;i<HideAndSeek.SlotX.Length;i++)
             {
                 var visible=shown && counting && own.slot<0 && !MenuOpen;hideHits[i].gameObject.SetActive(visible);

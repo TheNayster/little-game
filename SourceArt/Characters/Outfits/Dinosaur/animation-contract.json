@@ -1,0 +1,671 @@
+{
+  "outfit": "dinosaur",
+  "characters": [
+    {
+      "id": "bluey",
+      "displayName": "Bluey dinosaur",
+      "scale": 1,
+      "source": "SourceArt/Characters/Outfits/Dinosaur/bluey.png",
+      "sourceSha256": "d2a7fe15d0fdee578fb18daaa38ff34a97f5011ced3cce5d6c7037108a87298f",
+      "width": 1254,
+      "height": 1254,
+      "referenceHeight": 309,
+      "frames": [
+        {
+          "name": "idle",
+          "pixels": {
+            "x": 48,
+            "y": 1,
+            "width": 211,
+            "height": 313
+          },
+          "ground": {
+            "x": 173.5,
+            "y": 314
+          }
+        },
+        {
+          "name": "blink",
+          "pixels": {
+            "x": 358,
+            "y": 1,
+            "width": 209,
+            "height": 313
+          },
+          "ground": {
+            "x": 482.5,
+            "y": 314
+          }
+        },
+        {
+          "name": "wave-a",
+          "pixels": {
+            "x": 664,
+            "y": 2,
+            "width": 259,
+            "height": 312
+          },
+          "ground": {
+            "x": 795.0,
+            "y": 314
+          }
+        },
+        {
+          "name": "wave-b",
+          "pixels": {
+            "x": 984,
+            "y": 1,
+            "width": 254,
+            "height": 313
+          },
+          "ground": {
+            "x": 1107.5,
+            "y": 314
+          }
+        },
+        {
+          "name": "walk-0",
+          "pixels": {
+            "x": 46,
+            "y": 321,
+            "width": 243,
+            "height": 306
+          },
+          "ground": {
+            "x": 180.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-1",
+          "pixels": {
+            "x": 360,
+            "y": 321,
+            "width": 246,
+            "height": 306
+          },
+          "ground": {
+            "x": 495.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-2",
+          "pixels": {
+            "x": 672,
+            "y": 320,
+            "width": 218,
+            "height": 307
+          },
+          "ground": {
+            "x": 802.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-3",
+          "pixels": {
+            "x": 982,
+            "y": 321,
+            "width": 243,
+            "height": 306
+          },
+          "ground": {
+            "x": 1119.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-4",
+          "pixels": {
+            "x": 45,
+            "y": 638,
+            "width": 232,
+            "height": 302
+          },
+          "ground": {
+            "x": 178.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-5",
+          "pixels": {
+            "x": 356,
+            "y": 638,
+            "width": 238,
+            "height": 302
+          },
+          "ground": {
+            "x": 487.5,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-6",
+          "pixels": {
+            "x": 673,
+            "y": 638,
+            "width": 221,
+            "height": 302
+          },
+          "ground": {
+            "x": 806.5,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-7",
+          "pixels": {
+            "x": 986,
+            "y": 638,
+            "width": 237,
+            "height": 302
+          },
+          "ground": {
+            "x": 1118.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "sit",
+          "pixels": {
+            "x": 51,
+            "y": 974,
+            "width": 216,
+            "height": 270
+          },
+          "ground": {
+            "x": 162.5,
+            "y": 1242
+          }
+        },
+        {
+          "name": "carry",
+          "pixels": {
+            "x": 359,
+            "y": 945,
+            "width": 221,
+            "height": 299
+          },
+          "ground": {
+            "x": 489.0,
+            "y": 1242
+          }
+        },
+        {
+          "name": "dance-a",
+          "pixels": {
+            "x": 660,
+            "y": 950,
+            "width": 253,
+            "height": 294
+          },
+          "ground": {
+            "x": 782.5,
+            "y": 1242
+          }
+        },
+        {
+          "name": "dance-b",
+          "pixels": {
+            "x": 981,
+            "y": 946,
+            "width": 245,
+            "height": 298
+          },
+          "ground": {
+            "x": 1086.5,
+            "y": 1242
+          }
+        }
+      ],
+      "walk": {
+        "source": "SourceArt/Characters/Outfits/Dinosaur/bluey.png",
+        "sourceSha256": "d2a7fe15d0fdee578fb18daaa38ff34a97f5011ced3cce5d6c7037108a87298f",
+        "width": 1254,
+        "height": 1254,
+        "referenceHeight": 309,
+        "frames": [
+          {
+            "name": "walk-0",
+            "pixels": {
+              "x": 46,
+              "y": 321,
+              "width": 243,
+              "height": 306
+            },
+            "ground": {
+              "x": 180.5,
+              "y": 627
+            }
+          },
+          {
+            "name": "walk-1",
+            "pixels": {
+              "x": 360,
+              "y": 321,
+              "width": 246,
+              "height": 306
+            },
+            "ground": {
+              "x": 495.0,
+              "y": 627
+            }
+          },
+          {
+            "name": "walk-2",
+            "pixels": {
+              "x": 672,
+              "y": 320,
+              "width": 218,
+              "height": 307
+            },
+            "ground": {
+              "x": 802.0,
+              "y": 627
+            }
+          },
+          {
+            "name": "walk-3",
+            "pixels": {
+              "x": 982,
+              "y": 321,
+              "width": 243,
+              "height": 306
+            },
+            "ground": {
+              "x": 1119.0,
+              "y": 627
+            }
+          },
+          {
+            "name": "walk-4",
+            "pixels": {
+              "x": 45,
+              "y": 638,
+              "width": 232,
+              "height": 302
+            },
+            "ground": {
+              "x": 178.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-5",
+            "pixels": {
+              "x": 356,
+              "y": 638,
+              "width": 238,
+              "height": 302
+            },
+            "ground": {
+              "x": 487.5,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-6",
+            "pixels": {
+              "x": 673,
+              "y": 638,
+              "width": 221,
+              "height": 302
+            },
+            "ground": {
+              "x": 806.5,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-7",
+            "pixels": {
+              "x": 986,
+              "y": 638,
+              "width": 237,
+              "height": 302
+            },
+            "ground": {
+              "x": 1118.0,
+              "y": 940
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bingo",
+      "displayName": "Bingo dinosaur",
+      "scale": 0.82,
+      "source": "SourceArt/Characters/Outfits/Dinosaur/bingo.png",
+      "sourceSha256": "558d78d8a010d8d5b873f82be33ae360b637a29cf83a7a16e978b8ffd965ae1a",
+      "width": 1254,
+      "height": 1254,
+      "referenceHeight": 306,
+      "frames": [
+        {
+          "name": "idle",
+          "pixels": {
+            "x": 51,
+            "y": 4,
+            "width": 214,
+            "height": 310
+          },
+          "ground": {
+            "x": 178.0,
+            "y": 314
+          }
+        },
+        {
+          "name": "blink",
+          "pixels": {
+            "x": 361,
+            "y": 4,
+            "width": 216,
+            "height": 310
+          },
+          "ground": {
+            "x": 490.0,
+            "y": 314
+          }
+        },
+        {
+          "name": "wave-a",
+          "pixels": {
+            "x": 660,
+            "y": 3,
+            "width": 265,
+            "height": 311
+          },
+          "ground": {
+            "x": 793.5,
+            "y": 314
+          }
+        },
+        {
+          "name": "wave-b",
+          "pixels": {
+            "x": 976,
+            "y": 3,
+            "width": 258,
+            "height": 311
+          },
+          "ground": {
+            "x": 1103.5,
+            "y": 314
+          }
+        },
+        {
+          "name": "walk-0",
+          "pixels": {
+            "x": 42,
+            "y": 319,
+            "width": 246,
+            "height": 308
+          },
+          "ground": {
+            "x": 181.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-1",
+          "pixels": {
+            "x": 359,
+            "y": 319,
+            "width": 246,
+            "height": 308
+          },
+          "ground": {
+            "x": 495.5,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-2",
+          "pixels": {
+            "x": 669,
+            "y": 319,
+            "width": 222,
+            "height": 308
+          },
+          "ground": {
+            "x": 801.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-3",
+          "pixels": {
+            "x": 978,
+            "y": 319,
+            "width": 249,
+            "height": 308
+          },
+          "ground": {
+            "x": 1119.0,
+            "y": 627
+          }
+        },
+        {
+          "name": "walk-4",
+          "pixels": {
+            "x": 42,
+            "y": 637,
+            "width": 237,
+            "height": 303
+          },
+          "ground": {
+            "x": 176.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-5",
+          "pixels": {
+            "x": 352,
+            "y": 636,
+            "width": 244,
+            "height": 304
+          },
+          "ground": {
+            "x": 489.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-6",
+          "pixels": {
+            "x": 668,
+            "y": 636,
+            "width": 226,
+            "height": 304
+          },
+          "ground": {
+            "x": 804.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "walk-7",
+          "pixels": {
+            "x": 980,
+            "y": 636,
+            "width": 244,
+            "height": 304
+          },
+          "ground": {
+            "x": 1116.0,
+            "y": 940
+          }
+        },
+        {
+          "name": "sit",
+          "pixels": {
+            "x": 49,
+            "y": 971,
+            "width": 226,
+            "height": 274
+          },
+          "ground": {
+            "x": 165.0,
+            "y": 1243
+          }
+        },
+        {
+          "name": "carry",
+          "pixels": {
+            "x": 361,
+            "y": 945,
+            "width": 222,
+            "height": 301
+          },
+          "ground": {
+            "x": 487.5,
+            "y": 1244
+          }
+        },
+        {
+          "name": "dance-a",
+          "pixels": {
+            "x": 659,
+            "y": 945,
+            "width": 259,
+            "height": 300
+          },
+          "ground": {
+            "x": 783.5,
+            "y": 1243
+          }
+        },
+        {
+          "name": "dance-b",
+          "pixels": {
+            "x": 974,
+            "y": 945,
+            "width": 254,
+            "height": 300
+          },
+          "ground": {
+            "x": 1080.0,
+            "y": 1243
+          }
+        }
+      ],
+      "walk": {
+        "source": "SourceArt/Characters/Outfits/Dinosaur/bingo.png",
+        "sourceSha256": "558d78d8a010d8d5b873f82be33ae360b637a29cf83a7a16e978b8ffd965ae1a",
+        "width": 1254,
+        "height": 1254,
+        "referenceHeight": 306,
+        "frames": [
+          {
+            "name": "walk-0",
+            "pixels": {
+              "x": 42,
+              "y": 319,
+              "width": 246,
+              "height": 308
+            },
+            "ground": {
+              "x": 181.5,
+              "y": 627
+            }
+          },
+          {
+            "name": "walk-1",
+            "pixels": {
+              "x": 359,
+              "y": 319,
+              "width": 246,
+              "height": 308
+            },
+            "ground": {
+              "x": 495.5,
+              "y": 627
+            }
+          },
+          {
+            "name": "walk-2",
+            "pixels": {
+              "x": 669,
+              "y": 319,
+              "width": 222,
+              "height": 308
+            },
+            "ground": {
+              "x": 801.0,
+              "y": 627
+            }
+          },
+          {
+            "name": "walk-3",
+            "pixels": {
+              "x": 978,
+              "y": 319,
+              "width": 249,
+              "height": 308
+            },
+            "ground": {
+              "x": 1119.0,
+              "y": 627
+            }
+          },
+          {
+            "name": "walk-4",
+            "pixels": {
+              "x": 42,
+              "y": 637,
+              "width": 237,
+              "height": 303
+            },
+            "ground": {
+              "x": 176.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-5",
+            "pixels": {
+              "x": 352,
+              "y": 636,
+              "width": 244,
+              "height": 304
+            },
+            "ground": {
+              "x": 489.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-6",
+            "pixels": {
+              "x": 668,
+              "y": 636,
+              "width": 226,
+              "height": 304
+            },
+            "ground": {
+              "x": 804.0,
+              "y": 940
+            }
+          },
+          {
+            "name": "walk-7",
+            "pixels": {
+              "x": 980,
+              "y": 636,
+              "width": 244,
+              "height": 304
+            },
+            "ground": {
+              "x": 1116.0,
+              "y": 940
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -71,24 +71,25 @@ namespace LittleWeeps.Core
         public ZooState ReadZoo()=>state.zoo?.Copy();
         public static SoloWorld WithZoo(SoloWorld world)
         {
-            world=WithPark(world);if(world.Schema>=ZooCatalog.Schema)return world;
+            world=WithPark(world);if(world.Schema>=ZooCatalog.Schema && world.state.zoo?.animals?.Length==16)return world;
             var s=world.Snapshot();uint seed=2166136261;
             foreach(var ch in s.worldId)seed=unchecked((seed^ch)*16777619);
             var existing=s.zoo;
             s.zoo=new ZooState{nextTicket=existing?.nextTicket??0,animals=ZooLayout.Species.Select((id,i)=>existing?.animals.FirstOrDefault(a=>a.species==id)?.Copy()??new ZooAnimal{species=id,random=(seed^(uint)(i+1)*2654435761u)|1u,
                 fromX=ZooLayout.Center(id)-Math.Min(200,ZooCatalog.Get(id).Radius),toX=ZooLayout.Center(id)-Math.Min(200,ZooCatalog.Get(id).Radius),fromY=360,toY=360,duration=3+i*2}).ToArray(),food=existing?.food.Select(f=>f.Copy()).ToArray()??s.players.Select(p=>new ZooFood{actor=p.id}).ToArray()};
-            s.schema=ZooCatalog.Schema;s.revision++;Validate(s);return new SoloWorld(s);
+            s.schema=Math.Max(s.schema,ZooCatalog.Schema);s.revision++;Validate(s);return new SoloWorld(s);
         }
         private static void NormalizeZooInline(SoloSnapshot s)
         {
-            if(s!=null && s.schema<ZooLayout.Schema && s.zoo!=null && (s.zoo.animals==null || s.zoo.animals.Length==0) &&
+            if(s!=null && s.schema<WorldLayout.Schema && s.zoo!=null && (s.zoo.animals==null || s.zoo.animals.Length==0) &&
                 (s.zoo.food==null || s.zoo.food.Length==0) && s.zoo.nextTicket==0)s.zoo=null;
         }
         private static void ValidateZoo(SoloSnapshot s)
         {
+            if(s.zoo==null && s.schema<WorldLayout.Schema)return;
             if(s.schema<ZooLayout.Schema){if(s.zoo!=null || s.players.Any(p=>ZooLayout.Area(p.zone)))throw new InvalidOperationException("Zoo requires schema 34.");return;}
             var z=s.zoo;
-            if(z==null || z.animals==null || z.animals.Length!=(s.schema<ZooCatalog.Schema?2:16) || !z.animals.Select(a=>a?.species).SequenceEqual(s.schema<ZooCatalog.Schema?ZooLayout.Species.Take(2):ZooLayout.Species) ||
+            if(z==null || z.animals==null || !(z.animals.Length==16 || s.schema<WorldLayout.Schema && z.animals.Length==2) || !z.animals.Select(a=>a?.species).SequenceEqual(z.animals.Length==2?ZooLayout.Species.Take(2):ZooLayout.Species) ||
                 z.food==null || !z.food.Select(f=>f?.actor).OrderBy(id=>id).SequenceEqual(s.players.Select(p=>p.id).OrderBy(id=>id)) ||
                 z.nextTicket<0 || z.nextTicket==long.MaxValue)throw new InvalidOperationException("Invalid zoo record.");
             foreach(var a in z.animals){var info=ZooCatalog.Get(a.species);
@@ -151,6 +152,7 @@ namespace LittleWeeps.Core
                 if(p.zone!=ZooCatalog.Get(f.species).area || active!=null && !active.Contains(p.id) || f.offered && (Math.Abs(p.x-ZooLayout.SlotX(f.species,f.slot))>160 || p.y>160))visible|=CancelZoo(p.id);
             }
             foreach(var a in z.animals){
+                if(a.owner=="" && active!=null && !state.players.Any(p=>p.zone==ZooCatalog.Get(a.species).area && active.Contains(p.id)))continue;
                 a.age+=seconds;
                 if(a.owner==""){
                     var next=z.food.Where(f=>f.species==a.species && f.offered).OrderBy(f=>f.ticket).FirstOrDefault();
@@ -158,11 +160,14 @@ namespace LittleWeeps.Core
                 }
                 if(a.phase==ZooPhase.Eat && !a.consumed && a.age>=1.4){a.consumed=true;if(a.fed<int.MaxValue)a.fed++;visible=true;}
                 if(a.age<a.duration)continue;
+                var feeding=a.owner!="";
                 if(a.phase==ZooPhase.Notice){var f=z.food.Single(v=>v.actor==a.owner);var point=ZooLayout.Point(a);var info=ZooCatalog.Get(a.species);var x=ZooLayout.SlotX(a.species,f.slot)+65-info.mouthX;
                     var distance=Math.Sqrt((point.X-x)*(point.X-x)+(point.Y-info.FeedY)*(point.Y-info.FeedY));ZooLayout.Segment(a,ZooPhase.Approach,x,info.FeedY,Math.Max(1.5,distance/(info.approachSpeed*1.4f)));}
                 else if(a.phase==ZooPhase.Approach){var point=ZooLayout.Point(a);ZooLayout.Segment(a,ZooPhase.Eat,point.X,point.Y,4);}
                 else {if(a.owner!="")z.food.Single(v=>v.actor==a.owner).Clear();ZooLayout.Routine(a);}
-                visible=true;
+                // Ambient routes do not conflict with a child's food/travel
+                // transaction. Feeding lease transitions still advance revision.
+                if(feeding)visible=true;else AmbientChanged=true;
             }
             return true;
         }

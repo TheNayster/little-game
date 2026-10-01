@@ -6,7 +6,8 @@ namespace LittleWeeps.Core
     [Serializable] public sealed class ParkState
     {
         public double clock, angle, speed, targetSpeed, waterUntil;
-        public ParkState Copy() => (ParkState)MemberwiseClone();
+        public TagState tag;
+        public ParkState Copy(){var p=(ParkState)MemberwiseClone();p.tag=tag?.Copy();return p;}
     }
     // Ride coordinates are stable leases. Animated height never enters walking,
     // inventory or collision coordinates; every client evaluates the same clock.
@@ -56,6 +57,7 @@ namespace LittleWeeps.Core
                 !KeepyRules.Finite(p.speed) || p.speed<0 || p.speed>ParkPlay.TurnSpeed || (p.targetSpeed!=0 && p.targetSpeed!=ParkPlay.TurnSpeed) ||
                 !KeepyRules.Finite(p.waterUntil) || p.waterUntil<0 || !s.toys.Any(t=>t.id=="tap-park" && t.kind==ToyKind.Tap && t.zone=="park" && t.x==ParkPlay.FountainX && t.y==ParkPlay.FountainY) ||
                 !s.toys.Any(t=>t.id=="bucket-park" && t.kind==ToyKind.Bucket && t.zone=="park"))throw new InvalidOperationException("Invalid park state.");
+            ValidateTag(s);
             foreach(var player in s.players)
                 if(!KeepyRules.Finite(player.rideStarted) || player.rideStarted<0 || player.rideStarted>p.clock || (!ParkPlay.Usable(player.fixture) && player.rideStarted!=0))throw new InvalidOperationException("Invalid park ride clock.");
         }
@@ -63,16 +65,17 @@ namespace LittleWeeps.Core
         {
             if(state.park==null)return "wrong-area";
             if(c.action==SoloAction.LeaveFixture){ClearFixture(p);return null;}
-            if(c.action!=SoloAction.UseFixture || !ParkPlay.Usable(c.target))return "invalid-fixture";
+            if(c.action!=SoloAction.UseFixture || !(ParkPlay.Usable(c.target) || ParkWheels.Usable(c.target)))return "invalid-fixture";
             if(state.players.Any(v=>v.id!=p.id && v.zone=="park" && v.fixture==c.target))return "fixture-busy";
             foreach(var t in state.toys.Where(t=>t.holder==p.id)){t.holder="";t.container="";t.x=p.x;t.y=Math.Max(35,p.y-65);Touch(t);}
-            ClearFixture(p);p.fixture=c.target;p.activity="";p.rideStarted=state.park.clock;p.x=ParkPlay.X(c.target);p.y=ParkPlay.Y(c.target);
+            ClearFixture(p);p.fixture=c.target;p.activity="";p.rideStarted=ParkWheels.Usable(c.target)?0:state.park.clock;p.x=ParkWheels.Usable(c.target)?ParkWheels.ParkX(ParkWheels.Index(c.target)):ParkPlay.X(c.target);p.y=ParkWheels.Usable(c.target)?ParkWheels.Lane(c.target):ParkPlay.Y(c.target);
             if(ParkPlay.Station(c.target)=="roundabout")state.park.targetSpeed=ParkPlay.TurnSpeed;
             return null;
         }
         private string ParkOperation(SoloCommand c,SoloPlayer p)
         {
             if(state.park==null || p.zone!="park")return "wrong-area";
+            if(c.value!=null && c.value.StartsWith("tag-",StringComparison.Ordinal))return TagOperation(c,p);
             if(c.value=="water"){state.park.waterUntil=state.park.clock+4;return null;}
             if(c.value=="turn" || c.value=="stop"){state.park.targetSpeed=c.value=="turn"?ParkPlay.TurnSpeed:0;return null;}
             return "invalid-park-action";

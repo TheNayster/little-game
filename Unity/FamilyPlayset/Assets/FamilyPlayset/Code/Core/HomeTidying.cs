@@ -12,13 +12,15 @@ namespace LittleWeeps.Core
     }
     public static class HomeTidying
     {
-        public const int Schema=22;
+        public const int Schema=22, StationResetSchema=35;
         public const double IdleSeconds=300, CueSeconds=5;
         public static string Item(string id)=>"item/"+id;
         public static string Lab(string owner,string lab)=>"lab/"+owner+"/"+lab;
+        public static string Page(string owner,int page)=>Lab(owner,"page"+page);
+        public static bool PageAction(string op,out int page){page=-1;return op.StartsWith("page",StringComparison.Ordinal) && int.TryParse(op.Substring(4),out page) && page>=0 && page<Discovery.Pages.Length;}
         internal static readonly Dictionary<string,SoloToy> Origins=Kitchen.Stock().Concat(new[]{CakeFlow.MixStock()}).ToDictionary(t=>t.id);
         public static readonly string[] Labs={"float","magnets","lights","mix0","mix1","mix2","mix3","ice","bubble","liquid","ramps"};
-        public static IEnumerable<string> LabsFor(int schema)=>Labs.Where(l=>l!="ramps" || schema>=MarbleRamps.Schema);
+        public static IEnumerable<string> LabsFor(int schema)=>Labs.Where(l=>l!="ramps" || schema>=MarbleRamps.Schema).Concat(schema>=StationResetSchema?Enumerable.Range(0,Discovery.Pages.Length).Select(i=>"page"+i):Enumerable.Empty<string>());
         public static string[] Keys(SoloSnapshot s)=>s.toys.Where(t=>Kitchen.Kind(t.kind) || t.kind==ToyKind.Book).Select(t=>Item(t.id)).Concat(new[]{"kitchen","balloon"}).Concat(s.players.SelectMany(p=>LabsFor(s.schema).Select(l=>Lab(p.id,l)))).OrderBy(k=>k,StringComparer.Ordinal).ToArray();
         public static string[] CueKeys(SoloSnapshot view){var keys=Keys(view);return (view.homeTidyCues??Array.Empty<int>()).Where(i=>i>=0 && i<keys.Length).Select(i=>keys[i]).ToArray();}
         public static string LabAction(string op)
@@ -32,11 +34,20 @@ namespace LittleWeeps.Core
             if(new[]{"cargo-add","cargo-remove","narrow","wide","lift","reset-float"}.Contains(op))return "float";
             if(new[]{"red","green","blue","reset-lights"}.Contains(op))return "lights";
             if(new[]{"magnet","iron","wood","plastic","aluminum","reset-magnets"}.Contains(op))return "magnets";
-            return ""; // Coloring and its undo history are personal creations.
+            return "";
         }
     }
     public sealed partial class SoloWorld
     {
+        public static SoloWorld WithStationTidying(SoloWorld world)
+        {
+            world=WithHideAndSeek(world);if(world.Schema>=HomeTidying.StationResetSchema)return world;
+            var s=world.Snapshot();var cues=HomeTidying.CueKeys(s);
+            s.schema=HomeTidying.StationResetSchema;s.revision++;
+            // New page clocks start on use/aging; upgrading never clears artwork.
+            var keys=HomeTidying.Keys(s);s.homeTidyCues=cues.Select(k=>Array.IndexOf(keys,k)).ToArray();
+            Validate(s);return new SoloWorld(s);
+        }
         public static SoloWorld WithHomeTidying(SoloWorld world)
         {
             world=WithLiquidColors(world);if(world.Schema>=HomeTidying.Schema)return world;
@@ -64,7 +75,13 @@ namespace LittleWeeps.Core
         private void TouchHomeAction(SoloCommand c,SoloPlayer p)
         {
             if(state.schema<HomeTidying.Schema)return;
-            if(c.action==SoloAction.Discovery){var lab=HomeTidying.LabAction(c.value);if(lab!="")TouchTidy(HomeTidying.Lab(p.id,lab));}
+            if(c.action==SoloAction.Discovery){var lab=HomeTidying.LabAction(c.value);if(lab!="")TouchTidy(HomeTidying.Lab(p.id,lab));
+                if(state.schema>=HomeTidying.StationResetSchema){
+                    if(c.value.StartsWith("visit:") && HomeTidying.PageAction(c.value.Substring(6),out var visited))TouchTidy(HomeTidying.Page(p.id,visited));
+                    if(c.value.StartsWith("fill:") || c.value=="undo" || c.value=="redo" || c.value=="save-picture")
+                        if(int.TryParse(c.target.Split('@')[0],out var page))TouchTidy(HomeTidying.Page(p.id,page));
+                }
+            }
             if(c.action==SoloAction.Kitchen || (c.action==SoloAction.Drop || c.action==SoloAction.Grab) && state.toys.Any(t=>Kitchen.Kind(t.kind) && (t.id==c.item || t.id==c.target)))
             {
                 TouchTidy("kitchen");
@@ -108,17 +125,26 @@ namespace LittleWeeps.Core
             Age("balloon",b.phase==0 && (b.x!=KeepyRules.SpawnX || b.y!=KeepyRules.SpawnY),()=>{b.x=b.centerX=KeepyRules.SpawnX;b.y=KeepyRules.SpawnY;});
             foreach(var w in state.discovery)
             {
+                var resetStations=state.schema>=HomeTidying.StationResetSchema;
+                if(resetStations)for(var i=0;i<w.pages.Length;i++){
+                    var page=w.pages[i];
+                    // Working papers are reusable. Kept/displayed drawings are
+                    // independent copies in creation storage and remain untouched.
+                    Age(HomeTidying.Page(w.owner,i),page.revision<long.MaxValue-1 && (page.colors.Any(v=>v!=0) || page.undo.Length>0 || page.redo.Length>0),()=>{
+                        Array.Clear(page.colors,0,page.colors.Length);page.undo=page.redo=Array.Empty<int>();page.revision++;
+                    });
+                }
                 Age(HomeTidying.Lab(w.owner,"float"),w.cargo!=0 || w.wide || w.outOfWater,()=>{w.cargo=0;w.wide=false;w.outOfWater=false;});
                 Age(HomeTidying.Lab(w.owner,"magnets"),w.magnetX!=400 || w.magnetY!=110 || w.ironX!=140 || w.ironY!=315,()=>{w.magnetX=400;w.magnetY=110;w.ironX=140;w.ironY=315;});
                 Age(HomeTidying.Lab(w.owner,"lights"),w.lights!=0,()=>w.lights=0);
                 for(var mode=0;mode<Mixing.Modes;mode++){
                     var index=mode;var t=w.mixtures[index];
-                    Age(HomeTidying.Lab(w.owner,"mix"+index),t.revision<long.MaxValue-1 && (Mixing.Total(t)>0 || t.spill) && t.reaction==0 && t.foam==0 && t.stir==0 && t.poke==0,()=>w.mixtures[index]=new MixingTray{revision=t.revision+1,volcano=t.volcano});
+                    Age(HomeTidying.Lab(w.owner,"mix"+index),t.revision<long.MaxValue-1 && (Mixing.Total(t)>0 || t.spill || resetStations && t.volcano) && t.reaction==0 && t.foam==0 && t.stir==0 && t.poke==0,()=>w.mixtures[index]=new MixingTray{revision=t.revision+1,volcano=!resetStations && t.volcano});
                 }
                 var ice=w.ice[0];
-                Age(HomeTidying.Lab(w.owner,"ice"),ice.revision<long.MaxValue-1 && (ice.current.cells.Any(v=>v!=1) || ice.current.x!=500 || ice.current.y!=330) && ice.current.energy.All(v=>v==0),()=>{ice.previous=new[]{ice.current.Copy()};ice.current=new IceRescueState{toy=ice.current.toy};ice.revision++;});
+                Age(HomeTidying.Lab(w.owner,"ice"),ice.revision<long.MaxValue-1 && (ice.current.cells.Any(v=>v!=1) || ice.current.x!=500 || ice.current.y!=330 || resetStations && ice.current.toy!=0) && ice.current.energy.All(v=>v==0),()=>{ice.previous=new[]{ice.current.Copy()};ice.current=new IceRescueState{toy=resetStations?0:ice.current.toy};ice.revision++;});
                 var bubble=w.bubbles[0];var bs=bubble.current;
-                Age(HomeTidying.Lab(w.owner,"bubble"),bubble.revision<long.MaxValue-1 && bs.water && bs.floating.Length==0,()=>{bubble.previous=new[]{bs.Copy()};bubble.current=new BubbleState{big=bs.big,square=bs.square,strong=bs.strong};bubble.revision++;});
+                Age(HomeTidying.Lab(w.owner,"bubble"),bubble.revision<long.MaxValue-1 && (bs.water || resetStations && (bs.big || bs.square || bs.strong)) && bs.floating.Length==0,()=>{bubble.previous=new[]{bs.Copy()};bubble.current=resetStations?new BubbleState():new BubbleState{big=bs.big,square=bs.square,strong=bs.strong};bubble.revision++;});
                 if(state.schema>=MarbleRamps.Schema){var ramp=w.ramps[0];Age(HomeTidying.Lab(w.owner,"ramps"),ramp.revision<long.MaxValue-1 && !MarbleRamps.Running(ramp.current) && MarbleRamps.Temporary(ramp),()=>{ramp.previous=new[]{ramp.current.Copy()};ramp.current=new RampState{course=MarbleRamps.RestingCourse(ramp)};ramp.revision++;});}
                 var liquid=w.liquid[0];
                 Age(HomeTidying.Lab(w.owner,"liquid"),liquid.revision<long.MaxValue-1 && LiquidColorLab.Volume(liquid.current)>0,()=>{liquid.previous=new[]{liquid.current.Copy()};liquid.current=new LiquidColorState();liquid.revision++;});

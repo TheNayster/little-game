@@ -12,6 +12,7 @@ namespace LittleWeeps.Core
         private readonly Dictionary<ulong,string> connections=new Dictionary<ulong,string>();
         public FamilySession(SoloWorld world){this.world=world??throw new ArgumentNullException(nameof(world));}
         public long Revision=>world.Revision;
+        public bool AmbientChanged=>world.AmbientChanged;
         public string[] ConnectedPlayers=>connections.Values.OrderBy(id=>id,StringComparer.Ordinal).ToArray();
         public bool TryPlayer(ulong connection,out string profile)=>connections.TryGetValue(connection,out profile);
         public bool Attach(ulong connection,string profile,out string reason)
@@ -33,7 +34,10 @@ namespace LittleWeeps.Core
         {
             if(!connections.TryGetValue(connection,out var profile))return false;
             connections.Remove(connection);
-            world.ReleaseHideAndSeek(profile);world.ReleaseZoo(profile);world.ReleaseDinosaurCare(profile);
+            world.ReleaseCreekFishing(profile);world.ReleaseCreekBoats(profile);world.ReleasePond(profile);world.ReleaseHideAndSeek(profile);world.ReleaseZoo(profile);
+            world.ReleaseTag(profile);
+            world.ReleaseDinosaurCare(profile);
+            world.ReleaseDaycare(profile);world.ReleaseKingdom(profile);
             world.ReleaseFixture(profile);
             world.CancelStairs(profile);
             foreach(var toy in world.ReadToys().Where(t=>t.holder==profile))

@@ -71,8 +71,33 @@ namespace LittleWeeps.EditorTools
                 // Keep old studies editable without preloading their textures.
                 art.layers = null; art.profileLayers = null;
                 EditorUtility.SetDirty(art);
+                BuildPortrait(character,texture);
             }
             AssetDatabase.SaveAssets();
+        }
+        private static void BuildPortrait(Character character,Texture2D source)
+        {
+            const string folder="Assets/FamilyPlayset/Resources/CharacterMenu";
+            if(!Directory.Exists(folder)){Directory.CreateDirectory(folder);AssetDatabase.Refresh();}
+            var path=folder+"/"+character.id+".asset";
+            var art=AssetDatabase.LoadAssetAtPath<CharacterMenuArt>(path);
+            if(art!=null && art.sourceHash==character.sourceSha256 && art.texture!=null)return;
+            if(art==null){art=ScriptableObject.CreateInstance<CharacterMenuArt>();AssetDatabase.CreateAsset(art,path);}
+            if(art.texture!=null)UnityEngine.Object.DestroyImmediate(art.texture,true);
+            var drawing=character.frames[0];var crop=drawing.pixels.Value;
+            var factor=Mathf.Min(1,256/Mathf.Max(crop.width,crop.height));
+            var width=Mathf.Max(1,Mathf.RoundToInt(crop.width*factor));var height=Mathf.Max(1,Mathf.RoundToInt(crop.height*factor));
+            var target=RenderTexture.GetTemporary(width,height,0,RenderTextureFormat.ARGB32,RenderTextureReadWrite.sRGB);
+            var previous=RenderTexture.active;
+            try{
+                Graphics.Blit(source,target,new Vector2(crop.width/source.width,crop.height/source.height),new Vector2(crop.x/source.width,1-crop.yMax/source.height));
+                RenderTexture.active=target;
+                var portrait=new Texture2D(width,height,TextureFormat.RGBA32,false);portrait.name=character.id+" portrait";
+                portrait.ReadPixels(new Rect(0,0,width,height),0,0);portrait.Apply(false,true);portrait.filterMode=FilterMode.Bilinear;portrait.wrapMode=TextureWrapMode.Clamp;
+                AssetDatabase.AddObjectToAsset(portrait,art);art.texture=portrait;
+                art.pivot=new Vector2((drawing.ground.x-crop.x)/crop.width,(crop.yMax-drawing.ground.y)/crop.height);
+                art.size=crop.size*(180/character.referenceHeight)*character.scale;art.sourceHash=character.sourceSha256;EditorUtility.SetDirty(art);
+            }finally{RenderTexture.active=previous;RenderTexture.ReleaseTemporary(target);}
         }
         private static string Hash(string path)
         {

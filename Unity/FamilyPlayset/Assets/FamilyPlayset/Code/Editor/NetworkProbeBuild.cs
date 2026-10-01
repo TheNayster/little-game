@@ -14,7 +14,8 @@ namespace LittleWeeps.EditorTools
     {
         public static void Windows()
         {
-            HideAndSeekJsonTests.Run();ZooJsonTests.Run();DinosaurJsonTests.Run();
+            BathroomJsonTests.Run();HideAndSeekJsonTests.Run();PondJsonTests.Run();CreekBoatJsonTests.Run();CreekFishingJsonTests.Run();ZooJsonTests.Run();DinosaurJsonTests.Run();KingdomJsonTests.Run();DaycareJsonTests.Run();
+            SeagullJsonTests.Run();ShoreJsonTests.Run();
             const string scenePath="Assets/FamilyPlayset/Scenes/NetworkProbe.unity";
             if(!File.Exists(scenePath))
             {
