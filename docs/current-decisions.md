@@ -1,5 +1,7 @@
 # Current project decisions
 
+**Git cleanup and branch lifecycle — September 30:** the user requires completed, checked work to be pushed into `main`, then its temporary branch deleted locally and on GitHub. Use main directly for clean, small, isolated tasks; temporary branches are only for actual unfinished/concurrent work. This supersedes historical main-integration holds for source delivery, without authorizing deployment. The checked combined build360 source (`deb255f`) is the integration baseline. Preserve active checkout edits; see [cleanup record](implementation/git-cleanup-2026-09-30.md) and the standing rules in AGENTS.md.
+
 **Combined worlds360 — September30:** integrates completed Home, Park, Creek, Daycare and Beach updates with Zoo/Dinosaur and faster movement. Windows/four-client world check and copied real-save migration pass. Protocol3/content58/schema44 needs coordinated devices/server; mobile build/install is underway, live347 retained. [Source/evidence/delivery](implementation/combined-world-release-360-2026-09-30.md). Preserve the main integration hold.
 
 **Movement speed348 — September30:** the user approved483 floor units/second (+15%). Windows client/server compile; one native four-player check measures479.61–483.89 with independent departure passing. Content56 aligns client prediction and authority; protocol3/schema42 unchanged. [Evidence and pending delivery](implementation/movement-speed-348-2026-09-30.md). No mobile installation or live-server update; gate-only347 is installed; preserve the main integration hold.
