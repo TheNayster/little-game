@@ -6,13 +6,32 @@ namespace LittleWeeps.Client
     // Scene-native shapes keep each bucket's fill, water and tower visible.
     public sealed class SandShape : MaskableGraphic
     {
-        public string kind="bucket";public int scoops,capacity=2,decoration;public bool wet,built;
+        public string kind="bucket";public int scoops,capacity=2,decoration;public bool wet,built,pouring;
         public Vector2 source,target;public float progress;
         private VertexHelper mesh;
         protected override void OnPopulateMesh(VertexHelper vh)
         {
             mesh=vh;mesh.Clear();
             var wood=new Color(.57f,.38f,.21f);var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
+            if(kind=="watering-can"){
+                Oval(0,0,47,10,new Color(.37f,.36f,.22f,.28f));
+                if(!pouring)WaterCan(new Vector2(0,24),0);return;
+            }
+            if(kind=="water-pour"){
+                const float tilt=-.6f;
+                var nozzle=Turn(new Vector2(51,27),tilt);
+                var above=target+new Vector2(-nozzle.x,40-nozzle.y);
+                var t=progress<.25f?Mathf.SmoothStep(0,1,progress/.25f):progress>.75f?1-Mathf.SmoothStep(0,1,(progress-.75f)/.25f):1;
+                var at=Vector2.Lerp(source,above,t);
+                WaterCan(at,tilt*t);
+                if(progress>=.25f && progress<=.75f){
+                    var from=above+nozzle;var blue=new Color(.25f,.68f,1);
+                    Box(from.x-2,target.y,4,from.y-target.y,new Color(.4f,.76f,1,.5f));
+                    for(var i=0;i<5;i++){var drop=Vector2.Lerp(from,target,Mathf.Repeat(progress*7+i*.2f,1));Oval(drop.x,drop.y,4,7,blue);}
+                    Oval(target.x,target.y,13,4,blue);
+                }
+                return;
+            }
             if(kind=="shovel"){
                 Oval(0,-8,72,21,edge);Oval(0,-3,68,21,sand);
                 for(var i=0;i<9;i++)Oval(-49+i*12,(i%3)*5-6,3,2,damp);
@@ -39,7 +58,7 @@ namespace LittleWeeps.Client
                 return;
             }
             if(kind=="scoop"){Box(-5,-26,10,48,wood);Oval(0,29,24,14,new Color(.85f,.44f,.23f));return;}
-            if(kind=="water"){Box(-28,-22,52,47,new Color(.36f,.67f,.87f));Poly(new Color(.36f,.67f,.87f),new Vector2(24,2),new Vector2(51,27),new Vector2(49,-5));Oval(-2,25,25,8,new Color(.7f,.86f,.95f));return;}
+            if(kind=="water"){WaterCan(Vector2.zero,0);return;}
             if(kind=="flag"){Box(-3,-30,6,64,wood);Poly(new Color(.94f,.4f,.35f),new Vector2(3,34),new Vector2(43,23),new Vector2(3,8));return;}
             if(kind=="shell"){Shell(0,0);return;}
             if(kind=="tip"){Poly(new Color(.32f,.65f,.8f),new Vector2(-30,23),new Vector2(22,35),new Vector2(33,-13),new Vector2(-8,-24));Oval(28,-30,20,5,sand);return;}
@@ -57,10 +76,30 @@ namespace LittleWeeps.Client
                 Poly(edge,new Vector2(-46,h),new Vector2(46,h),new Vector2(31,0),new Vector2(-31,0));
                 Poly(bucket,new Vector2(-40,h-4),new Vector2(40,h-4),new Vector2(26,4),new Vector2(-26,4));
                 Oval(0,h,46,10,new Color(.72f,.89f,.95f));
+                if(wet && scoops==0)Oval(0,h,34,6,new Color(.38f,.72f,.93f));
                 if(scoops>0){var f=scoops/(float)capacity;Poly(wet?damp:sand,new Vector2(-26,6),new Vector2(26,6),new Vector2(26+12*f,6+(h-10)*f),new Vector2(-26-12*f,6+(h-10)*f));}
                 for(var i=0;i<capacity;i++)Box(-9,10+i*(h-15)/capacity,18,3,Color.white);
                 if(wet){Oval(28,h+20,7,10,new Color(.35f,.65f,.94f));}
             }
+        }
+        private static Vector2 Turn(Vector2 p,float angle)=>new Vector2(p.x*Mathf.Cos(angle)-p.y*Mathf.Sin(angle),p.x*Mathf.Sin(angle)+p.y*Mathf.Cos(angle));
+        private void CanPoly(Vector2 at,float angle,Color color,params Vector2[] points)
+        {for(var i=0;i<points.Length;i++)points[i]=at+Turn(points[i],angle);Poly(color,points);}
+        private void CanOval(Vector2 at,float angle,float x,float y,float rx,float ry,Color color)
+        {var p=new Vector2[20];for(var i=0;i<p.Length;i++){var a=i*Mathf.PI*2/p.Length;p[i]=new Vector2(x+Mathf.Cos(a)*rx,y+Mathf.Sin(a)*ry);}CanPoly(at,angle,color,p);}
+        private void WaterCan(Vector2 at,float angle)
+        {
+            var blue=new Color(.36f,.67f,.87f);var start=mesh.currentVertCount;
+            // Open handle rather than painting a solid hole over the scenery.
+            for(var i=0;i<20;i++){
+                var a=i*Mathf.PI*2/20;
+                mesh.AddVert(at+Turn(new Vector2(-30+Mathf.Cos(a)*20,4+Mathf.Sin(a)*25),angle),blue,Vector2.zero);
+                mesh.AddVert(at+Turn(new Vector2(-30+Mathf.Cos(a)*12,4+Mathf.Sin(a)*17),angle),blue,Vector2.zero);
+            }
+            for(var i=0;i<20;i++){var next=(i+1)%20;mesh.AddTriangle(start+i*2,start+next*2,start+i*2+1);mesh.AddTriangle(start+i*2+1,start+next*2,start+next*2+1);}
+            CanPoly(at,angle,blue,new Vector2(-28,-22),new Vector2(24,-22),new Vector2(24,25),new Vector2(-28,25));
+            CanPoly(at,angle,blue,new Vector2(24,2),new Vector2(51,27),new Vector2(49,-5));
+            CanOval(at,angle,-2,25,25,8,new Color(.7f,.86f,.95f));
         }
         private void Shell(float x,float y)
         {Oval(x,y,25,19,new Color(1,.67f,.52f));for(var i=-2;i<=2;i++)Box(x+i*7-1,y-8,3,20,new Color(.82f,.43f,.33f));}
