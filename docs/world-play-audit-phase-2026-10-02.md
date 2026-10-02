@@ -2,6 +2,10 @@
 
 Created October 2, 2026 at the parent's request. This phase repeats the Daycare story, mechanics, controls, screenshots, NPC and improvement review for every main world. It creates a useful parent and ChatGPT Classic handoff before any redesign implementation.
 
+## Current requested scope
+
+The later parent instruction selects [screenshots and illustrated audits for the six worlds outside Daycare](six-world-screenshot-phase-2026-10-02.md), with separate world folders and code paths. That active capture queue takes precedence over the general seven-world order below. Daycare refresh is excluded from this request.
+
 ## Current phase status
 
 Setup complete: seven dedicated world audit files, one activity template and the historical Daycare review with thirteen release-401 screenshots are recorded. Current world reviews remain pending. No game behavior, build, device installation, live server or saved data changes are part of this setup task.
