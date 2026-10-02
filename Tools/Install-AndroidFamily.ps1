@@ -70,30 +70,45 @@ try {
     $installed=Invoke-Phone @('shell','pm','list','packages','--user','0',$pin.package)
     $oldHash=$null;$oldVersion=$null
     if ($installed -and $installed -ne "package:$($pin.package)") { throw 'Unexpected package inventory; refusing to guess.' }
-    function Pull-Installed([string]$Destination) {
+    function Read-InstalledPath {
         $path=Invoke-Phone @('shell','pm','path','--user','0',$pin.package)
-        if ($path -notmatch '^package:(/data/app/[^\r\n]+/base\.apk)$') { throw 'Expected one installed base APK.' }
-        [void](Invoke-Phone @('pull',$Matches[1],$Destination))
+        if ($path -notmatch '^package:(/data/app/[a-zA-Z0-9_./~+=\-]+/base\.apk)$') { throw 'Expected one installed base APK.' }
+        return $Matches[1]
+    }
+    function Read-InstalledHash {
+        $value=Invoke-Phone @('shell','sha256sum',(Read-InstalledPath))
+        if ($value -notmatch '^([a-fA-F0-9]{64})\s') { throw 'Installed APK hash could not be verified.' }
+        return $Matches[1].ToLowerInvariant()
     }
     if ($installed) {
-        $oldApk=Join-Path $dir 'before.apk'
-        Pull-Installed $oldApk
+        $oldHash=Read-InstalledHash
+        $inventory=Invoke-Phone @('shell','dumpsys','package',$pin.package)
+        if ($inventory -notmatch '(?m)^\s*versionCode=(\d+)\s') { throw 'Installed app version could not be read.' }
+        $reportedVersion=[int]$Matches[1]
+        if ($reportedVersion -gt $BuildNumber) { throw 'Downgrades are not allowed.' }
+        $oldApk=Join-Path $root "Builds\AndroidSigned\$BuildProfile-0.0.$reportedVersion\LittleWeeps.apk"
+        # Exact device/local byte equality lets the local signed artifact prove
+        # the installed certificate without returning hundreds of MB over Wi-Fi.
+        if (-not (Test-Path -LiteralPath $oldApk) -or (Get-FileHash -LiteralPath $oldApk -Algorithm SHA256).Hash.ToLowerInvariant() -ne $oldHash) {
+            $oldApk=Join-Path $dir 'before.apk'
+            [void](Invoke-Phone @('pull',(Read-InstalledPath),$oldApk))
+            if ((Get-FileHash -LiteralPath $oldApk -Algorithm SHA256).Hash.ToLowerInvariant() -ne $oldHash) { throw 'Installed app changed during verification.' }
+        }
         Confirm-Certificate $oldApk
         $oldBadging=Read-Badging $oldApk
         if ($oldBadging -notmatch "package: name='com\.littleweeps\.familyplayset' versionCode='(\d+)'") { throw 'Unexpected installed app identity.' }
         $oldVersion=[int]$Matches[1]
+        if ($oldVersion -ne $reportedVersion) { throw 'Installed app version does not match its artifact.' }
         if ($oldVersion -gt $BuildNumber) { throw 'Downgrades are not allowed.' }
-        $oldHash=(Get-FileHash -LiteralPath $oldApk -Algorithm SHA256).Hash.ToLowerInvariant()
     }
     $operation=if ($oldHash -eq $hash) { 'already current' } elseif ($installed) { 'updated' } else { 'installed' }
     if ($operation -ne 'already current') {
         $result=Invoke-Phone @('install','-r','--user','0',$apk)
         if ($result -notmatch '(?m)^Success\s*$') { throw "Installation did not report success: $result" }
     }
-    $actual=Join-Path $dir 'installed.apk'
-    Pull-Installed $actual
-    if ((Get-FileHash -LiteralPath $actual -Algorithm SHA256).Hash.ToLowerInvariant() -ne $hash) { throw 'Installed APK differs from the intended artifact.' }
-    Confirm-Certificate $actual
+    # Matching the complete on-device hash proves the signed candidate is the
+    # installed artifact; a second APK download/signature scan adds no evidence.
+    if ((Read-InstalledHash) -ne $hash) { throw 'Installed APK differs from the intended artifact.' }
     $launch=Invoke-Phone @('shell','am','start','-W','--user','0','-n',($pin.package+'/com.unity3d.player.UnityPlayerGameActivity'))
     if ($launch -notmatch '(?m)^Status: ok\s*$') { throw "Launch failed: $launch" }
     $appPid=Invoke-Phone @('shell','pidof',$pin.package)
