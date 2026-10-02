@@ -14,6 +14,8 @@ The reusable Windows rule **LittleWeeps-Home-UDP** was created and verified afte
 
 Current-user Windows sign-in startup, native crash recovery and helper watchdog are enabled. A locked but awake, connected PC can host. Availability begins after this Windows account signs in; pre-login hosting and physical reboot are not qualified. Sleep, power-off or a lost network interrupt hosting. No sleep settings were changed. Deliberate parent Stop/Pause is respected. Repeated failures exhaust a bounded retry budget and need attention; this is not a promise of fault-free operation.
 
+**Prepared Tag correction413:** content65 changes authority NPC routing; protocol3/schema49 remain unchanged. Its Windows server/client and focused four-player check pass. This candidate requires a coordinated server/client rollout and is not compatible with the installed content64 server. No deployment was performed. [Scoped evidence](implementation/daycare-hide-and-tag-2026-10-01.md#tag-runner-wall-correction--october-1).
+
 ## Every app update
 
 1. Read the actual installation and live parent status; do not use a chat's cached build/endpoint. A source candidate is not the installed server.

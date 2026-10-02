@@ -47,6 +47,14 @@ namespace LittleWeeps.Core
     public sealed partial class SoloWorld
     {
         private readonly Dictionary<string,WalkPoint> clubPrevious=new Dictionary<string,WalkPoint>();
+        private sealed class TagRunRoute
+        {
+            public WalkPoint goal; public int round; public string chaser; public double until;
+        }
+        // Route commitment belongs to the authority, not individual clients.
+        // It can restart after restoration without changing the saved round/cast.
+        private readonly TagRunRoute[] clubRunRoutes=new TagRunRoute[4];
+        private readonly Random clubRunRandom=new Random(Guid.NewGuid().GetHashCode());
         public DaycarePlayState ReadDaycarePlay(bool tag)=>(tag?state.tagClub:state.hideClub)?.Copy();
         private static DaycarePlayState NewDaycarePlay(SoloSnapshot s)=>new DaycarePlayState{members=s.players.Select(p=>new ClubMember{actor=p.id}).ToArray()};
         private static void NormalizeDaycarePlay(SoloSnapshot s)
@@ -167,14 +175,7 @@ namespace LittleWeeps.Core
                 var id=DaycarePlay.NpcId(i);var n=g.npcs[i];WalkPoint goal;
                 if(g.it==id){var target=points.Where(v=>v.Key!=id).OrderBy(v=>v.Key.StartsWith("club-npc-")?1:0).ThenBy(v=>Math.Pow(v.Value.X-n.x,2)+Math.Pow(v.Value.Y-n.y,2)).First();goal=target.Value;}
                 else{
-                    var chaser=points[g.it];var dx=n.x-chaser.X;var dy=n.y-chaser.Y;
-                    // Runners loop back when children chase for a while, keeping
-                    // a gentle tag attainable instead of endless perfect evasion.
-                    var offer=!g.it.StartsWith("club-npc-") && (int)(g.clock+i*2)%9>=6;
-                    // A catchable runner still stays inside the arena when
-                    // its chaser stands against either edge.
-                    if(offer)goal=DaycarePlay.Floor(DaycarePlay.TagZone,chaser.X+(i%2==0?130:-130),chaser.Y);
-                    else{if(Math.Abs(dx)<30)dx=(i%2==0?1:-1)*180;goal=DaycarePlay.Floor(DaycarePlay.TagZone,n.x+Math.Sign(dx)*330,n.y+Math.Sign(dy)*100);if(Math.Abs(goal.X-n.x)<10)goal=new WalkPoint(1200,100+i%2*100);}
+                    goal=ClubRunGoal(g,i,points[g.it]);
                 }
                 DaycarePlay.Move(n,goal,dt);points[id]=new WalkPoint(n.x,n.y);
             }
@@ -185,6 +186,29 @@ namespace LittleWeeps.Core
                 if(target!=null){g.it=target.id;g.grace=g.clock+ParkTag.GraceSeconds;g.turns=g.turns==int.MaxValue?0:g.turns+1;visible=true;}
             }
             clubPrevious.Clear();foreach(var pair in points)clubPrevious[pair.Key]=pair.Value;
+        }
+        private WalkPoint ClubRunGoal(DaycarePlayState g,int i,WalkPoint chaser)
+        {
+            var n=g.npcs[i];var route=clubRunRoutes[i];
+            if(route!=null && route.round==g.round && route.chaser==g.it && g.clock<route.until &&
+                Math.Abs(n.x-route.goal.X)+Math.Abs(n.y-route.goal.Y)>12)return route.goal;
+
+            // Fleeing every tick cancels an inward turn at the wall. Pick an
+            // interior destination and keep it until arrival or a short timeout.
+            // Away from danger, choose either direction so friends loop across
+            // the lawn instead of all gathering at the farthest edge.
+            var dx=n.x-chaser.X;var direction=clubRunRandom.Next(2)==0?-1:1;
+            if(Math.Abs(dx)<500 && Math.Abs(dx)>20 && clubRunRandom.NextDouble()<.7)direction=Math.Sign(dx);
+            if(n.x<350)direction=1;else if(n.x>2050)direction=-1;
+            var x=Math.Max(220,Math.Min(2180,n.x+direction*(350+clubRunRandom.Next(501))));
+            // Short approaches keep a human's chase attainable. They also end
+            // inside the lawn, including when that child stands against a wall.
+            if(n.x>=350 && n.x<=2050 && !g.it.StartsWith("club-npc-") && clubRunRandom.NextDouble()<.25)
+                x=Math.Max(220,Math.Min(2180,chaser.X+direction*(200+clubRunRandom.Next(251))));
+            if(Math.Abs(x-n.x)<200)x=Math.Max(220,Math.Min(2180,n.x-direction*(350+clubRunRandom.Next(501))));
+            var goal=new WalkPoint(x,80+clubRunRandom.Next(141));
+            clubRunRoutes[i]=new TagRunRoute{goal=goal,round=g.round,chaser=g.it,until=g.clock+2+clubRunRandom.NextDouble()*1.8};
+            return goal;
         }
         private bool ExitClubCover(string actor)
         {var h=DaycarePlay.Member(state.hideClub,actor);if(h==null || h.slot<0)return false;h.slot=-1;h.found=false;return true;}

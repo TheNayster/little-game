@@ -1,0 +1,16 @@
+{
+  "build": 413,
+  "passed": true,
+  "checks": [
+    "four joined humans and four varied NPCs; 32-second wall-chaser trace stays bounded, runners leave edges and cross multiple lanes, walking frames animate",
+    "independent exit keeps siblings and NPC cast in the same round; authority contact still transfers the star"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "isolated release server and four Windows native clients; no physical device or live-server update"
+}

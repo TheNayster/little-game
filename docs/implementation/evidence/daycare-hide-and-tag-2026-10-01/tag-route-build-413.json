@@ -1,0 +1,39 @@
+{
+  "build": 413,
+  "schema": 49,
+  "content": 65,
+  "protocol": 3,
+  "builds": [
+    {
+      "role": "Server",
+      "version": "0.0.413",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": true
+    },
+    {
+      "role": "Client",
+      "version": "0.0.413",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": false
+    }
+  ],
+  "core": "DAYCARE_TAG_ROUTES_PASS: 2400 ticks, four corner starts, both human-chaser walls and NPC chasers; runners stay bounded, move continuously, turn repeatedly, leave edges and use different lanes; independent exit passes.",
+  "runtimeFiles": [
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DaycarePlay.cs",
+      "sha256": "b1e360bcc06801c4ef566189f3f08c5df9a825e60d21919b3e258b94ea264827"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
+      "sha256": "006f42599ada0b50d2ec3c43a151723ab92a1cbc6cdf4afc32c55dff7453d5ab"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/DaycarePlayTests.cs",
+      "sha256": "8843c3b9978a2e863c776d2b11792d7301d8c85eb0ba5b13a0067d8479ae0c0a"
+    }
+  ]
+}

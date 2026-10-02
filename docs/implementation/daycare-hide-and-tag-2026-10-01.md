@@ -40,3 +40,15 @@ Schema49/content64/protocol3 adds two saved activity records and motion fields. 
 Next: requested device/server delivery and family playtesting. The four other Daycare wishlist activities and broader Home/outdoor goals remain open.
 
 Document consistency reports only the thirteen pre-existing unclassified authored records; the new report is classified and its local links resolve.
+
+## Tag runner wall correction — October 1
+
+The reported wall-running came from recalculating a fleeing destination every tick. An NPC reached the edge, stepped inward toward the fallback center, then immediately received another outward destination. Runners now commit to a short authority-owned route, choose destinations inside an inset lawn rectangle, turn inward near the sides and vary direction, distance and lane. Occasional approaches keep a child's tag attainable. New chasers or rounds invalidate the previous route. Transient route memory restarts after restoration; saved cast, membership, round and positions remain unchanged. The prior movement/checkpoint bounds guard is retained.
+
+Windows413 release server/client compile with zero errors/warnings. The focused Unity test covers both walls, four corner starts and human/NPC chasers across2400 ticks: no stopped runner, no persistent edge residence, repeated turns and different lanes, with an independent exit. The representative four-client run passes32 seconds with children placed at opposite walls, no runner edge residence, horizontal spans1217–1780 and lane spans101–123, changing walk drawings, actual authority tag contacts and one child's return without interrupting the round/cast. All five native process exits are zero. Fixture commands place humans at walls; NPC trajectories and contacts use the real rules.
+
+[Native results](evidence/daycare-hide-and-tag-2026-10-01/tag-routes-413.json) · [Sanitized route traces](evidence/daycare-hide-and-tag-2026-10-01/tag-route-traces-413.json) · [Build/Core evidence](evidence/daycare-hide-and-tag-2026-10-01/tag-route-build-413.json)
+
+![Tag runner check](evidence/daycare-hide-and-tag-2026-10-01/tag-routes-413-phone.png)
+
+Content65 records changed shared movement rules; schema49/protocol3 remain unchanged. This source fix requires coordinated client/server delivery. The installed412 family server and physical devices were not changed by this task. Next: coordinated delivery when requested and family playtesting; broader Daycare wishlist work remains open.
