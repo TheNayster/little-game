@@ -16,7 +16,7 @@ namespace LittleWeeps.Client
         public bool[] SandpitBuiltVisuals=>sandShapes.Select(s=>s.built).ToArray();
         public float[] SandpitTowerReveal=>sandShapes.Select(s=>s.towerReveal).ToArray();
         private void TouchSandMould(int i)
-        {if(SandpitOwn && i==sandpitSelected)RequestSandTool("tip");else SelectSandMould(i);}
+        {if(SandpitOwn && i==sandpitSelected && !SandpitGame.moulds[i].built)RequestSandTool("tip");else SelectSandMould(i);}
         private void BuildSandTip()
         {
             for(var i=0;i<4;i++){

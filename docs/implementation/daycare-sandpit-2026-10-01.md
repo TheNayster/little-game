@@ -166,3 +166,60 @@ These are transient effects derived from observed state, matching M2/M3: a compl
 No physical-device touch comfort, child understanding, animation/art acceptance or device frame rate is claimed. Ages3/6 playtesting should check discovering the second tap/arrow, seeing the difference between the sand pile and stable tower, and whether the1.9-second sequence feels responsive. Existing joining arbitration, classmate participation and inherited Creek teardown errors remain deferred. No direct decorations, NPC redesign, tray cleanup or free-build additions. Stop after Milestone4; wait for the parent's review.
 
 Git diff summary: 16 intended files; production changes stay in Sandcastle client presentation/input, with inspection diagnostics, focused test tools and three documentation records. No Core rules, network contract, save schema, assets, packages or permanent build settings change. No task branch was created.
+
+## Direct flags and shells — October 2
+
+Milestone5 only, DAY-01 / LEARN-01 / FAMILY-01. Starting checkout: `C:\Users\sephi\Desktop\Little weeps game\LocalData\DinosaurWorld`, clean `main` at `62c6fa9e5987d19419dbd89b4156d10d1a32c8aa`, also verified at `origin/main`. Milestones1–4 are present (`42ba379`, `927b1e8`, `071c54c`, `62c6fa9`). No unrelated work or other checkout was changed.
+
+### Interaction, selection and command flow
+
+A red flag on a pole at world `(4490,180)` and a pink ribbed shell at `(4670,180)` sit on floor shadows beside the shovel and watering can. They reuse the existing Sandcastle drawing rather than adding assets, packages, inventories or a new overlay. Each has a160×130 scene-unit `HomeHit` target: measured approximately118×96 pixels at1280×591 and154×125 at1024×768. Native checks confirm the targets do not overlap each other, the shovel or watering can. No drag is required.
+
+Tap a built tower to select it locally, then tap the world Flag/Shell. Existing gold selection rings, tray mould selection and member-slot initial selection remain. A second tap on an already selected **built** tower now selects/cancels intent instead of unnecessarily requesting Tip; selected unbuilt buckets keep M4's second-tap Tip. One child can select/decorate any tower, and siblings keep independent selections. No shared selection field is added.
+
+Flow: `HomeHit`/`NavigationTap` → existing `RequestSandTool("flag"/"shell")` → capture local tower and lesson → existing automatic approach to `DaycareSandpit.Work` → `CheckSandpitInput` → `SendSandpit` with `SoloAction.Sandpit` and `mould@round` → private solo authority or shared queue/revision retry → unchanged `SandpitOperation`. Retained tray Flag/Shell buttons enter the same Request/Send path. Switching selection cancels the old pending approach; the existing queue preserves its captured lesson during retries.
+
+Confirmed from Core: only built towers accept decorations. Flag sets the single decoration integer to1, Shell to2; each replaces the other. Reapplying the same decoration remains accepted/idempotent. Unbuilt requests still return `try-sand-tools` without construction mutation; old-round requests return `old-sandpit-lesson`. The client duplicates none of those eligibility/replacement rules. All construction rules and Scoop/Water/Tip/Flag/Shell tray controls remain.
+
+The current UI intentionally always starts with a valid local member-slot selection. A defensive out-of-range selection guard now returns harmlessly and wiggles a decoration source rather than constructing an arbitrary target. That defensive no-selection branch is confirmed from code, not claimed as a normal native UI scenario.
+
+### Accepted placement, replacement and cleanup
+
+`SandDecorationFeedback` observes confirmed decoration changes on built towers within the same lesson. A1-second local effect carries the current prop from its world source to the matching tower attachment point, then briefly sparkles. A change supersedes the previous effect for that tower, so a late/merged snapshot only presents its latest authoritative decoration. Redundant commands, rejected requests and duplicate receipts do not trigger a successful placement.
+
+During travel the existing tower stores its actual authoritative decoration value but briefly hides its attached drawing. At76% of the effect, the moving prop stops drawing and the one permanent prop becomes visible. This avoids showing two permanent decorations or leaving an old Flag while a new Shell arrives. The existing small/big attachment positions and geometry remain: Flag's pole begins at tower height+10; Shell is centered at `(27,height+26)`. Frame-by-frame movement, hide timing, sparks and source wiggles remain local and unsaved.
+
+An authority rejection on the current lesson wiggles the requested source for0.4 seconds, with no completed decoration or new success effect. This also applies to retained tray requests through the same callback. Old-lesson replies and replies after departure cannot start that wiggle.
+
+Each of four towers has independent feedback. Existing serialization/revision retry decides same-tower conflicts; every client follows the latest resulting value. Native simultaneous Flag/Shell on tower1 ends in Shell (value2) in the recorded run, with all four clients converged. Replacing again during an active flight switches the current effect cleanly. There is no animation lock on another tower.
+
+Camera coordinates and scale are recalculated every frame. Leaving, pausing/menu, scenery teardown or a new lesson clears transient feedback and restores attached final-state drawing. Re-entry/late join/reconnect establishes a baseline: saved flags/shells appear without replaying old movement. New Lesson clears authoritative decorations under the existing rule and cancels old pending approaches/effects.
+
+### Exact files changed
+
+Paths are relative to the implementation checkout:
+
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSandDecoration.cs` and `.meta` — grounded world objects, existing input binding, four flights, attachment handoff/depth and cleanup.
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SandDecorationFeedback.cs` and `.meta` — accepted-change-only feedback, latest-value replacement, rejection wiggles and reset/baseline lifetime.
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SandShape.cs` — reusable Flag/Shell drawing, world-object shadows/scaling, placement flight/sparks and temporary attached-prop hiding.
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSandpit.cs` — lifecycle hooks, defensive local-selection guard and current-lesson rejection cue.
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSandTip.cs` — already-built tower taps remain selection-only; unbuilt direct Tip unchanged.
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs` — inspection-only decoration values/events/time/wiggle/hiding diagnostics.
+- `Tools/Sandpit.Tests/DecorationChecks.cs`, `Program.cs`, `Sandpit.Tests.csproj` — actual-authority decoration checks linked to production feedback alongside M1–4.
+- `Tools/Test-DaycareSandpitDecoration.py` — bounded native four-client input, conflict, lifecycle and visual checks.
+- `docs/current-decisions.md`, `docs/family-playset-build-guide-2026-09-23.md`, this file — scope and evidence.
+
+### Checks actually run
+
+- `dotnet run --project Tools/Sandpit.Tests --configuration Release`: PASS M1 lesson/revision/duplicate/migration/JSON retention, M2 Scoop, M3 Water and M4 Tip rules/feedback checks. New checks PASS built eligibility, both replacements, accepted redundant/duplicate commands without new feedback, same-tower revision conflict/rebase, four mixed slots, one child building all towers, JSON retention, late/reconnect baseline, independent Leave, reset/stale decoration and transient cleanup.
+- `Tools/Build-NetworkProbe.ps1 -BuildNumber 423`: fresh Unity6000.3.24f1 release Server/Client PASS, zero errors/warnings each. All473 game-code/meta hashes match the manifest. Intermediate422 compiled successfully before additional inspection diagnostics; native checks use423. The builder's bundle-version-only edit is restored before delivery. No Core/save/message change: schema49/content67/protocol3 unchanged.
+- `python Tools/Test-DaycareSandpitDecoration.py 423`: PASS all seven native groups on the first run. Actual InputSystem touch and mouse cover generous nonoverlapping targets, grounded props, unbuilt rejection/wiggle, canceled/swiped input, built world selection and sibling independence, Flag/Shell and both replacements, redundant repeats, small/big towers, tray fallbacks, pending world switch/Leave, visit return, late fourth, one child constructing all four, four concurrent mixed decorations, same-tower conflict, replacement during active flight, departure during placement, real native client close/restart, active-flight camera pan and New Lesson during approach/placement. The explicit disconnected client closes with a checked zero exit; the harness closes its own remaining instances. Evidence: `LocalData/SharedGarden/4a9963dd804943739e2ff736d7404b09/sandpit-decoration/result.json`.
+- `python Tools/Test-DaycareSandpitTip.py 423`: PASS all seven unchanged M4 native groups, including underfill/wiggle, dry reset/collapse, wet reveal/permanent tower, both interleaved races, same-mould Tip, four builds, pending switch/Leave, late arrival, native reconnect, camera pan and reset. Evidence: `LocalData/SharedGarden/6e7bf79382a2468da720998d49312184/sandpit-tip/result.json`. Earlier M2/M3 native evidence is retained; their input/authority/feedback implementations are unchanged apart from the defensive valid-selection guard, and their focused production-linked tests pass here.
+
+Inspected native phone/tablet captures show world Flag/Shell, correct floor placement, selected towers, attached Flag and Shell on small/big towers, replacements, four mixed decorations, moving prop/current replacement, stable authoritative winner, camera pan, late arrival, reconnect and reset cleanup. Existing capture checks enforce UI safe areas and bounded scenic cache. No white background, new stuck temporary prop or gameplay exception was observed. Logs contain three inherited `ResetCreekBoats`/`OnDestroy` null-reference occurrences in the decoration run, plus the existing audio timeSamples diagnostic; those unrelated teardown issues are not claimed fixed.
+
+Remaining questions require physical-device/child playtesting: recognizing the world shell/flag, comfortable tapping, discovering tower selection, understanding replacement and whether the1-second placement feedback is clear for ages3/6. No device FPS, child/art acceptance or physical-device usability claim is made. No device install, live-server replacement, real-save/enrollment operation or shared compatibility change occurred.
+
+Deferred: M4's entirely unobserved dry-reset transition can still skip its temporary collapse while shared state stays correct. It does not affect decoration and is deliberately untouched. Existing joining arbitration, limited classmate participation and Creek teardown remain deferred. No new unrelated game issue was fixed. Multiple decorations, drag editor, moats/boats, new towers, destruction/rebuilding, NPC/Calypso redesign, tray removal and other Daycare games remain out of scope. Stop after Milestone5 for the parent's review.
+
+Git diff summary: 15 intended files, including six new files. Production changes are limited to Sandcastle client input/presentation and inspection diagnostics; the remainder is focused tests and three documentation records. No Core rules, network contract, save schema, assets, packages or permanent build settings change. No task branch was created.

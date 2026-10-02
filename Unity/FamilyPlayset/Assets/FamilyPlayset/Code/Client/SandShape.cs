@@ -8,12 +8,27 @@ namespace LittleWeeps.Client
     {
         public string kind="bucket";public int scoops,capacity=2,decoration;public bool wet,built,pouring;
         public Vector2 source,target;public float progress;
-        public string tipOutcome;public float towerReveal=1,wiggle;public bool hideBucket;
+        public string tipOutcome;public float towerReveal=1,wiggle;public bool hideBucket,hideDecoration;
         private VertexHelper mesh;private float ceiling=float.PositiveInfinity, bucketAngle;private Vector2 bucketAt,bucketScale=Vector2.one;private bool transformingBucket;
         protected override void OnPopulateMesh(VertexHelper vh)
         {
             mesh=vh;mesh.Clear();ceiling=float.PositiveInfinity;transformingBucket=false;
             var wood=new Color(.57f,.38f,.21f);var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
+            if(kind=="flag-object" || kind=="shell-object"){
+                Oval(0,0,47,9,new Color(.37f,.36f,.22f,.28f));
+                if(kind=="flag-object")Flag(wiggle,0,1.5f);else Shell(wiggle,29,1.5f);return;
+            }
+            if(kind=="decoration-place"){
+                if(progress<.76f){
+                    var t=progress/.76f;var p=Vector2.Lerp(source,target,t)+new Vector2(0,Mathf.Sin(t*Mathf.PI)*40);var scale=Mathf.Lerp(1.5f,1,t);
+                    if(decoration==1)Flag(p.x,p.y,scale);else Shell(p.x,p.y,scale);
+                }else{
+                    var fade=1-(progress-.76f)/.24f;for(var i=0;i<7;i++){
+                        var a=i*Mathf.PI*2/7;Oval(target.x+Mathf.Cos(a)*30,target.y+Mathf.Sin(a)*25,4*fade,4*fade,new Color(1,.85f,.2f));
+                    }
+                }
+                return;
+            }
             if(kind=="tip-cue"){
                 var c=new Color(1,.65f,.05f);for(var i=0;i<9;i++){var a=(i/8f)*Mathf.PI;Oval(Mathf.Cos(a)*19,Mathf.Sin(a)*19,4,4,c);}
                 Poly(c,new Vector2(-29,5),new Vector2(-13,4),new Vector2(-20,-12));return;
@@ -75,8 +90,8 @@ namespace LittleWeeps.Client
                 for(var i=0;i<3;i++)Box(-38+i*27,h-3,22,22,sand);
                 Box(-10,5,20,30,new Color(.57f,.41f,.23f));Oval(0,35,10,10,new Color(.57f,.41f,.23f));
                 for(var i=0;i<5;i++)Box(-28+i*12,48+(i%2)*12,5,3,sand);
-                if(decoration==1){Box(-3,h+10,6,48,wood);Poly(new Color(.94f,.4f,.35f),new Vector2(3,h+60),new Vector2(40,h+49),new Vector2(3,h+34));}
-                if(decoration==2)Shell(27,h+26);
+                if(!hideDecoration && decoration==1)Flag(0,h+10);
+                if(!hideDecoration && decoration==2)Shell(27,h+26);
             }else if(!hideBucket){
                 transformingBucket=true;bucketAt=new Vector2(wiggle,0);bucketAngle=0;bucketScale=Vector2.one;DrawBucket(scoops,wet);transformingBucket=false;
             }
@@ -138,8 +153,10 @@ namespace LittleWeeps.Client
             CanPoly(at,angle,blue,new Vector2(24,2),new Vector2(51,27),new Vector2(49,-5));
             CanOval(at,angle,-2,25,25,8,new Color(.7f,.86f,.95f));
         }
-        private void Shell(float x,float y)
-        {Oval(x,y,25,19,new Color(1,.67f,.52f));for(var i=-2;i<=2;i++)Box(x+i*7-1,y-8,3,20,new Color(.82f,.43f,.33f));}
+        private void Flag(float x,float y,float scale=1)
+        {Box(x-3*scale,y,6*scale,48*scale,new Color(.57f,.38f,.21f));Poly(new Color(.94f,.4f,.35f),new Vector2(x+3*scale,y+50*scale),new Vector2(x+40*scale,y+39*scale),new Vector2(x+3*scale,y+24*scale));}
+        private void Shell(float x,float y,float scale=1)
+        {Oval(x,y,25*scale,19*scale,new Color(1,.67f,.52f));for(var i=-2;i<=2;i++)Box(x+(i*7-1)*scale,y-8*scale,3*scale,20*scale,new Color(.82f,.43f,.33f));}
         private void Box(float x,float y,float w,float h,Color c)=>Poly(c,new Vector2(x,y),new Vector2(x+w,y),new Vector2(x+w,y+h),new Vector2(x,y+h));
         private void Oval(float x,float y,float rx,float ry,Color c){var p=new Vector2[20];for(var i=0;i<p.Length;i++){var a=i*Mathf.PI*2/p.Length;p[i]=new Vector2(x+Mathf.Cos(a)*rx,y+Mathf.Sin(a)*ry);}Poly(c,p);}
         private void Poly(Color c,params Vector2[] points)

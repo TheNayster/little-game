@@ -47,6 +47,7 @@ class Program {
   ScoopFeedbackChecks.Run();
   WaterChecks.Run();
   TipChecks.Run();
+  DecorationChecks.Run();
   if(args.Length>0)ClientIntentChecks.Run(args[0]);
  }
 }
