@@ -675,6 +675,10 @@ namespace LittleWeeps.Client
                 if(homeFronts.TryGetValue(pair.Key,out var front))Add(front,root.anchoredPosition.y,2,pair.Key);
             }
             var depthToys=ReadToys();roomPlayItems=depthToys;
+            // Index this snapshot once. Scanning every toy's containers for
+            // every depth entry was allocating stack IDs quadratically per frame.
+            roomDepthContainers.Clear();
+            foreach(var toy in depthToys)roomDepthContainers.Add(toy.container);
             foreach(var toy in depthToys)
             {
                 if(toy.id==dragging)continue;var rect=toys[toy.id];

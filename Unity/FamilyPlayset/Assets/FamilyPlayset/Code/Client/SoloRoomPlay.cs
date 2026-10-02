@@ -19,6 +19,7 @@ namespace LittleWeeps.Client
         private RectTransform factPrint;
         private string playArea;
         private SoloToy[] roomPlayItems=Array.Empty<SoloToy>();
+        private readonly HashSet<string> roomDepthContainers=new HashSet<string>(StringComparer.Ordinal);
         private const string AuroraWords="Those glowing ribbons are called auroras. Far above Earth, tiny particles from space meet gases in the air. The gases give off colorful light! Our secret room has a pretend aurora, so we can enjoy the colors together.";
         private Sprite RoomPlaySprite(string id)
         {
@@ -134,7 +135,7 @@ namespace LittleWeeps.Client
             if(SceneSchema<RoomPlay.Schema)return false;
             if(Cuddling(t,out var p)){add(rect,ToBoard(p.x,p.y).y,1,"zz-cuddle-"+t.id);return true;}
             var slot=RoomPlay.Slot(t.zone,t.container);if(slot>=0){add(rect,ToBoard(t.x,t.y).y,1,t.id);return true;}
-            if(RoomPlay.Parent(t)!="" || items.Any(v=>v.container==RoomPlay.Stack(t.id))){add(rect,ToBoard(t.x,t.y).y,3+StackHeight(t,items),t.id);return true;}
+            if(RoomPlay.Parent(t)!="" || roomDepthContainers.Contains(RoomPlay.Stack(t.id))){add(rect,ToBoard(t.x,t.y).y,3+StackHeight(t,items),t.id);return true;}
             return false;
         }
         private void DrawTea(SoloToy t,RectTransform root)
@@ -144,6 +145,6 @@ namespace LittleWeeps.Client
             teaFills[t.id]=Panel(root,"Pretend tea ready",new Vector2(t.kind==ToyKind.TeaPot?0:-4,t.kind==ToyKind.TeaPot?8:13),t.kind==ToyKind.TeaPot?new Vector2(12,12):new Vector2(42,9),new Color(.74f,.46f,.24f),false,true);
         }
         private void ResetRoomPlay()
-        {roomPlaySprites.Clear();playSupports.Clear();nestFronts.Clear();playHints.Clear();teaFills.Clear();roomPictureCard=factPrint=null;roomPrint=roomRug=null;playArea=null;roomPlayItems=Array.Empty<SoloToy>();}
+        {roomPlaySprites.Clear();playSupports.Clear();nestFronts.Clear();playHints.Clear();teaFills.Clear();roomDepthContainers.Clear();roomPictureCard=factPrint=null;roomPrint=roomRug=null;playArea=null;roomPlayItems=Array.Empty<SoloToy>();}
     }
 }
