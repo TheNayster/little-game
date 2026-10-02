@@ -18,6 +18,8 @@ Current-user Windows sign-in startup, native crash recovery and helper watchdog 
 
 **Prepared Tag correction413:** content65 changes authority NPC routing; protocol3/schema49 remain unchanged. Its Windows server/client and focused four-player check pass. This candidate requires a coordinated server/client rollout and is not compatible with the installed content64 server. No deployment was performed. [Scoped evidence](implementation/daycare-hide-and-tag-2026-10-01.md#tag-runner-wall-correction--october-1).
 
+**Prepared clinic correction414:** content66 permits shared treatment/completion of waiting animals while four beds are occupied and includes413 Tag routing. Client presentation retains the clinic backdrop through patient changes and re-entry. Protocol3/schema49 unchanged; Windows release and focused four-client checks pass. Coordinated server/client delivery is required. No deployment was performed. [Evidence](implementation/daycare-animal-clinic-2026-10-01.md#waiting-patient-and-white-background-correction--october-1).
+
 ## Every app update
 
 1. Read the actual installation and live parent status; do not use a chat's cached build/endpoint. A source candidate is not the installed server.

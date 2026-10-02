@@ -88,7 +88,9 @@ namespace LittleWeeps.Core
             if(c.value=="welcome"){
                 if(patient.bed!= -1)return "friend-already-welcomed";var bed=Enumerable.Range(0,4).Where(b=>!g.patients.Any(a=>a.bed==b)).DefaultIfEmpty(-1).First();if(bed<0)return "care-beds-full";patient.bed=bed;patient.arrived=g.clock;return null;
             }
-            if(patient.bed<0)return "choose-a-care-bed";
+            // Beds organize arrivals, rather than reserving who can be helped.
+            // Waiting animals share the same saved care as bed patients.
+            if(patient.bed== -2)return "friend-already-home";
             if(c.value=="home"){if(!DaycareVet.Ready(patient))return "check-the-care-pictures";patient.bed=-2;return null;}
             var tool=Array.IndexOf(new[]{"wash","brush","bandage","cuddle"},c.value);if(tool<0 || c.x<0 || c.x>1 || c.y<0 || c.y>1 || c.item.Length==0)return "choose-a-care-tool";
             if(!DaycareVet.Needs(patient,tool))return "try-the-picture-card";

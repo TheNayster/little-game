@@ -1,0 +1,56 @@
+{
+  "build": 414,
+  "schema": 49,
+  "content": 66,
+  "protocol": 3,
+  "builds": [
+    {
+      "role": "Server",
+      "version": "0.0.414",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": true
+    },
+    {
+      "role": "Client",
+      "version": "0.0.414",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "dedicatedServer": false
+    }
+  ],
+  "reproduction": {
+    "build": 413,
+    "waitingRabbitTapSelected": 0,
+    "whiteRoomAfterLeaveReturn": true
+  },
+  "rules": "Full-bed waiting pet/dinosaur shared care, no eviction, waiting-patient completion and saved reopening; existing eight-patient clinic checks also pass.",
+  "runtimeFiles": [
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs",
+      "sha256": "41400190abdc8f73bee40f5bd990cdb4f3c0953c7fb8b454d49b6b0ac706c79e"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloVet.cs",
+      "sha256": "382ee8602463948002a02c5d711e995833a683df2c2f20bc3da258eb549629c3"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DaycareVet.cs",
+      "sha256": "efdb64781b8bcb93c50ac9279ff818fc8606e72d7f0bd0504d53778057cc3383"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs",
+      "sha256": "acdba13b7343e36a184c0e0d7cbd8d2d241c94a8ed19037b4695973153d0b245"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/VetRuleTests.cs",
+      "sha256": "608082fe56b078e5dbb116fb8dee3f125804abbea25d057e69e9543149af13ff"
+    },
+    {
+      "path": "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs",
+      "sha256": "95b0a2cd453eb52e1daa62bc03ce4708499d8236422a06da5470e0cbd75c16e3"
+    }
+  ]
+}

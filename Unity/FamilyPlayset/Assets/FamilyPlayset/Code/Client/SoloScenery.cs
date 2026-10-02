@@ -48,7 +48,8 @@ namespace LittleWeeps.Client
             new SceneTile("beach-dunes-shore","beach",0),new SceneTile("beach-rockpools-shore","beach",2400),
             new SceneTile("daycare-hide-garden",DaycarePlay.HideZone,0),new SceneTile("daycare-tag-green",DaycarePlay.TagZone,0),
             new SceneTile("daycare-adventure",KingdomAdventure.Zone,0),
-            new SceneTile("daycare-vet",DaycareVet.Zone,0),
+            // The full-screen clinic owns its backdrop. Sharing it with this
+            // unloadable panorama cache invalidates the clinic on return.
             new SceneTile("treasure-cove",TreasureHunt.Zone,0),new SceneTile("treasure-grove",TreasureHunt.Zone,2400),
             new SceneTile("daycare-playroom","daycare",0),new SceneTile("daycare-garden","daycare",2400)
         };

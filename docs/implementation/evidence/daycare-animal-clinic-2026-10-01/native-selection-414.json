@@ -1,0 +1,17 @@
+{
+  "build": 414,
+  "passed": true,
+  "checks": [
+    "all four previously blocked waiting pets/dinosaurs are selectable and accept real care with all beds occupied; four helpers retain independent selections and original patients",
+    "two players share waiting care; brush, bandage, cuddles and All better complete a waiting rabbit without evicting any of four bed patients",
+    "dog/cat/dinosaur switching, three leave-and-return cycles and pause/resume retain a colored room; independent exits preserve siblings, waiting care and NPC cast"
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "scope": "one disposable authority and four native Windows release clients at phone/tablet dimensions; actual patient buttons and care touches; no physical device/live-server install"
+}

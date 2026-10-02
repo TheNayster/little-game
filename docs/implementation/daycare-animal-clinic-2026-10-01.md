@@ -75,3 +75,21 @@ Initial402 inspection/test failures caught floating drawings, separate care mark
 ![Separate Friends choice sheet](evidence/daycare-animal-clinic-2026-10-01/friends-sheet-phone.png)
 
 Generated art and voice remain candidates for family feedback. Physical touch, audio balance and enjoyment on the family’s devices remain unverified until an authorized update and playtesting. This task updates checked source; it does not install phones/iPads or replace the live server. The clinic requires coordinated schema48/content63 delivery. Other Daycare wishlist activities and the wider Daycare/story backlog remain open.
+
+## Waiting patient and white background correction — October 1
+
+The earlier layout implementation was present, but its checks missed two real defects. An isolated413 reproduction confirms that tapping the waiting rabbit leaves the dog selected: all four beds are occupied, so the welcome operation is rejected. Leaving and returning then selecting the kitten reproduces a white room. The full-screen room and streaming scenery share one texture; the scenery manager unloads it on departure, invalidating the retained full-screen image.
+
+In414, any waiting animal can open a care view even while all four beds are full. Its care remains shared and saved, and it can go home when comfortable. Existing bed patients stay in place; a free bed can still welcome another friend. More friends replaces the misleading Waiting friends heading, with an explanation that every animal is available. Patient selection cancels old local gestures. The clinic's room texture belongs solely to the full-screen clinic and is removed from the unloadable panorama registry. No artwork is regenerated or imported from the commercial reference games.
+
+Windows414 release server/client builds have zero errors/warnings. Core checks exercise shared waiting care for the rabbit, guinea pig and both formerly waiting dinosaurs while four beds remain occupied; they cover no eviction, completed waiting-patient departure and saved restoration, alongside the existing eight-patient clinic checks. One representative four-native-client run selects/treats all four waiting animals through actual buttons and pointer care. Two players brush the same waiting rabbit, finish bandaging/cuddles and send it home without clearing another bed. Dog/cat/dinosaur switches, three leave-and-return cycles and pause/resume keep the room texture alive. Ten phone/tablet screen checks show colored scenery; the sampled margins contain at most0.053% near-white pixels. All five native process exits are zero. Independent exits retain the other helpers, care and NPC cast.
+
+[Native result](evidence/daycare-animal-clinic-2026-10-01/native-selection-414.json) · [Room checks](evidence/daycare-animal-clinic-2026-10-01/room-selection-414.json) · [Build/rule evidence](evidence/daycare-animal-clinic-2026-10-01/selection-build-414.json)
+
+![Reproduced white clinic in413](evidence/daycare-animal-clinic-2026-10-01/reproduced-white-room-413.png)
+
+![Kitten room retained after three returns in414](evidence/daycare-animal-clinic-2026-10-01/kitten-room-restored-414.png)
+
+![Previously waiting dinosaur selected and treated](evidence/daycare-animal-clinic-2026-10-01/waiting-dino-selected-414.png)
+
+Content66 records changed shared care eligibility and includes the earlier content65 Tag fix; schema49/protocol3 remain unchanged. A coordinated server/client update is required. This task does not install on physical devices or replace the live server. Next: coordinated delivery when requested and family playtesting. The other Daycare wishlist activities remain open.

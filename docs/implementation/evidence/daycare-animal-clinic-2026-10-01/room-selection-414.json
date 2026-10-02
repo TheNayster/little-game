@@ -1,0 +1,42 @@
+[
+  {
+    "capture": "initial-puppy-phone",
+    "whiteMarginFraction": 0.0005241261833786484
+  },
+  {
+    "capture": "waiting-brachiosaurus-tablet",
+    "whiteMarginFraction": 0.0
+  },
+  {
+    "capture": "waiting-parasaurolophus-phone",
+    "whiteMarginFraction": 0.0005241261833786484
+  },
+  {
+    "capture": "comfortable-waiting-rabbit-phone",
+    "whiteMarginFraction": 0.0005241261833786484
+  },
+  {
+    "capture": "kitten-after-switches-phone",
+    "whiteMarginFraction": 0.0005241261833786484
+  },
+  {
+    "capture": "dinosaur-after-switches-tablet",
+    "whiteMarginFraction": 0.0
+  },
+  {
+    "capture": "kitten-after-return-0",
+    "whiteMarginFraction": 0.0005241261833786484
+  },
+  {
+    "capture": "kitten-after-return-1",
+    "whiteMarginFraction": 0.0005241261833786484
+  },
+  {
+    "capture": "kitten-after-return-2",
+    "whiteMarginFraction": 0.0005241261833786484
+  },
+  {
+    "capture": "room-after-resume-phone",
+    "whiteMarginFraction": 0.0005241261833786484
+  }
+]
