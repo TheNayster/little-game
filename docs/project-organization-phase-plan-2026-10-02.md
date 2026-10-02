@@ -49,6 +49,8 @@ Completion: one documented main source location; the normal launcher opens its `
 
 ## Phase 3 Separate local data by purpose
 
+Use the [unused files audit](unused-files-audit-2026-10-02.md) before deciding what to retain or relocate. The user excludes audit/review material from cleanup. Start only with explicitly verified duplicate transfer files and bounded temporary outputs; preserve unique source, saves, recovery inputs and review dependencies. The audit is research, not a deletion receipt.
+
 Root `LocalData` had 275 loose files during the audit, alongside source checkouts, device records, server installations, backups and experiments. Organize these after Phase 2 resolves the main source path.
 
 Proposed categories are `Worktrees`, `Devices`, `Server`, `Backups`, `PreparedUpdates`, `Verification` and `Temporary`. Keep these local and excluded from source commits. Classify each item before moving it; filenames and age alone do not prove something is disposable. Server paths such as `PCServer/current` and device/signing records have active consumers and need coordinated reference changes. Do not relocate live operational data during occupied family play.
