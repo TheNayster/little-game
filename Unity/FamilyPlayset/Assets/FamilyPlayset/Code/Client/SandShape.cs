@@ -8,11 +8,17 @@ namespace LittleWeeps.Client
     {
         public string kind="bucket";public int scoops,capacity=2,decoration;public bool wet,built,pouring;
         public Vector2 source,target;public float progress;
-        private VertexHelper mesh;
+        public string tipOutcome;public float towerReveal=1,wiggle;public bool hideBucket;
+        private VertexHelper mesh;private float ceiling=float.PositiveInfinity, bucketAngle;private Vector2 bucketAt,bucketScale=Vector2.one;private bool transformingBucket;
         protected override void OnPopulateMesh(VertexHelper vh)
         {
-            mesh=vh;mesh.Clear();
+            mesh=vh;mesh.Clear();ceiling=float.PositiveInfinity;transformingBucket=false;
             var wood=new Color(.57f,.38f,.21f);var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
+            if(kind=="tip-cue"){
+                var c=new Color(1,.65f,.05f);for(var i=0;i<9;i++){var a=(i/8f)*Mathf.PI;Oval(Mathf.Cos(a)*19,Mathf.Sin(a)*19,4,4,c);}
+                Poly(c,new Vector2(-29,5),new Vector2(-13,4),new Vector2(-20,-12));return;
+            }
+            if(kind=="mould-tip"){DrawTip();return;}
             if(kind=="watering-can"){
                 Oval(0,0,47,10,new Color(.37f,.36f,.22f,.28f));
                 if(!pouring)WaterCan(new Vector2(0,24),0);return;
@@ -63,7 +69,7 @@ namespace LittleWeeps.Client
             if(kind=="shell"){Shell(0,0);return;}
             if(kind=="tip"){Poly(new Color(.32f,.65f,.8f),new Vector2(-30,23),new Vector2(22,35),new Vector2(33,-13),new Vector2(-8,-24));Oval(28,-30,20,5,sand);return;}
             if(built){
-                var h=capacity==3?105:75;
+                var h=capacity==3?105:75;ceiling=towerReveal>=1?float.PositiveInfinity:towerReveal*(h+22);
                 Poly(damp,new Vector2(-48,0),new Vector2(-35,h),new Vector2(35,h),new Vector2(48,0));
                 Box(-44,0,88,8,new Color(.72f,.55f,.29f));
                 for(var i=0;i<3;i++)Box(-38+i*27,h-3,22,22,sand);
@@ -71,15 +77,46 @@ namespace LittleWeeps.Client
                 for(var i=0;i<5;i++)Box(-28+i*12,48+(i%2)*12,5,3,sand);
                 if(decoration==1){Box(-3,h+10,6,48,wood);Poly(new Color(.94f,.4f,.35f),new Vector2(3,h+60),new Vector2(40,h+49),new Vector2(3,h+34));}
                 if(decoration==2)Shell(27,h+26);
-            }else{
+            }else if(!hideBucket){
+                transformingBucket=true;bucketAt=new Vector2(wiggle,0);bucketAngle=0;bucketScale=Vector2.one;DrawBucket(scoops,wet);transformingBucket=false;
+            }
+        }
+        private void DrawBucket(int fill,bool water)
+        {
+                var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
                 var h=capacity==3?75:55;var bucket=new Color(.32f,.65f,.8f);
                 Poly(edge,new Vector2(-46,h),new Vector2(46,h),new Vector2(31,0),new Vector2(-31,0));
                 Poly(bucket,new Vector2(-40,h-4),new Vector2(40,h-4),new Vector2(26,4),new Vector2(-26,4));
                 Oval(0,h,46,10,new Color(.72f,.89f,.95f));
-                if(wet && scoops==0)Oval(0,h,34,6,new Color(.38f,.72f,.93f));
-                if(scoops>0){var f=scoops/(float)capacity;Poly(wet?damp:sand,new Vector2(-26,6),new Vector2(26,6),new Vector2(26+12*f,6+(h-10)*f),new Vector2(-26-12*f,6+(h-10)*f));}
+                if(water && fill==0)Oval(0,h,34,6,new Color(.38f,.72f,.93f));
+                if(fill>0){var f=fill/(float)capacity;Poly(water?damp:sand,new Vector2(-26,6),new Vector2(26,6),new Vector2(26+12*f,6+(h-10)*f),new Vector2(-26-12*f,6+(h-10)*f));}
                 for(var i=0;i<capacity;i++)Box(-9,10+i*(h-15)/capacity,18,3,Color.white);
-                if(wet){Oval(28,h+20,7,10,new Color(.35f,.65f,.94f));}
+                if(water){Oval(28,h+20,7,10,new Color(.35f,.65f,.94f));}
+        }
+        private void DrawTip()
+        {
+            var t=Mathf.Clamp01(progress);var h=capacity==3?75f:55f;
+            var turn=Mathf.SmoothStep(0,1,t/.32f);var returnHome=Mathf.SmoothStep(0,1,(t-.82f)/.18f);
+            var reveal=tipOutcome=="reveal";var height=capacity==3?127f:97f;
+            var lift=reveal?Mathf.SmoothStep(0,1,(t-.52f)/.3f)*height:Mathf.SmoothStep(0,1,(t-.45f)/.2f)*45;
+            // The inverted open rim sits at ground level. Lift uncovers the permanent tower.
+            var angle=Mathf.PI*turn*(1-returnHome);
+            var stretch=reveal?Mathf.Lerp(1,height/h,turn)*(1-returnHome)+returnHome:1;
+            var at=new Vector2(reveal?0:-70*Mathf.SmoothStep(0,1,(t-.45f)/.2f),Mathf.Sin(turn*Mathf.PI)*35+h*stretch*turn+lift);
+            if(reveal){angle=Mathf.PI*turn;stretch=Mathf.Lerp(1,height/h,turn);at=new Vector2(-90*returnHome,Mathf.Sin(turn*Mathf.PI)*35+h*stretch*turn+lift+25*returnHome);}
+            else at=Vector2.Lerp(at,Vector2.zero,returnHome);
+            if(!reveal && t>=.28f){
+                var crumble=Mathf.SmoothStep(0,1,(t-.52f)/.3f);var pileHeight=Mathf.Lerp(53,7,crumble);var spread=Mathf.Lerp(34,73,crumble);
+                // Separate the loose pile from the similarly coloured pit floor.
+                Oval(0,1,spread+5,7,new Color(.57f,.38f,.21f,.3f));
+                Poly(new Color(.72f,.55f,.29f),new Vector2(-spread-2,0),new Vector2(-spread*.4f-2,pileHeight+2),new Vector2(3,pileHeight+6),new Vector2(spread*.55f+2,pileHeight*.6f+2),new Vector2(spread+2,0));
+                Poly(new Color(1,.9f,.65f),new Vector2(-spread,0),new Vector2(-spread*.4f,pileHeight),new Vector2(3,pileHeight+4),new Vector2(spread*.55f,pileHeight*.6f),new Vector2(spread,0));
+                for(var i=0;i<12;i++){var x=-55+i*10;var fall=Mathf.Repeat(t*3+i*.07f,1);Oval(x,Mathf.Lerp(65,3,fall)*(1-crumble),3,2,new Color(.83f,.66f,.37f));}
+            }
+            transformingBucket=true;bucketAt=at;bucketAngle=angle;bucketScale=new Vector2(1,stretch);
+            DrawBucket(t<.32f?capacity:0,reveal);transformingBucket=false;
+            if(reveal && t>=.68f && t<=.88f){
+                var fade=1-(t-.68f)/.2f;for(var i=0;i<7;i++)Oval(-60+i*20,10+(i%3)*13,3*fade,3*fade,new Color(1,.88f,.4f));
             }
         }
         private static Vector2 Turn(Vector2 p,float angle)=>new Vector2(p.x*Mathf.Cos(angle)-p.y*Mathf.Sin(angle),p.x*Mathf.Sin(angle)+p.y*Mathf.Cos(angle));
@@ -106,6 +143,18 @@ namespace LittleWeeps.Client
         private void Box(float x,float y,float w,float h,Color c)=>Poly(c,new Vector2(x,y),new Vector2(x+w,y),new Vector2(x+w,y+h),new Vector2(x,y+h));
         private void Oval(float x,float y,float rx,float ry,Color c){var p=new Vector2[20];for(var i=0;i<p.Length;i++){var a=i*Mathf.PI*2/p.Length;p[i]=new Vector2(x+Mathf.Cos(a)*rx,y+Mathf.Sin(a)*ry);}Poly(c,p);}
         private void Poly(Color c,params Vector2[] points)
-        {var start=mesh.currentVertCount;foreach(var p in points)mesh.AddVert(p,c,Vector2.zero);for(var i=1;i<points.Length-1;i++)mesh.AddTriangle(start,start+i,start+i+1);}
+        {
+            if(kind=="mould-tip" && tipOutcome=="reveal")c.a*=1-Mathf.SmoothStep(0,1,(progress-.82f)/.18f);
+            if(transformingBucket){for(var i=0;i<points.Length;i++)points[i]=bucketAt+Turn(Vector2.Scale(points[i],bucketScale),bucketAngle);}
+            if(!float.IsPositiveInfinity(ceiling)){
+                var clipped=new System.Collections.Generic.List<Vector2>();var previous=points[points.Length-1];
+                foreach(var point in points){
+                    if((point.y<=ceiling)!=(previous.y<=ceiling))clipped.Add(Vector2.Lerp(previous,point,(ceiling-previous.y)/(point.y-previous.y)));
+                    if(point.y<=ceiling)clipped.Add(point);previous=point;
+                }
+                points=clipped.ToArray();
+            }
+            var start=mesh.currentVertCount;foreach(var p in points)mesh.AddVert(p,c,Vector2.zero);for(var i=1;i<points.Length-1;i++)mesh.AddTriangle(start,start+i,start+i+1);
+        }
     }
 }

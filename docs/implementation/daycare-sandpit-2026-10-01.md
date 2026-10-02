@@ -94,3 +94,75 @@ Checks actually run:
 Native phone/tablet pictures show the grounded can, selected rim, downward water stream, empty wet surface and darkened filled sand. The layout-change capture still has0.50 seconds of the correct mould's pour active. No new gameplay exceptions/warnings were found; two inherited `ResetCreekBoats`/`OnDestroy` null references remain in each four-client run's shutdown logs. The optional managed reflection probe previously blocked by Windows policy was not retried; current Unity player builds and actual native cancellation checks passed.
 
 Limits/deferred work: no physical-device/child usability or family art acceptance is claimed, and no device/live-server rollout, real-save change or enrollment operation occurred. Existing pre-response dry-tip inference, joining arbitration and limited classmate participation remain deferred; no new unrelated game defect was fixed. Tipping, crumble animation, tower reveal, flags/shells, NPC help, tray cleanup and free-build are not implemented here. The next separately authorized Milestone4 should derive tipping/crumble/tower feedback from authoritative outcomes, including resolving that existing dry-tip risk. Stop after watering and review first.
+
+## Direct tipping — October 2
+
+Milestone4 only, DAY-01 / LEARN-01 / FAMILY-01. Starting checkout: `C:\Users\sephi\Desktop\Little weeps game\LocalData\DinosaurWorld`, clean `main` at `071c54cb13b60cb7bb65b9ff3e76271808be99c1`. Milestones1 `42ba379`,2 `927b1e8`,3 `071c54c` are present; `origin/main` was verified at the same baseline before delivery. No unrelated work, other checkout, live server or devices were changed.
+
+### Interaction and authority
+
+Tap a different world bucket to select it locally; tap the highlighted bucket again to Tip. An orange curved arrow appears beside the selected unbuilt bucket, without adding a new text button. Tray mould buttons remain selection-only. The world bucket retains its140×155 scene-unit pointer area and existing drag/cancel handling; the local gold outline remains independent for each child.
+
+Flow: `HomeHit`/`NavigationTap` → `TouchSandMould` → existing `RequestSandTool("tip")` → capture selected mould and lesson → automatic approach to `DaycareSandpit.Work` → `CheckSandpitInput` → `SendSandpit` with `mould@round` → existing solo authority or shared command queue/revision retry → unchanged `SandpitOperation`. Tray Tip enters the same Request/Send path. Scoop, Water, Flag, Shell and New Lesson controls remain.
+
+Authority still returns `fill-bucket-first` for underfilled, clears a full dry mould to zero scoops, and marks a full wet mould built. Rules and messages are unchanged. Accepted dry/wet commands retain the existing generic `sandpit-played` receipt; presentation distinguishes the result from authoritative state transitions, not pre-command client guesses. `SandTipFeedback` prioritizes unbuilt→built as reveal; otherwise a same-lesson positive-scoop→zero transition in an unbuilt dry mould confirms a dry Tip, because no other current operation clears scoops within a lesson. This also handles the client observing one scoop before another child's final scoop and Tip arrive together. No new network field or persisted animation state is added. Schema49/content67/protocol3 stay unchanged.
+
+Underfilled rejection starts a0.4-second local horizontal wiggle only, preserving the displayed sand level. It cannot replace an active confirmed collapse/reveal. Replies from an old lesson or after departure cannot start that feedback. The old `dry` boolean captured before submission is removed; crumble narration now follows the confirmed dry transition.
+
+### Presentation and lifecycle
+
+Accepted dry/wet transitions start independent1.9-second effects per mould. The bucket lifts and turns upside down. Dry sand briefly forms a pile, visible grains scatter, the pile spreads/flattens, and the empty bucket returns. A subsequent authoritative refill/watering supersedes that old collapse immediately. No penalty or new rule is added.
+
+For wet sand, the inverted bucket settles over the existing build position, pauses, lifts and clears aside. The **existing authoritative `SandShape` tower** is revealed from its grounded base upward as the bucket lifts. No second temporary tower is created. Its original small/big geometry, positions and decoration drawing are retained; clipping returns to fully visible after the effect. An authoritative built tower remains when transient graphics expire.
+
+Each effect is positioned through current `ToBoard` coordinates every frame and follows scene scale/depth ordering. Presentation never gates another mould's command. Round changes, departure, menu/pause and scenery teardown clear local effect time, bucket hiding/wiggle and reveal clipping. Late arrival/re-entry/reconnect establishes an end-state baseline and does not replay historical animations.
+
+Two simultaneous Tips use existing serialization/revision rebase: after one dry reset the other is underfilled; after one wet build the other sees `tower-built`. Neither rejected/redundant nor duplicate receipts create a second success effect. Water/Scoop winning before Tip determine authority's actual result. Reset preserves the captured old lesson target in the request/retry path and rejects it without new-lesson mutation.
+
+### Exact changed files
+
+Paths below are relative to the implementation checkout:
+
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSandpit.cs` — direct bucket wiring/arrow, removal of speculative narration, Tip lifecycle hooks.
+
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SandShape.cs` — shared bucket drawing, rotation/lift, sand pile/grains, reveal clipping of permanent towers.
+
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SandTipFeedback.cs` and `.meta` — confirmed transition observer, rejection wiggle and transient lifetime.
+
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSandTip.cs` and `.meta` — four local effects, world input, grounding/depth and cleanup.
+
+- `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs` — inspection-only Tip outcome/event/time and permanent-tower diagnostics.
+
+- `Tools/Sandpit.Tests/TipChecks.cs`, `Program.cs`, `Sandpit.Tests.csproj` — actual authority/race/retention checks linked to production feedback code.
+
+- `Tools/Test-DaycareSandpitTip.py` — scoped native four-client interaction/visual/lifecycle checks.
+
+- `Tools/Test-DaycareSandpitScoop.py`, `Tools/Test-DaycareSandpitWater.py` — only selection setup changes to use selection-only tray buttons; a second world tap now intentionally means Tip.
+
+- `docs/current-decisions.md`, `docs/family-playset-build-guide-2026-09-23.md`, this file — scope/evidence record.
+
+### Verification and limits
+
+- `dotnet run --project Tools/Sandpit.Tests --configuration Release`: PASS existing M1 lesson boundary/queue retry/duplicate/JSON/migration checks, M2 Scoop and M3 Water checks, plus new actual-authority Tip underfill, dry reset once, coalesced final Scoop/Tip, stale-dry Water/Tip revision race, duplicate/redundant Tip, four moulds, checkpoint restoration, late/reconnect baseline, independent departure, stale/reset protection and expiry checks.
+
+- `Tools/Build-NetworkProbe.ps1 -BuildNumber 420`: Unity6000.3.24f1 release Server/Client PASS, zero errors/warnings each. All469 game-code/meta hashes match that build. Build419 also passed after the compile correction;420 additionally improves the dry bucket's path over the pile and preserves general start/leave rejection feedback. The bundle-version-only build edit is restored before delivery.
+
+- `python Tools/Test-DaycareSandpitTip.py 420`: PASS seven native four-client groups, using real InputSystem touch: underfilled retention/wiggle, canceled/swiped bucket taps, pending switch/Leave/visit return, dry reset and repeat rejection, wet reveal/permanent tower/shell fallback, late fourth arrival, Water-before-Tip and final-Scoop-before-tray-Tip, four concurrent different Tips, departure during effects, native close/reconnect, two simultaneous same-mould Tips, active-reveal camera pan and final-tower New Lesson with old approach cancellation. The explicit native disconnect closes its client with a checked zero exit; the harness closes its owned instances afterward. Evidence: `LocalData/SharedGarden/30b49bd7bd9a41faaaf7191f9d1feed9/sandpit-tip/result.json`.
+
+- `python Tools/Test-DaycareSandpitScoop.py 419`: PASS all seven M2 native groups. Evidence: `LocalData/SharedGarden/cee969f57f4f4aaf8b07ab7f992ac3f3/sandpit-scoop/result.json`.
+
+- `python Tools/Test-DaycareSandpitWater.py 419`: PASS all seven M3 native groups. Evidence: `LocalData/SharedGarden/cc24a494d61048208a59ad016283862c/sandpit-water/result.json`. The later420/421 changes touch Tip graphics and general non-tool rejection feedback; Scoop/Water input, authority and feedback rules remain the tested source.
+
+- Final421 compilation/visual evidence: `Tools/Build-NetworkProbe.ps1 -BuildNumber 421`: release Server/Client PASS, zero errors/warnings each, all469 code/meta hashes match. `python Tools/Test-DaycareSandpitTip.py 421 --visual-only`: PASS direct mouse Tip, two dry collapse/empty-return sequences at phone/tablet sizes and a wet lift/permanent tower check. Inspected final outlined pile/flattening and stable-tower pictures. Evidence: `LocalData/SharedGarden/82a62b1e8013438a825787df10b6f7dc/sandpit-tip-visual/result.json`. Only pile colour/outline/shadow differs from420's passed multiplayer source.
+
+Native1280×591 phone and1024×768 tablet captures are inspected for the local arrow/outline, retained underfill, turning/inverted bucket, pile collapse, wet lift and permanent tower, shell decoration, camera pan, reconnect end state and cleared reset. Close-up inspection found that the pile initially blended into the floor;421 adds a lighter fill, narrow outline and floor shadow. This isolated visual change receives a focused native check rather than repeating multiplayer rules. Background/cached-scenery and safe-area checks use the existing capture assertions; no white backdrop or stuck rotation was observed. No new gameplay errors were found. Two inherited `ResetCreekBoats`/`OnDestroy` null references remain in the420 shutdown logs, alongside the existing audio timeSamples diagnostic; these are not hidden or claimed fixed. The previously policy-blocked optional managed reflection probe was not retried; actual native pending-intent checks passed.
+
+The first419 compile exposed extracted bucket palette variables outside their scope; fixed before the successful build. Native fixture failures were an offscreen pointer target after teleporting far away, a disabled tray Tip on a completed tower, and asserting Leave before authority/client observation. Corrected fixtures use reachable targets, an unbuilt pending mould, and accepted-state waits. Failed attempts are not counted as passes.
+
+Confirmed from code: New Lesson is available only once all four moulds are built. A current dry-collapse lesson therefore cannot be reset immediately; the same round-change cleanup used for wet reveal handles any later reset. The native check resets during the final tower reveal and cancels another child's old pending Tip. Lesson-bound request/retry/reset rejection is also covered by the focused Core suite. We did not claim an artificially forced unreachable dry-reset UI interaction.
+
+These are transient effects derived from observed state, matching M2/M3: a complete fill-and-dry-reset occurring entirely between two snapshots can have no observable transition and its historical effect is skipped. Presentation never guesses or replays missing history; the latest authoritative end state remains visible. A dedicated network event history would be a separate shared-contract change if later required.
+
+No physical-device touch comfort, child understanding, animation/art acceptance or device frame rate is claimed. Ages3/6 playtesting should check discovering the second tap/arrow, seeing the difference between the sand pile and stable tower, and whether the1.9-second sequence feels responsive. Existing joining arbitration, classmate participation and inherited Creek teardown errors remain deferred. No direct decorations, NPC redesign, tray cleanup or free-build additions. Stop after Milestone4; wait for the parent's review.
+
+Git diff summary: 16 intended files; production changes stay in Sandcastle client presentation/input, with inspection diagnostics, focused test tools and three documentation records. No Core rules, network contract, save schema, assets, packages or permanent build settings change. No task branch was created.

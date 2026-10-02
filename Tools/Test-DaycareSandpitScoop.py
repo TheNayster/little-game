@@ -21,7 +21,7 @@ def main():
   wait(lambda:any(c['name']==name and c['enabled'] for c in info(v)['controls']),'enabled '+name,15)
   return v.input('button' if mouse else 'touchButton',text=name)
  def select(v,i):
-  button(v,'Sand mould '+str(i+1));s=info(v)
+  button(v,'Choose sand mould '+str(i+1));s=info(v)
   require(s['sandpitSelection']==i and s['sandpitHighlight']==i,'wrong local selection/highlight')
  def position(v,i):cmd(v,0,x=4130+i*160,y=350)
  def scoop(v,i,n,mouse=False,capture=None):
