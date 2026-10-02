@@ -44,6 +44,7 @@ class Program {
   before=Checkpoint();duplicate=family.Submit(2,retry);Need(duplicate.Accepted && duplicate.Duplicate && Checkpoint()==before,"old accepted receipt remains duplicate after reset");SoloWorld.Validate(w.Snapshot());
   Console.WriteLine("PASS: four-profile shared building, late join, independent leave/disconnect/reconnect, dry/wet/decorations, schema45 migration and JSON retention.");
   Console.WriteLine("PASS: all five stale operations rejected without checkpoint mutation; malformed/missing/future round rejected; actual queue revision rebase preserves captured round; current retry and duplicate succeed; later-reset duplicate cannot mutate the new lesson.");
+  ScoopFeedbackChecks.Run();
   if(args.Length>0)ClientIntentChecks.Run(args[0]);
  }
 }

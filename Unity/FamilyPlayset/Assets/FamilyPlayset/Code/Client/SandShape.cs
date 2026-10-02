@@ -7,11 +7,24 @@ namespace LittleWeeps.Client
     public sealed class SandShape : MaskableGraphic
     {
         public string kind="bucket";public int scoops,capacity=2,decoration;public bool wet,built;
+        public Vector2 source,target;public float progress;
         private VertexHelper mesh;
         protected override void OnPopulateMesh(VertexHelper vh)
         {
             mesh=vh;mesh.Clear();
             var wood=new Color(.57f,.38f,.21f);var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
+            if(kind=="shovel"){
+                Oval(0,-8,72,21,edge);Oval(0,-3,68,21,sand);
+                for(var i=0;i<9;i++)Oval(-49+i*12,(i%3)*5-6,3,2,damp);
+                Poly(wood,new Vector2(-7,8),new Vector2(3,10),new Vector2(-20,84),new Vector2(-30,82));
+                Poly(new Color(.15f,.55f,.57f),new Vector2(-22,32),new Vector2(24,26),new Vector2(15,-7),new Vector2(-3,-17),new Vector2(-19,-5));
+                Oval(-25,86,23,19,new Color(1,.52f,.22f));Oval(-25,87,12,9,new Color(1,.95f,.78f));return;
+            }
+            if(kind=="sand-transfer"){
+                var p=Vector2.Lerp(source,target,progress)+new Vector2(0,Mathf.Sin(progress*Mathf.PI)*65);
+                Oval(p.x,p.y,17,10,sand);
+                for(var i=0;i<5;i++)Oval(p.x-24+i*9,p.y-13-(i%2)*7,3,3,damp);return;
+            }
             if(kind=="wall"){
                 Box(-250,0,500,37,damp);for(var i=0;i<17;i++)Box(-250+i*30,35,19,13,sand);
                 Box(-22,0,44,29,new Color(.57f,.41f,.23f));Oval(0,29,22,10,new Color(.57f,.41f,.23f));return;
