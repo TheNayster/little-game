@@ -78,3 +78,6 @@ Tools/PondMotion.Tests/bin/
 Tools/PondMotion.Tests/obj/
 Tools/Sandpit.Tests/bin/
 Tools/Sandpit.Tests/obj/
+!Tools/DaycarePlay.Tests/DaycarePlay.Tests.csproj
+Tools/DaycarePlay.Tests/bin/
+Tools/DaycarePlay.Tests/obj/

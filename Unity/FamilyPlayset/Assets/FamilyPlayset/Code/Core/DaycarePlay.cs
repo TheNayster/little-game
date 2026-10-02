@@ -40,7 +40,7 @@ namespace LittleWeeps.Core
         public static WalkPoint Floor(string zone,float x,float y)=>Area(zone)?new WalkPoint(Math.Max(80,Math.Min(2320,x)),Math.Max(60,Math.Min(240,y))):new WalkPoint(x,y);
         public static bool Point(float x,float y)=>KeepyRules.Finite(x) && KeepyRules.Finite(y) && x>=80 && x<=2320 && y>=60 && y<=240;
         public static void Move(ClubNpc n,WalkPoint goal,double dt)
-        {var p=Towards(new WalkPoint(n.x,n.y),goal,NpcSpeed,dt);n.x=p.X;n.y=p.Y;}
+        {var p=Towards(new WalkPoint(n.x,n.y),Floor(TagZone,goal.X,goal.Y),NpcSpeed,dt);p=Floor(TagZone,p.X,p.Y);n.x=p.X;n.y=p.Y;}
         public static WalkPoint Towards(WalkPoint p,WalkPoint goal,float speed,double dt)
         {var dx=goal.X-p.X;var dy=goal.Y-p.Y;var length=Math.Sqrt(dx*dx+dy*dy);var step=Math.Min(length,speed*dt);return length==0?goal:new WalkPoint(p.X+(float)(dx/length*step),p.Y+(float)(dy/length*step));}
     }
@@ -171,7 +171,9 @@ namespace LittleWeeps.Core
                     // Runners loop back when children chase for a while, keeping
                     // a gentle tag attainable instead of endless perfect evasion.
                     var offer=!g.it.StartsWith("club-npc-") && (int)(g.clock+i*2)%9>=6;
-                    if(offer)goal=new WalkPoint(chaser.X+(i%2==0?130:-130),chaser.Y);
+                    // A catchable runner still stays inside the arena when
+                    // its chaser stands against either edge.
+                    if(offer)goal=DaycarePlay.Floor(DaycarePlay.TagZone,chaser.X+(i%2==0?130:-130),chaser.Y);
                     else{if(Math.Abs(dx)<30)dx=(i%2==0?1:-1)*180;goal=DaycarePlay.Floor(DaycarePlay.TagZone,n.x+Math.Sign(dx)*330,n.y+Math.Sign(dy)*100);if(Math.Abs(goal.X-n.x)<10)goal=new WalkPoint(1200,100+i%2*100);}
                 }
                 DaycarePlay.Move(n,goal,dt);points[id]=new WalkPoint(n.x,n.y);
