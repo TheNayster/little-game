@@ -14,7 +14,7 @@ namespace LittleWeeps.Client
         private readonly List<(RectTransform root,GameCharacterVisual visual)> sandFriends=new List<(RectTransform,GameCharacterVisual)>();
         private readonly List<Button> sandTools=new List<Button>();private readonly List<AudioClip> sandAudio=new List<AudioClip>();
         private readonly List<Text> sandNumbers=new List<Text>();private Text sandHint,sandSelected;
-        private SandShape sandDemoShape;private bool sandpitSending;private int sandpitSelected,sandpitApproach=-1,sandSpoken=-1,sandSpokenRound=-1;
+        private SandShape sandDemoShape;private bool sandpitSending;private int sandpitSelected,sandpitApproach=-1,sandpitApproachRound=-1,sandSpoken=-1,sandSpokenRound=-1;
         private string sandpitOperation;private Button sandReplay;
         public SandpitState SandpitGame=>HasWorld?(Shared?shared.View.sandpit:World.ReadSandpit()):null;
         public string[] SandpitNpcArt=>sandFriends.Select(n=>n.visual.CharacterId).ToArray();public int SandpitSelection=>sandpitSelected;
@@ -22,14 +22,15 @@ namespace LittleWeeps.Client
         private bool SandpitTeacherActive=>SandpitGame?.phase>0 && SandpitGame.members.Any(m=>m.attending);
         private void ChooseSandpit()
         {CloseMiniGames();CloseNavigation();CloseTeacherCard();Narration.Stop();SendSandpit("start");}
-        private void SendSandpit(string op,int index=-1)
+        private void SendSandpit(string op,int index=-1,int expectedRound=-1)
         {
             if(!Ready || TravelPending || sandpitSending && op!="leave")return;
-            sandpitSending=true;sandpitApproach=-1;destination=null;CancelPointers();shared?.Walk(WalkMode.Stop);
+            var target=index<0?"":DaycareSandpit.Target(index,expectedRound);
+            sandpitSending=true;sandpitApproach=-1;sandpitApproachRound=-1;sandpitOperation=null;destination=null;CancelPointers();shared?.Walk(WalkMode.Stop);
             var dry=op=="tip" && index>=0 && !SandpitGame.moulds[index].wet;
             void Done(SoloResult r){sandpitSending=false;if(r.Accepted && dry){Narration.Speak("sand-crumble");homeFeedback.text="Dry sand crumbles. Try a little water!";homeFeedbackUntil=Time.unscaledTime+4;}else if(!r.Accepted){homeFeedback.text=r.Outcome=="fill-bucket-first"?"Add scoops until the bucket is full.":"Try another sand tool.";homeFeedbackUntil=Time.unscaledTime+3;}Render();}
-            if(Shared){if(!SubmitShared(SoloAction.Sandpit,"",index<0?"":index.ToString(),op,0,0,Done))sandpitSending=false;}
-            else Done(Command(SoloAction.Sandpit,target:index<0?"":index.ToString(),value:op));
+            if(Shared){if(!SubmitShared(SoloAction.Sandpit,"",target,op,0,0,Done))sandpitSending=false;}
+            else Done(Command(SoloAction.Sandpit,target:target,value:op));
         }
         private void SelectSandMould(int i)
         {if(!SandpitOwn){ChooseSandpit();return;}sandpitSelected=i;CancelPointers();manualCamera=false;}
@@ -37,14 +38,23 @@ namespace LittleWeeps.Client
         {
             if(!Ready || MenuOpen || !SandpitOwn || SandpitGame.phase<1)return;
             // A visible shared result can precede its reply; retain the next tap.
-            CancelPointers();sandpitApproach=sandpitSelected;sandpitOperation=op;manualCamera=false;var at=DaycareSandpit.Work(sandpitApproach);destination=new Vector2(at.X,at.Y);
+            CancelPointers();sandpitApproach=sandpitSelected;sandpitApproachRound=SandpitGame.round;sandpitOperation=op;manualCamera=false;var at=DaycareSandpit.Work(sandpitApproach);destination=new Vector2(at.X,at.Y);
+        }
+        private void CancelSandpitIntent()
+        {
+            // Only stop the automatic walk owned by this intent, not a new destination.
+            var at=sandpitApproach>=0?DaycareSandpit.Work(sandpitApproach):default;
+            var ownsWalk=sandpitApproach>=0 && destination.HasValue && destination.Value==new Vector2(at.X,at.Y);
+            sandpitApproach=-1;sandpitApproachRound=-1;sandpitOperation=null;
+            if(ownsWalk){destination=null;shared?.Walk(WalkMode.Stop);}
         }
         private void CheckSandpitInput()
         {
             if(sandpitApproach<0)return;
+            if(SandpitGame==null || sandpitApproachRound!=SandpitGame.round){CancelSandpitIntent();return;}
             if(CurrentArea!="daycare" || !SandpitOwn || MenuOpen || applicationPaused || stickDirection.sqrMagnitude>.1f){sandpitApproach=-1;destination=null;return;}
             if(sandpitSending || ActionPending)return;var at=DaycareSandpit.Work(sandpitApproach);var p=ReadPlayer(Actor);
-            if(Math.Abs(p.x-at.X)<=15 && Math.Abs(p.y-at.Y)<=25)SendSandpit(sandpitOperation,sandpitApproach);
+            if(Math.Abs(p.x-at.X)<=15 && Math.Abs(p.y-at.Y)<=25)SendSandpit(sandpitOperation,sandpitApproach,sandpitApproachRound);
         }
         private SandShape DrawSandBucket(Transform parent,Vector2 at,int scoops,int capacity,bool wet)
         {var root=Rect(parent,"Sand bucket picture",at,new Vector2(110,170));var shape=root.gameObject.AddComponent<SandShape>();shape.raycastTarget=false;shape.scoops=scoops;shape.capacity=capacity;shape.wet=wet;return shape;}
@@ -76,6 +86,7 @@ namespace LittleWeeps.Client
         private void TickSandpit()
         {
             if(sandpitRoot==null)return;var g=SandpitGame;var visible=CurrentArea=="daycare";var joined=visible && SandpitOwn && !MenuOpen;
+            if(sandpitApproach>=0 && sandpitApproachRound!=g.round)CancelSandpitIntent();
             sandpitRoot.gameObject.SetActive(visible);sandpitRoot.anchoredPosition=ToBoard(4460,440);sandpitRoot.localScale=Vector3.one*sceneScale;
             sandpitWall.gameObject.SetActive(visible && g.phase==3);sandpitWall.anchoredPosition=ToBoard(4450,440)+new Vector2(0,16)*sceneScale;sandpitWall.localScale=Vector3.one*sceneScale;
             sandpitBelt.gameObject.SetActive(joined);sandpitHud.gameObject.SetActive(joined);var scale=Mathf.Min(1,safe.rect.width/1050);sandpitBelt.localScale=sandpitHud.localScale=Vector3.one*scale;
@@ -93,6 +104,6 @@ namespace LittleWeeps.Client
         private void AddSandpitDepth(Action<RectTransform,float,int,string> add)
         {if(sandpitRoot==null || !sandpitRoot.gameObject.activeInHierarchy)return;add(sandpitRoot,sandpitRoot.anchoredPosition.y+95*sceneScale,0,"sandpit");if(sandpitWall.gameObject.activeSelf)add(sandpitWall,sandpitWall.anchoredPosition.y+1,0,"castle-walls");foreach(var root in sandPlaces)add(root,root.anchoredPosition.y,3,"sand-mould");foreach(var n in sandFriends)if(n.root.gameObject.activeSelf)add(n.root,n.root.anchoredPosition.y,2,"sand-friend");if(sandpitDemo.gameObject.activeSelf)add(sandpitDemo,sandpitDemo.anchoredPosition.y,4,"teacher-demo");}
         private void ResetSandpit()
-        {sandpitRoot=sandpitBelt=sandpitHud=sandpitDemo=sandpitWall=null;sandPlaces.Clear();sandShapes.Clear();sandFriends.Clear();sandTools.Clear();sandNumbers.Clear();sandpitSending=false;sandpitApproach=-1;sandSpoken=sandSpokenRound=-1;foreach(var clip in sandAudio)if(clip!=null)Resources.UnloadAsset(clip);sandAudio.Clear();}
+        {sandpitRoot=sandpitBelt=sandpitHud=sandpitDemo=sandpitWall=null;sandPlaces.Clear();sandShapes.Clear();sandFriends.Clear();sandTools.Clear();sandNumbers.Clear();sandpitSending=false;sandpitApproach=sandpitApproachRound=-1;sandpitOperation=null;sandSpoken=sandSpokenRound=-1;foreach(var clip in sandAudio)if(clip!=null)Resources.UnloadAsset(clip);sandAudio.Clear();}
     }
 }

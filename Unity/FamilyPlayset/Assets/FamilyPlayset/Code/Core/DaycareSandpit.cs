@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 
 namespace LittleWeeps.Core
@@ -26,6 +27,7 @@ namespace LittleWeeps.Core
         public static WalkPoint Place(int i)=>new WalkPoint(4210+i*160,440);
         public static WalkPoint Work(int i)=>new WalkPoint(Place(i).X-80,350);
         public static int Capacity(int i)=>i%2==0?2:3;
+        public static string Target(int index,int round)=>index.ToString(CultureInfo.InvariantCulture)+"@"+round.ToString(CultureInfo.InvariantCulture);
         public static double Arrival(SandpitState s)=>Math.Sqrt(Math.Pow(s.teacherX-Teacher.X,2)+Math.Pow((s.teacherY-Teacher.Y)*.45,2))/180;
         public static WalkPoint TeacherPoint(SandpitState s,double clock)
         {
@@ -76,7 +78,11 @@ namespace LittleWeeps.Core
                 }
                 state.kingdom.members.Single(v=>v.actor==p.id).declined=true;ReleaseDaycare(p.id);state.daycare.members.Single(m=>m.actor==p.id).declined=true;own.attending=true;own.declined=false;var at=DaycareSandpit.Work(Array.IndexOf(g.members,own));p.x=at.X;p.y=at.Y;return null;
             }
-            if(!own.attending || g.phase<1 || !int.TryParse(c.target,out var index) || index<0 || index>3)return "watch-calypso-first";
+            if(!own.attending || g.phase<1)return "watch-calypso-first";
+            // Revision retries may use a newer snapshot, but never a newer lesson.
+            var parts=c.target.Split('@');
+            if(parts.Length!=2 || !int.TryParse(parts[0],NumberStyles.None,CultureInfo.InvariantCulture,out var index) || index<0 || index>3 ||
+                !int.TryParse(parts[1],NumberStyles.None,CultureInfo.InvariantCulture,out var round) || round<1 || round!=g.round)return "old-sandpit-lesson";
             var point=DaycareSandpit.Place(index);if(Math.Abs(p.x-point.X)>100 || Math.Abs(p.y-point.Y)>120)return "walk-closer";
             var mould=g.moulds[index];
             if(c.value=="scoop"){if(mould.built || mould.scoops==DaycareSandpit.Capacity(index))return "bucket-full";mould.scoops++;return null;}
