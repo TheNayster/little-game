@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "localPlanLinks": 10,
+  "requirements": 11,
+  "materialDecisions": 8,
+  "stages": 6,
+  "checks": [
+    "all new-plan local links resolve",
+    "requirements/decision/stage coverage",
+    "Stage 2 not started; Picnic preserved",
+    "browser mockup-check passed",
+    "global consistency errors identical to baseline"
+  ],
+  "limits": "Planning and mockup checks; no new Unity gameplay, save, multiplayer, device or child verification."
+}

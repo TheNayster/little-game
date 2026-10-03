@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "limits": "Local HTML proposal only; no Unity/game/network/physical-device checks",
+  "viewports": [
+    "1280x980 tablet composition",
+    "900x920 narrow phone composition"
+  ],
+  "captures": 6,
+  "pictureCardBounds": [
+    {
+      "label": "Flag",
+      "width": 198,
+      "height": 80
+    },
+    {
+      "label": "Shell",
+      "width": 198,
+      "height": 80
+    },
+    {
+      "label": "Pebbles",
+      "width": 198,
+      "height": 80
+    },
+    {
+      "label": "Door / window",
+      "width": 198,
+      "height": 80
+    }
+  ],
+  "checks": [
+    "place/three scoops/water/tip/decorate/play local click-through",
+    "fill and wet indicators",
+    "shape choice/preview relocation/cancel",
+    "help and independent-leave explanatory cues",
+    "six rendered captures",
+    "unique HTML IDs and no browser page errors",
+    "narrow 880px frame height fits a 591px landscape content area; actual device target comfort untested"
+  ],
+  "repair": "Initial review found duplicate SVG/control IDs for Help/Leave; corrected, then complete check passed.",
+  "phoneFrame": {
+    "x": 10,
+    "y": 125.28125,
+    "width": 880,
+    "height": 562.9375
+  }
+}

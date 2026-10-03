@@ -1,0 +1,139 @@
+{
+  "passed": false,
+  "decision": "PC/VPS authority; private offline solo; server wins on reconnect",
+  "activeEntries": 90,
+  "historicalRecords": 48,
+  "goalChapters": 55,
+  "planSections": 19,
+  "featureIds": [
+    "CHAR-01",
+    "CHAR-02",
+    "FAMILY-01",
+    "ACT-01",
+    "COOK-01",
+    "FISH-01",
+    "CLEAN-01",
+    "HIDE-01",
+    "HIDE-02",
+    "NPC-01",
+    "CAT-01",
+    "BOOK-01",
+    "TV-01",
+    "DINO-01",
+    "DINO-02",
+    "LAB-01",
+    "JOIN-01",
+    "WORLD-01",
+    "WORLD-02",
+    "ITEM-02",
+    "ITEM-03",
+    "STOCK-01",
+    "ROOM-02",
+    "NET-02",
+    "REMOTE-01",
+    "ROOM-01",
+    "SECRET-01",
+    "HIDE-03",
+    "TRAVEL-01",
+    "AUTO-01",
+    "AUTO-02",
+    "OUT-01",
+    "DAY-01",
+    "LEARN-01",
+    "IMG-01"
+  ],
+  "retiredGoals": [
+    "AUTO-02"
+  ],
+  "retiredPhases": [
+    "G4"
+  ],
+  "contentCatalogCounts": {
+    "SHOW": 32,
+    "BCH": 10,
+    "CRK": 10,
+    "PRK": 12,
+    "LRN": 12,
+    "PIZ": 5,
+    "CAK": 5,
+    "MEAL": 5
+  },
+  "renderedPages": 130,
+  "localLinksChecked": 3880,
+  "conflictingPhraseRegressionCases": 6,
+  "errors": [
+    [
+      "docs/implementation/combined-family-release-339-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/combined-world-release-360-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/daycare-repair-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/daycare-sandpit-2026-10-01.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/daycare-story-encounters-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/dinosaur-rider-outfits-341-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/family-release-401-2026-10-01.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/git-cleanup-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/home-pond-and-hiding-2026-10-01.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/movement-speed-348-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/onesie-roar-book-setting-342-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/travel-feeding-memory-340-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/implementation/zoo-main-gate-arrival-347-2026-09-30.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/project-organization-phase-plan-2026-10-02.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/project-structure-research-2026-10-02.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/six-world-screenshot-phase-2026-10-02.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/unused-files-audit-2026-10-02.md",
+      "unclassified authored record"
+    ],
+    [
+      "docs/world-play-audit-phase-2026-10-02.md",
+      "unclassified authored record"
+    ]
+  ],
+  "limits": "Local document consistency/link checks and manually reviewed scope; not live device, runtime or external-source revalidation."
+}
