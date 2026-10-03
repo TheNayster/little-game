@@ -32,7 +32,7 @@ namespace LittleWeeps.Client
                 var cue=result=="underfilled" || result=="dry";effect.gameObject.SetActive(active && !cue);
                 if(i>=game.moulds.Length)continue;
                 effect.rectTransform.anchoredPosition=sandPlaces[i].anchoredPosition;effect.rectTransform.localScale=Vector3.one;
-                effect.capacity=game.moulds[i].capacity;effect.tipOutcome=result;effect.progress=1-sandTipFeedback.Remaining(i)/(cue?SandTipFeedback.WiggleDuration:SandTipFeedback.Duration);effect.SetVerticesDirty();
+                effect.mould=game.moulds[i].shape;effect.orientation=game.moulds[i].orientation;effect.capacity=game.moulds[i].capacity;effect.tipOutcome=result;effect.progress=1-sandTipFeedback.Remaining(i)/(cue?SandTipFeedback.WiggleDuration:SandTipFeedback.Duration);effect.SetVerticesDirty();
                 sandShapes[i].towerReveal=active && result=="reveal"?Mathf.Clamp01((effect.progress-.52f)/.3f):1;
                 sandShapes[i].hideBucket=active && !cue;
                 sandShapes[i].wiggle=active && cue?Mathf.Sin(effect.progress*Mathf.PI*4)*5*(1-effect.progress):0;

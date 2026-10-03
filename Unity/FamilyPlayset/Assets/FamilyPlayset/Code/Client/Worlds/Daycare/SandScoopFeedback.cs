@@ -10,6 +10,7 @@ namespace LittleWeeps.Client
         private readonly int[] counts = new int[DaycareSandpit.MaxPieces];
         private readonly float[] remaining = new float[DaycareSandpit.MaxPieces];
         private readonly int[] events = new int[DaycareSandpit.MaxPieces];
+        private readonly string[] ids=new string[DaycareSandpit.MaxPieces];
         private int round = -1;
         private bool observing;
         public int[] Events => (int[])events.Clone();
@@ -21,11 +22,14 @@ namespace LittleWeeps.Client
             {
                 remaining[i] = baseline ? 0 : Math.Max(0, remaining[i] - elapsed);
                 var count = state == null || i>=state.moulds.Length ? 0 : state.moulds[i].scoops;
-                if (!baseline && count > counts[i])
+                var id=state!=null && i<state.moulds.Length?state.moulds[i].id:null;
+                if(ids[i]!=id)remaining[i]=0;
+                if (!baseline && ids[i]==id && count > counts[i])
                 {
                     remaining[i] = Duration;
                     events[i] += count - counts[i];
                 }
+                ids[i]=id;
                 counts[i] = count;
             }
             round = state == null ? -1 : state.round;

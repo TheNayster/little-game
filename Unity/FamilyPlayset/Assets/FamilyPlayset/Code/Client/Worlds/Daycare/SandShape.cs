@@ -11,11 +11,16 @@ namespace LittleWeeps.Client
         public SandAttachment[] attachments;public int socket;public string decorationKind;
         public Vector2 source,target;public float progress;
         public string tipOutcome;public float towerReveal=1,wiggle;public bool hideBucket,hideDecoration;
+        public override Texture mainTexture=>SandArt.Atlas!=null?SandArt.Atlas:base.mainTexture;
+        public float presentationTime,fillVisual=-1;
         private VertexHelper mesh;private float ceiling=float.PositiveInfinity, bucketAngle;private Vector2 bucketAt,bucketScale=Vector2.one;private bool transformingBucket;
         protected override void OnPopulateMesh(VertexHelper vh)
         {
             mesh=vh;mesh.Clear();ceiling=float.PositiveInfinity;transformingBucket=false;
             var wood=new Color(.57f,.38f,.21f);var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
+            if(kind=="accepted-spark"){
+                var fade=1-progress;for(var i=0;i<7;i++){var a=i*Mathf.PI*2/7;var radius=25+progress*35;Oval(Mathf.Cos(a)*radius,45+Mathf.Sin(a)*radius,4*fade,6*fade,new Color(1,.94f,.65f,fade));}return;
+            }
             if(kind=="toy-shadow"){Oval(0,0,28,6,new Color(.38f,.27f,.14f,.22f));return;}
             if(kind=="attachment"){DrawAttachment(decorationKind,Vector2.zero);return;}
             if(kind=="pebble" || kind=="door" || kind=="window"){DrawAttachment(kind,Vector2.zero);return;}
@@ -24,6 +29,9 @@ namespace LittleWeeps.Client
             if(kind=="rotate"){
                 for(var i=0;i<17;i++){var a=i*Mathf.PI*1.5f/16;Oval(Mathf.Cos(a)*26,Mathf.Sin(a)*26,5,5,new Color(.21f,.45f,.69f));}
                 Poly(new Color(.21f,.45f,.69f),new Vector2(-10,-20),new Vector2(20,-25),new Vector2(3,-43));return;
+            }
+            if(kind=="pending"){
+                for(var i=0;i<8;i++){var a=i*Mathf.PI/4+presentationTime*3;Oval(Mathf.Cos(a)*23,Mathf.Sin(a)*23,5,5,new Color(.15f,.42f,.5f,i/9f+.2f));}return;
             }
             if(kind=="selection"){
                 Poly(new Color(.12f,.38f,.46f),new Vector2(-13,13),new Vector2(13,13),new Vector2(0,-6));return;
@@ -103,13 +111,13 @@ namespace LittleWeeps.Client
                 foreach(var x in new[]{-380f,350f}){Box(x,-47,32,55,edge);Oval(x+16,8,19,7,wood);}
                 return;
             }
-            if(kind=="scoop"){Box(-5,-26,10,48,wood);Oval(0,29,24,14,new Color(.85f,.44f,.23f));return;}
-            if(kind=="water"){WaterCan(Vector2.zero,0);return;}
-            if(kind=="flag"){Box(-3,-30,6,64,wood);Poly(new Color(.94f,.4f,.35f),new Vector2(3,34),new Vector2(43,23),new Vector2(3,8));return;}
+            if(kind=="scoop"){Illustration(7,-25,-30,50,65);return;}
+            if(kind=="water"){Illustration(8,-44,-30,88,67);return;}
+            if(kind=="flag"){Illustration(10,-20,-30,54,64);return;}
             if(kind=="shell"){Shell(0,0);return;}
-            if(kind=="tip"){Poly(new Color(.32f,.65f,.8f),new Vector2(-30,23),new Vector2(22,35),new Vector2(33,-13),new Vector2(-8,-24));Oval(28,-30,20,5,sand);return;}
+            if(kind=="tip"){Illustration(9,-38,-29,76,68);return;}
             if(built){
-                var h=capacity==3?92:75;ceiling=towerReveal>=1?float.PositiveInfinity:towerReveal*(h+24);
+                var h=capacity==3?92:75;ceiling=towerReveal>=1?float.PositiveInfinity:orientation==90 && DaycareSandpit.LongShape(mould)?Mathf.Lerp(-105,190,towerReveal):towerReveal*(capacity==3?128:108);
                 DrawCastle();
                 if(!hideDecoration && attachments!=null)foreach(var a in attachments){var at=SandpitPlay.Socket(new SandMould{shape=mould,orientation=orientation,capacity=capacity},a.slot);DrawAttachment(a.kind,new Vector2(at.X,at.Y));}
                 if(!hideDecoration && decoration==1)Flag(0,h+10);
@@ -121,22 +129,24 @@ namespace LittleWeeps.Client
         private void DrawAttachment(string name,Vector2 p)
         {
             if(name=="flag"){Flag(p.x,p.y);return;}if(name=="shell"){Shell(p.x,p.y);return;}
-            if(name=="pebble"){Oval(p.x,p.y,16,10,new Color(.51f,.59f,.63f));Oval(p.x-5,p.y+4,7,3,new Color(.75f,.8f,.8f));return;}
-            var outline=new Color(.33f,.23f,.15f);
-            if(name=="door"){Box(p.x-12,p.y-19,24,34,outline);Oval(p.x,p.y+15,12,10,outline);Box(p.x-8,p.y-17,16,29,new Color(.59f,.33f,.18f));Oval(p.x+5,p.y-3,2,2,new Color(1,.84f,.34f));return;}
-            if(name=="window"){Box(p.x-15,p.y-14,30,28,outline);Box(p.x-11,p.y-10,22,20,new Color(.5f,.81f,.9f));Box(p.x-2,p.y-11,4,22,outline);Box(p.x-12,p.y-2,24,4,outline);}
+            
+            if(name=="pebble"){Illustration(12,p.x-16,p.y-8,32,24);return;}
+            if(name=="door"){Illustration(13,p.x-13,p.y-20,26,45);return;}
+            if(name=="window"){Illustration(14,p.x-16,p.y-14,32,30);return;}
         }
+
         private void DrawBucket(int fill,bool water)
         {
                 var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
                 var h=capacity==3?75:55;var bucket=new Color(.32f,.65f,.8f);
-                Poly(edge,new Vector2(-46,h),new Vector2(46,h),new Vector2(31,0),new Vector2(-31,0));
-                Poly(bucket,new Vector2(-40,h-4),new Vector2(40,h-4),new Vector2(26,4),new Vector2(-26,4));
-                Oval(0,h,46,10,new Color(.72f,.89f,.95f));
-                if(water && fill==0)Oval(0,h,34,6,new Color(.38f,.72f,.93f));
-                if(fill>0){var f=fill/(float)capacity;Poly(water?damp:sand,new Vector2(-26,6),new Vector2(26,6),new Vector2(26+12*f,6+(h-10)*f),new Vector2(-26-12*f,6+(h-10)*f));}
-                for(var i=0;i<capacity;i++)Box(-9,10+i*(h-15)/capacity,18,3,Color.white);
-                if(water){Oval(28,h+20,7,10,new Color(.35f,.65f,.94f));}
+                Illustration(6,-48,0,96,h+22);
+                // The translucent front fill rises independently of the bucket
+                // painting; pips stay visible without relying on colour or text.
+                var f=(kind=="bucket" && fillVisual>=0?fillVisual:fill)/(float)capacity;
+                if(fill>0){Poly(water?damp:sand,new Vector2(-25,12),new Vector2(25,12),new Vector2(33,12+(h-15)*f),new Vector2(-33,12+(h-15)*f));Oval(0,12+(h-15)*f,33,5,water?damp:sand);}
+                if(water && fill==0)Oval(0,h+5,33,5,new Color(.32f,.66f,.86f));
+                for(var i=0;i<capacity;i++){Oval(54,13+i*21,8,8,new Color(.18f,.4f,.43f));Oval(54,13+i*21,5,5,i<fill?new Color(1,.89f,.61f):Color.white);}
+                if(water){Oval(-35,h+26,8,11,new Color(.26f,.6f,.9f));Oval(-37,h+29,2,4,Color.white);}
                 // A shape stamp keeps the selected mould recognisable before tipping.
                 var stamp=new Color(.15f,.38f,.5f);
                 if(mould=="square")Box(-11,h-23,22,12,stamp);
@@ -147,51 +157,14 @@ namespace LittleWeeps.Client
         // completed pieces meet without moving saved coordinates or hit targets.
         private void DrawCastle()
         {
-            var face=new Color(.83f,.65f,.36f);var top=new Color(1,.87f,.59f);var shade=new Color(.58f,.4f,.22f);
             if(mould=="round" || mould=="square"){
-                var h=capacity==3?92:75;
-                Oval(0,0,62,12,new Color(.38f,.27f,.14f,.22f));
-                if(mould=="round"){
-                    Poly(face,new Vector2(-62,0),new Vector2(-47,h),new Vector2(47,h),new Vector2(62,0));
-                    Oval(0,h,47,12,top);Oval(0,5,60,10,face);
-                    for(var i=0;i<4;i++)Box(-49+i*26,h-3,20,23,top);
-                }else{
-                    Poly(shade,new Vector2(-62,0),new Vector2(-62,h),new Vector2(-45,h+13),new Vector2(-45,10));
-                    Box(-45,0,107,h,face);Box(-45,h-8,107,13,top);
-                    for(var i=0;i<4;i++)Box(-46+i*29,h,20,22,top);
-                    Box(-43,37,102,3,new Color(.94f,.77f,.48f));
-                }
-                if(kind=="mould-icon"){Box(-12,4,24,31,shade);Oval(0,35,12,10,shade);}return;
+                var h=capacity==3?125:105;
+                Illustration(mould=="round"?0:1,-64,-7,128,h+7);return;
             }
-            var vertical=orientation==90;
-            if(vertical){
-                // Side-view spine spans two rows; two gate posts leave an actual gap.
-                if(mould=="wall"){
-                    Poly(shade,new Vector2(-22,-102),new Vector2(-22,148),new Vector2(22,168),new Vector2(22,-82));
-                    for(var i=0;i<7;i++)Box(-24,-90+i*35,48,12,top);
-                }else{
-                    Box(-28,-102,56,54,face);Box(-28,82,56,70,face);
-                    // The side arch is a narrow outer spine; its opening remains
-                    // transparent, so neighbouring work is never painted over.
-                    Box(-28,-48,12,130,shade);Box(-28,72,56,12,top);
-                    Box(-32,152,64,14,top);Box(-32,-48,64,14,top);
-                }
-                return;
-            }
-            if(mould=="wall"){
-                Box(-124,0,248,55,face);Box(-124,50,248,8,top);
-                for(var i=0;i<9;i++)Box(-123+i*28,55,20,17,top);
-                Box(-120,26,240,3,shade);for(var i=0;i<7;i++)Box(-108+i*37,i%2==0?0:29,3,26,shade);
-            }else{
-                Box(-124,0,48,71,face);Box(76,0,48,71,face);Box(-124,65,248,15,face);
-                // Separate convex quads make the arched opening transparent to sand.
-                for(var i=0;i<20;i++){
-                    var a=i*Mathf.PI/20;var b=(i+1)*Mathf.PI/20;
-                    Poly(top,new Vector2(Mathf.Cos(a)*76,Mathf.Sin(a)*38+27),new Vector2(Mathf.Cos(b)*76,Mathf.Sin(b)*38+27),new Vector2(Mathf.Cos(b)*90,Mathf.Sin(b)*45+27),new Vector2(Mathf.Cos(a)*90,Mathf.Sin(a)*45+27));
-                }
-                for(var i=0;i<8;i++)Box(-124+i*32,77,22,17,top);
-            }
+            if(orientation==90){Illustration(mould=="wall"?4:5,-42,-105,84,295);return;}
+            Illustration(mould=="wall"?2:3,-138,-7,276,mould=="wall"?83:106);
         }
+
         private void DrawTip()
         {
             var t=Mathf.Clamp01(progress);var h=capacity==3?75f:55f;
@@ -225,22 +198,30 @@ namespace LittleWeeps.Client
         {var p=new Vector2[20];for(var i=0;i<p.Length;i++){var a=i*Mathf.PI*2/p.Length;p[i]=new Vector2(x+Mathf.Cos(a)*rx,y+Mathf.Sin(a)*ry);}CanPoly(at,angle,color,p);}
         private void WaterCan(Vector2 at,float angle)
         {
-            var blue=new Color(.36f,.67f,.87f);var start=mesh.currentVertCount;
-            // Open handle rather than painting a solid hole over the scenery.
-            for(var i=0;i<20;i++){
-                var a=i*Mathf.PI*2/20;
-                mesh.AddVert(at+Turn(new Vector2(-30+Mathf.Cos(a)*20,4+Mathf.Sin(a)*25),angle),blue,Vector2.zero);
-                mesh.AddVert(at+Turn(new Vector2(-30+Mathf.Cos(a)*12,4+Mathf.Sin(a)*17),angle),blue,Vector2.zero);
-            }
-            for(var i=0;i<20;i++){var next=(i+1)%20;mesh.AddTriangle(start+i*2,start+next*2,start+i*2+1);mesh.AddTriangle(start+i*2+1,start+next*2,start+next*2+1);}
-            CanPoly(at,angle,blue,new Vector2(-28,-22),new Vector2(24,-22),new Vector2(24,25),new Vector2(-28,25));
-            CanPoly(at,angle,blue,new Vector2(24,2),new Vector2(51,27),new Vector2(49,-5));
-            CanOval(at,angle,-2,25,25,8,new Color(.7f,.86f,.95f));
+            Illustration(8,at.x-50,at.y-25,100,80,angle,at);
         }
+
         private void Flag(float x,float y,float scale=1)
-        {Box(x-3*scale,y,6*scale,48*scale,new Color(.57f,.38f,.21f));Poly(new Color(.94f,.4f,.35f),new Vector2(x+3*scale,y+50*scale),new Vector2(x+40*scale,y+39*scale),new Vector2(x+3*scale,y+24*scale));}
+        {Illustration(10,x-5*scale,y,48*scale,55*scale,Mathf.Sin(presentationTime*2+x)*.025f,new Vector2(x,y));}
         private void Shell(float x,float y,float scale=1)
-        {Oval(x,y,25*scale,19*scale,new Color(1,.67f,.52f));for(var i=-2;i<=2;i++)Box(x+(i*7-1)*scale,y-8*scale,3*scale,20*scale,new Color(.82f,.43f,.33f));}
+        {Illustration(11,x-24*scale,y-13*scale,48*scale,38*scale);}
+        private void Illustration(int index,float x,float y,float width,float height,float angle=0,Vector2 pivot=default)
+        {
+            if(SandArt.Atlas==null)return;
+            var uv=SandArt.UV(index);var top=y+height;
+            if(y>ceiling)return;
+            if(top>ceiling){var fraction=(ceiling-y)/height;height*=fraction;uv.height*=fraction;}
+            var points=new[]{new Vector2(x,y),new Vector2(x+width,y),new Vector2(x+width,y+height),new Vector2(x,y+height)};
+            var tex=new[]{uv.min,new Vector2(uv.xMax,uv.yMin),uv.max,new Vector2(uv.xMin,uv.yMax)};
+            var tint=color;if(kind=="mould-tip" && tipOutcome=="reveal")tint.a*=1-Mathf.SmoothStep(0,1,(progress-.82f)/.18f);
+            var first=mesh.currentVertCount;
+            for(var i=0;i<4;i++){
+                var point=pivot+Turn(points[i]-pivot,angle);if(kind=="mould-icon")point.x+=wiggle;
+                if(transformingBucket)point=bucketAt+Turn(Vector2.Scale(point,bucketScale),bucketAngle);
+                mesh.AddVert(point,tint,tex[i]);
+            }
+            mesh.AddTriangle(first,first+1,first+2);mesh.AddTriangle(first,first+2,first+3);
+        }
         private void Box(float x,float y,float w,float h,Color c)=>Poly(c,new Vector2(x,y),new Vector2(x+w,y),new Vector2(x+w,y+h),new Vector2(x,y+h));
         private void Oval(float x,float y,float rx,float ry,Color c){var p=new Vector2[20];for(var i=0;i<p.Length;i++){var a=i*Mathf.PI*2/p.Length;p[i]=new Vector2(x+Mathf.Cos(a)*rx,y+Mathf.Sin(a)*ry);}Poly(c,p);}
         private void Poly(Color c,params Vector2[] points)
@@ -256,7 +237,7 @@ namespace LittleWeeps.Client
                 }
                 points=clipped.ToArray();
             }
-            var start=mesh.currentVertCount;foreach(var p in points)mesh.AddVert(p,c,Vector2.zero);for(var i=1;i<points.Length-1;i++)mesh.AddTriangle(start,start+i,start+i+1);
+            var start=mesh.currentVertCount;foreach(var p in points)mesh.AddVert(p,c,SandArt.Atlas==null?Vector2.zero:SandArt.Ink);for(var i=1;i<points.Length-1;i++)mesh.AddTriangle(start,start+i,start+i+1);
         }
     }
 }

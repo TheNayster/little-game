@@ -208,5 +208,12 @@ class Program
   scoop.Observe(state,true,.1f);water.Observe(state,true,.1f);Need(scoop.Events[4]==1 && water.Events[4]==1,"feedback beyond fixed four");
   state.moulds[4].scoops=3;tip.Observe(state,true,.1f);tip.Cue(4,state.round,"dry");Need(tip.Outcome(4)=="dry" && tip.Events[4]==0,"dry cue no reveal");state.moulds[4].built=true;tip.Observe(state,true,.1f);Need(tip.Outcome(4)=="reveal" && tip.Events[4]==1,"authoritative reveal");
   tip.Observe(state,false,.1f);tip.Observe(state,true,.1f);Need(tip.Remaining(4)==0,"reconnect no reveal replay");
+  // Owner removal can shift a wetter/fuller neighbour into this array slot.
+  // A different stable ID is a baseline, never a scoop or pour on that object.
+  var shifted=new SandpitState{round=1,moulds=new[]{new SandMould{id="a",capacity=3},new SandMould{id="b",capacity=3,scoops=3,wet=true}}};
+  scoop=new SandScoopFeedback();water=new SandWaterFeedback();scoop.Observe(shifted,true,.1f);water.Observe(shifted,true,.1f);
+  shifted.moulds=shifted.moulds.Skip(1).ToArray();scoop.Observe(shifted,true,.1f);water.Observe(shifted,true,.1f);
+  Need(scoop.Events.All(n=>n==0) && scoop.Remaining(0)==0,"removed neighbour cannot replay scoop");
+  Need(water.Events.All(n=>n==0) && water.Remaining(0)==0,"removed neighbour cannot replay water");
  }
 }

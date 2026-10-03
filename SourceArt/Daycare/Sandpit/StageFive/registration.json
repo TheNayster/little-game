@@ -1,0 +1,109 @@
+{
+  "origin": "Built-in imagegen, original project-generated artwork; not a parent-approved target",
+  "atlasSize": [
+    1244,
+    1264
+  ],
+  "rectangles": {
+    "round": [
+      43,
+      68,
+      242,
+      239
+    ],
+    "square": [
+      330,
+      78,
+      264,
+      228
+    ],
+    "wall": [
+      601,
+      135,
+      295,
+      166
+    ],
+    "gate": [
+      900,
+      104,
+      342,
+      205
+    ],
+    "wall-90": [
+      29,
+      397,
+      257,
+      234
+    ],
+    "gate-90": [
+      318,
+      388,
+      288,
+      235
+    ],
+    "bucket": [
+      640,
+      375,
+      258,
+      257
+    ],
+    "scoop": [
+      969,
+      345,
+      242,
+      303
+    ],
+    "water": [
+      24,
+      697,
+      289,
+      243
+    ],
+    "tip": [
+      307,
+      677,
+      294,
+      267
+    ],
+    "flag": [
+      640,
+      669,
+      275,
+      278
+    ],
+    "shell": [
+      936,
+      704,
+      272,
+      246
+    ],
+    "pebble": [
+      60,
+      1035,
+      217,
+      172
+    ],
+    "door": [
+      350,
+      973,
+      240,
+      234
+    ],
+    "window": [
+      646,
+      984,
+      246,
+      225
+    ],
+    "sand-mound": [
+      920,
+      1063,
+      306,
+      151
+    ]
+  },
+  "coordinates": "top-left source pixels; runtime converts to UV; never saved placement coordinates",
+  "runtimePit": "pit-final.png",
+  "filter": "bilinear; clamp; no mipmaps; alpha; no texture compression",
+  "renderer": "SandArt plus SandShape; one shared cached texture with 4x4 white ink patch, separate per-object quads"
+}

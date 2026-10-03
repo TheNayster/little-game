@@ -137,7 +137,7 @@ namespace LittleWeeps.Client
             sandToyRoot.gameObject.SetActive(joined && g.toy.placed);
             if(sandToyReaction<0 || !joined)sandToyReaction=g.toy.reaction;
             if(g.toy.reaction!=sandToyReaction){sandToyReaction=g.toy.reaction;sandToyBounce=Time.unscaledTime+.8f;}
-            var bounce=Mathf.Max(0,sandToyBounce-Time.unscaledTime);sandToyRoot.anchoredPosition=SandPoint(g.toy.x,g.toy.y)+new Vector2(0,Mathf.Sin(bounce/.8f*Mathf.PI)*16);sandToyPicture.uvRect=new Rect(bounce>0?.5f:0,0,.25f,.5f);sandToyPicture.rectTransform.anchoredPosition=new Vector2(0,105*(DinosaurLandmarks.Get("tyrannosaurus",bounce>0?6:4).z-.5f));
+            var bounce=Mathf.Max(0,sandToyBounce-Time.unscaledTime);sandToyRoot.anchoredPosition=SandPoint(g.toy.x,g.toy.y);sandToyPicture.uvRect=new Rect(bounce>0?.5f:0,0,.25f,.5f);sandToyPicture.rectTransform.anchoredPosition=new Vector2(0,105*(DinosaurLandmarks.Get("tyrannosaurus",bounce>0?6:4).z-.5f)+Mathf.Sin(bounce/.8f*Mathf.PI)*16);
             if(g.toy.placed){
                 // The visitor belongs at its saved ground depth, not above every
                 // castle face. Slot/placement previews remain in front of it.

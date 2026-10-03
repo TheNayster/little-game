@@ -1,0 +1,42 @@
+[
+  {
+    "file": "fx-decorate.wav",
+    "sampleRate": 22050,
+    "channels": 1,
+    "seconds": 0.22997732426303855,
+    "peak": 0.0411376953125,
+    "rms": 0.012512084401684536,
+    "sha256": "1344d1630f29ec66eb38fa65c81e2856ee8d238ca321e006327272b3bb2b9036",
+    "listened": false
+  },
+  {
+    "file": "fx-pour.wav",
+    "sampleRate": 22050,
+    "channels": 1,
+    "seconds": 0.72,
+    "peak": 0.215789794921875,
+    "rms": 0.04425838992592105,
+    "sha256": "cf2d3401f78a63d9efa28316fc6710765721ef630e265324e91f99705448c6fd",
+    "listened": false
+  },
+  {
+    "file": "fx-reveal.wav",
+    "sampleRate": 22050,
+    "channels": 1,
+    "seconds": 0.6499773242630386,
+    "peak": 0.09320068359375,
+    "rms": 0.01948675542149798,
+    "sha256": "2820aca824479f25cb57a3470d3dbc67351be7041342ad82e27219b25b0725ae",
+    "listened": false
+  },
+  {
+    "file": "fx-scoop.wav",
+    "sampleRate": 22050,
+    "channels": 1,
+    "seconds": 0.38,
+    "peak": 0.239990234375,
+    "rms": 0.04984863135499052,
+    "sha256": "f34e8863daab8828a97f5b7a21ea941bd95bbf59759c858d3f2e9729c25acb81",
+    "listened": false
+  }
+]
