@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "candidate": "P4",
+  "checks": [
+    "Real taps place at all four edge cells; rim and cast do not intercept",
+    "Empty actual tap loop; early Water; underfilled retention; Scoop/Water/Tip; combined decorations",
+    "Behind/in-front placement through continuous inverse input map",
+    "Phone aspect actual taps, controls and gate; tablet captures",
+    "No runtime exceptions"
+  ],
+  "widths": [
+    1024,
+    1280
+  ],
+  "heights": [
+    768,
+    591
+  ],
+  "realNativePlayers": 1,
+  "syntheticSessionProfiles": 4,
+  "productionSceneUnchanged": true,
+  "focusedRuleChecks": 410,
+  "unchangedCoreFiles": 132,
+  "projectionRoundTrips": 13965,
+  "referenceSha256": "182a81185213cb582d9804d5e24ee1160be8380f4c43752773a9136307418621",
+  "sourceInputs": 2315,
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "projectionSamples": 13965
+  },
+  "recording": {
+    "frames": 156,
+    "durationSeconds": 24.9434719,
+    "actualTimestamped": true,
+    "silent": true
+  },
+  "parentVisualAcceptance": false,
+  "physicalDevices": "deferred"
+}
