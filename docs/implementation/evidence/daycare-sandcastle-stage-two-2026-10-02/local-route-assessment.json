@@ -1,0 +1,84 @@
+{
+  "scope": "Stage 2 local execution route assessment; physical touch comfort/performance deferred",
+  "sourceCommit": "3ebbd58840e4deec378e585edb4ecc2a9e7fc326",
+  "subsequentCommit": "ee52179b889935af80fb75bfdd6171d86695c1fc",
+  "subsequentRuntimeSourceChanges": false,
+  "unity": "6000.3.24f1",
+  "testFramework": "1.6.0",
+  "editor": {
+    "attempt": "-batchmode -runTests -testPlatform EditMode -testFilter LittleWeeps.SandcastleStageTwo",
+    "capabilityProbeNotExistingFixtureClaim": true,
+    "exitCode": 1,
+    "testResultsXmlExists": false,
+    "privateLog": "LocalData/Verification/SandcastleLocalRoutes-20261003-041448/editor-editmode.log",
+    "logSha256": "acf7a2e8bead36162caa36b3f67eb99275040cc579e2457a739336f3e3c4a95b",
+    "codeIntegrityEvent": 3077,
+    "codeIntegrityRecords": [50624, 50629],
+    "failureBeforeTestExecution": "ScriptCompilationBuildProgram cannot load Bee.Tools.dll: 0x800711C7"
+  },
+  "androidBuild": {
+    "attempt": "Tools/Build/Build-AndroidLAN.ps1 -BuildNumber 425",
+    "matchingAndroidModuleAndRegisteredToolchainInstalled": true,
+    "exitCode": 1,
+    "apkExists": false,
+    "privateLog": "LocalData/Logs/build-android-lan-425.log",
+    "logSha256": "808c50777f003dab205b4d537a3095db7bced8373c16e074ec0d8c57a4ae812b",
+    "codeIntegrityEvent": 3077,
+    "codeIntegrityRecords": [50662, 50667],
+    "failureBeforeBuildMethodExecution": "ScriptCompilationBuildProgram cannot load Bee.Tools.dll: 0x800711C7"
+  },
+  "blockedComponent": {
+    "assembly": "C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Data/Tools/BuildPipeline/Bee.Tools.dll",
+    "loader": "C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Data/netcorerun/netcorerun.exe",
+    "policy": "VerifiedAndReputableDesktop",
+    "policyGuid": "{0283ac0f-fff1-49ae-ada1-8a933130cad6}",
+    "authenticode": "NotSigned",
+    "sha256": "86be6887c9d269329bc4546143d354e0c91f426ad552da6b2defdc67326151cf"
+  },
+  "emulator": {
+    "installedVersion": "37.1.11.0",
+    "acceleration": "WHPX installed and usable",
+    "avd": "LittleWeeps_G3_AndroidLAN",
+    "avdHome": "LocalData/AndroidAVD",
+    "serial": "emulator-5580",
+    "flags": ["-read-only", "-no-snapshot", "-no-window", "-no-audio"],
+    "bootCompleted": true,
+    "api": 35,
+    "abis": ["x86_64", "arm64-v8a"],
+    "nativeBridge": "libndk_translation.so",
+    "pageSize": 16384,
+    "display": "1280x800",
+    "density": 160,
+    "gameInstalledOrLaunched": false,
+    "shutdown": "adb -s emulator-5580 emu kill"
+  },
+  "testCompatibility": {
+    "preparedRules": "net9.0 console executable using System.Text.Json; not an unchanged UTF fixture",
+    "unityJsonHelper": "SandpitJsonTests.cs:12 assumes four fresh moulds; NewSandpit now creates an empty array; fixture update required",
+    "utfCompatibleStageTwoFixturePrepared": false,
+    "multiplayerPlayModePackageConfigured": false,
+    "nativeDriver": "Tools/Verification/Test-DaycareSandpit.py; Windows native client/server, schema50/content68, matching current-source hashes",
+    "wsl": "Ubuntu-24.04 available; no dotnet on PATH",
+    "docker": "CLI/context installed; desktop-linux daemon unavailable (dockerDesktopLinuxEngine named pipe absent); no project test-container workflow found",
+    "mac": "Previously checked enrolled Mac lacks dotnet on PATH/standard paths and Unity in normal install locations"
+  },
+  "acceptance": {
+    "gameplayVerified": false,
+    "rulesMigrationVerified": false,
+    "multiplayerVerified": false,
+    "actualGameClients": 0,
+    "actualTestServers": 0,
+    "stageTwoEditorEmulatorLayoutInputVerified": false,
+    "emulatorBootCapabilityVerified": true,
+    "physicalDeviceChecks": "deferred; not a progression gate",
+    "stageThreeStarted": false
+  },
+  "preservation": {
+    "liveServerTouched": false,
+    "realSavesTouched": false,
+    "appsInstalledOrUpdated": false,
+    "securityChanged": false,
+    "toolchainsInstalled": false,
+    "productionOrTestSourceChanged": false
+  }
+}
