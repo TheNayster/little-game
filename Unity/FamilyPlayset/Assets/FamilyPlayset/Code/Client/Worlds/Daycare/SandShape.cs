@@ -86,6 +86,7 @@ namespace LittleWeeps.Client
             if(built){
                 var h=capacity==3?105:75;ceiling=towerReveal>=1?float.PositiveInfinity:towerReveal*(h+22);
                 Poly(damp,new Vector2(-48,0),new Vector2(-35,h),new Vector2(35,h),new Vector2(48,0));
+                Oval(0,3,48,10,damp);Oval(0,h,35,11,sand);
                 Box(-44,0,88,8,new Color(.72f,.55f,.29f));
                 for(var i=0;i<3;i++)Box(-38+i*27,h-3,22,22,sand);
                 Box(-10,5,20,30,new Color(.57f,.41f,.23f));Oval(0,35,10,10,new Color(.57f,.41f,.23f));
@@ -161,6 +162,7 @@ namespace LittleWeeps.Client
         private void Oval(float x,float y,float rx,float ry,Color c){var p=new Vector2[20];for(var i=0;i<p.Length;i++){var a=i*Mathf.PI*2/p.Length;p[i]=new Vector2(x+Mathf.Cos(a)*rx,y+Mathf.Sin(a)*ry);}Poly(c,p);}
         private void Poly(Color c,params Vector2[] points)
         {
+            c*=color;
             if(kind=="mould-tip" && tipOutcome=="reveal")c.a*=1-Mathf.SmoothStep(0,1,(progress-.82f)/.18f);
             if(transformingBucket){for(var i=0;i<points.Length;i++)points[i]=bucketAt+Turn(Vector2.Scale(points[i],bucketScale),bucketAngle);}
             if(!float.IsPositiveInfinity(ceiling)){

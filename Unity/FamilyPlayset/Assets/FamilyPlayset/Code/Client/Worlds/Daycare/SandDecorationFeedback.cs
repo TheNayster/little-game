@@ -8,8 +8,8 @@ namespace LittleWeeps.Client
     public sealed class SandDecorationFeedback
     {
         public const float Duration=1f, WiggleDuration=.4f;
-        private readonly int[] previous=new int[4], values=new int[4], events=new int[4];
-        private readonly float[] remaining=new float[4], wiggles=new float[2];
+        private readonly int[] previous=new int[DaycareSandpit.MaxPieces], values=new int[DaycareSandpit.MaxPieces], events=new int[DaycareSandpit.MaxPieces];
+        private readonly float[] remaining=new float[DaycareSandpit.MaxPieces], wiggles=new float[2];
         private int round=-1;private bool observing;
         public int[] Events=>(int[])events.Clone();
         public float Remaining(int i)=>remaining[i];
@@ -21,9 +21,9 @@ namespace LittleWeeps.Client
         {
             var baseline=!observing || state==null || round!=state.round || !active;
             for(var i=0;i<2;i++)wiggles[i]=baseline?0:Math.Max(0,wiggles[i]-elapsed);
-            for(var i=0;i<4;i++){
+            for(var i=0;i<DaycareSandpit.MaxPieces;i++){
                 remaining[i]=baseline?0:Math.Max(0,remaining[i]-elapsed);
-                var m=state?.moulds[i];var current=m!=null && m.built?m.decoration:0;
+                var m=state!=null && i<state.moulds.Length?state.moulds[i]:null;var current=m!=null && m.built?m.decoration:0;
                 if(!baseline && current>0 && current!=previous[i]){values[i]=current;remaining[i]=Duration;events[i]++;}
                 if(current==0 || current!=values[i])remaining[i]=0;
                 previous[i]=current;

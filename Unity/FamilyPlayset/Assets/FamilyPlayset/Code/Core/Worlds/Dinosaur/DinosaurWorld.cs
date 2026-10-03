@@ -45,6 +45,7 @@ namespace LittleWeeps.Core
         public DinosaurWorldState ReadDinosaurWorld()=>state.dinosaurWorld?.Copy();
         public static GameWorld WithDinosaurWorld(GameWorld world)
         {
+            world=WithSandpitPieces(world);
             // Upgrade a ride-only checkpoint before another module raises its
             // schema above the old care boundary. Retain the animals and RNG.
             if(world.state.dinosaurWorld!=null && (world.state.dinosaurWorld.care==null || world.state.dinosaurWorld.care.Length==0)){

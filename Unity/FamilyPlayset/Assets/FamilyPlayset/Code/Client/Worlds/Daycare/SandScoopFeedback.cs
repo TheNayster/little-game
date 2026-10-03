@@ -7,9 +7,9 @@ namespace LittleWeeps.Client
     public sealed class SandScoopFeedback
     {
         public const float Duration = .75f;
-        private readonly int[] counts = new int[4];
-        private readonly float[] remaining = new float[4];
-        private readonly int[] events = new int[4];
+        private readonly int[] counts = new int[DaycareSandpit.MaxPieces];
+        private readonly float[] remaining = new float[DaycareSandpit.MaxPieces];
+        private readonly int[] events = new int[DaycareSandpit.MaxPieces];
         private int round = -1;
         private bool observing;
         public int[] Events => (int[])events.Clone();
@@ -17,10 +17,10 @@ namespace LittleWeeps.Client
         public void Observe(SandpitState state, bool active, float elapsed)
         {
             var baseline = !observing || state == null || round != state.round || !active;
-            for (var i = 0; i < 4; i++)
+            for (var i = 0; i < DaycareSandpit.MaxPieces; i++)
             {
                 remaining[i] = baseline ? 0 : Math.Max(0, remaining[i] - elapsed);
-                var count = state == null ? 0 : state.moulds[i].scoops;
+                var count = state == null || i>=state.moulds.Length ? 0 : state.moulds[i].scoops;
                 if (!baseline && count > counts[i])
                 {
                     remaining[i] = Duration;

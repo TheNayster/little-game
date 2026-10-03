@@ -2,52 +2,113 @@ using System;
 using System.Linq;
 using System.Text.Json;
 using LittleWeeps.Core;
-class Program {
+using LittleWeeps.Client;
+
+class Program
+{
  static GameWorld w;static FamilySession family;
  static readonly JsonSerializerOptions options=new JsonSerializerOptions{IncludeFields=true};
- static void Need(bool v,string why){if(!v)throw new Exception(why);}
- static string Checkpoint()=>JsonSerializer.Serialize(w.Snapshot(),options);
- static SoloCommand SandCommand(int a,string op,int index,int round){var p=w.ReadPlayer("p"+a);return new SoloCommand{actor=p.id,zone=p.zone,visit=p.visit,requestId=Guid.NewGuid().ToString("N"),expectedRevision=w.Revision,action=SoloAction.Sandpit,value=op,target=DaycareSandpit.Target(index,round)};}
- static SoloResult Cmd(int a,SoloAction action,string value="",string target="",float x=0,float y=0){var p=w.ReadPlayer("p"+a);return family.Submit((ulong)a,new SoloCommand{actor=p.id,zone=p.zone,visit=p.visit,requestId=Guid.NewGuid().ToString("N"),expectedRevision=w.Revision,action=action,value=value,target=target,x=x,y=y});}
- static void Do(int a,string op,int i){var at=DaycareSandpit.Place(i);Need(Cmd(a,SoloAction.Move,x:at.X,y:at.Y).Accepted,"move");var r=family.Submit((ulong)a,SandCommand(a,op,i,w.ReadSandpit().round));Need(r.Accepted,op+" "+r.Outcome);GameWorld.Validate(w.Snapshot());}
- static void Main(string[] args){
-  w=GameWorld.WithDinosaurWorld(GameWorld.Create("p1","p2","p3","p4"));var old=w.Snapshot();old.schema=45;old.sandpit=null;var id=old.worldId;var prior=old.kingdom.npcCast.ToArray();w=GameWorld.WithDinosaurWorld(GameWorld.Restore(old));Need(w.Schema==WorldLayout.Schema && w.Snapshot().worldId==id && w.ReadKingdom().npcCast.SequenceEqual(prior),"additive45 migration");family=new FamilySession(w);
+ static int checks;
+ static void Need(bool v,string why){checks++;if(!v)throw new Exception(why);}
+ static string Json(object value)=>JsonSerializer.Serialize(value,options);
+ static SoloCommand Command(int a,SoloAction action,string op="",string target="",float x=0,float y=0,string item="")
+ {var p=w.ReadPlayer("p"+a);return new SoloCommand{actor=p.id,zone=p.zone,visit=p.visit,requestId=Guid.NewGuid().ToString("N"),expectedRevision=w.Revision,action=action,value=op,target=target,x=x,y=y,item=item};}
+ static SoloResult Send(int a,SoloCommand command){var r=family.Submit((ulong)a,command);GameWorld.Validate(w.Snapshot());return r;}
+ static SoloResult Cmd(int a,SoloAction action,string op="",string target="",float x=0,float y=0,string item="")=>Send(a,Command(a,action,op,target,x,y,item));
+ static void Move(int a,SandMould m){var at=DaycareSandpit.Work(m);Need(Cmd(a,SoloAction.Move,x:at.X,y:at.Y).Accepted,"reachable work");}
+ static SoloCommand ToolCommand(int a,string op,string id,int epoch=-1)=>Command(a,SoloAction.Sandpit,op,DaycareSandpit.Target(id,epoch<0?w.ReadSandpit().round:epoch));
+ static SoloResult Tool(int a,string op,string id){Move(a,w.ReadSandpit().moulds.Single(m=>m.id==id));return Send(a,ToolCommand(a,op,id));}
+ static string Place(int a,int col,int row)
+ {var at=DaycareSandpit.Cell(col,row);var c=Command(a,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"round");Need(Send(a,c).Accepted,"place");return "p-"+c.requestId;}
+ static void RetryConflict(int a,SoloCommand captured,Action siblingAction,bool shouldAccept,string outcome=null)
+ {
+  var queue=new WorldCommandQueue();SoloResult reply=default;Need(queue.Enqueue(captured,r=>reply=r),"enqueue");
+  var sent=queue.Take(w.Revision);siblingAction();var conflict=Send(a,sent);Need(!conflict.Accepted && conflict.Outcome=="stale-revision","real revision conflict");
+  queue.Complete(sent.requestId,conflict);var retry=queue.Take(w.Revision);
+  Need(retry.target==captured.target && retry.x==captured.x && retry.y==captured.y && retry.requestId==captured.requestId,"retry target/location/identity preserved");
+  var result=Send(a,retry);Need(result.Accepted==shouldAccept && (outcome==null || result.Outcome==outcome),"retry result "+result.Outcome);queue.Complete(retry.requestId,result);Need(!queue.Busy && reply.Accepted==shouldAccept,"queue completes");
+ }
+ static void Setup()
+ {
+  w=GameWorld.WithDinosaurWorld(GameWorld.Create("p1","p2","p3","p4"));family=new FamilySession(w);
   for(var i=1;i<=4;i++){Need(family.Attach((ulong)i,"p"+i,out _),"attach");Need(Cmd(i,SoloAction.Travel,i==4?"park":"daycare").Accepted,"travel");}
-  Need(Cmd(1,SoloAction.Sandpit,"start").Accepted,"start");var g=w.ReadSandpit();var cast=g.friends.ToArray();Need(g.members.Count(m=>m.attending)==3,"common start");
-  // There is no personal bucket lock: two children can fill the same mould.
-  Do(1,"scoop",0);Do(2,"scoop",0);Do(1,"tip",0);Need(w.ReadSandpit().moulds[0].scoops==0 && !w.ReadSandpit().moulds[0].built,"dry sand crumbles");
-  Need(Cmd(4,SoloAction.Travel,"daycare").Accepted,"late travel");family.AdvanceIdle(.1,out _);Need(w.ReadSandpit().members.All(m=>m.attending) && w.ReadSandpit().friends.SequenceEqual(cast),"late join same lesson");
-  for(var i=0;i<4;i++){for(var n=0;n<DaycareSandpit.Capacity(i);n++)Do(i+1,"scoop",i);Do(i+1,"water",i);Do(i+1,"tip",i);Do(i+1,i%2==0?"flag":"shell",i);}
-  for(var i=0;i<400 && w.ReadSandpit().phase<3;i++)family.AdvanceIdle(.1,out _);Need(w.ReadSandpit().phase==3,"one common completed castle");
-  Need(Cmd(2,SoloAction.Sandpit,"leave").Accepted,"leave");family.AdvanceIdle(.1,out _);Need(w.ReadSandpit().members.Count(m=>m.attending)==3 && w.ReadSandpit().moulds.All(m=>m.built),"independent explicit leave");Need(family.Detach(3),"detach");Need(w.ReadSandpit().members.Count(m=>m.attending)==2,"independent disconnect");Need(family.Attach(3,"p3",out _),"reconnect");Need(w.ReadSandpit().members.Single(m=>m.actor=="p3").attending,"reconnect resumes");
-  var saved=JsonSerializer.Deserialize<SoloSnapshot>(Checkpoint(),options);w=GameWorld.Restore(saved);Need(w.ReadSandpit().friends.SequenceEqual(cast) && w.ReadSandpit().moulds.All(m=>m.built && m.decoration>0),"saved castle and cast");family=new FamilySession(w);for(var i=1;i<=4;i++)family.Attach((ulong)i,"p"+i,out _);
-  // Capture intent before a sibling's reset. Queue.Take may rebase only its revision.
-  var stale=new[]{"scoop","water","tip","flag","shell"}.Select(op=>SandCommand(2,op,0,w.ReadSandpit().round)).ToArray();
-  var queue=new WorldCommandQueue();SoloResult staleResult=default;Need(queue.Enqueue(stale[0],r=>staleResult=r),"queue old intent");var inFlight=queue.Take(w.Revision);var oldRevision=inFlight.expectedRevision;var oldTarget=inFlight.target;
-  Need(Cmd(1,SoloAction.Sandpit,"replay").Accepted,"new lesson");g=w.ReadSandpit();Need(g.round==2 && g.moulds.All(m=>!m.built && !m.wet && m.scoops==0) && !g.friends.Intersect(cast).Any(),"deliberate reset with different NPCs");GameWorld.Validate(w.Snapshot());
-  var before=Checkpoint();var conflict=family.Submit(2,inFlight);Need(!conflict.Accepted && conflict.Outcome=="stale-revision","reset invalidates old revision");Need(queue.Complete(inFlight.requestId,conflict),"queue conflict");
-  var retry=queue.Take(w.Revision);Need(retry.requestId==inFlight.requestId && retry.target==oldTarget && retry.expectedRevision!=oldRevision,"retry retains captured lesson and identity");
-  var rejected=family.Submit(2,retry);Need(!rejected.Accepted && rejected.Outcome=="old-sandpit-lesson","old scoop rejected after rebase");queue.Complete(retry.requestId,rejected);Need(!queue.Busy && !staleResult.Accepted && staleResult.Outcome=="old-sandpit-lesson" && Checkpoint()==before,"stale retry changes no checkpoint state");
-  foreach(var command in stale.Skip(1)){command.expectedRevision=w.Revision;var result=family.Submit(2,command);Need(!result.Accepted && result.Outcome=="old-sandpit-lesson" && Checkpoint()==before,"reject old "+command.value+" atomically");}
-  // Untagged/malformed/future targets cannot bypass the lesson guard.
-  foreach(var target in new[]{"0","0@","0@0","0@3","4@2","0@2@2"}){var command=SandCommand(2,"water",0,2);command.target=target;var result=family.Submit(2,command);Need(!result.Accepted && result.Outcome=="old-sandpit-lesson" && Checkpoint()==before,"reject target "+target);}
-  var point=DaycareSandpit.Place(0);Need(Cmd(2,SoloAction.Move,x:point.X,y:point.Y).Accepted,"approach current mould");
-  SoloResult validResult=default;var valid=SandCommand(2,"water",0,g.round);Need(queue.Enqueue(valid,r=>validResult=r),"queue current water");var sent=queue.Take(w.Revision);
-  Need(Cmd(1,SoloAction.Move,x:DaycareSandpit.Place(1).X,y:DaycareSandpit.Place(1).Y).Accepted,"sibling creates revision conflict");conflict=family.Submit(2,sent);Need(!conflict.Accepted && conflict.Outcome=="stale-revision","current action conflicts");queue.Complete(sent.requestId,conflict);
-  retry=queue.Take(w.Revision);Need(retry.target==DaycareSandpit.Target(0,g.round) && retry.requestId==valid.requestId,"current retry keeps lesson");var accepted=family.Submit(2,retry);Need(accepted.Accepted && !accepted.Duplicate && w.ReadSandpit().moulds[0].wet,"current-round retry succeeds");queue.Complete(retry.requestId,accepted);Need(validResult.Accepted && !queue.Busy,"valid callback finishes");
-  before=Checkpoint();var duplicate=family.Submit(2,retry);Need(duplicate.Accepted && duplicate.Duplicate && Checkpoint()==before,"accepted duplicate has no mutation");
-  Do(3,"scoop",1);var construction=JsonSerializer.Serialize(w.ReadSandpit().moulds,options);var currentCast=w.ReadSandpit().friends.ToArray();
-  Need(Cmd(2,SoloAction.Sandpit,"leave").Accepted,"leave second lesson");family.AdvanceIdle(.1,out _);Need(w.ReadSandpit().round==2 && w.ReadSandpit().members.Count(m=>m.attending)==3 && JsonSerializer.Serialize(w.ReadSandpit().moulds,options)==construction && w.ReadSandpit().friends.SequenceEqual(currentCast),"departure preserves new lesson and sibling work");
-  Need(Cmd(2,SoloAction.Travel,"park").Accepted && Cmd(2,SoloAction.Travel,"daycare").Accepted,"return to second lesson");family.AdvanceIdle(.1,out _);Need(w.ReadSandpit().members.All(m=>m.attending) && w.ReadSandpit().round==2 && w.ReadSandpit().friends.SequenceEqual(currentCast),"return retains current lesson");
-  for(var i=0;i<4;i++){while(w.ReadSandpit().moulds[i].scoops<DaycareSandpit.Capacity(i))Do(i+1,"scoop",i);Do(i+1,"water",i);Do(i+1,"tip",i);Do(i+1,i%2==0?"shell":"flag",i);}
-  for(var i=0;i<400 && w.ReadSandpit().phase<3;i++)family.AdvanceIdle(.1,out _);Need(w.ReadSandpit().phase==3,"current lesson completes normally");Need(Cmd(1,SoloAction.Sandpit,"replay").Accepted,"third lesson");
-  before=Checkpoint();duplicate=family.Submit(2,retry);Need(duplicate.Accepted && duplicate.Duplicate && Checkpoint()==before,"old accepted receipt remains duplicate after reset");GameWorld.Validate(w.Snapshot());
-  Console.WriteLine("PASS: four-profile shared building, late join, independent leave/disconnect/reconnect, dry/wet/decorations, schema45 migration and JSON retention.");
-  Console.WriteLine("PASS: all five stale operations rejected without checkpoint mutation; malformed/missing/future round rejected; actual queue revision rebase preserves captured round; current retry and duplicate succeed; later-reset duplicate cannot mutate the new lesson.");
-  ScoopFeedbackChecks.Run();
-  WaterChecks.Run();
-  TipChecks.Run();
-  DecorationChecks.Run();
-  if(args.Length>0)ClientIntentChecks.Run(args[0]);
+  Need(Cmd(1,SoloAction.Sandpit,"start").Accepted,"start");
+ }
+ static void Main()
+ {
+  Setup();Need(w.ReadSandpit().moulds.Length==0 && w.ReadSandpit().members.Count(m=>m.attending)==3,"empty shared creative start");
+  var a=Place(1,0,0);var b=Place(2,3,1);var cast=w.ReadSandpit().friends.ToArray();
+  Need(Tool(1,"water",a).Accepted && Tool(2,"water",a).Accepted,"early redundant water");
+  var before=Json(w.ReadSandpit().moulds);
+  var under=Tool(1,"tip",a);Need(!under.Accepted && under.Outcome=="fill-bucket-first" && Json(w.ReadSandpit().moulds)==before,"underfilled no progress loss");
+  Move(1,w.ReadSandpit().moulds[0]);Move(2,w.ReadSandpit().moulds[0]);
+  RetryConflict(2,ToolCommand(2,"scoop",a),()=>Need(Send(1,ToolCommand(1,"scoop",a)).Accepted,"sibling scoop"),true);
+  Need(Tool(3,"scoop",a).Accepted && w.ReadSandpit().moulds[0].scoops==3,"three shared scoops");
+  Need(!Tool(2,"scoop",a).Accepted && w.ReadSandpit().moulds[0].scoops==3,"bounded fill");
+  Move(1,w.ReadSandpit().moulds[0]);Move(2,w.ReadSandpit().moulds[0]);
+  RetryConflict(2,ToolCommand(2,"tip",a),()=>Need(Send(1,ToolCommand(1,"tip",a)).Accepted,"first tip"),false,"tower-built");
+  Need(w.ReadSandpit().moulds.Count(m=>m.built)==1,"one competing tip result");
+  var c=Place(1,5,2);Need(w.ReadSandpit().moulds[0].built && w.ReadSandpit().moulds.Length==3 && w.ReadSandpit().phase==1,"another piece during demo without restart");
+  for(var n=0;n<3;n++)Need(Tool(2,"scoop",b).Accepted,"dry scoops");
+  before=Json(w.ReadSandpit().moulds);var dry=Tool(2,"tip",b);
+  Need(!dry.Accepted && dry.Outcome=="add-water-first" && Json(w.ReadSandpit().moulds)==before,"dry retains full fill");
+  Need(Tool(3,"scoop",c).Accepted && Tool(2,"water",b).Accepted && Tool(2,"tip",b).Accepted,"different-piece work and Water Tip no refill");
+  var at=DaycareSandpit.Cell(7,3);var place=Command(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"round");
+  Need(Send(1,place).Accepted,"receipt placement");before=Json(w.Snapshot());var dup=Send(1,place);Need(dup.Accepted && dup.Duplicate && Json(w.Snapshot())==before,"placement duplicate no mutation");
+  at=DaycareSandpit.Cell(2,3);var racing=Command(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"round");
+  RetryConflict(1,racing,()=>Place(2,2,3),false,"sand-spot-taken");
+  Need(!w.ReadSandpit().moulds.Any(m=>m.id=="p-"+racing.requestId),"retry never silently relocates");
+  before=Json(w.ReadSandpit().moulds);
+  Need(!Cmd(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),5000,200,"round").Accepted && Json(w.ReadSandpit().moulds)==before,"outside atomic");
+  Need(!Send(1,ToolCommand(1,"water","missing")).Accepted,"unknown identity");
+  Need(!Send(1,ToolCommand(1,"water",c,w.ReadSandpit().round+1)).Accepted,"wrong epoch");
+  Need(Cmd(4,SoloAction.Travel,"daycare").Accepted,"late travel");family.AdvanceIdle(.1,out _);
+  Need(w.ReadSandpit().members.All(m=>m.attending) && w.ReadSandpit().friends.SequenceEqual(cast),"late joins existing creation");
+  before=Json(w.ReadSandpit().moulds);Need(Cmd(2,SoloAction.Sandpit,"leave").Accepted,"independent leave");family.AdvanceIdle(.1,out _);
+  Need(w.ReadSandpit().members.Count(m=>m.attending)==3 && Json(w.ReadSandpit().moulds)==before,"leave preserves siblings");
+  Need(family.Detach(3) && w.ReadSandpit().members.Count(m=>m.attending)==2,"independent disconnect");
+  Need(family.Attach(3,"p3",out _) && w.ReadSandpit().members.Single(m=>m.actor=="p3").attending,"reconnect");
+  var epoch=w.ReadSandpit().round;Need(Cmd(1,SoloAction.Sandpit,"replay").Accepted && w.ReadSandpit().round==epoch && Json(w.ReadSandpit().moulds)==before,"old replay resumes without clear");
+  // Fill all remaining free cells up to the configured cap, including unfinished pieces.
+  for(var row=0;row<4 && w.ReadSandpit().moulds.Length<16;row++)for(var col=0;col<8 && w.ReadSandpit().moulds.Length<16;col++){at=DaycareSandpit.Cell(col,row);if(DaycareSandpit.Placement(w.ReadSandpit(),at.X,at.Y)==null)Place(1,col,row);}
+  Need(w.ReadSandpit().moulds.Length==16,"cap reached");before=Json(w.ReadSandpit().moulds);
+  var full=Cmd(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",epoch),DaycareSandpit.Cell(7,0).X,130,"round");
+  Need(!full.Accepted && full.Outcome=="sandpit-full" && Json(w.ReadSandpit().moulds)==before,"cap preserves all work");
+  var reopened=GameWorld.WithDinosaurWorld(GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(Json(w.Snapshot()),options)));
+  Need(Json(reopened.ReadSandpit().moulds)==before && reopened.ReadSandpit().friends.SequenceEqual(cast),"current JSON reopen");
+  // Synthetic schema49 fixture: no real saves are opened or changed.
+  var fixture=w.Snapshot();fixture.schema=49;var legacy=fixture.sandpit;legacy.format=legacy.pieceLimit=legacy.scoopCapacity=0;legacy.round=7;legacy.phase=3;
+  legacy.moulds=new[]{
+   new SandMould{scoops=2,wet=true,built=true,decoration=1},
+   new SandMould{scoops=3,wet=true,built=true,decoration=2},
+   new SandMould{scoops=2,wet=true,built=true},
+   new SandMould{scoops=3,wet=true,built=true}};
+  GameWorld.Validate(fixture);var source=Json(fixture);var migrated=GameWorld.WithDinosaurWorld(GameWorld.Restore(fixture));Need(Json(fixture)==source,"migration input untouched");
+  var saved=migrated.ReadSandpit();Need(saved.round==7 && saved.phase==3 && Json(saved.members)==Json(legacy.members) && saved.friends.SequenceEqual(legacy.friends),"attendance cast epoch preserved");
+  for(var i=0;i<4;i++){var m=saved.moulds[i];Need(m.id=="legacy-"+i && string.IsNullOrEmpty(m.creator) && m.capacity==DaycareSandpit.Capacity(i) && m.x==DaycareSandpit.Place(i).X && m.y==440 && m.scoops==legacy.moulds[i].scoops && m.wet==legacy.moulds[i].wet && m.built && m.decoration==legacy.moulds[i].decoration,"legacy field retention "+i);}
+  Need(Json(migrated.Snapshot().players)==Json(fixture.players) && Json(migrated.Snapshot().toys)==Json(fixture.toys) && Json(migrated.Snapshot().kingdom)==Json(fixture.kingdom) && migrated.Snapshot().worldId==fixture.worldId,"unrelated world retained");
+  var twice=GameWorld.WithDinosaurWorld(GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(Json(migrated.Snapshot()),options)));Need(Json(twice.ReadSandpit())==Json(saved) && twice.Revision==migrated.Revision,"deterministic idempotent reopening");
+  // Partial legacy pieces, including original alternating scoop capacity.
+  fixture.schema=49;fixture.sandpit.phase=2;fixture.sandpit.moulds[0]=new SandMould{scoops=1};fixture.sandpit.moulds[1]=new SandMould{scoops=2,wet=true};
+  migrated=GameWorld.WithDinosaurWorld(GameWorld.Restore(fixture));Need(migrated.ReadSandpit().moulds[0].scoops==1 && !migrated.ReadSandpit().moulds[0].wet && !migrated.ReadSandpit().moulds[0].built && migrated.ReadSandpit().moulds[1].scoops==2 && migrated.ReadSandpit().moulds[1].wet && migrated.ReadSandpit().moulds[1].capacity==3,"partial legacy retention");
+  var invalid=twice.Snapshot();invalid.sandpit.moulds[1].id=invalid.sandpit.moulds[0].id;Throws(()=>GameWorld.Validate(invalid),"duplicate ids");
+  invalid=twice.Snapshot();invalid.sandpit.moulds[1].x=invalid.sandpit.moulds[0].x;Throws(()=>GameWorld.Validate(invalid),"overlapping saved footprint");
+  invalid=twice.Snapshot();invalid.sandpit.moulds[0].capacity=0;Throws(()=>GameWorld.Validate(invalid),"invalid capacity");
+  FeedbackChecks(twice.ReadSandpit());Need(DaycareSandpit.UsefulScoops(new SandMould{capacity=3,scoops=1},100)==2 && DaycareSandpit.UsefulScoops(new SandMould{capacity=3,scoops=3},100)==0,"retained useful bound");
+  Console.WriteLine("PASS "+checks+" focused checks: four-profile authority/revision queue, cooperative and competing tools, placement receipts/conflicts/cap, departure/late/reconnect, no replay clear, synthetic legacy and current reopening, bounded tap helper and baseline feedback. Native transport/rendering not exercised.");
+ }
+ static void Throws(Action action,string reason){try{action();throw new Exception("accepted "+reason);}catch(InvalidOperationException){checks++;}}
+ static void FeedbackChecks(SandpitState state)
+ {
+  var scoop=new SandScoopFeedback();var water=new SandWaterFeedback();var tip=new SandTipFeedback();
+  scoop.Observe(state,true,.1f);water.Observe(state,true,.1f);tip.Observe(state,true,.1f);
+  Need(scoop.Events.All(n=>n==0) && water.Events.All(n=>n==0) && tip.Events.All(n=>n==0),"late join no old feedback");
+  state=state.Copy();state.moulds=state.moulds.Concat(new[]{new SandMould{id="new-piece",capacity=3}}).ToArray();
+  scoop.Observe(state,true,.1f);water.Observe(state,true,.1f);tip.Observe(state,true,.1f);
+  state.moulds[4].scoops++;state.moulds[4].wet=true;
+  scoop.Observe(state,true,.1f);water.Observe(state,true,.1f);Need(scoop.Events[4]==1 && water.Events[4]==1,"feedback beyond fixed four");
+  state.moulds[4].scoops=3;tip.Observe(state,true,.1f);tip.Cue(4,state.round,"dry");Need(tip.Outcome(4)=="dry" && tip.Events[4]==0,"dry cue no reveal");state.moulds[4].built=true;tip.Observe(state,true,.1f);Need(tip.Outcome(4)=="reveal" && tip.Events[4]==1,"authoritative reveal");
+  tip.Observe(state,false,.1f);tip.Observe(state,true,.1f);Need(tip.Remaining(4)==0,"reconnect no reveal replay");
  }
 }
+
