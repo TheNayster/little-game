@@ -1,5 +1,7 @@
 # Project boundary
 
+- Organization Phase 1 completed October 2: the Beach development checkout is now `C:\Users\sephi\Desktop\Little weeps game\LocalData\Worktrees\Beach`, on `codex/beach-waves`. The former Desktop Beach folder is gone. Preserve its unfinished local work and editable assets; do not recreate the old folder. Current organization records are in this main checkout's `docs/project-organization-phase-plan-2026-10-02.md`; Phase 2 has not moved the current main checkout from `LocalData\DinosaurWorld` yet.
+
 - This game's GitHub home is the private repository `https://github.com/TheNayster/little-game`, with Git remote `origin`. Use this repository for this game's source/history; never substitute a repository from the unrelated old project. Keep credentials, signing material, generated builds and local saved worlds out of commits. Preserve Git LFS media when pushing or restoring.
 - Personal TV source videos belong in `Media/TV/`. Its contents are ignored except `README.md`; never force-add personal clips, thumbnails, subtitles or local catalogs. The separate generated foundation test clip remains tracked. Folder preparation does not mean the TV importer is implemented.
 

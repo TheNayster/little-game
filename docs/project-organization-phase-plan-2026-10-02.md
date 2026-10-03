@@ -1,10 +1,10 @@
 # Little Weeps project organization phase plan
 
-October 2, 2026. Organize the existing game so its main source, worlds, shared systems, editable assets, tools, builds and local data have clear names and predictable locations. Revised after the [unused-files audit](unused-files-audit-2026-10-02.md) and [studio/engine structure research](project-structure-research-2026-10-02.md). The research document compares every phase with public Unity, Epic, Riot and Rare evidence and distinguishes their practices from our recommendations. The user selected the Beach checkout relocation as the first implementation phase. None of the implementation phases has been performed.
+October 2, 2026. Organize the existing game so its main source, worlds, shared systems, editable assets, tools, builds and local data have clear names and predictable locations. Revised after the [unused-files audit](unused-files-audit-2026-10-02.md) and [studio/engine structure research](project-structure-research-2026-10-02.md). The research document compares every phase with public Unity, Epic, Riot and Rare evidence and distinguishes their practices from our recommendations. Phase 1, the user-selected Beach checkout relocation, is complete. Phase 2 is next; the other implementation phases remain proposed.
 
 ## Scope and order
 
-Complete one phase at a time and record its result here. Preserve unfinished work, editable sources, Unity asset metadata, generated builds, saves, device enrollment and signing identity. Folder maintenance does not install apps or replace the live server. Research-only instructions remain in effect for this planning task.
+Complete one phase at a time and record its result here. Preserve unfinished work, editable sources, Unity asset metadata, generated builds, saves, device enrollment and signing identity. Folder maintenance does not install apps or replace the live server. The parent authorized starting implementation after the research was complete.
 
 The audit covered the Windows project, associated Desktop folders and registered development checkouts. Mac folder organization remains uninspected; include it after resolving the requested scope. The Desktop Daycare review folder is an explicitly requested export, not an unexplained development checkout.
 
@@ -14,8 +14,8 @@ Selected structure: keep the existing rules/presentation/server assembly boundar
 
 | Phase | Result | Status |
 | --- | --- | --- |
-| 1 | Move the Beach checkout inside the game folder and repair dependent paths | Next implementation phase |
-| 2 | Make the obvious game folder the clear home of current source | Proposed |
+| 1 | Move the Beach checkout inside the game folder and repair dependent paths | Complete October 2; receipt below |
+| 2 | Make the obvious game folder the clear home of current source | Next implementation phase |
 | 3 | Separate local data and remove specifically verified unnecessary outputs | Proposed; cleanup queue recorded |
 | 4 | Group worlds inside existing layers, then extract shared-class responsibilities | Proposed; Beach extraction pilot |
 | 5 | Replace misleading production code names safely | Proposed |
@@ -194,4 +194,18 @@ Completion: a new chat or the parent can identify the main source, each world, c
 
 ## Current execution record
 
-Planning only. October 2 revision adds the cleanup audit's exact candidates/protections and incorporates studio/engine research into every phase. Documentation paths and changes are checked as documentation; no game qualification is implied. No deletion, relocation, rename, source refactor, asset migration, build, device installation or live-server change has been performed by this task. The next implementation phase is the Beach checkout move described in Phase 1.
+### Phase 1 completed October 2
+
+Moved the complete checkout using `git worktree move` from `C:\Users\sephi\Desktop\Little weeps beach seagulls` to `C:\Users\sephi\Desktop\Little weeps game\LocalData\Worktrees\Beach`. The old directory is absent and Git's registration/backlink resolves the new directory. No active Beach editor/build process was found; the Beach chat was not loaded and its saved chat directory was the shared `Meeps game` entry point, so no chat-directory relocation was required.
+
+Preservation check: all 37,819 file inventory entries (13,864,498,929 logical bytes) and 3,577 directories match the before-move inventory. SHA256 checks pass for 2,585 selected files covering source, assets and tools. Branch `codex/beach-waves`, original commit `8af74bc6ea8c3f696029ce178bd6fef372b23769` and all 96 local change entries are unchanged. Ignored builds, local data, source art/audio and protected review material moved with the checkout.
+
+One task-local consumer required repair: `LocalData/DinosaurWorld/LocalData/PhoneIntegration336/beach.py`. It now resolves Beach beneath the shared repository location obtained from Git rather than an absolute Desktop path. Python syntax and only its path-initialization statements were checked; the historical integration loop was **not** executed. Root/main project instructions now record the new path for future chats. Current launchers/build tools already derive paths from their checkout; the relocated Unity project path resolves and PowerShell entry-point syntax passes. No shortcut targeting the old directory was found in the inspected Windows shortcut locations. Dated build/evidence records retain their original paths as historical provenance.
+
+The final tool scan also found old absolute paths in generated `.NET obj` restore/source-link metadata for three local test projects. No checked maintained tool uses a `--no-restore` invocation of these projects; normal restore regenerates that metadata when the tests are next built. These caches and existing binaries were preserved rather than editing historical compiler metadata or running unrelated tests. Unity generated caches were likewise preserved; this move did not require launching an editor.
+
+Private preservation receipt: `C:\Users\sephi\Desktop\Little weeps game\LocalData\Verification\beach-relocation-2026-10-02.json`. It contains the before inventory/hashes and verification results, not credentials or an installation claim.
+
+Purpose/owner: Beach development work, associated with the **Beach** chat and `codex/beach-waves`. Status: relocated, with local work still retained. Known consumers: checkout-relative build/tool launchers and the repaired task-local integration script. Retirement requires reconciling unfinished edits and editable/ignored assets, accounting for protected evidence, and completing any remaining source delivery. The relocation did not merge, switch or delete this task branch.
+
+No game code, asset identity, save path or assembly changed. No cache purge, build, device install or live-server operation occurred. Verification covered preservation and path resolution; it does not claim that every world/minigame was playtested. Next: Phase 2, preserve/reconcile the dirty visible-root work before establishing the obvious main source location. Cleanup Phase 3 has not started.
