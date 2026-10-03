@@ -223,3 +223,8 @@ Remaining questions require physical-device/child playtesting: recognizing the w
 Deferred: M4's entirely unobserved dry-reset transition can still skip its temporary collapse while shared state stays correct. It does not affect decoration and is deliberately untouched. Existing joining arbitration, limited classmate participation and Creek teardown remain deferred. No new unrelated game issue was fixed. Multiple decorations, drag editor, moats/boats, new towers, destruction/rebuilding, NPC/Calypso redesign, tray removal and other Daycare games remain out of scope. Stop after Milestone5 for the parent's review.
 
 Git diff summary: 15 intended files, including six new files. Production changes are limited to Sandcastle client input/presentation and inspection diagnostics; the remainder is focused tests and three documentation records. No Core rules, network contract, save schema, assets, packages or permanent build settings change. No task branch was created.
+
+
+## Creative redesign planning — October 2
+
+Stage 1 only: the accepted direction is a shared creative sandpit, choose mould → place → scoop → water → tip → combined decoration → continued play. [Verified source ownership, requirements, decision proposals, migration risks and six-stage acceptance plan](daycare-sandcastle-redesign-2026-10-02.md). [Tablet/phone interactive mockup](evidence/daycare-sandcastle-redesign-2026-10-02/layout-proposal.html) is illustrative documentation, not an implemented screen or approved art. Existing M1–5 checks above remain historical evidence and were not rerun. No production/saved-world/runtime/device/server change; Picnic Counting remains. The parent must approve the design before Stage 2.
