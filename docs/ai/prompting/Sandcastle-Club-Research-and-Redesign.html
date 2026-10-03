@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sandcastle Club — research and redesign brief</title><style>
+body{font:17px/1.65 system-ui,sans-serif;color:#263c43;background:#fffaf0;max-width:980px;margin:auto;padding:40px 24px}h1,h2,h3{line-height:1.2;color:#235c62}h1{font-size:38px}h2{margin-top:40px}a{color:#146c85}table{border-collapse:collapse;width:100%;font-size:15px}td,th{padding:12px;text-align:left;border-bottom:1px solid #d8d9ce;vertical-align:top}th{background:#e5f0e9}.note{padding:18px;background:#e5f0e9;border-radius:12px}.flow{font-size:20px;color:#235c62;font-weight:650}li{margin:8px 0}small{color:#5b6e72}@media print{body{background:white;padding:0;font-size:11pt}h2{break-after:avoid}tr{break-inside:avoid}}
+</style><body><h1>Sandcastle Club</h1><p>Research and proposed redesign for Little Weeps · 3 October 2026</p>
+<div class="note"><strong>Recommendation:</strong> Turn Sandcastle Club into a shared creative sandpit: build different shapes, arrange them into a castle, decorate it, and play with the result. Keep the tactile scoop–water–tip moment, but make children’s choices drive the activity.</div>
+<p>This is a research and design handoff for Codex. It does not authorize implementation or change the repository. Picnic Counting is a planned removal; this brief concerns Sandcastle Club only.</p>
+<h2>1. What the existing game does</h2>
+<p>The prior source and screenshot audit found four fixed mould positions, alternating between two-scoop and three-scoop capacity. Players scoop sand, wet it, tip a full mould, and choose a flag or shell. A flag and shell currently replace each other. Finishing all four builds completes the activity once the teacher’s demonstration has finished.</p>
+<p>Players can act on objects in the scene, while the bottom toolbar repeats those actions alongside four text-based mould selectors. Actions involve the avatar moving to a work position. Any participant can restart the completed shared round. The screenshot composition leaves substantial lawn space beside a comparatively small, crowded building area; characters and labels compete with the sand objects.</p>
+<p>These observations come from code and supplied captures, not a hands-on playtest. The latest client already includes feedback and command-handling improvements, so the design problem should not be treated as simply missing button responsiveness.</p>
+<h2>2. Established-app references</h2>
+<table><thead><tr><th>Reference</th><th>Verified evidence</th><th>Design lesson for Little Weeps</th></tr></thead><tbody>
+<tr><td><a href="https://sagomini.com/apps/vacation/">Sago Mini Vacation</a></td><td>The official page describes an interactive sandcastle and generally movable, stackable props and characters. It targets preschoolers aged 2–5.</td><td>Let the castle remain part of a playable scene. This does not establish its exact castle assembly controls.</td></tr>
+<tr><td><a href="https://play.google.com/store/apps/details?hl=en_US&amp;id=com.sinyee.babybus.holiday">Baby Panda’s Summer: Vacation — BabyBus</a></td><td>The developer listing describes designing a castle with tools and decorations. A promotional screenshot shows a large central castle, a vertical picture palette, and highlighted window placement.</td><td>Make the creation prominent, decoration choices readable, and valid placement obvious. A marketing screenshot is not evidence of every live gesture or animation.</td></tr>
+<tr><td><a href="https://play.google.com/store/apps/details?hl=en_CA&amp;id=com.storytoys.lego.bluey.googleplay">LEGO Bluey — StoryToys</a></td><td>The official Beach Day description includes building a dream sandcastle, with other exploration activities. The app describes a combination of creativity, challenge, and open digital play.</td><td>Offer optional prompts within free creation. Do not copy the whole beach activity bundle into daycare.</td></tr>
+<tr><td><a href="https://www.youtube.com/watch?v=t9scc0WSUGg">Bluey: Let’s Play! — Budge Studios</a></td><td>The developer’s Beach update video description explicitly includes sandcastle building.</td><td>Supports sandcastle play as a family roleplay activity. The description alone does not establish detailed controls. This is a separate app from LEGO Bluey.</td></tr>
+<tr><td><a href="https://sagomini.com/article/space-blocks-letter-to-parents/">Sago Mini Space Blocks — adjacent construction reference</a></td><td>The official play guide describes dragging blocks from a bottom drawer; doors and windows introduce characters who can then be moved around.</td><td>A building shelf can feed directly into a creation that becomes a playset. This is a construction reference, not a sandcastle game.</td></tr>
+</tbody></table>
+<p>The evidence supports creative construction, decoration, and continued pretend play. It does not prove that a particular control scheme will work better for this family. The specific layout and multiplayer design below are original recommendations that need playtesting.</p>
+<h2>3. Proposed core experience</h2>
+<p class="flow">Choose a mould → choose a spot → scoop → water → tip → decorate → play</p>
+<ol>
+<li><strong>Enter a close view of the daycare sandpit.</strong> See the shared castle immediately. The teacher offers one short optional demonstration and then remains available for help. Children can start playing right away.</li>
+<li><strong>Choose a picture mould.</strong> Start with four readable silhouettes: a round tower, a square tower, a wall, and a gate piece. Keep the first version small enough to understand at a glance.</li>
+<li><strong>Choose a large empty spot.</strong> Tap a mould and then tap the sand. Show a translucent preview and gently snap it to a generous placement area. Optional dragging can support older children, but every essential action must also work through taps.</li>
+<li><strong>Make the piece.</strong> The selected bucket shows its fill level. Scoop actions visibly move sand; pouring visibly darkens it; tipping reveals the chosen shape. Begin with one consistent short fill sequence rather than varying hidden capacities. Exact scoop count and timing should be decided through playtesting.</li>
+<li><strong>Add decorations.</strong> Flags, shells, pebbles, and simple doors/windows should coexist. Give each piece several generous attachment positions and preview placement. Avoid precision placement in the first version.</li>
+<li><strong>Play with the castle.</strong> A flag flutters when tapped; a door opens; a small daycare toy can visit. Children can keep building. No mandatory “all four finished” gate ends creative play.</li>
+</ol>
+<p>If filling every piece becomes tedious, test a repeat-build shortcut after the first successful build. Do not assume that removing all sand handling improves fun: the scoop and tip may be the most satisfying part.</p>
+<p>Optional picture prompts can give direction: “Build a home for this toy” or “Make a castle with two towers.” Use narration and pictures. Leave free building available throughout; no timer, score, or compulsory counting lesson is proposed.</p>
+<h2>4. Button and scene layout</h2>
+<table><thead><tr><th>Area</th><th>Proposed behavior</th></tr></thead><tbody>
+<tr><td>Main scene</td><td>Large central sandpit and castle. Keep avatars around its edges so bodies and names do not hide placement targets. Preserve the illustrated daycare setting around the activity.</td></tr>
+<tr><td>Bottom shelf</td><td>Two main picture tabs: <strong>Build</strong> and <strong>Decorate</strong>. Build displays four mould cards; Decorate displays a small first set of decorations. Show one tray at a time.</td></tr>
+<tr><td>Active bucket</td><td>Show the next useful tool beside the selected bucket: shovel, then watering can, then a tip cue. Remove the duplicate row of permanent scoop/water/tip buttons. Keep the tool’s picture and effect closely connected.</td></tr>
+<tr><td>Selection</td><td>A soft outline identifies the active piece and a small player marker shows who is working there. Use shape/icon differences as well as color.</td></tr>
+<tr><td>Help</td><td>Tap the teacher or a small help control to replay the current action demonstration. Avoid a long instruction paragraph over the castle.</td></tr>
+<tr><td>Leave</td><td>One consistent back/leave control in the top corner. Leaving affects only that player.</td></tr>
+<tr><td>Remove/reset</td><td>Individual piece removal lives in a secondary edit control. Whole-sandpit clearing belongs in a separate family control and should require agreement from active participants.</td></tr>
+</tbody></table>
+<p>Prototype large controls around 60–72 points on tablet, with generous gaps, then measure the actual rendered device targets. Apple specifies a minimum 44 × 44 point hit region for buttons; Unity canvas dimensions alone do not establish physical target size. Support both tablet and narrower phone layouts without shrinking the essential controls below the minimum. These proposed larger dimensions are design starting points, not research findings.</p>
+<p>Direct manipulation should give immediate visual acknowledgment. Avoid making the child wait for an avatar to walk across the scene between every tool action. Avatar motion can accompany the activity without blocking basic interaction.</p>
+<h2>5. Artwork and feedback</h2>
+<ul>
+<li><strong>Match the existing illustrated world.</strong> Use rounded, shaded sand shapes with readable silhouettes, soft contact shadows, restrained grain, and consistent bucket/shovel artwork. Original assets should fit Little Weeps rather than reproduce competitor characters or art.</li>
+<li><strong>Make sand state visible.</strong> Dry sand is lighter; watered sand is darker. The bucket fills in steps. A tip creates a short falling-sand effect followed by a clear castle reveal.</li>
+<li><strong>Show actionable feedback.</strong> A nearly empty bucket previews what is missing; the helpful tool nudges or glows briefly. An early tip can produce a small recoverable mound and a gentle help cue. The existing dry-tip collapse currently discards the fill; test a more forgiving recovery.</li>
+<li><strong>Reward through the world.</strong> Use little sounds, flags moving, toys reacting, and new decoration opportunities. Keep particles and celebrations brief enough that building stays visible.</li>
+<li><strong>Make the result worth inspecting.</strong> Towers, gates, and connected walls should read as a castle, with layered decorations and places for toys to interact.</li>
+</ul>
+<h2>6. Family multiplayer requirements</h2>
+<p>Little Weeps supports up to four family members playing together. The cited competitor material does not establish an equivalent four-device shared-world implementation. Preserve the repository’s multiplayer requirements rather than importing single-player assumptions.</p>
+<ul>
+<li>One shared sandpit and castle, with each player’s current tool/mould selection independent.</li>
+<li>Different pieces can be built simultaneously. If two players target the same unfinished piece, indicate who is actively handling it and resolve conflicting actions clearly.</li>
+<li>A late joiner sees the current creation. One player leaving does not remove everyone’s work or end the activity.</li>
+<li>The server remains authoritative for shared pieces, decorations, and completed actions. Immediate local feedback must reconcile to the confirmed shared result.</li>
+<li>Limit destructive edits to deliberate actions. Do not let one completion/replay button silently erase the group’s castle.</li>
+<li>Bound the number of pieces and effects for the iPad 7 baseline; determine the cap through performance checks. Plan existing-save migration so current sandpit state is not silently lost.</li>
+</ul>
+<h2>7. Suggested Codex scope and validation</h2>
+<p><strong>First implementation slice:</strong> rebuild the activity framing and controls, add a small mould set and flexible placement, retain the tactile build sequence, allow combined decorations, and keep the creation playable after building. Add the first toy interaction. Save elaborate missions, more shapes, and advanced rearrangement for later.</p>
+<p>Before coding, approve a screen mockup and the interaction sequence. Codex should review the applicable repository guidance and current sandpit state model, then identify the smallest compatible migration. Existing fixed four-mould completion cannot be assumed to support the proposed creative world unchanged.</p>
+<p><strong>Playtest questions:</strong></p>
+<ul>
+<li>Can the younger child begin a piece without reading or adult instruction?</li>
+<li>Can both children complete a build and add decorations using taps?</li>
+<li>Do they understand what the sand needs next from its appearance?</li>
+<li>Do they choose to build another piece or play with their creation?</li>
+<li>Does scoop repetition feel enjoyable or like waiting?</li>
+<li>Can two to four players build without blocking each other or losing changes?</li>
+<li>Do leaving, rejoining, and deliberate reset preserve the expected family experience?</li>
+</ul>
+<p>Verify readability and target sizes on actual devices, including iPad 7. Check simultaneous commands, join/leave, shared persistence, conflicting edits, and performance. Treat child enjoyment as a playtest finding, not something established by source descriptions.</p>
+<h2>Sources and research limits</h2>
+<p>Primary developer material and store listings were reviewed. One BabyBus promotional sandcastle screenshot was visually inspected. Competitor apps were not installed or played, and referenced videos were not watched. Public material often does not reveal exact gestures, error recovery, purchase gating, or multiplayer behavior.</p>
+<ul>
+<li><a href="https://sagomini.com/apps/vacation/">Sago Mini Vacation — official product page</a></li>
+<li><a href="https://sagomini.com/article/vacation-letter-to-parents/">Sago Mini Vacation — designer’s letter</a></li>
+<li><a href="https://play.google.com/store/apps/details?hl=en_US&amp;id=com.sinyee.babybus.holiday">Baby Panda’s Summer: Vacation — official developer listing and screenshots</a></li>
+<li><a href="https://play.google.com/store/apps/details?hl=en_CA&amp;id=com.storytoys.lego.bluey.googleplay">LEGO Bluey — official developer listing</a></li>
+<li><a href="https://www.youtube.com/watch?v=t9scc0WSUGg">Budge Studios — Bluey: Let’s Play! beach update description</a></li>
+<li><a href="https://sagomini.com/article/space-blocks-letter-to-parents/">Sago Mini Space Blocks — official control and play guide</a></li>
+<li><a href="https://developer.apple.com/design/tips/">Apple — UI Design Dos and Don’ts, touch controls</a></li>
+</ul><small>Design proposals are original recommendations for discussion with the user and implementation by Codex.</small></body></html>
