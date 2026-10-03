@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "build": 447,
+  "checks": [
+    "Actual taps: empty pit, shape preview, partial/wet bucket, Scoop/Water/Tip reveal, five combined decorations and grounded dinosaur reaction",
+    "Connected four-shape castle and both wall/gate orientations remain interactive at phone/tablet aspects",
+    "Four actual clients: simultaneous accepted water/reveals, bounded effects/voices, independent Leave and re-entry without historical replay",
+    "Owner editing and deliberate family reset remain separate picture controls; decline preserves work",
+    "Populated 16-piece scene, safe picture hits, responsive native inspection and test mute; desktop measurements only",
+    "Timestamped actual native gameplay recording exported; silent because isolated test route is muted"
+  ],
+  "peakClients": 4,
+  "errors": [],
+  "localPopulation": "local-population.json",
+  "recording": {
+    "file": "native-447-actual-gameplay-silent.mp4",
+    "actualGameplay": true,
+    "fixedTimePreview": false,
+    "audio": false,
+    "sourceAspect": [
+      1280,
+      591
+    ],
+    "exportAspect": [
+      1280,
+      592
+    ],
+    "padding": "one bottom pixel for H.264",
+    "frames": 398,
+    "seconds": 74.881706
+  },
+  "targetImageAvailable": false,
+  "audioListening": false,
+  "legacyPresentation": {
+    "passed": true,
+    "build": 447,
+    "clients": 2,
+    "legacyPositionsAndProps": true,
+    "noReplay": true,
+    "originalSyntheticCheckpointRestored": true,
+    "errors": []
+  },
+  "population": {
+    "pieces": 16,
+    "attachments": 5,
+    "inspectLatencySeconds": [
+      0.06199999991804361,
+      0.06300000008195639,
+      0.06199999991804361,
+      0.06300000008195639,
+      0.06199999991804361,
+      0.06300000008195639,
+      0.06199999991804361,
+      0.06300000008195639,
+      0.06199999991804361,
+      0.06300000008195639
+    ],
+    "desktopOnly": true,
+    "notDeviceFPS": true
+  },
+  "focusedRules": 410,
+  "compatibility": {
+    "schema": 52,
+    "content": 70,
+    "protocol": 3,
+    "innerSandpitFormat": 3,
+    "changed": false
+  },
+  "matchingUnityInputs": 2298,
+  "coreUnchangedFromStageFour": true,
+  "evidence": [
+    {
+      "file": "native-447-actual-gameplay-silent.mp4",
+      "sha256": "34278d23c99dcebae1ea58caa5a2172a736d4cb2ebd6dede1e823b6b5ef4a29b"
+    },
+    {
+      "file": "native-447-phone-busy-sixteen.png",
+      "sha256": "41ae038978f8a098db0af4b9116ae040faf725e777dedcc5be9fa3be623264e6"
+    },
+    {
+      "file": "native-447-phone-connected-castle.png",
+      "sha256": "09171951333aec4bed3f4cda7f461ea918297de01aaf685c5bcc27eed3e88713"
+    },
+    {
+      "file": "native-447-phone-edit-sheet.png",
+      "sha256": "397312d138d8ceaec51a0ed1968972b3b5999de070800c2fce10fc72b7c7a59f"
+    },
+    {
+      "file": "native-447-phone-empty-shape-tray.png",
+      "sha256": "ad2be330feaf9d66727bc0a19bb069840701368f42e8e9045171225baabc4981"
+    },
+    {
+      "file": "native-447-phone-family-reset.png",
+      "sha256": "cab18d4e8daa55a98e815e465edd5b8896f6b20a86145099b7934ee7efdf3ef3"
+    },
+    {
+      "file": "native-447-phone-first-piece-decorated-toy.png",
+      "sha256": "c45cd3fcfb74b698785f3768404df6c09b9718277426e7e3d9edee2a7989397a"
+    },
+    {
+      "file": "native-447-phone-legacy-props.png",
+      "sha256": "67c9d21125013d703ee9eba3fd67cb3e1eec973dd14d677966ff19eb9f73aa01"
+    },
+    {
+      "file": "native-447-phone-partial-active-tools.png",
+      "sha256": "88cbf0c19d5b6a803bc76156be20c5ad7b432091bc7a6831bf157bcfd8502fcd"
+    },
+    {
+      "file": "native-447-phone-rotated-wall-preview.png",
+      "sha256": "8ca59c6887258fbf098cca8ac535d602dadca9825ba49de6ebd2e822cf2df922"
+    },
+    {
+      "file": "native-447-phone-round-preview.png",
+      "sha256": "92c8b300e525d01c94bcde08a10b7e6cc8ab8a8de25b0d7f76508f5e92665bef"
+    },
+    {
+      "file": "native-447-phone-wet-active-tools.png",
+      "sha256": "a3ce3f37cd516b70b85dbc1d43c251bf7dd272f16d7199419fbea946b772c1c5"
+    },
+    {
+      "file": "native-447-tablet-busy-sixteen.png",
+      "sha256": "00a341785677d418fdded162d2644c0f4abe5107c0f754852ad620d3eb3f11a4"
+    },
+    {
+      "file": "native-447-tablet-connected-castle.png",
+      "sha256": "5c612ef1e31e54b961103b0598b50fdbc17315a13efb29c12be5eca3aed38651"
+    },
+    {
+      "file": "native-447-tablet-empty-shape-tray.png",
+      "sha256": "8def4efd1f2533aefb39e57114004a2f82047ee39ebe796f5a41b0a22b289a1f"
+    },
+    {
+      "file": "native-447-tablet-family-reset.png",
+      "sha256": "5cbfa067d3eae37a1e267b754971718ae1ad59e9de03600743d0159463624961"
+    },
+    {
+      "file": "native-447-tablet-legacy-props.png",
+      "sha256": "ee79d906603737b25ee3d2263c63cbd44c932720e826ff1236313fbab5676315"
+    },
+    {
+      "file": "native-447-tablet-partial-active-tools.png",
+      "sha256": "e9a8b6d524726a8d18b07e02c41ebdf4af592a8909cbc78eff3fd05014e3f7be"
+    },
+    {
+      "file": "native-447-tablet-rotated-gate-preview.png",
+      "sha256": "82f323a59bb9ab3df5e260a64f90d0b134e7e3deaf3dc721d74ac55a041e7574"
+    },
+    {
+      "file": "native-447-tablet-simultaneous-water.png",
+      "sha256": "b8fa18ab07649d50a8187be22520cd838e1e7adf9595b42e7b7afa0a27a69ee5"
+    },
+    {
+      "file": "native-447-tablet-wet-active-tools.png",
+      "sha256": "d225bfedec5e4a98fd603f4b9f0311e29965c83c0a31e6eb226e25f0d873c7f1"
+    }
+  ],
+  "parentVisualApproval": false,
+  "runtimeSourceCommit": "28df2354e5f0f4c58d172a5d8515201e31fdf5c5"
+}
