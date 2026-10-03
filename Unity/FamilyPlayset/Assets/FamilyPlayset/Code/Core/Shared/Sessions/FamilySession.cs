@@ -22,13 +22,13 @@ namespace LittleWeeps.Core
             if(!world.Snapshot().players.Any(p=>p.id==profile)){reason="unknown-profile";return false;}
             if(connections.ContainsValue(profile)){reason="profile-already-connected";return false;}
             if(connections.Count>=4){reason="family-full";return false;}
-            connections.Add(connection,profile);world.InviteDaycarePlay(ConnectedPlayers);world.JoinVetGroup(ConnectedPlayers);world.JoinTreasureGroup(ConnectedPlayers);world.JoinKingdomGroup(ConnectedPlayers);world.JoinPicnicGroup(ConnectedPlayers);world.JoinSandpitGroup(ConnectedPlayers);return true;
+            world.CancelSandReset();connections.Add(connection,profile);world.InviteDaycarePlay(ConnectedPlayers);world.JoinVetGroup(ConnectedPlayers);world.JoinTreasureGroup(ConnectedPlayers);world.JoinKingdomGroup(ConnectedPlayers);world.JoinPicnicGroup(ConnectedPlayers);world.JoinSandpitGroup(ConnectedPlayers);return true;
         }
         public SoloResult Submit(ulong connection,SoloCommand command)
         {
             if(!connections.TryGetValue(connection,out var profile))return new SoloResult(false,"not-connected",world.Revision);
             if(command==null || command.actor!=profile)return new SoloResult(false,"wrong-player",world.Revision);
-            var result=world.Apply(command);
+            var result=world.Apply(command,ConnectedPlayers);
             if(result.Accepted && command.action==SoloAction.DaycarePlay){world.InviteDaycarePlay(ConnectedPlayers);return new SoloResult(true,result.Outcome,world.Revision,result.Duplicate);}
             if(result.Accepted && command.action==SoloAction.Park && command.value=="tag-join")
                 world.IncludeNearbyTagPlayers(ConnectedPlayers);
@@ -43,6 +43,7 @@ namespace LittleWeeps.Core
         {
             if(!connections.TryGetValue(connection,out var profile))return false;
             connections.Remove(connection);
+            world.CancelSandReset();
             world.ReleaseCreekFishing(profile);world.ReleaseCreekBoats(profile);world.ReleasePond(profile);world.ReleaseHideAndSeek(profile);world.ReleaseZoo(profile);
             world.ReleaseTag(profile);world.ReleaseDaycarePlay(profile);
             world.ReleaseDinosaurCare(profile);

@@ -131,6 +131,8 @@ namespace LittleWeeps.Core
         {
             Validate(snapshot);
             var copy = Clone(snapshot);
+            // Consent is tied to live connections, never resumed from a checkpoint.
+            if(copy.sandpit?.reset!=null){copy.sandpit.reset=null;copy.revision++;}
             SuspendRestoredTag(copy);SuspendRestoredHide(copy);SuspendPond(copy);SuspendCreekBoats(copy);SuspendFishing(copy,copy.creekFishing);SuspendZoo(copy);SuspendDinosaurCare(copy);
             copy.homeTidyCues=Array.Empty<int>();
             // A pointer lease never survives closing the app or a recovered save.
@@ -370,7 +372,7 @@ namespace LittleWeeps.Core
             if(daycareArrival){if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).declined=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).declined=false;}
             CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);CancelZoo(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
         }
-        public SoloResult Apply(SoloCommand c)
+        public SoloResult Apply(SoloCommand c,string[] connectedPlayers=null)
         {
             SoloResult Reject(string reason) => new SoloResult(false, reason, Revision);
             if (c == null || !Id(c.requestId) || !Id(c.actor) || !Enum.IsDefined(typeof(SoloAction), c.action) ||
@@ -419,7 +421,7 @@ namespace LittleWeeps.Core
                 case SoloAction.Treasure:
                     var huntError=TreasureOperation(c,player);if(huntError!=null)return Reject(huntError);outcome="treasure-played";break;
                 case SoloAction.Sandpit:
-                    var sandpitError=SandpitOperation(c,player);if(sandpitError!=null)return Reject(sandpitError);outcome="sandpit-played";break;
+                    var sandpitError=SandpitOperation(c,player,connectedPlayers);if(sandpitError!=null)return Reject(sandpitError);outcome="sandpit-played";break;
                 case SoloAction.Daycare:
                     var daycareError=DaycareOperation(c,player);if(daycareError!=null)return Reject(daycareError);outcome="daycare-played";break;
                 case SoloAction.Kingdom:

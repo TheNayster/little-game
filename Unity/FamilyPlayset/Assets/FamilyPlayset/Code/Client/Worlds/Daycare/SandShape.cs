@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using LittleWeeps.Core;
 
 namespace LittleWeeps.Client
 {
@@ -7,6 +8,7 @@ namespace LittleWeeps.Client
     public sealed class SandShape : MaskableGraphic
     {
         public string kind="bucket",mould="round";public int scoops,capacity=2,decoration,orientation;public bool wet,built,pouring;
+        public SandAttachment[] attachments;public int socket;public string decorationKind;
         public Vector2 source,target;public float progress;
         public string tipOutcome;public float towerReveal=1,wiggle;public bool hideBucket,hideDecoration;
         private VertexHelper mesh;private float ceiling=float.PositiveInfinity, bucketAngle;private Vector2 bucketAt,bucketScale=Vector2.one;private bool transformingBucket;
@@ -14,6 +16,11 @@ namespace LittleWeeps.Client
         {
             mesh=vh;mesh.Clear();ceiling=float.PositiveInfinity;transformingBucket=false;
             var wood=new Color(.57f,.38f,.21f);var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
+            if(kind=="toy-shadow"){Oval(0,0,28,6,new Color(.38f,.27f,.14f,.22f));return;}
+            if(kind=="attachment"){DrawAttachment(decorationKind,Vector2.zero);return;}
+            if(kind=="pebble" || kind=="door" || kind=="window"){DrawAttachment(kind,Vector2.zero);return;}
+            if(kind=="edit"){Box(-28,-21,56,8,wood);Poly(edge,new Vector2(-18,-9),new Vector2(-6,-19),new Vector2(34,24),new Vector2(22,35));return;}
+            if(kind=="remove" || kind=="reset"){Box(-24,-27,48,48,new Color(.82f,.47f,.34f));Box(-29,24,58,6,edge);Box(-12,33,24,5,edge);for(var i=0;i<3;i++)Box(-16+i*14,-18,4,30,new Color(1,.86f,.68f));return;}
             if(kind=="rotate"){
                 for(var i=0;i<17;i++){var a=i*Mathf.PI*1.5f/16;Oval(Mathf.Cos(a)*26,Mathf.Sin(a)*26,5,5,new Color(.21f,.45f,.69f));}
                 Poly(new Color(.21f,.45f,.69f),new Vector2(-10,-20),new Vector2(20,-25),new Vector2(3,-43));return;
@@ -104,11 +111,20 @@ namespace LittleWeeps.Client
             if(built){
                 var h=capacity==3?92:75;ceiling=towerReveal>=1?float.PositiveInfinity:towerReveal*(h+24);
                 DrawCastle();
+                if(!hideDecoration && attachments!=null)foreach(var a in attachments){var at=SandpitPlay.Socket(new SandMould{shape=mould,orientation=orientation,capacity=capacity},a.slot);DrawAttachment(a.kind,new Vector2(at.X,at.Y));}
                 if(!hideDecoration && decoration==1)Flag(0,h+10);
                 if(!hideDecoration && decoration==2)Shell(27,h+26);
             }else if(!hideBucket){
                 transformingBucket=true;bucketAt=new Vector2(wiggle,0);bucketAngle=0;bucketScale=Vector2.one;DrawBucket(scoops,wet);transformingBucket=false;
             }
+        }
+        private void DrawAttachment(string name,Vector2 p)
+        {
+            if(name=="flag"){Flag(p.x,p.y);return;}if(name=="shell"){Shell(p.x,p.y);return;}
+            if(name=="pebble"){Oval(p.x,p.y,16,10,new Color(.51f,.59f,.63f));Oval(p.x-5,p.y+4,7,3,new Color(.75f,.8f,.8f));return;}
+            var outline=new Color(.33f,.23f,.15f);
+            if(name=="door"){Box(p.x-12,p.y-19,24,34,outline);Oval(p.x,p.y+15,12,10,outline);Box(p.x-8,p.y-17,16,29,new Color(.59f,.33f,.18f));Oval(p.x+5,p.y-3,2,2,new Color(1,.84f,.34f));return;}
+            if(name=="window"){Box(p.x-15,p.y-14,30,28,outline);Box(p.x-11,p.y-10,22,20,new Color(.5f,.81f,.9f));Box(p.x-2,p.y-11,4,22,outline);Box(p.x-12,p.y-2,24,4,outline);}
         }
         private void DrawBucket(int fill,bool water)
         {
@@ -145,7 +161,7 @@ namespace LittleWeeps.Client
                     for(var i=0;i<4;i++)Box(-46+i*29,h,20,22,top);
                     Box(-43,37,102,3,new Color(.94f,.77f,.48f));
                 }
-                Box(-12,4,24,31,shade);Oval(0,35,12,10,shade);return;
+                if(kind=="mould-icon"){Box(-12,4,24,31,shade);Oval(0,35,12,10,shade);}return;
             }
             var vertical=orientation==90;
             if(vertical){

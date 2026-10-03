@@ -611,7 +611,7 @@ namespace LittleWeeps.Client
             RecordPlayFrame();
             if(!Ready)return;
             AnimateNavigation();
-            EnsureToyViews();AnimateTravelScreen();TickScenery();TickHome();TickKeepy();TickPark();TickZoo();TickDinosaurWorld();TickPond();TickCreekBoats();TickCreekFishing();TickKingdom();TickDaycare();TickSandpit();TickTreasure();TickVet();TickSeagulls();TickShore();
+            EnsureToyViews();AnimateTravelScreen();TickScenery();TickHome();TickKeepy();TickPark();TickZoo();TickDinosaurWorld();TickPond();TickCreekBoats();TickCreekFishing();TickKingdom();TickDaycare();TickSandpit();TickTreasure();TickVet();TickSeagulls();TickShore();TickSandReset();
             if(shared!=null && shared.Connected)
             {
                 var own=shared.VisualPosition(Actor);avatar.anchoredPosition=ToBoard(own.x,own.y);

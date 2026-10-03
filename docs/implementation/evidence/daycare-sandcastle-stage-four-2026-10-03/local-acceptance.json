@@ -1,0 +1,71 @@
+{
+  "status": "PASSED required Stage 4 local acceptance",
+  "date": "2026-10-03",
+  "baselineCommit": "b70cc95ed66871db32f6188c6d88301b0e66fccc",
+  "finalBuild": 442,
+  "schema": 52,
+  "content": 70,
+  "protocol": 3,
+  "sandpitFormat": 3,
+  "focusedRulesChecks": 408,
+  "unityJsonTests": "PASS: legacy49, Stage2 format1, genuinely missing Stage3 fields, combined decorations/toy reopening, unrelated data",
+  "currentUnityInputsVerified": 2282,
+  "releaseClientAndServer": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "native439": {
+    "peakClients": 4,
+    "passedGroups": [
+      "All six shape/orientations built through taps, combined flags/shells, all five pictured decorations and suggested attachments; gate opening captured",
+      "Owner move retains work; sibling destructive edit and overtaken owner edit rejected; actual simultaneous same-slot first win and distinct-slot cooperative placement",
+      "Shared toy placed/moved/reacted through taps; continued construction, independent Leave/rejoin and explicit removal cancellation/confirmation preserve siblings",
+      "Global picture consent reaches player at Park; decline, partial agreement, toy change and disconnect never erase the creation",
+      "Native authority save reopening retains complete decorated/oriented castle and toy placement/reaction version"
+    ],
+    "fullScenarioPassed": false,
+    "laterFailure": "Genuine missing Stage3 reset arrays caused SandReset.Copy to fail; repaired and checked on440."
+  },
+  "native440": {
+    "peakClients": 4,
+    "passedAdditionalGroups": [
+      "Native Stage3 missing-field migration preserves shapes/orientations, positions/capacities/progress/creators/versions and converts each flag/shell once",
+      "Native schema49 retains legacy coordinates/capacities/partial dry-wet progress and visible flag/shell; unknown creator edit disabled",
+      "All four explicit approvals, including Park, clear only Sandcastle and invalidate old commands",
+      "Post-reset connected tap building, decorated castle/toy, edit/reset controls and independent departure/rejoin"
+    ],
+    "receiptWriterError": "All nine scenario assertions reached observed PASS output; prior variable shadowing failed only result.json formatting. Actual captures/outputs preserved. Harness writer corrected; no clean exit falsely claimed."
+  },
+  "native442": {
+    "build": 442,
+    "runId": "e4b61bab23024943bc53eae72f674df9",
+    "gameplayPassed": true,
+    "checks": [
+      "Four current clients: saved connected castle, shared reaction and first-wins toy manipulation, tap controls, explicit occupied-prop replacement/removal/cancel, ground/depth presentation, help/edit/reset pictures and independent departure/rejoin",
+      "Final current build saves/reopens decorated castle and accepted toy state; fresh native client shows retained props and toy without replay"
+    ],
+    "peakNativeClients": 4,
+    "nativeLogCount": 7,
+    "runtimeErrors": [],
+    "reusedNativeBuilds": [
+      439,
+      440
+    ],
+    "previous440ReceiptFailure": "All nine scenario assertions reached PASS; prior variable shadowing failed only result.json formatting. Captures and observed output preserved; writer fixed.",
+    "scope": "Focused current presentation, shared toy concurrency and actual save reopening; prior unchanged full Stage 4 gameplay/migration/reset evidence reused"
+  },
+  "reuseVerification": "All runtime source matches build440 except the reviewed client-only SandcastlePlay/SandShape presentation changes; native439/440 evidence reused only for unchanged behavior. Current442 all2282 Unity inputs match.",
+  "deferred": [
+    "Physical-device touch comfort/performance",
+    "Age3/6 comprehension and fun",
+    "Stage5 finished art/motion/audio"
+  ],
+  "preserved": [
+    "Real saves",
+    "Installed apps",
+    "Live family server and Stop intent",
+    "Security settings",
+    "Unrelated work",
+    "Picnic Counting"
+  ]
+}

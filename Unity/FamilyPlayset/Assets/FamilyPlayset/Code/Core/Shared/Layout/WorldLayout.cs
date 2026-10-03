@@ -8,7 +8,7 @@ namespace LittleWeeps.Core
     {
         // Retain the completed worlds and add the shared animal care clinic.
         // Sandpit construction targets include the lesson round; old clients must not mix.
-        public const int Schema=51, ScenerySchema=3, Content=69;
+        public const int Schema=52, ScenerySchema=3, Content=70;
         public const float TileWidth=2400, SceneHeight=800;
         public static bool Area(string id)=>id=="garden" || id=="creek" || id=="park" || id=="beach" || id=="daycare" || id==KingdomAdventure.Zone || id==TreasureHunt.Zone || id==DaycareVet.Zone || DaycarePlay.Area(id) || HomeRooms.Internal(id) || id==DinosaurRides.Area || ZooLayout.Area(id);
         public static bool Destination(string id)=>id=="home" || Area(id) && !HomeRooms.Internal(id) && !ZooCatalog.Trail(id) && id!=KingdomAdventure.Zone && id!=TreasureHunt.Zone && id!=DaycareVet.Zone && !DaycarePlay.Area(id);
