@@ -157,7 +157,9 @@ namespace LittleWeeps.Client
         private void ResetCreekBoats()
         {
             CloseBoatWorkshop();if(boatWorkshop!=null)Destroy(boatWorkshop.gameObject);if(boatEntry!=null)Destroy(boatEntry.gameObject);if(boatControls!=null)Destroy(boatControls.gameObject);
-            foreach(var v in creekBoatViews.Values)Destroy(v.root.gameObject);foreach(var d in creekDocks)Destroy(d.gameObject);
+            // Unity may destroy child objects before this screen's OnDestroy.
+            foreach(var v in creekBoatViews.Values)if(v.root!=null)Destroy(v.root.gameObject);
+            foreach(var d in creekDocks)if(d!=null)Destroy(d.gameObject);
             creekBoatViews.Clear();creekDocks.Clear();boatHullChoices.Clear();boatColourChoices.Clear();
             if(creekBoatSprites!=null)foreach(var s in creekBoatSprites)Destroy(s);creekBoatSprites=null;if(creekBoatTexture!=null)Resources.UnloadAsset(creekBoatTexture);creekBoatTexture=null;
             boatWorkshop=null;boatControls=null;boatEntry=null;boatSending=false;boatClock.Reset();

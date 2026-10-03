@@ -51,7 +51,7 @@ namespace LittleWeeps.EditorTools
         {
             world=GameWorld.WithDinosaurWorld(GameWorld.Create("p1","p2","p3","p4"));var old=world.Snapshot();old.schema=48;old.hideClub=null;old.tagClub=null;
             var id=old.worldId;var clinic=JsonUtility.ToJson(old.vet);world=GameWorld.WithDinosaurWorld(GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(old))));
-            Need(world.Schema==49 && world.WorldId==id && JsonUtility.ToJson(world.Snapshot().vet)==clinic,"additive48 migration retains clinic");family=new FamilySession(world);
+            Need(world.Schema==WorldLayout.Schema && world.WorldId==id && JsonUtility.ToJson(world.Snapshot().vet)==clinic,"additive48 migration retains clinic");family=new FamilySession(world);
             for(var i=1;i<=4;i++){Need(family.Attach((ulong)i,"p"+i,out _),"attach");Need(Cmd(i,SoloAction.Travel,i==4?"creek":"daycare").Accepted,"arrive");}
             Club(1,"hide:start");var g=world.ReadDaycarePlay(false);var cast=g.npcs.Select(n=>n.avatar).ToArray();var spots=g.npcs.Select(n=>n.slot).ToArray();
             Need(g.members.Count(m=>m.attending)==1 && g.members.Count(m=>m.invited)==2 && world.ReadPlayer("p2").zone=="daycare" && !g.members[3].invited,"small invitations do not force peers or other worlds");

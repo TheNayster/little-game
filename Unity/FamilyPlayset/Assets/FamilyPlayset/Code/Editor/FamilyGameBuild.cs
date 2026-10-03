@@ -22,7 +22,7 @@ namespace LittleWeeps.EditorTools
             if(!File.Exists(scenePath))
             {
                 var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
-                new GameObject("Windows Network Probe",typeof(LittleWeeps.NetworkProbe.FamilyNetworkBootstrap));
+                new GameObject("Family Network",typeof(LittleWeeps.NetworkProbe.FamilyNetworkBootstrap));
                 EditorSceneManager.SaveScene(scene,scenePath);
             }
             var args=Environment.GetCommandLineArgs();var at=Array.IndexOf(args,"-familyBuildNumber");
@@ -36,7 +36,7 @@ namespace LittleWeeps.EditorTools
             var records=new List<Evidence>();
             foreach(var server in new[]{true,false})
             {
-                var name=server?"PC Server Network Probe":"Windows Network Probe";var role=server?"Server":"Client";
+                var name=server?"PC Family Server":"Windows Family Game";var role=server?"Server":"Client";
                 var profilePath="Assets/BuildProfiles/"+name+".asset";
                 if(!File.Exists(profilePath) && !AssetDatabase.CopyAsset(server?FoundationBuild.ServerProfilePath:FoundationBuild.WindowsProfilePath,profilePath))throw new IOException("Cannot create profile.");
                 var profile=AssetDatabase.LoadAssetAtPath<BuildProfile>(profilePath);profile.name=name;

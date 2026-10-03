@@ -72,7 +72,7 @@
 - New folders require a purpose, owner/work item, consumers and retirement condition. Create temporary whole-game checkouts only when isolation is needed, under `LocalData/Worktrees/<Purpose>`. Do not create unexplained Desktop source copies or duplicate world assets.
 - Reusable scripts belong in the existing Tools purpose groups. Existing live imported helper modules/pins and documented entry-point shims remain at Tools root. Update maintained consumers and project-layout.json for any relocation; preserve dated provenance and protected reviews.
 - Keep current build caches, signed/current/rollback artifacts, saves, device enrollment, signing, backups, review/research exports and offline repair dependencies. Deletion needs exact consumer/content verification, not age or an ambiguous folder name. Organization is not device/server deployment.
-- Use `Tools/Verification/Test-PlanConsistency.py` after relevant document rendering. Full Unity build424 is currently blocked by Windows Application Control on Unity Bee.Tools.dll; SDK compilation/rules checks are documented separately and never establish native visual or installed-device acceptance.
+- Use `Tools/Verification/Test-PlanConsistency.py` after relevant document rendering. Historical builds424/425 hit Windows Application Control; fresh429 now builds and passes the bounded seven-world/four-client catch-up checks with Smart App Control On. See the organization phase plan for actual coverage and remaining activity/live-server acceptance; SDK compilation alone never establishes native visual or installed-device acceptance.
 
 ## Organization phase regression checks — October 2 user instruction
 
