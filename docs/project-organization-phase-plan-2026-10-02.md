@@ -44,6 +44,8 @@ Full Unity build424 failed because Windows Application Control blocked Unity's B
 
 Run **one consolidated catch-up pass** covering the phase risks above against the current source when the build blocker is resolved. Record it as a catch-up result; do not invent eight historical after-phase passes or repeat identical checks eight times. New phase work must use the checks between phases from now on. This documentation change adds the requirement; it does not claim the missing tests ran or authorize a live rollout.
 
+**Retry — October 2, 11:20 PM CDT:** Retried the normal current-root Windows client/server build425 against source `ee52179`, including current Sandcastle Stage 2. Unity script compilation again failed because Windows Application Control blocks installed `Bee.Tools.dll` (`0x800711C7`); no successful425 artifact exists. Native game and isolated four-client server checks remain **blocked/not run**. Read-only installed-server observation completed: selected412/port63648, **stopped**, zero authority processes, parent helper unreachable; saved-world checksum verified at revision12301. This is **not a running-server health pass**. No start/restart, rollout, enrollment or save modification was performed. Local evidence: `LocalData/Logs/build-network-425.log` and `LocalData/Verification/organization-retry-server-health-2026-10-02.json`. Next: resolve the Windows build-policy block, then perform the current-source catch-up checks; obtain a running installed-server health result while respecting existing parent Stop/Pause intent.
+
 | Phase | Result | Implementation status |
 | --- | --- | --- |
 | 1 | Move the Beach checkout inside the game folder and repair dependent paths | Relocation/preservation verified October 2; runtime acceptance pending |
