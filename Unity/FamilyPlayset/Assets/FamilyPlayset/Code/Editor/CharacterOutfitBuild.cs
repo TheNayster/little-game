@@ -19,7 +19,7 @@ namespace LittleWeeps.EditorTools
             var source=Path.Combine(root,"SourceArt/Characters/Outfits/Dinosaur/animation-contract.json");
             if(Hash(source)!=Hash(imported))throw new BuildFailedException("Reimport changed outfit contract.");
             var manifest=JsonUtility.FromJson<Manifest>(File.ReadAllText(imported));
-            var directory="Assets/FamilyPlayset/Resources/CharacterOutfitArt/"+manifest.outfit;
+            var directory="Assets/FamilyPlayset/Resources/Shared/Characters/OutfitArt/"+manifest.outfit;
             Directory.CreateDirectory(directory);AssetDatabase.Refresh();
             foreach(var c in manifest.characters)
             {
@@ -43,7 +43,7 @@ namespace LittleWeeps.EditorTools
                 art.sheet=art.walkSheet=texture;art.frames=c.frames;art.walkFrames=c.walk.frames;
                 art.sheetSha256=art.walkSheetSha256=c.sourceSha256;
                 art.referenceHeight=art.walkReferenceHeight=c.referenceHeight;
-                art.shadowSprite=Resources.Load<CharacterArt>("CharacterArt/"+c.id).shadowSprite;
+                art.shadowSprite=LittleWeeps.Client.WorldResources.Load<CharacterArt>("Shared/Characters/Art/"+c.id).shadowSprite;
                 EditorUtility.SetDirty(art);
             }
             AssetDatabase.SaveAssets();

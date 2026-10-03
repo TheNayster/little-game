@@ -6,7 +6,7 @@ using LittleWeeps.Core;
 namespace LittleWeeps.Adapters
 {
     // Distinct from the child's solo draft and from the rendered network view.
-    // Never run SoloWorld.Restore here: it intentionally releases held props.
+    // Never run GameWorld.Restore here: it intentionally releases held props.
     public sealed class RecoveryReplica
     {
         private readonly CheckpointStore store;

@@ -4,7 +4,7 @@ The requested new destination is a shared prehistoric valley where children can 
 
 This report distinguishes museum evidence, engine/input evidence and the game's authored choices. Riding extinct animals, their friendly colors, cushions and compressed relative sizes are fantasy design. They are not paleontological claims. Research accessed September 30, 2026.
 
-![The first Dinosaur World picture destination](../../SourceArt/DinosaurWorld/world-menu.png)
+![The first Dinosaur World picture destination](../../SourceArt/Dinosaur/world-menu.png)
 
 ## Species evidence and model sheets
 
@@ -19,10 +19,10 @@ The Jurassic Brachiosaurus and the Cretaceous species are deliberately mixed in 
 
 Each transparent model sheet has four walk poses above idle, looking, calling and resting poses. Source PNGs, original outputs, exact initial/edit prompts and generated-file provenance are preserved under `SourceArt/DinosaurWorld/`. The runtime sheets are equal-cell 4 Ã— 2 atlases. Edited T. rex, Triceratops and Parasaurolophus outputs keep heads/tails within cells; the original Brachiosaurus already fits. They remain generated drafts for family visual review.
 
-![Tyrannosaurus model sheet](../../SourceArt/DinosaurWorld/tyrannosaurus.png)
-![Triceratops model sheet](../../SourceArt/DinosaurWorld/triceratops.png)
-![Brachiosaurus model sheet](../../SourceArt/DinosaurWorld/brachiosaurus-original.png)
-![Parasaurolophus model sheet](../../SourceArt/DinosaurWorld/parasaurolophus.png)
+![Tyrannosaurus model sheet](../../SourceArt/Dinosaur/tyrannosaurus.png)
+![Triceratops model sheet](../../SourceArt/Dinosaur/triceratops.png)
+![Brachiosaurus model sheet](../../SourceArt/Dinosaur/brachiosaurus-original.png)
+![Parasaurolophus model sheet](../../SourceArt/Dinosaur/parasaurolophus.png)
 
 ## Valley layout and interaction choices
 

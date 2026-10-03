@@ -57,14 +57,14 @@ These existing records provide starting evidence and primary-source links. Their
 
 Source entry points:
 
-- [SoloMiniGames.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloMiniGames.cs)
-- [SoloDaycare.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDaycare.cs)
-- [SoloSandpit.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSandpit.cs)
-- [SoloKingdom.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKingdom.cs)
-- [SoloKingdomStory.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKingdomStory.cs)
-- [SoloTreasure.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloTreasure.cs)
-- [SoloVet.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloVet.cs)
-- [SoloDaycarePlay.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDaycarePlay.cs)
+- [SoloMiniGames.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Navigation/GameScreen.MiniGames.cs)
+- [SoloDaycare.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/GameScreen.Daycare.cs)
+- [SoloSandpit.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/GameScreen.SandcastleClub.cs)
+- [SoloKingdom.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/GameScreen.StoryAdventure.cs)
+- [SoloKingdomStory.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/GameScreen.AdventureStory.cs)
+- [SoloTreasure.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/GameScreen.TreasureHunt.cs)
+- [SoloVet.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/GameScreen.AnimalClinic.cs)
+- [SoloDaycarePlay.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/GameScreen.HideAndTag.cs)
 
 ## Current findings
 

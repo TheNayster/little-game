@@ -52,7 +52,7 @@ Windows **178** is built and its source/artifacts are verified. **209 core check
 
 Recovery testing exposed an outdated schema whitelist in the parent helper; it now recognizes schema 17 without bypassing checksum, enrollment or game-state validation. An overlapping run of both four-client suites on this PC hit transport queue saturation and timed out. The final recovery pass ran on its own and completed all six groups. These results do not qualify eight concurrent clients, host-load endurance or physical mixed-device networking.
 
-The implementation adds `Mixing.cs`, `SoloMixing.cs`, `MixingSurface.cs` and `MixingGesture.cs`, with existing discovery/save/network integration. The [artwork prompt record](../../SourceArt/Discovery/mixing-prompts.md) and [asset manifest](../../SourceArt/Discovery/manifest.json) retain the generated sources and runtime copies.
+The implementation adds `Mixing.cs`, `SoloMixing.cs`, `MixingSurface.cs` and `MixingGesture.cs`, with existing discovery/save/network integration. The [artwork prompt record](../../SourceArt/Home/Discovery/mixing-prompts.md) and [asset manifest](../../SourceArt/Home/Discovery/manifest.json) retain the generated sources and runtime copies.
 
 ## Remaining work and next bounded task
 

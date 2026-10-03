@@ -49,8 +49,8 @@ These existing records provide starting evidence and primary-source links. Their
 
 Source entry points:
 
-- [SoloZoo.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloZoo.cs)
-- [SoloZooAudio.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloZooAudio.cs)
+- [SoloZoo.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Zoo/GameScreen.Zoo.cs)
+- [SoloZooAudio.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Zoo/GameScreen.ZooAudio.cs)
 
 ## Current findings
 

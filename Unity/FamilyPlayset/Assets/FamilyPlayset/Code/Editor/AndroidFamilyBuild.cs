@@ -13,7 +13,7 @@ namespace LittleWeeps.EditorTools
     {
         public static void Build()
         {
-            const string scene="Assets/FamilyPlayset/Scenes/NetworkProbe.unity";
+            const string scene="Assets/FamilyPlayset/Scenes/FamilyNetwork.unity";
             const string profilePath="Assets/BuildProfiles/Android Family LAN.asset";
             if(!UnityEditor.Compilation.CompilationPipeline.GetAssemblies(UnityEditor.Compilation.AssembliesType.Player).Any(a=>a.name=="LittleWeeps.NetworkProbe"))
                 throw new InvalidOperationException("The shared client assembly must be included on Android.");

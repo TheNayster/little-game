@@ -8,16 +8,16 @@ Audit: [audit.md](audit.md). Local plan: [phase-plan.md](phase-plan.md). Shared 
 
 | Activity or concern | Client UI and presentation | Gameplay rules and shared state |
 | --- | --- | --- |
-| Tag | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloTag.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloTag.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkTag.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkTag.cs) |
-| Equipment and seating | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloPark.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloPark.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkPlay.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkPlay.cs) |
-| Wheeled play | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloWheels.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloWheels.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkWheels.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkWheels.cs) |
-| Balloon activity | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKeepyUppy.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKeepyUppy.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs) |
+| Tag | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloTag.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Park/GameScreen.Tag.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkTag.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Park/ParkTag.cs) |
+| Equipment and seating | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloPark.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Park/GameScreen.Park.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkPlay.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Park/ParkPlay.cs) |
+| Wheeled play | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloWheels.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Park/GameScreen.Wheels.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ParkWheels.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Park/ParkWheels.cs) |
+| Balloon activity | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloKeepyUppy.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Home/GameScreen.KeepyUppy.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/KeepyUppy.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Home/KeepyUppy.cs) |
 
 ## Existing native helpers
 
 These scripts show current fixtures and interaction/capture APIs. Reuse their focused helpers for review rather than running full acceptance suites merely to obtain pictures.
 
-- [Tools/Test-ParkPlay.py](../../../Tools/Test-ParkPlay.py)
+- [Tools/Test-ParkPlay.py](../../../Tools/Verification/Test-ParkPlay.py)
 
 ## Trace each finding
 

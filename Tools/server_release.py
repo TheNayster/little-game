@@ -24,11 +24,11 @@ def shared_digest(folder):
     # Art, local UI and Editor/build-tool edits do not change this contract.
     rows = load(Path(folder) / 'source-manifest.json')['files']
     chosen = {r['path']: r['sha256'] for r in rows if (
-        '/Code/Core/' in r['path'] or '/Code/NetworkProbe/' in r['path']
+        '/Code/Core/' in r['path'] or any(part in r['path'] for part in ('/Code/Networking/','/Code/NetworkProbe/'))
         or r['path'].endswith('/Packages/manifest.json')
         or r['path'].endswith('/Packages/packages-lock.json'))
         and not r['path'].endswith('.meta')}
-    if not any(p.endswith('/Core/WorldLayout.cs') for p in chosen) or not any(p.endswith('/NetworkProbe/NetworkProbe.cs') for p in chosen):
+    if not any(p.endswith('/WorldLayout.cs') for p in chosen) or not any(p.endswith(('/NetworkProbe/NetworkProbe.cs','/Networking/FamilyNetworkBootstrap.cs')) for p in chosen):
         raise ReleaseError('Shared source provenance is missing')
     if any(not re.fullmatch('[0-9a-f]{64}', h) for h in chosen.values()):
         raise ReleaseError('Invalid shared source provenance')

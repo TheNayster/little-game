@@ -72,4 +72,4 @@ Ramps, dinosaur shadows, bubbles, vibration and plant growth all remain required
 
 ## Source art
 
-Original generated room and transparent workbench assets, their source hashes and prompt specifications are retained in [the discovery source-art record](../../SourceArt/Discovery/README.md). Accepted Bluey/Bingo artwork is unchanged. The new scenery and schematic pages are implementation drafts awaiting user visual acceptance.
+Original generated room and transparent workbench assets, their source hashes and prompt specifications are retained in [the discovery source-art record](../../SourceArt/Home/Discovery/README.md). Accepted Bluey/Bingo artwork is unchanged. The new scenery and schematic pages are implementation drafts awaiting user visual acceptance.

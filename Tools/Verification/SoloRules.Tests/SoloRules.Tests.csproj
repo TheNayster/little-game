@@ -1,0 +1,84 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NuGetAudit>false</NuGetAudit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="HideAndSeekTests.cs" />
+    <Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/**/*.cs" Link="Core/%(Filename)%(Extension)" />
+    <Compile Include="HomeCreationTests.cs" />
+
+    <Compile Include="HomeTidyingTests.cs" />
+
+    <Compile Include="SceneryTests.cs" />
+    <Compile Include="HomeTests.cs" />
+    <Compile Include="KeepyTests.cs" />
+    <Compile Include="RoomTests.cs" />
+    <Compile Include="BedroomTests.cs" />
+    <Compile Include="FurnitureTests.cs" />
+    <Compile Include="SecretTests.cs" />
+    <Compile Include="BookTests.cs" />
+    <Compile Include="RoomPlayTests.cs" />
+    <Compile Include="KitchenTests.cs" />
+    <Compile Include="KitchenEasyTests.cs" />
+    <Compile Include="CakeFlowTests.cs" />
+    <Compile Include="CakeFamilyTests.cs" />
+    <Compile Include="PizzaFlowTests.cs" />
+    <Compile Include="MealFlowTests.cs" />
+    <Compile Include="MarbleRampTests.cs" />
+    <Compile Include="DiscoveryTests.cs" />
+    <Compile Include="MixingTests.cs" />
+    <Compile Include="IceRescueTests.cs" />
+    <Compile Include="BubbleLabTests.cs" />
+    <Compile Include="LiquidColorTests.cs" />
+
+
+
+    <Compile Include="ColoringCollectionTests.cs" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <Compile Include="RecoveryTests.cs" />
+    <Compile Include="ContinuationTests.cs" />
+    <Compile Include="BackgroundSaveTests.cs" />
+    <Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/BackgroundSave.cs" Link="BackgroundSave.cs" />
+    <Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/ContinuationLibrary.cs" Link="ContinuationLibrary.cs" />
+
+
+    <Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/RecoveryReplica.cs" Link="RecoveryReplica.cs" />
+
+    <Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/IFamilyDiscovery.cs" Link="IFamilyDiscovery.cs" />
+
+    <Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/WindowsBonjour.cs" Link="WindowsBonjour.cs" />
+    <Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/WindowsPairingVault.cs" Link="WindowsPairingVault.cs" />
+
+
+
+
+
+
+
+
+
+
+    <Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Adapters/CheckpointStore.cs" Link="CheckpointStore.cs" />
+
+
+  </ItemGroup>
+</Project>

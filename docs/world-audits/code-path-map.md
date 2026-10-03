@@ -15,24 +15,24 @@ Project root: `C:\Users\sephi\Desktop\Little weeps game`. Paths in this map and 
 
 | Responsibility | Exact repository path |
 | --- | --- |
-| Application screen and common input | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs) |
-| Worlds and character navigation | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs) |
-| Games menu cards and scrolling | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloMiniGames.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloMiniGames.cs) |
-| Scenery and framing | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs) |
-| Character visuals | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/GameCharacterVisual.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/GameCharacterVisual.cs) |
-| Character motion | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterMotion.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterMotion.cs) |
-| NPC presentation | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/NpcPresentation.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/NpcPresentation.cs) |
-| World boundaries | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs) |
-| Shared gameplay state | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs) |
-| Authoritative client/server session | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenSession.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenSession.cs) |
-| Native inspector and screenshot entry points | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs) |
+| Application screen and common input | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Sessions/GameScreen.cs) |
+| Worlds and character navigation | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Navigation/GameScreen.Navigation.cs) |
+| Games menu cards and scrolling | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloMiniGames.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Navigation/GameScreen.MiniGames.cs) |
+| Scenery and framing | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Rendering/GameScreen.Scenery.cs) |
+| Character visuals | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/GameCharacterVisual.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Characters/GameCharacterVisual.cs) |
+| Character motion | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterMotion.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Characters/CharacterMotion.cs) |
+| NPC presentation | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/NpcPresentation.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Home/NpcPresentation.cs) |
+| World boundaries | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Layout/WorldLayout.cs) |
+| Shared gameplay state | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/State/GameWorld.cs) |
+| Authoritative client/server session | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenSession.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkWorldSession.cs) |
+| Native inspector and screenshot entry points | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkGardenVerification.cs](../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/FamilyGameVerification.cs) |
 
 ## Capture and review tools
 
 These files provide the isolated native release runtime, inspection, resize, input and PNG capture helpers. Read them to reuse a focused capture flow; do not run whole test suites just for pictures.
 
 - [Tools/shared_garden_runtime.py](../../Tools/shared_garden_runtime.py)
-- [Tools/Test-ScenicWorlds.py](../../Tools/Test-ScenicWorlds.py)
-- [Tools/Test-HomeWorld.py](../../Tools/Test-HomeWorld.py)
+- [Tools/Test-ScenicWorlds.py](../../Tools/Verification/Test-ScenicWorlds.py)
+- [Tools/Test-HomeWorld.py](../../Tools/Verification/Test-HomeWorld.py)
 
 Common menu pictures: [common/screenshots](common/screenshots/README.md). Verify symbols/line numbers against the reviewed source when assigning a finding; path presence alone does not establish the cause.

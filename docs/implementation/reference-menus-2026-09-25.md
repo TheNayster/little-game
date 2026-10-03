@@ -25,7 +25,7 @@ The existing core checks include changing avatars while holding a prop. This pro
 
 ## Art and implementation
 
-Six new illustrations were generated with the built-in image_gen tool. [Final prompts, saved asset paths and limits](../../SourceArt/WorldMenu/README.md) · [provenance and hashes](../../SourceArt/WorldMenu/manifest.json). They are menu thumbnails, not complete gameplay scenes or user-approved final artwork. Unity imports each at a maximum of 512 pixels. Menus reuse the existing Bluey/Bingo layered art and do not load a new character atlas. The portrait currently contains those two characters; the wider cast remains planned.
+Six new illustrations were generated with the built-in image_gen tool. [Final prompts, saved asset paths and limits](../../SourceArt/Shared/WorldMenu/README.md) · [provenance and hashes](../../SourceArt/Shared/WorldMenu/manifest.json). They are menu thumbnails, not complete gameplay scenes or user-approved final artwork. Unity imports each at a maximum of 512 pixels. Menus reuse the existing Bluey/Bingo layered art and do not load a new character atlas. The portrait currently contains those two characters; the wider cast remains planned.
 
 New menu/input code is isolated in `SoloNavigation.cs` and `NavigationTap.cs`. Gameplay commands and wire/save contracts were unchanged. The original prototype board remains behind the tray. Native capture review caught and corrected initial anchoring/clipping and circle-edge quality before qualification; earlier 102/103 builds are not the accepted milestone.
 

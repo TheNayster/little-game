@@ -57,9 +57,9 @@ These existing records provide starting evidence and primary-source links. Their
 
 Source entry points:
 
-- [SoloHome.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloHome.cs)
-- [SoloBooks.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloBooks.cs)
-- [SoloMiniGames.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloMiniGames.cs)
+- [SoloHome.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Home/GameScreen.Home.cs)
+- [SoloBooks.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Home/GameScreen.Books.cs)
+- [SoloMiniGames.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Navigation/GameScreen.MiniGames.cs)
 
 ## Current findings
 

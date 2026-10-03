@@ -47,7 +47,7 @@ Client hiding is scoped to this NPC-seeker game. Hidden state still exists in th
 
 The first game has original gentle countdown/reveal chimes, local mute handling and no repeated historical cue playback on connection. Nonparticipants do not receive those cues. Existing world music and book narration remain.
 
-**Parent speech is unfinished.** The existing local Qwen VoiceDesign workflow was attempted for an original warm parent voice. Windows Application Control returned WinError 4551 while loading `torch.dll` or a dependency, before any speech file was generated. No policy was changed and no blocked executable was rerouted. [Audio notes and reproducible chime source](../../SourceAudio/HideAndSeek/README.md) distinguish the working cues from the blocked voice work. Physical listening acceptance is also open.
+**Parent speech is unfinished.** The existing local Qwen VoiceDesign workflow was attempted for an original warm parent voice. Windows Application Control returned WinError 4551 while loading `torch.dll` or a dependency, before any speech file was generated. No policy was changed and no blocked executable was rerouted. [Audio notes and reproducible chime source](../../SourceAudio/Home/HideAndSeek/README.md) distinguish the working cues from the blocked voice work. Physical listening acceptance is also open.
 
 ## Verification and delivery
 

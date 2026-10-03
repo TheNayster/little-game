@@ -1,2 +1,2 @@
 @echo off
-powershell.exe -NoProfile -File "%~dp0Tools\Play-SoloPrototype.ps1"
+powershell.exe -NoProfile -File "%~dp0Tools\Launch\Play-SoloPrototype.ps1"

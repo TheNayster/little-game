@@ -8,15 +8,15 @@ Audit: [audit.md](audit.md). Local plan: [phase-plan.md](phase-plan.md). Shared 
 
 | Activity or concern | Client UI and presentation | Gameplay rules and shared state |
 | --- | --- | --- |
-| Exhibits, feeding and animal routines | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloZoo.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloZoo.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ZooWorld.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ZooWorld.cs)<br>[Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ZooSpecies.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ZooSpecies.cs) |
-| Animal audio | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloZooAudio.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloZooAudio.cs) | Presentation only; trace relevant current activity state |
+| Exhibits, feeding and animal routines | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloZoo.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Zoo/GameScreen.Zoo.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ZooWorld.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Zoo/ZooWorld.cs)<br>[Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/ZooSpecies.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Zoo/ZooSpecies.cs) |
+| Animal audio | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloZooAudio.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Zoo/GameScreen.ZooAudio.cs) | Presentation only; trace relevant current activity state |
 
 ## Existing native helpers
 
 These scripts show current fixtures and interaction/capture APIs. Reuse their focused helpers for review rather than running full acceptance suites merely to obtain pictures.
 
-- [Tools/Test-ZooWorld.py](../../../Tools/Test-ZooWorld.py)
-- [Tools/Test-ZooSpecies.py](../../../Tools/Test-ZooSpecies.py)
+- [Tools/Test-ZooWorld.py](../../../Tools/Verification/Test-ZooWorld.py)
+- [Tools/Test-ZooSpecies.py](../../../Tools/Verification/Test-ZooSpecies.py)
 
 ## Trace each finding
 

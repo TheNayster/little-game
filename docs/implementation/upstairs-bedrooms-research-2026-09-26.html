@@ -45,31 +45,31 @@ upstairs landing — hall — four bedroom doors
 </thead>
 <tbody>
 <tr>
-<td>The living-room panorama visibly contains a flattened painted stairway. <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Scenery/home-living.png">Current image</a>.</td>
+<td>The living-room panorama visibly contains a flattened painted stairway. <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Worlds/Home/Scenery/home-living.png">Current image</a>.</td>
 <td>New interaction must align with those steps and separate foreground rails/cover where needed. An invisible doorway alone would not make the stairs visibly usable.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs">WorldLayout</a> records schema 5/content 6, five persistent area names, and Home as the negative-X part of <code>garden</code>.</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Layout/WorldLayout.cs">WorldLayout</a> records schema 5/content 6, five persistent area names, and Home as the negative-X part of <code>garden</code>.</td>
 <td>Add internal Home places without moving the existing downstairs coordinates, renaming saved garden objects or adding world-menu destinations.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs">SharedMovement</a> uses bounded floor-plane movement; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs">SoloScenery</a> supplies a horizontal camera and depth projection.</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Movement/SharedMovement.cs">SharedMovement</a> uses bounded floor-plane movement; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Rendering/GameScreen.Scenery.cs">SoloScenery</a> supplies a horizontal camera and depth projection.</td>
 <td>Floor-depth Y is not literal elevation. Putting an upstairs character at a large Y coordinate would not establish another floor or a legal stair route.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">SoloWorld</a> major-world travel releases held toys; its snapshot, clone and validators enumerate limited existing state.</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/State/GameWorld.cs">SoloWorld</a> major-world travel releases held toys; its snapshot, clone and validators enumerate limited existing state.</td>
 <td>Internal-room transfer needs explicit carry-preserving behavior, new persistent room data, and matching validation/serialization. Reusing world travel unchanged fails the requirement.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs">FamilySession</a> maps connections to stable profiles; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilyPairing.cs">FamilyPairing</a> supports four enrolled identities.</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Sessions/FamilySession.cs">FamilySession</a> maps connections to stable profiles; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Sessions/FamilyPairing.cs">FamilyPairing</a> supports four enrolled identities.</td>
 <td>Reuse family identity; never derive ownership from avatar, network connection number or arrival order.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs">NetworkProbe</a> disables NGO scene management and uses custom messaging; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/IGardenSession.cs">IGardenSession</a> separates the client from solo/network sessions.</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Networking/FamilyNetworkBootstrap.cs">NetworkProbe</a> disables NGO scene management and uses custom messaging; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Sessions/IWorldSession.cs">IGardenSession</a> separates the client from solo/network sessions.</td>
 <td>Extend the existing room-state and session approach. A new global scene-loading architecture is unnecessary for four bedrooms.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/HomeArtPart.cs">HomeArtPart</a> is a uGUI RawImage; scenery uses Resources loading with at most three resident/pending panorama requests.</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Home/HomeArtPart.cs">HomeArtPart</a> is a uGUI RawImage; scenery uses Resources loading with at most three resident/pending panorama requests.</td>
 <td>Use the current Canvas layering and bounded presentation loader. SpriteRenderer sorting instructions are not a direct replacement for this renderer.</td>
 </tr>
 <tr>
@@ -146,7 +146,7 @@ upstairs landing — hall — four bedroom doors
 <p>Suggested persistent records are a Home place registry, bedroom owner mapping, per-room revision/permissions, furniture instances and placements, room-item instances, and each player's current place and safe position. Use stable definition IDs for reusable furniture/art and stable instance IDs for actual possessions. Each movable item has exactly one location: a holder, legal surface, container or floor placement. Validate no container cycles, repeated instance IDs, missing parents or cross-place holds.</p>
 <p>The existing toy validator assumes a small fixed catalog and count. Do not force bedroom furniture and personal possessions through those assumptions without replacing them deliberately. An additive versioned room-item collection is a reasonable initial boundary; it still needs a unified check against duplicate/contradictory item identity across legacy and new collections. Future kitchen transformations can build on this contract without being implemented now.</p>
 <p>Use explicit serializable data fields and flat instance references/IDs. Unity's JsonUtility serializes structured fields, does not directly support Dictionary, and follows Unity's container restrictions. Runtime lookup dictionaries can be rebuilt from serialized lists. Avoid shared mutable graph references that silently serialize as multiple values. <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/json-serialization.html">JSON serialization</a>, <a href="https://docs.unity3d.com/6000.3/Documentation/Manual/script-serialization-rules.html">serialization rules</a>.</p>
-<p>Extend every snapshot consumer deliberately: creation, validation, deep clone, save/load, network view, private continuation, recovery checkpoint and migration. A shallow room list copy is unsafe when <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloSaving.cs">SoloSaving</a> serializes a captured snapshot on a worker. The worker must receive an immutable/deep-copied state for that revision.</p>
+<p>Extend every snapshot consumer deliberately: creation, validation, deep clone, save/load, network view, private continuation, recovery checkpoint and migration. A shallow room list copy is unsafe when <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Sessions/GameScreen.Saving.cs">SoloSaving</a> serializes a captured snapshot on a worker. The worker must receive an immutable/deep-copied state for that revision.</p>
 <p>Migration starts from supported existing schemas, including current schema 5/content 6. Reserve the next actual schema/content/build values during implementation after checking current repository activity. Preserve world ID, enrollment, legacy object IDs/contents, fixture state and Keepy state. Add room records once; reopening or repeating migration must not produce extras. Validate after conversion, retain a recoverable prior save, and follow existing durable write/recovery handling rather than replacing live files ad hoc.</p>
 <p>Measure expanded snapshot size against the existing transport, recovery and continuation limits before adding room inventories. Four rooms do not justify unbounded prop lists or broadcasts on every drag frame. Commit meaningful drops/style choices, replicate accepted changes, and bound preview traffic. A larger recovery payload must be tested for fragmentation/reassembly, stale/missing chunks, interrupted checkpoints and supported-version rejection. Old clients should receive the established compatibility response, never partial unknown room state.</p>
 <h2 id="8-artwork-layering-and-camera">8. Artwork, layering and camera</h2>

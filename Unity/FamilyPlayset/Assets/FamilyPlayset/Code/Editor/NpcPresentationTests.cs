@@ -32,7 +32,7 @@ namespace LittleWeeps.EditorTools
             var count=0;
             foreach(var entry in PlayableCharacters.All)
             {
-                var art=Resources.Load<CharacterArt>("CharacterArt/"+entry.ArtId);
+                var art=LittleWeeps.Client.WorldResources.Load<CharacterArt>("Shared/Characters/Art/"+entry.ArtId);
                 var root=new GameObject("NPC gait check",typeof(RectTransform));var view=root.AddComponent<CharacterSheetView>();view.Configure(art,null);
                 Check(view.EffectiveWalkStride==CharacterSheetView.WalkStride,"player cadence changed");view.NpcWorldScale=.8f;
                 var drawings=new System.Collections.Generic.HashSet<int>();var longest=0;var hold=0;var last=-1;
@@ -49,7 +49,7 @@ namespace LittleWeeps.EditorTools
             }
             var teacherRoot=new GameObject("Teacher gait check",typeof(RectTransform));
             var raw=new GameObject("Teacher picture",typeof(RectTransform),typeof(UnityEngine.UI.RawImage)).GetComponent<UnityEngine.UI.RawImage>();raw.transform.SetParent(teacherRoot.transform,false);
-            var teacher=teacherRoot.AddComponent<TeacherWalkView>();teacher.Configure(raw,Resources.Load<Texture2D>("Daycare/calypso-poses"));
+            var teacher=teacherRoot.AddComponent<TeacherWalkView>();teacher.Configure(raw,LittleWeeps.Client.WorldResources.Load<Texture2D>("Worlds/Daycare/Shared/calypso-poses"));
             var frames=new System.Collections.Generic.HashSet<int>();
             for(var i=0;i<120;i++){teacher.Present(new CharacterFrame(CharacterPose.Walk,180,true,travel:new Vector2(-3,0)),2,1/60f,1);Check(teacher.Walking && teacher.Floor==Vector2.zero,"teacher glides or floor shifts");frames.Add(teacher.Drawing);}
             Check(frames.Count==8,"teacher missing walk steps");teacher.Present(new CharacterFrame(CharacterPose.Idle,0,true),2,1/60f,1);Check(!teacher.Walking && teacher.Drawing==2,"teacher does not resume reading");UnityEngine.Object.DestroyImmediate(teacherRoot);

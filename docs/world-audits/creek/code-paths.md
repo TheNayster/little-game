@@ -8,8 +8,8 @@ Audit: [audit.md](audit.md). Local plan: [phase-plan.md](phase-plan.md). Shared 
 
 | Activity or concern | Client UI and presentation | Gameplay rules and shared state |
 | --- | --- | --- |
-| Fishing and feeding | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekFishing.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekFishing.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CreekFishing.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CreekFishing.cs) |
-| Boat interaction and movement | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekBoats.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekBoats.cs)<br>[Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/BoatVisualClock.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/BoatVisualClock.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CreekBoats.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CreekBoats.cs) |
+| Fishing and feeding | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekFishing.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Creek/GameScreen.CreekFishing.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CreekFishing.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Creek/CreekFishing.cs) |
+| Boat interaction and movement | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekBoats.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Creek/GameScreen.CreekBoats.cs)<br>[Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/BoatVisualClock.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Creek/BoatVisualClock.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/CreekBoats.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Creek/CreekBoats.cs) |
 
 ## Existing native helpers
 

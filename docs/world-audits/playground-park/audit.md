@@ -51,9 +51,9 @@ These existing records provide starting evidence and primary-source links. Their
 
 Source entry points:
 
-- [SoloPark.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloPark.cs)
-- [SoloTag.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloTag.cs)
-- [SoloWheels.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloWheels.cs)
+- [SoloPark.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Park/GameScreen.Park.cs)
+- [SoloTag.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Park/GameScreen.Tag.cs)
+- [SoloWheels.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Park/GameScreen.Wheels.cs)
 
 ## Current findings
 

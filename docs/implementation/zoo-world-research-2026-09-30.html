@@ -228,57 +228,57 @@ table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{p
 </thead>
 <tbody>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/WorldLayout.cs">Core/WorldLayout.cs</a>, <code>Area</code>, <code>Destination</code>, <code>Place</code>, <code>MaxX</code>, <code>Position</code></td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Layout/WorldLayout.cs">Core/WorldLayout.cs</a>, <code>Area</code>, <code>Destination</code>, <code>Place</code>, <code>MaxX</code>, <code>Position</code></td>
 <td>Zoo is absent. Existing non-internal worlds generally end at 4800; internal Home rooms at 2400. Destinations exclude internal Home rooms.</td>
 <td>Add a Zoo layout helper and five valid zone IDs: <code>zoo</code>, <code>zoo-savanna</code>, <code>zoo-dinosaurs</code>, <code>zoo-aquarium</code>, <code>zoo-reptiles</code>. Only <code>zoo</code> is a global chooser destination; its internal trails report Zoo as their place and use their own 9600 bounds. Gate arrival must use the selected endpoint.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloNavigation.cs">Client/SoloNavigation.cs</a>, <code>WorldIds</code>, label array, <code>BuildWorldBubble</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloTravelScreen.cs">SoloTravelScreen.cs</a></td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Navigation/GameScreen.Navigation.cs">Client/SoloNavigation.cs</a>, <code>WorldIds</code>, label array, <code>BuildWorldBubble</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Navigation/GameScreen.TravelScreen.cs">SoloTravelScreen.cs</a></td>
 <td>Five destination pictures are hardcoded. Travel validates a destination, resolves its icon/label, waits for authority and scenery readiness.</td>
 <td>Add a sixth Zoo picture/label and preserve all five entries. Internal gate routing needs its own validated command; global <code>Destination</code> must not expose each exhibit as a separate world.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScenery.cs">Client/SoloScenery.cs</a>, <code>SceneTiles</code>, <code>VisibleTiles</code>, camera clamp and resource requests</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Rendering/GameScreen.Scenery.cs">Client/SoloScenery.cs</a>, <code>SceneTiles</code>, <code>VisibleTiles</code>, camera clamp and resource requests</td>
 <td>Background tiles are explicit records, loaded through <code>Resources/Scenery</code>. The renderer limits resident/requested panoramas to three. Camera is local.</td>
 <td>Register the hub and 16 exhibit tile IDs; use zoo zone bounds and the existing loading window. Release departing trail scenery. Do not load all 17 backgrounds together. Animal/prop/audio caches need their own measured limits.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/CharacterSheetView.cs">Client/CharacterSheetView.cs</a>, <code>Configure</code>, <code>Present</code>, frame validation</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Characters/CharacterSheetView.cs">Client/CharacterSheetView.cs</a>, <code>Configure</code>, <code>Present</code>, frame validation</td>
 <td>Character art uses UI <code>RawImage</code> UV crops, with a 16-pose avatar sheet and 8 walking frames. Those frame requirements belong to avatars.</td>
 <td>Make an animal visual adapter with species-specific clips and sockets. Reuse UI texture/frame techniques, not Bluey pose enums or avatar frame counts as biological requirements. No installed 2D Animation package was found in the manifest.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloScreen.cs">Client/SoloScreen.cs</a>, <code>ToBoard</code>, <code>SortDepth</code> (around lines 583 and 615)</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Sessions/GameScreen.cs">Client/SoloScreen.cs</a>, <code>ToBoard</code>, <code>SortDepth</code> (around lines 583 and 615)</td>
 <td>Ground positions map through <code>(y * .45 - 250)</code>; depth is sorted by ground anchor, part and stable key, then UI sibling index.</td>
 <td>Add animal/feeder/barrier depth contributions. Keep body articulation separate from ground depth. Tank/climb display coordinates need an adapter; a swimming height must not be treated as a visitor floor position. SpriteRenderer <code>SortingGroup</code> cannot order these UI RawImages.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SharedMovement.cs">Core/SharedMovement.cs</a>, <code>AdvanceLocal</code>, <code>MovementAuthority.Tick</code>, <code>Walking.Step</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">SoloWorld.cs</a>, <code>SetWalkingPosition</code>, <code>Apply(Move)</code></td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Movement/SharedMovement.cs">Core/SharedMovement.cs</a>, <code>AdvanceLocal</code>, <code>MovementAuthority.Tick</code>, <code>Walking.Step</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/State/GameWorld.cs">SoloWorld.cs</a>, <code>SetWalkingPosition</code>, <code>Apply(Move)</code></td>
 <td>Generic walking clamps y to 35–455 and x to area bounds. Bedroom-specific routing is applied separately. A painted fence has no collision effect.</td>
 <td>Implement the same pure Zoo visitor-path projection/routing for private solo, shared walking and transaction movement. Server validation also checks path/gate reachability. Client-only collision would leave shared players able to cross habitats.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">Core/SoloWorld.cs</a>, <code>ToyKind</code>, <code>HasUsefulInteraction</code>, <code>Validate</code></td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/State/GameWorld.cs">Core/SoloWorld.cs</a>, <code>ToyKind</code>, <code>HasUsefulInteraction</code>, <code>Validate</code></td>
 <td><code>Bucket</code> stores water and serves taps/plants; toy count is schema-constrained. There are no zoo actions or animal states.</td>
 <td>Give zoo buckets a dedicated station/portion contract. Recommended: store bounded zoo portions/reservations inside Zoo state and expose them through a client carry adapter. If implemented as new <code>SoloToy</code> kinds instead, stock counts, enum validators, travel and migration all need deliberate extension.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">Core/SoloWorld.cs</a>, <code>SoloSnapshot</code>, <code>Clone</code>, <code>Validate</code>, upgrades</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/State/GameWorld.cs">Core/SoloWorld.cs</a>, <code>SoloSnapshot</code>, <code>Clone</code>, <code>Validate</code>, upgrades</td>
 <td>Snapshot state is manually cloned and validated; omitting a new field from <code>Clone</code> loses it on snapshot/reopen.</td>
 <td>Add detached deep copies, validation and an idempotent Zoo migration to both private saves and server loads. Keep old object IDs, positions and player data intact. Validate animal route bounds and reservation/portion ownership, not just field presence.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/SoloWorld.cs">Core/SoloWorld.cs</a>, <code>TravelPlayer</code> (around line 312)</td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/State/GameWorld.cs">Core/SoloWorld.cs</a>, <code>TravelPlayer</code> (around line 312)</td>
 <td>Personal toys/kitchen food remain at departure; general tools reset to legacy rack coordinates. Travel increments the player's visit.</td>
 <td><strong>Correction to the initial report:</strong> current global travel does not preserve a carried item in the hand. Proposed zoo-specific behavior settles that player's portion at its source station and releases only that player's offer. Do not run food buckets through the garden water-bucket reset.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/FamilySession.cs">Core/FamilySession.cs</a>, <code>AdvanceIdle</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/NetworkProbe/NetworkProbe.cs">NetworkProbe/NetworkProbe.cs</a>, <code>TickMovement</code></td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Sessions/FamilySession.cs">Core/FamilySession.cs</a>, <code>AdvanceIdle</code>; <a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Networking/FamilyNetworkBootstrap.cs">NetworkProbe/NetworkProbe.cs</a>, <code>TickMovement</code></td>
 <td>World idle advancement is gated on connected players. Visible maintenance changes immediately save and publish. Player movement has a separate 30 Hz simulation / 20 Hz packet lane.</td>
 <td>Use server-owned creature segments/phases plus client interpolation, or a dedicated bounded motion lane. Do not label every footstep/frame a visible maintenance transaction, which would cause continual checkpoint/full-view writes. An empty server currently does not keep simulating; settle/resume instead of claiming 24/7 animals.</td>
 </tr>
 <tr>
-<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloWorldMusic.cs">Client/SoloWorldMusic.cs</a>, <code>TickWorldMusic</code>, <code>WorldMusicPlayer</code></td>
+<td><a href="../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Audio/GameScreen.WorldMusic.cs">Client/SoloWorldMusic.cs</a>, <code>TickWorldMusic</code>, <code>WorldMusicPlayer</code></td>
 <td>Unknown areas fall back to Home music. Two local 2D AudioSources crossfade; narration/books already affect local ducking.</td>
 <td>Add explicit Zoo/trail music mapping and a separate bounded effect player. Combine animal-call ducking with existing narration/book logic instead of overriding it. Local camera/area controls audible distance; shared events identify sounds, not one global volume for all players.</td>
 </tr>
@@ -565,7 +565,7 @@ table{border-collapse:collapse;width:100%;min-width:700px;font-size:15px}th,td{p
 <p>These numbers exclude platform padding, Unity objects, transient decoded images, GPU copies, unsupported-format fallback, audio, material/Canvas overhead and all other game content. The example atlas size is illustrative, not an assigned production budget. Final atlas count and frame packing are unknown until clips exist. Load visible/nearby species, release departed trail assets, and avoid combining all 16 species into one permanently resident atlas.</p>
 <p>Unity's <a href="https://unity.com/how-to/unity-ui-optimization-tips">UI performance guidance</a> explains that Canvas changes can rebuild geometry/batches and suggests separating content by update behavior. Apply that to a measured animated-animal layer, clean backgrounds and controls; excessive individual Canvases can trade rebuild savings for batches. Use the existing depth contract and profile the first animated exhibit before picking granularity. Disable decorative animal/feeder raycast targets and reserve hits for the bucket, offer places and intentional tap-to-hear actions, so habitat layers do not intercept walking/panning.</p>
 <p>Animal effect playback should use local 2D sources, consistent with the current Canvas and music pipeline. <a href="https://docs.unity3d.com/6000.3/Documentation/ScriptReference/AudioSource-spatialBlend.html">Unity's spatialBlend API</a> defines zero as 2D. Derive pan/attenuation from logical animal position relative to <strong>that player's</strong> camera and area, not arbitrary RectTransform world distances. Limit simultaneous calls, keep eating/movement responsive, cancel clips on departure and discard stale event IDs after reconnect. Combine call ducking with existing book/narration settings. Source pool sizes, gains and call spacing remain listening/profile decisions.</p>
-<p><strong>PC sound workflow and current rejection:</strong> another task produced the four requested dinosaur species' original calls for the book, but the user subsequently rejected candidate 230's calls as random noise. Do not reuse those rejected clips in Zoo. <a href="native-reader-controls-2026-09-28.md#september-30-rejected-calls-and-preview-only-replacements">The latest book audio review</a> records replacement auditions awaiting the user's selection; <a href="../../SourceAudio/Books/dinosaur-call-jobs-2026-09-30.json">the original jobs</a> remain provenance for the rejected generation. PC recording, synthesis and editing are available production approaches, but only selected, comfortable sounds should become Zoo assets. No new sound was generated or integrated by this research.</p>
+<p><strong>PC sound workflow and current rejection:</strong> another task produced the four requested dinosaur species' original calls for the book, but the user subsequently rejected candidate 230's calls as random noise. Do not reuse those rejected clips in Zoo. <a href="native-reader-controls-2026-09-28.md#september-30-rejected-calls-and-preview-only-replacements">The latest book audio review</a> records replacement auditions awaiting the user's selection; <a href="../../SourceAudio/Home/Books/dinosaur-call-jobs-2026-09-30.json">the original jobs</a> remain provenance for the rejected generation. PC recording, synthesis and editing are available production approaches, but only selected, comfortable sounds should become Zoo assets. No new sound was generated or integrated by this research.</p>
 <h2 id="free-sounds-and-pc-recording-plan">Free sounds and PC recording plan</h2>
 <p>These are <strong>license-checked candidates</strong>, not downloaded, auditioned or integrated audio. Freesound currently shows login-to-download. Its <a href="https://freesound.org/help/faq/">license FAQ</a> explains its license categories; keep the original page, author, license, file checksum and edit recipe for every selected sound. Prefer CC0 and retain credits even where attribution is optional. Listening access alone is not a game asset license.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Zoo research table"><table>

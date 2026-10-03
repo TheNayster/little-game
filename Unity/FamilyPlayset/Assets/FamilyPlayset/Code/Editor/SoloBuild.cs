@@ -30,7 +30,7 @@ namespace LittleWeeps.EditorTools
                 var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
                 var camera=new GameObject("Main Camera",typeof(Camera),typeof(AudioListener)).GetComponent<Camera>();camera.tag="MainCamera";camera.orthographic=true;
                 camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.95f,.94f,.86f);camera.transform.position=new Vector3(0,0,-10);
-                new GameObject("Solo Play",typeof(SoloScreen));EditorSceneManager.SaveScene(scene,ScenePath);
+                new GameObject("Solo Play",typeof(GameScreen));EditorSceneManager.SaveScene(scene,ScenePath);
             }
             if(!File.Exists(profilePath) && !AssetDatabase.CopyAsset(baseProfile,profilePath))throw new IOException("Cannot create solo Build Profile.");
             var profile=AssetDatabase.LoadAssetAtPath<BuildProfile>(profilePath);profile.name=android?"Android Solo Prototype":ios?"iPad Solo Prototype":"Windows Solo Prototype";

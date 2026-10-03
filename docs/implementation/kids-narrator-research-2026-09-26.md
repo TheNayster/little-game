@@ -34,7 +34,7 @@ All generation runs on the Windows PC's verified RTX 5090. A project-local Pytho
 
 Compare at equal playback volume. Each audition is exported as 24 kHz mono PCM with a target of −20 LUFS and a −3 dB true-peak ceiling. These are comparison/mastering choices, not guarantees about listening volume at the ears. Do not reward a candidate merely for being louder.
 
-The [local listening page](../../SourceAudio/HomeAuditions/2026-09-26/index.html) presents one voice at a time. Listen for complete words, correct dinosaur names, natural sentence endings, gentle energy and comfortable pauses. Automated decoding, duration and peak checks establish file integrity only; family listening acceptance remains open. No candidate is silently treated as selected or installed in the game.
+The [local listening page](../../SourceAudio/Home/Auditions/2026-09-26/index.html) presents one voice at a time. Listen for complete words, correct dinosaur names, natural sentence endings, gentle energy and comfortable pauses. Automated decoding, duration and peak checks establish file integrity only; family listening acceptance remains open. No candidate is silently treated as selected or installed in the game.
 
 ## Production handoff
 

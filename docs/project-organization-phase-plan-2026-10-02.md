@@ -1,6 +1,6 @@
 # Little Weeps project organization phase plan
 
-October 2, 2026. Organize the existing game so its main source, worlds, shared systems, editable assets, tools, builds and local data have clear names and predictable locations. Revised after the [unused-files audit](unused-files-audit-2026-10-02.md) and [studio/engine structure research](project-structure-research-2026-10-02.md). The research document compares every phase with public Unity, Epic, Riot and Rare evidence and distinguishes their practices from our recommendations. Phase 1, the user-selected Beach checkout relocation, is complete. Phase 2 is next; the other implementation phases remain proposed.
+October 2, 2026. Organize the existing game so its main source, worlds, shared systems, editable assets, tools, builds and local data have clear names and predictable locations. Revised after the [unused-files audit](unused-files-audit-2026-10-02.md) and [studio/engine structure research](project-structure-research-2026-10-02.md). The research document compares every phase with public Unity, Epic, Riot and Rare evidence and distinguishes their practices from our recommendations. All eight phases have implementation results below. Windows cleanup and native Unity validation retain the explicit external blockers; these are not marked complete.
 
 ## Scope and order
 
@@ -8,20 +8,20 @@ Complete one phase at a time and record its result here. Preserve unfinished wor
 
 The audit covered the Windows project, associated Desktop folders and registered development checkouts. Mac folder organization remains uninspected; include it after resolving the requested scope. The Desktop Daycare review folder is an explicitly requested export, not an unexplained development checkout.
 
-Operational paths and cleanup candidates below are relative to `C:\Users\sephi\Desktop\Little weeps game`, unless an absolute path is given. Maintained source paths are relative to the current source checkout, presently `LocalData\DinosaurWorld`. These are different locations; resolve the actual absolute target before any move or deletion. Later phases use Phase 2's documented source location, not a guessed directory depth.
+Operational paths and cleanup candidates below are relative to `C:\Users\sephi\Desktop\Little weeps game`, unless an absolute path is given. Maintained source paths are relative to the current source checkout, now the visible game root. Resolve the actual absolute target before any move or deletion; the former DinosaurWorld checkout is now Worktrees/PreviousMain.
 
 Selected structure: keep the existing rules/presentation/server assembly boundaries, group worlds inside those layers, then extract shared-class responsibilities gradually. Keep authored assets and review evidence; retire bounded outputs by purpose and active consumers. Preserve current caches for fast updates. New folders require an actual purpose and contents, not an empty speculative hierarchy.
 
 | Phase | Result | Status |
 | --- | --- | --- |
 | 1 | Move the Beach checkout inside the game folder and repair dependent paths | Complete October 2; receipt below |
-| 2 | Make the obvious game folder the clear home of current source | Next implementation phase |
-| 3 | Separate local data and remove specifically verified unnecessary outputs | Proposed; cleanup queue recorded |
-| 4 | Group worlds inside existing layers, then extract shared-class responsibilities | Proposed; Beach extraction pilot |
-| 5 | Replace misleading production code names safely | Proposed |
-| 6 | Gather editable assets and apply consistent world grouping | Proposed |
-| 7 | Group reusable tools and clarify build locations | Proposed |
-| 8 | Correct entry documentation and record folder rules for future chats | Proposed |
+| 2 | Make the obvious game folder the clear home of current source | Implemented; preservation verified |
+| 3 | Separate local data and remove specifically verified unnecessary outputs | Partial: 17 archives removed; remaining removals blocked |
+| 4 | Group worlds inside existing layers, then extract shared-class responsibilities | Implemented; compile/rules pass; native view check blocked |
+| 5 | Replace misleading production code names safely | Implemented; assembly compile passes |
+| 6 | Gather editable assets and apply consistent world grouping | Implemented; 970 asset/meta byte checks pass |
+| 7 | Group reusable tools and clarify build locations | Implemented; portability checks; full build blocked |
+| 8 | Correct entry documentation and record folder rules for future chats | Implemented; current entry/ownership records |
 
 ## Phase 1 Move the Beach checkout
 
@@ -47,7 +47,7 @@ Completion requires a recorded relocation result, repaired active references and
 
 ## Phase 2 Establish the main source location
 
-The visible game root is currently an older development checkout with substantial local edits. The checkout on `main` is inside `LocalData\DinosaurWorld` and contains the whole current game. Its name incorrectly implies a single world.
+Before Phase2, the visible root held older unfinished edits and main lived inside LocalData/DinosaurWorld. Phase2 preserved that work and established the visible root as current source; see the implementation record.
 
 Inventory and preserve the root's unfinished work first, including ignored source art and local build inputs. Reconcile ownership and source differences before selecting the safe checkout transition. Put the current shared baseline in the obvious game location and retain unfinished work in clearly identified temporary checkouts. Update editor targets, launchers and maintained paths, including local scripts that explicitly reference `LocalData/DinosaurWorld`. Record where each nested registered checkout remains; do not move/delete its containing root blindly. Keep the parent's chosen `Little weeps game` root name and handle spaces correctly in scripts.
 
@@ -209,3 +209,38 @@ Private preservation receipt: `C:\Users\sephi\Desktop\Little weeps game\LocalDat
 Purpose/owner: Beach development work, associated with the **Beach** chat and `codex/beach-waves`. Status: relocated, with local work still retained. Known consumers: checkout-relative build/tool launchers and the repaired task-local integration script. Retirement requires reconciling unfinished edits and editable/ignored assets, accounting for protected evidence, and completing any remaining source delivery. The relocation did not merge, switch or delete this task branch.
 
 No game code, asset identity, save path or assembly changed. No cache purge, build, device install or live-server operation occurred. Verification covered preservation and path resolution; it does not claim that every world/minigame was playtested. Next: Phase 2, preserve/reconcile the dirty visible-root work before establishing the obvious main source location. Cleanup Phase 3 has not started.
+
+
+## Phases 2 through 8 implementation record
+
+The user authorized continuing all phases. Current maintained source paths are relative to `C:\Users\sephi\Desktop\Little weeps game`. Original phase descriptions and dated receipts above retain their planning/history context.
+
+### Phase 2 source location
+
+Preserved 57,464 files/16,927,742,624 logical bytes, 2,980 selected hashes and all135 tracked modifications in `LocalData/Worktrees/HomeScience` on codex/home-science-coloring. Accidental root Assets/Packages/ProjectSettings/Library/Logs/UserSettings are preserved in its AccidentalRootUnityProject folder. Copied missing protected review docs back to their root locations. Root source now uses the current shared baseline; active main Unity cache moved with it for fast builds. Former DinosaurWorld main is detached at b3c42c1 in `LocalData/Worktrees/PreviousMain`; official worktree repair and normalized source comparison passed. Ignored incident replay scripts now target PreviousMain; current WorldReview source scripts target the visible root. No historical deployment loop was executed. Private receipt: `LocalData/Verification/organization-phase2-2026-10-02.json`. Other unfinished registered checkouts and unique source remain retained.
+
+### Phase 3 bounded cleanup
+
+Deleted exactly the17 listed iPad transfer archives after fresh SHA256 receipt matches and full verification of52,599 retained export manifest entries. Removed5,132,959,651 logical bytes. Successful exports and receipts remain. Private result: `LocalData/Verification/organization-phase3-cleanup-2026-10-02.json`. Automatic approval review rejected the four explicit retired Library removals and the platform-tools ZIP/empty tmp batch with `blocked by policy`; all remain intact. No alternate removal path was used. Thefour caches total15.15GB; keep them marked blocked rather than claiming reclaimed space. Small .NET outputs, five staging indexes, offline installers, selected builds/current caches, live server/rollback, saves, signing/enrollment, recovery, editable inputs and every audit/review remain protected or conditional. Operational LocalData paths remain stable where active consumers depend on them.
+
+### Phases 4 and 5 source ownership and names
+
+Moved162 existing C# files and their .meta files into Core/Client world/shared folders across all seven worlds, preserving assembly identities. BeachFlockRules owns validation/transitions; SeagullFlockView owns flock artwork/animation/footprints, with narrow shared dispatch and widget delegates. Production GameWorld/GameScreen/IWorldSession/NetworkWorldSession/FamilyNetworkBootstrap/FamilyGameBuild and related pointer/narration names replace misleading prototype names. Activity screen filenames identify SandcastleClub, AnimalClinic, StoryAdventure, TreasureHunt and HideAndTag. Networking replaces the Code/NetworkProbe folder; the foundation prototype is explicitly Legacy/Runtime. FamilyNetwork scene and descriptive build profiles preserve their GUIDs. MovedFrom attributes retain Unity class identity where applicable. Snapshot fields/enums, saved IDs, SoloPrototype save paths, wire identifiers, protocol3/content67/schema49 and assembly/namespace identities remain compatible. The manifest records exact mappings and shared-file coordination; no per-world assembly was invented for partial classes.
+
+### Phase 6 assets
+
+Grouped runtime artwork/audio by world and shared ownership; distributed44 scenery resources to their owning worlds. Verified all970 moved resource/meta files byte-for-byte, including GUID-bearing metadata. WorldResources translates persisted older resource IDs and dynamic scenery paths; current source and importers use new paths. Gathered42 editable Beach/Park/Creek files (36.88MB) from preserved worktrees without overwriting existing main inputs. Grouped14 editable art/audio paths, retaining prompts/frame maps and updating generators. Private resource receipt: `LocalData/Verification/organization-assets-2026-10-02.json`. SourceScenery authoring provenance remains shared; no personal media was gathered.
+
+### Phase 7 tools and artifact consumers
+
+Grouped219 tool files/projects by Build, Devices, Content, Documentation, Launch and Verification. Python imports/root resolution and PowerShell sibling/root paths follow the new locations. Test-project source includes are updated for nested world folders and new tool depth. Existing live imported server/helper modules, parent-ui, signing/toolchain pins and connectors remain at Tools root as documented operational exceptions. Four established mobile/build entry points are parameter-preserving shims. Maintained manifests and historical source classifiers understand old/new source layouts. Existing generated Builds/NetworkProbe, AndroidSigned and iOSFamilyLAN layouts and selected preview records stay stable; historical builds are never relabeled as current.
+
+### Phase 8 ownership and verification
+
+README, AGENTS, folder guide, migration manifest, current decisions and build-guide work record now describe actual locations, ownership, compatibility exceptions and folder lifecycle. Maintained source links/renderers are updated; dated claims/raw evidence remain dated. No review folders were deleted.
+
+Verification: all230 C# files across Core, Adapters, Client, networking, retained Runtime, Server and Editor compile using the project's Unity defines/references. Focused Beach rules check passes for four-player shared flight, independent travel, landing, empty-area pause and checkpoint retention. Python syntax and PowerShell parsing pass; resource/GUID/path/tool checks are recorded. A full Unity build424 was attempted; Windows Application Control rejects installed Unity Bee.Tools.dll (0x800711C7), confirmed in CodeIntegrity events. Candidate424 is not a successful/delivered artifact. Native four-client view/asset loading remains pending that external blocker. No mobile build/install or live-server rollout occurred. A Daycare test apphost was also blocked by the same Windows policy; its project compiled, but this is not a runtime pass.
+
+Remaining: resolve the Windows Application Control build block through the machine's authorized policy/support process, then run the prepared targeted native check against a fresh successful release. Remaining exact cleanup stays blocked/conditional as listed; never delete protected reviews or unique work to claim all phases complete. Mac organization was not inspected or changed.
+
+Final path/identity check: 162 original script metadata hashes preserved; 1,058 Unity asset GUIDs unique; all219 tool destinations and138 project source includes resolve. All13 .NET tool projects compile. Plan consistency passes for3,880 local links. Historical Windows423 is retained at `LocalData/Worktrees/PreviousMain/Builds/NetworkProbe/G3-0.0.423`; read-only verification/preview lookup resolves the exact requested release, never a different build number. Install tools retain their explicit source/version/signature verification and do not use this archive lookup.

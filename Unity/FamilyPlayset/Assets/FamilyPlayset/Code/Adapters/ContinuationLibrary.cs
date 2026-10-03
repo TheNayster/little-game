@@ -83,7 +83,7 @@ namespace LittleWeeps.Adapters
                     throw new InvalidDataException("Local view cannot claim a recovery checkpoint.");
                 ValidateOrigin(record.origin);source=record.origin.snapshot;
             }
-            SoloWorld.Validate(record.snapshot);
+            GameWorld.Validate(record.snapshot);
             if(record.snapshot.schema<2 || record.snapshot.worldId!=record.id || record.snapshot.revision<source.revision ||
                 !record.snapshot.players.Any(p=>p.id==actor) ||
                 !record.snapshot.players.Select(p=>p.id).SequenceEqual(source.players.Select(p=>p.id)) ||
@@ -94,7 +94,7 @@ namespace LittleWeeps.Adapters
         {
             if(origin==null || origin.family!=family || origin.authority!=authority || origin.world!=world || !FamilyPairing.Id(origin.epoch))
                 throw new InvalidDataException("Local view identity mismatch.");
-            SoloWorld.Validate(origin.snapshot);
+            GameWorld.Validate(origin.snapshot);
             if(origin.snapshot.schema<2 || !origin.snapshot.players.Any(p=>p.id==actor))throw new InvalidDataException("Incomplete local view.");
         }
         private bool Valid(string text)
@@ -129,7 +129,7 @@ namespace LittleWeeps.Adapters
             // local play cannot mutate the preserved common base.
             var record=decode(encode(new ContinuationRecord{id=Guid.NewGuid().ToString("N"),actor=actor,
                 createdUtcTicks=DateTime.UtcNow.Ticks,basis=basis,snapshot=basis.snapshot}));
-            var state=SoloWorld.Restore(record.snapshot).Snapshot();state.worldId=record.id;
+            var state=GameWorld.Restore(record.snapshot).Snapshot();state.worldId=record.id;
             foreach(var player in state.players.Where(p=>p.id!=actor))player.activity="";
             record.snapshot=state;Validate(record);Save(record,state);return record;
         }
@@ -138,7 +138,7 @@ namespace LittleWeeps.Adapters
             ValidateOrigin(origin);
             var record=decode(encode(new ContinuationRecord{version=2,id=Guid.NewGuid().ToString("N"),actor=actor,
                 createdUtcTicks=DateTime.UtcNow.Ticks,origin=origin,snapshot=origin.snapshot}));
-            var state=SoloWorld.Restore(record.snapshot).Snapshot();state.worldId=record.id;
+            var state=GameWorld.Restore(record.snapshot).Snapshot();state.worldId=record.id;
             foreach(var player in state.players.Where(p=>p.id!=actor))player.activity="";
             record.snapshot=state;Validate(record);Save(record,state);return record;
         }

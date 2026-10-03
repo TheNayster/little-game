@@ -50,8 +50,8 @@ These existing records provide starting evidence and primary-source links. Their
 
 Source entry points:
 
-- [SoloCreekFishing.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekFishing.cs)
-- [SoloCreekBoats.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloCreekBoats.cs)
+- [SoloCreekFishing.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Creek/GameScreen.CreekFishing.cs)
+- [SoloCreekBoats.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Creek/GameScreen.CreekBoats.cs)
 
 ## Current findings
 

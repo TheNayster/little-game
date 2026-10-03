@@ -8,15 +8,15 @@ Audit: [audit.md](audit.md). Local plan: [phase-plan.md](phase-plan.md). Shared 
 
 | Activity or concern | Client UI and presentation | Gameplay rules and shared state |
 | --- | --- | --- |
-| Riding, calls and movement | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDinosaurWorld.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDinosaurWorld.cs)<br>[Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/DinosaurLandmarks.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/DinosaurLandmarks.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurWorld.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurWorld.cs) |
-| Feeding and petting | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDinosaurCare.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDinosaurCare.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurCare.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurCare.cs) |
+| Riding, calls and movement | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDinosaurWorld.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Dinosaur/GameScreen.DinosaurWorld.cs)<br>[Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/DinosaurLandmarks.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Dinosaur/DinosaurLandmarks.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurWorld.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Dinosaur/DinosaurWorld.cs) |
+| Feeding and petting | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDinosaurCare.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Dinosaur/GameScreen.DinosaurCare.cs) | [Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/DinosaurCare.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Dinosaur/DinosaurCare.cs) |
 
 ## Existing native helpers
 
 These scripts show current fixtures and interaction/capture APIs. Reuse their focused helpers for review rather than running full acceptance suites merely to obtain pictures.
 
-- [Tools/Test-DinosaurWorld.py](../../../Tools/Test-DinosaurWorld.py)
-- [Tools/Test-DinosaurCare.py](../../../Tools/Test-DinosaurCare.py)
+- [Tools/Test-DinosaurWorld.py](../../../Tools/Verification/Test-DinosaurWorld.py)
+- [Tools/Test-DinosaurCare.py](../../../Tools/Verification/Test-DinosaurCare.py)
 
 ## Trace each finding
 

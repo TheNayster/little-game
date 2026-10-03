@@ -184,7 +184,7 @@ def validate_enrollment_records(public, records, world):
 
 def validate_world(raw, profiles):
     body = checkpoint(raw)
-    result = subprocess.run(['dotnet', 'run', '--project', str(ROOT / 'Tools/RecoveryValidator'),
+    result = subprocess.run(['dotnet', 'run', '--project', str(ROOT / 'Tools/Verification/RecoveryValidator'),
                              '--configuration', 'Release', '--verbosity', 'quiet'],
                             input=json.dumps(dict(world=body, profiles=profiles)), capture_output=True,
                             text=True, timeout=45, creationflags=subprocess.CREATE_NO_WINDOW)

@@ -14,7 +14,7 @@ namespace LittleWeeps.EditorTools
         public int callbackOrder => 0;
         public void OnPreprocessBuild(BuildReport report)
         {
-            const string destination = "Assets/FamilyPlayset/Resources/CharacterArt";
+            const string destination = "Assets/FamilyPlayset/Resources/Shared/Characters/Art";
             const string importedContract = "Assets/FamilyPlayset/Art/Characters/animation-contract.json";
             Directory.CreateDirectory(destination); AssetDatabase.Refresh();
             var root = Path.GetFullPath(Path.Combine(Application.dataPath, "../../.."));
@@ -77,7 +77,7 @@ namespace LittleWeeps.EditorTools
         }
         private static void BuildPortrait(Character character,Texture2D source)
         {
-            const string folder="Assets/FamilyPlayset/Resources/CharacterMenu";
+            const string folder="Assets/FamilyPlayset/Resources/Shared/Characters/Menu";
             if(!Directory.Exists(folder)){Directory.CreateDirectory(folder);AssetDatabase.Refresh();}
             var path=folder+"/"+character.id+".asset";
             var art=AssetDatabase.LoadAssetAtPath<CharacterMenuArt>(path);

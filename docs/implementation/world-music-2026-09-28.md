@@ -24,7 +24,7 @@ These are original melodies and recordings; no Bluey score or recording is used.
 
 Home and the yard change music across the veranda with a boundary margin to avoid repeated changes when stepping back and forth. Upstairs/bedrooms use softer Home music. Secret rooms retain their existing independent quiet ambience and levels. Radio music/dancing continues to work; the general score recedes while a nearby radio plays. Book narration/effects and spoken hints lower the local music. Music off applies immediately to the new score and remains a local saved preference. Pausing backgrounds the audio; resuming continues it. One player's travel, mute or reading does not change anyone else's music or shared data.
 
-Source and regeneration information: [World music sources](../../SourceAudio/WorldMusic/README.md). Six stereo masters are 66–89 seconds, with matched −22 dBFS RMS before local playback gain, no sample clipping and zero sample discontinuity at their loop boundaries. Musical/listening quality still needs the family's feedback.
+Source and regeneration information: [World music sources](../../SourceAudio/Shared/WorldMusic/README.md). Six stereo masters are 66–89 seconds, with matched −22 dBFS RMS before local playback gain, no sample clipping and zero sample discontinuity at their loop boundaries. Musical/listening quality still needs the family's feedback.
 
 ## Verification and delivery
 

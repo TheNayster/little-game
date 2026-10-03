@@ -7,7 +7,7 @@ namespace LittleWeeps.EditorTools
     {
         private void OnPreprocessTexture()
         {
-            if(!assetPath.StartsWith("Assets/FamilyPlayset/Resources/Scenery/"))return;
+            if(!assetPath.StartsWith("Assets/FamilyPlayset/Resources/Worlds/",System.StringComparison.Ordinal) || !assetPath.Contains("/Scenery/"))return;
             var importer=(TextureImporter)assetImporter;
             importer.textureShape=TextureImporterShape.Texture2D;importer.textureType=TextureImporterType.Default;importer.mipmapEnabled=false;
             importer.isReadable=false;importer.maxTextureSize=4096;

@@ -1,0 +1,13 @@
+{
+  "width": 1536,
+  "height": 1024,
+  "coordinates": "top-left pixels",
+  "frames": [
+    {"name": "leaf-hull", "x": 16, "y": 40, "width": 518, "height": 490},
+    {"name": "bark-hull", "x": 539, "y": 36, "width": 487, "height": 498},
+    {"name": "paper-hull", "x": 1034, "y": 250, "width": 491, "height": 277},
+    {"name": "wooden-dock", "x": 22, "y": 599, "width": 579, "height": 390},
+    {"name": "leaf-passenger", "x": 653, "y": 682, "width": 337, "height": 258},
+    {"name": "flower", "x": 1110, "y": 698, "width": 402, "height": 238}
+  ]
+}

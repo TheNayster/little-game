@@ -50,8 +50,8 @@ These existing records provide starting evidence and primary-source links. Their
 
 Source entry points:
 
-- [SoloDinosaurWorld.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDinosaurWorld.cs)
-- [SoloDinosaurCare.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloDinosaurCare.cs)
+- [SoloDinosaurWorld.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Dinosaur/GameScreen.DinosaurWorld.cs)
+- [SoloDinosaurCare.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Dinosaur/GameScreen.DinosaurCare.cs)
 
 ## Current findings
 

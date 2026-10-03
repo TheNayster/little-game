@@ -48,8 +48,8 @@ These existing records provide starting evidence and primary-source links. Their
 
 Source entry points:
 
-- [SoloWaveRide.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloWaveRide.cs)
-- [SoloBeachShore.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/SoloBeachShore.cs)
+- [SoloWaveRide.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Beach/GameScreen.WaveRide.cs)
+- [SoloBeachShore.cs](../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Beach/GameScreen.BeachShore.cs)
 
 ## Current findings
 

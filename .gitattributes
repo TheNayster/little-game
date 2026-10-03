@@ -20,5 +20,5 @@ SourceArt/Characters/*.svg -text
 SourceArt/Characters/character-contract.json -text
 
 # Keep original coloring PDFs and generated region masks byte-exact.
-SourceArt/Discovery/Coloring/*.pdf binary
-Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Discovery/Coloring/*.bytes binary
+SourceArt/Home/Discovery/Coloring/*.pdf binary
+Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Worlds/Home/Discovery/Coloring/*.bytes binary

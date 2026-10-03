@@ -24,7 +24,7 @@ namespace LittleWeeps.EditorTools
                 var count=0;var maximum=0f;
                 foreach(var title in Core.HomeBooks.Titles)
                 {
-                    var path="Assets/FamilyPlayset/Resources/Books/"+title+"/content.json";
+                    var path="Assets/FamilyPlayset/Resources/Worlds/Home/Books/"+title+"/content.json";
                     var book=JsonUtility.FromJson<Book>(File.ReadAllText(path));
                     foreach(var page in book.pages)
                     {

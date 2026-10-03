@@ -90,7 +90,26 @@
     "docs/daycare-world-wishlist.md",
     "docs/implementation/daycare-treasure-hunt-2026-10-01.md",
     "docs/implementation/daycare-animal-clinic-2026-10-01.md",
-    "docs/implementation/daycare-hide-and-tag-2026-10-01.md"
+    "docs/implementation/daycare-hide-and-tag-2026-10-01.md",
+    "docs/project-folder-guide.md",
+    "docs/project-organization-phase-plan-2026-10-02.md",
+    "docs/project-structure-research-2026-10-02.md",
+    "docs/six-world-screenshot-phase-2026-10-02.md",
+    "docs/unused-files-audit-2026-10-02.md",
+    "docs/world-play-audit-phase-2026-10-02.md",
+    "docs/implementation/combined-family-release-339-2026-09-30.md",
+    "docs/implementation/combined-world-release-360-2026-09-30.md",
+    "docs/implementation/daycare-repair-2026-09-30.md",
+    "docs/implementation/daycare-sandpit-2026-10-01.md",
+    "docs/implementation/daycare-story-encounters-2026-09-30.md",
+    "docs/implementation/dinosaur-rider-outfits-341-2026-09-30.md",
+    "docs/implementation/family-release-401-2026-10-01.md",
+    "docs/implementation/git-cleanup-2026-09-30.md",
+    "docs/implementation/home-pond-and-hiding-2026-10-01.md",
+    "docs/implementation/movement-speed-348-2026-09-30.md",
+    "docs/implementation/onesie-roar-book-setting-342-2026-09-30.md",
+    "docs/implementation/travel-feeding-memory-340-2026-09-30.md",
+    "docs/implementation/zoo-main-gate-arrival-347-2026-09-30.md"
   ],
   "historical_records": [
     "docs/implementation/android-16kb-review-2026-09-23.md",
@@ -148,5 +167,23 @@
   "retired_phases": [
     "G4"
   ],
-  "source_evidence": "Existing downloaded source/external citations and immutable test evidence are retained, not revalidated by this audit."
+  "source_evidence": "Existing downloaded source/external citations and immutable test evidence are retained, not revalidated by this audit.",
+  "local_review_records": [
+    "docs/beach-world-wishlist.md",
+    "docs/creek-world-feature-list-2026-09-30.md",
+    "docs/implementation/backyard-pond-2026-09-30.md",
+    "docs/implementation/bathroom-2026-09-30.md",
+    "docs/implementation/creek-boat-smoothing-2026-09-30.md",
+    "docs/implementation/creek-boats-2026-09-30.md",
+    "docs/implementation/creek-fishing-2026-09-30.md",
+    "docs/implementation/daycare-calypso-counting-2026-09-30.md",
+    "docs/implementation/daycare-random-npcs-2026-09-30.md",
+    "docs/implementation/daycare-the-adventure-2026-09-30.md",
+    "docs/implementation/dinosaur-phone-283.md",
+    "docs/implementation/faster-parent-seeking-2026-09-30.md",
+    "docs/implementation/park-bikes-scooters-2026-09-30.md",
+    "docs/implementation/park-tag-2026-09-30.md",
+    "docs/implementation/park-tag-group-2026-09-30.md",
+    "docs/implementation/park-wheel-parking-2026-09-30.md"
+  ]
 }

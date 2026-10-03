@@ -12,7 +12,7 @@ namespace LittleWeeps.EditorTools
         {
             foreach(var id in new[]{"home","garden","park","creek","beach","daycare","zoo","dinosaur-world"})
             {
-                var path="Assets/FamilyPlayset/Resources/WorldMenu/"+id+".png";
+                var path="Assets/FamilyPlayset/Resources/Shared/UI/WorldMenu/"+id+".png";
                 var importer=AssetImporter.GetAtPath(path) as TextureImporter;
                 if(importer==null)throw new BuildFailedException("Missing world picture: "+path);
                 // Menus use bounded thumbnail textures, never six full-resolution

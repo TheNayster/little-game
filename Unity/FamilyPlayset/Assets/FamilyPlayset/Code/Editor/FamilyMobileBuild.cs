@@ -16,7 +16,7 @@ namespace LittleWeeps.EditorTools
         public static void IOS()
         {
 #if UNITY_IOS
-            const string scenePath="Assets/FamilyPlayset/Scenes/NetworkProbe.unity";
+            const string scenePath="Assets/FamilyPlayset/Scenes/FamilyNetwork.unity";
             const string profilePath="Assets/BuildProfiles/iPad Family LAN.asset";
             if(!File.Exists(scenePath))throw new InvalidOperationException("Qualified shared scene is required.");
             var args=Environment.GetCommandLineArgs();var at=Array.IndexOf(args,"-familyBuildNumber");

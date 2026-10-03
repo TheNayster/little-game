@@ -8,6 +8,7 @@ import socket
 import subprocess
 import time
 import uuid
+from project_paths import verification_artifact
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -58,7 +59,7 @@ class Run:
         require(os.name == 'nt' and 51 <= build <= 9999, 'Windows shared garden build required')
         self.build, self.interactive = build, interactive
         self.extended_test_lifetime = extended_test_lifetime
-        self.folder = ROOT / f'Builds/NetworkProbe/G3-0.0.{build}'
+        self.folder = verification_artifact(f'NetworkProbe/G3-0.0.{build}')
         summary = read(self.folder / 'build-summary.json')
         require(summary and summary['contract'] in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17) and summary['gardenPresentation'], 'Playable garden build required')
         self.content = summary["content"] if summary["contract"] >= 8 else 6 if summary["contract"] >= 7 else 5 if summary["contract"] >= 6 else 4 if summary["contract"] >= 5 else (3 if summary["contract"] >= 4 else 2 if summary["contract"] >= 3 else 1)

@@ -54,9 +54,9 @@ Schema48/content63/protocol3: new saved clinic fields and shared rules require c
 
 ## Art and sound provenance
 
-Original built-in imagegen creates the sunny room, living pet atlases and care-tool atlas. PNGs are copied into Resources unchanged; runtime crop/foot metadata avoids adjoining sprite fragments and registers grounded animation. [Prompt and hash records](../../SourceArt/Vet/manifest.json) identify the selected files. The earlier plush draft was rejected by the user and is not used in the game.
+Original built-in imagegen creates the sunny room, living pet atlases and care-tool atlas. PNGs are copied into Resources unchanged; runtime crop/foot metadata avoids adjoining sprite fragments and registers grounded animation. [Prompt and hash records](../../SourceArt/Daycare/AnimalClinic/manifest.json) identify the selected files. The earlier plush draft was rejected by the user and is not used in the game.
 
-Pet calls use credited CC0 recordings: [dog bark by ipears1](https://freesound.org/people/ipears1/sounds/118072/), [cat meow by tuberatanka](https://freesound.org/people/tuberatanka/sounds/110011/), and [guinea-pig greeting by RICHERlandTV](https://freesound.org/people/RICHERlandTV/sounds/435748/). [Source/license/edit hashes](../../SourceAudio/Vet/pet-calls.json) are retained. Rabbit movement uses quiet project-designed rustling Foley. Dinosaur calls reuse the existing approved assets. Seven short instructions use an original locally generated adult voice; [text, model, prompt and hashes](../../SourceAudio/Vet/manifest.json) are recorded. Cheerful Daycare music is reused.
+Pet calls use credited CC0 recordings: [dog bark by ipears1](https://freesound.org/people/ipears1/sounds/118072/), [cat meow by tuberatanka](https://freesound.org/people/tuberatanka/sounds/110011/), and [guinea-pig greeting by RICHERlandTV](https://freesound.org/people/RICHERlandTV/sounds/435748/). [Source/license/edit hashes](../../SourceAudio/Daycare/AnimalClinic/pet-calls.json) are retained. Rabbit movement uses quiet project-designed rustling Foley. Dinosaur calls reuse the existing approved assets. Seven short instructions use an original locally generated adult voice; [text, model, prompt and hashes](../../SourceAudio/Daycare/AnimalClinic/manifest.json) are recorded. Cheerful Daycare music is reused.
 
 ## Verification and delivery
 
