@@ -1,5 +1,7 @@
 # Daycare Sandcastle club — October 1
 
+Current implementation: see the [Stage 2 source/pending verification record](daycare-sandcastle-redesign-2026-10-02.md#stage-2-implementation-and-verification--october-2). The four-bucket/replay/crumble behavior below is dated M1–5 history, superseded by the approved creative loop.
+
 DAY-01 / LEARN-01 / FAMILY-01. The backyard sandpit is now playable directly, from Daycare Games, or through Calypso. She walks over, counts scoops into an example bucket, adds water and turns it into a tower. Children can experiment while she arrives.
 
 Choose one of four moulds, then use the Scoop / Water / Tip pictures. Small buckets need two scoops; big buckets need three. Full dry sand crumbles when tipped, with an encouraging spoken explanation. Wet sand holds its shape. Decorate towers with flags or shells; four completed towers gain shared castle walls. Children can help with any bucket.
@@ -228,3 +230,7 @@ Git diff summary: 15 intended files, including six new files. Production changes
 ## Creative redesign planning — October 2
 
 Stage 1 only: the accepted direction is a shared creative sandpit, choose mould → place → scoop → water → tip → combined decoration → continued play. [Verified source ownership, requirements, decision proposals, migration risks and six-stage acceptance plan](daycare-sandcastle-redesign-2026-10-02.md). [Tablet/phone interactive mockup](evidence/daycare-sandcastle-redesign-2026-10-02/layout-proposal.html) is illustrative documentation, not an implemented screen or approved art. Existing M1–5 checks above remain historical evidence and were not rerun. No production/saved-world/runtime/device/server change; Picnic Counting remains. The parent must approve the design before Stage 2.
+
+## Shared creative construction — Stage 2, October 2
+
+**Sandcastle Stage 2 — October 2 (DAY-01 / LEARN-01 / FAMILY-01):** Source now has a bounded shared round-mould loop: choose/preview/confirm a spot, scoop/water/tip, reveal, then build another piece. Preserves legacy location/capacity/fill/flags/shells/cast/attendance; dry Tip retains fill; no replay clear. Schema50/content68/protocol3 require a coordinated later authority/client update. All seven Unity-reference assemblies compile; focused contract tests compile, but execution is blocked by Windows Application Control 0x800711C7. Fresh native build/four-client/tap captures remain unavailable under the recorded Bee.Tools.dll block. Source layout projections are not Unity captures. No device/live server/real save operation, Picnic removal or Stage 3 work. [Approved decisions, verified paths, evidence and pending acceptance](daycare-sandcastle-redesign-2026-10-02.md#stage-2-implementation-and-verification--october-2).

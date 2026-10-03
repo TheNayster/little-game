@@ -14,6 +14,16 @@ namespace LittleWeeps.Client
         {
             mesh=vh;mesh.Clear();ceiling=float.PositiveInfinity;transformingBucket=false;
             var wood=new Color(.57f,.38f,.21f);var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
+            if(kind=="confirm"){
+                var green=new Color(.12f,.5f,.37f);
+                Poly(green,new Vector2(-32,-2),new Vector2(-24,6),new Vector2(-4,-14),new Vector2(-12,-22));
+                Poly(green,new Vector2(-12,-22),new Vector2(-4,-14),new Vector2(30,26),new Vector2(38,18));return;
+            }
+            if(kind=="cancel"){
+                Poly(edge,new Vector2(-29,-20),new Vector2(-20,-29),new Vector2(29,20),new Vector2(20,29));
+                Poly(edge,new Vector2(-29,20),new Vector2(-20,29),new Vector2(29,-20),new Vector2(20,-29));return;
+            }
+            if(kind=="back"){Box(-16,-5,48,10,edge);Poly(edge,new Vector2(-38,0),new Vector2(-11,23),new Vector2(-11,-23));return;}
             if(kind=="flag-object" || kind=="shell-object"){
                 Oval(0,0,47,9,new Color(.37f,.36f,.22f,.28f));
                 if(kind=="flag-object")Flag(wiggle,0,1.5f);else Shell(wiggle,29,1.5f);return;

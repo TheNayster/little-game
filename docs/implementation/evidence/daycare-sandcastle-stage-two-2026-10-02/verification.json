@@ -1,0 +1,105 @@
+{
+  "sourceSha256": "ca10d5f1e9a6a5e6ed6b85a06e592b287cd4bb5a3ecdb55af2c8bb87246ee6a9",
+  "sourceProjectionOnly": true,
+  "checks": [
+    {
+      "projection": "phone-placement",
+      "screen": [
+        1280,
+        591
+      ],
+      "sandSurfacePixels": [
+        812.6,
+        339.8
+      ],
+      "placementTargetPixels": [
+        81.3,
+        65.0
+      ],
+      "pieceHitPixels": [
+        60.9,
+        67.0
+      ],
+      "toolHitPixels": [
+        122.6,
+        73.9
+      ],
+      "rectanglesFit": true,
+      "nativeVerified": false
+    },
+    {
+      "projection": "tablet-building",
+      "screen": [
+        1024,
+        768
+      ],
+      "sandSurfacePixels": [
+        880.0,
+        368.0
+      ],
+      "placementTargetPixels": [
+        88.0,
+        70.4
+      ],
+      "pieceHitPixels": [
+        66.0,
+        72.6
+      ],
+      "toolHitPixels": [
+        132.8,
+        80.0
+      ],
+      "rectanglesFit": true,
+      "nativeVerified": false
+    }
+  ],
+  "ruleTests": "compile passed; execution blocked 0x800711C7",
+  "nativeFourClient": "not run; fresh Unity artifact unavailable",
+  "essentialPictures": "check/cross/back are mesh geometry, no Unicode glyph dependency",
+  "unityReferenceCompilation": [
+    {
+      "assembly": "LittleWeeps.Core",
+      "exit": 0
+    },
+    {
+      "assembly": "LittleWeeps.Adapters",
+      "exit": 0
+    },
+    {
+      "assembly": "LittleWeeps.Client",
+      "exit": 0
+    },
+    {
+      "assembly": "LittleWeeps.NetworkProbe",
+      "exit": 0
+    },
+    {
+      "assembly": "LittleWeeps.Runtime",
+      "exit": 0
+    },
+    {
+      "assembly": "LittleWeeps.Server",
+      "exit": 0
+    },
+    {
+      "assembly": "Assembly-CSharp-Editor",
+      "exit": 0
+    }
+  ],
+  "contractProjectCompilation": {
+    "passed": true,
+    "warnings": 0,
+    "errors": 0
+  },
+  "nativeDriverSyntax": "passed",
+  "documentationConsistency": {
+    "passed": true,
+    "linksChecked": 3892
+  },
+  "runtimeAttempt": {
+    "passed": false,
+    "testsExecuted": false,
+    "error": "Windows Application Control FileLoadException 0x800711C7",
+    "command": "dotnet Tools/Verification/Sandpit.Tests/bin/Debug/net9.0/Sandpit.Tests.dll"
+  }
+}

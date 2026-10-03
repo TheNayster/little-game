@@ -62,7 +62,7 @@ namespace LittleWeeps.Core
         public SandpitState ReadSandpit()=>state.sandpit?.Copy();
         private static void NormalizeSandpit(SoloSnapshot s)
         {if(s!=null && s.schema<DaycareSandpit.Schema && s.sandpit!=null && s.sandpit.phase==0 && (s.sandpit.members==null || s.sandpit.members.Length==0))s.sandpit=null;}
-        private static SandpitState NewSandpit(SoloSnapshot s)=>new SandpitState{format=1,pieceLimit=DaycareSandpit.MaxPieces,scoopCapacity=DaycareSandpit.DefaultScoops,members=s.players.Select(p=>new SandpitMember{actor=p.id}).ToArray(),moulds=Array.Empty<SandMould>(),friends=DaycareNpcCasts.Pick(2)};
+        private static SandpitState NewSandpit(SoloSnapshot s)=>new SandpitState{format=1,pieceLimit=DaycareSandpit.MaxPieces,scoopCapacity=DaycareSandpit.DefaultScoops,members=s.players.Select(p=>new SandpitMember{actor=p.id}).ToArray(),moulds=Array.Empty<SandMould>(),friends=s.daycare.guests.Take(2).ToArray()};
         private static GameWorld WithSandpitPieces(GameWorld world)
         {
             if(world.state.sandpit?.format==1)return world;

@@ -76,6 +76,9 @@ class Program
   Need(!full.Accepted && full.Outcome=="sandpit-full" && Json(w.ReadSandpit().moulds)==before,"cap preserves all work");
   var reopened=GameWorld.WithDinosaurWorld(GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(Json(w.Snapshot()),options)));
   Need(Json(reopened.ReadSandpit().moulds)==before && reopened.ReadSandpit().friends.SequenceEqual(cast),"current JSON reopen");
+  Need(System.Text.Encoding.UTF8.GetByteCount(Json(family.View()))<131072,"bounded snapshot fits wire budget");
+  var copied=reopened.ReadSandpit();copied.moulds[0].scoops=0;Need(reopened.ReadSandpit().moulds[0].scoops==3,"read copy isolation");
+  var newEpoch=reopened.Snapshot();newEpoch.sandpit.round++;var replacement=GameWorld.Restore(newEpoch);var oldIntent=ToolCommand(1,"water",c,epoch);oldIntent.expectedRevision=replacement.Revision;Need(!replacement.Apply(oldIntent).Accepted,"replacement epoch rejects old intent");
   // Synthetic schema49 fixture: no real saves are opened or changed.
   var fixture=w.Snapshot();fixture.schema=49;var legacy=fixture.sandpit;legacy.format=legacy.pieceLimit=legacy.scoopCapacity=0;legacy.round=7;legacy.phase=3;
   legacy.moulds=new[]{
@@ -91,6 +94,7 @@ class Program
   // Partial legacy pieces, including original alternating scoop capacity.
   fixture.schema=49;fixture.sandpit.phase=2;fixture.sandpit.moulds[0]=new SandMould{scoops=1};fixture.sandpit.moulds[1]=new SandMould{scoops=2,wet=true};
   migrated=GameWorld.WithDinosaurWorld(GameWorld.Restore(fixture));Need(migrated.ReadSandpit().moulds[0].scoops==1 && !migrated.ReadSandpit().moulds[0].wet && !migrated.ReadSandpit().moulds[0].built && migrated.ReadSandpit().moulds[1].scoops==2 && migrated.ReadSandpit().moulds[1].wet && migrated.ReadSandpit().moulds[1].capacity==3,"partial legacy retention");
+  var older=fixture;older.schema=45;older.sandpit=null;var firstUpgrade=GameWorld.WithDinosaurWorld(GameWorld.Restore(older));var secondUpgrade=GameWorld.WithDinosaurWorld(GameWorld.Restore(older));Need(Json(firstUpgrade.ReadSandpit())==Json(secondUpgrade.ReadSandpit()),"deterministic missing-sandpit migration");
   var invalid=twice.Snapshot();invalid.sandpit.moulds[1].id=invalid.sandpit.moulds[0].id;Throws(()=>GameWorld.Validate(invalid),"duplicate ids");
   invalid=twice.Snapshot();invalid.sandpit.moulds[1].x=invalid.sandpit.moulds[0].x;Throws(()=>GameWorld.Validate(invalid),"overlapping saved footprint");
   invalid=twice.Snapshot();invalid.sandpit.moulds[0].capacity=0;Throws(()=>GameWorld.Validate(invalid),"invalid capacity");
@@ -111,4 +115,3 @@ class Program
   tip.Observe(state,false,.1f);tip.Observe(state,true,.1f);Need(tip.Remaining(4)==0,"reconnect no reveal replay");
  }
 }
-

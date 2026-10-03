@@ -1,44 +1,99 @@
-"""One focused shared sandcastle lesson using real release UI touches."""
+"""Stage 2: one isolated authority/four native clients, plus real picture taps.
+Requires a freshly built schema50/content68 artifact matching current task source.
+Never launches the installed family server or opens a real save.
+"""
 import sys as _path_sys
 from pathlib import Path as _ProjectPath
-_path_sys.path.insert(0,str(next(p for p in _ProjectPath(__file__).resolve().parents if p.name=='Tools')))
+_path_sys.path.insert(0, str(next(p for p in _ProjectPath(__file__).resolve().parents if p.name == "Tools")))
 from project_paths import ROOT as PROJECT_ROOT
-import argparse,importlib.util,time,re
-from pathlib import Path
-from shared_garden_runtime import Run,wait,require,write
-spec=importlib.util.spec_from_file_location('home',Path(__file__).with_name('Test-HomeWorld.py'));home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
+import argparse, hashlib, importlib.util, time
+from concurrent.futures import ThreadPoolExecutor
+from shared_garden_runtime import Run, wait, require, read, write
+spec = importlib.util.spec_from_file_location("home", Path(__file__).with_name("Test-HomeWorld.py"))
+home = importlib.util.module_from_spec(spec); spec.loader.exec_module(home)
+
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('build',type=int);args=parser.parse_args();run=Run(args.build,extended_test_lifetime=True);out=run.path/'sandpit';out.mkdir();checks=[];passed=False;clients=[]
- print('EVIDENCE '+str(out),flush=True)
- def state():return server.state()['view']['sandpit']
- def member(v):return next(m for m in state()['members'] if m['actor']==v.profile)
- def record(name):checks.append(name);print('PASS '+name,flush=True)
- def cmd(v,action,**kw):r=home.command(v,action,**kw);require(r['accepted'],str(r));home.ready(v)
- def button(v,name):wait(lambda:any(c['name']==name and c['enabled'] for c in v.input('inspect')['controls']),'enabled '+name,20);v.input('touchButton',text=name)
- def tool(v,i,name,key,value):button(v,'Choose sand mould '+str(i+1));button(v,name);wait(lambda:state()['moulds'][i][key]==value,name+' shared '+str(i),18)
- try:
-  server=run.start('server');clients=[run.start('client',s['profile']) for s in run.slots];a,b,c,d=clients
-  for v in clients:home.ready(v);cmd(v,7,value='park' if v==d else 'daycare');v.input('resize',x=1280 if v!=c else 1024,y=591 if v!=c else 768);home.ready(v)
-  button(a,'Games');home.capture(a,out,'daycare-three-games-phone');button(a,'Sandcastle club');wait(lambda:sum(m['attending'] for m in state()['members'])==3,'common start');cast=state()['friends'];home.capture(a,out,'sandpit-start-phone')
-  if not a.input('inspect')['joystickVisible']:button(a,'Tap to walk')
-  wait(lambda:abs(a.input('inspect')['calypsoWorldPoint']['x']-4020)<10 and not a.input('inspect')['calypsoMoving'],'Calypso reaches her teaching place',35);time.sleep(1.5);home.capture(a,out,'calypso-demonstration-phone')
-  # Repeat scoop after its visible result, before the delayed native acknowledgement.
-  tool(a,0,'Scoop sand','scoops',1);button(a,'Scoop sand');wait(lambda:state()['moulds'][0]['scoops']==2,'rapid second scoop');button(a,'Tip bucket');wait(lambda:state()['moulds'][0]['scoops']==0,'dry sand crumbled');require(not state()['moulds'][0]['built'],'Dry sand made a tower');record('real scoop/tip pictures work in joystick mode, including rapid next taps and dry sand crumbling')
-  cmd(d,7,value='daycare');wait(lambda:member(d)['attending'],'late fourth arrival');require(state()['friends']==cast,'Late arrival rerolled friends')
-  wait(lambda:state()['phase']==2,'Calypso arrival and live demonstration',45);info=a.input('inspect');require(abs(info['calypsoWorldPoint']['x']-4020)<30 and not info['calypsoMoving'],'Calypso failed to join');require(info['sandpitNpcArt']==[dict(re.findall(r'new Entry\("([^"]+)","([^"]+)"',Path('Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Characters/PlayableCharacters.cs').read_text(encoding='utf-8')))[n] for n in cast] and len(set(info['sandpitNpcArt']))==2,'Classmates do not match saved varied cast');home.capture(c,out,'teacher-and-tools-tablet');record('Calypso comes to the real sandpit and demonstrates; a late fourth player shares the same lesson and varied classmates')
-  for i,v in enumerate(clients):
-   for n in range(2 if i%2==0 else 3):tool(v,i,'Scoop sand','scoops',n+1)
-   tool(v,i,'Add water','wet',True);tool(v,i,'Tip bucket','built',True);tool(v,i,'Add flag' if i%2==0 else 'Add shell','decoration',1 if i%2==0 else 2)
-   if i==2:
-    button(c,'Leave');wait(lambda:not member(c)['attending'],'independent departure');require(sum(m['attending'] for m in state()['members'])==3 and state()['moulds'][2]['built'],'Leaving erased siblings or creation')
-  wait(lambda:state()['phase']==3,'one shared finished castle');require(all(m['built'] and m['wet'] and m['decoration'] for m in state()['moulds']),'Castle decorations missing');home.capture(a,out,'shared-sandcastle-phone');home.capture(d,out,'shared-sandcastle-fourth-player');record('four players build one castle with small/big buckets, water and decorations; independent exit keeps the three siblings and all towers')
-  cmd(c,7,value='park');cmd(c,7,value='daycare');wait(lambda:member(c)['attending'],'return joins completed castle');require(state()['friends']==cast and state()['phase']==3,'Return reset the castle');home.capture(c,out,'shared-castle-tablet');record('world departure and return retain the same shared castle and cast')
-  button(a,'New lesson');wait(lambda:state()['round']==2,'deliberate new lesson');require(not set(state()['friends'])&set(cast) and all(not m['built'] and m['scoops']==0 for m in state()['moulds']),'New lesson did not reset tools/select new classmates');record('only a deliberate new lesson clears the castle and chooses different classmates');passed=True
- finally:
-  if not passed:
-   for i,v in enumerate(clients):
-    try:home.capture(v,out,'failure-'+str(i+1))
-    except Exception:pass
-  run.close();write(out/'result.json',dict(build=args.build,runId=run.run_id,gameplayPassed=passed,checks=checks,exitCodes=[v.process.returncode for v in run.instances],scope='isolated release server/four clients; actual phone/tablet picture touches, rapid queued actions, teacher demonstration, late arrival, independent exit/return and new lesson; no device/live-server update'))
- print('PASS ALL '+str(len(checks))+' groups',flush=True)
-if __name__=='__main__':main()
+    parser = argparse.ArgumentParser(); parser.add_argument("build", type=int); args = parser.parse_args()
+    run = Run(args.build, extended_test_lifetime=True)
+    require(run.content == 68 and read(run.folder / "build-summary.json")["schema"] == 50, "Stage 2 source required; never substitute an older build")
+    manifest = read(run.folder / "source-manifest.json")
+    files = {f["path"]: f["sha256"] for f in manifest["files"]}
+    for name in ("Core/Worlds/Daycare/DaycareSandpit.cs", "Core/Worlds/Dinosaur/DinosaurWorld.cs", "Core/Shared/Layout/WorldLayout.cs", "Client/Shared/Sessions/GameScreen.cs", *["Client/Worlds/Daycare/"+n+".cs" for n in ("GameScreen.SandcastleClub", "GameScreen.SandcastleWater", "GameScreen.SandcastleTip", "GameScreen.SandcastleDecoration", "SandShape", "SandScoopFeedback", "SandWaterFeedback", "SandTipFeedback", "SandDecorationFeedback")]):
+        relative = "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/" + name
+        require(files.get(relative) == hashlib.sha256((PROJECT_ROOT / relative).read_bytes()).hexdigest(), "Build does not contain current " + name)
+    out = run.path / "sandpit-stage-two"; out.mkdir(); checks = []; clients = []; passed = False
+    print("EVIDENCE " + str(out), flush=True)
+    def state(): return server.state()["view"]["sandpit"]
+    def member(v): return next(m for m in state()["members"] if m["actor"] == v.profile)
+    def piece(id): return next(m for m in state()["moulds"] if m["id"] == id)
+    def record(name): checks.append(name); print("PASS " + name, flush=True)
+    def button(v, name):
+        wait(lambda: any(c["name"] == name and c["enabled"] for c in v.input("inspect")["controls"]), "enabled " + name, 20)
+        v.input("touchButton", text=name)
+    def command(v, action, **kw): return home.command(v, action, **kw)
+    def move(v, id):
+        m = piece(id); require(command(v, 0, x=m["x"]-60, y=m["y"]-55)["accepted"], "work position")
+    def tool(v, id, op):
+        return command(v, 32, target=id+"@"+str(state()["round"]), value=op)
+    def place_ui(v, cell):
+        old = {m["id"] for m in state()["moulds"]}
+        button(v, "Build"); button(v, "Sand spot "+str(cell))
+        home.capture(v, out, "preview-"+v.profile+"-"+str(cell))
+        button(v, "Confirm sand placement")
+        wait(lambda: len(state()["moulds"]) > len(old), "placed round mould")
+        return next(m["id"] for m in state()["moulds"] if m["id"] not in old)
+    def layout(v, name):
+        info = v.input("inspect")
+        for control in info["controls"]:
+            if control["name"] in ("Build", "Scoop", "Water", "Tip", "Leave sandpit"):
+                require(control["bounds"]["width"] >= 50 and control["bounds"]["height"] >= 44, "small essential control "+control["name"])
+                r, safe = control["bounds"], info["safeArea"]
+                require(r["x"] >= safe["x"]-2 and r["y"] >= safe["y"]-2 and r["x"]+r["width"] <= safe["x"]+safe["width"]+2 and r["y"]+r["height"] <= safe["y"]+safe["height"]+2, "essential control leaves safe area")
+        home.capture(v, out, name)
+    try:
+        server = run.start("server"); clients = [run.start("client", s["profile"]) for s in run.slots]; a,b,c,d = clients
+        for v in clients:
+            home.ready(v); require(command(v, 7, value="park" if v == d else "daycare")["accepted"], "travel")
+            v.input("resize", x=1024 if v == c else 1280, y=768 if v == c else 591); home.ready(v)
+        button(a, "Games"); button(a, "Sandcastle club"); wait(lambda: sum(m["attending"] for m in state()["members"]) == 3, "common start")
+        first = place_ui(a, 0); second = place_ui(b, 3)
+        for _ in range(3): button(a, "Scoop")
+        wait(lambda: piece(first)["scoops"] == 3, "three rapid scoops"); button(a, "Tip")
+        wait(lambda: not a.input("inspect")["pending"], "dry-tip reply")
+        require(piece(first)["scoops"] == 3 and not piece(first)["built"], "dry-tip loses fill")
+        button(a, "Water"); wait(lambda: piece(first)["wet"], "water"); button(a, "Tip"); wait(lambda: piece(first)["built"], "confirmed reveal")
+        button(b, "Water"); wait(lambda: piece(second)["wet"], "water before scoops")
+        third = place_ui(a, 16); require(piece(first)["built"], "new placement erases first")
+        move(a, second); move(b, second)
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            replies = list(pool.map(lambda v: tool(v, second, "scoop"), (a,b)))
+        require(all(r["accepted"] for r in replies) and piece(second)["scoops"] == 2, "shared scoop race")
+        require(tool(c, third, "scoop")["outcome"] == "walk-closer", "reach bypass")
+        move(c, third); require(tool(c, third, "scoop")["accepted"], "parallel different-piece work")
+        require(tool(a, second, "scoop")["accepted"], "third shared scoop")
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            tips = list(pool.map(lambda v: tool(v, second, "tip"), (a,b)))
+        require(sum(r["accepted"] for r in tips) == 1 and piece(second)["built"], "competing tips")
+        record("native shared and different-piece work, receipt revision retries, exactly one competing tip, rapid picture taps, early water and dry Water-Tip recovery")
+        require(command(d, 7, value="daycare")["accepted"], "late travel"); wait(lambda: member(d)["attending"], "late join")
+        before = state()["moulds"]; epoch = state()["round"]
+        button(b, "Leave sandpit"); wait(lambda: not member(b)["attending"], "independent departure")
+        require(state()["moulds"] == before and sum(m["attending"] for m in state()["members"]) == 3, "departure loss")
+        c.close(); wait(lambda: not member(c)["attending"], "disconnect")
+        c = run.start("client", c.profile); clients[2] = c; home.ready(c); wait(lambda: member(c)["attending"], "reconnect")
+        require(state()["round"] == epoch and state()["moulds"] == before, "reconnect imports another world")
+        info = c.input("inspect"); require(not any(info["sandpitTipEffects"]), "reconnect replays reveal")
+        require(command(a, 32, value="replay")["accepted"] and state()["moulds"] == before, "replay clears work")
+        layout(a, "phone-built-and-unfinished"); c.input("resize", x=1024, y=768); layout(c, "tablet-built-and-unfinished")
+        record("independent departure/disconnect, late join/reconnect, current reconstruction without transient replay, no replay clear, phone/tablet safe controls")
+        passed = True
+    finally:
+        if not passed:
+            for i,v in enumerate(clients):
+                if v.process.poll() is None:
+                    try: home.capture(v, out, "failure-"+str(i))
+                    except Exception: pass
+        run.close()
+        write(out / "result.json", dict(build=args.build, runId=run.run_id, gameplayPassed=passed, checks=checks, scope="isolated native Stage 2; no real saved world/device/live server"))
+    print("PASS ALL", flush=True)
+if __name__ == "__main__": main()

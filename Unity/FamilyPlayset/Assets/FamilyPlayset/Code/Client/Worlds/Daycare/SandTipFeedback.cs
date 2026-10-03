@@ -28,11 +28,10 @@ namespace LittleWeeps.Client
                 string result=null;
                 if(!baseline && p!=null && m!=null && p.id==m.id){
                     if(!p.built && m.built)result="reveal";
-                    
                 }
                 if(result!=null){outcomes[i]=result;remaining[i]=Duration;events[i]++;}
-                // Refilling or watering after a dry reset takes priority over its old effect.
-                if(outcomes[i]=="collapse" && m!=null && (m.scoops>0 || m.wet || m.built))remaining[i]=0;
+                // Accepted progress supersedes a rejected-tip cue.
+                if(outcomes[i]=="dry" && m?.wet==true || outcomes[i]=="underfilled" && m!=null && m.scoops==m.capacity)remaining[i]=0;
                 if(remaining[i]==0)outcomes[i]=null;
                 previous[i]=m?.Copy();
             }

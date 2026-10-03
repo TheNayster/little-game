@@ -525,7 +525,7 @@ namespace LittleWeeps.Client
         {
             foreach(var surface in Surfaces.Values)surface.Cancel();
             if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
-            dinosaurCareApproach=false;zooApproach=false;sandpitApproach=-1;treasureApproach="";kingdomApproach="";daycareApproach=-1;destination=null;stickDirection=Vector2.zero;
+            dinosaurCareApproach=false;zooApproach=false;CancelSandpitIntent();treasureApproach="";kingdomApproach="";daycareApproach=-1;destination=null;stickDirection=Vector2.zero;
             shared?.Walk(WalkMode.Stop);
         }
         private void Update()
