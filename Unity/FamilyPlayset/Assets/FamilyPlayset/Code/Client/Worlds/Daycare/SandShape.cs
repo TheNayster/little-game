@@ -6,7 +6,7 @@ namespace LittleWeeps.Client
     // Scene-native shapes keep each bucket's fill, water and tower visible.
     public sealed class SandShape : MaskableGraphic
     {
-        public string kind="bucket";public int scoops,capacity=2,decoration;public bool wet,built,pouring;
+        public string kind="bucket",mould="round";public int scoops,capacity=2,decoration,orientation;public bool wet,built,pouring;
         public Vector2 source,target;public float progress;
         public string tipOutcome;public float towerReveal=1,wiggle;public bool hideBucket,hideDecoration;
         private VertexHelper mesh;private float ceiling=float.PositiveInfinity, bucketAngle;private Vector2 bucketAt,bucketScale=Vector2.one;private bool transformingBucket;
@@ -14,6 +14,14 @@ namespace LittleWeeps.Client
         {
             mesh=vh;mesh.Clear();ceiling=float.PositiveInfinity;transformingBucket=false;
             var wood=new Color(.57f,.38f,.21f);var edge=new Color(.37f,.25f,.15f);var sand=new Color(.96f,.83f,.53f);var damp=new Color(.83f,.66f,.37f);
+            if(kind=="rotate"){
+                for(var i=0;i<17;i++){var a=i*Mathf.PI*1.5f/16;Oval(Mathf.Cos(a)*26,Mathf.Sin(a)*26,5,5,new Color(.21f,.45f,.69f));}
+                Poly(new Color(.21f,.45f,.69f),new Vector2(-10,-20),new Vector2(20,-25),new Vector2(3,-43));return;
+            }
+            if(kind=="selection"){
+                Poly(new Color(.12f,.38f,.46f),new Vector2(-13,13),new Vector2(13,13),new Vector2(0,-6));return;
+            }
+            if(kind=="mould-icon"){DrawCastle();return;}
             if(kind=="confirm"){
                 var green=new Color(.12f,.5f,.37f);
                 Poly(green,new Vector2(-32,-2),new Vector2(-24,6),new Vector2(-4,-14),new Vector2(-12,-22));
@@ -94,13 +102,8 @@ namespace LittleWeeps.Client
             if(kind=="shell"){Shell(0,0);return;}
             if(kind=="tip"){Poly(new Color(.32f,.65f,.8f),new Vector2(-30,23),new Vector2(22,35),new Vector2(33,-13),new Vector2(-8,-24));Oval(28,-30,20,5,sand);return;}
             if(built){
-                var h=capacity==3?105:75;ceiling=towerReveal>=1?float.PositiveInfinity:towerReveal*(h+22);
-                Poly(damp,new Vector2(-48,0),new Vector2(-35,h),new Vector2(35,h),new Vector2(48,0));
-                Oval(0,3,48,10,damp);Oval(0,h,35,11,sand);
-                Box(-44,0,88,8,new Color(.72f,.55f,.29f));
-                for(var i=0;i<3;i++)Box(-38+i*27,h-3,22,22,sand);
-                Box(-10,5,20,30,new Color(.57f,.41f,.23f));Oval(0,35,10,10,new Color(.57f,.41f,.23f));
-                for(var i=0;i<5;i++)Box(-28+i*12,48+(i%2)*12,5,3,sand);
+                var h=capacity==3?92:75;ceiling=towerReveal>=1?float.PositiveInfinity:towerReveal*(h+24);
+                DrawCastle();
                 if(!hideDecoration && decoration==1)Flag(0,h+10);
                 if(!hideDecoration && decoration==2)Shell(27,h+26);
             }else if(!hideBucket){
@@ -118,6 +121,60 @@ namespace LittleWeeps.Client
                 if(fill>0){var f=fill/(float)capacity;Poly(water?damp:sand,new Vector2(-26,6),new Vector2(26,6),new Vector2(26+12*f,6+(h-10)*f),new Vector2(-26-12*f,6+(h-10)*f));}
                 for(var i=0;i<capacity;i++)Box(-9,10+i*(h-15)/capacity,18,3,Color.white);
                 if(water){Oval(28,h+20,7,10,new Color(.35f,.65f,.94f));}
+                // A shape stamp keeps the selected mould recognisable before tipping.
+                var stamp=new Color(.15f,.38f,.5f);
+                if(mould=="square")Box(-11,h-23,22,12,stamp);
+                if(mould=="wall")for(var i=0;i<3;i++)Box(-18+i*12,h-23,9,12,stamp);
+                if(mould=="gate"){Box(-18,h-25,9,16,stamp);Box(9,h-25,9,16,stamp);Box(-18,h-12,36,7,stamp);}
+        }
+        // Geometry follows the projected cell pitches (124 × 102), so adjacent
+        // completed pieces meet without moving saved coordinates or hit targets.
+        private void DrawCastle()
+        {
+            var face=new Color(.83f,.65f,.36f);var top=new Color(1,.87f,.59f);var shade=new Color(.58f,.4f,.22f);
+            if(mould=="round" || mould=="square"){
+                var h=capacity==3?92:75;
+                Oval(0,0,62,12,new Color(.38f,.27f,.14f,.22f));
+                if(mould=="round"){
+                    Poly(face,new Vector2(-62,0),new Vector2(-47,h),new Vector2(47,h),new Vector2(62,0));
+                    Oval(0,h,47,12,top);Oval(0,5,60,10,face);
+                    for(var i=0;i<4;i++)Box(-49+i*26,h-3,20,23,top);
+                }else{
+                    Poly(shade,new Vector2(-62,0),new Vector2(-62,h),new Vector2(-45,h+13),new Vector2(-45,10));
+                    Box(-45,0,107,h,face);Box(-45,h-8,107,13,top);
+                    for(var i=0;i<4;i++)Box(-46+i*29,h,20,22,top);
+                    Box(-43,37,102,3,new Color(.94f,.77f,.48f));
+                }
+                Box(-12,4,24,31,shade);Oval(0,35,12,10,shade);return;
+            }
+            var vertical=orientation==90;
+            if(vertical){
+                // Side-view spine spans two rows; two gate posts leave an actual gap.
+                if(mould=="wall"){
+                    Poly(shade,new Vector2(-22,-102),new Vector2(-22,148),new Vector2(22,168),new Vector2(22,-82));
+                    for(var i=0;i<7;i++)Box(-24,-90+i*35,48,12,top);
+                }else{
+                    Box(-28,-102,56,54,face);Box(-28,82,56,70,face);
+                    // The side arch is a narrow outer spine; its opening remains
+                    // transparent, so neighbouring work is never painted over.
+                    Box(-28,-48,12,130,shade);Box(-28,72,56,12,top);
+                    Box(-32,152,64,14,top);Box(-32,-48,64,14,top);
+                }
+                return;
+            }
+            if(mould=="wall"){
+                Box(-124,0,248,55,face);Box(-124,50,248,8,top);
+                for(var i=0;i<9;i++)Box(-123+i*28,55,20,17,top);
+                Box(-120,26,240,3,shade);for(var i=0;i<7;i++)Box(-108+i*37,i%2==0?0:29,3,26,shade);
+            }else{
+                Box(-124,0,48,71,face);Box(76,0,48,71,face);Box(-124,65,248,15,face);
+                // Separate convex quads make the arched opening transparent to sand.
+                for(var i=0;i<20;i++){
+                    var a=i*Mathf.PI/20;var b=(i+1)*Mathf.PI/20;
+                    Poly(top,new Vector2(Mathf.Cos(a)*76,Mathf.Sin(a)*38+27),new Vector2(Mathf.Cos(b)*76,Mathf.Sin(b)*38+27),new Vector2(Mathf.Cos(b)*90,Mathf.Sin(b)*45+27),new Vector2(Mathf.Cos(a)*90,Mathf.Sin(a)*45+27));
+                }
+                for(var i=0;i<8;i++)Box(-124+i*32,77,22,17,top);
+            }
         }
         private void DrawTip()
         {

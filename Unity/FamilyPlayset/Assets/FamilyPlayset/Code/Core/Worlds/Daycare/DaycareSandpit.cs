@@ -15,7 +15,7 @@ namespace LittleWeeps.Core
         // survive later editing; array order is presentation only, never command identity.
         public string id,creator,shape;
         public float x,y,width,depth;
-        public int capacity,scoops,decoration,version; public bool wet,built;
+        public int capacity,scoops,decoration,version,orientation; public bool wet,built;
         public SandMould Copy()=>(SandMould)MemberwiseClone();
     }
     [Serializable] public sealed class SandpitState
@@ -26,7 +26,7 @@ namespace LittleWeeps.Core
     }
     public static class DaycareSandpit
     {
-        public const int Schema=46, PieceSchema=50, MaxPieces=16, DefaultScoops=3, Columns=8, Rows=4;
+        public const int Schema=46, PieceSchema=50, ShapeSchema=51, Format=2, MaxPieces=16, DefaultScoops=3, Columns=8, Rows=4;
         public const float Left=4070,Right=4800,Bottom=70,Top=540,PieceWidth=72,PieceDepth=80;
         public static WalkPoint Teacher=>new WalkPoint(4020,440);
         // These functions remain solely to read legacy format-zero checkpoints.
@@ -37,15 +37,29 @@ namespace LittleWeeps.Core
         public static WalkPoint Work(SandMould m)=>new WalkPoint(m.x-60,m.y-55);
         public static WalkPoint Cell(int col,int row)=>new WalkPoint(4150+col*85,130+row*110);
         public static WalkPoint Snap(float x,float y)=>Cell((int)Math.Round((x-4150)/85), (int)Math.Round((y-130)/110));
+        public static bool LongShape(string shape)=>shape=="wall" || shape=="gate";
+        public static bool Shape(string shape,int orientation)=>(shape=="round" || shape=="square")?orientation==0:LongShape(shape) && (orientation==0 || orientation==90);
+        public static string Choice(string shape,int orientation)=>orientation==0?shape:shape+":90";
+        public static bool ReadChoice(string choice,out string shape,out int orientation)
+        {var parts=(choice ?? "").Split(':');shape=parts[0];orientation=parts.Length==2 && parts[1]=="90"?90:0;return parts.Length==1?Shape(shape,0):parts.Length==2 && parts[1]=="90" && Shape(shape,90);}
+        public static float Width(string shape,int orientation)=>PieceWidth+(LongShape(shape) && orientation==0?85:0);
+        public static float Depth(string shape,int orientation)=>PieceDepth+(LongShape(shape) && orientation==90?110:0);
+        // Long pieces are centred between two adjacent cells, not centred on one
+        // cell with an asymmetric footprint. Preview and authority use this same map.
+        public static WalkPoint PiecePoint(int col,int row,string shape,int orientation)
+        {var p=Cell(col,row);return new WalkPoint(p.X+(LongShape(shape) && orientation==0?42.5f:0),p.Y+(LongShape(shape) && orientation==90?55:0));}
+        public static WalkPoint Snap(float x,float y,string shape,int orientation)
+        {var dx=LongShape(shape) && orientation==0?42.5f:0;var dy=LongShape(shape) && orientation==90?55:0;var p=Snap(x-dx,y-dy);return new WalkPoint(p.X+dx,p.Y+dy);}
         public static string Target(string id,int epoch)=>id+"@"+epoch.ToString(CultureInfo.InvariantCulture);
         public static string Target(int index,int epoch)=>Target("legacy-"+index,epoch);
         public static bool Inside(float x,float y,float width,float depth)=>KeepyRules.Finite(x) && KeepyRules.Finite(y) && x-width/2>=Left && x+width/2<=Right && y-depth/2>=Bottom && y+depth/2<=Top;
-        public static string Placement(SandpitState s,float x,float y)
+        public static string Placement(SandpitState s,float x,float y,string shape="round",int orientation=0)
         {
+            if(!Shape(shape,orientation))return "try-sand-tools";
             if(s.moulds.Length>=s.pieceLimit)return "sandpit-full";
-            if(!Inside(x,y,PieceWidth,PieceDepth) || !Inside(Snap(x,y).X,Snap(x,y).Y,PieceWidth,PieceDepth))return "outside-sandpit";
-            var at=Snap(x,y);
-            return s.moulds.Any(m=>Math.Abs(m.x-at.X)<(m.width+PieceWidth)/2 && Math.Abs(m.y-at.Y)<(m.depth+PieceDepth)/2)?"sand-spot-taken":null;
+            var width=Width(shape,orientation);var depth=Depth(shape,orientation);var at=Snap(x,y,shape,orientation);
+            if(!Inside(x,y,width,depth) || !Inside(at.X,at.Y,width,depth))return "outside-sandpit";
+            return s.moulds.Any(m=>Math.Abs(m.x-at.X)<(m.width+width)/2 && Math.Abs(m.y-at.Y)<(m.depth+depth)/2)?"sand-spot-taken":null;
         }
         public static int UsefulScoops(SandMould m,int retained)=>m==null || m.built?0:Math.Min(Math.Max(0,retained),m.capacity-m.scoops);
         public static double Arrival(SandpitState s)=>Math.Sqrt(Math.Pow(s.teacherX-Teacher.X,2)+Math.Pow((s.teacherY-Teacher.Y)*.45,2))/180;
@@ -62,15 +76,18 @@ namespace LittleWeeps.Core
         public SandpitState ReadSandpit()=>state.sandpit?.Copy();
         private static void NormalizeSandpit(SoloSnapshot s)
         {if(s!=null && s.schema<DaycareSandpit.Schema && s.sandpit!=null && s.sandpit.phase==0 && (s.sandpit.members==null || s.sandpit.members.Length==0))s.sandpit=null;}
-        private static SandpitState NewSandpit(SoloSnapshot s)=>new SandpitState{format=1,pieceLimit=DaycareSandpit.MaxPieces,scoopCapacity=DaycareSandpit.DefaultScoops,members=s.players.Select(p=>new SandpitMember{actor=p.id}).ToArray(),moulds=Array.Empty<SandMould>(),friends=s.daycare.guests.Take(2).ToArray()};
+        private static SandpitState NewSandpit(SoloSnapshot s)=>new SandpitState{format=DaycareSandpit.Format,pieceLimit=DaycareSandpit.MaxPieces,scoopCapacity=DaycareSandpit.DefaultScoops,members=s.players.Select(p=>new SandpitMember{actor=p.id}).ToArray(),moulds=Array.Empty<SandMould>(),friends=s.daycare.guests.Take(2).ToArray()};
         private static GameWorld WithSandpitPieces(GameWorld world)
         {
-            if(world.state.sandpit?.format==1)return world;
+            if(world.state.sandpit?.format==DaycareSandpit.Format)return world;
             var s=world.Snapshot();
             if(s.sandpit==null)s.sandpit=NewSandpit(s);
             else {
-                var g=s.sandpit;g.format=1;g.pieceLimit=DaycareSandpit.MaxPieces;g.scoopCapacity=DaycareSandpit.DefaultScoops;
-                for(var i=0;i<g.moulds.Length;i++){var m=g.moulds[i];var at=DaycareSandpit.Place(i);m.id="legacy-"+i;m.creator="";m.shape="round";m.x=at.X;m.y=at.Y;m.width=140;m.depth=100;m.capacity=DaycareSandpit.Capacity(i);m.version=0;}
+                var g=s.sandpit;
+                if(g.format==0){g.pieceLimit=DaycareSandpit.MaxPieces;g.scoopCapacity=DaycareSandpit.DefaultScoops;
+                    for(var i=0;i<g.moulds.Length;i++){var m=g.moulds[i];var at=DaycareSandpit.Place(i);m.id="legacy-"+i;m.creator="";m.shape="round";m.x=at.X;m.y=at.Y;m.width=140;m.depth=100;m.capacity=DaycareSandpit.Capacity(i);m.version=0;}}
+                // Stage 2 coordinates, IDs, participation and all progress are retained.
+                g.format=DaycareSandpit.Format;
             }
             s.revision++;return new GameWorld(s);
         }
@@ -79,12 +96,15 @@ namespace LittleWeeps.Core
             var g=s.sandpit;if(g==null && s.schema<DaycareSandpit.Schema)return;
             if(g==null || s.daycare==null || g.round<0 || g.round>=int.MaxValue || g.phase<0 || g.phase>3 || !KeepyRules.Finite(g.started) || g.started<0 || g.started>s.daycare.clock || !WorldLayout.Position("daycare",s.schema,g.teacherX,g.teacherY) || g.members==null || !g.members.Select(m=>m?.actor).OrderBy(x=>x).SequenceEqual(s.players.Select(p=>p.id).OrderBy(x=>x)) || g.moulds==null || !DaycareNpcCasts.Valid(g.friends,2))throw new InvalidOperationException("Invalid sandpit checkpoint.");
             var legacy=g.format==0 && s.schema<DaycareSandpit.PieceSchema;
-            if(legacy?g.moulds.Length!=4:g.format!=1 || g.pieceLimit<1 || g.pieceLimit>DaycareSandpit.MaxPieces || g.scoopCapacity<1 || g.scoopCapacity>8 || g.moulds.Length>g.pieceLimit)throw new InvalidOperationException("Invalid sand piece limits.");
+            var previous=g.format==1 && s.schema<DaycareSandpit.ShapeSchema;
+            if(legacy?g.moulds.Length!=4:!previous && g.format!=DaycareSandpit.Format || g.pieceLimit<1 || g.pieceLimit>DaycareSandpit.MaxPieces || g.scoopCapacity<1 || g.scoopCapacity>8 || g.moulds.Length>g.pieceLimit)throw new InvalidOperationException("Invalid sand piece limits.");
             if(g.phase==0 && g.round!=0 || g.phase>0 && g.round==0 || legacy && g.phase==3 && g.moulds.Any(m=>m==null || !m.built))throw new InvalidOperationException("Invalid sand progress.");
             for(var i=0;i<g.moulds.Length;i++){
                 var m=g.moulds[i];var capacity=legacy?DaycareSandpit.Capacity(i):m?.capacity ?? 0;
                 if(m==null || capacity<1 || capacity>8 || m.scoops<0 || m.scoops>capacity || m.decoration<0 || m.decoration>2 || m.built && (!m.wet || m.scoops!=capacity) || !m.built && m.decoration!=0)throw new InvalidOperationException("Invalid sand mould.");
-                if(!legacy && (!Id(m.id) || m.id.Length>96 || m.id.Contains("@") || m.version<0 || m.shape!="round" || !string.IsNullOrEmpty(m.creator) && !s.players.Any(p=>p.id==m.creator) || !KeepyRules.Finite(m.width) || !KeepyRules.Finite(m.depth) || m.width<DaycareSandpit.PieceWidth || m.width>140 || m.depth<DaycareSandpit.PieceDepth || m.depth>100 || !DaycareSandpit.Inside(m.x,m.y,m.width,m.depth) || g.moulds.Take(i).Any(p=>p.id==m.id || Math.Abs(p.x-m.x)<(p.width+m.width)/2 && Math.Abs(p.y-m.y)<(p.depth+m.depth)/2)))throw new InvalidOperationException("Invalid sand piece identity or footprint.");
+                var oldFootprint=m!=null && m.shape=="round" && m.orientation==0 && m.width>=72 && m.width<=140 && m.depth>=80 && m.depth<=100;
+                var footprint=m!=null && DaycareSandpit.Shape(m.shape,m.orientation) && m.width==DaycareSandpit.Width(m.shape,m.orientation) && m.depth==DaycareSandpit.Depth(m.shape,m.orientation);
+                if(!legacy && (!Id(m.id) || m.id.Length>96 || m.id.Contains("@") || m.version<0 || previous && (m.shape!="round" || m.orientation!=0) || !oldFootprint && !footprint || !string.IsNullOrEmpty(m.creator) && !s.players.Any(p=>p.id==m.creator) || !DaycareSandpit.Inside(m.x,m.y,m.width,m.depth) || g.moulds.Take(i).Any(p=>p.id==m.id || Math.Abs(p.x-m.x)<(p.width+m.width)/2 && Math.Abs(p.y-m.y)<(p.depth+m.depth)/2)))throw new InvalidOperationException("Invalid sand piece identity or footprint.");
             }
             foreach(var m in g.members)if(m.attending && (g.phase==0 || s.players.Single(p=>p.id==m.actor).zone!="daycare"))throw new InvalidOperationException("Invalid sandpit participant.");
         }
@@ -114,11 +134,11 @@ namespace LittleWeeps.Core
             var parts=c.target.Split('@');
             if(parts.Length!=2 || !int.TryParse(parts[1],NumberStyles.None,CultureInfo.InvariantCulture,out var epoch) || epoch<1 || epoch!=g.round)return "old-sandpit-lesson";
             if(c.value=="place"){
-                if(parts[0]!="place" || c.item!="round")return "try-sand-tools";
-                var reason=DaycareSandpit.Placement(g,c.x,c.y);if(reason!=null)return reason;
-                var at=DaycareSandpit.Snap(c.x,c.y);
+                if(parts[0]!="place" || !DaycareSandpit.ReadChoice(c.item,out var shape,out var orientation))return "try-sand-tools";
+                var reason=DaycareSandpit.Placement(g,c.x,c.y,shape,orientation);if(reason!=null)return reason;
+                var at=DaycareSandpit.Snap(c.x,c.y,shape,orientation);
                 var id="p-"+c.requestId;if(id.Length>96 || id.Contains("@"))return "invalid-command";if(g.moulds.Any(m=>m.id==id))return "sand-spot-taken";
-                g.moulds=g.moulds.Concat(new[]{new SandMould{id=id,creator=p.id,shape="round",x=at.X,y=at.Y,width=DaycareSandpit.PieceWidth,depth=DaycareSandpit.PieceDepth,capacity=g.scoopCapacity}}).ToArray();return null;
+                g.moulds=g.moulds.Concat(new[]{new SandMould{id=id,creator=p.id,shape=shape,orientation=orientation,x=at.X,y=at.Y,width=DaycareSandpit.Width(shape,orientation),depth=DaycareSandpit.Depth(shape,orientation),capacity=g.scoopCapacity}}).ToArray();return null;
             }
             var mould=g.moulds.FirstOrDefault(m=>m.id==parts[0]);if(mould==null)return "old-sandpit-piece";
             var point=DaycareSandpit.Place(mould);if(Math.Abs(p.x-point.X)>100 || Math.Abs(p.y-point.Y)>120)return "walk-closer";

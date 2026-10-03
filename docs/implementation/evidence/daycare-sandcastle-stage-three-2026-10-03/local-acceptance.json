@@ -1,0 +1,160 @@
+{
+  "stage": 3,
+  "status": "REQUIRED LOCAL ACCEPTANCE PASSED",
+  "baselineCommit": "0779d62",
+  "finalBuild": 436,
+  "compatibility": {
+    "schema": 51,
+    "content": 69,
+    "protocol": 3,
+    "sandpitFormat": 2
+  },
+  "source": {
+    "verifiedUnityInputs": 2278,
+    "mismatches": [],
+    "sourceManifest": "Builds/NetworkProbe/G3-0.0.436/source-manifest.json",
+    "notes": "Final 2278 Unity inputs match build436; test harness/document edits after build do not change runtime inputs."
+  },
+  "rules": {
+    "executedChecks": 210,
+    "command": "dotnet run --project Tools/Verification/Sandpit.Tests/Sandpit.Tests.csproj --configuration Release",
+    "result": "PASS",
+    "scope": "production-linked rules/feedback, synthetic Stage2/legacy migration, strict footprint/orientation and concurrent commands"
+  },
+  "unityJson": "SANDPIT_JSON_PASS in LocalData/Logs/build-network-436.log; real Unity serializer, format1 and schema49 retention and oriented shape reopen",
+  "nativeResults": {
+    "sandpit-stage-three": {
+      "build": 433,
+      "runId": "d752c6ea71714ba7a8127da404206d4d",
+      "gameplayPassed": true,
+      "checks": [
+        "All four silhouettes plus 90-degree wall/gate built using real picture taps; early Water and continued connected construction",
+        "Rotated outside preview disables confirm and cancellation leaves shared work unchanged",
+        "Four native clients: exact oriented placement race, cooperative Scoops, one competing Tip result, parallel different-piece contributions",
+        "Independent departure preserves all shapes and siblings; phone shelf/tablet contextual controls captured",
+        "Native authority save reopening retains oriented completed/partial pieces; reconstructed client does not replay tips",
+        "Native synthetic Stage 2 save migration retains exact positions, capacities, progress and visible flags/shells on both aspects",
+        "Native synthetic schema49 migration retains all four legacy positions/capacities, partial dry/wet progress and decorations"
+      ],
+      "peakNativeClients": 4,
+      "scope": "Stage 3 isolated native authority, synthetic saves, actual phone/tablet-aspect UGUI touches; no physical devices or deployment"
+    },
+    "sandpit-stage-three-presentation-436": {
+      "build": 436,
+      "runId": "d752c6ea71714ba7a8127da404206d4d",
+      "gameplayPassed": true,
+      "checks": [
+        "Fresh presentation build: four native clients, all moulds and both rotations through taps, unobstructed grid, connected castle and independent selections",
+        "New tool controls retain/cancel rapid Scoops without spill; full dry Tip keeps fill then Water/Tip builds without extra scoops",
+        "Adjusted framing and depth ordering captured on both aspects, with legacy flags/shells and partial progress visible; physical devices deferred"
+      ],
+      "peakNativeClients": 4,
+      "reusedNativeBuild": 433,
+      "scope": "Stage 3 isolated native authority, synthetic saves, actual phone/tablet-aspect UGUI touches; no physical devices or deployment"
+    },
+    "sandpit-stage-three-captures-436": {
+      "build": 436,
+      "runId": "d752c6ea71714ba7a8127da404206d4d",
+      "gameplayPassed": true,
+      "checks": [
+        "Four current native clients then independent exit: stable phone/tablet castle, dry/wet partial tools, rendered flags/shells, independent rotated previews and non-mutating cancel; no transient replay"
+      ],
+      "peakNativeClients": 4,
+      "reusedNativeBuild": null,
+      "scope": "Stage 3 isolated native authority, synthetic saves, actual phone/tablet-aspect UGUI touches; no physical devices or deployment"
+    }
+  },
+  "reuse": "Build433 complete functional/shared/migration pass retained: all code inputs except GameScreen.SandcastleClub.cs match final native build. Builds435/436 rerun changed UI/input/rendering with four actual clients. Reused Stage2 recovery/receipt/epoch checks are included in the210 executed rules.",
+  "captures": [
+    {
+      "path": "native-436-phone-connected-castle.png",
+      "sha256": "f00fe39d3bdc38f15149ab5d60562469fab769cf4954fa25863a41c8f61d423c",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-tablet-connected-castle.png",
+      "sha256": "d215300d8ca76746f177a3e9f37ffe85ecd69790c2547608988d1ea9dabafaf4",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-phone-partial-active-tools.png",
+      "sha256": "0fa8645ee664e5347c5c784266249aec4c3f38ac0d19a5386ac152863c0801c2",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-tablet-partial-active-tools.png",
+      "sha256": "127b15e2e1f4d4bf3d1d2dc4a7e4b41a575b3506cdeb3e1033aa2e6be3f7e599",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-tablet-wet-partial-active-tools.png",
+      "sha256": "7068fac8899b7b3de688a7746c681d0393a4d7fbb613a8b1429efd16aeee2399",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-phone-rotated-wall-preview.png",
+      "sha256": "7173028f6b4223c3cf3f828bb661f9c01b12bf789cd87a443bb5090187f94c72",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-tablet-rotated-gate-preview.png",
+      "sha256": "6c6d938c836e8175cfdc4678652e3bb06dab877bab1475a96f771312a5a09937",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-phone-full-dry-retained.png",
+      "sha256": "07da2914f51c3075f02fe3d85d222f11eb061c745d550eeba49ba35c08e2b846",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-tablet-gate-preview.png",
+      "sha256": "1171dcba566df3301328643b3b6a86130aa273978e76296f4b85978d07e61848",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-tablet-square-preview.png",
+      "sha256": "dfc7d04720adbdeafa6aef37727da9c25faf274686dbe64c9bfed0bea95f9302",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-436-phone-round-preview.png",
+      "sha256": "26b2973625834576b347678eccd0bb7f8ce7d49df2c673a6cef5a209722c544d",
+      "kind": "ACTUAL native Unity capture",
+      "build": 436
+    },
+    {
+      "path": "native-433-tablet-nearby-tool.png",
+      "sha256": "f061e264120f51cd54160c67a4b73ff4b30d7bc041441d5493b8cea20591f860",
+      "kind": "ACTUAL earlier functional build; later framing fixes apply",
+      "build": 433
+    }
+  ],
+  "logs": {
+    "filesInspected": 39,
+    "exceptionHits": []
+  },
+  "preserved": [
+    "real saves",
+    "installed apps",
+    "live family server and Stop intent",
+    "security settings",
+    "unrelated work and mini-games",
+    "Picnic Counting"
+  ],
+  "deferred": [
+    "physical touch comfort/performance and child enjoyment",
+    "Stage4 combined decoration/toys/edit/reset",
+    "Stage5 finished artwork/animation/sound"
+  ],
+  "historicalAttempts": "One randomized unchanged Tag route pre-build failure at first432 attempt; retry and433-436 normal builds passed. Early harness failures and discovered placement/rapid-tap/visibility defects are documented in the stage record, not counted as passes."
+}

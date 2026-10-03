@@ -99,7 +99,41 @@ class Program
   invalid=twice.Snapshot();invalid.sandpit.moulds[1].x=invalid.sandpit.moulds[0].x;Throws(()=>GameWorld.Validate(invalid),"overlapping saved footprint");
   invalid=twice.Snapshot();invalid.sandpit.moulds[0].capacity=0;Throws(()=>GameWorld.Validate(invalid),"invalid capacity");
   FeedbackChecks(twice.ReadSandpit());Need(DaycareSandpit.UsefulScoops(new SandMould{capacity=3,scoops=1},100)==2 && DaycareSandpit.UsefulScoops(new SandMould{capacity=3,scoops=3},100)==0,"retained useful bound");
-  Console.WriteLine("PASS "+checks+" focused checks: four-profile authority/revision queue, cooperative and competing tools, placement receipts/conflicts/cap, departure/late/reconnect, no replay clear, synthetic legacy and current reopening, bounded tap helper and baseline feedback. Native transport/rendering not exercised.");
+  ShapeChecks();
+  Console.WriteLine("PASS "+checks+" focused checks: Stage 2 recovery/concurrency/legacy checks plus Stage 3 shapes, rotated footprints, atomic conflicts/cap, Stage 2 migration and oriented save retention. Native transport/rendering not exercised.");
+ }
+ static string ShapePlace(int actor,string shape,int orientation,int col,int row)
+ {var at=DaycareSandpit.PiecePoint(col,row,shape,orientation);var c=Command(actor,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,DaycareSandpit.Choice(shape,orientation));Need(Send(actor,c).Accepted,"shape place "+shape+orientation);return "p-"+c.requestId;}
+ static void ShapeChecks()
+ {
+  Setup();Need(Cmd(4,SoloAction.Travel,"daycare").Accepted,"four shape builders");family.AdvanceIdle(.1,out _);
+  var round=ShapePlace(1,"round",0,0,0);var wall=ShapePlace(2,"wall",0,1,0);var gate=ShapePlace(3,"gate",0,3,0);var square=ShapePlace(4,"square",0,5,0);
+  var spine=ShapePlace(1,"wall",90,7,1);var sideGate=ShapePlace(2,"gate",90,0,2);
+  foreach(var id in new[]{round,wall,gate,square,spine,sideGate}){
+   Need(Tool(1,"water",id).Accepted,"shape early water");for(var i=0;i<3;i++)Need(Tool(i%3+1,"scoop",id).Accepted,"shape cooperative fill");Need(Tool(4,"tip",id).Accepted,"shape tip");
+  }
+  var before=Json(w.ReadSandpit().moulds);
+  var at=DaycareSandpit.PiecePoint(7,0,"wall",0);
+  var r=Cmd(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"wall");Need(!r.Accepted && r.Outcome=="outside-sandpit" && Json(w.ReadSandpit().moulds)==before,"two cell boundary atomic");
+  at=DaycareSandpit.PiecePoint(3,3,"gate",90);r=Cmd(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"gate:90");Need(!r.Accepted && DaycareSandpit.Placement(w.ReadSandpit(),at.X,at.Y,"gate",90)=="outside-sandpit","rotated boundary");
+  at=DaycareSandpit.Cell(2,0);r=Cmd(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"square");Need(!r.Accepted && r.Outcome=="sand-spot-taken" && Json(w.ReadSandpit().moulds)==before,"second cell occupied");
+  at=DaycareSandpit.Cell(7,2);r=Cmd(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"round");Need(!r.Accepted && r.Outcome=="sand-spot-taken","rotated second cell occupied");
+  at=DaycareSandpit.Cell(6,3);r=Cmd(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"square:90");Need(!r.Accepted && r.Outcome=="try-sand-tools","invalid orientation rejected");
+  at=DaycareSandpit.PiecePoint(3,1,"wall",90);var competing=Command(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"wall:90");
+  RetryConflict(1,competing,()=>ShapePlace(2,"gate",90,3,1),false,"sand-spot-taken");
+  var save=w.Snapshot();var restored=GameWorld.WithDinosaurWorld(GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(Json(save),options)));
+  Need(Json(restored.ReadSandpit())==Json(save.sandpit),"all oriented shapes reopen");
+  var bad=JsonSerializer.Deserialize<SoloSnapshot>(Json(save),options);bad.sandpit.moulds.Single(m=>m.id==spine).orientation=0;Throws(()=>GameWorld.Validate(bad),"orientation/footprint mismatch");
+  bad=JsonSerializer.Deserialize<SoloSnapshot>(Json(save),options);bad.sandpit.moulds.Single(m=>m.id==spine).width=float.NaN;Throws(()=>GameWorld.Validate(bad),"nonfinite footprint");
+  // A real format-one Stage 2 checkpoint retains exact fields, including a
+  // legacy footprint already migrated in Stage 2. No coordinate resnapping.
+  var old=JsonSerializer.Deserialize<SoloSnapshot>(Json(save),options);old.schema=50;old.sandpit.format=1;old.sandpit.moulds=old.sandpit.moulds.Where(m=>m.shape=="round").ToArray();
+  old.sandpit.moulds[0].x=4210;old.sandpit.moulds[0].y=440;old.sandpit.moulds[0].width=140;old.sandpit.moulds[0].depth=100;old.sandpit.moulds[0].capacity=old.sandpit.moulds[0].scoops=2;old.sandpit.moulds[0].decoration=1;
+  var original=Json(old.sandpit.moulds);var upgraded=GameWorld.WithDinosaurWorld(GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(Json(old),options)));
+  Need(upgraded.Schema==51 && upgraded.ReadSandpit().format==2 && Json(upgraded.ReadSandpit().moulds)==original,"Stage 2 migration preserves exact piece fields");
+  Need(Json(upgraded.Snapshot().players)==Json(old.players) && Json(upgraded.Snapshot().toys)==Json(old.toys) && Json(upgraded.Snapshot().kingdom)==Json(old.kingdom) && Json(upgraded.ReadSandpit().members)==Json(old.sandpit.members),"Stage 2 migration preserves participation/unrelated data");
+  for(var row=0;row<4 && w.ReadSandpit().moulds.Length<16;row++)for(var col=0;col<8 && w.ReadSandpit().moulds.Length<16;col++){at=DaycareSandpit.Cell(col,row);if(DaycareSandpit.Placement(w.ReadSandpit(),at.X,at.Y)==null)ShapePlace(1,"square",0,col,row);}
+  Need(w.ReadSandpit().moulds.Length==16,"long pieces count once toward cap");before=Json(w.ReadSandpit().moulds);at=DaycareSandpit.PiecePoint(1,2,"gate",0);r=Cmd(1,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,"gate");Need(!r.Accepted && r.Outcome=="sandpit-full" && Json(w.ReadSandpit().moulds)==before,"shape cap atomic");
  }
  static void Throws(Action action,string reason){try{action();throw new Exception("accepted "+reason);}catch(InvalidOperationException){checks++;}}
  static void FeedbackChecks(SandpitState state)

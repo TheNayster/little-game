@@ -26,7 +26,7 @@ namespace LittleWeeps.Client
             for(var i=0;i<sandWaterEffects.Count;i++){
                 var effect=sandWaterEffects[i];effect.gameObject.SetActive(joined && i<game.moulds.Length && sandWaterFeedback.Remaining(i)>0);
                 if(i>=game.moulds.Length)continue;
-                effect.rectTransform.anchoredPosition=sandPlaces[i].anchoredPosition;effect.rectTransform.localScale=Vector3.one*.55f;
+                effect.rectTransform.anchoredPosition=sandPlaces[i].anchoredPosition;effect.rectTransform.localScale=Vector3.one;
                 effect.source=new Vector2(-70,-25);effect.target=new Vector2(0,game.moulds[i].capacity==3?75:55);
                 effect.progress=1-sandWaterFeedback.Remaining(i)/SandWaterFeedback.Duration;effect.SetVerticesDirty();
             }
