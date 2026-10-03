@@ -149,7 +149,10 @@ namespace LittleWeeps.Client
             var leave=Button(sandBuildView,"",new Vector2(526,322),new Vector2(105,72),()=>{sandPlacing=false;CancelSandpitIntent();Narration.Stop();SendSandpit("leave");},new Color(.8f,.91f,.9f));leave.transform.parent.name="Leave sandpit";SandControlPicture(leave.transform.parent,"back");
             var help=Button(sandBuildView,"?",new Vector2(-526,322),new Vector2(105,72),SandTeacherHelp,new Color(.82f,.91f,1));help.fontSize=40;help.transform.parent.name="Optional teacher help";
             help.rectTransform.anchoredPosition=new Vector2(28,0);help.rectTransform.sizeDelta=new Vector2(40,65);
-            var teacherDrawing=Rect(help.transform.parent,"Calypso help picture",new Vector2(-18,0),new Vector2(42,58)).gameObject.AddComponent<RawImage>();teacherDrawing.raycastTarget=false;sandHelpTeacher=teacherDrawing.gameObject.AddComponent<TeacherWalkView>();sandHelpTeacher.Configure(teacherDrawing,calypsoTexture);
+            // The world teacher presenter resets its own drawing to world size.
+            // Scale its parent so the optional-help picture stays inside the hit.
+            var teacherBadge=Rect(help.transform.parent,"Calypso help badge",new Vector2(-18,-26),new Vector2(42,58));teacherBadge.localScale=Vector3.one*.18f;
+            var teacherDrawing=Rect(teacherBadge,"Calypso help picture",Vector2.zero,new Vector2(42,58)).gameObject.AddComponent<RawImage>();teacherDrawing.raycastTarget=false;sandHelpTeacher=teacherDrawing.gameObject.AddComponent<TeacherWalkView>();sandHelpTeacher.Configure(teacherDrawing,calypsoTexture);
             // Existing picture hits, no new drag or input framework. Each grid cell
             // is 114×90 logical points; its rectangle never follows the finger.
             for(var c=0;c<32;c++){var cell=c;var at=DaycareSandpit.Cell(c%8,c/8);var label=Button(sandFloor,"+",SandPoint(at.X,at.Y),new Vector2(110,88),()=>PreviewSandCell(cell),new Color(1,1,.88f,.65f));label.fontSize=36;label.transform.parent.name="Sand spot "+c;sandCells.Add(label.transform.parent.GetComponent<Button>());}
@@ -169,7 +172,7 @@ namespace LittleWeeps.Client
             var operations=new[]{"scoop","water","tip"};var names=new[]{"Scoop","Water","Tip"};
             for(var i=0;i<3;i++){var op=operations[i];sandTools.Add(SandPictureButton(sandBuildView,names[i],op,new Vector2(-120+i*190,-302),()=>RequestSandTool(op)));}
             // Actual family avatars live outside the selectable sand surface.
-            for(var i=0;i<4;i++){var root=Rect(sandBuildView,"Family builder "+i,new Vector2(-430+i*78,-230),new Vector2(52,72));sandBuilders.Add((root,root.gameObject.AddComponent<GameCharacterVisual>()));}
+            for(var i=0;i<4;i++){var root=Rect(sandBuildView,"Family builder "+i,new Vector2(-430+i*78,-245),new Vector2(52,72));root.localScale=Vector3.one*.2f;sandBuilders.Add((root,root.gameObject.AddComponent<GameCharacterVisual>()));}
             foreach(var id in new[]{"water","tip"}){var clip=WorldResources.Load<AudioClip>("Worlds/Daycare/SandcastleClub/"+id);if(clip!=null){sandAudio.Add(clip);Narration.AddClip("sand-"+id,clip);}}
             TickSandpit();
         }

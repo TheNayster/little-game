@@ -1,0 +1,132 @@
+{
+  "status": "required-local-acceptance-passed",
+  "sourceBaseline": "e9b9c455219b1d34c4381eaa232c2251d8d104ff",
+  "build429": {
+    "reused": true,
+    "runtimeFilesVerified": 2278,
+    "changedRuntimeFiles": [],
+    "organizationEvidence": "LocalData/SharedGarden/39b64b6da8a2441794a2d6c5456aae23/organization/result.json",
+    "coverage": "four clients, shared construction, independent departure, same-profile reconnect, authority checkpoint reopening"
+  },
+  "rules": {
+    "command": "dotnet run --project Tools/Verification/Sandpit.Tests/Sandpit.Tests.csproj --configuration Release",
+    "executed": true,
+    "exitCode": 0,
+    "checksPassed": 107,
+    "programSha256": "9be8dfd808689e8817777b8596cfabce706fb638e60b9503d3aae53915fe0dec",
+    "scope": "production Core plus pure client feedback; four-profile revision queue, placement/cap/stale/duplicate/epoch/copy/wire and synthetic full/partial/missing legacy migration; native transport separate"
+  },
+  "build430": {
+    "requiredReason": "actual captures exposed oversized Calypso help drawing and family roster over bottom placement cells",
+    "changedProduction": "GameScreen.SandcastleClub.cs; parent scale for help picture and small footer avatar scale/position",
+    "sourceSha256": "04e71a504870de76b4a3f5913094e27f9cce638845373866a9f78d407078974c",
+    "runtimeFilesVerified": 2278,
+    "changedRuntimeFiles": [],
+    "clientAndServerResult": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "protocol": 3,
+    "content": 68,
+    "schema": 50
+  },
+  "native": {
+    "command": "python Tools/Verification/Test-DaycareSandpit.py 430 --remaining-only",
+    "privateEvidence": "LocalData\\SharedGarden\\780a6ba2a1d3424797f3d2ae24d9752e/sandpit-stage-two",
+    "result": {
+      "build": 430,
+      "runId": "780a6ba2a1d3424797f3d2ae24d9752e",
+      "gameplayPassed": true,
+      "checks": [
+        "native shared and different-piece work, receipt revision retries, exactly one competing tip, rapid picture taps, early water and dry Water-Tip recovery",
+        "underfilled dry/wet Tip retains one scoop and requires remaining two; continued tap construction; phone/tablet safe controls; no replay clearing",
+        "native synthetic schema49 reopening retains positions, capacities, partial/full progress and rendered flags/shells on phone/tablet"
+      ],
+      "remainingOnly": true,
+      "peakNativeClients": 4,
+      "scope": "isolated native Stage 2; no real saved world/device/live server"
+    },
+    "maximumSimultaneousClients": 4,
+    "legacyCaptureClients": 2,
+    "transientReplayFromSavedPieces": false
+  },
+  "cap": {
+    "command": "python Tools/Verification/Test-DaycareSandpit.py 430 --cap-capture 780a6ba2a1d3424797f3d2ae24d9752e",
+    "privateEvidence": "LocalData\\SharedGarden\\780a6ba2a1d3424797f3d2ae24d9752e/sandpit-cap",
+    "result": {
+      "build": 430,
+      "runId": "780a6ba2a1d3424797f3d2ae24d9752e",
+      "gameplayPassed": true,
+      "checks": [
+        "native 16-piece cap rejects additional placement without mutation; Build disabled; Full count and existing flags/shells visible on phone/tablet"
+      ],
+      "remainingOnly": false,
+      "peakNativeClients": 2,
+      "scope": "isolated native Stage 2; no real saved world/device/live server",
+      "capOnly": true
+    },
+    "maximumSimultaneousClients": 2,
+    "metadataCorrection": "The original generic result field said 4; corrected to actual 2 after inspecting this dedicated mode. No check result changed."
+  },
+  "screenshots": [
+    {
+      "file": "native-430-phone-built-and-unfinished.png",
+      "sha256": "745af30b4dff28ef2ccecc833425752f9b8acf10508fd92e3b166249a65e7e95"
+    },
+    {
+      "file": "native-430-phone-full-pit-feedback.png",
+      "sha256": "17005b91ccb1d5d02829548f4db26220d96dbce3c436e8ee9f25ee565b57eb03"
+    },
+    {
+      "file": "native-430-phone-migrated-flags-shells.png",
+      "sha256": "4fd0402740082008f893f940cde799c862331a57480f363a4fe1b296a3070e38"
+    },
+    {
+      "file": "native-430-phone-underfilled-retained.png",
+      "sha256": "7c2e3213d1c8aaed6f85c52cc6ee447f4a12c85f9d22a638d6ad99fd69cd8087"
+    },
+    {
+      "file": "native-430-preview-player-1-31.png",
+      "sha256": "2b2dd383abe2d373100f8e13dd41abee66eb088fd822e5fd0b372192ba02b609"
+    },
+    {
+      "file": "native-430-preview-player-3-21.png",
+      "sha256": "a8b9be2da3d64821494b9a6272b12b22074c264a674f3fea793d5208311bb72f"
+    },
+    {
+      "file": "native-430-tablet-continued-construction.png",
+      "sha256": "68ed4577cf0fcc34fd0214e664976a2d8c84967ba09d611ab890039ac32615c3"
+    },
+    {
+      "file": "native-430-tablet-full-pit-feedback.png",
+      "sha256": "fc4eba47739711a941b0f1a22a3e7337d967520c9919148c8f976a00848c5821"
+    },
+    {
+      "file": "native-430-tablet-migrated-flags-shells.png",
+      "sha256": "fb9e76ebb1ae38b015fd5e341fcce79669c6394f397f7b95592148c41fc37604"
+    }
+  ],
+  "visualInspection": "phone/tablet placement, retained partial fill, continued construction, migrated flags/shells and Full 16/16 inspected; help picture contained and avatars clear of sand targets",
+  "runtimeErrors": [],
+  "physicalTouchComfortAndPerformance": "deferred; not a local progression gate",
+  "unchangedScope": "no final artwork/additional shapes/decorating framework/toy play/reset/deployment",
+  "preservation": "isolated synthetic data only; live server, apps, real saves, unrelated work and security settings preserved",
+  "stageThreeStarted": false,
+  "distinctPieceConcurrency": {
+    "command": "python Tools/Verification/Test-DaycareSandpit.py 430 --different-pieces 780a6ba2a1d3424797f3d2ae24d9752e",
+    "privateEvidence": "LocalData/SharedGarden/780a6ba2a1d3424797f3d2ae24d9752e/sandpit-parallel",
+    "result": {
+      "build": 430,
+      "runId": "780a6ba2a1d3424797f3d2ae24d9752e",
+      "gameplayPassed": true,
+      "checks": [
+        "four admitted native clients; concurrent contributions to two different pieces each add exactly one scoop without changing the other fourteen"
+      ],
+      "remainingOnly": false,
+      "capOnly": false,
+      "peakNativeClients": 4,
+      "scope": "isolated native Stage 2; no real saved world/device/live server"
+    },
+    "maximumSimultaneousClients": 4,
+    "reason": "Prior distinct-piece contributions were sequential; this missing parallel transport case dispatches two contributions simultaneously and verifies only their two pieces changed"
+  }
+}
