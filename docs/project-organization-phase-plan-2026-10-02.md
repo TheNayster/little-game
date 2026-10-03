@@ -4,7 +4,7 @@ October 2, 2026. Organize the existing game so its main source, worlds, shared s
 
 ## Scope and order
 
-Complete one phase at a time and record its result here. Preserve unfinished work, editable sources, Unity asset metadata, generated builds, saves, device enrollment and signing identity. Folder maintenance does not install apps or replace the live server. The parent authorized starting implementation after the research was complete.
+Complete one phase at a time, run the required game/server checks below before continuing, and record its result here. Preserve unfinished work, editable sources, Unity asset metadata, generated builds, saves, device enrollment and signing identity. Folder maintenance does not install apps or replace the live server. The parent authorized starting implementation after the research was complete.
 
 The audit covered the Windows project, associated Desktop folders and registered development checkouts. Mac folder organization remains uninspected; include it after resolving the requested scope. The Desktop Daycare review folder is an explicitly requested export, not an unexplained development checkout.
 
@@ -12,9 +12,41 @@ Operational paths and cleanup candidates below are relative to `C:\Users\sephi\D
 
 Selected structure: keep the existing rules/presentation/server assembly boundaries, group worlds inside those layers, then extract shared-class responsibilities gradually. Keep authored assets and review evidence; retire bounded outputs by purpose and active consumers. Preserve current caches for fast updates. New folders require an actual purpose and contents, not an empty speculative hierarchy.
 
-| Phase | Result | Status |
+## Required game and server checks after every phase
+
+User instruction, October 2: test the game and server after each organization phase to catch regressions before continuing. Implementation, compilation, GUID preservation and path checks alone do not complete a phase. Record **implementation status** and **game/server acceptance** separately.
+
+Run one bounded verification pass after each phase, before the next phase. Resolve a failure before continuing. If an external blocker prevents a required test, leave the phase **awaiting runtime acceptance**, record the blocker and do not silently advance or claim success. Expand checks only for that phase's affected systems or an observed failure.
+
+1. **Game smoke check:** launch the intended Windows client from the phase's actual source and normal project/launcher paths. Confirm the menu, character, movement, world travel and one shared activity work; exercise the affected screen/buttons and confirm its required art/audio loads. Check the logs for exceptions, missing scripts/resources and unexpected exits. Code/asset changes require a fresh successful build with matching source evidence. For relocation, cleanup or documentation with unchanged runtime inputs, an already verified identical artifact may be reused after checking its identity and affected paths; an older build cannot validate newer source.
+2. **Server and multiplayer check:** start the matching candidate authority in an isolated temporary family on loopback, connect four independent clients, and verify compatible admission, shared state/progress, independent travel/departure and reconnect. Remaining siblings must keep their activity. Confirm the server stays alive and its test checkpoint reopens after a graceful stop/start. Do not use the real family save or publish the candidate to the live server for these checks.
+3. **Installed server health:** read the current selection/process, endpoint, status, checkpoint metadata and recent error logs using the established [server update policy](server-update-policy.md). Confirm the installed authority and parent helper still run with the established endpoint/enrollment and no newly observed repeated crash/error. This read-only check is separate from candidate-server testing and does not prove every live gameplay flow. Do not restart occupied play, change firewall/settings, replace the server, install apps or reset/clear saves as a test shortcut.
+4. **Evidence and decision:** record the source commit plus dirty-source fingerprint if applicable, exact artifact/version, affected worlds/activities, game result, isolated server/four-client result, installed-server health result, log/evidence location and any failed/blocked/untested items. Use **pass**, **fail**, **blocked** or **not run** explicitly. Only mark phase acceptance passed when its required checks actually pass.
+
+### Additional checks for each phase
+
+| Phase | Game checks beyond the common smoke | Server and data checks beyond the common smoke |
 | --- | --- | --- |
-| 1 | Move the Beach checkout inside the game folder and repair dependent paths | Complete October 2; receipt below |
+| 1 Beach checkout move | Verify the relocated project's launcher/source resolution and one Beach encounter from an artifact matching that checkout | Verify relocated test-tool/server paths and preserve the checkout's working changes; no live deployment |
+| 2 Main source location | Open the root Unity project and normal launchers; check travel across all seven worlds from the selected current source | Confirm authority/helper selection still resolves the established installation; preserved worktrees and save locations remain available |
+| 3 Cleanup | Launch using retained artifacts and open the activities whose outputs/dependencies were candidates for removal | Confirm no removed item is needed by server startup, recovery or retained checkpoint/backup consumers; preserve live/current/rollback inputs |
+| 4 World grouping and Beach extraction | Native Beach touch, flock animation, landing/footprints and hide-on-travel; quick world/menu traversal catches shared dispatcher regressions | Four clients share one flock encounter; an independent departure does not reset siblings; save/reopen retains state |
+| 5 Production names | Load the existing scene/prefabs with no missing scripts; reopen a prior compatible isolated checkpoint | Verify unchanged message/save identities and compatible client admission, rather than assuming successful compilation proves migration |
+| 6 Asset grouping | Open every world and each linked mini game once; confirm its required images, buttons and sounds load, including saved book resource IDs | Shared activity views agree across clients; reconnect/reopen retains world and activity state; exercise changed completion flows |
+| 7 Tools and artifact locations | Execute the normal Windows build/preview path; verify Android/iPad artifact/source/signature selection and affected command paths without installing | Verify server/helper/watchdog/recovery path resolution and exact artifact provenance; installations/rollouts remain separately authorized |
+| 8 Documentation and ownership | Follow the documented project/build/launch paths and run plan/link consistency; reuse unchanged verified runtime inputs where valid | Follow documented read-only health commands; require an evidence-backed consolidated final acceptance record for the organization work |
+
+### Current acceptance gap and catch-up check
+
+The completed organization work has preservation/path/GUID checks, seven-assembly compilation, thirteen tool-project compilations and a focused four-player **Core rules** Beach check. Those results do not establish native UI/resource loading or a running candidate/live server pass. No post-organization native game/server regression pass or installed-server health check was completed. Later Sandcastle Stage 2 source is also awaiting native acceptance; the catch-up build must contain the actual current source, not organization-era source or historical Windows423.
+
+Full Unity build424 failed because Windows Application Control blocked Unity's Bee.Tools.dll; a Daycare test apphost was also blocked. All native game/isolated-server acceptance in this plan remains **blocked/not run** until a fresh current-source build and required checks succeed. The archive/cache removal blocker is a separate cleanup status, not a runtime-test result.
+
+Run **one consolidated catch-up pass** covering the phase risks above against the current source when the build blocker is resolved. Record it as a catch-up result; do not invent eight historical after-phase passes or repeat identical checks eight times. New phase work must use the checks between phases from now on. This documentation change adds the requirement; it does not claim the missing tests ran or authorize a live rollout.
+
+| Phase | Result | Implementation status |
+| --- | --- | --- |
+| 1 | Move the Beach checkout inside the game folder and repair dependent paths | Relocation/preservation verified October 2; runtime acceptance pending |
 | 2 | Make the obvious game folder the clear home of current source | Implemented; preservation verified |
 | 3 | Separate local data and remove specifically verified unnecessary outputs | Partial: 17 archives removed; remaining removals blocked |
 | 4 | Group worlds inside existing layers, then extract shared-class responsibilities | Implemented; compile/rules pass; native view check blocked |

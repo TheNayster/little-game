@@ -73,3 +73,8 @@
 - Reusable scripts belong in the existing Tools purpose groups. Existing live imported helper modules/pins and documented entry-point shims remain at Tools root. Update maintained consumers and project-layout.json for any relocation; preserve dated provenance and protected reviews.
 - Keep current build caches, signed/current/rollback artifacts, saves, device enrollment, signing, backups, review/research exports and offline repair dependencies. Deletion needs exact consumer/content verification, not age or an ambiguous folder name. Organization is not device/server deployment.
 - Use `Tools/Verification/Test-PlanConsistency.py` after relevant document rendering. Full Unity build424 is currently blocked by Windows Application Control on Unity Bee.Tools.dll; SDK compilation/rules checks are documented separately and never establish native visual or installed-device acceptance.
+
+## Organization phase regression checks — October 2 user instruction
+
+- After every organization phase, run the game and server checks in `docs/project-organization-phase-plan-2026-10-02.md#required-game-and-server-checks-after-every-phase` before continuing. Record implementation and runtime acceptance separately. Compilation/path checks alone are not a game/server pass; failed or externally blocked required checks leave the phase awaiting acceptance.
+- Use a matching current-source candidate in an isolated four-player family and read-only installed-server health checks. Preserve real saves/enrollment and occupied play. This requirement does not authorize device installation or live-server replacement. Reuse a verified identical artifact for unchanged runtime inputs; do not repeatedly rebuild/test unchanged code or use old artifacts as proof of new source.
