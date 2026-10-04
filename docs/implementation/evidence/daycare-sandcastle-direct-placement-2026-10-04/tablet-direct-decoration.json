@@ -1,0 +1,2534 @@
+{
+  "seagulls": {
+    "phase": 0,
+    "clock": 0.0,
+    "age": 0.0,
+    "calmUntil": 0.0,
+    "from": 0,
+    "to": 0,
+    "trailFrom": 0,
+    "flights": 0,
+    "nearby": []
+  },
+  "visibleSeagulls": 0,
+  "visibleGullTracks": 0,
+  "shore": {
+    "clock": 0.0,
+    "nextVisit": 38.37232691337641,
+    "visitStarted": 0.0,
+    "random": 3645769909,
+    "visits": 0,
+    "serial": 0,
+    "visitor": 0,
+    "visitX": 0.0,
+    "right": true,
+    "prints": [],
+    "walkers": [],
+    "ripples": [],
+    "ride": {
+      "phase": 0,
+      "round": 0,
+      "splashes": 0,
+      "age": 0.0,
+      "x": 1200.0,
+      "riders": []
+    }
+  },
+  "visibleSandPrints": 0,
+  "visibleWaveRiders": 0,
+  "visibleSeaVisitor": false,
+  "seaVisitorPose": -1,
+  "serial": 61,
+  "visiblePlayers": 4,
+  "canvases": 1,
+  "narrators": 1,
+  "audioSources": 14,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "tagNpcVisible": false,
+  "tagSpeaking": false,
+  "tagCue": "hello",
+  "error": "",
+  "build": "0.0.455",
+  "actor": "player-4",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "daycare",
+  "savePath": "",
+  "adventure": "",
+  "pendingRequest": "",
+  "pendingArchives": 0,
+  "players": [
+    {
+      "id": "player-1",
+      "outfit": "",
+      "position": {
+        "x": 4175.0,
+        "y": 75.0000228881836
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-2",
+      "outfit": "",
+      "position": {
+        "x": 4430.0,
+        "y": 75.0000228881836
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-3",
+      "outfit": "",
+      "position": {
+        "x": 4217.5,
+        "y": 295.0000305175781
+      },
+      "visible": true,
+      "roarPlaying": false
+    },
+    {
+      "id": "player-4",
+      "outfit": "",
+      "position": {
+        "x": 4600.0,
+        "y": 240.0
+      },
+      "visible": true,
+      "roarPlaying": false
+    }
+  ],
+  "toys": [],
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardBounds": {
+    "serializedVersion": "2",
+    "x": -7.62939453125e-06,
+    "y": -5.7220458984375e-06,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "boardLayoutWidth": 1280.0,
+  "controlsInSafeArea": true,
+  "worldsOpen": false,
+  "charactersOpen": false,
+  "joystickVisible": false,
+  "fullCharactersInTray": false,
+  "activeCharacterVisible": true,
+  "character": "socks",
+  "characterLayers": 2,
+  "controls": [
+    {
+      "name": "Sand piece 3",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 231.48434448242188,
+        "y": 408.0579833984375,
+        "width": 204.79998779296875,
+        "height": 65.62255859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Optional teacher help",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 923.042236328125,
+        "y": 578.7042236328125,
+        "width": 79.323974609375,
+        "height": 57.690185546875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Leave sandpit",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 21.63383674621582,
+        "y": 646.4901123046875,
+        "width": 79.32394409179688,
+        "height": 57.690185546875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Cancel sand play",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 736.2704467773438,
+        "y": 170.54647827148438,
+        "width": 77.8817138671875,
+        "height": 69.22817993164062
+      },
+      "enabled": true
+    },
+    {
+      "name": "Flag",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 82.20843505859375,
+        "y": 56.247886657714844,
+        "width": 109.61126708984375,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Shell",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 201.19436645507812,
+        "y": 56.247886657714844,
+        "width": 109.61126708984375,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Pebble",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 320.1802673339844,
+        "y": 56.247886657714844,
+        "width": 109.61126708984375,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Build",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 724.7323608398438,
+        "y": 57.32957458496094,
+        "width": 108.1690673828125,
+        "height": 79.32394409179688
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 1",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 201.82763671875,
+        "y": 278.1017761230469,
+        "width": 98.0732421875,
+        "height": 100.957763671875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Decorate",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 849.1267700195312,
+        "y": 57.32957458496094,
+        "width": 126.1971435546875,
+        "height": 79.32394409179688
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 905.5999755859375,
+        "y": 34.399993896484375,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 696.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 2",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 534.7756958007812,
+        "y": 278.1017761230469,
+        "width": 98.0732421875,
+        "height": 100.957763671875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Ask Calypso",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 169.60012817382812,
+        "y": 317.2799987792969,
+        "width": 211.20001220703125,
+        "height": 283.1999816894531
+      },
+      "enabled": true
+    },
+    {
+      "name": "Dinosaur",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 857.4197387695312,
+        "y": 167.66197204589844,
+        "width": 109.6112060546875,
+        "height": 74.9971923828125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Window",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 558.1521606445312,
+        "y": 56.247886657714844,
+        "width": 109.6112060546875,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 4",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 740.947509765625,
+        "y": 304.8985290527344,
+        "width": 70.67041015625,
+        "height": 218.50137329101562
+      },
+      "enabled": true
+    },
+    {
+      "name": "Games",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 406.0,
+        "y": 688.7999877929688,
+        "width": 212.0,
+        "height": 62.4000244140625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Door",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 439.16619873046875,
+        "y": 56.247886657714844,
+        "width": 109.61126708984375,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    }
+  ],
+  "outfitsOpen": false,
+  "roarPlaying": false,
+  "outfit": "",
+  "outfitColor": "green",
+  "worldLoading": false,
+  "loadingDestination": "",
+  "loadingFailure": "",
+  "travelStages": [],
+  "homePoseAge": 0.0,
+  "homePose": "Idle",
+  "homeMusicPlaying": false,
+  "musicMuted": false,
+  "worldMusicTrack": "daycare",
+  "worldMusicPlaying": true,
+  "worldMusicVolume": 0.41999998688697815,
+  "worldMusicSignal": 0.046746525913476944,
+  "worldMusicClipCount": 1,
+  "worldMusicSample": 1474233,
+  "home": {
+    "livingRadio": false,
+    "gardenRadio": false,
+    "shedOpen": false
+  },
+  "secretDoorVisible": false,
+  "secretDoorInteractive": false,
+  "quietStill": false,
+  "quietBrightness": 0,
+  "quietMusicLevel": 1,
+  "quietEffectsLevel": 1,
+  "quietPhase": 35.32588195800781,
+  "dinosaurWorld": {
+    "clock": 51.668787,
+    "animals": [
+      {
+        "species": "tyrannosaurus",
+        "random": 2758185246,
+        "x": 382.4541320800781,
+        "y": 193.01380920410156,
+        "targetX": 382.4541320800781,
+        "targetY": 193.01380920410156,
+        "left": false,
+        "wandering": false,
+        "pause": 1.0150778703384677,
+        "lastCall": -10.0,
+        "calls": 0,
+        "fed": 0,
+        "petted": 0
+      },
+      {
+        "species": "triceratops",
+        "random": 1831491182,
+        "x": 1274.2886962890625,
+        "y": 182.63330078125,
+        "targetX": 1274.2886962890625,
+        "targetY": 182.63330078125,
+        "left": true,
+        "wandering": false,
+        "pause": 6.594725866805855,
+        "lastCall": -10.0,
+        "calls": 0,
+        "fed": 0,
+        "petted": 0
+      },
+      {
+        "species": "brachiosaurus",
+        "random": 98827589,
+        "x": 2314.340087890625,
+        "y": 95.82383728027344,
+        "targetX": 2220.475341796875,
+        "targetY": 92.53111267089844,
+        "left": true,
+        "wandering": true,
+        "pause": 0.0,
+        "lastCall": -10.0,
+        "calls": 0,
+        "fed": 0,
+        "petted": 0
+      },
+      {
+        "species": "parasaurolophus",
+        "random": 2095669162,
+        "x": 4219.48193359375,
+        "y": 191.10281372070312,
+        "targetX": 4390.25341796875,
+        "targetY": 143.67295837402344,
+        "left": false,
+        "wandering": true,
+        "pause": 0.0,
+        "lastCall": -10.0,
+        "calls": 0,
+        "fed": 0,
+        "petted": 0
+      }
+    ],
+    "care": [
+      {
+        "actor": "player-1",
+        "species": "",
+        "kind": "",
+        "slot": -1,
+        "ticket": 0,
+        "x": 0.0,
+        "y": 100.0,
+        "phase": 0,
+        "started": 0.0,
+        "consumed": false
+      },
+      {
+        "actor": "player-2",
+        "species": "",
+        "kind": "",
+        "slot": -1,
+        "ticket": 0,
+        "x": 0.0,
+        "y": 100.0,
+        "phase": 0,
+        "started": 0.0,
+        "consumed": false
+      },
+      {
+        "actor": "player-3",
+        "species": "",
+        "kind": "",
+        "slot": -1,
+        "ticket": 0,
+        "x": 0.0,
+        "y": 100.0,
+        "phase": 0,
+        "started": 0.0,
+        "consumed": false
+      },
+      {
+        "actor": "player-4",
+        "species": "",
+        "kind": "",
+        "slot": -1,
+        "ticket": 0,
+        "x": 0.0,
+        "y": 100.0,
+        "phase": 0,
+        "started": 0.0,
+        "consumed": false
+      }
+    ],
+    "nextCareTicket": 0
+  },
+  "dinosaurTextures": 0,
+  "dinosaurSoundPlaying": false,
+  "dinosaurSeat": {
+    "x": 0.0,
+    "y": 0.0
+  },
+  "zoo": {
+    "animals": [
+      {
+        "species": "elephant",
+        "owner": "",
+        "random": 67683703,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 3.0,
+        "fromX": 1000.0,
+        "fromY": 360.0,
+        "toX": 1000.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "giraffe",
+        "owner": "",
+        "random": 2790346661,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 5.0,
+        "fromX": 3400.0,
+        "fromY": 360.0,
+        "toX": 3400.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "zebra",
+        "owner": "",
+        "random": 1083822549,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 7.0,
+        "fromX": 5800.0,
+        "fromY": 360.0,
+        "toX": 5800.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "lion",
+        "owner": "",
+        "random": 3806484995,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 9.0,
+        "fromX": 8200.0,
+        "fromY": 360.0,
+        "toX": 8200.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "brachiosaurus",
+        "owner": "",
+        "random": 2368396467,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 11.0,
+        "fromX": 1000.0,
+        "fromY": 360.0,
+        "toX": 1000.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "triceratops",
+        "owner": "",
+        "random": 796092129,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 13.0,
+        "fromX": 3400.0,
+        "fromY": 360.0,
+        "toX": 3400.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "stegosaurus",
+        "owner": "",
+        "random": 3384536849,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 15.0,
+        "fromX": 5800.0,
+        "fromY": 360.0,
+        "toX": 5800.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "tyrannosaurus",
+        "owner": "",
+        "random": 1803841871,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 17.0,
+        "fromX": 8200.0,
+        "fromY": 360.0,
+        "toX": 8200.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "clownfish",
+        "owner": "",
+        "random": 365755391,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 19.0,
+        "fromX": 1000.0,
+        "fromY": 360.0,
+        "toX": 1000.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "blue-tang",
+        "owner": "",
+        "random": 3021306925,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 21.0,
+        "fromX": 3400.0,
+        "fromY": 360.0,
+        "toX": 3400.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "zebra-shark",
+        "owner": "",
+        "random": 1448969821,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 23.0,
+        "fromX": 5800.0,
+        "fromY": 360.0,
+        "toX": 5800.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "penguin",
+        "owner": "",
+        "random": 4037413003,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 25.0,
+        "fromX": 8200.0,
+        "fromY": 360.0,
+        "toX": 8200.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "tortoise",
+        "owner": "",
+        "random": 2465108283,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 27.0,
+        "fromX": 1000.0,
+        "fromY": 360.0,
+        "toX": 1000.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "gecko",
+        "owner": "",
+        "random": 1027021673,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 29.0,
+        "fromX": 3400.0,
+        "fromY": 360.0,
+        "toX": 3400.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "iguana",
+        "owner": "",
+        "random": 3749682585,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 31.0,
+        "fromX": 5800.0,
+        "fromY": 360.0,
+        "toX": 5800.0,
+        "toY": 360.0,
+        "consumed": false
+      },
+      {
+        "species": "crocodile",
+        "owner": "",
+        "random": 2034771927,
+        "sequence": 0,
+        "fed": 0,
+        "previous": -1,
+        "phase": 0,
+        "age": 0.0,
+        "duration": 33.0,
+        "fromX": 8200.0,
+        "fromY": 360.0,
+        "toX": 8200.0,
+        "toY": 360.0,
+        "consumed": false
+      }
+    ],
+    "food": [
+      {
+        "actor": "player-1",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-2",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-3",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      },
+      {
+        "actor": "player-4",
+        "species": "",
+        "slot": -1,
+        "ticket": 0,
+        "offered": false
+      }
+    ],
+    "nextTicket": 0
+  },
+  "visibleZooAnimals": 0,
+  "zooTextures": 0,
+  "zooAudioClips": 0,
+  "zooSoundPlaying": false,
+  "creekBoats": {
+    "clock": 51.668787,
+    "boats": [
+      {
+        "actor": "player-1",
+        "slot": 0,
+        "hull": 0,
+        "colour": 0,
+        "dock": 0,
+        "trips": 0,
+        "passenger": false,
+        "flower": false,
+        "attending": false,
+        "phase": 0,
+        "started": 0.0
+      },
+      {
+        "actor": "player-2",
+        "slot": 1,
+        "hull": 1,
+        "colour": 1,
+        "dock": 0,
+        "trips": 0,
+        "passenger": false,
+        "flower": false,
+        "attending": false,
+        "phase": 0,
+        "started": 0.0
+      },
+      {
+        "actor": "player-3",
+        "slot": 2,
+        "hull": 2,
+        "colour": 2,
+        "dock": 0,
+        "trips": 0,
+        "passenger": false,
+        "flower": false,
+        "attending": false,
+        "phase": 0,
+        "started": 0.0
+      },
+      {
+        "actor": "player-4",
+        "slot": 3,
+        "hull": 0,
+        "colour": 3,
+        "dock": 0,
+        "trips": 0,
+        "passenger": false,
+        "flower": false,
+        "attending": false,
+        "phase": 0,
+        "started": 0.0
+      }
+    ]
+  },
+  "boatWorkshopOpen": false,
+  "ownCreekBoatInView": false,
+  "visibleCreekBoats": 0,
+  "creekFishing": {
+    "clock": 0.0,
+    "random": 3487928879,
+    "nextFood": 0,
+    "fish": [
+      {
+        "id": 0,
+        "random": 2930135158,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -327.97509765625,
+        "y": -6.84930944442749,
+        "started": 0.0,
+        "duration": 6.411126274944079
+      },
+      {
+        "id": 1,
+        "random": 3263491178,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -126.82964324951172,
+        "y": 2.069246768951416,
+        "started": 0.0,
+        "duration": 6.799203758546898
+      },
+      {
+        "id": 2,
+        "random": 287845995,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 16.412004470825195,
+        "y": 11.057536125183105,
+        "started": 0.0,
+        "duration": 3.3350968415232134
+      },
+      {
+        "id": 3,
+        "random": 3824903301,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -526.5767211914062,
+        "y": -5.315341949462891,
+        "started": 0.0,
+        "duration": 7.4527734884649455
+      },
+      {
+        "id": 4,
+        "random": 3932967169,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 592.3440551757812,
+        "y": 8.403812408447266,
+        "started": 0.0,
+        "duration": 7.57857638820507
+      },
+      {
+        "id": 5,
+        "random": 705278877,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 117.24232482910156,
+        "y": 4.9692206382751465,
+        "started": 0.0,
+        "duration": 3.821052674628108
+      },
+      {
+        "id": 6,
+        "random": 4247093461,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 266.24102783203125,
+        "y": 18.9468936920166,
+        "started": 0.0,
+        "duration": 7.944267522065031
+      },
+      {
+        "id": 7,
+        "random": 613703615,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -14.407352447509766,
+        "y": 18.86296844482422,
+        "started": 0.0,
+        "duration": 3.714445038632128
+      },
+      {
+        "id": 8,
+        "random": 521926519,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 199.7659912109375,
+        "y": -19.63890266418457,
+        "started": 0.0,
+        "duration": 3.6076024369354367
+      },
+      {
+        "id": 9,
+        "random": 204727580,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -299.1912841796875,
+        "y": 1.4856656789779663,
+        "started": 0.0,
+        "duration": 3.238334271180987
+      },
+      {
+        "id": 10,
+        "random": 3965404403,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 277.677001953125,
+        "y": 10.691069602966309,
+        "started": 0.0,
+        "duration": 7.616338298566719
+      },
+      {
+        "id": 11,
+        "random": 1967322288,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 507.7056579589844,
+        "y": 10.176383018493652,
+        "started": 0.0,
+        "duration": 5.290264573481461
+      },
+      {
+        "id": 12,
+        "random": 2425827834,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -104.65174102783203,
+        "y": 14.082569122314453,
+        "started": 0.0,
+        "duration": 5.824035280575984
+      },
+      {
+        "id": 13,
+        "random": 3039946072,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 361.2103271484375,
+        "y": 1.616875410079956,
+        "started": 0.0,
+        "duration": 6.538963003908043
+      },
+      {
+        "id": 14,
+        "random": 13148098,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -411.77716064453125,
+        "y": -16.66364097595215,
+        "started": 0.0,
+        "duration": 3.0153064006043846
+      },
+      {
+        "id": 15,
+        "random": 801800974,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 431.5146789550781,
+        "y": -16.78150749206543,
+        "started": 0.0,
+        "duration": 3.9334191845109263
+      },
+      {
+        "id": 16,
+        "random": 1274148663,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 150.6045684814453,
+        "y": -14.495758056640625,
+        "started": 0.0,
+        "duration": 4.483304266930396
+      },
+      {
+        "id": 17,
+        "random": 1666974517,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": 22.728553771972656,
+        "y": -10.911752700805664,
+        "started": 0.0,
+        "duration": 4.940613749190376
+      },
+      {
+        "id": 18,
+        "random": 457125695,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -52.552223205566406,
+        "y": 2.670020580291748,
+        "started": 0.0,
+        "duration": 3.5321643491117665
+      },
+      {
+        "id": 19,
+        "random": 3166106454,
+        "fromX": 0.0,
+        "fromY": 0.0,
+        "x": -347.0783996582031,
+        "y": -15.942180633544922,
+        "started": 0.0,
+        "duration": 6.685833018665629
+      }
+    ],
+    "rods": [
+      {
+        "actor": "player-1",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-2",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-3",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-4",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      }
+    ],
+    "food": []
+  },
+  "creekFishingCloseup": false,
+  "creekFishingWaterPlaying": false,
+  "pond": {
+    "clock": 7.6086934,
+    "random": 2587868359,
+    "nextFood": 0,
+    "fish": [
+      {
+        "id": 0,
+        "random": 4278852855,
+        "fromX": -227.5,
+        "fromY": 0.0,
+        "x": -263.64361572265625,
+        "y": -6.5198564529418945,
+        "started": 0.0,
+        "duration": 7.981240322809024
+      },
+      {
+        "id": 1,
+        "random": 902324659,
+        "fromX": -226.3811798095703,
+        "fromY": 3.263049602508545,
+        "x": -128.72596740722656,
+        "y": 14.144697189331055,
+        "started": 5.879370999999999,
+        "duration": 4.050444155943218
+      },
+      {
+        "id": 2,
+        "random": 3500892847,
+        "fromX": 112.63326263427734,
+        "fromY": 29.681278228759766,
+        "x": -143.19309997558594,
+        "y": 25.452850341796875,
+        "started": 4.269487799999997,
+        "duration": 7.07557567560011
+      },
+      {
+        "id": 3,
+        "random": 3243095875,
+        "fromX": -30.03021240234375,
+        "fromY": -3.21305513381958,
+        "x": -7.275559902191162,
+        "y": -14.960195541381836,
+        "started": 6.496473699999999,
+        "duration": 6.77546050091634
+      },
+      {
+        "id": 4,
+        "random": 2530688410,
+        "fromX": 158.83535766601562,
+        "fromY": 0.5306187272071838,
+        "x": -56.51795959472656,
+        "y": -28.092241287231445,
+        "started": 6.6793698999999975,
+        "duration": 5.946109057624384
+      },
+      {
+        "id": 5,
+        "random": 3752397038,
+        "fromX": 51.475746154785156,
+        "fromY": 25.02183723449707,
+        "x": -63.43198776245117,
+        "y": 23.66606330871582,
+        "started": 5.416333099999999,
+        "duration": 7.368365089029159
+      },
+      {
+        "id": 6,
+        "random": 3513016246,
+        "fromX": 2.968641757965088,
+        "fromY": 24.640396118164062,
+        "x": 57.88341522216797,
+        "y": 25.72504234313965,
+        "started": 6.3798958,
+        "duration": 7.0896891695656095
+      },
+      {
+        "id": 7,
+        "random": 603776696,
+        "fromX": -42.0136604309082,
+        "fromY": 11.954460144042969,
+        "x": -194.51959228515625,
+        "y": -19.51474380493164,
+        "started": 5.299562999999999,
+        "duration": 3.702888583928088
+      }
+    ],
+    "rods": [
+      {
+        "actor": "player-1",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-2",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-3",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      },
+      {
+        "actor": "player-4",
+        "slot": -1,
+        "fish": -1,
+        "mode": 0,
+        "cast": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "due": 0.0,
+        "castAt": 0.0
+      }
+    ],
+    "food": []
+  },
+  "pondCloseup": false,
+  "pondWaterPlaying": false,
+  "hideClub": {
+    "round": 0,
+    "cursor": 0,
+    "turns": 0,
+    "phase": 0,
+    "clock": 0.0,
+    "deadline": 0.0,
+    "grace": 0.0,
+    "inspection": 0.0,
+    "teacherX": 1200.0,
+    "teacherY": 90.0,
+    "it": "",
+    "order": [],
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": false,
+        "invited": false,
+        "declined": false,
+        "found": false,
+        "slot": -1,
+        "safeUntil": 0.0
+      },
+      {
+        "actor": "player-2",
+        "attending": false,
+        "invited": false,
+        "declined": false,
+        "found": false,
+        "slot": -1,
+        "safeUntil": 0.0
+      },
+      {
+        "actor": "player-3",
+        "attending": false,
+        "invited": false,
+        "declined": false,
+        "found": false,
+        "slot": -1,
+        "safeUntil": 0.0
+      },
+      {
+        "actor": "player-4",
+        "attending": false,
+        "invited": false,
+        "declined": false,
+        "found": false,
+        "slot": -1,
+        "safeUntil": 0.0
+      }
+    ],
+    "npcs": []
+  },
+  "tagClub": {
+    "round": 0,
+    "cursor": 0,
+    "turns": 0,
+    "phase": 0,
+    "clock": 0.0,
+    "deadline": 0.0,
+    "grace": 0.0,
+    "inspection": 0.0,
+    "teacherX": 1200.0,
+    "teacherY": 90.0,
+    "it": "",
+    "order": [],
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": false,
+        "invited": false,
+        "declined": false,
+        "found": false,
+        "slot": -1,
+        "safeUntil": 0.0
+      },
+      {
+        "actor": "player-2",
+        "attending": false,
+        "invited": false,
+        "declined": false,
+        "found": false,
+        "slot": -1,
+        "safeUntil": 0.0
+      },
+      {
+        "actor": "player-3",
+        "attending": false,
+        "invited": false,
+        "declined": false,
+        "found": false,
+        "slot": -1,
+        "safeUntil": 0.0
+      },
+      {
+        "actor": "player-4",
+        "attending": false,
+        "invited": false,
+        "declined": false,
+        "found": false,
+        "slot": -1,
+        "safeUntil": 0.0
+      }
+    ],
+    "npcs": []
+  },
+  "clubNpcArt": [
+    "",
+    "",
+    "",
+    ""
+  ],
+  "clubNpcPoints": [
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    }
+  ],
+  "clubNpcFrames": [
+    -1,
+    -1,
+    -1,
+    -1
+  ],
+  "clubTeacherWalking": false,
+  "clubTeacherDrawing": 0,
+  "clubTeacherPoint": {
+    "x": 0.0,
+    "y": 0.0
+  },
+  "vet": {
+    "round": 0,
+    "clock": 0.0,
+    "members": [
+      {
+        "actor": "player-1",
+        "gesture": "",
+        "tool": "",
+        "attending": false,
+        "declined": false,
+        "patient": -1,
+        "last": -1.0,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "actor": "player-2",
+        "gesture": "",
+        "tool": "",
+        "attending": false,
+        "declined": false,
+        "patient": -1,
+        "last": -1.0,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "actor": "player-3",
+        "gesture": "",
+        "tool": "",
+        "attending": false,
+        "declined": false,
+        "patient": -1,
+        "last": -1.0,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "actor": "player-4",
+        "gesture": "",
+        "tool": "",
+        "attending": false,
+        "declined": false,
+        "patient": -1,
+        "last": -1.0,
+        "x": 0.0,
+        "y": 0.0
+      }
+    ],
+    "patients": [
+      {
+        "bed": -1,
+        "needs": 11,
+        "cuddles": 0,
+        "washed": [
+          0,
+          0,
+          0
+        ],
+        "brushed": [
+          0,
+          0,
+          0
+        ],
+        "bandaged": false,
+        "arrived": 0.0,
+        "reaction": 0.0,
+        "reactions": 0
+      },
+      {
+        "bed": -1,
+        "needs": 13,
+        "cuddles": 0,
+        "washed": [
+          0,
+          0,
+          0
+        ],
+        "brushed": [
+          0,
+          0,
+          0
+        ],
+        "bandaged": false,
+        "arrived": 0.0,
+        "reaction": 0.0,
+        "reactions": 0
+      },
+      {
+        "bed": -1,
+        "needs": 14,
+        "cuddles": 0,
+        "washed": [
+          0,
+          0,
+          0
+        ],
+        "brushed": [
+          0,
+          0,
+          0
+        ],
+        "bandaged": false,
+        "arrived": 0.0,
+        "reaction": 0.0,
+        "reactions": 0
+      },
+      {
+        "bed": -1,
+        "needs": 15,
+        "cuddles": 0,
+        "washed": [
+          0,
+          0,
+          0
+        ],
+        "brushed": [
+          0,
+          0,
+          0
+        ],
+        "bandaged": false,
+        "arrived": 0.0,
+        "reaction": 0.0,
+        "reactions": 0
+      },
+      {
+        "bed": -1,
+        "needs": 13,
+        "cuddles": 0,
+        "washed": [
+          0,
+          0,
+          0
+        ],
+        "brushed": [
+          0,
+          0,
+          0
+        ],
+        "bandaged": false,
+        "arrived": 0.0,
+        "reaction": 0.0,
+        "reactions": 0
+      },
+      {
+        "bed": -1,
+        "needs": 11,
+        "cuddles": 0,
+        "washed": [
+          0,
+          0,
+          0
+        ],
+        "brushed": [
+          0,
+          0,
+          0
+        ],
+        "bandaged": false,
+        "arrived": 0.0,
+        "reaction": 0.0,
+        "reactions": 0
+      },
+      {
+        "bed": -1,
+        "needs": 14,
+        "cuddles": 0,
+        "washed": [
+          0,
+          0,
+          0
+        ],
+        "brushed": [
+          0,
+          0,
+          0
+        ],
+        "bandaged": false,
+        "arrived": 0.0,
+        "reaction": 0.0,
+        "reactions": 0
+      },
+      {
+        "bed": -1,
+        "needs": 15,
+        "cuddles": 0,
+        "washed": [
+          0,
+          0,
+          0
+        ],
+        "brushed": [
+          0,
+          0,
+          0
+        ],
+        "bandaged": false,
+        "arrived": 0.0,
+        "reaction": 0.0,
+        "reactions": 0
+      }
+    ],
+    "friends": [
+      "pretzel",
+      "jean-luc"
+    ]
+  },
+  "vetSelected": 0,
+  "vetTool": 0,
+  "vetDrawing": 0,
+  "vetQueued": 0,
+  "vetWalking": false,
+  "vetSoundPlaying": false,
+  "vetBackdropReady": true,
+  "vetNpcArt": [
+    "",
+    ""
+  ],
+  "vetFeedback": "",
+  "treasure": {
+    "round": 0,
+    "phase": 0,
+    "shell": 0,
+    "pot": 0,
+    "site": 0,
+    "tuneStep": 0,
+    "lastFind": 0,
+    "clock": 0.0,
+    "started": 0.0,
+    "demoAt": -10.0,
+    "findAt": 0.0,
+    "lifted": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "tune": [
+      0,
+      1,
+      2
+    ],
+    "wheels": [
+      0,
+      0,
+      0
+    ],
+    "friends": [
+      "jean-luc",
+      "pretzel",
+      "captain"
+    ],
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": false,
+        "declined": false
+      },
+      {
+        "actor": "player-2",
+        "attending": false,
+        "declined": false
+      },
+      {
+        "actor": "player-3",
+        "attending": false,
+        "declined": false
+      },
+      {
+        "actor": "player-4",
+        "attending": false,
+        "declined": false
+      }
+    ]
+  },
+  "treasureNpcArt": [
+    "",
+    "",
+    ""
+  ],
+  "treasureNpcPoints": [
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    }
+  ],
+  "treasureApproach": "",
+  "treasureMystery": false,
+  "treasureDemoNote": -1,
+  "treasureTonePlaying": false,
+  "treasureFeedback": "",
+  "sandLocalPending": false,
+  "sandDirectCueVisible": false,
+  "sandPlacementActive": false,
+  "sandDecorationChoice": "window",
+  "sandAttachmentScreenPoints": [
+    {
+      "x": 751.6182861328125,
+      "y": 458.9453125
+    },
+    {
+      "x": 800.947021484375,
+      "y": 539.46728515625
+    },
+    {
+      "x": 745.81494140625,
+      "y": 326.9183654785156
+    },
+    {
+      "x": 806.75048828125,
+      "y": 446.6131286621094
+    },
+    {
+      "x": 755.9708251953125,
+      "y": 387.1284484863281
+    },
+    {
+      "x": 796.594482421875,
+      "y": 470.5520935058594
+    }
+  ],
+  "sandBuilderActors": [
+    "player-1",
+    "player-2",
+    "player-3",
+    "player-4"
+  ],
+  "sandBuilderReactions": [
+    "ready",
+    "ready",
+    "ready",
+    "decorate"
+  ],
+  "sandBuilderEvents": [
+    10,
+    7,
+    7,
+    7
+  ],
+  "sandPieceScreenPoints": [
+    {
+      "x": 250.8642578125,
+      "y": 286.0341796875
+    },
+    {
+      "x": 583.8123168945312,
+      "y": 286.0341796875
+    },
+    {
+      "x": 333.88433837890625,
+      "y": 415.99041748046875
+    },
+    {
+      "x": 776.28271484375,
+      "y": 383.5013427734375
+    }
+  ],
+  "sandpit": {
+    "format": 3,
+    "pieceLimit": 16,
+    "scoopCapacity": 3,
+    "round": 1,
+    "phase": 2,
+    "started": 18.3239762,
+    "teacherX": 634.5574340820312,
+    "teacherY": 242.1598358154297,
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-2",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-3",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-4",
+        "attending": true,
+        "declined": false
+      }
+    ],
+    "moulds": [
+      {
+        "id": "p-5fd96af7aac8453c9309da7e51cd02ac",
+        "creator": "player-1",
+        "shape": "square",
+        "x": 4235.0,
+        "y": 130.0,
+        "width": 72.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 9,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 0,
+            "kind": "flag"
+          },
+          {
+            "slot": 1,
+            "kind": "flag"
+          },
+          {
+            "slot": 2,
+            "kind": "shell"
+          },
+          {
+            "slot": 3,
+            "kind": "shell"
+          }
+        ]
+      },
+      {
+        "id": "p-c542e222642740b984d47417cab26e69",
+        "creator": "player-2",
+        "shape": "round",
+        "x": 4490.0,
+        "y": 130.0,
+        "width": 72.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 6,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 2,
+            "kind": "pebble"
+          }
+        ]
+      },
+      {
+        "id": "p-0e2b2ebdf3984b39b707a65ae0ea83c3",
+        "creator": "player-3",
+        "shape": "wall",
+        "x": 4277.5,
+        "y": 350.0,
+        "width": 157.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 6,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 4,
+            "kind": "door"
+          }
+        ]
+      },
+      {
+        "id": "p-f3b722b78acb45eda032344ac2202b53",
+        "creator": "player-4",
+        "shape": "gate",
+        "x": 4660.0,
+        "y": 295.0,
+        "width": 72.0,
+        "depth": 190.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 6,
+        "orientation": 90,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 4,
+            "kind": "window"
+          }
+        ]
+      }
+    ],
+    "friends": [
+      "chloe",
+      "blue-pup"
+    ],
+    "toy": {
+      "placed": false,
+      "x": 0.0,
+      "y": 0.0,
+      "version": 0,
+      "reaction": 0
+    },
+    "reset": {
+      "token": "",
+      "voters": [],
+      "approved": []
+    }
+  },
+  "sandpitNpcArt": [],
+  "sandIllustrated": true,
+  "sandPhoneLayout": false,
+  "sandVoiceVolumes": [
+    0.0,
+    0.0
+  ],
+  "sandVoiceClips": [
+    "",
+    ""
+  ],
+  "sandPresentationEvents": 11,
+  "sandAudioEvents": 0,
+  "sandActiveVoices": 0,
+  "sandActiveEffects": 0,
+  "sandpitSelection": 3,
+  "sandpitHighlight": 3,
+  "sandpitApproach": -1,
+  "sandpitApproachRound": -1,
+  "sandpitScoopEvents": [
+    3,
+    3,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitWaterEvents": [
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitWaterEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitWetVisuals": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "sandpitBuiltVisuals": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "sandpitTipEvents": [
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitTipEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitTowerReveal": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "sandpitTipOutcomes": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "sandpitDecorationEvents": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationVisuals": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationEffectValues": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitDecorationWiggles": [
+    0.0,
+    0.0
+  ],
+  "sandpitDecorationHidden": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "daycare": {
+    "clock": 50.5544378,
+    "started": 0.0,
+    "helpUntil": 0.0,
+    "round": 0,
+    "phase": 0,
+    "plates": 0,
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": true
+      },
+      {
+        "actor": "player-2",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": true
+      },
+      {
+        "actor": "player-3",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": true
+      },
+      {
+        "actor": "player-4",
+        "attending": false,
+        "carryingPlate": false,
+        "declined": true
+      }
+    ],
+    "guests": [
+      "chloe",
+      "blue-pup",
+      "buddy",
+      "lulu"
+    ]
+  },
+  "daycareRoutine": 2,
+  "calypsoPose": 1,
+  "calypsoDrawing": 1,
+  "calypsoVisible": true,
+  "calypsoMoving": false,
+  "calypsoWalkPlaying": false,
+  "calypsoWorldPoint": {
+    "x": 4020.0,
+    "y": 440.0
+  },
+  "kingdom": {
+    "round": 0,
+    "supplies": 0,
+    "boards": 0,
+    "rescued": 0,
+    "phase": 0,
+    "clock": 0.0,
+    "started": 0.0,
+    "distractedUntil": 0.0,
+    "members": [
+      {
+        "actor": "player-1",
+        "role": 0,
+        "attending": false,
+        "declined": true,
+        "carrying": "",
+        "hopAt": -10.0
+      },
+      {
+        "actor": "player-2",
+        "role": 1,
+        "attending": false,
+        "declined": true,
+        "carrying": "",
+        "hopAt": -10.0
+      },
+      {
+        "actor": "player-3",
+        "role": 2,
+        "attending": false,
+        "declined": true,
+        "carrying": "",
+        "hopAt": -10.0
+      },
+      {
+        "actor": "player-4",
+        "role": 3,
+        "attending": false,
+        "declined": true,
+        "carrying": "",
+        "hopAt": -10.0
+      }
+    ],
+    "npcCast": [
+      "winnie",
+      "orange-pup",
+      "rusty",
+      "lulu",
+      "bentley",
+      "hercules",
+      "jack",
+      "buddy",
+      "lucky"
+    ],
+    "boardAt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "wakeAt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "crossing": 0,
+    "queenPlan": 0,
+    "helpedSupplies": 0,
+    "foodHelp": false,
+    "helpAt": 0.0,
+    "queenAt": 0.0,
+    "rescueStyle": [
+      0,
+      0,
+      0
+    ]
+  },
+  "visibleKingdomNpcs": 0,
+  "kingdomApproach": "",
+  "lastTouchTargets": [
+    "Window",
+    "Sandcastle shared building view",
+    "Garden"
+  ],
+  "kingdomNpcArt": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "picnicNpcArt": [
+    "chloe",
+    "bluey",
+    "buddy",
+    "lulu"
+  ],
+  "kingdomNpcJobs": [
+    "Guide",
+    "Picnic helper",
+    "Bridge helper",
+    "Bridge helper",
+    "Bridge helper",
+    "Guard wand",
+    "Frozen friend",
+    "Frozen friend",
+    "Frozen friend"
+  ],
+  "kingdomNpcPoses": [
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle",
+    "Idle"
+  ],
+  "kingdomNpcPoints": [
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "x": 0.0,
+      "y": 0.0
+    }
+  ],
+  "hideAndSeek": {
+    "round": 0,
+    "direction": 1,
+    "cursor": 0,
+    "target": -1,
+    "pass": 0,
+    "visited": 0,
+    "phase": 0,
+    "age": 0.0,
+    "count": 0.0,
+    "clock": 0.0,
+    "walked": 0.0,
+    "x": -3660.0,
+    "organizer": "",
+    "hiders": [
+      {
+        "actor": "player-1",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-2",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-3",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      },
+      {
+        "actor": "player-4",
+        "mode": 0,
+        "slot": -1,
+        "cycle": 0,
+        "preparation": 0.0,
+        "idle": 0.0
+      }
+    ]
+  },
+  "keepy": {
+    "phase": 0,
+    "round": 0,
+    "hitSerial": 0,
+    "spawnRevision": 1,
+    "x": 2450.0,
+    "y": 150.0,
+    "height": 28.0,
+    "vx": 0.0,
+    "vz": 0.0,
+    "centerX": 2450.0,
+    "elapsed": 0.0,
+    "remainder": 0.0,
+    "hitAge": 10.0,
+    "lastHitter": "",
+    "hitLeft": false
+  },
+  "balloonPoint": {
+    "x": 0.0,
+    "y": -17.0
+  },
+  "sceneryReady": true,
+  "place": "daycare",
+  "cameraX": 4266.66650390625,
+  "pendingScenery": 0,
+  "residentScenery": [
+    "daycare-garden",
+    "daycare-playroom"
+  ],
+  "homeDrawOrder": [
+    "Illustrated world",
+    "Calypso teacher",
+    "Friend-player-3",
+    "Player character",
+    "Daycare picnic table",
+    "Friend-player-1",
+    "Friend-player-2"
+  ],
+  "bookAuto": false,
+  "bookWords": true,
+  "bookOptions": false,
+  "bookEffect": false,
+  "bookEffectPending": false,
+  "bookNaming": false,
+  "bookTitle": "hello-dinosaurs",
+  "bookTextures": 0,
+  "bookAudio": 0,
+  "discoveryOpen": false,
+  "bookOpen": false,
+  "bookReady": false,
+  "bookPlaying": false,
+  "bookSpeaking": false,
+  "bookPage": 0,
+  "bookSample": 0,
+  "visibleText": [
+    "",
+    "",
+    "Tap to walk",
+    "Menu",
+    "Dinosaur",
+    "",
+    "Window",
+    "",
+    "Calypso \u00b7 sandcastle teacher",
+    "?",
+    "Door",
+    "",
+    "Flag",
+    "Games",
+    "Shell",
+    "Tap a finished piece to add window",
+    "Pebble",
+    "Decorate",
+    "Build"
+  ]
+}

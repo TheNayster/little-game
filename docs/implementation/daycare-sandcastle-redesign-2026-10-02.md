@@ -456,3 +456,42 @@ Evidence shorthand: **R** = unchanged410 focused rules/migrations plus compiled 
 - On actual phones/tablets check easy finger targets, blocked views, warmth/performance, sound comfort, and whether the3/6year-olds choose to continue. Record confusion and enjoyment rather than assume them.
 
 **Compatibility/rollout:** protocol3/content70/schema52/contract17, inner Sandpitformat3. Stage6 adds no wire/save compatibility change. Full remote actor feedback uses the already integrated optional snapshot ring from Stage5. Installed family server412/content64/hotfix`412-daycare-bounds-1` remains untouched and incompatible with this candidate. A separately authorized coordinated compatible app/server update must preserve enrollment/signing/saves and migrate through the existing restore path; this source task does not authorize that rollout. Installed apps, live server, real saves, security and Picnic/unrelated work preserved. Sandcastle closeout stops here; no other mini-game started.
+
+## Direct-placement usability correction — October 4
+
+**Implemented and locally verified: final candidate455.** Parent playtesting after Stage6 found placement strict/procedural, white attachment boxes difficult to see, and ordinary confirmations excessive. This instruction supersedes mandatory routine mould Confirm and decoration socket/Attach steps in earlier Stage1–6 proposals and acceptance records. Destructive removal/reset retain confirmation. Existing-piece Move retains its previous preview/confirm route. This is a focused usability correction; artwork and decoration storage were not redesigned.
+
+**Verified baseline:** Stage6 source9d3ea80/UI450. The current checkout also contained the preceding authorized snapshot-capacity rollout repair, delivered separately as77b28ce. That repair is preserved; installed authority451 and phone452 remain. Production ownership is `GameScreen.SandcastleClub`, `GameScreen.SandcastlePlay` and `GameScreen.SandcastleApproved` in `Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/`. The isolated `SandcastlePrototype` is not the implementation under test.
+
+### Official context and project adaptations
+
+Sago Mini's official [Village instructions](https://sagomini.com/article/village-letter-to-parents/) describe direct block placement from a lower drawer, continued building and character/prop play. The official [Neighborhood Blocks instructions](https://sagomini.com/article/neighborhood-blocks-letter-to-parents/) similarly describe drawer-to-scene dragging and continued redecorating/play. These written instructions support direct manipulation. No competitor app was played and no competitor multiplayer behavior verified. The tap alternative, single-use mould choice, nearest compatible saved sockets and multiplayer safeguards adapt existing Little Weeps systems.
+
+### Resulting production behavior
+
+- Choose a mould → tap valid sand immediately submits one locally resolved snap, with no third confirmation. Rotation remains available for walls/gates. Accepted placement selects the new bucket and exposes Scoop/Water/Tip. Subsequent sand taps cannot create another bucket until a mould is chosen again. The exact destination survives retries; conflicts never search another free cell. Brief feedback appears near invalid attempts and preserves the castle.
+- Choose a decoration → tap a suitable built-piece region directly chooses the nearest empty compatible socket within140 local artwork units, scaled with existing depth. Eligible painted pieces have contrasting cyan outlines. Ordinary white slot boxes/plus signs and Attach are removed. Chosen decorations remain available for intentional repeated taps; occupied regions give a gentle cue without replacing props. A conflicting request retains its original socket through retry.
+- Optional UGUI tray drags use the same placement route and show actual decoration art while dragging. Tap users need no hover/preview-following. Pointer leases, cancelled-touch checks, drag thresholds, disabled-card guards, release-target checks and local generations reject cancelled gestures, drawer swipes and UI releases. Leave, pause/disconnect and activity changes clear local placement. Old callbacks cannot rearm a new choice.
+- Authority, UUID receipts, revisions/epochs/visits, creator permissions, logical coordinates,16-piece limits, saves, P9 art/projection and construction behavior remain. Capture review exposed Cancel overlapping Dinosaur; final controls separate them. Added `FamilyGameVerification` observations are read-only diagnostics, not production messages/save fields.
+
+### Current local acceptance
+
+[Actual captures,45-second SILENT film, executed receipt and reproduction command](evidence/daycare-sandcastle-direct-placement-2026-10-04/README.md).
+
+Fresh455 release client/server: Unity6000.3.24f1, errors0/warnings0,2321current Unity inputs verified. Four actual simultaneous native clients, synthetic loopback authority/saves. Phone1280×592 and tablet1024×768 use actual Unity Touchscreen/InputSystem UGUI events, rather than direct placement-method calls. All59 recorded non-meta Core inputs match450; existing410 focused rule/migration checks and relevant Stage6 authority/save evidence are reused, not reported as new execution. Protocol3/content70/schema52/format3 remain unchanged.
+
+| Focused criterion | Actual passing evidence |
+| --- | --- |
+| Shape→sand without third confirmation; bucket/tools and continued building | Actual phone/tablet round/square/wall/rotated-gate taps, automatic selection, Scoop/Water/Tip and subsequent shared pieces |
+| Decoration→piece without white slots/Attach; repeated/combined props | Flags/shells/pebble/door/window, intentional repeated flags, visible full-slot cue, actual eligible outlines and decoration drag preview/cancel/drop |
+| Invalid/cancelled/UI gestures preserve work | Occupied/outside-footprint taps, cancelled sand/decor touches, tray swipe and UI drop retain snapshots; successful drag sends one placement |
+| Rapid taps and redelivery do not duplicate | Three rapid taps create one bucket; exact acknowledged UI command redelivery returns Duplicate without changing count |
+| Shared placement/building/decoration and competing taps | Four actual clients contribute; competing region taps preserve existing props and unique socket occupancy; all clients converge |
+| Local intent clears while siblings retain work | Leave/re-entry, Park/Daycare transition, native fourth-client disconnect/replacement reconnect with three siblings remaining |
+| Destructive protection remains | Remove→Keep it and four-voter family reset→decline retain the creation |
+
+All10 focused groups pass; zero runtime exceptions. Initial453 completed five groups, then a harness assertion looked for receipts in sanitized public snapshots. Corrected to the existing delete-sharing isolated-checkpoint reader; production receipt visibility was not widened.454 compiled the capture-driven layout/diagnostic correction; final455 includes disabled-drag/generation guards and executes the complete check. Final captures were opened; exported video frames3/12/27/40 were inspected. It contains actual building, direct flags/shells, participant feedback, shared continued construction and retained removal confirmation. No generated concept substitutes for runtime evidence. The recording has no audio track; existing Stage6 audible-review deferral remains.
+
+**Remaining restrictions:** six fixed positions: two flags, two shell/pebble, two door/window. This fix does not provide free-position decorations or implicit overwrite. Physical finger comfort/performance, child comprehension/fun and parent subjective acceptance remain family playtest matters; native captures do not establish them.
+
+**Delivery boundary:** source/local455 verification only. Live451 authority, installed452 app, actual family saves and unrelated games are preserved after the preceding authorized rollout. No new app installation or server publication was performed for this usability fix. Completed source follows current main/push rules. Stop here; free-position decoration storage and further redesign are separate future tasks.

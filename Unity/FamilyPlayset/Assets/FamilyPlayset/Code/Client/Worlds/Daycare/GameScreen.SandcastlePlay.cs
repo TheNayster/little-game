@@ -11,8 +11,8 @@ namespace LittleWeeps.Client
     {
         private bool sandDecorating; private string sandPlayMode="",sandDecorKind="flag",sandEditId;
         private int sandPlayEpoch=-1,sandSlot=-1,sandEditVersion,sandEditEpoch,sandToyVersion,sandToyReaction=-1;
-        private Button sandPlayConfirm,sandPlayCancel,sandEdit,sandFamilyReset;
-        private readonly List<Button> sandDecorCards=new List<Button>(),sandSockets=new List<Button>(),sandToySpots=new List<Button>();
+        private Button sandPlayCancel,sandEdit,sandFamilyReset;
+        private readonly List<Button> sandDecorCards=new List<Button>(),sandToySpots=new List<Button>();
         private RectTransform sandEditSheet,sandConfirmSheet,sandResetView,sandToyRoot;
         private SandShape sandAttachmentPreview;private RawImage sandToyPicture;private Texture2D sandToyTexture;
         private Text sandEditHint,sandConfirmHint,sandResetHint;private Button sandResetYes;private Action sandConfirmed;
@@ -25,13 +25,18 @@ namespace LittleWeeps.Client
         {
             if(!Ready || sandpitSending || TravelPending)return;
             var round=epoch<0?SandpitGame.round:epoch;var target=DaycareSandpit.Target(id,round);
+            var repeating=op=="decorate" && sandPlayMode=="decorate";var generation=sandDirectGeneration;var cueAt=sandDirectPoint;
             CancelSandpitIntent();sandpitSending=true;
-            void Done(SoloResult r){sandpitSending=false;if(!r.Accepted){SandCue(r.Outcome);sandPlayMode="";sandSlot=-1;}else{sandAck=0;sandPlayMode="";sandSlot=-1;if(!r.Duplicate && SandLocalFeedback)SandParticipantResponse(Actor,op);}Render();}
+            void Done(SoloResult r){sandpitSending=false;
+                if(generation==sandDirectGeneration && SandpitOwn && SandpitGame.round==round){
+                    if(!r.Accepted)SandCueAt(r.Outcome,cueAt);else{sandAck=0;if(!r.Duplicate && SandLocalFeedback)SandParticipantResponse(Actor,op);}
+                    if(!repeating)sandPlayMode="";sandSlot=-1;
+                }Render();}
             if(Shared){if(!SubmitShared(SoloAction.Sandpit,item,target,op,x,y,Done))sandpitSending=false;}
             else Done(Command(SoloAction.Sandpit,item:item,target:target,value:op,x:x,y:y));
         }
         private void SandTray(bool decorate)
-        {CancelSandpitIntent();sandPlacing=false;sandPlayMode="";sandSlot=-1;sandDecorating=decorate;sandPlayEpoch=SandpitGame.round;sandEditSheet.gameObject.SetActive(false);TickSandpit();}
+        {ClearSandDirectInput();CancelSandpitIntent();sandDecorating=decorate;sandPlayEpoch=SandpitGame.round;sandEditSheet.gameObject.SetActive(false);TickSandpit();}
         private void SandChooseDecoration(string kind)
         {
             SandTray(true);sandDecorKind=kind;sandPlayMode="decorate";
@@ -40,16 +45,6 @@ namespace LittleWeeps.Client
         private void SuggestSandSlot()
         {
             var m=SandSelectedPiece;sandSlot=m?.built==true?Enumerable.Range(0,SandpitPlay.Slots).Where(s=>SandpitPlay.Attachment(s,sandDecorKind) && !m.attachments.Any(a=>a.slot==s)).DefaultIfEmpty(-1).First():-1;
-        }
-        private void SandSelectSocket(int slot){if(SandSelectedPiece?.built!=true)return;sandSlot=slot;TickSandpit();}
-        private void SandConfirmDecoration()
-        {
-            var m=SandSelectedPiece;if(m?.built!=true || sandSlot<0 || !SandpitPlay.Attachment(sandSlot,sandDecorKind))return;
-            var slot=sandSlot;var kind=sandDecorKind;var id=m.id;var epoch=SandpitGame.round;
-            if(m.attachments.Any(a=>a.slot==slot)){
-                if(m.creator!=Actor || string.IsNullOrEmpty(m.creator)){SandCue("not-your-sand-piece");return;}
-                var version=m.version;SandAsk("Replace this decoration?",()=>SandPlaySend("decor-replace",id,version+":"+slot+":"+kind,epoch:epoch));
-            }else SandPlaySend("decorate",id,slot+":"+kind,epoch:epoch);
         }
         private void SandAsk(string hint,Action yes)
         {sandConfirmed=yes;sandConfirmHint.text=hint;sandConfirmSheet.gameObject.SetActive(true);sandConfirmSheet.SetAsLastSibling();}
@@ -90,11 +85,7 @@ namespace LittleWeeps.Client
             var icon=Rect(toy.transform,"Little dinosaur picture",new Vector2(0,6),new Vector2(92,70)).gameObject.AddComponent<RawImage>();icon.texture=sandToyTexture;icon.uvRect=new Rect(0,0,.25f,.5f);icon.raycastTarget=false;
             sandEdit=SandPictureButton(sandBuildView,"Edit","edit",new Vector2(325,-234),SandOpenEdit);((RectTransform)sandEdit.transform).sizeDelta=new Vector2(136,64);sandEdit.GetComponentInChildren<Text>().gameObject.SetActive(false);
             sandFamilyReset=SandPictureButton(sandBuildView,"Family reset","reset",new Vector2(510,-234),()=>SandPlaySend("reset-request","reset"));((RectTransform)sandFamilyReset.transform).sizeDelta=new Vector2(136,64);sandFamilyReset.GetComponentInChildren<Text>().gameObject.SetActive(false);
-            sandPlayConfirm=SandPictureButton(sandBuildView,"Attach","confirm",new Vector2(510,-318),SandConfirmDecoration);sandPlayConfirm.name="Confirm sand decoration";
-            sandPlayCancel=SandPictureButton(sandBuildView,"Cancel","cancel",new Vector2(510,-234),()=>{sandPlayMode="";sandSlot=-1;TickSandpit();});((RectTransform)sandPlayCancel.transform).sizeDelta=new Vector2(136,64);sandPlayCancel.GetComponentInChildren<Text>().gameObject.SetActive(false);sandPlayCancel.name="Cancel sand play";
-            for(var s=0;s<SandpitPlay.Slots;s++){
-                var slot=s;var t=Button(sandFloor,"+",Vector2.zero,new Vector2(78,70),()=>SandSelectSocket(slot),new Color(1,1,1,.6f));t.fontSize=32;t.transform.parent.name="Sand attachment "+s;sandSockets.Add(t.transform.parent.GetComponent<Button>());
-            }
+            sandPlayCancel=SandPictureButton(sandBuildView,"Cancel","cancel",new Vector2(510,-234),()=>{ClearSandDirectInput();TickSandpit();});((RectTransform)sandPlayCancel.transform).sizeDelta=new Vector2(136,64);sandPlayCancel.GetComponentInChildren<Text>().gameObject.SetActive(false);sandPlayCancel.name="Cancel sand play";
             sandAttachmentPreview=Rect(sandFloor,"Sand decoration preview",Vector2.zero,new Vector2(90,90)).gameObject.AddComponent<SandShape>();sandAttachmentPreview.kind="attachment";sandAttachmentPreview.raycastTarget=false;
             for(var i=0;i<36;i++){var cell=i;var at=SandToyPoint(i);var t=Button(sandFloor,"+",SandPoint(at.X,at.Y),new Vector2(i<32?120:64,96),()=>SandPlaceToy(cell),new Color(.73f,.91f,1,.6f));t.transform.parent.name="Sand toy spot "+i;sandToySpots.Add(t.transform.parent.GetComponent<Button>());}
             sandToyRoot=Rect(sandFloor,"Shared sand dinosaur",Vector2.zero,new Vector2(110,100));
@@ -114,7 +105,7 @@ namespace LittleWeeps.Client
         }
         private void TickSandPlay(SandpitState g,bool joined)
         {
-            if(sandPlayConfirm==null)return;
+            if(sandEdit==null)return;
             if(!joined){sandPlayMode="";sandDecorating=false;sandEditSheet.gameObject.SetActive(false);sandConfirmSheet.gameObject.SetActive(false);}
             if(sandPlayEpoch!=g.round){sandPlayMode="";sandSlot=-1;sandEditSheet.gameObject.SetActive(false);sandConfirmSheet.gameObject.SetActive(false);sandConfirmed=null;}
             var m=SandSelectedPiece;var decorate=joined && sandPlayMode=="decorate" && m?.built==true;
@@ -124,14 +115,9 @@ namespace LittleWeeps.Client
             if(sandDecorating || sandPlayMode!="")foreach(var b in sandTools)b.gameObject.SetActive(false);
             sandEdit.gameObject.SetActive(joined && !sandPlacing && sandPlayMode=="");sandEdit.interactable=m!=null && !string.IsNullOrEmpty(m.creator) && m.creator==Actor;
             sandFamilyReset.gameObject.SetActive(joined && !sandPlacing && sandPlayMode=="");
-            sandPlayConfirm.gameObject.SetActive(decorate);sandPlayConfirm.interactable=sandSlot>=0 && !sandpitSending && (!m.attachments.Any(a=>a.slot==sandSlot) || m.creator==Actor);
             sandPlayCancel.gameObject.SetActive(joined && !sandPlacing && sandPlayMode!="");
-            for(var s=0;s<sandSockets.Count;s++){
-                var b=sandSockets[s];var valid=decorate && SandpitPlay.Attachment(s,sandDecorKind);b.gameObject.SetActive(valid);
-                if(valid){var p=SandApprovedAnchor(m,s)*SandcastleProjection.DepthScale(m.y);((RectTransform)b.transform).anchoredPosition=SandPoint(m.x,m.y)+p;b.transform.SetAsLastSibling();b.GetComponent<Image>().color=s==sandSlot?new Color(1,.74f,.24f,.7f):new Color(1,1,1,.55f);}
-            }
-            sandAttachmentPreview.gameObject.SetActive(decorate && sandSlot>=0);
-            if(decorate && sandSlot>=0){var at=SandApprovedAnchor(m,sandSlot);sandAttachmentPreview.rectTransform.anchoredPosition=SandPoint(m.x,m.y)+at*SandcastleProjection.DepthScale(m.y);sandAttachmentPreview.rectTransform.localScale=Vector3.one*SandcastleProjection.DepthScale(m.y);sandAttachmentPreview.decorationKind=sandDecorKind;sandAttachmentPreview.color=new Color(1,1,1,.65f);sandAttachmentPreview.SetVerticesDirty();sandAttachmentPreview.transform.SetAsLastSibling();}
+            sandAttachmentPreview.gameObject.SetActive(joined && sandDirectDragging && sandDirectDragOnSand && sandPlayMode=="decorate");
+            if(sandAttachmentPreview.gameObject.activeSelf){sandAttachmentPreview.rectTransform.anchoredPosition=sandDirectPoint;sandAttachmentPreview.rectTransform.localScale=Vector3.one;sandAttachmentPreview.decorationKind=sandDecorKind;sandAttachmentPreview.color=new Color(1,1,1,.8f);sandAttachmentPreview.SetVerticesDirty();sandAttachmentPreview.transform.SetAsLastSibling();}
             for(var c=0;c<sandToySpots.Count;c++){var b=sandToySpots[c];var p=SandToyPoint(c);b.gameObject.SetActive(false);b.interactable=toy && !sandpitSending && SandpitPlay.ToyPosition(g,p.X,p.Y);if(toy)b.transform.SetAsLastSibling();}
             if(joined && sandToyTexture==null){sandToyTexture=WorldResources.Load<Texture2D>("Worlds/Dinosaur/Art/tyrannosaurus");sandToyPicture.texture=sandToyTexture;sandDecorCards[5].GetComponentInChildren<RawImage>().texture=sandToyTexture;}
             sandToyRoot.gameObject.SetActive(joined && g.toy.placed);
@@ -143,11 +129,11 @@ namespace LittleWeeps.Client
                 // castle face. Slot/placement previews remain in front of it.
                 var front=Enumerable.Range(0,g.moulds.Length).Where(i=>g.moulds[i].y<g.toy.y).OrderByDescending(i=>g.moulds[i].y).DefaultIfEmpty(-1).First();
                 if(front<0)sandToyRoot.SetAsLastSibling();else sandToyRoot.SetSiblingIndex(sandShapes[front].transform.GetSiblingIndex());
-                if(decorate){foreach(var b in sandSockets)if(b.gameObject.activeSelf)b.transform.SetAsLastSibling();sandAttachmentPreview.transform.SetAsLastSibling();}
+                if(sandAttachmentPreview.gameObject.activeSelf)sandAttachmentPreview.transform.SetAsLastSibling();
                 sandToyRoot.GetComponentInChildren<Button>().interactable=!toy && !sandPlacing;
             }
             foreach(var hit in sandPieceHits)if(toy)hit.GetComponent<Graphic>().raycastTarget=false;
-            if(joined && sandPlayMode=="decorate")sandHint.text=m?.built==true?"Choose an attachment · check to add":"Choose a finished piece";
+            if(joined && sandPlayMode=="decorate" && Time.unscaledTime>=sandAck)sandHint.text="Tap a finished piece to add "+sandDecorKind;
             if(toy)sandHint.text="Tap a free toy spot";
             if(SandEditing)sandHint.text="Move this piece · check to keep";
             if(sandEditSheet.gameObject.activeSelf){
@@ -156,6 +142,7 @@ namespace LittleWeeps.Client
                 sandEditSheet.SetAsLastSibling();
             }
             if(sandConfirmSheet.gameObject.activeSelf)sandConfirmSheet.SetAsLastSibling();
+            TickSandDirectInput(joined);
         }
         private void TickSandReset()
         {
@@ -177,7 +164,7 @@ namespace LittleWeeps.Client
         }
         private void ResetSandPlay()
         {
-            if(sandResetView!=null)Destroy(sandResetView.gameObject);sandResetView=null;sandVoterPictures.Clear();sandVoterChecks.Clear();sandDecorCards.Clear();sandSockets.Clear();sandToySpots.Clear();sandPlayConfirm=sandPlayCancel=sandEdit=sandFamilyReset=null;sandDecorating=false;sandPlayMode="";sandSlot=-1;sandToyReaction=-1;sandConfirmed=null;sandToyTexture=null;
+            if(sandResetView!=null)Destroy(sandResetView.gameObject);sandResetView=null;sandVoterPictures.Clear();sandVoterChecks.Clear();sandDecorCards.Clear();sandToySpots.Clear();sandPlayCancel=sandEdit=sandFamilyReset=null;sandDecorating=false;sandPlayMode="";sandSlot=-1;sandToyReaction=-1;sandConfirmed=null;sandToyTexture=null;
         }
     }
 }

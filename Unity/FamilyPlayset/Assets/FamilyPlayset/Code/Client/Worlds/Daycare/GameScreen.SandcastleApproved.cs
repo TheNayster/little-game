@@ -5,6 +5,8 @@ using LittleWeeps.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 namespace LittleWeeps.Client
 {
@@ -14,6 +16,16 @@ namespace LittleWeeps.Client
     {
         private readonly List<SandcastlePrototypePiece> sandApprovedPieces=new List<SandcastlePrototypePiece>();
         private readonly List<List<SandShape>> sandApprovedProps=new List<List<SandShape>>();
+        private readonly List<Outline> sandEligibleOutlines=new List<Outline>();
+        private SandcastleActivitySurface sandDirectSurface;
+        private RectTransform sandDirectCue;private Text sandDirectCueLabel;private float sandDirectCueUntil;
+        private int sandDirectGeneration;private Vector2 sandDirectPoint;
+        private bool sandDirectDragging,sandDirectDragOnSand;
+        public bool SandPlacementActive=>sandPlacing;
+        public bool SandLocalPending=>sandpitSending;
+        public bool SandDirectCueVisible=>sandDirectCue!=null && sandDirectCue.gameObject.activeInHierarchy;
+        public string SandDecorationChoice=>sandPlayMode=="decorate"?sandDecorKind:"";
+        public Vector2[] SandAttachmentScreenPoints=>SandSelectedPiece==null?Array.Empty<Vector2>():Enumerable.Range(0,SandpitPlay.Slots).Select(s=>RectTransformUtility.WorldToScreenPoint(null,sandFloor.TransformPoint(SandPoint(SandSelectedPiece.x,SandSelectedPiece.y)+SandApprovedAnchor(SandSelectedPiece,s)*SandcastleProjection.DepthScale(SandSelectedPiece.y)))).ToArray();
         private SandcastlePrototypePiece sandApprovedPreview;
         private Sprite sandApprovedPanel;
         private Texture2D sandParticipation;
@@ -32,9 +44,10 @@ namespace LittleWeeps.Client
             for(var x=0;x<64;x++)for(var y=0;y<64;y++){var dx=Mathf.Max(16-x,0,x-47);var dy=Mathf.Max(16-y,0,y-47);tex.SetPixel(x,y,new Color(1,1,1,Mathf.Clamp01(16-Mathf.Sqrt(dx*dx+dy*dy))));}
             tex.Apply();sandApprovedPanel=Sprite.Create(tex,new Rect(0,0,64,64),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect,new Vector4(17,17,17,17));
             sandParticipation=WorldResources.Load<Texture2D>("Worlds/Daycare/SandcastleClub/Prototype/participation");
-            sandFloor.gameObject.AddComponent<SandcastleActivitySurface>().Click=SandSurfaceTap;
+            sandDirectSurface=sandFloor.gameObject.AddComponent<SandcastleActivitySurface>();sandDirectSurface.Click=SandSurfaceTap;sandDirectSurface.Generation=()=>sandDirectGeneration;
             for(var i=0;i<sandShapes.Count;i++){
                 var picture=Rect(sandShapes[i].transform,"Approved separate castle piece",Vector2.zero,new Vector2(160,300)).gameObject.AddComponent<SandcastlePrototypePiece>();picture.raycastTarget=false;sandApprovedPieces.Add(picture);sandApprovedProps.Add(new List<SandShape>());
+                var outline=picture.gameObject.AddComponent<Outline>();outline.effectColor=new Color(.03f,.4f,.64f,.95f);outline.effectDistance=new Vector2(5,-5);outline.enabled=false;sandEligibleOutlines.Add(outline);
             }
             sandApprovedPreview=Rect(sandPreview.transform,"Approved shape preview",Vector2.zero,new Vector2(160,300)).gameObject.AddComponent<SandcastlePrototypePiece>();sandApprovedPreview.raycastTarget=false;sandPreview.enabled=false;
             var tray=SandRoundPanel(sandBuildView,"Illustrated shape and decoration shelf",new Vector2(0,-398),new Vector2(1370,136),new Color(1,.97f,.87f));tray.transform.SetSiblingIndex(sandFloor.GetSiblingIndex()+1);
@@ -47,7 +60,12 @@ namespace LittleWeeps.Client
                 var b=sandMouldButtons[i];b.GetComponentInChildren<SandShape>().enabled=false;
                 var picture=Rect(b.transform,"Approved mould picture",new Vector2(0,-27),new Vector2(160,300)).gameObject.AddComponent<SandcastlePrototypePiece>();picture.shape=new[]{"round","square","wall","gate"}[i];picture.raycastTarget=false;picture.rectTransform.localScale=Vector3.one*(i<2?.38f:.38f);
                 var label=b.GetComponentInChildren<Text>();label.text=new[]{"Round","Square","Wall","Gate"}[i];label.rectTransform.anchoredPosition=new Vector2(0,-39);
+                var shape=picture.shape;SandTrayDrag(b,()=>BeginSandPlacement(shape));
             }
+            for(var i=0;i<5;i++){var kind=new[]{"flag","shell","pebble","door","window"}[i];SandTrayDrag(sandDecorCards[i],()=>SandChooseDecoration(kind));}
+            sandDirectCue=SandRoundPanel(sandFloor,"Brief local sand feedback",Vector2.zero,new Vector2(280,72),new Color(.08f,.32f,.43f,.96f)).rectTransform;
+            sandDirectCueLabel=Label(sandDirectCue,"",22,Vector2.zero,new Vector2(265,64));sandDirectCueLabel.color=Color.white;
+            foreach(var graphic in sandDirectCue.GetComponentsInChildren<Graphic>())graphic.raycastTarget=false;sandDirectCue.gameObject.SetActive(false);
             var build=sandBuildView.Find("Build");var buildLabel=build.GetComponentInChildren<Text>();buildLabel.rectTransform.anchoredPosition=new Vector2(0,-38);
             var buildIcon=Rect(build,"Build picture",new Vector2(0,-23),new Vector2(160,240)).gameObject.AddComponent<SandcastlePrototypePiece>();buildIcon.shape="round";buildIcon.raycastTarget=false;buildIcon.rectTransform.localScale=Vector3.one*.32f;
             var decorate=sandBuildView.Find("Decorate");decorate.GetComponentInChildren<Text>().rectTransform.anchoredPosition=new Vector2(0,-38);
@@ -77,7 +95,7 @@ namespace LittleWeeps.Client
             for(var i=0;i<3;i++){SandControlLayout(sandTools[i],new Vector2(364+i*116,-248),new Vector2(108,96));sandTools[i].GetComponent<Image>().color=new[]{new Color(1,.9f,.58f),new Color(.64f,.9f,1),new Color(.86f,.73f,1)}[i];}
             SandControlLayout(sandConfirm,new Vector2(367,-248),new Vector2(108,96));SandControlLayout(sandRotate,new Vector2(480,-248),new Vector2(108,96));SandControlLayout(sandCancel,new Vector2(593,-248),new Vector2(108,96));
             SandControlLayout(sandEdit,new Vector2(-625,310),new Vector2(110,80));SandControlLayout(sandFamilyReset,new Vector2(625,404),new Vector2(125,80));
-            SandControlLayout(sandPlayConfirm,new Vector2(365,-248),new Vector2(108,96));SandControlLayout(sandPlayCancel,new Vector2(480,-248),new Vector2(108,96));
+            SandControlLayout(sandPlayCancel,new Vector2(365,-248),new Vector2(108,96));
             SandControlLayout(sandBuildView.Find("Optional teacher help").GetComponent<Button>(),new Vector2(625,310),new Vector2(110,80));SandControlLayout(sandBuildView.Find("Leave sandpit").GetComponent<Button>(),new Vector2(-625,404),new Vector2(110,80));
             var hint=sandBuildView.Find("Small sand action hint").GetComponent<RectTransform>();hint.anchoredPosition=new Vector2(-260,-285);hint.sizeDelta=new Vector2(850,46);sandHint.rectTransform.anchoredPosition=hint.anchoredPosition;sandHint.rectTransform.sizeDelta=new Vector2(850,50);
             for(var i=0;i<4;i++){sandBuilders[i].root.anchoredPosition=new Vector2(-465+i*310,240);sandBuilders[i].root.localScale=Vector3.one*new[]{1.22f,1.13f,1.1f,.96f}[i];}
@@ -101,14 +119,84 @@ namespace LittleWeeps.Client
         }
         private void SandSurfaceTap(Vector2 point)
         {
-            if(!SandpitOwn || sandpitSending || sandEditSheet.gameObject.activeSelf || sandConfirmSheet.gameObject.activeSelf)return;
+            if(!SandDirectReady)return;sandDirectPoint=point;
             var logical=SandcastleProjection.Inverse(point);
-            if(sandPlacing){var at=DaycareSandpit.Snap(logical.x,logical.y,sandMould,sandOrientation);sandPreviewLogical=new Vector2(at.X,at.Y);sandPreviewCell=-2;SandCue(SandPlacementReason(-2));TickSandpit();return;}
+            if(sandPlacing){
+                // Snap once locally; exact captured coordinates are also used by
+                // authority retries. Never search another cell after a conflict.
+                var at=DaycareSandpit.Snap(logical.x,logical.y,sandMould,sandOrientation);sandPreviewLogical=new Vector2(at.X,at.Y);sandPreviewCell=-2;
+                var why=SandPlacementReason(-2);
+                if(logical.x<DaycareSandpit.Left || logical.x>DaycareSandpit.Right || logical.y<DaycareSandpit.Bottom || logical.y>DaycareSandpit.Top)why="outside-sandpit";
+                if(why!=null){SandCueAt(why,point);TickSandpit();return;}
+                if(!SandEditing)ConfirmSandPlacement();TickSandpit();return;
+            }
+            if(sandPlayMode=="decorate"){SandDecorateAt(point);return;}
             if(sandPlayMode=="toy"){if(SandpitPlay.ToyPosition(SandpitGame,logical.x,logical.y))SandPlaySend("toy-place","toy",sandToyVersion.ToString(),logical.x,logical.y);else SandCue("sand-spot-taken");return;}
             foreach(var i in Enumerable.Range(0,SandpitGame.moulds.Length).OrderBy(i=>SandpitGame.moulds[i].y)){
                 var m=SandpitGame.moulds[i];var local=(point-SandPoint(m.x,m.y))/SandcastleProjection.DepthScale(m.y);
                 if(m.built?sandApprovedPieces[i].PaintedHit(local):new Rect(-65,-12,140,125).Contains(local)){TouchSandMould(i);return;}
             }
+        }
+        private bool SandDirectReady=>Ready && SandpitOwn && CurrentArea=="daycare" && !TravelPending && !MenuOpen && !applicationPaused && !sandpitSending && (!Shared || shared.Connected) && sandBuildView.gameObject.activeInHierarchy && !sandEditSheet.gameObject.activeSelf && !sandConfirmSheet.gameObject.activeSelf && SandpitGame.reset==null;
+        private void ClearSandDirectInput()
+        {sandDirectGeneration++;sandPlacing=false;sandPreviewCell=-1;sandPlayMode="";sandSlot=-1;sandDirectDragging=sandDirectDragOnSand=false;sandDirectCueUntil=0;}
+        private void SandCueAt(string why,Vector2 point)
+        {SandCue(why);sandDirectCueUntil=Time.unscaledTime+1.4f;sandDirectCue.anchoredPosition=new Vector2(Mathf.Clamp(point.x,-565,565),Mathf.Clamp(point.y+55,-210,290));sandDirectCueLabel.text=sandHint.text;}
+        private int SandAvailableSlot(SandMould m,Vector2 local)
+        {
+            // Current sockets remain the saved representation. Touch chooses
+            // the nearest EMPTY compatible socket within a generous painted area.
+            return Enumerable.Range(0,SandpitPlay.Slots).Where(s=>SandpitPlay.Attachment(s,sandDecorKind) && !m.attachments.Any(a=>a.slot==s) && Vector2.Distance(SandApprovedAnchor(m,s),local)<=140)
+                .OrderBy(s=>(SandApprovedAnchor(m,s)-local).sqrMagnitude).DefaultIfEmpty(-1).First();
+        }
+        private void SandDecorateAt(Vector2 point)
+        {
+            var g=SandpitGame;var index=-1;var best=float.MaxValue;
+            foreach(var i in Enumerable.Range(0,g.moulds.Length).OrderBy(i=>g.moulds[i].y)){
+                var m=g.moulds[i];var local=(point-SandPoint(m.x,m.y))/SandcastleProjection.DepthScale(m.y);
+                // A painted foreground piece owns its tap, including rejection.
+                if(m.built?sandApprovedPieces[i].PaintedHit(local):new Rect(-65,-12,140,125).Contains(local)){index=i;break;}
+                if(!m.built)continue;
+                var distance=Enumerable.Range(0,SandpitPlay.Slots).Where(s=>SandpitPlay.Attachment(s,sandDecorKind)).Select(s=>Vector2.Distance(local,SandApprovedAnchor(m,s))).DefaultIfEmpty(float.MaxValue).Min();
+                if(distance<=140 && distance<best){index=i;best=distance;}
+            }
+            if(index<0){SandCueAt("choose-sand-region",point);return;}
+            var piece=g.moulds[index];if(!piece.built){SandCueAt("finish-piece-first",point);return;}
+            var p=(point-SandPoint(piece.x,piece.y))/SandcastleProjection.DepthScale(piece.y);var slot=SandAvailableSlot(piece,p);
+            if(slot<0){var empty=Enumerable.Range(0,SandpitPlay.Slots).Any(s=>SandpitPlay.Attachment(s,sandDecorKind) && !piece.attachments.Any(a=>a.slot==s));SandCueAt(empty?"choose-sand-region":"sand-slot-taken",point);return;}
+            SelectSandMould(index);sandDirectPoint=point;
+            SandPlaySend("decorate",piece.id,slot+":"+sandDecorKind,epoch:g.round);
+        }
+        private void TickSandDirectInput(bool joined)
+        {
+            for(var i=0;i<sandEligibleOutlines.Count;i++){
+                var m=i<SandpitGame.moulds.Length?SandpitGame.moulds[i]:null;
+                sandEligibleOutlines[i].enabled=joined && sandPlayMode=="decorate" && m?.built==true && Enumerable.Range(0,SandpitPlay.Slots).Any(s=>SandpitPlay.Attachment(s,sandDecorKind) && !m.attachments.Any(a=>a.slot==s));
+            }
+            for(var i=0;i<5;i++)sandDecorCards[i].GetComponent<Image>().color=sandPlayMode=="decorate" && sandDecorKind==new[]{"flag","shell","pebble","door","window"}[i]?new Color(1,.8f,.36f):Color.white;
+            sandDirectCue.gameObject.SetActive(joined && Time.unscaledTime<sandDirectCueUntil);if(sandDirectCue.gameObject.activeSelf)sandDirectCue.SetAsLastSibling();
+        }
+        private void SandTrayDrag(Button button,Action choose)
+        {
+            var drag=button.gameObject.AddComponent<SandcastleTrayDrag>();
+            drag.Begin=()=>{
+                if(!button.IsInteractable() || !SandDirectReady)return false;
+                var previous=sandPlacing?sandMould:"";var rotation=sandOrientation;choose();
+                if(sandPlacing && previous==sandMould)sandOrientation=rotation;
+                sandDirectDragging=true;return true;
+            };
+            drag.Move=e=>{
+                sandDirectDragOnSand=sandDirectDragging && SandDirectReady && sandDirectSurface.LocalPoint(e,out sandDirectPoint);
+                if(sandDirectDragOnSand && sandPlacing){var p=SandcastleProjection.Inverse(sandDirectPoint);var at=DaycareSandpit.Snap(p.x,p.y,sandMould,sandOrientation);sandPreviewLogical=new Vector2(at.X,at.Y);sandPreviewCell=-2;}
+                else if(sandPlacing)sandPreviewCell=-1;
+                TickSandpit();
+            };
+            drag.End=e=>{
+                var point=Vector2.zero;var place=sandDirectDragging && SandDirectReady && !SandcastleActivitySurface.Canceled(e) && sandDirectSurface.LocalPoint(e,out point);
+                sandDirectDragging=sandDirectDragOnSand=false;
+                if(place)SandSurfaceTap(point);else ClearSandDirectInput();TickSandpit();
+            };
+            drag.Cancel=()=>{if(sandDirectDragging)ClearSandDirectInput();};
         }
         private void SandParticipantResponse(string actor,string op)
         {
@@ -146,11 +234,33 @@ namespace LittleWeeps.Client
             var rects=new[]{new Rect(45,12,265,348),new Rect(402,19,256,343),new Rect(761,15,280,347),new Rect(48,378,261,334),new Rect(404,362,257,352),new Rect(757,362,296,362),new Rect(48,730,264,344),new Rect(403,731,258,345),new Rect(764,724,283,356),new Rect(48,1087,274,342),new Rect(414,1094,251,335),new Rect(774,1093,290,339)};return rects[row*3+state];
         }
         private void ResetApprovedSand()
-        {sandResponseJoined=false;sandResponseRevision=-1;sandResponseRound=-1;sandApprovedPieces.Clear();sandApprovedProps.Clear();sandParticipantCues.Clear();sandParticipantEvents.Clear();if(sandApprovedPanel!=null){Destroy(sandApprovedPanel.texture);Destroy(sandApprovedPanel);}sandApprovedPanel=null;sandParticipation=null;}
+        {ClearSandDirectInput();sandDirectSurface=null;sandDirectCue=null;sandDirectCueLabel=null;sandEligibleOutlines.Clear();sandResponseJoined=false;sandResponseRevision=-1;sandResponseRound=-1;sandApprovedPieces.Clear();sandApprovedProps.Clear();sandParticipantCues.Clear();sandParticipantEvents.Clear();if(sandApprovedPanel!=null){Destroy(sandApprovedPanel.texture);Destroy(sandApprovedPanel);}sandApprovedPanel=null;sandParticipation=null;}
     }
-    public sealed class SandcastleActivitySurface : MonoBehaviour,IPointerClickHandler
+    public sealed class SandcastleActivitySurface : UIBehaviour,IPointerDownHandler,IDragHandler,IPointerUpHandler,ICancelHandler
     {
         public Action<Vector2> Click;
-        public void OnPointerClick(PointerEventData e){if(RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform,e.position,e.pressEventCamera,out var p))Click?.Invoke(p);}
+        public Func<int> Generation;private int lease;
+        private int? pointer;private Vector2 down;private bool moved;
+        public bool LocalPoint(PointerEventData e,out Vector2 point)
+        {point=default;return e.pointerCurrentRaycast.gameObject!=null && e.pointerCurrentRaycast.gameObject.GetComponentInParent<SandcastleActivitySurface>()==this && RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform,e.position,e.pressEventCamera,out point);}
+        public static bool Canceled(PointerEventData e)
+        {if(e is ExtendedPointerEventData extended && extended.device is Touchscreen touchscreen)return touchscreen.touches.Any(t=>t.touchId.ReadValue()==extended.touchId && t.phase.ReadValue()==UnityEngine.InputSystem.TouchPhase.Canceled);return false;}
+        public void OnPointerDown(PointerEventData e){if(pointer.HasValue || e.button!=PointerEventData.InputButton.Left)return;pointer=e.pointerId;lease=Generation?.Invoke()??0;down=e.position;moved=false;}
+        public void OnDrag(PointerEventData e){if(pointer==e.pointerId && Vector2.Distance(down,e.position)>EventSystem.current.pixelDragThreshold)moved=true;}
+        public void OnPointerUp(PointerEventData e){if(pointer!=e.pointerId)return;pointer=null;if(lease==(Generation?.Invoke()??0) && !moved && !Canceled(e) && LocalPoint(e,out var point))Click?.Invoke(point);}
+        public void OnCancel(BaseEventData e){pointer=null;}
+        protected override void OnDisable(){pointer=null;base.OnDisable();}
+    }
+    public sealed class SandcastleTrayDrag : UIBehaviour,IPointerDownHandler,IPointerUpHandler,IBeginDragHandler,IDragHandler,IEndDragHandler,ICancelHandler
+    {
+        public Func<bool> Begin;public Action<PointerEventData> Move,End;public Action Cancel;
+        private int? pointer;private bool dragging;
+        public void OnPointerDown(PointerEventData e){if(!pointer.HasValue)pointer=e.pointerId;}
+        public void OnPointerUp(PointerEventData e){if(pointer==e.pointerId && !dragging)pointer=null;}
+        public void OnBeginDrag(PointerEventData e){if(pointer!=e.pointerId)return;e.eligibleForClick=false;dragging=Begin?.Invoke()==true;}
+        public void OnDrag(PointerEventData e){if(pointer==e.pointerId && dragging)Move?.Invoke(e);}
+        public void OnEndDrag(PointerEventData e){if(pointer!=e.pointerId)return;pointer=null;var active=dragging;dragging=false;e.eligibleForClick=false;if(active)End?.Invoke(e);}
+        public void OnCancel(BaseEventData e){pointer=null;dragging=false;Cancel?.Invoke();}
+        protected override void OnDisable(){OnCancel(null);base.OnDisable();}
     }
 }

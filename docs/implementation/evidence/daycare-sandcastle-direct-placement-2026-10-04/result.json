@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "build": 455,
+  "actualSimultaneousClients": 4,
+  "checks": [
+    "Phone: shape/tap creates and selects bucket; Scoop/Water/Tip; direct repeated flags/shell; full sockets cue without overwrite",
+    "Four actual clients directly place/build/decorate independent round/square/wall/rotated-gate pieces in one creation",
+    "Occupied and boundary direct taps preserve existing work with local feedback",
+    "Cancelled sand gestures, tray swipe and UI drag release submit no placement",
+    "Optional tray drag submits one bucket, using the same captured snap as taps",
+    "Removal and family reset still require explicit consent; cancellation keeps the castle",
+    "Rapid taps create one bucket; exact acknowledged command redelivery is duplicate-safe",
+    "Competing direct decorations never overwrite; all four clients converge",
+    "Leave/re-entry and activity changes clear local placement without changing the shared castle",
+    "Actual disconnect/reconnect clears local intent while three siblings keep their creation"
+  ],
+  "runtimeErrors": [],
+  "recording": "actual-direct-placement-silent.mp4",
+  "physicalDeviceRun": false,
+  "liveDataModified": false
+}
