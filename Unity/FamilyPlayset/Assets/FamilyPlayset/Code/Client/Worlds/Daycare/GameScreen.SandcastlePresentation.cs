@@ -22,6 +22,8 @@ namespace LittleWeeps.Client
         public int SandPresentationEvents=>sandVisualEvents;
         public int SandAudioEvents=>sandAudioEvents;
         public int SandActiveVoices=>sandSpeakers.Count(s=>s!=null && s.isPlaying && s.volume>0);
+        public float[] SandVoiceVolumes=>sandSpeakers.Select(s=>s!=null && s.isPlaying?s.volume:0).ToArray();
+        public string[] SandVoiceClips=>sandSpeakers.Select(s=>s!=null && s.isPlaying?s.clip?.name ?? "":"").ToArray();
         public int SandActiveEffects=>sandAcceptedUntil.Count(t=>t>Time.unscaledTime);
         public bool SandIllustrated=>sandPitArt!=null && sandPitArt.texture!=null && SandArt.Atlas!=null;
         public bool SandPhoneLayout=>safe.rect.width/safe.rect.height>=1.6f;

@@ -1,0 +1,32 @@
+{
+  "requiredLocalAcceptance": true,
+  "build": 450,
+  "runtimeUnityInputs": 2321,
+  "unchangedCoreInputs": 132,
+  "reusedRuleMigrationChecks": 410,
+  "reusedFourActualClientsBuild": 449,
+  "newAudibleJourneyPeakActualClients": 2,
+  "newAudibleReconnectClients": 1,
+  "newPrivateSeparationClients": 1,
+  "sourceBaseline": "8576661; narrow Stage6 diff recorded in delivery",
+  "releaseErrors": 0,
+  "releaseWarnings": 0,
+  "schema": 52,
+  "content": 70,
+  "protocol": 3,
+  "innerSandpitFormat": 3,
+  "actualListening": false,
+  "physicalDevices": false,
+  "childEnjoyment": false,
+  "audioVideoDurationSeconds": 59.861,
+  "audioChannels": 2,
+  "audioSampleRate": 48000,
+  "loopbackMeanDb": -32.8,
+  "loopbackPeakDb": -17.6,
+  "limitations": [
+    "Subjective audio approval pending",
+    "Physical comfort/performance and ages3/6 playtesting deferred",
+    "Pose keyframes rather than continuous hand/grip animation",
+    "Audio/video offset approximately one second; no DSP-accurate sync claim"
+  ]
+}

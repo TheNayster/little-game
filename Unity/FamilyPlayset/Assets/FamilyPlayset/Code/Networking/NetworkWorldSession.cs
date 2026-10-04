@@ -50,7 +50,7 @@ namespace LittleWeeps.NetworkProbe
             if(!probe.Settings.verifyGarden)throw new InvalidOperationException("Verification config required.");
             dropTestAcknowledgments=drop;
         }
-        public bool MutedTest=>probe.Settings.verifyGarden;
+        public bool MutedTest=>probe.Settings.verifyGarden && !probe.Settings.testAudible;
         public string Status=>Connected?(Busy?"Finishing your move…":"Playing together"):probe.Reconnecting?"Finding your family again…":probe.FamilyLan?"A grown-up can help reconnect.":"Connection stopped — close this window and rejoin";
         public SoloSnapshot View=>probe.Latest?.view;
         public string[] Players=>probe.Latest?.connected??Array.Empty<string>();

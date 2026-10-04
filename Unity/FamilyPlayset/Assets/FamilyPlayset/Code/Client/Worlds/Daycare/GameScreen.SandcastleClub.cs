@@ -80,7 +80,9 @@ namespace LittleWeeps.Client
         private Vector2 sandPreviewLogical;
         private WalkPoint SandPreviewPoint(int cell)=>cell==-2?new WalkPoint(sandPreviewLogical.x,sandPreviewLogical.y):DaycareSandpit.PiecePoint(cell%8,cell/8,sandMould,sandOrientation);
         private string SandPlacementReason(int cell){var at=SandPreviewPoint(cell);return SandEditing?SandEditPiece==null?"old-sandpit-piece":SandpitPlay.MoveReason(SandpitGame,SandEditPiece,at.X,at.Y):DaycareSandpit.Placement(SandpitGame,at.X,at.Y,sandMould,sandOrientation);}
-        private void RotateSandPlacement(){if(!sandPlacing || sandpitSending)return;sandOrientation=sandOrientation==0?90:0;if(sandPreviewCell==-2){var at=DaycareSandpit.Snap(sandPreviewLogical.x,sandPreviewLogical.y,sandMould,sandOrientation);sandPreviewLogical=new Vector2(at.X,at.Y);}TickSandpit();}
+        // Moving preserves the saved footprint/orientation. Rotation belongs
+        // only to new mould placement; never preview an edit we cannot submit.
+        private void RotateSandPlacement(){if(!sandPlacing || SandEditing || sandpitSending)return;sandOrientation=sandOrientation==0?90:0;if(sandPreviewCell==-2){var at=DaycareSandpit.Snap(sandPreviewLogical.x,sandPreviewLogical.y,sandMould,sandOrientation);sandPreviewLogical=new Vector2(at.X,at.Y);}TickSandpit();}
         private void ConfirmSandPlacement()
         {
             if(!sandPlacing || sandPreviewCell==-1 || sandpitSending || sandPreviewEpoch!=SandpitGame.round)return;
@@ -239,7 +241,7 @@ namespace LittleWeeps.Client
             sandPreview.gameObject.SetActive(sandPlacing && sandPreviewCell!=-1);
             if(sandPlacing)sandPreview.rectTransform.SetAsLastSibling();
             if(sandPreviewCell!=-1){var at=SandPreviewPoint(sandPreviewCell);sandPreview.rectTransform.anchoredPosition=SandPoint(at.X,at.Y);sandPreview.rectTransform.localScale=Vector3.one*SandcastleProjection.DepthScale(at.Y);sandPreview.mould=sandMould;sandPreview.orientation=sandOrientation;sandPreview.kind="mould-icon";sandPreview.color=SandPlacementReason(sandPreviewCell)==null?new Color(1,1,1,.65f):new Color(1,.4f,.3f,.65f);sandPreview.SetVerticesDirty();}
-            sandConfirm.gameObject.SetActive(sandPlacing);sandCancel.gameObject.SetActive(sandPlacing);sandRotate.gameObject.SetActive(sandPlacing && DaycareSandpit.LongShape(sandMould));sandRotate.interactable=!sandpitSending;
+            sandConfirm.gameObject.SetActive(sandPlacing);sandCancel.gameObject.SetActive(sandPlacing);sandRotate.gameObject.SetActive(sandPlacing && !SandEditing && DaycareSandpit.LongShape(sandMould));sandRotate.interactable=!sandpitSending;
             sandConfirm.interactable=sandPreviewCell!=-1 && !sandpitSending && SandPlacementReason(sandPreviewCell)==null;
             for(var i=0;i<4;i++){sandMouldButtons[i].interactable=!sandpitSending && g.moulds.Length<g.pieceLimit;sandMouldButtons[i].GetComponent<Image>().color=sandPlacing && sandMould==new[]{"round","square","wall","gate"}[i]?new Color(.95f,.76f,.38f):SandMouldColor(i);}
             var selected=SandSelectedPiece;var tools=selected!=null && !selected.built && !sandPlacing;

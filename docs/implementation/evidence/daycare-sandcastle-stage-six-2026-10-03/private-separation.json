@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build": 450,
+  "checks": [
+    "450 one actual paired native client builds privately through normal Daycare/UGUI input",
+    "Same process discovers isolated generated authority; private checkpoint retained, no private pieces imported",
+    "Explicit solo return retrieves private built piece/flag while shared server creation stays empty"
+  ],
+  "peakActualNativeClients": 1,
+  "runtimeErrors": [],
+  "syntheticEnrollment": true
+}

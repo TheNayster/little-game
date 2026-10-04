@@ -101,6 +101,8 @@ namespace LittleWeeps.NetworkProbe
             public int port,protocol=Protocol,content=Content;
             public Slot[] slots;
             public bool presentation,verifyGarden,interactive,persistentServer;
+            // Explicit isolated audio review only; ordinary verification stays muted.
+            public bool testAudible;
             public double testLifetimeOffsetSeconds;
             public int testMotionDelayMs,testMotionJitterMs,testMotionDropEvery;
         }
@@ -161,6 +163,8 @@ namespace LittleWeeps.NetworkProbe
                 output=Path.Combine(root,config.instanceId);Directory.CreateDirectory(output);
                 if(config.persistentServer && (pairing==null || config.role!="server" || !config.interactive))
                     throw new InvalidDataException("Persistent hosting requires an enrolled interactive authority.");
+                if(config.testAudible && (!config.verifyGarden || config.role!="client" || config.persistentServer))
+                    throw new ArgumentException("Audible review requires an isolated verification client.");
                 if(double.IsNaN(config.testLifetimeOffsetSeconds) || double.IsInfinity(config.testLifetimeOffsetSeconds) ||
                     config.testLifetimeOffsetSeconds<0 || config.testLifetimeOffsetSeconds>86400 ||
                     (config.testLifetimeOffsetSeconds!=0 && !config.verifyGarden))
@@ -255,7 +259,7 @@ namespace LittleWeeps.NetworkProbe
             familyGarden=gameObject.AddComponent<NetworkWorldSession>();familyGarden.Initialize(this);
             familyScreen=gameObject.AddComponent<GameScreen>();
             familyScreen.ConfigureOfflineBranch(config.runId,config.profile);
-            familyScreen.ConfigureFamilyMode(RequestFamilyMode,config.verifyGarden);
+            familyScreen.ConfigureFamilyMode(RequestFamilyMode,config.verifyGarden && !config.testAudible);
             ConfigureContinuation();
             if(config.verifyGarden)gameObject.AddComponent<FamilyGameVerification>();
         }

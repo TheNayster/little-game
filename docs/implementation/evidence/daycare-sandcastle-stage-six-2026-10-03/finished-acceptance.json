@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build": 450,
+  "reusedMoveRun": "f49e72f3e3a54851b8a21c5de82716e6",
+  "priorJourneyPeakActualNativeClients": 2,
+  "continuationPeakActualNativeClients": 1,
+  "runtimeErrors": [],
+  "audioAssertions": "Original execution reached export after all cue/rate/volume/mute/entry assertions; samples not serialized by interrupted exporter",
+  "audioEventsAfterJourney": 12,
+  "audioListening": false,
+  "recording": "actual-gameplay-with-audio.mp4",
+  "historicalExporter": "1280x591 odd height; existing frames padded by one pixel and exported, no gameplay rerun"
+}
