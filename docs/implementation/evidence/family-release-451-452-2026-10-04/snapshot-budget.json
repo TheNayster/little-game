@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "build": 451,
+  "actualSimultaneousClients": 4,
+  "peakCompactSnapshotBytes": 137010,
+  "checks": [
+    "four actual clients contribute to retained/full decorated pit",
+    "oversized reliable snapshots remain synchronized during activity ticks",
+    "independent departure and reconnect preserve creation"
+  ],
+  "runtimeErrors": [],
+  "liveDataModified": false
+}

@@ -18,9 +18,10 @@ namespace LittleWeeps.NetworkProbe
     [UnityEngine.Scripting.APIUpdating.MovedFrom(false,"LittleWeeps.NetworkProbe","LittleWeeps.NetworkProbe","NetworkProbe")]
     public sealed partial class FamilyNetworkBootstrap : MonoBehaviour
     {
-        // Unity includes empty inline food records. Bound the full four-room,
-        // twelve-dish reliable view separately from the 1200-byte motion stream.
-        private const int Protocol=3, Content=WorldLayout.Content, MaxWireBytes=131072;
+        // The retained family world exceeds 128 KiB after normal activity ticks.
+        // Allow construction/decoration headroom while keeping reliable snapshots
+        // bounded and the independent 1200-byte motion budget unchanged.
+        private const int Protocol=3, Content=WorldLayout.Content, MaxWireBytes=262144;
         private const string WalkMessage="littleweeps.walk.v1", MotionMessage="littleweeps.motion.v1",ShoreMessage="littleweeps.shore.v1",ActivityMotionMessage="littleweeps.activity-motion.v1";
         private const string CommandMessage="littleweeps.probe.command.v1", StateMessage="littleweeps.probe.state.v1", PoseMessage="littleweeps.probe.pose.v1";
         private static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
@@ -192,7 +193,7 @@ namespace LittleWeeps.NetworkProbe
                 transport.MaxPayloadSize=MaxWireBytes;transport.DisconnectTimeoutMS=2500;transport.HeartbeatTimeoutMS=400;
                 // Four reliable windows plus motion/recovery need headroom in
                 // the per-frame packet queue. This does not enlarge saved data.
-                transport.MaxPacketQueueSize=512;
+                transport.MaxPacketQueueSize=1024;
                 // Runtime-created managers have no inspector-serialized config.
                 network.NetworkConfig=new NetworkConfig{NetworkTransport=transport};
                 network.NetworkConfig.EnableSceneManagement=false;network.NetworkConfig.ConnectionApproval=true;
