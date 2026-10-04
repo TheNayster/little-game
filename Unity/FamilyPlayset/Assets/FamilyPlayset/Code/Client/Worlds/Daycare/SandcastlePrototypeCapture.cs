@@ -15,7 +15,7 @@ namespace LittleWeeps.Client
         [Serializable] public sealed class Step {public string id,action,text;public float x,y;}
         [Serializable] public sealed class Control {public string name;public float x,y,width,height;public bool enabled;}
         [Serializable] public sealed class Point {public float worldX,worldY,x,y;}
-        [Serializable] public sealed class Evidence {public string id,error,selected,outcome;public bool fixture,placing,hasPreview;public float previewX,previewY;public int width,height;public LittleWeeps.Core.SandpitState sandpit;public Control[] controls;public Point[] cells;}
+        [Serializable] public sealed class Evidence {public string id,error,selected,outcome,reaction;public bool fixture,placing,hasPreview;public float previewX,previewY;public int width,height;public LittleWeeps.Core.SandpitState sandpit;public Control[] controls;public Point[] cells;}
         private SandcastlePrototype owner;
         private string folder,last;
         private bool busy,filming;
@@ -61,7 +61,7 @@ namespace LittleWeeps.Client
             Canvas.ForceUpdateCanvases();var controls=owner.Canvas.GetComponentsInChildren<Button>().Select(b=>{
                 var r=(RectTransform)b.transform;var corners=new Vector3[4];r.GetWorldCorners(corners);var a=RectTransformUtility.WorldToScreenPoint(null,corners[0]);var z=RectTransformUtility.WorldToScreenPoint(null,corners[2]);return new Control{name=b.name,x=(a.x+z.x)/2,y=(a.y+z.y)/2,width=z.x-a.x,height=z.y-a.y,enabled=b.interactable};}).ToArray();
             var cells=Enumerable.Range(0,32).Select(i=>{var p=LittleWeeps.Core.DaycareSandpit.Cell(i%8,i/8);var display=SandcastleProjection.Project(p.X,p.Y);var s=RectTransformUtility.WorldToScreenPoint(null,owner.Surface.TransformPoint(display));return new Point{worldX=p.X,worldY=p.Y,x=s.x,y=s.y};}).ToArray();
-            File.WriteAllText(Path.Combine(folder,"response.json"),JsonUtility.ToJson(new Evidence{id=id,error=error,selected=owner.Selected,outcome=owner.LastOutcome,fixture=owner.Fixture,placing=owner.Placing,hasPreview=owner.HasPreview,previewX=owner.PreviewLogical.x,previewY=owner.PreviewLogical.y,width=Screen.width,height=Screen.height,sandpit=owner.State,controls=controls,cells=cells},true));
+            File.WriteAllText(Path.Combine(folder,"response.json"),JsonUtility.ToJson(new Evidence{id=id,error=error,selected=owner.Selected,outcome=owner.LastOutcome,reaction=owner.Reaction,fixture=owner.Fixture,placing=owner.Placing,hasPreview=owner.HasPreview,previewX=owner.PreviewLogical.x,previewY=owner.PreviewLogical.y,width=Screen.width,height=Screen.height,sandpit=owner.State,controls=controls,cells=cells},true));
         }
         private IEnumerator Film(float seconds)
         {

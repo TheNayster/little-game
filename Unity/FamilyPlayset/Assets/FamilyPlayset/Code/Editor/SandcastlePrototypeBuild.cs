@@ -26,8 +26,8 @@ namespace LittleWeeps.EditorTools
         public static void Build()
         {
             AssetDatabase.Refresh();
-            foreach(var name in new[]{"empty-pit","pieces"}){var texture=AssetImporter.GetAtPath("Assets/FamilyPlayset/Resources/Worlds/Daycare/SandcastleClub/Prototype/"+name+".png") as TextureImporter;
-            texture.alphaIsTransparency=true;texture.mipmapEnabled=false;texture.textureCompression=TextureImporterCompression.Uncompressed;texture.wrapMode=TextureWrapMode.Clamp;texture.SaveAndReimport();}
+            foreach(var name in new[]{"empty-pit","pieces","participation"}){var texture=AssetImporter.GetAtPath("Assets/FamilyPlayset/Resources/Worlds/Daycare/SandcastleClub/Prototype/"+name+".png") as TextureImporter;
+            texture.isReadable=name=="pieces";texture.alphaIsTransparency=true;texture.mipmapEnabled=false;texture.textureCompression=TextureImporterCompression.Uncompressed;texture.wrapMode=TextureWrapMode.Clamp;texture.SaveAndReimport();}
             Create();
             // Validate inverse projection over the entire unchanged authority domain.
             for(var x=DaycareLeft();x<=4800;x+=5)for(var y=70;y<=540;y+=5){var p=SandcastleProjection.Inverse(SandcastleProjection.Project(x,y));if(Vector2.Distance(p,new Vector2(x,y))>.01f)throw new Exception("Projection inverse mismatch");}

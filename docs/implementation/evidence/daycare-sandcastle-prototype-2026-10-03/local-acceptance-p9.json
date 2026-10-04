@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "candidate": "P9",
+  "checks": [
+    "Real taps place at all four edge cells; rim and cast do not intercept",
+    "Empty actual tap loop; early Water; underfilled retention; Scoop/Water/Tip; combined decorations",
+    "Behind/in-front placement through continuous inverse input map",
+    "Phone aspect actual taps, controls and gate; tablet captures",
+    "Wall/gate both orientations at all four legal edges; source coordinates retained",
+    "Full 16-piece framing, dense depth selection, actual active decorator",
+    "Continued actual construction and out-of-bounds recovery preserve work",
+    "No runtime exceptions"
+  ],
+  "widths": [
+    1024,
+    1280
+  ],
+  "heights": [
+    768,
+    591
+  ],
+  "realNativePlayers": 1,
+  "syntheticSessionProfiles": 4,
+  "productionSceneUnchanged": true,
+  "focusedRuleChecks": "410 unchanged existing checks reused; no Core change",
+  "unchangedCoreInputs": 132,
+  "coreCSharpSources": 58,
+  "projectionRoundTrips": 13965,
+  "sourceInputs": 2317,
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "projectionSamples": 13965
+  },
+  "referenceSha256": "182a81185213cb582d9804d5e24ee1160be8380f4c43752773a9136307418621",
+  "recording": {
+    "frames": 160,
+    "durationSeconds": 24.8512731,
+    "actualTimestamped": true,
+    "silent": true
+  },
+  "parentVisualAcceptance": false,
+  "physicalDevices": "deferred",
+  "decoratorChecks": [
+    "All five decoration buttons produce coexisting attachments",
+    "Filled sockets disable all corresponding tools",
+    "Phone actual placement and active construction capture"
+  ]
+}
