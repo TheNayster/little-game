@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LittleWeeps.NetworkProbe
 {
-    public sealed class NetworkWorldSession : MonoBehaviour,IWorldSession
+    public sealed class NetworkWorldSession : MonoBehaviour,IWorldSession,ISandcastleResponses
     {
         private FamilyNetworkBootstrap probe;
         private readonly WorldCommandQueue queue=new WorldCommandQueue();
@@ -54,6 +54,8 @@ namespace LittleWeeps.NetworkProbe
         public string Status=>Connected?(Busy?"Finishing your move…":"Playing together"):probe.Reconnecting?"Finding your family again…":probe.FamilyLan?"A grown-up can help reconnect.":"Connection stopped — close this window and rejoin";
         public SoloSnapshot View=>probe.Latest?.view;
         public string[] Players=>probe.Latest?.connected??Array.Empty<string>();
+        public bool SandcastleFeedbackAvailable=>probe.Latest?.sandResponses!=null;
+        public SandcastleResponse[] SandcastleResponses=>probe.Latest?.sandResponses??Array.Empty<SandcastleResponse>();
         public long ViewSequence=>probe.Latest?.sequence??0;
         public bool Submit(SoloCommand command,Action<SoloResult> complete)
         {

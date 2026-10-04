@@ -36,28 +36,11 @@ namespace LittleWeeps.Client
                 effect.kind="accepted-spark";effect.raycastTarget=false;sandAcceptedEffects.Add(effect);
             }
             foreach(var id in new[]{"scoop","pour","reveal","decorate"})sandSounds[id]=WorldResources.Load<AudioClip>("Worlds/Daycare/SandcastleClub/fx-"+id);
-            sandSounds["dinosaur"]=WorldResources.Load<AudioClip>("Worlds/Dinosaur/Audio/tyrannosaurus");
+            sandSounds["dinosaur"]=WorldResources.Load<AudioClip>("Worlds/Dinosaur/Audio/tyrannosaurus");BuildApprovedSand();
         }
         private void LayoutSandPresentation()
         {
-            var phone=SandPhoneLayout;
-            sandBuildView.sizeDelta=new Vector2(phone?1460:1210,740);
-            sandBuildView.localScale=Vector3.one*Mathf.Min(1,safe.rect.width/(phone?1490:1240),safe.rect.height/770);
-            sandScenery.rectTransform.sizeDelta=safe.rect.size/sandBuildView.localScale.x;
-            // The phone uses its width for play and a longer picture shelf. Only
-            // the local projection stretches; saved coordinates remain untouched.
-            sandFloor.localScale=new Vector3(phone?1.14f:1,1,1);
-            sandPitArt.rectTransform.sizeDelta=new Vector2(phone?1200:1060,560);
-            for(var i=0;i<4;i++)((RectTransform)sandMouldButtons[i].transform).anchoredPosition=new Vector2((phone?-560:-435)+i*150,-318);
-            for(var i=0;i<6;i++)((RectTransform)sandDecorCards[i].transform).anchoredPosition=new Vector2((phone?-560:-435)+i*150,-318);
-            sandBuildView.Find("Build").GetComponent<RectTransform>().anchoredPosition=new Vector2(phone?-565:-440,-234);
-            sandBuildView.Find("Decorate").GetComponent<RectTransform>().anchoredPosition=new Vector2(phone?-370:-245,-234);
-            sandBuildView.Find("Optional teacher help").GetComponent<RectTransform>().anchoredPosition=new Vector2(phone?-668:-526,322);
-            sandBuildView.Find("Leave sandpit").GetComponent<RectTransform>().anchoredPosition=new Vector2(phone?668:526,322);
-            for(var i=0;i<4;i++){
-                var root=sandBuilders[i].root;root.anchoredPosition=new Vector2(i<2?(phone?-663:-560):(phone?663:560),i%2==0?115:-95);
-                root.localScale=Vector3.one*(phone?.78f:.7f);
-            }
+            LayoutApprovedSand();
         }
         private void SandSound(string id)
         {

@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 namespace LittleWeeps.Client
 {
-    // Only the isolated prototype consumes this set. Existing buckets/tools/props remain SandShape.
+    // Approved P9 artwork shared by the production activity and isolated development preview.
+    // Existing buckets/tools/props remain SandShape; this owns no gameplay state.
     public sealed class SandcastlePrototypePiece : MaskableGraphic
     {
         public string shape;

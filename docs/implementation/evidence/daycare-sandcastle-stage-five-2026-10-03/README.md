@@ -1,6 +1,10 @@
-# Sandcastle Stage 5 — actual build447 review
+# Sandcastle Stage 5 — production review
 
-These are **CURRENT actual native gameplay captures**, not mockups. Owner:
+**Current:** parent-approved P9 direction integrated in [Unity449 actual gameplay/evidence](p9-integration/README.md). The following build447 record is historical and retained unchanged in scope. Stage6 has not started.
+
+## Historical actual build447 review
+
+These are **historical actual native gameplay captures**, not mockups. Owner:
 DAY-01 / LEARN-01 / FAMILY-01 Stage5. Consumers: the Sandcastle implementation
 record and parent visual review. Retain as dated evidence; later revisions must
 identify their own build/source. No real family saves/credentials are included.

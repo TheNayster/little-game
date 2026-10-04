@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "build": 449,
+  "runId": "a5fe642d519a4a07b15840d61bc720a6",
+  "reusedCurrentSourceGroups": 5,
+  "checks": [
+    "Normal Daycare Games entry: empty shared pit, four admitted real profiles, no preview fixture or developer controls",
+    "Continuous inverse tap previews: both wall/gate orientations at all four legal edges; cancel keeps empty state",
+    "Parallel builds/shared scoops, independent selection, correct three-actor feedback, one winning Tip and no rejected-success reaction",
+    "Actual rapid Scoop taps bounded; underfill and full dry recovery retain sand; continued four-shape build and all five coexisting props, same-socket race reconciles",
+    "Legal connected 14-piece production castle with four clients, depth selection and tap-place/shared dinosaur reaction",
+    "Reachable creator editing and confirmation/cancellation; sibling/stale owner edit blocked; competing placement; independent Leave/re-entry; reset includes connected Park voter and decline/partial consent preserves castle",
+    "Full16 phone/tablet controls, current authority save reopen retains all coordinates/shapes/owners/progress/props/toy; fresh client has no historical reaction or sound",
+    "All four explicit reset agreements including Park clear only the shared sandcastle; continued empty controls and old-epoch rejection"
+  ],
+  "peakActualNativeClients": 4,
+  "nativeProcesses": 10,
+  "runtimeErrors": [],
+  "audioListening": false,
+  "recording": "actual-integrated-gameplay-silent.mp4",
+  "recordingFrames": 228,
+  "recordingDuration": 44.969446,
+  "historicalHarnessStops": [
+    "448: rapid-tap helper waited for intentionally disabled full Scoop",
+    "449 initial: test race spot overlapped toy; both correctly rejected",
+    "449 continuation: exporter chose interrupted continuation recording; completed current449 construction recording exported without rerunning passed gameplay"
+  ],
+  "unityInputs": 2321,
+  "coreInputsUnchanged": 132,
+  "reusedFocusedRuleResults": 410,
+  "schema": 52,
+  "content": 70,
+  "protocol": 3,
+  "parentApprovedP9": "a5abb03",
+  "physicalDeviceQualification": false,
+  "depthAndNativeReconnect": {
+    "passed": true,
+    "build": 449,
+    "checks": [
+      "Actual phone/tablet painted-face taps select visible rear and foreground pieces in full16 without rim/cast/shadow interception",
+      "Actual legal gate90 rebuild and combined near/far flag/base/face anchors at phone/tablet aspects",
+      "One native client disconnects while three remain, then a new current client reconnects to the same authority; creation/toy retained and no historical feedback"
+    ],
+    "peakActualNativeClients": 4,
+    "clientDisconnectAndReconnect": true,
+    "runtimeErrors": [],
+    "originalSyntheticCheckpointRestored": true
+  },
+  "recordingInspected": "Chronological actual Unity frames; silent, no audible pass",
+  "legacyPresentation": {
+    "passed": true,
+    "build": 449,
+    "clients": 2,
+    "legacyPositionsAndProps": true,
+    "noReplay": true,
+    "originalSyntheticCheckpointRestored": true,
+    "errors": []
+  },
+  "additionalClientCounts": {
+    "denseSelectionAndReconnect": 4,
+    "legacyReview": 2
+  }
+}

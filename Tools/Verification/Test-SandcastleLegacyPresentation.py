@@ -11,7 +11,7 @@ home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--build',type=int,required=True);ap.add_argument('--of',dest='owned',required=True);a=ap.parse_args()
     run=Run(a.build,resume=a.owned,extended_test_lifetime=True)
-    prior=read(run.path/'sandpit-stage-five/result.json');require(prior and prior['passed'] and prior['build']==a.build,'completed owned current-source fixture required')
+    prior=read(run.path/'sandcastle-p9-integration-acceptance.json') or read(run.path/'sandpit-stage-five/result.json') or read(run.path/'sandcastle-p9-integration/result.json');require(prior and prior['passed'] and prior['build']==a.build,'completed owned current-source fixture required')
     for f in read(run.folder/'source-manifest.json')['files']:
         if f['path'].startswith('Unity/'):require(hashlib.sha256((ROOT/f['path']).read_bytes()).hexdigest()==f['sha256'],'stale '+f['path'])
     out=run.path/'sandpit-legacy-presentation';out.mkdir();p=run.path/'server-world/world.save';data=p.read_bytes();magic,digest,payload=data.split(b'\n',2)
@@ -29,7 +29,13 @@ def main():
             client=run.start('client',slot['profile']);home.ready(client);client.input('resize',x=1280 if i==0 else 1024,y=591 if i==0 else 768)
             require(home.command(client,32,value='start')['accepted'],'legacy start')
             wait(lambda:not client.input('inspect')['pending'],'settled legacy')
-            client.input('touchButton',text='Sand piece '+str(i+1));client.input('touchButton',text='Decorate')
+            info=client.input('inspect')
+            if info.get('sandPieceScreenPoints'):
+                point=info['sandPieceScreenPoints'][i];r=next(c['bounds'] for c in info['controls'] if c['name']=='Build');scale=r['width']/150;depth=1.14+(.86-1.14)*(m[i]['y']-70)/470
+                for action in ('touch-begin','touch-end'):client.input(action,role='screen',x=point['x'],y=point['y']+75*scale*depth,finger=71)
+                wait(lambda:client.input('inspect')['sandpitSelection']==i,'legacy visible-face selection')
+            else:client.input('touchButton',text='Sand piece '+str(i+1))
+            client.input('touchButton',text='Decorate')
             info=client.input('inspect');require(info['sandIllustrated'] and not any(info['sandpitTipEffects']) and info['sandActiveEffects']==0,'illustrated legacy with no replay')
             home.capture(client,out,'phone-legacy-props' if i==0 else 'tablet-legacy-props')
         passed=True

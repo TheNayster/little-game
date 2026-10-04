@@ -118,6 +118,7 @@ namespace LittleWeeps.NetworkProbe
             public SoloSnapshot view;
             public string[] connected;
             public DragPose[] poses;
+            public SandcastleResponse[] sandResponses;
         }
         [Serializable] private sealed class Status {public string role,runId,instanceId,build,status,reason;public int pid;public bool persistentServer;}
 
@@ -421,11 +422,15 @@ namespace LittleWeeps.NetworkProbe
             }
             catch(Exception e){Fail(e);}
         }
+        // Attribution cannot be inferred from creator or movement: siblings can
+        // contribute to the same piece. Older peers ignore this optional field;
+        // no admission/save/rule compatibility changes, and no historical replay.
+        private readonly Queue<SandcastleResponse> sandResponses=new Queue<SandcastleResponse>();
         private State Current(string requestId="",SoloResult? result=null)
         {
             return new State{runId=config.runId,epoch=epoch,time=ServerClock,sequence=++sequence,requestId=requestId,recovery=1,
                 accepted=result?.Accepted??false,duplicate=result?.Duplicate??false,outcome=result?.Outcome??"snapshot",
-                durable=!positionDirty,view=session.View(),connected=session.ConnectedPlayers,poses=poses.Values.ToArray()};
+                durable=!positionDirty,view=session.View(),connected=session.ConnectedPlayers,poses=poses.Values.ToArray(),sandResponses=sandResponses.ToArray()};
         }
         private void Publish(ulong? acknowledgedPeer=null)
         {
@@ -448,6 +453,10 @@ namespace LittleWeeps.NetworkProbe
                 {
                     if(request.command.action==SoloAction.DaycarePlay || request.command.action==SoloAction.Travel || request.command.action==SoloAction.Move || request.command.action==SoloAction.UseFixture || request.command.action==SoloAction.Dinosaur && request.command.value!="call")movement.Forget(request.command.actor);
                     SaveAuthority();
+                    if(request.command.action==SoloAction.Sandpit && new[]{"scoop","water","tip","decorate","place","toy-react"}.Contains(request.command.value)){
+                        sandResponses.Enqueue(new SandcastleResponse{revision=result.Revision,round=session.View().sandpit.round,actor=request.command.actor,operation=request.command.value});
+                        while(sandResponses.Count>16)sandResponses.Dequeue();
+                    }
                     if(request.command.action==SoloAction.Grab)
                     {
                         var toy=session.Checkpoint().toys.First(t=>t.id==request.command.item);

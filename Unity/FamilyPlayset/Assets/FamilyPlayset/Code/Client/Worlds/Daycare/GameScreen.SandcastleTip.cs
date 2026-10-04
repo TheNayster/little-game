@@ -31,7 +31,7 @@ namespace LittleWeeps.Client
                 var effect=sandTipEffects[i];var result=sandTipFeedback.Outcome(i);var active=joined && i<game.moulds.Length && sandTipFeedback.Remaining(i)>0;
                 var cue=result=="underfilled" || result=="dry";effect.gameObject.SetActive(active && !cue);
                 if(i>=game.moulds.Length)continue;
-                effect.rectTransform.anchoredPosition=sandPlaces[i].anchoredPosition;effect.rectTransform.localScale=Vector3.one;
+                effect.rectTransform.anchoredPosition=sandPlaces[i].anchoredPosition;effect.rectTransform.localScale=Vector3.one*SandcastleProjection.DepthScale(game.moulds[i].y);
                 effect.mould=game.moulds[i].shape;effect.orientation=game.moulds[i].orientation;effect.capacity=game.moulds[i].capacity;effect.tipOutcome=result;effect.progress=1-sandTipFeedback.Remaining(i)/(cue?SandTipFeedback.WiggleDuration:SandTipFeedback.Duration);effect.SetVerticesDirty();
                 sandShapes[i].towerReveal=active && result=="reveal"?Mathf.Clamp01((effect.progress-.52f)/.3f):1;
                 sandShapes[i].hideBucket=active && !cue;

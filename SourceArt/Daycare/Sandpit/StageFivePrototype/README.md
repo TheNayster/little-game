@@ -1,6 +1,6 @@
 # Stage 5 isolated prototype artwork
 
-Owner DAY-01 / LEARN-01 / FAMILY-01. Consumers: only `SandcastleVisualPrototype.unity`, `SandcastlePrototype`, `SandcastlePrototypePiece` and its editor build. Runtime counterparts are under `Resources/Worlds/Daycare/SandcastleClub/Prototype`. Retain masters/registration while consumed; retire only after a reviewed replacement. These are prototype candidates, not parent-approved final artwork.
+Owner DAY-01 / LEARN-01 / FAMILY-01. Consumers: production `GameScreen.SandcastleApproved`, shared `SandcastleProjection`/`SandcastlePrototypePiece`, and the explicitly separate development `SandcastleVisualPrototype.unity`/editor build. Runtime counterparts are under `Resources/Worlds/Daycare/SandcastleClub/Prototype`. Retain masters/registration while consumed; retire only after a reviewed replacement. The parent approved P9 visual direction at `a5abb03`; these retained masters now supply production449. Physical/audio approval is separate.
 
 ## P4 historical sources
 
@@ -17,7 +17,7 @@ See `registration.json` for measured source rectangles. Runtime shapes remain in
 
 ## Current refined sources (P9)
 
-Consumers/ownership and retirement remain as above. The production StageFive assets and shared character sheets are untouched. Raster sources are retained unchanged, with independent sprites registered by measured UV rectangles; code composition and registration are editable, but these are not layered PSDs. Generated pose candidates have not received parent approval.
+Consumers/ownership and retirement remain as above. The production StageFive assets and shared character sheets are untouched. Raster sources are retained unchanged, with independent sprites registered by measured UV rectangles; code composition and registration are editable, but these are not layered PSDs. P9 pose/presentation direction is parent-approved; no continuous frame-by-frame hand-grip animation approval is implied.
 
 - `empty-pit-smooth-master.png` and `pieces-smooth-master.png`: current runtime counterparts `empty-pit.png` / `pieces.png`. Built-in imagegen origins `exec-ac41484a-392e-4d82-b317-132d22e4374b.png` and `exec-0de31cd9-f078-420c-893f-fdad886b58c7.png`. Original1536x1024 RGBA.
 - `participation-refined-master.png`: current runtime `participation.png`, original1086x1448 RGBA, built-in origin `exec-27951322-549a-499d-be8c-669d203d5bac.png`. Four rows Bluey/Bingo/Muffin/Socks; three columns ready/scoop/pour, referenced against the existing approved model sheets. No Carry poses. Existing Wave drawings supply the accepted Tip celebration.

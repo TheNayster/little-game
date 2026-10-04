@@ -26,7 +26,7 @@ namespace LittleWeeps.Client
             if(!Ready || sandpitSending || TravelPending)return;
             var round=epoch<0?SandpitGame.round:epoch;var target=DaycareSandpit.Target(id,round);
             CancelSandpitIntent();sandpitSending=true;
-            void Done(SoloResult r){sandpitSending=false;if(!r.Accepted){SandCue(r.Outcome);sandPlayMode="";sandSlot=-1;}else{sandAck=0;sandPlayMode="";sandSlot=-1;}Render();}
+            void Done(SoloResult r){sandpitSending=false;if(!r.Accepted){SandCue(r.Outcome);sandPlayMode="";sandSlot=-1;}else{sandAck=0;sandPlayMode="";sandSlot=-1;if(!r.Duplicate && SandLocalFeedback)SandParticipantResponse(Actor,op);}Render();}
             if(Shared){if(!SubmitShared(SoloAction.Sandpit,item,target,op,x,y,Done))sandpitSending=false;}
             else Done(Command(SoloAction.Sandpit,item:item,target:target,value:op,x:x,y:y));
         }
@@ -128,16 +128,16 @@ namespace LittleWeeps.Client
             sandPlayCancel.gameObject.SetActive(joined && !sandPlacing && sandPlayMode!="");
             for(var s=0;s<sandSockets.Count;s++){
                 var b=sandSockets[s];var valid=decorate && SandpitPlay.Attachment(s,sandDecorKind);b.gameObject.SetActive(valid);
-                if(valid){var p=SandpitPlay.Socket(m,s);((RectTransform)b.transform).anchoredPosition=SandPoint(m.x,m.y)+new Vector2(p.X,p.Y);b.transform.SetAsLastSibling();b.GetComponent<Image>().color=s==sandSlot?new Color(1,.74f,.24f,.7f):new Color(1,1,1,.55f);}
+                if(valid){var p=SandApprovedAnchor(m,s)*SandcastleProjection.DepthScale(m.y);((RectTransform)b.transform).anchoredPosition=SandPoint(m.x,m.y)+p;b.transform.SetAsLastSibling();b.GetComponent<Image>().color=s==sandSlot?new Color(1,.74f,.24f,.7f):new Color(1,1,1,.55f);}
             }
             sandAttachmentPreview.gameObject.SetActive(decorate && sandSlot>=0);
-            if(decorate && sandSlot>=0){var at=SandpitPlay.Socket(m,sandSlot);sandAttachmentPreview.rectTransform.anchoredPosition=SandPoint(m.x,m.y)+new Vector2(at.X,at.Y);sandAttachmentPreview.decorationKind=sandDecorKind;sandAttachmentPreview.color=new Color(1,1,1,.65f);sandAttachmentPreview.SetVerticesDirty();sandAttachmentPreview.transform.SetAsLastSibling();}
-            for(var c=0;c<sandToySpots.Count;c++){var b=sandToySpots[c];var p=SandToyPoint(c);b.gameObject.SetActive(toy);b.interactable=toy && !sandpitSending && SandpitPlay.ToyPosition(g,p.X,p.Y);if(toy)b.transform.SetAsLastSibling();}
+            if(decorate && sandSlot>=0){var at=SandApprovedAnchor(m,sandSlot);sandAttachmentPreview.rectTransform.anchoredPosition=SandPoint(m.x,m.y)+at*SandcastleProjection.DepthScale(m.y);sandAttachmentPreview.rectTransform.localScale=Vector3.one*SandcastleProjection.DepthScale(m.y);sandAttachmentPreview.decorationKind=sandDecorKind;sandAttachmentPreview.color=new Color(1,1,1,.65f);sandAttachmentPreview.SetVerticesDirty();sandAttachmentPreview.transform.SetAsLastSibling();}
+            for(var c=0;c<sandToySpots.Count;c++){var b=sandToySpots[c];var p=SandToyPoint(c);b.gameObject.SetActive(false);b.interactable=toy && !sandpitSending && SandpitPlay.ToyPosition(g,p.X,p.Y);if(toy)b.transform.SetAsLastSibling();}
             if(joined && sandToyTexture==null){sandToyTexture=WorldResources.Load<Texture2D>("Worlds/Dinosaur/Art/tyrannosaurus");sandToyPicture.texture=sandToyTexture;sandDecorCards[5].GetComponentInChildren<RawImage>().texture=sandToyTexture;}
             sandToyRoot.gameObject.SetActive(joined && g.toy.placed);
             if(sandToyReaction<0 || !joined)sandToyReaction=g.toy.reaction;
             if(g.toy.reaction!=sandToyReaction){sandToyReaction=g.toy.reaction;sandToyBounce=Time.unscaledTime+.8f;}
-            var bounce=Mathf.Max(0,sandToyBounce-Time.unscaledTime);sandToyRoot.anchoredPosition=SandPoint(g.toy.x,g.toy.y);sandToyPicture.uvRect=new Rect(bounce>0?.5f:0,0,.25f,.5f);sandToyPicture.rectTransform.anchoredPosition=new Vector2(0,105*(DinosaurLandmarks.Get("tyrannosaurus",bounce>0?6:4).z-.5f)+Mathf.Sin(bounce/.8f*Mathf.PI)*16);
+            var bounce=Mathf.Max(0,sandToyBounce-Time.unscaledTime);sandToyRoot.anchoredPosition=SandPoint(g.toy.x,g.toy.y);sandToyRoot.localScale=Vector3.one*SandcastleProjection.DepthScale(g.toy.y);sandToyPicture.uvRect=new Rect(bounce>0?.5f:0,0,.25f,.5f);sandToyPicture.rectTransform.anchoredPosition=new Vector2(0,105*(DinosaurLandmarks.Get("tyrannosaurus",bounce>0?6:4).z-.5f)+Mathf.Sin(bounce/.8f*Mathf.PI)*16);
             if(g.toy.placed){
                 // The visitor belongs at its saved ground depth, not above every
                 // castle face. Slot/placement previews remain in front of it.
