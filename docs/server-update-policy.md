@@ -1,10 +1,16 @@
 # Shared PC server and app-update policy
 
+## Current installation — October 5, 2026
+
+Server **463**, protocol3/content72/schema53, runs in the permanent slot on port63648. The parent explicitly authorized the coordinated server and phone update. Fresh signed Android **463** is installed in place and its actual runtime reports connected; the Sandcastle screen was inspected. Existing enrollment, four profiles,131 items and seven pieces survived the compiled migration; later parent reset/build/decorate commands are recorded separately from retention. Matching helper463, automatic recovery and sign-in startup are verified. Older iPads413 are unchanged and require separately authorized compatible delivery. Preserve this current authority during compatible app updates. [Rollout and private receipts](implementation/family-release-451-452-2026-10-04.md#authorized-release463-rollout--october5).
+
+The prepared-candidate and451/452 entries below are historical as of this authorized rollout.
+
 **Prepared standard candidate463 (October4, not deployed):** schema53/content72/protocol3. Containsb1011fb Sandcastle unchanged plus the seeded existing Tag edge-recovery repair. Normal full-game gate and four-client Tag checks pass. Installed451/452 remain52/70/3. A future authorized rollout must coordinate compatible clients/server and retain the existing family/enrollment/saves; do not bypass admission. [Evidence](implementation/evidence/daycare-hide-and-tag-2026-10-01/tag-gate-repair-2026-10-04/README.md).
 
 **Prepared flexible-decoration candidate462 (October 4, not deployed):** schema53/content71/protocol3; Sandpit format4 saves stable prop IDs, attached local coordinates and independent ground positions. Old format0–3 migration retains progress and original visible P9 anchors. Installed451/452 remain52/70/3 and cannot join this content71 candidate. Any future authorized rollout must coordinate the server and clients, retain existing enrollment/saves, and use the compiled migration; source delivery does not authorize installation. See [Sandcastle record](implementation/daycare-sandcastle-redesign-2026-10-02.md#flexible-decoration-placement--october-4).
 
-## Current installation — October 4, 2026
+## Previous installation — October 4, 2026
 
 Server **451**, protocol3/content70/schema52, runs from the same permanent PC-server slot on port63648. Existing family/world identity, enrollment, four profiles and131 items are retained. Matching helper451, sign-in startup and automatic recovery are configured. An authorized450 rollout migrated the original save through the compiled restore; later connected traffic exposed a snapshot just over the128KiB limit.451 corrects only the bounded reliable payload/queue capacity, with four-client copied-save regression evidence. Original450 is historical failed runtime evidence, not the current authority.
 
