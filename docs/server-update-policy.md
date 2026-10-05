@@ -1,5 +1,7 @@
 # Shared PC server and app-update policy
 
+**Prepared standard candidate463 (October4, not deployed):** schema53/content72/protocol3. Containsb1011fb Sandcastle unchanged plus the seeded existing Tag edge-recovery repair. Normal full-game gate and four-client Tag checks pass. Installed451/452 remain52/70/3. A future authorized rollout must coordinate compatible clients/server and retain the existing family/enrollment/saves; do not bypass admission. [Evidence](implementation/evidence/daycare-hide-and-tag-2026-10-01/tag-gate-repair-2026-10-04/README.md).
+
 **Prepared flexible-decoration candidate462 (October 4, not deployed):** schema53/content71/protocol3; Sandpit format4 saves stable prop IDs, attached local coordinates and independent ground positions. Old format0–3 migration retains progress and original visible P9 anchors. Installed451/452 remain52/70/3 and cannot join this content71 candidate. Any future authorized rollout must coordinate the server and clients, retain existing enrollment/saves, and use the compiled migration; source delivery does not authorize installation. See [Sandcastle record](implementation/daycare-sandcastle-redesign-2026-10-02.md#flexible-decoration-placement--october-4).
 
 ## Current installation — October 4, 2026

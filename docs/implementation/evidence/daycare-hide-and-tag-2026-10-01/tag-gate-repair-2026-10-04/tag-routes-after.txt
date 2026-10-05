@@ -1,0 +1,73 @@
+DAYCARE_TAG_CASE seed=70 npcChaser=False humanEdge=80 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=70 npcChaser=False edge=80 runner=0 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=False edge=80 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=False edge=80 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=False edge=80 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=70 npcChaser=False humanEdge=2320 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=70 npcChaser=False edge=2320 runner=0 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=False edge=2320 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=False edge=2320 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=False edge=2320 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=70 npcChaser=True humanEdge=80 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=70 npcChaser=True edge=80 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=True edge=80 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=True edge=80 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=70 npcChaser=True humanEdge=2320 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=70 npcChaser=True edge=2320 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=True edge=2320 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=70 npcChaser=True edge=2320 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=0 npcChaser=False humanEdge=80 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=0 npcChaser=False edge=80 runner=0 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=False edge=80 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=False edge=80 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=False edge=80 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=0 npcChaser=False humanEdge=2320 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=0 npcChaser=False edge=2320 runner=0 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=False edge=2320 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=False edge=2320 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=False edge=2320 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=0 npcChaser=True humanEdge=80 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=0 npcChaser=True edge=80 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=True edge=80 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=True edge=80 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=0 npcChaser=True humanEdge=2320 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=0 npcChaser=True edge=2320 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=True edge=2320 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=0 npcChaser=True edge=2320 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=413 npcChaser=False humanEdge=80 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=413 npcChaser=False edge=80 runner=0 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=False edge=80 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=False edge=80 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=False edge=80 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=413 npcChaser=False humanEdge=2320 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=413 npcChaser=False edge=2320 runner=0 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=False edge=2320 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=False edge=2320 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=False edge=2320 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=413 npcChaser=True humanEdge=80 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=413 npcChaser=True edge=80 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=True edge=80 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=True edge=80 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=413 npcChaser=True humanEdge=2320 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=413 npcChaser=True edge=2320 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=True edge=2320 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=413 npcChaser=True edge=2320 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=458 npcChaser=False humanEdge=80 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=458 npcChaser=False edge=80 runner=0 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=False edge=80 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=False edge=80 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=False edge=80 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=458 npcChaser=False humanEdge=2320 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=458 npcChaser=False edge=2320 runner=0 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=False edge=2320 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=False edge=2320 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=False edge=2320 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=458 npcChaser=True humanEdge=80 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=458 npcChaser=True edge=80 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=True edge=80 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=True edge=80 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_CASE seed=458 npcChaser=True humanEdge=2320 dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)
+DAYCARE_TAG_METRIC seed=458 npcChaser=True edge=2320 runner=1 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=True edge=2320 runner=2 maxEdgeSeconds=0.3
+DAYCARE_TAG_METRIC seed=458 npcChaser=True edge=2320 runner=3 maxEdgeSeconds=0.3
+DAYCARE_TAG_ROUTES_PASS: seeds=70,0,413,458; both walls, four corner starts, human/NPC chasers, 9600 bounded movement ticks, unchanged continuous movement/edge/variety assertions and independent exit.

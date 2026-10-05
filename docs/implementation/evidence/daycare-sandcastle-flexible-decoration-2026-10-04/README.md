@@ -1,5 +1,7 @@
 # Sandcastle flexible decorations — actual local evidence
 
+**Subsequent resolution:** Standard full-game463 passes after a seeded Tag routing repair. Seed70 fails identically before Sandcastle changes, establishing an existing defect; unchanged assertions now pass. All Sandcastle inputs match462, whose evidence remains valid. [Root cause, deterministic reproduction and standard build](../daycare-hide-and-tag-2026-10-01/tag-gate-repair-2026-10-04/README.md). Earlier unresolved statements below describe the462 delivery boundary.
+
 October4, DAY-01 / LEARN-01 / FAMILY-01. Parent request replaces six fixed sockets with flexible saved positions. Owner: this bounded Sandcastle usability task. Consumers: implementation record and parent playtest. Retain until superseded review evidence is linked; do not remove migration provenance without checking consumers. No live server, app installation, real save or security change.
 
 ## Current artifact and executed checks

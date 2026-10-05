@@ -1,0 +1,9 @@
+Exception: runner remains at arena edge
+  at LittleWeeps.EditorTools.DaycarePlayTests.TagRoutes () [0x005d5] in C:\Users\sephi\Desktop\Little weeps game\Unity\FamilyPlayset\Assets\FamilyPlayset\Code\Editor\DaycarePlayTests.cs:49
+  at LittleWeeps.EditorTools.DaycarePlayTests.Run () [0x00868] in C:\Users\sephi\Desktop\Little weeps game\Unity\FamilyPlayset\Assets\FamilyPlayset\Code\Editor\DaycarePlayTests.cs:73
+  at LittleWeeps.EditorTools.FamilyGameBuild.Windows () [0x00055] in C:\Users\sephi\Desktop\Little weeps game\Unity\FamilyPlayset\Assets\FamilyPlayset\Code\Editor\FamilyGameBuild.cs:20
+
+(Filename: Assets/FamilyPlayset/Code/Editor/DaycarePlayTests.cs Line: 49)
+
+executeMethod method LittleWeeps.EditorTools.FamilyGameBuild.Windows threw exception.
+Exiting without the bug reporter. Application will terminate with return code 1

@@ -193,6 +193,15 @@ namespace LittleWeeps.Core
             if(route!=null && route.round==g.round && route.chaser==g.it && g.clock<route.until &&
                 Math.Abs(n.x-route.goal.X)+Math.Abs(n.y-route.goal.Y)>12)return route.goal;
 
+            // A long, nearly horizontal route from the top/bottom boundary can
+            // keep a moving runner in the edge strip for over a second. First
+            // commit to a short inward waypoint; then resume varied routes.
+            if(n.x<180 || n.x>2220 || n.y<70 || n.y>230){
+                var inward=new WalkPoint(Math.Max(220,Math.Min(2180,n.x)),Math.Max(100,Math.Min(200,n.y)));
+                clubRunRoutes[i]=new TagRunRoute{goal=inward,round=g.round,chaser=g.it,until=g.clock+2};
+                return inward;
+            }
+
             // Fleeing every tick cancels an inward turn at the wall. Pick an
             // interior destination and keep it until arrival or a short timeout.
             // Away from danger, choose either direction so friends loop across

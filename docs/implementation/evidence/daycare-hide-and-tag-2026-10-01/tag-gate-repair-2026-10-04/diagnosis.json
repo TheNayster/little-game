@@ -1,0 +1,74 @@
+{
+  "originalBuilds": [
+    458,
+    459
+  ],
+  "originalSeed": "not recorded; cannot recover exact historical run",
+  "reproducedSeed": 70,
+  "fixture": {
+    "npcChaser": false,
+    "humanEdge": 80,
+    "humanY": 60,
+    "runner": 3,
+    "runnerStart": [
+      2320,
+      240
+    ],
+    "corners": [
+      [
+        80,
+        60
+      ],
+      [
+        2320,
+        60
+      ],
+      [
+        80,
+        240
+      ],
+      [
+        2320,
+        240
+      ]
+    ],
+    "dt": 0.05,
+    "ticks": 600,
+    "clock": 0,
+    "grace": 1000
+  },
+  "before": {
+    "goal": [
+      1526,
+      218
+    ],
+    "edgeTicks": [
+      0,
+      23
+    ],
+    "edgeSeconds": 1.2000000000000004,
+    "positionAtLastEdgeTick": [
+      1960.1399,
+      230.0291
+    ]
+  },
+  "preSandcastleRevision": "9d3ea80",
+  "baselineFailureIdentical": true,
+  "classification": "Existing gameplay edge-recovery defect; nondeterministic gate without reproducibility, not a Sandcastle regression or discarded assertion",
+  "october1RouteMethodSha256": "f14636f7c8e79444df959565a24f5efc8d7ccfa91ffe32673cc9f34868e2175f",
+  "regressionSeeds": [
+    70,
+    0,
+    413,
+    458
+  ],
+  "standardGateTicks": 9600,
+  "afterMaxEdgeSeconds": 0.3,
+  "standardBuild": 463,
+  "standardCommand": "Tools/Build/Build-FamilyGame.ps1 -BuildNumber 463",
+  "content": 72,
+  "schema": 53,
+  "protocol": 3,
+  "sandcastleEvidenceReused": true,
+  "installedStateChanged": false
+}

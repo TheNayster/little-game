@@ -52,3 +52,12 @@ Windows413 release server/client compile with zero errors/warnings. The focused 
 ![Tag runner check](evidence/daycare-hide-and-tag-2026-10-01/tag-routes-413-phone.png)
 
 Content65 records changed shared movement rules; schema49/protocol3 remain unchanged. This source fix requires coordinated client/server delivery. The installed412 family server and physical devices were not changed by this task. Next: coordinated delivery when requested and family playtesting; broader Daycare wishlist work remains open.
+
+
+## Deterministic Tag build-gate repair — October4
+
+The458/459 build failures recorded the original edge assertion but no seed. New seeded instrumentation reproduces the same failure on seed70: runner3 at(2320,240) receives goal(1526,218) and remains above y230 for24 ticks. The identical failure occurs against the full58-file pre-Sandcastle9d3ea80 Core export; the routing method is unchanged since October1a2d9c9d. Thus the Sandcastle record's independence claim is now supported by reproduction/source comparison. This is an existing delayed-edge-recovery gameplay defect, with an unrecorded randomized gate, rather than an invalid assertion.
+
+`ClubRunGoal` now commits edge runners to a short inward waypoint before continuing normal varied routes. Speeds, chaser/contact/grace, casts, shared progress and save fields remain. Fixed test seeds70/0/413/458,9600 ticks, preserve all displacement/edge/variety thresholds and add seed/corner/episode/goal diagnostics. Existing1200-tick bounds/reopening tests also pass. Standard full-game463 runs the normal gate, including actual Unity JSON migration and DaycarePlay checks, then builds both release profiles with0errors/0warnings. Four actual native clients pass stopped synthetic corner-checkpoint reopening,32-second movement/animation trace, tag transfers and independent departure; ten exits0, no runtime exceptions. Phone/tablet captures inspected.
+
+[Full diagnosis, old/current reproduction, normal-gate markers, source/artifact comparison and native trace](evidence/daycare-hide-and-tag-2026-10-01/tag-gate-repair-2026-10-04/README.md). Only Tag route, its editor test, content and build version differ from462; all accepted Sandcastle inputs are retained. Shared movement content72/schema53/protocol3 requires a future separately authorized coordinated rollout. Installed451/452, real saves/security and saved interactive preview selection remain unchanged.463 is ready for isolated local parent playtesting; physical comfort/fun are not inferred. Stop after this repair.

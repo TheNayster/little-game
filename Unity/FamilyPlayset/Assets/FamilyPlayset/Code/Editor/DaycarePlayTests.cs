@@ -12,9 +12,9 @@ namespace LittleWeeps.EditorTools
         {var p=world.ReadPlayer("p"+i);return family.Submit((ulong)i,new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=p.id,zone=p.zone,visit=p.visit,expectedRevision=world.Revision,action=action,value=value,target=target,x=x,y=y});}
         private static void Club(int i,string op,string target=""){var r=Cmd(i,SoloAction.DaycarePlay,op,target);Need(r.Accepted,op+": "+r.Outcome);GameWorld.Validate(world.Snapshot());}
         private static void Advance(double seconds){while(seconds>0){var dt=Math.Min(.1,seconds);family.AdvanceIdle(dt,out _);seconds-=dt;}GameWorld.Validate(world.Snapshot());}
-        private static void TagRoutes()
+        public static void TagRoutes(int[] seeds=null)
         {
-            foreach(var npcChaser in new[]{false,true})foreach(var edge in new[]{80f,2320f}){
+            foreach(var seed in seeds??new[]{70,0,413,458})foreach(var npcChaser in new[]{false,true})foreach(var edge in new[]{80f,2320f}){
                 var w=GameWorld.WithDinosaurWorld(GameWorld.Create("a","b","c","d"));
                 SoloResult Send(string actor,SoloAction action,string value,string target=""){
                     var p=w.ReadPlayer(actor);return w.Apply(new SoloCommand{actor=actor,requestId=Guid.NewGuid().ToString("N"),expectedRevision=w.Revision,zone=p.zone,visit=p.visit,action=action,value=value,target=target});
@@ -26,26 +26,40 @@ namespace LittleWeeps.EditorTools
                 save.players[0].x=edge;save.players[0].y=60;
                 for(var i=0;i<4;i++){g.npcs[i].x=i%2==0?80:2320;g.npcs[i].y=i<2?60:240;}
                 w=GameWorld.Restore(save);
+                // Seed only this synthetic authority's transient route RNG. No
+                // gameplay/save API or production randomness changes for a test.
+                typeof(GameWorld).GetField("clubRunRandom",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).SetValue(w,new System.Random(seed));
+                Debug.Log($"DAYCARE_TAG_CASE seed={seed} npcChaser={npcChaser} humanEdge={edge} dt=0.05 ticks=600 corners=(80,60),(2320,60),(80,240),(2320,240)");
                 var minX=g.npcs.Select(n=>n.x).ToArray();var maxX=minX.ToArray();var minY=g.npcs.Select(n=>n.y).ToArray();var maxY=minY.ToArray();
                 var signs=new int[4];var turns=new int[4];var edges=new double[4];var maxEdges=new double[4];
+                var edgeBegins=new int[4];var episodes=new string[4];
                 for(var tick=0;tick<600;tick++){
                     var before=w.ReadDaycarePlay(true);w.AdvanceIdle(.05,out _,new[]{"a","b","c","d"});var after=w.ReadDaycarePlay(true);
                     GameWorld.Validate(w.Snapshot());
                     for(var i=npcChaser?1:0;i<4;i++){
                         var n=after.npcs[i];var dx=n.x-before.npcs[i].x;var dy=n.y-before.npcs[i].y;
-                        Need(dx*dx+dy*dy>1,"runner stopped or oscillated in place");
+                        Need(dx*dx+dy*dy>1,$"runner stopped or oscillated in place seed={seed} npcChaser={npcChaser} edge={edge} runner={i} tick={tick}");
                         minX[i]=Math.Min(minX[i],n.x);maxX[i]=Math.Max(maxX[i],n.x);minY[i]=Math.Min(minY[i],n.y);maxY[i]=Math.Max(maxY[i],n.y);
                         if(Math.Abs(dx)>1){var sign=Math.Sign(dx);if(signs[i]!=0 && signs[i]!=sign)turns[i]++;signs[i]=sign;}
-                        edges[i]=n.x<180 || n.x>2220 || n.y<70 || n.y>230?edges[i]+.05:0;maxEdges[i]=Math.Max(maxEdges[i],edges[i]);
+                        var nearEdge=n.x<180 || n.x>2220 || n.y<70 || n.y>230;
+                        if(nearEdge && edges[i]==0)edgeBegins[i]=tick;
+                        edges[i]=nearEdge?edges[i]+.05:0;
+                        if(edges[i]>maxEdges[i]){
+                            maxEdges[i]=edges[i];
+                            var routes=(Array)typeof(GameWorld).GetField("clubRunRoutes",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).GetValue(w);
+                            var route=routes.GetValue(i);var goal=(WalkPoint)route.GetType().GetField("goal").GetValue(route);
+                            episodes[i]=$"ticks={edgeBegins[i]}..{tick} end=({n.x:R},{n.y:R}) goal=({goal.X:R},{goal.Y:R})";
+                        }
                     }
                 }
                 for(var i=npcChaser?1:0;i<4;i++){
-                    Need(maxEdges[i]<1.2,"runner remains at arena edge");
-                    Need(maxX[i]-minX[i]>700 && maxY[i]-minY[i]>50 && turns[i]>=2,"runner lacks varied interior routes");
+                    Debug.Log($"DAYCARE_TAG_METRIC seed={seed} npcChaser={npcChaser} edge={edge} runner={i} maxEdgeSeconds={maxEdges[i]:R}");
+                    Need(maxEdges[i]<1.2,$"runner remains at arena edge seed={seed} npcChaser={npcChaser} humanEdge={edge} runner={i} maxEdgeSeconds={maxEdges[i]:R} spanX={maxX[i]-minX[i]:R} spanY={maxY[i]-minY[i]:R} {episodes[i]}");
+                    Need(maxX[i]-minX[i]>700 && maxY[i]-minY[i]>50 && turns[i]>=2,$"runner lacks varied interior routes seed={seed} npcChaser={npcChaser} edge={edge} runner={i} spanX={maxX[i]-minX[i]:R} spanY={maxY[i]-minY[i]:R} turns={turns[i]}");
                 }
                 Need(Send("d",SoloAction.DaycarePlay,"tag:leave").Accepted && w.ReadDaycarePlay(true).members.Count(m=>m.attending)==3,"route change interrupts independent departure");
             }
-            Debug.Log("DAYCARE_TAG_ROUTES_PASS: both walls, four corner starts, human/NPC chasers, 2400 bounded movement ticks, continuous movement, inward departure, varied lanes and repeated turns, independent exit.");
+            Debug.Log("DAYCARE_TAG_ROUTES_PASS: seeds="+string.Join(",",seeds??new[]{70,0,413,458})+"; both walls, four corner starts, human/NPC chasers, "+((seeds?.Length??4)*2400)+" bounded movement ticks, unchanged continuous movement/edge/variety assertions and independent exit.");
         }
         public static void Run()
         {

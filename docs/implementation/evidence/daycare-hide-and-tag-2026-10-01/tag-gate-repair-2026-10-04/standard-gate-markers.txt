@@ -1,0 +1,9 @@
+ZOO_JSON_PASS: additive migration, four portions, uint RNG JSON, retention and visitor boundary
+DINOSAUR_CARE_JSON_PASS: four meals, care records/progress, recovery and schema 36 upgrade
+DINOSAUR_JSON_PASS: assets, additive migration, four mounts, uint RNG roundtrip and released recovery leases
+SANDPIT_JSON_PASS: legacy formats0/1/2/3 to positioned format4, exact P9 anchors, identities/orientations/progress/toy/unrelated data, reopen/idempotence and flexible attached/ground fields.
+TREASURE_JSON_PASS: shared authority scenarios, Unity partial save retention, additive46 migration, two island panels and seventeen audio assets.
+NPC_PRESENTATION_PASS: jitter/loss/replay, bounded movement and settled arrival, 37 character gaits; player stride unchanged.
+VET_RULES_PASS: full-bed waiting-pet/dinosaur shared care, no eviction, waiting completion and JSON restoration; additive47 retention, shared same-patient strokes, four helpers, late arrival, independent departure, reconnect, partial JSON, eight living patients including all four existing dinosaurs, next-patient choice, new round and stale gesture protection.
+DAYCARE_TAG_ROUTES_PASS: seeds=70,0,413,458; both walls, four corner starts, human/NPC chasers, 9600 bounded movement ticks, unchanged continuous movement/edge/variety assertions and independent exit.
+DAYCARE_PLAY_PASS: additive48 retention, optional same-world invitations/decline/late fourth, independent avatar and saved four-NPC cast, random distinct covers, 15s shared count, Calypso physical search, no late hiding, independent exit, replay, JSON reopening, Tag runners/contact and sole reconnect.

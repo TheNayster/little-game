@@ -47,5 +47,5 @@ static class Program
         Need(rejected,"Invalid checkpoint must remain rejected");
         Console.WriteLine("PASS edge "+edge+": four players, 600 Tag ticks, checkpoint validation, JSON reopening, cast/round/route retention and independent exit");
     }
-    static void Main(){Boundary(2320,0);Boundary(80,1);}
+    static void Main(string[] args){if(args.Contains("--seed")){LittleWeeps.EditorTools.DaycarePlayTests.TagRoutes(new[]{int.Parse(args[Array.IndexOf(args,"--seed")+1])});return;}if(args.Contains("--routes")){LittleWeeps.EditorTools.DaycarePlayTests.TagRoutes();return;}Boundary(2320,0);Boundary(80,1);}
 }
