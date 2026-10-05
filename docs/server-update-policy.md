@@ -1,5 +1,7 @@
 # Shared PC server and app-update policy
 
+**Prepared flexible-decoration candidate462 (October 4, not deployed):** schema53/content71/protocol3; Sandpit format4 saves stable prop IDs, attached local coordinates and independent ground positions. Old format0–3 migration retains progress and original visible P9 anchors. Installed451/452 remain52/70/3 and cannot join this content71 candidate. Any future authorized rollout must coordinate the server and clients, retain existing enrollment/saves, and use the compiled migration; source delivery does not authorize installation. See [Sandcastle record](implementation/daycare-sandcastle-redesign-2026-10-02.md#flexible-decoration-placement--october-4).
+
 ## Current installation — October 4, 2026
 
 Server **451**, protocol3/content70/schema52, runs from the same permanent PC-server slot on port63648. Existing family/world identity, enrollment, four profiles and131 items are retained. Matching helper451, sign-in startup and automatic recovery are configured. An authorized450 rollout migrated the original save through the compiled restore; later connected traffic exposed a snapshot just over the128KiB limit.451 corrects only the bounded reliable payload/queue capacity, with four-client copied-save regression evidence. Original450 is historical failed runtime evidence, not the current authority.

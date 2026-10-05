@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": 462,
+  "entry": "LittleWeeps.EditorTools.SandpitJsonTests.Run",
+  "marker": "SANDPIT_JSON_PASS",
+  "formats": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "targetFormat": 4,
+  "schema": 53,
+  "exactLegacyP9Anchors": true,
+  "checks": "IDs, creators, orientation, positions, capacity, scoops, wet/built, versions, toy, unrelated world data, idempotent reopen, new attached and ground JSON"
+}

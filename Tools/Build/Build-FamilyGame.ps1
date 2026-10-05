@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([Parameter(Mandatory)][ValidateRange(46,9999)][int]$BuildNumber)
+param([Parameter(Mandatory)][ValidateRange(46,9999)][int]$BuildNumber,[switch]$FocusedSandcastle)
 $toolsRoot=Split-Path -Parent $PSScriptRoot
 $ErrorActionPreference='Stop'
 $root=Split-Path -Parent $toolsRoot
@@ -10,7 +10,8 @@ $editor=Join-Path $env:ProgramFiles "Unity\Hub\Editor\$version\Editor\Unity.exe"
 $folder=Join-Path $root "Builds\NetworkProbe\G3-0.0.$BuildNumber"
 if(Test-Path -LiteralPath $folder){throw 'Use a fresh build number.'}
 $log=Join-Path $root "LocalData\Logs\build-network-$BuildNumber.log"
-$argsList=@('-batchmode','-quit','-projectPath',('"'+$project+'"'),'-activeBuildProfile',('"Assets/BuildProfiles/Windows Family Game.asset"'),'-buildTarget','StandaloneWindows64','-executeMethod','LittleWeeps.EditorTools.FamilyGameBuild.Windows','-familyBuildNumber',"$BuildNumber",'-logFile',('"'+$log+'"'))
+$method=if($FocusedSandcastle){'LittleWeeps.EditorTools.FamilyGameBuild.SandcastleWindows'}else{'LittleWeeps.EditorTools.FamilyGameBuild.Windows'}
+$argsList=@('-batchmode','-quit','-projectPath',('"'+$project+'"'),'-activeBuildProfile',('"Assets/BuildProfiles/Windows Family Game.asset"'),'-buildTarget','StandaloneWindows64','-executeMethod',$method,'-familyBuildNumber',"$BuildNumber",'-logFile',('"'+$log+'"'))
 Write-Output "Building Windows server/client $BuildNumber. Log: $log"
 $process=Start-Process -FilePath $editor -ArgumentList $argsList -WindowStyle Hidden -PassThru
 $process.WaitForExit()

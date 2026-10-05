@@ -24,11 +24,12 @@ namespace LittleWeeps.Core
         public int format,pieceLimit,scoopCapacity,round,phase; public double started; public float teacherX,teacherY;
         public SandpitMember[] members; public SandMould[] moulds; public string[] friends;
         public SandToy toy=new SandToy(); public SandReset reset;
-        public SandpitState Copy()=>new SandpitState{format=format,pieceLimit=pieceLimit,scoopCapacity=scoopCapacity,round=round,phase=phase,started=started,teacherX=teacherX,teacherY=teacherY,members=members.Select(m=>m.Copy()).ToArray(),moulds=moulds.Select(m=>m.Copy()).ToArray(),friends=friends.ToArray(),toy=toy?.Copy(),reset=reset?.Copy()};
+        public SandAttachment[] ground=Array.Empty<SandAttachment>();
+        public SandpitState Copy()=>new SandpitState{format=format,pieceLimit=pieceLimit,scoopCapacity=scoopCapacity,round=round,phase=phase,started=started,teacherX=teacherX,teacherY=teacherY,members=members.Select(m=>m.Copy()).ToArray(),moulds=moulds.Select(m=>m.Copy()).ToArray(),friends=friends.ToArray(),toy=toy?.Copy(),reset=reset?.Copy(),ground=ground?.Select(a=>a.Copy()).ToArray()};
     }
     public static class DaycareSandpit
     {
-        public const int Schema=46, PieceSchema=50, ShapeSchema=51, Format=3, MaxPieces=16, DefaultScoops=3, Columns=8, Rows=4;
+        public const int Schema=46, PieceSchema=50, ShapeSchema=51, Format=4, MaxPieces=16, DefaultScoops=3, Columns=8, Rows=4;
         public const float Left=4070,Right=4800,Bottom=70,Top=540,PieceWidth=72,PieceDepth=80;
         public static WalkPoint Teacher=>new WalkPoint(4020,440);
         // These functions remain solely to read legacy format-zero checkpoints.
@@ -61,7 +62,7 @@ namespace LittleWeeps.Core
             if(s.moulds.Length>=s.pieceLimit)return "sandpit-full";
             var width=Width(shape,orientation);var depth=Depth(shape,orientation);var at=Snap(x,y,shape,orientation);
             if(!Inside(x,y,width,depth) || !Inside(at.X,at.Y,width,depth))return "outside-sandpit";
-            return s.moulds.Any(m=>Math.Abs(m.x-at.X)<(m.width+width)/2 && Math.Abs(m.y-at.Y)<(m.depth+depth)/2) || s.toy?.placed==true && Math.Abs(s.toy.x-at.X)<width/2+22 && Math.Abs(s.toy.y-at.Y)<depth/2+21?"sand-spot-taken":null;
+            return s.moulds.Any(m=>Math.Abs(m.x-at.X)<(m.width+width)/2 && Math.Abs(m.y-at.Y)<(m.depth+depth)/2) || s.toy?.placed==true && Math.Abs(s.toy.x-at.X)<width/2+22 && Math.Abs(s.toy.y-at.Y)<depth/2+21 || s.ground.Any(a=>Math.Abs(a.x-at.X)<width/2+12 && Math.Abs(a.y-at.Y)<depth/2+12)?"sand-spot-taken":null;
         }
         public static int UsefulScoops(SandMould m,int retained)=>m==null || m.built?0:Math.Min(Math.Max(0,retained),m.capacity-m.scoops);
         public static double Arrival(SandpitState s)=>Math.Sqrt(Math.Pow(s.teacherX-Teacher.X,2)+Math.Pow((s.teacherY-Teacher.Y)*.45,2))/180;
@@ -89,8 +90,11 @@ namespace LittleWeeps.Core
                 if(g.format==0){g.pieceLimit=DaycareSandpit.MaxPieces;g.scoopCapacity=DaycareSandpit.DefaultScoops;
                     for(var i=0;i<g.moulds.Length;i++){var m=g.moulds[i];var at=DaycareSandpit.Place(i);m.id="legacy-"+i;m.creator="";m.shape="round";m.x=at.X;m.y=at.Y;m.width=140;m.depth=100;m.capacity=DaycareSandpit.Capacity(i);m.version=0;}}
                 // Stage 2 coordinates, IDs, participation and all progress are retained.
-                foreach(var m in g.moulds){m.attachments=m.decoration==0?Array.Empty<SandAttachment>():new[]{new SandAttachment{slot=m.decoration==1?0:2,kind=m.decoration==1?"flag":"shell"}};m.decoration=0;}
-                g.toy=new SandToy();g.reset=null;
+                if(g.format<3){foreach(var m in g.moulds){m.attachments=m.decoration==0?Array.Empty<SandAttachment>():new[]{new SandAttachment{slot=m.decoration==1?0:2,kind=m.decoration==1?"flag":"shell"}};m.decoration=0;}g.toy=new SandToy();g.reset=null;}
+                // Keep every old P9 visible anchor exactly, including shells at
+                // the base. Grandfathered anchors never move to a newer region.
+                foreach(var m in g.moulds)foreach(var a in m.attachments){var p=SandDecorSurface.LegacyAnchor(m,a.slot);a.id=m.id+"~decor-"+a.slot;a.x=p.X;a.y=p.Y;a.creator=m.creator;a.legacy=true;}
+                g.ground=Array.Empty<SandAttachment>();
                 g.format=DaycareSandpit.Format;
             }
             s.revision++;return new GameWorld(s);
@@ -102,7 +106,8 @@ namespace LittleWeeps.Core
             var legacy=g.format==0 && s.schema<DaycareSandpit.PieceSchema;
             var previous=g.format==1 && s.schema<DaycareSandpit.ShapeSchema;
             var stageThree=g.format==2 && s.schema<SandpitPlay.Schema;
-            if(legacy?g.moulds.Length!=4:!previous && !stageThree && g.format!=DaycareSandpit.Format || g.pieceLimit<1 || g.pieceLimit>DaycareSandpit.MaxPieces || g.scoopCapacity<1 || g.scoopCapacity>8 || g.moulds.Length>g.pieceLimit)throw new InvalidOperationException("Invalid sand piece limits.");
+            var fixedSlots=g.format==3 && s.schema<SandDecorSurface.Schema;
+            if(legacy?g.moulds.Length!=4:!previous && !stageThree && !fixedSlots && g.format!=DaycareSandpit.Format || g.pieceLimit<1 || g.pieceLimit>DaycareSandpit.MaxPieces || g.scoopCapacity<1 || g.scoopCapacity>8 || g.moulds.Length>g.pieceLimit)throw new InvalidOperationException("Invalid sand piece limits.");
             if(g.phase==0 && g.round!=0 || g.phase>0 && g.round==0 || legacy && g.phase==3 && g.moulds.Any(m=>m==null || !m.built))throw new InvalidOperationException("Invalid sand progress.");
             for(var i=0;i<g.moulds.Length;i++){
                 var m=g.moulds[i];var capacity=legacy?DaycareSandpit.Capacity(i):m?.capacity ?? 0;
@@ -148,6 +153,7 @@ namespace LittleWeeps.Core
                 g.moulds=g.moulds.Concat(new[]{new SandMould{id=id,creator=p.id,shape=shape,orientation=orientation,x=at.X,y=at.Y,width=DaycareSandpit.Width(shape,orientation),depth=DaycareSandpit.Depth(shape,orientation),capacity=g.scoopCapacity}}).ToArray();SandChanged();return null;
             }
             if(parts[0]=="toy")return SandToyOperation(c);
+            if(parts[0]=="ground")return SandGroundOperation(c,p);
             var mould=g.moulds.FirstOrDefault(m=>m.id==parts[0]);if(mould==null)return "old-sandpit-piece";
             if(c.value=="decorate" || c.value=="move" || c.value=="remove" || c.value=="decor-remove" || c.value=="decor-replace" || c.value=="flag" || c.value=="shell"){
                 if(mould.version==int.MaxValue)return "sand-piece-limit";

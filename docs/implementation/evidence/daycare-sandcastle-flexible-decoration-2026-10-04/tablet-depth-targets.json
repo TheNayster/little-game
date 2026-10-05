@@ -1,0 +1,690 @@
+{
+  "serial": 21,
+  "visiblePlayers": 4,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.462",
+  "actor": "player-3",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "daycare",
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1024.0,
+    "height": 768.0
+  },
+  "controlsInSafeArea": true,
+  "activeCharacterVisible": true,
+  "character": "muffin",
+  "controls": [
+    {
+      "name": "Build",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 724.7323608398438,
+        "y": 57.32957458496094,
+        "width": 108.1690673828125,
+        "height": 79.32394409179688
+      },
+      "enabled": true
+    },
+    {
+      "name": "Leave sandpit",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 21.63383674621582,
+        "y": 646.4901123046875,
+        "width": 79.32394409179688,
+        "height": 57.690185546875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 34.39999771118164,
+        "y": 676.800048828125,
+        "width": 67.19999694824219,
+        "height": 67.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 2",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 201.82763671875,
+        "y": 278.1017761230469,
+        "width": 98.0732421875,
+        "height": 100.957763671875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Ask Calypso",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 233.5999755859375,
+        "y": 317.2799987792969,
+        "width": 211.20001220703125,
+        "height": 283.1999816894531
+      },
+      "enabled": true
+    },
+    {
+      "name": "Decorate",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 849.1267700195312,
+        "y": 57.32957458496094,
+        "width": 126.1971435546875,
+        "height": 79.32394409179688
+      },
+      "enabled": true
+    },
+    {
+      "name": "Gate",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 532.5521240234375,
+        "y": 56.247886657714844,
+        "width": 133.408447265625,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Round tower",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 84.73239135742188,
+        "y": 56.247886657714844,
+        "width": 133.408447265625,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Square tower",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 234.005615234375,
+        "y": 56.247886657714844,
+        "width": 133.408447265625,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 880.0,
+        "y": 698.4000244140625,
+        "width": 128.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 696.0,
+        "y": 698.4000244140625,
+        "width": 168.0,
+        "height": 51.199951171875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 905.5999755859375,
+        "y": 34.399993896484375,
+        "width": 96.0,
+        "height": 96.0
+      },
+      "enabled": true
+    },
+    {
+      "name": "Edit",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 21.63383674621582,
+        "y": 578.7042236328125,
+        "width": 79.32394409179688,
+        "height": 57.690185546875
+      },
+      "enabled": false
+    },
+    {
+      "name": "Games",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 406.0,
+        "y": 688.7999877929688,
+        "width": 212.0,
+        "height": 62.4000244140625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Wall",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 383.27886962890625,
+        "y": 56.247886657714844,
+        "width": 133.408447265625,
+        "height": 81.4873275756836
+      },
+      "enabled": true
+    },
+    {
+      "name": "Family reset",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 917.6337890625,
+        "y": 646.4901123046875,
+        "width": 90.140869140625,
+        "height": 57.690185546875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 1",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 114.1656494140625,
+        "y": 343.0798645019531,
+        "width": 204.79998779296875,
+        "height": 65.62255859375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Optional teacher help",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 923.042236328125,
+        "y": 578.7042236328125,
+        "width": 79.323974609375,
+        "height": 57.690185546875
+      },
+      "enabled": true
+    }
+  ],
+  "sandLocalPending": false,
+  "sandDirectCueVisible": false,
+  "sandPlacementActive": false,
+  "sandDecorationChoice": "",
+  "sandAttachmentScreenPoints": [
+    {
+      "x": 233.34548950195312,
+      "y": 426.18438720703125
+    },
+    {
+      "x": 268.3830261230469,
+      "y": 426.18438720703125
+    },
+    {
+      "x": 203.882080078125,
+      "y": 276.47845458984375
+    },
+    {
+      "x": 297.846435546875,
+      "y": 276.47845458984375
+    },
+    {
+      "x": 230.95657348632812,
+      "y": 346.5535888671875
+    },
+    {
+      "x": 270.77197265625,
+      "y": 346.5535888671875
+    }
+  ],
+  "sandBuilderActors": [
+    "player-1",
+    "player-2",
+    "player-3",
+    "player-4"
+  ],
+  "sandBuilderReactions": [
+    "ready",
+    "ready",
+    "ready",
+    "ready"
+  ],
+  "sandBuilderEvents": [
+    7,
+    7,
+    0,
+    0
+  ],
+  "sandPieceScreenPoints": [
+    {
+      "x": 216.56564331054688,
+      "y": 351.01226806640625
+    },
+    {
+      "x": 250.8642578125,
+      "y": 286.0341796875
+    }
+  ],
+  "sandpit": {
+    "format": 4,
+    "pieceLimit": 16,
+    "scoopCapacity": 3,
+    "round": 2,
+    "phase": 2,
+    "started": 2.601114199999998,
+    "teacherX": 659.8328857421875,
+    "teacherY": 242.65924072265625,
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-2",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-3",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-4",
+        "attending": true,
+        "declined": false
+      }
+    ],
+    "moulds": [
+      {
+        "id": "p-6ca884e38f6b48d6a27cca0a5999900a",
+        "creator": "player-1",
+        "shape": "wall",
+        "x": 4192.5,
+        "y": 240.0,
+        "width": 157.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 6,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": -1,
+            "version": 0,
+            "id": "d-0facbfd104de4839b0c402712a3207fb",
+            "kind": "window",
+            "creator": "player-1",
+            "x": -99.99954223632812,
+            "y": 34.99979019165039,
+            "legacy": false
+          }
+        ]
+      },
+      {
+        "id": "p-b69d27149bb14b43a2b969c82b8bd6e5",
+        "creator": "player-2",
+        "shape": "round",
+        "x": 4235.0,
+        "y": 130.0,
+        "width": 72.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 6,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": -1,
+            "version": 0,
+            "id": "d-2c08aa23fac74adc84055d9af93aafd1",
+            "kind": "window",
+            "creator": "player-2",
+            "x": 0.0003869087959174067,
+            "y": 94.99980163574219,
+            "legacy": false
+          }
+        ]
+      }
+    ],
+    "friends": [
+      "terrier-2",
+      "jack"
+    ],
+    "toy": {
+      "placed": false,
+      "x": 0.0,
+      "y": 0.0,
+      "version": 0,
+      "reaction": 0
+    },
+    "reset": {
+      "token": "",
+      "voters": [],
+      "approved": []
+    },
+    "ground": []
+  },
+  "sandpitNpcArt": [],
+  "sandIllustrated": true,
+  "sandPhoneLayout": false,
+  "sandVoiceVolumes": [
+    0.0,
+    0.0
+  ],
+  "sandVoiceClips": [
+    "",
+    ""
+  ],
+  "sandPresentationEvents": 4,
+  "sandAudioEvents": 0,
+  "sandActiveVoices": 0,
+  "sandActiveEffects": 0,
+  "sandpitSelection": 1,
+  "sandpitHighlight": 1,
+  "sandpitApproach": -1,
+  "sandpitApproachRound": -1,
+  "sandpitScoopEvents": [
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitWaterEvents": [
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitWaterEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitWetVisuals": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "sandpitBuiltVisuals": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "sandpitTipEvents": [
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitTipEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitTowerReveal": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "sandpitTipOutcomes": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "sandpitDecorationEvents": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationVisuals": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationEffectValues": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitDecorationWiggles": [
+    0.0,
+    0.0
+  ],
+  "sandpitDecorationHidden": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "lastTouchTargets": [
+    "Build",
+    "Sandcastle shared building view",
+    "Garden"
+  ],
+  "visibleText": [
+    "Decorate",
+    "Build",
+    "",
+    "",
+    "?",
+    "Wall",
+    "Tap to walk",
+    "Build again",
+    "",
+    "Square",
+    "Calypso \u00b7 sandcastle teacher",
+    "Menu",
+    "Gate",
+    "Games",
+    "Round"
+  ]
+}

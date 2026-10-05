@@ -17,6 +17,8 @@ namespace LittleWeeps.Client
         private readonly List<SandcastlePrototypePiece> sandApprovedPieces=new List<SandcastlePrototypePiece>();
         private readonly List<List<SandShape>> sandApprovedProps=new List<List<SandShape>>();
         private readonly List<Outline> sandEligibleOutlines=new List<Outline>();
+        private readonly List<SandShape> sandGroundProps=new List<SandShape>();
+        private string sandGroundSelection;private int sandEditPage;
         private SandcastleActivitySurface sandDirectSurface;
         private RectTransform sandDirectCue;private Text sandDirectCueLabel;private float sandDirectCueUntil;
         private int sandDirectGeneration;private Vector2 sandDirectPoint;
@@ -106,16 +108,21 @@ namespace LittleWeeps.Client
             for(var i=0;i<g.moulds.Length;i++){
                 var m=g.moulds[i];var picture=sandApprovedPieces[i];sandShapes[i].enabled=!m.built;picture.enabled=m.built;picture.shape=m.shape;picture.orientation=m.orientation;picture.reveal=sandShapes[i].towerReveal;picture.SetVerticesDirty();
                 var props=sandApprovedProps[i];while(props.Count<m.attachments.Length){var prop=Rect(sandShapes[i].transform,"Separate attached decoration",Vector2.zero,new Vector2(160,240)).gameObject.AddComponent<SandShape>();prop.kind="attachment";prop.raycastTarget=false;props.Add(prop);}
-                for(var a=0;a<props.Count;a++){var prop=props[a];prop.gameObject.SetActive(a<m.attachments.Length);if(a>=m.attachments.Length)continue;prop.decorationKind=m.attachments[a].kind;prop.rectTransform.anchoredPosition=SandApprovedAnchor(m,m.attachments[a].slot);prop.SetVerticesDirty();}
+                for(var a=0;a<props.Count;a++){var prop=props[a];prop.gameObject.SetActive(a<m.attachments.Length);if(a>=m.attachments.Length)continue;prop.decorationKind=m.attachments[a].kind;prop.rectTransform.anchoredPosition=new Vector2(m.attachments[a].x,m.attachments[a].y);prop.SetVerticesDirty();}
+            }
+            while(sandGroundProps.Count<g.ground.Length){var prop=Rect(sandFloor,"Separate sand decoration",Vector2.zero,new Vector2(160,240)).gameObject.AddComponent<SandShape>();prop.kind="attachment";prop.raycastTarget=false;sandGroundProps.Add(prop);}
+            foreach(var prop in sandGroundProps)prop.gameObject.SetActive(false);
+            // Same saved depth ordering as pieces and dinosaur. Artwork never
+            // owns a pointer, and ground props remain independent when pieces move.
+            foreach(var i in Enumerable.Range(0,g.ground.Length).OrderByDescending(i=>g.ground[i].y)){
+                var a=g.ground[i];var prop=sandGroundProps[i];prop.gameObject.SetActive(true);prop.decorationKind=a.kind;prop.rectTransform.anchoredPosition=SandPoint(a.x,a.y);prop.rectTransform.localScale=Vector3.one*SandcastleProjection.DepthScale(a.y);prop.SetVerticesDirty();
+                var front=Enumerable.Range(0,g.moulds.Length).Where(j=>g.moulds[j].y<a.y).OrderByDescending(j=>g.moulds[j].y).DefaultIfEmpty(-1).First();if(front<0)prop.transform.SetAsLastSibling();else prop.transform.SetSiblingIndex(sandShapes[front].transform.GetSiblingIndex());
             }
             if(sandPreviewCell!=-1){sandApprovedPreview.shape=sandMould;sandApprovedPreview.orientation=sandOrientation;sandApprovedPreview.color=sandPreview.color;sandApprovedPreview.SetVerticesDirty();}
         }
         private Vector2 SandApprovedAnchor(SandMould m,int slot)
         {
-            var side=slot%2==0?-1:1;
-            if(!DaycareSandpit.LongShape(m.shape))return new Vector2(side*(slot<2?22:slot<4?59:25),slot<2?176:slot<4?-12:76);
-            if(m.orientation==90)return slot<2?new Vector2(side*34,side<0?104:215):slot<4?new Vector2(side*42,side<0?-78:87):new Vector2(side*28,side<0?5:120);
-            return new Vector2(side*(slot<2?m.shape=="gate"?116:93:slot<4?140:116),slot<2?m.shape=="gate"?131:75:slot<4?-13:43);
+            var at=SandDecorSurface.LegacyAnchor(m,slot);return new Vector2(at.X,at.Y);
         }
         private void SandSurfaceTap(Vector2 point)
         {
@@ -134,44 +141,55 @@ namespace LittleWeeps.Client
             if(sandPlayMode=="toy"){if(SandpitPlay.ToyPosition(SandpitGame,logical.x,logical.y))SandPlaySend("toy-place","toy",sandToyVersion.ToString(),logical.x,logical.y);else SandCue("sand-spot-taken");return;}
             foreach(var i in Enumerable.Range(0,SandpitGame.moulds.Length).OrderBy(i=>SandpitGame.moulds[i].y)){
                 var m=SandpitGame.moulds[i];var local=(point-SandPoint(m.x,m.y))/SandcastleProjection.DepthScale(m.y);
-                if(m.built?sandApprovedPieces[i].PaintedHit(local):new Rect(-65,-12,140,125).Contains(local)){TouchSandMould(i);return;}
+                if(m.built?sandApprovedPieces[i].PaintedHit(local):new Rect(-65,-12,140,125).Contains(local)){sandGroundSelection=null;TouchSandMould(i);return;}
             }
+            var ground=SandpitGame.ground.OrderBy(a=>(SandPoint(a.x,a.y)-point).sqrMagnitude).FirstOrDefault(a=>(SandPoint(a.x,a.y)-point).magnitude<32*SandcastleProjection.DepthScale(a.y));
+            if(ground!=null){sandGroundSelection=ground.id;sandSelectedId=null;TickSandpit();}
         }
         private bool SandDirectReady=>Ready && SandpitOwn && CurrentArea=="daycare" && !TravelPending && !MenuOpen && !applicationPaused && !sandpitSending && (!Shared || shared.Connected) && sandBuildView.gameObject.activeInHierarchy && !sandEditSheet.gameObject.activeSelf && !sandConfirmSheet.gameObject.activeSelf && SandpitGame.reset==null;
         private void ClearSandDirectInput()
         {sandDirectGeneration++;sandPlacing=false;sandPreviewCell=-1;sandPlayMode="";sandSlot=-1;sandDirectDragging=sandDirectDragOnSand=false;sandDirectCueUntil=0;}
         private void SandCueAt(string why,Vector2 point)
         {SandCue(why);sandDirectCueUntil=Time.unscaledTime+1.4f;sandDirectCue.anchoredPosition=new Vector2(Mathf.Clamp(point.x,-565,565),Mathf.Clamp(point.y+55,-210,290));sandDirectCueLabel.text=sandHint.text;}
-        private int SandAvailableSlot(SandMould m,Vector2 local)
+        private bool SandDecorationDestination(Vector2 point,out SandMould piece,out WalkPoint at,out string why)
         {
-            // Current sockets remain the saved representation. Touch chooses
-            // the nearest EMPTY compatible socket within a generous painted area.
-            return Enumerable.Range(0,SandpitPlay.Slots).Where(s=>SandpitPlay.Attachment(s,sandDecorKind) && !m.attachments.Any(a=>a.slot==s) && Vector2.Distance(SandApprovedAnchor(m,s),local)<=140)
-                .OrderBy(s=>(SandApprovedAnchor(m,s)-local).sqrMagnitude).DefaultIfEmpty(-1).First();
+            var g=SandpitGame;piece=null;at=default;why=null;SandMould near=null;var nearest=22f;
+            foreach(var i in Enumerable.Range(0,g.moulds.Length).OrderBy(i=>g.moulds[i].y)){
+                var m=g.moulds[i];var local=(point-SandPoint(m.x,m.y))/SandcastleProjection.DepthScale(m.y);
+                // Foreground paint owns the gesture, including invalid faces. Open
+                // gate holes pass through to visible ground/background pieces.
+                var hit=m.built?sandApprovedPieces[i].PaintedHit(local):new Rect(-65,-12,140,125).Contains(local);
+                if(hit){piece=m;break;}
+                if(!m.built || !SandDecorSurface.Resolve(m,sandDecorKind,local.x,local.y,out var resolved))continue;
+                var d=(new Vector2(resolved.X,resolved.Y)-local).magnitude;
+                if(d<nearest){nearest=d;near=m;}
+            }
+            piece=piece??near;
+            if(piece!=null){
+                if(!piece.built){why="finish-piece-first";return false;}
+                var local=(point-SandPoint(piece.x,piece.y))/SandcastleProjection.DepthScale(piece.y);
+                if(!SandDecorSurface.Resolve(piece,sandDecorKind,local.x,local.y,out at)){why="choose-sand-region";return false;}
+                why=SandDecorSurface.AttachedReason(piece,new SandAttachment{kind=sandDecorKind,x=at.X,y=at.Y});return why==null;
+            }
+            if(!SandDecorSurface.GroundKind(sandDecorKind)){why="choose-sand-region";return false;}
+            var logical=SandcastleProjection.Inverse(point);
+            // Gentle edge clamping (at most 10 world units), never relocation to
+            // another piece or empty spot on rejection.
+            at=new WalkPoint(Mathf.Clamp(logical.x,DaycareSandpit.Left+14,DaycareSandpit.Right-14),Mathf.Clamp(logical.y,DaycareSandpit.Bottom+14,DaycareSandpit.Top-14));
+            if(Vector2.Distance(logical,new Vector2(at.X,at.Y))>10){why="outside-sandpit";return false;}
+            why=SandDecorSurface.GroundReason(g,new SandAttachment{kind=sandDecorKind,x=at.X,y=at.Y});return why==null;
         }
         private void SandDecorateAt(Vector2 point)
         {
-            var g=SandpitGame;var index=-1;var best=float.MaxValue;
-            foreach(var i in Enumerable.Range(0,g.moulds.Length).OrderBy(i=>g.moulds[i].y)){
-                var m=g.moulds[i];var local=(point-SandPoint(m.x,m.y))/SandcastleProjection.DepthScale(m.y);
-                // A painted foreground piece owns its tap, including rejection.
-                if(m.built?sandApprovedPieces[i].PaintedHit(local):new Rect(-65,-12,140,125).Contains(local)){index=i;break;}
-                if(!m.built)continue;
-                var distance=Enumerable.Range(0,SandpitPlay.Slots).Where(s=>SandpitPlay.Attachment(s,sandDecorKind)).Select(s=>Vector2.Distance(local,SandApprovedAnchor(m,s))).DefaultIfEmpty(float.MaxValue).Min();
-                if(distance<=140 && distance<best){index=i;best=distance;}
-            }
-            if(index<0){SandCueAt("choose-sand-region",point);return;}
-            var piece=g.moulds[index];if(!piece.built){SandCueAt("finish-piece-first",point);return;}
-            var p=(point-SandPoint(piece.x,piece.y))/SandcastleProjection.DepthScale(piece.y);var slot=SandAvailableSlot(piece,p);
-            if(slot<0){var empty=Enumerable.Range(0,SandpitPlay.Slots).Any(s=>SandpitPlay.Attachment(s,sandDecorKind) && !piece.attachments.Any(a=>a.slot==s));SandCueAt(empty?"choose-sand-region":"sand-slot-taken",point);return;}
-            SelectSandMould(index);sandDirectPoint=point;
-            SandPlaySend("decorate",piece.id,slot+":"+sandDecorKind,epoch:g.round);
+            if(!SandDecorationDestination(point,out var piece,out var at,out var why)){SandCueAt(why,point);return;}
+            if(piece!=null){sandGroundSelection=null;SelectSandMould(Array.FindIndex(SandpitGame.moulds,m=>m.id==piece.id));}
+            sandDirectPoint=point;SandPlaySend(piece==null?"ground-decorate":"decorate",piece?.id??"ground",sandDecorKind,at.X,at.Y,epoch:SandpitGame.round);
         }
         private void TickSandDirectInput(bool joined)
         {
             for(var i=0;i<sandEligibleOutlines.Count;i++){
                 var m=i<SandpitGame.moulds.Length?SandpitGame.moulds[i]:null;
-                sandEligibleOutlines[i].enabled=joined && sandPlayMode=="decorate" && m?.built==true && Enumerable.Range(0,SandpitPlay.Slots).Any(s=>SandpitPlay.Attachment(s,sandDecorKind) && !m.attachments.Any(a=>a.slot==s));
+                sandEligibleOutlines[i].enabled=joined && sandPlayMode=="decorate" && m?.built==true && m.attachments.Length<SandDecorSurface.PieceLimit;
             }
             for(var i=0;i<5;i++)sandDecorCards[i].GetComponent<Image>().color=sandPlayMode=="decorate" && sandDecorKind==new[]{"flag","shell","pebble","door","window"}[i]?new Color(1,.8f,.36f):Color.white;
             sandDirectCue.gameObject.SetActive(joined && Time.unscaledTime<sandDirectCueUntil);if(sandDirectCue.gameObject.activeSelf)sandDirectCue.SetAsLastSibling();
@@ -234,7 +252,7 @@ namespace LittleWeeps.Client
             var rects=new[]{new Rect(45,12,265,348),new Rect(402,19,256,343),new Rect(761,15,280,347),new Rect(48,378,261,334),new Rect(404,362,257,352),new Rect(757,362,296,362),new Rect(48,730,264,344),new Rect(403,731,258,345),new Rect(764,724,283,356),new Rect(48,1087,274,342),new Rect(414,1094,251,335),new Rect(774,1093,290,339)};return rects[row*3+state];
         }
         private void ResetApprovedSand()
-        {ClearSandDirectInput();sandDirectSurface=null;sandDirectCue=null;sandDirectCueLabel=null;sandEligibleOutlines.Clear();sandResponseJoined=false;sandResponseRevision=-1;sandResponseRound=-1;sandApprovedPieces.Clear();sandApprovedProps.Clear();sandParticipantCues.Clear();sandParticipantEvents.Clear();if(sandApprovedPanel!=null){Destroy(sandApprovedPanel.texture);Destroy(sandApprovedPanel);}sandApprovedPanel=null;sandParticipation=null;}
+        {ClearSandDirectInput();sandGroundSelection=null;sandGroundProps.Clear();sandDirectSurface=null;sandDirectCue=null;sandDirectCueLabel=null;sandEligibleOutlines.Clear();sandResponseJoined=false;sandResponseRevision=-1;sandResponseRound=-1;sandApprovedPieces.Clear();sandApprovedProps.Clear();sandParticipantCues.Clear();sandParticipantEvents.Clear();if(sandApprovedPanel!=null){Destroy(sandApprovedPanel.texture);Destroy(sandApprovedPanel);}sandApprovedPanel=null;sandParticipation=null;}
     }
     public sealed class SandcastleActivitySurface : UIBehaviour,IPointerDownHandler,IDragHandler,IPointerUpHandler,ICancelHandler
     {

@@ -1,0 +1,1406 @@
+[
+  {
+    "path": "Client/LittleWeepsNetwork.exe",
+    "sha256": "e1a9d9e062bbcdb91f76983fae8bb1e4fb8036d55289318ef91033f130d38ecc"
+  },
+  {
+    "path": "Client/UnityCrashHandler64.exe",
+    "sha256": "f62e7ceeb3e572d4ac05b5c622d43510305afd31b194456092dce9edb8756a2d"
+  },
+  {
+    "path": "Client/UnityPlayer.dll",
+    "sha256": "e286bd7f01c45197d051325423b13df133d2ac315671eca2881e7936d251c6bd"
+  },
+  {
+    "path": "Client/D3D12/D3D12Core.dll",
+    "sha256": "625bd40005b1c3708695d5256ecf230d278e6b8edba5a88af70f3d91324f3052"
+  },
+  {
+    "path": "Client/Little Weeps_BurstDebugInformation_DoNotShip/Data/Plugins/x86_64/lib_burst_generated.txt",
+    "sha256": "c85abc453618770bcb6b4d97c1c6635c27a802f2a20ee3cf9db4dd015250deb2"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/app.info",
+    "sha256": "f058e26cd82677a4e3fa273a3b0a202bdac25092b789da009bfe4103297e9909"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/boot.config",
+    "sha256": "6fa104ce21da13fced5bbdd928bf680da2bc3b2950fc0a4d006579e524aa4ecb"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/globalgamemanagers",
+    "sha256": "f98bbe6de1e1344c32daa73de074072978d0b6f3a0ab3823e4f3b52bbb7ed55d"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/globalgamemanagers.assets",
+    "sha256": "0740553a7bc685a0014f634d1e494287d4973144dd19b923e82bc6495516d438"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/globalgamemanagers.assets.resS",
+    "sha256": "f2e891f1a2eca090fd71651b299b57c89b6f16599aee6dd338e290ba791e314b"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/level0",
+    "sha256": "d83ee212bed1ce3b183ad842b3bb58302ef7acdb2201d949b6ea6ac0fbbb126e"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/resources.assets",
+    "sha256": "71cf53ec7d756b3c667eb35731c8c4de4cb8fe1d7e93f6f3b0763357f9625192"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/resources.assets.resS",
+    "sha256": "d79a4e73e5f330d51683b1d909a233d321300ddc8398ba180102538faf9fe333"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/resources.resource",
+    "sha256": "fcce5a47ddb429abae37adb7b66847147d942b8cbded9d7204d39deb49137eab"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/RuntimeInitializeOnLoads.json",
+    "sha256": "42971153f498e5f04a6ed562da85e12a04c1305165cc54c2d524f2c0ad1c56ac"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/ScriptingAssemblies.json",
+    "sha256": "9dc14e6831b1c8b9c84674f0ef10c372136ed447b3fc32f0efe73b60ab3afaeb"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/sharedassets0.assets",
+    "sha256": "2d41202b6219bdc1e834b4b0e1034c0cc4543db551629a7922f0f4e9b3a623f3"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/sharedassets0.assets.resS",
+    "sha256": "393efe6399536384aa91bdfc4e64f244b4d3e1fbb6a4ff145c483ffee64ccb36"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/LittleWeeps.Adapters.dll",
+    "sha256": "612fd5e3a6df22f91d203e557ea0840cc4f13c9e42688a6560e66fe4858f1515"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/LittleWeeps.Client.dll",
+    "sha256": "4ccf53e254965c9e56c527346608d95c85035e9d46e3908a00039df54a06eb32"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/LittleWeeps.Core.dll",
+    "sha256": "ed209753e10f6b2fed0e796d11e1a18151fd58ea77e3c8894396bb0ae1220aed"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/LittleWeeps.NetworkProbe.dll",
+    "sha256": "7f7df520c086665b3e8a741849f14728d1a02789f32375292313876a6c2c43fd"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/LittleWeeps.Runtime.dll",
+    "sha256": "201b323ab87e21d40d2f5d45595b9516e2bde6c034e5e9f79fe22562c6728a98"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/MCPForUnity.Runtime.dll",
+    "sha256": "892cdff1e1f87d70364593b0df59908115e0bf033b58c5b9fd0e89ae2b3e761c"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Mono.Security.dll",
+    "sha256": "82df31404def10ffd69c09e3a8c454e76552f3a37675d1b7b8c743cfd3d1af6f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/mscorlib.dll",
+    "sha256": "194417662b72e9fdc29df44aa07fb693a9cf2194d84e327231f3eeff1104ae0f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/netstandard.dll",
+    "sha256": "6ae62e082dc494a2433984177f60ca4db5fae69b1f360a8b33754172b310b8c5"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Newtonsoft.Json.dll",
+    "sha256": "a56146202232958f46bd6a28b5a7da166aea123ee0d646735a46e5c341dfbf1f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.ComponentModel.Composition.dll",
+    "sha256": "9373a420101d4c674b9f74bce93a45c58ddb3548c130d9b65ab87235d0a4ed30"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Configuration.dll",
+    "sha256": "d3acb14b8ebaf7482d2d3e26e8c04685299e2b471a513a30508bd0cab8336354"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Core.dll",
+    "sha256": "ebf140bf5f8d49ccac20c14935625b0ae0a46c30aa4f90b2808f3b9678822470"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Data.DataSetExtensions.dll",
+    "sha256": "79a01061129709358567a9254684ba52ba66371e01e0354e7fa4852a9f62e59f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Data.dll",
+    "sha256": "5d0807269bfcf112aa844951232ef105bbb642abb1e14c2e78dd70fb9245e98a"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.dll",
+    "sha256": "9e8a5190797e35428b1ae9bce6d47d39a1dbc3e974f14239e44678913dc6194a"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Drawing.dll",
+    "sha256": "76dca8fbe098c285b03de79369f9f2aa141dec44de99ebcc0478c7e762024204"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.EnterpriseServices.dll",
+    "sha256": "d8a3d6c1929ec028793ff07df92781c03ebb38c63005d4c12c35e3116d04fcaf"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.IO.Compression.dll",
+    "sha256": "7370dc2d3a6f02dbda1a69ca596f2ae96fc464809b3bbca6071fc1fc1edfbb2d"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.IO.Compression.FileSystem.dll",
+    "sha256": "40ef91246d44d6c4d8a1505e1210b0c54963a12938ba0458959bb064d62f36f4"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Net.Http.dll",
+    "sha256": "c46d5b5dc68af8ce1b34e8ace4372b157e2e85ab63d6b5eea938ca71dc7fb064"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Numerics.dll",
+    "sha256": "74f6771aedd33262470e8e653fc0f4e04a659bcdadbeb44b2f8826fba7053f77"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Runtime.dll",
+    "sha256": "e0a7334b7ba419aaab6bd3bb6992d693e689341a9178172c9bf99c2aa6a085bd"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Runtime.Serialization.dll",
+    "sha256": "2aa92fb930200ddb3c9c3ffaaff39bd6cdc6d689f19614f6c3b84a15060800f0"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Security.dll",
+    "sha256": "95a29120e164e5bdb7ff5dcb2cb4641e5ea0aca7c1ad0854b0e9b2b0ff5abe2d"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.ServiceModel.Internals.dll",
+    "sha256": "6738a31088136d38a50354371feb83a4fd1558acca2a5f8b165c34a859e08c47"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Transactions.dll",
+    "sha256": "cfac784408e3b7da6c6e94ec04c162c6d902372fab19353c02aeda3464ce185f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Xml.dll",
+    "sha256": "f90799a0c38f3d45e390f9768ab467bf681a052e1b807f4c59fabef5f7edaffa"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/System.Xml.Linq.dll",
+    "sha256": "ed219710472b837fddf45cc73c912e04b4d6b8ca833ea074ec1f73bc00157b05"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.Burst.dll",
+    "sha256": "5aa3db107641ddaab529588fcb26b1ff627594879263ca22687794cbfdb05280"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.Burst.Unsafe.dll",
+    "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.Collections.dll",
+    "sha256": "ef2a6e08134595dc3fd5ed39b16ae24bee35f576f3740bed9dde6438c0b4bb81"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.Collections.LowLevel.ILSupport.dll",
+    "sha256": "ff50383f807f9692e4913b97e47d86fefcb8faa33d6d48cd3e3fd6fc7ffb448d"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.DedicatedServer.MultiplayerRoles.dll",
+    "sha256": "1dd8e40ced271276a800d9f43945db9f8823876ad37e4bc12264d018cf02eb49"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.InputSystem.dll",
+    "sha256": "2185acf4f6ccdc5905823387c5ccb3dee8a18292acfd3d0ced9ac54826bd135f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.InputSystem.ForUI.dll",
+    "sha256": "237a3029c82f67efaec645482d4a9e2ca82eedc17e19236973ecbb9c6234f441"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.InternalAPIEngineBridge.004.dll",
+    "sha256": "8af1afbe3fd9fec6f58107584c03da944f68d452f6703a2d38cdcfe469d1ab0c"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.Mathematics.dll",
+    "sha256": "4aa2c6f0520d4a71c807e1acc0eea80bdcb12f48e5ba5a673aa88baab652b4b1"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.Netcode.Runtime.dll",
+    "sha256": "f53908d6d75b3a95e1cdf3ed87f7aba603b020c97f06e5084648d0c50a6a70c4"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.Networking.Transport.dll",
+    "sha256": "dca77fcdb7b7ae944aea89418081bbfe6ea5af8599f5f914f101c7acbd18079e"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+    "sha256": "69c4996fc75e671404d8d62edd8509f72b6ff4514fbc2f78e67346e84c24b43f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Core.Runtime.dll",
+    "sha256": "8c1e2e6979fd6ad0763f3b760116e261f30016e8eb583fe89feb1f2935e2670f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Core.Runtime.Shared.dll",
+    "sha256": "bf1cec7761409d2a604dede68ef15ce32d20118f52543f04ef5197423362a8ba"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+    "sha256": "496d8cd3673fb04904c105f7c983fb7a86289f37f15171173b40d0fb0d567f19"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.GPUDriven.Runtime.dll",
+    "sha256": "d973444292c30bf844eb759ba17afa5dcdafbee3fa6ab292333d49e789f3f5ef"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+    "sha256": "320f0820d492e4751520e0bf5efff5d7ec0dda30286edae7cde0251c877c1ef6"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Universal.2D.Runtime.dll",
+    "sha256": "61ea7a318b203609e0618d5a4fe36fda148ffec9bcbbd7885d807a5614a612d2"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+    "sha256": "47d560c40892e30425b6491a7f81b3702f17aeaf4bd840bb30c79b7734fafb98"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll",
+    "sha256": "639bb27af65403b4c8f71930228b02e8879ad558f349b1c539d32fd00fcf0c05"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Universal.Shaders.dll",
+    "sha256": "4e032d65b6ca53e86d7a99ddca643f04ea0a32a223dd80f61ed4e6711dd9cc90"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.TextMeshPro.dll",
+    "sha256": "eb0ad0228c220983cba53002521bd0e99c10bf11fc04a8ba14d530c40becc7e7"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/Unity.UnifiedRayTracing.Runtime.dll",
+    "sha256": "47ef06f328b2f07f9fec34cd4b036561ecea09d44dd649c0adc5f8bae7db589f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.AccessibilityModule.dll",
+    "sha256": "8696f413204edde93e84a694f9b97ee913767b800e5463b5ae54b31d9f11ea46"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.AdaptivePerformanceModule.dll",
+    "sha256": "ef35bc98481f08e18c6b188d6d489424fa7843fb50afefef99b3ca4f17f65c71"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.AIModule.dll",
+    "sha256": "206be93a413d985c860879ee30eb7be2e4e2a67e05eaf9b63bf2c0b32d5703e4"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.AMDModule.dll",
+    "sha256": "1482374030f489785beb287c6927a6898e5ed2f7c10986cec3c2c701f922f5b2"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.AndroidJNIModule.dll",
+    "sha256": "78b1d42585ecca9c564a2910af811a462ecb2ed85f97e22e7aa4dc34666d0447"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.AnimationModule.dll",
+    "sha256": "8ee12ccefd59d4eb0da31eddff652d12ba073148f9d697def60eac1ed6d85364"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ARModule.dll",
+    "sha256": "d73176d48f88c7267e3a2bb1a4d931cb61d47d65c5524d762ffde38ebd6720a5"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.AssetBundleModule.dll",
+    "sha256": "2bdf92f5416ffc0e640abd02ffba06f6d3ec79b4a3c140a92a87272422e6445c"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.AudioModule.dll",
+    "sha256": "9c88acbb99b90e9bab8f3296308fac9a1e8601ffef06eb8f2033875b5bd3a7c2"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ClothModule.dll",
+    "sha256": "1fa1c6f44e2d8534389ca5fd114840252635a48aa75cac34b708294a0aab88b2"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ClusterInputModule.dll",
+    "sha256": "b520f32e97c02aae87d3c56826fa325458a0e2fb6d18bc680f0fbd09c6fffa73"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ClusterRendererModule.dll",
+    "sha256": "67c098fe0fd960185deb13ceeaf866ce60070d93da758c9650043e4bc0634512"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ContentLoadModule.dll",
+    "sha256": "a31cbab9601c8df5eebff84864f6020d3a3474916cb897faf280cb20b68a85c2"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.CoreModule.dll",
+    "sha256": "21eea6077caf212ff216995fac9b8df82b13d1675a994aa6988406edf719ad46"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.CrashReportingModule.dll",
+    "sha256": "985c6109484f1a6f54dd3c019303a767f10ced2e5c65fcc7763143bd3ffb07a5"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.DirectorModule.dll",
+    "sha256": "e6615dd58edb47226f7bb48bb3aec08397637a61db32155c00cf13fb3cf70b88"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.dll",
+    "sha256": "ec330a2f02ca0ee812f7854b084e0397786f4b4ad563663a839e81c80051ad41"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.DSPGraphModule.dll",
+    "sha256": "6c3ca42feb2ba18764757012d1de3d9f89a89363a4262fb0cc90e44d9ff8fe90"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.GameCenterModule.dll",
+    "sha256": "239eccccac234e462e640ef1c1ce32f338bf3f480d7a3f55cd6763588cedf67b"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.GIModule.dll",
+    "sha256": "ca439b535f07fe221275b9497fcb764ab07046a3c1babdab9ca89da45bccc152"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.GraphicsStateCollectionSerializerModule.dll",
+    "sha256": "20f942a4ede6784236ba251859137343933c084f95b69a43f407c2fb7f4d879f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.GridModule.dll",
+    "sha256": "9ee0ce3a14956319de66f1c9c94fa3fd453bfe07ac883710ec2988d197126b25"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.HierarchyCoreModule.dll",
+    "sha256": "00f6a00569fc4d0cdb3e4e832eeb6b50b6883dfb63cc7d0ef650c40ac0e37b10"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.HierarchyModule.dll",
+    "sha256": "202e84d89032dff0fa39b443ce61613d1034320aca68af3b061ab2444a391d63"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.HotReloadModule.dll",
+    "sha256": "25fc1cce86af026078409e37254ed5cf8511d1ed4defadc2c188b937322c9b27"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.IdentifiersModule.dll",
+    "sha256": "d0a49dc92d64e9ada467b396da6858733360f4d53ccd46095697653a56379660"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ImageConversionModule.dll",
+    "sha256": "ebf7e2d508f6b625238fb4c4a45868d5de5bda4e35475fb34b9265f12bc55645"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.IMGUIModule.dll",
+    "sha256": "b979d1421377eee75733c547b5ac6788cdc793147b146d5741ecb5a51e561db8"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.InputForUIModule.dll",
+    "sha256": "6f2a69d8fe516e0aca12de191806ae4e290f7e275eae941c6a55522622d71b72"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.InputLegacyModule.dll",
+    "sha256": "a51695c4ad55b937fc4f1421b4894b544a338e98019041a410c3d9057486669b"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.InputModule.dll",
+    "sha256": "a156d9cf98ebda106b1881955f4af934f728a4a56905fc60bd1c04f93325a2f6"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.InsightsModule.dll",
+    "sha256": "8dc2f2a3d9bc89155741ed092e428d2bba308a6a421964306565e0279b7d571c"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.JSONSerializeModule.dll",
+    "sha256": "c29ae0754a4bf1e46f014460f306d911c190ac26a4105cc54b4fcf73edca1393"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.LocalizationModule.dll",
+    "sha256": "ed4b84366f42c675e931984b89f6ff79195cadc1c7e16d890defdf9c88255d93"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.MarshallingModule.dll",
+    "sha256": "3934ccf5ec2463796b1dbeda99023ca59becb242446284515a10756889b9b38a"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.MultiplayerModule.dll",
+    "sha256": "da8f501e45e9e37994a795930b06214e9544fcf4cdb3608bfbf1b7a0d47d7632"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.NVIDIAModule.dll",
+    "sha256": "3de235f7a087abf5d734b13ea74ce372db500dc522e085c8400f42a0c6e35f31"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ParticleSystemModule.dll",
+    "sha256": "b0485a78d8a7ee1634a0c7542ee9349e80141872da28f29c6533cc1396e36aab"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.PerformanceReportingModule.dll",
+    "sha256": "2b98b835b88298c270dc24a1585275af096e57a7e0d149f83fc9181ce0da7e56"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.Physics2DModule.dll",
+    "sha256": "73d59989c27f971e4b8b0aa96c19d062d94bfdc3c7b2b9581e5e7cfec6e8a2a5"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.PhysicsBackendPhysXModule.dll",
+    "sha256": "9f7637dde44d45ec124010d40b2039c5f14b93e8cb44ccfc74cac490eeff84da"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.PhysicsModule.dll",
+    "sha256": "3403a2a4cb559ced937f87c2f206cb0389f14b59596531861409cca225d52111"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.PropertiesModule.dll",
+    "sha256": "3d9671eccb220dd078bf68c5b44bc8df04e368ac8893fd31901fa3bf3b360631"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.RenderAs2DModule.dll",
+    "sha256": "84bc191feea35c8e6a82210f7eb4b81b8f15cab54074509a68f070a2503105ef"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+    "sha256": "382449939cac3ca9b475209011a00d3bde46f631a32a86ea75716e6f5213a3c6"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ScreenCaptureModule.dll",
+    "sha256": "3d72c987547a9f2405a5bc830d746453372adab941a3a480849d7a72e3cc4800"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ShaderRuntimeModule.dll",
+    "sha256": "f3dcaaad29b47a6bb56501f590147b5d6f9387fbf9ca5704516d12683f9496b8"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.ShaderVariantAnalyticsModule.dll",
+    "sha256": "44a904974abe14177ceff29489ff0c30f5fae879c4047c4083d372e2a8cdd2cf"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.SharedInternalsModule.dll",
+    "sha256": "9181e63ce8487979499945ac9ed55a419cc6e1e321617746e02fc42bc8cd7d93"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.SpriteMaskModule.dll",
+    "sha256": "6f1e19a3e0685f246aa281c69f41991d5f9e4c6771c709cd0661c24ce5e0e0db"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.SpriteShapeModule.dll",
+    "sha256": "a048ebece412cac5f6f604603d282cfd73c8da6505fed922a164a53b6fc1f1f2"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.StreamingModule.dll",
+    "sha256": "a92ad052c8cc6132437379ebe5d1b1b18637d5e76a9c43b194ce9da9108af849"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.SubstanceModule.dll",
+    "sha256": "63fe18afe78efb0c437688b1978fde0936c9c315726484b10ac19d170648f5f0"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.SubsystemsModule.dll",
+    "sha256": "07a25a3da590ba6add760f329c158b61b0245e7b8971353c38861c392336d360"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.TerrainModule.dll",
+    "sha256": "be69bcf17a7d88f65fed942c3cb7ea2edff51162bf09954edb4eb745df16eee9"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.TerrainPhysicsModule.dll",
+    "sha256": "46e445fdef1334113588b2e0fc959a2e281385fd4076910a7199a07ded6f6369"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll",
+    "sha256": "c0beba1ee7c50fc8cf60f5776d6d930853c22a2fab9124bd1d12d90bfe996c3d"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll",
+    "sha256": "8ce9241a496c19e88a5be22f6434b51ce1360c9250d074b339564256be2cadad"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.TextRenderingModule.dll",
+    "sha256": "95c6d54280d8045f7f78c26e4ae86fe725f58f369a2d2831a8a68776b1e6845c"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.TilemapModule.dll",
+    "sha256": "b40978a46c28d2531d8f247715243296e32ed498e418bbc353f48140fdf7ec24"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.TLSModule.dll",
+    "sha256": "d8f5f3967bece650fece077ca24af91c5a7a7f00868680f32498e35d9aca413a"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UI.dll",
+    "sha256": "70dfa0370a95533d5ae0e862494f6320186dfd506f9bc0593e6216774000a92e"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UIElementsModule.dll",
+    "sha256": "02e526bf70a3e2853d003153386c967d143c73d5c06db74032b695452c215a75"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UIModule.dll",
+    "sha256": "8ee782979ee0b0162de07d52ba2e69b6763506c9b34c7f67c8ae7c95a953473b"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UmbraModule.dll",
+    "sha256": "4d684d6699f207069c49ab67b455fc1a1450e2174a5544652c008d3aa16085ba"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityAnalyticsCommonModule.dll",
+    "sha256": "db6431ceabc346af779eee9b6d3fe1a2e6a25c3d040e7b566fa1fbadfbbae9ac"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityAnalyticsModule.dll",
+    "sha256": "12403ba01c172798c27f8020f4aca78a06bcb88479e2695cbbae616d582139fb"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityConnectModule.dll",
+    "sha256": "5f9f98cff2bc281c7f9eb876e631c6750cebecc95454b675f796b5002fb5f9a8"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityConsentModule.dll",
+    "sha256": "0b0157200baa7055f3d67e541d49c8c29beccd688b00db842d695191714b2cfe"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityCurlModule.dll",
+    "sha256": "8c5562dee84ff7cb33b43e14f0293a0e5b8ba90dd8363876a63f96aa7ab02385"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+    "sha256": "b6819881c7dab7bee5ee1ff44c52484d8c9535ca42859a02b9690c1802162080"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll",
+    "sha256": "e06e3fd489f8bfbd8ba53b62f19a98a210ff96790e306f936ce2eb9bb12d2fd7"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestModule.dll",
+    "sha256": "482ef062512c968518763a323fd8be9697fe5a5e44d55f92023f91a2933979a5"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll",
+    "sha256": "9882d195ad4086c62ea0af0bd37cf4ad8cd66db2b888aea64db77d33bc8cf1c0"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll",
+    "sha256": "b10668e889d1b6784967591401bb8af4585141ef2b45654a365bc986def1562d"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.VectorGraphicsModule.dll",
+    "sha256": "0162e70b533369fbaebfa4b3188513c7527ce2202dccb5ca308ab20ceb1de92b"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.VehiclesModule.dll",
+    "sha256": "be76aebbc49d6c55d4ca34eb61eefe9c68b1ec5bc15464f9efb0b3d8272327d4"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.VFXModule.dll",
+    "sha256": "f19a1f744007e1989a0fff48c25953be63c0de1789f1ca95208e9515509fe14f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.VideoModule.dll",
+    "sha256": "95092c0e2543d8fb9eeb18f94e6cdd09e7a609de5d9e4aa6ee7fc72ec42e5702"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.VirtualTexturingModule.dll",
+    "sha256": "13415b602f03c1a2d79f48c94d31829ca73b8b1e5a319a2b5be088aaaa2f3248"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.VRModule.dll",
+    "sha256": "6fd2ce4a45f1b3edf41ff83d1c0995eb250cba7dab77584a0d520186251c675a"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.WindModule.dll",
+    "sha256": "9078a925aff96ff7d6be9c7e0ee13e2f6d241ceac5fe9c5a8b5ddae467408c37"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Managed/UnityEngine.XRModule.dll",
+    "sha256": "7ff2c97723d04ed0a5d9519dd68c87462a88073c1bdfcbb35a53809cf6a2c84f"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Plugins/x86_64/lib_burst_generated.dll",
+    "sha256": "621e5912ed4d184f4d7d4ea1b8789e46028ad98c29995975188dd346465a0a95"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Resources/unity default resources",
+    "sha256": "32b58bdb9cf090212b46a8ca7436dcdae89e4ef43e9d55a835233c21d1347734"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/Resources/unity_builtin_extra",
+    "sha256": "1aaf0d2a3f870903aba2596836425a590724df4c2bc046fc00d324e4858e928e"
+  },
+  {
+    "path": "Client/LittleWeepsNetwork_Data/StreamingAssets/Foundation/test-clip.mp4",
+    "sha256": "11d7eb3c92f0d044641a0b231e116cce7e11fcf3273df4dafd79151000bd01bf"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll",
+    "sha256": "d53bd0c9da4d5abd08208da6b8fcb816e2d3dc46f3891ea74783302ce80d9b05"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll",
+    "sha256": "c2da5caa404ff4ff9657051890ffeddf64129a6abc45d8471a131711c06084ed"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/browscap.ini",
+    "sha256": "4ddd50f31fb968f30bedefc253a46dc3f2890192d05cdaa9e0a64a056eee807e"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/config",
+    "sha256": "5776169973a26a387b8b3e5c0f2301a7ab9a6dd7c7d3efa22a96abc47fbf8662"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx",
+    "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/2.0/machine.config",
+    "sha256": "e91782a27fa39fc6c1d6ee8b08529f5d35052310d0006034b878eb04b8f2af30"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/2.0/settings.map",
+    "sha256": "49c6160f9d54af4270a3b4e997fc4a8301f79b9e2070118fa46ddbcbbc44f9a2"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/2.0/web.config",
+    "sha256": "cf2b54339e069b9e42f7d6795eecbf562c50c1011f4ca8f65f578fe52d97ff92"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser",
+    "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx",
+    "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.0/machine.config",
+    "sha256": "e60aec2c5115d65b3acb3c55ea21576dbd770f579166c017125571e46ae560ed"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.0/settings.map",
+    "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.0/web.config",
+    "sha256": "e38bb8cc68fe5b4edecdfd288d094b9e8ced7629039b2a347682aba0d8bd7492"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser",
+    "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx",
+    "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.5/machine.config",
+    "sha256": "ee950004b576fb28dc85f4b0435ed04bf96612de2e8b53be84d07afe85a0de6c"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.5/settings.map",
+    "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.5/web.config",
+    "sha256": "c4cbddd4fd9347b58cc5a72b36dc4ba1ad2bb699e65869d05cd3fb9865f0d824"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser",
+    "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+  },
+  {
+    "path": "Client/MonoBleedingEdge/etc/mono/mconfig/config.xml",
+    "sha256": "0c56e34c69124510fa8c19e7b4c2ca6c1c4ff460ae19f798dd0ca035809e396d"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork.exe",
+    "sha256": "991a441f87bef0398219d828fa592f74544257538735ad1a85f6cfd1ab44238a"
+  },
+  {
+    "path": "Server/UnityCrashHandler64.exe",
+    "sha256": "d4165d88f2e1a35343158151702263b1f2ff73095550f34e210cde57fd535229"
+  },
+  {
+    "path": "Server/UnityPlayer.dll",
+    "sha256": "248e7d904cd32d00e7ca05eb294d131df3147f22ee6a932f778b137d1b408138"
+  },
+  {
+    "path": "Server/D3D12/D3D12Core.dll",
+    "sha256": "625bd40005b1c3708695d5256ecf230d278e6b8edba5a88af70f3d91324f3052"
+  },
+  {
+    "path": "Server/Little Weeps_BurstDebugInformation_DoNotShip/Data/Plugins/x86_64/lib_burst_generated.txt",
+    "sha256": "c85abc453618770bcb6b4d97c1c6635c27a802f2a20ee3cf9db4dd015250deb2"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/app.info",
+    "sha256": "f058e26cd82677a4e3fa273a3b0a202bdac25092b789da009bfe4103297e9909"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/boot.config",
+    "sha256": "bce1816b369487bfaf236c4230373b98fa88ac31b2544e9b6195eaef3685aaa3"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/globalgamemanagers",
+    "sha256": "9d3fc3fb7884a6ef4a5abd107dd34cc9ee6c733dc707c6ee73793eff5f48d045"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/globalgamemanagers.assets",
+    "sha256": "929da8f37037bdb38ba23365709f8e79ed0cfe57eeb587a6b302eaa2e1aff992"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/level0",
+    "sha256": "f3d87a78f74ba79f343b5a778815a9f27735c31055c337f9856e31890e3ecb7e"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/resources.assets",
+    "sha256": "009dee46d3d06c1055dcc98ab1f37c07c2970ab070921517ca0d33b34da2d9bf"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/resources.resource",
+    "sha256": "fcce5a47ddb429abae37adb7b66847147d942b8cbded9d7204d39deb49137eab"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/RuntimeInitializeOnLoads.json",
+    "sha256": "42971153f498e5f04a6ed562da85e12a04c1305165cc54c2d524f2c0ad1c56ac"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/ScriptingAssemblies.json",
+    "sha256": "32c7a12299351fdc27e1c85083ef51c52ccfeb14afa086b10f13385c4eedcdfd"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/sharedassets0.assets",
+    "sha256": "051a5a62353e209f04e3e3a66edab73bb531c0d8b6e9eb22a7ab1414ede3b48d"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/LittleWeeps.Adapters.dll",
+    "sha256": "5af69e072d00d90475893d3dd1afe6b493181fdd0ecbba4bcdd14d1d4d3b1066"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/LittleWeeps.Client.dll",
+    "sha256": "fa90b95ea4ad4af40bd01134ce6f9eef505743c3fb5d1866cc5fda6e4279ca6f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/LittleWeeps.Core.dll",
+    "sha256": "340dfe4364d06a97019455fc57164fccb55f6d8c9e1b7a1d1e3dd505b5936bc5"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/LittleWeeps.NetworkProbe.dll",
+    "sha256": "d96b659126dc3982205fb6219a977c19cba31e71d18bd8c85d8b6c3403cd2ea3"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/LittleWeeps.Runtime.dll",
+    "sha256": "608491a4f65b3d055951f1eefeb9616f410b16690ade6860bf09f4e39beef924"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/LittleWeeps.Server.dll",
+    "sha256": "9ca88497633dc614d4f62f013ca9dd57c2c0d83f0aa84e8f1292e0d0d3cb1654"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/MCPForUnity.Runtime.dll",
+    "sha256": "6d9564c69bb3cddea22b3da90b5d214006d07bcd2d9f27f2d4a03faf580491e4"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Mono.Security.dll",
+    "sha256": "82df31404def10ffd69c09e3a8c454e76552f3a37675d1b7b8c743cfd3d1af6f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/mscorlib.dll",
+    "sha256": "194417662b72e9fdc29df44aa07fb693a9cf2194d84e327231f3eeff1104ae0f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/netstandard.dll",
+    "sha256": "6ae62e082dc494a2433984177f60ca4db5fae69b1f360a8b33754172b310b8c5"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Newtonsoft.Json.dll",
+    "sha256": "a56146202232958f46bd6a28b5a7da166aea123ee0d646735a46e5c341dfbf1f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.ComponentModel.Composition.dll",
+    "sha256": "9373a420101d4c674b9f74bce93a45c58ddb3548c130d9b65ab87235d0a4ed30"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Configuration.dll",
+    "sha256": "d3acb14b8ebaf7482d2d3e26e8c04685299e2b471a513a30508bd0cab8336354"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Core.dll",
+    "sha256": "ebf140bf5f8d49ccac20c14935625b0ae0a46c30aa4f90b2808f3b9678822470"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Data.DataSetExtensions.dll",
+    "sha256": "79a01061129709358567a9254684ba52ba66371e01e0354e7fa4852a9f62e59f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Data.dll",
+    "sha256": "5d0807269bfcf112aa844951232ef105bbb642abb1e14c2e78dd70fb9245e98a"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.dll",
+    "sha256": "9e8a5190797e35428b1ae9bce6d47d39a1dbc3e974f14239e44678913dc6194a"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Drawing.dll",
+    "sha256": "76dca8fbe098c285b03de79369f9f2aa141dec44de99ebcc0478c7e762024204"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.EnterpriseServices.dll",
+    "sha256": "d8a3d6c1929ec028793ff07df92781c03ebb38c63005d4c12c35e3116d04fcaf"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.IO.Compression.dll",
+    "sha256": "7370dc2d3a6f02dbda1a69ca596f2ae96fc464809b3bbca6071fc1fc1edfbb2d"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.IO.Compression.FileSystem.dll",
+    "sha256": "40ef91246d44d6c4d8a1505e1210b0c54963a12938ba0458959bb064d62f36f4"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Net.Http.dll",
+    "sha256": "c46d5b5dc68af8ce1b34e8ace4372b157e2e85ab63d6b5eea938ca71dc7fb064"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Numerics.dll",
+    "sha256": "74f6771aedd33262470e8e653fc0f4e04a659bcdadbeb44b2f8826fba7053f77"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Runtime.dll",
+    "sha256": "e0a7334b7ba419aaab6bd3bb6992d693e689341a9178172c9bf99c2aa6a085bd"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Runtime.Serialization.dll",
+    "sha256": "2aa92fb930200ddb3c9c3ffaaff39bd6cdc6d689f19614f6c3b84a15060800f0"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Security.dll",
+    "sha256": "95a29120e164e5bdb7ff5dcb2cb4641e5ea0aca7c1ad0854b0e9b2b0ff5abe2d"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.ServiceModel.Internals.dll",
+    "sha256": "6738a31088136d38a50354371feb83a4fd1558acca2a5f8b165c34a859e08c47"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Transactions.dll",
+    "sha256": "cfac784408e3b7da6c6e94ec04c162c6d902372fab19353c02aeda3464ce185f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Xml.dll",
+    "sha256": "f90799a0c38f3d45e390f9768ab467bf681a052e1b807f4c59fabef5f7edaffa"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/System.Xml.Linq.dll",
+    "sha256": "ed219710472b837fddf45cc73c912e04b4d6b8ca833ea074ec1f73bc00157b05"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.Burst.dll",
+    "sha256": "529f3e973d40e3f298a0b6358d819cdb1c157ef4a83ac7903680e8d539e82018"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.Burst.Unsafe.dll",
+    "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.Collections.dll",
+    "sha256": "c36a4d35ca871b562b3e55aa965b7ec3b547944ef97c985c04f7932495b42c8c"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.Collections.LowLevel.ILSupport.dll",
+    "sha256": "ff50383f807f9692e4913b97e47d86fefcb8faa33d6d48cd3e3fd6fc7ffb448d"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.DedicatedServer.MultiplayerRoles.dll",
+    "sha256": "f82025909fcc2f7294ad041cce2f22388e7eb4a489d141f7af7622482bfaa003"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.InputSystem.dll",
+    "sha256": "b475cb15f94fa37bacfb16cb0c53c16bef45f0434d2b41e6787fd2b27ada1c64"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.InputSystem.ForUI.dll",
+    "sha256": "75fdbc48a766379c14d9cb30444d74273f76cb47747af0a85935fd31ec3d55eb"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.InternalAPIEngineBridge.004.dll",
+    "sha256": "f2219f9c92ccb21f96a6539387dda446092656251ba9694f8a0b59f59ad8ea20"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.Mathematics.dll",
+    "sha256": "63cf1f07115889523fcf094cf50793060143ed0e58510045573a64242c21edd2"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.Netcode.Runtime.dll",
+    "sha256": "f9db6688ad8d7c50d1c0cb2d1a0818fdb506b032f01a3879086955b33c237c37"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.Networking.Transport.dll",
+    "sha256": "e4218e4aa4e7a6424fbf20d1f2f3804199d1735568b6611faaa2e31bdb040413"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+    "sha256": "034b85d226df08f9ab48436aadb07c87457d84e32b9a70f417525b2da86075d5"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Core.Runtime.dll",
+    "sha256": "5fda55027a0126515cbbb259cb0c4dcfb6da45379598f151d5f4606de6007e31"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Core.Runtime.Shared.dll",
+    "sha256": "ccbb1d0f41db1630559428be64e5262133f566173bfe7a5d29ab460f2c55dfbc"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+    "sha256": "c1bb16ab5e83bae67def4cf8c2b7e88a988ab5d4140e881c908dda6d7247629d"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.GPUDriven.Runtime.dll",
+    "sha256": "de9fb0a09fe50163825ee3901da7c078bd0c30136480a27a2b34d309221a5f3e"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+    "sha256": "58c43adea00a0883a92eeaf4ae2d6ecd7bee0c5ec50b9ecebc1d4d3722422975"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Universal.2D.Runtime.dll",
+    "sha256": "7cee908fed5ef45a3c73f3f13adc282425d2fe2a0f7435567371ed4b536c32c8"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+    "sha256": "2ea6969e32da11477e85f56833b9e2d1a64f4d777e0a48e65345372fc9d14e29"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll",
+    "sha256": "6043c4007359dc5d6927b5e060d141e5050bcb99fcc3d54da3d1b27a69dca397"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.RenderPipelines.Universal.Shaders.dll",
+    "sha256": "0c7555c8224559a4c49df2c748ecbca09443063c6282708b03150051d81c3716"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.TextMeshPro.dll",
+    "sha256": "8afeac018f822ea721eb8c0a5b506488efe95982bba073f32bc2264518641e43"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/Unity.UnifiedRayTracing.Runtime.dll",
+    "sha256": "314801be469af90b312e931d1186ef013e22522e8ce4ee953cdd8054bec4a742"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.AccessibilityModule.dll",
+    "sha256": "8696f413204edde93e84a694f9b97ee913767b800e5463b5ae54b31d9f11ea46"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.AdaptivePerformanceModule.dll",
+    "sha256": "ef35bc98481f08e18c6b188d6d489424fa7843fb50afefef99b3ca4f17f65c71"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.AIModule.dll",
+    "sha256": "206be93a413d985c860879ee30eb7be2e4e2a67e05eaf9b63bf2c0b32d5703e4"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.AMDModule.dll",
+    "sha256": "1482374030f489785beb287c6927a6898e5ed2f7c10986cec3c2c701f922f5b2"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.AndroidJNIModule.dll",
+    "sha256": "78b1d42585ecca9c564a2910af811a462ecb2ed85f97e22e7aa4dc34666d0447"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.AnimationModule.dll",
+    "sha256": "8ee12ccefd59d4eb0da31eddff652d12ba073148f9d697def60eac1ed6d85364"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ARModule.dll",
+    "sha256": "d73176d48f88c7267e3a2bb1a4d931cb61d47d65c5524d762ffde38ebd6720a5"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.AssetBundleModule.dll",
+    "sha256": "2bdf92f5416ffc0e640abd02ffba06f6d3ec79b4a3c140a92a87272422e6445c"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.AudioModule.dll",
+    "sha256": "9c88acbb99b90e9bab8f3296308fac9a1e8601ffef06eb8f2033875b5bd3a7c2"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ClothModule.dll",
+    "sha256": "1fa1c6f44e2d8534389ca5fd114840252635a48aa75cac34b708294a0aab88b2"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ClusterInputModule.dll",
+    "sha256": "b520f32e97c02aae87d3c56826fa325458a0e2fb6d18bc680f0fbd09c6fffa73"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ClusterRendererModule.dll",
+    "sha256": "67c098fe0fd960185deb13ceeaf866ce60070d93da758c9650043e4bc0634512"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ContentLoadModule.dll",
+    "sha256": "a31cbab9601c8df5eebff84864f6020d3a3474916cb897faf280cb20b68a85c2"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.CoreModule.dll",
+    "sha256": "21eea6077caf212ff216995fac9b8df82b13d1675a994aa6988406edf719ad46"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.CrashReportingModule.dll",
+    "sha256": "985c6109484f1a6f54dd3c019303a767f10ced2e5c65fcc7763143bd3ffb07a5"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.DirectorModule.dll",
+    "sha256": "e6615dd58edb47226f7bb48bb3aec08397637a61db32155c00cf13fb3cf70b88"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.dll",
+    "sha256": "ec330a2f02ca0ee812f7854b084e0397786f4b4ad563663a839e81c80051ad41"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.DSPGraphModule.dll",
+    "sha256": "6c3ca42feb2ba18764757012d1de3d9f89a89363a4262fb0cc90e44d9ff8fe90"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.GameCenterModule.dll",
+    "sha256": "239eccccac234e462e640ef1c1ce32f338bf3f480d7a3f55cd6763588cedf67b"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.GIModule.dll",
+    "sha256": "ca439b535f07fe221275b9497fcb764ab07046a3c1babdab9ca89da45bccc152"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.GraphicsStateCollectionSerializerModule.dll",
+    "sha256": "20f942a4ede6784236ba251859137343933c084f95b69a43f407c2fb7f4d879f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.GridModule.dll",
+    "sha256": "9ee0ce3a14956319de66f1c9c94fa3fd453bfe07ac883710ec2988d197126b25"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.HierarchyCoreModule.dll",
+    "sha256": "00f6a00569fc4d0cdb3e4e832eeb6b50b6883dfb63cc7d0ef650c40ac0e37b10"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.HierarchyModule.dll",
+    "sha256": "202e84d89032dff0fa39b443ce61613d1034320aca68af3b061ab2444a391d63"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.HotReloadModule.dll",
+    "sha256": "25fc1cce86af026078409e37254ed5cf8511d1ed4defadc2c188b937322c9b27"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.IdentifiersModule.dll",
+    "sha256": "d0a49dc92d64e9ada467b396da6858733360f4d53ccd46095697653a56379660"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ImageConversionModule.dll",
+    "sha256": "ebf7e2d508f6b625238fb4c4a45868d5de5bda4e35475fb34b9265f12bc55645"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.IMGUIModule.dll",
+    "sha256": "b979d1421377eee75733c547b5ac6788cdc793147b146d5741ecb5a51e561db8"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.InputForUIModule.dll",
+    "sha256": "6f2a69d8fe516e0aca12de191806ae4e290f7e275eae941c6a55522622d71b72"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.InputLegacyModule.dll",
+    "sha256": "a51695c4ad55b937fc4f1421b4894b544a338e98019041a410c3d9057486669b"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.InputModule.dll",
+    "sha256": "a156d9cf98ebda106b1881955f4af934f728a4a56905fc60bd1c04f93325a2f6"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.InsightsModule.dll",
+    "sha256": "8dc2f2a3d9bc89155741ed092e428d2bba308a6a421964306565e0279b7d571c"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.JSONSerializeModule.dll",
+    "sha256": "c29ae0754a4bf1e46f014460f306d911c190ac26a4105cc54b4fcf73edca1393"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.LocalizationModule.dll",
+    "sha256": "ed4b84366f42c675e931984b89f6ff79195cadc1c7e16d890defdf9c88255d93"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.MarshallingModule.dll",
+    "sha256": "3934ccf5ec2463796b1dbeda99023ca59becb242446284515a10756889b9b38a"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.MultiplayerModule.dll",
+    "sha256": "da8f501e45e9e37994a795930b06214e9544fcf4cdb3608bfbf1b7a0d47d7632"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.NVIDIAModule.dll",
+    "sha256": "3de235f7a087abf5d734b13ea74ce372db500dc522e085c8400f42a0c6e35f31"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ParticleSystemModule.dll",
+    "sha256": "b0485a78d8a7ee1634a0c7542ee9349e80141872da28f29c6533cc1396e36aab"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.PerformanceReportingModule.dll",
+    "sha256": "2b98b835b88298c270dc24a1585275af096e57a7e0d149f83fc9181ce0da7e56"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.Physics2DModule.dll",
+    "sha256": "73d59989c27f971e4b8b0aa96c19d062d94bfdc3c7b2b9581e5e7cfec6e8a2a5"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.PhysicsBackendPhysXModule.dll",
+    "sha256": "9f7637dde44d45ec124010d40b2039c5f14b93e8cb44ccfc74cac490eeff84da"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.PhysicsModule.dll",
+    "sha256": "3403a2a4cb559ced937f87c2f206cb0389f14b59596531861409cca225d52111"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.PropertiesModule.dll",
+    "sha256": "3d9671eccb220dd078bf68c5b44bc8df04e368ac8893fd31901fa3bf3b360631"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.RenderAs2DModule.dll",
+    "sha256": "84bc191feea35c8e6a82210f7eb4b81b8f15cab54074509a68f070a2503105ef"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+    "sha256": "382449939cac3ca9b475209011a00d3bde46f631a32a86ea75716e6f5213a3c6"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ScreenCaptureModule.dll",
+    "sha256": "3d72c987547a9f2405a5bc830d746453372adab941a3a480849d7a72e3cc4800"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ShaderRuntimeModule.dll",
+    "sha256": "f3dcaaad29b47a6bb56501f590147b5d6f9387fbf9ca5704516d12683f9496b8"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.ShaderVariantAnalyticsModule.dll",
+    "sha256": "44a904974abe14177ceff29489ff0c30f5fae879c4047c4083d372e2a8cdd2cf"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.SharedInternalsModule.dll",
+    "sha256": "9181e63ce8487979499945ac9ed55a419cc6e1e321617746e02fc42bc8cd7d93"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.SpriteMaskModule.dll",
+    "sha256": "6f1e19a3e0685f246aa281c69f41991d5f9e4c6771c709cd0661c24ce5e0e0db"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.SpriteShapeModule.dll",
+    "sha256": "a048ebece412cac5f6f604603d282cfd73c8da6505fed922a164a53b6fc1f1f2"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.StreamingModule.dll",
+    "sha256": "a92ad052c8cc6132437379ebe5d1b1b18637d5e76a9c43b194ce9da9108af849"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.SubstanceModule.dll",
+    "sha256": "63fe18afe78efb0c437688b1978fde0936c9c315726484b10ac19d170648f5f0"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.SubsystemsModule.dll",
+    "sha256": "07a25a3da590ba6add760f329c158b61b0245e7b8971353c38861c392336d360"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.TerrainModule.dll",
+    "sha256": "be69bcf17a7d88f65fed942c3cb7ea2edff51162bf09954edb4eb745df16eee9"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.TerrainPhysicsModule.dll",
+    "sha256": "46e445fdef1334113588b2e0fc959a2e281385fd4076910a7199a07ded6f6369"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll",
+    "sha256": "c0beba1ee7c50fc8cf60f5776d6d930853c22a2fab9124bd1d12d90bfe996c3d"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll",
+    "sha256": "8ce9241a496c19e88a5be22f6434b51ce1360c9250d074b339564256be2cadad"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.TextRenderingModule.dll",
+    "sha256": "95c6d54280d8045f7f78c26e4ae86fe725f58f369a2d2831a8a68776b1e6845c"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.TilemapModule.dll",
+    "sha256": "b40978a46c28d2531d8f247715243296e32ed498e418bbc353f48140fdf7ec24"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.TLSModule.dll",
+    "sha256": "d8f5f3967bece650fece077ca24af91c5a7a7f00868680f32498e35d9aca413a"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UI.dll",
+    "sha256": "6509471074b2fa6459666d3e2673f8317f5dab00e99aeadf2fd84082ecef1378"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UIElementsModule.dll",
+    "sha256": "02e526bf70a3e2853d003153386c967d143c73d5c06db74032b695452c215a75"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UIModule.dll",
+    "sha256": "8ee782979ee0b0162de07d52ba2e69b6763506c9b34c7f67c8ae7c95a953473b"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UmbraModule.dll",
+    "sha256": "4d684d6699f207069c49ab67b455fc1a1450e2174a5544652c008d3aa16085ba"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityAnalyticsCommonModule.dll",
+    "sha256": "db6431ceabc346af779eee9b6d3fe1a2e6a25c3d040e7b566fa1fbadfbbae9ac"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityAnalyticsModule.dll",
+    "sha256": "12403ba01c172798c27f8020f4aca78a06bcb88479e2695cbbae616d582139fb"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityConnectModule.dll",
+    "sha256": "5f9f98cff2bc281c7f9eb876e631c6750cebecc95454b675f796b5002fb5f9a8"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityConsentModule.dll",
+    "sha256": "0b0157200baa7055f3d67e541d49c8c29beccd688b00db842d695191714b2cfe"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityCurlModule.dll",
+    "sha256": "8c5562dee84ff7cb33b43e14f0293a0e5b8ba90dd8363876a63f96aa7ab02385"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+    "sha256": "b6819881c7dab7bee5ee1ff44c52484d8c9535ca42859a02b9690c1802162080"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll",
+    "sha256": "e06e3fd489f8bfbd8ba53b62f19a98a210ff96790e306f936ce2eb9bb12d2fd7"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestModule.dll",
+    "sha256": "482ef062512c968518763a323fd8be9697fe5a5e44d55f92023f91a2933979a5"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll",
+    "sha256": "9882d195ad4086c62ea0af0bd37cf4ad8cd66db2b888aea64db77d33bc8cf1c0"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll",
+    "sha256": "b10668e889d1b6784967591401bb8af4585141ef2b45654a365bc986def1562d"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.VectorGraphicsModule.dll",
+    "sha256": "0162e70b533369fbaebfa4b3188513c7527ce2202dccb5ca308ab20ceb1de92b"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.VehiclesModule.dll",
+    "sha256": "be76aebbc49d6c55d4ca34eb61eefe9c68b1ec5bc15464f9efb0b3d8272327d4"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.VFXModule.dll",
+    "sha256": "f19a1f744007e1989a0fff48c25953be63c0de1789f1ca95208e9515509fe14f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.VideoModule.dll",
+    "sha256": "95092c0e2543d8fb9eeb18f94e6cdd09e7a609de5d9e4aa6ee7fc72ec42e5702"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.VirtualTexturingModule.dll",
+    "sha256": "13415b602f03c1a2d79f48c94d31829ca73b8b1e5a319a2b5be088aaaa2f3248"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.VRModule.dll",
+    "sha256": "6fd2ce4a45f1b3edf41ff83d1c0995eb250cba7dab77584a0d520186251c675a"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.WindModule.dll",
+    "sha256": "9078a925aff96ff7d6be9c7e0ee13e2f6d241ceac5fe9c5a8b5ddae467408c37"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Managed/UnityEngine.XRModule.dll",
+    "sha256": "7ff2c97723d04ed0a5d9519dd68c87462a88073c1bdfcbb35a53809cf6a2c84f"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Plugins/x86_64/lib_burst_generated.dll",
+    "sha256": "25074306fec0954cb0ea475cdda6993e7f73f26b531fb072ebe3fe8b389c24d3"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/Resources/unity default resources",
+    "sha256": "32b58bdb9cf090212b46a8ca7436dcdae89e4ef43e9d55a835233c21d1347734"
+  },
+  {
+    "path": "Server/LittleWeepsNetwork_Data/StreamingAssets/Foundation/test-clip.mp4",
+    "sha256": "11d7eb3c92f0d044641a0b231e116cce7e11fcf3273df4dafd79151000bd01bf"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll",
+    "sha256": "d1ad4869e6077ebe3590906f6cccfa37b15ad26b9e5c5962344a486f80def231"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll",
+    "sha256": "7bc749697e8dc8732ac28e6597150720aaf3105bd719f8e94d54a1f7df53029c"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/browscap.ini",
+    "sha256": "4ddd50f31fb968f30bedefc253a46dc3f2890192d05cdaa9e0a64a056eee807e"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/config",
+    "sha256": "5776169973a26a387b8b3e5c0f2301a7ab9a6dd7c7d3efa22a96abc47fbf8662"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx",
+    "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/2.0/machine.config",
+    "sha256": "e91782a27fa39fc6c1d6ee8b08529f5d35052310d0006034b878eb04b8f2af30"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/2.0/settings.map",
+    "sha256": "49c6160f9d54af4270a3b4e997fc4a8301f79b9e2070118fa46ddbcbbc44f9a2"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/2.0/web.config",
+    "sha256": "cf2b54339e069b9e42f7d6795eecbf562c50c1011f4ca8f65f578fe52d97ff92"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser",
+    "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx",
+    "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.0/machine.config",
+    "sha256": "e60aec2c5115d65b3acb3c55ea21576dbd770f579166c017125571e46ae560ed"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.0/settings.map",
+    "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.0/web.config",
+    "sha256": "e38bb8cc68fe5b4edecdfd288d094b9e8ced7629039b2a347682aba0d8bd7492"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser",
+    "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx",
+    "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.5/machine.config",
+    "sha256": "ee950004b576fb28dc85f4b0435ed04bf96612de2e8b53be84d07afe85a0de6c"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.5/settings.map",
+    "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.5/web.config",
+    "sha256": "c4cbddd4fd9347b58cc5a72b36dc4ba1ad2bb699e65869d05cd3fb9865f0d824"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser",
+    "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+  },
+  {
+    "path": "Server/MonoBleedingEdge/etc/mono/mconfig/config.xml",
+    "sha256": "0c56e34c69124510fa8c19e7b4c2ca6c1c4ff460ae19f798dd0ca035809e396d"
+  }
+]

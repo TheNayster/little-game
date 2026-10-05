@@ -375,9 +375,13 @@ namespace LittleWeeps.Core
         public SoloResult Apply(SoloCommand c,string[] connectedPlayers=null)
         {
             SoloResult Reject(string reason) => new SoloResult(false, reason, Revision);
+            // Sandcastle attachments use bounded local art coordinates; ground
+            // props use its pit (which extends past the walking floor's y=500).
+            // Every unrelated command retains ordinary world-area validation.
             if (c == null || !Id(c.requestId) || !Id(c.actor) || !Enum.IsDefined(typeof(SoloAction), c.action) ||
                 c.item == null || c.target == null || c.value == null || c.item.Length > 128 || c.target.Length > 128 || c.value.Length > 128 ||
-                c.item.Contains("|") || c.target.Contains("|") || c.value.Contains("|") || !ValidArea(c.zone,state.schema) || c.visit<0 || !WorldLayout.Position(c.zone,state.schema,c.x,c.y)) return Reject("invalid-command");
+                c.item.Contains("|") || c.target.Contains("|") || c.value.Contains("|") || !ValidArea(c.zone,state.schema) || c.visit<0 ||
+                !(c.action==SoloAction.Sandpit && (c.value=="decorate" || c.value=="decor-replace") ? KeepyRules.Finite(c.x) && KeepyRules.Finite(c.y) && Math.Abs(c.x)<=200 && c.y>=-120 && c.y<=300 : c.action==SoloAction.Sandpit && c.value=="ground-decorate" ? DaycareSandpit.Inside(c.x,c.y,28,28) : WorldLayout.Position(c.zone,state.schema,c.x,c.y))) return Reject("invalid-command");
             var previous = state.receipts.FirstOrDefault(r => r.requestId == c.requestId);
             if (previous != null) return previous.fingerprint == c.Fingerprint() ? new SoloResult(true, previous.outcome, previous.revision, true) : Reject("request-id-reused");
             var player = state.players.FirstOrDefault(p => p.id == c.actor);

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "build": 462,
+  "actualSimultaneousClients": 4,
+  "checks": [
+    "Four actual native clients contribute distinct windows and flags on one wall without overwriting",
+    "Several shells/pebbles stay on supported piece surfaces and independent open sand",
+    "Both wall/gate orientations support varied props and leave open arches clear",
+    "Actual phone drag/preview, cancelled touch, UI release and boundary tap preserve work",
+    "Competing overlap and exact command redelivery yield one prop and four converged clients",
+    "Actual owner Move keeps piece-relative decorations and ground positions independent",
+    "Independent departure/reconnect retains positions while three builders continue",
+    "Native server checkpoint reopening retains stable decoration IDs and exact saved positions",
+    "Native creator/owner permissions and ground Remove confirmation protect others\u2019 work",
+    "Native format3 migration retains every piece field, all six visible anchors and unrelated world data",
+    "Four actual explicit reset votes clear new ground/attached state; decline preserves it"
+  ],
+  "runtimeErrors": [],
+  "recording": "actual-flexible-decoration-silent.mp4",
+  "physicalDeviceRun": false,
+  "liveDataModified": false
+}

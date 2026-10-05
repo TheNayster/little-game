@@ -18,6 +18,14 @@ namespace LittleWeeps.EditorTools
             SeagullJsonTests.Run();ShoreJsonTests.Run();
             AdventureRepairJsonTests.Run();
             WaveRideJsonTests.Run();SandpitJsonTests.Run();TreasureJsonTests.Run();NpcPresentationTests.Run();VetRuleTests.Run();DaycarePlayTests.Run();
+            BuildWindows();
+        }
+        // Focused local verification uses identical release binaries/profiles.
+        // Default Windows keeps its existing whole-game prebuild checks. This
+        // entry neither claims those checks passed nor deploys an installed app.
+        public static void SandcastleWindows(){SandpitJsonTests.Run();BuildWindows();}
+        private static void BuildWindows()
+        {
             const string scenePath="Assets/FamilyPlayset/Scenes/FamilyNetwork.unity";
             if(!File.Exists(scenePath))
             {

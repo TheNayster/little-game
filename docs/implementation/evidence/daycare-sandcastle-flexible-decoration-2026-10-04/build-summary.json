@@ -1,0 +1,31 @@
+{
+    "utc": "2026-10-05T02:59:50.7793281Z",
+    "contract": 17,
+    "content": 71,
+    "schema": 53,
+    "gardenPresentation": true,
+    "builds": [
+        {
+            "role": "Server",
+            "version": "0.0.462",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/PC Family Server.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.462\\Server\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": true
+        },
+        {
+            "role": "Client",
+            "version": "0.0.462",
+            "unity": "6000.3.24f1",
+            "profile": "Assets/BuildProfiles/Windows Family Game.asset",
+            "result": "Succeeded",
+            "output": "C:\\Users\\sephi\\Desktop\\Little weeps game\\Builds\\NetworkProbe\\G3-0.0.462\\Client\\LittleWeepsNetwork.exe",
+            "errors": 0,
+            "warnings": 0,
+            "dedicatedServer": false
+        }
+    ]
+}

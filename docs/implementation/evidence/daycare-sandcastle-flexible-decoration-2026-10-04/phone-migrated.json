@@ -1,0 +1,1162 @@
+{
+  "serial": 7,
+  "visiblePlayers": 4,
+  "passed": true,
+  "ready": true,
+  "pending": false,
+  "connected": true,
+  "menuOpen": false,
+  "shared": true,
+  "error": "",
+  "build": "0.0.462",
+  "actor": "player-1",
+  "feedback": "Drag the bucket to the tap, then to the plant.",
+  "dragging": "",
+  "zone": "daycare",
+  "screenWidth": 1280,
+  "screenHeight": 592,
+  "safeArea": {
+    "serializedVersion": "2",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1280.0,
+    "height": 592.0
+  },
+  "controlsInSafeArea": true,
+  "activeCharacterVisible": true,
+  "character": "bluey",
+  "controls": [
+    {
+      "name": "Menu",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1146.800048828125,
+        "y": 527.6199951171875,
+        "width": 118.39990234375,
+        "height": 47.3599853515625
+      },
+      "enabled": true
+    },
+    {
+      "name": "Decorate",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 931.3263549804688,
+        "y": 13.709468841552734,
+        "width": 109.05267333984375,
+        "height": 68.54737854003906
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 1",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 480.6605529785156,
+        "y": 316.7895812988281,
+        "width": 176.97683715820312,
+        "height": 56.7073974609375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Optional teacher help",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 995.199951171875,
+        "y": 464.25262451171875,
+        "width": 68.54736328125,
+        "height": 49.8526611328125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Square tower",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 399.7726135253906,
+        "y": 12.774731636047363,
+        "width": 115.28421020507812,
+        "height": 70.41683959960938
+      },
+      "enabled": true
+    },
+    {
+      "name": "Characters",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 1170.47998046875,
+        "y": 31.81999969482422,
+        "width": 88.800048828125,
+        "height": 88.80000305175781
+      },
+      "enabled": true
+    },
+    {
+      "name": "Family reset",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 990.5262451171875,
+        "y": 522.8294677734375,
+        "width": 77.894775390625,
+        "height": 49.8526611328125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 2",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 563.7763671875,
+        "y": 204.4886016845703,
+        "width": 84.74951171875,
+        "height": 87.24211120605469
+      },
+      "enabled": true
+    },
+    {
+      "name": "Wall",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 528.766357421875,
+        "y": 12.774731636047363,
+        "width": 115.2841796875,
+        "height": 70.41683959960938
+      },
+      "enabled": true
+    },
+    {
+      "name": "Worlds",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 31.819963455200195,
+        "y": 507.6399841308594,
+        "width": 62.160003662109375,
+        "height": 62.160003662109375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Gate",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 657.760009765625,
+        "y": 12.774731636047363,
+        "width": 115.2841796875,
+        "height": 70.41683959960938
+      },
+      "enabled": true
+    },
+    {
+      "name": "Round tower",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 270.7789306640625,
+        "y": 12.774731636047363,
+        "width": 115.28424072265625,
+        "height": 70.41683959960938
+      },
+      "enabled": true
+    },
+    {
+      "name": "Leave sandpit",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 216.25262451171875,
+        "y": 522.8294677734375,
+        "width": 68.54736328125,
+        "height": 49.8526611328125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Ask Calypso",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 621.39990234375,
+        "y": 244.57000732421875,
+        "width": 162.800048828125,
+        "height": 218.29998779296875
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 6",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 837.84375,
+        "y": 227.64488220214844,
+        "width": 61.0694580078125,
+        "height": 188.8168487548828
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 5",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 661.1375122070312,
+        "y": 283.7953796386719,
+        "width": 61.0694580078125,
+        "height": 188.81683349609375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 4",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 314.5271301269531,
+        "y": 316.78961181640625,
+        "width": 176.97686767578125,
+        "height": 71.03997802734375
+      },
+      "enabled": true
+    },
+    {
+      "name": "Sand piece 3",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 755.5866088867188,
+        "y": 204.4886016845703,
+        "width": 84.74951171875,
+        "height": 87.24211120605469
+      },
+      "enabled": true
+    },
+    {
+      "name": "Edit",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 216.25262451171875,
+        "y": 464.25262451171875,
+        "width": 68.54736328125,
+        "height": 49.8526611328125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Games",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 541.9500122070312,
+        "y": 518.739990234375,
+        "width": 196.0999755859375,
+        "height": 57.719970703125
+      },
+      "enabled": true
+    },
+    {
+      "name": "Build",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 823.8316040039062,
+        "y": 13.709468841552734,
+        "width": 93.4736328125,
+        "height": 68.54737854003906
+      },
+      "enabled": true
+    },
+    {
+      "name": "Tap to walk",
+      "bounds": {
+        "serializedVersion": "2",
+        "x": 976.6000366210938,
+        "y": 527.6199951171875,
+        "width": 155.39996337890625,
+        "height": 47.3599853515625
+      },
+      "enabled": true
+    }
+  ],
+  "sandLocalPending": false,
+  "sandDirectCueVisible": false,
+  "sandPlacementActive": false,
+  "sandDecorationChoice": "",
+  "sandAttachmentScreenPoints": [
+    {
+      "x": 512.7489624023438,
+      "y": 369.12823486328125
+    },
+    {
+      "x": 625.5490112304688,
+      "y": 369.12823486328125
+    },
+    {
+      "x": 484.2456970214844,
+      "y": 315.7604675292969
+    },
+    {
+      "x": 654.05224609375,
+      "y": 315.7604675292969
+    },
+    {
+      "x": 498.800537109375,
+      "y": 349.7217712402344
+    },
+    {
+      "x": 639.4974365234375,
+      "y": 349.7217712402344
+    }
+  ],
+  "sandBuilderActors": [
+    "player-1",
+    "player-2",
+    "player-3",
+    "player-4"
+  ],
+  "sandBuilderReactions": [
+    "ready",
+    "ready",
+    "ready",
+    "ready"
+  ],
+  "sandBuilderEvents": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandPieceScreenPoints": [
+    {
+      "x": 569.1489868164062,
+      "y": 323.64434814453125
+    },
+    {
+      "x": 606.151123046875,
+      "y": 211.3433380126953
+    },
+    {
+      "x": 797.9613647460938,
+      "y": 211.3433380126953
+    },
+    {
+      "x": 403.01556396484375,
+      "y": 323.64434814453125
+    },
+    {
+      "x": 691.6722412109375,
+      "y": 351.7196044921875
+    },
+    {
+      "x": 868.3784790039062,
+      "y": 295.569091796875
+    }
+  ],
+  "sandpit": {
+    "format": 4,
+    "pieceLimit": 16,
+    "scoopCapacity": 3,
+    "round": 1,
+    "phase": 2,
+    "started": 2.601114199999998,
+    "teacherX": 659.8328857421875,
+    "teacherY": 242.65924072265625,
+    "members": [
+      {
+        "actor": "player-1",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-2",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-3",
+        "attending": true,
+        "declined": false
+      },
+      {
+        "actor": "player-4",
+        "attending": true,
+        "declined": false
+      }
+    ],
+    "moulds": [
+      {
+        "id": "p-2217d0ca2c9f4ff980c244228019ea9f",
+        "creator": "player-1",
+        "shape": "wall",
+        "x": 4362.5,
+        "y": 350.0,
+        "width": 157.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 13,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 0,
+            "version": 0,
+            "id": "p-2217d0ca2c9f4ff980c244228019ea9f~decor-0",
+            "kind": "flag",
+            "creator": "player-1",
+            "x": -93.0,
+            "y": 75.0,
+            "legacy": true
+          },
+          {
+            "slot": 1,
+            "version": 0,
+            "id": "p-2217d0ca2c9f4ff980c244228019ea9f~decor-1",
+            "kind": "flag",
+            "creator": "player-1",
+            "x": 93.0,
+            "y": 75.0,
+            "legacy": true
+          },
+          {
+            "slot": 2,
+            "version": 0,
+            "id": "p-2217d0ca2c9f4ff980c244228019ea9f~decor-2",
+            "kind": "shell",
+            "creator": "player-1",
+            "x": -140.0,
+            "y": -13.0,
+            "legacy": true
+          },
+          {
+            "slot": 3,
+            "version": 0,
+            "id": "p-2217d0ca2c9f4ff980c244228019ea9f~decor-3",
+            "kind": "shell",
+            "creator": "player-1",
+            "x": 140.0,
+            "y": -13.0,
+            "legacy": true
+          },
+          {
+            "slot": 4,
+            "version": 0,
+            "id": "p-2217d0ca2c9f4ff980c244228019ea9f~decor-4",
+            "kind": "window",
+            "creator": "player-1",
+            "x": -116.0,
+            "y": 43.0,
+            "legacy": true
+          },
+          {
+            "slot": 5,
+            "version": 0,
+            "id": "p-2217d0ca2c9f4ff980c244228019ea9f~decor-5",
+            "kind": "window",
+            "creator": "player-1",
+            "x": 116.0,
+            "y": 43.0,
+            "legacy": true
+          }
+        ]
+      },
+      {
+        "id": "p-d05021283ef24674bbd285d881d74de7",
+        "creator": "player-2",
+        "shape": "square",
+        "x": 4405.0,
+        "y": 130.0,
+        "width": 72.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 9,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 0,
+            "version": 0,
+            "id": "p-d05021283ef24674bbd285d881d74de7~decor-0",
+            "kind": "flag",
+            "creator": "player-2",
+            "x": -22.0,
+            "y": 176.0,
+            "legacy": true
+          },
+          {
+            "slot": 1,
+            "version": 0,
+            "id": "p-d05021283ef24674bbd285d881d74de7~decor-1",
+            "kind": "flag",
+            "creator": "player-2",
+            "x": 22.0,
+            "y": 176.0,
+            "legacy": true
+          },
+          {
+            "slot": 2,
+            "version": 0,
+            "id": "p-d05021283ef24674bbd285d881d74de7~decor-2",
+            "kind": "shell",
+            "creator": "player-2",
+            "x": -59.0,
+            "y": -12.0,
+            "legacy": true
+          },
+          {
+            "slot": 3,
+            "version": 0,
+            "id": "p-d05021283ef24674bbd285d881d74de7~decor-3",
+            "kind": "shell",
+            "creator": "player-2",
+            "x": 59.0,
+            "y": -12.0,
+            "legacy": true
+          },
+          {
+            "slot": 4,
+            "version": 0,
+            "id": "p-d05021283ef24674bbd285d881d74de7~decor-4",
+            "kind": "window",
+            "creator": "player-2",
+            "x": -25.0,
+            "y": 76.0,
+            "legacy": true
+          },
+          {
+            "slot": 5,
+            "version": 0,
+            "id": "p-d05021283ef24674bbd285d881d74de7~decor-5",
+            "kind": "window",
+            "creator": "player-2",
+            "x": 25.0,
+            "y": 76.0,
+            "legacy": true
+          }
+        ]
+      },
+      {
+        "id": "p-23a76da9407a493cb5bc194836c7d0a9",
+        "creator": "player-3",
+        "shape": "round",
+        "x": 4575.0,
+        "y": 130.0,
+        "width": 72.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 8,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 0,
+            "version": 0,
+            "id": "p-23a76da9407a493cb5bc194836c7d0a9~decor-0",
+            "kind": "flag",
+            "creator": "player-3",
+            "x": -22.0,
+            "y": 176.0,
+            "legacy": true
+          },
+          {
+            "slot": 1,
+            "version": 0,
+            "id": "p-23a76da9407a493cb5bc194836c7d0a9~decor-1",
+            "kind": "flag",
+            "creator": "player-3",
+            "x": 22.0,
+            "y": 176.0,
+            "legacy": true
+          },
+          {
+            "slot": 2,
+            "version": 0,
+            "id": "p-23a76da9407a493cb5bc194836c7d0a9~decor-2",
+            "kind": "shell",
+            "creator": "player-3",
+            "x": -59.0,
+            "y": -12.0,
+            "legacy": true
+          },
+          {
+            "slot": 3,
+            "version": 0,
+            "id": "p-23a76da9407a493cb5bc194836c7d0a9~decor-3",
+            "kind": "shell",
+            "creator": "player-3",
+            "x": 59.0,
+            "y": -12.0,
+            "legacy": true
+          },
+          {
+            "slot": 4,
+            "version": 0,
+            "id": "p-23a76da9407a493cb5bc194836c7d0a9~decor-4",
+            "kind": "window",
+            "creator": "player-3",
+            "x": -25.0,
+            "y": 76.0,
+            "legacy": true
+          },
+          {
+            "slot": 5,
+            "version": 0,
+            "id": "p-23a76da9407a493cb5bc194836c7d0a9~decor-5",
+            "kind": "window",
+            "creator": "player-3",
+            "x": 25.0,
+            "y": 76.0,
+            "legacy": true
+          }
+        ]
+      },
+      {
+        "id": "p-1ce0fd86c4b5477b84aa569330fb328e",
+        "creator": "player-4",
+        "shape": "gate",
+        "x": 4192.5,
+        "y": 350.0,
+        "width": 157.0,
+        "depth": 80.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 7,
+        "orientation": 0,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 0,
+            "version": 0,
+            "id": "p-1ce0fd86c4b5477b84aa569330fb328e~decor-0",
+            "kind": "flag",
+            "creator": "player-4",
+            "x": -116.0,
+            "y": 131.0,
+            "legacy": true
+          },
+          {
+            "slot": 1,
+            "version": 0,
+            "id": "p-1ce0fd86c4b5477b84aa569330fb328e~decor-1",
+            "kind": "flag",
+            "creator": "player-4",
+            "x": 116.0,
+            "y": 131.0,
+            "legacy": true
+          },
+          {
+            "slot": 2,
+            "version": 0,
+            "id": "p-1ce0fd86c4b5477b84aa569330fb328e~decor-2",
+            "kind": "shell",
+            "creator": "player-4",
+            "x": -140.0,
+            "y": -13.0,
+            "legacy": true
+          },
+          {
+            "slot": 3,
+            "version": 0,
+            "id": "p-1ce0fd86c4b5477b84aa569330fb328e~decor-3",
+            "kind": "shell",
+            "creator": "player-4",
+            "x": 140.0,
+            "y": -13.0,
+            "legacy": true
+          },
+          {
+            "slot": 4,
+            "version": 0,
+            "id": "p-1ce0fd86c4b5477b84aa569330fb328e~decor-4",
+            "kind": "window",
+            "creator": "player-4",
+            "x": -116.0,
+            "y": 43.0,
+            "legacy": true
+          },
+          {
+            "slot": 5,
+            "version": 0,
+            "id": "p-1ce0fd86c4b5477b84aa569330fb328e~decor-5",
+            "kind": "window",
+            "creator": "player-4",
+            "x": 116.0,
+            "y": 43.0,
+            "legacy": true
+          }
+        ]
+      },
+      {
+        "id": "p-4683ce768dc446cb8ebb6355a0e28074",
+        "creator": "player-3",
+        "shape": "wall",
+        "x": 4490.0,
+        "y": 405.0,
+        "width": 72.0,
+        "depth": 190.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 7,
+        "orientation": 90,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 0,
+            "version": 0,
+            "id": "p-4683ce768dc446cb8ebb6355a0e28074~decor-0",
+            "kind": "flag",
+            "creator": "player-3",
+            "x": -34.0,
+            "y": 104.0,
+            "legacy": true
+          },
+          {
+            "slot": 1,
+            "version": 0,
+            "id": "p-4683ce768dc446cb8ebb6355a0e28074~decor-1",
+            "kind": "flag",
+            "creator": "player-3",
+            "x": 34.0,
+            "y": 215.0,
+            "legacy": true
+          },
+          {
+            "slot": 2,
+            "version": 0,
+            "id": "p-4683ce768dc446cb8ebb6355a0e28074~decor-2",
+            "kind": "shell",
+            "creator": "player-3",
+            "x": -42.0,
+            "y": -78.0,
+            "legacy": true
+          },
+          {
+            "slot": 3,
+            "version": 0,
+            "id": "p-4683ce768dc446cb8ebb6355a0e28074~decor-3",
+            "kind": "shell",
+            "creator": "player-3",
+            "x": 42.0,
+            "y": 87.0,
+            "legacy": true
+          },
+          {
+            "slot": 4,
+            "version": 0,
+            "id": "p-4683ce768dc446cb8ebb6355a0e28074~decor-4",
+            "kind": "window",
+            "creator": "player-3",
+            "x": -28.0,
+            "y": 5.0,
+            "legacy": true
+          },
+          {
+            "slot": 5,
+            "version": 0,
+            "id": "p-4683ce768dc446cb8ebb6355a0e28074~decor-5",
+            "kind": "window",
+            "creator": "player-3",
+            "x": 28.0,
+            "y": 120.0,
+            "legacy": true
+          }
+        ]
+      },
+      {
+        "id": "p-7f6f3aeca42a4ec2a428af053094bd86",
+        "creator": "player-2",
+        "shape": "gate",
+        "x": 4660.0,
+        "y": 295.0,
+        "width": 72.0,
+        "depth": 190.0,
+        "capacity": 3,
+        "scoops": 3,
+        "decoration": 0,
+        "version": 7,
+        "orientation": 90,
+        "wet": true,
+        "built": true,
+        "attachments": [
+          {
+            "slot": 0,
+            "version": 0,
+            "id": "p-7f6f3aeca42a4ec2a428af053094bd86~decor-0",
+            "kind": "flag",
+            "creator": "player-2",
+            "x": -34.0,
+            "y": 104.0,
+            "legacy": true
+          },
+          {
+            "slot": 1,
+            "version": 0,
+            "id": "p-7f6f3aeca42a4ec2a428af053094bd86~decor-1",
+            "kind": "flag",
+            "creator": "player-2",
+            "x": 34.0,
+            "y": 215.0,
+            "legacy": true
+          },
+          {
+            "slot": 2,
+            "version": 0,
+            "id": "p-7f6f3aeca42a4ec2a428af053094bd86~decor-2",
+            "kind": "shell",
+            "creator": "player-2",
+            "x": -42.0,
+            "y": -78.0,
+            "legacy": true
+          },
+          {
+            "slot": 3,
+            "version": 0,
+            "id": "p-7f6f3aeca42a4ec2a428af053094bd86~decor-3",
+            "kind": "shell",
+            "creator": "player-2",
+            "x": 42.0,
+            "y": 87.0,
+            "legacy": true
+          },
+          {
+            "slot": 4,
+            "version": 0,
+            "id": "p-7f6f3aeca42a4ec2a428af053094bd86~decor-4",
+            "kind": "window",
+            "creator": "player-2",
+            "x": -28.0,
+            "y": 5.0,
+            "legacy": true
+          },
+          {
+            "slot": 5,
+            "version": 0,
+            "id": "p-7f6f3aeca42a4ec2a428af053094bd86~decor-5",
+            "kind": "window",
+            "creator": "player-2",
+            "x": 28.0,
+            "y": 120.0,
+            "legacy": true
+          }
+        ]
+      }
+    ],
+    "friends": [
+      "terrier-2",
+      "jack"
+    ],
+    "toy": {
+      "placed": false,
+      "x": 0.0,
+      "y": 0.0,
+      "version": 0,
+      "reaction": 0
+    },
+    "reset": {
+      "token": "",
+      "voters": [],
+      "approved": []
+    },
+    "ground": []
+  },
+  "sandpitNpcArt": [],
+  "sandIllustrated": true,
+  "sandPhoneLayout": true,
+  "sandVoiceVolumes": [
+    0.0,
+    0.0
+  ],
+  "sandVoiceClips": [
+    "",
+    ""
+  ],
+  "sandPresentationEvents": 0,
+  "sandAudioEvents": 0,
+  "sandActiveVoices": 0,
+  "sandActiveEffects": 0,
+  "sandpitSelection": 0,
+  "sandpitHighlight": 0,
+  "sandpitApproach": -1,
+  "sandpitApproachRound": -1,
+  "sandpitScoopEvents": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitWaterEvents": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitWaterEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitWetVisuals": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "sandpitBuiltVisuals": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "sandpitTipEvents": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitTipEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitTowerReveal": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "sandpitTipOutcomes": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "sandpitDecorationEvents": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationVisuals": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationEffectValues": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sandpitDecorationEffects": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sandpitDecorationWiggles": [
+    0.0,
+    0.0
+  ],
+  "sandpitDecorationHidden": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "lastTouchTargets": [],
+  "visibleText": [
+    "Gate",
+    "Square",
+    "",
+    "",
+    "Build again",
+    "Decorate",
+    "Round",
+    "",
+    "",
+    "Games",
+    "Wall",
+    "",
+    "",
+    "Calypso \u00b7 sandcastle teacher",
+    "Menu",
+    "?",
+    "Build",
+    "Tap to walk",
+    ""
+  ]
+}

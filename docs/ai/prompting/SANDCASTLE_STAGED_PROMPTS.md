@@ -1,5 +1,7 @@
 # Sandcastle Club — proposed Codex prompt sequence
 
+**October 4 supersession:** Parent feedback replaces routine Confirm/Attach and six fixed decoration sockets. Current production uses immediate placement and continuous supported piece/sand decoration positions. Destructive/reset consent remains. This dated stage sequence is background, not authorization to restore superseded controls or start more work. [Current record](../../implementation/daycare-sandcastle-redesign-2026-10-02.md#flexible-decoration-placement--october-4).
+
 Status: DRAFT implementation breakdown.
 The user accepted the shared creative sandpit direction. Detailed mockup, numeric choices, and migration approach still need resolution.
 Keep the Sandcastle-Club-Research-and-Redesign.html brief available to Codex; this file does not replace it.

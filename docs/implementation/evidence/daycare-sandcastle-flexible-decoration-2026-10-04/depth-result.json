@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "build": 462,
+  "actualSimultaneousClients": 4,
+  "checks": [
+    "Actual phone/tablet taps target visible background wall and overlapping foreground tower for decoration and selection"
+  ],
+  "runtimeErrors": [],
+  "recording": null,
+  "physicalDeviceRun": false,
+  "liveDataModified": false
+}

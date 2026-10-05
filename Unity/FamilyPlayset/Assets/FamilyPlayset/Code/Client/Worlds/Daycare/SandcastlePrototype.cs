@@ -137,7 +137,7 @@ namespace LittleWeeps.Client
                 var specs=new[]{("square",1,0,0),("wall",2,0,0),("gate",4,0,0),("round",6,0,0),("round",1,3,0),("wall",2,3,0),("wall",4,3,0),("square",6,3,0),("wall",1,1,90),("wall",6,1,90),("square",3,2,0),("round",4,2,0),("wall",2,1,0),("wall",4,1,0)};
                 foreach(var (shape,col,row,rot) in specs){var p=DaycareSandpit.PiecePoint(col,row,shape,rot);var r=Send(SoloAction.Sandpit,"place",DaycareSandpit.Target("place",State.round),p.X,p.Y,DaycareSandpit.Choice(shape,rot));if(!r.Accepted)throw new InvalidOperationException("Fixture place "+r.Outcome);
                     var m=State.moulds.Last();PieceAction("water",m);for(var k=0;k<3;k++)PieceAction("scoop",m);PieceAction("tip",m);
-                    PieceAction("decorate",m,"0:flag");PieceAction("decorate",m,"2:shell");if(shape=="square")PieceAction("decorate",m,"5:window");
+                    FixtureDecoration(m.id,0,"flag");FixtureDecoration(m.id,2,"shell");if(shape=="square")FixtureDecoration(m.id,5,"window");
                 }
                 Send(SoloAction.Sandpit,"toy-place",DaycareSandpit.Target("toy",State.round),4150,180,"0");
             }
@@ -174,8 +174,22 @@ namespace LittleWeeps.Client
         }
         private void Decorate(string kind)
         {
-            var m=State.moulds.FirstOrDefault(v=>v.id==Selected);if(m==null || !m.built)return;var slot=DecorationSlot(m,kind);
-            var r=PieceAction("decorate",m,slot+":"+kind);hint.text=r.Accepted?"Decorations stay together - keep building":r.Outcome;Refresh();
+            var m=State.moulds.FirstOrDefault(v=>v.id==Selected);if(m==null || !m.built)return;
+            // Keep the old isolated preview compatible; production owns flexible
+            // touch targeting. This preview button picks a supported empty region.
+            foreach(var y in Enumerable.Range(0,14).Select(i=>-65+i*20))foreach(var x in Enumerable.Range(0,13).Select(i=>-120+i*20)){
+                if(!SandDecorSurface.Resolve(m,kind,x,y,out var at) || SandDecorSurface.AttachedReason(m,new SandAttachment{kind=kind,x=at.X,y=at.Y})!=null)continue;
+                var r=Send(SoloAction.Sandpit,"decorate",DaycareSandpit.Target(m.id,State.round),at.X,at.Y,kind);hint.text=r.Accepted?"Decorations stay together - keep building":r.Outcome;Refresh();return;
+            }
+            hint.text="Try another piece";Refresh();
+        }
+        private void FixtureDecoration(string id,int slot,string kind)
+        {
+            // Authored synthetic fixture only: preserve the approved example's
+            // existing anchors using the same grandfathered migration fields.
+            var s=World.Snapshot();var m=s.sandpit.moulds.Single(v=>v.id==id);var at=SandDecorSurface.LegacyAnchor(m,slot);
+            m.attachments=m.attachments.Concat(new[]{new SandAttachment{id=id+"~decor-"+slot,slot=slot,kind=kind,creator=m.creator,x=at.X,y=at.Y,legacy=true}}).ToArray();
+            World=GameWorld.Restore(s);session=new FamilySession(World);for(var a=1;a<=4;a++)session.Attach((ulong)a,"p"+a,out _);
         }
         private Vector3 PieceScale(SandMould m)
         {
@@ -188,7 +202,7 @@ namespace LittleWeeps.Client
                 if(!views.TryGetValue(m.id,out var v)){v=Shape(pieces,"Piece "+m.id);views.Add(m.id,v);var created=Rect(v.transform,"Separate castle artwork",Vector2.zero,new Vector2(160,300)).gameObject.AddComponent<SandcastlePrototypePiece>();created.raycastTarget=false;pictures.Add(m.id,created);props.Add(m.id,new List<SandShape>());}
                 v.rectTransform.anchoredPosition=SandcastleProjection.Project(m.x,m.y);v.rectTransform.localScale=PieceScale(m);v.transform.SetAsLastSibling();
                 v.mould=m.shape;v.orientation=m.orientation;v.capacity=m.capacity;v.scoops=m.scoops;v.wet=m.wet;v.built=m.built;v.attachments=null;v.color=Color.white;v.enabled=!m.built;v.SetVerticesDirty();var pic=pictures[m.id];pic.enabled=m.built;pic.shape=m.shape;pic.orientation=m.orientation;pic.SetVerticesDirty();
-                var ornaments=props[m.id];while(ornaments.Count<m.attachments.Length)ornaments.Add(Shape(v.transform,"Separate decoration"));for(var k=0;k<ornaments.Count;k++){var a=ornaments[k];a.gameObject.SetActive(k<m.attachments.Length);if(k>=m.attachments.Length)continue;var attachment=m.attachments[k];a.kind="attachment";a.decorationKind=attachment.kind;a.rectTransform.anchoredPosition=AttachmentPoint(m,attachment.slot);a.SetVerticesDirty();}
+                var ornaments=props[m.id];while(ornaments.Count<m.attachments.Length)ornaments.Add(Shape(v.transform,"Separate decoration"));for(var k=0;k<ornaments.Count;k++){var a=ornaments[k];a.gameObject.SetActive(k<m.attachments.Length);if(k>=m.attachments.Length)continue;var attachment=m.attachments[k];a.kind="attachment";a.decorationKind=attachment.kind;a.rectTransform.anchoredPosition=new Vector2(attachment.x,attachment.y);a.SetVerticesDirty();}
             }
             dinosaur.gameObject.SetActive(State.toy.placed);toyShadow.gameObject.SetActive(State.toy.placed);
             if(State.toy.placed){toyShadow.rectTransform.anchoredPosition=SandcastleProjection.Project(State.toy.x,State.toy.y);toyShadow.transform.SetAsLastSibling();dinosaur.transform.SetAsLastSibling();dinosaur.rectTransform.anchoredPosition=SandcastleProjection.Project(State.toy.x,State.toy.y)+new Vector2(0,120*(DinosaurLandmarks.Get("tyrannosaurus",4).z-.5f));foreach(var m in State.moulds.OrderByDescending(v=>v.y))if(m.y<State.toy.y && views.TryGetValue(m.id,out var foreground))foreground.transform.SetAsLastSibling();}
@@ -198,7 +212,7 @@ namespace LittleWeeps.Client
             var selected=State.moulds.FirstOrDefault(v=>v.id==Selected);selection.gameObject.SetActive(selected!=null && !Placing);if(selected!=null)selection.rectTransform.anchoredPosition=SandcastleProjection.Project(selected.x,selected.y)+new Vector2(0,(SandcastlePrototypePiece.Bounds(selected.shape,selected.orientation).yMax+25)*SandcastleProjection.DepthScale(selected.y));toolTray.gameObject.SetActive(!Placing && selected!=null && !selected.built);
             scoop.interactable=selected!=null && selected.scoops<selected.capacity;water.interactable=selected!=null && !selected.wet;tip.interactable=selected!=null;
             buildTray.gameObject.SetActive(!decorating);decorTray.gameObject.SetActive(decorating);
-            foreach(var pair in decorButtons)pair.Value.interactable=selected?.built==true && !selected.attachments.Any(a=>a.slot==DecorationSlot(selected,pair.Key));
+            foreach(var pair in decorButtons)pair.Value.interactable=selected?.built==true && selected.attachments.Length<SandDecorSurface.PieceLimit;
             foreach(var pair in mouldButtons){pair.Value.GetComponent<Outline>().effectColor=Placing && mould==pair.Key?new Color(.05f,.4f,.66f):new Color(.42f,.27f,.12f,.5f);pair.Value.transform.Find("Selected mould check").gameObject.SetActive(Placing && mould==pair.Key);}
             buildRoute.GetComponent<Image>().color=!decorating?new Color(.57f,.85f,1):new Color(.94f,.96f,.96f);
             decorateRoute.GetComponent<Image>().color=decorating?new Color(.75f,.91f,.63f):new Color(.94f,.96f,.96f);

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "checks": 123,
+  "command": "dotnet run --project Tools/Verification/Sandpit.Tests/Sandpit.Tests.csproj --configuration Release -- --flexible",
+  "serializationEnvelopeBytes": 181889,
+  "serializationLimit": 262144,
+  "envelope": "304 props with long ASCII fields in synthetic state; sizing check, not a validated max-density gameplay scene"
+}

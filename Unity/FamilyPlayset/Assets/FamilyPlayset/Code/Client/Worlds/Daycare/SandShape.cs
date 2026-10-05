@@ -119,7 +119,7 @@ namespace LittleWeeps.Client
             if(built){
                 var h=capacity==3?92:75;ceiling=towerReveal>=1?float.PositiveInfinity:orientation==90 && DaycareSandpit.LongShape(mould)?Mathf.Lerp(-105,190,towerReveal):towerReveal*(capacity==3?128:108);
                 DrawCastle();
-                if(!hideDecoration && attachments!=null)foreach(var a in attachments){var at=SandpitPlay.Socket(new SandMould{shape=mould,orientation=orientation,capacity=capacity},a.slot);DrawAttachment(a.kind,new Vector2(at.X,at.Y));}
+                if(!hideDecoration && attachments!=null)foreach(var a in attachments){var at=string.IsNullOrEmpty(a.id)?SandpitPlay.Socket(new SandMould{shape=mould,orientation=orientation,capacity=capacity},a.slot):new WalkPoint(a.x,a.y);DrawAttachment(a.kind,new Vector2(at.X,at.Y));}
                 if(!hideDecoration && decoration==1)Flag(0,h+10);
                 if(!hideDecoration && decoration==2)Shell(27,h+26);
             }else if(!hideBucket){

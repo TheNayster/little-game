@@ -4,7 +4,7 @@ using System.Text.Json;
 using LittleWeeps.Core;
 using LittleWeeps.Client;
 
-class Program
+partial class Program
 {
  static GameWorld w;static FamilySession family;
  static readonly JsonSerializerOptions options=new JsonSerializerOptions{IncludeFields=true};
@@ -34,7 +34,14 @@ class Program
   for(var i=1;i<=4;i++){Need(family.Attach((ulong)i,"p"+i,out _),"attach");Need(Cmd(i,SoloAction.Travel,i==4?"park":"daycare").Accepted,"travel");}
   Need(Cmd(1,SoloAction.Sandpit,"start").Accepted,"start");
  }
- static void Main()
+ static void Main(string[] args)
+ {
+  if(args.Any(a=>a!="--flexible"))throw new ArgumentException("Use --flexible or no arguments for current rules.");
+  FlexibleChecks();Console.WriteLine("SAND_DECOR_PASS "+checks+" checks");
+ }
+ // Retained socket-era fixtures document the superseded contract. Current
+ // migrations execute through SandpitJsonTests and FlexibleChecks instead.
+ static void SocketEraFixtures()
  {
   Setup();Need(w.ReadSandpit().moulds.Length==0 && w.ReadSandpit().members.Count(m=>m.attending)==3,"empty shared creative start");
   var a=Place(1,0,0);var b=Place(2,3,1);var cast=w.ReadSandpit().friends.ToArray();
