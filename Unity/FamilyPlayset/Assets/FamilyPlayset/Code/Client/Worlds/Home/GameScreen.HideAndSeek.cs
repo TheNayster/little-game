@@ -123,9 +123,13 @@ namespace LittleWeeps.Client
             // unrelated hiders or stack co-hiders on their authority coordinates.
             foreach(var friend in friends){var p=ReadPlayer(friend.Key);var sharedCover=together.Any(h=>h.actor==friend.Key);friend.Value.root.gameObject.SetActive(p.zone==CurrentArea && shared.Players.Contains(friend.Key) && (!HideAndSeek.Hidden(s,friend.Key) || sharedCover));}
             for(var i=0;i<together.Length;i++){
-                var h=together[i];var point=ToBoard(HidePropX[HideAndSeek.Props[h.slot]]+(i-(together.Length-1)*.5f)*70,HideAndSeek.HiddenY(h.slot));
-                if(h.actor==Actor){avatar.anchoredPosition=point;characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
-                else if(friends.TryGetValue(h.actor,out var friend)){friend.root.anchoredPosition=point;friend.view.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
+                var h=together[i];var prop=HideAndSeek.Props[h.slot];
+                // Four seated drawings exceeded the small tent/curtain width.
+                var crowded=together.Length==4 && HideSizes[prop].x<400;
+                var gap=crowded?Mathf.Min(60,(HideSizes[prop].x-100)/3):70;
+                var point=ToBoard(HidePropX[prop]+(i-(together.Length-1)*.5f)*gap,HideAndSeek.HiddenY(h.slot));
+                if(h.actor==Actor){avatar.anchoredPosition=point;if(crowded)avatar.localScale=Vector3.one*sceneScale*.65f;characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
+                else if(friends.TryGetValue(h.actor,out var friend)){friend.root.anchoredPosition=point;if(crowded)friend.root.localScale=Vector3.one*sceneScale*.65f;friend.view.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),Time.unscaledDeltaTime);}
             }
         }
         private void ShowHideCard()
@@ -163,7 +167,7 @@ namespace LittleWeeps.Client
         }
         private void PresentHideAndSeek()
         {
-            var s=HideGame;if(s==null || banditRoot==null)return;var own=HideAndSeek.Player(s,Actor);var active=HideAndSeek.Playing(own);
+            var s=HideGame;if(s==null || banditRoot==null)return;ObserveHomeReveals(s);var own=HideAndSeek.Player(s,Actor);var active=HideAndSeek.Playing(own);
             var counting=s.phase==HidePhase.Counting;var hiddenCount=s.hiders.Count(h=>h.mode==HiderMode.Hidden);
             var inHome=HideInHomeWorld;
             if(HideCardOpen && (!inHome || !counting && !HideAndSeek.NextRound(s)))hideCard.gameObject.SetActive(false);
@@ -173,6 +177,7 @@ namespace LittleWeeps.Client
             banditRoot.anchoredPosition=ToBoard(banditX,HideAndSeek.RailY);banditRoot.localScale=Vector3.one*sceneScale;
             var frame=s.phase==HidePhase.Counting?3:s.phase==HidePhase.Inspecting?4:s.phase==HidePhase.Found?5:s.phase==HidePhase.Walking?1+(int)(s.clock*5)%2:0;
             var parent=HideAndSeek.Parent(s,s.phase==HidePhase.Idle);var frames=parent=="Chilli"?chilliFrames:banditFrames;
+            if(HomeReveal.Length>0 && s.phase!=HidePhase.Walking)frame=5;
             banditPicture.sprite=frames[frame];banditPicture.rectTransform.localScale=new Vector3(HideAndSeek.Facing(s),1,1);
             var invitedParent=HideAndSeek.Parent(s,true);var invitationFrames=invitedParent=="Chilli"?chilliFrames:banditFrames;
             hideInvitePicture.sprite=invitationFrames[5];hideParentPicture.sprite=frames[0];
@@ -187,7 +192,7 @@ namespace LittleWeeps.Client
             hideRequestRoot.anchoredPosition=new Vector2(0,HideAndSeek.Zone(ReadPlayer(Actor))?-150:-65);
             hideRequest.text="Hide before zero — Go hide!";
             if(hideRequestRoot.gameObject.activeSelf){hideRequestRoot.SetAsLastSibling();hideRequest.transform.parent.GetComponent<Button>().interactable=!hideSending;}
-            var sofaMine=HideAndSeek.SameCover(own.slot,1);
+            var sofaMine=HideAndSeek.SameCover(own.slot,1) || HomeReveal.Any(r=>r.slot==1);
             var sofaRoot=homeObjects["Home sofa"].root;
             sofaRoot.GetComponentInChildren<Image>().color=sofaMine?new Color(1,1,1,.4f):Color.white;
             homeFronts["Home sofa"].GetComponentInChildren<HomeArtPart>().color=sofaMine?new Color(1,1,1,.4f):Color.white;
@@ -196,14 +201,15 @@ namespace LittleWeeps.Client
                 var root=hideProps[i];root.gameObject.SetActive(shown);root.anchoredPosition=ToBoard(HidePropX[i],HideGround(i));root.localScale=Vector3.one*sceneScale;
                 if(i==1 || i==5)continue;
                 var mine=own.slot>=0 && HideAndSeek.Props[own.slot]==i;
-                var inspecting=s.target>=0 && HideAndSeek.Props[s.target]==i && s.phase==HidePhase.Inspecting && s.age>HideAndSeek.InspectSeconds*.5;
+                var inspecting=HomeReveal.Any(r=>r.slot==i);
                 hidePictures[i].sprite=HideCoverSprite(i,mine || inspecting);
                 hidePictures[i].color=mine?new Color(1,1,1,.42f):Color.white;
             }
-            var diningMine=HideAndSeek.SameCover(own.slot,7);
+            var diningMine=HideAndSeek.SameCover(own.slot,7) || HomeReveal.Any(r=>r.slot==5);
             kitchenFixtures["dining"].root.GetComponentInChildren<Image>().color=diningMine?new Color(1,1,1,.42f):Color.white;
             kitchenDiningFront.GetComponentInChildren<HomeArtPart>().color=diningMine?new Color(1,1,1,.42f):Color.white;
             PresentHiddenPlayers();
+            PresentHumanReveals(HomeReveal,false);
             for(var i=0;i<HideAndSeek.SlotX.Length;i++)
             {
                 var visible=shown && counting && own.slot<0 && !MenuOpen;hideHits[i].gameObject.SetActive(visible);
@@ -221,7 +227,7 @@ namespace LittleWeeps.Client
             hideStatus.text=own.mode==HiderMode.Found?"Found you!":count>0?(own.slot>=0?"You're hidden!":"Time to hide!"):own.slot>=0?(parent+(s.phase==HidePhase.Looking?" is looking around":" is searching")+"\nYou're hidden!"):"Tap a hiding spot";
             if(inHome && (active || counting) && own.cycle==lastHideCycle && !applicationPaused && !MenuOpen && !BookSpeaking && (!Shared || shared.Connected))
             {
-                if(own.mode==HiderMode.Found && lastHideMode!=HiderMode.Found){Narration.Speak("hide-found");PlayHideChime(hideFound);}
+                if(own.mode==HiderMode.Found && lastHideMode!=HiderMode.Found && HomeReveal.Any(r=>r.actor==Actor)){Narration.Speak("hide-found");PlayHideChime(hideFound);}
                 else if(count!=lastHideCount && count<=5 && count>0 && !Narration.Speaking){Narration.Speak("hide-count"+count);PlayHideChime(hideTick);}
                 else if(count==0 && lastHideCount==1 && !Narration.Speaking)Narration.Speak("hide-ready");
             }
@@ -239,7 +245,7 @@ namespace LittleWeeps.Client
         }
         private void ResetHideAndSeek()
         {
-            ResetMiniGames();
+            ResetMiniGames();homeReactions.Reset();
             hideFrame=null;hideFrameNumber=-1;hideRevision=-1;hideApproach=-1;hideSending=false;lastHideCycle=-1;lastHideCount=-1;hideCardRound=-1;hideReadyPictures.Clear();hideProps.Clear();hidePictures.Clear();hideHits.Clear();hideGlows.Clear();
             if(hideChime!=null){hideChime.Stop();Destroy(hideChime);hideChime=null;}
             foreach(var sprite in hideSprites)Destroy(sprite);hideSprites.Clear();

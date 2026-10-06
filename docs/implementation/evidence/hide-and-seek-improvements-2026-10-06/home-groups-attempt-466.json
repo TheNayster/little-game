@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "build": 466,
+  "checks": [
+    "Home four-client shared cover: stable spacing, simultaneous unique reactions/variants, phone/tablet capture, movement and independent departure",
+    "Home replay/separate covers conceal unrelated humans; fresh native reconnect does not replay discoveries"
+  ],
+  "actualConcurrentNativeClients": 4,
+  "liveFamilyTouched": false,
+  "soundAssetsChanged": false,
+  "audioListening": false,
+  "errors": [],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

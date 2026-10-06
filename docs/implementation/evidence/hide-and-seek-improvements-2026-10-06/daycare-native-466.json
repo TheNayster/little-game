@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "build": 466,
+  "checks": [
+    "Daycare four humans plus one hidden NPC have five distinct registered positions; simultaneous discovery, consistent reactions, departure/movement/reconnect and muted phone/tablet presentation",
+    "Daycare replay and separate-cover hiding retain concealment",
+    "Shared Daycare Tag retains animated running, common start and independent departure"
+  ],
+  "actualConcurrentNativeClients": 4,
+  "liveFamilyTouched": false,
+  "soundAssetsChanged": false,
+  "audioListening": false,
+  "errors": [],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

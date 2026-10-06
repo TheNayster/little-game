@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "build": 466,
+  "checks": [
+    "One actual private native client: Home hiding, discovery, happy response and deliberate replay; actual loopback audio captured, no listening claim",
+    "One actual private native client: Daycare hiding, four NPC discoveries, replay and independent return"
+  ],
+  "actualConcurrentNativeClients": 1,
+  "authorityProcesses": 0,
+  "privateSyntheticEnrollment": true,
+  "audioRecording": "home-actual-loopback.wav",
+  "audioListening": false,
+  "errors": [],
+  "exitCodes": [
+    0
+  ]
+}

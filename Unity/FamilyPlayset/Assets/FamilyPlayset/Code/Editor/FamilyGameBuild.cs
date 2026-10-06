@@ -17,7 +17,7 @@ namespace LittleWeeps.EditorTools
             BathroomJsonTests.Run();HideAndSeekJsonTests.Run();PondJsonTests.Run();CreekBoatJsonTests.Run();CreekFishingJsonTests.Run();ZooJsonTests.Run();DinosaurJsonTests.Run();KingdomJsonTests.Run();DaycareJsonTests.Run();
             SeagullJsonTests.Run();ShoreJsonTests.Run();
             AdventureRepairJsonTests.Run();
-            WaveRideJsonTests.Run();SandpitJsonTests.Run();TreasureJsonTests.Run();NpcPresentationTests.Run();VetRuleTests.Run();DaycarePlayTests.Run();
+            WaveRideJsonTests.Run();SandpitJsonTests.Run();TreasureJsonTests.Run();NpcPresentationTests.Run();VetRuleTests.Run();DaycarePlayTests.Run();RevealReactionTests.Run();
             BuildWindows();
         }
         // Focused local verification uses identical release binaries/profiles.

@@ -11,6 +11,7 @@ namespace LittleWeeps.Client
         private CharacterArt art;
         private RectTransform facing, picture, shadow;
         private RawImage image;
+        private RevealExpression revealExpression;
         private CharacterArt outfitArt;
         private Material clothMaterial;
         private string outfit="",outfitColor="green";
@@ -23,6 +24,7 @@ namespace LittleWeeps.Client
         public float EffectiveWalkStride => NpcWorldScale > 0 ? 80 * art.scale * NpcWorldScale : WalkStride;
         public CharacterFrame Frame { get; private set; }
         public int FrameIndex { get; private set; }
+        public bool RevealExpressionVisible=>revealExpression!=null && revealExpression.gameObject.activeInHierarchy;
         public float WalkPhase => cycle;
         public float WalkWeight => Frame.Speed > 1 && (Frame.Pose == CharacterPose.Walk || Frame.Pose == CharacterPose.Carry) ? 1 : 0;
         public string CharacterId => art.characterId;
@@ -51,6 +53,8 @@ namespace LittleWeeps.Client
             picture = Rect("Selected character drawing", facing);
             image = picture.gameObject.AddComponent<RawImage>();
             image.texture = art.sheet; image.raycastTarget = false;
+            var face=Rect("Discovery facial expression",picture);face.anchorMin=face.anchorMax=new Vector2(0,1);face.pivot=new Vector2(0,1);
+            revealExpression=face.gameObject.AddComponent<RevealExpression>();face.gameObject.SetActive(false);
         }
 
         public void Wear(string id,string colorId)
@@ -117,6 +121,7 @@ namespace LittleWeeps.Client
             else if (frame.Pose == CharacterPose.Wave) index = 2 + (int)(time * 4) % 2;
             else if (frame.Pose == CharacterPose.Roar) index = 14 + (int)(time * 4) % 2;
             else if (frame.Pose == CharacterPose.Carry && !moving) index = 13;
+            if(frame.Pose==CharacterPose.Surprise)index=0;
             FrameIndex = index;
             // Only walking changes atlas. Keep the already accepted appearance
             // for idle and home actions rather than regenerating those poses.
@@ -131,6 +136,8 @@ namespace LittleWeeps.Client
             picture.pivot = new Vector2((drawing.ground.x - crop.x) / crop.width,
                 (crop.yMax - drawing.ground.y) / crop.height);
             picture.sizeDelta = crop.size * (180 / (walking ? drawingArt.walkReferenceHeight : drawingArt.referenceHeight));
+            revealExpression.gameObject.SetActive(frame.Pose==CharacterPose.Surprise);
+            if(frame.Pose==CharacterPose.Surprise)revealExpression.Configure(art.characterId,180/drawingArt.referenceHeight);
             var resting=frame.Pose==CharacterPose.Rest;
             facing.localRotation=Quaternion.Euler(0,0,resting?90:0);
             facing.anchoredPosition = resting?new Vector2(-65,210):offset;

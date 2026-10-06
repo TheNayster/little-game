@@ -66,6 +66,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
+            public string[] revealActors;public int[] revealVariants;public int homeRevealEvents,daycareRevealEvents;public GameScreen.RevealBody[] revealBodies;
             public LittleWeeps.Core.DaycarePlayState hideClub,tagClub;public string[] clubNpcArt;public Vector2[] clubNpcPoints;public int[] clubNpcFrames;public bool clubTeacherWalking;public int clubTeacherDrawing;public Vector2 clubTeacherPoint;
             public LittleWeeps.Core.VetState vet;public int vetSelected,vetTool,vetDrawing,vetQueued;public bool vetWalking,vetSoundPlaying,vetBackdropReady;public string[] vetNpcArt;public string vetFeedback;
             public LittleWeeps.Core.TreasureState treasure;public string[] treasureNpcArt;public Vector2[] treasureNpcPoints;public string treasureApproach;public bool treasureMystery;public int treasureDemoNote;public bool treasureTonePlaying;public string treasureFeedback;
@@ -175,6 +176,7 @@ namespace LittleWeeps.NetworkProbe
                 else if(step.action=="traceStart"){traceActor=step.role;motionTrace.Clear();}
                 else if(step.action=="walkChecks")WalkAnimationVerification.Run(screen.Board,probe.Output);
                 else if(step.action=="walkFilm")StartCoroutine(WalkFilm());
+                else if(step.action=="revealGallery")StartCoroutine(RevealGallery());
                 else if(step.action=="sandFilm")StartCoroutine(SandFilm(Mathf.Clamp(step.x,5,90)));
                 else if(step.action=="fixtureTravel")screen.Travel(step.text);
                 else if(step.action=="traceStop")
@@ -202,6 +204,19 @@ namespace LittleWeeps.NetworkProbe
             // Render the actual live canvas to an offscreen target in this player.
             yield return null;
             CaptureFrame(Path.Combine(probe.Output,"garden.png"));
+        }
+        private IEnumerator RevealGallery()
+        {
+            var canvas=screen.Board.GetComponentInParent<Canvas>();var bounds=((RectTransform)canvas.transform).rect;
+            for(var page=0;page<4;page++){
+                var stage=new GameObject("Reveal expression verification",typeof(RectTransform),typeof(Image));var panel=stage.GetComponent<RectTransform>();panel.SetParent(canvas.transform,false);panel.anchorMin=Vector2.zero;panel.anchorMax=Vector2.one;panel.offsetMin=panel.offsetMax=Vector2.zero;stage.GetComponent<Image>().color=new Color(.76f,.86f,.9f);
+                for(var i=0;i<12 && page*12+i<Core.PlayableCharacters.All.Count;i++){
+                    var entry=Core.PlayableCharacters.All[page*12+i];var body=new GameObject(entry.Name,typeof(RectTransform));var rect=body.GetComponent<RectTransform>();rect.SetParent(panel,false);rect.anchoredPosition=new Vector2((i%4-1.5f)*bounds.width/4,(1-i/4)*bounds.height/3-bounds.height/8);rect.localScale=Vector3.one*Mathf.Min(bounds.width/850,bounds.height/650)*.85f;
+                    var visual=body.AddComponent<GameCharacterVisual>();visual.Select(entry.AvatarId);visual.PresentFrame(new CharacterFrame(CharacterPose.Surprise,0,false),0);
+                    var name=new GameObject("Name",typeof(RectTransform),typeof(Text));var text=name.GetComponent<Text>();text.rectTransform.SetParent(rect,false);text.rectTransform.anchoredPosition=new Vector2(0,-50);text.rectTransform.sizeDelta=new Vector2(200,40);text.text=entry.Name;text.font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");text.fontSize=20;text.color=Color.black;text.alignment=TextAnchor.MiddleCenter;
+                }
+                yield return null;Canvas.ForceUpdateCanvases();CaptureFrame(Path.Combine(probe.Output,"reveal-gallery-"+page+".png"));stage.SetActive(false);Destroy(stage);
+            }
         }
         private bool sandFilming;
         private IEnumerator SandFilm(float seconds)
@@ -340,6 +355,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;
                 evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;
+                evidence.revealActors=screen.RevealActors;evidence.revealVariants=screen.RevealVariants;evidence.homeRevealEvents=screen.HomeRevealEvents;evidence.daycareRevealEvents=screen.DaycareRevealEvents;evidence.revealBodies=screen.RevealBodies;
                 evidence.hideClub=screen.HideClub;evidence.tagClub=screen.TagClub;evidence.clubNpcArt=screen.ClubNpcArt;evidence.clubNpcPoints=screen.ClubNpcPoints;evidence.clubNpcFrames=screen.ClubNpcFrames;evidence.clubTeacherWalking=screen.ClubTeacherWalking;evidence.clubTeacherDrawing=screen.ClubTeacherDrawing;evidence.clubTeacherPoint=screen.ClubTeacherPoint;
                 evidence.vetBackdropReady=screen.VetBackdropReady;evidence.vet=screen.VetGame;evidence.vetSelected=screen.VetSelected;evidence.vetTool=screen.VetTool;evidence.vetDrawing=screen.VetDrawing;evidence.vetWalking=screen.VetWalking;evidence.vetQueued=screen.VetQueued;evidence.vetSoundPlaying=screen.VetSoundPlaying;evidence.vetNpcArt=screen.VetNpcArt;evidence.vetFeedback=screen.VetFeedback;
                 evidence.treasure=screen.TreasureGame;evidence.treasureNpcArt=screen.TreasureNpcArt;evidence.treasureNpcPoints=screen.TreasureNpcPoints;evidence.treasureApproach=screen.TreasureApproach;evidence.treasureMystery=screen.TreasureMystery;evidence.treasureDemoNote=screen.TreasureDemoNote;evidence.treasureTonePlaying=screen.TreasureTonePlaying;evidence.treasureFeedback=screen.TreasureFeedback;

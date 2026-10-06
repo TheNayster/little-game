@@ -106,6 +106,7 @@ namespace LittleWeeps.Client
         private void PresentDaycarePlay()
         {
             if(clubHud==null)return;var tag=ClubTag;var g=CurrentClub;var inMap=DaycarePlay.Area(CurrentArea) && g!=null && g.round>0;
+            if(HideClub!=null)ObserveDaycareReveals(HideClub);
             var own=DaycarePlay.Member(g,Actor);var playing=inMap && own?.attending==true;
             clubHud.gameObject.SetActive(playing && !MenuOpen);clubActionRoot.gameObject.SetActive(playing && !MenuOpen && (tag || g.phase==ClubPhase.Finished || own.slot>=0));
             var scale=Mathf.Min(1,safe.rect.width/1080);clubHud.localScale=clubActionRoot.localScale=Vector3.one*scale;
@@ -121,7 +122,7 @@ namespace LittleWeeps.Client
             for(var i=0;i<6;i++){
                 var cover=clubCovers[i];var show=inMap && !tag;cover.root.gameObject.SetActive(show);if(!show)continue;
                 var at=DaycarePlay.Cover(i);cover.root.anchoredPosition=ToBoard(at.X,at.Y);cover.root.localScale=Vector3.one*sceneScale;
-                var mine=own?.slot==i;var inspected=g.phase==ClubPhase.Inspecting && g.order[g.cursor]==i;
+                var mine=own?.slot==i;var inspected=DaycareReveal.Any(r=>r.slot==i);
                 cover.picture.sprite=ClubCover(i,mine || inspected);cover.picture.color=mine?new Color(1,1,1,.35f):Color.white;
                 cover.hit.gameObject.SetActive(playing && g.phase==ClubPhase.Counting && own.slot<0 && !MenuOpen);
             }
@@ -130,13 +131,16 @@ namespace LittleWeeps.Client
                 friend.root.gameObject.SetActive(exists && (!n.hidden || own?.slot==n.slot));if(!exists)continue;
                 friend.visual.Select(n.avatar);var frame=friend.motion.Step(new Vector2(n.x,n.y),key+"/"+i,false,DaycarePlay.NpcSpeed*1.4f,dt);
                 friend.root.anchoredPosition=ToBoard(friend.motion.Point.x,friend.motion.Point.y);friend.root.localScale=Vector3.one*sceneScale*.8f;
-                if(n.hidden)frame=new CharacterFrame(CharacterPose.Sit,0,frame.FaceLeft);else if(n.found && frame.Speed<1)frame=new CharacterFrame(CharacterPose.Wave,0,frame.FaceLeft);
+                if(!tag && n.hidden){frame=new CharacterFrame(CharacterPose.Sit,0,false);friend.root.anchoredPosition=ClubHiddenPoint(g,n.slot,DaycarePlay.NpcId(i));friend.root.localScale=Vector3.one*sceneScale*ClubHiddenScale(g,n.slot);}
+                var reaction=!tag?DaycareReveal.FirstOrDefault(r=>r.actor==DaycarePlay.NpcId(i)):null;
+                if(reaction!=null){frame=RevealFrame(reaction,false);friend.root.anchoredPosition=ToBoard(DaycarePlay.Cover(reaction.slot).X+(reaction.index-(reaction.count-1)*.5f)*68,n.y);if(reaction.count>3)friend.root.localScale=Vector3.one*sceneScale*.65f;}
                 friend.visual.PresentNpcFrame(frame,dt,.8f);friend.star.gameObject.SetActive(tag && g.it==DaycarePlay.NpcId(i));
             }
             clubTeacher.gameObject.SetActive(inMap && !tag);
-            if(inMap && !tag){var frame=clubTeacherMotion.Step(new Vector2(g.teacherX,g.teacherY),key+"/teacher",false,DaycarePlay.TeacherSpeed*1.4f,dt);clubTeacher.anchoredPosition=ToBoard(clubTeacherMotion.Point.x,clubTeacherMotion.Point.y);clubTeacher.localScale=Vector3.one*sceneScale*.9f;clubTeacherWalk.Present(frame,g.phase==ClubPhase.Finished?3:g.phase==ClubPhase.Counting?1:0,dt,.9f);}
+            if(inMap && !tag){var frame=clubTeacherMotion.Step(new Vector2(g.teacherX,g.teacherY),key+"/teacher",false,DaycarePlay.TeacherSpeed*1.4f,dt);clubTeacher.anchoredPosition=ToBoard(clubTeacherMotion.Point.x,clubTeacherMotion.Point.y);clubTeacher.localScale=Vector3.one*sceneScale*.9f;var greeting=DaycareReveal.Any(r=>Time.unscaledTime-r.start<.5f);clubTeacherWalk.Present(greeting?new CharacterFrame(CharacterPose.Wave,0,frame.FaceLeft):frame,greeting?1:g.phase==ClubPhase.Finished?3:g.phase==ClubPhase.Counting?1:0,dt,.9f);}
             foreach(var pair in clubHumanStars){var star=pair.Value;var show=inMap && tag && g.it==pair.Key;star.transform.parent.gameObject.SetActive(show);if(show){var body=pair.Key==Actor?avatar:friends.TryGetValue(pair.Key,out var f)?f.root:null;if(body!=null){var root=(RectTransform)star.transform.parent;root.anchoredPosition=body.anchoredPosition+new Vector2(0,290)*sceneScale;root.localScale=Vector3.one*sceneScale;}}}
             PresentClubHidden();
+            if(!tag)PresentHumanReveals(DaycareReveal,true);
             var hideInvite=DaycarePlay.Member(HideClub,Actor)?.invited==true;var tagInvite=DaycarePlay.Member(TagClub,Actor)?.invited==true;
             var invited=CurrentArea=="daycare" && (hideInvite || tagInvite) && !MenuOpen && !applicationPaused;
             clubInvite.gameObject.SetActive(invited);clubInvite.localScale=Vector3.one*Mathf.Min(1,safe.rect.width/900);
@@ -151,8 +155,8 @@ namespace LittleWeeps.Client
             {
                 // The seeker never exposes unrelated hidden people; co-hiders
                 // see through their own cover, as in the Home game.
-                if(own?.slot>=0){avatar.anchoredPosition=ToBoard(DaycarePlay.Cover(own.slot).X-48,185);characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),dt);}
-                foreach(var f in friends){var h=DaycarePlay.Member(g,f.Key);var p=ReadPlayer(f.Key);var show=p.zone==CurrentArea && shared.Players.Contains(f.Key) && (h?.slot<0 || h==null || h.slot==own?.slot);f.Value.root.gameObject.SetActive(show);if(show && h?.slot>=0){f.Value.root.anchoredPosition=ToBoard(DaycarePlay.Cover(h.slot).X+48,185);f.Value.view.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),dt);}}
+                if(own?.slot>=0){avatar.anchoredPosition=ClubHiddenPoint(g,own.slot,Actor);avatar.localScale=Vector3.one*sceneScale*ClubHiddenScale(g,own.slot);characterVisual.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),dt);}
+                foreach(var f in friends){var h=DaycarePlay.Member(g,f.Key);var p=ReadPlayer(f.Key);var show=p.zone==CurrentArea && shared.Players.Contains(f.Key) && (h?.slot<0 || h==null || h.slot==own?.slot);f.Value.root.gameObject.SetActive(show);if(show && h?.slot>=0){f.Value.root.anchoredPosition=ClubHiddenPoint(g,h.slot,f.Key);f.Value.root.localScale=Vector3.one*sceneScale*ClubHiddenScale(g,h.slot);f.Value.view.PresentFrame(new CharacterFrame(CharacterPose.Sit,0,false),dt);}}
             }
         }
         private void AddDaycarePlayDepth(Action<RectTransform,float,int,string> add)
@@ -162,6 +166,6 @@ namespace LittleWeeps.Client
             if(clubTeacher!=null)add(clubTeacher,clubTeacher.anchoredPosition.y,1,"club-teacher");
             foreach(var p in clubHumanStars)add((RectTransform)p.Value.transform.parent,-10000,3,"club-star-"+p.Key);
         }
-        private void ResetDaycarePlay(){clubHud=clubInvite=clubTeacher=clubActionRoot=null;clubTeacherWalk=null;clubCovers.Clear();clubFriends.Clear();clubHumanStars.Clear();clubSending=false;clubApproach=-1;clubTeacherMotion.Reset();}
+        private void ResetDaycarePlay(){daycareReactions.Reset();clubHud=clubInvite=clubTeacher=clubActionRoot=null;clubTeacherWalk=null;clubCovers.Clear();clubFriends.Clear();clubHumanStars.Clear();clubSending=false;clubApproach=-1;clubTeacherMotion.Reset();}
     }
 }

@@ -1,0 +1,19 @@
+{
+  "build": 466,
+  "unityInputCount": 2335,
+  "exactMatches": 2334,
+  "whitespaceOnlyEofMatches": 1,
+  "unexplainedDifferences": [],
+  "coreChangesSinceStartingCommit": [],
+  "homeSourceRunPassed": false,
+  "homeAcceptedGroups": 2,
+  "homeRunScope": "Both Home groups passed; later Daycare fixture timed out. Daycare accepted separately on the same build.",
+  "daycareSourceRunPassed": true,
+  "soloSourceRunPassed": true,
+  "actualConcurrentSharedClients": 4,
+  "actualPrivateClients": 1,
+  "daycareCoverOccupants": 5,
+  "daycareFilmSurpriseFrameSeconds": 20.25,
+  "parentApproval": "pending",
+  "deployed": false
+}

@@ -1,0 +1,1777 @@
+{
+  "home-happy-tablet": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [
+      "player-1",
+      "player-2",
+      "player-3",
+      "player-4"
+    ],
+    "revealVariants": [
+      1,
+      2,
+      0,
+      2
+    ],
+    "homeRevealEvents": 4,
+    "daycareRevealEvents": 0,
+    "revealBodies": [
+      {
+        "actor": "player-3",
+        "pose": "Wave",
+        "point": {
+          "x": 138.00967407226562,
+          "y": -273.0
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-1",
+        "pose": "Wave",
+        "point": {
+          "x": -29.990333557128906,
+          "y": -273.0
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-2",
+        "pose": "Dance",
+        "point": {
+          "x": 54.00967025756836,
+          "y": -273.0
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-4",
+        "pose": "Dance",
+        "point": {
+          "x": 222.00967407226562,
+          "y": -273.0
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 0.8333333134651184,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 0.8333333134651184,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 0.8333333134651184,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 0.8333333134651184,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 0.0,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        }
+      ],
+      "guests": [
+        "dusty",
+        "jack",
+        "jean-luc",
+        "captain"
+      ]
+    }
+  },
+  "home-shared-hidden-phone": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [],
+    "revealVariants": [],
+    "homeRevealEvents": 0,
+    "daycareRevealEvents": 0,
+    "revealBodies": [
+      {
+        "actor": "player-1",
+        "pose": "Sit",
+        "point": {
+          "x": 430.0,
+          "y": -106.0
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-2",
+        "pose": "Sit",
+        "point": {
+          "x": 483.333251953125,
+          "y": -106.0
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-3",
+        "pose": "Sit",
+        "point": {
+          "x": 536.666748046875,
+          "y": -106.0
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-4",
+        "pose": "Sit",
+        "point": {
+          "x": 590.0,
+          "y": -106.0
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 0.0,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        }
+      ],
+      "guests": [
+        "dusty",
+        "jack",
+        "jean-luc",
+        "captain"
+      ]
+    }
+  },
+  "home-shared-hidden-tablet": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [],
+    "revealVariants": [],
+    "homeRevealEvents": 0,
+    "daycareRevealEvents": 0,
+    "revealBodies": [
+      {
+        "actor": "player-3",
+        "pose": "Sit",
+        "point": {
+          "x": 644.0001220703125,
+          "y": -127.20001220703125
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-1",
+        "pose": "Sit",
+        "point": {
+          "x": 516.0,
+          "y": -127.20001220703125
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-2",
+        "pose": "Sit",
+        "point": {
+          "x": 579.9999389648438,
+          "y": -127.20001220703125
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-4",
+        "pose": "Sit",
+        "point": {
+          "x": 708.0,
+          "y": -127.20001220703125
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 0.8333333134651184,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 0.8333333134651184,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 0.8333333134651184,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 0.8333333134651184,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 0.0,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        }
+      ],
+      "guests": [
+        "dusty",
+        "jack",
+        "jean-luc",
+        "captain"
+      ]
+    }
+  },
+  "home-surprise-phone": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [
+      "player-1",
+      "player-2",
+      "player-3",
+      "player-4"
+    ],
+    "revealVariants": [
+      1,
+      2,
+      0,
+      2
+    ],
+    "homeRevealEvents": 4,
+    "daycareRevealEvents": 0,
+    "revealBodies": [
+      {
+        "actor": "player-1",
+        "pose": "Surprise",
+        "point": {
+          "x": -24.693115234375,
+          "y": -227.5
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": true
+      },
+      {
+        "actor": "player-2",
+        "pose": "Surprise",
+        "point": {
+          "x": 45.306884765625,
+          "y": -227.5
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": true
+      },
+      {
+        "actor": "player-3",
+        "pose": "Surprise",
+        "point": {
+          "x": 115.306884765625,
+          "y": -227.5
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": true
+      },
+      {
+        "actor": "player-4",
+        "pose": "Surprise",
+        "point": {
+          "x": 185.306884765625,
+          "y": -227.5
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": true
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 0.0,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        }
+      ],
+      "guests": [
+        "dusty",
+        "jack",
+        "jean-luc",
+        "captain"
+      ]
+    }
+  },
+  "daycare-five-happy-tablet": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [
+      "club-npc-0",
+      "player-1",
+      "player-2",
+      "player-3",
+      "player-4"
+    ],
+    "revealVariants": [
+      1,
+      1,
+      2,
+      0,
+      2
+    ],
+    "homeRevealEvents": 0,
+    "daycareRevealEvents": 5,
+    "revealBodies": [
+      {
+        "actor": "player-3",
+        "pose": "Wave",
+        "point": {
+          "x": -246.3999786376953,
+          "y": -251.40000915527344
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-1",
+        "pose": "Wave",
+        "point": {
+          "x": -409.6000061035156,
+          "y": -251.40000915527344
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-2",
+        "pose": "Dance",
+        "point": {
+          "x": -328.0,
+          "y": -251.40000915527344
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-4",
+        "pose": "Dance",
+        "point": {
+          "x": -164.79998779296875,
+          "y": -251.40000915527344
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Wave",
+        "point": {
+          "x": -491.1999816894531,
+          "y": -251.40000915527344
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 572.0000610351562,
+          "y": -200.10000610351562
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": 122.00003051757812,
+          "y": -200.10000610351562
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 1022.0000610351562,
+          "y": -200.10000610351562
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 4.640915500000002,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        }
+      ],
+      "guests": [
+        "socks",
+        "mia",
+        "orange-pup",
+        "hercules"
+      ]
+    }
+  },
+  "daycare-five-hidden-phone": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [],
+    "revealVariants": [],
+    "homeRevealEvents": 0,
+    "daycareRevealEvents": 0,
+    "revealBodies": [
+      {
+        "actor": "player-1",
+        "pose": "Sit",
+        "point": {
+          "x": -658.3283081054688,
+          "y": -166.75
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-2",
+        "pose": "Sit",
+        "point": {
+          "x": -606.3283081054688,
+          "y": -166.75
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-3",
+        "pose": "Sit",
+        "point": {
+          "x": -554.3283081054688,
+          "y": -166.75
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-4",
+        "pose": "Sit",
+        "point": {
+          "x": -502.32830810546875,
+          "y": -166.75
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Sit",
+        "point": {
+          "x": -710.3283081054688,
+          "y": -166.75
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 143.67169189453125,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": -231.32830810546875,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 518.6716918945312,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 4.640915500000002,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        }
+      ],
+      "guests": [
+        "socks",
+        "mia",
+        "orange-pup",
+        "hercules"
+      ]
+    }
+  },
+  "daycare-five-hidden-tablet": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [],
+    "revealVariants": [],
+    "homeRevealEvents": 0,
+    "daycareRevealEvents": 0,
+    "revealBodies": [
+      {
+        "actor": "player-3",
+        "pose": "Sit",
+        "point": {
+          "x": -265.5999755859375,
+          "y": -200.10000610351562
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-1",
+        "pose": "Sit",
+        "point": {
+          "x": -390.3999938964844,
+          "y": -200.10000610351562
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-2",
+        "pose": "Sit",
+        "point": {
+          "x": -328.0,
+          "y": -200.10000610351562
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-4",
+        "pose": "Sit",
+        "point": {
+          "x": -203.19998168945312,
+          "y": -200.10000610351562
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Sit",
+        "point": {
+          "x": -452.79998779296875,
+          "y": -200.10000610351562
+        },
+        "scale": 0.550000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 572.0000610351562,
+          "y": -200.10000610351562
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": 122.00003051757812,
+          "y": -200.10000610351562
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 1022.0000610351562,
+          "y": -200.10000610351562
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 4.640915500000002,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        }
+      ],
+      "guests": [
+        "socks",
+        "mia",
+        "orange-pup",
+        "hercules"
+      ]
+    }
+  },
+  "daycare-five-surprise-phone": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [
+      "club-npc-0",
+      "player-1",
+      "player-2",
+      "player-3",
+      "player-4"
+    ],
+    "revealVariants": [
+      1,
+      1,
+      2,
+      0,
+      2
+    ],
+    "homeRevealEvents": 0,
+    "daycareRevealEvents": 5,
+    "revealBodies": [
+      {
+        "actor": "player-1",
+        "pose": "Wave",
+        "point": {
+          "x": -674.3283081054688,
+          "y": -209.5
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-2",
+        "pose": "Dance",
+        "point": {
+          "x": -606.3283081054688,
+          "y": -209.5
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-3",
+        "pose": "Wave",
+        "point": {
+          "x": -538.3283081054688,
+          "y": -209.5
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-4",
+        "pose": "Dance",
+        "point": {
+          "x": -470.32830810546875,
+          "y": -209.5
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Wave",
+        "point": {
+          "x": -742.3283081054688,
+          "y": -209.5
+        },
+        "scale": 0.6499999761581421,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 143.67169189453125,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": -231.32830810546875,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 518.6716918945312,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 4.640915500000002,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        }
+      ],
+      "guests": [
+        "socks",
+        "mia",
+        "orange-pup",
+        "hercules"
+      ]
+    }
+  },
+  "daycare-tag-phone": {
+    "visiblePlayers": 4,
+    "connected": true,
+    "revealActors": [],
+    "revealVariants": [],
+    "homeRevealEvents": 0,
+    "daycareRevealEvents": 8,
+    "revealBodies": [
+      {
+        "actor": "player-1",
+        "pose": "Idle",
+        "point": {
+          "x": -626.3283081054688,
+          "y": -209.5
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-2",
+        "pose": "Idle",
+        "point": {
+          "x": -406.32830810546875,
+          "y": -169.0
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-3",
+        "pose": "Idle",
+        "point": {
+          "x": -186.32830810546875,
+          "y": -209.5
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "player-4",
+        "pose": "Idle",
+        "point": {
+          "x": 33.67169189453125,
+          "y": -169.0
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Walk",
+        "point": {
+          "x": -88.83935546875,
+          "y": -203.60227966308594
+        },
+        "scale": 0.800000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Walk",
+        "point": {
+          "x": 915.6602172851562,
+          "y": -196.8802947998047
+        },
+        "scale": 0.800000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Walk",
+        "point": {
+          "x": 272.13665771484375,
+          "y": -183.2295684814453
+        },
+        "scale": 0.800000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Walk",
+        "point": {
+          "x": -166.6630859375,
+          "y": -203.82420349121094
+        },
+        "scale": 0.800000011920929,
+        "visible": true,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 35.5562874,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "player-1",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-2",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-3",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        },
+        {
+          "actor": "player-4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        }
+      ],
+      "guests": [
+        "socks",
+        "mia",
+        "orange-pup",
+        "hercules"
+      ]
+    }
+  },
+  "daycare-solo-discovery": {
+    "visiblePlayers": 1,
+    "connected": false,
+    "revealActors": [
+      "club-npc-1"
+    ],
+    "revealVariants": [
+      0
+    ],
+    "homeRevealEvents": 1,
+    "daycareRevealEvents": 1,
+    "revealBodies": [
+      {
+        "actor": "09ea1e24e09c4879ab00b2850ec377d4",
+        "pose": "Sit",
+        "point": {
+          "x": 105.67169189453125,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Idle",
+        "point": {
+          "x": 518.6716918945312,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Surprise",
+        "point": {
+          "x": -231.32830810546875,
+          "y": -209.5
+        },
+        "scale": 0.800000011920929,
+        "visible": true,
+        "expression": true
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Sit",
+        "point": {
+          "x": 181.67169189453125,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 1268.671630859375,
+          "y": -166.75
+        },
+        "scale": 0.800000011920929,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 0.2084126982372254,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "09ea1e24e09c4879ab00b2850ec377d4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": true
+        }
+      ],
+      "guests": [
+        "muffin",
+        "blue-pup",
+        "winnie",
+        "dusty"
+      ]
+    }
+  },
+  "home-solo-discovery": {
+    "visiblePlayers": 1,
+    "connected": false,
+    "revealActors": [
+      "09ea1e24e09c4879ab00b2850ec377d4"
+    ],
+    "revealVariants": [
+      0
+    ],
+    "homeRevealEvents": 1,
+    "daycareRevealEvents": 0,
+    "revealBodies": [
+      {
+        "actor": "09ea1e24e09c4879ab00b2850ec377d4",
+        "pose": "Surprise",
+        "point": {
+          "x": -80.11279296875,
+          "y": -227.5
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": true
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 0.0,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "09ea1e24e09c4879ab00b2850ec377d4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        }
+      ],
+      "guests": [
+        "muffin",
+        "blue-pup",
+        "winnie",
+        "dusty"
+      ]
+    }
+  },
+  "home-solo-happy": {
+    "visiblePlayers": 1,
+    "connected": false,
+    "revealActors": [
+      "09ea1e24e09c4879ab00b2850ec377d4"
+    ],
+    "revealVariants": [
+      0
+    ],
+    "homeRevealEvents": 1,
+    "daycareRevealEvents": 0,
+    "revealBodies": [
+      {
+        "actor": "09ea1e24e09c4879ab00b2850ec377d4",
+        "pose": "Wave",
+        "point": {
+          "x": 0.0,
+          "y": -227.5
+        },
+        "scale": 1.0,
+        "visible": true,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-0",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-1",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-2",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      },
+      {
+        "actor": "club-npc-3",
+        "pose": "Idle",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "scale": 1.0,
+        "visible": false,
+        "expression": false
+      }
+    ],
+    "sandpitTowerReveal": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "daycare": {
+      "clock": 0.0,
+      "started": 0.0,
+      "helpUntil": 0.0,
+      "round": 0,
+      "phase": 0,
+      "plates": 0,
+      "members": [
+        {
+          "actor": "09ea1e24e09c4879ab00b2850ec377d4",
+          "attending": false,
+          "carryingPlate": false,
+          "declined": false
+        }
+      ],
+      "guests": [
+        "muffin",
+        "blue-pup",
+        "winnie",
+        "dusty"
+      ]
+    }
+  }
+}
