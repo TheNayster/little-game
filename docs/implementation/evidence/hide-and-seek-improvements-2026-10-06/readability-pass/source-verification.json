@@ -1,0 +1,25 @@
+{
+  "deliveredBuild": 470,
+  "currentUnityInputCount": 2335,
+  "currentUnityInputDifferences": [],
+  "homeNativeBuild": 469,
+  "daycareNativeBuild": 470,
+  "homeReusedSourceDifferences": [
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Daycare/GameScreen.HideAndTag.cs",
+    "Unity/FamilyPlayset/ProjectSettings/ProjectSettings.asset"
+  ],
+  "homeReuseReason": "Only Daycare-specific own-found camera predicate and build version changed after469; Home and shared rendering/expressions/camera inputs are identical.",
+  "coreChangesSince466": [],
+  "actualConcurrentNativeClientsPerSharedRun": 4,
+  "phoneViewport": [
+    1280,
+    591
+  ],
+  "tabletViewport": [
+    1024,
+    768
+  ],
+  "parentVisualApproval": "pending",
+  "audioListening": "pending",
+  "deployed": false
+}

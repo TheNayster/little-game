@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "build": 470,
+  "world": "daycare",
+  "baseline": false,
+  "checks": [
+    "Four actual clients; UI cover entry; pointer joystick movement, departure and reconnect during bounded reveal",
+    "Separate Daycare hiding retains concealment",
+    "Daycare Tag ordinary native movement and independent departure",
+    "Actual phone 1280x591 and tablet 1024x768 native capture; 5 co-hiders"
+  ],
+  "actualConcurrentNativeClients": 4,
+  "errors": [],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "setup": "Authority avatar/world/position fixtures; Games/invitations/hiding via normal touch controls",
+  "parentVisualApproval": "pending",
+  "audioListening": false
+}

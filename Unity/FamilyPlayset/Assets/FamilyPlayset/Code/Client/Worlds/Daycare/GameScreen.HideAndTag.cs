@@ -19,7 +19,8 @@ namespace LittleWeeps.Client
         private bool clubSending,clubInviteTag;private int clubApproach=-1;
         public DaycarePlayState HideClub=>HasWorld?(Shared?shared.View.hideClub:World.ReadDaycarePlay(false)):null;
         public DaycarePlayState TagClub=>HasWorld?(Shared?shared.View.tagClub:World.ReadDaycarePlay(true)):null;
-        private bool FollowingClubTeacher=>HasWorld && CurrentArea==DaycarePlay.HideZone && (HideClub?.phase==ClubPhase.Playing || HideClub?.phase==ClubPhase.Inspecting) && DaycarePlay.Member(HideClub,Actor)?.attending==true && !groundPan && (DaycarePlay.Member(HideClub,Actor).slot>=0 || DaycarePlay.Member(HideClub,Actor).found || !destination.HasValue && stickDirection.sqrMagnitude<.01f);
+        // Stay with our discovered child; later remote discoveries do not take this view.
+        private bool FollowingClubTeacher=>HasWorld && CurrentArea==DaycarePlay.HideZone && (HideClub?.phase==ClubPhase.Playing || HideClub?.phase==ClubPhase.Inspecting) && DaycarePlay.Member(HideClub,Actor)?.attending==true && !DaycarePlay.Member(HideClub,Actor).found && !manualCamera && !groundPan && !destination.HasValue && stickDirection.sqrMagnitude<.01f;
         private bool ClubTag=>CurrentArea==DaycarePlay.TagZone;
         private DaycarePlayState CurrentClub=>ClubTag?TagClub:HideClub;
         public string[] ClubNpcArt=>clubFriends.Select(n=>n.visual.CharacterId).ToArray();
@@ -133,7 +134,7 @@ namespace LittleWeeps.Client
                 friend.root.anchoredPosition=ToBoard(friend.motion.Point.x,friend.motion.Point.y);friend.root.localScale=Vector3.one*sceneScale*.8f;
                 if(!tag && n.hidden){frame=new CharacterFrame(CharacterPose.Sit,0,false);friend.root.anchoredPosition=ClubHiddenPoint(g,n.slot,DaycarePlay.NpcId(i));friend.root.localScale=Vector3.one*sceneScale*ClubHiddenScale(g,n.slot);}
                 var reaction=!tag?DaycareReveal.FirstOrDefault(r=>r.actor==DaycarePlay.NpcId(i)):null;
-                if(reaction!=null){frame=RevealFrame(reaction,false);friend.root.anchoredPosition=ToBoard(DaycarePlay.Cover(reaction.slot).X+(reaction.index-(reaction.count-1)*.5f)*68,n.y);if(reaction.count>3)friend.root.localScale=Vector3.one*sceneScale*.65f;}
+                if(reaction!=null){frame=RevealFrame(reaction,false);friend.root.anchoredPosition=RevealPoint(reaction,new Vector2(n.x,n.y),true);friend.root.localScale=Vector3.one*sceneScale*Mathf.Lerp(.8f,.95f,RevealWeight(reaction));}
                 friend.visual.PresentNpcFrame(frame,dt,.8f);friend.star.gameObject.SetActive(tag && g.it==DaycarePlay.NpcId(i));
             }
             clubTeacher.gameObject.SetActive(inMap && !tag);

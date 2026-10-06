@@ -1,0 +1,40 @@
+{
+  "beforeResponseFrameSeconds": {
+    "home": 15,
+    "daycare": 22
+  },
+  "afterTabletHappyFrameSeconds": {
+    "home": 18,
+    "daycare": 31
+  },
+  "viewports": {
+    "phone": [
+      1280,
+      591
+    ],
+    "tablet": [
+      1024,
+      768
+    ]
+  },
+  "method": "Before images copied from original full native PNG frames at the recorded elapsed times; after tablet happy frames extracted with ffmpeg. No cropping or enlargement. Phone videos encode the 1280x591 viewport with one added black bottom row for H.264; screenshots remain exact viewport dimensions. Clips retain recorded timestamp cadence with trailing idle footage trimmed (Home 24s/Daycare 37s).",
+  "lateCaptureNote": "Originally happy-named tablet stills and baseline happy-named stills were past the reaction window; renamed after-response. Phase comparisons use actual film frames instead.",
+  "originalBeforeFrames": {
+    "home-phone": {
+      "frame": "0080.png",
+      "elapsedSeconds": 14.942563999999999
+    },
+    "home-tablet": {
+      "frame": "0080.png",
+      "elapsedSeconds": 14.962088000000001
+    },
+    "daycare-phone": {
+      "frame": "0119.png",
+      "elapsedSeconds": 21.893897999999997
+    },
+    "daycare-tablet": {
+      "frame": "0117.png",
+      "elapsedSeconds": 21.864799
+    }
+  }
+}

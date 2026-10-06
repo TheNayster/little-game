@@ -1,0 +1,183 @@
+{
+  "before": [
+    {
+      "actor": "player-4",
+      "pose": "Surprise",
+      "point": {
+        "x": 321.1506042480469,
+        "y": -302.70001220703125
+      },
+      "scale": 1.0,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "player-1",
+      "pose": "Surprise",
+      "point": {
+        "x": -128.84942626953125,
+        "y": -302.70001220703125
+      },
+      "scale": 1.0,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "player-2",
+      "pose": "Surprise",
+      "point": {
+        "x": 21.15058708190918,
+        "y": -302.70001220703125
+      },
+      "scale": 1.0,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "player-3",
+      "pose": "Surprise",
+      "point": {
+        "x": 171.1505889892578,
+        "y": -302.70001220703125
+      },
+      "scale": 1.0,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "club-npc-0",
+      "pose": "Idle",
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scale": 0.8333333134651184,
+      "visible": false,
+      "expression": false
+    },
+    {
+      "actor": "club-npc-1",
+      "pose": "Idle",
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scale": 0.8333333134651184,
+      "visible": false,
+      "expression": false
+    },
+    {
+      "actor": "club-npc-2",
+      "pose": "Idle",
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scale": 0.8333333134651184,
+      "visible": false,
+      "expression": false
+    },
+    {
+      "actor": "club-npc-3",
+      "pose": "Idle",
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scale": 0.8333333134651184,
+      "visible": false,
+      "expression": false
+    }
+  ],
+  "moving": [
+    {
+      "actor": "player-4",
+      "pose": "Walk",
+      "point": {
+        "x": 111.82266235351562,
+        "y": -273.0
+      },
+      "scale": 1.0,
+      "visible": true,
+      "expression": false
+    },
+    {
+      "actor": "player-1",
+      "pose": "Surprise",
+      "point": {
+        "x": 96.01553344726562,
+        "y": -273.0
+      },
+      "scale": 1.0,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "player-2",
+      "pose": "Surprise",
+      "point": {
+        "x": 96.01553344726562,
+        "y": -273.0
+      },
+      "scale": 1.0,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "player-3",
+      "pose": "Surprise",
+      "point": {
+        "x": 96.01553344726562,
+        "y": -273.0
+      },
+      "scale": 1.0,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "club-npc-0",
+      "pose": "Idle",
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scale": 0.8333333134651184,
+      "visible": false,
+      "expression": false
+    },
+    {
+      "actor": "club-npc-1",
+      "pose": "Idle",
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scale": 0.8333333134651184,
+      "visible": false,
+      "expression": false
+    },
+    {
+      "actor": "club-npc-2",
+      "pose": "Idle",
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scale": 0.8333333134651184,
+      "visible": false,
+      "expression": false
+    },
+    {
+      "actor": "club-npc-3",
+      "pose": "Idle",
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scale": 0.8333333134651184,
+      "visible": false,
+      "expression": false
+    }
+  ],
+  "secondsAfterObservedReveal": 1.4380000000819564
+}

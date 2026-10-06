@@ -38,7 +38,7 @@ namespace LittleWeeps.Client
         private bool HideCardOpen=>hideCard!=null && hideCard.gameObject.activeSelf;
         private HiderState OwnHider=>HideAndSeek.Player(HideGame,Actor);
         // Found players keep watching the shared search until its final reaction finishes.
-        private bool FollowingHideParent=>HasWorld && CurrentArea=="garden" && HideGame.phase!=HidePhase.Idle &&
+        private bool FollowingHideParent=>HasWorld && CurrentArea=="garden" && HideGame.phase!=HidePhase.Idle && !manualCamera && !groundPan && !destination.HasValue && stickDirection.sqrMagnitude<.01f &&
             (OwnHider?.mode==HiderMode.Hidden || OwnHider?.mode==HiderMode.Found);
         private Vector2 HideEntry=>new Vector2(HideAndSeek.CoverX(Mathf.Clamp(hideApproach,0,HideAndSeek.SlotX.Length-1),SceneSchema),HideAndSeek.RailY);
         private float[] HidePropX=>new[]{HideAndSeek.SlotX[0],HomeLayout.SofaX,-3495,-3150,-7040,Kitchen.DiningX,HideAndSeek.CoverX(8,SceneSchema),4310f};

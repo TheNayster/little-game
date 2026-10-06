@@ -9,13 +9,14 @@ namespace LittleWeeps.Client
     public sealed class RevealExpression : MaskableGraphic
     {
         [Serializable] public sealed class Face { public string id; public float x,y,rx,ry,r,g,b; }
-        [Serializable] private sealed class Catalog { public Face[] faces; }
+        [Serializable] private sealed class Catalog { public Face[] faces,dinosaur; }
         private static Catalog catalog;
         private Face face;
-        public void Configure(string id, float pixelsToUnits)
+        public void Configure(string id, float pixelsToUnits,string outfit="")
         {
             if(catalog==null)catalog=JsonUtility.FromJson<Catalog>(WorldResources.Load<TextAsset>("Shared/Characters/reveal-expressions").text);
-            face=Array.Find(catalog.faces,f=>f.id==id);
+            // Costume atlases have different crop origins and head registration.
+            face=Array.Find(outfit=="dinosaur"?catalog.dinosaur:catalog.faces,f=>f.id==id);
             rectTransform.localScale=Vector3.one*pixelsToUnits;
             if(face!=null)rectTransform.anchoredPosition=new Vector2(face.x,-face.y)*pixelsToUnits;
             raycastTarget=false;SetVerticesDirty();

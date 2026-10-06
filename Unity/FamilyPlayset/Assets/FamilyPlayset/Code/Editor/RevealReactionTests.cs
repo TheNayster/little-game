@@ -18,7 +18,8 @@ namespace LittleWeeps.EditorTools
             var reactions=r.Active(.2f);Check(reactions.Length==3 && reactions[0].index==0 && reactions[2].index==2 && reactions[1].count==3,"Authority identities determine positions");
             var peer=new RevealReactions();peer.Observe("world/1",1,hidden,0,true);peer.Observe("world/1",1,found,.1f,true);
             Check(peer.Active(.2f)[1].variant==reactions[1].variant,"Observers must agree on variant");
-            Check(r.Active(2).Length==0,"Reaction is bounded");
+            r.Cancel("p1");Check(r.Active(.3f).Length==2 && !r.Observe("world/1",1,found,.4f,true),"Movement cancellation cannot resume a reaction");
+            Check(r.Active(3).Length==0,"Reaction is bounded");
             r.Observe("world/1",1,found,2,false);Check(!r.Observe("world/1",1,found,3,true) && r.Active(3).Length==0,"Reconnect must baseline existing discoveries");
             Check(!r.Observe("world/2",2,found,4,true),"New-round baseline must be silent");
             r.Observe("world/3",3,hidden,5,true);r.Observe("world/3",3,new[]{new RevealReactions.Occupant("p1",-1,false)},6,true);Check(r.Active(6).Length==0,"Departure is not a reveal");

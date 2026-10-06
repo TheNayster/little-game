@@ -7,7 +7,7 @@ namespace LittleWeeps.Client
     // Observes authority state, never creates a gameplay event or delays a round.
     public sealed class RevealReactions
     {
-        public const float Duration=1.15f,SurpriseSeconds=.42f;
+        public const float Duration=2.2f,SurpriseSeconds=.8f;
         public readonly struct Occupant
         {
             public readonly string actor;public readonly int slot;public readonly bool found;
@@ -23,6 +23,7 @@ namespace LittleWeeps.Client
         private readonly HashSet<string> consumed=new HashSet<string>();
         public int Events {get;private set;}
         public Reaction[] Active(float now)=>active.Values.Where(r=>now-r.start<Duration).OrderBy(r=>r.actor,StringComparer.Ordinal).ToArray();
+        public void Cancel(string actor)=>active.Remove(actor);
         public void Reset(){continuity=null;previous.Clear();active.Clear();consumed.Clear();}
         public bool Observe(string key,int round,IEnumerable<Occupant> occupants,float now,bool ready)
         {

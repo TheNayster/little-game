@@ -177,6 +177,7 @@ namespace LittleWeeps.NetworkProbe
                 else if(step.action=="walkChecks")WalkAnimationVerification.Run(screen.Board,probe.Output);
                 else if(step.action=="walkFilm")StartCoroutine(WalkFilm());
                 else if(step.action=="revealGallery")StartCoroutine(RevealGallery());
+                else if(step.action=="revealOutfits")StartCoroutine(RevealOutfits());
                 else if(step.action=="sandFilm")StartCoroutine(SandFilm(Mathf.Clamp(step.x,5,90)));
                 else if(step.action=="fixtureTravel")screen.Travel(step.text);
                 else if(step.action=="traceStop")
@@ -204,6 +205,21 @@ namespace LittleWeeps.NetworkProbe
             // Render the actual live canvas to an offscreen target in this player.
             yield return null;
             CaptureFrame(Path.Combine(probe.Output,"garden.png"));
+        }
+        private IEnumerator RevealOutfits()
+        {
+            var canvas=screen.Board.GetComponentInParent<Canvas>();var bounds=((RectTransform)canvas.transform).rect;
+            var scales=new[]{.65f,.95f,1f};
+            for(var page=0;page<scales.Length;page++){
+                var stage=new GameObject("Equipped outfit verification",typeof(RectTransform),typeof(Image));var panel=stage.GetComponent<RectTransform>();panel.SetParent(canvas.transform,false);panel.anchorMin=Vector2.zero;panel.anchorMax=Vector2.one;panel.offsetMin=panel.offsetMax=Vector2.zero;stage.GetComponent<Image>().color=new Color(.76f,.86f,.9f);
+                for(var i=0;i<12;i++){
+                    var body=new GameObject("Equipped dinosaur pose",typeof(RectTransform));var rect=body.GetComponent<RectTransform>();rect.SetParent(panel,false);rect.anchoredPosition=new Vector2((i%4-1.5f)*bounds.width/4,(1-i/4)*bounds.height/3-bounds.height/12+45);rect.localScale=Vector3.one*scales[page]*screen.Board.rect.height/Core.WorldLayout.SceneHeight;
+                    var visual=body.AddComponent<GameCharacterVisual>();visual.Select(i<4?"blue-pup":i<8?"orange-pup":"blue-pup");if(i<8)visual.Wear("dinosaur",i<4?"green":"blue");
+                    visual.PresentFrame(new CharacterFrame(i%4<2?CharacterPose.Surprise:CharacterPose.Wave,0,i%2==1),0);
+                    var label=new GameObject("Pose label",typeof(RectTransform),typeof(Text));var text=label.GetComponent<Text>();text.rectTransform.SetParent(panel,false);text.rectTransform.anchoredPosition=rect.anchoredPosition+new Vector2(0,-65);text.rectTransform.sizeDelta=new Vector2(260,40);text.text=(i<4?"Bluey dinosaur":i<8?"Bingo blue dinosaur":"Bluey normal")+" / "+(i%4<2?"surprise":"happy")+" / "+(i%2==1?"left":"right");text.font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");text.fontSize=16;text.color=Color.black;text.alignment=TextAnchor.MiddleCenter;
+                }
+                yield return null;Canvas.ForceUpdateCanvases();CaptureFrame(Path.Combine(probe.Output,"reveal-outfits-"+page+".png"));stage.SetActive(false);Destroy(stage);
+            }
         }
         private IEnumerator RevealGallery()
         {

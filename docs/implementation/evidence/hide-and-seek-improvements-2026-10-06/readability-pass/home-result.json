@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "build": 469,
+  "world": "home",
+  "baseline": false,
+  "checks": [
+    "Four actual clients; UI cover entry; pointer joystick movement, departure and reconnect during bounded reveal",
+    "Actual equipped Bluey/Bingo dinosaur reveal, green/blue; normal Muffin/Chloe; both-facing surprise/happy galleries at .65/.95/1 scale on both layouts",
+    "Separate Home hiding retains concealment",
+    "Actual phone 1280x591 and tablet 1024x768 native capture; 4 co-hiders"
+  ],
+  "actualConcurrentNativeClients": 4,
+  "errors": [],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "setup": "Authority avatar/world/position fixtures; Games/invitations/hiding via normal touch controls",
+  "parentVisualApproval": "pending",
+  "audioListening": false
+}

@@ -137,7 +137,7 @@ namespace LittleWeeps.Client
                 (crop.yMax - drawing.ground.y) / crop.height);
             picture.sizeDelta = crop.size * (180 / (walking ? drawingArt.walkReferenceHeight : drawingArt.referenceHeight));
             revealExpression.gameObject.SetActive(frame.Pose==CharacterPose.Surprise);
-            if(frame.Pose==CharacterPose.Surprise)revealExpression.Configure(art.characterId,180/drawingArt.referenceHeight);
+            if(frame.Pose==CharacterPose.Surprise)revealExpression.Configure(art.characterId,180/drawingArt.referenceHeight,outfit);
             var resting=frame.Pose==CharacterPose.Rest;
             facing.localRotation=Quaternion.Euler(0,0,resting?90:0);
             facing.anchoredPosition = resting?new Vector2(-65,210):offset;

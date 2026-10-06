@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "build": 470,
+  "world": "daycare",
+  "baseline": false,
+  "checks": [
+    "Actual joystick movement and independent departure while sibling reveal remains active; unchanged authoritative X before input"
+  ],
+  "actualConcurrentNativeClients": 4,
+  "errors": [],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "setup": "Authority avatar/world/position fixtures; Games/invitations/hiding via normal touch controls",
+  "parentVisualApproval": "pending",
+  "audioListening": false
+}

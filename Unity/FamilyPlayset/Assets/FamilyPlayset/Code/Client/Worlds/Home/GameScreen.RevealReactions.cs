@@ -44,19 +44,33 @@ namespace LittleWeeps.Client
             var pose=age<RevealReactions.SurpriseSeconds?CharacterPose.Surprise:reaction.variant==2?CharacterPose.Dance:CharacterPose.Wave;
             return new CharacterFrame(pose,0,reaction.variant==1?!left:left,age);
         }
+        private readonly System.Collections.Generic.Dictionary<RevealReactions.Reaction,Vector2> revealOrigins=new System.Collections.Generic.Dictionary<RevealReactions.Reaction,Vector2>();
+        private static float RevealWeight(RevealReactions.Reaction r)=>Mathf.SmoothStep(0,1,(RevealReactions.Duration-(Time.unscaledTime-r.start))/.3f);
+        private Vector2 RevealPoint(RevealReactions.Reaction r,Vector2 authority,bool daycare)
+        {
+            var x=daycare?DaycarePlay.Cover(r.slot).X:HidePropX[r.slot];
+            // One front row, wide enough for silhouettes and clear of the seeker.
+            var half=(r.count-1)*125*.5f;
+            x=Mathf.Clamp(x,WorldLayout.MinX(CurrentArea,SceneSchema)+half+85,WorldLayout.MaxX(CurrentArea)-half-85);
+            var display=new Vector2(x+(r.index-(r.count-1)*.5f)*125,authority.y-55);
+            return ToBoard(Mathf.Lerp(authority.x,display.x,RevealWeight(r)),Mathf.Lerp(authority.y,display.y,RevealWeight(r)));
+        }
         private void PresentHumanReveals(RevealReactions.Reaction[] reactions,bool daycare)
         {
+            foreach(var old in revealOrigins.Keys.Where(r=>Time.unscaledTime-r.start>=RevealReactions.Duration).ToArray())revealOrigins.Remove(old);
+            var tracker=daycare?daycareReactions:homeReactions;
             foreach(var r in reactions){
                 if(r.actor.StartsWith("club-npc-",StringComparison.Ordinal))continue;
-                var p=ReadPlayer(r.actor);if(p==null || p.zone!=CurrentArea || !string.IsNullOrEmpty(p.fixture) || p.activity!="" || p.stairs>0)continue;
+                var p=ReadPlayer(r.actor);if(p==null || p.zone!=CurrentArea || !string.IsNullOrEmpty(p.fixture) || p.activity!="" || p.stairs>0){tracker.Cancel(r.actor);continue;}
+                var authority=new Vector2(p.x,p.y);
+                if(!revealOrigins.TryGetValue(r,out var origin))revealOrigins[r]=origin=authority;
+                if((authority-origin).sqrMagnitude>1 || r.actor==Actor && (destination.HasValue || stickDirection.sqrMagnitude>.01f || TravelPending)){tracker.Cancel(r.actor);continue;}
                 var visual=r.actor==Actor?characterVisual:friends.TryGetValue(r.actor,out var friend)?friend.view:null;
                 var root=r.actor==Actor?avatar:friends.TryGetValue(r.actor,out var f)?f.root:null;
                 if(visual==null || root==null || !root.gameObject.activeInHierarchy || visual.Frame.Speed>1)continue;
-                if(r.actor==Actor && (destination.HasValue || stickDirection.sqrMagnitude>.01f || TravelPending))continue;
-                var x=daycare?DaycarePlay.Cover(r.slot).X:HidePropX[r.slot];
-                // Spread only still spectators; input and real walking always win.
-                root.anchoredPosition=ToBoard(x+(r.index-(r.count-1)*.5f)*(daycare?68:70),p.y);
-                if(daycare && r.count>3)root.localScale=Vector3.one*sceneScale*.65f;
+                // The root/shadow move together briefly; movement cancels rather than resumes.
+                root.anchoredPosition=RevealPoint(r,authority,daycare);
+                root.localScale=Vector3.one*sceneScale*Mathf.Lerp(1,daycare?.95f:1,RevealWeight(r));
                 visual.PresentFrame(RevealFrame(r,false),0);
             }
         }

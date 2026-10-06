@@ -125,8 +125,8 @@ namespace LittleWeeps.Client
             {
                 // Switch viewpoints locally; never move the hidden player or fly
                 // across the whole property when entering/leaving a hiding spot.
-                hideCameraFollowing=followParent;manualCamera=false;groundPan=false;
-                cameraX=followParent?seekerX:position.x;
+                hideCameraFollowing=followParent;
+                if(followParent){manualCamera=false;groundPan=false;cameraX=seekerX;}
             }
             if(OwnWaveRider!=null){manualCamera=false;cameraX=WaveRide.x+(float)Math.Sin(WaveDisplayAge*.6)*65;}
             else if(followParent)
@@ -206,7 +206,7 @@ namespace LittleWeeps.Client
         private void MoveGround(Vector2 screen)
         {
             if(Vector2.Distance(screen,groundDown)>14)groundPan=true;
-            if(!groundPan || FollowingHideParent)return;
+            if(!groundPan)return;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,screen,null,out var now);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(Board,groundDown,null,out var start);
             cameraX=groundCamera-(now.x-start.x)/sceneScale;ClampCamera();manualCamera=true;zooApproach=false;destination=null;

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "build": 466,
+  "world": "daycare",
+  "baseline": true,
+  "checks": [
+    "Actual phone 1280x591 and tablet 1024x768 native capture; 5 co-hiders"
+  ],
+  "actualConcurrentNativeClients": 4,
+  "errors": [],
+  "exitCodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "setup": "Authority avatar/world/position fixtures; Games/invitations/hiding via normal touch controls",
+  "parentVisualApproval": "pending",
+  "audioListening": false
+}

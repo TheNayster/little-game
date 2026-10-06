@@ -1,0 +1,104 @@
+{
+  "before": {
+    "player-1": 2135.0,
+    "player-2": 2135.0,
+    "player-3": 2135.0,
+    "player-4": 2135.0
+  },
+  "reveal": {
+    "player-1": 2135.0,
+    "player-2": 2135.0,
+    "player-3": 2135.0,
+    "player-4": 2135.0
+  },
+  "visual": [
+    {
+      "actor": "player-1",
+      "pose": "Surprise",
+      "point": {
+        "x": 406.328369140625,
+        "y": -234.25
+      },
+      "scale": 0.949999988079071,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "player-2",
+      "pose": "Surprise",
+      "point": {
+        "x": 531.328369140625,
+        "y": -234.25
+      },
+      "scale": 0.949999988079071,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "player-3",
+      "pose": "Surprise",
+      "point": {
+        "x": 656.328369140625,
+        "y": -234.25
+      },
+      "scale": 0.949999988079071,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "player-4",
+      "pose": "Surprise",
+      "point": {
+        "x": 781.328369140625,
+        "y": -234.25
+      },
+      "scale": 0.949999988079071,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "club-npc-0",
+      "pose": "Idle",
+      "point": {
+        "x": -523.671630859375,
+        "y": -209.5
+      },
+      "scale": 0.800000011920929,
+      "visible": true,
+      "expression": false
+    },
+    {
+      "actor": "club-npc-1",
+      "pose": "Surprise",
+      "point": {
+        "x": 281.328369140625,
+        "y": -234.25
+      },
+      "scale": 0.949999988079071,
+      "visible": true,
+      "expression": true
+    },
+    {
+      "actor": "club-npc-2",
+      "pose": "Idle",
+      "point": {
+        "x": -898.671630859375,
+        "y": -209.5
+      },
+      "scale": 0.800000011920929,
+      "visible": true,
+      "expression": false
+    },
+    {
+      "actor": "club-npc-3",
+      "pose": "Idle",
+      "point": {
+        "x": -148.671630859375,
+        "y": -166.75
+      },
+      "scale": 0.800000011920929,
+      "visible": false,
+      "expression": false
+    }
+  ]
+}
