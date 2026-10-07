@@ -4,6 +4,8 @@ Current source root: `C:\Users\sephi\Desktop\Little weeps game`. Unity project: 
 
 ## World ownership
 
+Use [the creation workflow](ai/GAME_CREATION_WORKFLOW.md) for project-checked Unity/Blender edits, checkpoints, imports and concise handoffs. Adopt tooling methods from other projects without copying their roots, output paths or runtime junction layouts. Existing Little Weeps source/LocalData ownership below remains authoritative.
+
 Each of Home, Park, Creek, Beach, Daycare, Zoo and Dinosaur has `Code/Core/Worlds/<World>` for rules, `Code/Client/Worlds/<World>` for presentation and `Resources/Worlds/<World>` for shipped assets. Paths are relative to `Unity/FamilyPlayset/Assets/FamilyPlayset`. Editable inputs live in the corresponding `SourceArt/<World>` and `SourceAudio/<World>` folders where present. Shared characters, menu artwork, narration and world music live under `Shared`. SourceArt's `Scenery` folder retains original multi-world authoring provenance.
 
 Daycare includes StoryAdventure, SandcastleClub, TreasureHunt, AnimalClinic, Calypso/counting and HideAndTag. These activity names replace ambiguous Sandpit/Vet/Kingdom screen filenames; existing saved IDs and commands remain compatible. Home's garden pond remains under Home; Creek's fishing has its own rules/view and intentionally reuses the pond water/bite assets. Shared use is explicit rather than duplicating the same sound.

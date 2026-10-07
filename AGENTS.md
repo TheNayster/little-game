@@ -10,6 +10,16 @@
 - The desktop Connect Unity + Blender and Connect Little Weeps shortcuts now target this root's launcher. The old project's launcher remains unmodified. Require a fresh acknowledgment of the exact new Unity project path before claiming an editor connection.
 - Read the current build guide for implementation status. Dated reports preserve scoped evidence; their old next-step instructions are historical, not the active queue.
 
+## Efficient tools and conversation workflow — October 7
+
+- Use [docs/ai/GAME_CREATION_WORKFLOW.md](docs/ai/GAME_CREATION_WORKFLOW.md) for Unity, Blender, recovery, visual review and handoff procedures. Read only the sections relevant to the task. This incorporates useful Helios/Iron Route practices without importing their project paths, cleanup gates or generated tool configuration.
+- Prefer native custom MCP tools and established project-checked bridges over computer automation. Prefer KitWright `execute_code` when available; otherwise use the existing supported Unity provider/client. Verify actual root/scene/readiness before mutation; tool registration and a reconnect request do not establish a connection.
+- Batch bounded independent reads, preserve target IDs, inspect every result, apply one coherent edit group and compile once. Inspect target state before retrying an interrupted mutation. Use Undo/Editor APIs for scenes, prefabs and serialized assets; preserve metadata and unsaved work.
+- For substantial Blender work, use the active bridge's supported structured tools, project scripts and checkpoints. Inspect the rendered asset and its imported gameplay view. Preserve the existing 2D art pipeline; do not introduce 3D production merely because Blender is available.
+- Resolve routine choices and continue authorized work autonomously. Ask only material missing decisions; retain prior authorization, stage boundaries and corrections through status questions and compaction. Keep updates and final handoffs concise and evidence-based.
+- Preserve pre-existing tracked/untracked work. Contain task artifacts in existing ignored LocalData locations; never manufacture a clean status through destructive cleanup or hiding changes. Report tracked delivery and unrelated untracked work separately.
+- A PC play request uses a configured player launcher, not a raw network executable. Verify a durable ready state after launch. Opening a client does not authorize replacing the live server.
+
 ## Game implementation workflow
 
 - Daycare Adventure and picnic: one start joins connected players already in Daycare. Arriving or returning from another world joins the active shared group; explicit Leave/Return respects the independent exit for that visit. Keep one progress checkpoint and NPC cast for up to four players.
@@ -53,7 +63,7 @@
 - Do not force-push, rewrite shared history or discard changes. Delete completed branches after verified main integration under the branch lifecycle below. Reconcile concurrent updates without overwriting them. Report a genuine push/authentication/conflict blocker instead of claiming the work is uploaded.
 - End meaningful work with a clear status: what changed, relevant validation and any unpushed or unfinished work. This workflow applies while working on the project; it does not imply an unattended background sync service.
 
-- When architecture changes, audit the goal sheet, phase/feature ledgers, return checklist, companion research and generated-page renderers. Run `Tools/Test-PlanConsistency.py` after rendering. Preserve dated evidence without treating its superseded instructions as current requirements.
+- When architecture changes, audit the goal sheet, phase/feature ledgers, return checklist, companion research and generated-page renderers. Run `Tools/Verification/Test-PlanConsistency.py` after rendering. Preserve dated evidence without treating its superseded instructions as current requirements.
 
 - September 30 latest movement preference: the user approved a 15% increase from 420 to 483 floor units/second for every character. Preserve one shared Walking.Speed. This supersedes the earlier 420 baseline; delivery is recorded in current decisions.
 

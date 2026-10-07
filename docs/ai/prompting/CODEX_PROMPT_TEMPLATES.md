@@ -3,6 +3,8 @@
 Original templates. Replace bracketed fields and remove irrelevant requirements before use.
 Read GAME_APP_PROMPTING_GUIDE.md for context. Refer to the actual current repo instructions; do not paste this whole file as instructions.
 
+All implementation templates use [the maintained creation workflow](../GAME_CREATION_WORKFLOW.md): project-checked MCP/bridges, bounded batched reads, Undo/checkpoints where relevant, one coherent compilation, state inspection before retries and proportionate acceptance. Routine choices need no repeated approval; preserve corrections and authorized scope through follow-ups. Use only the relevant template.
+
 ## A. Inspect and plan a significant game/app change
 
 ```text
@@ -87,3 +89,13 @@ Compare the diff and existing evidence with the intended player outcome. Identif
 ```
 
 These templates define task scope; they do not override existing instruction precedence, permission settings, or deployment policies.
+
+## G. Create or modify an asset in Blender/Unity
+
+```text
+Create/update [asset] for [world/activity], using [current source] and [approved reference]. Desired gameplay appearance: [silhouette, scale, layering, movement]. Preserve [artwork, rigs, pivots, shared behavior].
+
+Verify the actual active project and target before editing. Reuse the established 2D pipeline where appropriate; use supported Blender tools/project scripts and a checkpoint for substantial geometry edits. Preserve unrelated and unsaved work. Save editable source in the existing owner folder and import only the intended runtime export with metadata retained.
+
+Inspect actual preview images and the Unity gameplay result at [relevant resolutions/states]. Batch bounded reads and compile once after coherent edits. Record source/export revision, observed defects, checks actually run and pending parent acceptance. Do not reinstall tools, change security, deploy or start later stages unless separately authorized. Follow current scoped Git delivery.
+```

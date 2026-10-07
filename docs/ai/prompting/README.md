@@ -9,6 +9,7 @@ These are original, source-linked working guides and templates, accompanied by a
 
 | File | Purpose |
 | --- | --- |
+| [../GAME_CREATION_WORKFLOW.md](../GAME_CREATION_WORKFLOW.md) | Maintained Unity/Blender, batching, recovery, visual review and conversation procedures adapted from Helios/Iron Route. |
 | OFFICIAL_SOURCES.md | Verified official guides, a game walkthrough with real prompts, and when each source applies. |
 | GAME_APP_PROMPTING_GUIDE.md | How to turn game/app research into a bounded, verifiable Codex task. |
 | FEATURE_BRIEF_TEMPLATE.md | Reusable specification for the desired player experience and constraints. |
@@ -17,7 +18,7 @@ These are original, source-linked working guides and templates, accompanied by a
 
 ## Where to put it
 
-The archive contains `docs/ai/prompting/`. Extract it into your active game repository root, preserving its current documentation conventions. Alternatively, add these files to your ChatGPT project’s source files so Work can refer to them when preparing handoffs. The location is proposed; the pack has not been committed or installed in your repository.
+This pack is maintained in the active Little Weeps repository at `docs/ai/prompting/`. Use these files in place; do not extract an old archive over current instructions. Optional ChatGPT project copies are references and must be refreshed from this maintained source.
 
 The current repository’s own `AGENTS.md` remains the instruction source. Do not replace it with an old exported copy or with this reference pack. Ordinary reference files are not automatically loaded as Codex instructions: explicitly name the relevant file in a task.
 

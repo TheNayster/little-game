@@ -70,6 +70,9 @@ Owner: Work prepares research/design; Codex verifies and implements.
 - Equivalent components to reuse:
 - Required save/protocol change:
 - Actual commands/test workflows:
+- Connected provider and verified project/scene/asset target (when needed):
+- Editable source, intended runtime export/import, metadata and checkpoint location (for asset work):
+- Gameplay review resolutions/states and separate parent acceptance:
 - Rollback/recovery for affected state:
 
 ## Work record

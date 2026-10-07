@@ -1,5 +1,7 @@
 # The Family Playset — ground-up build guide
 
+**Creation instructions — October 7:** Use [the maintained Unity/Blender and conversation workflow](ai/GAME_CREATION_WORKFLOW.md) alongside root instructions and current decisions. Helios/Iron Route batching, project checks, Undo/checkpoints, recovery and visual-review practices are adapted to existing Little Weeps ownership and focused checks. Relevant prompting templates and folder guide are aligned; historical feature/stage reports remain evidence, not new authorization. Documentation-only change: no game build, installed app, live server, save or security change.
+
 **Tag build-gate repair — October4 (DAY-01 / FAMILY-01):** Seed70 reproduces the edge-time assertion identically onb1011fb and pre-Sandcastle9d3ea80: a long shallow first route delays leaving the upper strip. Short inward edge waypoints fix the existing routing defect; test thresholds remain unchanged. Fixed seeds70/0/413/458 execute9600 ticks. Standard463 (normal full-game gate,0errors/0warnings) and four actual native clients pass corner recovery, varied movement, star transfers and independent departure. All Sandcastle inputs match462; its accepted evidence is reused. Schema53/content72/protocol3. Installed451/452, real saves and preview selection unchanged; ready for isolated local parent playtesting, no deployment. [Diagnosis and evidence](implementation/evidence/daycare-hide-and-tag-2026-10-01/tag-gate-repair-2026-10-04/README.md).
 
 

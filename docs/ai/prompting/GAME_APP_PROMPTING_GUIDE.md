@@ -2,6 +2,12 @@
 
 Status: original project guidance, supported by the [official source index](OFFICIAL_SOURCES.md). These are preparation recommendations, not replacement repository instructions.
 
+## Efficient implementation and conversation
+
+Follow [the creation workflow](../GAME_CREATION_WORKFLOW.md) for the relevant Unity/Blender procedure. A stage prompt names the outcome, existing owner, protected behavior and evidence; it does not need to repeat every bridge/API rule. Keep the user in the conversation with concise findings and progress, resolve routine choices, retain authorizations and corrections, and ask only material missing decisions. A status question does not cancel the active task. Preserve a compact handoff on unfinished work rather than making the next chat restart discovery.
+
+Use bounded batched inspection, one coherent edit/compile group, recovery readback before retries and proportionate checks. Verify the connected project before edits and inspect full-size gameplay captures for visual work. Checkpoint substantive Blender edits and verify the actual Unity import. Adopt these methods without copying another project's scene paths, generated settings or cleanup gates. Source delivery, visual approval and rollout remain separate.
+
 ## 1. Describe the player experience precisely
 
 Start with what a player should be able to do and what they should see or hear. For Little Weeps, specify children ages 3–6, touch controls, pretend play, and family participation when relevant.
