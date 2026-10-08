@@ -14,6 +14,7 @@ namespace LittleWeeps.EditorTools
     {
         public static void Windows()
         {
+            ZooNavigationArt.Prepare();
             BathroomJsonTests.Run();HideAndSeekJsonTests.Run();PondJsonTests.Run();CreekBoatJsonTests.Run();CreekFishingJsonTests.Run();ZooJsonTests.Run();DinosaurJsonTests.Run();KingdomJsonTests.Run();DaycareJsonTests.Run();
             SeagullJsonTests.Run();ShoreJsonTests.Run();
             AdventureRepairJsonTests.Run();

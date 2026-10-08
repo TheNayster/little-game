@@ -64,6 +64,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.DinosaurWorldState dinosaurWorld;public int dinosaurTextures;public bool dinosaurSoundPlaying;public Vector2 dinosaurSeat;
             public LittleWeeps.Core.ZooState zoo;public int visibleZooAnimals,zooTextures,zooAudioClips;public bool zooSoundPlaying;
             public string elephantCue;public int elephantSlot,elephantFinishEvents;
+            public bool zooMapOpen,zooNavigationBusy;public string zooCurrentExhibit,zooPreviousDestination,zooNextDestination,zooMapShownTrail,zooMapMarker;
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
@@ -194,6 +195,13 @@ namespace LittleWeeps.NetworkProbe
                 else if(step.action=="drop-acks")GetComponent<NetworkWorldSession>().VerifyDropAcknowledgments(true);
                 else if(step.action=="restore-acks")GetComponent<NetworkWorldSession>().VerifyDropAcknowledgments(false);
                 else if(step.action=="capture")StartCoroutine(Capture());
+                else if(step.action=="escape")
+                {
+                    InputSystem.RegisterLayout("{\"name\":\"SharedTestKeyboard\",\"extend\":\"Keyboard\",\"runInBackground\":\"enabled\"}");
+                    var keyboard=(Keyboard)InputSystem.AddDevice("SharedTestKeyboard");
+                    try{InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Escape));await Task.Delay(100);InputSystem.QueueStateEvent(keyboard,new KeyboardState());await Task.Delay(100);}
+                    finally{InputSystem.RemoveDevice(keyboard);}
+                }
                 else if(step.action!="inspect")throw new ArgumentException("Unknown garden input action.");
                 await Task.Delay(step.action=="inspect"?20:65);Write();
             }
@@ -369,6 +377,8 @@ namespace LittleWeeps.NetworkProbe
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
                 evidence.dinosaurWorld=screen.DinosaurGame;evidence.dinosaurTextures=screen.DinosaurTextureCount;evidence.dinosaurSoundPlaying=screen.DinosaurSoundPlaying;evidence.dinosaurSeat=screen.DinosaurSeat;
                 evidence.zoo=screen.ZooGame;evidence.visibleZooAnimals=screen.VisibleZooAnimals;evidence.zooTextures=screen.ZooTextureCount;evidence.zooAudioClips=screen.ZooAudioClipCount;evidence.zooSoundPlaying=screen.ZooSoundPlaying;
+                evidence.zooMapOpen=screen.ZooMapOpen;evidence.zooNavigationBusy=screen.ZooNavigationBusy;evidence.zooCurrentExhibit=screen.ZooCurrentExhibit;evidence.zooPreviousDestination=screen.ZooPreviousDestination;evidence.zooNextDestination=screen.ZooNextDestination;evidence.zooMapShownTrail=screen.ZooMapShownTrail;
+                evidence.zooMapMarker=screen.ZooMapMarker;
                 evidence.elephantCue=screen.ElephantCue;evidence.elephantSlot=screen.ElephantSlot;evidence.elephantFinishEvents=screen.ElephantFinishEvents;
                 evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;

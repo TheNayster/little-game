@@ -136,6 +136,9 @@ namespace LittleWeeps.Client
         private void PresentMiniGames(Sprite parent)
         {
             if(miniGamesButton==null)return;
+            var zooArea=CurrentArea==ZooLayout.Entrance || ZooCatalog.Trail(CurrentArea);
+            miniGamesButton.anchorMin=miniGamesButton.anchorMax=new Vector2(.5f,zooArea?0:1);
+            miniGamesButton.anchoredPosition=new Vector2(0,zooArea?60:-60);
             var inZone=HideAndSeek.Zone(ReadPlayer(Actor));
             miniGamesButton.gameObject.SetActive(!MenuOpen && !applicationPaused && CurrentArea!=DaycareVet.Zone && !DaycarePlay.Area(CurrentArea));
             if(!MiniGamesOpen)return;

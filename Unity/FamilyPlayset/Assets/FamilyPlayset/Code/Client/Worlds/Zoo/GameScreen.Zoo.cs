@@ -29,8 +29,7 @@ namespace LittleWeeps.Client
         public string ElephantCue=>elephantCue;
         public int ElephantSlot=>Zoo?.food.FirstOrDefault(f=>f.actor==Actor && f.species=="elephant")?.slot??-1;
         public int ElephantFinishEvents=>elephantFinishEvents;
-        private RectTransform zooEntrance,zooExit,zooPrevious,zooNext;
-        private Text zooPreviousLabel,zooNextLabel;
+        private RectTransform zooEntrance;
         private bool zooApproach;
         private Vector2 zooEntry;
         private string zooOperation,zooSpecies,zooApproachArea;
@@ -82,19 +81,13 @@ namespace LittleWeeps.Client
                 face.gameObject.AddComponent<Mask>().showMaskGraphic=true;
                 var species=new[]{"elephant","brachiosaurus","crocodile","clownfish"}[i];
                 var icon=Rect(face.transform,"Picture "+species,Vector2.zero,Vector2.one*210).gameObject.AddComponent<RawImage>();
-                icon.raycastTarget=false;icon.uvRect=new Rect(.0023f,0,.2454f,.5f);zooGatePictures.Add(species,icon);
+                icon.raycastTarget=false;zooGatePictures.Add(species,icon);
+                Label(rim.transform,ZooCatalog.Name(area),24,new Vector2(0,-145),new Vector2(300,44));
                 if(species=="brachiosaurus")icon.rectTransform.sizeDelta=Vector2.one*180;
                 if(species=="clownfish")icon.rectTransform.sizeDelta=Vector2.one*230;
             }
 
-            zooExit=ZooObject("Zoo entrance gateway");
-            Button(zooExit,"Zoo entrance",new Vector2(0,100),new Vector2(245,76),()=>ZooWalk("gate",ZooLayout.Entrance,new Vector2(200,100)),Cream);
-            zooPrevious=ZooObject("Previous Zoo trail");
-            var previous=Button(zooPrevious,"Previous trail",new Vector2(0,220),new Vector2(340,76),()=>ZooWalk("gate",ZooCatalog.Previous(CurrentArea),new Vector2(200,100)),Cream);
-            zooPreviousLabel=previous.GetComponentInChildren<Text>();
-            zooNext=ZooObject("Next Zoo trail");
-            var next=Button(zooNext,"Next trail",new Vector2(0,100),new Vector2(340,76),()=>ZooWalk("gate",ZooCatalog.Next(CurrentArea),new Vector2(9200,100)),Cream);
-            zooNextLabel=next.GetComponentInChildren<Text>();
+            BuildZooNavigation();
             foreach(var info in ZooCatalog.All){
                 var species=info.id;var root=ZooObject("Zoo animal "+species);
                 var image=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*info.size).gameObject.AddComponent<RawImage>();
@@ -145,7 +138,7 @@ namespace LittleWeeps.Client
         }
         private void ZooWalk(string op,string target,Vector2 entry)
         {
-            if(ActionPending)return;
+            if(ActionPending || ZooMapOpen && op!="offer" || op=="gate" && zooApproach && zooOperation=="gate")return;
             ClearZooFailure();
             var food=Zoo?.food.Single(f=>f.actor==Actor);
             if(op=="take"){
@@ -237,6 +230,8 @@ namespace LittleWeeps.Client
             if(p.zone!=zooApproachArea || p.visit!=zooApproachVisit || stickDirection.sqrMagnitude>.01f){zooApproach=false;return;}
             if(MenuOpen || TravelPending || ActionPending || Vector2.Distance(new Vector2(p.x,p.y),zooEntry)>8)return;
             var op=zooOperation;var target=zooSpecies;zooApproach=false;destination=null;shared?.Walk(WalkMode.Stop);
+            // A stop within a trail uses ordinary walking, not another action.
+            if(op=="look")return;
             SendZoo(op,target,result=>{
                 if(!result.Accepted)return;
                 if(op=="take"){
@@ -253,13 +248,12 @@ namespace LittleWeeps.Client
             Place(zooEntrance,entrance,1200);
             foreach(var picture in zooGatePictures){
                 if(entrance && !zooGateTextures.ContainsKey(picture.Key)){
-                    var texture=WorldResources.Load<Texture2D>("Worlds/Zoo/Art/"+picture.Key);zooGateTextures.Add(picture.Key,texture);picture.Value.texture=texture;
+                    var texture=ZooPortrait(picture.Key);zooGateTextures.Add(picture.Key,texture);picture.Value.texture=texture;
                 }else if(!entrance && zooGateTextures.TryGetValue(picture.Key,out var texture)){
-                    picture.Value.texture=null;if(texture!=null)Resources.UnloadAsset(texture);zooGateTextures.Remove(picture.Key);
+                    picture.Value.texture=null;zooGateTextures.Remove(picture.Key);
                 }
             }
-            Place(zooExit,habitat,200);Place(zooPrevious,habitat,200);Place(zooNext,habitat,9200);
-            if(habitat){zooPreviousLabel.text="To "+ZooCatalog.Name(ZooCatalog.Previous(CurrentArea));zooNextLabel.text="To "+ZooCatalog.Name(ZooCatalog.Next(CurrentArea));}
+            TickZooNavigation(entrance || habitat);
             var half=Board.rect.width/(2*sceneScale);
             var visible=ZooCatalog.All.Where(i=>i.area==CurrentArea && Math.Abs(i.Center-cameraX)<half+1200).OrderBy(i=>Math.Abs(i.Center-cameraX)).Take(3).Select(i=>i.id).ToArray();
             var elephant=z.animals.First(a=>a.species=="elephant");
@@ -341,10 +335,10 @@ namespace LittleWeeps.Client
         }
         private void ResetZoo()
         {
-            ResetZooAudio();foreach(var t in zooGateTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooGateTextures.Clear();zooGatePictures.Clear();
+            ResetZooAudio();zooGateTextures.Clear();zooGatePictures.Clear();
             foreach(var r in zooObjects)if(r!=null)Destroy(r.gameObject);zooObjects.Clear();
             foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
-            zooEntrance=null;zooExit=null;zooNext=null;zooPrevious=null;zooApproach=false;
+            ResetZooNavigation();zooEntrance=null;zooApproach=false;
             ResetElephantObservation();elephantFinishEvents=0;elephantCue="";ClearZooFailure();
             Array.Clear(elephantAvatars,0,elephantAvatars.Length);
         }

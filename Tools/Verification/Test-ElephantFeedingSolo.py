@@ -43,6 +43,9 @@ def main():
   a.input('application-pause');time.sleep(.3);save=Path(inspect()['savePath']);require(save.exists(),'private save absent');a.close()
   a=start();require(animal()['fed']==1 and portion()['species']=='','restart did not clear unfinished offer/retain history')
   require(inspect()['elephantFinishEvents']==0,'restart replayed completion');home.capture(a,out,'solo-reopened')
+  require(inspect()['zooCurrentExhibit']=='elephant','reopened saved world has invalid navigation')
+  a.input('touchButton',text='Zoo map');require(inspect()['zooMapMarker']=='elephant','reopened map marker is incorrect')
+  a.input('touchButton',text='Close Zoo map');require(not inspect()['zooMapOpen'],'reopened map did not close')
   record('pause/resume, world switch/return and real private save reopen retain history, clear unfinished offers and do not replay')
   passed=True
  finally:
