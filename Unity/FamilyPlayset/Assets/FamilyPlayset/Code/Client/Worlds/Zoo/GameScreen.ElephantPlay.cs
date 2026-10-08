@@ -51,7 +51,7 @@ namespace LittleWeeps.Client
         {
             // Existing drawn ear/trunk poses articulate the action. Body scale
             // and the feeding sockets remain exactly as approved.
-            if(a.phase==ZooPhase.Greet || a.phase==ZooPhase.Curious || a.phase==ZooPhase.Splash)return 4;
+            if(a.phase==ZooPhase.Greet || a.phase==ZooPhase.Curious || a.phase==ZooPhase.Splash || a.phase==ZooPhase.StoryClue || a.phase==ZooPhase.StoryReact)return 4;
             return ordinary;
         }
         private void PoseElephant(ElephantArtView image,ZooAnimal a,double age)
@@ -60,6 +60,8 @@ namespace LittleWeeps.Client
             if(a.phase==ZooPhase.Greet)image.Pose(24*wave,4*Mathf.Sin((float)age*5)*wave);
             else if(a.phase==ZooPhase.Curious)image.Pose(-12*wave,0);
             else if(a.phase==ZooPhase.Splash)image.Pose(28*wave,2*wave);
+            else if(a.phase==ZooPhase.StoryClue)image.Pose(-8*wave,2*wave);
+            else if(a.phase==ZooPhase.StoryReact)image.Pose(a.age<.55?-5*Mathf.Sin((float)a.age/.55f*Mathf.PI):0,3*wave);
             else if(a.phase==ZooPhase.CareFinish && Zoo.careSession==elephantCareReaction)image.Pose(12*wave,5*Mathf.Sin((float)age*7)*wave);
             else image.Pose(0,0);
         }

@@ -130,7 +130,7 @@ namespace LittleWeeps.Client
                     Panel(rail,"Stand here",Vector2.zero,new Vector2(72,18),new Color(.99f,.84f,.4f,.7f),false,true);
                 }
             }
-            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();BuildElephantSnack();
+            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();BuildElephantSnack();BuildElephantStory();
             var snapshot=Shared?shared.View:World.Snapshot();
             foreach(var player in snapshot.players){
                 var r=ZooObject("Zoo held portion "+player.id);zooLeaves.Add(player.id,r);
@@ -141,7 +141,7 @@ namespace LittleWeeps.Client
         }
         private void ZooWalk(string op,string target,Vector2 entry)
         {
-            if(ElephantSnackOpen || ActionPending || ZooMapOpen && op!="offer" || op=="gate" && zooApproach && zooOperation=="gate")return;
+            if(ZooPhotoOpen || ElephantSnackOpen || ActionPending || ZooMapOpen && op!="offer" || op=="gate" && zooApproach && zooOperation=="gate")return;
             ClearZooFailure();
             var food=Zoo?.food.Single(f=>f.actor==Actor);
             if(op=="take"){
@@ -166,10 +166,14 @@ namespace LittleWeeps.Client
         private void ClearZooFailure()
         {if(zooFailure!="" && message.text==zooFailure)message.text="Tap to walk";zooFailure="";zooFailureArea="";}
         private void ResetElephantObservation()
-        {elephantSeenFed=-1;elephantReactionFed=-1;ResetElephantPlayObservation();ResetElephantCareObservation();ResetSurpriseObservation();}
+        {elephantSeenFed=-1;elephantReactionFed=-1;ResetElephantPlayObservation();ResetElephantCareObservation();ResetSurpriseObservation();ResetStoryObservation();}
         private static string ZooRejection(string outcome)
         {
             switch(outcome){
+                case "story-helping":return "Your friend has the ball. You can help at the basket.";
+                case "story-changed":return "The ball is ready for another gentle tap.";
+                case "story-closer":return "Walk a little closer to the ball picture.";
+                case "story-resting":return "The ball is settling in its basket.";
                 case "water-resting":return "The splash is settling. Try another gentle tap.";
                 case "hands-full":return "Your hands are full. Put down your toy first.";
                 case "walk-to-food-bucket":return "Walk closer to the food bucket.";
@@ -177,7 +181,7 @@ namespace LittleWeeps.Client
                 case "all-feed-spots-busy":return "All four spots are busy. Wait for a free tray.";
                 case "come-to-exhibit":return "Come back to this animal's exhibit.";
                 case "walk-to-zoo-gate":return "Walk closer to the gateway.";
-                case "stale-revision":return "The Zoo changed. Tap the bucket once more.";
+                case "stale-revision":return "The Zoo changed. Try another gentle tap.";
                 case "disconnected":return "Waiting to reconnect to your family.";
                 case "portion-limit":return "The food bucket needs a grown-up's help.";
                 default:return "That feeding action isn't available right now.";
@@ -230,6 +234,7 @@ namespace LittleWeeps.Client
         }
         private void CheckZooInput()
         {
+            if(ZooPhotoOpen || ElephantSnackOpen || ZooMapOpen)return;
             if(!zooApproach)return;var p=ReadPlayer(Actor);
             if(p.zone!=zooApproachArea || p.visit!=zooApproachVisit || stickDirection.sqrMagnitude>.01f){zooApproach=false;return;}
             if(MenuOpen || TravelPending || ActionPending || Vector2.Distance(new Vector2(p.x,p.y),zooEntry)>8)return;
@@ -274,7 +279,7 @@ namespace LittleWeeps.Client
                 if(!zooSamples.TryGetValue(a.species,out var sample) || sample.sequence!=a.sequence || sample.age!=a.age){sample=(a.sequence,a.age,now);zooSamples[a.species]=sample;}
                 var extra=Shared?Math.Max(0,now-sample.sampled):0;var point=ZooLayout.Point(a,extra);var root=(RectTransform)image.transform.parent;
                 root.anchoredPosition=ToBoard(point.X,point.Y);root.localScale=Vector3.one*sceneScale;
-                var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach || a.phase==ZooPhase.WaterWalk || a.phase==ZooPhase.WaterReturn || a.phase==ZooPhase.CareWalk;
+                var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach || a.phase==ZooPhase.WaterWalk || a.phase==ZooPhase.WaterReturn || a.phase==ZooPhase.CareWalk || a.phase==ZooPhase.StoryWalk;
                 var frame=moving && a.age+extra<a.duration?(int)((a.age+extra)*5)%4:a.phase==ZooPhase.Notice?5:a.phase==ZooPhase.Eat?((a.age+extra)<1.4?6:7):a.phase==ZooPhase.Browse?(a.species=="gecko"?4:5):a.phase==ZooPhase.Drink?4:4;
                 // The legacy reaching trunk extends across its atlas cell. The
                 // intact curled-trunk pose holds food at the same fitted socket.
@@ -323,7 +328,7 @@ namespace LittleWeeps.Client
                 }
                 r.anchoredPosition=ToBoard(x,p.y)+new Vector2(offset,height)*sceneScale;r.localScale=Vector3.one*sceneScale;
             }
-            TickElephantSnack(visible.Contains("elephant"));TickElephantSurprises(z,visible.Contains("elephant"));TickZooAudio(z,visible);SortDepth();TickZooPhotos(entrance || habitat);
+            TickElephantStory(z,elephant,visible.Contains("elephant"));TickElephantSnack(visible.Contains("elephant"));TickElephantSurprises(z,visible.Contains("elephant"));TickZooAudio(z,visible);SortDepth();TickZooPhotos(entrance || habitat);
         }
         private void AddZooDepth(Action<RectTransform,float,int,string> add)
         {
@@ -341,6 +346,15 @@ namespace LittleWeeps.Client
                         ground=ToBoard(ZooLayout.SlotX("elephant",portion.slot),100).y;part=2;
                     }
                 }
+                if(r==storyBall){
+                    var s=Zoo.story;
+                    if(s.carrier!=""){var p=ReadPlayer(s.carrier);ground=ToBoard(p.x,p.y).y;part=4;}
+                    else if(s.phase>=ElephantStoryPhase.Returned){ground=ToBoard(ElephantStory.BasketX,100).y-5*sceneScale;part=3;}
+                    else ground-=30*sceneScale;
+                }
+                // The small deliberate invitation must remain tappable when
+                // the broad animal-call surface wanders behind this basket.
+                if(r==storyBasket)ground=ToBoard(ElephantStory.BasketX,100).y;
                 add(r,ground,part,r.name);
             }
         }
@@ -349,7 +363,7 @@ namespace LittleWeeps.Client
             ResetZooAudio();zooGateTextures.Clear();zooGatePictures.Clear();
             foreach(var r in zooObjects)if(r!=null)Destroy(r.gameObject);zooObjects.Clear();
             foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
-            ResetElephantSnack();ResetZooNavigation();ResetZooPhotos();zooEntrance=null;zooApproach=false;
+            ResetElephantStory();ResetElephantSnack();ResetZooNavigation();ResetZooPhotos();zooEntrance=null;zooApproach=false;
             ResetElephantObservation();elephantFinishEvents=0;elephantCue="";ClearZooFailure();
             elephantBasket=null;elephantCareFinishEvents=0;elephantWater=null;elephantCuriousLeaf=null;elephantWaterEvents=0;
             Array.Clear(elephantAvatars,0,elephantAvatars.Length);

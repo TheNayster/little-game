@@ -45,8 +45,6 @@ Standalone `dotnet run --project Tools/Verification/ZooRules.Tests/ZooRules.Test
 
 Physical phone/tablet testing, real full-disk exhaustion and subjective child/owner appearance/audio acceptance remain open. Native simulated layouts and injected lifecycle/write faults are labeled as such. The installed server463/content72 is preserved; candidate content76/protocol3/schema53 remains identical to495 and does not authorize joining/bypassing the older installed contract. No device installation, live-server update or video recording. Later animal stories, habitat decorating and fossil work remain outside this task.
 
-## Live owner review and delivery
-
 ## Snapshot-test follow-up — October 8
 
 Reproduced on baseline `18fb213` with the permitted .NET runtime. Program.cs:28 failed `First slice retains existing world and animals`: expected revision **28**, actual **29**, with every other snapshot field equal. `00083a2` intentionally changed SuspendZoo from conditional food cleanup to unconditional transient play cleanup and one revision increment. Restore plus species expansion therefore adds two revisions, not one. The full migration comparison now subtracts both only after asserting the exact +2 delta; all other fields still compare byte-for-byte.
@@ -54,6 +52,8 @@ Reproduced on baseline `18fb213` with the permitted .NET runtime. Program.cs:28 
 Continuing exposed the same historical-policy issue in `persisted random choices`: animal records were identical, but live/restored greetingCooldown was **0/20**, curiousCooldown **0.813651498829401/4** after ten seconds. The same commit intentionally resets these hints to **30/14** on restore to prevent stale play effects. The repaired fixture asserts these exact resets, compares complete Zoo states after ten seconds from two independently deserialized identical checkpoints, and separately compares all fifteen ordinary animal routes against uninterrupted play. This preserves deterministic-stream coverage without requiring transient cooldowns to survive reopening.
 
 `dotnet run --project Tools/Verification/ZooRules.Tests/ZooRules.Tests.csproj --no-restore` now passes all eight groups: additive migration, schema34 expansion/full-state retention, deterministic persisted streams, four-slot feeding/idempotency, independent departure/restore, disconnect cleanup, all sixteen foods/routes, and varied routines. This is a test-only repair; no production behavior, saves, security or album code changed. Milestone10 implementation may proceed. Original dated failure above remains historical evidence.
+
+## Live owner review and delivery
 
 Fresh standard500 was opened through the configured isolated two-player preview with `Test-ZooPhotos.py 500 --review`. The live native touch demonstration took a photo, opened it, added/moved/removed stickers, reordered two photos, then actually closed/reopened the application and verified persisted order/edits. A second player fed the elephant independently while the first edited and took a third photo. No video was recorded. Both owner-controlled windows remain open in the elephant exhibit; the isolated authority ends when those windows close.
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -630,7 +630,7 @@ namespace LittleWeeps.Client
                 if(player.stairs>0)point=StairPoint(player);
                 // Book sound controls apply only to the reader, not the outfit roar.
                 visual.Wear(player.outfit,player.outfitColor);visual.ObserveRoar(player.roar,!applicationPaused);
-                var storyHold=player.zone==KingdomAdventure.Zone && !string.IsNullOrEmpty(KingdomGame?.members.FirstOrDefault(m=>m.actor==id)?.carrying) || player.zone=="daycare" && DaycareGame?.members.FirstOrDefault(m=>m.actor==id)?.carryingPlate==true;
+                var storyHold=Zoo?.story.carrier==id || player.zone==KingdomAdventure.Zone && !string.IsNullOrEmpty(KingdomGame?.members.FirstOrDefault(m=>m.actor==id)?.carrying) || player.zone=="daycare" && DaycareGame?.members.FirstOrDefault(m=>m.actor==id)?.carryingPlate==true;
                 visual.PresentHome(point,id+"/"+player.zone+"/"+player.visit,items.Any(t=>t.holder==id) || storyHold,applicationPaused?0:Time.unscaledDeltaTime,player,Home,Keepy);
             }
             PresentRooms();

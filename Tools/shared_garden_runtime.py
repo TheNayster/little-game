@@ -55,9 +55,11 @@ def require(value, message):
 
 
 class Run:
-    def __init__(self, build, interactive=False, resume=None, motion_conditions=None, extended_test_lifetime=False, review_controls=False, test_audible=False):
+    def __init__(self, build, interactive=False, resume=None, motion_conditions=None, extended_test_lifetime=False, review_controls=False, test_audible=False, graphics_api=None):
         require(os.name == 'nt' and 51 <= build <= 9999, 'Windows shared garden build required')
         self.build, self.interactive = build, interactive
+        require(graphics_api in (None, 'd3d11'), 'Unsupported verification graphics override')
+        self.graphics_api = graphics_api
         self.extended_test_lifetime = extended_test_lifetime
         self.review_controls = review_controls
         self.test_audible = test_audible
@@ -128,6 +130,9 @@ class Instance:
             args += ['-batchmode', '-nographics']
         else:
             args += ['-screen-fullscreen', '0', '-screen-width', '960', '-screen-height', '640']
+            # Explicit diagnostic alternative for the observed D3D12 shutdown
+            # fault. Defaults, binaries, server and security remain unchanged.
+            if run.graphics_api == 'd3d11': args += ['-force-d3d11']
         startup = subprocess.STARTUPINFO(); startup.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         startup.wShowWindow = 1 if role == 'client' and run.interactive else 0
         self.process = subprocess.Popen(args, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,

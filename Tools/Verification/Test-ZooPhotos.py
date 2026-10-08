@@ -7,8 +7,8 @@ spec=importlib.util.spec_from_file_location('home',Path(__file__).with_name('Tes
 home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('build',type=int);p.add_argument('--review',action='store_true');p.add_argument('--basic',action='store_true');args=p.parse_args()
- run=Run(args.build,interactive=args.review,review_controls=args.review,extended_test_lifetime=True)
+ p=argparse.ArgumentParser();p.add_argument('build',type=int);p.add_argument('--review',action='store_true');p.add_argument('--basic',action='store_true');p.add_argument('--d3d11',action='store_true');args=p.parse_args()
+ run=Run(args.build,interactive=args.review,review_controls=args.review,extended_test_lifetime=True,graphics_api='d3d11' if args.d3d11 else None)
  out=run.path/'zoo-photos';out.mkdir();checks=[];passed=False;clients=[]
  print('EVIDENCE '+str(out),flush=True)
  def inspect(v):return v.input('inspect')
