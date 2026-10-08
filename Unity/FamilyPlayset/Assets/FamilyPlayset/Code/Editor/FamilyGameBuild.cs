@@ -19,7 +19,7 @@ namespace LittleWeeps.EditorTools
             SeagullJsonTests.Run();ShoreJsonTests.Run();
             AdventureRepairJsonTests.Run();
             WaveRideJsonTests.Run();SandpitJsonTests.Run();TreasureJsonTests.Run();NpcPresentationTests.Run();VetRuleTests.Run();DaycarePlayTests.Run();RevealReactionTests.Run();
-            BuildWindows();
+            ZooAlbumTests.Run();BuildWindows();
         }
         // Focused local verification uses identical release binaries/profiles.
         // Default Windows keeps its existing whole-game prebuild checks. This

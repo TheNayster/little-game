@@ -65,6 +65,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.ZooState zoo;public int visibleZooAnimals,zooTextures,zooAudioClips;public bool zooSoundPlaying;
             public int surpriseSounds,surpriseObjects;public Vector2[] elephantBrushPositions;public Color[] zooRouteColors;public int elephantCareFinishEvents;public string elephantCue;public int elephantSlot,elephantFinishEvents,elephantWaterEvents,elephantEffectObjects;
             public long allocatedMemory,managedMemory;
+            public double zooPhotoCaptureMilliseconds,zooPhotoSaveMilliseconds;public bool zooPhotoOpen,zooPhotoSaving;public string zooAlbumPath,zooPhotoFeedback;public int zooPhotoLoadedTextures;public LittleWeeps.Client.ZooAlbumManifest zooAlbum;
             public bool elephantSnackOpen;public bool zooMapOpen,zooNavigationBusy;public string zooCurrentExhibit,zooPreviousDestination,zooNextDestination,zooMapShownTrail,zooMapMarker;
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
@@ -189,6 +190,12 @@ namespace LittleWeeps.NetworkProbe
                 }
                 // Exercise Unity lifecycle callbacks in isolated verification
                 // players. Network-only suspension does not suspend local books.
+                else if(step.action=="photoShutterBurst"){
+                    var shutter=FindObjectsByType<Button>(FindObjectsSortMode.None).Single(b=>b.gameObject.name=="Take Zoo photo" && b.gameObject.activeInHierarchy);
+                    for(var i=0;i<20;i++)shutter.onClick.Invoke();
+                }
+                else if(step.action=="application-focus-loss")screen.SendMessage("OnApplicationFocus",false);
+                else if(step.action=="application-focus-gain")screen.SendMessage("OnApplicationFocus",true);
                 else if(step.action=="application-pause")screen.SendMessage("OnApplicationPause",true);
                 else if(step.action=="application-resume")screen.SendMessage("OnApplicationPause",false);
                 else if(step.action=="network-pause")probe.VerifyFamilyForeground(false);
@@ -380,6 +387,8 @@ namespace LittleWeeps.NetworkProbe
                 evidence.zoo=screen.ZooGame;evidence.visibleZooAnimals=screen.VisibleZooAnimals;evidence.zooTextures=screen.ZooTextureCount;evidence.zooAudioClips=screen.ZooAudioClipCount;evidence.zooSoundPlaying=screen.ZooSoundPlaying;
                 evidence.elephantSnackOpen=screen.ElephantSnackOpen;evidence.zooMapOpen=screen.ZooMapOpen;evidence.zooNavigationBusy=screen.ZooNavigationBusy;evidence.zooCurrentExhibit=screen.ZooCurrentExhibit;evidence.zooPreviousDestination=screen.ZooPreviousDestination;evidence.zooNextDestination=screen.ZooNextDestination;evidence.zooMapShownTrail=screen.ZooMapShownTrail;
                 evidence.zooMapMarker=screen.ZooMapMarker;
+                evidence.zooPhotoOpen=screen.ZooPhotoOpen;evidence.zooPhotoSaving=screen.ZooPhotoSaving;evidence.zooAlbumPath=screen.ZooAlbumPath;evidence.zooAlbum=screen.ZooAlbumData;evidence.zooPhotoLoadedTextures=screen.ZooPhotoLoadedTextures;evidence.zooPhotoFeedback=screen.ZooPhotoFeedback;
+                evidence.zooPhotoCaptureMilliseconds=screen.ZooPhotoCaptureMilliseconds;evidence.zooPhotoSaveMilliseconds=screen.ZooPhotoSaveMilliseconds;
                 evidence.elephantBrushPositions=screen.ElephantBrushPositions;evidence.zooRouteColors=screen.ZooRouteColors;evidence.elephantCareFinishEvents=screen.ElephantCareFinishEvents;evidence.elephantCue=screen.ElephantCue;evidence.elephantSlot=screen.ElephantSlot;evidence.elephantFinishEvents=screen.ElephantFinishEvents;
                 evidence.surpriseSounds=screen.SurpriseSounds;evidence.surpriseObjects=screen.SurpriseObjects;evidence.elephantWaterEvents=screen.ElephantWaterEvents;evidence.elephantEffectObjects=screen.ElephantEffectObjects;
                 evidence.allocatedMemory=UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();evidence.managedMemory=GC.GetTotalMemory(false);

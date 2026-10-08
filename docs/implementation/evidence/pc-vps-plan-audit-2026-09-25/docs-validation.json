@@ -59,7 +59,7 @@
     "MEAL": 5
   },
   "renderedPages": 130,
-  "localLinksChecked": 3916,
+  "localLinksChecked": 3917,
   "conflictingPhraseRegressionCases": 6,
   "errors": [],
   "limits": "Local document consistency/link checks and manually reviewed scope; not live device, runtime or external-source revalidation."

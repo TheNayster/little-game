@@ -87,7 +87,7 @@ namespace LittleWeeps.Client
                 if(species=="clownfish")icon.rectTransform.sizeDelta=Vector2.one*230;
             }
 
-            BuildZooNavigation();
+            BuildZooNavigation();BuildZooPhotos();
             foreach(var info in ZooCatalog.All){
                 var species=info.id;var root=ZooObject("Zoo animal "+species);
                 var drawing=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*info.size).gameObject;
@@ -323,7 +323,7 @@ namespace LittleWeeps.Client
                 }
                 r.anchoredPosition=ToBoard(x,p.y)+new Vector2(offset,height)*sceneScale;r.localScale=Vector3.one*sceneScale;
             }
-            TickElephantSnack(visible.Contains("elephant"));TickElephantSurprises(z,visible.Contains("elephant"));TickZooAudio(z,visible);SortDepth();
+            TickElephantSnack(visible.Contains("elephant"));TickElephantSurprises(z,visible.Contains("elephant"));TickZooAudio(z,visible);SortDepth();TickZooPhotos(entrance || habitat);
         }
         private void AddZooDepth(Action<RectTransform,float,int,string> add)
         {
@@ -349,7 +349,7 @@ namespace LittleWeeps.Client
             ResetZooAudio();zooGateTextures.Clear();zooGatePictures.Clear();
             foreach(var r in zooObjects)if(r!=null)Destroy(r.gameObject);zooObjects.Clear();
             foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
-            ResetElephantSnack();ResetZooNavigation();zooEntrance=null;zooApproach=false;
+            ResetElephantSnack();ResetZooNavigation();ResetZooPhotos();zooEntrance=null;zooApproach=false;
             ResetElephantObservation();elephantFinishEvents=0;elephantCue="";ClearZooFailure();
             elephantBasket=null;elephantCareFinishEvents=0;elephantWater=null;elephantCuriousLeaf=null;elephantWaterEvents=0;
             Array.Clear(elephantAvatars,0,elephantAvatars.Length);
