@@ -25,7 +25,7 @@ namespace LittleWeeps.Client
         public RectTransform Board { get; private set; }
         public bool JoystickMode { get; private set; }
         public PlayerNarration Narration {get;private set;}
-        public bool MenuOpen => ZooPhotoOpen || ElephantSnackOpen || ZooMapOpen || WaveRideCardOpen || TeacherCardOpen || BoatWorkshopOpen || OutfitsOpen || PondCloseup || CreekFishingCloseup || MiniGamesOpen || HideCardOpen || CollectionOpen || DiscoveryOpen || BookOpen || BookLibraryOpen || menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
+        public bool MenuOpen => ElephantHabitatOpen || ZooPhotoOpen || ElephantSnackOpen || ZooMapOpen || WaveRideCardOpen || TeacherCardOpen || BoatWorkshopOpen || OutfitsOpen || PondCloseup || CreekFishingCloseup || MiniGamesOpen || HideCardOpen || CollectionOpen || DiscoveryOpen || BookOpen || BookLibraryOpen || menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
         public readonly Dictionary<string, GamePointerSurface> Surfaces = new Dictionary<string, GamePointerSurface>();
         private readonly Dictionary<string, RectTransform> toys = new Dictionary<string, RectTransform>();
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
@@ -564,7 +564,7 @@ namespace LittleWeeps.Client
                 else shared.Walk(WalkMode.Stop);
                 return;
             }
-            if(!HasWorld || MenuOpen && !ZooPhotoOpen || TravelPending || applicationPaused)return;
+            if(!HasWorld || MenuOpen && !ZooPhotoOpen && !ElephantHabitatOpen || TravelPending || applicationPaused)return;
             // A wall-clock 30 Hz gate skipped render frames even at a 30 fps
             // target. Advance local motion every frame, without transaction
             // receipt churn; save cadence stays separate from visual motion.
@@ -572,7 +572,7 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=ZooPhotoOpen || VetOwn || OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:clubApproach>=0 || dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var mode=ElephantHabitatOpen || ZooPhotoOpen || VetOwn || OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:clubApproach>=0 || dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
             var input=clubApproach>=0?destination??Vector2.zero:dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {

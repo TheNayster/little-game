@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+  <title>Milestone 11 editable elephant habitat prop geometry</title>
+  <desc>Runtime uses retained Unity UI shapes from GameScreen.ElephantHabitat. Coordinates are local illustrated units, ground at y=0, positive upwards in Unity. Canopy roof 650x75 at height410; posts14x390 at x +/-302. Rope post88x20 base,56x190 body,64x24 rounded cap. Fixed leafy stand80x20 base,19x74 holder, three38x57 leaves. These are enrichment props, never food inventory.</desc>
+  <g id="shade-canopy" transform="translate(350 620) scale(1 -1)">
+    <path d="M-302 0V390M302 0V390" fill="none" stroke="#a8794d" stroke-width="14"/>
+    <rect x="-325" y="372.5" width="650" height="75" rx="36" fill="#bdd487"/>
+    <rect x="-315" y="373.5" width="630" height="17" fill="#85ad63"/>
+  </g>
+  <g id="scratching-post" transform="translate(790 620) scale(1 -1)">
+    <ellipse cx="0" cy="8" rx="44" ry="10" fill="#a8794d"/>
+    <rect x="-28" y="8" width="56" height="190" rx="28" fill="#a8794d"/>
+    <path d="M-30 50H30M-30 68H30M-30 86H30M-30 104H30M-30 122H30M-30 140H30M-30 158H30" stroke="#dbbf85" stroke-width="9"/>
+    <ellipse cx="0" cy="195" rx="32" ry="12" fill="#c79963"/>
+  </g>
+  <g id="fixed-leafy-enrichment" transform="translate(920 620) scale(1 -1)">
+    <ellipse cx="0" cy="8" rx="40" ry="10" fill="#a8794d"/>
+    <rect x="-9.5" y="8" width="19" height="74" fill="#a8794d"/>
+    <g fill="#6da661"><ellipse cx="-23" cy="67" rx="19" ry="28.5" transform="rotate(-25 -23 67)"/><ellipse cx="0" cy="75" rx="19" ry="28.5"/><ellipse cx="23" cy="83" rx="19" ry="28.5" transform="rotate(25 23 83)"/></g>
+  </g>
+</svg>

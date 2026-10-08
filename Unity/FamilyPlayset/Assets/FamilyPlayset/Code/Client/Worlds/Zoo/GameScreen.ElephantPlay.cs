@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using LittleWeeps.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,7 +64,12 @@ namespace LittleWeeps.Client
             else if(a.phase==ZooPhase.StoryClue)image.Pose(-8*wave,2*wave);
             else if(a.phase==ZooPhase.StoryReact)image.Pose(a.age<.55?-5*Mathf.Sin((float)a.age/.55f*Mathf.PI):0,3*wave);
             else if(a.phase==ZooPhase.CareFinish && Zoo.careSession==elephantCareReaction)image.Pose(12*wave,5*Mathf.Sin((float)age*7)*wave);
-            else image.Pose(0,0);
+            else if(a.phase==ZooPhase.PropUse){
+                var prop=Zoo.habitat.props.FirstOrDefault(p=>p.id==Zoo.habitat.usingId);
+                if(prop?.kind==ElephantPropKind.Leaves)image.Pose(-7*wave,0);
+                else if(prop?.kind==ElephantPropKind.Scratch)image.Pose(0,5*Mathf.Sin((float)age*4)*wave);
+                else image.Pose(3*wave,-2*wave);
+            }else image.Pose(0,0);
         }
         private void TickElephantPlay(ZooState z,ZooAnimal a,bool shown,double animalAge)
         {
