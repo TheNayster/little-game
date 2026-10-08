@@ -182,6 +182,12 @@ namespace LittleWeeps.Client
             }
             var habitat=ZooCatalog.Trail(CurrentArea);zooBackButton.gameObject.SetActive(habitat);zooForwardButton.gameObject.SetActive(habitat);zooGateButton.gameObject.SetActive(habitat);
             zooBackButton.interactable=zooForwardButton.interactable=zooGateButton.interactable=!ZooNavigationBusy && !TravelPending;
+            // A brush acknowledgment is not a route change. Keep the arrows'
+            // tint stable while retaining their normal transaction guards.
+            void Tint(NavigationTap button){
+                var colors=button.colors;colors.disabledColor=elephantCareSending && !zooApproach && !TravelPending?colors.normalColor:new Color(.521f,.521f,.521f,.502f);button.colors=colors;
+            }
+            Tint(zooBackButton);Tint(zooForwardButton);Tint(zooGateButton);
             var id=ZooCurrentExhibit;
             if(id==zooNavSeen)return;zooNavSeen=id;
             zooCurrentPicture.gameObject.SetActive(habitat);zooTrailPicture.gameObject.SetActive(habitat);

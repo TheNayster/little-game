@@ -77,4 +77,4 @@ Original baseline 481 phone/tablet captures remain in `LocalData/ElephantPlay/be
 
 Earlier482 caught offscreen tablet controls and a reused pose containing food;483 added articulation but retained crowded placement;484 passed native shared/private checks before the owner rejected its front-mounted button. The final relocation supersedes those pictures. Failed shared wrappers also exposed a snapshot race and an attempt to tap a world prop while outside the far-right tablet viewport; the harness now waits for accepted identity and sets up each child's visible toy neighborhood. These runs stay retained and are not final acceptance evidence.
 
-Next: owner review of this elephant-only pilot. No automatic expansion or deployment.
+Owner subsequently approved this pilot in the October8 elephant-care request. Its historical video evidence remains preserved. Current continuation: [elephant-only gentle care](elephant-care.md), with live in-game review and no new video recording. No expansion or deployment is implied.

@@ -40,6 +40,8 @@ Inspect actual rendered/viewport images, then check imported Unity scale, orient
 
 ## Verification and review
 
+For this Zoo pilot and its future review prompts, the owner requests live in-game review without video recording. Use the configured isolated preview, inspect normal-speed gameplay directly and leave it ready for owner input. Preserve historical recordings; do not make new recordings unless the owner requests them.
+
 For substantial visual changes, record a short brief in the existing work record: requested appearance, references, protected artwork/gameplay and observable criteria. Inspect the complete gameplay view at relevant phone/tablet resolutions and affected interaction states. Use close views as supplementary evidence, not as a substitute for normal-size readability. For animation, review normal-speed footage and movement afterward. Listen before claiming subjective audio approval.
 
 Use the project's focused verification policy: compile plus affected visual/input check for presentation, the changed activity for gameplay, one representative four-actual-client check with independent departure for shared changes, and save/protocol checks only when affected. Distinguish scripted fixture setup from actual mouse/touch interaction. Reuse source-matching evidence for unchanged behavior. Broaden only for an observed failure or new relevant change. Documentation-only work needs document/path/diff checks, not a game build.

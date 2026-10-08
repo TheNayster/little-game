@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="320" viewBox="-160 -260 440 320">
+<!-- Editable native UI source: GameScreen.ElephantCare.cs. Basket at world (1740,180), apart from food/pool. Three optional soft patches sit on the elephant's side. -->
+<defs><g id="brush"><rect x="-7" y="-37" width="14" height="35" rx="4" fill="#b07340"/><rect x="-30" y="-12" width="60" height="29" rx="12" fill="#f5ba61"/><path d="M-20 14v18m8-18v18m8-18v18m8-18v18m8-18v18m8-18v18" stroke="#e6d4a6" stroke-width="6"/></g></defs>
+<ellipse cy="5" rx="53" ry="9" fill="#594d33" opacity=".15"/>
+<rect x="-58" y="-133" width="116" height="126" rx="24" fill="#fff8e5"/>
+<rect x="-49" y="-64" width="98" height="45" rx="16" fill="#b88752"/>
+<use href="#brush" transform="translate(0,-88)"/>
+<g transform="translate(0,-212)"><rect x="-54" y="-46" width="108" height="92" rx="24" fill="#fff8e5"/><rect x="-35" y="2" width="70" height="29" rx="10" fill="#b88752"/><path d="M0-32v30m-12-12L0-2l12-12" fill="none" stroke="#5c8f73" stroke-width="10"/></g>
+<g fill="#caa36e" opacity=".7"><ellipse cx="155" cy="-160" rx="52" ry="34"/><ellipse cx="225" cy="-110" rx="52" ry="34"/><ellipse cx="150" cy="-50" rx="52" ry="34"/></g>
+</svg>

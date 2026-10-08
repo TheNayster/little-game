@@ -25,7 +25,7 @@ namespace LittleWeeps.EditorTools
             var pending=w.ReadZoo().food.Single(f=>f.actor=="one");Act("one",SoloAction.Move,x:ZooLayout.SlotX("elephant",pending.slot),y:100);Act("one",SoloAction.Zoo,"offer","elephant");
             var unfinished=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));
             Need(unfinished.ReadZoo().food.All(f=>f.species=="") && unfinished.ReadZoo().animals[0].fed==4,"Restore clears unfinished offers and retains consumption history");
-            ElephantPlay();
+            ElephantPlay();ElephantCare();
             Debug.Log("ZOO_JSON_PASS: additive migration, four portions, uint RNG JSON, retention and visitor boundary");
         }
         private static void ElephantPlay()
@@ -58,6 +58,37 @@ namespace LittleWeeps.EditorTools
             foreach(var id in new[]{"one","two","three","four"})Need(Act(id,SoloAction.Travel,"creek").Accepted,"leave");
             Step(.1);Need(!w.ReadZoo().waterPending && w.ReadZoo().animals[0].phase<ZooPhase.Greet,"departure clears play");
             Debug.Log("ELEPHANT_PLAY_JSON_PASS: greeting, fair/shared cooldowns, splash feeding delay, pending priority, retained finish, JSON restore and departure");
+        }
+
+        private static void ElephantCare()
+        {
+            var w=GameWorld.WithZoo(GameWorld.Create("one","two","three","four"));
+            SoloResult Act(string id,SoloAction action,string value="",string item="",float x=1200){var p=w.ReadPlayer(id);return w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=id,expectedRevision=w.Revision,zone=p.zone,visit=p.visit,action=action,value=value,target=action==SoloAction.Zoo?"elephant":"",item=item,x=x,y=100});}
+            void Step(double seconds){while(seconds>.00001){var n=Math.Min(.1,seconds);w.AdvanceIdle(n,out _);GameWorld.Validate(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));seconds-=n;}}
+            foreach(var id in new[]{"one","two","three","four"}){Need(Act(id,SoloAction.Travel,"zoo").Accepted,"entry");var p=w.ReadPlayer(id);Need(w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=id,expectedRevision=w.Revision,zone=p.zone,visit=p.visit,action=SoloAction.Move,x=650,y=100}).Accepted,"move");p=w.ReadPlayer(id);Need(w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=id,expectedRevision=w.Revision,zone=p.zone,visit=p.visit,action=SoloAction.Zoo,value="gate",target="zoo-savanna"}).Accepted,"gate");Act(id,SoloAction.Move);}
+            foreach(var id in new[]{"one","two","three","four"})Need(Act(id,SoloAction.Zoo,"care").Accepted,"shared care request");
+            Step(12);Need(w.ReadZoo().animals[0].phase==ZooPhase.Care && w.ReadZoo().careMembers.Length==4,"four share one care session");
+            var session=w.ReadZoo().careSession;
+            string Token(int patch,int serial,string id="one")=>session+"/"+w.ReadZoo().careMemberEpoch[Array.IndexOf(w.ReadZoo().careMembers,id)]+"/"+patch+"/"+serial;
+            Need(!Act("one",SoloAction.Zoo,"brush",Token(9,1)).Accepted,"invalid patch");
+            foreach(var id in new[]{"one","two","three","four"})Need(Act(id,SoloAction.Zoo,"brush",Token(0,1,id)).Accepted,"simultaneous helpers");
+            Need(w.ReadZoo().careProgress[0]==4,"clamped shared patch");
+            Need(!Act("one",SoloAction.Zoo,"brush",Token(1,1)).Accepted,"old serial rejected");
+            Need(!Act("one",SoloAction.Zoo,"brush",Token(1,2)).Accepted,"held/rapid rejected");
+            var oldToken=Token(1,2,"two");Need(Act("two",SoloAction.Zoo,"put-brush").Accepted,"put away sibling");Need(Act("two",SoloAction.Zoo,"care").Accepted,"rejoin same shared session");Need(!Act("two",SoloAction.Zoo,"brush",oldToken).Accepted,"old membership epoch rejected");Step(.4);Need(Act("two",SoloAction.Zoo,"brush",Token(2,1,"two")).Accepted,"new client serial restarts safely");
+            Need(Act("two",SoloAction.Travel,"creek").Accepted && w.ReadZoo().careProgress[0]==4 && w.ReadZoo().careMembers.Length==3,"independent immediate departure");
+            Act("one",SoloAction.Move,x:1560);Need(Act("one",SoloAction.Zoo,"take").Accepted,"food during care");var f=w.ReadZoo().food.Single(v=>v.actor=="one");Act("one",SoloAction.Move,x:ZooLayout.SlotX("elephant",f.slot));Need(Act("one",SoloAction.Zoo,"offer").Accepted,"offer");Step(.45);Need(w.ReadZoo().animals[0].owner=="one","care yields within .35 plus tick");
+            Need(Act("three",SoloAction.Zoo,"water").Accepted,"pending water");Need(w.ReadZoo().careProgress[0]==4,"suspension retains patches");
+            Step(25);Need(w.ReadZoo().animals[0].phase==ZooPhase.Care,"older care resumes before newer water");
+            for(var patch=1;patch<3;patch++)for(var n=w.ReadZoo().careProgress[patch];n<4;n++){Step(.4);Need(Act("one",SoloAction.Zoo,"brush",Token(patch,3+patch*4+n)).Accepted,"solo can finish shared patches");}
+            Need(w.ReadZoo().careComplete && w.ReadZoo().animals[0].fed==1,"completion independent of feeding");Step(.1);Need(w.ReadZoo().animals[0].phase==ZooPhase.CareFinish,"one appreciative transition");
+            Need(!Act("one",SoloAction.Zoo,"care").Accepted,"finish protected from rapid replay");
+            var copy=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));Need(copy.ReadZoo().careMembers.Length==0 && !copy.ReadZoo().careComplete && copy.ReadZoo().careSession==0 && copy.ReadZoo().animals[0].fed==1,"save clears care retains feeding");
+            Step(3);Need(Act("one",SoloAction.Zoo,"care").Accepted && w.ReadZoo().careSession==session+1 && w.ReadZoo().careProgress.All(n=>n==0),"deliberate replay");
+            foreach(var id in new[]{"one","three","four"})Act(id,SoloAction.Travel,"creek");Step(.1);Need(w.ReadZoo().careMembers.Length==0 && w.ReadZoo().animals[0].phase<ZooPhase.Greet,"all leave cleanup");
+            Act("one",SoloAction.Travel,"zoo");var player=w.ReadPlayer("one");w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor="one",expectedRevision=w.Revision,zone=player.zone,visit=player.visit,action=SoloAction.Move,x=650,y=100});player=w.ReadPlayer("one");w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor="one",expectedRevision=w.Revision,zone=player.zone,visit=player.visit,action=SoloAction.Zoo,value="gate",target="zoo-savanna"});Act("one",SoloAction.Zoo,"care");Step(12);Need(w.ReadZoo().animals[0].phase==ZooPhase.Care,"disconnect fixture");w.ReleaseZoo("one");Need(w.ReadZoo().careMembers.Length==0 && w.ReadZoo().animals[0].phase<ZooPhase.Greet,"last disconnect cleans before empty-session tick stop");
+            var legacy=w.Snapshot();legacy.zoo.careMembers=null;legacy.zoo.careProgress=null;legacy.zoo.carePatch=null;legacy.zoo.careBrushAge=null;legacy.zoo.careSession=0;GameWorld.Validate(legacy);Need(GameWorld.Restore(legacy).ReadZoo().careMembers.Length==0,"legacy additive care defaults");
+            Debug.Log("ELEPHANT_CARE_JSON_PASS: shared session, simultaneous clamp, gesture/rate validation, solo completion, food suspension, ordered water, replay, immediate departure and save cleanup");
         }
         static void Need(bool ok,string name){if(!ok)throw new InvalidOperationException(name);}
     }

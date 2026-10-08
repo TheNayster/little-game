@@ -130,7 +130,7 @@ namespace LittleWeeps.Client
                     Panel(rail,"Stand here",Vector2.zero,new Vector2(72,18),new Color(.99f,.84f,.4f,.7f),false,true);
                 }
             }
-            BuildElephantPlay();
+            BuildElephantPlay();BuildElephantCare();
             var snapshot=Shared?shared.View:World.Snapshot();
             foreach(var player in snapshot.players){
                 var r=ZooObject("Zoo held portion "+player.id);zooLeaves.Add(player.id,r);
@@ -165,7 +165,7 @@ namespace LittleWeeps.Client
         private void ClearZooFailure()
         {if(zooFailure!="" && message.text==zooFailure)message.text="Tap to walk";zooFailure="";zooFailureArea="";}
         private void ResetElephantObservation()
-        {elephantSeenFed=-1;elephantReactionFed=-1;ResetElephantPlayObservation();}
+        {elephantSeenFed=-1;elephantReactionFed=-1;ResetElephantPlayObservation();ResetElephantCareObservation();}
         private static string ZooRejection(string outcome)
         {
             switch(outcome){
@@ -273,7 +273,7 @@ namespace LittleWeeps.Client
                 if(!zooSamples.TryGetValue(a.species,out var sample) || sample.sequence!=a.sequence || sample.age!=a.age){sample=(a.sequence,a.age,now);zooSamples[a.species]=sample;}
                 var extra=Shared?Math.Max(0,now-sample.sampled):0;var point=ZooLayout.Point(a,extra);var root=(RectTransform)image.transform.parent;
                 root.anchoredPosition=ToBoard(point.X,point.Y);root.localScale=Vector3.one*sceneScale;
-                var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach || a.phase==ZooPhase.WaterWalk || a.phase==ZooPhase.WaterReturn;
+                var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach || a.phase==ZooPhase.WaterWalk || a.phase==ZooPhase.WaterReturn || a.phase==ZooPhase.CareWalk;
                 var frame=moving && a.age+extra<a.duration?(int)((a.age+extra)*5)%4:a.phase==ZooPhase.Notice?5:a.phase==ZooPhase.Eat?((a.age+extra)<1.4?6:7):a.phase==ZooPhase.Browse?(a.species=="gecko"?4:5):a.phase==ZooPhase.Drink?4:4;
                 // The legacy reaching trunk extends across its atlas cell. The
                 // intact curled-trunk pose holds food at the same fitted socket.
@@ -295,10 +295,10 @@ namespace LittleWeeps.Client
                 image.rectTransform.anchoredPosition=new Vector2(0,info.footOffset+(info.habitat==ZooHabitat.Tank?(float)Math.Sin((a.age+extra)*2)*3:0));
                 if(a.species=="elephant"){
                     PoseElephant((ElephantArtView)image,a,a.age+extra);
-                    TickElephantPlay(z,a,true,a.age+extra);
+                    TickElephantPlay(z,a,true,a.age+extra);TickElephantCare(z,a,true);
                 }
             }
-            if(!visible.Contains("elephant"))TickElephantPlay(z,elephant,false,elephant.age);
+            if(!visible.Contains("elephant")){TickElephantPlay(z,elephant,false,elephant.age);TickElephantCare(z,elephant,false);}
             foreach(var info in ZooCatalog.All){
                 var shown=visible.Contains(info.id);Place(zooBuckets[info.id],shown,ZooLayout.BucketX(info.id));
                 var animal=z.animals.Single(a=>a.species==info.id);
@@ -349,7 +349,7 @@ namespace LittleWeeps.Client
             foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
             ResetZooNavigation();zooEntrance=null;zooApproach=false;
             ResetElephantObservation();elephantFinishEvents=0;elephantCue="";ClearZooFailure();
-            elephantWater=null;elephantCuriousLeaf=null;elephantWaterEvents=0;
+            elephantBasket=null;elephantCareFinishEvents=0;elephantWater=null;elephantCuriousLeaf=null;elephantWaterEvents=0;
             Array.Clear(elephantAvatars,0,elephantAvatars.Length);
         }
     }

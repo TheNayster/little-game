@@ -370,7 +370,7 @@ namespace LittleWeeps.Core
             if(state.vet!=null){var helper=state.vet.members.Single(m=>m.actor==player.id);if(helper.attending)helper.declined=true;helper.attending=false;helper.gesture="";if(daycareArrival)helper.declined=false;}
             if(state.treasure!=null){var hunt=state.treasure.members.Single(m=>m.actor==player.id);if(hunt.attending)hunt.declined=true;hunt.attending=false;if(daycareArrival)hunt.declined=false;}
             if(daycareArrival){if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).declined=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).declined=false;}
-            CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);CancelZoo(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
+            CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);CancelZoo(player.id);LeaveElephantCare(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
         }
         public SoloResult Apply(SoloCommand c,string[] connectedPlayers=null)
         {

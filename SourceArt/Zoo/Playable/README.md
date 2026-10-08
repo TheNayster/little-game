@@ -1,5 +1,9 @@
 # Playable Zoo artwork
 
+## Elephant care pilot — October 8
+
+`elephant-care.svg` is the editable source for the care basket, soft brush and dust patches. Runtime native geometry and retained brush motion live in `GameScreen.ElephantCare.cs`; the existing elephant art view supplies a separate appreciative reaction. Elephant care owns these assets; retire them only after those runtime consumers migrate to a reviewed replacement. The existing clinic contributes only its reusable touch surface and is not modified. [Controls, authority and live-review evidence](../../../docs/world-audits/zoo/elephant-care.md).
+
 ## Elephant water pilot â€” October 8
 
 `elephant-water.svg` is the editable source for the separate left-side pump/pool, water surface and floating leaf. Runtime geometry lives in `GameScreen.ElephantPlay.cs`; `ElephantArtView.cs` articulates the original resting drawing without modifying atlas pixels. The elephant pilot owns these files; retire them only after their runtime consumers migrate to reviewed replacements. No new raster atlas, import dependency or all-species art expansion. [Scheduling, source paths, actual native checks and owner-review limits](../../../docs/world-audits/zoo/elephant-personality-water.md).

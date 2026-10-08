@@ -54,12 +54,13 @@ namespace LittleWeeps.Client
             if(a.phase==ZooPhase.Greet || a.phase==ZooPhase.Curious || a.phase==ZooPhase.Splash)return 4;
             return ordinary;
         }
-        private static void PoseElephant(ElephantArtView image,ZooAnimal a,double age)
+        private void PoseElephant(ElephantArtView image,ZooAnimal a,double age)
         {
             var wave=Mathf.Sin(Mathf.Clamp01((float)(age/a.duration))*Mathf.PI);
             if(a.phase==ZooPhase.Greet)image.Pose(24*wave,4*Mathf.Sin((float)age*5)*wave);
             else if(a.phase==ZooPhase.Curious)image.Pose(-12*wave,0);
             else if(a.phase==ZooPhase.Splash)image.Pose(28*wave,2*wave);
+            else if(a.phase==ZooPhase.CareFinish && Zoo.careSession==elephantCareReaction)image.Pose(12*wave,5*Mathf.Sin((float)age*7)*wave);
             else image.Pose(0,0);
         }
         private void TickElephantPlay(ZooState z,ZooAnimal a,bool shown,double animalAge)
