@@ -29,7 +29,9 @@ static class Program
         Check(expanded.ReadZoo().animals[0].fed==12,"Feeding history survives expansion");Console.WriteLine("PASS schema 34 retains elephant/giraffe and adds fourteen animals without moving possessions");
         foreach(var actor in before.players.Select(p=>p.id))Enter(w,actor);
         Act(w,"one",SoloAction.Move,x:1200,y:490);Check(w.ReadPlayer("one").y==120,"visitor boundary");
-        var routes=Enumerable.Range(0,80).Select(i=>{Tick(w,1);var a=w.ReadZoo().animals[0];return a.toX+"/"+a.toY;}).Distinct().Count();Check(routes>3,"varied destinations");
+        // World IDs seed the random routine; an 80-second sample can contain
+        // only two long routes. Observe several bounded cycles for every seed.
+        var routes=Enumerable.Range(0,600).Select(i=>{Tick(w,1);var a=w.ReadZoo().animals[0];return a.toX+"/"+a.toY;}).Distinct().Count();Check(routes>3,"varied destinations");
         var clone=GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(Encode(w.Snapshot()),json));Tick(w,10);Tick(clone,10);Check(Encode(w.ReadZooSnapshot())==Encode(clone.ReadZooSnapshot()),"persisted random choices");Console.WriteLine("PASS varied bounded routes and repeatable persisted authority stream");
         foreach(var actor in before.players.Select(p=>p.id))Offer(w,actor,"elephant");
         Check(w.ReadZoo().food.Select(f=>f.slot).Distinct().Count()==4,"four independent slots");

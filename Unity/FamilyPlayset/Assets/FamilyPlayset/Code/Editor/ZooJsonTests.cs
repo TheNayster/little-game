@@ -21,6 +21,10 @@ namespace LittleWeeps.EditorTools
             Need(w.ReadZoo().animals[0].fed==4 && w.ReadZoo().food.All(f=>f.species==""),"Four exact consumptions");
             var retained=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));Need(retained.ReadZoo().animals[0].fed==4,"Retention");
             Act("one",SoloAction.Move,x:1200,y:490);Need(w.ReadPlayer("one").y==120,"Visitor boundary");
+            Act("one",SoloAction.Move,x:ZooLayout.BucketX("elephant"),y:100);Act("one",SoloAction.Zoo,"take","elephant");
+            var pending=w.ReadZoo().food.Single(f=>f.actor=="one");Act("one",SoloAction.Move,x:ZooLayout.SlotX("elephant",pending.slot),y:100);Act("one",SoloAction.Zoo,"offer","elephant");
+            var unfinished=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));
+            Need(unfinished.ReadZoo().food.All(f=>f.species=="") && unfinished.ReadZoo().animals[0].fed==4,"Restore clears unfinished offers and retains consumption history");
             Debug.Log("ZOO_JSON_PASS: additive migration, four portions, uint RNG JSON, retention and visitor boundary");
         }
         static void Need(bool ok,string name){if(!ok)throw new InvalidOperationException(name);}

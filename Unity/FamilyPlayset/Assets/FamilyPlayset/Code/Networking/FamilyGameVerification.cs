@@ -63,6 +63,7 @@ namespace LittleWeeps.NetworkProbe
             public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
             public LittleWeeps.Core.DinosaurWorldState dinosaurWorld;public int dinosaurTextures;public bool dinosaurSoundPlaying;public Vector2 dinosaurSeat;
             public LittleWeeps.Core.ZooState zoo;public int visibleZooAnimals,zooTextures,zooAudioClips;public bool zooSoundPlaying;
+            public string elephantCue;public int elephantSlot,elephantFinishEvents;
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
@@ -368,6 +369,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
                 evidence.dinosaurWorld=screen.DinosaurGame;evidence.dinosaurTextures=screen.DinosaurTextureCount;evidence.dinosaurSoundPlaying=screen.DinosaurSoundPlaying;evidence.dinosaurSeat=screen.DinosaurSeat;
                 evidence.zoo=screen.ZooGame;evidence.visibleZooAnimals=screen.VisibleZooAnimals;evidence.zooTextures=screen.ZooTextureCount;evidence.zooAudioClips=screen.ZooAudioClipCount;evidence.zooSoundPlaying=screen.ZooSoundPlaying;
+                evidence.elephantCue=screen.ElephantCue;evidence.elephantSlot=screen.ElephantSlot;evidence.elephantFinishEvents=screen.ElephantFinishEvents;
                 evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;
                 evidence.pond=screen.PondGame;evidence.pondCloseup=screen.PondCloseup;evidence.pondWaterPlaying=screen.PondWaterPlaying;

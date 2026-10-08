@@ -539,8 +539,8 @@ namespace LittleWeeps.Client
             if(shared!=null)
             {
                 if(Board==null){if(shared.View!=null && safe!=null)InitializeShared();else if(connecting!=null && !shared.Connected)connecting.text="Joining your shared gardenâ€¦\n"+shared.Status;return;}
-                if(wasConnected && !shared.Connected){requestedArea=null;travelSubmitted=false;CancelPointers();ClearSharedDrag();message.text=Friendly("disconnected");Narration.Stop();}
-                if(!wasConnected && shared.Connected){CancelPointers();renderedSequence=-1;message.text="You're back. Let's play!";}
+                if(wasConnected && !shared.Connected){ResetElephantObservation();requestedArea=null;travelSubmitted=false;CancelPointers();ClearSharedDrag();message.text=Friendly("disconnected");Narration.Stop();}
+                if(!wasConnected && shared.Connected){ResetElephantObservation();CancelPointers();renderedSequence=-1;message.text="You're back. Let's play!";}
                 wasConnected=shared.Connected;
                 if(renderedSequence!=shared.ViewSequence){Render();renderedSequence=shared.ViewSequence;}
                 saveLabel.text=string.Join("   Â·   ",shared.View.players.Where(p=>shared.Players.Contains(p.id)).Select(p=>p.id.Replace("player-","Player ")+": "+p.zone))+"   Â·   "+shared.Status;
@@ -602,7 +602,7 @@ namespace LittleWeeps.Client
             ResetBooks();if(Narration!=null)Destroy(Narration);
             foreach(var sprite in new[]{rounded,circle,hintRing,pictureRim})if(sprite!=null){Destroy(sprite.texture);Destroy(sprite);}
         }
-        private void OnApplicationPause(bool paused){applicationPaused=paused;worldMusic?.Suspend(paused);if(paused){if(DiscoveryOpen)CloseDiscovery();if(CollectionOpen)CloseCollection(false);PauseBook(false);CancelVetGestures();CancelPointers();SettleHomeUse();SaveNow();ExportPlayPerformance();}}
+        private void OnApplicationPause(bool paused){ResetElephantObservation();applicationPaused=paused;worldMusic?.Suspend(paused);if(paused){if(DiscoveryOpen)CloseDiscovery();if(CollectionOpen)CloseCollection(false);PauseBook(false);CancelVetGestures();CancelPointers();SettleHomeUse();SaveNow();ExportPlayPerformance();}}
         private void OnApplicationFocus(bool focused){if(!focused && HasWorld){if(DiscoveryOpen)CloseDiscovery();if(CollectionOpen)CloseCollection(false);PauseBook(false);CancelVetGestures();CancelPointers();SettleHomeUse();SaveNow();}}
         private void OnApplicationQuit(){if(HasWorld){PauseBook(false);CancelPointers();SaveNow();}}
         private Vector2 ToBoard(float x,float y)=>new Vector2((x-cameraX)*sceneScale,(y*.45f-250)*sceneScale);
