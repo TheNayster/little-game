@@ -63,7 +63,7 @@ namespace LittleWeeps.NetworkProbe
             public bool secretDoorVisible,secretDoorInteractive,quietStill;public int quietBrightness,quietMusicLevel,quietEffectsLevel;public float quietPhase;
             public LittleWeeps.Core.DinosaurWorldState dinosaurWorld;public int dinosaurTextures;public bool dinosaurSoundPlaying;public Vector2 dinosaurSeat;
             public LittleWeeps.Core.ZooState zoo;public int visibleZooAnimals,zooTextures,zooAudioClips;public bool zooSoundPlaying;
-            public Vector2[] elephantBrushPositions;public Color[] zooRouteColors;public int elephantCareFinishEvents;public string elephantCue;public int elephantSlot,elephantFinishEvents,elephantWaterEvents,elephantEffectObjects;
+            public int surpriseSounds,surpriseObjects;public Vector2[] elephantBrushPositions;public Color[] zooRouteColors;public int elephantCareFinishEvents;public string elephantCue;public int elephantSlot,elephantFinishEvents,elephantWaterEvents,elephantEffectObjects;
             public long allocatedMemory,managedMemory;
             public bool zooMapOpen,zooNavigationBusy;public string zooCurrentExhibit,zooPreviousDestination,zooNextDestination,zooMapShownTrail,zooMapMarker;
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
@@ -381,7 +381,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.zooMapOpen=screen.ZooMapOpen;evidence.zooNavigationBusy=screen.ZooNavigationBusy;evidence.zooCurrentExhibit=screen.ZooCurrentExhibit;evidence.zooPreviousDestination=screen.ZooPreviousDestination;evidence.zooNextDestination=screen.ZooNextDestination;evidence.zooMapShownTrail=screen.ZooMapShownTrail;
                 evidence.zooMapMarker=screen.ZooMapMarker;
                 evidence.elephantBrushPositions=screen.ElephantBrushPositions;evidence.zooRouteColors=screen.ZooRouteColors;evidence.elephantCareFinishEvents=screen.ElephantCareFinishEvents;evidence.elephantCue=screen.ElephantCue;evidence.elephantSlot=screen.ElephantSlot;evidence.elephantFinishEvents=screen.ElephantFinishEvents;
-                evidence.elephantWaterEvents=screen.ElephantWaterEvents;evidence.elephantEffectObjects=screen.ElephantEffectObjects;
+                evidence.surpriseSounds=screen.SurpriseSounds;evidence.surpriseObjects=screen.SurpriseObjects;evidence.elephantWaterEvents=screen.ElephantWaterEvents;evidence.elephantEffectObjects=screen.ElephantEffectObjects;
                 evidence.allocatedMemory=UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();evidence.managedMemory=GC.GetTotalMemory(false);
                 evidence.creekBoats=screen.CreekBoatGame;evidence.boatWorkshopOpen=screen.BoatWorkshopOpen;evidence.ownCreekBoatInView=screen.OwnCreekBoatInView;evidence.visibleCreekBoats=screen.VisibleCreekBoats;
                 evidence.creekFishing=screen.CreekFishingGame;evidence.creekFishingCloseup=screen.CreekFishingCloseup;evidence.creekFishingWaterPlaying=screen.CreekFishingWaterPlaying;

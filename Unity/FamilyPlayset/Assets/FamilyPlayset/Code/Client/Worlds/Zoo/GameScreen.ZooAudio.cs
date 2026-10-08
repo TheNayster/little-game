@@ -63,10 +63,12 @@ namespace LittleWeeps.Client
             if(nearest!=null && now>=zooNextStep && (zooFoley==null || !zooFoley.isPlaying)){ZooPlay(nearest.species,true);zooNextStep=now+1.8f;}
             if(zooVoice!=null)zooVoice.volume=.26f*ZooEffectGain;
             if(zooFoley!=null)zooFoley.volume=.18f*ZooEffectGain;
-            var wanted=visible.Select(ZooVoicePath).Concat(new[]{"Worlds/Zoo/Audio/water","Worlds/Zoo/Audio/feeding"}).ToArray();
+            if(surpriseVoice!=null)surpriseVoice.volume=.1f*ZooEffectGain;
+            var wanted=visible.Select(ZooVoicePath).Concat(new[]{"Worlds/Zoo/Audio/water","Worlds/Zoo/Audio/feeding"}).Concat(visible.Contains("elephant")?new[]{"Worlds/Zoo/Audio/visitor-chirp","Worlds/Zoo/Audio/flower-rustle"}:Array.Empty<string>()).ToArray();
             foreach(var path in zooClips.Keys.Where(p=>!wanted.Contains(p)).ToArray()){
                 var clip=zooClips[path];
                 if(zooVoice!=null && zooVoice.clip==clip){zooVoice.Stop();zooVoice.clip=null;}
+                if(surpriseVoice!=null && surpriseVoice.clip==clip){surpriseVoice.Stop();surpriseVoice.clip=null;}
                 if(zooFoley!=null && zooFoley.clip==clip){zooFoley.Stop();zooFoley.clip=null;}
                 Resources.UnloadAsset(clip);zooClips.Remove(path);
             }
@@ -74,6 +76,7 @@ namespace LittleWeeps.Client
         }
         private void ResetZooAudio()
         {
+            if(surpriseVoice!=null){surpriseVoice.Stop();surpriseVoice.clip=null;}
             if(zooVoice!=null){zooVoice.Stop();zooVoice.clip=null;}
             if(zooFoley!=null){zooFoley.Stop();zooFoley.clip=null;}
             foreach(var clip in zooClips.Values)if(clip!=null)Resources.UnloadAsset(clip);zooClips.Clear();zooHeard.Clear();

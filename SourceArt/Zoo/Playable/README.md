@@ -1,5 +1,9 @@
 # Playable Zoo artwork
 
+## Elephant surprises - milestone 7, October 8
+
+`elephant-surprises.svg` is the original editable reference for the leafy garden bird, flowers and three butterflies. `GameScreen.ElephantSurprises.cs` owns the matching retained UI geometry; `Tools/Content/Prepare-ElephantSurprises.py` regenerates the vector reference and original soft procedural chirp/rustle WAV files. These are background visitors, outside the selectable animal roster and feeding queue. Retire only after these consumers migrate to a reviewed replacement. [Controls, authority and live review](../../../docs/world-audits/zoo/elephant-surprises.md).
+
 ## Elephant care pilot — October 8
 
 `elephant-care.svg` is the editable source for the care basket, soft brush and dust patches. Runtime native geometry and retained brush motion live in `GameScreen.ElephantCare.cs`; the existing elephant art view supplies a separate appreciative reaction. Elephant care owns these assets; retire them only after those runtime consumers migrate to a reviewed replacement. The existing clinic contributes only its reusable touch surface and is not modified. [Controls, authority and live-review evidence](../../../docs/world-audits/zoo/elephant-care.md).

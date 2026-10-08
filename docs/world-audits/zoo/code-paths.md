@@ -1,5 +1,7 @@
 # Zoo code paths
 
+October8 milestone7: `Code/Client/Worlds/Zoo/GameScreen.ElephantSurprises.cs` owns the retained bird/flower views; `ZooWorld.cs` owns the two transient trigger slots. [Current controls, full changed-file list and evidence](elephant-surprises.md).
+
 Verified against source `62c6fa9` when this plan was created on October 2, 2026. Paths below are relative to the game project root, `C:\Users\sephi\Desktop\Little weeps game`. Click a path to open the exact file. Refresh the paths when source changes; the map is a starting point, not proof of a defect's cause.
 
 Audit: [audit.md](audit.md). Local plan: [phase-plan.md](phase-plan.md). Shared menus/input/capture: [common code map](../code-path-map.md).

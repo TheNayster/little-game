@@ -1,0 +1,37 @@
+# Elephant hidden surprises — milestone 7, October 8, 2026
+
+Scope: WORLD-02 / FAMILY-01 / ITEM-02. Two optional elephant-habitat discoveries only. Feeding, picture navigation, personality, water and brushing remain. Stop for owner review; no expansion to other exhibits or later activities.
+
+Tap the leafy plant left of the pump (`elephant-leaves`, x480/y440) to part its leaves. A small turquoise garden bird rises, tilts its head and softly chirps, then hides by 4.8 seconds. Two head-tilt variations alternate authoritatively. Tap the flowers beyond the brush on the right (`elephant-flowers`, x1920/y440) to reveal three butterflies. Short local arcs end in a brief resting pose, then return/shrink naturally by six seconds. Each prop accepts a new tap after eight seconds. Ordinary habitat panning reveals either prop on narrow views; no existing control moved.
+
+Both hit areas are 174×130 scene units. No visible instruction, reward, completion popup, queue or selectable species was added. Resting butterflies are decorative; the optional extra tiny-target interaction is omitted. The leaves occasionally rustle slightly while idle. Original editable SVG geometry and reproducible procedural WAV Foley are retained under SourceArt/Zoo/Playable and Tools/Content. Runtime uses the established retained UI geometry rather than new raster sprites. All actors are created once; repeated play has no effect spawning, timers or subscriptions.
+
+## Authority and lifecycle
+
+The existing Zoo command/snapshot infrastructure accepts `surprise` with one stable prop ID. Two bounded sequence/age/variation slots coalesce competing taps and reset independently. They have no actor owner and never change animal RNG, scheduling, food leases, care membership or water state. Leaving/reconnecting retains siblings' event. A late view draws the current authoritative age and seeds audio observation; no historical event queue is sent. Repeated snapshots do not replay sound. Offline private play uses identical authority rules.
+
+These additive transient snapshot hints pass through the existing JSON serializer and clear to idle on restore. No durable activity progress or save schema migration was introduced. Schema53/protocol3 remain; content75 replaces74 because the accepted shared command/state contract changed. This requires a separately authorized compatible rollout. The installed family server and devices were untouched.
+
+One retained audio source plays soft original clips through existing Zoo mute/foreground gain, with a shared local one-second sound limiter and the eight-second authority limiter. Audio caching, area exit, pause and reconnect follow existing lifecycle cleanup. The game currently has no general reduced-motion setting; no new settings system was added. Subjective audio listening/owner appearance acceptance remain open.
+
+## Verification and evidence
+
+Standard 492 client/server: zero errors/warnings; all 2,384 Unity inputs match the source manifest. All gameplay, art and package inputs exactly match tested 491; only Editor tests and build-version settings differ. Unity JSON checks cover independent/coalesced events, unchanged full animal records, deep snapshot copies, departure, reset/variation, legacy defaults and restore-to-idle. Existing feeding/personality/water/care gates also pass.
+
+- [Source matching and combined acceptance](../../../LocalData/ElephantSurprises/source-and-acceptance.json).
+- [Four actual native491 clients: surprise/input/lifecycle/layout groups](../../../LocalData/SharedGarden/5f753888c1c44fb8ab95caa0be2c0b38/elephant-surprises/results.json). The completed groups pass simultaneous taps, authoritative variations, mouse/touch replay, independent props, departure/return, network pause/rejoin, late joining without stale audio, map shielding, brushing/water/feeding coexistence, feeding priority/care resumption and bounded geometry/audio-source counts.
+- [Fresh four-client unchanged giraffe feeding](../../../LocalData/SharedGarden/c7d3ba47b72745ce8b0872f95ef9ff96/elephant-surprises/results.json).
+- [Private single-tap replay, pause/resume and actual saved-world process reopening](../../../LocalData/FamilyLAN/23904d2cd7ee4e8cbbd220eb1f00ea87/elephant-surprises/results.json).
+- [Bird](../../../LocalData/SharedGarden/5f753888c1c44fb8ab95caa0be2c0b38/elephant-surprises/bird.png), [butterflies](../../../LocalData/SharedGarden/5f753888c1c44fb8ab95caa0be2c0b38/elephant-surprises/butterflies.png), [tablet plant](../../../LocalData/SharedGarden/5f753888c1c44fb8ab95caa0be2c0b38/elephant-surprises/tablet-0.png), [small-phone flowers](../../../LocalData/SharedGarden/5f753888c1c44fb8ab95caa0be2c0b38/elephant-surprises/small-phone-1.png). Full native views were inspected at1280×591,1024×768 and640×400. These are simulated layouts, not physical-device qualification.
+
+The full shared harness reports false because its final unchanged-giraffe fixture retained the manual camera from the layout test and could not find the offscreen button. Its four completed surprise groups remain valid; the fresh four-client giraffe run above passes. Earlier runs separately exposed a clipped flower-button fixture and a reconnect fixture that attempted a redundant Travel. These were corrected in the harness, not by changing gameplay or controls. Failed runs remain preserved. Runtime logs contain no game exceptions. No standalone .NET executable is counted as passing: its previously recorded Windows Application Control block remains separate, with security unchanged. No video was recorded.
+
+## Changed files
+
+Under Unity/FamilyPlayset/Assets/FamilyPlayset: Core/Worlds/Zoo/ZooWorld.cs; Core/Shared/Layout/WorldLayout.cs; Client/Worlds/Zoo/GameScreen.ElephantSurprises.cs and metadata; GameScreen.Zoo.cs; GameScreen.ZooAudio.cs; Editor/ZooJsonTests.cs; Networking/FamilyGameVerification.cs; Resources/Worlds/Zoo/Audio/visitor-chirp.wav and flower-rustle.wav with metadata. Build settings are updated by the standard builder.
+
+Supporting files: SourceArt/Zoo/Playable/elephant-surprises.svg; Tools/Content/Prepare-ElephantSurprises.py; Tools/Verification/Test-ElephantSurprises.py and Test-ElephantSurprisesSolo.py; Tools/Launch/Review-ElephantSurprises.py; Tools/shared_garden_runtime.py (explicit optional audible review flag). Existing audit/build work records link this milestone. Unrelated pre-existing untracked material is preserved.
+
+The configured live492 review uses a disposable local family, demonstrates both props and repeats while another player brushes, then leaves two review windows open. Its authority stops after both windows close. Technical checks, live demonstration and owner acceptance are distinct; the owner review is the next task.
+
+Live demonstration completed on the configured isolated492 family: both reveals, both repeat triggers and two actual brush strokes from Bingo while the other player triggered discoveries. Tools were then released; both windows remain open. [Ready receipt](../../../LocalData/SharedGarden/d185efab50fd467e8b05855eda96693e/live-review-ready.json) and [final native view](../../../LocalData/SharedGarden/d185efab50fd467e8b05855eda96693e/live-owner-ready.png). The first audible launcher incorrectly applied the client-only review flag to its disposable server and was refused before any client opened; the flag was scoped to clients and the verified second run succeeded. No installed authority was touched.

@@ -55,11 +55,12 @@ def require(value, message):
 
 
 class Run:
-    def __init__(self, build, interactive=False, resume=None, motion_conditions=None, extended_test_lifetime=False, review_controls=False):
+    def __init__(self, build, interactive=False, resume=None, motion_conditions=None, extended_test_lifetime=False, review_controls=False, test_audible=False):
         require(os.name == 'nt' and 51 <= build <= 9999, 'Windows shared garden build required')
         self.build, self.interactive = build, interactive
         self.extended_test_lifetime = extended_test_lifetime
         self.review_controls = review_controls
+        self.test_audible = test_audible
         self.folder = verification_artifact(f'NetworkProbe/G3-0.0.{build}')
         summary = read(self.folder / 'build-summary.json')
         require(summary and summary['contract'] in (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17) and summary['gardenPresentation'], 'Playable garden build required')
@@ -118,7 +119,7 @@ class Instance:
         cfg = dict(runId=run.run_id, instanceId=self.identity, role=role, profile=profile,
                    token=next((s['token'] for s in run.slots if s['profile'] == profile), ''),
                    protocol=run.protocol, content=run.content, port=run.port, slots=run.slots if role == 'server' else [],
-                   presentation=True, verifyGarden=role == 'client' and (not run.interactive or run.review_controls), interactive=run.interactive or run.extended_test_lifetime)
+                   presentation=True, verifyGarden=role == 'client' and (not run.interactive or run.review_controls), interactive=run.interactive or run.extended_test_lifetime, testAudible=role == 'client' and run.test_audible)
         if role == 'client' and not run.interactive: cfg.update(run.motion_conditions)
         config = run.path / (self.identity + '.config.json'); write(config, cfg)
         exe = run.folder / ('Server' if role == 'server' else 'Client') / 'LittleWeepsNetwork.exe'

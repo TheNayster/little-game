@@ -25,7 +25,7 @@ namespace LittleWeeps.EditorTools
             var pending=w.ReadZoo().food.Single(f=>f.actor=="one");Act("one",SoloAction.Move,x:ZooLayout.SlotX("elephant",pending.slot),y:100);Act("one",SoloAction.Zoo,"offer","elephant");
             var unfinished=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));
             Need(unfinished.ReadZoo().food.All(f=>f.species=="") && unfinished.ReadZoo().animals[0].fed==4,"Restore clears unfinished offers and retains consumption history");
-            ElephantPlay();ElephantCare();
+            ElephantPlay();ElephantCare();ElephantSurprises();
             Debug.Log("ZOO_JSON_PASS: additive migration, four portions, uint RNG JSON, retention and visitor boundary");
         }
         private static void ElephantPlay()
@@ -89,6 +89,27 @@ namespace LittleWeeps.EditorTools
             Act("one",SoloAction.Travel,"zoo");var player=w.ReadPlayer("one");w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor="one",expectedRevision=w.Revision,zone=player.zone,visit=player.visit,action=SoloAction.Move,x=650,y=100});player=w.ReadPlayer("one");w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor="one",expectedRevision=w.Revision,zone=player.zone,visit=player.visit,action=SoloAction.Zoo,value="gate",target="zoo-savanna"});Act("one",SoloAction.Zoo,"care");Step(12);Need(w.ReadZoo().animals[0].phase==ZooPhase.Care,"disconnect fixture");w.ReleaseZoo("one");Need(w.ReadZoo().careMembers.Length==0 && w.ReadZoo().animals[0].phase<ZooPhase.Greet,"last disconnect cleans before empty-session tick stop");
             var legacy=w.Snapshot();legacy.zoo.careMembers=null;legacy.zoo.careProgress=null;legacy.zoo.carePatch=null;legacy.zoo.careBrushAge=null;legacy.zoo.careSession=0;GameWorld.Validate(legacy);Need(GameWorld.Restore(legacy).ReadZoo().careMembers.Length==0,"legacy additive care defaults");
             Debug.Log("ELEPHANT_CARE_JSON_PASS: shared session, simultaneous clamp, gesture/rate validation, solo completion, food suspension, ordered water, replay, immediate departure and save cleanup");
+        }
+        private static void ElephantSurprises()
+        {
+            var w=GameWorld.WithZoo(GameWorld.Create("one","two","three","four"));
+            SoloResult Act(string id,SoloAction action,string value="",string target="",float x=0){var p=w.ReadPlayer(id);return w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=id,expectedRevision=w.Revision,zone=p.zone,visit=p.visit,action=action,value=value,target=target,x=x,y=100});}
+            foreach(var id in new[]{"one","two","three","four"}){Need(Act(id,SoloAction.Travel,"zoo").Accepted,"entry");Need(Act(id,SoloAction.Move,x:650).Accepted,"gate position");Need(Act(id,SoloAction.Zoo,"gate","zoo-savanna").Accepted,"gate");}
+            var before=string.Join("|",w.ReadZoo().animals.Select(a=>JsonUtility.ToJson(a)));
+            Need(Act("one",SoloAction.Zoo,"surprise",ZooLayout.BirdSurprise).Accepted,"bird trigger");
+            foreach(var id in new[]{"two","three","four"})Need(!Act(id,SoloAction.Zoo,"surprise",ZooLayout.BirdSurprise).Accepted,"coalesced trigger");
+            Need(Act("two",SoloAction.Zoo,"surprise",ZooLayout.ButterflySurprise).Accepted,"independent flowers");
+            Need(w.ReadZoo().surpriseSequence.SequenceEqual(new[]{1,1}) && w.ReadZoo().surpriseAge.All(n=>n==0),"one shared event per prop");
+            Need(string.Join("|",w.ReadZoo().animals.Select(a=>JsonUtility.ToJson(a)))==before,"no retasking or random-stream change");
+            var copy=w.ReadZoo();copy.surpriseAge[0]=8;Need(w.ReadZoo().surpriseAge[0]==0,"deep snapshot copy");
+            Need(Act("one",SoloAction.Travel,"creek").Accepted && w.ReadZoo().surpriseAge[0]==0,"exit preserves siblings event");
+            var restored=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));
+            Need(restored.ReadZoo().surpriseSequence.All(n=>n==0) && restored.ReadZoo().surpriseAge.All(n=>n==10),"save clears transient effects");
+            for(var i=0;i<81;i++)w.AdvanceIdle(.1,out _);
+            Need(Act("two",SoloAction.Zoo,"surprise",ZooLayout.BirdSurprise).Accepted && w.ReadZoo().surpriseVariation[0]==0,"replay variation after reset");
+            var legacy=w.Snapshot();legacy.zoo.surpriseSequence=null;legacy.zoo.surpriseAge=null;legacy.zoo.surpriseVariation=null;GameWorld.Validate(legacy);
+            Need(GameWorld.Restore(legacy).ReadZoo().surpriseAge.All(n=>n==10),"legacy safe idle defaults");
+            Debug.Log("ELEPHANT_SURPRISE_JSON_PASS: independent triggers, coalescing, unchanged animal state, deep copies, departure, reset/variation, restore and legacy defaults");
         }
         static void Need(bool ok,string name){if(!ok)throw new InvalidOperationException(name);}
     }

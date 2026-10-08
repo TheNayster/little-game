@@ -1,5 +1,7 @@
 # Zoo world audit
 
+October 8 milestone7 elephant-only hidden surprises: [controls, locations, replay, authority, changed files and native acceptance](elephant-surprises.md). Technical checks pass across the scoped native runs; owner live review remains open. This does not complete the whole-world audit below.
+
 Created October 2, 2026. Not reviewed. Scope and starting inventory prepared; current screenshots and findings pending.
 
 This is the dedicated audit file for Zoo. Follow the [six world screenshot phase](../../six-world-screenshot-phase-2026-10-02.md) and use the [activity review template](../activity-review-template.md) for each activity. Initial inventory is based on main source `096ea65` and existing project records, not a new gameplay review. Latest recorded completed client build at setup is 414; installed devices and captured builds must be recorded separately when the audit runs. Preserve unfinished work in other checkouts.

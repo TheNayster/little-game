@@ -130,7 +130,7 @@ namespace LittleWeeps.Client
                     Panel(rail,"Stand here",Vector2.zero,new Vector2(72,18),new Color(.99f,.84f,.4f,.7f),false,true);
                 }
             }
-            BuildElephantPlay();BuildElephantCare();
+            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();
             var snapshot=Shared?shared.View:World.Snapshot();
             foreach(var player in snapshot.players){
                 var r=ZooObject("Zoo held portion "+player.id);zooLeaves.Add(player.id,r);
@@ -165,7 +165,7 @@ namespace LittleWeeps.Client
         private void ClearZooFailure()
         {if(zooFailure!="" && message.text==zooFailure)message.text="Tap to walk";zooFailure="";zooFailureArea="";}
         private void ResetElephantObservation()
-        {elephantSeenFed=-1;elephantReactionFed=-1;ResetElephantPlayObservation();ResetElephantCareObservation();}
+        {elephantSeenFed=-1;elephantReactionFed=-1;ResetElephantPlayObservation();ResetElephantCareObservation();ResetSurpriseObservation();}
         private static string ZooRejection(string outcome)
         {
             switch(outcome){
@@ -321,7 +321,7 @@ namespace LittleWeeps.Client
                 }
                 r.anchoredPosition=ToBoard(x,p.y)+new Vector2(offset,height)*sceneScale;r.localScale=Vector3.one*sceneScale;
             }
-            TickZooAudio(z,visible);SortDepth();
+            TickElephantSurprises(z,visible.Contains("elephant"));TickZooAudio(z,visible);SortDepth();
         }
         private void AddZooDepth(Action<RectTransform,float,int,string> add)
         {
