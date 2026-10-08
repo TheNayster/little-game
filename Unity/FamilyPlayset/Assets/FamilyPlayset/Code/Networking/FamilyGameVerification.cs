@@ -65,7 +65,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.ZooState zoo;public int visibleZooAnimals,zooTextures,zooAudioClips;public bool zooSoundPlaying;
             public int surpriseSounds,surpriseObjects;public Vector2[] elephantBrushPositions;public Color[] zooRouteColors;public int elephantCareFinishEvents;public string elephantCue;public int elephantSlot,elephantFinishEvents,elephantWaterEvents,elephantEffectObjects;
             public long allocatedMemory,managedMemory;
-            public bool zooMapOpen,zooNavigationBusy;public string zooCurrentExhibit,zooPreviousDestination,zooNextDestination,zooMapShownTrail,zooMapMarker;
+            public bool elephantSnackOpen;public bool zooMapOpen,zooNavigationBusy;public string zooCurrentExhibit,zooPreviousDestination,zooNextDestination,zooMapShownTrail,zooMapMarker;
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
             public LittleWeeps.Core.PondState pond;public bool pondCloseup,pondWaterPlaying;
@@ -378,7 +378,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.keepy=screen.Keepy;evidence.balloonPoint=screen.KeepyBalloonPoint;
                 evidence.dinosaurWorld=screen.DinosaurGame;evidence.dinosaurTextures=screen.DinosaurTextureCount;evidence.dinosaurSoundPlaying=screen.DinosaurSoundPlaying;evidence.dinosaurSeat=screen.DinosaurSeat;
                 evidence.zoo=screen.ZooGame;evidence.visibleZooAnimals=screen.VisibleZooAnimals;evidence.zooTextures=screen.ZooTextureCount;evidence.zooAudioClips=screen.ZooAudioClipCount;evidence.zooSoundPlaying=screen.ZooSoundPlaying;
-                evidence.zooMapOpen=screen.ZooMapOpen;evidence.zooNavigationBusy=screen.ZooNavigationBusy;evidence.zooCurrentExhibit=screen.ZooCurrentExhibit;evidence.zooPreviousDestination=screen.ZooPreviousDestination;evidence.zooNextDestination=screen.ZooNextDestination;evidence.zooMapShownTrail=screen.ZooMapShownTrail;
+                evidence.elephantSnackOpen=screen.ElephantSnackOpen;evidence.zooMapOpen=screen.ZooMapOpen;evidence.zooNavigationBusy=screen.ZooNavigationBusy;evidence.zooCurrentExhibit=screen.ZooCurrentExhibit;evidence.zooPreviousDestination=screen.ZooPreviousDestination;evidence.zooNextDestination=screen.ZooNextDestination;evidence.zooMapShownTrail=screen.ZooMapShownTrail;
                 evidence.zooMapMarker=screen.ZooMapMarker;
                 evidence.elephantBrushPositions=screen.ElephantBrushPositions;evidence.zooRouteColors=screen.ZooRouteColors;evidence.elephantCareFinishEvents=screen.ElephantCareFinishEvents;evidence.elephantCue=screen.ElephantCue;evidence.elephantSlot=screen.ElephantSlot;evidence.elephantFinishEvents=screen.ElephantFinishEvents;
                 evidence.surpriseSounds=screen.SurpriseSounds;evidence.surpriseObjects=screen.SurpriseObjects;evidence.elephantWaterEvents=screen.ElephantWaterEvents;evidence.elephantEffectObjects=screen.ElephantEffectObjects;

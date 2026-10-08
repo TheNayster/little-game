@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="540" viewBox="0 0 760 540">
+<title>Editable elephant snack pilot: station, plant foods, bowl and picture controls</title>
+<rect x="0" y="0" width="760" height="540" rx="28" fill="#faf0d5"/>
+<g id="ingredient-pictures">
+ <rect x="110" y="92" width="230" height="116" rx="40" fill="#d1e5ba"/>
+ <rect x="420" y="92" width="230" height="116" rx="40" fill="#d1e5ba"/>
+ <g id="leaves" fill="#63a847"><rect x="223" y="115" width="7" height="70" fill="#507d3b"/><ellipse cx="210" cy="155" rx="26" ry="12" transform="rotate(25 210 155)"/><ellipse cx="244" cy="139" rx="26" ry="12" transform="rotate(-25 244 139)"/><ellipse cx="210" cy="125" rx="26" ry="12"/></g>
+ <g id="hay" stroke="#deba4d" stroke-width="7"><path d="M510 178l-17-62M520 178l-10-66M530 180v-70M540 180l10-66M550 178l17-62"/></g>
+</g>
+<g id="blue-bowl"><ellipse cx="380" cy="340" rx="202" ry="41" fill="#52603b" opacity=".18"/><rect x="178" y="285" width="404" height="164" rx="75" fill="#57a3c2"/><ellipse cx="380" cy="290" rx="190" ry="52" fill="#faf0d5"/></g>
+<g id="slots" fill="none" stroke="#d4bd93" stroke-dasharray="6 9"><circle cx="250" cy="280" r="49"/><circle cx="380" cy="280" r="49"/><circle cx="510" cy="280" r="49"/></g>
+<g id="picture-controls"><rect x="92" y="449" width="185" height="75" rx="30" fill="#e0caa3"/><rect x="349" y="449" width="344" height="75" rx="30" fill="#abd6a8"/><path d="M484 488h65m-20-18l20 18-20 18" fill="none" stroke="#304737" stroke-width="8"/><path d="M683 37l30 30m0-30l-30 30" stroke="#304737" stroke-width="8"/></g>
+<!-- Runtime reuses ZooFoodPicture for every piece; retained geometry is in GameScreen.ElephantSnack.cs. Slots are optional arrangement, not a recipe. -->
+</svg>

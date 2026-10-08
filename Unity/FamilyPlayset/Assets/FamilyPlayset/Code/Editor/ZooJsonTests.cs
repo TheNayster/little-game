@@ -25,8 +25,37 @@ namespace LittleWeeps.EditorTools
             var pending=w.ReadZoo().food.Single(f=>f.actor=="one");Act("one",SoloAction.Move,x:ZooLayout.SlotX("elephant",pending.slot),y:100);Act("one",SoloAction.Zoo,"offer","elephant");
             var unfinished=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));
             Need(unfinished.ReadZoo().food.All(f=>f.species=="") && unfinished.ReadZoo().animals[0].fed==4,"Restore clears unfinished offers and retains consumption history");
-            ElephantPlay();ElephantCare();ElephantSurprises();
+            ElephantPlay();ElephantCare();ElephantSurprises();ElephantSnack();
             Debug.Log("ZOO_JSON_PASS: additive migration, four portions, uint RNG JSON, retention and visitor boundary");
+        }
+        private static void ElephantSnack()
+        {
+            var w=GameWorld.WithZoo(GameWorld.Create("one","two","three","four"));
+            SoloResult Act(string id,SoloAction action,string value="",string target="elephant",string item="",float x=2020){var p=w.ReadPlayer(id);return w.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),actor=id,expectedRevision=w.Revision,zone=p.zone,visit=p.visit,action=action,value=value,target=target,item=item,x=x,y=100});}
+            ZooFood Food(string id)=>w.ReadZoo().food.Single(f=>f.actor==id);
+            SoloResult Edit(string id,string op,int piece=0)=>Act(id,SoloAction.Zoo,"snack-"+op,item:Food(id).prepEpoch+"/"+Food(id).edit+"/"+piece);
+            foreach(var id in new[]{"one","two","three","four"}){
+                Need(Act(id,SoloAction.Travel,"zoo").Accepted,"snack entry");Need(Act(id,SoloAction.Move,x:650).Accepted,"snack gate position");Need(Act(id,SoloAction.Zoo,"gate","zoo-savanna").Accepted,"snack gate");Need(Act(id,SoloAction.Move).Accepted,"snack station");Need(Act(id,SoloAction.Zoo,"snack-begin").Accepted,"begin independent bowl");
+            }
+            Need(w.ReadZoo().nextTicket==0 && w.ReadZoo().food.All(f=>f.slot==-1),"preparation does not reserve priority");
+            Need(Act("four",SoloAction.Move,x:2300).Accepted,"walk out of preparation exhibit");w.AdvanceIdle(.1,out _);Need(!Food("four").preparing,"walking out clears preparation");Need(Act("four",SoloAction.Move).Accepted && Act("four",SoloAction.Zoo,"snack-begin").Accepted,"return starts fresh bowl");
+            Need(!Edit("one","serve").Accepted && Food("one").preparing,"empty stays editable");
+            Need(!Edit("one","add",(int)ZooFoodKind.Meat).Accepted,"reject unsupported ingredient");
+            var stale=Food("one").prepEpoch+"/0/0";
+            Need(Edit("one","add").Accepted,"leaf");Need(!Act("one",SoloAction.Zoo,"snack-add",item:stale).Accepted && Food("one").pieces.Length==1,"duplicate edit rejected");
+            Need(Edit("one","add",1).Accepted && Edit("one","add",0).Accepted,"three pieces");Need(!Edit("one","add").Accepted,"maximum pieces");
+            Need(Edit("one","remove",1).Accepted && Food("one").pieces.SequenceEqual(new[]{0,0}),"remove exact slot");Need(Edit("one","clear").Accepted && Food("one").pieces.Length==0,"clear bowl");
+            foreach(var id in new[]{"one","two","three","four"})Need(Edit(id,"add",id=="one"?0:1).Accepted,"independent selection");
+            var copy=w.ReadZoo();copy.food[0].pieces[0]=6;Need(Food("one").pieces[0]==0,"deep snack snapshot");
+            Need(Edit("two","cancel").Accepted,"explicit close clears");Need(Act("two",SoloAction.Move,x:1560).Accepted && Act("two",SoloAction.Zoo,"take").Accepted,"mixed bucket");
+            Need(Edit("one","serve").Accepted && Food("one").ticket==2,"snack uses same ticket stage");
+            var ticket=w.ReadZoo().nextTicket;Need(!Edit("one","serve").Accepted && !Edit("one","add").Accepted && !Act("one",SoloAction.Zoo,"snack-begin").Accepted && w.ReadZoo().nextTicket==ticket,"committed bowl cannot duplicate/edit/replace");
+            var restored=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));Need(restored.ReadZoo().food.All(f=>!f.preparing && f.species=="" && f.pieces.Length==0),"save reopening clears transient bowls/offers");
+            Need(Act("three",SoloAction.Travel,"creek").Accepted && !Food("three").preparing && Food("four").preparing,"independent departure");w.ReleaseZoo("four");Need(!Food("four").preparing,"disconnect clears unfinished bowl");
+            foreach(var id in new[]{"two","one"}){Need(Act(id,SoloAction.Move,x:ZooLayout.SlotX("elephant",Food(id).slot)).Accepted,"snack offering position");Need(Act(id,SoloAction.Zoo,"offer").Accepted,"existing handoff");}
+            for(var i=0;i<1000;i++){w.AdvanceIdle(.1,out _);GameWorld.Validate(JsonUtility.FromJson<SoloSnapshot>(JsonUtility.ToJson(w.Snapshot())));}
+            Need(w.ReadZoo().animals[0].fed==2 && w.ReadZoo().food.All(f=>f.species=="" && f.pieces.Length==0),"one serving one consumption");
+            Debug.Log("ELEPHANT_SNACK_JSON_PASS: independent bowls, allowed foods, edit epoch/retry, limits, lease fairness, committed guard, consumption, departure and save cleanup");
         }
         private static void ElephantPlay()
         {

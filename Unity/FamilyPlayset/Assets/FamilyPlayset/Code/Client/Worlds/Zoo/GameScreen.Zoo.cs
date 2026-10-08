@@ -130,17 +130,18 @@ namespace LittleWeeps.Client
                     Panel(rail,"Stand here",Vector2.zero,new Vector2(72,18),new Color(.99f,.84f,.4f,.7f),false,true);
                 }
             }
-            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();
+            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();BuildElephantSnack();
             var snapshot=Shared?shared.View:World.Snapshot();
             foreach(var player in snapshot.players){
                 var r=ZooObject("Zoo held portion "+player.id);zooLeaves.Add(player.id,r);
                 foreach(ZooFoodKind kind in Enum.GetValues(typeof(ZooFoodKind))){var shape=Rect(r,"Food "+(int)kind,Vector2.zero,Vector2.zero);ZooFoodPicture(shape,kind,Vector2.zero,.8f);}
+                BuildCarriedSnack(r);
             }
             TickZoo();
         }
         private void ZooWalk(string op,string target,Vector2 entry)
         {
-            if(ActionPending || ZooMapOpen && op!="offer" || op=="gate" && zooApproach && zooOperation=="gate")return;
+            if(ElephantSnackOpen || ActionPending || ZooMapOpen && op!="offer" || op=="gate" && zooApproach && zooOperation=="gate")return;
             ClearZooFailure();
             var food=Zoo?.food.Single(f=>f.actor==Actor);
             if(op=="take"){
@@ -240,7 +241,7 @@ namespace LittleWeeps.Client
                 if(op=="take"){
                     var f=Zoo.food.Single(v=>v.actor==Actor);
                     ZooWalk("offer",target,new Vector2(ZooLayout.SlotX(target,f.slot),100));
-                }else if(op=="gate"){manualCamera=false;cameraArea=null;}
+                }else if(op=="snack-begin"){ShowElephantSnack();}else if(op=="gate"){manualCamera=false;cameraArea=null;}
             });
         }
         private void TickZoo()
@@ -304,6 +305,7 @@ namespace LittleWeeps.Client
                 var animal=z.animals.Single(a=>a.species==info.id);
                 if(info.id=="elephant"){
                     var cue=elephantCue=="collecting"?"Getting your leaves":elephantCue=="carrying"?"Bring leaves to your picture":elephantCue=="waiting"?"Your leaves are waiting":elephantCue=="approaching"?"Coming to your tray":elephantCue=="eating"?"Eating your leaves":elephantCue=="finished"?"Yum! Thank you":"Tap the leaves";
+                    if(z.food.Any(f=>f.actor==Actor && f.species=="elephant" && f.pieces.Length>0))cue=cue.Replace("leaves","snack");
                     zooSigns[info.id].text=info.name+"\n"+cue;
                 }else zooSigns[info.id].text=info.name+(animal.owner==""?"\nTap the "+info.FoodName:animal.owner==Actor?"\nComing for your food":"\nTaking turns");
                 for(var i=0;i<4;i++)Place(zooRails[info.id][i],shown,ZooLayout.SlotX(info.id,i));
@@ -311,7 +313,7 @@ namespace LittleWeeps.Client
             foreach(var f in z.food){
                 var r=zooLeaves[f.actor];var a=z.animals.FirstOrDefault(v=>v.owner==f.actor);var shown=f.species!="" && visible.Contains(f.species) && a?.consumed!=true;r.gameObject.SetActive(shown);
                 if(!shown)continue;
-                var info=ZooCatalog.Get(f.species);foreach(Transform child in r)child.gameObject.SetActive(child.name=="Food "+(int)info.food);
+                var info=ZooCatalog.Get(f.species);TickCarriedSnack(r,f);
                 var p=ReadPlayer(f.actor);var height=f.offered?info.FeedHeight:70;var x=p.x;var offset=65f;
                 if(f.species=="elephant" && f.offered){
                     x=ZooLayout.SlotX(f.species,f.slot);height=33;offset=0;
@@ -321,7 +323,7 @@ namespace LittleWeeps.Client
                 }
                 r.anchoredPosition=ToBoard(x,p.y)+new Vector2(offset,height)*sceneScale;r.localScale=Vector3.one*sceneScale;
             }
-            TickElephantSurprises(z,visible.Contains("elephant"));TickZooAudio(z,visible);SortDepth();
+            TickElephantSnack(visible.Contains("elephant"));TickElephantSurprises(z,visible.Contains("elephant"));TickZooAudio(z,visible);SortDepth();
         }
         private void AddZooDepth(Action<RectTransform,float,int,string> add)
         {
@@ -347,7 +349,7 @@ namespace LittleWeeps.Client
             ResetZooAudio();zooGateTextures.Clear();zooGatePictures.Clear();
             foreach(var r in zooObjects)if(r!=null)Destroy(r.gameObject);zooObjects.Clear();
             foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
-            ResetZooNavigation();zooEntrance=null;zooApproach=false;
+            ResetElephantSnack();ResetZooNavigation();zooEntrance=null;zooApproach=false;
             ResetElephantObservation();elephantFinishEvents=0;elephantCue="";ClearZooFailure();
             elephantBasket=null;elephantCareFinishEvents=0;elephantWater=null;elephantCuriousLeaf=null;elephantWaterEvents=0;
             Array.Clear(elephantAvatars,0,elephantAvatars.Length);

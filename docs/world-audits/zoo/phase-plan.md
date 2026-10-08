@@ -1,5 +1,7 @@
 # Zoo screenshot and review phase plan
 
+Milestone8: optional elephant-only snacks. Complete scoped checks and live review, then stop; do not expand to other species/later activities. [Current record](elephant-snack.md).
+
 Milestone7, October8: [two elephant-area surprises](elephant-surprises.md) implemented and technically checked. Stop for unrecorded live owner review; no expansion to other exhibits or later activities. The broader screenshot plan below remains separate.
 
 Status: planned, no screenshots collected by this planning task. This folder contains only Zoo; Daycare is excluded. Run this plan independently using the shared [six world capture requirements](../../six-world-screenshot-phase-2026-10-02.md#screenshot-requirements-for-every-world).

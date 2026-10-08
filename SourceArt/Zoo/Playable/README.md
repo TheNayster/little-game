@@ -27,3 +27,7 @@ These are generated playable drawings, not family-approved final likenesses or e
 `Resources/Worlds/Zoo/Navigation` is owned by the Zoo navigation milestone. Its sixteen 160×160 stills are derived from the first resting atlas cell by `Code/Editor/ZooNavigationArt.cs`, using Unity's texture APIs. The original editable atlas sources above remain intact. The entrance, destination strip and informational map consume these small shared textures; full animation atlas residency remains bounded separately. Retire this folder only after all three consumers migrate to a replacement portrait set. Delete an individual generated still only when intentionally regenerating it from its retained atlas source.
 
 The wooden entrance gate, directional arrows, folded map and location pointer are editable native UI geometry in `Code/Client/Worlds/Zoo/GameScreen.ZooNavigation.cs`; they add no raster generation, speech dependency or new artwork style. The same elephant/dinosaur/crocodile/clownfish symbols identify each trail at the entrance and on the map. Owner review of navigation remains separate from the approved elephant feeding pass.
+
+## Elephant snack pilot - October 8
+
+`elephant-snack.svg` preserves editable bowl/station/food/control geometry. Runtime GameScreen.ElephantSnack.cs reuses existing ZooFoodPicture leaves/hay through selection, carrying and tray-to-trunk delivery. No raster atlas/animation replacement. Retire only when these consumers intentionally migrate.

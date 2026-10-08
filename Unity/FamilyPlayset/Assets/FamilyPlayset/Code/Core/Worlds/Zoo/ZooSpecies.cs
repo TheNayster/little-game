@@ -20,6 +20,9 @@ namespace LittleWeeps.Core
         public float FeedY=>habitat==ZooHabitat.Tank?330:270;
         public float FeedHeight=>(FeedY-100)*.45f+footOffset+mouthY;
         public string FoodName=>food==ZooFoodKind.Leaves?"leaves":food==ZooFoodKind.Hay?"hay":food==ZooFoodKind.Meat?"meat":food==ZooFoodKind.Pellets?"pellets":food==ZooFoodKind.Seaweed?"seaweed":food==ZooFoodKind.Fish?"fish":"insects";
+        // Pretend snack pilot: reuse the catalog's plant-food pictures. This is
+        // an explicit game acceptance rule, not real-world dietary advice.
+        public bool AcceptsSnack(int kind)=>id=="elephant" && (kind==(int)ZooFoodKind.Leaves || kind==(int)ZooFoodKind.Hay);
         public float MinY=>250;
         public float MaxY=>habitat==ZooHabitat.Climb?440:420;
         public float Radius=>id=="tortoise"?260:habitat==ZooHabitat.Tank && id!="zebra-shark"?360:600;

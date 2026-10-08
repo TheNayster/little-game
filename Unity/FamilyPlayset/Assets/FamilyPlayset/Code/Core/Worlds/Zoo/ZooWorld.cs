@@ -21,14 +21,18 @@ namespace LittleWeeps.Core
         public int slot=-1;
         public long ticket;
         public bool offered;
-        public ZooFood Copy()=>(ZooFood)MemberwiseClone();
-        public void Clear(){species="";slot=-1;ticket=0;offered=false;}
+        public bool preparing;
+        public long prepEpoch,edit;
+        public int[] pieces=Array.Empty<int>();
+        public ZooFood Copy(){var f=(ZooFood)MemberwiseClone();f.pieces=(int[])pieces.Clone();return f;}
+        public void Clear(){species="";slot=-1;ticket=0;offered=false;preparing=false;prepEpoch=0;edit=0;pieces=Array.Empty<int>();}
     }
     [Serializable] public sealed class ZooState
     {
         public ZooAnimal[] animals;
         public ZooFood[] food;
         public long nextTicket;
+        public long nextPrep;
         // Additive snapshot hints, cleared on restore. They never represent a
         // saved chore, ownership lease, or a backlog of play requests.
         public int[] surpriseSequence=new int[2];
@@ -57,6 +61,7 @@ namespace LittleWeeps.Core
         public const float EntranceArrivalX=1200;
         public const float WaterX=820, WaterY=320, WaterPlayX=1110;
         public const float CareX=1200, CareY=320, BrushX=1740;
+        public const float SnackX=2020;
         public const string BirdSurprise="elephant-leaves", ButterflySurprise="elephant-flowers";
         public const double SurpriseReset=8;
         public const double CareFeedDelay=.35;
@@ -115,6 +120,7 @@ namespace LittleWeeps.Core
         private static void NormalizeZooInline(SoloSnapshot s)
         {
             if(s?.zoo!=null){
+                if(s.zoo.food!=null)foreach(var f in s.zoo.food)if(f!=null && f.pieces==null)f.pieces=Array.Empty<int>();
                 if(s.zoo.surpriseSequence==null)s.zoo.surpriseSequence=new int[2];
                 if(s.zoo.surpriseAge==null)s.zoo.surpriseAge=new double[]{10,10};
                 if(s.zoo.surpriseVariation==null)s.zoo.surpriseVariation=new int[2];
@@ -155,6 +161,12 @@ namespace LittleWeeps.Core
                     throw new InvalidOperationException("Invalid zoo animal.");
                 if(a.owner!="" && !z.food.Any(f=>f.actor==a.owner && f.species==a.species && f.offered))throw new InvalidOperationException("Missing food offer.");}
             foreach(var f in z.food){var p=s.players.Single(v=>v.id==f.actor);
+                if(z.nextPrep<0 || z.nextPrep==long.MaxValue || f.pieces==null || f.pieces.Length>3 || f.pieces.Any(n=>!ZooCatalog.Get("elephant").AcceptsSnack(n)) ||
+                    f.prepEpoch<0 || f.prepEpoch>z.nextPrep || f.edit<0 || f.edit==long.MaxValue ||
+                    f.preparing && (f.species!="" || f.prepEpoch==0 || p.zone!=ZooLayout.Savanna) ||
+                    f.pieces.Length>0 && !f.preparing && f.species!="elephant" ||
+                    f.species!="" && f.preparing || f.species=="" && !f.preparing && (f.pieces.Length!=0 || f.prepEpoch!=0 || f.edit!=0))
+                    throw new InvalidOperationException("Invalid elephant snack.");
                 if(f.species==null || f.species!="" && !ZooLayout.Species.Contains(f.species) ||
                     f.species=="" && (f.slot!=-1 || f.ticket!=0 || f.offered) || f.species!="" && (f.slot<0 || f.slot>3 || f.ticket<=0 || f.ticket>z.nextTicket || p.zone!=ZooCatalog.Get(f.species).area))
                     throw new InvalidOperationException("Invalid zoo portion.");}
@@ -175,7 +187,7 @@ namespace LittleWeeps.Core
         }
         private bool CancelZoo(string actor)
         {
-            var f=state.zoo?.food.FirstOrDefault(v=>v.actor==actor);if(f==null || f.species=="")return false;
+            var f=state.zoo?.food.FirstOrDefault(v=>v.actor==actor);if(f==null || f.species=="" && !f.preparing)return false;
             foreach(var a in state.zoo.animals.Where(a=>a.owner==actor))ZooLayout.Routine(a);f.Clear();return true;
         }
         public bool ReleaseZoo(string actor){
@@ -220,13 +232,11 @@ namespace LittleWeeps.Core
                 return null;
             }
             var food=z.food.Single(f=>f.actor==p.id);
+            if(c.value.StartsWith("snack-",StringComparison.Ordinal))return ElephantSnackOperation(c,p,food);
             if(c.value=="take"){
-                if(food.species!="" || state.toys.Any(t=>t.holder==p.id))return "hands-full";
+                if(food.species!="" || food.preparing || state.toys.Any(t=>t.holder==p.id))return "hands-full";
                 if(Math.Abs(p.x-ZooLayout.BucketX(c.target))>200 || p.y>160)return "walk-to-food-bucket";
-                var slot=Enumerable.Range(0,4).FirstOrDefault(i=>!z.food.Any(f=>f.species==c.target && f.slot==i));
-                if(z.food.Any(f=>f.species==c.target && f.slot==slot))return "all-feed-spots-busy";
-                if(z.nextTicket>=long.MaxValue-1)return "portion-limit";
-                food.species=c.target;food.slot=slot;food.ticket=++z.nextTicket;return null;
+                return LeaseZooFood(food,c.target);
             }
             if(c.value=="offer"){
                 if(food.species!=c.target || Math.Abs(p.x-ZooLayout.SlotX(c.target,food.slot))>70 || p.y>160)return "walk-to-feed-spot";
@@ -241,6 +251,10 @@ namespace LittleWeeps.Core
             elephantClock+=seconds;for(var i=0;i<4;i++)z.careBrushAge[i]=Math.Min(10,z.careBrushAge[i]+seconds);z.waterAge=Math.Min(10,z.waterAge+seconds);z.waterCooldown=Math.Max(0,z.waterCooldown-seconds);
             z.greetingCooldown=Math.Max(0,z.greetingCooldown-seconds);z.curiousCooldown=Math.Max(0,z.curiousCooldown-seconds);
             var arrived=false;var nearby=false;
+            foreach(var f in z.food.Where(f=>f.preparing).ToArray()){
+                var p=state.players.Single(v=>v.id==f.actor);
+                if(!AtElephant(p) || active!=null && !active.Contains(p.id))visible|=CancelZoo(p.id);
+            }
             foreach(var id in z.careMembers.ToArray()){
                 var player=state.players.Single(v=>v.id==id);
                 if(!AtElephant(player) || active!=null && !active.Contains(id)) {LeaveElephantCare(id);visible=true;}
