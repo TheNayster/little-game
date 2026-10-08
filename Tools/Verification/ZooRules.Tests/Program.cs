@@ -25,14 +25,27 @@ static class Program
         var firstSlice=w.Snapshot();firstSlice.schema=34;firstSlice.zoo.animals=firstSlice.zoo.animals.Take(2).ToArray();firstSlice.zoo.animals[0].fed=12;
         var priorZoo=Encode(new SoloSnapshot{zoo=firstSlice.zoo});var expanded=GameWorld.WithZoo(GameWorld.Restore(firstSlice));var expansion=expanded.Snapshot();
         Check(expansion.schema==35 && expansion.zoo.animals.Length==16,"Sixteen-species migration");
-        expansion.schema=34;expansion.revision--;expansion.zoo.animals=expansion.zoo.animals.Take(2).ToArray();Check(Encode(expansion)==Encode(firstSlice),"First slice retains existing world and animals");
+        // Restore now always retires Zoo transient play (00083a2), advancing
+        // revision once even when the historical fixture has no food lease.
+        // Expansion adds its own revision. Keep the full snapshot comparison.
+        Check(expansion.revision==firstSlice.revision+2,"Restore and expansion each advance revision once");
+        expansion.schema=34;expansion.revision-=2;expansion.zoo.animals=expansion.zoo.animals.Take(2).ToArray();
+        Check(Encode(expansion)==Encode(firstSlice),"First slice retains existing world and animals");
         Check(expanded.ReadZoo().animals[0].fed==12,"Feeding history survives expansion");Console.WriteLine("PASS schema 34 retains elephant/giraffe and adds fourteen animals without moving possessions");
         foreach(var actor in before.players.Select(p=>p.id))Enter(w,actor);
         Act(w,"one",SoloAction.Move,x:1200,y:490);Check(w.ReadPlayer("one").y==120,"visitor boundary");
         // World IDs seed the random routine; an 80-second sample can contain
         // only two long routes. Observe several bounded cycles for every seed.
         var routes=Enumerable.Range(0,600).Select(i=>{Tick(w,1);var a=w.ReadZoo().animals[0];return a.toX+"/"+a.toY;}).Distinct().Count();Check(routes>3,"varied destinations");
-        var clone=GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(Encode(w.Snapshot()),json));Tick(w,10);Tick(clone,10);Check(Encode(w.ReadZooSnapshot())==Encode(clone.ReadZooSnapshot()),"persisted random choices");Console.WriteLine("PASS varied bounded routes and repeatable persisted authority stream");
+        var checkpoint=Encode(w.Snapshot());
+        var clone=GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(checkpoint,json));
+        var twin=GameWorld.Restore(JsonSerializer.Deserialize<SoloSnapshot>(checkpoint,json));
+        Check(clone.ReadZoo().greetingCooldown==30 && clone.ReadZoo().curiousCooldown==14,"Restore applies intentional elephant play cooldowns");
+        Check(clone.ReadZoo().animals.Skip(1).Select(a=>a.random).SequenceEqual(w.ReadZoo().animals.Skip(1).Select(a=>a.random)),"Restore preserves ordinary animal random streams");
+        Tick(w,10);Tick(clone,10);Tick(twin,10);
+        Check(Encode(clone.ReadZooSnapshot())==Encode(twin.ReadZooSnapshot()),"identical persisted checkpoints produce identical full Zoo state after restore");
+        Check(JsonSerializer.Serialize(w.ReadZoo().animals.Skip(1),json)==JsonSerializer.Serialize(clone.ReadZoo().animals.Skip(1),json),"ordinary animal routes continue identically across restore");
+        Console.WriteLine("PASS varied bounded routes and repeatable persisted authority stream with transient play reset");
         foreach(var actor in before.players.Select(p=>p.id))Offer(w,actor,"elephant");
         Check(w.ReadZoo().food.Select(f=>f.slot).Distinct().Count()==4,"four independent slots");
         var duplicate=Command(w,"one",SoloAction.Zoo,"offer","elephant");Check(w.Apply(duplicate).Accepted,"offer");Tick(w,1);Check(w.Apply(duplicate).Duplicate,"request idempotency");
