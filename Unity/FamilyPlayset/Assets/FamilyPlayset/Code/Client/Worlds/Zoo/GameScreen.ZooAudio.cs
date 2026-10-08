@@ -12,6 +12,8 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string,int> zooHeard=new Dictionary<string,int>();
         private AudioSource zooVoice,zooFoley;
         private float zooNextCall,zooNextStep;
+        private float zooNextWater;
+        private float ZooEffectGain=>musicMuted || familyTestMuted || shared?.MutedTest==true?0:ForegroundDucking;
         public bool ZooSoundPlaying=>zooVoice!=null && zooVoice.isPlaying || zooFoley!=null && zooFoley.isPlaying;
         public int ZooAudioClipCount=>zooClips.Count;
         private string ZooVoicePath(string species)
@@ -33,9 +35,16 @@ namespace LittleWeeps.Client
             if(zooFoley==null){zooFoley=Board.gameObject.AddComponent<AudioSource>();zooFoley.playOnAwake=false;zooFoley.spatialBlend=0;zooFoley.priority=130;}
             var source=foley?zooFoley:zooVoice;source.Stop();source.clip=clip;
             source.panStereo=Mathf.Clamp((ZooCatalog.Get(species).Center-cameraX)/(Board.rect.width/sceneScale),-.7f,.7f);
-            source.volume=(foley?.18f:.26f)*ForegroundDucking;source.Play();
+            source.volume=(foley?.18f:.26f)*ZooEffectGain;source.Play();
         }
         private void ZooCall(string species){ZooPlay(species,false);zooNextCall=Time.realtimeSinceStartup+8;}
+        private void ZooWaterSound()
+        {
+            if(applicationPaused || Time.realtimeSinceStartup<zooNextWater || ZooEffectGain==0)return;
+            var clip=ZooClip("Worlds/Zoo/Audio/water");if(clip==null)return;
+            if(zooFoley==null){zooFoley=Board.gameObject.AddComponent<AudioSource>();zooFoley.playOnAwake=false;zooFoley.spatialBlend=0;zooFoley.priority=130;}
+            zooFoley.Stop();zooFoley.clip=clip;zooFoley.volume=.18f*ZooEffectGain;zooFoley.Play();zooNextWater=Time.realtimeSinceStartup+1.2f;
+        }
         private void TickZooAudio(ZooState state,string[] visible)
         {
             var now=Time.realtimeSinceStartup;
@@ -45,14 +54,15 @@ namespace LittleWeeps.Client
                 if(sequence==a.sequence)continue;zooHeard[a.species]=a.sequence;
                 // Joining or streaming an animal never replays its old call.
                 if(a.age>1.5)continue;
-                if(a.phase==ZooPhase.Notice && now>=zooNextCall){ZooPlay(a.species,false);zooNextCall=now+8;}
+                if(a.phase==ZooPhase.Splash){ZooWaterSound();}
+                else if(a.phase==ZooPhase.Notice && now>=zooNextCall){ZooPlay(a.species,false);zooNextCall=now+8;}
                 else if(a.phase==ZooPhase.Eat){ZooPlay(a.species,true);}
                 else if(a.phase==ZooPhase.Browse && now>=zooNextCall){ZooPlay(a.species,false);zooNextCall=now+18;}
             }
             var nearest=state.animals.Where(a=>visible.Contains(a.species) && (a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach)).OrderBy(a=>Math.Abs(ZooLayout.Point(a).X-cameraX)).FirstOrDefault();
             if(nearest!=null && now>=zooNextStep && (zooFoley==null || !zooFoley.isPlaying)){ZooPlay(nearest.species,true);zooNextStep=now+1.8f;}
-            if(zooVoice!=null)zooVoice.volume=.26f*ForegroundDucking;
-            if(zooFoley!=null)zooFoley.volume=.18f*ForegroundDucking;
+            if(zooVoice!=null)zooVoice.volume=.26f*ZooEffectGain;
+            if(zooFoley!=null)zooFoley.volume=.18f*ZooEffectGain;
             var wanted=visible.Select(ZooVoicePath).Concat(new[]{"Worlds/Zoo/Audio/water","Worlds/Zoo/Audio/feeding"}).ToArray();
             foreach(var path in zooClips.Keys.Where(p=>!wanted.Contains(p)).ToArray()){
                 var clip=zooClips[path];

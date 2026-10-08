@@ -1,5 +1,9 @@
 # Playable Zoo artwork
 
+## Elephant water pilot — October 8
+
+`elephant-water.svg` is the editable source for the separate left-side pump/pool, water surface and floating leaf. Runtime geometry lives in `GameScreen.ElephantPlay.cs`; `ElephantArtView.cs` articulates the original resting drawing without modifying atlas pixels. The elephant pilot owns these files; retire them only after their runtime consumers migrate to reviewed replacements. No new raster atlas, import dependency or all-species art expansion. [Scheduling, source paths, actual native checks and owner-review limits](../../../docs/world-audits/zoo/elephant-personality-water.md).
+
 All sixteen starter exhibits now have transparent eight-pose runtime atlases: four savanna animals, four living dinosaurs, four aquarium species and four reptiles. The [runtime manifest](runtime-manifest.json) maps each species, food, eating socket and exact source PNG to its Unity resource. The [research model sheets](../ModelSheets/README.md) and [connected Zoo map](../Layout/README.md) remain the design references.
 
 Generated with the built-in `image_gen` tool. [First-slice prompts](generation-prompts.json) preserve entrance/elephant/giraffe generation; [expansion prompts](expansion-prompts.json) preserve all fourteen species, four habitat backgrounds and three atlas repairs, with final source paths and hashes. Original PNG outputs remain intact. Runtime scenery has a unique resource ID per exhibit even when a habitat background is reused.

@@ -90,7 +90,8 @@ namespace LittleWeeps.Client
             BuildZooNavigation();
             foreach(var info in ZooCatalog.All){
                 var species=info.id;var root=ZooObject("Zoo animal "+species);
-                var image=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*info.size).gameObject.AddComponent<RawImage>();
+                var drawing=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*info.size).gameObject;
+                RawImage image=species=="elephant"?drawing.AddComponent<ElephantArtView>():drawing.AddComponent<RawImage>();
                 image.raycastTarget=false;image.rectTransform.pivot=new Vector2(.5f,0);zooAnimals.Add(species,image);
                 HomeHit(root,"Hear "+species,new Vector2(0,info.size*.4f),new Vector2(info.size*.65f,info.size*.7f),()=>ZooCall(species));
                 var bucket=ZooObject("Zoo food bucket "+species);zooBuckets.Add(species,bucket);
@@ -129,6 +130,7 @@ namespace LittleWeeps.Client
                     Panel(rail,"Stand here",Vector2.zero,new Vector2(72,18),new Color(.99f,.84f,.4f,.7f),false,true);
                 }
             }
+            BuildElephantPlay();
             var snapshot=Shared?shared.View:World.Snapshot();
             foreach(var player in snapshot.players){
                 var r=ZooObject("Zoo held portion "+player.id);zooLeaves.Add(player.id,r);
@@ -163,10 +165,11 @@ namespace LittleWeeps.Client
         private void ClearZooFailure()
         {if(zooFailure!="" && message.text==zooFailure)message.text="Tap to walk";zooFailure="";zooFailureArea="";}
         private void ResetElephantObservation()
-        {elephantSeenFed=-1;elephantReactionFed=-1;}
+        {elephantSeenFed=-1;elephantReactionFed=-1;ResetElephantPlayObservation();}
         private static string ZooRejection(string outcome)
         {
             switch(outcome){
+                case "water-resting":return "The splash is settling. Try another gentle tap.";
                 case "hands-full":return "Your hands are full. Put down your toy first.";
                 case "walk-to-food-bucket":return "Walk closer to the food bucket.";
                 case "walk-to-feed-spot":return "Bring your leaves to your picture.";
@@ -270,16 +273,17 @@ namespace LittleWeeps.Client
                 if(!zooSamples.TryGetValue(a.species,out var sample) || sample.sequence!=a.sequence || sample.age!=a.age){sample=(a.sequence,a.age,now);zooSamples[a.species]=sample;}
                 var extra=Shared?Math.Max(0,now-sample.sampled):0;var point=ZooLayout.Point(a,extra);var root=(RectTransform)image.transform.parent;
                 root.anchoredPosition=ToBoard(point.X,point.Y);root.localScale=Vector3.one*sceneScale;
-                var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach;
+                var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach || a.phase==ZooPhase.WaterWalk || a.phase==ZooPhase.WaterReturn;
                 var frame=moving && a.age+extra<a.duration?(int)((a.age+extra)*5)%4:a.phase==ZooPhase.Notice?5:a.phase==ZooPhase.Eat?((a.age+extra)<1.4?6:7):a.phase==ZooPhase.Browse?(a.species=="gecko"?4:5):a.phase==ZooPhase.Drink?4:4;
                 // The legacy reaching trunk extends across its atlas cell. The
                 // intact curled-trunk pose holds food at the same fitted socket.
                 if(a.species=="elephant" && a.phase==ZooPhase.Eat)frame=a.age+extra<.55?4:7;
+                if(a.species=="elephant")frame=ElephantPlayFrame(a,a.age+extra,frame);
                 if(moving && info.habitat==ZooHabitat.LandWater)frame=(int)((a.age+extra)*4)%2+(point.Y>=370?2:0);
                 var inset=(a.species=="elephant"?9f:4f)/texture.width;
                 image.uvRect=new Rect(frame%4*.25f+inset,frame<4?.5f:0,.25f-2*inset,.5f);
                 image.rectTransform.sizeDelta=new Vector2(info.size*(1-8*inset),info.size);
-                var left=moving && a.toX<a.fromX;
+                var left=moving && a.toX<a.fromX || a.species=="elephant" && a.phase==ZooPhase.Splash;
                 var breathing=moving?1:1+(float)Math.Sin((a.age+extra)*2+a.random%17)*.006f;
                 image.rectTransform.localScale=new Vector3(left?-1:1,breathing,1);
                 var finish=a.species=="elephant" && a.fed==elephantReactionFed && a.phase==ZooPhase.Eat && a.consumed && !applicationPaused;
@@ -289,7 +293,12 @@ namespace LittleWeeps.Client
                 image.rectTransform.localRotation=Quaternion.Euler(0,0,finish?Mathf.Sin(curl*Mathf.PI*2)*1.8f:0);
                 if(finish)image.rectTransform.localScale=new Vector3(1,1+Mathf.Sin(curl*Mathf.PI)*.018f,1);
                 image.rectTransform.anchoredPosition=new Vector2(0,info.footOffset+(info.habitat==ZooHabitat.Tank?(float)Math.Sin((a.age+extra)*2)*3:0));
+                if(a.species=="elephant"){
+                    PoseElephant((ElephantArtView)image,a,a.age+extra);
+                    TickElephantPlay(z,a,true,a.age+extra);
+                }
             }
+            if(!visible.Contains("elephant"))TickElephantPlay(z,elephant,false,elephant.age);
             foreach(var info in ZooCatalog.All){
                 var shown=visible.Contains(info.id);Place(zooBuckets[info.id],shown,ZooLayout.BucketX(info.id));
                 var animal=z.animals.Single(a=>a.species==info.id);
@@ -340,6 +349,7 @@ namespace LittleWeeps.Client
             foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
             ResetZooNavigation();zooEntrance=null;zooApproach=false;
             ResetElephantObservation();elephantFinishEvents=0;elephantCue="";ClearZooFailure();
+            elephantWater=null;elephantCuriousLeaf=null;elephantWaterEvents=0;
             Array.Clear(elephantAvatars,0,elephantAvatars.Length);
         }
     }

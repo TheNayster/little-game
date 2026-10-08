@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="330" viewBox="-220 -240 430 330">
+<!-- Editable native UI source: GameScreen.ElephantPlay.cs. Separate pump beside a clear pool, in the left habitat patch; food stays on the right. -->
+<ellipse cy="8" rx="125" ry="18" fill="#898569" opacity=".3"/>
+<ellipse cy="-27" rx="115" ry="35" fill="#ab875c"/>
+<ellipse cy="-53" rx="123" ry="25" fill="#dbbd85"/>
+<ellipse cy="-57" rx="106" ry="16" fill="#6ec4db"/>
+<path d="M-130 0V-120H-35V-89" fill="none" stroke="#699ea3" stroke-width="28" stroke-linejoin="round"/>
+<ellipse cx="4" cy="-59" rx="35" ry="5" fill="#d4f5fa"/>
+<g transform="translate(-18,-62) rotate(15)"><ellipse rx="25" ry="10" fill="#639e3d"/><path d="M-18 0H18" stroke="#b8ce6b" stroke-width="3"/></g>
+<ellipse cx="-130" cy="-166" rx="72" ry="60" fill="#fad466"/>
+<path d="M-130 -189Q-157 -157 -142 -147Q-123 -130 -115 -153Q-109 -162 -130 -189" fill="#3397c2"/>
+</svg>

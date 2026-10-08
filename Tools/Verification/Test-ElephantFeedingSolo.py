@@ -8,7 +8,7 @@ from shared_garden_runtime import Instance,read,write,wait,require
 spec=importlib.util.spec_from_file_location('home',Path(__file__).with_name('Test-HomeWorld.py'));home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('build',type=int);args=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('build',type=int);p.add_argument('--elephant-play',action='store_true');args=p.parse_args()
  folder=ROOT/f'Builds/NetworkProbe/G3-0.0.{args.build}';summary=read(folder/'build-summary.json');authority,players,_=create_family()
  class Run:pass
  run=Run();run.build=args.build;run.run_id=authority['worldId'];run.path=ROOT/'LocalData/FamilyLAN'/run.run_id;run.path.mkdir(parents=True)
@@ -29,6 +29,15 @@ def main():
  try:
   a=start();a.input('fixtureTravel',text='zoo');home.ready(a)
   a.input('touchButton',text='Visit the savanna');wait(lambda:inspect()['zone']=='zoo-savanna','private gate walk',30);home.ready(a)
+  if args.elephant_play:
+   wait(lambda:animal()['phase']==7,'private arrival greeting',5);home.capture(a,out,'solo-greeting')
+   wait(lambda:animal()['phase']==8,'private curious idle',25);home.capture(a,out,'solo-curious')
+   for _ in range(3):
+    before=inspect()['zoo']['waterSequence'];a.input('touchButton',text='Splash button')
+    wait(lambda:inspect()['zoo']['waterSequence']==before+1,'private pulse',4)
+    wait(lambda:animal()['phase']==10,'private splash',20);home.capture(a,out,'solo-splash')
+    wait(lambda:animal()['phase']<7,'private return',20);time.sleep(2.5)
+   record('private greeting/idle and three real-touch water cycles return normally')
   a.input('touchButton',text='Take leaves for elephant');wait(lambda:portion()['offered'],'private automatic food flow',30)
   wait(lambda:animal()['phase']==6 and not animal()['consumed'],'private eating',40);home.capture(a,out,'solo-eating')
   wait(lambda:animal()['consumed'],'private consumption',8);require(inspect()['elephantFinishEvents']==1,'private finish missing');home.capture(a,out,'solo-finish')
@@ -40,9 +49,12 @@ def main():
   a.input('fixtureTravel',text='creek');home.ready(a);require(inspect()['elephantCue']=='','exhibit switch stale cue')
   a.input('fixtureTravel',text='zoo');home.ready(a);a.input('touchButton',text='Visit the savanna');wait(lambda:inspect()['zone']=='zoo-savanna','return',30);home.ready(a)
   a.input('touchButton',text='Take leaves for elephant');wait(lambda:portion()['offered'],'unfinished offer',30)
+  if args.elephant_play:
+   a.input('touchButton',text='Splash button');wait(lambda:inspect()['zoo']['waterPending'],'pending water before save',4)
   a.input('application-pause');time.sleep(.3);save=Path(inspect()['savePath']);require(save.exists(),'private save absent');a.close()
   a=start();require(animal()['fed']==1 and portion()['species']=='','restart did not clear unfinished offer/retain history')
   require(inspect()['elephantFinishEvents']==0,'restart replayed completion');home.capture(a,out,'solo-reopened')
+  if args.elephant_play:require(not inspect()['zoo']['waterPending'] and inspect()['zoo']['waterSequence']==0 and inspect()['elephantWaterEvents']==0,'save reopening retained/replayed transient water')
   require(inspect()['zooCurrentExhibit']=='elephant','reopened saved world has invalid navigation')
   a.input('touchButton',text='Zoo map');require(inspect()['zooMapMarker']=='elephant','reopened map marker is incorrect')
   a.input('touchButton',text='Close Zoo map');require(not inspect()['zooMapOpen'],'reopened map did not close')

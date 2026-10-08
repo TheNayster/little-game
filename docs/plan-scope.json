@@ -171,6 +171,8 @@
   ],
   "source_evidence": "Existing downloaded source/external citations and immutable test evidence are retained, not revalidated by this audit.",
   "local_review_records": [
+    "docs/implementation/zoo-elephant-feeding-2026-10-08.md",
+    "docs/world-audits/zoo/elephant-personality-water.md",
     "docs/beach-world-wishlist.md",
     "docs/creek-world-feature-list-2026-09-30.md",
     "docs/implementation/backyard-pond-2026-09-30.md",
