@@ -35,6 +35,9 @@ namespace LittleWeeps.Client
         public float FacingSign => facing.localScale.x;
         public int FrameCount => art.frames.Length;
         public Vector3 Ground => transform.position;
+        // Actual atlas bounds include character scale, the selected-sheet joint
+        // and carry/walk offsets. Zoo portions stay close above these pixels.
+        public Vector3 OverheadPoint => picture.TransformPoint(new Vector3(picture.rect.center.x,picture.rect.yMax+18,0));
 
         public void Configure(CharacterArt source, CharacterSheetView prior)
         {

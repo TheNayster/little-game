@@ -40,9 +40,13 @@ namespace LittleWeeps.Client
         {
             var p=ReadPlayer(actor);
             var point=Shared && shared.Connected?shared.VisualPosition(actor):new Vector2(p.x,p.y);
-            // Player artwork has a 180-unit reference height. Keep the portion
-            // above it at one stable hand socket, including shared interpolation.
-            return ToBoard(point.x,point.y)+new Vector2(65,205)*sceneScale;
+            var visual=actor==Actor?characterVisual:friends.TryGetValue(actor,out var friend)?friend.view:null;
+            // The drawing's joint is below the player root and each character
+            // has its own scale. Measure the visible head rather than adding
+            // an adult-sized height to every child; keep shared interpolation.
+            var view=visual?.ActiveView;
+            var height=view==null?150*sceneScale:(float)Board.InverseTransformVector(view.OverheadPoint-visual.transform.position).y;
+            return ToBoard(point.x,point.y)+new Vector2(65*sceneScale,height);
         }
         private Vector2 ZooAnimalMouth(RawImage image,ZooAnimal a)
         {
@@ -60,33 +64,14 @@ namespace LittleWeeps.Client
             }
             return Board.InverseTransformPoint(root.TransformPoint(tip));
         }
-        private void PoseZooHandReach(RawImage image,ZooAnimal a,double age)
+        private void PoseZooFishReach(RawImage image,ZooAnimal a,double age)
         {
-            if(a.owner=="" || a.phase!=ZooPhase.Approach && a.phase!=ZooPhase.Eat)return;
-            var f=Zoo.food.FirstOrDefault(v=>v.actor==a.owner && v.species==a.species && v.offered);
-            if(f==null)return;
-            // The animal reaches before the 1.4-second eating moment. Never
-            // animate food away from its player or through another child.
+            if(ZooCatalog.Get(a.species).habitat!=ZooHabitat.Tank || a.owner=="" || a.phase!=ZooPhase.Approach && a.phase!=ZooPhase.Eat)return;
+            if(!Zoo.food.Any(f=>f.actor==a.owner && f.species==a.species && f.offered))return;
+            // Fish swim as intact drawings. Never stretch their head or move
+            // the held portion off the player to meet a mouth socket.
             var reach=a.phase==ZooPhase.Eat?1:Mathf.SmoothStep(0,1,Mathf.Clamp01(((float)(age/a.duration)-.65f)/.35f));
-            var root=(RectTransform)image.transform.parent;
-            var delta=(ZooHandFoodPoint(a.owner)-ZooAnimalMouth(image,a))*reach;
-            var local=(Vector2)image.rectTransform.InverseTransformVector(Board.TransformVector(delta));
-            if(image is ElephantArtView elephant)elephant.Reach(local);
-            else if(image is BrachiosaurusArtView brachio)brachio.Reach(local);
-            else if(image is SavannaArtView head)head.Reach(local);
-            else root.anchoredPosition+=delta; // Fish swim to the hand.
-        }
-        private void ResetZooHandReach(RawImage image,ZooAnimal a)
-        {
-            if(image is ElephantArtView elephant)elephant.Reach(Vector2.zero);
-            else if(image is BrachiosaurusArtView brachio)brachio.Reach(Vector2.zero);
-            else if(image is SavannaArtView head){
-                head.Reach(Vector2.zero);
-                if(head.localHead){
-                    var info=ZooCatalog.Get(a.species);var r=image.GetPixelAdjustedRect();
-                    head.mouth=savannaFeeding[a.species].mouth!=Vector2.zero?savannaFeeding[a.species].mouth:new Vector2((info.mouthX-r.xMin)/r.width,info.mouthY/r.height);
-                }
-            }
+            ((RectTransform)image.transform.parent).anchoredPosition+=(ZooHandFoodPoint(a.owner)-ZooAnimalMouth(image,a))*reach;
         }
         private void BuildSavannaSpot(RectTransform rail,FeedingPresentation p,int i)
         {
@@ -119,7 +104,6 @@ namespace LittleWeeps.Client
             if(!savannaFeeding.TryGetValue(a.species,out var p))return;
             image.rectTransform.anchoredPosition+=new Vector2(p.offset,0);
             if(image is SavannaArtView art){
-                if(art.localHead){art.Pose(0);return;}
                 art.mouth=p.mouth;art.lion=a.species=="lion";
                 var head=0f;
                 if(a.phase==ZooPhase.Eat){

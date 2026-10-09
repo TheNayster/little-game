@@ -61,10 +61,11 @@ namespace LittleWeeps.Client
             if(a.phase==ZooPhase.Greet)image.Pose(24*wave,4*Mathf.Sin((float)age*5)*wave);
             else if(a.phase==ZooPhase.Curious)image.Pose(-12*wave,0);
             else if(a.phase==ZooPhase.Splash)image.Pose(28*wave,2*wave);
-            else if(a.owner!="" && (a.phase==ZooPhase.Approach || a.phase==ZooPhase.Eat)){
+            else if(a.owner!="" && !a.consumed && (a.phase==ZooPhase.Approach || a.phase==ZooPhase.Eat)){
                 var reach=a.phase==ZooPhase.Eat?1:Mathf.SmoothStep(0,1,Mathf.Clamp01(((float)(age/a.duration)-.65f)/.35f));
-                var finish=a.consumed && a.fed==elephantReactionFed?Mathf.Sin(Mathf.Clamp01((float)(age-1.4)/1.2f)*Mathf.PI*2):0;
-                image.Pose(65*reach+finish*3,finish*2);
+                // The original hanging tip is just ahead of the low hand.
+                // A bounded downward curl reaches it without translating pixels.
+                image.Pose(-18*reach,0);
             }
             else if(a.phase==ZooPhase.CareFinish && Zoo.careSession==elephantCareReaction)image.Pose(12*wave,5*Mathf.Sin((float)age*7)*wave);
             else image.Pose(0,0);

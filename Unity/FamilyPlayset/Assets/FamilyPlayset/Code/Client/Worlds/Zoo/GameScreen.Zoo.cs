@@ -91,8 +91,7 @@ namespace LittleWeeps.Client
             foreach(var info in ZooCatalog.All){
                 var species=info.id;var root=ZooObject("Zoo animal "+species);
                 var drawing=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*info.size).gameObject;
-                RawImage image=species=="elephant"?drawing.AddComponent<ElephantArtView>():species=="brachiosaurus"?drawing.AddComponent<BrachiosaurusArtView>():info.habitat!=ZooHabitat.Tank?drawing.AddComponent<SavannaArtView>():drawing.AddComponent<RawImage>();
-                if(image is SavannaArtView head){head.localHead=species!="giraffe" && species!="lion";}
+                RawImage image=species=="elephant"?drawing.AddComponent<ElephantArtView>():species=="brachiosaurus"?drawing.AddComponent<BrachiosaurusArtView>():species=="giraffe" || species=="lion"?drawing.AddComponent<SavannaArtView>():drawing.AddComponent<RawImage>();
                 image.raycastTarget=false;image.rectTransform.pivot=new Vector2(.5f,0);zooAnimals.Add(species,image);
                 var touchSize=species=="brachiosaurus"?BrachiosaurusSize:savannaFeeding.TryGetValue(species,out var feeding)?feeding.size:info.size;
                 HomeHit(root,"Hear "+species,new Vector2(0,touchSize*.4f),new Vector2(touchSize*.65f,touchSize*.7f),()=>ZooCall(species));
@@ -278,8 +277,9 @@ namespace LittleWeeps.Client
                 root.anchoredPosition=ToBoard(point.X,point.Y);root.localScale=Vector3.one*sceneScale;
                 var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach || a.phase==ZooPhase.WaterWalk || a.phase==ZooPhase.WaterReturn || a.phase==ZooPhase.CareWalk;
                 var frame=moving && a.age+extra<a.duration?(int)((a.age+extra)*5)%4:a.phase==ZooPhase.Notice?5:a.phase==ZooPhase.Eat?((a.age+extra)<1.4?6:7):a.phase==ZooPhase.Browse?(a.species=="gecko"?4:5):a.phase==ZooPhase.Drink?4:4;
-                // Articulate the intact resting trunk toward the child's hand.
-                if(a.species=="elephant" && a.owner!="" && (a.phase==ZooPhase.Eat || a.phase==ZooPhase.Approach && (a.age+extra)/a.duration>.65))frame=4;
+                // The hanging trunk reaches the low hand with a small bend;
+                // only consumption changes to the authored mouth curl.
+                if(a.species=="elephant" && a.owner!="" && (a.phase==ZooPhase.Eat || a.phase==ZooPhase.Approach && (a.age+extra)/a.duration>.65))frame=a.consumed?7:4;
                 if(a.species=="elephant")frame=ElephantPlayFrame(a,a.age+extra,frame);
                 if(a.species=="brachiosaurus" && BrachiosaurusBend(a,a.age+extra)>0)frame=4;
                 frame=SavannaFrame(a,a.age+extra,frame);
@@ -302,14 +302,13 @@ namespace LittleWeeps.Client
                 image.rectTransform.localRotation=Quaternion.Euler(0,0,finish?Mathf.Sin(curl*Mathf.PI*2)*1.8f:0);
                 if(finish)image.rectTransform.localScale=new Vector3(1,1+Mathf.Sin(curl*Mathf.PI)*.018f,1);
                 image.rectTransform.anchoredPosition=new Vector2(0,info.footOffset+(info.habitat==ZooHabitat.Tank?(float)Math.Sin((a.age+extra)*2)*3:0));
-                ResetZooHandReach(image,a);
                 if(a.species=="brachiosaurus")((BrachiosaurusArtView)image).Pose(BrachiosaurusBend(a,a.age+extra));
                 PoseSavanna(image,a,a.age+extra);
                 if(a.species=="elephant"){
                     PoseElephant((ElephantArtView)image,a,a.age+extra);
                     TickElephantPlay(z,a,true,a.age+extra);TickElephantCare(z,a,true);
                 }
-                PoseZooHandReach(image,a,a.age+extra);
+                PoseZooFishReach(image,a,a.age+extra);
             }
             if(!visible.Contains("elephant")){TickElephantPlay(z,elephant,false,elephant.age);TickElephantCare(z,elephant,false);}
             foreach(var info in ZooCatalog.All){
