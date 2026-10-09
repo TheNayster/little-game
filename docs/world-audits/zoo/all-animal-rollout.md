@@ -2,7 +2,30 @@
 
 October 8, 2026. WORLD-02 / FAMILY-01 / ITEM-02. This record supersedes the elephant-only rollout limits in older pilot reports. Ball-return stories, floating story markers, player placement and feeding trays remain removed.
 
-## Implementation coverage
+## Current status: rollout incomplete after owner review
+
+October 8 follow-up: the owner rejected build 532 because the other animals do not provide the elephant's features. The earlier claim that all sixteen animals were complete was premature. A source comparison of all sixteen catalog entries against the actual elephant implementation confirms that shared authority and basic client props do not establish feature parity. The following findings supersede the completion claims below; the original table is retained as a record of the attempted implementation.
+
+| Trail | Animals checked | Result against the elephant |
+|---|---|---|
+| Savanna | Elephant | Existing baseline retained; this follow-up did not run gameplay or reassess owner acceptance. |
+| Savanna | Giraffe, Zebra, Lion | Incomplete: generic play response, simplified care/discoveries, and player-dependent activity visibility. |
+| Dinosaur Valley | Brachiosaurus, Triceratops, Stegosaurus, T. rex | Incomplete: the same generic activity presentation; the corrected Brachiosaurus feeding system and fossils are separate retained work. |
+| Aquarium | Clownfish, Blue tang, Zebra shark, African penguin | Incomplete: current/pool props and cloth/rinse pictures exist, but distinct habitat effects, interaction presentation and reachable feeding contact are not established. |
+| Reptile Garden | Galapagos tortoise, Leopard gecko, Green iguana, Nile crocodile | Incomplete: generic mist/shade props, simplified care/discoveries and small whole-body movements do not deliver the requested species adaptations. |
+
+Concrete source findings:
+
+- `TickZooActivities` enables the other fifteen animals' props only for `ZooAtPlayer()`, while animal/bucket visibility follows the camera. An animal visible after camera panning can therefore have none of its activity props. The single snack station also follows the player rather than each visible exhibit.
+- The non-elephant habitat response rocks/translates its prop. It lacks the elephant's allocated animated droplets, ripple/leaf response and triggered effect sound. The displayed prop is at `Center - 560`, while the authority sends the animal to `PlayX` (normally `Center - 160`, or `Center - 130` for tortoise); the animal response is not fitted to the prop.
+- Non-elephant care has shared progress and three targets but omits the elephant's waiting picture, separate put-away picture and immediate local tool-stroke feedback. The habitat-cleaning pane is a plain oval with three plain patches.
+- Two discovery commands exist per species, but artwork is chosen by broad name matching rather than a fitted discovery per exhibit. For example, the lion's lizard falls into the generic six-legged visitor drawing and the iguana's leaf insect falls into the plant drawing. The new discoveries omit the elephant's rustling hiding foliage, multiple visitor arcs and triggered sounds.
+- Personality adds a few parameter groups of whole-image rocking/bobbing using existing atlas frames; this is not a complete distinctive idle, acknowledgement and playful action for each species.
+- Feeding queues and preparation commands exist in source. Compilation does not prove direct visible eating contact, habitat boundaries or usable access for all sixteen animals.
+
+This follow-up inspected source and the owner's three screenshots. No fresh in-game inspection was performed: the project-checked Unity bridge reported no single connected FamilyPlayset editor. No gameplay injection, multiplayer session, build, device installation or server replacement was performed for this audit. The next implementation must address these gaps across every animal, not only change visibility.
+
+## Original implementation coverage claim (superseded)
 
 **I means implemented in source; it does not mean owner gameplay or visual acceptance.** Every row retains overhead bucket feeding, the four-position shared queue, player portraits, waiting/approach/eating feedback and the existing consumption/finish presentation. Every row has friendly acknowledgement, idle movement and a playful response. Each preparation workflow supports one to three pieces, removal, clear, cancel and serving through the same feeding queue. Configured foods below are pretend game foods.
 
