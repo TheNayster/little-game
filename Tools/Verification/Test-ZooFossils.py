@@ -35,7 +35,29 @@ def main():
  def place(v,piece):
   tap(v,'Match fossil picture '+str(piece));wait(lambda:f()['placed'][piece],'placement',6)
  def replay(v):
-  wait(lambda:f()['celebrationAge']>=2.2,'settled display',6);before=f()['round'];tap(v,'Play fossil discovery again');require(f()['round']==before,'one tap erased display');tap(v,'Keep dinosaur picture');require(f()['round']==before,'cancel erased display');tap(v,'Play fossil discovery again');tap(v,'Confirm fossil replay');wait(lambda:f()['round']==before+1,'new round',6)
+  wait(lambda:f()['celebrationAge']>=2.2,'settled display',6);before=f()['round']
+  for width,height,label in [(1280,591,'phone'),(1024,768,'tablet'),(640,400,'small-phone')]:
+   v.input('resize',x=width,y=height);time.sleep(.5)
+   initial=next(c['bounds'] for c in inspect(v)['controls'] if c['name']=='Play fossil discovery again')
+   tap(v,'Play fossil discovery again')
+   choices={c['name']:c['bounds'] for c in inspect(v)['controls']}
+   check=choices['Confirm fossil replay'];cancel=choices['Keep dinosaur picture']
+   require(initial['y']+initial['height']<=check['y'] or check['y']+check['height']<=initial['y'],'replay confirmation overlaps at '+label)
+   for bounds in [check,cancel]:require(bounds['x']>=0 and bounds['y']>=0 and bounds['x']+bounds['width']<=width and bounds['y']+bounds['height']<=height,'replay choice cropped at '+label)
+   home.capture(v,out,'replay-confirmation-'+label);tap(v,'Keep dinosaur picture');require(f()['round']==before,'layout review changed round')
+  v.input('resize',x=1280,y=591);time.sleep(.5)
+  original=next(c['bounds'] for c in inspect(v)['controls'] if c['name']=='Play fossil discovery again')
+  tap(v,'Play fossil discovery again');require(f()['round']==before,'one tap erased display')
+  confirm=next(c['bounds'] for c in inspect(v)['controls'] if c['name']=='Confirm fossil replay')
+  require(original['x']+original['width']<=confirm['x'] or confirm['x']+confirm['width']<=original['x'] or original['y']+original['height']<=confirm['y'] or confirm['y']+confirm['height']<=original['y'],'replay and confirmation hit areas overlap')
+  # A second tap in the upper part of Replay reproduced accidental erasure
+  # in516. Exercise the real input path, then explicitly choose confirmation.
+  v.input('touch-begin',role='screen',x=original['x']+original['width']/2,y=original['y']+original['height']*.8,finger=81)
+  v.input('touch-end',role='screen',x=original['x']+original['width']/2,y=original['y']+original['height']*.8,finger=81)
+  require(f()['round']==before,'repeated replay-area tap erased display')
+  time.sleep(5.3)
+  require(any(c['name']=='Confirm fossil replay' for c in inspect(v)['controls']) and f()['round']==before,'slow pictured choice expired or erased display')
+  tap(v,'Keep dinosaur picture');require(f()['round']==before,'cancel erased display');tap(v,'Play fossil discovery again');tap(v,'Confirm fossil replay');wait(lambda:f()['round']==before+1,'new round',6)
  try:
   server=run.start('server');clients=[run.start('client',s['profile']) for s in run.slots[:2 if args.review else 4]];a,b=clients[:2]
   for v in clients:home.ready(v);v.input('resize',x=1280,y=591);enter(v)

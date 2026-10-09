@@ -54,8 +54,11 @@ namespace LittleWeeps.Client
             fossilJoin=FossilButton(fossilTray,"Join fossil discovery",new Vector2(-260,15),()=>FossilBegin());FossilBrush(fossilJoin);
             fossilLeave=FossilButton(fossilTray,"Leave fossil discovery",new Vector2(-260,15),()=>FossilSend("fossil-leave",-1));ZooArrow(fossilLeave,Vector2.zero,-1);
             fossilDrop=FossilButton(fossilTray,"Put fossil down",new Vector2(260,15),()=>FossilSend("fossil-drop",-1));ZooArrow(fossilDrop,Vector2.zero,-1);Panel(fossilDrop,"Return sand",new Vector2(12,-14),new Vector2(24,10),new Color(.82f,.65f,.38f),false,true);
-            fossilReplay=FossilButton(fossilBoard,"Play fossil discovery again",new Vector2(207,64),()=>fossilReplayUntil=Time.unscaledTime+5);ZooArrow(fossilReplay,new Vector2(0,9),-1);FossilBrush(fossilReplay);
-            fossilConfirm=FossilButton(fossilBoard,"Confirm fossil replay",new Vector2(207,106),()=>{fossilReplayUntil=-10;FossilSend("fossil-replay",-1);});FossilCheck(fossilConfirm,true);
+            // Deliberate picture choices need no timed response from a child.
+            fossilReplay=FossilButton(fossilBoard,"Play fossil discovery again",new Vector2(207,64),()=>fossilReplayUntil=float.PositiveInfinity);ZooArrow(fossilReplay,new Vector2(0,9),-1);FossilBrush(fossilReplay);
+            // Keep confirmation outside the entire replay hit area, so a rapid
+            // second tap at the original button cannot erase a finished display.
+            fossilConfirm=FossilButton(fossilBoard,"Confirm fossil replay",new Vector2(207,145),()=>{fossilReplayUntil=-10;FossilSend("fossil-replay",-1);});FossilCheck(fossilConfirm,true);
             fossilCancel=FossilButton(fossilBoard,"Keep dinosaur picture",new Vector2(207,21),()=>fossilReplayUntil=-10);FossilCheck(fossilCancel,false);
         }
         private void FossilBegin()
@@ -95,7 +98,7 @@ namespace LittleWeeps.Client
             }
             if(shown && !applicationPaused && (!Shared || shared.Connected)){fossilSeenRound=f.round;fossilSeenComplete=f.Complete;}
             var member=FossilMember;var held=Array.IndexOf(f.holders,Actor);var motion=Time.unscaledTime-fossilCelebration;
-            if(FossilBlocked)fossilReplayUntil=-10;
+            if(FossilBlocked || member<0 || !f.Complete)fossilReplayUntil=-10;
             fossilJoin.gameObject.SetActive(member<0);fossilLeave.gameObject.SetActive(member>=0);fossilDrop.gameObject.SetActive(held>=0);
             var confirm=Time.unscaledTime<fossilReplayUntil;var canReplay=f.Complete && member>=0 && f.celebrationAge>=2.2;
             fossilReplay.gameObject.SetActive(canReplay && !confirm);fossilConfirm.gameObject.SetActive(canReplay && confirm);fossilCancel.gameObject.SetActive(canReplay && confirm);
