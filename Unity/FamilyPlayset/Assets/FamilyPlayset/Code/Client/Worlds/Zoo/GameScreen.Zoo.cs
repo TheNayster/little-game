@@ -123,7 +123,7 @@ namespace LittleWeeps.Client
                     BuildSavannaSpot(rail,savannaFeeding[species],i);
                 }
             }
-            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();BuildElephantSnack();BuildZooFossils();
+            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();BuildElephantSnack();BuildZooFossils();BuildZooActivities();
             var snapshot=Shared?shared.View:World.Snapshot();
             foreach(var player in snapshot.players){
                 var r=ZooObject("Zoo held portion "+player.id);zooLeaves.Add(player.id,r);
@@ -281,6 +281,8 @@ namespace LittleWeeps.Client
                 // only consumption changes to the authored mouth curl.
                 if(a.species=="elephant" && a.owner!="" && (a.phase==ZooPhase.Eat || a.phase==ZooPhase.Approach && (a.age+extra)/a.duration>.65))frame=a.consumed?7:4;
                 if(a.species=="elephant")frame=ElephantPlayFrame(a,a.age+extra,frame);
+                else if(a.phase==ZooPhase.Greet || a.phase==ZooPhase.CareFinish)frame=5;
+                else if(a.phase==ZooPhase.Curious || a.phase==ZooPhase.Splash)frame=info.PlayKind=="browse"?5:4;
                 if(a.species=="brachiosaurus" && BrachiosaurusBend(a,a.age+extra)>0)frame=4;
                 frame=SavannaFrame(a,a.age+extra,frame);
                 if(moving && info.habitat==ZooHabitat.LandWater)frame=(int)((a.age+extra)*4)%2+(point.Y>=370?2:0);
@@ -304,6 +306,7 @@ namespace LittleWeeps.Client
                 image.rectTransform.anchoredPosition=new Vector2(0,info.footOffset+(info.habitat==ZooHabitat.Tank?(float)Math.Sin((a.age+extra)*2)*3:0));
                 if(a.species=="brachiosaurus")((BrachiosaurusArtView)image).Pose(BrachiosaurusBend(a,a.age+extra));
                 PoseSavanna(image,a,a.age+extra);
+                PoseZooPersonality(image,a,a.age+extra);
                 if(a.species=="elephant"){
                     PoseElephant((ElephantArtView)image,a,a.age+extra);
                     TickElephantPlay(z,a,true,a.age+extra);TickElephantCare(z,a,true);
@@ -330,6 +333,7 @@ namespace LittleWeeps.Client
                 r.anchoredPosition=ZooHandFoodPoint(f.actor);r.localScale=Vector3.one*sceneScale;
             }
             TickSavannaSpots(z,visible);
+            TickZooActivities(z);
             TickElephantSnack(visible.Contains("elephant"));TickElephantSurprises(z,visible.Contains("elephant"));TickBrachiosaurusSpots(z,visible.Contains("brachiosaurus"));TickZooFossils();TickZooAudio(z,visible);SortDepth();TickZooPhotos(entrance || habitat);
         }
         private void AddZooDepth(Action<RectTransform,float,int,string> add)
@@ -353,7 +357,7 @@ namespace LittleWeeps.Client
             ResetZooAudio();zooGateTextures.Clear();zooGatePictures.Clear();
             foreach(var r in zooObjects)if(r!=null)Destroy(r.gameObject);zooObjects.Clear();
             foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
-            ResetSavannaFeeding();ResetBrachiosaurus();ResetFossils();ResetElephantSnack();ResetZooNavigation();ResetZooPhotos();zooEntrance=null;zooApproach=false;
+            ResetSavannaFeeding();ResetBrachiosaurus();ResetFossils();ResetElephantSnack();ResetZooNavigation();ResetZooPhotos();zooActivityViews.Clear();zooEntrance=null;zooApproach=false;
             ResetElephantObservation();elephantFinishEvents=0;elephantCue="";ClearZooFailure();
             elephantBasket=null;elephantCareFinishEvents=0;elephantWater=null;elephantCuriousLeaf=null;elephantWaterEvents=0;
             Array.Clear(elephantAvatars,0,elephantAvatars.Length);
