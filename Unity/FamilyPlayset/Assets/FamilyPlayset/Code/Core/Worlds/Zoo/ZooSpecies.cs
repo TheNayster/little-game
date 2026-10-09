@@ -22,13 +22,16 @@ namespace LittleWeeps.Core
         // Configured pretend foods, shared by buckets and optional preparation.
         public ZooFoodKind[] SnackFoods=>food==ZooFoodKind.Leaves && habitat==ZooHabitat.Land && id!="tortoise"?new[]{food,ZooFoodKind.Hay}:new[]{food};
         public bool AcceptsSnack(int kind)=>SnackFoods.Contains((ZooFoodKind)kind);
-        public float SnackX=>Center+820;
-        public float ToolX=>Center+540;
-        public float PlayX=>id=="elephant"?ZooLayout.WaterPlayX:Center-Math.Min(160,Radius/2);
+        public float SnackX=>Center+(id=="elephant"?820:210);
+        public float ToolX=>Center+(id=="elephant"?540:-210);
+        public float PlayPropX=>Center-400;
+        // Fitted play destinations stay inside the authored habitat. Browsers
+        // face the rooted foliage; aquarium animals stay on their swim route.
+        public float PlayX=>id=="elephant"?ZooLayout.WaterPlayX:Center-Math.Min(habitat==ZooHabitat.Tank?250:350,Radius-60);
         public float ActivityY=>habitat==ZooHabitat.Tank?370:320;
         public string CareTool=>id=="elephant" || id=="giraffe" || id=="zebra"?"brush":habitat==ZooHabitat.Tank?"tank cloth":id=="gecko" || id=="iguana" || id=="tyrannosaurus" || id=="lion"?"habitat cloth":"rinse";
         public bool HabitatCare=>CareTool.Contains("cloth");
-        public string PlayKind=>id=="elephant" || id=="penguin"?"water":habitat==ZooHabitat.Tank?"current":id=="lion" || id=="tyrannosaurus"?"toy":id=="gecko" || id=="iguana" || id=="tortoise" || id=="crocodile"?"mist":"browse";
+        public string PlayKind=>id=="elephant" || id=="penguin"?"water":habitat==ZooHabitat.Tank?"current":id=="lion" || id=="tyrannosaurus"?"toy":id=="gecko"?"shade":id=="iguana" || id=="tortoise" || id=="crocodile"?"mist":"browse";
         public string PlayName=>id=="elephant"?"Water play":id=="giraffe"?"Swaying browse branch":id=="zebra"?"Scratch log":id=="lion"?"Rolling enrichment toy":id=="brachiosaurus"?"Canopy rustle":id=="triceratops"?"Low browse patch":id=="stegosaurus"?"Fern rustle":id=="tyrannosaurus"?"Scent toy":id=="clownfish"?"Anemone bubbles":id=="blue-tang"?"Reef current":id=="zebra-shark"?"Sand current":id=="penguin"?"Splashing pool":id=="tortoise"?"Gentle garden mist":id=="gecko"?"Warm-rock shade":id=="iguana"?"Leaf mist":"Basking-bank mist";
         public string Discovery(int slot)=>id=="elephant"?(slot==0?"Garden bird":"Butterflies"):id=="giraffe"?(slot==0?"Weaver nest":"Seed pods"):id=="zebra"?(slot==0?"Grasshopper":"Striped feathers"):id=="lion"?(slot==0?"Lizard peek":"Golden beetle"):id=="brachiosaurus"?(slot==0?"Fern unfurl":"Amber sparkle"):id=="triceratops"?(slot==0?"Seed cone":"Fern snail"):id=="stegosaurus"?(slot==0?"Dragonfly":"Leaf pattern"):id=="tyrannosaurus"?(slot==0?"Footprint pebble":"Amber beetle"):id=="clownfish"?(slot==0?"Anemone shrimp":"Pearl shell"):id=="blue-tang"?(slot==0?"Reef star":"Coral shrimp"):id=="zebra-shark"?(slot==0?"Sand shell":"Buried sea star"):id=="penguin"?(slot==0?"Rock crab":"Tide shell"):id=="tortoise"?(slot==0?"Garden snail":"Seedling"):id=="gecko"?(slot==0?"Pebble beetle":"Rock crystal"):id=="iguana"?(slot==0?"Leaf insect":"Seed pod"):(slot==0?"Reed frog":"Water snail");
         public float MinY=>250;

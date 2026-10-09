@@ -23,16 +23,20 @@ namespace LittleWeeps.Client
         private int zooMapPanel=-1;
         private float zooNavUntil;
         public bool ZooMapOpen=>zooMap!=null && zooMap.gameObject.activeSelf;
-        public string ZooCurrentExhibit=>ZooCatalog.Trail(CurrentArea)?ZooAtPlayer().id:"entrance";
+        public string ZooCurrentExhibit=>ZooCatalog.Trail(CurrentArea)?ZooInView().id:"entrance";
         public string ZooPreviousDestination=>ZooCatalog.Trail(CurrentArea)?ZooNeighbor(-1).id:"";
         public string ZooNextDestination=>ZooCatalog.Trail(CurrentArea)?ZooNeighbor(1).id:"";
         public string ZooMapShownTrail=>zooMapTrail??"";
-        public string ZooMapMarker=>!ZooMapOpen?"":CurrentArea==ZooLayout.Entrance?"entrance":CurrentArea==zooMapTrail?ZooCurrentExhibit:CurrentArea;
+        public string ZooMapMarker=>!ZooMapOpen?"":CurrentArea==ZooLayout.Entrance?"entrance":CurrentArea==zooMapTrail?ZooAtPlayer().id:CurrentArea;
         public bool ZooNavigationBusy=>zooApproach || ActionPending || Time.unscaledTime<zooNavUntil;
         private ZooSpecies ZooAtPlayer()=>ZooCatalog.All.First(s=>s.area==CurrentArea && s.panel==Mathf.Clamp(Mathf.FloorToInt(ReadPlayer(Actor).x/2400),0,3));
+        // Panning changes what the child is looking at, not where their player
+        // stands. Navigation and contextual controls must describe that view.
+        private ZooSpecies ZooInView()=>ZooCatalog.All.First(s=>s.area==CurrentArea && s.panel==Mathf.Clamp(Mathf.FloorToInt(cameraX/2400),0,3));
+        private bool ZooExhibitVisible(ZooSpecies info)=>info.area==CurrentArea && Mathf.Abs(info.Center-cameraX)<Board.rect.width/(2*sceneScale)+650;
         private ZooSpecies ZooNeighbor(int direction)
         {
-            var current=ZooAtPlayer();var panel=current.panel+direction;
+            var current=ZooInView();var panel=current.panel+direction;
             var area=panel<0?ZooCatalog.Previous(current.area):panel>3?ZooCatalog.Next(current.area):current.area;
             return ZooCatalog.All.First(s=>s.area==area && s.panel==(panel<0?3:panel>3?0:panel));
         }
@@ -193,7 +197,7 @@ namespace LittleWeeps.Client
             zooCurrentPicture.gameObject.SetActive(habitat);zooTrailPicture.gameObject.SetActive(habitat);
             zooCurrentGate.gameObject.SetActive(!habitat);
             if(!habitat){zooCurrentName.text="Zoo entrance";zooTrailName.text="Choose a picture trail";return;}
-            var info=ZooAtPlayer();var previous=ZooNeighbor(-1);var next=ZooNeighbor(1);
+            var info=ZooInView();var previous=ZooNeighbor(-1);var next=ZooNeighbor(1);
             zooCurrentPicture.texture=ZooPortrait(info.id);zooTrailPicture.texture=ZooPortrait(ZooTrailSymbol(CurrentArea));zooCurrentName.text=info.name;zooTrailName.text=ZooCatalog.Name(CurrentArea);
             zooPreviousPicture.texture=ZooPortrait(previous.id);zooNextPicture.texture=ZooPortrait(next.id);zooPreviousName.text=previous.name;zooNextName.text=next.name;
         }

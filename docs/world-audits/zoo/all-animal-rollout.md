@@ -2,7 +2,51 @@
 
 October 8, 2026. WORLD-02 / FAMILY-01 / ITEM-02. This record supersedes the elephant-only rollout limits in older pilot reports. Ball-return stories, floating story markers, player placement and feeding trays remain removed.
 
-## Current status: rollout incomplete after owner review
+## Current implementation follow-up — October 8
+
+This source work addresses the gaps recorded at **73137c2**, using the actual elephant control → authority action → rendered feedback paths. The rejected 532 completion claim remains historical below. **Implemented and rendered in still poses is not owner gameplay acceptance.**
+
+Giraffe was the first full example: a forked browse canopy with independently moving leaves and a reaching neck response; pictured brush basket and separate put-away control; moving helper brushes, fading dirt and cleaning/finish sparkles; an illustrated woven weaver nest with flapping bird and opening seed pods; head acknowledgement/browse motion; and a pictured preparation table with ingredient editing and overhead carry. The same complete presentation approach is authored for the remaining fourteen animals, rather than stopping at giraffe.
+
+| Animal | Habitat artwork/action feedback | Care surface/tool | Two illustrated animated discoveries | Personality articulation |
+|---|---|---|---|---|
+| Giraffe | Forked browse canopy, moving leaves and neck reach | Body brush, strokes/dirt/shine | Woven nest/weaver wing; opening seed pods | Neck acknowledgement and browse |
+| Zebra | Textured scratch log, leaf rustle and rubbing response | Body brush | Hopping grasshopper; striped feathers | Head/ear acknowledgement, tail flick and rub |
+| Lion | Rope-bound rolling enrichment toy and paw response | Habitat stone/cloth | Four-legged lizard; golden beetle | Head acknowledgement and front paw |
+| Brachiosaurus | Tall forked canopy, leaf rustle and neck reach | Body rinse | Unfurling fern; amber crystals | Neck browse/acknowledgement |
+| Triceratops | Low frond patch with leaf response | Body rinse | Seed cone; spiral fern snail | Head nod and tail |
+| Stegosaurus | Fern fronds/rustle | Body rinse | Flapping dragonfly; illustrated leaf veins | Low head browse and tail |
+| T. rex | Vented scent log with moving foliage | Habitat stone/cloth | Three-toe footprint pebble; amber beetle | Head sniff/acknowledgement and tail |
+| Clownfish | Waving anemone arms and rising bubbles | Illustrated tank glass/cloth | Anemone shrimp; opening pearl shell | Hover acknowledgement and tail/fins |
+| Blue tang | Coral fans/current bubbles | Illustrated tank glass/cloth | Five-arm reef star; coral shrimp | Reef head/tail motion |
+| Zebra shark | Sand shell/grass/current bubbles | Illustrated tank glass/cloth | Sand shell; buried sea star | Gentle head and swimming tail |
+| African penguin | Pool, expanding ripples and splash droplets | Body rinse | Clawed rock crab; tide shell | Head, flipper and waddle |
+| Galapagos tortoise | Garden leaves and nozzle mist droplets | Shell rinse | Spiral snail; seedling | Slow head peek/acknowledgement |
+| Leopard gecko | Layered warm rock, moving shade leaf and warm rays | Habitat stone/cloth | Six-legged beetle; faceted crystal | Head peek/nod and tail |
+| Green iguana | Vine ledge, moving leaves and mist | Habitat stone/cloth | Six-legged leaf insect; seed pod | Head nod and tail |
+| Nile crocodile | Reed bank and nozzle mist | Back rinse, fitted patches | Four-foot reed frog; water snail | Small head/tail basking response |
+
+Every care view includes a waiting clock, separate put-away picture, up to four moving helper tools, immediate local stroke feedback with authority rejection rollback, three fading cleaning patches and a finish shine. Glass/stone is shown during care rather than as a permanent generic oval. Discovery hiding foliage opens and rustles; visitors rise and return, with fitted wing/pod/shell/hop/reef motions and existing discovery sound hooks. Habitat effects are allocated separately in front of the animal, while rooted habitat artwork remains behind it. Existing atlas poses remain; new head/tail/flipper mesh motion and retained neck/paw articulation add personality without replacing the artwork or feeding poses.
+
+Each of all sixteen exhibits now owns its pictured preparation station and animal portrait. Ingredient controls, one-to-three pieces, individual removal, clear/cancel and overhead carry use the existing shared preparation/feeding workflow. Single-ingredient choices are centered. No feeding tray, transferable bowl, ball-return story or player-placeable decoration was added.
+
+### Access and exhibit targeting
+
+Header/navigation and activity visibility follow the exhibit in the camera view; the map's player marker still follows the player. Play buttons and tool baskets sit on the clear front path, with the preparation bowl to the right. The habitat prop is also actionable. Discovery hiding props sit inward on both sides. Every callback retains its explicit species/slot; tapping a distant exhibit uses ordinary walking before its authority-guarded action. Care joins through the basket, strokes use the three patches, and the separate arrow puts the tool away. Existing shared queue/player identity/phase cues, overhead eating, album, scenery and fossils remain.
+
+### Evidence and remaining review
+
+Unity MCP verified the exact current project, compiled the source with zero console errors, and rendered production exhibit views in an isolated **edit-mode still fixture** at 1280×800. All fifteen non-elephant play, care and two-discovery poses were inspected; giraffe preparation was also inspected. Captures caught and corrected discovery edge placement, browse canopy height, crocodile patch placement, hidden play controls, gecko shade effects and mist visibility. These are rendered layout checks, **not input/control tests, normal-speed animation approval, feeding contact verification or multiplayer gameplay evidence**. The fixture uses the production drawings/controller with a declared snapshot and has no gameplay commands, live session, recording or persistent save. Captures remain in ignored `Unity/FamilyPlayset/Library/LittleWeepsTools/ZooRolloutCaptures/`.
+
+Standard release **533** built both client and dedicated server with **zero errors/warnings**, and passed its normal prebuild JSON gates. All **2783** Unity/Tools manifest inputs match the built source. [Build summary](../../../Builds/NetworkProbe/G3-0.0.533/build-summary.json), [source manifest](../../../Builds/NetworkProbe/G3-0.0.533/source-manifest.json), [build log](../../../LocalData/Logs/build-network-533.log). The release players were not launched during this task.
+
+Content **81 → 82** records changed authoritative play/station approach positions and the gecko shade activity classification; schema53/protocol3 stay unchanged. No installed server, device or live family was changed. A future deployment must coordinate compatible clients/server.
+
+No known omitted artwork or source behavior remains in the five requested categories after this pass. Actual control usability, feeding contact, sound, animation timing and shared gameplay remain **unverified for owner review**; a build or still image cannot establish those outcomes. No PC control, input automation, control tests, live demonstration, broad additional suite, recording or deployment was performed.
+
+The new drawing, articulation and editor-only still-fixture sources belong to the existing Zoo client owner and remain while these activities are maintained. They use native editable UI geometry and retained animal atlases; no new package or per-animal controller copy is required.
+
+## Historical correction at 73137c2: rollout incomplete after owner review
 
 October 8 follow-up: the owner rejected build 532 because the other animals do not provide the elephant's features. The earlier claim that all sixteen animals were complete was premature. A source comparison of all sixteen catalog entries against the actual elephant implementation confirms that shared authority and basic client props do not establish feature parity. The following findings supersede the completion claims below; the original table is retained as a record of the attempted implementation.
 
@@ -48,7 +92,7 @@ This follow-up inspected source and the owner's three screenshots. No fresh in-g
 | Reptile Garden | Green iguana | I | I, climbing / gentle acknowledgement | I, leaf mist | I, habitat cloth | I, leaf insect; seed pod | I, leaves |
 | Reptile Garden | Nile crocodile | I | I, basking / gentle acknowledgement | I, basking-bank mist | I, gentle rinse | I, reed frog; water snail | I, fish |
 
-## Access and layout
+## Historical 532 access and layout
 
 Choose Zoo in the places menu, then use the existing animal pictures, trail arrows or map. Near each animal, tap the fixed habitat prop on the left for play, the pictured care tool on the right for care, or either small hiding prop farther to the sides for discoveries. Care participation hides the local play/discovery controls; the care tool picture toggles joining and putting it away. Tap/short-stroke the three visible cleaning patches. For fish, lion, T. rex, gecko and iguana, those patches belong to tank glass or a habitat surface. Animals remain in their configured habitat routes.
 
@@ -62,7 +106,7 @@ python Tools/Launch/Review-ZooRollout.py 532
 
 This uses the existing hash-checked launcher to open one normal-input player and an isolated loopback authority. It creates no real family enrollment, uses no installed server or personal save, and sends no scripted gameplay actions. The launcher was prepared but was not run during this implementation task. Closing the player ends its isolated session.
 
-## Shared implementation and compatibility
+## Historical 532 shared implementation and compatibility
 
 The elephant's flat JSON field names remain inherited on `ZooState`. Fifteen additional `ZooActivity` records reuse the same queue priority, play ordering, care sessions, membership epochs, rate limits and three-patch progress. Restore clears unfinished activity/food state, retaining animal feeding history, world identity and fossil progress. Each exhibit has its own visitor detection and runtime input rates. Departure releases only that player's membership; remaining helpers retain progress. Care and play yield to feeding under the existing bounded timing rules. Late join reads authority snapshots; timed effects interpolate between them rather than replaying old events.
 
@@ -70,7 +114,7 @@ Preparation remembers its exhibit, rejects stale edits and competing held fossil
 
 New props and discovery/tool pictures are editable native UI geometry in `GameScreen.ZooActivities.cs`; existing licensed scenery, original animal atlases and elephant art are retained. There are no purchases, new packages or per-species controller copies. The new source belongs to the existing Zoo client owner and remains while these activities are supported; the reusable manual launcher belongs to `Tools/Launch`.
 
-## Verification and remaining review
+## Historical 531/532 verification and remaining review
 
 Unity MCP confirmed the exact current FamilyPlayset root, an idle editor and a clean loaded scene. The initial compile found a snack-panel variable naming conflict; it was fixed, and the next console check contained zero errors. Standard release **531** built both client and dedicated server with zero errors/warnings and passed the normal prebuild JSON gates. Final **532** adds shared-effect interpolation, fossil/snack ownership guards, generic preparation names and the manual launcher. Final532 also built both release targets with zero errors/warnings and passed the normal prebuild gates. All 2777 Unity/Tools inputs match current source. [Build summary](../../../Builds/NetworkProbe/G3-0.0.532/build-summary.json), [source manifest](../../../Builds/NetworkProbe/G3-0.0.532/source-manifest.json), [build log](../../../LocalData/Logs/build-network-532.log).
 

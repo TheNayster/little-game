@@ -20,7 +20,7 @@ namespace LittleWeeps.Client
         public Vector2 MouthTip=>Vector2.Scale(ArtPoint(.89f,.887f),rectTransform.localScale)+rectTransform.anchoredPosition;
         protected override void OnPopulateMesh(VertexHelper mesh)
         {
-            if(bend<.05f){base.OnPopulateMesh(mesh);return;}mesh.Clear();const int n=40;var v=UIVertex.simpleVert;v.color=color;
+            if(Mathf.Abs(bend)<.05f){base.OnPopulateMesh(mesh);return;}mesh.Clear();const int n=40;var v=UIVertex.simpleVert;v.color=color;
             for(var y=0;y<=n;y++)for(var x=0;x<=n;x++){var u=x/(float)n;var t=y/(float)n;v.position=ArtPoint(u,t);v.uv0=new Vector2(uvRect.x+u*uvRect.width,uvRect.y+t*uvRect.height);mesh.AddVert(v);}
             for(var y=0;y<n;y++)for(var x=0;x<n;x++){var i=y*(n+1)+x;mesh.AddTriangle(i,i+n+1,i+1);mesh.AddTriangle(i+1,i+n+1,i+n+2);}
         }

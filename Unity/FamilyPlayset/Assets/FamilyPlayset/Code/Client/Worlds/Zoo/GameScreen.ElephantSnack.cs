@@ -10,12 +10,13 @@ namespace LittleWeeps.Client
     public sealed partial class GameScreen
     {
         private RectTransform snackStation,snackPanel,snackFrame;
+        private readonly System.Collections.Generic.Dictionary<string,RectTransform> zooSnackStations=new System.Collections.Generic.Dictionary<string,RectTransform>();
         private readonly RectTransform[,] snackChoices=new RectTransform[3,7];
         private readonly NavigationTap[] snackIngredients=new NavigationTap[2];
         private NavigationTap snackServe;
         private Text snackCue,snackTitle;
         private string snackSpecies="elephant";
-        private readonly RectTransform[] snackStationFoods=new RectTransform[7];
+        private RawImage snackAnimalPicture;
         private bool snackSending;
         private long snackSeenEdit=-1;
         private int snackSeenCount;
@@ -30,15 +31,22 @@ namespace LittleWeeps.Client
         }
         private void BuildElephantSnack()
         {
-            snackStation=ZooObject("Zoo snack station");
-            for(var i=-1;i<=1;i+=2)Plain(snackStation,"Table leg",new Vector2(i*52,43),new Vector2(14,85),new Color(.62f,.43f,.26f));
-            Panel(snackStation,"Snack preparation surface",new Vector2(0,92),new Vector2(150,24),new Color(.85f,.68f,.44f),false,true);
-            SnackBowl(snackStation,new Vector2(0,123),.8f);
-            for(var k=0;k<7;k++){var picture=snackStationFoods[k]=Rect(snackStation,"Configured food "+k,new Vector2(0,160),Vector2.zero);ZooFoodPicture(picture,(ZooFoodKind)k,Vector2.zero,.55f);}
-            HomeHit(snackStation,"Prepare animal snack",new Vector2(0,105),new Vector2(170,210),OpenElephantSnack);
+            foreach(var info in ZooCatalog.All){
+                var id=info.id;var station=ZooObject(info.name+" snack preparation");zooSnackStations.Add(id,station);
+                if(id=="elephant")snackStation=station;
+                for(var i=-1;i<=1;i+=2)Plain(station,"Table leg",new Vector2(i*52,43),new Vector2(14,85),new Color(.62f,.43f,.26f));
+                Panel(station,"Table outline",new Vector2(0,92),new Vector2(156,30),Ink,false,true);
+                Panel(station,"Snack preparation surface",new Vector2(0,92),new Vector2(150,24),new Color(.85f,.68f,.44f),false,true);
+                SnackBowl(station,new Vector2(0,123),.8f);
+                var foods=info.SnackFoods;
+                for(var k=0;k<foods.Length;k++)ZooFoodPicture(station,foods[k],new Vector2(foods.Length==1?0:k==0?-43:43,159),.65f);
+                var portrait=ZooPortraitView(station,"Animal snack picture",new Vector2(-51,64),31);portrait.texture=ZooPortrait(id);
+                HomeHit(station,"Prepare "+info.name+" snack",new Vector2(0,105),new Vector2(170,210),()=>OpenZooSnack(id));
+            }
             snackPanel=Plain(safe,"Snack preparation input shield",Vector2.zero,Vector2.zero,new Color(.16f,.25f,.22f,.72f),true).rectTransform;Stretch(snackPanel);
             snackFrame=Panel(snackPanel,"Your animal snack",Vector2.zero,new Vector2(760,540),Cream,true).rectTransform;
-            snackTitle=Label(snackFrame,"Your animal snack",30,new Vector2(-30,222),new Vector2(590,48));
+            snackTitle=Label(snackFrame,"Your animal snack",30,new Vector2(15,222),new Vector2(510,48));
+            snackAnimalPicture=ZooPortraitView(snackFrame,"Snack animal portrait",new Vector2(-300,217),70);
             var close=Panel(snackFrame,"Close snack preparation",new Vector2(319,218),Vector2.one*88,new Color(.78f,.88f,.79f),true);NavButton(close,CloseElephantSnack);
             for(var i=0;i<2;i++){
                 var bar=Plain(close.transform,"Close stroke",Vector2.zero,new Vector2(43,8),Ink);bar.rectTransform.localRotation=Quaternion.Euler(0,0,i==0?45:-45);
@@ -57,10 +65,11 @@ namespace LittleWeeps.Client
             var serve=Panel(snackFrame,"Carry animal snack",new Vector2(141,-200),new Vector2(344,95),new Color(.67f,.84f,.66f),true,true);snackServe=NavButton(serve,()=>EditElephantSnack("snack-serve"));
             SnackBowl(serve.transform,new Vector2(-58,0),.9f);ZooArrow(serve.transform,new Vector2(47,8),1);snackPanel.gameObject.SetActive(false);
         }
-        private void OpenElephantSnack()
+        private void OpenElephantSnack()=>OpenZooSnack(ZooInView().id);
+        private void OpenZooSnack(string species)
         {
             if(!Ready || MenuOpen || ActionPending || TravelPending)return;
-            snackSpecies=ZooAtPlayer().id;
+            snackSpecies=species;
             if(OwnSnack?.species!=""){ZooWalk("take",snackSpecies,new Vector2(ZooLayout.BucketX(snackSpecies),100));return;}
             ZooWalk("snack-begin",snackSpecies,new Vector2(ZooCatalog.Get(snackSpecies).SnackX,100));
         }
@@ -85,10 +94,10 @@ namespace LittleWeeps.Client
         private void TickElephantSnack(bool visible)
         {
             if(snackStation==null)return;
-            var info=ZooCatalog.Trail(CurrentArea)?ZooAtPlayer():null;
-            snackStation.gameObject.SetActive(info!=null && !MenuOpen && !ZooMapOpen);
-            if(info!=null){snackStation.anchoredPosition=ToBoard(info.SnackX,100);snackStation.localScale=Vector3.one*sceneScale;
-                for(var k=0;k<7;k++){var stationFoods=info.SnackFoods;var index=Array.IndexOf(stationFoods,(ZooFoodKind)k);snackStationFoods[k].gameObject.SetActive(index>=0);snackStationFoods[k].anchoredPosition=new Vector2(stationFoods.Length==1?0:index==0?-45:45,160);}}
+            foreach(var station in zooSnackStations){
+                var info=ZooCatalog.Get(station.Key);var shown=ZooExhibitVisible(info) && !MenuOpen && !ZooMapOpen && !ZooPhotoOpen && !ElephantSnackOpen;
+                station.Value.gameObject.SetActive(shown);station.Value.anchoredPosition=ToBoard(info.SnackX,100);station.Value.localScale=Vector3.one*sceneScale;
+            }
 
             if(!ElephantSnackOpen)return;var f=OwnSnack;
             if(CurrentArea!=ZooCatalog.Get(snackSpecies).area || f?.prepSpecies!=snackSpecies || f?.preparing!=true || Shared && !shared.Connected){snackPanel.gameObject.SetActive(false);return;}
@@ -99,9 +108,9 @@ namespace LittleWeeps.Client
             }
             snackCue.text=f.pieces.Length==0?"Tap a food picture":f.pieces.Length==3?"Bowl ready! Tap a piece to take it out":"Tap a piece to take it out";
             snackServe.interactable=f.pieces.Length>0 && !snackSending && !ActionPending;
-            snackTitle.text="Your "+ZooCatalog.Get(snackSpecies).name+" snack";
+            snackTitle.text="Your "+ZooCatalog.Get(snackSpecies).name+" snack";snackAnimalPicture.texture=ZooPortrait(snackSpecies);
             var foods=ZooCatalog.Get(snackSpecies).SnackFoods;
-            for(var i=0;i<2;i++){var button=snackIngredients[i];button.gameObject.SetActive(i<foods.Length);button.interactable=f.pieces.Length<3 && !snackSending && !ActionPending;
+            for(var i=0;i<2;i++){var button=snackIngredients[i];button.gameObject.SetActive(i<foods.Length);button.interactable=f.pieces.Length<3 && !snackSending && !ActionPending;button.GetComponent<RectTransform>().anchoredPosition=new Vector2(foods.Length==1?0:i==0?-155:155,120);
                 foreach(Transform child in button.transform)child.gameObject.SetActive(i<foods.Length && child.name=="Ingredient "+(int)foods[i]);}
 
             if(Keyboard.current?.escapeKey.wasPressedThisFrame==true)CloseElephantSnack();
@@ -120,6 +129,6 @@ namespace LittleWeeps.Client
                 var bits=child.name.Substring(6).Split('/');var i=int.Parse(bits[0]);var k=int.Parse(bits[1]);child.gameObject.SetActive(i<f.pieces.Length && f.pieces[i]==k);
             }
         }
-        private void ResetElephantSnack(){if(snackPanel!=null)Destroy(snackPanel.gameObject);snackPanel=snackFrame=snackStation=null;snackSending=false;}
+        private void ResetElephantSnack(){if(snackPanel!=null)Destroy(snackPanel.gameObject);snackPanel=snackFrame=snackStation=null;zooSnackStations.Clear();snackSending=false;}
     }
 }

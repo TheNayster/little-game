@@ -54,8 +54,8 @@ namespace LittleWeeps.Client
                 if(sequence==a.sequence)continue;zooHeard[a.species]=a.sequence;
                 // Joining or streaming an animal never replays its old call.
                 if(a.age>1.5)continue;
-                if(a.phase==ZooPhase.Splash){ZooWaterSound();}
-                else if(a.phase==ZooPhase.Notice && now>=zooNextCall){ZooPlay(a.species,false);zooNextCall=now+8;}
+                if(a.phase==ZooPhase.Splash){ZooHabitatSound(ZooCatalog.Get(a.species));}
+                else if((a.phase==ZooPhase.Notice || a.phase==ZooPhase.Greet || a.phase==ZooPhase.CareFinish) && now>=zooNextCall){ZooPlay(a.species,false);zooNextCall=now+8;}
                 else if(a.phase==ZooPhase.Eat){ZooPlay(a.species,true);}
                 else if(a.phase==ZooPhase.Browse && now>=zooNextCall){ZooPlay(a.species,false);zooNextCall=now+18;}
             }
@@ -64,7 +64,7 @@ namespace LittleWeeps.Client
             if(zooVoice!=null)zooVoice.volume=.26f*ZooEffectGain;
             if(zooFoley!=null)zooFoley.volume=.18f*ZooEffectGain;
             if(surpriseVoice!=null)surpriseVoice.volume=.1f*ZooEffectGain;
-            var wanted=visible.Select(ZooVoicePath).Concat(new[]{"Worlds/Zoo/Audio/water","Worlds/Zoo/Audio/feeding"}).Concat(visible.Contains("elephant")?new[]{"Worlds/Zoo/Audio/visitor-chirp","Worlds/Zoo/Audio/flower-rustle"}:Array.Empty<string>()).ToArray();
+            var wanted=visible.Select(ZooVoicePath).Concat(new[]{"Worlds/Zoo/Audio/water","Worlds/Zoo/Audio/feeding"}).Concat(visible.Length>0?new[]{"Worlds/Zoo/Audio/visitor-chirp","Worlds/Zoo/Audio/flower-rustle"}:Array.Empty<string>()).ToArray();
             foreach(var path in zooClips.Keys.Where(p=>!wanted.Contains(p)).ToArray()){
                 var clip=zooClips[path];
                 if(zooVoice!=null && zooVoice.clip==clip){zooVoice.Stop();zooVoice.clip=null;}

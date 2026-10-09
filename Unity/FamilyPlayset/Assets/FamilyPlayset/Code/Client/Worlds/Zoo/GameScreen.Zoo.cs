@@ -91,7 +91,7 @@ namespace LittleWeeps.Client
             foreach(var info in ZooCatalog.All){
                 var species=info.id;var root=ZooObject("Zoo animal "+species);
                 var drawing=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*info.size).gameObject;
-                RawImage image=species=="elephant"?drawing.AddComponent<ElephantArtView>():species=="brachiosaurus"?drawing.AddComponent<BrachiosaurusArtView>():species=="giraffe" || species=="lion"?drawing.AddComponent<SavannaArtView>():drawing.AddComponent<RawImage>();
+                RawImage image=species=="elephant"?drawing.AddComponent<ElephantArtView>():species=="brachiosaurus"?drawing.AddComponent<BrachiosaurusArtView>():species=="giraffe" || species=="lion"?drawing.AddComponent<SavannaArtView>():drawing.AddComponent<ZooArtView>();
                 image.raycastTarget=false;image.rectTransform.pivot=new Vector2(.5f,0);zooAnimals.Add(species,image);
                 var touchSize=species=="brachiosaurus"?BrachiosaurusSize:savannaFeeding.TryGetValue(species,out var feeding)?feeding.size:info.size;
                 HomeHit(root,"Hear "+species,new Vector2(0,touchSize*.4f),new Vector2(touchSize*.65f,touchSize*.7f),()=>ZooCall(species));
@@ -170,8 +170,13 @@ namespace LittleWeeps.Client
                 case "fossil-revealed":return "This piece is uncovered. Pick it up.";
                 case "fossil-resting":return "Keep the dinosaur picture until it is finished.";
                 case "come-to-fossils":return "Come to the sandy tray.";
-                case "water-resting":return "The splash is settling. Try another gentle tap.";
-                case "hands-full":return "Your hands are full. Put down your toy first.";
+                case "water-resting":return "The play is settling. Try another gentle tap.";
+                case "care-finishing":return "All clean! Let your friend finish saying thank you.";
+                case "care-unavailable":return "Choose the care tool and wait for your animal.";
+                case "walk-to-snack-station":return "Come to this animal's snack table.";
+                case "snack-stale":return "Your snack changed. Open the bowl again.";
+                case "surprise-resting":return "Your little visitor is resting. Try again soon.";
+                case "hands-full":return "Your hands are full. Finish your food or put down your toy first.";
                 case "walk-to-food-bucket":return "Walk closer to the food bucket.";
                 case "walk-to-feed-spot":return "Bring your food to your picture.";
                 case "all-feed-spots-busy":return "All four spots are busy. Wait for a free spot.";
@@ -305,6 +310,8 @@ namespace LittleWeeps.Client
                 if(finish)image.rectTransform.localScale=new Vector3(1,1+Mathf.Sin(curl*Mathf.PI)*.018f,1);
                 image.rectTransform.anchoredPosition=new Vector2(0,info.footOffset+(info.habitat==ZooHabitat.Tank?(float)Math.Sin((a.age+extra)*2)*3:0));
                 if(a.species=="brachiosaurus")((BrachiosaurusArtView)image).Pose(BrachiosaurusBend(a,a.age+extra));
+                if(image is ZooArtView body)body.ClearPose();
+                if(image is SavannaArtView articulated)articulated.PawPose(0);
                 PoseSavanna(image,a,a.age+extra);
                 PoseZooPersonality(image,a,a.age+extra);
                 if(a.species=="elephant"){
@@ -347,8 +354,10 @@ namespace LittleWeeps.Client
                 // These raised objects belong to the front activity row. Their
                 // drawn height must not let a wandering dinosaur's call target
                 // cover the sand; children at Y45 still stand in front.
+                if(r.name.Contains(" care tools") || r.name.EndsWith(" play control",StringComparison.Ordinal) || r.name.EndsWith(" snack preparation",StringComparison.Ordinal)){ground=ToBoard(0,100).y;part=1;}
                 if(r==fossilTray || r==fossilBoard){ground=ToBoard(0,100).y;part=0;}
                 if(r.name.StartsWith("Fossil carried piece ",StringComparison.Ordinal)){var i=int.Parse(r.name.Substring("Fossil carried piece ".Length));var id=Fossils.holders[i];if(id!="")ground=ToBoard(ReadPlayer(id).x,ReadPlayer(id).y).y;part=4;}
+                if(r.name.EndsWith(" habitat effects",StringComparison.Ordinal))part=2;
                 add(r,ground,part,r.name);
             }
         }
