@@ -97,7 +97,7 @@ namespace LittleWeeps.Client
         }
         private void BuildCarriedSnack(RectTransform parent)
         {
-            var bowl=Rect(parent,"Prepared snack",Vector2.zero,Vector2.zero);SnackBowl(bowl,Vector2.zero,.9f);
+            var bowl=Rect(parent,"Prepared snack",Vector2.zero,Vector2.zero);
             for(var i=0;i<3;i++)for(var k=0;k<2;k++){var piece=Rect(bowl,"Piece "+i+"/"+k,new Vector2((i-1)*24,22),Vector2.zero);ZooFoodPicture(piece,(ZooFoodKind)k,Vector2.zero,.48f);}
         }
         private void TickCarriedSnack(RectTransform parent,ZooFood f)

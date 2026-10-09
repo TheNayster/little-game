@@ -1,5 +1,7 @@
 # Elephant optional snack preparation - milestone 8, October 8, 2026
 
+**Current owner correction, October8:** Zoo-wide ball-return stories and player-placed decorations are retired; all sixteen species use food held overhead until eaten. Preserve ordinary scenery/toys, fixed activity equipment and other approved features. Older pilot requirements/evidence below are historical. [Current scope, save cleanup and build evidence](overhead-feeding-removals.md).
+
 Scope: WORLD-02 / FAMILY-01 / ITEM-02. Elephant-only optional pretend snack pilot. Owner accepted milestone7 bird/butterfly surprises in this task. Existing bucket, picture navigation, low trays, personality, water, brushing and discoveries remain. Stop after this pilot; no other animals or later activities.
 
 ## Controls and appearance

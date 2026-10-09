@@ -10,6 +10,7 @@ namespace LittleWeeps.EditorTools
     {
         public static void Run()
         {
+            RemovedActivitySave();
             foreach(var species in ZooCatalog.All){Need(LittleWeeps.Client.WorldResources.Load<Texture2D>("Worlds/Zoo/Art/"+species.id)!=null,"Missing 2D atlas "+species.id);Need(LittleWeeps.Client.WorldResources.Load<Texture2D>("Scenery/zoo-"+species.id)!=null,"Missing 2D habitat "+species.id);}
             var old=GameWorld.WithPark(GameWorld.Create("one","two","three","four"));var before=old.Snapshot();var w=GameWorld.WithZoo(old);var s=w.Snapshot();
             s.schema=before.schema;s.revision--;s.zoo=null;Need(JsonUtility.ToJson(s)==JsonUtility.ToJson(before),"Additive migration");
@@ -27,6 +28,23 @@ namespace LittleWeeps.EditorTools
             Need(unfinished.ReadZoo().food.All(f=>f.species=="") && unfinished.ReadZoo().animals[0].fed==4,"Restore clears unfinished offers and retains consumption history");
             ElephantPlay();ElephantCare();ElephantSurprises();ElephantSnack();
             Debug.Log("ZOO_JSON_PASS: additive migration, four portions, uint RNG JSON, retention and visitor boundary");
+        }
+        private static void RemovedActivitySave()
+        {
+            // This is part of the normal build's JSON gate, using isolated data.
+            // Unknown old fields disappear; their numeric animal phases unlock.
+            foreach(var phase in new[]{15,16,17,18,19,20}){
+                var original=GameWorld.WithZoo(GameWorld.Create("one","two","three","four")).Snapshot();
+                original.zoo.animals[0].fed=12;original.zoo.animals[0].phase=(ZooPhase)phase;
+                original.zoo.nextTicket=42;
+                var json=JsonUtility.ToJson(original).Replace("\"zoo\":{","\"zoo\":{\"story\":{\"carrier\":\"one\",\"phase\":2},\"habitat\":{\"props\":[{\"id\":\"habitat-1\",\"creator\":\"one\"}],\"usingId\":\"habitat-1\"},");
+                var restored=GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(json));
+                var z=restored.ReadZoo();
+                Need(z.animals[0].phase<ZooPhase.Greet && z.animals[0].owner=="" && z.animals[0].fed==12 && z.nextTicket==42,"removed activities unlock without resetting feeding history");
+                var saved=JsonUtility.ToJson(restored.Snapshot());
+                Need(!saved.Contains("\"story\"") && !saved.Contains("\"habitat\""),"obsolete Zoo records are not saved again");
+            }
+            Debug.Log("ZOO_RETIRED_JSON_PASS: obsolete fields ignored, six legacy phases unlocked, history retained");
         }
         private static void ElephantSnack()
         {

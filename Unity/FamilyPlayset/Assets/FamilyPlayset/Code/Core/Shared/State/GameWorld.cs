@@ -190,7 +190,7 @@ namespace LittleWeeps.Core
             var h=HideAndSeek.Player(state.hideAndSeek,actor);
             if(h!=null && h.mode!=HiderMode.Away){h.idle=0;if(h.mode==HiderMode.Hidden){ExitHide(p,h,false);state.revision++;}}
             if(ExitClubCover(actor))state.revision++;
-            BeachFootsteps(p,x,y);var previousX=p.x;p.x=x;p.y=y;SyncDinosaurRider(p,previousX);if(!ZooFossils.Nearby(p) && LeaveFossils(p.id))state.revision++;if(StoryHeld(p.id) && !AtElephant(p)){DropStory(p.id);state.revision++;}return true;
+            BeachFootsteps(p,x,y);var previousX=p.x;p.x=x;p.y=y;SyncDinosaurRider(p,previousX);if(!ZooFossils.Nearby(p) && LeaveFossils(p.id))state.revision++;return true;
         }
         // Presentation reads do not need the durable command receipt history.
         // Return detached copies so a view cannot mutate the authority.
@@ -370,7 +370,7 @@ namespace LittleWeeps.Core
             if(state.vet!=null){var helper=state.vet.members.Single(m=>m.actor==player.id);if(helper.attending)helper.declined=true;helper.attending=false;helper.gesture="";if(daycareArrival)helper.declined=false;}
             if(state.treasure!=null){var hunt=state.treasure.members.Single(m=>m.actor==player.id);if(hunt.attending)hunt.declined=true;hunt.attending=false;if(daycareArrival)hunt.declined=false;}
             if(daycareArrival){if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).declined=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).declined=false;}
-            CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);LeaveFossils(player.id);DropStory(player.id);CancelZoo(player.id);LeaveElephantCare(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
+            CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);LeaveFossils(player.id);CancelZoo(player.id);LeaveElephantCare(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
         }
         public SoloResult Apply(SoloCommand c,string[] connectedPlayers=null)
         {
@@ -450,7 +450,7 @@ namespace LittleWeeps.Core
                 case SoloAction.Move:
                     LeaveWaveRide(player);
                     if(!ParkWheels.Usable(player.fixture) && !DinosaurRides.Usable(player.fixture))ClearFixture(player);var floorPoint=state.schema>=BedroomFurniture.Schema && SecretRooms.Furnished(player.zone)?BedroomFurniture.Floor(c.x,c.y):new WalkPoint(c.x,c.y);
-                    floorPoint=ParkWheels.Floor(player,floorPoint.X,floorPoint.Y);floorPoint=ZooLayout.Floor(player.zone,floorPoint.X,floorPoint.Y);floorPoint=DinosaurRides.Floor(player.zone,floorPoint.X,floorPoint.Y);BeachFootsteps(player,floorPoint.X,floorPoint.Y);var oldX=player.x;player.x=floorPoint.X;player.y=floorPoint.Y;SyncDinosaurRider(player,oldX);if(!ZooFossils.Nearby(player))LeaveFossils(player.id);if(StoryHeld(player.id) && !AtElephant(player))DropStory(player.id);break;
+                    floorPoint=ParkWheels.Floor(player,floorPoint.X,floorPoint.Y);floorPoint=ZooLayout.Floor(player.zone,floorPoint.X,floorPoint.Y);floorPoint=DinosaurRides.Floor(player.zone,floorPoint.X,floorPoint.Y);BeachFootsteps(player,floorPoint.X,floorPoint.Y);var oldX=player.x;player.x=floorPoint.X;player.y=floorPoint.Y;SyncDinosaurRider(player,oldX);if(!ZooFossils.Nearby(player))LeaveFossils(player.id);break;
                 case SoloAction.ChangeAvatar:
                     if (!Avatar(c.value)) return Reject("unknown-avatar");
                     player.avatar = c.value;
@@ -467,7 +467,7 @@ namespace LittleWeeps.Core
                     else {ClearFixture(player);player.activity = c.value;} break;
                 case SoloAction.LeaveActivity: player.activity = ""; break;
                 case SoloAction.Grab:
-                    if(FossilHeld(player.id) || StoryHeld(player.id))return Reject("hands-full");
+                    if(FossilHeld(player.id))return Reject("hands-full");
                     if (item == null || !Carryable(item.kind)) return Reject("not-movable");
                     if ((item.holder!="" && !(state.schema>=RoomPlay.Schema && item.holder==player.id && BedroomFurniture.Seat(player.fixture))) || state.toys.Any(t => t.holder == c.actor && t!=item)) return Reject("already-held");
                     if(!StorageOpen(item))return Reject("storage-closed");

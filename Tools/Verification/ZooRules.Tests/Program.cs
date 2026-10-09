@@ -64,7 +64,7 @@ static class Program
             Act(w,"one",SoloAction.Move,x:200,y:100);Act(w,"one",SoloAction.Zoo,"gate",info.area);Check(w.ReadPlayer("one").x==9000,"Reverse trail arrival");
         }
         Console.WriteLine("PASS all sixteen foods consumed once, all trails and bidirectional ring gates");
-        Tick(w,600);Check(w.ReadZoo().animals.All(a=>a.sequence>2),"Every animal chooses new routines");Console.WriteLine("PASS every animal varies its bounded routine independently");LittleWeeps.EditorTools.ElephantStoryTests.Run();LittleWeeps.EditorTools.ElephantHabitatTests.Run();LittleWeeps.EditorTools.ZooFossilTests.Run();
+        Tick(w,600);Check(w.ReadZoo().animals.All(a=>a.sequence>2),"Every animal chooses new routines");Console.WriteLine("PASS every animal varies its bounded routine independently");LittleWeeps.EditorTools.ZooFossilTests.Run();
     }
     // Compare only Zoo fields: ordinary Home clocks are outside this focused check.
     static SoloSnapshot ReadZooSnapshot(this GameWorld w)=>new(){zoo=w.ReadZoo()};

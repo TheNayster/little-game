@@ -20,7 +20,7 @@ namespace LittleWeeps.Client
         public int FossilCelebrations=>fossilCelebrations;
         private ZooFossilState Fossils=>Zoo?.fossils;
         private int FossilMember=>Fossils==null?-1:Array.IndexOf(Fossils.members,Actor);
-        private bool FossilBlocked=>MenuOpen || ZooPhotoOpen || ZooMapOpen || ElephantSnackOpen || ElephantHabitatOpen || TravelPending || applicationPaused || ActionPending || Shared && !shared.Connected;
+        private bool FossilBlocked=>MenuOpen || ZooPhotoOpen || ZooMapOpen || ElephantSnackOpen || TravelPending || applicationPaused || ActionPending || Shared && !shared.Connected;
         private FossilPicture FossilDrawing(Transform parent,int piece,bool assembled,Vector2 at,float width,Color tint)
         {var r=Rect(parent,"Dinosaur picture section "+piece,at,new Vector2(width,width/2));var g=r.gameObject.AddComponent<FossilPicture>();g.piece=piece;g.assembled=assembled;g.color=tint;g.raycastTarget=false;return g;}
         private RectTransform FossilButton(Transform parent,string name,Vector2 at,Action action)

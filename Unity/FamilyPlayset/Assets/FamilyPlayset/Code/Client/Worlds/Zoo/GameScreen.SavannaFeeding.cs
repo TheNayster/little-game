@@ -10,35 +10,87 @@ namespace LittleWeeps.Client
     {
         private sealed class FeedingPresentation
         {
-            public readonly string species;public readonly float size,offset;public readonly Vector2 mouth;public readonly bool browse;
-            public readonly Image[] pads=new Image[4],badges=new Image[4],supports=new Image[4];
+            public readonly string species;public readonly float size,offset;public readonly Vector2 mouth;
+            public readonly Image[] pads=new Image[4],badges=new Image[4];
             public readonly RawImage[] portraits=new RawImage[4];
-            public readonly RectTransform[] pointers=new RectTransform[4],done=new RectTransform[4],waiting=new RectTransform[4],receivers=new RectTransform[4];
+            public readonly RectTransform[] pointers=new RectTransform[4],done=new RectTransform[4],waiting=new RectTransform[4];
             public readonly string[] avatars=new string[4];
             public int seen=-1,reaction=-1,events;public string cue="idle";public float gap;
-            public FeedingPresentation(string id,float scale,Vector2 socket,bool branch,float side=0){species=id;size=scale;mouth=socket;browse=branch;offset=side;}
+            public FeedingPresentation(string id,float scale,Vector2 socket,float side=0){species=id;size=scale;mouth=socket;offset=side;}
         }
-        private readonly Dictionary<string,FeedingPresentation> savannaFeeding=new Dictionary<string,FeedingPresentation>{
-            {"giraffe",new FeedingPresentation("giraffe",350,new Vector2(.772f,.735f),true)},
-            {"zebra",new FeedingPresentation("zebra",380,new Vector2(.952f,.17f),false,65)},
+        private readonly Dictionary<string,FeedingPresentation> savannaFeeding=CreateFeedingPresentations();
+        private static Dictionary<string,FeedingPresentation> CreateFeedingPresentations()
+        {
+            var result=new Dictionary<string,FeedingPresentation>{
+            {"giraffe",new FeedingPresentation("giraffe",350,new Vector2(.772f,.735f))},
+            {"zebra",new FeedingPresentation("zebra",380,new Vector2(.952f,.17f),65)},
             // Resting atlas cell: lip at (415,237) in the original 443x444
             // cell, expressed bottom-up. The paw height is not a mouth socket.
-            {"lion",new FeedingPresentation("lion",420,new Vector2(.936f,.466f),false,35)}
-        };
+            {"lion",new FeedingPresentation("lion",420,new Vector2(.936f,.466f),35)}
+            };
+            foreach(var info in ZooCatalog.All)
+                if(info.id!="elephant" && info.id!="brachiosaurus" && !result.ContainsKey(info.id))
+                    result.Add(info.id,new FeedingPresentation(info.id,info.size,Vector2.zero));
+            return result;
+        }
         public string SavannaCue=>savannaFeeding.TryGetValue(ZooCurrentExhibit,out var p)?p.cue:"";
         public float SavannaMouthGap=>savannaFeeding.TryGetValue(ZooCurrentExhibit,out var p)?p.gap:0;
         public int[] SavannaFinishEvents=>new[]{"giraffe","zebra","lion"}.Select(id=>savannaFeeding.TryGetValue(id,out var p)?p.events:0).ToArray();
+        private Vector2 ZooHandFoodPoint(string actor)
+        {
+            var p=ReadPlayer(actor);
+            var point=Shared && shared.Connected?shared.VisualPosition(actor):new Vector2(p.x,p.y);
+            // Player artwork has a 180-unit reference height. Keep the portion
+            // above it at one stable hand socket, including shared interpolation.
+            return ToBoard(point.x,point.y)+new Vector2(65,205)*sceneScale;
+        }
+        private Vector2 ZooAnimalMouth(RawImage image,ZooAnimal a)
+        {
+            var root=(RectTransform)image.transform.parent;
+            Vector2 tip;
+            if(image is BrachiosaurusArtView brachio)tip=brachio.MouthTip;
+            else if(image is SavannaArtView savanna)tip=savanna.MouthTip;
+            else if(image is ElephantArtView elephant && a.owner!="")tip=elephant.TrunkTip;
+            else if(savannaFeeding.TryGetValue(a.species,out var presentation) && presentation.mouth!=Vector2.zero)return SavannaMouth(presentation);
+            else{
+                // Fitted reach/eat atlas sockets from the original sixteen-species
+                // feeding implementation. The animal moves toward the held food.
+                var info=ZooCatalog.Get(a.species);
+                tip=Vector2.Scale(new Vector2(info.mouthX,info.mouthY),image.rectTransform.localScale)+image.rectTransform.anchoredPosition;
+            }
+            return Board.InverseTransformPoint(root.TransformPoint(tip));
+        }
+        private void PoseZooHandReach(RawImage image,ZooAnimal a,double age)
+        {
+            if(a.owner=="" || a.phase!=ZooPhase.Approach && a.phase!=ZooPhase.Eat)return;
+            var f=Zoo.food.FirstOrDefault(v=>v.actor==a.owner && v.species==a.species && v.offered);
+            if(f==null)return;
+            // The animal reaches before the 1.4-second eating moment. Never
+            // animate food away from its player or through another child.
+            var reach=a.phase==ZooPhase.Eat?1:Mathf.SmoothStep(0,1,Mathf.Clamp01(((float)(age/a.duration)-.65f)/.35f));
+            var root=(RectTransform)image.transform.parent;
+            var delta=(ZooHandFoodPoint(a.owner)-ZooAnimalMouth(image,a))*reach;
+            var local=(Vector2)image.rectTransform.InverseTransformVector(Board.TransformVector(delta));
+            if(image is ElephantArtView elephant)elephant.Reach(local);
+            else if(image is BrachiosaurusArtView brachio)brachio.Reach(local);
+            else if(image is SavannaArtView head)head.Reach(local);
+            else root.anchoredPosition+=delta; // Fish swim to the hand.
+        }
+        private void ResetZooHandReach(RawImage image,ZooAnimal a)
+        {
+            if(image is ElephantArtView elephant)elephant.Reach(Vector2.zero);
+            else if(image is BrachiosaurusArtView brachio)brachio.Reach(Vector2.zero);
+            else if(image is SavannaArtView head){
+                head.Reach(Vector2.zero);
+                if(head.localHead){
+                    var info=ZooCatalog.Get(a.species);var r=image.GetPixelAdjustedRect();
+                    head.mouth=savannaFeeding[a.species].mouth!=Vector2.zero?savannaFeeding[a.species].mouth:new Vector2((info.mouthX-r.xMin)/r.width,info.mouthY/r.height);
+                }
+            }
+        }
         private void BuildSavannaSpot(RectTransform rail,FeedingPresentation p,int i)
         {
-            // Empty spots are shallow and quiet. Only the serving station
-            // extends a branch/receiving tray; portraits sit above child heads.
-            Panel(rail,"Offering shadow",new Vector2(0,-4),new Vector2(88,16),new Color(.35f,.3f,.2f,.15f),false,true);
-            Panel(rail,p.browse?"Low browse basket":p.species=="lion"?"Prepared meat tray":"Low hay tray",new Vector2(0,18),new Vector2(80,30),p.species=="lion"?new Color(.60f,.71f,.75f):new Color(.69f,.53f,.34f),false,true);
-            Panel(rail,"Tray inset",new Vector2(0,29),new Vector2(68,12),Cream,false,true);
             p.pads[i]=Panel(rail,"Your standing picture",Vector2.zero,new Vector2(80,18),new Color(.76f,.69f,.53f,.24f),false,true);
-            p.receivers[i]=Rect(rail,p.browse?"Supported browse branch":"Receiving tray",Vector2.zero,Vector2.zero);
-            p.supports[i]=Plain(p.receivers[i],p.browse?"Browse stem":"Tray arm",Vector2.zero,new Vector2(7,1),p.browse?new Color(.51f,.42f,.28f):new Color(.6f,.64f,.61f));
-            if(!p.browse)Panel(p.receivers[i],"Food dish",Vector2.zero,new Vector2(67,12),p.species=="lion"?new Color(.60f,.71f,.75f):new Color(.69f,.53f,.34f),false,true);
             // Keep pictures above both feeding and standing finish poses.
             // Board coordinates scale with the safe-area composition.
             p.badges[i]=Panel(rail,"Feeder portrait",new Vector2(0,380),Vector2.one*58,Cream,false,true);
@@ -47,7 +99,6 @@ namespace LittleWeeps.Client
             p.done[i]=Rect(p.badges[i].transform,"Food consumed picture",new Vector2(17,-19),Vector2.zero);FossilCheck(p.done[i],true);p.done[i].localScale=Vector3.one*.45f;
             p.waiting[i]=Rect(p.badges[i].transform,"Waiting turn picture",new Vector2(18,-18),Vector2.zero);Panel(p.waiting[i],"Turn clock",Vector2.zero,new Vector2(24,24),Cream,false,true);Plain(p.waiting[i],"Clock hand",new Vector2(0,3),new Vector2(3,9),Ink);Plain(p.waiting[i],"Clock hand",new Vector2(3,0),new Vector2(9,3),Ink);
         }
-        private double FeedingAge(ZooAnimal a)=>a.age+(Shared && zooSamples.TryGetValue(a.species,out var sample)?Math.Max(0,Time.realtimeSinceStartup-sample.sampled):0);
         private float GiraffeBend(ZooAnimal a,double age)
         {
             if(a.phase==ZooPhase.Eat)return 43+(a.consumed?(savannaFeeding["giraffe"].reaction==a.fed?Mathf.Sin(Mathf.Clamp01((float)(age-1.4)/1.2f)*Mathf.PI*2)*2:0):Mathf.Sin((float)age*6)*.8f);
@@ -57,11 +108,10 @@ namespace LittleWeeps.Client
         {
             if(!savannaFeeding.TryGetValue(a.species,out var p))return frame;
             if(a.species=="giraffe")return GiraffeBend(a,age)>0?4:frame;
-            if(a.phase!=ZooPhase.Eat)return frame;
+            if(a.phase!=ZooPhase.Eat || p.species!="zebra" && p.species!="lion")return frame;
             var reaction=a.consumed && p.reaction==a.fed && age<2.6;
             // Zebra keeps its actual lowered-head hay pose until consumed.
-            // Lion remains beside its dish: the standing smile puts its head
-            // into the ownership pictures on tablets. Its finish is a head nod.
+            // Lion keeps its resting finish nod; the food remains on the child.
             return a.species=="zebra"?(reaction?7:a.consumed?4:6):4;
         }
         private void PoseSavanna(RawImage image,ZooAnimal a,double age)
@@ -69,6 +119,7 @@ namespace LittleWeeps.Client
             if(!savannaFeeding.TryGetValue(a.species,out var p))return;
             image.rectTransform.anchoredPosition+=new Vector2(p.offset,0);
             if(image is SavannaArtView art){
+                if(art.localHead){art.Pose(0);return;}
                 art.mouth=p.mouth;art.lion=a.species=="lion";
                 var head=0f;
                 if(a.phase==ZooPhase.Eat){
@@ -86,15 +137,9 @@ namespace LittleWeeps.Client
             else{var r=image.GetPixelAdjustedRect();tip=Vector2.Scale(new Vector2(r.xMin+p.mouth.x*r.width,r.yMin+p.mouth.y*r.height),image.rectTransform.localScale)+image.rectTransform.anchoredPosition;}
             return Board.InverseTransformPoint(root.TransformPoint(tip));
         }
-        private Vector2 SavannaFoodPoint(ZooFood f,ZooAnimal a,FeedingPresentation p)
-        {
-            var start=ToBoard(ZooLayout.SlotX(f.species,f.slot),100)+new Vector2(0,41)*sceneScale;
-            if(a.owner!=f.actor || a.phase!=ZooPhase.Eat)return start;
-            return Vector2.Lerp(start,SavannaMouth(p),Mathf.SmoothStep(0,1,Mathf.Clamp01((float)FeedingAge(a)/.45f)));
-        }
         private string FeedingFeedback(string species,ZooAnimal a,ZooFood own)
         {
-            if(applicationPaused || CurrentArea!=ZooLayout.Savanna || Shared && !shared.Connected)return "";
+            if(applicationPaused || CurrentArea!=ZooCatalog.Get(species).area || Shared && !shared.Connected)return "";
             if(own?.species==species)return !own.offered?"carrying":a.owner!=Actor?"waiting":a.consumed?"finished":a.phase==ZooPhase.Eat?"eating":"approaching";
             return zooApproach && zooSpecies==species?"collecting":"idle";
         }
@@ -107,19 +152,13 @@ namespace LittleWeeps.Client
                 if(p.seen>=0 && a.fed>p.seen && shown && !applicationPaused && (!Shared || shared.Connected) && a.phase==ZooPhase.Eat && a.consumed && a.age<2.6){p.reaction=a.fed;p.events++;}
                 p.seen=a.fed;
                 var info=ZooCatalog.Get(p.species);
-                var cue=p.cue=="collecting"?"Getting your "+info.FoodName:p.cue=="carrying"?"Bring food to your picture":p.cue=="waiting"?"Your food is waiting":p.cue=="approaching"?"Coming to your tray":p.cue=="eating"?"Eating your "+info.FoodName:p.cue=="finished"?"Yum! Thank you":"Tap the "+info.FoodName;
+                var cue=p.cue=="collecting"?"Getting your "+info.FoodName:p.cue=="carrying"?"Bring food to your picture":p.cue=="waiting"?"Your food is waiting":p.cue=="approaching"?"Coming to your food":p.cue=="eating"?"Eating your "+info.FoodName:p.cue=="finished"?"Yum! Thank you":"Tap the "+info.FoodName;
                 zooSigns[p.species].text=info.name+"\n"+cue;
                 for(var i=0;i<4;i++){
                     var f=z.food.FirstOrDefault(v=>v.species==p.species && v.slot==i);var local=f?.actor==Actor;var done=f!=null && a.owner==f.actor && a.consumed;
                     p.pads[i].color=local?new Color(.98f,.8f,.33f,.85f):f!=null?new Color(.63f,.75f,.55f,.5f):new Color(.76f,.69f,.53f,.24f);
                     p.badges[i].gameObject.SetActive(f!=null);p.pointers[i].gameObject.SetActive(local && !done);p.done[i].gameObject.SetActive(done);p.waiting[i].gameObject.SetActive(f!=null && f.offered && a.owner!=f.actor);
-                    var feeding=shown && f!=null && f.offered && a.owner==f.actor && a.phase==ZooPhase.Eat && !a.consumed;p.receivers[i].gameObject.SetActive(feeding);
-                    if(feeding){
-                        var start=ToBoard(ZooLayout.SlotX(p.species,i),100)+new Vector2(0,29)*sceneScale;var tip=SavannaFoodPoint(f,a,p);var d=(tip-start)/sceneScale;var stem=p.supports[i].rectTransform;
-                        stem.anchoredPosition=new Vector2(d.x/2,29+d.y/2);stem.sizeDelta=new Vector2(7,d.magnitude);stem.localRotation=Quaternion.Euler(0,0,-Mathf.Atan2(d.x,d.y)*Mathf.Rad2Deg);
-                        if(!p.browse)((RectTransform)p.receivers[i].GetChild(1)).anchoredPosition=new Vector2(d.x,29+d.y-12);
-                        p.gap=Vector2.Distance(tip,SavannaMouth(p))/sceneScale;
-                    }
+                    if(f!=null && a.owner==f.actor && a.phase==ZooPhase.Eat && !a.consumed)p.gap=Vector2.Distance(ZooHandFoodPoint(f.actor),ZooAnimalMouth(zooAnimals[p.species],a))/sceneScale;
                     if(f==null)continue;var avatar=ReadPlayer(f.actor).avatar;
                     if(p.avatars[i]!=avatar){var art=WorldResources.Load<CharacterMenuArt>("Shared/Characters/Menu/"+PlayableCharacters.Find(avatar).ArtId);p.portraits[i].texture=art?.texture;if(art!=null)p.portraits[i].rectTransform.sizeDelta=art.size*(48/Mathf.Max(art.size.x,art.size.y));p.avatars[i]=avatar;}
                     p.badges[i].color=done?new Color(.7f,.87f,.58f):local?new Color(1,.87f,.48f):Cream;

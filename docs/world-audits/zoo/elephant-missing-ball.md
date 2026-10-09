@@ -1,5 +1,7 @@
 # The Missing Ball — milestone 10 elephant pilot
 
+**Current owner correction, October8:** Zoo-wide ball-return stories and player-placed decorations are retired; all sixteen species use food held overhead until eaten. Preserve ordinary scenery/toys, fixed activity equipment and other approved features. Older pilot requirements/evidence below are historical. [Current scope, save cleanup and build evidence](overhead-feeding-removals.md).
+
 WORLD-02 / FAMILY-01 / ITEM-02. One optional, picture-first story in the existing elephant exhibit. No quest engine, other animal story, habitat decorating, fossils, narration, video or deployment. Stop for live owner review after this pilot.
 
 ## Flow and pictures

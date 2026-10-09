@@ -91,7 +91,8 @@ namespace LittleWeeps.Client
             foreach(var info in ZooCatalog.All){
                 var species=info.id;var root=ZooObject("Zoo animal "+species);
                 var drawing=Rect(root,"Animated "+species,Vector2.zero,Vector2.one*info.size).gameObject;
-                RawImage image=species=="elephant"?drawing.AddComponent<ElephantArtView>():species=="brachiosaurus"?drawing.AddComponent<BrachiosaurusArtView>():species=="giraffe" || species=="lion"?drawing.AddComponent<SavannaArtView>():drawing.AddComponent<RawImage>();
+                RawImage image=species=="elephant"?drawing.AddComponent<ElephantArtView>():species=="brachiosaurus"?drawing.AddComponent<BrachiosaurusArtView>():info.habitat!=ZooHabitat.Tank?drawing.AddComponent<SavannaArtView>():drawing.AddComponent<RawImage>();
+                if(image is SavannaArtView head){head.localHead=species!="giraffe" && species!="lion";}
                 image.raycastTarget=false;image.rectTransform.pivot=new Vector2(.5f,0);zooAnimals.Add(species,image);
                 var touchSize=species=="brachiosaurus"?BrachiosaurusSize:savannaFeeding.TryGetValue(species,out var feeding)?feeding.size:info.size;
                 HomeHit(root,"Hear "+species,new Vector2(0,touchSize*.4f),new Vector2(touchSize*.65f,touchSize*.7f),()=>ZooCall(species));
@@ -107,33 +108,23 @@ namespace LittleWeeps.Client
                     if(savannaFeeding.TryGetValue(species,out var presentation)){BuildSavannaSpot(rail,presentation,i);continue;}
                     if(species=="brachiosaurus"){BuildBrachiosaurusSpot(rail,i);continue;}
                     if(species=="elephant"){
-                        // Trays replace the tall supports. The reserved player
-                        // spot and authority's final trunk socket stay unchanged.
-                        Panel(rail,"Tray shadow",new Vector2(0,-6),new Vector2(91,17),new Color(.35f,.3f,.2f,.16f),false,true);
-                        Panel(rail,"Low wooden tray",new Vector2(0,7),new Vector2(82,25),new Color(.69f,.53f,.34f),false,true);
-                        Panel(rail,"Tray inset",new Vector2(0,14),new Vector2(69,12),new Color(.84f,.72f,.49f),false,true);
                         elephantPads[i]=Panel(rail,"Your standing spot",Vector2.zero,new Vector2(74,19),new Color(.76f,.69f,.53f,.24f),false,true);
-                        elephantBadges[i]=Panel(rail,"Feeder portrait",new Vector2(0,205),Vector2.one*64,Cream,false,true);
+                        elephantBadges[i]=Panel(rail,"Feeder portrait",new Vector2(0,380),Vector2.one*64,Cream,false,true);
                         var portrait=Rect(elephantBadges[i].transform,"Player picture",Vector2.zero,Vector2.one*52).gameObject.AddComponent<RawImage>();
                         portrait.raycastTarget=false;elephantPortraits[i]=portrait;
-                        elephantMarks[i]=Label(rail,"",22,new Vector2(0,253),new Vector2(90,32));
+                        elephantMarks[i]=Label(rail,"",22,new Vector2(0,428),new Vector2(90,32));
                         var check=Rect(elephantBadges[i].transform,"Finished tick",new Vector2(23,-20),Vector2.zero);elephantChecks[i]=check;
                         var shortStroke=Plain(check,"Tick start",new Vector2(-4,0),new Vector2(5,13),new Color(.25f,.48f,.2f));shortStroke.rectTransform.localRotation=Quaternion.Euler(0,0,40);
                         var longStroke=Plain(check,"Tick end",new Vector2(4,4),new Vector2(5,22),new Color(.25f,.48f,.2f));longStroke.rectTransform.localRotation=Quaternion.Euler(0,0,-35);
-                        var pointer=Rect(rail,"Your picture pointer",new Vector2(0,162),Vector2.zero);elephantPointers[i]=pointer;
+                        var pointer=Rect(rail,"Your picture pointer",new Vector2(0,337),Vector2.zero);elephantPointers[i]=pointer;
                         var left=Plain(pointer,"Arrow left",new Vector2(-5,3),new Vector2(5,17),new Color(.7f,.48f,.16f));left.rectTransform.localRotation=Quaternion.Euler(0,0,40);
                         var right=Plain(pointer,"Arrow right",new Vector2(5,3),new Vector2(5,17),new Color(.7f,.48f,.16f));right.rectTransform.localRotation=Quaternion.Euler(0,0,-40);
                         continue;
                     }
-                    Plain(rail,"Rail post",new Vector2(0,76),new Vector2(14,135),new Color(.62f,.45f,.3f));
-                    Plain(rail,"Rail",new Vector2(0,112),new Vector2(102,15),new Color(.73f,.57f,.39f));
-                    var height=info.FeedHeight;
-                    Plain(rail,info.habitat==ZooHabitat.Tank?"Aquarium delivery chute":"Feeder support",new Vector2(65,height/2),new Vector2(info.habitat==ZooHabitat.Tank?16:9,height),new Color(.68f,.63f,.5f));
-                    Plain(rail,"Feeding tray",new Vector2(65,height-18),new Vector2(72,14),new Color(.53f,.67f,.55f));
-                    Panel(rail,"Stand here",Vector2.zero,new Vector2(72,18),new Color(.99f,.84f,.4f,.7f),false,true);
+                    BuildSavannaSpot(rail,savannaFeeding[species],i);
                 }
             }
-            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();BuildElephantSnack();BuildElephantStory();BuildElephantHabitat();BuildZooFossils();
+            BuildElephantPlay();BuildElephantCare();BuildElephantSurprises();BuildElephantSnack();BuildZooFossils();
             var snapshot=Shared?shared.View:World.Snapshot();
             foreach(var player in snapshot.players){
                 var r=ZooObject("Zoo held portion "+player.id);zooLeaves.Add(player.id,r);
@@ -169,7 +160,7 @@ namespace LittleWeeps.Client
         private void ClearZooFailure()
         {if(zooFailure!="" && message.text==zooFailure)message.text="Tap to walk";zooFailure="";zooFailureArea="";}
         private void ResetElephantObservation()
-        {elephantSeenFed=-1;elephantReactionFed=-1;ResetSavannaObservation();ResetElephantPlayObservation();ResetElephantCareObservation();ResetSurpriseObservation();ResetStoryObservation();}
+        {elephantSeenFed=-1;elephantReactionFed=-1;ResetSavannaObservation();ResetElephantPlayObservation();ResetElephantCareObservation();ResetSurpriseObservation();}
         private static string ZooRejection(string outcome)
         {
             switch(outcome){
@@ -180,15 +171,11 @@ namespace LittleWeeps.Client
                 case "fossil-revealed":return "This piece is uncovered. Pick it up.";
                 case "fossil-resting":return "Keep the dinosaur picture until it is finished.";
                 case "come-to-fossils":return "Come to the sandy tray.";
-                case "story-helping":return "Your friend has the ball. You can help at the basket.";
-                case "story-changed":return "The ball is ready for another gentle tap.";
-                case "story-closer":return "Walk a little closer to the ball picture.";
-                case "story-resting":return "The ball is settling in its basket.";
                 case "water-resting":return "The splash is settling. Try another gentle tap.";
                 case "hands-full":return "Your hands are full. Put down your toy first.";
                 case "walk-to-food-bucket":return "Walk closer to the food bucket.";
                 case "walk-to-feed-spot":return "Bring your food to your picture.";
-                case "all-feed-spots-busy":return "All four spots are busy. Wait for a free tray.";
+                case "all-feed-spots-busy":return "All four spots are busy. Wait for a free spot.";
                 case "come-to-exhibit":return "Come back to this animal's exhibit.";
                 case "walk-to-zoo-gate":return "Walk closer to the gateway.";
                 case "stale-revision":return "The Zoo changed. Try another gentle tap.";
@@ -289,11 +276,10 @@ namespace LittleWeeps.Client
                 if(!zooSamples.TryGetValue(a.species,out var sample) || sample.sequence!=a.sequence || sample.age!=a.age){sample=(a.sequence,a.age,now);zooSamples[a.species]=sample;}
                 var extra=Shared?Math.Max(0,now-sample.sampled):0;var point=ZooLayout.Point(a,extra);var root=(RectTransform)image.transform.parent;
                 root.anchoredPosition=ToBoard(point.X,point.Y);root.localScale=Vector3.one*sceneScale;
-                var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach || a.phase==ZooPhase.WaterWalk || a.phase==ZooPhase.WaterReturn || a.phase==ZooPhase.CareWalk || a.phase==ZooPhase.StoryWalk || a.phase==ZooPhase.PropWalk || a.phase==ZooPhase.PropExit;
+                var moving=a.phase==ZooPhase.Wander || a.phase==ZooPhase.Approach || a.phase==ZooPhase.WaterWalk || a.phase==ZooPhase.WaterReturn || a.phase==ZooPhase.CareWalk;
                 var frame=moving && a.age+extra<a.duration?(int)((a.age+extra)*5)%4:a.phase==ZooPhase.Notice?5:a.phase==ZooPhase.Eat?((a.age+extra)<1.4?6:7):a.phase==ZooPhase.Browse?(a.species=="gecko"?4:5):a.phase==ZooPhase.Drink?4:4;
-                // The legacy reaching trunk extends across its atlas cell. The
-                // intact curled-trunk pose holds food at the same fitted socket.
-                if(a.species=="elephant" && a.phase==ZooPhase.Eat)frame=a.age+extra<.55?4:7;
+                // Articulate the intact resting trunk toward the child's hand.
+                if(a.species=="elephant" && a.owner!="" && (a.phase==ZooPhase.Eat || a.phase==ZooPhase.Approach && (a.age+extra)/a.duration>.65))frame=4;
                 if(a.species=="elephant")frame=ElephantPlayFrame(a,a.age+extra,frame);
                 if(a.species=="brachiosaurus" && BrachiosaurusBend(a,a.age+extra)>0)frame=4;
                 frame=SavannaFrame(a,a.age+extra,frame);
@@ -306,6 +292,7 @@ namespace LittleWeeps.Client
                 if(a.species=="brachiosaurus" && BrachiosaurusBend(a,a.age+extra)>0)left=false;
                 if(a.species=="giraffe" && GiraffeBend(a,a.age+extra)>0)left=false;
                 if(savannaFeeding.ContainsKey(a.species) && a.phase==ZooPhase.Eat)left=false;
+                if(a.owner!="" && (a.phase==ZooPhase.Eat || a.phase==ZooPhase.Approach && (a.age+extra)/a.duration>.65))left=false;
                 var breathing=moving?1:1+(float)Math.Sin((a.age+extra)*2+a.random%17)*.006f;
                 image.rectTransform.localScale=new Vector3(left?-1:1,breathing,1);
                 var finish=a.species=="elephant" && a.fed==elephantReactionFed && a.phase==ZooPhase.Eat && a.consumed && !applicationPaused;
@@ -313,22 +300,23 @@ namespace LittleWeeps.Client
                 // One small satisfied sway with the existing intact curled
                 // trunk art. Its bounded duration cannot delay the next turn.
                 image.rectTransform.localRotation=Quaternion.Euler(0,0,finish?Mathf.Sin(curl*Mathf.PI*2)*1.8f:0);
-                if(a.phase==ZooPhase.PropUse && z.habitat.props.FirstOrDefault(p=>p.id==z.habitat.usingId)?.kind==ElephantPropKind.Scratch)image.rectTransform.localRotation=Quaternion.Euler(0,0,Mathf.Sin((float)(a.age+extra)*4)*1.2f);
                 if(finish)image.rectTransform.localScale=new Vector3(1,1+Mathf.Sin(curl*Mathf.PI)*.018f,1);
                 image.rectTransform.anchoredPosition=new Vector2(0,info.footOffset+(info.habitat==ZooHabitat.Tank?(float)Math.Sin((a.age+extra)*2)*3:0));
+                ResetZooHandReach(image,a);
                 if(a.species=="brachiosaurus")((BrachiosaurusArtView)image).Pose(BrachiosaurusBend(a,a.age+extra));
                 PoseSavanna(image,a,a.age+extra);
                 if(a.species=="elephant"){
                     PoseElephant((ElephantArtView)image,a,a.age+extra);
                     TickElephantPlay(z,a,true,a.age+extra);TickElephantCare(z,a,true);
                 }
+                PoseZooHandReach(image,a,a.age+extra);
             }
             if(!visible.Contains("elephant")){TickElephantPlay(z,elephant,false,elephant.age);TickElephantCare(z,elephant,false);}
             foreach(var info in ZooCatalog.All){
                 var shown=visible.Contains(info.id);Place(zooBuckets[info.id],shown,ZooLayout.BucketX(info.id));
                 var animal=z.animals.Single(a=>a.species==info.id);
                 if(info.id=="elephant"){
-                    var cue=elephantCue=="collecting"?"Getting your leaves":elephantCue=="carrying"?"Bring leaves to your picture":elephantCue=="waiting"?"Your leaves are waiting":elephantCue=="approaching"?"Coming to your tray":elephantCue=="eating"?"Eating your leaves":elephantCue=="finished"?"Yum! Thank you":"Tap the leaves";
+                    var cue=elephantCue=="collecting"?"Getting your leaves":elephantCue=="carrying"?"Bring leaves to your picture":elephantCue=="waiting"?"Your leaves are waiting":elephantCue=="approaching"?"Coming to your food":elephantCue=="eating"?"Eating your leaves":elephantCue=="finished"?"Yum! Thank you":"Tap the leaves";
                     if(z.food.Any(f=>f.actor==Actor && f.species=="elephant" && f.pieces.Length>0))cue=cue.Replace("leaves","snack");
                     zooSigns[info.id].text=info.name+"\n"+cue;
                 }else if(!savannaFeeding.ContainsKey(info.id))zooSigns[info.id].text=info.name+(animal.owner==""?"\nTap the "+info.FoodName:animal.owner==Actor?"\nComing for your food":"\nTaking turns");
@@ -338,52 +326,26 @@ namespace LittleWeeps.Client
                 var r=zooLeaves[f.actor];var a=z.animals.FirstOrDefault(v=>v.owner==f.actor);var shown=f.species!="" && visible.Contains(f.species) && a?.consumed!=true;r.gameObject.SetActive(shown);
                 if(!shown)continue;
                 var info=ZooCatalog.Get(f.species);TickCarriedSnack(r,f);
-                var p=ReadPlayer(f.actor);var height=f.offered?info.FeedHeight:70;var x=p.x;var offset=65f;
-                if(f.species=="elephant" && f.offered){
-                    x=ZooLayout.SlotX(f.species,f.slot);height=33;offset=0;
-                    // Lift the offered leaves from the low tray into the
-                    // original reachable socket before authoritative consumption.
-                    if(a?.phase==ZooPhase.Eat){var lift=Mathf.Clamp01((float)a.age/1.4f);height=Mathf.Lerp(33,info.FeedHeight,lift);offset=Mathf.Lerp(0,65,lift);}
-                }
-                r.anchoredPosition=f.offered && savannaFeeding.TryGetValue(f.species,out var presentation)?SavannaFoodPoint(f,z.animals.First(v=>v.species==f.species),presentation):f.species=="brachiosaurus" && f.offered?BrachiosaurusFoodPoint(f,z.animals.First(v=>v.species=="brachiosaurus")):ToBoard(x,p.y)+new Vector2(offset,height)*sceneScale;r.localScale=Vector3.one*sceneScale;
+                // Food follows the same displayed player position while walking,
+                // waiting and eating. Only authoritative consumption removes it.
+                r.anchoredPosition=ZooHandFoodPoint(f.actor);r.localScale=Vector3.one*sceneScale;
             }
             TickSavannaSpots(z,visible);
-            TickElephantHabitat(visible.Contains("elephant"));TickElephantStory(z,elephant,visible.Contains("elephant"));TickElephantSnack(visible.Contains("elephant"));TickElephantSurprises(z,visible.Contains("elephant"));TickBrachiosaurusSpots(z,visible.Contains("brachiosaurus"));TickZooFossils();TickZooAudio(z,visible);SortDepth();TickZooPhotos(entrance || habitat);
+            TickElephantSnack(visible.Contains("elephant"));TickElephantSurprises(z,visible.Contains("elephant"));TickBrachiosaurusSpots(z,visible.Contains("brachiosaurus"));TickZooFossils();TickZooAudio(z,visible);SortDepth();TickZooPhotos(entrance || habitat);
         }
         private void AddZooDepth(Action<RectTransform,float,int,string> add)
         {
             foreach(var r in zooObjects){var ground=r.anchoredPosition.y;var part=0;
                 if(r.name.StartsWith("Zoo held portion")){
-                    ground-=260*sceneScale;part=4;
                     var actor=r.name.Substring("Zoo held portion ".Length);
-                    var portion=Zoo?.food.FirstOrDefault(f=>f.actor==actor);
-                    if(portion!=null && savannaFeeding.ContainsKey(portion.species) && portion.offered){ground=ToBoard(ZooLayout.SlotX(portion.species,portion.slot),100).y;part=2;}
-                    var elephant=Zoo?.animals.FirstOrDefault(a=>a.species=="elephant");
-                    if(portion?.species=="elephant" && portion.offered && elephant?.owner==actor && elephant.phase==ZooPhase.Eat){
-                        // Once the elephant lifts the tray's leaves, the child
-                        // stands in front of that handoff. Carried/waiting leaves
-                        // keep their foreground order; lifted food cannot paint
-                        // over either child's face on its way to the trunk.
-                        ground=ToBoard(ZooLayout.SlotX("elephant",portion.slot),100).y;part=2;
-                    }
+                    var p=ReadPlayer(actor);var point=Shared && shared.Connected?shared.VisualPosition(actor):new Vector2(p.x,p.y);
+                    ground=ToBoard(point.x,point.y).y;part=4;
                 }
                 // These raised objects belong to the front activity row. Their
                 // drawn height must not let a wandering dinosaur's call target
                 // cover the sand; children at Y45 still stand in front.
                 if(r==fossilTray || r==fossilBoard){ground=ToBoard(0,100).y;part=0;}
                 if(r.name.StartsWith("Fossil carried piece ",StringComparison.Ordinal)){var i=int.Parse(r.name.Substring("Fossil carried piece ".Length));var id=Fossils.holders[i];if(id!="")ground=ToBoard(ReadPlayer(id).x,ReadPlayer(id).y).y;part=4;}
-                if(r==storyBall){
-                    var s=Zoo.story;
-                    if(s.carrier!=""){var p=ReadPlayer(s.carrier);ground=ToBoard(p.x,p.y).y;part=4;}
-                    else if(s.phase>=ElephantStoryPhase.Returned){ground=ToBoard(ElephantStory.BasketX,100).y-5*sceneScale;part=3;}
-                    else ground-=30*sceneScale;
-                }
-                // The small deliberate invitation must remain tappable when
-                // the broad animal-call surface wanders behind this basket.
-                if(r.name.StartsWith("Habitat prop ")){ground=ToBoard(0,ElephantHabitat.Y).y;part=r.name.EndsWith(" 1",StringComparison.Ordinal)?1:0;}
-                if(r.name.StartsWith("Habitat in-use picture ")){ground=ToBoard(0,100).y;part=5;}
-                if(r==habitatBasket)ground=ToBoard(ElephantHabitat.BasketX,100).y;
-                if(r==storyBasket)ground=ToBoard(ElephantStory.BasketX,100).y;
                 add(r,ground,part,r.name);
             }
         }
@@ -392,7 +354,7 @@ namespace LittleWeeps.Client
             ResetZooAudio();zooGateTextures.Clear();zooGatePictures.Clear();
             foreach(var r in zooObjects)if(r!=null)Destroy(r.gameObject);zooObjects.Clear();
             foreach(var t in zooTextures.Values)if(t!=null)Resources.UnloadAsset(t);zooTextures.Clear();zooAnimals.Clear();zooSamples.Clear();zooLeaves.Clear();zooSigns.Clear();zooBuckets.Clear();zooRails.Clear();
-            ResetSavannaFeeding();ResetBrachiosaurus();ResetFossils();ResetElephantHabitat();ResetElephantStory();ResetElephantSnack();ResetZooNavigation();ResetZooPhotos();zooEntrance=null;zooApproach=false;
+            ResetSavannaFeeding();ResetBrachiosaurus();ResetFossils();ResetElephantSnack();ResetZooNavigation();ResetZooPhotos();zooEntrance=null;zooApproach=false;
             ResetElephantObservation();elephantFinishEvents=0;elephantCue="";ClearZooFailure();
             elephantBasket=null;elephantCareFinishEvents=0;elephantWater=null;elephantCuriousLeaf=null;elephantWaterEvents=0;
             Array.Clear(elephantAvatars,0,elephantAvatars.Length);

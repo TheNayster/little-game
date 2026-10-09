@@ -2534,6 +2534,8 @@ The [VPS hosting plan](implementation/vps-hosting-plan-2026-09-24.html) records 
 
 ### Zoo world expansion — September 30
 
+**October8 owner correction:** Across all16 exhibits, remove ball-return stories and player-placeable decorations; neither belongs in future rollout. Feeding keeps food above the character until the animal directly reaches/eats it. Preserve preparation, quick buckets, shared queues, fixed equipment, original scenery and other approved activities. [Current implementation and limits](world-audits/zoo/overhead-feeding-removals.md).
+
 The user requests a sixth menu destination: a zoo with moving animals, living dinosaurs, fish and reptiles, sounds and a food bucket beside every exhibit. [The deep Zoo research](implementation/zoo-world-research-2026-09-30.html) defines sixteen starter species, four connected trails, species-specific routines and four shared offering positions per exhibit. This adds to WORLD-01, WORLD-02, FAMILY-01 and ITEM-02; it does not remove the existing destinations or replace the twenty dinosaur toy requirement. All sixteen starter species and four connected trails now have playable movement, feeding and sound. The entrance uses circular animal pictures so children can choose without reading. Native Windows checks cover all sixteen exhibits and one shared four-player queue. Family visual acceptance, optional layered polish and actual-device delivery remain separate. All four players see the same animal routines and food queue, with independent exits. Repeated food taps preserve the current feeding flow, and animals approach their food more quickly.
 
 

@@ -1,5 +1,7 @@
 # Dinosaur Valley fossil-discovery pilot — milestone12
 
+**Current owner correction, October8:** Zoo-wide ball-return stories and player-placed decorations are retired; all sixteen species use food held overhead until eaten. Preserve ordinary scenery/toys, fixed activity equipment and other approved features. Older pilot requirements/evidence below are historical. [Current scope, save cleanup and build evidence](overhead-feeding-removals.md).
+
 ## Final acceptance closure — October 8, build518
 
 **Milestone12 is functionally complete.** The owner accepted the corrected515 Brachiosaurus layout sufficiently to continue from main `8097814`. Inspection found the entire reveal/pickup/match/completion/save loop already implemented. This pass preserves its artwork, compact tray/guide, visible helper row, lowered-mouth feeding, four feeding tickets, authority and persistence. No new exhibit or animal activity was added.

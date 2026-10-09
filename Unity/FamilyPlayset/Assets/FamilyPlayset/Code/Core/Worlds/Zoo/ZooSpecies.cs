@@ -18,7 +18,6 @@ namespace LittleWeeps.Core
         {this.id=id;this.name=name;this.area=area;this.panel=panel;this.food=food;this.habitat=habitat;this.size=size;this.mouthX=mouthX;this.mouthY=mouthY;this.speed=speed;this.approachSpeed=approachSpeed;this.activity=activity;this.sound=sound;this.footOffset=footOffset;}
         public float Center=>1200+panel*2400;
         public float FeedY=>habitat==ZooHabitat.Tank?330:270;
-        public float FeedHeight=>(FeedY-100)*.45f+footOffset+mouthY;
         public string FoodName=>food==ZooFoodKind.Leaves?"leaves":food==ZooFoodKind.Hay?"hay":food==ZooFoodKind.Meat?"meat":food==ZooFoodKind.Pellets?"pellets":food==ZooFoodKind.Seaweed?"seaweed":food==ZooFoodKind.Fish?"fish":"insects";
         // Pretend snack pilot: reuse the catalog's plant-food pictures. This is
         // an explicit game acceptance rule, not real-world dietary advice.

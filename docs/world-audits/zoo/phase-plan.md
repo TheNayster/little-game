@@ -1,5 +1,7 @@
 # Zoo screenshot and review phase plan
 
+**Current owner correction, October8:** Zoo-wide ball-return stories and player-placed decorations are retired; all sixteen species use food held overhead until eaten. Preserve ordinary scenery/toys, fixed activity equipment and other approved features. Older pilot requirements/evidence below are historical. [Current scope, save cleanup and build evidence](overhead-feeding-removals.md).
+
 October8 milestone12: one Dinosaur Valley fossil-discovery pilot. [Controls, shared/save contracts, changed paths, checks and limits](fossil-discovery.md). Release515 layout correction and final four-client checks pass; two normal-input clients remain open for owner review. Further fossil work/rollout paused; diagnostic branch remains separate.
 
 Milestone8: optional elephant-only snacks. Complete scoped checks and live review, then stop; do not expand to other species/later activities. [Current record](elephant-snack.md).

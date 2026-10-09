@@ -22,6 +22,8 @@
 
 ## Game implementation workflow
 
+- October8 Zoo owner correction: no ball-return/story system or player-placeable decorations in any of the16 exhibits or future rollout. Food and prepared snacks stay attached overhead until direct animal eating; no feeding trays, transfers or tall supports. Preserve queues, player identification, phase cues, finish reactions, original scenery and other approved activities. See `docs/world-audits/zoo/overhead-feeding-removals.md`; older accepted pilots are historical.
+
 - Daycare Adventure and picnic: one start joins connected players already in Daycare. Arriving or returning from another world joins the active shared group; explicit Leave/Return respects the independent exit for that visit. Keep one progress checkpoint and NPC cast for up to four players.
 
 - Read `docs/current-decisions.md` first. The user explicitly selected PC/VPS-only multiplayer on September 25: clients never host, offline solo stays private, and reconnecting loads the authoritative server world without importing offline edits. G4/AUTO-02 are retired, not pending gates. Do not revive retired scope from old research or experiments.

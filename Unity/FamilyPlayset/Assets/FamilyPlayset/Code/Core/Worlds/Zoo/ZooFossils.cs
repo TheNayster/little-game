@@ -46,7 +46,7 @@ namespace LittleWeeps.Core
                 member=Array.IndexOf(f.members,"");if(member<0)return "fossil-helping";
                 // Food is never silently canceled. Finish/return it explicitly.
                 var food=state.zoo.food.Single(v=>v.actor==p.id);
-                if(food.species!="" || food.preparing || StoryHeld(p.id) || state.toys.Any(t=>t.holder==p.id))return "hands-full";
+                if(food.species!="" || food.preparing || state.toys.Any(t=>t.holder==p.id))return "hands-full";
                 f.members[member]=p.id;f.epochs[member]=++f.nextEpoch;return null;
             }
             if(member<0 || epoch!=f.epochs[member])return "fossil-changed";

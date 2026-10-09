@@ -1,5 +1,7 @@
 # Elephant habitat decoration — milestone 11
 
+**Current owner correction, October8:** Zoo-wide ball-return stories and player-placed decorations are retired; all sixteen species use food held overhead until eaten. Preserve ordinary scenery/toys, fixed activity equipment and other approved features. Older pilot requirements/evidence below are historical. [Current scope, save cleanup and build evidence](overhead-feeding-removals.md).
+
 WORLD-02 / FAMILY-01 / ITEM-02. Elephant-only picture placement pilot; preserve all previous Zoo activities. No other exhibit expansion, fossils, video, device installation or installed-family-server change.
 
 ## Authored space and controls

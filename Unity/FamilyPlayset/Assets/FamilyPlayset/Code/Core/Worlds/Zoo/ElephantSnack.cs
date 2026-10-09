@@ -17,7 +17,7 @@ namespace LittleWeeps.Core
         {
             if(c.target!="elephant" || !AtElephant(p))return "come-to-exhibit";
             if(c.value=="snack-begin"){
-                if(StoryHeld(p.id) || f.species!="" || state.toys.Any(t=>t.holder==p.id))return "hands-full";
+                if(f.species!="" || state.toys.Any(t=>t.holder==p.id))return "hands-full";
                 if(f.preparing)return null;
                 if(Math.Abs(p.x-ZooLayout.SnackX)>200 || p.y>160)return "walk-to-snack-station";
                 if(state.zoo.nextPrep>=long.MaxValue-1)return "portion-limit";

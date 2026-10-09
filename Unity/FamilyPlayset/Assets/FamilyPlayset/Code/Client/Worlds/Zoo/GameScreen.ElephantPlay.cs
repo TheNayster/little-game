@@ -31,7 +31,7 @@ namespace LittleWeeps.Client
             leaf.rectTransform.localRotation=Quaternion.Euler(0,0,-15);
             Plain(elephantFloat,"Leaf vein",Vector2.zero,new Vector2(36,3),new Color(.72f,.81f,.42f));
             // A separate pump beside the left-hand pool leaves its water/leaf
-            // visible and puts the whole toy away from the right-hand food tray.
+            // visible and puts the whole toy away from the right-hand feeding positions.
             Plain(elephantWater,"Pump post",new Vector2(-130,75),new Vector2(30,140),new Color(.41f,.62f,.64f));
             Plain(elephantWater,"Pump spout",new Vector2(-83,120),new Vector2(106,24),new Color(.41f,.62f,.64f));
             Plain(elephantWater,"Spout end",new Vector2(-35,107),new Vector2(24,40),new Color(.41f,.62f,.64f));
@@ -52,7 +52,7 @@ namespace LittleWeeps.Client
         {
             // Existing drawn ear/trunk poses articulate the action. Body scale
             // and the feeding sockets remain exactly as approved.
-            if(a.phase==ZooPhase.Greet || a.phase==ZooPhase.Curious || a.phase==ZooPhase.Splash || a.phase==ZooPhase.StoryClue || a.phase==ZooPhase.StoryReact)return 4;
+            if(a.phase==ZooPhase.Greet || a.phase==ZooPhase.Curious || a.phase==ZooPhase.Splash)return 4;
             return ordinary;
         }
         private void PoseElephant(ElephantArtView image,ZooAnimal a,double age)
@@ -61,15 +61,13 @@ namespace LittleWeeps.Client
             if(a.phase==ZooPhase.Greet)image.Pose(24*wave,4*Mathf.Sin((float)age*5)*wave);
             else if(a.phase==ZooPhase.Curious)image.Pose(-12*wave,0);
             else if(a.phase==ZooPhase.Splash)image.Pose(28*wave,2*wave);
-            else if(a.phase==ZooPhase.StoryClue)image.Pose(-8*wave,2*wave);
-            else if(a.phase==ZooPhase.StoryReact)image.Pose(a.age<.55?-5*Mathf.Sin((float)a.age/.55f*Mathf.PI):0,3*wave);
+            else if(a.owner!="" && (a.phase==ZooPhase.Approach || a.phase==ZooPhase.Eat)){
+                var reach=a.phase==ZooPhase.Eat?1:Mathf.SmoothStep(0,1,Mathf.Clamp01(((float)(age/a.duration)-.65f)/.35f));
+                var finish=a.consumed && a.fed==elephantReactionFed?Mathf.Sin(Mathf.Clamp01((float)(age-1.4)/1.2f)*Mathf.PI*2):0;
+                image.Pose(65*reach+finish*3,finish*2);
+            }
             else if(a.phase==ZooPhase.CareFinish && Zoo.careSession==elephantCareReaction)image.Pose(12*wave,5*Mathf.Sin((float)age*7)*wave);
-            else if(a.phase==ZooPhase.PropUse){
-                var prop=Zoo.habitat.props.FirstOrDefault(p=>p.id==Zoo.habitat.usingId);
-                if(prop?.kind==ElephantPropKind.Leaves)image.Pose(-7*wave,0);
-                else if(prop?.kind==ElephantPropKind.Scratch)image.Pose(0,5*Mathf.Sin((float)age*4)*wave);
-                else image.Pose(3*wave,-2*wave);
-            }else image.Pose(0,0);
+            else image.Pose(0,0);
         }
         private void TickElephantPlay(ZooState z,ZooAnimal a,bool shown,double animalAge)
         {

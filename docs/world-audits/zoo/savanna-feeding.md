@@ -1,5 +1,7 @@
 # Savanna feeding rollout — October 8, 2026
 
+**Current owner correction, October8:** Zoo-wide ball-return stories and player-placed decorations are retired; all sixteen species use food held overhead until eaten. Preserve ordinary scenery/toys, fixed activity equipment and other approved features. Older pilot requirements/evidence below are historical. [Current scope, save cleanup and build evidence](overhead-feeding-removals.md).
+
 Scope: WORLD-02 / FAMILY-01 / ITEM-02. Giraffe, zebra and lion feeding only; other trails need their own adaptations. Starts from `78b0047` / release518. No care, water, stories, decoration, snack preparation or fossil activities were added to these animals.
 
 ## Current-source inspection and appearance
