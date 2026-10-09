@@ -1,5 +1,9 @@
 # Playable Zoo artwork
 
+## Brachiosaurus fossil pilot - milestone 12, October 8
+
+`fossil-picture.svg` is the editable reference for three large toy-picture sections. `FossilPicture.cs` owns matching native outlined geometry; `GameScreen.ZooFossils.cs` owns the tray, supported guide and picture controls. The pilot owns these assets; retire only after these consumers migrate to a reviewed replacement. `BrachiosaurusArtView.cs` bends the retained original atlas for the pilot's supported-branch feeding presentation. No other species adaptation or raster replacement. [Layout, authority, saves and review evidence](../../../docs/world-audits/zoo/fossil-discovery.md).
+
 ## Elephant surprises - milestone 7, October 8
 
 `elephant-surprises.svg` is the original editable reference for the leafy garden bird, flowers and three butterflies. `GameScreen.ElephantSurprises.cs` owns the matching retained UI geometry; `Tools/Content/Prepare-ElephantSurprises.py` regenerates the vector reference and original soft procedural chirp/rustle WAV files. These are background visitors, outside the selectable animal roster and feeding queue. Retire only after these consumers migrate to a reviewed replacement. [Controls, authority and live review](../../../docs/world-audits/zoo/elephant-surprises.md).

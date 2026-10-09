@@ -1,5 +1,7 @@
 # Zoo world audit
 
+October8 milestone12: one Dinosaur Valley fossil-discovery pilot. [Controls, shared/save contracts, changed paths, checks and limits](fossil-discovery.md). Release515 layout correction and final four-client checks pass; two normal-input clients remain open for owner review. Further fossil work/rollout paused; diagnostic branch remains separate.
+
 October8 milestone8: optional elephant-only snack preparation; owner accepted bird/butterfly discoveries. [Controls, authority, compatibility and evidence](elephant-snack.md).
 
 October 8 milestone7 elephant-only hidden surprises: [controls, locations, replay, authority, changed files and native acceptance](elephant-surprises.md). Technical checks pass across the scoped native runs; owner live review remains open. This does not complete the whole-world audit below.

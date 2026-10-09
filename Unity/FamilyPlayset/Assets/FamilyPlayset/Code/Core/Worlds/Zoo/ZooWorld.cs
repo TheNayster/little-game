@@ -33,6 +33,7 @@ namespace LittleWeeps.Core
         public ZooFood[] food;
         public long nextTicket;
         public long nextPrep;
+        public ZooFossilState fossils=new ZooFossilState();
         public ElephantHabitatState habitat=new ElephantHabitatState();
         public ElephantStoryState story=new ElephantStoryState();
         // Additive snapshot hints, cleared on restore. They never represent a
@@ -53,7 +54,7 @@ namespace LittleWeeps.Core
         public bool careComplete,careReacted;
         public double careSeconds;
         public long careOrder,waterOrder,nextPlayOrder;
-        public ZooState Copy(){var z=(ZooState)MemberwiseClone();z.story=story.Copy();z.habitat=habitat.Copy();z.surpriseSequence=(int[])surpriseSequence.Clone();z.surpriseAge=(double[])surpriseAge.Clone();z.surpriseVariation=(int[])surpriseVariation.Clone();z.animals=animals.Select(a=>a.Copy()).ToArray();z.food=food.Select(f=>f.Copy()).ToArray();z.careMembers=(string[])careMembers.Clone();z.careProgress=(int[])careProgress.Clone();z.carePatch=(int[])carePatch.Clone();z.careMemberEpoch=(int[])careMemberEpoch.Clone();z.careBrushAge=(double[])careBrushAge.Clone();return z;}
+        public ZooState Copy(){var z=(ZooState)MemberwiseClone();z.fossils=fossils.Copy();z.story=story.Copy();z.habitat=habitat.Copy();z.surpriseSequence=(int[])surpriseSequence.Clone();z.surpriseAge=(double[])surpriseAge.Clone();z.surpriseVariation=(int[])surpriseVariation.Clone();z.animals=animals.Select(a=>a.Copy()).ToArray();z.food=food.Select(f=>f.Copy()).ToArray();z.careMembers=(string[])careMembers.Clone();z.careProgress=(int[])careProgress.Clone();z.carePatch=(int[])carePatch.Clone();z.careMemberEpoch=(int[])careMemberEpoch.Clone();z.careBrushAge=(double[])careBrushAge.Clone();return z;}
     }
     public static class ZooLayout
     {
@@ -122,7 +123,7 @@ namespace LittleWeeps.Core
         private static void NormalizeZooInline(SoloSnapshot s)
         {
             if(s?.zoo!=null){
-                NormalizeHabitat(s.zoo);
+                NormalizeHabitat(s.zoo);NormalizeFossils(s.zoo);
                 if(s.zoo.story==null)s.zoo.story=new ElephantStoryState();
                 if(s.zoo.food!=null)foreach(var f in s.zoo.food)if(f!=null && f.pieces==null)f.pieces=Array.Empty<int>();
                 if(s.zoo.surpriseSequence==null)s.zoo.surpriseSequence=new int[2];
@@ -147,7 +148,7 @@ namespace LittleWeeps.Core
             if(z==null || z.animals==null || !(z.animals.Length==16 || s.schema<WorldLayout.Schema && z.animals.Length==2) || !z.animals.Select(a=>a?.species).SequenceEqual(z.animals.Length==2?ZooLayout.Species.Take(2):ZooLayout.Species) ||
                 z.food==null || !z.food.Select(f=>f?.actor).OrderBy(id=>id).SequenceEqual(s.players.Select(p=>p.id).OrderBy(id=>id)) ||
                 z.nextTicket<0 || z.nextTicket==long.MaxValue)throw new InvalidOperationException("Invalid zoo record.");
-            ValidateStory(s);
+            ValidateStory(s);ValidateFossils(s);
             if(z.surpriseSequence==null || z.surpriseSequence.Length!=2 || z.surpriseSequence.Any(n=>n<0) || z.surpriseAge==null || z.surpriseAge.Length!=2 || z.surpriseAge.Any(n=>!ZooClock(n,10)) || z.surpriseVariation==null || z.surpriseVariation.Length!=2 || z.surpriseVariation.Any(n=>n<0 || n>1))throw new InvalidOperationException("Invalid Zoo surprise hints.");
             if(z.waterSequence<0 || !ZooClock(z.waterAge,10) || !ZooClock(z.waterCooldown,ZooLayout.WaterCooldown) ||
                 !ZooClock(z.waterPendingSeconds,ZooLayout.WaterExpiry) || !ZooClock(z.greetingCooldown,30) || !ZooClock(z.curiousCooldown,40) ||
@@ -183,7 +184,7 @@ namespace LittleWeeps.Core
         private static void SuspendZoo(SoloSnapshot s)
         {
             if(s.zoo==null)return;
-            ResetStory(s.zoo);s.zoo.habitat.usingId="";s.zoo.habitat.pendingId="";s.zoo.habitat.cooldown=25;
+            SuspendFossils(s.zoo);ResetStory(s.zoo);s.zoo.habitat.usingId="";s.zoo.habitat.pendingId="";s.zoo.habitat.cooldown=25;
             foreach(var a in s.zoo.animals.Where(a=>a.owner!="" || a.phase>=ZooPhase.Greet))ZooLayout.Routine(a);
             foreach(var f in s.zoo.food)f.Clear();
             s.zoo.surpriseSequence=new int[2];s.zoo.surpriseAge=new double[]{10,10};s.zoo.surpriseVariation=new int[2];
@@ -197,7 +198,7 @@ namespace LittleWeeps.Core
             foreach(var a in state.zoo.animals.Where(a=>a.owner==actor))ZooLayout.Routine(a);f.Clear();return true;
         }
         public bool ReleaseZoo(string actor){
-            var changed=CancelZoo(actor)|DropStory(actor);var z=state.zoo;if(z==null)return changed;
+            var changed=CancelZoo(actor)|DropStory(actor)|LeaveFossils(actor);var z=state.zoo;if(z==null)return changed;
             changed|=z.careMembers.Contains(actor);LeaveElephantCare(actor);elephantVisitors.Remove(actor);
             if(elephantVisitors.Count==0 && z.story.phase!=ElephantStoryPhase.Available){EndStoryIfEmpty();changed=true;}
             // An empty FamilySession stops ticking, so the last disconnect must
@@ -217,9 +218,10 @@ namespace LittleWeeps.Core
                 if(Math.Abs(p.x-gateX)>200 || p.y>160)return "walk-to-zoo-gate";
                 if(p.visit>=long.MaxValue-1)return "visit-limit";TravelPlayer(p,c.target);p.x=arrival;return null;
             }
+            if(c.value.StartsWith("fossil-",StringComparison.Ordinal))return FossilOperation(c,p);
             if(c.value.StartsWith("habitat-",StringComparison.Ordinal))return HabitatOperation(c,p);
             if(c.value.StartsWith("story-",StringComparison.Ordinal))return StoryOperation(c,p);
-            if(c.value=="return"){CancelZoo(p.id);LeaveElephantCare(p.id);DropStory(p.id);return null;}
+            if(c.value=="return"){CancelZoo(p.id);LeaveElephantCare(p.id);DropStory(p.id);LeaveFossils(p.id);return null;}
             if(c.value=="surprise"){
                 var i=c.target==ZooLayout.BirdSurprise?0:c.target==ZooLayout.ButterflySurprise?1:-1;
                 if(i<0)return "unknown-zoo-surprise";
@@ -243,7 +245,7 @@ namespace LittleWeeps.Core
             var food=z.food.Single(f=>f.actor==p.id);
             if(c.value.StartsWith("snack-",StringComparison.Ordinal))return ElephantSnackOperation(c,p,food);
             if(c.value=="take"){
-                if(StoryHeld(p.id) || food.species!="" || food.preparing || state.toys.Any(t=>t.holder==p.id))return "hands-full";
+                if(FossilHeld(p.id) || StoryHeld(p.id) || food.species!="" || food.preparing || state.toys.Any(t=>t.holder==p.id))return "hands-full";
                 if(Math.Abs(p.x-ZooLayout.BucketX(c.target))>200 || p.y>160)return "walk-to-food-bucket";
                 return LeaseZooFood(food,c.target);
             }
@@ -256,6 +258,7 @@ namespace LittleWeeps.Core
         private bool AdvanceZoo(double seconds,string[] active,out bool visible)
         {
             visible=false;var z=state.zoo;if(z==null)return false;
+            visible|=AdvanceFossils(seconds,active);
             z.habitat.cooldown=Math.Max(0,z.habitat.cooldown-seconds);
             if(!ElephantHabitat.AnimalPhase(z.animals[0].phase))z.habitat.usingId="";
             for(var i=0;i<2;i++)z.surpriseAge[i]=Math.Min(10,z.surpriseAge[i]+seconds);

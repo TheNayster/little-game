@@ -3,4 +3,5 @@
   <ItemGroup><Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/**/*.cs" Link="Core/%(Filename)%(Extension)" /></ItemGroup>
   <ItemGroup><Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/ElephantStoryTests.cs" Link="ElephantStoryTests.cs" /></ItemGroup>
   <ItemGroup><Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/ElephantHabitatTests.cs" Link="ElephantHabitatTests.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Editor/ZooFossilTests.cs" Link="ZooFossilTests.cs" /></ItemGroup>
 </Project>
