@@ -10,8 +10,8 @@ TRAILS=['zoo-savanna','zoo-dinosaurs','zoo-reptiles','zoo-aquarium']
 GROUPS=[['elephant','giraffe','zebra','lion'],['brachiosaurus','triceratops','stegosaurus','tyrannosaurus'],['tortoise','gecko','iguana','crocodile'],['clownfish','blue-tang','zebra-shark','penguin']]
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('build',type=int);p.add_argument('--baseline',action='store_true');p.add_argument('--layout-only',action='store_true');args=p.parse_args()
- run=Run(args.build,extended_test_lifetime=True);out=run.path/'navigation';out.mkdir();checks=[];passed=False
+ p=argparse.ArgumentParser();p.add_argument('build',type=int);p.add_argument('--baseline',action='store_true');p.add_argument('--layout-only',action='store_true');p.add_argument('--d3d11',action='store_true');args=p.parse_args()
+ run=Run(args.build,extended_test_lifetime=True,graphics_api='d3d11' if args.d3d11 else None);out=run.path/'navigation';out.mkdir();checks=[];passed=False
  print('EVIDENCE '+str(out),flush=True)
  def cmd(v,action,**kw):
   r=home.command(v,action,**kw);require(r['accepted'],str(r));home.ready(v)

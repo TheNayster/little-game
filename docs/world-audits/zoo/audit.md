@@ -1,5 +1,7 @@
 # Zoo world audit
 
+October8 Savanna feeding rollout: giraffe, zebra and lion only. Final525 phase-driven food contact, four offering pictures and species-specific reactions are ready for owner review. [Controls, shared components, exact tests and limits](savanna-feeding.md). Other trails and animal activities require their own adaptations.
+
 October8 milestone12: one Dinosaur Valley fossil-discovery pilot. [Controls, shared/save contracts, changed paths, checks and limits](fossil-discovery.md). Release515 layout correction and final four-client checks pass; two normal-input clients remain open for owner review. Further fossil work/rollout paused; diagnostic branch remains separate.
 
 October8 milestone8: optional elephant-only snack preparation; owner accepted bird/butterfly discoveries. [Controls, authority, compatibility and evidence](elephant-snack.md).

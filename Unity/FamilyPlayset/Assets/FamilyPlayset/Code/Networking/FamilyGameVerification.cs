@@ -66,6 +66,7 @@ namespace LittleWeeps.NetworkProbe
             public int surpriseSounds,surpriseObjects;public Vector2[] elephantBrushPositions;public Color[] zooRouteColors;public int elephantCareFinishEvents;public string elephantCue;public int elephantSlot,elephantFinishEvents,elephantWaterEvents,elephantEffectObjects;
             public long allocatedMemory,managedMemory;
             public Vector2 storyBallPoint,storyTrunkPoint;public double zooPhotoCaptureMilliseconds,zooPhotoSaveMilliseconds;public bool zooPhotoOpen,zooPhotoSaving;public string zooAlbumPath,zooPhotoFeedback;public int zooPhotoLoadedTextures;public LittleWeeps.Client.ZooAlbumManifest zooAlbum;
+            public string savannaCue;public float savannaMouthGap;public int[] savannaFinishEvents;
             public string brachiosaurusCue;public float brachiosaurusMouthGap;public int fossilCelebrations;public bool elephantHabitatOpen;public int elephantHabitatPreview;public bool elephantSnackOpen;public bool zooMapOpen,zooNavigationBusy;public string zooCurrentExhibit,zooPreviousDestination,zooNextDestination,zooMapShownTrail,zooMapMarker;
             public LittleWeeps.Core.CreekBoatState creekBoats;public bool boatWorkshopOpen,ownCreekBoatInView;public int visibleCreekBoats;
             public LittleWeeps.Core.PondState creekFishing;public bool creekFishingCloseup,creekFishingWaterPlaying;
@@ -389,6 +390,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.zooMapMarker=screen.ZooMapMarker;
                 evidence.zooPhotoOpen=screen.ZooPhotoOpen;evidence.zooPhotoSaving=screen.ZooPhotoSaving;evidence.zooAlbumPath=screen.ZooAlbumPath;evidence.zooAlbum=screen.ZooAlbumData;evidence.zooPhotoLoadedTextures=screen.ZooPhotoLoadedTextures;evidence.zooPhotoFeedback=screen.ZooPhotoFeedback;
                 evidence.storyBallPoint=screen.StoryBallPoint;evidence.storyTrunkPoint=screen.StoryTrunkPoint;evidence.zooPhotoCaptureMilliseconds=screen.ZooPhotoCaptureMilliseconds;evidence.zooPhotoSaveMilliseconds=screen.ZooPhotoSaveMilliseconds;
+                evidence.savannaCue=screen.SavannaCue;evidence.savannaMouthGap=screen.SavannaMouthGap;evidence.savannaFinishEvents=screen.SavannaFinishEvents;
                 evidence.elephantBrushPositions=screen.ElephantBrushPositions;evidence.zooRouteColors=screen.ZooRouteColors;evidence.elephantCareFinishEvents=screen.ElephantCareFinishEvents;evidence.elephantCue=screen.ElephantCue;evidence.elephantSlot=screen.ElephantSlot;evidence.elephantFinishEvents=screen.ElephantFinishEvents;
                 evidence.surpriseSounds=screen.SurpriseSounds;evidence.surpriseObjects=screen.SurpriseObjects;evidence.elephantWaterEvents=screen.ElephantWaterEvents;evidence.elephantEffectObjects=screen.ElephantEffectObjects;
                 evidence.allocatedMemory=UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();evidence.managedMemory=GC.GetTotalMemory(false);
