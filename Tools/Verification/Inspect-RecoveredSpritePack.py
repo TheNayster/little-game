@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import math
+import wave
 from pathlib import Path
 from PIL import Image
 
@@ -47,6 +48,33 @@ def main():
             if image.size!=(512,512) or image.getchannel('A').getbbox() is None:errors.append({'kind':'invalid-cake-sprite','name':row['name']})
         receipts.append({'file':row['texture'],'sha256':hashlib.sha256(file.read_bytes()).hexdigest()})
     prop_keys=set()
+    for row in data.get('audio',[]):
+        file=(root/row['file']).resolve()
+        if not file.is_relative_to(root):raise ValueError('Audio path escapes content root')
+        with wave.open(str(file),'rb') as pcm:
+            if pcm.getsampwidth()!=2 or pcm.getnchannels() not in [1,2] or abs(pcm.getnframes()/pcm.getframerate()-row['duration'])>.001:errors.append({'kind':'invalid-audio','key':row['key']})
+        digest=hashlib.sha256(file.read_bytes()).hexdigest()
+        if row.get('sha256') and digest!=row['sha256']:errors.append({'kind':'audio-digest','key':row['key']})
+        receipts.append({'file':row['file'],'sha256':digest})
+    floor=data.get('danceFloor')
+    if floor:
+        if len(floor['cells'])!=36 or len(floor['colors'])!=6:errors.append({'kind':'floor-inventory'})
+        with Image.open(root/floor['texture']) as image:
+            if image.getchannel('A').getbbox() is None:errors.append({'kind':'empty-floor-atlas'})
+        for cell in floor['cells']:
+            uv=cell['uv']
+            if uv['x']<0 or uv['y']<0 or uv['width']<=0 or uv['height']<=0 or uv['x']+uv['width']>1.00001 or uv['y']+uv['height']>1.00001:errors.append({'kind':'floor-uv','id':cell['sourceRendererId']})
+        receipts.append({'file':floor['texture'],'sha256':hashlib.sha256((root/floor['texture']).read_bytes()).hexdigest()})
+    castle=data.get('castle')
+    if castle:
+        width,height=int(castle['pixels']['width']),int(castle['pixels']['height'])
+        with Image.open(root/castle['texture']) as image:
+            if image.size!=(width*5,height):errors.append({'kind':'castle-atlas-dimensions'})
+            frames={hashlib.sha256(image.crop((i*width,0,(i+1)*width,height)).tobytes()).hexdigest() for i in range(5)}
+            if len(frames)!=5:errors.append({'kind':'static-castle-deformation','distinct':len(frames)})
+        with Image.open(root/castle['front']) as image:
+            if image.size!=(width,height) or image.getchannel('A').getbbox() is None:errors.append({'kind':'invalid-castle-arch'})
+        for name in [castle['texture'],castle['front']]:receipts.append({'file':name,'sha256':hashlib.sha256((root/name).read_bytes()).hexdigest()})
     for row in data['props']:
         key=(row['name'],row.get('view','front'))
         if key in prop_keys:errors.append({'kind':'duplicate-prop','key':key})

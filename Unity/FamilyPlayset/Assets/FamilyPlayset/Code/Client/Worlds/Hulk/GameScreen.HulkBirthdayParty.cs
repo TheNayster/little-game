@@ -37,6 +37,8 @@ namespace LittleWeeps.Client
         private Button birthdayLeaveQueue;
         private double birthdayVendorSeen=-2,birthdayVendorOrigin,birthdayVendorHappyUntil;
         private int birthdayVendorCount=-1;
+        private Vector2 birthdayCakeTarget=new Vector2(2400,200);
+        private readonly List<Image> birthdayCakeChoices=new List<Image>();
         private RawImage BirthdayPicture(Transform parent,string name,Vector2 point,Vector2 size)
         {var image=Rect(parent,name,point,size).gameObject.AddComponent<RawImage>();image.raycastTarget=false;return image;}
         private Text BirthdayButton(Transform parent,string name,Vector2 point,Vector2 size,Action clicked)
@@ -50,6 +52,10 @@ namespace LittleWeeps.Client
             birthdayWorldCake=Rect(Board,"Shared birthday cake",Vector2.zero,new Vector2(420,420));
             birthdayWorldCakeBase=BirthdayPicture(birthdayWorldCake,"Birthday cake table",Vector2.zero,new Vector2(420,420));
             birthdayWorldCakeBase.raycastTarget=true;NavButton(birthdayWorldCakeBase,OpenBirthdayCake);
+            for(int i=0;i<3;i++){
+                int choice=i;var target=Plain(Board,"Birthday original cake "+i,Vector2.zero,new Vector2(130,100),Color.clear,true);
+                birthdayCakeChoices.Add(target);NavButton(target,()=>{birthdayCakeTarget=new Vector2(HulkBirthday.CakeX[choice],120);ApproachBirthdayCake();});
+            }
             birthdayPartyActions=Rect(safe,"Birthday actions",Vector2.zero,new Vector2(650,60));
             birthdayUnwrapButton=BirthdayButton(birthdayPartyActions,"Open present with Hulk",new Vector2(-180,0),new Vector2(265,60),()=>{CancelBirthdayIntent();birthdayUnwrapApproach=true;birthdayUnwrapVisit=ReadPlayer(Actor).visit;}).transform.parent.GetComponent<Button>();
             birthdayEatText=BirthdayButton(birthdayPartyActions,"Eat snack",new Vector2(110,0),new Vector2(210,60),()=>{
@@ -126,16 +132,21 @@ namespace LittleWeeps.Client
             birthdayFrames["birthday-squirrel"]=(action,frame);birthdayPositions["birthday-squirrel"]=new Vector2(4445,216);birthdayViews["birthday-squirrel"]="front";birthdayMirrors["birthday-squirrel"]=false;
         }
         private void OpenBirthdayCake()
+        {birthdayCakeTarget=new Vector2(2400,200);ApproachBirthdayCake();}
+        private void ApproachBirthdayCake()
         {
             CancelBirthdayIntent();
             var player=ReadPlayer(Actor);
-            if(Mathf.Abs(player.x-2400)>GameWorld.InteractionRadius || Mathf.Abs(player.y-200)>GameWorld.InteractionRadius){birthdayCakeVisit=player.visit;birthdayCakeApproach=true;destination=new Vector2(2400,200);return;}
+            if(Vector2.Distance(new Vector2(player.x,player.y),birthdayCakeTarget)>60){birthdayCakeVisit=player.visit;birthdayCakeApproach=true;destination=birthdayCakeTarget;return;}
             destination=null;CancelPointers();birthdayCakeOpen=true;birthdayCakeApproach=false;
         }
         private void TickBirthdayPartyUi(bool visible,BirthdayState game)
         {
             if(birthdayCakePanel==null)return;
             birthdayWorldCake.gameObject.SetActive(visible);birthdayPartyActions.gameObject.SetActive(visible);
+            for(int i=0;i<birthdayCakeChoices.Count;i++){
+                var target=birthdayCakeChoices[i];target.gameObject.SetActive(visible);target.rectTransform.anchoredPosition=ToBoard(HulkBirthday.CakeX[i],336);target.rectTransform.sizeDelta=new Vector2(130,100)*sceneScale;target.transform.SetAsLastSibling();
+            }
             birthdayCakePanel.gameObject.SetActive(visible && birthdayCakeOpen);
             if(!visible){birthdayCakeOpen=false;birthdayCakeApproach=false;birthdayUnwrapApproach=false;birthdayVendorApproach=false;return;}
             var player=ReadPlayer(Actor);var held=game.props.FirstOrDefault(p=>p.holder==Actor);
@@ -150,7 +161,7 @@ namespace LittleWeeps.Client
             }
             if(birthdayCakeApproach){
                 if(player.visit!=birthdayCakeVisit)birthdayCakeApproach=false;
-                else if(Vector2.Distance(new Vector2(player.x,player.y),new Vector2(2400,200))<60)OpenBirthdayCake();
+                else if(Vector2.Distance(new Vector2(player.x,player.y),birthdayCakeTarget)<60)ApproachBirthdayCake();
                 else destination=new Vector2(2400,200);
             }
             birthdayPartyActions.anchoredPosition=new Vector2(0,-safe.rect.height*.5f+55);
@@ -177,6 +188,7 @@ namespace LittleWeeps.Client
             birthdayPartyActions=null;birthdayCakePanel=null;birthdayCakeFrame=null;birthdayWorldCake=null;birthdayCakeBase=null;birthdayWorldCakeBase=null;
             birthdayCakeStickers.Clear();birthdayWorldCakeStickers.Clear();birthdayCakeOpen=false;birthdayCakeApproach=false;birthdayUnwrapApproach=false;birthdayCakeVisit=-1;birthdayUnwrapVisit=-1;birthdayDecoration=0;
             birthdayVendorApproach=false;birthdayVendorVisit=-1;birthdayVendorSeen=-2;birthdayVendorCount=-1;birthdayVendorHappyUntil=0;
+            birthdayCakeChoices.Clear();birthdayCakeTarget=new Vector2(2400,200);
         }
     }
 }

@@ -26,7 +26,6 @@ namespace LittleWeeps.Core
         private bool BirthdayPartyOperation(SoloCommand c,SoloPlayer player,BirthdayMember member,BirthdayProp held,out string outcome)
         {
             var b=state.birthday;outcome=null;
-            bool Near(float x)=>Math.Abs(player.x-x)<=InteractionRadius && Math.Abs(player.y-200)<=InteractionRadius;
             if(c.value=="leave-queue"){LeaveBirthdayVendor(player.id);return true;}
             if(c.value=="queue"){
                 if(b.vendorQueue.Contains(player.id))return true;
@@ -65,7 +64,7 @@ namespace LittleWeeps.Core
                 member.station=c.value;BirthdayPose(member,c.value);return true;
             }
             if(c.value=="serve" || c.value=="pour"){
-                if(!Near(2400)){outcome="come-to-the-cake-table";return true;}
+                if(!HulkBirthday.NearCake(player.x,player.y,InteractionRadius)){outcome="come-to-the-cake-table";return true;}
                 if(held!=null || member.station!=""){outcome="hands-busy";return true;}
                 if(c.value=="serve" && !b.cakeReady){outcome="decorate-the-cake-first";return true;}
                 var portion=b.props.FirstOrDefault(p=>p.kind==(c.value=="serve"?"food":"drink") && p.location=="stock" && p.holder=="");
@@ -73,7 +72,7 @@ namespace LittleWeeps.Core
                 portion.holder=player.id;portion.location="held";portion.style=b.cakeBase;portion.version++;return true;
             }
             if(c.value.StartsWith("cake-",StringComparison.Ordinal)){
-                if(!Near(2400)){outcome="come-to-the-cake-table";return true;}
+                if(!HulkBirthday.NearCake(player.x,player.y,InteractionRadius)){outcome="come-to-the-cake-table";return true;}
                 if(held!=null || member.station!=""){outcome="hands-busy";return true;}
                 if(c.value=="cake-base"){
                     if(!int.TryParse(c.item,out var choice) || choice<0 || choice>2){outcome="choose-a-cake-base";return true;}

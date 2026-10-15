@@ -19,7 +19,7 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ['base','output']:parser.add_argument('--'+name,type=Path,required=True)
-    for name in ['cakes','outcomes','audio-project']:parser.add_argument('--'+name,type=Path)
+    for name in ['cakes','outcomes','audio-project','floor']:parser.add_argument('--'+name,type=Path)
     parser.add_argument('--replace-props',action='store_true',help='Replace matching views in a fresh copy, preserving the original pack.')
     args=parser.parse_args()
     base,output=args.base.resolve(),args.output.resolve()
@@ -68,9 +68,14 @@ def main():
             audio.append({'key':key,'file':'Audio/'+key+'.wav','duration':duration,'source':source.relative_to(args.audio_project).as_posix(),
                           'source_sha256':sha(source),'sha256':sha(target)})
         manifest['audio']=audio
+    if args.floor:
+        floor=read(args.floor/'dance-floor.json');relative='DanceFloor/'+floor['texture'];target=output/relative
+        target.parent.mkdir(exist_ok=True);shutil.copyfile(args.floor/floor['texture'],target);floor['texture']=relative;manifest['danceFloor']=floor
+    if manifest.get('danceFloor') and len(manifest.get('audio',[]))==7 and len(manifest.get('cakeSprites',[]))==29:manifest['format']=3
     (output/'actor-frames.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
     receipt={'base_manifest_sha256':sha(base/'actor-frames.json'),'cake_manifest_sha256':sha(args.cakes/'cake-sprites.json') if args.cakes else None,
              'outcome_manifest_sha256':sha(args.outcomes/'outcome-props.json') if args.outcomes else None,'assembler_sha256':sha(Path(__file__)),
+             'floor_manifest_sha256':sha(args.floor/'dance-floor.json') if args.floor else None,
              'manifest_sha256':sha(output/'actor-frames.json')}
     (output/'assembly-receipt.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
     print(json.dumps({'props':len(manifest['props']),'cake_sprites':len(manifest.get('cakeSprites',[])),'audio':len(manifest.get('audio',[])),'manifest_sha256':receipt['manifest_sha256']}))

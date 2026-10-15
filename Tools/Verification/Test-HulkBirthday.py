@@ -31,6 +31,9 @@ def main():
     parser.add_argument('--guests',action='store_true',help='Also check the shared intro, source guest arrivals and NPC gift exchange.')
     parser.add_argument('--party',action='store_true',help='Also check shared cake editing, portions, drinks and one Hulk unwrap.')
     parser.add_argument('--vendor',action='store_true',help='Also check the one shared squirrel queue with four real clients.')
+    parser.add_argument('--band',action='store_true',help='Also check the shared band, power, floor lights and independent departure.')
+    parser.add_argument('--castle',action='store_true',help='Also check four shared castle bodies, gravity, stunts, drag and independent exit.')
+    parser.add_argument('--play',action='store_true',help='Also check shared brick pegging and the bubble machine.')
     parser.add_argument('--art',type=Path,default=ROOT/'LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D')
     args=parser.parse_args()
     art=args.art.resolve();require((art/'actor-frames.json').is_file(),'Current birthday pack is required')
@@ -47,6 +50,9 @@ def main():
     birthday=actions.index('Birthday')
     pack=read(art/'actor-frames.json')
     required={'actor-frames.json',*(a['texture'] for a in pack['actions']),*(p['texture'] for p in pack['props']),*(s['texture'] for s in pack.get('cakeSprites',[])),*(f'world-{i}.png' for i in range(4))}
+    required.update(a['file'] for a in pack.get('audio',[]))
+    if pack.get('danceFloor'):required.add(pack['danceFloor']['texture'])
+    if pack.get('castle'):required.update([pack['castle']['texture'],pack['castle']['front']])
     asset_receipt=[{'path':name,'sha256':hashlib.sha256((art/name).read_bytes()).hexdigest()} for name in sorted(required)]
     write(out/'asset-receipt.json',asset_receipt)
     print('EVIDENCE '+str(out),flush=True)
@@ -99,6 +105,71 @@ def main():
             require(all(any(v['name']=='Birthday friend '+other.profile for v in controls) for other in clients),'Missing shared birthday character controls')
             require(evidence['visibleBirthdayPlayers']==4,'Client does not show all four connected birthday players')
         record('four real clients enter one shared birthday world with the recovered cast')
+        if args.play:
+            for client in clients:command(client,actions.index('Move'),x=4050,y=140)
+            time.sleep(1.5);tap_prop(a,'Birthday prop birthday-brick-0')
+            wait(lambda:next(p for p in view()['birthday']['props'] if p['id']=='birthday-brick-0')['holder']==a.profile,'building pickup')
+            button(a,'Turn brick');button(a,'Brick colour');tap_prop(a,'Birthday prop birthday-brick-1')
+            wait(lambda:next(p for p in view()['birthday']['props'] if p['id']=='birthday-brick-0')['support']=='birthday-brick-1','shared brick pegs',15)
+            brick=next(p for p in view()['birthday']['props'] if p['id']=='birthday-brick-0');require(brick['turns']==1 and brick['tint']==1,'Brick appearance changes were lost')
+            denied=home.command(b,birthday,value='claim',item='birthday-brick-1');require(not denied['accepted'],'Sibling moved an occupied brick support')
+            home.capture(a,out,'shared-building-bricks')
+            command(a,actions.index('Move'),x=1850,y=150);time.sleep(1.5);tap_prop(a,'Birthday bubble machine')
+            wait(lambda:view()['birthday']['bubblesOn'],'shared bubble machine on')
+            wait(lambda:len([c for c in a.input('inspect')['controls'] if c['name'].startswith('Birthday bubble ') and c['name']!='Birthday bubble machine'])>=3,'visible shared bubbles',10)
+            button(a,'Birthday bubble 2');wait(lambda:view()['birthday']['bubblesPopped']==1,'one actual bubble pop',10)
+            popped=view()['birthday']['poppedBubbles'][-1]
+            denied=home.command(b,birthday,value='bubble-pop',item=str(popped));require(not denied['accepted'],'Competing bubble pop duplicated the event')
+            button(a,'Birthday bubble switch');wait(lambda:not view()['birthday']['bubblesOn'],'shared machine switches off')
+            record('actual UI rotates/colours/pegs a shared brick, protects occupied support and pops shared bubbles exactly once')
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5)
+        if args.castle:
+            for client in clients:command(client,actions.index('Move'),x=1169,y=100)
+            time.sleep(1.5)
+            with ThreadPoolExecutor(max_workers=4) as pool:list(pool.map(lambda client:button(client,'Birthday bouncy castle'),clients))
+            wait(lambda:all(m['station']=='castle' for m in view()['birthday']['members']),'four actual touches join the same castle',20)
+            wait(lambda:all(m['landings']>=2 for m in view()['birthday']['members']),'all four physics bodies rebound from floor',15)
+            states=[]
+            for i in range(8):states.append(view()['birthday']);time.sleep(.1)
+            write(out/'castle-physics-trace.json',states)
+            require(all(max(s['members'][i]['bounceH'] for s in states)-min(s['members'][i]['bounceH'] for s in states)>.2 for i in range(4)),'A castle body did not move vertically')
+            home.capture(a,out,'four-player-bouncy-castle')
+            button(a,'Castle stunt');wait(lambda:view()['birthday']['members'][0]['stunts']==1,'real stunt touch changes shared body',10)
+            control=next(c for c in a.input('inspect')['controls'] if c['name']=='Birthday bouncy castle');rect=control['bounds']
+            x=rect['x']+rect['width']*.5;y=rect['y']+rect['height']*.6
+            a.input('touch-begin',role='screen',x=x,y=y,finger=94)
+            a.input('touch-move',role='screen',x=x+70,y=y-50,finger=94);time.sleep(.2)
+            a.input('touch-end',role='screen',x=x+70,y=y-50,finger=94)
+            before=[m['landings'] for m in view()['birthday']['members']]
+            button(a,'Leave castle');wait(lambda:view()['birthday']['members'][0]['station']=='','independent castle exit')
+            wait(lambda:all(m['station']=='castle' and m['landings']>before[i] for i,m in enumerate(view()['birthday']['members']) if i>0),'siblings keep bouncing after independent exit',10)
+            record('four real touches join one castle; shared gravity/floor rebounds and stunt/drag input work; one exit preserves three moving siblings')
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5)
+        if args.band:
+            for client,x,y in zip(clients,[2880,2804,3229,2985],[60,180,191,249]):command(client,actions.index('Move'),x=x,y=y)
+            time.sleep(1.5)
+            with ThreadPoolExecutor(max_workers=4) as pool:list(pool.map(lambda client:button(client,'Play band together'),clients))
+            state=wait(lambda:view()['birthday'] if view()['birthday']['bandRoundAt']>=0 else None,'one common band countdown',20)
+            round_at=state['bandRoundAt'];require(len(state['bandActors'])==4,'Band did not include all four family members')
+            wait(lambda:all(any(s['key']=='electric' and s['playing'] for s in client.input('inspect')['birthdaySounds']) for client in clients),'all clients play the powered arrangement',15)
+            samples=[client.input('inspect') for client in clients]
+            require(all(len(s['birthdayFloorColours'])==36 and any(c>=0 for c in s['birthdayFloorColours']) for s in samples),'Shared dance floor is not lit')
+            write(out/'band-powered-client-evidence.json',samples);home.capture(c,out,'shared-band-powered')
+            command(a,actions.index('Move'),x=3454,y=67);time.sleep(.8)
+            tap_prop(a,'Birthday prop birthday-battery')
+            wait(lambda:not view()['birthday']['powered'],'battery removal changes one shared circuit',10)
+            wait(lambda:all(any(s['key']=='acoustic' and s['playing'] for s in client.input('inspect')['birthdaySounds']) for client in (b,c,d)),'siblings continue the same song acoustically',10)
+            require(view()['birthday']['bandRoundAt']==round_at,'Removing battery restarted the band round')
+            write(out/'band-acoustic-client-evidence.json',[client.input('inspect') for client in clients])
+            button(a,'Return battery');wait(lambda:view()['birthday']['powered'],'battery returned to shared socket',10)
+            require(view()['birthday']['bandRoundAt']==round_at,'Returning battery restarted the round')
+            wait(lambda:view()['birthday']['bandRounds']==1,'one shared band completion',30)
+            require(all(m['station']=='' for m in view()['birthday']['members']),'Band completion stranded a participant')
+            record('four actual clients share band countdown/audio/floor; battery removal selects acoustic playback without restarting siblings; one common completion')
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5)
         if args.vendor:
             for i,client in enumerate(clients):command(client,actions.index('Move'),x=[4374,4298,4234,4170][i],y=[60,54,39,35][i])
             for client in (b,d):
@@ -258,7 +329,7 @@ def main():
                     try:write(out/('last-'+client.profile+'.json'),client.input('inspect'))
                     except (RuntimeError,OSError,AssertionError):pass
         write(out/'result.json',{'passed':passed,'checks':checks,'build':args.build,'source_commit':source['sourceCommit'],
-            'scope':'Checked birthday slices: shared props'+(' / directional actions' if args.actions else '')+(' / introduction and guests' if args.guests else '')+(' / shared cake and gift replay' if args.party else '')+(' / one shared vendor queue' if args.vendor else '')+'. Band, castle, villains and whole-world acceptance remain open.',
+            'scope':'Checked birthday slices: shared props'+(' / directional actions' if args.actions else '')+(' / introduction and guests' if args.guests else '')+(' / shared cake and gift replay' if args.party else '')+(' / one shared vendor queue' if args.vendor else '')+(' / shared band, audio and power' if args.band else '')+(' / shared castle physics' if args.castle else '')+(' / brick pegs and bubbles' if args.play else '')+'. Villains and whole-world acceptance remain open.',
             'art_root':str(art),'clients_started':len(clients)})
         run.close()
         if previous is None:os.environ.pop('LITTLE_WEEPS_BIRTHDAY_ART',None)

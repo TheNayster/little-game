@@ -36,8 +36,10 @@ public static class HulkBirthdayRuleChecks
         Need(world.ReadBirthday().props.Single(p=>p.id=="birthday-gift-0").holder=="two","one shared owner");
         var detached=world.Snapshot();detached.birthday.props[0].style=3;
         Need(world.ReadBirthday().props[0].style==0,"snapshot deep copy");
+        Send(world,"three",SoloAction.Move,x:3229,y:191);Send(world,"four",SoloAction.Move,x:3229,y:191);
         Need(Send(world,"three",SoloAction.Birthday,"station",target:"guitar").Accepted,"instrument claim");
         Need(!Send(world,"four",SoloAction.Birthday,"station",target:"guitar").Accepted,"instrument contention");
+        Send(world,"four",SoloAction.Move,x:2985,y:249);
         Need(Send(world,"four",SoloAction.Birthday,"station",target:"drums").Accepted,"second shared instrument");
         world.AdvanceIdle(.5,out _,Actors);var song=world.ReadBirthday().songAt;
         world.ReleaseBirthday("three");Need(world.ReadBirthday().songAt==song && world.ReadBirthday().members.Single(m=>m.actor=="four").station=="drums","independent instrument departure");
@@ -55,7 +57,7 @@ public static class HulkBirthdayRuleChecks
         Need(restored.ReadBirthday().props[0].x==650 && restored.ReadBirthday().props[0].y==160,"restore retains carried prop at player");
         var foundation=restored.Snapshot();foundation.birthday.version=1;foundation.birthday.cast=null;foundation.birthday.guestOrder=null;foundation.birthday.props=foundation.birthday.props.Take(25).ToArray();
         var upgraded=GameWorld.Restore(foundation);
-        Need(upgraded.ReadBirthday().version==4 && upgraded.ReadBirthday().props.Length==27 && upgraded.ReadBirthday().props[0].id=="birthday-gift-0","foundation migration preserves existing props");
+        Need(upgraded.ReadBirthday().version==7 && upgraded.ReadBirthday().props.Length==27 && upgraded.ReadBirthday().props[0].id=="birthday-gift-0","foundation migration preserves existing props");
         var party=GameWorld.WithBirthday(GameWorld.Create(Actors));
         Send(party,"one",SoloAction.Travel,HulkBirthday.Zone);
         party.AdvanceIdle(.5,out _,new[]{"one"});
@@ -130,6 +132,47 @@ public static class HulkBirthdayRuleChecks
         for(int i=0;i<6;i++)stall.AdvanceIdle(.5,out _,Actors);
         Need(stall.ReadBirthday().vendorCount==4 && stall.ReadBirthday().vendorQueue.Length==0 && stall.ReadBirthday().props.Count(p=>p.kind=="food" && p.holder!="")==4,"returning fourth patron shares the same bounded supply");
         GameWorld.Validate(stall.Snapshot());
+        var band=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        for(int i=0;i<4;i++){
+            Send(band,Actors[i],SoloAction.Travel,HulkBirthday.Zone);
+            string station=HulkBirthday.RoleInstrument(HulkBirthday.Roles[i]);
+            Send(band,Actors[i],SoloAction.Move,x:HulkBirthday.StageX(station,i),y:HulkBirthday.StageY(station,i));
+            Need(Send(band,Actors[i],SoloAction.Birthday,"band").Accepted,"shared band admission");
+        }
+        band.AdvanceIdle(.5,out _,Actors);var round=band.ReadBirthday().bandRoundAt;
+        Need(round>=0 && band.ReadBirthday().bandActors.Length==4,"one four-player band countdown");
+        Send(band,"one",SoloAction.Move,x:HulkBirthday.BatteryX,y:HulkBirthday.BatteryY);
+        Need(Send(band,"one",SoloAction.Birthday,"claim","birthday-battery").Accepted,"remove shared battery");
+        band.AdvanceIdle(.5,out _,Actors);
+        Need(!band.ReadBirthday().powered && band.ReadBirthday().bandRoundAt==round,"battery changes arrangement without restarting siblings");
+        Need(Send(band,"one",SoloAction.Birthday,"socket").Accepted,"return battery");
+        for(int i=0;i<42;i++)band.AdvanceIdle(.5,out _,Actors);
+        Need(band.ReadBirthday().bandRounds==1 && band.ReadBirthday().bandRoundAt<0,"one common band completion");
+        GameWorld.Validate(band.Snapshot());
+        var castle=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        foreach(var actor in Actors){Send(castle,actor,SoloAction.Travel,HulkBirthday.Zone);Send(castle,actor,SoloAction.Move,x:1169,y:100);Need(Send(castle,actor,SoloAction.Birthday,"station",target:"castle").Accepted,"four players share one castle");}
+        for(int i=0;i<10;i++)castle.AdvanceIdle(.5,out _,Actors);
+        Need(castle.ReadBirthday().members.All(m=>m.landings>0 && m.bounceH>=0 && m.bounceH<=5.5),"gravity and bounded floor rebounds");
+        Send(castle,"one",SoloAction.Birthday,"castle-drag",x:2.4f,y:4);castle.AdvanceIdle(.5,out _,Actors);
+        Need(castle.ReadBirthday().members[0].bounceX>1,"drag applies bounded source-unit velocity");
+        Send(castle,"one",SoloAction.Birthday,"castle-release");Send(castle,"one",SoloAction.Birthday,"castle-tap");castle.AdvanceIdle(.5,out _,Actors);
+        Need(castle.ReadBirthday().members[0].stunts==1,"tap drives source downward impulse and stunt");
+        Send(castle,"one",SoloAction.Move,x:1169,y:35);
+        Need(castle.ReadBirthday().members[0].station=="" && castle.ReadBirthday().members.Skip(1).All(m=>m.station=="castle"),"one castle exit preserves siblings");
+        Need(GameWorld.Restore(castle.Snapshot()).ReadBirthday().members.All(m=>m.station=="" && !m.bounceDrag),"restore clears only transient castle participation");
+        GameWorld.Validate(castle.Snapshot());
+        var play=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        foreach(var actor in Actors){Send(play,actor,SoloAction.Travel,HulkBirthday.Zone);Send(play,actor,SoloAction.Move,x:4050,y:140);}
+        Need(Send(play,"one",SoloAction.Birthday,"claim","birthday-brick-0").Accepted,"building brick pickup");
+        Need(Send(play,"one",SoloAction.Birthday,"brick-turn").Accepted && Send(play,"one",SoloAction.Birthday,"brick-color").Accepted,"shared brick rotation and colour");
+        Need(Send(play,"one",SoloAction.Birthday,"stack","birthday-brick-1").Accepted,"peg brick onto one shared support");
+        Need(!Send(play,"two",SoloAction.Birthday,"claim","birthday-brick-1").Accepted,"occupied support cannot move under a sibling's construction");
+        var construction=GameWorld.Restore(play.Snapshot());Need(construction.ReadBirthday().props.Single(p=>p.id=="birthday-brick-0").support=="birthday-brick-1","saved construction retains pegs");
+        Need(Send(play,"two",SoloAction.Birthday,"claim","birthday-brick-0").Accepted,"another sibling unpegs the top brick");
+        Send(play,"one",SoloAction.Move,x:1850,y:150);Need(Send(play,"one",SoloAction.Birthday,"bubbles").Accepted,"source machine shared switch");play.AdvanceIdle(.5,out _,Actors);
+        int bubble=BirthdayPlay.LastBubble(play.ReadBirthday());Need(Send(play,"one",SoloAction.Birthday,"bubble-pop",bubble.ToString()).Accepted,"bubble popped once");
+        Need(!Send(play,"two",SoloAction.Birthday,"bubble-pop",bubble.ToString()).Accepted,"competing bubble pop cannot duplicate event");
+        GameWorld.Validate(play.Snapshot());
         var invalid=world.Snapshot();invalid.birthday.props[0].id="invented";
         try{GameWorld.Validate(invalid);throw new Exception("invalid prop identity accepted");}catch(InvalidOperationException){}
         Console.WriteLine("PASS: authority fixtures; migration, claims, handoff, snapshot isolation, instrument sharing, intro, guests, late join, departure and JSON restore. Not a four-client runtime test.");

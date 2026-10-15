@@ -81,6 +81,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
             public LittleWeeps.Core.BirthdayState birthday;public int visibleBirthdayPlayers;public string[] birthdayPropOwners,birthdayPoses;public string birthdayOutcome;
+            public LittleWeeps.Client.BirthdaySoundView[] birthdaySounds;public int[] birthdayFloorColours;public int birthdayLightStep;
             public bool bookAuto,bookWords,bookOptions,bookEffect,bookEffectPending,bookNaming;public string bookTitle;public int bookTextures,bookAudio;
             public bool discoveryOpen;public bool bookOpen,bookReady,bookPlaying,bookSpeaking;public int bookPage,bookSample;public string[] visibleText;
         }
@@ -408,6 +409,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.kingdomApproach=screen.KingdomApproach;evidence.lastTouchTargets=lastTouchTargets;
                 evidence.birthday=screen.BirthdayView;evidence.visibleBirthdayPlayers=screen.VisibleBirthdayPlayers;evidence.birthdayPropOwners=screen.BirthdayRenderedOwners;
                 evidence.birthdayPoses=screen.BirthdayRenderedPoses;
+                evidence.birthdaySounds=screen.BirthdaySounds;evidence.birthdayFloorColours=screen.BirthdayFloorColours;evidence.birthdayLightStep=screen.BirthdayDrawnLightStep;
                 evidence.birthdayOutcome=screen.BirthdayLastOutcome;
                 evidence.hideAndSeek=screen.HideGame;
                 evidence.seagulls=screen.Seagulls;evidence.visibleSeagulls=screen.VisibleSeagulls;evidence.visibleGullTracks=screen.VisibleGullTracks;

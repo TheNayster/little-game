@@ -335,7 +335,13 @@
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/BirthdayImage.cs": "Hulk",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthday.cs": "Hulk",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayParty.cs": "Hulk",
-    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayParty.cs": "Hulk"
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayParty.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayBand.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayCastle.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayPlay.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayBand.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayCastle.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayPlay.cs": "Hulk"
   },
   "assemblyPolicy": "Keep existing Core/Client assembly membership. World folders do not define independent partial types.",
   "worlds": [
@@ -777,7 +783,7 @@
       "Client/Worlds/Hulk"
     ],
     "localSource": "LocalData/Research/DuploMarvel",
-    "localPack": "LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v9",
+    "localPack": "LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v17",
     "retirement": "Replace only after the reconstructed world no longer consumes this pipeline; preserve original evidence.",
     "delivery": "Recovered assets remain ignored; PC research pack is external. Mobile packaging and installed delivery are unqualified."
   }

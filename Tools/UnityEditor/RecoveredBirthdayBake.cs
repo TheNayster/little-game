@@ -16,7 +16,7 @@ public static class RecoveredBirthdayBake
     [Serializable] public sealed class ActorInputs {public ActorInput[] actors;}
     [Serializable] public sealed class ActionFrames {public string actor,action,clip,texture;public int frames,columns=8,size=256;public float duration,unitsPerPixel;public Vector2[] rightHand,leftHand,hold,face;public Vector2 pivot;}
     [Serializable] public sealed class PropFrame {public string name,texture,view;public float unitsPerPixel;public Vector2 pivot,holdPivot;public long sourceBaseId,sourceHoldId;}
-    [Serializable] public sealed class Manifest {public string sourceScene,sourceSceneSha256,bakerSha256,bindingsSha256,unityVersion;public int format=2,fps=12;public ActionFrames[] actions;public PropFrame[] props;public string[] missingActions,limits;public CakeSprite[] cakeSprites;public AudioRow[] audio;}
+    [Serializable] public sealed class Manifest {public string sourceScene,sourceSceneSha256,bakerSha256,bindingsSha256,unityVersion;public int format=2,fps=12;public ActionFrames[] actions;public PropFrame[] props;public string[] missingActions,limits;public CakeSprite[] cakeSprites;public AudioRow[] audio;public FloorOutput danceFloor;public CastleOutput castle;}
     [Serializable] public sealed class AudioRow {public string key,file,source,source_sha256,sha256;public double duration;}
     [Serializable] public sealed class Landmark {public string name;public Vector3 position;}
     [Serializable] public sealed class Geometry {public Vector3 cameraPosition,cameraRotation;public float fieldOfView,tileWorldWidth=19.5f,pixelsPerUnit=1200/19.5f,worldMinX=-39;public Landmark[] landmarks;}
@@ -26,6 +26,86 @@ public static class RecoveredBirthdayBake
     [Serializable] public sealed class PointInputs {public PointInput[] points;}
     [Serializable] public sealed class ProjectedPoint {public string name;public long sourceTransformId;public Vector3 sourceWorld;public Vector2 gamePoint;}
     [Serializable] public sealed class ProjectedPoints {public string sourceSceneSha256,bakerSha256;public ProjectedPoint[] points;}
+    [Serializable] public sealed class FloorInput {public long[] rendererIds;public Color offColor;public Color[] colors;public float interval;}
+    [Serializable] public sealed class FloorCell {public long sourceRendererId;public Rect pixels,uv;}
+    [Serializable] public sealed class FloorOutput {public string texture,sourceSceneSha256,bakerSha256;public float worldStart=2400,interval;public Color offColor;public Color[] colors;public FloorCell[] cells;public Vector2 centre;}
+    [Serializable] public sealed class CastleOutput {public string texture,front,sourceSceneSha256,bakerSha256;public Rect pixels;public int frames=5,columns=5;public float floorX,floorY;}
+    public static void RunCastle()
+    {
+        try {
+            string previous=Path.GetFullPath(Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_BASE_PACK")??throw new Exception("Base pack required."));
+            if(Directory.Exists(Output))throw new Exception("Castle export requires a fresh directory.");Directory.CreateDirectory(Output);
+            foreach(var file in Directory.GetFiles(previous,"*",SearchOption.AllDirectories)){string targetFile=Path.Combine(Output,file.Substring(previous.Length+1));Directory.CreateDirectory(Path.GetDirectoryName(targetFile));File.Copy(file,targetFile);}
+            const string scenePath="Assets/DuploMarvel/PlayPacks/HulksBirthdayParty/Scenes/HBP_Main.unity";
+            var scene=EditorSceneManager.OpenScene(scenePath);var roots=scene.GetRootGameObjects();var transforms=roots.SelectMany(r=>r.GetComponentsInChildren<Transform>(true)).ToArray();
+            var byId=transforms.ToDictionary(t=>GlobalObjectId.GetGlobalObjectIdSlow(t).targetObjectId);
+            var castle=byId[23645];var arch=byId[20924];var mesh=castle.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single(r=>GlobalObjectId.GetGlobalObjectIdSlow(r).targetObjectId==47355);
+            var inputs=JsonUtility.FromJson<ActorInputs>(File.ReadAllText("Assets/Research/actor-bindings.json"));
+            var actors=inputs.actors.Select(a=>transforms.Single(t=>GlobalObjectId.GetGlobalObjectIdSlow(t.gameObject).targetObjectId.ToString()==a.game_object_id)).ToArray();
+            castle.gameObject.SetActive(false);BakeWorld(transforms,actors);castle.gameObject.SetActive(true);
+            var renderers=transforms.SelectMany(t=>t.GetComponents<Renderer>()).ToArray();foreach(var r in renderers)r.enabled=false;
+            var castleRenderers=castle.GetComponentsInChildren<Renderer>(true);var frontRenderers=arch.GetComponentsInChildren<Renderer>(true);
+            foreach(var r in castleRenderers){Recover(r);r.enabled=!(r is ParticleSystemRenderer);}
+            var camera=transforms.Select(t=>t.GetComponent<Camera>()).Single(c=>c && c.name=="Main Camera");camera.orthographic=true;camera.orthographicSize=6.5f;camera.aspect=3;camera.transform.position=new Vector3(-19.5f,10,camera.transform.position.z);camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=Color.clear;
+            var target=new RenderTexture(2400,800,24,RenderTextureFormat.ARGB32);camera.targetTexture=target;
+            Texture2D Capture(){camera.Render();RenderTexture.active=target;var image=new Texture2D(2400,800,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,2400,800),0,0);image.Apply();return image;}
+            var full=Capture();var pixels=full.GetPixels32();int left=2400,right=0,bottom=800,top=0;
+            for(int y=0;y<800;y++)for(int x=0;x<2400;x++)if(pixels[y*2400+x].a>0){left=Math.Min(left,x);right=Math.Max(right,x+1);bottom=Math.Min(bottom,y);top=Math.Max(top,y+1);}
+            left=Math.Max(0,left-8);right=Math.Min(2400,right+8);bottom=Math.Max(0,bottom-12);top=Math.Min(800,top+8);int width=right-left,height=top-bottom;
+            var atlas=new Texture2D(width*5,height,TextureFormat.RGBA32,false);atlas.SetPixels32(new Color32[width*5*height]);
+            foreach(var r in frontRenderers)r.enabled=false;
+            Debug.Log("CASTLE_BLEND_SHAPES "+mesh.sharedMesh.blendShapeCount+" "+mesh.sharedMesh.GetBlendShapeName(0));
+            // Explicit CPU baking applies the original blend-shape deltas even
+            // when a batch camera render does not advance the skinning frame.
+            var posedObject=new GameObject("Castle CPU pose");posedObject.transform.SetParent(mesh.transform,false);var posedMesh=new Mesh();var filter=posedObject.AddComponent<MeshFilter>();var posedRenderer=posedObject.AddComponent<MeshRenderer>();posedRenderer.sharedMaterials=mesh.sharedMaterials;mesh.enabled=false;
+            for(int i=0;i<5;i++){mesh.SetBlendShapeWeight(0,i*25);mesh.BakeMesh(posedMesh);filter.sharedMesh=posedMesh;var image=Capture();atlas.SetPixels(i*width,0,width,height,image.GetPixels(left,bottom,width,height));UnityEngine.Object.DestroyImmediate(image);}
+            atlas.Apply();File.WriteAllBytes(Path.Combine(Output,"castle-bounce.png"),atlas.EncodeToPNG());
+            foreach(var r in castleRenderers)r.enabled=false;posedRenderer.enabled=false;foreach(var r in frontRenderers)r.enabled=true;var front=Capture();var cropped=new Texture2D(width,height,TextureFormat.RGBA32,false);cropped.SetPixels(front.GetPixels(left,bottom,width,height));cropped.Apply();File.WriteAllBytes(Path.Combine(Output,"castle-front.png"),cropped.EncodeToPNG());
+            var row=new CastleOutput{texture="castle-bounce.png",front="castle-front.png",pixels=new Rect(left,bottom,width,height),floorX=1169.23f,floorY=(bottom+62-150)/.45f,sourceSceneSha256=Hash(scenePath),bakerSha256=Hash("Assets/Editor/RecoveredBirthdayBake.cs")};
+            File.WriteAllText(Path.Combine(Output,"castle.json"),JsonUtility.ToJson(row,true));
+            // Preserve all preceding optional pack fields while adding this slice.
+            var manifest=JsonUtility.FromJson<Manifest>(File.ReadAllText(Path.Combine(Output,"actor-frames.json")));manifest.castle=row;File.WriteAllText(Path.Combine(Output,"actor-frames.json"),JsonUtility.ToJson(manifest,true));
+            Debug.Log("CASTLE_EXPORT "+JsonUtility.ToJson(row));EditorApplication.Exit(0);
+        }catch(Exception error){Debug.LogException(error);EditorApplication.Exit(1);}
+    }
+    public static void RunDanceFloor()
+    {
+        try {
+            if(Directory.Exists(Output))throw new Exception("Floor export requires a fresh directory.");Directory.CreateDirectory(Output);
+            const string scenePath="Assets/DuploMarvel/PlayPacks/HulksBirthdayParty/Scenes/HBP_Main.unity";
+            var scene=EditorSceneManager.OpenScene(scenePath);var roots=scene.GetRootGameObjects();
+            var renderers=roots.SelectMany(r=>r.GetComponentsInChildren<Renderer>(true)).ToArray();
+            var byId=renderers.ToDictionary(r=>GlobalObjectId.GetGlobalObjectIdSlow(r).targetObjectId);
+            var input=JsonUtility.FromJson<FloorInput>(File.ReadAllText("Assets/Research/dance-floor.json"));
+            if(input.rendererIds.Length!=36 || input.colors.Length!=6)throw new Exception("Unexpected source floor.");
+            foreach(var renderer in renderers)renderer.enabled=false;
+            foreach(var canvas in roots.SelectMany(r=>r.GetComponentsInChildren<Canvas>(true)))canvas.enabled=false;
+            var camera=roots.SelectMany(r=>r.GetComponentsInChildren<Camera>(true)).Single(c=>c.name=="Main Camera");camera.orthographic=true;camera.orthographicSize=6.5f;camera.aspect=3;
+            camera.transform.position=new Vector3(19.5f,10,camera.transform.position.z);camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=Color.clear;
+            var target=new RenderTexture(2400,800,24,RenderTextureFormat.ARGB32);camera.targetTexture=target;
+            var atlas=new Texture2D(768,768,TextureFormat.RGBA32,false);atlas.SetPixels32(new Color32[768*768]);
+            var rows=new List<FloorCell>();Vector2 centre=Vector2.zero;
+            for(int index=0;index<input.rendererIds.Length;index++){
+                long id=input.rendererIds[index];var renderer=byId[(ulong)id] as SpriteRenderer;if(!renderer)throw new Exception("Source floor panel is not a sprite.");
+                renderer.sharedMaterial=new Material(Shader.Find("Research/RecoveredSprite"));renderer.color=Color.white;renderer.enabled=true;
+                camera.Render();RenderTexture.active=target;
+                var image=new Texture2D(2400,800,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,2400,800),0,0);image.Apply();var pixels=image.GetPixels32();
+                int left=2400,right=0,bottom=800,top=0;
+                for(int y=0;y<800;y++)for(int x=0;x<2400;x++)if(pixels[y*2400+x].a>0){left=Math.Min(left,x);right=Math.Max(right,x+1);bottom=Math.Min(bottom,y);top=Math.Max(top,y+1);}
+                if(right<=left || top<=bottom)throw new Exception("Empty source floor panel "+id);
+                left=Math.Max(0,left-2);right=Math.Min(2400,right+2);bottom=Math.Max(0,bottom-2);top=Math.Min(800,top+2);
+                int width=right-left,height=top-bottom;if(width>128 || height>128)throw new Exception("Floor panel exceeds atlas cell.");
+                int ax=index%6*128,ay=index/6*128;
+                atlas.SetPixels(ax,ay,width,height,image.GetPixels(left,bottom,width,height));
+                rows.Add(new FloorCell{sourceRendererId=id,pixels=new Rect(left,bottom,width,height),uv=new Rect(ax/768f,ay/768f,width/768f,height/768f)});
+                centre+=new Vector2(2400+left+width*.5f,(bottom+height*.5f-150)/.45f);
+                renderer.enabled=false;UnityEngine.Object.DestroyImmediate(image);
+            }
+            atlas.Apply();File.WriteAllBytes(Path.Combine(Output,"dance-floor.png"),atlas.EncodeToPNG());
+            File.WriteAllText(Path.Combine(Output,"dance-floor.json"),JsonUtility.ToJson(new FloorOutput{texture="dance-floor.png",cells=rows.ToArray(),centre=centre/36,interval=input.interval,offColor=input.offColor,colors=input.colors,sourceSceneSha256=Hash(scenePath),bakerSha256=Hash("Assets/Editor/RecoveredBirthdayBake.cs")},true));
+            camera.targetTexture=null;RenderTexture.active=null;EditorApplication.Exit(0);
+        }catch(Exception error){Debug.LogException(error);EditorApplication.Exit(1);}
+    }
     public static void RunGeometry()
     {
         try {
@@ -62,7 +142,7 @@ public static class RecoveredBirthdayBake
             var input=JsonUtility.FromJson<ActorInputs>(File.ReadAllText("Assets/Research/actor-bindings.json")).actors.Single(a=>a.name=="Squirrel");
             var byId=transforms.ToDictionary(t=>GlobalObjectId.GetGlobalObjectIdSlow(t).targetObjectId);
             var source=transforms.Single(t=>GlobalObjectId.GetGlobalObjectIdSlow(t.gameObject).targetObjectId.ToString()==input.game_object_id);
-            var clone=UnityEngine.Object.Instantiate(source.gameObject);clone.transform.position=Vector3.zero;clone.SetActive(true);
+            var clone=UnityEngine.Object.Instantiate(source.gameObject);clone.transform.position=Vector3.zero;clone.transform.rotation=Quaternion.identity;clone.SetActive(true);
             foreach(var root in roots)root.SetActive(false);
             foreach(var t in clone.GetComponentsInChildren<Transform>(true))GameObjectUtility.RemoveMonoBehavioursWithMissingScript(t.gameObject);
             foreach(var r in clone.GetComponentsInChildren<Renderer>(true))Recover(r);
@@ -76,7 +156,7 @@ public static class RecoveredBirthdayBake
             var targetTexture=new RenderTexture(256,256,24,RenderTextureFormat.ARGB32);camera.targetTexture=targetTexture;
             var rows=manifest.actions.Where(a=>a.actor!="Squirrel").ToList();Directory.CreateDirectory(Path.Combine(Output,"Squirrel"));
             AnimationMode.StartAnimationMode();
-            foreach(var pair in new[]{("idle","Idle"),("serve","ServeProp"),("happy","PositiveReaction"),("negative","NegativeReaction")}){
+            foreach(var pair in new[]{("idle","Idle"),("serve","ServeProp"),("happy","PositiveReaction"),("negative","NegativeReaction"),("tap","TapReact")}){
                 string name="ani_sa_Squirrel_"+pair.Item2;var clip=ResolveOverride(animator.runtimeAnimatorController,name);
                 if(!clip)clip=AssetDatabase.FindAssets(name+" t:AnimationClip",new[]{"Assets/DuploMarvel"}).Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<AnimationClip>).Where(c=>c && c.name==name).SingleOrDefault();
                 if(!clip)throw new Exception("Missing squirrel clip: "+name);
@@ -177,13 +257,18 @@ public static class RecoveredBirthdayBake
                 var target=Path.Combine(Output,file.Substring(previous.Length+1));Directory.CreateDirectory(Path.GetDirectoryName(target));File.Copy(file,target);
             }
             var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
-            var inputs=JsonUtility.FromJson<ActorInputs>(File.ReadAllText("Assets/Research/guest-bindings.json")).actors;
-            var actions=manifest.actions.Where(a=>!inputs.Any(i=>i.name==a.actor)).ToList();
+            string extraMode=Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_EXTRA_ACTIONS");bool extras=extraMode=="1" || extraMode=="2";
+            if(extras)scene=EditorSceneManager.OpenScene("Assets/DuploMarvel/PlayPacks/HulksBirthdayParty/Scenes/HBP_Main.unity");
+            var sourceRoots=scene.GetRootGameObjects();
+            var inputs=JsonUtility.FromJson<ActorInputs>(File.ReadAllText(extras?"Assets/Research/actor-bindings.json":"Assets/Research/guest-bindings.json")).actors;
+            if(extras)inputs=inputs.Where(a=>(extraMode=="2"?new[]{"Hulk_NewNew","Spiderman_NewNEW","Spin_NewNEW","Gwen_NewNEW","GreenGoblin_NewNew","BlackCat_NewNew","Electro_NewNew_BAP","DocOck_NewNEW"}:new[]{"Hulk_NewNew","Spiderman_NewNEW","Spin_NewNEW","Gwen_NewNEW"}).Contains(a.name)).ToArray();
+            var actions=manifest.actions.Where(a=>extras || !inputs.Any(i=>i.name==a.actor)).ToList();
             foreach(var input in inputs){
-                var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(input.prefab);if(!prefab)throw new Exception("Guest prefab missing: "+input.prefab);
-                var originals=prefab.GetComponentsInChildren<Transform>(true);
+                var prefab=extras?null:AssetDatabase.LoadAssetAtPath<GameObject>(input.prefab);if(!extras && !prefab)throw new Exception("Guest prefab missing: "+input.prefab);
+                var originals=extras?sourceRoots.SelectMany(r=>r.GetComponentsInChildren<Transform>(true)).ToArray():prefab.GetComponentsInChildren<Transform>(true);
                 var source=originals.Single(t=>GlobalObjectId.GetGlobalObjectIdSlow(t.gameObject).targetObjectId.ToString()==input.game_object_id);
                 var clone=UnityEngine.Object.Instantiate(source.gameObject);clone.transform.position=Vector3.zero;clone.transform.rotation=Quaternion.identity;clone.SetActive(true);
+                if(extras)foreach(var root in sourceRoots)root.SetActive(false);
                 foreach(var t in clone.GetComponentsInChildren<Transform>(true))GameObjectUtility.RemoveMonoBehavioursWithMissingScript(t.gameObject);
                 foreach(var r in clone.GetComponentsInChildren<Renderer>(true))Recover(r);
                 Transform Anchor(long id){
@@ -199,10 +284,16 @@ public static class RecoveredBirthdayBake
                 var target=new RenderTexture(256,256,24,RenderTextureFormat.ARGB32);camera.targetTexture=target;
                 Directory.CreateDirectory(Path.Combine(Output,input.name));
                 AnimationMode.StartAnimationMode();
-                foreach(var view in new[]{"front","side","back"}){
+                foreach(var view in extras?new[]{"front"}:new[]{"front","side","back"}){
                     clone.transform.rotation=Quaternion.Euler(0,Yaw(view),0);
-                    foreach(var pair in new[]{("idle","anim_human_Idle"),("walk","anim_human_Walk"),("wave","anim_human_Wave"),("happy","anim_human_Happy")}){
-                        var clip=ResolveOverride(animator.runtimeAnimatorController,pair.Item2);if(!clip)throw new Exception("Missing guest action "+input.name+"/"+pair.Item1);
+                    var selected=extras?new[]{("bounce-idle","anim_human_bounce_idle"),("bounce-up","anim_human_bounce_up"),("bounce-down","anim_human_bounce_down"),("bounce-left","anim_human_bounce_left"),("bounce-right","anim_human_bounce_right"),("stunt",input.name=="Hulk_NewNew"?"anim_Hulk_Backflip":"anim_Spidey_Somersault")}:new[]{("idle","anim_human_Idle"),("walk","anim_human_Walk"),("wave","anim_human_Wave"),("happy","anim_human_Happy")};
+                    if(extraMode=="2")selected=new[]{("laugh","anim_human_Laugh"),("provoke","anim_human_Provoke"),("struggle","anim_human_StrugglingToPull"),("shake","anim_human_ShakeOffWater"),("freak","anim_human_FreakOut"),("web-pull","anim_spiderman_WebPull"),("web-leap","anim_spiderman_WebJump")};
+                    foreach(var pair in selected){
+                        var clip=ResolveOverride(animator.runtimeAnimatorController,pair.Item2);
+                        if(extraMode=="2" && !clip)continue;
+                        if(extras && pair.Item1=="stunt" && !clip)clip=ResolveOverride(animator.runtimeAnimatorController,"anim_spiderman_backflip");
+                        if(!clip)throw new Exception("Missing guest action "+input.name+"/"+pair.Item1);
+                        float framing=camera.orthographicSize;if(extras && pair.Item1=="stunt")camera.orthographicSize*=1.35f;
                         int count=Math.Max(1,Math.Min(72,(int)Math.Ceiling(clip.length*12)));
                         var row=new ActionFrames{actor=input.name,action=pair.Item1+Suffix(view),clip=AssetDatabase.GetAssetPath(clip),texture=input.name+"/"+pair.Item1+Suffix(view)+".png",
                             frames=count,duration=clip.length,unitsPerPixel=camera.orthographicSize*2/256,pivot=Pixel(camera,clone.transform.position),leftHand=new Vector2[count],rightHand=new Vector2[count],hold=new Vector2[count],face=new Vector2[count]};
@@ -214,11 +305,11 @@ public static class RecoveredBirthdayBake
                             sheet.SetPixels32(frame%8*256,sheet.height-256-frame/8*256,256,256,image.GetPixels32());UnityEngine.Object.DestroyImmediate(image);
                             row.leftHand[frame]=Pixel(camera,left.position);row.rightHand[frame]=Pixel(camera,right.position);row.hold[frame]=Pixel(camera,hold.position);row.face[frame]=Pixel(camera,face.position);
                         }
-                        sheet.Apply();File.WriteAllBytes(Path.Combine(Output,row.texture),sheet.EncodeToPNG());UnityEngine.Object.DestroyImmediate(sheet);actions.Add(row);
+                        sheet.Apply();File.WriteAllBytes(Path.Combine(Output,row.texture),sheet.EncodeToPNG());UnityEngine.Object.DestroyImmediate(sheet);actions.Add(row);camera.orthographicSize=framing;
                     }
                 }
                 AnimationMode.StopAnimationMode();
-                foreach(var view in new[]{"front","side","back"}){
+                foreach(var view in extras?Array.Empty<string>():new[]{"front","side","back"}){
                     clone.transform.rotation=Quaternion.Euler(0,Yaw(view),0);
                     foreach(var mode in new[]{"hold","carry","pickup","happy-hold"})actions.Add(BakeControllerHold(animator,camera,target,clone.transform,left,right,hold,face,input.name,mode,view));
                 }

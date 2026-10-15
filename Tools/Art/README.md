@@ -28,3 +28,10 @@ the earlier accepted packs. `Tools/Verification/Inspect-RecoveredSpritePack.py`
 checks PNGs and anchor tracks without modifying imagery; that is integrity
 evidence, not motion, audio or owner visual acceptance. These tools share the
 Hulk recovery owner/consumers/retirement rule above.
+
+The baker also has bounded append/export passes for original band floor panels,
+castle back/front/deformation layers, bounce/interaction clips and the squirrel.
+Use a fresh output directory for every pass. The read-only pack verifier checks
+PCM hashes/durations, floor UV inventory and distinct castle blend-shape frames,
+as well as atlas dimensions, anchor tracks and required movement. None of those
+checks substitutes for native activity checks, listening or owner visual review.
