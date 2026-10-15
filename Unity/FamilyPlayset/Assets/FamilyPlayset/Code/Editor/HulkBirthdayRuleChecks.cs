@@ -14,6 +14,60 @@ public static class HulkBirthdayRuleChecks
         var p=world.ReadPlayer(actor);return world.Apply(new SoloCommand{requestId=Guid.NewGuid().ToString("N"),expectedRevision=world.Revision,actor=actor,
             zone=p.zone,visit=p.visit,action=action,value=value,item=item,target=target,x=x,y=y},connected);
     }
+    static GameWorld QuietBirthday()
+    {
+        var snapshot=GameWorld.WithBirthday(GameWorld.Create(Actors)).Snapshot();
+        // Activity-specific fixtures defer autonomous trouble. Separate checks
+        // below exercise its real filters/timers and cooperative recovery.
+        snapshot.birthday.nextTheft=snapshot.birthday.nextElectro=snapshot.birthday.nextHide=snapshot.birthday.nextStageElectro=1000000;
+        return GameWorld.Restore(snapshot);
+    }
+    static void CheckTrouble()
+    {
+        var seed=QuietBirthday();
+        foreach(var actor in Actors){Send(seed,actor,SoloAction.Travel,HulkBirthday.Zone);Send(seed,actor,SoloAction.Move,x:2400,y:180);}
+        foreach(int villainIndex in new[]{0,1,3}){
+        string villainId="birthday-villain-"+villainIndex;
+        var snapshot=seed.Snapshot();var b=snapshot.birthday;b.introDone=true;b.nextTheft=0;foreach(var villain in b.villains) villain.x=2400;b.villains[villainIndex].x=100;
+        b.props[25].location="table";b.props[25].x=2450;b.props[25].y=180;
+        var theft=GameWorld.Restore(snapshot);theft.AdvanceIdle(.5,out _,Actors);
+        Need(theft.ReadBirthday().villain==villainIndex && theft.ReadBirthday().villains[villainIndex].phase=="approach","source theft filters select an offscreen non-Electro with a table gift");
+        for(int i=0;i<11;i++)theft.AdvanceIdle(.5,out _,Actors);
+        Need(theft.ReadBirthday().props[25].holder==villainId,"one original gift stolen atomically");
+        Need(Send(theft,"two",SoloAction.Birthday,"web",target:villainId).Accepted,"first spider catches shared thief");
+        double trap=theft.ReadBirthday().villains[villainIndex].trapUntil;
+        Need(Send(theft,"three",SoloAction.Birthday,"web",target:villainId).Accepted && theft.ReadBirthday().villains[villainIndex].trapUntil==trap,"second spider helps the same trap without resetting it");
+        Send(theft,"two",SoloAction.Travel,"garden");
+        Need(theft.ReadBirthday().villains[villainIndex].webbers.SequenceEqual(new[]{"three"}) && theft.ReadBirthday().villains[villainIndex].phase=="trapped","one webber leaves independently");
+        var captured=theft.ReadBirthday().villains[villainIndex];Send(theft,"one",SoloAction.Move,x:captured.x-100,y:captured.y);
+        Need(Send(theft,"one",SoloAction.Birthday,"smash",target:villainId).Accepted,"Hulk starts cooperative rescue");
+        for(int i=0;i<4;i++)theft.AdvanceIdle(.5,out _,Actors);
+        Need(theft.ReadBirthday().troublesStopped==1 && theft.ReadBirthday().props[25].holder=="" && theft.ReadBirthday().villains[villainIndex].phase=="launched","one shared impact releases the actual stolen gift");GameWorld.Validate(theft.Snapshot());
+        }
+        var electroSeed=seed.Snapshot();electroSeed.birthday.introDone=true;electroSeed.birthday.nextElectro=0;electroSeed.birthday.villains[2].x=HulkBirthday.BatteryX;electroSeed.birthday.villains[2].y=HulkBirthday.BatteryY;
+        electroSeed.birthday.props[25].location="table";electroSeed.birthday.props[25].x=2450;
+        foreach(var p in electroSeed.players){p.x=HulkBirthday.BatteryX;p.y=HulkBirthday.BatteryY;}
+        var power=GameWorld.Restore(electroSeed);power.AdvanceIdle(.5,out _,Actors);
+        Need(!power.ReadBirthday().powered && power.ReadBirthday().props.Single(p=>p.kind=="battery").holder=="birthday-villain-2","Electro steals the same battery and changes band power");
+        Need(Send(power,"two",SoloAction.Birthday,"web",target:"birthday-villain-2").Accepted && Send(power,"one",SoloAction.Birthday,"smash",target:"birthday-villain-2").Accepted,"cooperative battery rescue");
+        for(int i=0;i<4;i++)power.AdvanceIdle(.5,out _,Actors);
+        Need(Send(power,"one",SoloAction.Birthday,"claim","birthday-battery").Accepted && Send(power,"one",SoloAction.Birthday,"socket").Accepted && power.ReadBirthday().powered,"recovered battery returns to its socket");GameWorld.Validate(power.Snapshot());
+        var fake=QuietBirthday();Send(fake,"one",SoloAction.Travel,HulkBirthday.Zone);Send(fake,"one",SoloAction.Move,x:986,y:160);Send(fake,"one",SoloAction.Birthday,"claim","birthday-gift-7");
+        for(int i=0;i<40;i++)fake.AdvanceIdle(.5,out _,Actors);
+        Need(fake.ReadBirthday().props[7].holder=="" && fake.ReadBirthday().props[7].location=="stock" && !fake.ReadBirthday().props[7].opened,"idle fake present releases safely without inventing a book outcome");
+        var soloSnapshot=GameWorld.WithBirthday(GameWorld.Create(new[]{"solo"})).Snapshot();
+        soloSnapshot.birthday.nextTheft=soloSnapshot.birthday.nextElectro=soloSnapshot.birthday.nextHide=1000000;
+        var solo=GameWorld.Restore(soloSnapshot);Send(solo,"solo",SoloAction.Travel,HulkBirthday.Zone);Send(solo,"solo",SoloAction.Move,x:400,y:180);solo.AdvanceIdle(.5,out _,new[]{"solo"});
+        Need(Send(solo,"solo",SoloAction.Birthday,"help",target:"birthday-villain-0").Accepted && solo.ReadBirthday().helperActor!="","Hulk requests a walking NPC spider helper");
+        for(int i=0;i<12;i++)solo.AdvanceIdle(.5,out _,new[]{"solo"});
+        Need(solo.ReadBirthday().villains[0].phase=="trapped" && solo.ReadBirthday().helperActor=="","NPC walks into range and webs the same villain");
+        Need(Send(solo,"solo",SoloAction.Birthday,"smash",target:"birthday-villain-0").Accepted,"solo Hulk can finish with the NPC helper");
+        for(int i=0;i<4;i++)solo.AdvanceIdle(.5,out _,new[]{"solo"});
+        Need(solo.ReadBirthday().troublesStopped==1,"NPC assistance completes one rescue");GameWorld.Validate(solo.Snapshot());
+        var pets=seed.Snapshot();for(int i=0;i<2;i++){var p=pets.birthday.props[5+i];p.opened=true;p.content=6+i;p.holder="";p.location="ground";p.x=2000+i*100;p.y=180;p.petAt=-1;}
+        var animals=GameWorld.Restore(pets);for(int i=0;i<3;i++)animals.AdvanceIdle(.5,out _,Actors);
+        Need(animals.ReadBirthday().props[5].petMoving && animals.ReadBirthday().props[5].x>2020 && animals.ReadBirthday().props[6].x>2120,"the two bounded gift pets explore after release");GameWorld.Validate(animals.Snapshot());
+    }
     static void Main()=>Run();
     public static void Run()
     {
@@ -57,8 +111,8 @@ public static class HulkBirthdayRuleChecks
         Need(restored.ReadBirthday().props[0].x==650 && restored.ReadBirthday().props[0].y==160,"restore retains carried prop at player");
         var foundation=restored.Snapshot();foundation.birthday.version=1;foundation.birthday.cast=null;foundation.birthday.guestOrder=null;foundation.birthday.props=foundation.birthday.props.Take(25).ToArray();
         var upgraded=GameWorld.Restore(foundation);
-        Need(upgraded.ReadBirthday().version==7 && upgraded.ReadBirthday().props.Length==27 && upgraded.ReadBirthday().props[0].id=="birthday-gift-0","foundation migration preserves existing props");
-        var party=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        Need(upgraded.ReadBirthday().version==8 && upgraded.ReadBirthday().props.Length==27 && upgraded.ReadBirthday().props[0].id=="birthday-gift-0","foundation migration preserves existing props");
+        var party=QuietBirthday();
         Send(party,"one",SoloAction.Travel,HulkBirthday.Zone);
         party.AdvanceIdle(.5,out _,new[]{"one"});
         var started=party.ReadBirthday();var intro=started.introAt;
@@ -86,7 +140,7 @@ public static class HulkBirthdayRuleChecks
         for(int i=0;i<6;i++)party.AdvanceIdle(.5,out _,Actors);
         Need(party.ReadBirthday().props.Where(p=>p.kind=="food").All(p=>p.location=="stock" && p.holder==""),"consumed portions return to bounded supply");
         Need(party.ReadBirthday().cakeReady && party.ReadBirthday().stickers.Length==2,"eating does not erase family cake");
-        var giftWorld=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        var giftWorld=QuietBirthday();
         foreach(var actor in Actors){Send(giftWorld,actor,SoloAction.Travel,HulkBirthday.Zone);Send(giftWorld,actor,SoloAction.Move,x:650,y:160);}
         giftWorld.AdvanceIdle(.5,out _,Actors);
         Need(Send(giftWorld,"two",SoloAction.Birthday,"claim","birthday-gift-0").Accepted,"helper brings birthday gift");
@@ -100,7 +154,7 @@ public static class HulkBirthdayRuleChecks
         Need(giftWorld.ReadBirthday().props[0].location=="stock" && !giftWorld.ReadBirthday().props[0].opened,"consumed gift returns to bounded guest supply");
         var savedParty=GameWorld.Restore(party.Snapshot());Need(savedParty.ReadBirthday().stickers.Length==2 && savedParty.ReadBirthday().stickerX[0]==.4f,"cake placement survives restore");
         GameWorld.Validate(giftWorld.Snapshot());
-        var replay=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        var replay=QuietBirthday();
         foreach(var actor in Actors){Send(replay,actor,SoloAction.Travel,HulkBirthday.Zone);Send(replay,actor,SoloAction.Move,x:650,y:160);}
         replay.AdvanceIdle(.5,out _,Actors);Send(replay,"one",SoloAction.Birthday,"claim","birthday-gift-0");
         for(int i=0;i<8;i++){
@@ -114,7 +168,7 @@ public static class HulkBirthdayRuleChecks
         Need(Send(replay,"one",SoloAction.Move,x:680,y:160).Accepted,"walking away interrupts own unwrap");
         Need(replay.ReadBirthday().giftAt<0 && replay.ReadBirthday().props[0].holder=="one" && !replay.ReadBirthday().props[0].opened,"cancellation preserves one unopened held gift");
         GameWorld.Validate(replay.Snapshot());
-        var stall=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        var stall=QuietBirthday();
         for(int i=0;i<4;i++){
             Send(stall,Actors[i],SoloAction.Travel,HulkBirthday.Zone);Send(stall,Actors[i],SoloAction.Move,x:HulkBirthday.QueueX[0],y:HulkBirthday.QueueY[0]);
             Need(Send(stall,Actors[i],SoloAction.Birthday,"queue").Accepted,"four family members join one vendor queue");
@@ -132,7 +186,7 @@ public static class HulkBirthdayRuleChecks
         for(int i=0;i<6;i++)stall.AdvanceIdle(.5,out _,Actors);
         Need(stall.ReadBirthday().vendorCount==4 && stall.ReadBirthday().vendorQueue.Length==0 && stall.ReadBirthday().props.Count(p=>p.kind=="food" && p.holder!="")==4,"returning fourth patron shares the same bounded supply");
         GameWorld.Validate(stall.Snapshot());
-        var band=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        var band=QuietBirthday();
         for(int i=0;i<4;i++){
             Send(band,Actors[i],SoloAction.Travel,HulkBirthday.Zone);
             string station=HulkBirthday.RoleInstrument(HulkBirthday.Roles[i]);
@@ -149,7 +203,7 @@ public static class HulkBirthdayRuleChecks
         for(int i=0;i<42;i++)band.AdvanceIdle(.5,out _,Actors);
         Need(band.ReadBirthday().bandRounds==1 && band.ReadBirthday().bandRoundAt<0,"one common band completion");
         GameWorld.Validate(band.Snapshot());
-        var castle=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        var castle=QuietBirthday();
         foreach(var actor in Actors){Send(castle,actor,SoloAction.Travel,HulkBirthday.Zone);Send(castle,actor,SoloAction.Move,x:1169,y:100);Need(Send(castle,actor,SoloAction.Birthday,"station",target:"castle").Accepted,"four players share one castle");}
         for(int i=0;i<10;i++)castle.AdvanceIdle(.5,out _,Actors);
         Need(castle.ReadBirthday().members.All(m=>m.landings>0 && m.bounceH>=0 && m.bounceH<=5.5),"gravity and bounded floor rebounds");
@@ -161,7 +215,7 @@ public static class HulkBirthdayRuleChecks
         Need(castle.ReadBirthday().members[0].station=="" && castle.ReadBirthday().members.Skip(1).All(m=>m.station=="castle"),"one castle exit preserves siblings");
         Need(GameWorld.Restore(castle.Snapshot()).ReadBirthday().members.All(m=>m.station=="" && !m.bounceDrag),"restore clears only transient castle participation");
         GameWorld.Validate(castle.Snapshot());
-        var play=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        var play=QuietBirthday();
         foreach(var actor in Actors){Send(play,actor,SoloAction.Travel,HulkBirthday.Zone);Send(play,actor,SoloAction.Move,x:4050,y:140);}
         Need(Send(play,"one",SoloAction.Birthday,"claim","birthday-brick-0").Accepted,"building brick pickup");
         Need(Send(play,"one",SoloAction.Birthday,"brick-turn").Accepted && Send(play,"one",SoloAction.Birthday,"brick-color").Accepted,"shared brick rotation and colour");
@@ -173,8 +227,9 @@ public static class HulkBirthdayRuleChecks
         int bubble=BirthdayPlay.LastBubble(play.ReadBirthday());Need(Send(play,"one",SoloAction.Birthday,"bubble-pop",bubble.ToString()).Accepted,"bubble popped once");
         Need(!Send(play,"two",SoloAction.Birthday,"bubble-pop",bubble.ToString()).Accepted,"competing bubble pop cannot duplicate event");
         GameWorld.Validate(play.Snapshot());
+        CheckTrouble();
         var invalid=world.Snapshot();invalid.birthday.props[0].id="invented";
         try{GameWorld.Validate(invalid);throw new Exception("invalid prop identity accepted");}catch(InvalidOperationException){}
-        Console.WriteLine("PASS: authority fixtures; migration, claims, handoff, snapshot isolation, instrument sharing, intro, guests, late join, departure and JSON restore. Not a four-client runtime test.");
+        Console.WriteLine("PASS: authority fixtures; migration/JSON, shared ownership, gifts/cake/queue, band/castle/building, all villain roles, independent web departure, battery recovery, fake gift, pets and NPC assistance. Not a four-client runtime test.");
     }
 }

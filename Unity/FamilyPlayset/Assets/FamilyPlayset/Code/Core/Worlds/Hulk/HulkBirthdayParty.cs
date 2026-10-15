@@ -103,6 +103,10 @@ namespace LittleWeeps.Core
             var b=state.birthday;bool changed=false;
             if(b.giftAt>=0 && b.clock-b.giftAt>=3){
                 var gift=b.props.Single(p=>p.id==b.giftId);
+                if(gift.fake){
+                    CancelBirthdayUnwrap(b);gift.opened=false;gift.holder="";gift.location="stock";gift.fakeAt=-1;gift.version++;
+                    b.reaction="negative";b.reactionAt=b.clock;changed=true;
+                }else {
                 int choice=gift.fake?4:b.giftCursor++%HulkBirthday.Contents.Length;
                 // The source limits cat/pug gifts to one each. Preserve that
                 // object budget across repeated wrapping and shared sessions.
@@ -110,6 +114,7 @@ namespace LittleWeeps.Core
                 gift.opened=true;gift.content=choice;gift.version++;
                 b.reaction=choice==2 || choice==3 || choice==4?"negative":"happy";b.reactionAt=b.clock;
                 CancelBirthdayUnwrap(b);changed=true;
+                }
             }
             foreach(var member in b.members.Where(m=>m.station=="eat" || m.station=="drink")){
                 if(b.clock-member.actionAt<2.5)continue;

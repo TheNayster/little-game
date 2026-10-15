@@ -28,8 +28,8 @@ namespace LittleWeeps.Client
         public string[] BirthdayRenderedPoses=>birthdayFrames.Select(p=>p.Key+"="+p.Value.action.action+":"+p.Value.frame+(birthdayMirrors.TryGetValue(p.Key,out var mirror) && mirror?":mirrored":"")).ToArray();
         private string birthdayPending="",birthdayPendingActor="";private long birthdayVisit=-1;
         private bool birthdayApproach,birthdayWasVisible;
-        private bool BirthdayWalkingApproach=>CurrentArea==HulkBirthday.Zone && (birthdayApproach || birthdayPendingActor!="" || birthdayCakeApproach || birthdayUnwrapApproach || birthdayVendorApproach || birthdayBandApproach!="" || birthdaySocketApproach || birthdayCastleApproach || birthdayBubbleApproach);
-        private void CancelBirthdayIntent(){birthdayApproach=false;birthdayPending="";birthdayPendingActor="";birthdayCakeApproach=false;birthdayUnwrapApproach=false;birthdayVendorApproach=false;birthdayBandApproach="";birthdaySocketApproach=false;birthdayCastleApproach=false;birthdayBubbleApproach=false;}
+        private bool BirthdayWalkingApproach=>CurrentArea==HulkBirthday.Zone && (birthdayApproach || birthdayPendingActor!="" || birthdayCakeApproach || birthdayUnwrapApproach || birthdayVendorApproach || birthdayBandApproach!="" || birthdaySocketApproach || birthdayCastleApproach || birthdayBubbleApproach || birthdayVillainApproach!="");
+        private void CancelBirthdayIntent(){birthdayApproach=false;birthdayPending="";birthdayPendingActor="";birthdayCakeApproach=false;birthdayUnwrapApproach=false;birthdayVendorApproach=false;birthdayBandApproach="";birthdaySocketApproach=false;birthdayCastleApproach=false;birthdayBubbleApproach=false;birthdayVillainApproach="";}
         private double birthdayReactionSeen=-1;
         private BirthdayState Birthday=>Shared?shared.View.birthday:World.ReadBirthday();
         private RawImage BirthdayImage(string name)
@@ -60,6 +60,7 @@ namespace LittleWeeps.Client
             BuildBirthdayBandUi();
             BuildBirthdayCastleUi();
             BuildBirthdayPlayUi();
+            BuildBirthdayTroubleUi();
         }
         private void BirthdaySend(string value,string item="",string target="",float x=0,float y=0)
         {
@@ -98,6 +99,7 @@ namespace LittleWeeps.Client
             if(visible && miniGamesButton!=null)miniGamesButton.gameObject.SetActive(false);
             TickBirthdayCastleUi(visible);
             TickBirthdayPlayUi(visible);
+            if(!visible)TickBirthdayTroubleUi(false);
             foreach(var tile in birthdayTiles)tile.gameObject.SetActive(visible);
             foreach(var image in birthdayPeople.Values.Concat(birthdayProps.Values))image.gameObject.SetActive(visible);
             foreach(var face in birthdayFaces.Values)face.gameObject.SetActive(visible);
@@ -108,7 +110,7 @@ namespace LittleWeeps.Client
             if(game.reactionAt>=0 && game.reactionAt!=birthdayReactionSeen){
                 birthdayReactionSeen=game.reactionAt;
                 var hulk=game.cast[0];string receiver=hulk.controller==""?hulk.id:hulk.controller;
-                if(game.reaction=="cake-happy" || game.reaction=="band-happy")foreach(var id in game.reaction=="band-happy"?game.bandActors:game.members.Select(m=>m.actor).Concat(game.cast.Where(n=>n.active).Select(n=>n.id)))birthdayReactions[id]=("happy",Time.unscaledTimeAsDouble);
+                if(game.reaction=="cake-happy" || game.reaction=="band-happy" || game.reaction=="rescue-happy")foreach(var id in game.reaction=="band-happy"?game.bandActors:game.members.Select(m=>m.actor).Concat(game.cast.Where(n=>n.active).Select(n=>n.id)))birthdayReactions[id]=("happy",Time.unscaledTimeAsDouble);
                 else birthdayReactions[receiver]=(game.reaction=="happy" && game.props.Any(p=>p.holder==receiver)?"happy-hold":game.reaction,Time.unscaledTimeAsDouble);
             }
             foreach(var prop in game.props)if(birthdayRenderedOwners.TryGetValue(prop.id,out var before) && before!=prop.holder){
@@ -142,7 +144,7 @@ namespace LittleWeeps.Client
             }
             birthdayVisiblePlayers=0;
             var bodies=game.members.Select(m=>new{m.actor,m.role,m.station,npc=(BirthdayNpc)null})
-                .Concat(game.cast.Select(n=>new{actor=n.id,n.role,station=n.station,npc=n}));
+                .Concat(game.cast.Concat(BirthdayVillainViews(game)).Select(n=>new{actor=n.id,n.role,station=n.station,npc=n}));
             foreach(var member in bodies){
                 var player=member.npc==null?ReadPlayer(member.actor):null;
                 var inWorld=player!=null && player.zone==HulkBirthday.Zone && (Shared?shared.Players.Contains(player.id):player.id==Actor);
@@ -152,30 +154,34 @@ namespace LittleWeeps.Client
                 birthdayPeople[member.actor].gameObject.SetActive(shown);birthdayFaces[member.actor].gameObject.SetActive(shown);
                 if(!shown){birthdayFrames.Remove(member.actor);birthdayHoldPoints.Remove(member.actor);continue;}
                 var point=npc!=null?new Vector2(npc.x,npc.y):Shared?shared.VisualPosition(member.actor):new Vector2(player.x,player.y);
-                if(npc!=null && (npc.phase=="enter" || npc.phase=="leave" || npc.phase=="band-walk")){
+                if(npc!=null && (npc.phase=="enter" || npc.phase=="leave" || npc.phase.EndsWith("-walk",StringComparison.Ordinal))){
                     double clock=birthdayClock.Sample(Shared?shared.View.worldId:World.WorldId,game.clock,Time.unscaledTimeAsDouble,Shared);
                     point=Vector2.MoveTowards(point,new Vector2(npc.targetX,npc.targetY),(float)Math.Clamp(clock-game.clock,0,.3)*Walking.Speed);
                 }
                 var castleMember=npc==null && member.station=="castle"?game.members.Single(m=>m.actor==member.actor):null;
                 if(castleMember!=null)point=BirthdayCastlePoint(castleMember);
+                point=BirthdayHeroPoint(member.actor,point);
                 var continuity=npc!=null?npc.role:player.zone+"/"+player.visit;
                 bool same=birthdayContinuities.TryGetValue(member.actor,out var last) && last==continuity;
                 if(!same){birthdayFacing[member.actor]=0;birthdayReactions.Remove(member.actor);birthdayContinuities[member.actor]=continuity;}
                 var previous=birthdayPositions.TryGetValue(member.actor,out var prior)?prior:point;
                 var delta=point-previous;
-                var moving=same && (npc!=null?npc.phase=="enter" || npc.phase=="leave" || npc.phase=="band-walk":delta.magnitude>.1f);
+                var moving=same && (npc!=null?npc.phase=="enter" || npc.phase=="leave" || npc.phase.EndsWith("-walk",StringComparison.Ordinal):delta.magnitude>.1f);
                 if(npc!=null && moving)delta=new Vector2(npc.targetX,npc.targetY)-point;
                 if(moving){birthdayFacing[member.actor]=Mathf.Abs(delta.x)>=Mathf.Abs(delta.y)*.45f?(delta.x<0?-1:1):delta.y>0?2:0;birthdayReactions.Remove(member.actor);}
                 birthdayPositions[member.actor]=point;
                 var holding=game.props.Any(p=>p.holder==member.actor);
                 string pose=member.station==""?(moving?(holding?"carry":"walk"):holding?"hold":"idle"):member.station=="queue" || member.station=="vendor-exit"?(moving?(holding?"carry":"walk"):holding?"hold":"idle"):member.station=="castle"?"jump":member.station=="dance"?"dance":member.station;
                 if(castleMember!=null)pose=BirthdayCastlePose(castleMember);
+                double actionAge=game.clock-(npc?.actionAt??game.members.Single(m=>m.actor==member.actor).actionAt);
+                if(member.station=="web")pose=actionAge<.6?"web-right":"web-pull";
+                if(member.station=="smash")pose=game.heroAt>=0 && game.clock-game.heroAt<1.35?"jump":"smash";
                 if(npc!=null && !moving && member.station=="" && (npc.phase=="wave" || !game.introDone))pose=holding?"happy-hold":"wave";
                 if(npc!=null && game.giftAt>=0 && game.giftActor==npc.id)pose="unwrap";
-                if(npc!=null && npc.phase=="band-walk")pose="walk";
-                int direction=member.station=="" || member.station=="queue" || member.station=="vendor-exit" || npc?.phase=="band-walk"?birthdayFacing[member.actor]:0;
+                if(npc!=null && npc.phase.EndsWith("-walk",StringComparison.Ordinal))pose="walk";
+                int direction=member.station=="" || member.station=="queue" || member.station=="vendor-exit" || npc!=null && npc.phase.EndsWith("-walk",StringComparison.Ordinal)?birthdayFacing[member.actor]:0;
                 string view=direction==2?"back":direction!=0?"side":"front",suffix=view=="front"?"":"-"+view;
-                var action=BirthdayArt.Action(member.role,pose+suffix)??BirthdayArt.Action(member.role,pose)??BirthdayArt.Action(member.role,"idle");
+                var action=BirthdayArt.Action(member.role,pose+suffix)??BirthdayArt.Action(member.role,pose)??(pose=="freak"?BirthdayArt.Action(member.role,"negative"):null)??BirthdayArt.Action(member.role,"idle");
                 bool reactionActive=false;double age=0;
                 if(!moving && (inWorld || npc!=null) && (member.station=="" || member.station=="vendor-exit") && pose!="unwrap" && birthdayReactions.TryGetValue(member.actor,out var reaction)){
                     var candidate=BirthdayArt.Action(member.role,reaction.pose+suffix);
@@ -187,6 +193,7 @@ namespace LittleWeeps.Client
                 // clip. Reactions finish once; locomotion keeps its source loop.
                 double phase=reactionActive?age:Time.unscaledTimeAsDouble%Math.Max(.001,action.duration);
                 if(castleMember!=null && pose=="stunt")phase=Math.Max(0,game.clock-castleMember.stuntAt);
+                if(member.station=="web" && pose=="web-right")phase=Math.Max(0,actionAge);
                 int frame=action.frames==1?0:Mathf.Min(action.frames-1,(int)(phase*BirthdayArt.Data.fps));
                 bool mirror=direction<0;
                 Vector2 Offset(Vector2 anchor){var offset=anchor-action.pivot;if(mirror)offset.x=-offset.x;return offset*action.unitsPerPixel*BirthdayArt.PixelsPerUnit*sceneScale;}
@@ -194,10 +201,10 @@ namespace LittleWeeps.Client
                 if(mirror){var uv=image.uvRect;image.uvRect=new Rect(uv.x+uv.width,uv.y,-uv.width,uv.height);}
                 image.rectTransform.pivot=new Vector2(mirror?1-action.pivot.x/256:action.pivot.x/256,action.pivot.y/256);image.rectTransform.sizeDelta=Vector2.one*256*action.unitsPerPixel*BirthdayArt.PixelsPerUnit*sceneScale;
                 image.rectTransform.anchoredPosition=ToBoard(point.x,point.y);
-                var face=birthdayFaces[member.actor];face.raycastTarget=(inWorld || npc!=null) && member.actor!=Actor && (game.props.Any(p=>p.holder==Actor) || npc!=null && holding);
+                var face=birthdayFaces[member.actor];face.raycastTarget=(inWorld || npc!=null) && member.actor!=Actor && (game.villains.Any(v=>v.id==member.actor) || game.props.Any(p=>p.holder==Actor) || npc!=null && holding);
                 face.GetComponent<Button>().interactable=face.raycastTarget;
                 face.rectTransform.anchoredPosition=image.rectTransform.anchoredPosition+Offset(action.face[frame]);
-                face.rectTransform.sizeDelta=new Vector2(42,48)*sceneScale;
+                face.rectTransform.sizeDelta=(game.villains.Any(v=>v.id==member.actor)?new Vector2(80,90):new Vector2(42,48))*sceneScale;
                 birthdayHoldPoints[member.actor]=image.rectTransform.anchoredPosition+Offset(action.hold[frame]);
                 birthdayFrames[member.actor]=(action,frame);
                 birthdayViews[member.actor]=view;birthdayMirrors[member.actor]=mirror;
@@ -206,12 +213,13 @@ namespace LittleWeeps.Client
             var bricks=BirthdayArt.Data.props.Where(p=>p.view=="front" && p.name.StartsWith("Bap_Brick",StringComparison.Ordinal)).OrderBy(p=>p.name).ToArray();
             TickBirthdayVendorUi(game);
             TickBirthdayBandUi(game);
+            TickBirthdayTroubleUi(true);
             foreach(var prop in game.props){
                 if(!birthdayProps.TryGetValue(prop.id,out var image))continue;
                 var art=prop.kind=="gift"?(prop.opened?BirthdayArt.PropView(HulkBirthday.Contents[prop.content],"front"):presents[prop.style%presents.Length]):
                     prop.kind=="food"?BirthdayArt.PropView(prop.style==1?"CakeActorVariant_VR":"CakeActorVariant_CR","front"):prop.kind=="drink"?BirthdayArt.PropView("FrostyDrink","front"):
                     prop.kind=="battery"?BirthdayArt.PropView("Battery","front"):bricks[prop.style%bricks.Length];
-                image.gameObject.SetActive(prop.location!="stock");
+                image.gameObject.SetActive(prop.location!="stock" && !game.villains.Any(v=>v.id==prop.holder && (v.phase=="hidden" || v.phase=="cooldown")));
                 string carrier=prop.holder!=""?prop.holder:prop.location=="counter"?"birthday-squirrel":"";
                 bool held=carrier!="" && birthdayHoldPoints.ContainsKey(carrier);
                 bool mirror=held && birthdayMirrors[carrier];
@@ -232,6 +240,7 @@ namespace LittleWeeps.Client
                     image.rectTransform.localRotation=Quaternion.Euler(0,0,prop.turns*90);image.color=BirthdayBrickColours[prop.tint];
                     if(!held)image.rectTransform.anchoredPosition+=new Vector2(0,BirthdayPlay.BrickLevel(game,prop)*24*sceneScale);
                 }
+                DrawBirthdayPet(prop,image);
                 birthdayRenderedOwners[prop.id]=prop.holder;
             }
             SortDepth();
@@ -244,6 +253,7 @@ namespace LittleWeeps.Client
             AddBirthdayBandDepth(add);
             AddBirthdayCastleDepth(add);
             AddBirthdayPlayDepth(add);
+            AddBirthdayTroubleDepth(add);
             if(birthdayPeople.TryGetValue("birthday-squirrel",out var seller))add(seller.rectTransform,ToBoard(0,216).y,1,"birthday-squirrel");
             if(birthdayFaces.TryGetValue("birthday-squirrel",out var sellerFace))add(sellerFace.rectTransform,ToBoard(0,216).y,4,"birthday-squirrel-face");
             foreach(var member in Birthday.members)if(birthdayPeople.TryGetValue(member.actor,out var image))add(image.rectTransform,ToBoard(0,birthdayPositions.TryGetValue(member.actor,out var p)?p.y:200).y,1,"birthday-"+member.actor);
@@ -265,6 +275,7 @@ namespace LittleWeeps.Client
             ResetBirthdayBandUi();
             ResetBirthdayCastleUi();
             ResetBirthdayPlayUi();
+            ResetBirthdayTroubleUi();
         }
     }
 }

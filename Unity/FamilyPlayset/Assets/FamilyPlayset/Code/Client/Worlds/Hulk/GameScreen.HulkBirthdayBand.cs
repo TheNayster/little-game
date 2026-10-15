@@ -91,7 +91,7 @@ namespace LittleWeeps.Client
                 else destination=new Vector2(HulkBirthday.BatteryX,HulkBirthday.BatteryY);
             }
             double clock=birthdayClock.Sample(Shared?shared.View.worldId:World.WorldId,game.clock,Time.unscaledTimeAsDouble,Shared);
-            bool occupied=game.members.Any(m=>HulkBirthday.Instrument(m.station) || m.station=="dance") || game.cast.Any(n=>n.station!="" && n.phase!="band-walk");
+            bool occupied=game.members.Any(m=>HulkBirthday.Instrument(m.station) || m.station=="dance") || game.cast.Any(n=>(HulkBirthday.Instrument(n.station) || n.station=="dance") && n.phase!="band-walk");
             bool lit=game.powered && (occupied || game.bandRoundAt>=0);var floor=BirthdayArt.Data.danceFloor;
             birthdayFloorRoot.gameObject.SetActive(true);birthdayDrawnLightStep=game.lightStep;
             for(int i=0;i<floor.cells.Length;i++){

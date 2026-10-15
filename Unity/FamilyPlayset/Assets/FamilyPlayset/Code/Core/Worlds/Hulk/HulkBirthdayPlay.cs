@@ -45,11 +45,19 @@ namespace LittleWeeps.Core
             if(Math.Abs(player.x-target.x)>InteractionRadius || Math.Abs(player.y-target.y)>InteractionRadius){outcome="come-closer";return true;}
             held.holder="";held.location="ground";held.support=target.id;held.x=target.x;held.y=target.y;held.version++;BirthdayPose(member,"Idle");return true;
         }
-        private void AdvanceBirthdayPlay()
+        private void AdvanceBirthdayPlay(double seconds)
         {
             var b=state.birthday;int last=BirthdayPlay.LastBubble(b);
             b.poppedBubbles=b.poppedBubbles.Where(i=>i>last-12).ToArray();
             if(b.bubblesOn)AmbientChanged=true;
+            foreach(var pet in b.props.Where(p=>p.kind=="gift" && p.opened && p.content>=6 && p.holder=="" && p.location=="ground")){
+                if(pet.petAt<0){pet.petAt=b.clock;pet.petHomeX=pet.x;pet.petHomeY=pet.y;}
+                double age=b.clock-pet.petAt;int leg=(int)(age/4)%4;bool walk=age%4<2.5;
+                float targetX=Math.Clamp(pet.petHomeX+new[]{95,0,-95,0}[leg],100,4700),targetY=Math.Clamp(pet.petHomeY+new[]{0,45,0,-45}[leg],35,450);
+                float dx=targetX-pet.x,dy=targetY-pet.y;double distance=Math.Sqrt(dx*dx+dy*dy),step=Math.Min(distance,90*seconds);pet.petMoving=walk && distance>.1;
+                if(pet.petMoving){pet.x+=(float)(dx/distance*step);pet.y+=(float)(dy/distance*step);}
+                AmbientChanged=true;
+            }
         }
     }
 }

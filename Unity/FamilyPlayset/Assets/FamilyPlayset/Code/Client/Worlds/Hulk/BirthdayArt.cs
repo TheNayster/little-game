@@ -36,7 +36,7 @@ namespace LittleWeeps.Client
                 var supplied=Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_ART");
                 if(!string.IsNullOrWhiteSpace(supplied))return Path.GetFullPath(supplied);
 #if UNITY_EDITOR
-                return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v17"));
+                return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v21"));
 #else
                 return Path.Combine(Application.streamingAssetsPath,"HulkBirthday");
 #endif

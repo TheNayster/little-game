@@ -7,7 +7,7 @@ namespace LittleWeeps.Core
     {
         private static void ResetBirthdayBand(BirthdayState b)
         {
-            foreach(var npc in b.cast){npc.station="";if(npc.phase=="band-walk")npc.phase="idle";}
+            foreach(var npc in b.cast.Where(n=>HulkBirthday.Instrument(n.station) || n.station=="dance")){npc.station="";if(npc.phase=="band-walk")npc.phase="idle";}
             b.bandInviteAt=b.bandRoundAt=-1;b.bandActors=Array.Empty<string>();b.songAt=-1;b.bandBeat=0;
         }
         private static void ValidateBirthdayBand(SoloSnapshot s)
@@ -73,10 +73,10 @@ namespace LittleWeeps.Core
             if(b.bandRoundAt>=0 && b.clock>=b.bandRoundAt+HulkBirthday.BandSongSeconds){
                 var participants=b.bandActors.ToArray();
                 foreach(var member in b.members.Where(m=>HulkBirthday.Instrument(m.station) || m.station=="dance")){member.station="";BirthdayPose(member,"Happy");}
-                foreach(var npc in b.cast.Where(n=>n.station!="")){npc.station="";npc.phase="idle";}
+                foreach(var npc in b.cast.Where(n=>HulkBirthday.Instrument(n.station) || n.station=="dance")){npc.station="";npc.phase="idle";}
                 b.bandRounds++;b.bandEndedAt=b.clock;b.bandRoundAt=b.bandInviteAt=b.songAt=-1;b.bandActors=participants;b.reaction="band-happy";b.reactionAt=b.clock;changed=true;
             }
-            bool occupied=b.members.Any(m=>HulkBirthday.Instrument(m.station) || m.station=="dance") || b.cast.Any(n=>n.station!="" && n.phase!="band-walk");
+            bool occupied=b.members.Any(m=>HulkBirthday.Instrument(m.station) || m.station=="dance") || b.cast.Any(n=>(HulkBirthday.Instrument(n.station) || n.station=="dance") && n.phase!="band-walk");
             if(!occupied && b.bandActors.Length==0 && b.bandRoundAt>=0){b.bandRoundAt=b.bandInviteAt=-1;changed=true;}
             if(occupied && b.songAt<0){b.songAt=b.clock;b.bandBeat=0;changed=true;}
             if(!occupied && b.bandRoundAt<0 && b.songAt>=0){b.songAt=-1;changed=true;}

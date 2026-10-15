@@ -34,7 +34,9 @@ def main():
     parser.add_argument('--band',action='store_true',help='Also check the shared band, power, floor lights and independent departure.')
     parser.add_argument('--castle',action='store_true',help='Also check four shared castle bodies, gravity, stunts, drag and independent exit.')
     parser.add_argument('--play',action='store_true',help='Also check shared brick pegging and the bubble machine.')
-    parser.add_argument('--art',type=Path,default=ROOT/'LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D')
+    parser.add_argument('--villains',action='store_true',help='Also check a naturally triggered theft and cooperative web/Hulk recovery.')
+    parser.add_argument('--pets',action='store_true',help='Also reveal and release the two bounded animated gift pets.')
+    parser.add_argument('--art',type=Path,default=ROOT/'LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v21')
     args=parser.parse_args()
     art=args.art.resolve();require((art/'actor-frames.json').is_file(),'Current birthday pack is required')
     previous=os.environ.get('LITTLE_WEEPS_BIRTHDAY_ART')
@@ -49,7 +51,7 @@ def main():
     actions=[a.strip() for a in re.search(r'enum SoloAction\s*{([^}]+)}',core).group(1).split(',')]
     birthday=actions.index('Birthday')
     pack=read(art/'actor-frames.json')
-    required={'actor-frames.json',*(a['texture'] for a in pack['actions']),*(p['texture'] for p in pack['props']),*(s['texture'] for s in pack.get('cakeSprites',[])),*(f'world-{i}.png' for i in range(4))}
+    required={'actor-frames.json',*(a['texture'] for a in pack['actions']),*(p['texture'] for p in pack['props']),*(s['texture'] for s in pack.get('cakeSprites',[])),*(f'world-{i}.png' for i in range(pack.get('tileCount') or 4))}
     required.update(a['file'] for a in pack.get('audio',[]))
     if pack.get('danceFloor'):required.add(pack['danceFloor']['texture'])
     if pack.get('castle'):required.update([pack['castle']['texture'],pack['castle']['front']])
@@ -257,6 +259,28 @@ def main():
             for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
             time.sleep(1.5)
             record('four clients decorate/share one cake; portions/drink consume once; Hulk unwraps cake/boulder/flower, repeats the same gift and safely cancels an unwrap')
+        if args.pets:
+            for gift_id,wanted,drop_x in [('birthday-gift-3',6,1700),('birthday-gift-4',7,1600)]:
+                gift=next(p for p in view()['birthday']['props'] if p['id']==gift_id)
+                command(a,actions.index('Move'),x=gift['x'],y=gift['y']);command(a,birthday,value='claim',item=gift_id)
+                for attempt in range(9):
+                    button(a,'Open present with Hulk')
+                    wait(lambda:next(p for p in view()['birthday']['props'] if p['id']==gift_id)['opened'],'pet-pool unwrap',15)
+                    if next(p for p in view()['birthday']['props'] if p['id']==gift_id)['content']==wanted:break
+                    button(a,'Wrap again')
+                else:raise AssertionError('Mapped pet outcome was not reachable')
+                command(a,actions.index('Move'),x=drop_x,y=80);time.sleep(1.5);tap_prop(a,'Birthday prop '+gift_id)
+                wait(lambda:next(p for p in view()['birthday']['props'] if p['id']==gift_id)['holder']=='','actual pet release',10)
+            samples=[];until=time.monotonic()+5
+            while time.monotonic()<until:samples.append(a.input('inspect').get('birthdayPetPoses',[]));time.sleep(.05)
+            write(out/'gift-pet-motion-trace.json',samples)
+            for gift_id in ['birthday-gift-3','birthday-gift-4']:
+                poses={p for sample in samples for p in sample if p.startswith(gift_id+'=walk-side:')}
+                require(len(poses)>=2,'Released pet did not advance through recovered walk frames: '+gift_id)
+            home.capture(a,out,'two-recovered-gift-pets')
+            record('actual shared unwrap/release yields one cat and one pug; both roam and advance through original walk frames')
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5)
         if args.guests:
             intro=wait(lambda:view()['birthday'] if view()['birthday']['introAt']>=0 else None,'shared intro begins',15)['introAt']
             command(a,actions.index('Move'),x=2400,y=200)
@@ -273,6 +297,43 @@ def main():
             # tap bounds only after it settles, as a player walking here would.
             time.sleep(1.5)
             record('one shared introduction, two recovered civilian guests, delivered gifts and late-return role continuity')
+        if args.villains:
+            # Use the original event timer and filters. Placement below is an
+            # explicit authority fixture; catching and the rescue are real UI.
+            wait(lambda:view()['birthday']['villain']>=0 and any(p['holder'].startswith('birthday-villain-') for p in view()['birthday']['props']),'natural shared gift theft',60)
+            state=view()['birthday'];villain=state['villains'][state['villain']];villain_id=villain['id']
+            stolen=next(p['id'] for p in state['props'] if p['holder']==villain_id)
+            for client,offset in [(a,-150),(b,70),(c,180)]:command(client,actions.index('Move'),x=max(0,min(4800,villain['x']+offset)),y=villain['y'])
+            time.sleep(1.5)
+            villain=next(v for v in view()['birthday']['villains'] if v['id']==villain_id)
+            button(b,('Birthday hiding spot ' if villain['phase']=='hidden' else 'Birthday villain ')+villain_id)
+            wait(lambda:next(v for v in view()['birthday']['villains'] if v['id']==villain_id)['phase']=='trapped','actual spider finds/webs the thief',20)
+            button(c,'Birthday villain '+villain_id)
+            state=wait(lambda:view()['birthday'] if len(next(v for v in view()['birthday']['villains'] if v['id']==villain_id)['webbers'])==2 else None,'two siblings share one web trap',15)
+            deadline=next(v for v in state['villains'] if v['id']==villain_id)['trapUntil']
+            command(d,actions.index('Travel'),value='garden');button(b,'Let go of web')
+            state=wait(lambda:view()['birthday'] if next(v for v in view()['birthday']['villains'] if v['id']==villain_id)['webbers']==[c.profile] else None,'one webber leaves independently')
+            require(next(v for v in state['villains'] if v['id']==villain_id)['trapUntil']==deadline,'Independent departure restarted the shared trap')
+            villain=next(v for v in state['villains'] if v['id']==villain_id)
+            command(a,actions.index('Move'),x=max(0,villain['x']-100),y=villain['y']);time.sleep(1)
+            home.capture(c,out,'shared-spider-web-trap')
+            button(a,'Birthday villain '+villain_id)
+            wait(lambda:view()['birthday']['troublesStopped']>=1 and next(p for p in view()['birthday']['props'] if p['id']==stolen)['holder']=='','Hulk impact recovers the same stolen object',15)
+            require(next(p for p in view()['players'] if p['id']==d.profile)['zone']=='garden','Rescue dragged an independently departed sibling back')
+            home.capture(a,out,'hulk-recovers-stolen-present')
+            command(d,actions.index('Travel'),value='hulk-birthday')
+            fake=next(p for p in view()['birthday']['props'] if p['id']=='birthday-gift-7')
+            fake_checked=False
+            if fake['holder']=='':
+                for client in (a,b):command(client,actions.index('Move'),x=fake['x'],y=fake['y'])
+                command(b,birthday,value='claim',item=fake['id']);button(b,'Open present with Hulk')
+                wait(lambda:view()['birthday']['giftAt']>=0,'shared fake-present unwrap starts')
+                wait(lambda:next(p for p in view()['birthday']['props'] if p['id']==fake['id'])['location']=='stock','fake present releases safely',15)
+                require(view()['birthday']['reaction']=='negative','Hulk did not react to the fake present')
+                fake_checked=True
+            record('natural theft, real two-player web trap, independent web/world exits and one Hulk impact recover the same object'+('; fake present releases safely' if fake_checked else '; fake item currently belongs to another story phase and was not exercised'))
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5)
         tap_prop(a,'Birthday prop birthday-gift-0')
         wait(lambda:prop()['holder']==a.profile,'actual gift pickup',20)
         for client in clients:rendered(client,a.profile)
@@ -290,7 +351,9 @@ def main():
         # A clear drop pad avoids asking a real touch to select an obscured
         # object beneath the untouched starting gifts.
         if b.input('inspect')['joystickVisible']:b.input('touchButton',text='Tap to walk')
-        walk_carry(b,1150,250)
+        # The original test pad is now inside the interactive castle. Use the
+        # visible ground below its entrance, within this client's current view.
+        walk_carry(b,1150,60)
         if args.actions:walk_carry(b,700,80,True)
         time.sleep(.5);home.capture(a,out,'spidey-carries-shared-gift')
         require(prop()['holder']==b.profile,'Walking dropped carried gift')
@@ -329,7 +392,7 @@ def main():
                     try:write(out/('last-'+client.profile+'.json'),client.input('inspect'))
                     except (RuntimeError,OSError,AssertionError):pass
         write(out/'result.json',{'passed':passed,'checks':checks,'build':args.build,'source_commit':source['sourceCommit'],
-            'scope':'Checked birthday slices: shared props'+(' / directional actions' if args.actions else '')+(' / introduction and guests' if args.guests else '')+(' / shared cake and gift replay' if args.party else '')+(' / one shared vendor queue' if args.vendor else '')+(' / shared band, audio and power' if args.band else '')+(' / shared castle physics' if args.castle else '')+(' / brick pegs and bubbles' if args.play else '')+'. Villains and whole-world acceptance remain open.',
+            'scope':'Checked birthday slices: shared props'+(' / directional actions' if args.actions else '')+(' / introduction and guests' if args.guests else '')+(' / shared cake and gift replay' if args.party else '')+(' / one shared vendor queue' if args.vendor else '')+(' / shared band, audio and power' if args.band else '')+(' / shared castle physics' if args.castle else '')+(' / brick pegs and bubbles' if args.play else '')+(' / animated gift pets' if args.pets else '')+(' / cooperative villain recovery' if args.villains else '')+'. Remaining source navigation/throwing, persistence and presentation acceptance are recorded in the phase plan.',
             'art_root':str(art),'clients_started':len(clients)})
         run.close()
         if previous is None:os.environ.pop('LITTLE_WEEPS_BIRTHDAY_ART',None)

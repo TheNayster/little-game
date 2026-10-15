@@ -16,7 +16,7 @@ public static class RecoveredBirthdayBake
     [Serializable] public sealed class ActorInputs {public ActorInput[] actors;}
     [Serializable] public sealed class ActionFrames {public string actor,action,clip,texture;public int frames,columns=8,size=256;public float duration,unitsPerPixel;public Vector2[] rightHand,leftHand,hold,face;public Vector2 pivot;}
     [Serializable] public sealed class PropFrame {public string name,texture,view;public float unitsPerPixel;public Vector2 pivot,holdPivot;public long sourceBaseId,sourceHoldId;}
-    [Serializable] public sealed class Manifest {public string sourceScene,sourceSceneSha256,bakerSha256,bindingsSha256,unityVersion;public int format=2,fps=12;public ActionFrames[] actions;public PropFrame[] props;public string[] missingActions,limits;public CakeSprite[] cakeSprites;public AudioRow[] audio;public FloorOutput danceFloor;public CastleOutput castle;}
+    [Serializable] public sealed class Manifest {public string sourceScene,sourceSceneSha256,bakerSha256,bindingsSha256,unityVersion;public int format=2,fps=12,worldHeight=800,tileCount=4;public float tileStart;public ActionFrames[] actions;public PropFrame[] props;public string[] missingActions,limits;public CakeSprite[] cakeSprites;public AudioRow[] audio;public FloorOutput danceFloor;public CastleOutput castle;}
     [Serializable] public sealed class AudioRow {public string key,file,source,source_sha256,sha256;public double duration;}
     [Serializable] public sealed class Landmark {public string name;public Vector3 position;}
     [Serializable] public sealed class Geometry {public Vector3 cameraPosition,cameraRotation;public float fieldOfView,tileWorldWidth=19.5f,pixelsPerUnit=1200/19.5f,worldMinX=-39;public Landmark[] landmarks;}
@@ -47,11 +47,12 @@ public static class RecoveredBirthdayBake
             var castleRenderers=castle.GetComponentsInChildren<Renderer>(true);var frontRenderers=arch.GetComponentsInChildren<Renderer>(true);
             foreach(var r in castleRenderers){Recover(r);r.enabled=!(r is ParticleSystemRenderer);}
             var camera=transforms.Select(t=>t.GetComponent<Camera>()).Single(c=>c && c.name=="Main Camera");camera.orthographic=true;camera.orthographicSize=6.5f;camera.aspect=3;camera.transform.position=new Vector3(-19.5f,10,camera.transform.position.z);camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=Color.clear;
-            var target=new RenderTexture(2400,800,24,RenderTextureFormat.ARGB32);camera.targetTexture=target;
-            Texture2D Capture(){camera.Render();RenderTexture.active=target;var image=new Texture2D(2400,800,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,2400,800),0,0);image.Apply();return image;}
-            var full=Capture();var pixels=full.GetPixels32();int left=2400,right=0,bottom=800,top=0;
-            for(int y=0;y<800;y++)for(int x=0;x<2400;x++)if(pixels[y*2400+x].a>0){left=Math.Min(left,x);right=Math.Max(right,x+1);bottom=Math.Min(bottom,y);top=Math.Max(top,y+1);}
-            left=Math.Max(0,left-8);right=Math.Min(2400,right+8);bottom=Math.Max(0,bottom-12);top=Math.Min(800,top+8);int width=right-left,height=top-bottom;
+            int exportHeight=BakeHeight;camera.orthographicSize=exportHeight/2f/(1200/19.5f);camera.aspect=2400f/exportHeight;camera.transform.position+=camera.transform.up*((exportHeight-800)/2f/(1200/19.5f));
+            var target=new RenderTexture(2400,exportHeight,24,RenderTextureFormat.ARGB32);camera.targetTexture=target;
+            Texture2D Capture(){camera.Render();RenderTexture.active=target;var image=new Texture2D(2400,exportHeight,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,2400,exportHeight),0,0);image.Apply();return image;}
+            var full=Capture();var pixels=full.GetPixels32();int left=2400,right=0,bottom=exportHeight,top=0;
+            for(int y=0;y<exportHeight;y++)for(int x=0;x<2400;x++)if(pixels[y*2400+x].a>0){left=Math.Min(left,x);right=Math.Max(right,x+1);bottom=Math.Min(bottom,y);top=Math.Max(top,y+1);}
+            left=Math.Max(0,left-8);right=Math.Min(2400,right+8);bottom=Math.Max(0,bottom-12);top=Math.Min(exportHeight,top+8);int width=right-left,height=top-bottom;
             var atlas=new Texture2D(width*5,height,TextureFormat.RGBA32,false);atlas.SetPixels32(new Color32[width*5*height]);
             foreach(var r in frontRenderers)r.enabled=false;
             Debug.Log("CASTLE_BLEND_SHAPES "+mesh.sharedMesh.blendShapeCount+" "+mesh.sharedMesh.GetBlendShapeName(0));
@@ -64,7 +65,7 @@ public static class RecoveredBirthdayBake
             var row=new CastleOutput{texture="castle-bounce.png",front="castle-front.png",pixels=new Rect(left,bottom,width,height),floorX=1169.23f,floorY=(bottom+62-150)/.45f,sourceSceneSha256=Hash(scenePath),bakerSha256=Hash("Assets/Editor/RecoveredBirthdayBake.cs")};
             File.WriteAllText(Path.Combine(Output,"castle.json"),JsonUtility.ToJson(row,true));
             // Preserve all preceding optional pack fields while adding this slice.
-            var manifest=JsonUtility.FromJson<Manifest>(File.ReadAllText(Path.Combine(Output,"actor-frames.json")));manifest.castle=row;File.WriteAllText(Path.Combine(Output,"actor-frames.json"),JsonUtility.ToJson(manifest,true));
+            var manifest=JsonUtility.FromJson<Manifest>(File.ReadAllText(Path.Combine(Output,"actor-frames.json")));manifest.castle=row;manifest.worldHeight=BakeHeight;manifest.tileCount=BakeTileCount;manifest.tileStart=BakeTileStart;File.WriteAllText(Path.Combine(Output,"actor-frames.json"),JsonUtility.ToJson(manifest,true));
             Debug.Log("CASTLE_EXPORT "+JsonUtility.ToJson(row));EditorApplication.Exit(0);
         }catch(Exception error){Debug.LogException(error);EditorApplication.Exit(1);}
     }
@@ -126,6 +127,10 @@ public static class RecoveredBirthdayBake
         }catch(Exception error){Debug.LogException(error);EditorApplication.Exit(1);}
     }
     static string Output=>Path.GetFullPath(Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_BAKE_OUTPUT")??Path.Combine(Application.dataPath,"../Baked2D"));
+    static bool TallWorld=>Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_TALL_WORLD")=="1";
+    static int BakeHeight=>TallWorld?2400:800;
+    static int BakeTileCount=>TallWorld?5:4;
+    static float BakeTileStart=>TallWorld?-300:0;
     static string Suffix(string view)=>view=="front"?"":"-"+view;
     static float Yaw(string view)=>view=="side"?-60:view=="back"?180:0;
     public static void RunSquirrel()
@@ -257,21 +262,22 @@ public static class RecoveredBirthdayBake
                 var target=Path.Combine(Output,file.Substring(previous.Length+1));Directory.CreateDirectory(Path.GetDirectoryName(target));File.Copy(file,target);
             }
             var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
-            string extraMode=Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_EXTRA_ACTIONS");bool extras=extraMode=="1" || extraMode=="2";
-            if(extras)scene=EditorSceneManager.OpenScene("Assets/DuploMarvel/PlayPacks/HulksBirthdayParty/Scenes/HBP_Main.unity");
+            string extraMode=Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_EXTRA_ACTIONS");bool extras=extraMode=="1" || extraMode=="2" || extraMode=="3",sceneActors=extras && extraMode!="3";
+            if(sceneActors)scene=EditorSceneManager.OpenScene("Assets/DuploMarvel/PlayPacks/HulksBirthdayParty/Scenes/HBP_Main.unity");
             var sourceRoots=scene.GetRootGameObjects();
-            var inputs=JsonUtility.FromJson<ActorInputs>(File.ReadAllText(extras?"Assets/Research/actor-bindings.json":"Assets/Research/guest-bindings.json")).actors;
-            if(extras)inputs=inputs.Where(a=>(extraMode=="2"?new[]{"Hulk_NewNew","Spiderman_NewNEW","Spin_NewNEW","Gwen_NewNEW","GreenGoblin_NewNew","BlackCat_NewNew","Electro_NewNew_BAP","DocOck_NewNEW"}:new[]{"Hulk_NewNew","Spiderman_NewNEW","Spin_NewNEW","Gwen_NewNEW"}).Contains(a.name)).ToArray();
+            var inputs=JsonUtility.FromJson<ActorInputs>(File.ReadAllText(extraMode=="3"?"Assets/Research/outcome-bindings.json":extras?"Assets/Research/actor-bindings.json":"Assets/Research/guest-bindings.json")).actors;
+            if(extras)inputs=inputs.Where(a=>(extraMode=="3"?new[]{"CatActor_NewNew","Pug"}:extraMode=="2"?new[]{"Hulk_NewNew","Spiderman_NewNEW","Spin_NewNEW","Gwen_NewNEW","GreenGoblin_NewNew","BlackCat_NewNew","Electro_NewNew_BAP","DocOck_NewNEW"}:new[]{"Hulk_NewNew","Spiderman_NewNEW","Spin_NewNEW","Gwen_NewNEW"}).Contains(a.name)).ToArray();
             var actions=manifest.actions.Where(a=>extras || !inputs.Any(i=>i.name==a.actor)).ToList();
             foreach(var input in inputs){
-                var prefab=extras?null:AssetDatabase.LoadAssetAtPath<GameObject>(input.prefab);if(!extras && !prefab)throw new Exception("Guest prefab missing: "+input.prefab);
-                var originals=extras?sourceRoots.SelectMany(r=>r.GetComponentsInChildren<Transform>(true)).ToArray():prefab.GetComponentsInChildren<Transform>(true);
+                var prefab=sceneActors?null:AssetDatabase.LoadAssetAtPath<GameObject>(input.prefab);if(!sceneActors && !prefab)throw new Exception("Guest prefab missing: "+input.prefab);
+                var originals=sceneActors?sourceRoots.SelectMany(r=>r.GetComponentsInChildren<Transform>(true)).ToArray():prefab.GetComponentsInChildren<Transform>(true);
                 var source=originals.Single(t=>GlobalObjectId.GetGlobalObjectIdSlow(t.gameObject).targetObjectId.ToString()==input.game_object_id);
                 var clone=UnityEngine.Object.Instantiate(source.gameObject);clone.transform.position=Vector3.zero;clone.transform.rotation=Quaternion.identity;clone.SetActive(true);
-                if(extras)foreach(var root in sourceRoots)root.SetActive(false);
+                if(sceneActors)foreach(var root in sourceRoots)root.SetActive(false);
                 foreach(var t in clone.GetComponentsInChildren<Transform>(true))GameObjectUtility.RemoveMonoBehavioursWithMissingScript(t.gameObject);
                 foreach(var r in clone.GetComponentsInChildren<Renderer>(true))Recover(r);
                 Transform Anchor(long id){
+                    if(id==0 && extraMode=="3")return clone.transform;
                     var original=originals.Single(t=>GlobalObjectId.GetGlobalObjectIdSlow(t).targetObjectId==(ulong)id);
                     return clone.transform.Find(AnimationUtility.CalculateTransformPath(original,source))??throw new Exception("Guest anchor outside actor.");
                 }
@@ -280,14 +286,15 @@ public static class RecoveredBirthdayBake
                 var visible=clone.GetComponentsInChildren<Renderer>().Where(r=>r.enabled && !(r is ParticleSystemRenderer));
                 var bounds=new Bounds(Vector3.zero,Vector3.zero);foreach(var r in visible)bounds.Encapsulate(r.bounds);
                 var camera=new GameObject("Guest bake camera").AddComponent<Camera>();camera.orthographic=true;camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=Color.clear;
-                camera.orthographicSize=Mathf.Max(1,bounds.size.y*.85f);camera.transform.position=bounds.center+new Vector3(0,bounds.size.y*.25f,12);camera.transform.LookAt(bounds.center);
+                camera.orthographicSize=Mathf.Max(1,bounds.size.y*.85f)*(extraMode=="3"?1.35f:1);camera.transform.position=bounds.center+new Vector3(0,bounds.size.y*.25f,12);camera.transform.LookAt(bounds.center);
                 var target=new RenderTexture(256,256,24,RenderTextureFormat.ARGB32);camera.targetTexture=target;
                 Directory.CreateDirectory(Path.Combine(Output,input.name));
                 AnimationMode.StartAnimationMode();
-                foreach(var view in extras?new[]{"front"}:new[]{"front","side","back"}){
+                foreach(var view in extras && extraMode!="3"?new[]{"front"}:new[]{"front","side","back"}){
                     clone.transform.rotation=Quaternion.Euler(0,Yaw(view),0);
                     var selected=extras?new[]{("bounce-idle","anim_human_bounce_idle"),("bounce-up","anim_human_bounce_up"),("bounce-down","anim_human_bounce_down"),("bounce-left","anim_human_bounce_left"),("bounce-right","anim_human_bounce_right"),("stunt",input.name=="Hulk_NewNew"?"anim_Hulk_Backflip":"anim_Spidey_Somersault")}:new[]{("idle","anim_human_Idle"),("walk","anim_human_Walk"),("wave","anim_human_Wave"),("happy","anim_human_Happy")};
                     if(extraMode=="2")selected=new[]{("laugh","anim_human_Laugh"),("provoke","anim_human_Provoke"),("struggle","anim_human_StrugglingToPull"),("shake","anim_human_ShakeOffWater"),("freak","anim_human_FreakOut"),("web-pull","anim_spiderman_WebPull"),("web-leap","anim_spiderman_WebJump")};
+                    if(extraMode=="3")selected=new[]{("idle","anim_human_Idle"),("walk","anim_human_Walk"),("happy","anim_human_Happy"),("tap",input.name=="Pug"?"anim_human_Wave":"ani_rem_Cat_TapReact")};
                     foreach(var pair in selected){
                         var clip=ResolveOverride(animator.runtimeAnimatorController,pair.Item2);
                         if(extraMode=="2" && !clip)continue;
@@ -482,14 +489,14 @@ public static class RecoveredBirthdayBake
         File.WriteAllText(Path.Combine(Output,"world-geometry.json"),JsonUtility.ToJson(geometry,true));
         foreach(var actor in actors)actor.gameObject.SetActive(false);
         camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.73f,.88f,.98f);camera.allowHDR=false;
-        var rt=new RenderTexture(1200,800,24);camera.targetTexture=rt;
+        int height=BakeHeight;var rt=new RenderTexture(1200,height,24);camera.targetTexture=rt;
         // A fixed orthographic projection yields four genuinely adjoining 2D
         // tiles. Reframing perspective shots would introduce seams/parallax jumps.
-        camera.orthographic=true;camera.orthographicSize=6.5f;
-        for(int i=0;i<4;i++){
-            camera.transform.SetPositionAndRotation(new Vector3(-29.25f+i*19.5f,10,originalPosition.z),originalRotation);
+        camera.orthographic=true;camera.orthographicSize=height/2f/(1200/19.5f);camera.aspect=1200f/height;
+        for(int i=0;i<BakeTileCount;i++){
+            camera.transform.SetPositionAndRotation(new Vector3(-39+(BakeTileStart+i*1200+600)/(1200/19.5f),10,originalPosition.z)+originalRotation*Vector3.up*((height-800)/2f/(1200/19.5f)),originalRotation);
             camera.Render();RenderTexture.active=rt;
-            var image=new Texture2D(1200,800,TextureFormat.RGB24,false);image.ReadPixels(new Rect(0,0,1200,800),0,0);image.Apply();
+            var image=new Texture2D(1200,height,TextureFormat.RGB24,false);image.ReadPixels(new Rect(0,0,1200,height),0,0);image.Apply();
             File.WriteAllBytes(Path.Combine(Output,"world-"+i+".png"),image.EncodeToPNG());UnityEngine.Object.DestroyImmediate(image);
         }
         camera.targetTexture=null;RenderTexture.active=null;UnityEngine.Object.DestroyImmediate(rt);

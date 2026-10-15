@@ -97,7 +97,7 @@ namespace LittleWeeps.Client
             birthdayFaces.Add("birthday-squirrel",face);
             NavButton(face,()=>{
                 if(Birthday.vendorQueue.Contains(Actor)){BirthdaySend("leave-queue");return;}
-                if(Birthday.props.Any(p=>p.holder==Actor))return;
+                if(Birthday.props.Any(p=>p.holder==Actor)){BirthdaySend("vendor-tap");return;}
                 CancelBirthdayIntent();
                 birthdayVendorApproach=true;birthdayVendorVisit=ReadPlayer(Actor).visit;
             });
@@ -118,9 +118,11 @@ namespace LittleWeeps.Client
             birthdayLeaveQueue.gameObject.SetActive(game.vendorQueue.Contains(Actor));
             if(game.vendorAt!=birthdayVendorSeen){birthdayVendorSeen=game.vendorAt;birthdayVendorOrigin=Time.unscaledTimeAsDouble-Math.Max(0,game.clock-game.vendorAt);}
             if(game.vendorCount!=birthdayVendorCount){if(birthdayVendorCount>=0)birthdayVendorHappyUntil=Time.unscaledTimeAsDouble+1;birthdayVendorCount=game.vendorCount;}
-            string pose=game.vendorAt>=0?"serve":Time.unscaledTimeAsDouble<birthdayVendorHappyUntil?"happy":"idle";
+            double clock=birthdayClock.Sample(Shared?shared.View.worldId:World.WorldId,game.clock,Time.unscaledTimeAsDouble,Shared);
+            var tap=BirthdayArt.Action("Squirrel","tap");double tapAge=clock-game.vendorTapAt;
+            string pose=game.vendorAt>=0?"serve":game.vendorTapAt>=0 && tap!=null && tapAge<tap.duration?"tap":Time.unscaledTimeAsDouble<birthdayVendorHappyUntil?"happy":"idle";
             var action=BirthdayArt.Action("Squirrel",pose)??throw new InvalidOperationException("Squirrel serving content is missing.");
-            double age=pose=="serve"?Time.unscaledTimeAsDouble-birthdayVendorOrigin:Time.unscaledTimeAsDouble%Math.Max(.001,action.duration);
+            double age=pose=="serve"?Time.unscaledTimeAsDouble-birthdayVendorOrigin:pose=="tap"?tapAge:Time.unscaledTimeAsDouble%Math.Max(.001,action.duration);
             int frame=Mathf.Clamp((int)(age*BirthdayArt.Data.fps),0,action.frames-1);
             seller.texture=BirthdayArt.Texture(action.texture);seller.uvRect=BirthdayArt.Uv(action,frame);
             seller.rectTransform.pivot=action.pivot/256;seller.rectTransform.sizeDelta=Vector2.one*256*action.unitsPerPixel*BirthdayArt.PixelsPerUnit*sceneScale;
