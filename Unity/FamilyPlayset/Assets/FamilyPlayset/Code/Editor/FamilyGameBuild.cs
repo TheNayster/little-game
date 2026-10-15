@@ -26,6 +26,9 @@ namespace LittleWeeps.EditorTools
         // Default Windows keeps its existing whole-game prebuild checks. This
         // entry neither claims those checks passed nor deploys an installed app.
         public static void SandcastleWindows(){SandpitJsonTests.Run();BuildWindows();}
+        // Birthday-only follow-ups reuse the unchanged whole-game checks from
+        // the last matching full gate; the summary does not claim a new full gate.
+        public static void BirthdayWindows(){HulkBirthdayRuleChecks.Run();BuildWindows();}
         private static void BuildWindows()
         {
             const string scenePath="Assets/FamilyPlayset/Scenes/FamilyNetwork.unity";

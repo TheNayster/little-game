@@ -22,7 +22,7 @@ namespace LittleWeeps.EditorTools {
     var before=g.moulds.Select(m=>m.Copy()).ToArray();var unrelated=JsonUtility.ToJson(old.kingdom);var toys=JsonUtility.ToJson(old.toys);
     var json=JsonUtility.ToJson(old).Replace(",\"ground\":[]","");
     w=GameWorld.WithDinosaurWorld(GameWorld.Restore(JsonUtility.FromJson<SoloSnapshot>(json)));
-    if(w.Schema!=53 || w.WorldId!=old.worldId || JsonUtility.ToJson(w.ReadKingdom())!=unrelated || JsonUtility.ToJson(w.Snapshot().toys)!=toys)throw new InvalidOperationException("Decoration migration changed unrelated data.");
+    if(w.Schema!=WorldLayout.Schema || w.WorldId!=old.worldId || JsonUtility.ToJson(w.ReadKingdom())!=unrelated || JsonUtility.ToJson(w.Snapshot().toys)!=toys)throw new InvalidOperationException("Decoration migration changed unrelated data.");
     var migrated=w.ReadSandpit();
     for(var i=0;i<4;i++){
      var m=migrated.moulds[i];var prev=before[i];

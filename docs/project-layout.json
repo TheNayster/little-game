@@ -329,7 +329,11 @@
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Characters/WorkshopArt.cs": "Shared",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Beach/BeachFlockRules.cs": "Beach",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Beach/SeagullFlockView.cs": "Beach",
-    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Rendering/WorldResources.cs": "Shared"
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Shared/Rendering/WorldResources.cs": "Shared",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthday.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/BirthdayArt.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/BirthdayImage.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthday.cs": "Hulk"
   },
   "assemblyPolicy": "Keep existing Core/Client assembly membership. World folders do not define independent partial types.",
   "worlds": [
@@ -339,7 +343,8 @@
     "Beach",
     "Daycare",
     "Zoo",
-    "Dinosaur"
+    "Dinosaur",
+    "Hulk"
   ],
   "sharedFilesRequireCoordination": [
     "GameWorld",
@@ -762,5 +767,16 @@
   "artifactRoots": [
     "Builds",
     "LocalData/Worktrees/PreviousMain/Builds"
-  ]
+  ],
+  "hulkRecoveryContent": {
+    "owner": "WORLD-02 / FAMILY-01 / ITEM-02: Hulk birthday phases",
+    "consumers": [
+      "Core/Worlds/Hulk",
+      "Client/Worlds/Hulk"
+    ],
+    "localSource": "LocalData/Research/DuploMarvel",
+    "localPack": "LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D",
+    "retirement": "Replace only after the reconstructed world no longer consumes this pipeline; preserve original evidence.",
+    "delivery": "Recovered assets remain ignored; PC research pack is external. Mobile packaging and installed delivery are unqualified."
+  }
 }

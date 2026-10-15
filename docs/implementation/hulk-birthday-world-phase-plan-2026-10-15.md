@@ -4,7 +4,7 @@ Created October 15, 2026. Goal: a fully functioning Hulk birthday world in Littl
 
 The target is **HulksBirthdayParty**, displayed in the installed app as **Spidey & His Amazing Friends: Hulk’s Birthday**. It is distinct from the older **Hulk Smash** pack. Spidey HQ remains a separate recovery task and is not a dependency of this world.
 
-Related project goals: WORLD-02, FAMILY-01 and ITEM-02. Follow [current decisions](../current-decisions.md), the [creation workflow](../ai/GAME_CREATION_WORKFLOW.md), [folder ownership](../project-folder-guide.md) and [server update policy](../server-update-policy.md). This request creates the plan; the later implementation phases are not marked started.
+Related project goals: WORLD-02, FAMILY-01 and ITEM-02. Follow [current decisions](../current-decisions.md), the [creation workflow](../ai/GAME_CREATION_WORKFLOW.md), [folder ownership](../project-folder-guide.md) and [server update policy](../server-update-policy.md). The owner subsequently authorized implementation and explicitly requested continuing through the phases until finished. Continue the implementation; an inventory checkpoint is not the requested outcome. Device installation and live-server replacement remain separate from source implementation.
 
 ## Research basis
 
@@ -92,6 +92,8 @@ Extend native analysis only for the next relevant controllers, beginning with ch
 
 ### Phase 1 Establish the world and shared runtime foundation
 
+**Status: entrance/actor/prop slice accepted on Windows539.** Four real release clients passed shared entry, walk-to-pickup, competing claims, human handoff, actual tap-to-walk carrying, independent disconnect, rendered ownership and reuse. The full party activities remain required. Mobile packaging and full-world persistence are later checks.
+
 **Depends on: 0.** Build a small Little Weeps integration slice with the recovered entrance, one actual actor and one grabbable prop. Retain the existing 2D production pipeline. Evaluate rendering recovered content into layers and animation frames, with correct depth, hit targets and attachment anchors. The 3D recovery viewer remains a reference tool; it does not authorize converting the game’s production architecture to 3D. Record any concrete fidelity gap before expanding the asset pipeline.
 
 Create the world’s shared state, stable actor/prop IDs, validated commands, participation, reservations and save versioning through existing GameWorld/GameScreen and session patterns. The PC/VPS owns shared rules and clocks. Keep camera framing local. Map family profile identities to the confirmed playable roles without assuming every source NPC is player-controllable or spawning a birthday Hulk separately for each client.
@@ -166,11 +168,49 @@ Integrate checked source into main and push under the existing branch lifecycle.
 
 Sequence: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9**. Resolve cross-phase dependencies in the current bounded task rather than creating overlapping world rewrites. Shared-state support begins in Phase 1 and accompanies each activity; multiplayer is not postponed to the final phase.
 
-The next implementation task is **Phase 0: resolve the missing animation bindings and finish the dynamic guest and handoff paths**, using the populated action map and original bundle/object IDs below. Continue toward the Hulk walk → pickup → carry → handoff slice. The existing viewer is reused for comparison and does not need another setup or broad rebuild first. Do not require purchasing access to the official locked worlds to begin this work.
+The next implementation task is **Phase2: complete directional presentation, pickup transitions, handoff reactions and the required action matrix**, building on the checked shared slice. Then continue the source-linked guest and activity paths through Phases3–9. The original viewer/export remain comparison evidence. Do not require purchasing access to the official locked worlds to continue.
 
 For each completed task record: phase and feature, exact source references, files changed, source/build revision, actual interaction and client count checked, remaining limits and the next task. Update this plan’s phase status and the build guide’s work record. Keep future production files within the existing world ownership pattern under `Code/Core/Worlds`, `Code/Client/Worlds` and `Resources/Worlds`; add the exact new world paths to maintained layout metadata when implementation creates them.
 
-Current completion: **research baseline, recovery viewer and Phase 0 inventory checkpoint**. Phases 1–9 remain planned. The inventory tools add no game runtime changes and make no claim that the character actions match yet.
+Current completion: **dependency recovery, character/prop preparation and the first shared2D foundation slice**. Phase2 is next; Phases3–9 remain required. The full birthday world is not complete. Original checkpoint records below retain their historical limits; the later recovery record supersedes their missing-assets blocker.
+
+## Complete dependency recovery and first shared slice October 15
+
+The shipped binary Addressables catalog was decoded with the matching official Addressables 2.7.2 package. Its Hulk scene dependency closure contains299 locations and225 remote bundles. All225 were retrieved from the publisher URLs in that catalog, totaling382,344,465 bytes, with UnityFS signatures, response lengths and SHA256 receipts. This did not unlock or modify the installed app. Original APK/export copies remain preserved.
+
+The combined export is `LocalData/Research/DuploMarvel/marvel-complete-hulk-project/ExportedProject`. Its scene SHA256 is `23075a913e3c8b611f8b7782889374c9110d5bea99484124faea900a5228bbf0`. The read-only inspection now reaches3,393 files and finds **zero placeholder/missing reference usages**, versus3,319 previously. File presence alone does not establish imported subobject identity; the additional Unity audit directly loaded all eight character controllers and found866 clip bindings, no missing meshes and no missing bones. It does not execute the original game logic.
+
+The cake controller's recovered sprites are the green, brown and pink **plates**. They are not three finished cakes. The former viewer icons remain an explicitly superseded substitute test. The recovered BuildACake sprite directory contains82 sprite assets, including editor content; this is not a count of82 completed gameplay choices.
+
+### Character presentation and holding
+
+[Probe preparation](../../Tools/Art/Prepare-RecoveredUnityProbe.py), [exact attachment bindings](../../Tools/Art/Build-RecoveredActorBindings.py), [Unity asset audit](../../Tools/UnityEditor/RecoveredWorldAssetProbe.cs) and [2D baking](../../Tools/UnityEditor/RecoveredBirthdayBake.cs) keep recovered files and generated imagery in ignored research storage. The probe excludes recovered executable scripts/assemblies. Replacement rendering shaders remain identified as replacements.
+
+The bake resolves actual per-character override clips and produces135 clip action sets plus eight controller-driven hold/carry sets for the four companion roles. All143 sets have exact hand, hold and face-anchor tracks. Twenty-five source scene props have rendered cutouts; gift hold/base pivots use their source anchors. The fixed orthographic world projection produces four adjoining1200×800 scenery tiles. The production game remains2D.
+
+An additional58 concrete native ranges, including HoldPresetSo and AnimatorComponent, pass independent ELF mapping and complete ARM64 decoding. HoldPresetSo.get_HoldPresets at `0x3947710` divides the serialized percentages by100. Default_holdPreset selects both arms,50% vertical,0% horizontal and100% spine. The actual controller is used for carry/hold sampling. Legacy `Lift` strings in actor components are not automatically assumed to exist as physical controller parameters.
+
+Static bindings, sampled clips and controller evaluation do not accept the full action matrix. Runtime walk/carry/handoff, facing, cancellation, normal-speed presentation and later activity actions still require their feature checks. No owner visual acceptance has been claimed.
+
+### Guests and shared foundation
+
+The exact guest strategy selects13 civilian prefabs: HatPoliceGuy, BlondePoliceLady, BlueBlazerGuy, BlueBlazerLady, ConstructionGuy_02, ConstructionGuy_03, ConstructionLady_01, GlassesGuy, GroovyGranny, JeanJacketGuy, LavalliereLady, RedStripedShirtGuy and BusDriver. The source enables randomized ordering. Its spawner config specifies actorLimit3, presentLimit10 and20–30-second intervals. The civilian filter requires its civilian trait and excludes Holding; the present filter requires its present trait. These filtered limits must not be presented as an unconditional cap on every character in the world. Guest arrival/departure gameplay remains Phase3 work.
+
+The new Hulk-owned Core and Client folders implement the first authority/2D slice: stable prop IDs, one authoritative hold transaction, competing-claim rejection, atomic human handoff, role/instrument reservations, independent release, detached snapshots and restore cleanup. Schema54/content83 are an **undeployed candidate** change. The local Windows research content pack is selected with `LITTLE_WEEPS_BIRTHDAY_ART`; source delivery does not include proprietary recovered assets or qualify mobile packaging.
+
+Focused four-member rules passed inside Unity, including additive migration, claims, handoff, deep copies, instrument departure and JSON restore. Windows blocked the standalone .NET test artifact through Application Control; no security setting changed. The normal game build also exposed and fixed the empty inline birthday object produced by JsonUtility on legacy snapshots. The existing Sandpit migration check now compares against WorldLayout.Schema while preserving its identity/progress assertions.
+
+Windows536 and537 built. Four actual clients passed entry and pickup contention.536 exposed normal-avatar overlap;537 corrected it, but the handoff tap still hit overlapping image bounds. The next candidate adds face-anchor handoff targets and alpha-aware prop hit testing. These are failed/incomplete handoff acceptance runs, not whole-world passes. Local evidence is under `LocalData/SharedGarden/99e9da57f2b249f3a92da1c536fa92fa/hulk-birthday` and `15654299aef8496baf632660bd0f72e8/hulk-birthday`.
+
+### Shared foundation accepted Windows539
+
+The four-client check passes at `LocalData/SharedGarden/3beda662771d42688b0ce7aebba357dd/hulk-birthday/result.json`. It uses actual UGUI touches and actual walking inputs for pickup, handoff and carrying, rejects a second client's conflicting claim, disconnects the recipient, confirms only three active player presentations remain, and picks the released gift up again. Every client confirms the rendered owner after pickup; captures wait for the relevant rendered state. The handoff and final re-pickup views were inspected. Disconnected profiles return to the NPC presentation instead of lingering at the former player position; handoffs to disconnected profiles are rejected.
+
+The verifier touches a prop's visible centre rather than assuming its source ground/hold pivot is a valid tap point. Snapshot placement fixtures and real walking/touch interactions remain distinct in the test. The source/build and separate recovered-pack hashes are retained with the run.536–538 evidence remains preserved, including the completed538 foundation run at `2493000b6a7542f1b9e8a77e90630fad`;539 adds the departure presentation correction and explicit rendered-state checks.
+
+The standard whole-game prebuild checks passed with538. Subsequent birthday-only follow-ups can use `Tools/Build/Build-FamilyGame.ps1 -BuildNumber N -FocusedBirthday`: identical release build profiles, focused `HulkBirthdayRuleChecks` including legacy JSON and disconnected-receiver rejection, and the separate four-client check. This does not claim to rerun unrelated whole-game checks. The linked standalone test project remains under `Tools/Verification/HulkBirthday.Tests`; Windows Application Control blocks its execution here, so Unity runs the same checks. These Hulk-owned checks remain while the world consumes this contract and retire only with a replacement contract/test suite.
+
+Current bounded task: complete Phase2's action presentation. Guests, introduction, cake construction, food/drink, working band/audio, castle physics/building, villain loops and whole-world persistence/presentation acceptance are still required. The additional record fields do not constitute implemented activities. No device installation or installed-server operation occurred. Retain checked research content packs when producing later variants so earlier evidence remains reproducible.
 
 ## Phase 0 inventory checkpoint October 15
 

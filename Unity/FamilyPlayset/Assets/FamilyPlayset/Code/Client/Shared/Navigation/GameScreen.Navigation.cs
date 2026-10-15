@@ -15,8 +15,8 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Image> avatarMarkers = new Dictionary<string, Image>();
         private readonly List<GameCharacterVisual> pickerCharacters = new List<GameCharacterVisual>();
         private readonly Dictionary<string, Text> worldBadges = new Dictionary<string, Text>();
-        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare", "zoo", "dinosaur-world" };
-        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare", "Zoo", "Dinosaur World" };
+        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare", "zoo", "dinosaur-world", HulkBirthday.Zone };
+        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare", "Zoo", "Dinosaur World", "Hulk's Birthday" };
         private float navigationCamera;
         private bool navigationManualCamera;
         public bool WorldsOpen => CharactersOpen;
@@ -31,7 +31,7 @@ namespace LittleWeeps.Client
         }
         private static void Stretch(RectTransform r)
         { r.anchorMin=Vector2.zero;r.anchorMax=Vector2.one;r.offsetMin=r.offsetMax=Vector2.zero; }
-        private NavigationTap NavButton(Image image, Action action)
+        private NavigationTap NavButton(Graphic image, Action action)
         {
             var button=image.gameObject.AddComponent<NavigationTap>();
             button.onClick.AddListener(()=>action());
@@ -93,7 +93,7 @@ namespace LittleWeeps.Client
             worldContent.anchorMin=worldContent.anchorMax=new Vector2(.5f,1);worldContent.pivot=new Vector2(.5f,1);
             worldScroll=worldViewport.gameObject.AddComponent<ScrollRect>();worldScroll.viewport=worldViewport;worldScroll.content=worldContent;
             worldScroll.horizontal=false;worldScroll.vertical=true;worldScroll.movementType=ScrollRect.MovementType.Clamped;
-            for(var i=0;i<WorldIds.Length;i++)BuildWorldBubble(i);
+            for(var i=0;i<WorldIds.Length;i++)if(WorldIds[i]!=HulkBirthday.Zone || BirthdayArt.Available)BuildWorldBubble(i);
 
             trayPanel=Plain(characterTray,"Cast shelf",Vector2.zero,Vector2.zero,new Color(.71f,.89f,.99f),true).rectTransform;
             trayPanel.anchorMin=Vector2.zero;trayPanel.anchorMax=new Vector2(1,0);trayPanel.pivot=new Vector2(.5f,0);trayPanel.sizeDelta=new Vector2(0,300);
@@ -138,7 +138,7 @@ namespace LittleWeeps.Client
             var picture=Panel(border.transform,"Round scene",Vector2.zero,Vector2.one*158,Color.white,false,true);
             picture.gameObject.AddComponent<Mask>().showMaskGraphic=false;
             var illustration=Panel(picture.transform,"Illustrated "+id,Vector2.zero,Vector2.one*158,Color.white);
-            illustration.sprite=WorldResources.Load<Sprite>("Shared/UI/WorldMenu/"+id);illustration.type=Image.Type.Simple;
+            illustration.sprite=id==HulkBirthday.Zone?BirthdayArt.MenuPicture():WorldResources.Load<Sprite>("Shared/UI/WorldMenu/"+id);illustration.type=Image.Type.Simple;
             if(illustration.sprite==null)throw new InvalidOperationException("Missing world-menu illustration: "+id);
             if(!ready)illustration.color=new Color(1,1,1,.67f);
             var rim=Panel(border.transform,"White picture edge",Vector2.zero,Vector2.one*170,Color.white,false,true);

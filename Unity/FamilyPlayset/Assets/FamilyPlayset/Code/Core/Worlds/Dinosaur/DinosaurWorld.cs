@@ -67,6 +67,7 @@ namespace LittleWeeps.Core
             if(s.sandpit==null)s.sandpit=NewSandpit(s);
             if(s.treasure==null)s.treasure=NewTreasure(s);
             if(s.vet==null)s.vet=NewVet(s);
+            if(s.birthday==null)s.birthday=HulkBirthday.Create(s.players.Select(p=>p.id).ToArray());
             if(s.hideClub==null)s.hideClub=NewDaycarePlay(s);if(s.tagClub==null)s.tagClub=NewDaycarePlay(s);
             s.schema=WorldLayout.Schema;s.revision++;Validate(s);return new GameWorld(s);
         }

@@ -281,7 +281,10 @@ def main():
                "gift-action-closures.json": closures, "brick-components-without-renderer.json": nonrenderer,
                "activity-closures.json": all_closures, "actor-action-map.json": action_rows,
                "duplicate-brick-components.json": duplicate_bricks,
-               "input-hashes.json": world.hashes}
+               "input-hashes.json": world.hashes,
+               # Preserve exact input fields for focused later controller/anchor
+               # tracing without reparsing the entire world for every lookup.
+               "scene-configuration.json": objects}
     for name, payload in outputs.items():
         (output / name).write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     print(json.dumps(report, indent=2))
