@@ -6,6 +6,34 @@ The target is **HulksBirthdayParty**, displayed in the installed app as **Spidey
 
 Related project goals: WORLD-02, FAMILY-01 and ITEM-02. Follow [current decisions](../current-decisions.md), the [creation workflow](../ai/GAME_CREATION_WORKFLOW.md), [folder ownership](../project-folder-guide.md) and [server update policy](../server-update-policy.md). The owner subsequently authorized implementation and explicitly requested continuing through the phases until finished. Continue the implementation; an inventory checkpoint is not the requested outcome. Device installation and live-server replacement remain separate from source implementation.
 
+## Current implementation and technical acceptance — October15
+
+**The requested PC Hulk birthday reconstruction is implemented and technically checked.** Phases0–8 have functional coverage. Phase9 engineering/packaging is ready; the owner's live motion/sound review and any separately authorized device/server rollout remain open. This is a source-informed2D family reconstruction, with the explicit adaptations and fidelity limits below, rather than a claim that every original method or presentation detail is identical.
+
+| Phase | Current result | Acceptance evidence |
+| --- | --- | --- |
+| 0 | Full reachable dependency inventory and bounded native/scene reconstruction |225 publisher bundles; independently remapped native ranges; immutable source/export evidence |
+| 1–3 | Shared world, recognizable cast/actions, original props, introduction and civilian guests |567 guest/action run;568 packaged four-player entry/return and directional handoff |
+| 4 | Gifts/reactions/replay, three cake bases/26 decorations, food/drink and one four-player squirrel queue |567 mixed visit, including independent queue departure/return |
+| 5–7 | Shared band/power/floor, castle bodies/stunts, bricks/bubbles, four villains/web/Hulk recovery, gift pets, seats/sleep, both ziplines and throwing |567 mixed visit plus its separately checked navigation/throw/building groups |
+| 8 | Retained creations/outcomes/IDs, cleared transient leases, real server/process reopen, four-client reconnect, private/shared separation |567 mixed saved-family reopen and actual paired solo→authority→solo handoff;568 packaged reopen |
+| 9 | Packaged Windows client/server candidate, checked local launcher and actual PC/phone/tablet-shaped captures |568 packaged four-client run and two-client launcher verification; owner/physical-device acceptance remains separate |
+
+The maintained launcher is [Play-HulkBirthday.ps1](../../Tools/Launch/Play-HulkBirthday.ps1), default two players; `-Players 1`,2,3 or4 selects the PC window count. It verifies all986 packaged content files before starting its own saved family. Closing all its windows stops that preview server; reopening retains its progress. Its ignored selection/session/lock records are `LocalData/hulk-birthday-preview*`. It leaves the existing shared-preview selection and installed family authority alone.
+
+The latest candidate is **Windows568, schema54/content84/protocol3, birthday format9**. The final source/byte receipts are in `Builds/NetworkProbe/G3-0.0.568/`; the packaged content manifest is `0976e6ad29848178ccfce2b3409a906b6a447ef74ffd172d316bb42198242a9e`. Standard565 passed the full prebuild gate; later focused builds check the changed birthday code.567/568 client and server builds have zero errors/warnings. The final arrival-only change spaces real shared bodies60units apart so one returning character no longer covers all four. It does not alter the other activity owners; their567 evidence is reused.
+
+Current native receipts:
+
+- Full castle/band/vendor/cake/gifts/pets/villain/prop visit and retained save: `LocalData/SharedGarden/88d2fcb4c33646e98687a707fc2b4f20/hulk-birthday/result.json` — **passed**,12 groups. Original prop identities, gift outcomes, cake/stickers, brick positions/support/colors/turns and completion counters survive actual isolated server reopening. All ten process logs in that run have zero runtime exceptions.
+- Chair interruption, roof seats/sleep, both ziplines, actual throws/catches, receiver departure, battery return, bricks/bubbles and castle: passing groups in `LocalData/SharedGarden/a26a1f0a1a024048a59130b143d27feb/hulk-birthday/result.json`. That combined attempt stopped later on the battery test helper; selecting the intended socket in the full pass above resolves that test-only failure. The preceding `46e00987f5444f9e9130a9b78ed119e4` run also passes the chair/navigation/throw groups before a bubble-helper mismatch. Failures remain preserved.
+- Introduction/guests/NPC exchange: `LocalData/SharedGarden/80bb9590137f40ec8529d1efd177ccda/hulk-birthday/result.json` — **passed**.
+- Private save/NPC band/actual paired handoff separation: `LocalData/FamilyLAN/12684acfc2a64c4e94f6f16e8d13a85f/hulk-birthday/result.json` — **passed**, zero runtime errors. Its `actual-solo-band.mp4` is an actual19.88-second native capture with loopback audio. Signal is nonzero; this does not establish subjective listening approval.
+- Packaged568 arrival/return, real controls, independent disconnect and saved-family reopening: `LocalData/SharedGarden/a2edb6d3112e4afbbf2d86cac1fc9e6c/hulk-birthday/result.json` — **passed**. The corrected phone-shaped entry shows Hulk, Spidey, Spin and Gwen separately; actual phone/tablet/PC-shaped captures were inspected. These are Windows layouts, not installed mobile-device results.
+- Packaged launcher: `LocalData/hulk-birthday-launcher-check.json` — **passed**, two actual clients, build568, own family `2c034fd7d34048deaf2e0e601eb9eb52`; all test processes closed. Its actual capture is `LocalData/SharedGarden/2c034fd7d34048deaf2e0e601eb9eb52/hulk-birthday-launcher.png`.
+
+Remaining acceptance limits: owner play/motion/audio review; physical-device performance and Android/iPad content loading/packaging; any separately requested coordinated rollout to installed clients/server. The original duplicate material-owner first-record rule and replacement shaders retain the documented appearance differences. Simulated layouts, source clips and technical playback are not owner approval. No required PC gameplay row is being left as a placeholder, and no installed app or live family server was changed.
+
 ## Research basis
 
 ### Online findings
@@ -20,7 +48,7 @@ Unity’s documentation separates clips from the controller state machine and de
 
 Sources checked October 15, 2026. No gameplay video was reviewed for this plan. Online descriptions establish expected features; package data and traced native methods remain the primary basis for reconstructing behavior. Online footage, if later useful, can check presentation without replacing the requested reverse-engineering work.
 
-### Installed game findings
+### Initial installed-game findings (superseded by later work records)
 
 The inspected Android package is StoryToys’ installed Google Play version 23.1, code 2196. Its Unity version is 6000.0.58f2. The separate recovery viewer uses Unity 6000.3.24f1.
 
@@ -82,7 +110,7 @@ Each required interaction needs a source reference, reconstructed rules, working
 
 ### Phase 0 Complete the evidence and dependency inventory
 
-**Status: in progress.** The October 15 inventory checkpoint below establishes the scene cast, serialized activity graph and missing-reference identities. Dynamic guest coverage and complete action semantics remain open.
+**Earlier checkpoint: in progress.** The October 15 inventory checkpoint below establishes the scene cast, serialized activity graph and missing-reference identities. Dynamic guest coverage and complete action semantics remain open.
 
 Resolve each reachable activity into its actors, props, triggers, actions, clips, sounds and cleanup paths. Traverse linked quests and behavior descriptors; include small tappables rather than relying only on named headline activities. Map script GUIDs and missing external assets to catalog keys and bundle dependencies. Classify each as recovered, recoverable, replacement required or unresolved. The apparent 65-component colour gap is now explained below; conflicting duplicate colour records still require deliberate handling.
 
@@ -92,7 +120,7 @@ Extend native analysis only for the next relevant controllers, beginning with ch
 
 ### Phase 1 Establish the world and shared runtime foundation
 
-**Status: entrance/actor/prop slice accepted on Windows539.** Four real release clients passed shared entry, walk-to-pickup, competing claims, human handoff, actual tap-to-walk carrying, independent disconnect, rendered ownership and reuse. The full party activities remain required. Mobile packaging and full-world persistence are later checks.
+**Earlier checkpoint: entrance/actor/prop slice accepted on Windows539.** Four real release clients passed shared entry, walk-to-pickup, competing claims, human handoff, actual tap-to-walk carrying, independent disconnect, rendered ownership and reuse. The full party activities remain required. Mobile packaging and full-world persistence are later checks.
 
 **Depends on: 0.** Build a small Little Weeps integration slice with the recovered entrance, one actual actor and one grabbable prop. Retain the existing 2D production pipeline. Evaluate rendering recovered content into layers and animation frames, with correct depth, hit targets and attachment anchors. The 3D recovery viewer remains a reference tool; it does not authorize converting the game’s production architecture to 3D. Record any concrete fidelity gap before expanding the asset pipeline.
 
@@ -102,7 +130,7 @@ Create the world’s shared state, stable actor/prop IDs, validated commands, pa
 
 ### Phase 2 Recover character animation and action behavior
 
-**Status: shared locomotion/holding and handoff reactions accepted Windows542–544.** Activity-specific action rows are checked with their consuming phase; full-cast action coverage and owner normal-speed review remain open.
+**Earlier checkpoint: shared locomotion/holding and handoff reactions accepted Windows542–544.** Activity-specific action rows are checked with their consuming phase; full-cast action coverage and owner normal-speed review remain open.
 
 **Depends on: 0–1.** Reconnect recovered meshes/rigs, clips, controllers, masks, transitions, animation events and attachment points in the isolated reference project. Reconstruct missing behavior code from the mapped services and native evidence. Export the chosen compatible presentation into Little Weeps while preserving editable sources.
 
@@ -112,7 +140,7 @@ Build an action matrix per confirmed actor: idle/look, walk/turn, pick up/carry/
 
 ### Phase 3 Restore introduction guests and shared props
 
-**Status: shared introduction, civilian arrival/delivery/departure and NPC exchange slice accepted Windows544.** Later activity arbitration remains with its consuming phase.
+**Earlier checkpoint: shared introduction, civilian arrival/delivery/departure and NPC exchange slice accepted Windows544.** Later activity arbitration remains with its consuming phase.
 
 **Depends on: 1–2.** Reconstruct the introduction, invitations, guest arrival/departure, prop anchors, snap pegs and activity arbitration. Trace spawner limits and cleanup rules from source data; guest turnover must not duplicate players or discard an owned gift. Late arrivals join the current shared visit; they do not restart everyone’s introduction.
 
@@ -122,7 +150,7 @@ Implement gift provision, carrying, handoff and table placement with visible cha
 
 ### Phase 4 Complete gifts cake food and drink
 
-**Status: functional cake, gift replay and four-player squirrel queue slice accepted Windows551.** Presentation follow-ups, broader persistence/whole-world checks and owner review remain open. No full-world completion claimed.
+**Earlier checkpoint: functional cake, gift replay and four-player squirrel queue slice accepted Windows551.** Presentation follow-ups, broader persistence/whole-world checks and owner review remain open. No full-world completion claimed.
 
 **Depends on: 2–3.** Trace the whole gift sequence: ordinary and source-confirmed bad/fake gifts, reveal, Hulk’s response, consumed/destroyed wrappers and repeat play. Avoid guessing that every “negative” reaction is the same animation or outcome.
 
@@ -357,3 +385,12 @@ Standard565 passes the full project prebuild gate with zero errors/warnings. Foc
 The separate567 guest/action run passes at `LocalData/SharedGarden/80bb9590137f40ec8529d1efd177ccda/hulk-birthday/result.json`, covering introduction, delivered source gifts, late return, human/NPC exchange, directional carrying and independent disconnect. Private567 passes at `LocalData/FamilyLAN/12684acfc2a64c4e94f6f16e8d13a85f/hulk-birthday/result.json`: original gift, one human plus three NPC band companions, actual process reopening and actual paired private→authority→private handoff. Gift/band progress remains in the private checkpoint and never enters the generated server. A19.88-second actual native band film with loopback audio is retained as `actual-solo-band.mp4`; source frames were inspected, subjective listening/owner motion approval remain open.
 
 The checked local content is packaged into Windows567's client StreamingAssets:986 files,137,244,911bytes, manifest SHA256 `0976e6ad29848178ccfce2b3409a906b6a447ef74ffd172d316bb42198242a9e`. Packaging verifies every copied byte and refreshes the complete artifact receipt. The maintained packager and separate saved Hulk preview launcher retain source evidence and never replace the installed family server or its preview selection. The full mixed-activity save/reconnect visit, packaged-launcher readiness and final phone/tablet presentation review are still running. Main integration follows those checks; owner review and physical-device deployment remain separate.
+
+
+### Final mixed visit, packaged readiness and delivery — Windows567–568
+
+567's completed mixed visit passes all12 requested groups and real save reopening. Its final captures report about129–133MiB allocated per client; this is measured Windows evidence, not a mobile performance claim. It retains creations/outcomes and safely clears only transient participation. The actual private paired handoff also passes with no private progress uploaded.
+
+568 changes only birthday arrival spacing after the phone/tablet capture exposed four co-located returning players. Four actual packaged clients now enter and return at distinct authoritative points, use the recovered cast, hand off/carry/drop the same prop, disconnect independently, reopen the saved family and render all four bodies separately. Packaged loading uses StreamingAssets with the research environment override removed. The actual two-client launcher separately stays ready and is closed after verification. The content pack remains986 files/137,244,911bytes and the v27 manifest above. These focused checks reuse source-matching567 activity acceptance rather than repeating unrelated worlds.
+
+The implementation is ready for owner play through the maintained PC launcher. Owner action/audio acceptance and installed-device/server delivery remain explicitly unperformed. Earlier scoped checkpoint labels and failed test-helper attempts above are historical evidence, not an active implementation queue. Completed source follows main integration/push and task-branch removal; the final Git receipt is `LocalData/hulk-birthday-delivery.json`.

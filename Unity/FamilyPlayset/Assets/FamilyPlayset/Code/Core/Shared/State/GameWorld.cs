@@ -376,6 +376,9 @@ namespace LittleWeeps.Core
             if(state.treasure!=null){var hunt=state.treasure.members.Single(m=>m.actor==player.id);if(hunt.attending)hunt.declined=true;hunt.attending=false;if(daycareArrival)hunt.declined=false;}
             if(daycareArrival){if(state.daycare!=null)state.daycare.members.Single(m=>m.actor==player.id).declined=false;if(state.kingdom!=null)state.kingdom.members.Single(m=>m.actor==player.id).declined=false;}
             ReleaseBirthday(player.id);CancelCreekFishing(player.id);CancelCreekBoats(player.id);CancelPond(player.id);LeaveFossils(player.id);CancelZoo(player.id);LeaveElephantCare(player.id);CancelDinosaurCare(player.id);ClearFixture(player);player.zone=WorldLayout.Canonical(destination);player.visit++;player.x=WorldLayout.ArrivalX(destination);player.y=100;player.activity="";
+            // Keep the birthday cast readable on arrival and return, including
+            // narrow views. This moves real shared bodies and their attachments.
+            if(player.zone==HulkBirthday.Zone && state.birthday!=null)player.x+=Array.FindIndex(state.birthday.members,m=>m.actor==player.id)*60;
         }
         public SoloResult Apply(SoloCommand c,string[] connectedPlayers=null)
         {

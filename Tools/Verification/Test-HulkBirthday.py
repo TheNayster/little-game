@@ -27,6 +27,8 @@ home=importlib.util.module_from_spec(spec);spec.loader.exec_module(home)
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('build',type=int)
+    parser.add_argument('--arrival',action='store_true',help='Inspect real spaced entry and return in a phone-shaped viewport.')
+    parser.add_argument('--packaged',action='store_true',help='Use built-in StreamingAssets instead of the research environment override.')
     parser.add_argument('--actions',action='store_true',help='Also check directional carry and the handoff reaction frames.')
     parser.add_argument('--guests',action='store_true',help='Also check the shared intro, source guest arrivals and NPC gift exchange.')
     parser.add_argument('--party',action='store_true',help='Also check shared cake editing, portions, drinks and one Hulk unwrap.')
@@ -44,7 +46,8 @@ def main():
     args=parser.parse_args()
     art=args.art.resolve();require((art/'actor-frames.json').is_file(),'Current birthday pack is required')
     previous=os.environ.get('LITTLE_WEEPS_BIRTHDAY_ART')
-    os.environ['LITTLE_WEEPS_BIRTHDAY_ART']=str(art)
+    if args.packaged:os.environ.pop('LITTLE_WEEPS_BIRTHDAY_ART',None)
+    else:os.environ['LITTLE_WEEPS_BIRTHDAY_ART']=str(art)
     run=Run(args.build,extended_test_lifetime=True)
     out=run.path/'hulk-birthday';out.mkdir()
     checks=[];clients=[];passed=False
@@ -104,6 +107,18 @@ def main():
         home.travel(a,'hulk-birthday')
         wait(lambda:home.ready(a)['zone']=='hulk-birthday','birthday world-card arrival',30)
         for client in clients[1:]:command(client,actions.index('Travel'),value='hulk-birthday')
+        if args.arrival:
+            positions=[(p['x'],p['y']) for p in view()['players']]
+            require(len(set(positions))==4,'Birthday entry stacked the four shared players')
+            a.input('resize',x=640,y=1200);time.sleep(1);home.capture(a,out,'phone-spaced-four-player-arrival')
+            faces=[c['bounds']['x'] for c in a.input('inspect')['controls'] if c['name'] in ['Birthday friend '+p.profile for p in clients]]
+            require(len(faces)==4 and len(set(round(x,1) for x in faces))==4,'Birthday face controls overlap on entry')
+            for client in clients:command(client,actions.index('Travel'),value='garden')
+            for client in clients:command(client,actions.index('Travel'),value='hulk-birthday')
+            require(len({p['x'] for p in view()['players']})==4,'Birthday return stacked the shared players')
+            time.sleep(1);home.capture(a,out,'phone-spaced-four-player-return')
+            a.input('resize',x=1280,y=800);home.ready(a)
+            record('four actual players enter and return at distinct shared positions; phone-shaped face controls remain separate')
         for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
         wait(lambda:len(server.state()['connected'])==4,'four connected clients')
         for client in clients:
@@ -484,7 +499,7 @@ def main():
                     except (RuntimeError,OSError,AssertionError):pass
         write(out/'result.json',{'passed':passed,'checks':checks,'build':args.build,'source_commit':source['sourceCommit'],
             'scope':'Checked birthday slices: shared props'+(' / directional actions' if args.actions else '')+(' / introduction and guests' if args.guests else '')+(' / shared cake and gift replay' if args.party else '')+(' / one shared vendor queue' if args.vendor else '')+(' / shared band, audio and power' if args.band else '')+(' / shared castle physics' if args.castle else '')+(' / brick pegs and bubbles' if args.play else '')+(' / animated gift pets' if args.pets else '')+(' / cooperative villain recovery' if args.villains else '')+(' / seating and ziplines' if args.navigation else '')+(' / shared throwing' if args.throws else '')+(' / actual save reopen and reconnect' if args.persistence else '')+'. Visual/motion/audio acceptance limits are recorded in the phase plan.',
-            'art_root':str(art),'clients_started':len(clients)})
+            'art_root':str(art),'packaged':args.packaged,'clients_started':len(clients)})
         run.close()
         if previous is None:os.environ.pop('LITTLE_WEEPS_BIRTHDAY_ART',None)
         else:os.environ['LITTLE_WEEPS_BIRTHDAY_ART']=previous

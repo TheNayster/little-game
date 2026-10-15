@@ -71,6 +71,7 @@ public static class HulkBirthdayRuleChecks
     static void CheckNavigationAndThrows()
     {
         var w=QuietBirthday();foreach(var actor in Actors)Send(w,actor,SoloAction.Travel,HulkBirthday.Zone);
+        Need(w.Snapshot().players.Select(p=>p.x).Distinct().Count()==4,"birthday arrivals have separate shared positions");
         foreach(var actor in Actors)Need(Send(w,actor,SoloAction.Birthday,"seat",target:"1").Accepted,"four children use different actual roof pegs");
         Need(w.ReadBirthday().members.Select(m=>m.seat).Distinct().Count()==4,"no duplicate seat ownership");
         Need(Send(w,"one",SoloAction.Birthday,"nap").Accepted && w.ReadBirthday().members[0].station=="sleep","source sleep action on a seat");

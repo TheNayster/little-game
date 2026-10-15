@@ -2,7 +2,7 @@
 # dependencies = ["cryptography"]
 # ///
 """Open the verified local Hulk world with a separate saved preview family."""
-import argparse,hashlib,msvcrt,os,sys,time,uuid
+import argparse,hashlib,msvcrt,os,shutil,sys,time,uuid
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from shared_garden_runtime import ROOT,Run,read,write,wait,require
@@ -37,6 +37,8 @@ def main():
         for i in range(1,count+1):open_player(i)
         if args.verify:
             time.sleep(3);require(len(server.state()['connected'])==count and all(c.input('inspect')['ready'] for c in clients.values()),'Preview did not keep a durable ready state')
+            require(all(c.input('inspect')['visibleBirthdayPlayers']==count for c in clients.values()),'Packaged birthday characters are not visible')
+            first=next(iter(clients.values()));first.input('capture');wait(lambda:(first.out/'garden.png').exists(),'packaged launcher capture');shutil.copyfile(first.out/'garden.png',run.path/'hulk-birthday-launcher.png')
             write(ROOT/'LocalData/hulk-birthday-launcher-check.json',dict(passed=True,build=run.build,runId=run.run_id,players=count,installedServerTouched=False));return
         write(ROOT/'LocalData/hulk-birthday-preview-session.json',dict(runId=run.run_id,build=run.build,players=count))
         seen=read(ROOT/'LocalData/hulk-birthday-preview-reopen.json')
