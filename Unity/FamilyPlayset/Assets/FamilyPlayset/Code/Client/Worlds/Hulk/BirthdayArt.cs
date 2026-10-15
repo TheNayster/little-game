@@ -15,10 +15,13 @@ namespace LittleWeeps.Client
             public float duration,unitsPerPixel; public Vector2 pivot;public Vector2[] hold,leftHand,rightHand,face;
         }
         [Serializable] public sealed class Prop {
-            public string name,texture; public float unitsPerPixel;public Vector2 pivot,holdPivot;public long sourceBaseId,sourceHoldId;
+            public string name,texture,view; public float unitsPerPixel;public Vector2 pivot,holdPivot;public long sourceBaseId,sourceHoldId;
         }
-        [Serializable] public sealed class Pack {public int fps;public Frames[] actions;public Prop[] props;}
+        [Serializable] public sealed class CakeSprite {public string name,texture,category;public Vector2 pivot;}
+        [Serializable] public sealed class Pack {public int format,fps;public Frames[] actions;public Prop[] props;public CakeSprite[] cakeSprites;}
         private static Pack pack;
+        private static Dictionary<string,Frames> actions;
+        private static Dictionary<string,Prop> props;
         private static readonly Dictionary<string,Texture2D> textures=new Dictionary<string,Texture2D>();
         private static readonly Dictionary<Texture2D,byte[]> alpha=new Dictionary<Texture2D,byte[]>();
         public const float PixelsPerUnit=1200/19.5f;
@@ -27,7 +30,7 @@ namespace LittleWeeps.Client
                 var supplied=Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_ART");
                 if(!string.IsNullOrWhiteSpace(supplied))return Path.GetFullPath(supplied);
 #if UNITY_EDITOR
-                return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D"));
+                return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v6"));
 #else
                 return Path.Combine(Application.streamingAssetsPath,"HulkBirthday");
 #endif
@@ -39,12 +42,15 @@ namespace LittleWeeps.Client
                 if(pack!=null)return pack;
                 if(!Available)return null;
                 var candidate=JsonUtility.FromJson<Pack>(File.ReadAllText(Path.Combine(Root,"actor-frames.json")));
-                if(candidate?.actions==null || candidate.props==null || candidate.fps!=12 || candidate.actions.Any(a=>a==null || a.frames<1 || a.size!=256 || a.columns!=8 || a.unitsPerPixel<=0 || a.hold==null || a.hold.Length!=a.frames || a.face==null || a.face.Length!=a.frames))
+                if(candidate?.actions==null || candidate.props==null || candidate.format!=2 || candidate.fps!=12 || candidate.actions.Any(a=>a==null || a.frames<1 || a.size!=256 || a.columns!=8 || a.unitsPerPixel<=0 || a.hold==null || a.hold.Length!=a.frames || a.face==null || a.face.Length!=a.frames))
                     throw new InvalidDataException("Incomplete birthday animation pack.");
+                actions=candidate.actions.ToDictionary(a=>a.actor+"/"+a.action);
+                props=candidate.props.ToDictionary(p=>p.name+"/"+p.view);
                 pack=candidate;return pack;
             }
         }
-        public static Frames Action(string actor,string action)=>Data?.actions.FirstOrDefault(a=>a.actor==actor && a.action==action);
+        public static Frames Action(string actor,string action)=>Data!=null && actions.TryGetValue(actor+"/"+action,out var frame)?frame:null;
+        public static Prop PropView(string name,string view)=>Data!=null && props.TryGetValue(name+"/"+view,out var prop)?prop:null;
         public static Texture2D Texture(string relative)
         {
             if(textures.TryGetValue(relative,out var cached))return cached;
@@ -75,7 +81,7 @@ namespace LittleWeeps.Client
         public static void Release()
         {
             foreach(var texture in textures.Values)if(texture)UnityEngine.Object.Destroy(texture);
-            textures.Clear();alpha.Clear();pack=null;
+            textures.Clear();alpha.Clear();actions=null;props=null;pack=null;
         }
     }
 }

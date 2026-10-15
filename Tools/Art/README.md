@@ -19,3 +19,12 @@ third-party executable scripts or a device/server rollout. Supply `--inspection`
 to probe preparation to copy only the verified scene dependency closure. Retain
 these tools while the reconstructed world's asset pipeline consumes them; retire
 them only after replacing that pipeline and preserving its source evidence.
+
+The birthday binder also supports exact prefab strategies and explicitly named
+extra recovered actors. `Assemble-RecoveredBirthdayPack.py` combines a preserved
+base bake with source cake sprites and gift outcomes into a fresh immutable local
+pack, recording parent manifest hashes. Guest and held-prop bake passes retain
+the earlier accepted packs. `Tools/Verification/Inspect-RecoveredSpritePack.py`
+checks PNGs and anchor tracks without modifying imagery; that is integrity
+evidence, not motion, audio or owner visual acceptance. These tools share the
+Hulk recovery owner/consumers/retirement rule above.

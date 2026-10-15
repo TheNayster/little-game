@@ -102,6 +102,8 @@ Create the world’s shared state, stable actor/prop IDs, validated commands, pa
 
 ### Phase 2 Recover character animation and action behavior
 
+**Status: shared locomotion/holding and handoff reactions accepted Windows542–544.** Activity-specific action rows are checked with their consuming phase; full-cast action coverage and owner normal-speed review remain open.
+
 **Depends on: 0–1.** Reconnect recovered meshes/rigs, clips, controllers, masks, transitions, animation events and attachment points in the isolated reference project. Reconstruct missing behavior code from the mapped services and native evidence. Export the chosen compatible presentation into Little Weeps while preserving editable sources.
 
 Build an action matrix per confirmed actor: idle/look, walk/turn, pick up/carry/put down, give/receive, celebrate/disappointed, jump/land, and the source-linked special actions needed later. Separate a reusable movement/holding action from a character-specific smash, throw, web action or stunt. Check normal-speed motion, hand contact, feet, pivots, facing, depth and cancellation. Visual callbacks must not cause duplicate authoritative effects.
@@ -110,6 +112,8 @@ Build an action matrix per confirmed actor: idle/look, walk/turn, pick up/carry/
 
 ### Phase 3 Restore introduction guests and shared props
 
+**Status: shared introduction, civilian arrival/delivery/departure and NPC exchange slice accepted Windows544.** Later activity arbitration remains with its consuming phase.
+
 **Depends on: 1–2.** Reconstruct the introduction, invitations, guest arrival/departure, prop anchors, snap pegs and activity arbitration. Trace spawner limits and cleanup rules from source data; guest turnover must not duplicate players or discard an owned gift. Late arrivals join the current shared visit; they do not restart everyone’s introduction.
 
 Implement gift provision, carrying, handoff and table placement with visible character actions. Resolve simultaneous claims using the shared authority. Activity transitions must release reservations and safely handle held props.
@@ -117,6 +121,8 @@ Implement gift provision, carrying, handoff and table placement with visible cha
 **Done when:** players can enter together, bring and place gifts, hand one to another participant, and leave independently while the party continues. Guests arrive and leave without permanently consuming actor or prop capacity. The introductory sequence hands control back to open play.
 
 ### Phase 4 Complete gifts cake food and drink
+
+**Status: shared cake/consumption accepted Windows546 and gift replay/cancellation accepted Windows548. Source squirrel-stall queue remains in progress.** No full-world completion claimed.
 
 **Depends on: 2–3.** Trace the whole gift sequence: ordinary and source-confirmed bad/fake gifts, reveal, Hulk’s response, consumed/destroyed wrappers and repeat play. Avoid guessing that every “negative” reaction is the same animation or outcome.
 
@@ -168,11 +174,11 @@ Integrate checked source into main and push under the existing branch lifecycle.
 
 Sequence: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9**. Resolve cross-phase dependencies in the current bounded task rather than creating overlapping world rewrites. Shared-state support begins in Phase 1 and accompanies each activity; multiplayer is not postponed to the final phase.
 
-The next implementation task is **Phase2: complete directional presentation, pickup transitions, handoff reactions and the required action matrix**, building on the checked shared slice. Then continue the source-linked guest and activity paths through Phases3–9. The original viewer/export remain comparison evidence. Do not require purchasing access to the official locked worlds to continue.
+The active implementation task is **Phase4: gifts and shared cake creation**, building on the checked directional and guest slices. Continue through the remaining band, castle, villain, persistence and presentation phases. The original viewer/export remain comparison evidence. Do not require purchasing access to the official locked worlds to continue.
 
 For each completed task record: phase and feature, exact source references, files changed, source/build revision, actual interaction and client count checked, remaining limits and the next task. Update this plan’s phase status and the build guide’s work record. Keep future production files within the existing world ownership pattern under `Code/Core/Worlds`, `Code/Client/Worlds` and `Resources/Worlds`; add the exact new world paths to maintained layout metadata when implementation creates them.
 
-Current completion: **dependency recovery, character/prop preparation and the first shared2D foundation slice**. Phase2 is next; Phases3–9 remain required. The full birthday world is not complete. Original checkpoint records below retain their historical limits; the later recovery record supersedes their missing-assets blocker.
+Current completion: **dependency recovery, shared2D foundation, directional holding/actions and the introduction/guest slice**. Phase4 is active; later activity and whole-world checks remain required. The full birthday world is not complete. Original checkpoint records below retain their historical limits; the later recovery record supersedes their missing-assets blocker.
 
 ## Complete dependency recovery and first shared slice October 15
 
@@ -180,7 +186,7 @@ The shipped binary Addressables catalog was decoded with the matching official A
 
 The combined export is `LocalData/Research/DuploMarvel/marvel-complete-hulk-project/ExportedProject`. Its scene SHA256 is `23075a913e3c8b611f8b7782889374c9110d5bea99484124faea900a5228bbf0`. The read-only inspection now reaches3,393 files and finds **zero placeholder/missing reference usages**, versus3,319 previously. File presence alone does not establish imported subobject identity; the additional Unity audit directly loaded all eight character controllers and found866 clip bindings, no missing meshes and no missing bones. It does not execute the original game logic.
 
-The cake controller's recovered sprites are the green, brown and pink **plates**. They are not three finished cakes. The former viewer icons remain an explicitly superseded substitute test. The recovered BuildACake sprite directory contains82 sprite assets, including editor content; this is not a count of82 completed gameplay choices.
+The cake controller's recovered sprites are the green, brown and pink **plates**. They are not three finished cakes. The former viewer icons remain an explicitly superseded substitute test. The recovered BuildACake directory contains41 Sprite assets and their texture files, including editor content. Unity rendering confirms that the three `cake_plate` sprites depict cake bases on plates; decoration is separate. Do not count asset/texture pairs as two choices or call the bases fully decorated cakes.
 
 ### Character presentation and holding
 
@@ -210,7 +216,7 @@ The verifier touches a prop's visible centre rather than assuming its source gro
 
 The standard whole-game prebuild checks passed with538. Subsequent birthday-only follow-ups can use `Tools/Build/Build-FamilyGame.ps1 -BuildNumber N -FocusedBirthday`: identical release build profiles, focused `HulkBirthdayRuleChecks` including legacy JSON and disconnected-receiver rejection, and the separate four-client check. This does not claim to rerun unrelated whole-game checks. The linked standalone test project remains under `Tools/Verification/HulkBirthday.Tests`; Windows Application Control blocks its execution here, so Unity runs the same checks. These Hulk-owned checks remain while the world consumes this contract and retire only with a replacement contract/test suite.
 
-Current bounded task: complete Phase2's action presentation. Guests, introduction, cake construction, food/drink, working band/audio, castle physics/building, villain loops and whole-world persistence/presentation acceptance are still required. The additional record fields do not constitute implemented activities. No device installation or installed-server operation occurred. Retain checked research content packs when producing later variants so earlier evidence remains reproducible.
+Current bounded task: Phase4 gifts and shared cake creation. The action/guest slices below supersede the earlier next-task entry. Cake construction, food/drink, working band/audio, castle physics/building, villain loops and whole-world persistence/presentation acceptance remain required. The additional record fields do not constitute implemented activities. No device installation or installed-server operation occurred. Retain checked research content packs when producing later variants so earlier evidence remains reproducible.
 
 ## Phase 0 inventory checkpoint October 15
 
@@ -261,3 +267,29 @@ The 4,507 brick-colour components belong to **4,442 distinct GameObjects**. Sixt
 Both tools completed against the real recovered inputs. There were no YAML parse failures, duplicate meta GUIDs, unresolved local object references or truncated activity closures. Exact types for assembly-bound MonoScripts remain unclassified. Scene SHA256 remains `ee28fbcd1623430ef05735e059de538b515109fd0f64f1dfc4208d9ae548bc73`; original bundle SHA256 remains `776fa95dac34d89e202d60c9bc2070037ab2c6d0a786bf6598bcef027292e0e2`.
 
 Next: locate or reconstruct the mapped controller/clip bindings; trace the guest strategy and complete Hulk’s transfer/release sequence; then exercise the first character action slice. Phase 0 remains active until those gaps have usable behavior and dependency dispositions. No new Unity build, family-world source change, device installation or live-server operation occurred in this checkpoint.
+
+### Directional actions and shared guests checked Windows542–544
+
+Windows542 passes four actual clients with the v3 pack at `LocalData/SharedGarden/f54f10d9d3714459a0fa25d8e4000d4f/hulk-birthday/result.json`. Right/left carry samples advance through multiple source frames, mirrors follow their anchors, the recipient reacts while holding, and departure/reuse pass. A real frozen-animation defect was fixed: cosmetic playback now uses the local frame clock rather than waiting for authority snapshots. Source clip duration governs loop length. Earlier540/541 runs remain failed evidence; a screenshot taken during the short walk also interrupted sampling.
+
+Windows543 and544 pass the extended four-client introduction/guest/NPC checks. Latest checked evidence: `LocalData/SharedGarden/e28e87e9d0dd4c27b3015093c313255b/hulk-birthday/result.json`. Two recovered civilians arrive carrying the two additional stable gifts, deliver them, and leave without deleting the gifts. Returning players keep the shared introduction. A departing profile's role continues as one companion body; actual face-button touches give and take the same gift through that companion. The Unity authority fixture also covers guest departure, saved randomized unique order, candidate-v1 additive migration and retained inventory.
+
+The immutable v4/v5 packs contain575 action sets across21 source actors. V5 adds held orientations to reach150 prop views across25 source props. Atlas/anchor checks find no empty frames, missing tracks or detected clipping. Guest order uses all13 source civilian identities. Source20–30-second intervals and the ten-present budget inform the reconstruction; three fixed guest slots and forty-second visits are explicit family multiplayer adaptations, not recovered native timing claims. The source introduction's six-second camera-pan duration informs a six-second shared welcome; local cameras remain independent and the whole party is not restarted on join.
+
+Per-world candidate format2 adds four persistent companion records and three guest records. The world's schema54/content83 remain undeployed. Human control replaces the same role's NPC presentation; NPC-held props transfer atomically or drop safely when that role becomes player controlled. Raw recovered content remains local and ignored. Full action/activity semantics, original audio, complete occlusion and owner visual approval remain open. Current held-gift captures still obscure faces in the flat projection. A pending client-only adjustment lowers bulky gifts for readable2D holding while preserving their source anchors in the research pack; it is an intentional fidelity adaptation and awaits the next visual check.
+
+Phase4 research maps the source gift strategy to cake, boulder, flower, pumpkin, book, teddy, cat and pug; cat and pug each have a one-instance limit. Hulk's dislike source selects Pumpkin, Flower and Book traits. Cake export renders41 source Sprite assets; the production selection will exclude screenshot/editor-control sprites. New cake/outcome assembly tools are preparation, not accepted gameplay. Drink supply is not established by the birthday dependency graph: if the recovered common FrostyDrink actor is offered, record it as an explicit family addition, not a source birthday stall.
+
+### Shared cake and first gift outcome checked Windows546
+
+Four actual clients passed the shared cake workflow at `LocalData/SharedGarden/dd3cd5f41e5a4f5cb875662d8e40d195/hulk-birthday/result.json`: all four place decorations on one cake, one finishes it, all receive/consume bounded portions, a cold drink is consumed, and Hulk unwraps and eats the first gift's cake. Pickup contention, transfer, directional carry, disconnect and reuse pass in the same run. The cake editor, unwrap and final carrying captures were inspected; the flattened held-gift adjustment now leaves Hulk's face visible. Fixture placement and gift setup remain distinguished from actual touches.
+
+Candidate per-world format3 adds saved sticker positions and the shared unwrap reservation. JSON/restore checks retain cake state and cancel transient leases. The source gives eight outcome identities and three disliked traits; Unity547 additionally passes every outcome, bounded rewrapping, reaction selection and movement cancellation. Source limits on the two pet types remain enforced. `Wrap again` is an explicit family replay adaptation that reuses an existing gift instead of accumulating unlimited loose contents. Windows548 passes the replay, negative reaction, cancellation and walk-to-Hulk follow-up with four real clients at `LocalData/SharedGarden/ba69de61d17b4cddb11b82e5d67a40f2/hulk-birthday/result.json`.
+
+The v6 immutable pack has575 action sets,204 prop views across34 source props, three source cake bases and26 decorations. Source textures and generated imagery stay ignored. The recovered common FrostyDrink is an explicit family addition. Source sprites named `cake_plate` are cake bases on plates, confirmed by actual Unity rendering; previous plate-only wording is corrected.
+
+Native546 initially reached all four decorations but the verifier raced a pending client acknowledgement. A subsequent run reached the revealed cake before its client-side button appeared. The verifier now waits for visible, enabled controls as well as authority state, and failure logging no longer skips process cleanup after an input assertion. The one affected isolated run's five processes were stopped by exact run identity; the installed family server was untouched. These failed runs do not replace the passing run above.
+
+Phase5 preparation resolves Spin/guitar, Spidey/keyboard and Gwen/drums from source trait GUIDs and maps the two birthday arrangements plus three16-second instrument recordings through their actual HbpAudioSource/AudioSource references. FFprobe decodes all seven birthday music files, including intro/main. V7 prepares PCM copies with source/output hashes; no band gameplay or subjective audio approval is established by that conversion.
+
+The Phase4 source stall is now explicitly resolved: StallVendorActivity54159 references seller54831, the scene Squirrel, cake variantCR as its sold item and variantVR as its additional item. StallPatronQueueActivity56879 consumes ActorQueue54240 with three source waiting spots. The four-player reconstruction must add its fourth shared waiting place deliberately, preserve one seller/service sequence and allow independent departure. Direct cake sharing does not close this queue row.
