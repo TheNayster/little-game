@@ -55,7 +55,7 @@ public static class HulkBirthdayRuleChecks
         Need(restored.ReadBirthday().props[0].x==650 && restored.ReadBirthday().props[0].y==160,"restore retains carried prop at player");
         var foundation=restored.Snapshot();foundation.birthday.version=1;foundation.birthday.cast=null;foundation.birthday.guestOrder=null;foundation.birthday.props=foundation.birthday.props.Take(25).ToArray();
         var upgraded=GameWorld.Restore(foundation);
-        Need(upgraded.ReadBirthday().version==3 && upgraded.ReadBirthday().props.Length==27 && upgraded.ReadBirthday().props[0].id=="birthday-gift-0","foundation migration preserves existing props");
+        Need(upgraded.ReadBirthday().version==4 && upgraded.ReadBirthday().props.Length==27 && upgraded.ReadBirthday().props[0].id=="birthday-gift-0","foundation migration preserves existing props");
         var party=GameWorld.WithBirthday(GameWorld.Create(Actors));
         Send(party,"one",SoloAction.Travel,HulkBirthday.Zone);
         party.AdvanceIdle(.5,out _,new[]{"one"});
@@ -112,6 +112,24 @@ public static class HulkBirthdayRuleChecks
         Need(Send(replay,"one",SoloAction.Move,x:680,y:160).Accepted,"walking away interrupts own unwrap");
         Need(replay.ReadBirthday().giftAt<0 && replay.ReadBirthday().props[0].holder=="one" && !replay.ReadBirthday().props[0].opened,"cancellation preserves one unopened held gift");
         GameWorld.Validate(replay.Snapshot());
+        var stall=GameWorld.WithBirthday(GameWorld.Create(Actors));
+        for(int i=0;i<4;i++){
+            Send(stall,Actors[i],SoloAction.Travel,HulkBirthday.Zone);Send(stall,Actors[i],SoloAction.Move,x:HulkBirthday.QueueX[0],y:HulkBirthday.QueueY[0]);
+            Need(Send(stall,Actors[i],SoloAction.Birthday,"queue").Accepted,"four family members join one vendor queue");
+        }
+        stall.AdvanceIdle(.5,out _,Actors);var service=stall.ReadBirthday().vendorAt;
+        Need(stall.ReadBirthday().vendorQueue.SequenceEqual(Actors) && stall.ReadBirthday().props.Count(p=>p.location=="counter")==1,"one counter reservation for one shared service");
+        Need(!Send(stall,"four",SoloAction.Birthday,"claim",stall.ReadBirthday().vendorItem).Accepted,"queue reservation cannot be stolen");
+        var waitingRestore=GameWorld.Restore(stall.Snapshot());
+        Need(waitingRestore.ReadBirthday().vendorQueue.Length==0 && waitingRestore.ReadBirthday().props.All(p=>p.location!="counter"),"restore safely cancels transient queue/counter");
+        Send(stall,"three",SoloAction.Move,x:4100,y:60);
+        Need(stall.ReadBirthday().vendorAt==service && !stall.ReadBirthday().vendorQueue.Contains("three"),"independent departure retains siblings' service progress");
+        for(int i=0;i<18;i++)stall.AdvanceIdle(.5,out _,Actors);
+        Need(stall.ReadBirthday().vendorCount==3 && stall.ReadBirthday().props.Count(p=>p.kind=="food" && p.holder!="")==3,"three patrons each receive one portion");
+        Send(stall,"three",SoloAction.Move,x:HulkBirthday.QueueX[0],y:HulkBirthday.QueueY[0]);Send(stall,"three",SoloAction.Birthday,"queue");
+        for(int i=0;i<6;i++)stall.AdvanceIdle(.5,out _,Actors);
+        Need(stall.ReadBirthday().vendorCount==4 && stall.ReadBirthday().vendorQueue.Length==0 && stall.ReadBirthday().props.Count(p=>p.kind=="food" && p.holder!="")==4,"returning fourth patron shares the same bounded supply");
+        GameWorld.Validate(stall.Snapshot());
         var invalid=world.Snapshot();invalid.birthday.props[0].id="invented";
         try{GameWorld.Validate(invalid);throw new Exception("invalid prop identity accepted");}catch(InvalidOperationException){}
         Console.WriteLine("PASS: authority fixtures; migration, claims, handoff, snapshot isolation, instrument sharing, intro, guests, late join, departure and JSON restore. Not a four-client runtime test.");

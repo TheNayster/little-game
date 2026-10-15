@@ -777,7 +777,7 @@
       "Client/Worlds/Hulk"
     ],
     "localSource": "LocalData/Research/DuploMarvel",
-    "localPack": "LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v6",
+    "localPack": "LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v9",
     "retirement": "Replace only after the reconstructed world no longer consumes this pipeline; preserve original evidence.",
     "delivery": "Recovered assets remain ignored; PC research pack is external. Mobile packaging and installed delivery are unqualified."
   }

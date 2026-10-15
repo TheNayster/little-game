@@ -23,9 +23,13 @@ namespace LittleWeeps.Client
         public int VisibleBirthdayPlayers=>CurrentArea==HulkBirthday.Zone?birthdayVisiblePlayers:0;
         public BirthdayState BirthdayView=>HasWorld?Birthday?.Copy():null;
         public string[] BirthdayRenderedOwners=>birthdayRenderedOwners.Select(p=>p.Key+"="+p.Value).ToArray();
+        private string birthdayLastOutcome="";
+        public string BirthdayLastOutcome=>birthdayLastOutcome;
         public string[] BirthdayRenderedPoses=>birthdayFrames.Select(p=>p.Key+"="+p.Value.action.action+":"+p.Value.frame+(birthdayMirrors.TryGetValue(p.Key,out var mirror) && mirror?":mirrored":"")).ToArray();
         private string birthdayPending="",birthdayPendingActor="";private long birthdayVisit=-1;
         private bool birthdayApproach,birthdayWasVisible;
+        private bool BirthdayWalkingApproach=>CurrentArea==HulkBirthday.Zone && (birthdayApproach || birthdayPendingActor!="" || birthdayCakeApproach || birthdayUnwrapApproach || birthdayVendorApproach);
+        private void CancelBirthdayIntent(){birthdayApproach=false;birthdayPending="";birthdayPendingActor="";birthdayCakeApproach=false;birthdayUnwrapApproach=false;birthdayVendorApproach=false;}
         private double birthdayReactionSeen=-1;
         private BirthdayState Birthday=>Shared?shared.View.birthday:World.ReadBirthday();
         private RawImage BirthdayImage(string name)
@@ -57,8 +61,10 @@ namespace LittleWeeps.Client
         private void BirthdaySend(string value,string item="",string target="",float x=0,float y=0)
         {
             if(ActionPending || CurrentArea!=HulkBirthday.Zone)return;
-            if(Shared)SubmitShared(SoloAction.Birthday,item,target,value,x,y,result=>{if(!result.Accepted)message.text=Friendly(result.Outcome);Render();});
-            else {var result=Command(SoloAction.Birthday,item:item,target:target,value:value,x:x,y:y);if(!result.Accepted)message.text=Friendly(result.Outcome);Render();}
+            if(HulkBirthday.StationaryOperation(value)){destination=null;if(Shared)shared.Walk(WalkMode.Stop);}
+            void Done(SoloResult result){birthdayLastOutcome=result.Outcome;if(!result.Accepted)message.text=Friendly(result.Outcome);Render();}
+            if(Shared)SubmitShared(SoloAction.Birthday,item,target,value,x,y,Done);
+            else Done(Command(SoloAction.Birthday,item:item,target:target,value:value,x:x,y:y));
         }
         private void BirthdayGive(string actor)
         {
@@ -66,6 +72,7 @@ namespace LittleWeeps.Client
             var npc=Birthday.cast.FirstOrDefault(n=>n.id==actor && n.active && n.controller=="");
             if(npc!=null){
                 if(held==null && !Birthday.props.Any(p=>p.holder==npc.id))return;
+                CancelBirthdayIntent();
                 birthdayApproach=false;birthdayPending="";birthdayPendingActor=actor;birthdayVisit=ReadPlayer(Actor).visit;return;
             }
             if(held==null)return;
@@ -74,6 +81,8 @@ namespace LittleWeeps.Client
         private void BirthdayTapProp(string id)
         {
             if(ActionPending)return;var prop=Birthday.props.Single(p=>p.id==id);var player=ReadPlayer(Actor);
+            if(prop.location=="counter")return;
+            CancelBirthdayIntent();
             if(prop.holder==Actor){BirthdaySend("drop",id,x:Mathf.Clamp(player.x+45,0,4800),y:player.y);return;}
             if(prop.holder!="" || Birthday.props.Any(p=>p.holder==Actor))return;
             birthdayPendingActor="";birthdayPending=id;birthdayVisit=player.visit;birthdayApproach=true;destination=new Vector2(prop.x,prop.y);
@@ -147,14 +156,14 @@ namespace LittleWeeps.Client
                 if(moving){birthdayFacing[member.actor]=Mathf.Abs(delta.x)>=Mathf.Abs(delta.y)*.45f?(delta.x<0?-1:1):delta.y>0?2:0;birthdayReactions.Remove(member.actor);}
                 birthdayPositions[member.actor]=point;
                 var holding=game.props.Any(p=>p.holder==member.actor);
-                string pose=member.station==""?(moving?(holding?"carry":"walk"):holding?"hold":"idle"):member.station=="castle"?"jump":member.station=="dance"?"dance":member.station;
+                string pose=member.station==""?(moving?(holding?"carry":"walk"):holding?"hold":"idle"):member.station=="queue" || member.station=="vendor-exit"?(moving?(holding?"carry":"walk"):holding?"hold":"idle"):member.station=="castle"?"jump":member.station=="dance"?"dance":member.station;
                 if(npc!=null && !moving && (npc.phase=="wave" || !game.introDone))pose=holding?"happy-hold":"wave";
                 if(npc!=null && game.giftAt>=0 && game.giftActor==npc.id)pose="unwrap";
-                int direction=member.station==""?birthdayFacing[member.actor]:0;
+                int direction=member.station=="" || member.station=="queue" || member.station=="vendor-exit"?birthdayFacing[member.actor]:0;
                 string view=direction==2?"back":direction!=0?"side":"front",suffix=view=="front"?"":"-"+view;
                 var action=BirthdayArt.Action(member.role,pose+suffix)??BirthdayArt.Action(member.role,pose)??BirthdayArt.Action(member.role,"idle");
                 bool reactionActive=false;double age=0;
-                if(!moving && (inWorld || npc!=null) && member.station=="" && pose!="unwrap" && birthdayReactions.TryGetValue(member.actor,out var reaction)){
+                if(!moving && (inWorld || npc!=null) && (member.station=="" || member.station=="vendor-exit") && pose!="unwrap" && birthdayReactions.TryGetValue(member.actor,out var reaction)){
                     var candidate=BirthdayArt.Action(member.role,reaction.pose+suffix);
                     age=Time.unscaledTimeAsDouble-reaction.time;
                     if(candidate!=null && age>=0 && age<candidate.duration){action=candidate;reactionActive=true;}
@@ -180,15 +189,17 @@ namespace LittleWeeps.Client
             }
             var presents=BirthdayArt.Data.props.Where(p=>p.view=="front" && p.name.StartsWith("PresentActor",StringComparison.Ordinal)).OrderBy(p=>p.name).ToArray();
             var bricks=BirthdayArt.Data.props.Where(p=>p.view=="front" && p.name.StartsWith("Bap_Brick",StringComparison.Ordinal)).OrderBy(p=>p.name).ToArray();
+            TickBirthdayVendorUi(game);
             foreach(var prop in game.props){
                 if(!birthdayProps.TryGetValue(prop.id,out var image))continue;
                 var art=prop.kind=="gift"?(prop.opened?BirthdayArt.PropView(HulkBirthday.Contents[prop.content],"front"):presents[prop.style%presents.Length]):
-                    prop.kind=="food"?BirthdayArt.PropView("CakeActorVariant_CR","front"):prop.kind=="drink"?BirthdayArt.PropView("FrostyDrink","front"):
+                    prop.kind=="food"?BirthdayArt.PropView(prop.style==1?"CakeActorVariant_VR":"CakeActorVariant_CR","front"):prop.kind=="drink"?BirthdayArt.PropView("FrostyDrink","front"):
                     prop.kind=="battery"?BirthdayArt.PropView("Battery","front"):bricks[prop.style%bricks.Length];
                 image.gameObject.SetActive(prop.location!="stock");
-                bool held=prop.holder!="" && birthdayHoldPoints.ContainsKey(prop.holder);
-                bool mirror=held && birthdayMirrors[prop.holder];
-                if(held)art=BirthdayArt.PropView(art.name,"held-"+birthdayViews[prop.holder])??BirthdayArt.PropView(art.name,birthdayViews[prop.holder])??art;
+                string carrier=prop.holder!=""?prop.holder:prop.location=="counter"?"birthday-squirrel":"";
+                bool held=carrier!="" && birthdayHoldPoints.ContainsKey(carrier);
+                bool mirror=held && birthdayMirrors[carrier];
+                if(held)art=BirthdayArt.PropView(art.name,"held-"+birthdayViews[carrier])??BirthdayArt.PropView(art.name,birthdayViews[carrier])??art;
                 var pivot=held?art.holdPivot:art.pivot;
                 // The source gift peg sits near the base. In this flattened
                 // projection that covers the face instead of passing in front
@@ -197,7 +208,7 @@ namespace LittleWeeps.Client
                 if(held && prop.kind=="gift" && !prop.opened)pivot.y=Mathf.Max(pivot.y,128);
                 image.texture=BirthdayArt.Texture(art.texture);image.uvRect=new Rect(mirror?1:0,0,mirror?-1:1,1);image.rectTransform.pivot=new Vector2(mirror?1-pivot.x/256:pivot.x/256,pivot.y/256);
                 image.rectTransform.sizeDelta=Vector2.one*256*art.unitsPerPixel*BirthdayArt.PixelsPerUnit*sceneScale;
-                image.rectTransform.anchoredPosition=held?birthdayHoldPoints[prop.holder]:ToBoard(prop.x,prop.y);
+                image.rectTransform.anchoredPosition=held?birthdayHoldPoints[carrier]:ToBoard(prop.x,prop.y);
                 birthdayRenderedOwners[prop.id]=prop.holder;
             }
             SortDepth();
@@ -207,6 +218,8 @@ namespace LittleWeeps.Client
         {
             if(CurrentArea!=HulkBirthday.Zone || Birthday==null)return;
             if(birthdayWorldCake!=null)add(birthdayWorldCake,ToBoard(0,330).y,0,"birthday-cake");
+            if(birthdayPeople.TryGetValue("birthday-squirrel",out var seller))add(seller.rectTransform,ToBoard(0,216).y,1,"birthday-squirrel");
+            if(birthdayFaces.TryGetValue("birthday-squirrel",out var sellerFace))add(sellerFace.rectTransform,ToBoard(0,216).y,4,"birthday-squirrel-face");
             foreach(var member in Birthday.members)if(birthdayPeople.TryGetValue(member.actor,out var image))add(image.rectTransform,ToBoard(0,birthdayPositions.TryGetValue(member.actor,out var p)?p.y:200).y,1,"birthday-"+member.actor);
             foreach(var member in Birthday.members)if(birthdayFaces.TryGetValue(member.actor,out var face))add(face.rectTransform,ToBoard(0,birthdayPositions.TryGetValue(member.actor,out var p)?p.y:200).y,4,"birthday-face-"+member.actor);
             foreach(var npc in Birthday.cast){
@@ -214,7 +227,7 @@ namespace LittleWeeps.Client
                 if(birthdayFaces.TryGetValue(npc.id,out var face))add(face.rectTransform,ToBoard(0,npc.y).y,4,"birthday-face-"+npc.id);
             }
             foreach(var prop in Birthday.props)if(birthdayProps.TryGetValue(prop.id,out var image)){
-                var ground=prop.holder!="" && birthdayPositions.TryGetValue(prop.holder,out var p)?p.y:prop.y;
+                var ground=prop.location=="counter"?216:prop.holder!="" && birthdayPositions.TryGetValue(prop.holder,out var p)?p.y:prop.y;
                 add(image.rectTransform,ToBoard(0,ground).y,3,"birthday-prop-"+prop.id);
             }
         }

@@ -14,6 +14,7 @@ from pathlib import Path
 import re
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from project_paths import ROOT
@@ -29,6 +30,7 @@ def main():
     parser.add_argument('--actions',action='store_true',help='Also check directional carry and the handoff reaction frames.')
     parser.add_argument('--guests',action='store_true',help='Also check the shared intro, source guest arrivals and NPC gift exchange.')
     parser.add_argument('--party',action='store_true',help='Also check shared cake editing, portions, drinks and one Hulk unwrap.')
+    parser.add_argument('--vendor',action='store_true',help='Also check the one shared squirrel queue with four real clients.')
     parser.add_argument('--art',type=Path,default=ROOT/'LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D')
     args=parser.parse_args()
     art=args.art.resolve();require((art/'actor-frames.json').is_file(),'Current birthday pack is required')
@@ -97,6 +99,37 @@ def main():
             require(all(any(v['name']=='Birthday friend '+other.profile for v in controls) for other in clients),'Missing shared birthday character controls')
             require(evidence['visibleBirthdayPlayers']==4,'Client does not show all four connected birthday players')
         record('four real clients enter one shared birthday world with the recovered cast')
+        if args.vendor:
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=[4374,4298,4234,4170][i],y=[60,54,39,35][i])
+            for client in (b,d):
+                if not client.input('inspect')['joystickVisible']:button(client,'Tap to walk')
+            time.sleep(1.5)
+            with ThreadPoolExecutor(max_workers=4) as pool:
+                list(pool.map(lambda client:button(client,'Birthday squirrel stall'),clients))
+            queue_samples=[]
+            def full_queue():
+                state=view()['birthday'];queue_samples.append({'clock':state['clock'],'queue':state['vendorQueue'],'served':state['vendorCount'],'serviceAt':state['vendorAt']})
+                return state['vendorQueue'] if len(state['vendorQueue'])==4 else None
+            try:queue=wait(full_queue,'four players in one squirrel queue',20)
+            finally:write(out/'vendor-admission-trace.json',queue_samples)
+            quitter=next(c for c in clients if c.profile==queue[-1]);before=view()['birthday']
+            button(quitter,'Leave line')
+            after=wait(lambda:view()['birthday'] if quitter.profile not in view()['birthday']['vendorQueue'] else None,'only one patron leaves')
+            if before['vendorCount']==after['vendorCount'] and before['vendorAt']>=0:require(after['vendorAt']==before['vendorAt'],'Leaving the line restarted a sibling service')
+            wait(lambda:sum(p['kind']=='food' and p['holder']!='' for p in view()['birthday']['props'])==3,'three patrons served once each',20)
+            button(quitter,'Birthday squirrel stall')
+            wait(lambda:sum(p['kind']=='food' and p['holder']!='' for p in view()['birthday']['props'])==4,'fourth patron returns to the same stall',20)
+            require(view()['birthday']['vendorCount']==4 and not view()['birthday']['vendorQueue'],'Shared queue duplicated service or left reservations')
+            require({p['holder'] for p in view()['birthday']['props'] if p['kind']=='food'}=={c.profile for c in clients},'Food holders are not the four family members')
+            wait(lambda:all(m['station']=='' for m in view()['birthday']['members']),'served players walk aside',15)
+            home.capture(a,out,'four-player-squirrel-stall')
+            for client in clients:button(client,'Eat snack')
+            wait(lambda:all(p['location']=='stock' and p['holder']=='' for p in view()['birthday']['props'] if p['kind']=='food'),'stall food consumed',15)
+            for client in (b,d):
+                if client.input('inspect')['joystickVisible']:button(client,'Tap to walk')
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5)
+            record('four actual clients share one animated squirrel queue; independent departure preserves service and return serves exactly one portion per patron')
         if args.party:
             for i,client in enumerate(clients):command(client,actions.index('Move'),x=[2315,2325,2475,2485][i],y=200)
             time.sleep(1.5)
@@ -220,8 +253,12 @@ def main():
                 write(out/'last-authority-state.json',server.state())
                 write(out/'last-client-state.json',clients[0].input('inspect'))
             except (RuntimeError,OSError,AssertionError):pass
+            for client in clients:
+                if client.process.poll() is None:
+                    try:write(out/('last-'+client.profile+'.json'),client.input('inspect'))
+                    except (RuntimeError,OSError,AssertionError):pass
         write(out/'result.json',{'passed':passed,'checks':checks,'build':args.build,'source_commit':source['sourceCommit'],
-            'scope':'Entrance, shared prop foundation'+(' and directional/action presentation' if args.actions else '')+' only; later birthday activities are not accepted.',
+            'scope':'Checked birthday slices: shared props'+(' / directional actions' if args.actions else '')+(' / introduction and guests' if args.guests else '')+(' / shared cake and gift replay' if args.party else '')+(' / one shared vendor queue' if args.vendor else '')+'. Band, castle, villains and whole-world acceptance remain open.',
             'art_root':str(art),'clients_started':len(clients)})
         run.close()
         if previous is None:os.environ.pop('LITTLE_WEEPS_BIRTHDAY_ART',None)

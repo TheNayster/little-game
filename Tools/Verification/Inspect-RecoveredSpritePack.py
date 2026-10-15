@@ -27,11 +27,15 @@ def main():
             size=row['size'];columns=row['columns'];rows=math.ceil(row['frames']/columns)
             if image.size!=(columns*size,rows*size):errors.append({'kind':'dimensions','key':key,'size':image.size})
             alpha=image.getchannel('A')
+            frame_hashes=set()
             for frame in range(row['frames']):
                 x=frame%columns*size;y=frame//columns*size
                 bounds=alpha.crop((x,y,x+size,y+size)).point(lambda a:255 if a>25 else 0).getbbox()
+                frame_hashes.add(hashlib.sha256(image.crop((x,y,x+size,y+size)).tobytes()).hexdigest())
                 if bounds is None:errors.append({'kind':'empty-frame','key':key,'frame':frame})
                 elif bounds[0]==0 or bounds[1]==0 or bounds[2]==size or bounds[3]==size:edges.append({'key':key,'frame':frame,'bounds':bounds})
+            if row['frames']>1 and row['action'].split('-')[0] in ['walk','run','unwrap','eat','drink','jump','serve'] and len(frame_hashes)<2:
+                errors.append({'kind':'static-motion-atlas','key':key,'frames':row['frames']})
             for anchor in ['hold','leftHand','rightHand','face']:
                 points=row.get(anchor,[])
                 if len(points)!=row['frames'] or any(not all(math.isfinite(p[k]) for k in ['x','y']) for p in points):errors.append({'kind':'anchor-track','key':key,'anchor':anchor})

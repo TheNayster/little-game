@@ -20,6 +20,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ['base','output']:parser.add_argument('--'+name,type=Path,required=True)
     for name in ['cakes','outcomes','audio-project']:parser.add_argument('--'+name,type=Path)
+    parser.add_argument('--replace-props',action='store_true',help='Replace matching views in a fresh copy, preserving the original pack.')
     args=parser.parse_args()
     base,output=args.base.resolve(),args.output.resolve()
     if bool(args.cakes)!=bool(args.outcomes):parser.error('--cakes and --outcomes must be supplied together')
@@ -29,9 +30,12 @@ def main():
     cake=read(args.cakes/'cake-sprites.json') if args.cakes else {'sprites':[]}
     keys={(p['name'],p['view']) for p in manifest['props']}
     for prop in extra['props']:
-        if (prop['name'],prop['view']) in keys:raise ValueError('Duplicate prop view')
+        if (prop['name'],prop['view']) in keys and not args.replace_props:raise ValueError('Duplicate prop view')
         keys.add((prop['name'],prop['view']))
     shutil.copytree(base,output)
+    if args.replace_props:
+        replacements={(p['name'],p['view']) for p in extra['props']}
+        manifest['props']=[p for p in manifest['props'] if (p['name'],p['view']) not in replacements]
     for prop in extra['props']:
         relative=Path(prop['texture'])
         if relative.is_absolute() or '..' in relative.parts:raise ValueError('Invalid prop path')
@@ -69,7 +73,7 @@ def main():
              'outcome_manifest_sha256':sha(args.outcomes/'outcome-props.json') if args.outcomes else None,'assembler_sha256':sha(Path(__file__)),
              'manifest_sha256':sha(output/'actor-frames.json')}
     (output/'assembly-receipt.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
-    print(json.dumps({'props':len(manifest['props']),'cake_sprites':len(manifest.get('cakeSprites',[])),'audio':len(audio),'manifest_sha256':receipt['manifest_sha256']}))
+    print(json.dumps({'props':len(manifest['props']),'cake_sprites':len(manifest.get('cakeSprites',[])),'audio':len(manifest.get('audio',[])),'manifest_sha256':receipt['manifest_sha256']}))
 
 
 if __name__=='__main__':main()

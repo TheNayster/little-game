@@ -27,6 +27,18 @@ namespace LittleWeeps.Core
         {
             var b=state.birthday;outcome=null;
             bool Near(float x)=>Math.Abs(player.x-x)<=InteractionRadius && Math.Abs(player.y-200)<=InteractionRadius;
+            if(c.value=="leave-queue"){LeaveBirthdayVendor(player.id);return true;}
+            if(c.value=="queue"){
+                if(b.vendorQueue.Contains(player.id))return true;
+                if(held!=null || member.station!=""){outcome="hands-busy";return true;}
+                if(b.vendorQueue.Length>=4){outcome="queue-is-full";return true;}
+                // Arrival and reservation are separate. Another family member
+                // may take the predicted spot while this request is in flight;
+                // reaching the shared queue area is enough to reserve a place.
+                bool nearby=Enumerable.Range(0,4).Any(i=>Math.Abs(player.x-HulkBirthday.QueueX[i])<=InteractionRadius && Math.Abs(player.y-HulkBirthday.QueueY[i])<=InteractionRadius);
+                if(!nearby){outcome="come-to-the-squirrel-stall";return true;}
+                b.vendorQueue=b.vendorQueue.Append(player.id).ToArray();member.station="queue";BirthdayPose(member,"Idle");PositionBirthdayQueue();return true;
+            }
             if(member.station=="unwrap" || member.station=="eat" || member.station=="drink"){outcome="finish-or-walk-away";return true;}
             if(c.value=="wrap"){
                 if(held==null || held.kind!="gift" || !held.opened){outcome="hold-an-opened-present";return true;}
@@ -105,6 +117,65 @@ namespace LittleWeeps.Core
                 var food=b.props.SingleOrDefault(p=>p.holder==member.actor);
                 if(food!=null){food.holder="";food.opened=false;food.location="stock";food.version++;}
                 member.station="";BirthdayPose(member,"Happy");changed=true;
+            }
+            return changed;
+        }
+        private static void ValidateBirthdayVendor(SoloSnapshot snapshot)
+        {
+            var b=snapshot.birthday;
+            if(b.vendorQueue==null || b.vendorQueue.Length>4 || b.vendorQueue.Distinct().Count()!=b.vendorQueue.Length || b.vendorActor==null || b.vendorItem==null || b.vendorCount<0 ||
+                new[]{b.vendorAt,b.vendorLast}.Any(t=>!KeepyRules.Finite(t) || t< -1 || t>b.clock) ||
+                b.vendorQueue.Any(id=>!b.members.Any(m=>m.actor==id && m.station=="queue") || !snapshot.players.Any(p=>p.id==id && p.zone==HulkBirthday.Zone)) ||
+                b.members.Any(m=>m.station=="queue" && !b.vendorQueue.Contains(m.actor)) ||
+                b.vendorAt>=0 && (b.vendorQueue.Length==0 || b.vendorQueue[0]!=b.vendorActor || !b.props.Any(p=>p.id==b.vendorItem && p.kind=="food" && p.holder=="" && p.location=="counter")) ||
+                b.props.Count(p=>p.location=="counter")!=(b.vendorAt>=0?1:0))throw new InvalidOperationException("Invalid birthday vendor queue.");
+        }
+        private static void ResetBirthdayVendor(BirthdayState b)
+        {
+            foreach(var prop in b.props.Where(p=>p.location=="counter")){prop.location="stock";prop.version++;}
+            b.vendorQueue=Array.Empty<string>();b.vendorAt=-1;b.vendorActor="";b.vendorItem="";
+        }
+        private void PositionBirthdayQueue()
+        {
+            var b=state.birthday;
+            for(int i=0;i<b.vendorQueue.Length;i++){
+                var player=state.players.Single(p=>p.id==b.vendorQueue[i]);player.x=HulkBirthday.QueueX[i];player.y=HulkBirthday.QueueY[i];
+            }
+        }
+        private void LeaveBirthdayVendor(string actor)
+        {
+            var b=state.birthday;if(!b.vendorQueue.Contains(actor))return;
+            if(b.vendorActor==actor){
+                var reserved=b.props.FirstOrDefault(p=>p.id==b.vendorItem);
+                if(reserved!=null && reserved.location=="counter"){reserved.location="stock";reserved.version++;}
+                b.vendorAt=-1;b.vendorActor="";b.vendorItem="";
+            }
+            b.vendorQueue=b.vendorQueue.Where(id=>id!=actor).ToArray();var member=b.members.Single(m=>m.actor==actor);member.station="";BirthdayPose(member,"Idle");PositionBirthdayQueue();
+        }
+        private bool AdvanceBirthdayVendor(double seconds,string[] active)
+        {
+            var b=state.birthday;bool changed=false;
+            foreach(var id in b.vendorQueue.ToArray())if(!state.players.Any(p=>p.id==id && p.zone==HulkBirthday.Zone) || active!=null && !active.Contains(id)){LeaveBirthdayVendor(id);changed=true;}
+            if(b.vendorAt>=0 && b.clock-b.vendorAt>=HulkBirthday.VendorServeSeconds){
+                var food=b.props.Single(p=>p.id==b.vendorItem);food.holder=b.vendorActor;food.location="held";food.version++;
+                string done=b.vendorActor;b.vendorAt=-1;b.vendorActor="";b.vendorItem="";b.vendorLast=b.clock;b.vendorCount++;
+                LeaveBirthdayVendor(done);
+                var member=b.members.Single(m=>m.actor==done);int place=Array.IndexOf(b.members,member);
+                member.exitX=4567+place%2*100;member.exitY=35+place/2*110;member.station="vendor-exit";member.actionAt=b.clock;changed=true;
+            }
+            if(b.vendorAt<0 && b.vendorQueue.Length>0 && (b.vendorLast<0 || b.clock-b.vendorLast>=.5)){
+                var food=b.props.FirstOrDefault(p=>p.kind=="food" && p.location=="stock" && p.holder=="");
+                if(food!=null){
+                    food.style=b.vendorCount%2;food.location="counter";food.x=4499;food.y=127;food.version++;
+                    b.vendorItem=food.id;b.vendorActor=b.vendorQueue[0];b.vendorAt=b.clock;changed=true;
+                }
+            }
+            foreach(var member in b.members.Where(m=>m.station=="vendor-exit")){
+                if(b.clock-member.actionAt<1d/3)continue;
+                var player=state.players.Single(p=>p.id==member.actor);
+                double dx=member.exitX-player.x,dy=member.exitY-player.y,distance=Math.Sqrt(dx*dx+dy*dy),step=Math.Min(distance,Walking.Speed*seconds);
+                if(distance>.001){player.x+=(float)(dx/distance*step);player.y+=(float)(dy/distance*step);changed=true;}
+                if(distance<=step+.01){member.station="";BirthdayPose(member,"Idle");changed=true;}
             }
             return changed;
         }

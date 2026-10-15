@@ -523,6 +523,7 @@ namespace LittleWeeps.Client
         }
         public void CancelPointers()
         {
+            CancelBirthdayIntent();
             foreach(var surface in Surfaces.Values)surface.Cancel();
             if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
             dinosaurCareApproach=false;zooApproach=false;CancelSandpitIntent();treasureApproach="";kingdomApproach="";daycareApproach=-1;destination=null;stickDirection=Vector2.zero;
@@ -547,7 +548,7 @@ namespace LittleWeeps.Client
                 if(!shared.Connected)return;
                 FinishTravel();
                 if(MenuOpen || VetOwn || OwnWaveRider!=null || TravelPending || StairBusy || doorSubmitted)shared.Walk(WalkMode.Stop);
-                else if(birthdayApproach && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
+                else if(BirthdayWalkingApproach && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
                 else if(dinosaurCareApproach)shared.Walk(WalkMode.Destination,dinosaurCareEntry.x,dinosaurCareEntry.y);
                 else if(zooApproach)shared.Walk(WalkMode.Destination,zooEntry.x,zooEntry.y);
                 else if(clubApproach>=0 && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
@@ -573,8 +574,8 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=ZooPhotoOpen || VetOwn || OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:birthdayApproach || clubApproach>=0 || dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
-            var input=birthdayApproach || clubApproach>=0?destination??Vector2.zero:dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
+            var mode=ZooPhotoOpen || VetOwn || OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:BirthdayWalkingApproach || clubApproach>=0 || dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=BirthdayWalkingApproach || clubApproach>=0?destination??Vector2.zero:dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
                 dirty=true;lastLocalAction=now;

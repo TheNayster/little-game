@@ -457,6 +457,10 @@ namespace LittleWeeps.NetworkProbe
                 if(result.Accepted && !result.Duplicate)
                 {
                     if(request.command.action==SoloAction.DaycarePlay || request.command.action==SoloAction.Travel || request.command.action==SoloAction.Move || request.command.action==SoloAction.UseFixture || request.command.action==SoloAction.Dinosaur && request.command.value!="call")movement.Forget(request.command.actor);
+                    if(request.command.action==SoloAction.Birthday && HulkBirthday.StationaryOperation(request.command.value)){
+                        movement.Forget(request.command.actor);
+                        if(request.command.value=="unwrap")movement.Forget(session.View().birthday.giftActor);
+                    }
                     SaveAuthority();
                     if(request.command.action==SoloAction.Sandpit && new[]{"scoop","water","tip","decorate","ground-decorate","place","toy-react"}.Contains(request.command.value)){
                         sandResponses.Enqueue(new SandcastleResponse{revision=result.Revision,round=session.View().sandpit.round,actor=request.command.actor,operation=request.command.value});

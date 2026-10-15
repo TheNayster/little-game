@@ -16,10 +16,11 @@ public static class RecoveredBirthdayBake
     [Serializable] public sealed class ActorInputs {public ActorInput[] actors;}
     [Serializable] public sealed class ActionFrames {public string actor,action,clip,texture;public int frames,columns=8,size=256;public float duration,unitsPerPixel;public Vector2[] rightHand,leftHand,hold,face;public Vector2 pivot;}
     [Serializable] public sealed class PropFrame {public string name,texture,view;public float unitsPerPixel;public Vector2 pivot,holdPivot;public long sourceBaseId,sourceHoldId;}
-    [Serializable] public sealed class Manifest {public string sourceScene,sourceSceneSha256,bakerSha256,bindingsSha256,unityVersion;public int format=2,fps=12;public ActionFrames[] actions;public PropFrame[] props;public string[] missingActions,limits;}
+    [Serializable] public sealed class Manifest {public string sourceScene,sourceSceneSha256,bakerSha256,bindingsSha256,unityVersion;public int format=2,fps=12;public ActionFrames[] actions;public PropFrame[] props;public string[] missingActions,limits;public CakeSprite[] cakeSprites;public AudioRow[] audio;}
+    [Serializable] public sealed class AudioRow {public string key,file,source,source_sha256,sha256;public double duration;}
     [Serializable] public sealed class Landmark {public string name;public Vector3 position;}
     [Serializable] public sealed class Geometry {public Vector3 cameraPosition,cameraRotation;public float fieldOfView,tileWorldWidth=19.5f,pixelsPerUnit=1200/19.5f,worldMinX=-39;public Landmark[] landmarks;}
-    [Serializable] public sealed class CakeSprite {public string name,source,texture,sourceSha256;public Vector2 pivot;public float sourcePixelsPerUnit;}
+    [Serializable] public sealed class CakeSprite {public string name,source,texture,sourceSha256,category;public Vector2 pivot;public float sourcePixelsPerUnit;}
     [Serializable] public sealed class CakeSprites {public string bakerSha256;public CakeSprite[] sprites;}
     [Serializable] public sealed class PointInput {public string name;public long transformId;}
     [Serializable] public sealed class PointInputs {public PointInput[] points;}
@@ -47,6 +48,55 @@ public static class RecoveredBirthdayBake
     static string Output=>Path.GetFullPath(Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_BAKE_OUTPUT")??Path.Combine(Application.dataPath,"../Baked2D"));
     static string Suffix(string view)=>view=="front"?"":"-"+view;
     static float Yaw(string view)=>view=="side"?-60:view=="back"?180:0;
+    public static void RunSquirrel()
+    {
+        try {
+            string previous=Path.GetFullPath(Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_BASE_PACK")??throw new Exception("Base pack required."));
+            if(Directory.Exists(Output))throw new Exception("Squirrel bake requires a fresh directory.");Directory.CreateDirectory(Output);
+            foreach(var file in Directory.GetFiles(previous,"*",SearchOption.AllDirectories)){
+                string target=Path.Combine(Output,file.Substring(previous.Length+1));Directory.CreateDirectory(Path.GetDirectoryName(target));File.Copy(file,target);
+            }
+            var manifest=JsonUtility.FromJson<Manifest>(File.ReadAllText(Path.Combine(previous,"actor-frames.json")));
+            var scene=EditorSceneManager.OpenScene(manifest.sourceScene);
+            var roots=scene.GetRootGameObjects();var transforms=roots.SelectMany(r=>r.GetComponentsInChildren<Transform>(true)).ToArray();
+            var input=JsonUtility.FromJson<ActorInputs>(File.ReadAllText("Assets/Research/actor-bindings.json")).actors.Single(a=>a.name=="Squirrel");
+            var byId=transforms.ToDictionary(t=>GlobalObjectId.GetGlobalObjectIdSlow(t).targetObjectId);
+            var source=transforms.Single(t=>GlobalObjectId.GetGlobalObjectIdSlow(t.gameObject).targetObjectId.ToString()==input.game_object_id);
+            var clone=UnityEngine.Object.Instantiate(source.gameObject);clone.transform.position=Vector3.zero;clone.SetActive(true);
+            foreach(var root in roots)root.SetActive(false);
+            foreach(var t in clone.GetComponentsInChildren<Transform>(true))GameObjectUtility.RemoveMonoBehavioursWithMissingScript(t.gameObject);
+            foreach(var r in clone.GetComponentsInChildren<Renderer>(true))Recover(r);
+            if(clone.GetComponentsInChildren<SkinnedMeshRenderer>(true).Any(r=>!r.sharedMesh || r.bones.Any(b=>!b)))throw new Exception("Squirrel rig is incomplete.");
+            Transform Anchor(long id)=>clone.transform.Find(AnimationUtility.CalculateTransformPath(byId[(ulong)id],source))??throw new Exception("Squirrel anchor missing.");
+            var hold=Anchor(input.holdId);var face=Anchor(input.faceId);
+            var animator=clone.GetComponentInChildren<Animator>(true);animator.enabled=false;
+            var bounds=new Bounds(Vector3.zero,Vector3.zero);foreach(var r in clone.GetComponentsInChildren<Renderer>().Where(r=>r.enabled && !(r is ParticleSystemRenderer)))bounds.Encapsulate(r.bounds);
+            var camera=new GameObject("Squirrel camera").AddComponent<Camera>();camera.orthographic=true;camera.orthographicSize=Mathf.Max(.5f,bounds.size.y*.85f);camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=Color.clear;
+            camera.transform.position=bounds.center+new Vector3(0,bounds.size.y*.25f,12);camera.transform.LookAt(bounds.center);
+            var targetTexture=new RenderTexture(256,256,24,RenderTextureFormat.ARGB32);camera.targetTexture=targetTexture;
+            var rows=manifest.actions.Where(a=>a.actor!="Squirrel").ToList();Directory.CreateDirectory(Path.Combine(Output,"Squirrel"));
+            AnimationMode.StartAnimationMode();
+            foreach(var pair in new[]{("idle","Idle"),("serve","ServeProp"),("happy","PositiveReaction"),("negative","NegativeReaction")}){
+                string name="ani_sa_Squirrel_"+pair.Item2;var clip=ResolveOverride(animator.runtimeAnimatorController,name);
+                if(!clip)clip=AssetDatabase.FindAssets(name+" t:AnimationClip",new[]{"Assets/DuploMarvel"}).Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<AnimationClip>).Where(c=>c && c.name==name).SingleOrDefault();
+                if(!clip)throw new Exception("Missing squirrel clip: "+name);
+                foreach(var binding in AnimationUtility.GetCurveBindings(clip))if(binding.path!="" && !animator.transform.Find(binding.path))throw new Exception("Missing squirrel clip binding: "+binding.path);
+                int count=Math.Max(1,Math.Min(72,(int)Math.Ceiling(clip.length*12)));
+                var row=new ActionFrames{actor="Squirrel",action=pair.Item1,clip=AssetDatabase.GetAssetPath(clip),texture="Squirrel/"+pair.Item1+".png",frames=count,duration=clip.length,unitsPerPixel=camera.orthographicSize*2/256,pivot=Pixel(camera,clone.transform.position),leftHand=new Vector2[count],rightHand=new Vector2[count],hold=new Vector2[count],face=new Vector2[count]};
+                var sheet=new Texture2D(2048,(count+7)/8*256,TextureFormat.RGBA32,false);sheet.SetPixels32(new Color32[sheet.width*sheet.height]);
+                for(int frame=0;frame<count;frame++){
+                    AnimationMode.BeginSampling();AnimationMode.SampleAnimationClip(animator.gameObject,clip,Mathf.Min(frame/12f,clip.length));AnimationMode.EndSampling();camera.Render();RenderTexture.active=targetTexture;
+                    var image=new Texture2D(256,256,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,256,256),0,0);image.Apply();sheet.SetPixels32(frame%8*256,sheet.height-256-frame/8*256,256,256,image.GetPixels32());UnityEngine.Object.DestroyImmediate(image);
+                    row.leftHand[frame]=row.rightHand[frame]=row.hold[frame]=Pixel(camera,hold.position);row.face[frame]=Pixel(camera,face.position);
+                }
+                sheet.Apply();File.WriteAllBytes(Path.Combine(Output,row.texture),sheet.EncodeToPNG());UnityEngine.Object.DestroyImmediate(sheet);rows.Add(row);
+            }
+            AnimationMode.StopAnimationMode();manifest.actions=rows.ToArray();
+            File.WriteAllText(Path.Combine(Output,"actor-frames.json"),JsonUtility.ToJson(manifest,true));
+            File.WriteAllText(Path.Combine(Output,"squirrel-bake.json"),JsonUtility.ToJson(new HeldReceipt{baseManifestSha256=Hash(Path.Combine(previous,"actor-frames.json")),bakerSha256=Hash("Assets/Editor/RecoveredBirthdayBake.cs")},true));
+            EditorApplication.Exit(0);
+        }catch(Exception error){Debug.LogException(error);EditorApplication.Exit(1);}
+    }
     public static void RunOutcomes()
     {
         try {
@@ -128,7 +178,7 @@ public static class RecoveredBirthdayBake
             }
             var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
             var inputs=JsonUtility.FromJson<ActorInputs>(File.ReadAllText("Assets/Research/guest-bindings.json")).actors;
-            var actions=manifest.actions.ToList();
+            var actions=manifest.actions.Where(a=>!inputs.Any(i=>i.name==a.actor)).ToList();
             foreach(var input in inputs){
                 var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(input.prefab);if(!prefab)throw new Exception("Guest prefab missing: "+input.prefab);
                 var originals=prefab.GetComponentsInChildren<Transform>(true);
@@ -148,9 +198,9 @@ public static class RecoveredBirthdayBake
                 camera.orthographicSize=Mathf.Max(1,bounds.size.y*.85f);camera.transform.position=bounds.center+new Vector3(0,bounds.size.y*.25f,12);camera.transform.LookAt(bounds.center);
                 var target=new RenderTexture(256,256,24,RenderTextureFormat.ARGB32);camera.targetTexture=target;
                 Directory.CreateDirectory(Path.Combine(Output,input.name));
+                AnimationMode.StartAnimationMode();
                 foreach(var view in new[]{"front","side","back"}){
                     clone.transform.rotation=Quaternion.Euler(0,Yaw(view),0);
-                    AnimationMode.StartAnimationMode();
                     foreach(var pair in new[]{("idle","anim_human_Idle"),("walk","anim_human_Walk"),("wave","anim_human_Wave"),("happy","anim_human_Happy")}){
                         var clip=ResolveOverride(animator.runtimeAnimatorController,pair.Item2);if(!clip)throw new Exception("Missing guest action "+input.name+"/"+pair.Item1);
                         int count=Math.Max(1,Math.Min(72,(int)Math.Ceiling(clip.length*12)));
@@ -158,7 +208,7 @@ public static class RecoveredBirthdayBake
                             frames=count,duration=clip.length,unitsPerPixel=camera.orthographicSize*2/256,pivot=Pixel(camera,clone.transform.position),leftHand=new Vector2[count],rightHand=new Vector2[count],hold=new Vector2[count],face=new Vector2[count]};
                         var sheet=new Texture2D(2048,(count+7)/8*256,TextureFormat.RGBA32,false);sheet.SetPixels32(new Color32[sheet.width*sheet.height]);
                         for(int frame=0;frame<count;frame++){
-                            AnimationMode.BeginSampling();AnimationMode.SampleAnimationClip(clone,clip,Mathf.Min(frame/12f,clip.length));AnimationMode.EndSampling();
+                            AnimationMode.BeginSampling();AnimationMode.SampleAnimationClip(animator.gameObject,clip,Mathf.Min(frame/12f,clip.length));AnimationMode.EndSampling();
                             camera.Render();RenderTexture.active=target;
                             var image=new Texture2D(256,256,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,256,256),0,0);image.Apply();
                             sheet.SetPixels32(frame%8*256,sheet.height-256-frame/8*256,256,256,image.GetPixels32());UnityEngine.Object.DestroyImmediate(image);
@@ -166,15 +216,18 @@ public static class RecoveredBirthdayBake
                         }
                         sheet.Apply();File.WriteAllBytes(Path.Combine(Output,row.texture),sheet.EncodeToPNG());UnityEngine.Object.DestroyImmediate(sheet);actions.Add(row);
                     }
-                    AnimationMode.StopAnimationMode();
+                }
+                AnimationMode.StopAnimationMode();
+                foreach(var view in new[]{"front","side","back"}){
+                    clone.transform.rotation=Quaternion.Euler(0,Yaw(view),0);
                     foreach(var mode in new[]{"hold","carry","pickup","happy-hold"})actions.Add(BakeControllerHold(animator,camera,target,clone.transform,left,right,hold,face,input.name,mode,view));
                 }
                 Debug.Log("BIRTHDAY_GUEST "+input.name);
                 camera.targetTexture=null;RenderTexture.active=null;UnityEngine.Object.DestroyImmediate(target);UnityEngine.Object.DestroyImmediate(camera.gameObject);UnityEngine.Object.DestroyImmediate(clone);
             }
             manifest.actions=actions.ToArray();manifest.bakerSha256=Hash("Assets/Editor/RecoveredBirthdayBake.cs");
+            File.Copy("Assets/Research/guest-bindings.json",Path.Combine(Output,"guest-bindings.json"),true);
             File.WriteAllText(Path.Combine(Output,"actor-frames.json"),JsonUtility.ToJson(manifest,true));
-            File.Copy("Assets/Research/guest-bindings.json",Path.Combine(Output,"guest-bindings.json"));
             EditorApplication.Exit(0);
         }catch(Exception error){Debug.LogException(error);EditorApplication.Exit(1);}
     }
