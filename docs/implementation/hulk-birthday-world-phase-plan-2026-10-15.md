@@ -82,9 +82,9 @@ Each required interaction needs a source reference, reconstructed rules, working
 
 ### Phase 0 Complete the evidence and dependency inventory
 
-**Status: partial research.** The scene and viewer exist; the full roster, behavior graph and missing-asset manifest do not.
+**Status: in progress.** The October 15 inventory checkpoint below establishes the scene cast, serialized activity graph and missing-reference identities. Dynamic guest coverage and complete action semantics remain open.
 
-Resolve each reachable activity into its actors, props, triggers, actions, clips, sounds and cleanup paths. Traverse linked quests and behavior descriptors; include small tappables rather than relying only on named headline activities. Map script GUIDs and missing external assets to catalog keys and bundle dependencies. Classify each as recovered, recoverable, replacement required or unresolved. Identify why 65 of the scene’s 4,507 brick-colour components were not applied to renderers in the viewer.
+Resolve each reachable activity into its actors, props, triggers, actions, clips, sounds and cleanup paths. Traverse linked quests and behavior descriptors; include small tappables rather than relying only on named headline activities. Map script GUIDs and missing external assets to catalog keys and bundle dependencies. Classify each as recovered, recoverable, replacement required or unresolved. The apparent 65-component colour gap is now explained below; conflicting duplicate colour records still require deliberate handling.
 
 Extend native analysis only for the next relevant controllers, beginning with character/prop services and the bouncy castle update path. Keep the verified ELF address correction; do not use the known incorrect Cpp2IL printed instruction bodies. For every behavioral claim distinguish serialized wiring, traced native semantics and proposed multiplayer adaptation.
 
@@ -166,8 +166,58 @@ Integrate checked source into main and push under the existing branch lifecycle.
 
 Sequence: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9**. Resolve cross-phase dependencies in the current bounded task rather than creating overlapping world rewrites. Shared-state support begins in Phase 1 and accompanies each activity; multiplayer is not postponed to the final phase.
 
-The next implementation task is **Phase 0: finish the cast/action map and missing-dependency manifest**, with a focused Hulk pickup/carry/handoff trace as the first behavior slice. The existing viewer is reused for comparison and does not need another setup or broad rebuild first. Do not require purchasing access to the official locked worlds to begin this work.
+The next implementation task is **Phase 0: resolve the missing animation bindings and finish the dynamic guest and handoff paths**, using the populated action map and original bundle/object IDs below. Continue toward the Hulk walk → pickup → carry → handoff slice. The existing viewer is reused for comparison and does not need another setup or broad rebuild first. Do not require purchasing access to the official locked worlds to begin this work.
 
 For each completed task record: phase and feature, exact source references, files changed, source/build revision, actual interaction and client count checked, remaining limits and the next task. Update this plan’s phase status and the build guide’s work record. Keep future production files within the existing world ownership pattern under `Code/Core/Worlds`, `Code/Client/Worlds` and `Resources/Worlds`; add the exact new world paths to maintained layout metadata when implementation creates them.
 
-Current completion: **research baseline and recovery viewer only**. Phases 1–9 remain planned. This document adds no game runtime changes and makes no claim that the character actions match yet.
+Current completion: **research baseline, recovery viewer and Phase 0 inventory checkpoint**. Phases 1–9 remain planned. The inventory tools add no game runtime changes and make no claim that the character actions match yet.
+
+## Phase 0 inventory checkpoint October 15
+
+The first authorized implementation task adds two read-only research tools: [exported world inspection](../../Tools/Verification/Inspect-RecoveredUnityWorld.py) and [original reference resolution](../../Tools/Verification/Resolve-RecoveredUnityReferences.py). Generated records and recovered source content remain in ignored `LocalData/Research/DuploMarvel/world-tests/HulkBirthday/Phase0/`.
+
+### Cast and activity map
+
+The exported scene contains 33 MonoActor components: eight named Marvel characters, one squirrel and 24 prop actors. The Marvel actor objects are Hulk_NewNew, Spiderman_NewNEW, Spin_NewNEW, Gwen_NewNEW, GreenGoblin_NewNew, BlackCat_NewNew, Electro_NewNew_BAP and DocOck_NewNEW. These are confirmed scene identities, not a claim that every character is player-controllable. A police guest prefab is referenced externally; the complete dynamic guest pool still needs its spawning/selection rules traced.
+
+The inspector parsed 58,490 scene documents, including the previously established 15,801 GameObjects and 9,620 script components. It followed references through 1,940 exported files and generated static closures for all 128 activity components selected by its activity/controller rules, with no closure limit reached. It expands action GameObjects and MonoActor service components but excludes unrelated transform ancestry. This is complete traversal under those rules, not proof of runtime behavior or an exhaustive count of every tappable. Dependency injection, dynamic loads and runtime-selected services still require separate traces.
+
+`actor-action-map.json` records each actor’s configured behaviors, inventory slots and controller binding. `activities.json` and `activity-closures.json` record activity owners and linked static dependencies. Assembly-bound scripts retain their DLL and fileID rather than receiving guessed type names.
+
+### Hulk holding behavior
+
+Hulk’s inventory component is scene object 49715, on actor object 1177. It defines seven named slots: Holding, Drink, Camera, RightHand, Wrench, WateringCan and LeftHand. Slot conflicts are explicit peg lists. Its anchor component separately identifies hold, left-hand and right-hand attachment transforms. Animator configuration uses `isHolding` and `armBlend`; the lift behavior has `Lift` and `StopLifting` triggers. Those data are available even though the controller asset is absent from the checked bundle directory.
+
+The focused native pass attempted 258 members. The 249 concrete native ranges all passed independent ELF byte mapping and full ARM64 decoding. The nine members without native bodies are interface declarations, not nine unexplained recovery failures. Registration metadata also supplies a native entry/name index; instruction bodies still use the corrected ELF mapping rather than upstream Cpp2IL printed bytes.
+
+| Verified native path | Finding | Reconstruction consequence |
+| --- | --- | --- |
+| NewActorInventoryActivity.HoldActor at `0x3B8C398` | Compares the current owner of the inventory’s actor with the supplied activity; obtains the requested slot and returns failure on the rejected path | Preserve activity ownership and explicit slot selection |
+| HoldSlot.HoldActor at `0x3C25898` | Checks slot availability, invokes the snap/attachment operation and only updates the held-actor state after success | Attaching a visible prop alone is not a successful hold transaction |
+| HoldSlot.GetIsPegOpen at `0x3C25768` | Checks its peg and the configured blocking-peg collection | Do not replace the slot system with an unrestricted single held-item field |
+| HoldSlot.RemoveActor at `0x3C25A30` | Clears the held state and invokes the peg release path | Release must update both logical possession and attachment |
+| NewActorInventoryActivity.RequestHoldActor at `0x3B8D9A4` | Native body returns false | This apparently suitable wrapper is not the usable holding path |
+| NewActorInventoryActivity.OfferActorHolding at `0x3B8C558` | Native body constructs NotImplementedException | Do not use metadata names alone as evidence of working functionality |
+
+The full casting, persistent-behavior cleanup and cross-actor handoff transaction are not yet closed. No animation or pickup interaction was executed in this checkpoint. Native decoding establishes these code paths, not their visible acceptance in Little Weeps.
+
+### Missing assets and the colour count
+
+The exported dependency graph contains 3,319 placeholder usages. Of these, 3,318 are in HBP_Main; the remaining usage is a material on the referenced BnP_BasePlate_2x4x1 prefab. Reading the original birthday bundle recovers the original PPtr identity for every one of those 3,318 scene usages. They target 86 serialized CAB files. These are references and internal files, not 3,318 distinct assets or 86 missing games.
+
+All 138 bundles in the copied APK’s `assets/aa/Android` directory were indexed successfully, exposing 147 serialized files. None of the 86 target CABs appears in that directory. This establishes a gap in those copied addressable bundles; it does not establish absence from every possible player-data archive, app cache or remote download. The known phone endpoint refused the connection during this pass, so its cache was not inspected.
+
+Two concrete targets now have exact identities:
+
+- Hulk’s Animator 47274 references controller pathID `8868263673400657418` in `CAB-6fdfa5ff4fa22c51ec50c0151955caab`.
+- Cake controller 54845 references three sprite pathIDs in `CAB-c49f73b098bf11082c82ae4521c2c9aa`; `original-pointer-crosswalk.json` records each field and ID.
+
+Use those identities to check remaining player-data content and catalog/download dependencies. If a required source asset remains unavailable, reconstruct the required animation or visual role explicitly and check the difference; do not silently pass an icon or generic controller as recovered original content. Remaining native behavior can be traced independently of asset acquisition.
+
+The 4,507 brick-colour components belong to **4,442 distinct GameObjects**. Sixty-five objects each contain a second colour component. No colour component lacks a renderer. The viewer counted owners, so the earlier apparent missing-renderer explanation was incorrect. Some duplicate values differ; preserve them in the evidence and choose the effective material deliberately when reconstructing presentation.
+
+### Checkpoint verification and remaining work
+
+Both tools completed against the real recovered inputs. There were no YAML parse failures, duplicate meta GUIDs, unresolved local object references or truncated activity closures. Exact types for assembly-bound MonoScripts remain unclassified. Scene SHA256 remains `ee28fbcd1623430ef05735e059de538b515109fd0f64f1dfc4208d9ae548bc73`; original bundle SHA256 remains `776fa95dac34d89e202d60c9bc2070037ab2c6d0a786bf6598bcef027292e0e2`.
+
+Next: locate or reconstruct the mapped controller/clip bindings; trace the guest strategy and complete Hulk’s transfer/release sequence; then exercise the first character action slice. Phase 0 remains active until those gaps have usable behavior and dependency dispositions. No new Unity build, family-world source change, device installation or live-server operation occurred in this checkpoint.
