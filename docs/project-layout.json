@@ -343,7 +343,11 @@
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayCastle.cs": "Hulk",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayPlay.cs": "Hulk",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayTrouble.cs": "Hulk",
-    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayTrouble.cs": "Hulk"
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayTrouble.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayNavigation.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayThrow.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayNavigation.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayEffects.cs": "Hulk"
   },
   "assemblyPolicy": "Keep existing Core/Client assembly membership. World folders do not define independent partial types.",
   "worlds": [
@@ -785,8 +789,9 @@
       "Client/Worlds/Hulk"
     ],
     "localSource": "LocalData/Research/DuploMarvel",
-    "localPack": "LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v21",
+    "localPack": "LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v27",
     "retirement": "Replace only after the reconstructed world no longer consumes this pipeline; preserve original evidence.",
-    "delivery": "Recovered assets remain ignored; PC research pack is external. Mobile packaging and installed delivery are unqualified."
+    "delivery": "Recovered assets remain ignored; PC research pack is external. Mobile packaging and installed delivery are unqualified.",
+    "preview": "Tools/Launch/Play-HulkBirthday.ps1 uses its own ignored LocalData/hulk-birthday-preview records and a preserved isolated SharedGarden family; it does not select or replace the installed family server."
   }
 }

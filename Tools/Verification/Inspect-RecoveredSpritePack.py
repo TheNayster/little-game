@@ -18,6 +18,11 @@ def main():
     args=parser.parse_args();root=args.pack.resolve()
     source=root/'actor-frames.json';data=json.loads(source.read_text(encoding='utf-8'))
     errors=[];edges=[];keys=set();receipts=[]
+    for i in range(data.get('tileCount') or 4):
+        file=root/f'world-{i}.png'
+        with Image.open(file) as image:
+            if image.size!=(1200,data.get('worldHeight') or 800):errors.append({'kind':'world-tile-dimensions','file':file.name,'size':image.size})
+        receipts.append({'file':file.name,'sha256':hashlib.sha256(file.read_bytes()).hexdigest()})
     for row in data['actions']:
         key=(row['actor'],row['action'])
         if key in keys:errors.append({'kind':'duplicate-action','key':key})
@@ -48,7 +53,8 @@ def main():
             if image.size!=(512,512) or image.getchannel('A').getbbox() is None:errors.append({'kind':'invalid-cake-sprite','name':row['name']})
         receipts.append({'file':row['texture'],'sha256':hashlib.sha256(file.read_bytes()).hexdigest()})
     prop_keys=set()
-    for row in data.get('audio',[]):
+    if 'effects' in data and {r['key'] for r in data['effects']}!={'zip-mount','zip-loop','zip-dismount','jump-impact','throw','web','bubble-pop','gift-open','cake-sticker'}:errors.append({'kind':'activity-effect-inventory'})
+    for row in data.get('audio',[])+data.get('effects',[]):
         file=(root/row['file']).resolve()
         if not file.is_relative_to(root):raise ValueError('Audio path escapes content root')
         with wave.open(str(file),'rb') as pcm:

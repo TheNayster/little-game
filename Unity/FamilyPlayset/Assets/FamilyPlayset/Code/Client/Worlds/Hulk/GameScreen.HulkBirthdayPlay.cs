@@ -59,7 +59,7 @@ namespace LittleWeeps.Client
                 else if(Vector2.Distance(new Vector2(own.x,own.y),new Vector2(BirthdayPlay.BubbleX,BirthdayPlay.BubbleY))<60 && !ActionPending){birthdayBubbleApproach=false;destination=null;BirthdaySend("bubbles");}
                 else destination=new Vector2(BirthdayPlay.BubbleX,BirthdayPlay.BubbleY);
             }
-            double clock=birthdayClock.Sample(Shared?shared.View.worldId:World.WorldId,b.clock,Time.unscaledTimeAsDouble,Shared);
+            double clock=BirthdayVisualTime;
             for(int i=0;i<12;i++){
                 int last=BirthdayPlay.LastBubble(b),id=last-((last-i+12)%12);birthdayBubbleIds[i]=id;var bubble=birthdayBubbles[i];bool active=BirthdayPlay.BubbleVisible(b,id);bubble.gameObject.SetActive(active);if(!active)continue;
                 float age=(float)(clock-b.bubblesAt-id*.35);bubble.rectTransform.anchoredPosition=ToBoard(BirthdayPlay.BubbleXAt(id,age),BirthdayPlay.BubbleYAt(id,age));bubble.rectTransform.sizeDelta=Vector2.one*(34+id%3*6)*sceneScale;

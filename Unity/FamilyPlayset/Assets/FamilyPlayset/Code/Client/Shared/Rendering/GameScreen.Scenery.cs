@@ -70,7 +70,7 @@ namespace LittleWeeps.Client
         public int PendingScenery=>scenicRequests.Count;
         public bool SceneryReady=>sceneryRoot!=null && VisibleTiles().All(t=>scenicImages.ContainsKey(t.id));
         private bool ScenePosition(float x,float y)=>WorldLayout.Position(CurrentArea,SceneSchema,x,y);
-        private Vector2 FromBoard(Vector2 point)=>new Vector2(point.x/sceneScale+cameraX,(point.y/sceneScale+250)/.45f);
+        private Vector2 FromBoard(Vector2 point)=>new Vector2(point.x/sceneScale+cameraX,(point.y/sceneScale+250+BirthdayCameraOffset)/.45f);
         private void LayoutWorldViewport()
         {
             if(Board==null)return;
@@ -109,12 +109,12 @@ namespace LittleWeeps.Client
         private void ClampCamera()
         {
             var half=Board.rect.width/(2*sceneScale);
-            cameraX=Mathf.Clamp(cameraX,WorldLayout.MinX(CurrentArea,SceneSchema)+half,WorldLayout.MaxX(CurrentArea)-half);
+            cameraX=Mathf.Clamp(cameraX,(CurrentArea==HulkBirthday.Zone?-300:WorldLayout.MinX(CurrentArea,SceneSchema))+half,(CurrentArea==HulkBirthday.Zone?5700:WorldLayout.MaxX(CurrentArea))-half);
         }
         private void TickScenery()
         {
             if(sceneryRoot==null)return;
-            LayoutWorldViewport();
+            LayoutWorldViewport();UpdateBirthdayCamera();
             var player=ReadPlayer(Actor);
             var position=shared!=null && shared.Connected?shared.VisualPosition(Actor):new Vector2(player.x,player.y);
             if(cameraArea!=player.zone || cameraVisit!=player.visit)
@@ -128,7 +128,8 @@ namespace LittleWeeps.Client
                 hideCameraFollowing=followParent;
                 if(followParent){manualCamera=false;groundPan=false;cameraX=seekerX;}
             }
-            if(OwnWaveRider!=null){manualCamera=false;cameraX=WaveRide.x+(float)Math.Sin(WaveDisplayAge*.6)*65;}
+            if(BirthdayCameraFollowing){manualCamera=false;groundPan=false;cameraX=Mathf.Lerp(cameraX,BirthdayCameraTarget,1-Mathf.Exp(-8*Time.unscaledDeltaTime));}
+            else if(OwnWaveRider!=null){manualCamera=false;cameraX=WaveRide.x+(float)Math.Sin(WaveDisplayAge*.6)*65;}
             else if(followParent)
             {manualCamera=false;cameraX=Mathf.Lerp(cameraX,seekerX,1-Mathf.Exp(-9*Time.unscaledDeltaTime));}
             else if(BoatCameraFollowing){manualCamera=false;groundPan=false;cameraX=Mathf.Lerp(cameraX,BoatCameraX,1-Mathf.Exp(-Time.unscaledDeltaTime*3));}

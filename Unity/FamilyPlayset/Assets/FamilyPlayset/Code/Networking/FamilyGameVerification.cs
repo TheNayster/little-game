@@ -177,6 +177,22 @@ namespace LittleWeeps.NetworkProbe
                         InputSystem.QueueStateEvent(mouse,new MouseState{position=point}.WithButton(MouseButton.Left,false));
                     }
                 }
+                else if(step.action=="touchBirthdayProp")
+                {
+                    var image=FindObjectsByType<LittleWeeps.Client.BirthdayImage>(FindObjectsSortMode.None).Single(i=>i.name=="Birthday prop "+step.text && i.gameObject.activeInHierarchy);
+                    var rect=image.rectTransform;Vector2? selected=null;
+                    foreach(float v in new[]{.5f,.3f,.7f,.2f,.8f}){
+                        foreach(float u in new[]{.5f,.3f,.7f,.2f,.8f}){
+                            var point=RectTransformUtility.WorldToScreenPoint(null,rect.TransformPoint(new Vector3(rect.rect.xMin+rect.rect.width*u,rect.rect.yMin+rect.rect.height*v,0)));
+                            var hits=new List<RaycastResult>();EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current){position=point},hits);
+                            if(hits.Count>0 && hits[0].gameObject==image.gameObject){selected=point;break;}
+                        }
+                        if(selected.HasValue)break;
+                    }
+                    if(!selected.HasValue)throw new InvalidOperationException("No exposed opaque birthday prop target: "+step.text);
+                    InputSystem.QueueStateEvent(touch,new TouchState{touchId=98,phase=UnityEngine.InputSystem.TouchPhase.Began,position=selected.Value,pressure=1});await Task.Delay(80);
+                    InputSystem.QueueStateEvent(touch,new TouchState{touchId=98,phase=UnityEngine.InputSystem.TouchPhase.Ended,position=selected.Value});
+                }
                 else if(step.action=="boatTraceStart"){boatTraceActor=step.role;boatTrace.Clear();}
                 else if(step.action=="pondTraceStart"){tracePond=true;pondTrace.Clear();}
                 else if(step.action=="pondTraceStop"){File.WriteAllText(Path.Combine(probe.Output,"pond-trace.json"),JsonUtility.ToJson(new PondEvidence{build=Application.version,samples=pondTrace.ToArray()},true));tracePond=false;}

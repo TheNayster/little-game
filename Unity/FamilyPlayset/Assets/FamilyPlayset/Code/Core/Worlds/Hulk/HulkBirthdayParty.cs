@@ -20,7 +20,7 @@ namespace LittleWeeps.Core
             var prop=b.props.FirstOrDefault(p=>p.id==b.giftId);
             if(prop!=null){prop.location=prop.holder==""?"ground":"held";prop.version++;}
             var member=b.members.FirstOrDefault(m=>m.actor==b.giftActor);
-            if(member!=null && member.station=="unwrap")member.station="";
+            if(member!=null && member.station=="unwrap")member.station=member.seat>=0?"sit":"";
             b.giftAt=-1;b.giftId="";b.giftActor="";
         }
         private bool BirthdayPartyOperation(SoloCommand c,SoloPlayer player,BirthdayMember member,BirthdayProp held,out string outcome)
@@ -38,7 +38,7 @@ namespace LittleWeeps.Core
                 if(!nearby){outcome="come-to-the-squirrel-stall";return true;}
                 b.vendorQueue=b.vendorQueue.Append(player.id).ToArray();member.station="queue";BirthdayPose(member,"Idle");PositionBirthdayQueue();return true;
             }
-            if(member.station=="unwrap" || member.station=="eat" || member.station=="drink"){outcome="finish-or-walk-away";return true;}
+            if((member.station=="unwrap" || member.station=="eat" || member.station=="drink") && !(c.value=="station" && c.target=="")){outcome="finish-or-walk-away";return true;}
             if(c.value=="wrap"){
                 if(held==null || held.kind!="gift" || !held.opened){outcome="hold-an-opened-present";return true;}
                 // Explicit family replay control: reuse this bounded object,
@@ -53,7 +53,7 @@ namespace LittleWeeps.Core
                 if(Math.Abs(player.x-hx)>InteractionRadius || Math.Abs(player.y-hy)>InteractionRadius){outcome="bring-present-to-hulk";return true;}
                 if(b.props.Any(p=>p.holder==recipient && p!=held)){outcome="hulks-hands-are-busy";return true;}
                 var hulkMember=b.members.FirstOrDefault(m=>m.actor==recipient);
-                if(hulkMember!=null && hulkMember.station!=""){outcome="hulk-is-playing";return true;}
+                if(hulkMember!=null && hulkMember.station!="" && hulkMember.station!="sit" && hulkMember.station!="sleep"){outcome="hulk-is-playing";return true;}
                 held.holder=recipient;held.location="unwrapping";held.version++;b.giftAt=b.clock;b.giftActor=recipient;b.giftId=held.id;
                 if(hulkMember!=null){hulkMember.station="unwrap";BirthdayPose(hulkMember,"Unwrap");}
                 return true;
@@ -120,7 +120,7 @@ namespace LittleWeeps.Core
                 if(b.clock-member.actionAt<2.5)continue;
                 var food=b.props.SingleOrDefault(p=>p.holder==member.actor);
                 if(food!=null){food.holder="";food.opened=false;food.location="stock";food.version++;}
-                member.station="";BirthdayPose(member,"Happy");changed=true;
+                member.station=member.seat>=0?"sit":"";BirthdayPose(member,"Happy");changed=true;
             }
             return changed;
         }
@@ -154,7 +154,7 @@ namespace LittleWeeps.Core
                 if(reserved!=null && reserved.location=="counter"){reserved.location="stock";reserved.version++;}
                 b.vendorAt=-1;b.vendorActor="";b.vendorItem="";
             }
-            b.vendorQueue=b.vendorQueue.Where(id=>id!=actor).ToArray();var member=b.members.Single(m=>m.actor==actor);member.station="";BirthdayPose(member,"Idle");PositionBirthdayQueue();
+            b.vendorQueue=b.vendorQueue.Where(id=>id!=actor).ToArray();var member=b.members.Single(m=>m.actor==actor);member.station=member.seat>=0?"sit":"";BirthdayPose(member,"Idle");PositionBirthdayQueue();
         }
         private bool AdvanceBirthdayVendor(double seconds,string[] active)
         {
@@ -179,7 +179,7 @@ namespace LittleWeeps.Core
                 var player=state.players.Single(p=>p.id==member.actor);
                 double dx=member.exitX-player.x,dy=member.exitY-player.y,distance=Math.Sqrt(dx*dx+dy*dy),step=Math.Min(distance,Walking.Speed*seconds);
                 if(distance>.001){player.x+=(float)(dx/distance*step);player.y+=(float)(dy/distance*step);changed=true;}
-                if(distance<=step+.01){member.station="";BirthdayPose(member,"Idle");changed=true;}
+                if(distance<=step+.01){member.station=member.seat>=0?"sit":"";BirthdayPose(member,"Idle");changed=true;}
             }
             return changed;
         }

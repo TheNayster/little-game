@@ -118,7 +118,7 @@ namespace LittleWeeps.Client
             birthdayLeaveQueue.gameObject.SetActive(game.vendorQueue.Contains(Actor));
             if(game.vendorAt!=birthdayVendorSeen){birthdayVendorSeen=game.vendorAt;birthdayVendorOrigin=Time.unscaledTimeAsDouble-Math.Max(0,game.clock-game.vendorAt);}
             if(game.vendorCount!=birthdayVendorCount){if(birthdayVendorCount>=0)birthdayVendorHappyUntil=Time.unscaledTimeAsDouble+1;birthdayVendorCount=game.vendorCount;}
-            double clock=birthdayClock.Sample(Shared?shared.View.worldId:World.WorldId,game.clock,Time.unscaledTimeAsDouble,Shared);
+            double clock=BirthdayVisualTime;
             var tap=BirthdayArt.Action("Squirrel","tap");double tapAge=clock-game.vendorTapAt;
             string pose=game.vendorAt>=0?"serve":game.vendorTapAt>=0 && tap!=null && tapAge<tap.duration?"tap":Time.unscaledTimeAsDouble<birthdayVendorHappyUntil?"happy":"idle";
             var action=BirthdayArt.Action("Squirrel",pose)??throw new InvalidOperationException("Squirrel serving content is missing.");

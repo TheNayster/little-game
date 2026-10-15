@@ -25,7 +25,7 @@ namespace LittleWeeps.Client
         private int birthdayDrawnLightStep;
         public int[] BirthdayFloorColours=>birthdayFloorColours.ToArray();
         public int BirthdayDrawnLightStep=>birthdayDrawnLightStep;
-        public BirthdaySoundView[] BirthdaySounds=>birthdayAudio.Select(p=>new BirthdaySoundView{key=p.Key,time=p.Value.clip?p.Value.time:0,volume=p.Value.volume,pitch=p.Value.pitch,playing=p.Value.isPlaying}).ToArray();
+        public BirthdaySoundView[] BirthdaySounds=>birthdayAudio.Concat(birthdayEffects).Select(p=>new BirthdaySoundView{key=p.Key,time=p.Value.clip?p.Value.time:0,volume=p.Value.volume,pitch=p.Value.pitch,playing=p.Value.isPlaying}).ToArray();
         private void BeginBirthdayBand(string station)
         {
             if(Birthday.props.Any(p=>p.holder==Actor))return;
@@ -90,14 +90,14 @@ namespace LittleWeeps.Client
                 else if(Vector2.Distance(new Vector2(own.x,own.y),new Vector2(HulkBirthday.BatteryX,HulkBirthday.BatteryY))<60 && !ActionPending){birthdaySocketApproach=false;destination=null;BirthdaySend("socket");}
                 else destination=new Vector2(HulkBirthday.BatteryX,HulkBirthday.BatteryY);
             }
-            double clock=birthdayClock.Sample(Shared?shared.View.worldId:World.WorldId,game.clock,Time.unscaledTimeAsDouble,Shared);
+            double clock=BirthdayVisualTime;
             bool occupied=game.members.Any(m=>HulkBirthday.Instrument(m.station) || m.station=="dance") || game.cast.Any(n=>(HulkBirthday.Instrument(n.station) || n.station=="dance") && n.phase!="band-walk");
             bool lit=game.powered && (occupied || game.bandRoundAt>=0);var floor=BirthdayArt.Data.danceFloor;
             birthdayFloorRoot.gameObject.SetActive(true);birthdayDrawnLightStep=game.lightStep;
             for(int i=0;i<floor.cells.Length;i++){
                 var cell=floor.cells[i];var image=birthdayFloorCells[i];int colour=lit?HulkBirthday.FloorColour(game.lightSeed,game.lightStep,i):-1;
                 birthdayFloorColours[i]=colour;image.color=colour<0?floor.offColor:floor.colors[colour];
-                image.rectTransform.anchoredPosition=new Vector2((floor.worldStart+cell.pixels.center.x-cameraX)*sceneScale,(cell.pixels.center.y-400)*sceneScale);
+                image.rectTransform.anchoredPosition=new Vector2((floor.worldStart+cell.pixels.center.x-cameraX)*sceneScale,(cell.pixels.center.y-400-BirthdayCameraOffset)*sceneScale);
                 image.rectTransform.sizeDelta=cell.pixels.size*sceneScale;
             }
             foreach(var pair in birthdayBandTargets){

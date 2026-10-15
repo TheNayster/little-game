@@ -50,7 +50,7 @@ namespace LittleWeeps.Client
             var castle=BirthdayArt.Data.castle;
             // Cosmetic prediction uses the same bounded forces as authority,
             // never emitting collisions, scores, stunts or state changes.
-            var m=member.Copy();double clock=birthdayClock.Sample(Shared?shared.View.worldId:World.WorldId,Birthday.clock,Time.unscaledTimeAsDouble,Shared);
+            var m=member.Copy();double clock=BirthdayVisualTime;
             double remaining=Math.Clamp(clock-Birthday.clock,0,.3);
             while(remaining>0){float dt=(float)Math.Min(remaining,1d/60);remaining-=dt;
                 if(m.bounceDrag){m.bounceVx=Mathf.Clamp((m.bounceTargetX-m.bounceX)*10,-10,10);m.bounceVy=Mathf.Clamp((m.bounceTargetH-m.bounceH)*10,-10,10);}else m.bounceVy-=9.8f*dt;
@@ -75,7 +75,7 @@ namespace LittleWeeps.Client
             // that brief pending request must not be silently discarded.
             if(birthdayCastleLeave && !ActionPending){birthdayCastleLeave=birthdayCastleRelease=false;if(own.station=="castle")BirthdaySend("station",target:"");}
             else if(birthdayCastleRelease && !ActionPending){birthdayCastleRelease=false;if(own.station=="castle")BirthdaySend("castle-release");}
-            var data=BirthdayArt.Data.castle;var at=new Vector2((data.pixels.center.x-cameraX)*sceneScale,(data.pixels.center.y-400)*sceneScale);
+            var data=BirthdayArt.Data.castle;var at=new Vector2((data.pixels.center.x-cameraX)*sceneScale,(data.pixels.center.y-400-BirthdayCameraOffset)*sceneScale);
             foreach(var image in new[]{birthdayCastle,birthdayCastleFront}){image.rectTransform.anchoredPosition=at;image.rectTransform.sizeDelta=data.pixels.size*sceneScale;}
             double age=Birthday.members.Select(m=>Birthday.clock-m.impactAt).Where(a=>a>=0).DefaultIfEmpty(10).Min();
             int deformation=Mathf.Clamp(Mathf.RoundToInt((float)(Math.Max(0,1-age/.35)*4)),0,4);birthdayCastle.uvRect=new Rect(deformation/5f,0,.2f,1);

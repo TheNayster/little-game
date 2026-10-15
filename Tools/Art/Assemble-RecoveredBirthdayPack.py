@@ -19,7 +19,7 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ['base','output']:parser.add_argument('--'+name,type=Path,required=True)
-    for name in ['cakes','outcomes','audio-project','floor']:parser.add_argument('--'+name,type=Path)
+    for name in ['cakes','outcomes','audio-project','effects-project','floor']:parser.add_argument('--'+name,type=Path)
     parser.add_argument('--replace-props',action='store_true',help='Replace matching views in a fresh copy, preserving the original pack.')
     args=parser.parse_args()
     base,output=args.base.resolve(),args.output.resolve()
@@ -68,6 +68,24 @@ def main():
             audio.append({'key':key,'file':'Audio/'+key+'.wav','duration':duration,'source':source.relative_to(args.audio_project).as_posix(),
                           'source_sha256':sha(source),'sha256':sha(target)})
         manifest['audio']=audio
+    if args.effects_project:
+        assets=args.effects_project/'Assets/DuploMarvel/AddressableAssets'
+        sources={'zip-mount':'Remote/Audio/V13.0/SFX/SpideySwing/sfx_Ldm_ma_spideyswing_zipline_mount.ogg',
+                 'zip-loop':'Remote/Audio/V13.0/SFX/SpideySwing/sfx_Ldm_ma_spideyswing_zipline_travel_loop.ogg',
+                 'zip-dismount':'Remote/Audio/V13.0/SFX/SpideySwing/sfx_Ldm_ma_spideyswing_zipline_dismount.ogg',
+                 'jump-impact':'Embedded/Audio/V2.0/SFX/sfx_Ldm_JumpImpact1.ogg',
+                 'throw':'Remote/Audio/V2.0/SFX/sfx_Ldm_throw_object.ogg',
+                 'web':'Embedded/Audio/V1.1/sfx_Ldm_webShootStickMix.ogg',
+                 'bubble-pop':'Remote/Audio/V1.0/SFX/Water/sfx_Ldm_bubble_pop 2.ogg',
+                 'gift-open':'Remote/Audio/V20.0/SFX/Misc/sfx_Ldm_hbp_hulk_opening_gift.ogg',
+                 'cake-sticker':'Remote/Audio/V20.0/SFX/BuildACake/sfx_Ldm_hbp_cakedecor_sprinkles_drop.wav'}
+        effects=[]
+        for key,relative in sources.items():
+            source=assets/relative;target=output/'Effects'/f'{key}.wav';target.parent.mkdir(exist_ok=True)
+            subprocess.run(['ffmpeg','-y','-v','error','-nostdin','-i',str(source),'-ar','22050','-ac','2','-c:a','pcm_s16le',str(target)],check=True)
+            with wave.open(str(target),'rb') as pcm:duration=pcm.getnframes()/pcm.getframerate()
+            effects.append({'key':key,'file':'Effects/'+key+'.wav','duration':duration,'source':relative,'source_sha256':sha(source),'sha256':sha(target)})
+        manifest['effects']=effects
     if args.floor:
         floor=read(args.floor/'dance-floor.json');relative='DanceFloor/'+floor['texture'];target=output/relative
         target.parent.mkdir(exist_ok=True);shutil.copyfile(args.floor/floor['texture'],target);floor['texture']=relative;manifest['danceFloor']=floor

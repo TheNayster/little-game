@@ -23,7 +23,7 @@ namespace LittleWeeps.Client
         [Serializable] public sealed class FloorCell {public long sourceRendererId;public Rect pixels,uv;}
         [Serializable] public sealed class Floor {public string texture;public float worldStart,interval;public Color offColor;public Color[] colors;public FloorCell[] cells;public Vector2 centre;}
         [Serializable] public sealed class Castle {public string texture,front;public Rect pixels;public int frames,columns;public float floorX,floorY;}
-        [Serializable] public sealed class Pack {public int format,fps;public Frames[] actions;public Prop[] props;public CakeSprite[] cakeSprites;public AudioEntry[] audio;public Floor danceFloor;public Castle castle;}
+        [Serializable] public sealed class Pack {public int format,fps,tileCount,worldHeight;public float tileStart;public Frames[] actions;public Prop[] props;public CakeSprite[] cakeSprites;public AudioEntry[] audio,effects;public Floor danceFloor;public Castle castle;}
         private static Pack pack;
         private static Dictionary<string,Frames> actions;
         private static Dictionary<string,Prop> props;
@@ -36,7 +36,7 @@ namespace LittleWeeps.Client
                 var supplied=Environment.GetEnvironmentVariable("LITTLE_WEEPS_BIRTHDAY_ART");
                 if(!string.IsNullOrWhiteSpace(supplied))return Path.GetFullPath(supplied);
 #if UNITY_EDITOR
-                return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v21"));
+                return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v27"));
 #else
                 return Path.Combine(Application.streamingAssetsPath,"HulkBirthday");
 #endif
@@ -60,7 +60,7 @@ namespace LittleWeeps.Client
         public static AudioClip Audio(string key)
         {
             if(audio.TryGetValue(key,out var cached))return cached;
-            var entry=Data.audio?.SingleOrDefault(a=>a.key==key)??throw new InvalidDataException("Missing birthday recording: "+key);
+            var entry=Data.audio.Concat(Data.effects??Array.Empty<AudioEntry>()).SingleOrDefault(a=>a.key==key)??throw new InvalidDataException("Missing birthday recording: "+key);
             string relative=entry.file;
             if(Path.IsPathRooted(relative) || relative.Split('/','\\').Any(p=>p==".."))throw new InvalidDataException("Invalid birthday recording path.");
             using(var stream=File.OpenRead(Path.Combine(Root,relative)))using(var reader=new BinaryReader(stream)){

@@ -36,7 +36,11 @@ def main():
     parser.add_argument('--play',action='store_true',help='Also check shared brick pegging and the bubble machine.')
     parser.add_argument('--villains',action='store_true',help='Also check a naturally triggered theft and cooperative web/Hulk recovery.')
     parser.add_argument('--pets',action='store_true',help='Also reveal and release the two bounded animated gift pets.')
-    parser.add_argument('--art',type=Path,default=ROOT/'LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v21')
+    parser.add_argument('--seat-interrupt',action='store_true',help='Check actual seated unwrap cancellation and safe reuse.')
+    parser.add_argument('--navigation',action='store_true',help='Check four roof seats, sleep, both ziplines and independent departure.')
+    parser.add_argument('--throws',action='store_true',help='Check original object flights to Hulk, receiver departure and battery tower return.')
+    parser.add_argument('--persistence',action='store_true',help='Reopen the actual isolated saved family after stopping its server.')
+    parser.add_argument('--art',type=Path,default=ROOT/'LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v27')
     args=parser.parse_args()
     art=args.art.resolve();require((art/'actor-frames.json').is_file(),'Current birthday pack is required')
     previous=os.environ.get('LITTLE_WEEPS_BIRTHDAY_ART')
@@ -52,7 +56,7 @@ def main():
     birthday=actions.index('Birthday')
     pack=read(art/'actor-frames.json')
     required={'actor-frames.json',*(a['texture'] for a in pack['actions']),*(p['texture'] for p in pack['props']),*(s['texture'] for s in pack.get('cakeSprites',[])),*(f'world-{i}.png' for i in range(pack.get('tileCount') or 4))}
-    required.update(a['file'] for a in pack.get('audio',[]))
+    required.update(a['file'] for a in pack.get('audio',[])+pack.get('effects',[]))
     if pack.get('danceFloor'):required.add(pack['danceFloor']['texture'])
     if pack.get('castle'):required.update([pack['castle']['texture'],pack['castle']['front']])
     asset_receipt=[{'path':name,'sha256':hashlib.sha256((art/name).read_bytes()).hexdigest()} for name in sorted(required)]
@@ -70,12 +74,12 @@ def main():
     def rendered(client,holder):
         return wait(lambda:'birthday-gift-0='+holder in client.input('inspect').get('birthdayPropOwners',[]),'rendered gift owner '+holder,20)
     def tap_prop(client,name):
-        # The image pivot is its recovered ground/hold anchor, not the button
-        # centre. Touch the visible cutout instead of a transparent edge pixel.
-        control=next(c for c in client.input('inspect')['controls'] if c['name']==name)
-        rect=control['bounds'];x=rect['x']+rect['width']*.5;y=rect['y']+rect['height']*.5
-        client.input('touch-begin',role='screen',x=x,y=y,finger=91);time.sleep(.09)
-        client.input('touch-end',role='screen',x=x,y=y,finger=91)
+        if name=='Birthday prop birthday-battery' and next(p for p in client.input('inspect')['birthday']['props'] if p['id']=='birthday-battery')['location']=='socket':client.input('touchButton',text='Birthday battery socket')
+        elif name.startswith('Birthday prop '):client.input('touchBirthdayProp',text=name.removeprefix('Birthday prop '))
+        else:
+            control=next(c for c in client.input('inspect')['controls'] if c['name']==name);r=control['bounds'];x=r['x']+r['width']*.5;y=r['y']+r['height']*.5
+            client.input('touch-begin',role='screen',x=x,y=y,finger=91);time.sleep(.09);client.input('touch-end',role='screen',x=x,y=y,finger=91)
+        home.ready(client)
     def walk_carry(client,x,y,mirrored=False):
         client.input('touch-begin',x=x,y=y,finger=92);time.sleep(.09);client.input('touch-end',x=x,y=y,finger=92)
         samples=[];until=time.monotonic()+20
@@ -107,6 +111,69 @@ def main():
             require(all(any(v['name']=='Birthday friend '+other.profile for v in controls) for other in clients),'Missing shared birthday character controls')
             require(evidence['visibleBirthdayPlayers']==4,'Client does not show all four connected birthday players')
         record('four real clients enter one shared birthday world with the recovered cast')
+        if args.seat_interrupt:
+            tap_prop(a,'Birthday prop birthday-gift-0');wait(lambda:prop()['holder']==a.profile,'chair gift pickup',20)
+            command(a,actions.index('Move'),x=2564,y=100);time.sleep(1.5);button(a,'Birthday seats 2')
+            wait(lambda:view()['birthday']['members'][0]['station']=='sit','birthday chair occupied')
+            before_cursor=view()['birthday']['giftCursor'];button(a,'Open present with Hulk')
+            wait(lambda:view()['birthday']['giftAt']>=0,'seated unwrap started')
+            button(a,'Leave seat or zipline')
+            wait(lambda:view()['birthday']['giftAt']<0 and view()['birthday']['members'][0]['seat']<0,'seat exit cancels unfinished unwrap')
+            require(not prop()['opened'] and prop()['holder']==a.profile and view()['birthday']['giftCursor']==before_cursor,'Seat exit changed original gift or consumed an outcome')
+            command(a,actions.index('Move'),x=605,y=160);time.sleep(1);tap_prop(a,'Birthday prop birthday-gift-0');wait(lambda:prop()['holder']=='','safe chair gift drop')
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5);record('actual birthday-chair unwrap exits immediately, preserves the original wrapped gift and leaves outcome progression unchanged')
+        if args.navigation:
+            for client in clients:
+                button(client,'Rooftops');button(client,'Other roof')
+            time.sleep(1.5)
+            for client in clients:button(client,'Birthday seats 1')
+            wait(lambda:len({m['seat'] for m in view()['birthday']['members']})==4,'four actual roof pegs')
+            button(a,'Nap or wake');time.sleep(.8)
+            require(any(p.startswith(a.profile+'=sleep') for p in a.input('inspect')['birthdayPoses']),'Source sleeping pose is not rendered')
+            home.capture(a,out,'four-shared-roof-seats')
+            button(a,'Leave seat or zipline')
+            require(all(m['station']=='sit' for m in view()['birthday']['members'][1:]),'Leaving seat removed siblings')
+            button(a,'Rooftops');time.sleep(1)
+            for client in clients:button(client,'Birthday zipline 0')
+            wait(lambda:all(m['station']=='zipline' for m in view()['birthday']['members']),'four zipline riders')
+            time.sleep(1);home.capture(a,out,'four-shared-zipline-riders')
+            require(any(p.startswith(a.profile+'=hang') for p in a.input('inspect')['birthdayPoses']),'Hanging source clip is not rendered')
+            button(a,'Leave seat or zipline')
+            require(all(m['station']=='zipline' for m in view()['birthday']['members'][1:]),'Independent zipline exit removed siblings')
+            wait(lambda:all(m['route']<0 for m in view()['birthday']['members']),'source-speed zipline landings',15)
+            for client in clients:
+                command(client,actions.index('Travel'),value='garden');command(client,actions.index('Travel'),value='hulk-birthday')
+                button(client,'Rooftops')
+            time.sleep(1.5)
+            button(a,'Other roof');time.sleep(1)
+            button(a,'Birthday zipline 1');wait(lambda:view()['birthday']['members'][0]['station']=='zipline','second route mounted')
+            wait(lambda:view()['birthday']['members'][0]['route']<0,'second route landed',15)
+            record('four actual children reserve different roof seats, sleep and share a continuous zipline; independent departure and both original routes finish')
+            for i,client in enumerate(clients):
+                command(client,actions.index('Travel'),value='garden');command(client,actions.index('Travel'),value='hulk-birthday')
+                command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5)
+        if args.throws:
+            for client in clients:command(client,actions.index('Move'),x=700,y=160)
+            time.sleep(1.5);tap_prop(b,'Birthday prop birthday-gift-0')
+            wait(lambda:prop()['holder']==b.profile,'spider holds prop before throw')
+            button(b,'Birthday throw');wait(lambda:prop()['holder']==a.profile,'same prop caught by Hulk',10)
+            command(a,actions.index('Move'),x=1000,y=60);time.sleep(1)
+            rendered(a,a.profile);time.sleep(.7)
+            tap_prop(a,'Birthday prop birthday-gift-0');wait(lambda:prop()['holder']=='','Hulk drops caught prop')
+            command(b,actions.index('Move'),x=prop()['x'],y=prop()['y']);time.sleep(.8);tap_prop(b,'Birthday prop birthday-gift-0')
+            wait(lambda:prop()['holder']==b.profile,'second throw pickup')
+            button(b,'Birthday throw');command(a,actions.index('Travel'),value='garden')
+            wait(lambda:prop()['location']=='ground' and prop()['holder']=='','departed receiver safely drops same prop',10)
+            command(a,actions.index('Travel'),value='hulk-birthday');command(a,actions.index('Move'),x=3454,y=67)
+            command(a,birthday,value='claim',item='birthday-battery');button(a,'Birthday throw')
+            wait(lambda:view()['birthday']['powered'] and next(p for p in view()['birthday']['props'] if p['kind']=='battery')['location']=='socket','Hulk battery flight powers the tower',10)
+            record('actual throws transfer one original prop to Hulk; receiver departure drops it safely; Hulk returns the same battery to the power tower')
+            # Restore the same gift to its entrance pad for the later handoff fixture.
+            command(b,actions.index('Move'),x=prop()['x'],y=prop()['y']);command(b,birthday,value='claim',item='birthday-gift-0');command(b,actions.index('Move'),x=650,y=160);command(b,birthday,value='drop',item='birthday-gift-0',x=650,y=160)
+            for i,client in enumerate(clients):command(client,actions.index('Move'),x=450 if i==0 else 650+i*50,y=160+i*20)
+            time.sleep(1.5)
         if args.play:
             for client in clients:command(client,actions.index('Move'),x=4050,y=140)
             time.sleep(1.5);tap_prop(a,'Birthday prop birthday-brick-0')
@@ -380,6 +447,30 @@ def main():
             record('disconnected role has one continuing NPC body; NPC give/receive preserves the same gift')
         if args.actions:record('original right/left carry frames advance, mirrored anchors follow and the receiver reacts while retaining the gift')
         home.capture(a,out,'three-siblings-continue-party')
+        if args.persistence:
+            retained=view()['birthday']
+            signature=lambda b:dict(cakeBase=b['cakeBase'],cakeReady=b['cakeReady'],stickers=b['stickers'],stickerX=b['stickerX'],stickerY=b['stickerY'],bricks=[(p['id'],p['support'],p['turns'],p['tint'],p['style'],p['x'],p['y']) for p in b['props'] if p['kind']=='brick'],ids=[p['id'] for p in b['props']],giftCursor=b['giftCursor'],celebrations=b['celebrations'],bandRounds=b['bandRounds'],vendorCount=b['vendorCount'],gifts=[(p['id'],p['opened'],p['content']) for p in b['props'] if p['kind']=='gift' and not p['fake']])
+            before=signature(retained);write(out/'retained-before-reopen.json',before)
+            for client in clients:
+                if client.process.poll() is None:client.close()
+            wait(lambda:len(server.state()['connected'])==0,'all isolated clients disconnected')
+            server.close();server=run.start('server')
+            clients=[run.start('client',slot['profile']) for slot in run.slots];a,b,c,d=clients
+            for client in clients:home.ready(client)
+            wait(lambda:len(server.state()['connected'])==4,'four actual profiles reconnected')
+            after=view()['birthday'];write(out/'retained-after-reopen.json',signature(after))
+            require(signature(after)==before,'Saved birthday creations or original identities changed on reopen')
+            require(not after['vendorQueue'] and after['giftAt']<0 and all(m['seat']<0 and m['route']<0 and not m['station'] for m in after['members']),'Transient activity leases survived server reopening')
+            require(all(p['location']!='flying' for p in after['props']),'An abandoned flight survived save reopening')
+            for client in clients:
+                command(client,actions.index('Travel'),value='garden')
+            time.sleep(2)
+            for client in clients:command(client,actions.index('Travel'),value='hulk-birthday')
+            for client in clients:wait(lambda:client.input('inspect')['visibleBirthdayPlayers']==4,'four returning rendered actors')
+            a.input('resize',x=640,y=1200);time.sleep(1);home.capture(a,out,'phone-shaped-reopened-world')
+            a.input('resize',x=1000,y=1400);time.sleep(1);home.capture(a,out,'tablet-shaped-reopened-world')
+            a.input('resize',x=1280,y=800);time.sleep(1);home.capture(a,out,'pc-reopened-world')
+            record('actual isolated server/save reopen retains cake, construction and original identities; four profiles reconnect without activity leases; phone/tablet/PC-shaped layouts captured')
         passed=True
     finally:
         if clients:
@@ -392,7 +483,7 @@ def main():
                     try:write(out/('last-'+client.profile+'.json'),client.input('inspect'))
                     except (RuntimeError,OSError,AssertionError):pass
         write(out/'result.json',{'passed':passed,'checks':checks,'build':args.build,'source_commit':source['sourceCommit'],
-            'scope':'Checked birthday slices: shared props'+(' / directional actions' if args.actions else '')+(' / introduction and guests' if args.guests else '')+(' / shared cake and gift replay' if args.party else '')+(' / one shared vendor queue' if args.vendor else '')+(' / shared band, audio and power' if args.band else '')+(' / shared castle physics' if args.castle else '')+(' / brick pegs and bubbles' if args.play else '')+(' / animated gift pets' if args.pets else '')+(' / cooperative villain recovery' if args.villains else '')+'. Remaining source navigation/throwing, persistence and presentation acceptance are recorded in the phase plan.',
+            'scope':'Checked birthday slices: shared props'+(' / directional actions' if args.actions else '')+(' / introduction and guests' if args.guests else '')+(' / shared cake and gift replay' if args.party else '')+(' / one shared vendor queue' if args.vendor else '')+(' / shared band, audio and power' if args.band else '')+(' / shared castle physics' if args.castle else '')+(' / brick pegs and bubbles' if args.play else '')+(' / animated gift pets' if args.pets else '')+(' / cooperative villain recovery' if args.villains else '')+(' / seating and ziplines' if args.navigation else '')+(' / shared throwing' if args.throws else '')+(' / actual save reopen and reconnect' if args.persistence else '')+'. Visual/motion/audio acceptance limits are recorded in the phase plan.',
             'art_root':str(art),'clients_started':len(clients)})
         run.close()
         if previous is None:os.environ.pop('LITTLE_WEEPS_BIRTHDAY_ART',None)

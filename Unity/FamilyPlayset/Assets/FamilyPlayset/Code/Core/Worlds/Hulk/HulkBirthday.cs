@@ -8,6 +8,7 @@ namespace LittleWeeps.Core
         public string actor, role, station="", pose="Idle";
         public double actionAt;
         public float exitX,exitY;
+        public int seat=-1,route=-1;
         public float bounceX,bounceH,bounceVx,bounceVy,bounceTargetX,bounceTargetH;
         public bool bounceDrag;
         public int landings,stunts;
@@ -25,6 +26,9 @@ namespace LittleWeeps.Core
         public double fakeAt=-1,petAt=-1;
         public float petHomeX,petHomeY;
         public bool petMoving;
+        public double flightAt=-1;
+        public float flightX,flightY,flightEndX,flightEndY;
+        public string flightTarget="",flightSender="";
         public BirthdayProp Copy()=>(BirthdayProp)MemberwiseClone();
     }
     [Serializable] public sealed class BirthdayNpc
@@ -37,7 +41,7 @@ namespace LittleWeeps.Core
     }
     [Serializable] public sealed class BirthdayState
     {
-        public int version=8, visit, cakeBase, track, villain=-1, celebrations,guestCursor,giftCursor,vendorCount,bandRounds,lightStep;
+        public int version=9, visit, cakeBase, track, villain=-1, celebrations,guestCursor,giftCursor,vendorCount,bandRounds,lightStep;
         public double clock, songAt=-1, villainAt=-1, nextTrouble=60, introAt=-1, reactionAt=-1;
         public string reaction="Idle", stolen="";
         public bool powered=true, cakeReady, introDone;
@@ -85,12 +89,12 @@ namespace LittleWeeps.Core
         public const int Schema=54;
         public static readonly string[] Roles={"Hulk_NewNew","Spiderman_NewNEW","Spin_NewNEW","Gwen_NewNEW"};
         public static readonly string[] Guests={"HatPoliceGuy_NewNew","BusDriver_newNew","BlondePoliceLady_NewNew","BlueBlazerGuy_NewNew","BlueBlazerLady_NewNew","ConstructionGuy_02_NewNew","ConstructionLady_01_NewNew","GlassesGuy_NewNew","GroovyGranny_NewNew","JeanJacketGuy_NewNew","LavalliereLady_NewNew","RedStripedShirtGuy_NewNew","ConstructionGuy_03_NewNew"};
-        public static readonly string[] Stations={"guitar","keyboard","drums","dance","castle","unwrap","eat","drink","queue","vendor-exit","web","smash"};
+        public static readonly string[] Stations={"guitar","keyboard","drums","dance","castle","unwrap","eat","drink","queue","vendor-exit","web","smash","sit","sleep","zipline","throw"};
         // First three places are the projected source queue. Extend its final
         // spacing once so all four family members share this one service line.
         public static readonly float[] QueueX={4374,4298,4234,4170},QueueY={60,54,39,35};
         public const double VendorServeSeconds=26d/12;
-        public static bool StationaryOperation(string operation)=>operation=="queue" || operation=="station" || operation=="unwrap" || operation=="eat" || operation=="drink" || operation=="band" || operation=="band-replay" || operation=="socket" || operation=="web" || operation=="smash" || operation=="help";
+        public static bool StationaryOperation(string operation)=>operation=="queue" || operation=="station" || operation=="unwrap" || operation=="eat" || operation=="drink" || operation=="band" || operation=="band-replay" || operation=="socket" || operation=="web" || operation=="smash" || operation=="help" || operation=="seat" || operation=="nap" || operation=="zipline" || operation=="throw";
         public static string RoleInstrument(string role)=>role==Roles[1]?"keyboard":role==Roles[2]?"guitar":role==Roles[3]?"drums":"dance";
         public static float StageX(string station,int place=0)=>station=="guitar"?3229:station=="keyboard"?2804:station=="drums"?2985:2880+place%2*200;
         public static float StageY(string station,int place=0)=>station=="guitar"?191:station=="keyboard"?180:station=="drums"?249:60+place/2*85;
@@ -147,17 +151,19 @@ namespace LittleWeeps.Core
             if(snapshot?.birthday!=null && b.version==5){foreach(var member in b.members){member.impactAt=member.stuntAt=-1;member.bounceDrag=false;}b.version=6;}
             if(snapshot?.birthday!=null && b.version==6){foreach(var prop in b.props)prop.support="";b.bubblesAt=-1;b.poppedBubbles=Array.Empty<int>();b.version=7;}
             if(snapshot?.birthday!=null && b.version==7){b.villains=HulkBirthday.CreateVillains();b.nextTheft=b.clock+35;b.nextElectro=b.clock+75;b.nextHide=b.clock+15;b.nextStageElectro=b.clock+7.5;b.vendorTapAt=b.heroAt=-1;b.heroActor=b.heroTarget=b.helperActor=b.helperTarget="";foreach(var prop in b.props)prop.fakeAt=prop.petAt=-1;b.version=8;}
+            if(snapshot?.birthday!=null && b.version==8){foreach(var m in b.members){m.seat=m.route=-1;}foreach(var p in b.props){p.flightAt=-1;p.flightSender=p.flightTarget="";}b.version=9;}
         }
         private static void RestoreBirthday(SoloSnapshot snapshot)
         {
             var b=snapshot.birthday;if(b==null)return;
             var changed=b.songAt>=0 || b.members.Any(m=>m.station!="");
-            foreach(var member in b.members){member.station="";member.pose="Idle";}
+            foreach(var member in b.members){member.station="";member.pose="Idle";member.seat=member.route=-1;}
             foreach(var member in b.members)member.bounceDrag=false;
             CancelBirthdayUnwrap(b);
             ResetBirthdayVendor(b);
             ResetBirthdayBand(b);
             ResetBirthdayTrouble(b);
+            ResetBirthdayThrows(b);
             foreach(var npc in b.cast)npc.controller="";
             foreach(var prop in b.props.Where(p=>b.members.Any(m=>m.actor==p.holder))){
                 var owner=snapshot.players.Single(p=>p.id==prop.holder);
@@ -176,7 +182,7 @@ namespace LittleWeeps.Core
         private static void ValidateBirthday(SoloSnapshot s)
         {
             var b=s.birthday;if(b==null && s.schema<HulkBirthday.Schema)return;
-            if(b==null || b.version!=8 || b.villains==null || b.villains.Length!=4 || b.villains.Any(v=>v==null) || b.visit<0 || b.cakeBase<0 || b.cakeBase>2 || b.track<0 || b.track>2 || b.villain< -1 || b.villain>3 || b.celebrations<0 ||
+            if(b==null || b.version!=9 || b.villains==null || b.villains.Length!=4 || b.villains.Any(v=>v==null) || b.visit<0 || b.cakeBase<0 || b.cakeBase>2 || b.track<0 || b.track>2 || b.villain< -1 || b.villain>3 || b.celebrations<0 ||
                 !KeepyRules.Finite(b.clock) || b.clock<0 || !KeepyRules.Finite(b.nextTrouble) || b.nextTrouble<0 || b.stolen==null || b.reaction==null ||
                 new[]{b.songAt,b.villainAt,b.introAt,b.reactionAt}.Any(t=>!KeepyRules.Finite(t) || t< -1 || t>b.clock) || b.stickers==null || b.stickers.Length>32 || b.stickers.Any(n=>n<0 || n>31) ||
                 b.members==null || !b.members.Select(m=>m?.actor).OrderBy(x=>x).SequenceEqual(s.players.Select(p=>p.id).OrderBy(x=>x)) ||
@@ -194,6 +200,8 @@ namespace LittleWeeps.Core
             ValidateBirthdayCastle(b);
             ValidateBirthdayPlay(b);
             ValidateBirthdayTrouble(s);
+            ValidateBirthdayNavigation(b);
+            ValidateBirthdayThrows(b);
         }
         // The source Holding slot blocks the hand/drink/tool slots. This first
         // shared slice exposes that full-body slot only, never unrestricted hands.
@@ -204,6 +212,8 @@ namespace LittleWeeps.Core
             var member=b.members.Single(m=>m.actor==player.id);
             var held=b.props.SingleOrDefault(p=>p.holder==player.id);
             var prop=b.props.SingleOrDefault(p=>p.id==c.item);
+            if(BirthdayThrowOperation(c,player,member,held,connected,out var throwOutcome))return throwOutcome;
+            if(BirthdayNavigationOperation(c,player,member,held,out var navigationOutcome))return navigationOutcome;
             if(BirthdayBandOperation(c,player,member,held,connected,out var bandOutcome))return bandOutcome;
             if(BirthdayCastleOperation(c,player,member,held,out var castleOutcome))return castleOutcome;
             if(BirthdayPlayOperation(c,player,member,held,out var playOutcome))return playOutcome;
@@ -222,7 +232,7 @@ namespace LittleWeeps.Core
                 member.role=c.target;member.pose="Idle";member.actionAt=b.clock;return null;
             }
             if(c.value=="claim") {
-                if(prop==null || prop.holder!="" || prop.location=="unwrapping" || prop.location=="stock" || prop.location=="counter")return "prop-already-in-use";
+                if(prop==null || prop.holder!="" || prop.location=="unwrapping" || prop.location=="stock" || prop.location=="counter" || prop.location=="flying")return "prop-already-in-use";
                 if(held!=null || member.station!="")return "hands-busy";
                 if(Math.Abs(prop.x-player.x)>InteractionRadius || Math.Abs(prop.y-player.y)>InteractionRadius)return "come-closer";
                 if(prop.kind=="brick" && b.props.Any(p=>p.support==prop.id))return "take-the-top-brick-first";
@@ -252,12 +262,10 @@ namespace LittleWeeps.Core
             }
             if(c.value=="station") {
                 if(c.target!="" && !new[]{"guitar","keyboard","drums","dance","castle"}.Contains(c.target))return "choose-a-party-activity";
-                if(held!=null)return "put-down-your-prop";
+                if(held!=null && c.target!="")return "put-down-your-prop";
                 if(HulkBirthday.Instrument(c.target) && b.members.Any(m=>m!=member && m.station==c.target))return "instrument-in-use";
-                if(member.station=="queue")LeaveBirthdayVendor(player.id);
-                if(HulkBirthday.Instrument(member.station) || member.station=="dance")LeaveBirthdayBand(player.id);
-                LeaveBirthdayTrouble(player.id);
-                member.station=c.target;BirthdayPose(member,c.target=="castle"?"Jump":c.target=="dance"?"Dance":HulkBirthday.Instrument(c.target)?"PlayInstrument":"Idle");
+                LeaveBirthdayStation(player.id);
+                member.seat=member.route=-1;member.station=c.target;BirthdayPose(member,c.target=="castle"?"Jump":c.target=="dance"?"Dance":HulkBirthday.Instrument(c.target)?"PlayInstrument":"Idle");
                 if(HulkBirthday.Instrument(c.target) && b.songAt<0)b.songAt=b.clock;
                 return null;
             }
@@ -272,7 +280,7 @@ namespace LittleWeeps.Core
             if(member.station=="queue")LeaveBirthdayVendor(actor);
             if(HulkBirthday.Instrument(member.station) || member.station=="dance")LeaveBirthdayBand(actor);
             LeaveBirthdayTrouble(actor);
-            member.station="";member.bounceDrag=false;BirthdayPose(member,"Idle");return true;
+            member.station="";member.seat=member.route=-1;member.bounceDrag=false;BirthdayPose(member,"Idle");return true;
         }
         public bool ReleaseBirthday(string actor)
         {
@@ -284,7 +292,7 @@ namespace LittleWeeps.Core
             LeaveBirthdayTrouble(actor);
             var companion=b.cast.First(n=>n.role==member.role);
             if(companion.controller==actor){companion.x=player.x;companion.y=player.y;companion.controller="";changed=true;}
-            member.station="";member.bounceDrag=false;member.pose="Idle";
+            member.station="";member.seat=member.route=-1;member.bounceDrag=false;member.pose="Idle";
             foreach(var prop in b.props.Where(p=>p.holder==actor)){prop.holder="";prop.location="ground";prop.x=player.x;prop.y=player.y;prop.version++;changed=true;}
             if(changed)state.revision++;return changed;
         }
@@ -298,6 +306,8 @@ namespace LittleWeeps.Core
             visible|=AdvanceBirthdayVendor(seconds,active);
             visible|=AdvanceBirthdayBand(seconds);
             visible|=AdvanceBirthdayCastle(seconds);
+            visible|=AdvanceBirthdayNavigation();
+            visible|=AdvanceBirthdayThrows(active);
             AdvanceBirthdayPlay(seconds);
             visible|=AdvanceBirthdayTrouble(seconds,active);
             foreach(var m in b.members)if(m.station!="" && (state.players.Single(p=>p.id==m.actor).zone!=HulkBirthday.Zone || active!=null && !active.Contains(m.actor))){ReleaseBirthday(m.actor);visible=true;}

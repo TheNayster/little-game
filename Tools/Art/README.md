@@ -35,3 +35,11 @@ Use a fresh output directory for every pass. The read-only pack verifier checks
 PCM hashes/durations, floor UV inventory and distinct castle blend-shape frames,
 as well as atlas dimensions, anchor tracks and required movement. None of those
 checks substitutes for native activity checks, listening or owner visual review.
+
+The final birthday append passes include sitting/sleeping, controller-based raised-arm
+hanging and five 2400-high source tiles. Hanging combines the recovered controller's
+LowPriority.Hanging layer with its full vertical hold-arm parameters; a raw lower-body
+clip alone leaves the arms down. `--effects-project` assembles nine original activity
+recordings alongside the seven music recordings in a fresh pack. Roof spacing, handles,
+shared clocks and throw timing are explicit family 2D adaptations. The local launcher
+verifies the complete pack receipt before opening its separate saved preview family.

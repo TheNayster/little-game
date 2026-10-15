@@ -51,7 +51,7 @@ namespace LittleWeeps.Client
         private Vector2 BirthdayHeroPoint(string id,Vector2 point)
         {
             var b=Birthday;
-            double clock=birthdayClock.Sample(Shared?shared.View.worldId:World.WorldId,b.clock,Time.unscaledTimeAsDouble,Shared);
+            double clock=BirthdayVisualTime;
             var v=b.villains.FirstOrDefault(v=>v.id==id);
             if(v?.phase=="launched"){float age=(float)(clock-v.phaseAt);point.y+=Mathf.Sin(Mathf.Clamp01(age/2.5f)*Mathf.PI)*700;}
             if(b.heroActor==id && b.heroAt>=0){var target=b.villains.Single(v=>v.id==b.heroTarget);float phase=Mathf.Clamp01((float)(clock-b.heroAt)/1.35f);point.x=Mathf.Lerp(point.x,target.x-60,phase);point.y+=Mathf.Sin(phase*Mathf.PI)*2.5f*BirthdayArt.PixelsPerUnit/.45f;}

@@ -157,7 +157,7 @@ namespace LittleWeeps.Core
                 if(!present || target.phase!="trapped"){
                     if(npc!=null){npc.station="";if(npc.phase=="hero-walk")npc.phase="idle";}if(human!=null && human.station=="smash")human.station="";b.heroActor=b.heroTarget="";b.heroAt=-1;changed=true;
                 }else if(npc!=null && b.heroAt<0 && Math.Abs(npc.x-target.x)<300){npc.phase="idle";npc.station="smash";npc.actionAt=b.clock;b.heroAt=b.clock;changed=true;}
-                else if(b.heroAt>=0 && b.clock-b.heroAt>=1.65){
+                else if(b.heroAt>=0 && b.clock-b.heroAt>=2.10){
                     ReleaseVillainItem(target);FinishBirthdayWebs(target);target.phase="launched";target.phaseAt=b.clock;b.troublesStopped++;b.reaction="rescue-happy";b.reactionAt=b.clock;
                     if(npc!=null){npc.station="";npc.x=Math.Clamp(target.x-60,0,4800);npc.y=target.y;}
                     if(human!=null){human.station="";var p=state.players.Single(p=>p.id==human.actor);p.x=Math.Clamp(target.x-60,0,4800);p.y=target.y;BirthdayPose(human,"Happy");}b.heroActor=b.heroTarget="";b.heroAt=-1;changed=true;
