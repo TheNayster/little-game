@@ -29,10 +29,19 @@ def main():
     try:
         server=run.start('server');clients={}
         def open_player(index):
-            profile='player-'+str(index);client=run.start('client',profile)
-            wait(lambda:client.input('inspect')['ready'],'Peppa Funfair preview ready')
+            profile='player-'+str(index)
+            # Test pointer isolation is limited to hidden setup. Visible owner
+            # windows run without verification, preserving the physical mouse.
+            run.interactive=False;run.review_controls=True
+            setup=run.start('client',profile)
+            wait(lambda:(v:=setup.input('inspect'))['ready'] and not v['pending'] and not v['worldLoading'],'Peppa Funfair setup ready')
             if previous is None:
-                client.input('fixtureTravel',text='peppa-funfair');wait(lambda:client.input('inspect')['zone']=='peppa-funfair','Peppa Funfair preview entry')
+                setup.input('fixtureTravel',text='peppa-funfair');wait(lambda:(v:=setup.input('inspect'))['zone']=='peppa-funfair' and not v['pending'] and not v['worldLoading'],'Peppa Funfair preview entry')
+            if args.verify:clients[profile]=setup;return
+            setup.close();wait(lambda:profile not in server.state()['connected'],'setup profile disconnected')
+            run.interactive=True;run.review_controls=False
+            client=run.start('client',profile)
+            wait(lambda:client.status()['status']=='connected' and any(p['id']==profile for p in client.state()['view']['players']),'native mouse player connected')
             clients[profile]=client
         for i in range(1,count+1):open_player(i)
         if args.verify:
@@ -40,7 +49,7 @@ def main():
             require(all(c.input('inspect')['visibleFunfairPlayers']==count for c in clients.values()),'Packaged Funfair characters are not visible')
             first=next(iter(clients.values()));first.input('capture');wait(lambda:(first.out/'garden.png').exists(),'packaged launcher capture');shutil.copyfile(first.out/'garden.png',run.path/'peppa-funfair-launcher.png')
             write(ROOT/'LocalData/peppa-funfair-launcher-check.json',dict(passed=True,build=run.build,runId=run.run_id,players=count,installedServerTouched=False));return
-        write(ROOT/'LocalData/peppa-funfair-preview-session.json',dict(runId=run.run_id,build=run.build,players=count))
+        write(ROOT/'LocalData/peppa-funfair-preview-session.json',dict(runId=run.run_id,build=run.build,players=count,nativeControls=True))
         seen=read(ROOT/'LocalData/peppa-funfair-preview-reopen.json')
         while any(c.process.poll() is None for c in clients.values()):
             request=read(ROOT/'LocalData/peppa-funfair-preview-reopen.json')
@@ -49,7 +58,7 @@ def main():
                 for i in range(1,count+1):
                     profile='player-'+str(i);client=clients.get(profile)
                     if client is None or client.process.poll() is not None:open_player(i)
-                write(ROOT/'LocalData/peppa-funfair-preview-session.json',dict(runId=run.run_id,build=run.build,players=count))
+                write(ROOT/'LocalData/peppa-funfair-preview-session.json',dict(runId=run.run_id,build=run.build,players=count,nativeControls=True))
             time.sleep(.5)
     finally:run.close();lock.close()
 

@@ -8,17 +8,18 @@ namespace LittleWeeps.Client
 {
     public static class FunfairArt
     {
-        [Serializable] public sealed class Entry{public string key,file;}
+        [Serializable] public sealed class Entry{public string key,file;public Rect uv;}
         [Serializable] public sealed class Content{public Entry[] pictures,audio;public Vector2[] slide;}
         [Serializable] public sealed class Wheel{public Rect pixels;public string texture;public int frames,columns,size;public Vector2[] seats;}
         static BirthdayArt.Pack data;static Content content;static Wheel wheel;
         static readonly Dictionary<string,Texture2D> textures=new Dictionary<string,Texture2D>();
         static readonly Dictionary<string,AudioClip> sounds=new Dictionary<string,AudioClip>();
         static readonly Dictionary<Texture2D,byte[]> alpha=new Dictionary<Texture2D,byte[]>();
+        static readonly Dictionary<Texture2D,byte[]> packedAlpha=new Dictionary<Texture2D,byte[]>();
         public static string Root{
             get{var supplied=Environment.GetEnvironmentVariable("LITTLE_WEEPS_FUNFAIR_ART");if(!string.IsNullOrEmpty(supplied))return Path.GetFullPath(supplied);
 #if UNITY_EDITOR
-                return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/PeppaPig/world-tests/Funfair/Content-v4"));
+                return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/PeppaPig/world-tests/Funfair/Content-v6"));
 #else
                 return Path.Combine(Application.streamingAssetsPath,"PeppaFunfair");
 #endif
@@ -31,11 +32,12 @@ namespace LittleWeeps.Client
         public static Vector2 Slide(double seconds){_ = Data;float f=Mathf.Clamp((float)seconds*10,0,140);int i=(int)f;return Vector2.Lerp(content.slide[i],content.slide[Math.Min(140,i+1)],f-i);}
         public static BirthdayArt.Frames Action(string role,string pose)=>Data?.actions.FirstOrDefault(a=>a.actor==role&&a.action==pose)??Data?.actions.FirstOrDefault(a=>a.actor==role&&a.action==pose+"-front")??Data?.actions.FirstOrDefault(a=>a.actor==role&&a.action==(pose.StartsWith("slide-")?"sit-front":pose=="fairy"?"happy-front":"idle-front"));
         public static BirthdayArt.Prop Prop(string key)=>Data?.props?.FirstOrDefault(p=>p.name==key);
-        public static Texture2D Texture(string relative){if(textures.TryGetValue(relative,out var t))return t;t=new Texture2D(2,2,TextureFormat.RGBA32,false){name="Funfair "+relative,wrapMode=TextureWrapMode.Clamp};if(!t.LoadImage(File.ReadAllBytes(FilePath(relative)),false))throw new InvalidDataException(relative);if(!relative.StartsWith("world-"))alpha[t]=t.GetPixels32().Select(p=>p.a).ToArray();t.Apply(false,true);textures[relative]=t;return t;}
+        public static Texture2D Texture(string relative){if(textures.TryGetValue(relative,out var t))return t;t=new Texture2D(2,2,TextureFormat.RGBA32,false){name="Funfair "+relative,wrapMode=TextureWrapMode.Clamp};if(!t.LoadImage(File.ReadAllBytes(FilePath(relative)),false))throw new InvalidDataException(relative);if(relative=="wheel.png" && File.Exists(FilePath("wheel.hit"))){var bits=File.ReadAllBytes(FilePath("wheel.hit"));if(bits.Length!=(t.width*t.height+7)/8)throw new InvalidDataException("Invalid Funfair wheel hit mask.");packedAlpha[t]=bits;}else if(!relative.StartsWith("world-"))alpha[t]=t.GetPixels32().Select(p=>p.a).ToArray();t.Apply(false,!relative.StartsWith("Pictures/paint-"));textures[relative]=t;return t;}
         public static Texture2D Picture(string key){_ = Data;var e=content.pictures.FirstOrDefault(v=>v.key==key);return e==null?null:Texture(e.file);}
+        public static Rect PictureUv(string key){_ = Data;var e=content.pictures.FirstOrDefault(v=>v.key==key);return e!=null&&e.uv.width>0?e.uv:new Rect(0,0,1,1);}
         public static Sprite MenuPicture(){var a=Action("Peppa","idle");return a==null?null:Sprite.Create(Texture(a.texture),new Rect(0,Texture(a.texture).height-256,256,256),Vector2.one*.5f);}
         public static System.Collections.IEnumerator Audio(string key,Action<AudioClip> done){if(sounds.TryGetValue(key,out var clip)){done(clip);yield break;}_=Data;var e=content.audio.FirstOrDefault(a=>a.key==key);if(e==null)yield break;using(var request=UnityWebRequestMultimedia.GetAudioClip(new Uri(FilePath(e.file)).AbsoluteUri,AudioType.WAV)){yield return request.SendWebRequest();if(request.result!=UnityWebRequest.Result.Success)yield break;clip=DownloadHandlerAudioClip.GetContent(request);sounds[key]=clip;done(clip);}}
-        public static bool PixelVisible(Texture texture,Vector2 uv){if(!(texture is Texture2D t)||!alpha.TryGetValue(t,out var pixels))return true;return pixels[Mathf.Clamp((int)(uv.y*t.height),0,t.height-1)*t.width+Mathf.Clamp((int)(uv.x*t.width),0,t.width-1)]>25;}
-        public static void Release(){foreach(var t in textures.Values)UnityEngine.Object.Destroy(t);foreach(var s in sounds.Values)UnityEngine.Object.Destroy(s);textures.Clear();sounds.Clear();alpha.Clear();data=null;content=null;wheel=null;}
+        public static bool PixelVisible(Texture texture,Vector2 uv){if(!(texture is Texture2D t))return true;int index=Mathf.Clamp((int)(uv.y*t.height),0,t.height-1)*t.width+Mathf.Clamp((int)(uv.x*t.width),0,t.width-1);if(packedAlpha.TryGetValue(t,out var bits))return (bits[index>>3]&(128>>(index&7)))!=0;return !alpha.TryGetValue(t,out var pixels)||pixels[index]>25;}
+        public static void Release(){foreach(var t in textures.Values)UnityEngine.Object.Destroy(t);foreach(var s in sounds.Values)UnityEngine.Object.Destroy(s);textures.Clear();sounds.Clear();alpha.Clear();packedAlpha.Clear();data=null;content=null;wheel=null;}
     }
 }

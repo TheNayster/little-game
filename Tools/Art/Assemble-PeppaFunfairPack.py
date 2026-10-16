@@ -1,5 +1,9 @@
+# /// script
+# dependencies = ["pillow"]
+# ///
 """Assemble local PEP-01 media with source receipts; originals stay immutable."""
-import argparse,hashlib,json,math,shutil,subprocess
+import argparse,hashlib,json,math,re,shutil,subprocess
+from PIL import Image
 from pathlib import Path
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
@@ -7,6 +11,10 @@ def main():
  def copy(source,key):
   relative='Pictures/'+key+'.png';target=a.output/relative;target.parent.mkdir(exist_ok=True);shutil.copyfile(source,target);pictures.append(dict(key=key,file=relative));sources.append(dict(file=relative,source=source.relative_to(a.export).as_posix(),sourceSha256=sha(source),sha256=sha(target)))
  textures=a.export/'Assets/LDPMain/AddressableAssets/Remote/Activities/DayAtTheFair/Textures'
+ # Precompute the exact hit-test threshold in bottom-up/MSB-first order.
+ # Reading 18M Color32 values on the first connected frame stalls transport.
+ with Image.open(a.bake/'wheel.png') as image:
+  mask=image.getchannel('A').transpose(Image.Transpose.FLIP_TOP_BOTTOM).point(lambda value:255 if value>25 else 0).convert('1');(a.output/'wheel.hit').write_bytes(mask.tobytes())
  for source in sorted((textures/'SuperSlide/PreRenderedPhotos').glob('*.png')):
   role,number=source.stem.removeprefix('tex_daf_SlidePhoto_').rsplit('_',1);copy(source,'photo-'+role.replace('DaddyPig','Daddy')+'-'+number)
  for i,name in enumerate(['giant bear','football','cotton candy','balloon']):
@@ -14,6 +22,11 @@ def main():
   if not matches:matches=sorted((textures/'HookAFlower').glob('tex_daf_prizes_*.png'))[i:i+1]
   assert len(matches)==1;copy(matches[0],'prize-'+str(i))
  for key,file in [('tiger','tex_daf_PaintyFaces_Painting_Tiger_01.png'),('dinosaur','tex_daf_PaintyFaces_Painting_Dinosaur_01.png'),('fairy','tex_daf_PaintyFaces_Painting_Stars_01.png')]:copy(textures/'Scene4'/file,'paint-'+key)
+ copy(textures/'Scene4/tex_daf_PaintyFaces_Painting_DottedLine_01.png','paint-outline')
+ copy(textures/'Scene4/tex_daf_PaintyFaces_UI_Atlas.png','paint-icons')
+ # Preserve the shipped sprite rectangles instead of guessing an atlas crop.
+ for key,suffix in [('tiger','Tiger'),('dinosaur','Dinosaur'),('fairy','FairyPrincess'),('accept','GreenTick')]:
+  source=textures/('Scene4/spr_daf_PaintyFaces_UI_Atlas_'+suffix+'.asset');text=source.read_text(encoding='utf-8-sig');block=text.split('  m_Rect:',1)[1].split('  m_Offset:',1)[0];rect={k:float(re.search(r'\b'+k+r': ([^\s]+)',block).group(1)) for k in ('x','y','width','height')};pictures.append(dict(key='paint-icon-'+key,file='Pictures/paint-icons.png',uv={k:v/512 for k,v in rect.items()}));sources.append(dict(file='Pictures/paint-icons.png',source=source.relative_to(a.export).as_posix(),sourceSha256=sha(source),spriteRect=rect))
  names={'music':'mus_daf_roundwego_background','wheel':'mus_daf_roundwego_ferriswheel','hook':'mus_daf_hookaflower_loop','slide':'mus_daf_helterskelter_loop','paint':'mus_daf_paintyfaces_painting_loop','camera':'sfx_rem_camera_click','reveal':'sfx_daf_facepainting_done_01','reward':'sfx_daf_celebration_puff_01'}
  for key,name in names.items():
   matches=list((a.export/'Assets').rglob(name+'.ogg'));assert matches,name;source=sorted(matches)[0];relative='Audio/'+key+'.wav';target=a.output/relative;target.parent.mkdir(exist_ok=True);subprocess.run(['ffmpeg','-v','error','-i',str(source),'-ar','22050','-ac','1','-c:a','pcm_s16le',str(target)],check=True);audio.append(dict(key=key,file=relative));sources.append(dict(file=relative,source=source.relative_to(a.export).as_posix(),sourceSha256=sha(source),sha256=sha(target)))

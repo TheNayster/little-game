@@ -49,9 +49,9 @@ def main():
   require(view()['prizeSerial']==1 and sum(view()['members'][0]['prizes'])==1,'prize duplicated');record('source casting/reward actions, shared flower queue and single prize ownership')
   for c in clients:
    command(c,'Move',x=4200,y=150);button(c,'Funfair station paint');wait(lambda:any(m['actor']==c.profile and m['station']=='paint' for m in view()['members']),'paint queue entry')
-  wait(lambda:view()['paintActor']==clients[0].profile,'paint recipient');button(clients[1],'Funfair activity Dinosaur')
+  wait(lambda:view()['paintActor']==clients[0].profile,'paint recipient');button(clients[1],'Funfair activity Next design')
   for offset,c in enumerate(clients[1:]):
-   controls=c.input('inspect')['controls'];first=next(v['bounds'] for v in controls if v['name']=='Funfair colour 1');second=next(v['bounds'] for v in controls if v['name']=='Funfair colour 2');scale=(second['x']-first['x'])/65;x=first['x']+(170+offset*40)*scale;y=first['y']+185*scale
+   controls=c.input('inspect')['controls'];first=next(v['bounds'] for v in controls if v['name']=='Funfair colour 1');second=next(v['bounds'] for v in controls if v['name']=='Funfair colour 2');scale=(second['x']-first['x'])/96;x=first['x']+(390+offset*50)*scale;y=first['y']+60*scale
    c.input('touch-begin',role='screen',x=x,y=y,finger=30+offset);c.input('touch-end',role='screen',x=x,y=y,finger=30+offset);wait(lambda:sum(v>0 for v in view()['paintDraft'])>=offset+1,'shared drawn stroke')
   home.capture(clients[1],out,'paint-together');button(clients[1],'Funfair activity All done!');wait(lambda:view()['paintings']==1,'one shared reveal');require(view()['members'][0]['paintStyle']==2,'design follows wrong player')
   for c in clients:closePanel(c);button(c,'Funfair tool Leave')
@@ -61,8 +61,7 @@ def main():
   for c in clients:closePanel(c)
   home.capture(clients[0],out,'slide-queue');wait(lambda:view()['slides']>=4,'all four source-duration slide turns',85);require(all(m['photos']>=1 for m in view()['members']),'slide photo missing');home.capture(clients[0],out,'slide-photos');record('four fair slide turns, original 14-second paths/poses and per-player photos')
   c=clients[0];command(c,'Move',x=150,y=150);button(c,'Funfair station smoothie')
-  for fruit in ['Banana','Strawberry','Orange']:button(c,'Funfair activity '+fruit)
-  button(c,'Funfair activity Blend!');wait(lambda:view()['smoothieMask']==8,'blended drink');button(c,'Funfair activity Take a drink');button(c,'Funfair activity Close');button(c,'Funfair tool Drink');wait(lambda:view()['smoothies']==1 and view()['members'][0]['station']=='','source drink action',10)
+  wait(lambda:view()['smoothieMask']==8,'machine produces cup');button(c,'Funfair station smoothie');wait(lambda:any(p['holder']==c.profile and p['kind']=='drink' for p in view()['props']),'tap cup pickup');button(c,'Funfair tool Drink');wait(lambda:view()['smoothies']==1 and view()['members'][0]['station']=='','source drink action',10)
   command(c,'Move',x=3000,y=150);button(c,'Funfair tool Balloon');wait(lambda:any(p['holder']==c.profile and p['kind']=='balloon' for p in view()['props']),'balloon pickup');button(c,'Funfair tool Float');home.capture(c,out,'balloon-float');button(c,'Funfair tool Leave');button(c,'Funfair tool Drop');record('shared mixer, held cup drinking, balloon pickup/float and interruption')
   for size,name in [((1280,591),'phone'),((1024,768),'tablet')]:c.input('resize',x=size[0],y=size[1]);home.ready(c);home.capture(c,out,name)
   saved=view().copy();runId=run.run_id

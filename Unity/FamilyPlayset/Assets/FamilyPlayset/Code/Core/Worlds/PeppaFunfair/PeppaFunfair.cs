@@ -136,6 +136,15 @@ namespace LittleWeeps.Core
             if(c.value=="paint-clear"){
                 if(m.station!="")return "leave-activity-first";m.paintStyle=0;m.paint=new int[64];m.paintRevision++;return null;
             }
+            // The shipped machine is tapped to produce a cup; it does not open
+            // a fruit-selection menu. Keep old recipe commands for saved probes.
+            if(c.value=="smoothie-machine"){
+                if(!Near("smoothie") || m.station!="" || held!=null)return "come-to-the-mixer";
+                if(h.smoothieAt>=0)return "wait-for-a-cup";
+                if(h.smoothieMask==8){var cup=h.props.FirstOrDefault(v=>v.kind=="drink"&&v.location=="stock");if(cup==null)return "wait-for-a-cup";cup.holder=p.id;cup.location="held";cup.version++;h.smoothieMask=0;h.smoothies++;}
+                else{h.smoothieMask=7;h.smoothieAt=h.clock;}
+                return null;
+            }
             if(c.value=="smoothie-fruit"){
                 if(!Near("smoothie") || !int.TryParse(c.item,out var fruit) || fruit<0 || fruit>2 || h.smoothieAt>=0)return "come-to-the-mixer";h.smoothieMask|=1<<fruit;return null;
             }

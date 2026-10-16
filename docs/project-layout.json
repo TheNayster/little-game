@@ -850,10 +850,11 @@
       "Core/Worlds/PeppaFunfair",
       "Client/Worlds/PeppaFunfair",
       "Tools/Art/Prepare-PeppaFunfairProbe.py",
-      "Tools/Art/Assemble-PeppaFunfairPack.py"
+      "Tools/Art/Assemble-PeppaFunfairPack.py",
+      "Tools/Verification/Inspect-PeppaFunfairUi.py"
     ],
     "localSource": "LocalData/Research/PeppaPig/peppa-funfair-project",
-    "localPack": "LocalData/Research/PeppaPig/world-tests/Funfair/Content-v4",
+    "localPack": "LocalData/Research/PeppaPig/world-tests/Funfair/Content-v6",
     "retirement": "Retain recovered originals and evidence while the world or its provenance consumes them. Retire the isolated PeppaFunfair worktree only after main integration and preserving required ignored builds, saves and evidence.",
     "delivery": "Recovered media remains ignored. Package-RecoveredWorld.py verifies the exact local receipt and packages StreamingAssets/PeppaFunfair. The phase plan records the accepted build and remaining device/owner limits.",
     "preview": "Tools/Launch/Play-PeppaFunfair.ps1 owns separate LocalData/peppa-funfair-preview records and one isolated saved family, preserving existing Hulk/HQ and installed-family selections."
