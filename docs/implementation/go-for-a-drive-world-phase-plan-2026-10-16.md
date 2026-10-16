@@ -4,7 +4,7 @@ Created October 16, 2026. Selected world **BLU-02**, the third entry in the [sel
 
 Create a complete playable Go for a Drive world in Little Weeps, with up to four family players taking one road trip together. Include packing the car, travelling with Dad to the Big Peanut, the Grey Nomads encounter, window games, arrival and replay. Preserve the established 2D presentation, recognizable Bluey characters and independent travel between existing worlds.
 
-**Status: Planned.** This request creates the implementation plan. All phases below remain pending. Planning this entry does not set an implementation order for the other selected worlds or authorize device/live-server deployment.
+**Status: PC ready.** All implementation phases are technically complete through packaged PC delivery. Owner visual/motion/audio review and physical-device/live-server delivery remain separate. The October 16 authorization to finish all phases and preserve other chats' work was followed.
 
 ## Scope and evidence
 
@@ -30,12 +30,12 @@ Phase 0 expands this table with source identities, controls, eligible actors, ob
 
 | ID | Required activity | Shared outcome | Phase | Evidence now |
 | --- | --- | --- | --- | --- |
-| DRIVE-01 | Pack the car | Players prepare one car using recovered items/placement rules without duplicated objects. | 2 | Official description; exact interactions pending |
-| DRIVE-02 | Road trip with Dad | One route and stage visible to everyone, with useful passenger actions. | 3 | Official description; route/controls pending |
-| DRIVE-03 | Grey Nomads | One encounter with common progress and fair replay/recovery. | 4 | Official description; rules pending |
-| DRIVE-04 | Window entertainment | Every recovered window activity, with concurrent contribution and preserved sibling progress. | 5 | Official description; inventory pending |
-| DRIVE-05 | Big Peanut arrival | Common destination/finish, deliberate replay and confirmed destination interactions. | 6 | Destination confirmed; interactions pending |
-| DRIVE-06 | Smaller interactions and character life | Recovered car props, reactions and incidental actions. | 1–6 | Inventory pending |
+| DRIVE-01 | Pack the car | Players prepare one car using recovered items/placement rules without duplicated objects. | 2 | Recovered six source sets; shared native packing passed |
+| DRIVE-02 | Road trip with Dad | One route and stage visible to everyone, with useful passenger actions. | 3 | Three source lanes/stops; native common journey and saved roadside recovery passed |
+| DRIVE-03 | Grey Nomads | One encounter with common progress and fair replay/recovery. | 4 | Recovered net-overtake/difficulty rules; native traffic contribution passed |
+| DRIVE-04 | Window entertainment | Every recovered window activity, with concurrent contribution and preserved sibling progress. | 5 | Fifteen original patterns; shared physical rewards and looping stickers passed |
+| DRIVE-05 | Big Peanut arrival | Common destination/finish, deliberate replay and confirmed destination interactions. | 6 | Twelve source pieces, original palette, saved creation, car tumble and shared replay passed |
+| DRIVE-06 | Smaller interactions and character life | Recovered car props, reactions and incidental actions. | 1–6 | Recovered source props/actions/audio; hand anchors and real pictured controls integrated |
 
 ## Phase 0 Inspect the exact world
 
@@ -115,14 +115,60 @@ Update this plan, tracker and build guide with results, adaptations, limits and 
 
 | Phase | Status | Required evidence |
 | --- | --- | --- |
-| 0 Inspection | Pending | Exact world/dependencies and complete activity map |
-| 1 Foundation/actions | Pending | Four-participant view and normal-speed contact review |
-| 2 Packing | Pending | Shared loop and contested-item/departure check |
-| 3 Journey | Pending | Common travel, late join and independent exit |
-| 4 Grey Nomads | Pending | Encounter, shared result and retry |
-| 5 Window activities | Pending | Complete inventory, concurrent contribution and interruption |
-| 6 Arrival/persistence | Pending | Full loop, saved reopening and private/shared separation |
-| 7 Verification | Pending | Current-source four-client visit and presentation review |
-| 8 PC delivery | Pending | Manifest, launcher, durable readiness and pushed source |
+| 0 Inspection | Complete static recovery | Retained 7.1.0 package, four scenes, exact source props/rigs/patterns, native method mapping; evidence below |
+| 1 Foundation/actions | Technically complete | Source rigs/actions/hand anchors integrated; four distinct avatars inspected; owner motion/audio review open |
+| 2 Packing | Complete | Native original-item claims/roof placement; authority checks cover stale claims, spills and waves |
+| 3 Journey | Complete | One car, shared stops, independent departure, partial fuel and actual roadside process recovery |
+| 4 Grey Nomads | Complete | Actual four-client lane/boost controls plus rule-checked net overtakes and source thresholds |
+| 5 Window activities | Complete | All fifteen source patterns, stationary shared drags, physical rewards, sticker cycles and retained rewards |
+| 6 Arrival/persistence | Complete | Native cooperative statue/free building, process reopening, tumble/rebuild, consent replay and private/authority separation |
+| 7 Verification | Technically complete | Scoped runtime receipts below; full PC and phone/tablet-shaped views inspected; owner review separate |
+| 8 PC delivery | Complete | Candidate587, 438-file media receipt, checked one-to-four-player launcher and main source delivery |
 
-Next implementation action, when requested: Phase 0, starting with retained LEGO Bluey packages and existing inspection records. Keep one bounded implementation task active and record recovered scope before production gameplay.
+Current bounded implementation task is complete. Use the configured PC launcher for owner review. Device or live-server rollout requires its separate requested delivery and the current server-update policy.
+
+## Recovery and implementation checkpoint October 16
+
+The retained target is `com.storytoys.lego.bluey.googleplay` 7.1.0 (1551), Unity 6000.0.58f2. Its embedded split contains the main `SCN_00_GoForADrive` and four complete subscenes: Imperfect Packing, Drive Time, Window Games and Build Big Thing. The original offers four replayable activity scenes; the common family journey linking them is an explicit adaptation.
+
+[Recovery tools and provenance](../../Tools/Art/GoForADrive/README.md) preserve APK/export hashes, scene identities, source pointers, rendering recipes and unresolved execution details. Ignored `LocalData/Research/GoForADrive/Native/findings.txt` links the independently mapped and decoded 1,428 selected ARM64 methods. These are static findings, not original C# or runtime acceptance.
+
+The final immutable content input is `LocalData/Research/GoForADrive/Content-fixtures`, with adjacent `Content-fixtures-receipt.json`: 185 picture keys, 174 action strips and 139 audio keys across 438 files. Earlier packs are preserved. Corrected transparent fixtures use the original toilet tree/dog sign, petrol pumps/canopy/shop and roadworks brick/spade/boulder group. Three additional traffic vehicles and all fifteen window patterns are included. Each pattern's obstacle-only and reward-only layers compose byte-for-byte to the original full pattern. Exact source collider/reward projections exclude the broad input-surface collider.
+
+| Activity | Recovered scope and behavior | Implemented family adaptation |
+| --- | --- | --- |
+| Packing | Six sets of three original items; waves use three times the wave number; difficulty `[1,2,2,2,3,3,3,4]`, looping from index four. Attachment positions affect car balance; the source supports warning/bounce and buckaroo. | One shared set of objects, revision-checked hands and twelve pictured roof positions. A shared lever/tilt projection replaces 3D balance physics; spilled items remain reusable. Shared Go follows completed preparation. |
+| Driving | Three lanes; Nomad plus recycling truck, tractor and truck; net overtaking can rise or fall. Difficulty counters `[2,4,6,6,12,18]`; source stop order is Toilet, Petrol, Roadworks, cycling. | One navigator lease, passenger cheering/horn actions and common progress. Three stops form this trip; later trips progress through the recovered difficulty list. Exact original boost/countdown wiring remains partially unresolved, so the 2D encounter timing is an adaptation. |
+| Roadside play | Toilet, petrol fixture/nozzle, cow, rubble and traffic light. Source nozzle connects/disconnects charging; charging declares 4.5 seconds. | Shared stop completion, protected use, preserved partial fuel and direct hand/nozzle contact. A simple pictured hose substitutes for the original flexible LineRenderer. |
+| Window play | Fifteen ordered animal/hay/tractor patterns, actual reward colliders, single/double jump and dragging. Obstacle hits disqualify that pattern's star. Ten sticker positions wrap; each full cycle adds 0.5 speed, hits subtract 0.5 with minimum three. | All four help control one source hand. Drag ownership expires safely; any participant can help with a second jump. Collision uses the recovered projections in 2D. Progress remains shared and open-ended. |
+| Big Peanut | Twelve original statue pieces and their exact source-camera layers/anchors; thirty-six palette variants; 300-brick limit, inspiration sign and car tumble. | A shared snapped statue and free building board retain object IDs and contested edit ownership. A moving car causes the tumble; an independent Leave never erases construction. Replay requires active participants' consent. |
+
+Bluey and Bandit are the original activity cast. Bingo and Chilli use their actual shared-package DUPLO rigs as family additions. Recovered hand-angle/bend/wave layers supply documented carry/build/throw presentations; literal driving and child toilet clips remain distinguished from these recipes. Actor hand/face anchors are sampled; ordinary prop grips use an explicit center-at-hand adaptation, while the nozzle uses its original projected logical hole.
+
+The earlier focused Unity authority check passed migration, shared invitation, claims, departure/rejoin, packing waves, stops/nozzle retention, window rewards, saved construction and replay consent. Subsequent balance, source collision and car-tumble changes require the next matching check. Standalone .NET execution was blocked by Windows Application Control; the signed Unity editor runs the same rule checks without changing policy. Whole-player compilation, four-client behavior and packaged readiness remain pending at this checkpoint. No devices, real saves or installed server changed.
+
+## Technical acceptance and PC delivery October 16
+
+**Drive-only source delivery uses schema57/content91/protocol3 and drive format2.** Candidate587 was built from the combined working checkout at schema58, which also contains another chat's uncommitted Markets fields. Its isolated preview saves retain that combined schema. The delivered 77-file Drive-only core was independently compiled and rule-tested at schema57 so this commit does not prematurely claim the later Markets migration. The candidate is accepted for the unchanged Drive activity/save rules and tested presentation; it is not a byte-for-byte clean-main artifact or an installed-server replacement. Compatibility changed for the new authoritative activity/save contract and corrected shared-hand rules, not for artwork.
+
+[Play Go for a Drive](../../Tools/Launch/Play-GoForADrive.ps1) opens a separate saved family, default two players, supporting one through four. The selected ignored configuration is `LocalData/go-for-a-drive-preview.json`. Close the preview windows to stop its separate authority. The launcher preserves its own family on reopening and does not change the installed family selection.
+
+| Evidence | Actual result and scope |
+| --- | --- |
+| `LocalData/Logs/build-network-583.log` | Standard whole-project prebuild gate and both release players passed. Later changes affect Drive presentation/input handling; no later Drive authority/save changes. |
+| `LocalData/Logs/build-network-587.log` and `Builds/NetworkProbe/G3-0.0.587/build-summary.json` | Final focused Drive plus Spidey HQ/Hulk regression checks passed; server and client both succeeded with zero errors/warnings. |
+| `LocalData/GoForADrive/delivery-rule-check-schema57.log` | Signed Unity independently compiled and passed all Drive checks against the exact 77-file Drive-only core delivery projection, excluding unfinished Markets/Funfair source. Migration, invalid snapshots, stale ownership, spills/waves, stops, common double-jump, source collisions, ten-sticker speed increase, statue/copy/restore, empty-world pause and consent replay passed. |
+| `LocalData/SharedGarden/d9fb00f8d98841aea7ccb7ae7f9c0976/drive/` | Candidate586: one real Start joined four clients; all three original objects were carried and packed through actual controls. Native traffic, toilet and partial-fuel/departure paths reached the final roadworks checkpoint. |
+| Same family, `drive-continue/` | Four fresh processes resumed the saved roadworks checkpoint and completed its common stop. The initial window route collected nine physical stars over all fifteen patterns; its ten-star assertion failed, retaining the actual progress. |
+| Same family, `drive-window-continue-1/result.json` | Candidate586 passed all fifteen source patterns through real four-contributor drags, a full looping sticker cycle/speed increase, cooperative twelve-piece Peanut, palette/free-board placement and native disconnect/reconnect. Zero runtime exceptions. |
+| Same family, `drive-reopen-1/result.json` | Candidate587 passed actual saved tumble reopening, real rotated-brick rebuilding, retained common rewards/IDs, native reconnect, moving-car tumble retaining every piece, and all four replay choices starting one common next packing trip while retaining the creation. Zero runtime exceptions. |
+| `LocalData/FamilyLAN/1c36b14eb4ad45028d235acc3dbefda4/go-for-a-drive/result.json` | Candidate585 actual private process reopening, stable center-roof item, automatic private-to-authority handoff without uploading private packing, and explicit solo return all passed. Reused for unchanged save/handoff contracts. |
+| `LocalData/go-for-a-drive-launcher-check.json` | Final configured four-player packaged launcher remained ready beyond startup. |
+
+The first native checks found overlapping statue targets and a hidden-hand release callback flooding shared input; both were corrected before acceptance. A test clicked the roadworks light during the preceding rubble cooldown; its saved checkpoint was resumed and finished rather than resetting the family. Window test gestures were corrected to cross the real UGUI drag threshold, retain stationary input and acknowledge release; rewards still require actual source-collider contact. The generic inspection catalog omits rotated rectangles; the native test presses the verified rotated Button's real screen center. An off-center single-bag private fixture correctly spilled and was replaced with a stable center placement for retention testing. Earlier failed/intermediate records remain preserved.
+
+Candidate587 changes only destination avatar positions from586: the statue and palette no longer cover the participating cast. Actual PC and 1280×591/1024×768 destination views were inspected, with four distinct avatars clear. Source sprites/rig clips, fixed hand anchors, source-camera statue layers, transient walking/throw presentations and contact are integrated. Free building uses the original source palette pictures as 2D pieces. Simplified balance/lanes/hose/collisions and pose recipes remain explicit family adaptations; exact original boost/countdown wiring and secondary material effects are not claimed restored. Owner normal-speed motion/audio approval and physical-device qualification remain open; no listening approval is claimed.
+
+The final media pack is 88,627,079 bytes. Manifest SHA-256: `cc08f112b635a15b7b7119dcad4ecaa495c5840cb39c6eb61e9f2cb0350894e1`; receipt SHA-256: `3de5d99a9f6bbcd00632813844f3c36ff75760fda762b5cf972b4ae6df568e00`. Packaging verifies every input and candidate hash, preserves source media and records final artifact hashes. APKs, original exports, previous packs, captures, generated probes and family saves remain ignored and retained.
+
+The shared checkout also contains other chats' unfinished Markets/Funfair files. Their working files and tracked/untracked work were preserved. Only Drive source and its own shared integration hunks are delivered. The combined candidate is accepted for Drive; unrelated draft worlds are not qualified by these receipts. Documentation consistency found one unrelated unclassified Markets inventory record; the retained report is `LocalData/GoForADrive/docs-validation-concurrent.json`, with no Drive-document errors. No installed app, live server, signing, enrollment or real family data was changed.

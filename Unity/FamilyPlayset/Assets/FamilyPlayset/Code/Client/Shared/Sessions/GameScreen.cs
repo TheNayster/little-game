@@ -85,7 +85,7 @@ namespace LittleWeeps.Client
             Surfaces.Clear();toys.Clear();fills.Clear();targetRings.Clear();targetArrows.Clear();
             resetCues.Clear();layoutPositions.Clear();
             friends.Clear();holders.Clear();travelButtons.Clear();fence.Clear();
-            ResetSpidey();ResetBirthday();ResetDaycarePlay();ResetVet();ResetTreasure();ResetSandpit();ResetDaycare();ResetKingdom();ResetNavigation();
+            ResetDrive();ResetSpidey();ResetBirthday();ResetDaycarePlay();ResetVet();ResetTreasure();ResetSandpit();ResetDaycare();ResetKingdom();ResetNavigation();
             Board=null;avatar=null;menu=null;connecting=null;dragging=null;requestedArea=null;travelSubmitted=false;
             grabConfirmed=false;gestureEnded=false;gestureCancelled=false;dropSubmitted=false;renderedSequence=-1;
         }
@@ -323,7 +323,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildTreasure();BuildVet();BuildDaycarePlay();BuildSeagulls();BuildShore();BuildWaveRide();BuildBirthday();BuildSpidey();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildTreasure();BuildVet();BuildDaycarePlay();BuildSeagulls();BuildShore();BuildWaveRide();BuildBirthday();BuildSpidey();BuildDrive();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -640,7 +640,7 @@ namespace LittleWeeps.Client
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
             PresentKingdomHops();
-            PresentHideAndSeek();PresentPark();PresentWheels();PresentTag();PresentDaycarePlay();PresentDinosaurRiders();PresentDinosaurPetters();PresentWaveRide();TickBirthday();TickSpidey();
+            PresentHideAndSeek();PresentPark();PresentWheels();PresentTag();PresentDaycarePlay();PresentDinosaurRiders();PresentDinosaurPetters();PresentWaveRide();TickBirthday();TickSpidey();TickDrive();
         }
         private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
@@ -735,7 +735,7 @@ namespace LittleWeeps.Client
             }
             if(shared!=null)RenderFriends();
             PresentHiddenPlayers();PresentClubHidden();
-            if(CurrentArea==SpideyHQ.Zone && spideyTiles.Count>0){characterVisual.gameObject.SetActive(false);foreach(var friend in friends.Values)friend.view.gameObject.SetActive(false);}
+            if((CurrentArea==SpideyHQ.Zone && spideyTiles.Count>0 || CurrentArea==GoForADrive.Zone && driveRoot)){characterVisual.gameObject.SetActive(false);foreach(var friend in friends.Values)friend.view.gameObject.SetActive(false);}
             // Larger y is farther back on the illustrated floor plane.
             SortDepth();
             activity.text=p.activity==""?"Free play Â· walk, drag, discover":p.activity=="garden"?(toyStates.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(toyStates.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");
@@ -798,7 +798,7 @@ namespace LittleWeeps.Client
                     visual=CreateAvatar("Friend-"+player.id);friends.Add(player.id,visual);
                     // Personal profile identifiers are not labels in the play scene.
                 }
-                visual.root.gameObject.SetActive(CurrentArea!=SpideyHQ.Zone && shared.Players.Contains(player.id) && GameWorld.AreaOf(player.zone)==CurrentArea);
+                visual.root.gameObject.SetActive(CurrentArea!=GoForADrive.Zone && CurrentArea!=SpideyHQ.Zone && shared.Players.Contains(player.id) && GameWorld.AreaOf(player.zone)==CurrentArea);
                 visual.root.anchoredPosition=ToBoard(player.x,player.y);
                 visual.view.Select(player.avatar);
             }

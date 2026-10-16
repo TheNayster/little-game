@@ -19,7 +19,7 @@ Sources: [Official app description and update history](https://apps.apple.com/us
 | ID | World | Activities to track | Status | Plan and evidence |
 | --- | --- | --- | --- | --- |
 | BLU-01 | Markets | Smoothies; flowers; cakes; bubbles; caring for ponies Buttermilk and Biscuit; dancing to a busker. | Planned | [Phase plan](implementation/bluey-markets-world-phase-plan-2026-10-16.md); source inspection and implementation pending. |
-| BLU-02 | Go for a Drive | Pack the car; travel with Dad to the Big Peanut; keep ahead of the Grey Nomads; window games. | Planned | [Phase plan](implementation/go-for-a-drive-world-phase-plan-2026-10-16.md); inspection and implementation pending. |
+| BLU-02 | Go for a Drive | Pack the car; travel with Dad to the Big Peanut; keep ahead of the Grey Nomads; window games. | PC ready | [Phase plan and acceptance](implementation/go-for-a-drive-world-phase-plan-2026-10-16.md#technical-acceptance-and-pc-delivery-october-16); all four activities, shared four-player play, saves and packaged PC launcher verified. Owner/device review separate. |
 | BLU-03 | School Day | Indy and Rusty play families; build a baby's house; make pretend fish and chips; defend the Terriers' fort. | Selected | Pending |
 | BLU-04 | The Grannies | Granny-car driving; slipping on beans; sandpit parking and building; trampoline breakfast shapes. | Selected | Pending |
 | BLU-05 | Playground Fun | Shadowlands; telescope searching; tic-tac-toe; seesaw; slide; playground building. | Selected | Pending |
@@ -63,6 +63,7 @@ Hulk's Birthday and Spidey HQ already have their own implementation records. The
 
 | Date | Update |
 | --- | --- |
+| October 16, 2026 | BLU-02 implemented through PC delivery: source packing/traffic/stops, fifteen shared-hand patterns, twelve-piece Peanut/free building, car tumble, consent replay, private/authority saves and four-client packaged readiness. Candidate587; maintained acceptance linked above. |
 | October 16, 2026 | BLU-02 Go for a Drive phase plan created for the third listed world: inspection, shared packing/travel, Grey Nomads, window activities, arrival/saves, four-client verification and PC delivery. All implementation phases remain pending. |
 | October 16, 2026 | Owner selected 1 Peppa Pig world, 7 Bluey worlds and 5 Marvel worlds. All 13 recorded as Selected; individual plans and implementation remain pending. |
 | October 16, 2026 | PEP-01 Funfair phase plan created. Exact world recovery is the next task; no Funfair implementation or runtime acceptance yet. |

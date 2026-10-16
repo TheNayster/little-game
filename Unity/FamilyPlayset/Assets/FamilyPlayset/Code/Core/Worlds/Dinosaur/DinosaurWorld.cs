@@ -70,6 +70,7 @@ namespace LittleWeeps.Core
             if(s.birthday==null)s.birthday=HulkBirthday.Create(s.players.Select(p=>p.id).ToArray());
             if(s.hideClub==null)s.hideClub=NewDaycarePlay(s);if(s.tagClub==null)s.tagClub=NewDaycarePlay(s);
             if(s.spidey==null)s.spidey=SpideyHQ.Create(s.players.Select(p=>p.id).ToArray());
+            if(s.drive==null)s.drive=GoForADrive.Create(s.players.Select(p=>p.id).ToArray());
             s.schema=WorldLayout.Schema;s.revision++;Validate(s);return new GameWorld(s);
         }
         private static void NormalizeDinosaurInline(SoloSnapshot s)

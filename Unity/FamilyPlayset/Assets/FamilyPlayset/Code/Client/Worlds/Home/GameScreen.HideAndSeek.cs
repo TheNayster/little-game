@@ -121,7 +121,7 @@ namespace LittleWeeps.Client
             // Reliable replies also redraw friends before LateUpdate. Apply this
             // same cover rule there, so generic player rendering cannot expose
             // unrelated hiders or stack co-hiders on their authority coordinates.
-            foreach(var friend in friends){var p=ReadPlayer(friend.Key);var sharedCover=together.Any(h=>h.actor==friend.Key);friend.Value.root.gameObject.SetActive(CurrentArea!=SpideyHQ.Zone && p.zone==CurrentArea && shared.Players.Contains(friend.Key) && (!HideAndSeek.Hidden(s,friend.Key) || sharedCover));}
+            foreach(var friend in friends){var p=ReadPlayer(friend.Key);var sharedCover=together.Any(h=>h.actor==friend.Key);friend.Value.root.gameObject.SetActive(CurrentArea!=GoForADrive.Zone && CurrentArea!=SpideyHQ.Zone && p.zone==CurrentArea && shared.Players.Contains(friend.Key) && (!HideAndSeek.Hidden(s,friend.Key) || sharedCover));}
             for(var i=0;i<together.Length;i++){
                 var h=together[i];var prop=HideAndSeek.Props[h.slot];
                 // Four seated drawings exceeded the small tent/curtain width.

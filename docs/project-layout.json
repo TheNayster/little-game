@@ -355,7 +355,15 @@
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyArt.cs": "SpideyHQ",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyPuzzleDrag.cs": "SpideyHQ",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/SpideyHQ/SpideyHQLayout.cs": "SpideyHQ",
-    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyImage.cs": "SpideyHQ"
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyImage.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/GoForADrive/GoForADrive.cs": "GoForADrive",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/GoForADrive/GoForADriveLayout.cs": "GoForADrive",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/GoForADrive/GoForADriveState.cs": "GoForADrive",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/GoForADrive/GoForADriveWindowLayout.cs": "GoForADrive",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/GoForADrive/DriveHandInput.cs": "GoForADrive",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/GoForADrive/DriveSurface.cs": "GoForADrive",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/GoForADrive/GameScreen.GoForADrive.cs": "GoForADrive",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/GoForADrive/GoForADriveArt.cs": "GoForADrive"
   },
   "assemblyPolicy": "Keep existing Core/Client assembly membership. World folders do not define independent partial types.",
   "worlds": [
@@ -367,7 +375,8 @@
     "Zoo",
     "Dinosaur",
     "Hulk",
-    "SpideyHQ"
+    "SpideyHQ",
+    "GoForADrive"
   ],
   "sharedFilesRequireCoordination": [
     "GameWorld",
@@ -814,5 +823,17 @@
     "retirement": "Replace only after HQ stops consuming this pipeline; preserve original recovery evidence.",
     "delivery": "Ignored recovered media is packaged into client StreamingAssets/SpideyHQ by Tools/Build/Package-RecoveredWorld.py. Final candidate and acceptance remain recorded in the maintained HQ phase plan.",
     "preview": "Tools/Launch/Play-SpideyHQ.ps1 uses separate ignored LocalData/spidey-hq-preview records and an isolated saved family; no installed authority selection changes."
+  },
+  "goForADriveRecoveryContent": {
+    "owner": "BLU-02 / WORLD-02 / FAMILY-01 / ITEM-02: Go for a Drive phases",
+    "production": [
+      "Core/Worlds/GoForADrive",
+      "Client/Worlds/GoForADrive"
+    ],
+    "localSource": "LocalData/Research/GoForADrive/Export/ExportedProject",
+    "localPack": "LocalData/Research/GoForADrive/Content-fixtures",
+    "tools": "Tools/Art/GoForADrive preserves reproducible asset-only recovery; retain tools/source evidence while this world is maintained.",
+    "delivery": "Tools/Build/Package-GoForADrive.py verifies and packages the immutable media receipt into client StreamingAssets/GoForADrive. The phase plan records the selected final candidate.",
+    "preview": "Tools/Launch/Play-GoForADrive.ps1 uses ignored LocalData/go-for-a-drive-preview records and a separate saved family; installed server/enrollment stays unchanged."
   }
 }
