@@ -457,8 +457,7 @@ namespace LittleWeeps.NetworkProbe
                 if(result.Accepted && !result.Duplicate)
                 {
                     if(request.command.action==SoloAction.DaycarePlay || request.command.action==SoloAction.Travel || request.command.action==SoloAction.Move || request.command.action==SoloAction.UseFixture || request.command.action==SoloAction.Dinosaur && request.command.value!="call")movement.Forget(request.command.actor);
-                    if(request.command.action==SoloAction.Funfair)movement.Forget(request.command.actor);
-                    if(request.command.action==SoloAction.Spidey)movement.Forget(request.command.actor);
+                    if(request.command.action==SoloAction.Funfair || request.command.action==SoloAction.Spidey || request.command.action==SoloAction.Drive)movement.Forget(request.command.actor);
                     if(request.command.action==SoloAction.Birthday && HulkBirthday.StationaryOperation(request.command.value)){
                         movement.Forget(request.command.actor);
                         if(request.command.value=="unwrap")movement.Forget(session.View().birthday.giftActor);

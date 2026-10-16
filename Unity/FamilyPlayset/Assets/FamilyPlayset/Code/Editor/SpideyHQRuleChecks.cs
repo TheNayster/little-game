@@ -17,7 +17,7 @@ public static class SpideyHQRuleChecks
     public static void Run()
     {
         var legacy=GameWorld.WithBirthday(GameWorld.Create(Actors)).Snapshot();legacy.schema=54;legacy.spidey=null;var oldBirthday=legacy.birthday.visit;
-        var world=GameWorld.WithDinosaurWorld(GameWorld.Restore(legacy));Need(world.Schema==55 && world.ReadSpidey()!=null && world.ReadBirthday().visit==oldBirthday,"additive legacy migration");
+        var world=GameWorld.WithDinosaurWorld(GameWorld.Restore(legacy));Need(world.Schema==WorldLayout.Schema && world.ReadSpidey()!=null && world.ReadBirthday().visit==oldBirthday,"additive legacy migration");
         foreach(var actor in Actors){Need(Send(world,actor,SoloAction.Travel,SpideyHQ.Zone).Accepted,"arrival");Move(world,actor,SpideyHQ.X("pizza"));Act(world,actor,"queue",target:"pizza");}
         Tick(world,13);Need(world.ReadSpidey().props.Count(p=>Actors.Contains(p.holder))==4,"one queue serves four human holders");
         foreach(var actor in Actors)Act(world,actor,"eat");Tick(world,4);Need(world.ReadSpidey().props.All(p=>!Actors.Contains(p.holder)),"consumption releases all hands");

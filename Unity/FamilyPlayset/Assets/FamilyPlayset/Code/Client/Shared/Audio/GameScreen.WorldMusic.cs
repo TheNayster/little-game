@@ -28,7 +28,7 @@ namespace LittleWeeps.Client
             // repeatedly restart both scores.
             if(area=="garden" && Mathf.Abs(ReadPlayer(Actor).x-150)<150 &&
                 (worldMusic.Track=="yard" || worldMusic.Track=="home"))track=worldMusic.Track;
-            var quiet=area==PeppaFunfair.Zone && fairTiles.Count>0 || SecretRooms.Index(area)>=0 || area==HulkBirthday.Zone && birthdayTiles.Count>0 || area==SpideyHQ.Zone && spideyTiles.Count>0;
+            var quiet=area==PeppaFunfair.Zone && fairTiles.Count>0 || area==GoForADrive.Zone && driveRoot || SecretRooms.Index(area)>=0 || area==HulkBirthday.Zone && birthdayTiles.Count>0 || area==SpideyHQ.Zone && spideyTiles.Count>0;
             var gain=musicMuted || quiet?0:.42f*ForegroundDucking;
             if(HomeMusicPlaying)gain*=.08f;
             if(HomeRooms.Property(area) && area!="garden")gain*=.7f;

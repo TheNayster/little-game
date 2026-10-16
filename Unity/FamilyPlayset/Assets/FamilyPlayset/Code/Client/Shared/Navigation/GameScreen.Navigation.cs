@@ -15,8 +15,8 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Image> avatarMarkers = new Dictionary<string, Image>();
         private readonly List<GameCharacterVisual> pickerCharacters = new List<GameCharacterVisual>();
         private readonly Dictionary<string, Text> worldBadges = new Dictionary<string, Text>();
-        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare", "zoo", "dinosaur-world", HulkBirthday.Zone, SpideyHQ.Zone, PeppaFunfair.Zone };
-        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare", "Zoo", "Dinosaur World", "Hulk's Birthday", "Spidey HQ", "Peppa Funfair" };
+        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare", "zoo", "dinosaur-world", HulkBirthday.Zone, SpideyHQ.Zone, GoForADrive.Zone, PeppaFunfair.Zone };
+        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare", "Zoo", "Dinosaur World", "Hulk's Birthday", "Spidey HQ", "Go for a Drive", "Peppa Funfair" };
         private float navigationCamera;
         private bool navigationManualCamera;
         public bool WorldsOpen => CharactersOpen;
@@ -93,7 +93,7 @@ namespace LittleWeeps.Client
             worldContent.anchorMin=worldContent.anchorMax=new Vector2(.5f,1);worldContent.pivot=new Vector2(.5f,1);
             worldScroll=worldViewport.gameObject.AddComponent<ScrollRect>();worldScroll.viewport=worldViewport;worldScroll.content=worldContent;
             worldScroll.horizontal=false;worldScroll.vertical=true;worldScroll.movementType=ScrollRect.MovementType.Clamped;
-            for(var i=0;i<WorldIds.Length;i++)if((WorldIds[i]!=HulkBirthday.Zone || BirthdayArt.Available) && (WorldIds[i]!=SpideyHQ.Zone || SpideyArt.Available) && (WorldIds[i]!=PeppaFunfair.Zone || FunfairArt.Available))BuildWorldBubble(i);
+            for(var i=0;i<WorldIds.Length;i++)if((WorldIds[i]!=HulkBirthday.Zone || BirthdayArt.Available) && (WorldIds[i]!=SpideyHQ.Zone || SpideyArt.Available) && (WorldIds[i]!=GoForADrive.Zone || GoForADriveArt.Available) && (WorldIds[i]!=PeppaFunfair.Zone || FunfairArt.Available))BuildWorldBubble(i);
 
             trayPanel=Plain(characterTray,"Cast shelf",Vector2.zero,Vector2.zero,new Color(.71f,.89f,.99f),true).rectTransform;
             trayPanel.anchorMin=Vector2.zero;trayPanel.anchorMax=new Vector2(1,0);trayPanel.pivot=new Vector2(.5f,0);trayPanel.sizeDelta=new Vector2(0,300);
@@ -138,7 +138,7 @@ namespace LittleWeeps.Client
             var picture=Panel(border.transform,"Round scene",Vector2.zero,Vector2.one*158,Color.white,false,true);
             picture.gameObject.AddComponent<Mask>().showMaskGraphic=false;
             var illustration=Panel(picture.transform,"Illustrated "+id,Vector2.zero,Vector2.one*158,Color.white);
-            illustration.sprite=id==PeppaFunfair.Zone?FunfairArt.MenuPicture():id==SpideyHQ.Zone?SpideyArt.MenuPicture():id==HulkBirthday.Zone?BirthdayArt.MenuPicture():WorldResources.Load<Sprite>("Shared/UI/WorldMenu/"+id);illustration.type=Image.Type.Simple;
+            illustration.sprite=id==PeppaFunfair.Zone?FunfairArt.MenuPicture():id==GoForADrive.Zone?GoForADriveArt.Icon("car"):id==SpideyHQ.Zone?SpideyArt.MenuPicture():id==HulkBirthday.Zone?BirthdayArt.MenuPicture():WorldResources.Load<Sprite>("Shared/UI/WorldMenu/"+id);illustration.type=Image.Type.Simple;
             if(illustration.sprite==null)throw new InvalidOperationException("Missing world-menu illustration: "+id);
             if(!ready)illustration.color=new Color(1,1,1,.67f);
             var rim=Panel(border.transform,"White picture edge",Vector2.zero,Vector2.one*170,Color.white,false,true);
