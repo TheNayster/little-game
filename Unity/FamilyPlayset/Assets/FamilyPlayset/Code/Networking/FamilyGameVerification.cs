@@ -80,7 +80,6 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;public string kingdomApproach;public string[] lastTouchTargets,kingdomNpcArt,picnicNpcArt,kingdomNpcJobs,kingdomNpcPoses;public Vector2[] kingdomNpcPoints;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
-            public LittleWeeps.Core.DriveState drive;public int visibleDrivePlayers;public string driveOutcome;
             public LittleWeeps.Core.SpideyState spidey;public int visibleSpideyPlayers;public string spideyOutcome;public string[] spideyPoses;
             public LittleWeeps.Core.BirthdayState birthday;public int visibleBirthdayPlayers;public string[] birthdayPropOwners,birthdayPoses;public string birthdayOutcome;
             public LittleWeeps.Client.BirthdaySoundView[] birthdaySounds;public int[] birthdayFloorColours;public int birthdayLightStep;
@@ -426,7 +425,6 @@ namespace LittleWeeps.NetworkProbe
                 evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;evidence.kingdomNpcJobs=screen.KingdomNpcJobs;evidence.kingdomNpcPoses=screen.KingdomNpcPoses;evidence.kingdomNpcPoints=screen.KingdomNpcPoints;
                 evidence.kingdom=screen.KingdomGame;evidence.visibleKingdomNpcs=screen.VisibleKingdomNpcs;
                 evidence.kingdomApproach=screen.KingdomApproach;evidence.lastTouchTargets=lastTouchTargets;
-                evidence.drive=screen.DriveView;evidence.visibleDrivePlayers=screen.VisibleDrivePlayers;evidence.driveOutcome=screen.DriveLastOutcome;
                 evidence.spidey=screen.SpideyView;evidence.visibleSpideyPlayers=screen.VisibleSpideyPlayers;evidence.spideyOutcome=screen.SpideyLastOutcome;evidence.spideyPoses=screen.SpideyRenderedPoses;
                 evidence.birthday=screen.BirthdayView;evidence.visibleBirthdayPlayers=screen.VisibleBirthdayPlayers;evidence.birthdayPropOwners=screen.BirthdayRenderedOwners;
                 evidence.birthdayPoses=screen.BirthdayRenderedPoses;

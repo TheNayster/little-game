@@ -1,8 +1,8 @@
 [CmdletBinding()]
-param([Parameter(Mandatory)][ValidateRange(46,9999)][int]$BuildNumber,[switch]$FocusedSandcastle,[switch]$FocusedBirthday,[switch]$FocusedSpidey,[switch]$FocusedDrive)
+param([Parameter(Mandatory)][ValidateRange(46,9999)][int]$BuildNumber,[switch]$FocusedSandcastle,[switch]$FocusedBirthday,[switch]$FocusedSpidey)
 $toolsRoot=Split-Path -Parent $PSScriptRoot
 $ErrorActionPreference='Stop'
-if(([int][bool]$FocusedSandcastle+[int][bool]$FocusedBirthday+[int][bool]$FocusedSpidey+[int][bool]$FocusedDrive) -gt 1){throw 'Choose one verification scope.'}
+if(([int][bool]$FocusedSandcastle+[int][bool]$FocusedBirthday+[int][bool]$FocusedSpidey) -gt 1){throw 'Choose one verification scope.'}
 $root=Split-Path -Parent $toolsRoot
 $project=Join-Path $root 'Unity\FamilyPlayset'
 if(@(Get-CimInstance Win32_Process -Filter "Name = 'Unity.exe'" | Where-Object {$_.CommandLine -and $_.CommandLine.Contains($project)}).Count){throw 'Close this project before a batch build.'}
@@ -11,7 +11,7 @@ $editor=Join-Path $env:ProgramFiles "Unity\Hub\Editor\$version\Editor\Unity.exe"
 $folder=Join-Path $root "Builds\NetworkProbe\G3-0.0.$BuildNumber"
 if(Test-Path -LiteralPath $folder){throw 'Use a fresh build number.'}
 $log=Join-Path $root "LocalData\Logs\build-network-$BuildNumber.log"
-$method=if($FocusedDrive){'LittleWeeps.EditorTools.FamilyGameBuild.DriveWindows'}elseif($FocusedSpidey){'LittleWeeps.EditorTools.FamilyGameBuild.SpideyWindows'}elseif($FocusedBirthday){'LittleWeeps.EditorTools.FamilyGameBuild.BirthdayWindows'}elseif($FocusedSandcastle){'LittleWeeps.EditorTools.FamilyGameBuild.SandcastleWindows'}else{'LittleWeeps.EditorTools.FamilyGameBuild.Windows'}
+$method=if($FocusedSpidey){'LittleWeeps.EditorTools.FamilyGameBuild.SpideyWindows'}elseif($FocusedBirthday){'LittleWeeps.EditorTools.FamilyGameBuild.BirthdayWindows'}elseif($FocusedSandcastle){'LittleWeeps.EditorTools.FamilyGameBuild.SandcastleWindows'}else{'LittleWeeps.EditorTools.FamilyGameBuild.Windows'}
 $argsList=@('-batchmode','-quit','-projectPath',('"'+$project+'"'),'-activeBuildProfile',('"Assets/BuildProfiles/Windows Family Game.asset"'),'-buildTarget','StandaloneWindows64','-executeMethod',$method,'-familyBuildNumber',"$BuildNumber",'-logFile',('"'+$log+'"'))
 Write-Output "Building Windows server/client $BuildNumber. Log: $log"
 $process=Start-Process -FilePath $editor -ArgumentList $argsList -WindowStyle Hidden -PassThru

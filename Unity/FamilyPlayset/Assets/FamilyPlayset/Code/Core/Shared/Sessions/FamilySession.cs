@@ -47,7 +47,7 @@ namespace LittleWeeps.Core
             world.ReleaseCreekFishing(profile);world.ReleaseCreekBoats(profile);world.ReleasePond(profile);world.ReleaseHideAndSeek(profile);world.ReleaseZoo(profile);
             world.ReleaseTag(profile);world.ReleaseDaycarePlay(profile);
             world.ReleaseDinosaurCare(profile);
-            world.ReleaseDrive(profile);world.ReleaseSpidey(profile);world.ReleaseBirthday(profile);world.ReleaseVet(profile);world.ReleaseTreasure(profile);world.ReleaseSandpit(profile);world.ReleaseDaycare(profile);world.ReleaseKingdom(profile);
+            world.ReleaseSpidey(profile);world.ReleaseBirthday(profile);world.ReleaseVet(profile);world.ReleaseTreasure(profile);world.ReleaseSandpit(profile);world.ReleaseDaycare(profile);world.ReleaseKingdom(profile);
             world.ReleaseWaveRide(profile);
             world.ReleaseFixture(profile);
             world.CancelStairs(profile);
