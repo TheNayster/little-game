@@ -19,7 +19,7 @@ Sources: [Official app description and update history](https://apps.apple.com/us
 | ID | World | Activities to track | Status | Plan and evidence |
 | --- | --- | --- | --- | --- |
 | BLU-01 | Markets | Smoothies; flowers; cakes; bubbles; caring for ponies Buttermilk and Biscuit; dancing to a busker. | Planned | [Phase plan](implementation/bluey-markets-world-phase-plan-2026-10-16.md); source inspection and implementation pending. |
-| BLU-02 | Go for a Drive | Pack the car; travel with Dad to the Big Peanut; keep ahead of the Grey Nomads; window games. | PC ready | [Phase plan and acceptance](implementation/go-for-a-drive-world-phase-plan-2026-10-16.md#technical-acceptance-and-pc-delivery-october-16); all four activities, shared four-player play, saves and packaged PC launcher verified. Owner/device review separate. |
+| BLU-02 | Go for a Drive | Removed at the owner's request. | Canceled | October16: world and task code removed from the app. |
 | BLU-03 | School Day | Indy and Rusty play families; build a baby's house; make pretend fish and chips; defend the Terriers' fort. | Selected | Pending |
 | BLU-04 | The Grannies | Granny-car driving; slipping on beans; sandpit parking and building; trampoline breakfast shapes. | Selected | Pending |
 | BLU-05 | Playground Fun | Shadowlands; telescope searching; tic-tac-toe; seesaw; slide; playground building. | Selected | Pending |
