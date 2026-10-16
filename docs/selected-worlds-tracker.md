@@ -2,7 +2,7 @@
 
 Updated October 16, 2026. These are the 13 worlds selected by the owner for future reconstruction in Little Weeps. Track each world separately, including its mechanics, character actions and shared play for up to four family players.
 
-All entries start as **Selected**. App package collection and initial REA inspection do not mean an individual world has been recovered, implemented or tested. The activities below are the requested scope from the app descriptions; confirm exact bindings and behavior during each world's inspection. No implementation order has been chosen.
+Entries begin as **Selected**; current status and linked plans are recorded per row. App package collection and initial REA inspection do not mean an individual world has been recovered, implemented or tested. The activities below are the requested scope from the app descriptions; confirm exact bindings and behavior during each world's inspection. Markets has a requested phase plan; no overall implementation order has been chosen.
 
 ## DUPLO Peppa Pig
 
@@ -18,7 +18,7 @@ Sources: [Official app description and update history](https://apps.apple.com/us
 
 | ID | World | Activities to track | Status | Plan and evidence |
 | --- | --- | --- | --- | --- |
-| BLU-01 | Markets | Smoothies; flowers; cakes; bubbles; caring for ponies Buttermilk and Biscuit; dancing to a busker. | Selected | Pending |
+| BLU-01 | Markets | Smoothies; flowers; cakes; bubbles; caring for ponies Buttermilk and Biscuit; dancing to a busker. | Planned | [Phase plan](implementation/bluey-markets-world-phase-plan-2026-10-16.md); source inspection and implementation pending. |
 | BLU-02 | Go for a Drive | Pack the car; travel with Dad to the Big Peanut; keep ahead of the Grey Nomads; window games. | Selected | Pending |
 | BLU-03 | School Day | Indy and Rusty play families; build a baby's house; make pretend fish and chips; defend the Terriers' fort. | Selected | Pending |
 | BLU-04 | The Grannies | Granny-car driving; slipping on beans; sandpit parking and building; trampoline breakfast shapes. | Selected | Pending |
@@ -64,3 +64,4 @@ Hulk's Birthday and Spidey HQ already have their own implementation records. The
 | Date | Update |
 | --- | --- |
 | October 16, 2026 | Owner selected 1 Peppa Pig world, 7 Bluey worlds and 5 Marvel worlds. All 13 recorded as Selected; individual plans and implementation remain pending. |
+| October 16, 2026 | Owner requested a phase plan for the second listed world, Markets (BLU-01). Linked the seven-phase plan covering recovery, world/character foundation, every selected activity, shared four-player play, persistence, validation and PC delivery. Status Planned describes documentation readiness; source recovery and implementation have not started. |
