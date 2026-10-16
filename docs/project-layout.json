@@ -347,7 +347,15 @@
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayNavigation.cs": "Hulk",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Hulk/HulkBirthdayThrow.cs": "Hulk",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayNavigation.cs": "Hulk",
-    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayEffects.cs": "Hulk"
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Hulk/GameScreen.HulkBirthdayEffects.cs": "Hulk",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/SpideyHQ/SpideyHQ.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/SpideyHQ/SpideyHQCreation.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/GameScreen.SpideyCreations.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/GameScreen.SpideyHQ.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyArt.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyPuzzleDrag.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/SpideyHQ/SpideyHQLayout.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyImage.cs": "SpideyHQ"
   },
   "assemblyPolicy": "Keep existing Core/Client assembly membership. World folders do not define independent partial types.",
   "worlds": [
@@ -358,7 +366,8 @@
     "Daycare",
     "Zoo",
     "Dinosaur",
-    "Hulk"
+    "Hulk",
+    "SpideyHQ"
   ],
   "sharedFilesRequireCoordination": [
     "GameWorld",
@@ -793,5 +802,17 @@
     "retirement": "Replace only after the reconstructed world no longer consumes this pipeline; preserve original evidence.",
     "delivery": "Recovered assets remain ignored; PC568 packages the checked local pack in client StreamingAssets through Tools/Build/Package-HulkBirthday.py. The separate saved launcher verifies its receipt. Mobile packaging and installed delivery are unqualified.",
     "preview": "Tools/Launch/Play-HulkBirthday.ps1 uses its own ignored LocalData/hulk-birthday-preview records and a preserved isolated SharedGarden family; it does not select or replace the installed family server."
+  },
+  "spideyRecoveryContent": {
+    "owner": "WORLD-02 / FAMILY-01 / ITEM-02: Spidey HQ phases",
+    "consumers": [
+      "Core/Worlds/SpideyHQ",
+      "Client/Worlds/SpideyHQ"
+    ],
+    "localSource": "LocalData/Research/DuploMarvel/marvel-complete-spidey-project",
+    "localPack": "LocalData/Research/DuploMarvel/world-tests/SpideyHQ/Content-v4",
+    "retirement": "Replace only after HQ stops consuming this pipeline; preserve original recovery evidence.",
+    "delivery": "Ignored recovered media is packaged into client StreamingAssets/SpideyHQ by Tools/Build/Package-RecoveredWorld.py. Final candidate and acceptance remain recorded in the maintained HQ phase plan.",
+    "preview": "Tools/Launch/Play-SpideyHQ.ps1 uses separate ignored LocalData/spidey-hq-preview records and an isolated saved family; no installed authority selection changes."
   }
 }

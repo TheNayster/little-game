@@ -36,7 +36,7 @@ def main():
         paths=sorted(set(paths+args.extra_prefab))
         for path in paths:
             rows=list(world.load(path).values())
-            owner=next(r for r in rows if r['id']==owners[path])['game_object_id'] if path in owners else next(r for r in rows if r['script_type']=='MonoActor')['game_object_id']
+            owner=next(r for r in rows if r['id']==owners[path])['game_object_id'] if path in owners else next(r for r in rows if r['script_type'] in {'MonoActor','MonoProp'})['game_object_id']
             root=next(r for r in rows if r['id']==owner)
             prefab=next((r['fields'] for r in rows if r['script_type']=='PrefabReferences'),{})
             anchors=next(r['fields'] for r in rows if r['script_type']=='AnchoringComponent')

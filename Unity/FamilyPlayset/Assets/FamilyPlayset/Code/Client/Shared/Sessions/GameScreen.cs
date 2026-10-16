@@ -25,7 +25,7 @@ namespace LittleWeeps.Client
         public RectTransform Board { get; private set; }
         public bool JoystickMode { get; private set; }
         public PlayerNarration Narration {get;private set;}
-        public bool MenuOpen => ZooPhotoOpen || ElephantSnackOpen || ZooMapOpen || WaveRideCardOpen || TeacherCardOpen || BoatWorkshopOpen || OutfitsOpen || PondCloseup || CreekFishingCloseup || MiniGamesOpen || HideCardOpen || CollectionOpen || DiscoveryOpen || BookOpen || BookLibraryOpen || menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
+        public bool MenuOpen => spideyPanelOpen || ZooPhotoOpen || ElephantSnackOpen || ZooMapOpen || WaveRideCardOpen || TeacherCardOpen || BoatWorkshopOpen || OutfitsOpen || PondCloseup || CreekFishingCloseup || MiniGamesOpen || HideCardOpen || CollectionOpen || DiscoveryOpen || BookOpen || BookLibraryOpen || menu != null && menu.activeSelf || CharactersOpen || WorldLoading || sceneryCurtain!=null && sceneryCurtain.activeSelf;
         public readonly Dictionary<string, GamePointerSurface> Surfaces = new Dictionary<string, GamePointerSurface>();
         private readonly Dictionary<string, RectTransform> toys = new Dictionary<string, RectTransform>();
         private readonly Dictionary<string, Image> fills = new Dictionary<string, Image>();
@@ -85,7 +85,7 @@ namespace LittleWeeps.Client
             Surfaces.Clear();toys.Clear();fills.Clear();targetRings.Clear();targetArrows.Clear();
             resetCues.Clear();layoutPositions.Clear();
             friends.Clear();holders.Clear();travelButtons.Clear();fence.Clear();
-            ResetBirthday();ResetDaycarePlay();ResetVet();ResetTreasure();ResetSandpit();ResetDaycare();ResetKingdom();ResetNavigation();
+            ResetSpidey();ResetBirthday();ResetDaycarePlay();ResetVet();ResetTreasure();ResetSandpit();ResetDaycare();ResetKingdom();ResetNavigation();
             Board=null;avatar=null;menu=null;connecting=null;dragging=null;requestedArea=null;travelSubmitted=false;
             grabConfirmed=false;gestureEnded=false;gestureCancelled=false;dropSubmitted=false;renderedSequence=-1;
         }
@@ -323,7 +323,7 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
-            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildTreasure();BuildVet();BuildDaycarePlay();BuildSeagulls();BuildShore();BuildWaveRide();BuildBirthday();
+            BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildTreasure();BuildVet();BuildDaycarePlay();BuildSeagulls();BuildShore();BuildWaveRide();BuildBirthday();BuildSpidey();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
@@ -523,7 +523,7 @@ namespace LittleWeeps.Client
         }
         public void CancelPointers()
         {
-            CancelBirthdayIntent();
+            CancelSpideyIntent();CancelBirthdayIntent();
             foreach(var surface in Surfaces.Values)surface.Cancel();
             if(shared!=null && dragging!=null && !dropSubmitted)CancelPointer(dragging);
             dinosaurCareApproach=false;zooApproach=false;CancelSandpitIntent();treasureApproach="";kingdomApproach="";daycareApproach=-1;destination=null;stickDirection=Vector2.zero;
@@ -548,7 +548,7 @@ namespace LittleWeeps.Client
                 if(!shared.Connected)return;
                 FinishTravel();
                 if(MenuOpen || VetOwn || OwnWaveRider!=null || TravelPending || StairBusy || doorSubmitted)shared.Walk(WalkMode.Stop);
-                else if(BirthdayWalkingApproach && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
+                else if((SpideyWalkingApproach || BirthdayWalkingApproach) && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
                 else if(dinosaurCareApproach)shared.Walk(WalkMode.Destination,dinosaurCareEntry.x,dinosaurCareEntry.y);
                 else if(zooApproach)shared.Walk(WalkMode.Destination,zooEntry.x,zooEntry.y);
                 else if(clubApproach>=0 && destination.HasValue)shared.Walk(WalkMode.Destination,destination.Value.x,destination.Value.y);
@@ -574,8 +574,8 @@ namespace LittleWeeps.Client
             var delta=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
             if(World.AdvanceIdle(delta,out var maintenanceVisible,new[]{Actor}))dirty=true;
             if(maintenanceVisible)Render();
-            var mode=ZooPhotoOpen || VetOwn || OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:BirthdayWalkingApproach || clubApproach>=0 || dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
-            var input=BirthdayWalkingApproach || clubApproach>=0?destination??Vector2.zero:dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
+            var mode=ZooPhotoOpen || VetOwn || OwnWaveRider!=null || StairBusy || doorSubmitted?WalkMode.Stop:SpideyWalkingApproach || BirthdayWalkingApproach || clubApproach>=0 || dinosaurCareApproach || zooApproach || hideApproach>=0 || doorApproach || stairApproach || kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?WalkMode.Destination:JoystickMode?WalkMode.Direction:destination.HasValue?WalkMode.Destination:WalkMode.Stop;
+            var input=SpideyWalkingApproach || BirthdayWalkingApproach || clubApproach>=0?destination??Vector2.zero:dinosaurCareApproach?dinosaurCareEntry:zooApproach?zooEntry:hideApproach>=0?HideEntry:doorApproach?DoorEntry:stairApproach?new Vector2(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)):kingdomApproach!="" || daycareApproach>=0 || sandpitApproach>=0 || treasureApproach!=""?destination??Vector2.zero:JoystickMode?stickDirection:destination??Vector2.zero;
             if(Walking.AdvanceLocal(World,Actor,mode,input.x,input.y,delta))
             {
                 dirty=true;lastLocalAction=now;
@@ -640,7 +640,7 @@ namespace LittleWeeps.Client
             Present(Actor,characterVisual);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Present(friend.Key,friend.Value.view);
             PresentKingdomHops();
-            PresentHideAndSeek();PresentPark();PresentWheels();PresentTag();PresentDaycarePlay();PresentDinosaurRiders();PresentDinosaurPetters();PresentWaveRide();TickBirthday();
+            PresentHideAndSeek();PresentPark();PresentWheels();PresentTag();PresentDaycarePlay();PresentDinosaurRiders();PresentDinosaurPetters();PresentWaveRide();TickBirthday();TickSpidey();
         }
         private readonly List<(RectTransform root,float ground,int part,string key)> depthOrder=new List<(RectTransform,float,int,string)>();
         private void SortDepth()
@@ -693,7 +693,7 @@ namespace LittleWeeps.Client
                 else Add(rect,rect.anchoredPosition.y,3,toy.id);
             }
             if(stairFront!=null && HomeRooms.Property(CurrentArea))Add(stairFront.rectTransform,ToBoard(HomeRooms.EntryX(CurrentArea),HomeRooms.EntryY(CurrentArea)).y,2,"stair-cover");
-            AddBirthdayDepth(Add);
+            AddBirthdayDepth(Add);AddSpideyDepth(Add);
             Player(Actor,avatar);
             foreach(var friend in friends)if(friend.Value.root.gameObject.activeSelf)Player(friend.Key,friend.Value.root);
             if(keepyRoot!=null && Keepy!=null)Add(keepyRoot,ToBoard(Keepy.x,Keepy.y).y,4,"keepy-balloon");
@@ -735,6 +735,7 @@ namespace LittleWeeps.Client
             }
             if(shared!=null)RenderFriends();
             PresentHiddenPlayers();PresentClubHidden();
+            if(CurrentArea==SpideyHQ.Zone && spideyTiles.Count>0){characterVisual.gameObject.SetActive(false);foreach(var friend in friends.Values)friend.view.gameObject.SetActive(false);}
             // Larger y is farther back on the illustrated floor plane.
             SortDepth();
             activity.text=p.activity==""?"Free play Â· walk, drag, discover":p.activity=="garden"?(toyStates.First(t=>t.kind==ToyKind.Plant).water==3?"Your flower is happy! Keep exploring.":"Give the flower a drink"):(toyStates.First(t=>t.kind==ToyKind.Puddle).water==0?"All tidy! Keep exploring.":"Soak up the puddle");
@@ -797,7 +798,7 @@ namespace LittleWeeps.Client
                     visual=CreateAvatar("Friend-"+player.id);friends.Add(player.id,visual);
                     // Personal profile identifiers are not labels in the play scene.
                 }
-                visual.root.gameObject.SetActive(shared.Players.Contains(player.id) && GameWorld.AreaOf(player.zone)==CurrentArea);
+                visual.root.gameObject.SetActive(CurrentArea!=SpideyHQ.Zone && shared.Players.Contains(player.id) && GameWorld.AreaOf(player.zone)==CurrentArea);
                 visual.root.anchoredPosition=ToBoard(player.x,player.y);
                 visual.view.Select(player.avatar);
             }

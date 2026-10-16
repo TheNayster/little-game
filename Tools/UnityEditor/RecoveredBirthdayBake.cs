@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
-public static class RecoveredBirthdayBake
+public static partial class RecoveredBirthdayBake
 {
     [Serializable] public sealed class ActorInput {public string name,game_object_id,prefab;public long leftId,rightId,holdId,baseId,faceId;}
     [Serializable] public sealed class ActorInputs {public ActorInput[] actors;}
@@ -434,13 +434,15 @@ public static class RecoveredBirthdayBake
     static string Hash(string path){using(var sha=SHA256.Create())return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();}
     static ActionFrames BakeControllerHold(Animator animator,Camera camera,RenderTexture target,Transform root,Transform left,Transform right,Transform hold,Transform face,string actor,string mode,string view)
     {
-        bool walking=mode=="carry",pickup=mode=="pickup",happy=mode=="happy-hold";
+        bool walking=mode=="carry" || mode=="balloon-carry",pickup=mode=="pickup",happy=mode=="happy-hold";
         var graph=PlayableGraph.Create("Recovered holding controller");graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
         animator.enabled=true;animator.applyRootMotion=false;animator.fireEvents=false;animator.cullingMode=AnimatorCullingMode.AlwaysAnimate;
         var controller=AnimatorControllerPlayable.Create(graph,animator.runtimeAnimatorController);
         var output=AnimationPlayableOutput.Create(graph,"Recovered controller",animator);output.SetSourcePlayable(controller);
         graph.Play();graph.Evaluate(0);
-        controller.SetBool("isHolding",true);controller.SetFloat("armBlend",pickup?0:1);
+        bool legacy=animator.parameters.Any(p=>p.name=="isHoldingItem");
+        if(legacy){bool balloon=mode.StartsWith("balloon-",StringComparison.Ordinal);controller.SetBool("isHoldingItem",!balloon);if(balloon)controller.SetBool("isHoldingBalloon_LeftHand",true);if(pickup)controller.SetTrigger("Lift");}
+        else{controller.SetBool("isHolding",true);controller.SetFloat("armBlend",pickup?0:1);}
         if(mode=="sit-hold"){
             controller.SetBool("isSitting",true);int layer=controller.GetLayerIndex("LowPriority");if(layer<0)throw new Exception("Source sitting layer is missing.");controller.SetLayerWeight(layer,1);controller.Play("LowPriority.Sitting",layer,0);
         }
@@ -450,9 +452,10 @@ public static class RecoveredBirthdayBake
         // Original Default_holdPreset: arms=3, vertical=50%, horizontal=0%,
         // spine=100%. HoldPresetSo.get_HoldPresets divides each by 100 in
         // independently mapped native code at 0x3947710.
-        controller.SetFloat("holdLeftArmVertical",mode=="hang"?1:.5f);controller.SetFloat("holdLeftArmHorizontal",0);
-        controller.SetFloat("holdRightArmVertical",mode=="hang"?1:.5f);controller.SetFloat("holdRightArmHorizontal",0);controller.SetFloat("holdSpine",1);
-        controller.SetBool("isWalking",walking);controller.SetFloat("walkSpeed",walking?1:0);graph.Evaluate(pickup?0:.5f);
+        if(!legacy){controller.SetFloat("holdLeftArmVertical",mode=="hang"?1:.5f);controller.SetFloat("holdLeftArmHorizontal",0);
+            controller.SetFloat("holdRightArmVertical",mode=="hang"?1:.5f);controller.SetFloat("holdRightArmHorizontal",0);controller.SetFloat("holdSpine",1);
+            controller.SetBool("isWalking",walking);}
+        controller.SetFloat("walkSpeed",walking?1:0);graph.Evaluate(pickup?0:.5f);
         if(happy){controller.SetTrigger("Happy");graph.Evaluate(0);}
         int count=mode=="hang"?30:happy?30:pickup?4:walking?10:1;
         var row=new ActionFrames{actor=actor,action=mode+Suffix(view),clip="controller:"+AssetDatabase.GetAssetPath(animator.runtimeAnimatorController),texture=actor+"/"+mode+Suffix(view)+".png",
@@ -460,7 +463,7 @@ public static class RecoveredBirthdayBake
         var sheet=new Texture2D(2048,(count+7)/8*256,TextureFormat.RGBA32,false);sheet.SetPixels32(new Color32[sheet.width*sheet.height]);
         camera.targetTexture=target;
         for(int frame=0;frame<count;frame++){
-            if(pickup)controller.SetFloat("armBlend",frame/(float)(count-1));
+            if(pickup && !legacy)controller.SetFloat("armBlend",frame/(float)(count-1));
             if(frame>0)graph.Evaluate(1/12f);
             camera.Render();RenderTexture.active=target;
             var image=new Texture2D(256,256,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,256,256),0,0);image.Apply();

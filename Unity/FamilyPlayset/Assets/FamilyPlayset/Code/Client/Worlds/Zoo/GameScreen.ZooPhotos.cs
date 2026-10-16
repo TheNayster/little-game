@@ -266,7 +266,7 @@ namespace LittleWeeps.Client
             for(var i=0;i<data.Length;i++)data[i]=Mathf.Sin(i*.71f)*Mathf.Exp(-i/180f)*.13f;
             clip.SetData(data,0);source.clip=clip;source.volume=.18f*ZooEffectGain;source.Play();Destroy(go,.2f);Destroy(clip,.25f);
         }
-        private Texture2D CaptureZooPicture()
+        private Texture2D CaptureZooPicture(Func<Graphic,bool> include=null,int maxDimension=0)
         {
             var canvas=ownedCanvas.GetComponent<Canvas>();var mode=canvas.renderMode;var oldCamera=canvas.worldCamera;var distance=canvas.planeDistance;
             var active=RenderTexture.active;var hidden=new List<Graphic>();var layers=new List<(GameObject go,int layer)>();
@@ -276,7 +276,7 @@ namespace LittleWeeps.Client
                 // existing live UI geometry, textures, masks and depth order.
                 // No cloned behaviours, desktop grab or substitute animal pose.
                 foreach(var g in canvas.GetComponentsInChildren<Graphic>(false)){
-                    var keep=ZooPictureGraphic(g);
+                    var keep=include!=null?include(g):ZooPictureGraphic(g);
                     if(g.enabled && !keep){hidden.Add(g);g.enabled=false;}
                 }
                 foreach(var t in canvas.GetComponentsInChildren<Transform>(true)){layers.Add((t.gameObject,t.gameObject.layer));t.gameObject.layer=31;}
@@ -284,7 +284,7 @@ namespace LittleWeeps.Client
                 target=RenderTexture.GetTemporary(Screen.width,Screen.height,24,RenderTextureFormat.ARGB32);camera.targetTexture=target;
                 canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=100;
                 Canvas.ForceUpdateCanvases();camera.Render();
-                return ReadReduced(target,ZooPhotoAlbum.MaxDimension);
+                return ReadReduced(target,maxDimension>0?maxDimension:ZooPhotoAlbum.MaxDimension);
             }finally{
                 canvas.renderMode=mode;canvas.worldCamera=oldCamera;canvas.planeDistance=distance;
                 foreach(var item in layers)if(item.go!=null)item.go.layer=item.layer;

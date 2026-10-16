@@ -94,7 +94,7 @@ Read the current server rollout policy before any later deployment. New shared s
 
 ## Current status and next task
 
-Phase 0 static recovery and inventory is complete. Phases 1–6 remain pending. Next bounded implementation task is **Phase 1: world foundation and character actions**, using the recovered scene and binding inventory below. Keep one phase active at a time and update its actual acceptance before continuing. Hulk's [existing phase record](hulk-birthday-world-phase-plan-2026-10-15.md) remains authoritative for its own delivered world.
+The owner authorized all phases. Technical implementation and packaged PC acceptance are recorded in the final section below; the dated Phase 0 checkpoint preserves its original static-only evidence. Owner play/motion/audio acceptance and physical-device rollout remain separate. Hulk's [existing phase record](hulk-birthday-world-phase-plan-2026-10-15.md) remains authoritative for its own delivered world.
 
 ## Phase 0 recovery checkpoint October 15
 
@@ -110,7 +110,7 @@ The earlier 192 HQ-related native ranges were rechecked against current original
 
 ### Activity coverage and implementation acceptance
 
-IDs below are exported component file IDs in `saf_Park.unity`. Every row is **recovered static evidence; gameplay remains pending**. Family adaptations apply the four-player completion contract above. Exact runtime timings, trigger priorities and interruption transitions must be traced at the affected implementation phase; serialized numbers alone do not establish their semantics.
+IDs below are exported component file IDs in `saf_Park.unity`. This historical table defines the recovered scope; current implementation and runtime acceptance supersede its original pending status in the final section below. Family adaptations apply the four-player completion contract above. Exact runtime timings, trigger priorities and interruption transitions must be traced at the affected implementation phase; serialized numbers alone do not establish their semantics.
 
 | Scope | Source bindings and recovered actions | Required implementation acceptance |
 | --- | --- | --- |
@@ -136,3 +136,37 @@ The Goblin scene configuration supports both stolen item types, five battle cent
 Ignored evidence root: `LocalData/Research/DuploMarvel/world-tests/SpideyHQ/Phase0/`. It contains `catalog-local-closure.json`, `spidey-download-receipt.json`, export/load receipts and logs, `Inventory/` reference/actor/activity/closure/configuration/hash files, `binding-summary.json`, `existing-native-coverage.json` and `native-verified/independent-verification.json`. The recovered scene SHA256 is `3b428b542b5d160808c5dba39c2a3301bd08925c89fe6fd00553c68a324ce7e3`.
 
 The reusable [catalog inspector](../../Tools/Verification/Inspect-RecoveredAddressableCatalog.py) resolves the original GUID, detects alias cycles and records local bundle hashes without changing inputs. The [world inspector](../../Tools/Verification/Inspect-RecoveredUnityWorld.py) now accepts extra activity-type patterns and records legacy prop handlers while retaining its existing default activity selection. Both ran against the recovered HQ inputs; the scene hash remained unchanged. Native mapping and byte/decode checks passed. This checkpoint establishes static recovery/inventory acceptance only: no new production game build, visual/audio approval, device installation or live-server rollout.
+
+
+## Technical delivery October 15
+
+The owner authorized completing all phases. The resulting **family adaptation** retains the recovered HQ setting, cast, pictures, props and actions, with shared four-player rules in the established 2D game. This is reconstructed code, not the publisher's original C# or a one-to-one simulation of its 3D engine.
+
+| Phase | Delivered scope and technical acceptance |
+| --- | --- |
+| 0 | Exact scene/dependency/actor/native inventory above; source files retained and hashed. |
+| 1 | HQ world card, authoritative state, additive schema54→55 migration, spaced four-person arrival, role choices, original character strips and hand tracks. Native four-player entry and current editor rules pass. |
+| 2 | One pizza queue and balloon queue, seller serving, one held object, eating, floating/slow fall, six source seat pegs, sleep/wake, poster flip, globe dots, actual pictured camera result and nearby tumble. Native queue/item/station controls and interruption checks pass. |
+| 3 | One natural theft of pizza or balloon, same-object return, shared web/pull/recovery, correct Spin invisibility and Spidey sense. Four human contributions and private missing-role NPC assistance checked. Explicit Leave/area departure removes only that participant; all declining ends without a reward. |
+| 4 | Original26-variant palette, shared placement/rotation/removal, per-brick edit ownership and saved IDs. Five original pictures with4/9/16/25 pieces, common board, real drag/snap plus tap fallback, revision/ownership checks and replay. Four-client completion and contested-edit rules pass. |
+| 5 | Source-informed civilian movement/food/balloon/seats, hand-specific carry poses, recovered soundtrack/effects, ambient network coalescing, saved authority/private reopening and private→shared separation. Native PC and phone/tablet-shaped full views inspected; subjective owner audio/motion acceptance remains separate. |
+| 6 | Packaged574 Windows client/server, isolated saved-family launcher for1–4 players, hash receipts, maintained guide/decision/layout records and main delivery. Launcher verifies durable readiness and source characters from packaged media. |
+
+### Explicit family adaptations and limits
+
+The original single-player3D interaction model becomes pictured approach buttons, optional puzzle dragging, source-projected2D characters and a common authoritative activity. The fourth participant is a recovered civilian helper with web contribution; absent hero roles are NPC-assisted. Fourth queue slots extend the third authored segment. The slide follows seven projected source path points over the serialized1.25seconds; stall service uses the recovered17/12second serve clip. Six seat coordinates come from actual serialized peg transforms.
+
+The native JigsawController CreatePuzzle method loads its difficulty at offset0xb0 and squares it (`0x039CB1FC–0x039CB21C`), supporting4/9/16/25 pieces. Our pieces use rectangular crops and fixed shared targets with a.35-cell snap tolerance, rather than the source's shaped masks and freely merged groups. Building uses a2D snap mat rather than3D stacking. Goblin uses one common encounter center and a four-person formation, rather than cycling all five original3D battle centers. Source3D particle effects, autonomous-director priorities and physics are represented by the reconstructed2D actions/feedback; exact particle choreography and original AI are not claimed. Camera results are an actual local world picture, not a persistent shared album. Balloon/ground objects return to stock after60seconds unused so unattended props cannot exhaust play.
+
+The legacy HQ animator uses `isHoldingItem`, `walkSpeed` and the left balloon parameter; Hulk's newer hold parameters do not apply. The bake now has526 action strips,24 prop views, zero missing requested clips, zero bake exceptions and no missing-parameter warnings. Content-v4 contains601 files /68,169,496bytes,34 pictures and9PCM audio files. Its actor manifest SHA256 is `432936488cad18d0a68c896000a27e9878c7dccc0a8819f219d6cba339a15952`. Recovered media stays ignored; it is packaged locally, not committed. The unchanged Hulk pack is986files /137,244,911bytes with manifest `0976e6ad29848178ccfce2b3409a906b6a447ef74ffd172d316bb42198242a9e`.
+
+### Evidence, failures and reuse
+
+- Full standard569 prebuild gate and focused572/573/574 HQ/Hulk rules ran under Unity6000.3.24f1. Final574 client/server release builds have zero errors/warnings. The optional SDK harness hit Windows Application Control; Unity's actual editor rule checks passed without changing security.
+- Native572 activity run: `LocalData/SharedGarden/7c3df04a57d94cba852b095e889ec8a7/spidey-hq/result.json`. Eight activity groups passed, including four-person queue, natural web recovery, real puzzle drag and shared completion, building, poster/globe/photo, balloon/slide/seat/sleep/powers and independent departure/return. Phone/tablet-shaped captures show the actual native UI. Its overall result remains failed because saved-HQ startup exposed an initialization error; it is not relabeled passed.
+- Earlier569 exposed per-frame snapshot flooding, corrected with ambient coalescing;570 exposed camera-moving test taps;571 exposed transparent prop hitboxes/overlapping globe controls. Failed evidence remains retained at the checkpoint paths in repository history and LocalData.573's first startup guard exposed an uninitialized position lookup;574 guards both creation and position readiness.
+- The final source change from572 to574 is limited to the saved-HQ depth initialization guards and build version; accepted activity evidence is reused for unchanged paths. Final574 saved-world/four-client catch-up and private-mode runs are recorded below. No new full unrelated world qualification is claimed.
+
+- Final574 saved HQ/four-client reopening and disconnect/rejoin: LocalData/SharedGarden/7c3df04a57d94cba852b095e889ec8a7/spidey-hq-reopen-574/result.json — passed, zero runtime exceptions.\n- Final574 private NPC-assisted recovery, brick creation, actual private process reopening and automatic authority handoff/explicit solo return: LocalData/FamilyLAN/85545ec4a6a34baa98e80780672fd2d8/spidey-hq/result.json — passed, zero runtime exceptions; private progress never entered the authority.\n- Packaged574 two-player launcher: LocalData/spidey-hq-launcher-check.json, disposable run 11e602c479ef45f4a587ede539bbec1b — passed durable readiness/source visibility; all task-owned test processes closed. Final source check matches all2,478 Unity files in the574 source manifest. Packaging receipts are Builds/NetworkProbe/G3-0.0.574/SpideyHQ-content-receipt.json and HulkBirthday-content-receipt.json.
+
+Use [Play-SpideyHQ.ps1](../../Tools/Launch/Play-SpideyHQ.ps1) (`-Players 1` through `-Players 4`, default2), backed by its own ignored `LocalData/spidey-hq-preview.json` and saved preview family. D3D11 avoids the previously recorded DX12 startup issue; this task does not claim to fix DX12. Windows phone/tablet-shaped captures are layout simulations. Physical devices, owner play/motion/audio approval and a coordinated update of the installed authority/apps are unperformed and separate. Real family saves, enrollment and the existing Hulk preview selection are preserved.

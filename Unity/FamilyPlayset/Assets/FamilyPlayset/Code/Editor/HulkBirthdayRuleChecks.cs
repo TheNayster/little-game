@@ -112,7 +112,7 @@ public static class HulkBirthdayRuleChecks
         // Simulate the preceding shipped schema without regenerating existing worlds.
         old.schema=53;old.birthday=null;
         var before=old.toys.Select(t=>t.id).ToArray();var world=GameWorld.WithBirthday(GameWorld.Restore(old));
-        Need(world.Schema==54 && world.ReadBirthday().members.Length==4,"additive birthday migration");
+        Need(world.Schema==WorldLayout.Schema && world.ReadBirthday().members.Length==4,"additive birthday migration");
         Need(world.ReadToys().Select(t=>t.id).SequenceEqual(before),"existing inventory retained");
         foreach(var actor in Actors){Need(Send(world,actor,SoloAction.Travel,HulkBirthday.Zone).Accepted,"party arrival");Need(Send(world,actor,SoloAction.Move,x:650,y:160).Accepted,"walk to gift");}
         Need(Send(world,"one",SoloAction.Birthday,"claim","birthday-gift-0").Accepted,"first prop claim");
