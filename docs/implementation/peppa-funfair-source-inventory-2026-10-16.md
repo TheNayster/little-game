@@ -76,3 +76,6 @@ Build596 passes actual four-client pictured wheel tap/fast drag, pond drag, six-
 
 
 The repeat598 four-client launcher passes after the packed-mask change. Wheel-load diagnostics measure132–144ms across the four native clients; all four remain connected and render the recovered cast. These measurements establish the new load behavior, not the precise cause of the earlier unprofiled frame gap. The earlier timeout remains recorded.
+
+
+Final combined source includes Markets, preserves the canceled world removal and uses schema61/content97/protocol3.685 passes Unity media/JSON gates and the representative four-client migration/ride/independent-departure/world-travel/authority-reopen check. The local Markets pack was copied only after all570 receipt hashes matched; it remains ignored. Earlier source-specific records retain their actual coverage and failures.

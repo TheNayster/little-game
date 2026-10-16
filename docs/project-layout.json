@@ -852,7 +852,9 @@
       "Client/Worlds/PeppaFunfair",
       "Tools/Art/Prepare-PeppaFunfairProbe.py",
       "Tools/Art/Assemble-PeppaFunfairPack.py",
-      "Tools/Verification/Inspect-PeppaFunfairUi.py"
+      "Tools/Verification/Inspect-PeppaFunfairUi.py",
+      "Tools/Verification/Test-PeppaFunfairIntegration.py",
+      "Tools/Verification/Test-PeppaFunfairPresentation.py"
     ],
     "localSource": "LocalData/Research/PeppaPig/peppa-funfair-project",
     "localPack": "LocalData/Research/PeppaPig/world-tests/Funfair/Content-v6",

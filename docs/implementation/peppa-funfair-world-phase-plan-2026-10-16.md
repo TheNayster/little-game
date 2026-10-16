@@ -2,7 +2,7 @@
 
 Owner selection **PEP-01**, October 16, 2026. Goal IDs: WORLD-02 / FAMILY-01 / ITEM-02. Build a functioning DUPLO Peppa Pig Funfair adaptation inside Little Weeps, with its recognizable setting, character actions and five selected activities available to up to four family players together.
 
-**Status: PC gameplay, original-control layout and launcher verified; main integration pending.** Phases0–7 are technically verified. Phase8 packaging and the checked one-to-four-player launcher pass; source delivery is being reconciled with the concurrent Markets/Drive work. [Selected worlds tracker](../selected-worlds-tracker.md) records the other selected worlds. Physical-device rollout and owner visual/audio acceptance remain separate.
+**Status: all PC implementation phases technically complete; combined release685 checked, main delivery finishing.** Phases0–7 are technically verified. Phase8 packaging and the checked one-to-four-player launcher pass; the combined Markets/Funfair source is checked and source delivery is finishing. [Selected worlds tracker](../selected-worlds-tracker.md) records the other selected worlds. Physical-device rollout and owner visual/audio acceptance remain separate.
 
 ## Research and available inputs
 
@@ -127,9 +127,9 @@ Update this plan, the selected-world tracker, main build guide and relevant deci
 | 5 Face painting | Updated layout passed594; final source check pending | Three touch contributors paint the original round stencil using six source colours and a cycling icon; reveal/persistence passed.596 also applies the source design detail to the recipient. |
 | 6 Complete world presentation | Technical review complete | PC and phone/tablet-shaped views inspected; eight decoded clips, section music and source props packaged. Subjective motion/audio approval remains with owner. |
 | 7 Shared play and recovery checks | Passed |592 activity assertions;593 four-client repair/reopen/late-join and Hulk/HQ visits;593 actual private reopen/automatic authority handoff/solo return. No runtime exceptions in final runs. |
-| 8 Packaging and source delivery | Packaging/launcher passed; Git integration pending |598 release profiles;292 checked Funfair files; four-client launcher remains ready. Final combined main source/remote commit pending concurrent integration. |
+| 8 Packaging and source delivery | Combined release checked; main delivery finishing |685 packages the current source and292 Funfair media files alongside Markets/Hulk/HQ. Four current clients preserve the earlier save, share direct wheel input, travel between worlds and reopen the authority. |
 
-Next bounded task: **integrate the checked source with completed concurrent worlds, verify the resulting contract and push main.**
+Next bounded task: **finish main/remote delivery and select the checked685 launcher; physical-device rollout and owner review remain separate.**
 
 
 ## Technical acceptance — October16
@@ -166,3 +166,19 @@ Original Funfair gameplay footage and serialized UI were inspected after the own
 #### Verified launcher and current packaging
 
 598 passes the same four-client packaged launcher that timed out in597. `LocalData/peppa-funfair-launcher-check.json` records the durable ready state for family27dd7b7d2ca041c39949114d82275c90. Actual wheel loads measured132/137/140/144ms with the packed hit mask; no runtime exception was logged. The native candidate also preserves the committed Drive removal. Its schema60/content96 reflects the changed action ordering; this is isolated preview evidence, not a live-family server/app rollout. Content-v6 contains292 files /73,934,054 bytes and the unchanged actor-manifest hash above. The remaining work is integration with the completed Markets source, additive old-fork save checks and one combined four-client check before main delivery.
+
+
+### Combined final PC candidate685 — October16
+
+The completed Markets commitcfa3d0d is merged, and the canceled Drive world remains removed. Current source is schema61/content97/protocol3: preserve Markets action39, retain the removed action38 hole and append Funfair40. The compatibility change is for the shared world state/action contract, not artwork. Any future installed-family update needs the project’s coordinated server/app policy; this task changes no installed authority or devices.
+
+Both earlier isolated save shapes migrate additively. A Funfair60 checkpoint without Markets gains Markets while retaining its world ID, ride results and design/history. A Markets checkpoint without Funfair gains Funfair while retaining photos, completed work and pony rounds. Missing/empty new modules are allowed only before the combined format and when no saved player occupies the absent world; current-format loss and an occupied absent module remain invalid. Full-Core fixtures and native Unity JSON gates pass, as do both existing hero-world gates.
+
+The first combined build684 stopped before producing binaries because ignored Markets media had not followed the Git merge. The exact570 receipt-matching images/audio and their available metadata were copied from the main checkout.685 then passes the media hash/import gate and both nondevelopment Windows release profiles with zero errors/warnings. Recovered media remains ignored; no private data or other chat’s source was copied over.
+
+`LocalData/SharedGarden/707de453520c498db7ca013f8c2e44e7/funfair-integration-685/result.json` passes with zero runtime errors: four actual current clients reopen the earlier Funfair save and add Markets; pictured wheel tap/fast drag controls one shared ride; one person leaves for Markets while siblings finish; all four visit Markets, packaged Hulk and HQ and return with paint/photo/slide history intact; the real combined authority and all four clients close/reopen with both world states retained. The unchanged activity rules retain594/596 coverage;597 supplies the face/cup visual and private/shared separation evidence. This combined pass is scoped to changed state/admission/navigation and independent departure.
+
+The pre-isolation root prototypes were preserved twice, with hashes, then22 unchanged task-owned files were moved into ignored `LocalData/Research/PeppaPig/world-tests/Funfair/root-files-before-integration/moved-from-root` to allow safe main integration. The pre-existing generated project version589 is retained in commitf7040e0; the fresh combined build intentionally advances it through the established Unity build API. Unrelated tracked/untracked work, local saves, media, signing, enrollment and other preview families remain preserved.
+
+
+The final685 launcher also passes four-client durable readiness: `LocalData/peppa-funfair-launcher-check.json`, family411e32eb6d894f6b9f124c3274053364. It selects the packaged685 client/server and the292-file Funfair receipt. Visible play windows use normal mouse input; only hidden setup/check clients use the fixture. The native candidate is ready for source delivery and the separate owner play/audio review.
