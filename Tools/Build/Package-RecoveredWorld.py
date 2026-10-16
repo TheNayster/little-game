@@ -15,7 +15,7 @@ def write(p,value):p.write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8'
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--build',type=int,required=True);p.add_argument('--content',type=int,required=True);p.add_argument('--world',choices=['SpideyHQ','HulkBirthday'],required=True);p.add_argument('--art',type=Path,required=True);p.add_argument('--receipt',type=Path,required=True);a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--build',type=int,required=True);p.add_argument('--content',type=int,required=True);p.add_argument('--world',choices=['SpideyHQ','HulkBirthday','PeppaFunfair'],required=True);p.add_argument('--art',type=Path,required=True);p.add_argument('--receipt',type=Path,required=True);a=p.parse_args()
     build=ROOT/f'Builds/NetworkProbe/G3-0.0.{a.build}';art=a.art.resolve();receipt=read(a.receipt)
     assert read(build/'build-summary.json')['content']==a.content,'Wrong shared content contract'
     for row in read(build/'artifact-manifest.json'):

@@ -31,6 +31,7 @@ namespace LittleWeeps.EditorTools
         public static void BirthdayWindows(){HulkBirthdayRuleChecks.Run();BuildWindows();}
         // HQ follow-ups retain identical release profiles, with focused HQ and
         // birthday regression checks after the recorded whole-game gate.
+        public static void FunfairWindows(){PeppaFunfairRuleChecks.Run();BuildWindows();}
         public static void SpideyWindows(){SpideyHQRuleChecks.Run();HulkBirthdayRuleChecks.Run();BuildWindows();}
         private static void BuildWindows()
         {

@@ -21,6 +21,9 @@ LocalData/
 .vs/
 .idea/
 *.csproj
+!Tools/Verification/PeppaFunfair.Tests/PeppaFunfair.Tests.csproj
+Tools/Verification/PeppaFunfair.Tests/bin/
+Tools/Verification/PeppaFunfair.Tests/obj/
 !Tools/Verification/ParkPlay.Tests/ParkPlay.Tests.csproj
 Tools/Verification/ParkPlay.Tests/bin/
 Tools/Verification/ParkPlay.Tests/obj/

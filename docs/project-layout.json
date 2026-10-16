@@ -355,7 +355,15 @@
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyArt.cs": "SpideyHQ",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyPuzzleDrag.cs": "SpideyHQ",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/SpideyHQ/SpideyHQLayout.cs": "SpideyHQ",
-    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyImage.cs": "SpideyHQ"
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyImage.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/PeppaFunfair/GameWorld.PeppaFunfair.cs": "PeppaFunfair",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/PeppaFunfair/PeppaFunfair.cs": "PeppaFunfair",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/PeppaFunfair/PeppaFunfair.Validation.cs": "PeppaFunfair",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/PeppaFunfair/FunfairArt.cs": "PeppaFunfair",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/PeppaFunfair/FunfairImage.cs": "PeppaFunfair",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/PeppaFunfair/GameScreen.PeppaFunfair.Activities.cs": "PeppaFunfair",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/PeppaFunfair/GameScreen.PeppaFunfair.cs": "PeppaFunfair",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/PeppaFunfair/GameScreen.PeppaFunfair.Integration.cs": "PeppaFunfair"
   },
   "assemblyPolicy": "Keep existing Core/Client assembly membership. World folders do not define independent partial types.",
   "worlds": [
@@ -814,5 +822,19 @@
     "retirement": "Replace only after HQ stops consuming this pipeline; preserve original recovery evidence.",
     "delivery": "Ignored recovered media is packaged into client StreamingAssets/SpideyHQ by Tools/Build/Package-RecoveredWorld.py. Final candidate and acceptance remain recorded in the maintained HQ phase plan.",
     "preview": "Tools/Launch/Play-SpideyHQ.ps1 uses separate ignored LocalData/spidey-hq-preview records and an isolated saved family; no installed authority selection changes."
+  },
+  "funfairRecoveryContent": {
+    "owner": "PEP-01 / WORLD-02 / FAMILY-01 / ITEM-02: Peppa Funfair",
+    "consumers": [
+      "Core/Worlds/PeppaFunfair",
+      "Client/Worlds/PeppaFunfair",
+      "Tools/Art/Prepare-PeppaFunfairProbe.py",
+      "Tools/Art/Assemble-PeppaFunfairPack.py"
+    ],
+    "localSource": "LocalData/Research/PeppaPig/peppa-funfair-project",
+    "localPack": "LocalData/Research/PeppaPig/world-tests/Funfair/Content-v4",
+    "retirement": "Retain recovered originals and evidence while the world or its provenance consumes them. Retire the isolated PeppaFunfair worktree only after main integration and preserving required ignored builds, saves and evidence.",
+    "delivery": "Recovered media remains ignored. Package-RecoveredWorld.py verifies the exact local receipt and packages StreamingAssets/PeppaFunfair. The phase plan records the accepted build and remaining device/owner limits.",
+    "preview": "Tools/Launch/Play-PeppaFunfair.ps1 owns separate LocalData/peppa-funfair-preview records and one isolated saved family, preserving existing Hulk/HQ and installed-family selections."
   }
 }

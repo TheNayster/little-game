@@ -2,7 +2,7 @@
 
 Owner selection **PEP-01**, October 16, 2026. Goal IDs: WORLD-02 / FAMILY-01 / ITEM-02. Build a functioning DUPLO Peppa Pig Funfair adaptation inside Little Weeps, with its recognizable setting, character actions and five selected activities available to up to four family players together.
 
-**Status: Planned.** This request creates the implementation plan. Phases 0–8 remain pending; next is Phase 0 recovery. [Selected worlds tracker](../selected-worlds-tracker.md) records the other selected worlds. Implementation of those worlds is outside this plan.
+**Status: implementation and packaged PC acceptance complete; main integration pending.** Phases0–7 are technically verified. Phase8 packaging and the checked one-to-four-player launcher pass; source delivery is being reconciled with the concurrent Markets/Drive work. [Selected worlds tracker](../selected-worlds-tracker.md) records the other selected worlds. Physical-device rollout and owner visual/audio acceptance remain separate.
 
 ## Research and available inputs
 
@@ -119,14 +119,35 @@ Update this plan, the selected-world tracker, main build guide and relevant deci
 
 | Phase | Status | Evidence |
 | --- | --- | --- |
-| 0 Exact world recovery | Pending | Initial APK inspection exists; Funfair scene recovery pending |
-| 1 World and shared state | Pending | — |
-| 2 Character actions | Pending | — |
-| 3 Three rides | Pending | — |
-| 4 Hook a Flower and prizes | Pending | — |
-| 5 Face painting | Pending | — |
-| 6 Complete world presentation | Pending | — |
-| 7 Shared play and recovery checks | Pending | — |
-| 8 Packaging and source delivery | Pending | — |
+| 0 Exact world recovery | Complete with explicit adaptation | One main/four activity scenes,14 bundles, zero scoped parse/dependency errors; [source inventory](peppa-funfair-source-inventory-2026-10-16.md). Separate teacup controller was not found. |
+| 1 World and shared state | Technically verified | Authoritative commands, shared clocks/queues, deep snapshots, legacy additive migration and Unity JSON restore pass. |
+| 2 Character actions | Technically verified | Seven recovered roles,25 scene instances,236 strips, original hand/face anchors, role selection and source-eligible slide cast. Native body/tool contact inspected. |
+| 3 Three rides | Technically verified | Four actual clients board/start/spin both rides; independent exit preserves siblings. Four slide turns, three poses and photos pass. |
+| 4 Hook a Flower and prizes | Technically verified | Native cast/rod/tether, shared queue, moving target input and one source-type prize per catch; duplicate/stale authority checks pass. |
+| 5 Face painting | Technically verified | Three actual touch contributors paint one recovered head, reveal a common design and retain it across character change/reopening. |
+| 6 Complete world presentation | Technical review complete | PC and phone/tablet-shaped views inspected; eight decoded clips, section music and source props packaged. Subjective motion/audio approval remains with owner. |
+| 7 Shared play and recovery checks | Passed |592 activity assertions;593 four-client repair/reopen/late-join and Hulk/HQ visits;593 actual private reopen/automatic authority handoff/solo return. No runtime exceptions in final runs. |
+| 8 Packaging and source delivery | Packaging passed; Git integration pending |593 release profiles,289 checked Funfair files, separate saved launcher with four-client durable-ready verification. Final main/remote commit pending concurrent integration. |
 
-Next bounded task: **Phase 0, resolve and inspect Peppa Funfair's exact shipped scene and dependency closure.**
+Next bounded task: **integrate the checked source with completed concurrent worlds, verify the resulting contract and push main.**
+
+
+## Technical acceptance — October16
+
+The [source inventory and adaptation record](peppa-funfair-source-inventory-2026-10-16.md) resolves the exact recovered pack and explains the family mechanics. Production uses the existing2D pipeline and PC authority. The separate teacup ride is added using recovered cabin art; it is not presented as a recovered publisher controller. The three-cabin wheel explicitly accommodates four children. Shared positive-spin cycles, projected slide curves, the2D fishing tether and bounded face surface are family adaptations. Mummy is not in the source slide cast and must select another available role for that activity; parents without a fairy spin use their source happy pose.
+
+The Funfair source in isolated `LocalData/Worktrees/PeppaFunfair` is schema59/content93/protocol3 before merging concurrent worlds. GameWorld migration, validation, cloning, dispatch, time advancement, disconnect/travel release, menu/input routing and snapshots are connected. Ride occupancy and booth edits clear on restore while designs, prize counts, slide/photo history and the completed photo's frozen role/pose remain. A cast change cannot rewrite an earlier photo.
+
+| Evidence | Actual coverage |
+| --- | --- |
+| Native592: `LocalData/SharedGarden/59f7c04f7b4f4a78a303f3cea220040b/funfair/result.json` | Four native clients pass menu/cast, both shared rides, independent rider exit, Hook a Flower, three-person painting, four slide turns/photos, smoothies, cup drinking and balloons. The overall run remained failed because saved-client startup then threw; its passed activity assertions are retained separately. |
+| Native593 repair: same family, `funfair-reopen-593/result.json` | Pass, zero runtime exceptions. Four fresh clients reopen the exact failed checkpoint, paint the actual recovered head, reveal the source reaction, disconnect/rejoin during a sibling's slide, close/reopen the authority and all four clients, preserve a photo across Peppa→Mummy selection, visit packaged Hulk/HQ and return. |
+| Private593: `LocalData/FamilyLAN/9a81c377ebbd45f48f2a314cfc467098/peppa-funfair/result.json` | Actual private ride and process reopen; generated paired authority starts and the same real client joins automatically without importing private progress; explicit solo return restores its private result. Zero runtime exceptions. |
+| Focused editor/.NET checks | Funfair ownership, common rides/queues, duplicate catches, concurrent painting revisions, handoff/drop, independent departure, deep snapshots, completed-photo retention and additive legacy migration pass. Unity JSON gate passes. Existing Hulk authority fixtures pass on this source. |
+| Launcher593 | `LocalData/peppa-funfair-launcher-check.json`: four packaged clients remain ready and show four recovered characters; no research-directory art override. |
+
+The observed saved-client exception came from clearing the completed photo subject while retaining its timestamp. Restore now preserves that history; presentation also tolerates older empty subjects. Photo role/pose are frozen at capture. Other repaired defects were missing face-atlas transforms, rig-origin face anchors, wheel-over-rider drawing, tall scenery cropping, generic-avatar flashes and crowded character-picker controls. The final painting interface shows the recovered head beneath translucent strokes.
+
+Release593's Windows client and dedicated server use nondevelopment release profiles with zero errors/warnings. The Funfair pack has289 files /71,473,497 bytes; actor manifest SHA256 `8e04587e290bc42f936c0b8a67d724e54a48db5cd278d917c185f8e8432225f0`. The same candidate also packages the checked unchanged Hulk568 and HQ574 media. Raw packages, publisher code, exports, generated media, credentials, local builds and saves remain ignored.
+
+The checked entry point is [Play-PeppaFunfair.ps1](../../Tools/Launch/Play-PeppaFunfair.ps1), default two players, optional `-Players 1` through `-Players 4`. Its own saved family and preview records preserve the existing Hulk/HQ launcher families and installed authority. Technical acceptance does not claim physical phones/tablets, subjective audio listening, identical original3D physics/shaders, owner visual approval or installation/live-server publication. No official-app purchase state was changed.
