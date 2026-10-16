@@ -20,7 +20,7 @@ namespace LittleWeeps.EditorTools
             SeagullJsonTests.Run();ShoreJsonTests.Run();
             AdventureRepairJsonTests.Run();
             WaveRideJsonTests.Run();SandpitJsonTests.Run();TreasureJsonTests.Run();NpcPresentationTests.Run();VetRuleTests.Run();DaycarePlayTests.Run();RevealReactionTests.Run();
-            ZooAlbumTests.Run();HulkBirthdayRuleChecks.Run();SpideyHQRuleChecks.Run();BuildWindows();
+            ZooAlbumTests.Run();HulkBirthdayRuleChecks.Run();SpideyHQRuleChecks.Run();MarketsJsonChecks.Run();BuildWindows();
         }
         // Focused local verification uses identical release binaries/profiles.
         // Default Windows keeps its existing whole-game prebuild checks. This
@@ -32,6 +32,7 @@ namespace LittleWeeps.EditorTools
         // HQ follow-ups retain identical release profiles, with focused HQ and
         // birthday regression checks after the recorded whole-game gate.
         public static void SpideyWindows(){SpideyHQRuleChecks.Run();HulkBirthdayRuleChecks.Run();BuildWindows();}
+        public static void MarketsWindows(){MarketsJsonChecks.Run();BuildWindows();}
         private static void BuildWindows()
         {
             const string scenePath="Assets/FamilyPlayset/Scenes/FamilyNetwork.unity";
