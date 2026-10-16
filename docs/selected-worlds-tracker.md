@@ -10,7 +10,7 @@ Source: [Official app description and update history](https://apps.apple.com/us/
 
 | ID | World | Activities to track | Status | Plan and evidence |
 | --- | --- | --- | --- | --- |
-| PEP-01 | Funfair | Teacups; Ferris wheel; spiral slide; Hook a Flower prizes; face painting. | Selected | Pending |
+| PEP-01 | Funfair | Teacups; Ferris wheel; spiral slide; Hook a Flower prizes; face painting. | Planned | [Phase plan](implementation/peppa-funfair-world-phase-plan-2026-10-16.md); recovery and implementation pending |
 
 ## LEGO Bluey
 
@@ -64,4 +64,5 @@ Hulk's Birthday and Spidey HQ already have their own implementation records. The
 | Date | Update |
 | --- | --- |
 | October 16, 2026 | Owner selected 1 Peppa Pig world, 7 Bluey worlds and 5 Marvel worlds. All 13 recorded as Selected; individual plans and implementation remain pending. |
+| October 16, 2026 | PEP-01 Funfair phase plan created. Exact world recovery is the next task; no Funfair implementation or runtime acceptance yet. |
 | October 16, 2026 | Owner requested a phase plan for the second listed world, Markets (BLU-01). Linked the seven-phase plan covering recovery, world/character foundation, every selected activity, shared four-player play, persistence, validation and PC delivery. Status Planned describes documentation readiness; source recovery and implementation have not started. |
