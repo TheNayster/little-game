@@ -56,7 +56,7 @@ namespace LittleWeeps.Core
             world=WithCreekFishing(world);world=WithNpcCasts(world);world=WithShore(world);
             world=WithStationTidying(world);world=WithBathroom(world);world=WithTag(world);world=WithZoo(world);
             world=WithSandpitPieces(world);
-            if(world.Schema>=WorldLayout.Schema)return world;
+            if(world.Schema>=WorldLayout.Schema && world.state.markets!=null && world.state.funfair!=null)return world;
             var s=world.Snapshot();uint seed=2166136261;
             foreach(var ch in s.worldId)seed=unchecked((seed^ch)*16777619);
             if(s.dinosaurWorld==null)s.dinosaurWorld=new DinosaurWorldState{animals=DinosaurRides.Species.Select((id,i)=>new DinosaurMount{species=id,random=(seed^(uint)(i+1)*2654435761u)|1u,x=600+i*1200,targetX=600+i*1200,pause=3+i*2}).ToArray()};
@@ -70,6 +70,7 @@ namespace LittleWeeps.Core
             if(s.birthday==null)s.birthday=HulkBirthday.Create(s.players.Select(p=>p.id).ToArray());
             if(s.hideClub==null)s.hideClub=NewDaycarePlay(s);if(s.tagClub==null)s.tagClub=NewDaycarePlay(s);
             if(s.spidey==null)s.spidey=SpideyHQ.Create(s.players.Select(p=>p.id).ToArray());
+            if(s.markets==null)s.markets=MarketsRules.Create(s.players.Select(p=>p.id).ToArray());
             if(s.funfair==null)s.funfair=PeppaFunfair.Create(s.players.Select(p=>p.id).ToArray());
             s.schema=WorldLayout.Schema;s.revision++;Validate(s);return new GameWorld(s);
         }

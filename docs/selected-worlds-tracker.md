@@ -2,7 +2,7 @@
 
 Updated October 16, 2026. These are the 13 worlds selected by the owner for future reconstruction in Little Weeps. Track each world separately, including its mechanics, character actions and shared play for up to four family players.
 
-Entries begin as **Selected**; current status and linked plans are recorded per row. App package collection and initial REA inspection do not mean an individual world has been recovered, implemented or tested. The activities below are the requested scope from the app descriptions; confirm exact bindings and behavior during each world's inspection. Markets has a requested phase plan; no overall implementation order has been chosen.
+Entries begin as **Selected**; current status and linked plans are recorded per row. App package collection and initial REA inspection do not mean an individual world has been recovered, implemented or tested. The activities below are the requested scope from the app descriptions; confirm exact bindings and behavior during each world's inspection. Markets has a technically accepted PC candidate; no overall implementation order has been chosen.
 
 ## DUPLO Peppa Pig
 
@@ -18,7 +18,7 @@ Sources: [Official app description and update history](https://apps.apple.com/us
 
 | ID | World | Activities to track | Status | Plan and evidence |
 | --- | --- | --- | --- | --- |
-| BLU-01 | Markets | Smoothies; flowers; cakes; bubbles; caring for ponies Buttermilk and Biscuit; dancing to a busker. | Planned | [Phase plan](implementation/bluey-markets-world-phase-plan-2026-10-16.md); source inspection and implementation pending. |
+| BLU-01 | Markets | Smoothies; flowers; cakes; bubbles; caring for ponies Buttermilk and Biscuit; dancing to a busker. | PC ready | [Completed phases and evidence](implementation/bluey-markets-world-phase-plan-2026-10-16.md#final-pc-verification-and-delivery); original gameplay/button layout researched; four-player activities, saves, gestures and final683 presentation checked. Owner/device/server review remains separate. |
 | BLU-02 | Go for a Drive | Removed at the owner's request. | Canceled | October16: world and task code removed from the app. |
 | BLU-03 | School Day | Indy and Rusty play families; build a baby's house; make pretend fish and chips; defend the Terriers' fort. | Selected | Pending |
 | BLU-04 | The Grannies | Granny-car driving; slipping on beans; sandpit parking and building; trampoline breakfast shapes. | Selected | Pending |

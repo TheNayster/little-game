@@ -15,8 +15,8 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string, Image> avatarMarkers = new Dictionary<string, Image>();
         private readonly List<GameCharacterVisual> pickerCharacters = new List<GameCharacterVisual>();
         private readonly Dictionary<string, Text> worldBadges = new Dictionary<string, Text>();
-        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare", "zoo", "dinosaur-world", HulkBirthday.Zone, SpideyHQ.Zone, PeppaFunfair.Zone };
-        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare", "Zoo", "Dinosaur World", "Hulk's Birthday", "Spidey HQ", "Peppa Funfair" };
+        private static readonly string[] WorldIds = { "home", "park", "creek", "beach", "daycare", "zoo", "dinosaur-world", HulkBirthday.Zone, SpideyHQ.Zone, MarketsRules.Zone, PeppaFunfair.Zone };
+        private static readonly string[] WorldNames = { "Heeler Home", "Playground & Park", "The Creek", "The Beach", "Daycare", "Zoo", "Dinosaur World", "Hulk's Birthday", "Spidey HQ", "Markets", "Peppa Funfair" };
         private float navigationCamera;
         private bool navigationManualCamera;
         public bool WorldsOpen => CharactersOpen;
@@ -138,7 +138,7 @@ namespace LittleWeeps.Client
             var picture=Panel(border.transform,"Round scene",Vector2.zero,Vector2.one*158,Color.white,false,true);
             picture.gameObject.AddComponent<Mask>().showMaskGraphic=false;
             var illustration=Panel(picture.transform,"Illustrated "+id,Vector2.zero,Vector2.one*158,Color.white);
-            illustration.sprite=id==PeppaFunfair.Zone?FunfairArt.MenuPicture():id==SpideyHQ.Zone?SpideyArt.MenuPicture():id==HulkBirthday.Zone?BirthdayArt.MenuPicture():WorldResources.Load<Sprite>("Shared/UI/WorldMenu/"+id);illustration.type=Image.Type.Simple;
+            illustration.sprite=id==PeppaFunfair.Zone?FunfairArt.MenuPicture():id==MarketsRules.Zone?MarketsMenuPicture():id==SpideyHQ.Zone?SpideyArt.MenuPicture():id==HulkBirthday.Zone?BirthdayArt.MenuPicture():WorldResources.Load<Sprite>("Shared/UI/WorldMenu/"+id);illustration.type=Image.Type.Simple;
             if(illustration.sprite==null)throw new InvalidOperationException("Missing world-menu illustration: "+id);
             if(!ready)illustration.color=new Color(1,1,1,.67f);
             var rim=Panel(border.transform,"White picture edge",Vector2.zero,Vector2.one*170,Color.white,false,true);

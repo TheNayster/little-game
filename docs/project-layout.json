@@ -356,6 +356,15 @@
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyPuzzleDrag.cs": "SpideyHQ",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/SpideyHQ/SpideyHQLayout.cs": "SpideyHQ",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/SpideyHQ/SpideyImage.cs": "SpideyHQ",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Markets/GameWorld.Markets.cs": "Markets",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/Markets/MarketsRules.cs": "Markets",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Markets/GameScreen.Markets.cs": "Markets",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Markets/GameScreen.Markets.Discoveries.cs": "Markets",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Markets/GameScreen.Markets.Instruments.cs": "Markets",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Markets/GameScreen.Markets.Preparation.cs": "Markets",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Markets/GameScreen.Markets.Presentation.cs": "Markets",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Markets/GameScreen.Markets.Layout.cs": "Markets",
+    "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Client/Worlds/Markets/MarketsObjectDrag.cs": "Markets",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/PeppaFunfair/GameWorld.PeppaFunfair.cs": "PeppaFunfair",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/PeppaFunfair/PeppaFunfair.cs": "PeppaFunfair",
     "Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Worlds/PeppaFunfair/PeppaFunfair.Validation.cs": "PeppaFunfair",
@@ -375,7 +384,8 @@
     "Zoo",
     "Dinosaur",
     "Hulk",
-    "SpideyHQ"
+    "SpideyHQ",
+    "Markets"
   ],
   "sharedFilesRequireCoordination": [
     "GameWorld",
@@ -822,6 +832,18 @@
     "retirement": "Replace only after HQ stops consuming this pipeline; preserve original recovery evidence.",
     "delivery": "Ignored recovered media is packaged into client StreamingAssets/SpideyHQ by Tools/Build/Package-RecoveredWorld.py. Final candidate and acceptance remain recorded in the maintained HQ phase plan.",
     "preview": "Tools/Launch/Play-SpideyHQ.ps1 uses separate ignored LocalData/spidey-hq-preview records and an isolated saved family; no installed authority selection changes."
+  },
+  "marketsRecoveryContent": {
+    "owner": "BLU-01 / WORLD-02 / FAMILY-01 / ITEM-02: Markets phases",
+    "consumers": [
+      "Core/Worlds/Markets",
+      "Client/Worlds/Markets"
+    ],
+    "localSource": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject",
+    "localPack": "Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Worlds/Markets",
+    "retirement": "Retain source scenes, rigs, receipts and bakes while Markets consumes them. Preserve intermediate evidence.",
+    "delivery": "Tools/Art/Assemble-MarketsPack.py packages source-data bakes and music into Resources; content-receipt.json binds file hashes. Family rules are handwritten.",
+    "preview": "Tools/Launch/Play-Markets.ps1 selects a separately checked candidate and isolated saved family; installed authority and real saves are preserved."
   },
   "funfairRecoveryContent": {
     "owner": "PEP-01 / WORLD-02 / FAMILY-01 / ITEM-02: Peppa Funfair",

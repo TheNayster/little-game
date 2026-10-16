@@ -91,3 +91,8 @@ Tools/**/obj/
 
 !Tools/Verification/BeachRules.Tests/BeachRules.Tests.csproj
 !Tools/Verification/HulkBirthday.Tests/HulkBirthday.Tests.csproj
+!Tools/Verification/Markets.Tests/Markets.Tests.csproj
+
+# BLU-01 local receipt-bound recovered media packaging inputs.
+/Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Worlds/Markets/Art/
+/Unity/FamilyPlayset/Assets/FamilyPlayset/Resources/Worlds/Markets/Audio/

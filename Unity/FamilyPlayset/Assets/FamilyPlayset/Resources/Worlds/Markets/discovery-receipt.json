@@ -1,0 +1,63 @@
+{
+  "owner": "BLU-01 Markets source-confirmed discoveries",
+  "format": 1,
+  "note": "Source PNG bytes copied unchanged. Parasol uses code-native silhouette UVs from existing flowers.png; reveal/wobble/choice interactions are family presentation adaptations.",
+  "files": [
+    {
+      "path": "Art/Discoveries/sign.png",
+      "sha256": "62942065df5ffb948f383bbb1acf6ec9467dbb4c73c886f9a6f349045624e87a",
+      "bytes": 7116,
+      "source": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject/Assets/LDBMain/AddressableAssets/Remote/Playpacks/05_MarketDay/Textures/Scene1/tex_mkd_Sign.png",
+      "sourceSha256": "62942065df5ffb948f383bbb1acf6ec9467dbb4c73c886f9a6f349045624e87a"
+    },
+    {
+      "path": "Art/Discoveries/tex_emb_long_dog.png",
+      "sha256": "dcc1f4cee96cfa8657ba5a8dcf9abe4ca5d05d975d6061d4da652b18c68f005a",
+      "bytes": 29471,
+      "source": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject/Assets/LDBMain/AddressableAssets/Embedded/Shared/LongDog/tex_emb_long_dog.png",
+      "sourceSha256": "dcc1f4cee96cfa8657ba5a8dcf9abe4ca5d05d975d6061d4da652b18c68f005a"
+    },
+    {
+      "path": "Art/Discoveries/tex_emb_long_dog_blue.png",
+      "sha256": "02d68f8ff08c8200e0099f2afc8aad4fdfb0bec25de51fb3b3d09c4b44289087",
+      "bytes": 29259,
+      "source": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject/Assets/LDBMain/AddressableAssets/Embedded/Shared/LongDog/tex_emb_long_dog_blue.png",
+      "sourceSha256": "02d68f8ff08c8200e0099f2afc8aad4fdfb0bec25de51fb3b3d09c4b44289087"
+    },
+    {
+      "path": "Art/Discoveries/tex_emb_long_dog_brown.png",
+      "sha256": "a2b06651d60c1f0d44e7df25ba9005fef0839e13b3b57722c656a9f32773dee7",
+      "bytes": 29358,
+      "source": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject/Assets/LDBMain/AddressableAssets/Embedded/Shared/LongDog/tex_emb_long_dog_brown.png",
+      "sourceSha256": "a2b06651d60c1f0d44e7df25ba9005fef0839e13b3b57722c656a9f32773dee7"
+    },
+    {
+      "path": "Art/Discoveries/tex_emb_long_dog_green.png",
+      "sha256": "691d3d3e218c50c49090dfc8c5b1b281b13f6291e8a690e8cce40996dd59a514",
+      "bytes": 31098,
+      "source": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject/Assets/LDBMain/AddressableAssets/Embedded/Shared/LongDog/tex_emb_long_dog_green.png",
+      "sourceSha256": "691d3d3e218c50c49090dfc8c5b1b281b13f6291e8a690e8cce40996dd59a514"
+    },
+    {
+      "path": "Art/Discoveries/tex_emb_long_dog_purple.png",
+      "sha256": "7720ad26bca9d40c2d8a2540e4c547629cbedb142eade4a14e07c1e0b56717b9",
+      "bytes": 29740,
+      "source": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject/Assets/LDBMain/AddressableAssets/Embedded/Shared/LongDog/tex_emb_long_dog_purple.png",
+      "sourceSha256": "7720ad26bca9d40c2d8a2540e4c547629cbedb142eade4a14e07c1e0b56717b9"
+    },
+    {
+      "path": "Art/Discoveries/tex_emb_long_dog_yellow.png",
+      "sha256": "1d174cb7e839b2e3ecaf07336983bc3b10dc75cb2eec170c4810047e8263b6f5",
+      "bytes": 29929,
+      "source": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject/Assets/LDBMain/AddressableAssets/Embedded/Shared/LongDog/tex_emb_long_dog_yellow.png",
+      "sourceSha256": "1d174cb7e839b2e3ecaf07336983bc3b10dc75cb2eec170c4810047e8263b6f5"
+    },
+    {
+      "path": "Art/Discoveries/guitar.png",
+      "sha256": "453c53fb6d575d55e8c7ec7bddb258c31e38e6248b53963640e6b0f63ecd00a4",
+      "bytes": 59721,
+      "source": "LocalData/Research/DuploMarvel/world-tests/Markets/bluey-markets-export/ExportedProject/Assets/LDBMain/AddressableAssets/Remote/Playpacks/05_MarketDay/Textures/Scene4/tex_mkd_guitar_ui.png",
+      "sourceSha256": "453c53fb6d575d55e8c7ec7bddb258c31e38e6248b53963640e6b0f63ecd00a4"
+    }
+  ]
+}

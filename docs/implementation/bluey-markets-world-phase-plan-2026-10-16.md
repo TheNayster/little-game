@@ -2,13 +2,19 @@
 
 Created October 16, 2026. Tracker ID: **BLU-01**. Goal IDs: WORLD-02 / FAMILY-01 / ITEM-02.
 
-Create **Markets**, the second entry in the [selected worlds tracker](../selected-worlds-tracker.md), as a complete playable world in Little Weeps for up to four family players together. Preserve the existing 2D presentation, family identities, other worlds and saved progress. This request creates the plan; implementation and source-world recovery have not started in this task.
+Create **Markets**, the second entry in the [selected worlds tracker](../selected-worlds-tracker.md), as a complete playable world in Little Weeps for up to four family players together. Preserve the existing 2D presentation, family identities, other worlds and saved progress. The owner authorized proceeding through all phases on October 16, including waiting for occupied shared files while progressing on Markets-owned work.
+
+## Current implementation — October 16
+
+Markets is implemented in the existing2D family game: shared smoothies, six-color flowers, three cakes, bubbles, one common music session, both pony care/makeovers, three source ice-cream recipes and fourteen-brick shared construction. Source recovery and actual original-gameplay/button-layout research are recorded in the [source inventory](bluey-markets-source-inventory-2026-10-16.md). Source-informed edge navigation and pictured scene objects replace the prototype's top tabs and bottom action toolbar.
+
+**PC ready: phases0–6 implemented and technically accepted.** Final683 packages570 receipt-checked media inputs with zero build errors/warnings. Twelve four-native-client activity groups and saved-authority reopening pass on680; its207 runtime inputs exactly match683.682 passes private reopening/separation and all ten actual-pointer gesture groups.683 passes corrected care contact and PC/phone/tablet-shaped layout review. The separate four-player launcher is selected for683. Owner play/motion/audio approval and physical-device/live-server rollout remain separate.
 
 ## Scope and evidence
 
 The owner's selected scope is smoothies, flowers, cakes, bubbles, caring for ponies **Buttermilk and Biscuit**, and dancing to a busker. The [official LEGO Bluey version history](https://apps.apple.com/us/app/lego-bluey/id6740210196), version 5.0.0, also names Bluey and Indy and supports those activity themes. It does not establish exact recipes, controls, pony-care steps, character eligibility, timings or persistence.
 
-The tracker records prior package collection and initial REA inspection, but that is not evidence that Markets itself has been recovered. This planning task has not verified a Markets scene, bundle, controller, animation or audio identity. Phase 0 must locate the retained LEGO Bluey research through its current receipt before extracting anything again. Do not reuse Marvel package identities, export versions or assumptions as Bluey evidence.
+The tracker records prior package collection and initial REA inspection, but that is not evidence that Markets itself has been recovered. The subsequent Phase 0 recovery verified the Markets scenes, catalogue closure and serialized bindings recorded above. Original executable controller bodies remain unavailable; source-informed family adaptations are identified in the inventory. Do not reuse Marvel package identities, export versions or assumptions as Bluey evidence.
 
 Label each later coverage row **recovered behavior**, **family adaptation** or **unresolved**. An inferred preparation loop must not be described as an original-app feature. Newly discovered small interactions, building activities or puzzles enter the inventory and receive an implementation phase; do not silently omit them or assume they exist merely because another pack has them.
 
@@ -86,7 +92,7 @@ Owner visual, motion and audio acceptance remains separately recorded. Physical-
 
 ## Activity coverage ledger
 
-All rows are **pending source inspection**. For each, record source object/controller and asset IDs; input; eligible actors; contact/action/audio; shared ownership/progress; finish/replay; interruption; durable/transient state; and actual acceptance evidence.
+Static source inspection is recorded in the [source inventory](bluey-markets-source-inventory-2026-10-16.md). The final PC evidence below accepts all implemented rows; source-derived details and family adaptations remain distinguished in the inventory. For each, retain source object/controller and asset IDs; input; eligible actors; contact/action/audio; shared ownership/progress; finish/replay; interruption; durable/transient state; and actual acceptance evidence.
 
 | ID | Required activity | Implementation phase | Acceptance focus |
 | --- | --- | --- | --- |
@@ -98,9 +104,48 @@ All rows are **pending source inspection**. For each, record source object/contr
 | BLU-01-F | Biscuit care | 4 | Distinct pony/assets and all confirmed care/actions; shared state and replay. |
 | BLU-01-G | Busker dancing | 3 | Common music session; four participants; late join and independent exit. |
 | BLU-01-H | Incidental interactions and any recovered additions | 0 inventory; 1–5 implementation | Each discovery receives its own source/behavior/evidence row before completeness is claimed. |
+| BLU-01-I | Recovered ice cream reference stacks and free construction | 2 foundation; 5 completion | Chocolate, Sundae and Mango blueprints; fourteen original bricks; four shared contributors; creator/revision checks and saved reopening. |
 
 ## Work record
 
 | Date | Status and evidence | Next bounded task |
 | --- | --- | --- |
 | October 16, 2026 | **Planned.** Owner-selected scope and official version-history theme checked; phase plan and tracker link created. No Markets package recovery, implementation, compile, runtime, device or live-server acceptance claimed. | Phase 0: locate retained Bluey package receipts and establish the exact Markets scene/activity inventory when implementation is requested. |
+| October 16, 2026 | **Building / native acceptance in progress.** All phases authorized; source inventory recovered, shared implementation and packaged media present. Full-Core/Unity JSON checks pass.580 first launch reviewed and presentation findings corrected;581 prepares the focused shared/runtime pass. | Finish the four-client activity/departure/reconnect, actual process-reopen/private-separation and native layout checks; repair observed failures, then package/select and verify the separate Markets launcher and Git delivery. |
+| October 16, 2026 | **Shared rules accepted; controls under revision.** Candidate620 passes four native clients, process reopening and private/shared separation.635 passes technical presentation checks but visible review rejects hidden palette and obscured care contact. Original gameplay footage and exact source UI audited after owner reminder. | Replace prototype menus with contextual objects/gestures and source-informed navigation; verify final native controls/layout before PC selection. |
+
+## Persistence matrix
+
+| State | Saved result | Reopening / interruption |
+| --- | --- | --- |
+| Stall ingredients and finished products | Shared ingredients; stable product ID/kind/choice/station/revision | Transient holders release. Pending preparation cancels without producing a duplicate; ingredients remain available. |
+| Pony care and appearance | Both needs/rounds/wash count; five body, six linked mane/tail and six saddle choices | Tool/action claims clear; completed shared care and appearance persist; deliberate Care again begins the next visit. |
+| Free building | Stable ID/creator/variant/slot/rotation/revision; at most16 pieces | Creations survive departure and reopening; only the creator can move/rotate/remove their pieces. |
+| Music / queues / poses / bubbles | No transient session resumes automatically | Common song stops and queues/action claims/temporary effects clear on reopening. Independent departure preserves remaining participants. |
+| Discoveries | Shared sign/umbrella positions and Long Dog count | A reopened client establishes a baseline without replaying old reveal animations. |
+
+The source scenes remain editable recovery inputs. The shipped world uses source-data picture bakes with the existing layered2D family cast. Recipe topology, preparation timing, cooperative queues, shared progression, temporary reactions and the building board are explicit family adaptations, rather than claims of recovered executable controller behavior.
+
+
+## Final PC verification and delivery
+
+The final snapshot follows the separately completed Drive removal (`50dc16f`); it does not restore that world. Current contract is schema58/content93/protocol3. Markets adds a durable shared state record and new command semantics; `Markets=39` preserves the removed ordinal gap. Initial content92 candidates are historical. Installed463 remains schema53/content72/protocol3 and was not changed.
+
+| Evidence | Actual result | Retained location beneath the Markets worktree |
+| --- | --- | --- |
+| Full-Core rules and native Unity JSON/media checks | Pass; migration/defaults, malformed state, ownership/revisions, interruption, deep copy and all570 media hashes/imported held-food texture | Native build683 log and build summary; `Tools/Verification/Markets.Tests` |
+| Full680 shared visit | Pass,12 groups, four actual clients; all activities, exclusive handoff, early care cancellation, both pony loops/appearance, all three recipes and four-creator construction, disconnect/catch-up | `LocalData/SharedGarden/0853a4a85f9b4a4892b336ec5add85cb/markets/result.json` |
+|680 saved authority | Pass, four fresh clients; exact products/pony states/brick IDs, creators, slots and rotations; independent disconnect/rejoin | Same family, `markets-reopen-b89dc81e/result.json` |
+|680 to683 runtime reuse | Exact207 Core/Adapters/Networking input hashes; presentation-only food/pose/contact correction and stronger Editor media gate | Main root: `LocalData/markets-runtime-680-683-reuse.json` |
+|682 private save and authority separation | Pass; actual private process reopen, shared join imports no private edits, explicit private return retains its product/creation | `LocalData/FamilyLAN/b7cdf7184edf47048473a54fc5c6f2c3/markets/result.json` |
+|682 native gestures | Pass, ten groups: real drags, drawer exclusivity/background blocking, other-pony recipient, one guitar stroke/one pluck, all14 brick choices, four creators and independent departure; zero runtime errors | `LocalData/SharedGarden/ddd10190554a4c8493696f9d426c9d24/markets-gestures/result.json` |
+|683 final presentation | Pass, PC/1280×591/1024×768; all16 cells visible, raised-palm feeding/water/brush contact and grounded feet. Actual-time silent film45 frames/5.828 seconds, feeding to idle; zero runtime errors | Same680 family, `markets-presentation-683/result.json`, `actual-pony-care-silent.mp4` and frame timestamps |
+| Main integration | Combined Main compiled after Drive removal (258 current sources, including untouched untracked Funfair sources); final Markets presentation compiled in Unity683 | `LocalData/Compile/CombinedMain/final-680/result.json`; native683 build log |
+| Separate launcher | Selected683; four-client durable-readiness check recorded after packaging;354 copied artifact files hash-verified | Main root: `LocalData/markets-launcher-check.json`; [Play Markets](../../Tools/Launch/Play-Markets.ps1) |
+| Source delivery | Focused checked source integrated onmain; remote commit verified during delivery | Git history for this BLU-01 completion; unrelated Funfair and historical research work preserved |
+
+All native runs use generated isolated families. Diagnostic Move/Travel setup is identified in the verification scripts; station actions, world-card entry, pictured controls and gesture checks use normal UI pointer routing. Phone/tablet-shaped native windows are layout evidence, not physical-device qualification. No subjective audio listening, owner visual approval, device installation or live-server rollout is claimed.
+
+Historical prototypes580–682 and failed/retried native records remain retained. Their findings include hidden props, revision churn, premature care credit, masked palette anchors, overlapping drawers, floating actors and an oversized feeding picture. These are not counted as accepted final visuals. The ice-cream flower-backdrop substitution was replaced with recovered Scene3 props/rail and explicitly adapted source-backdrop staging. The final owner-facing launcher uses ordinary mouse input; pointer-isolated verification is restricted to hidden setup/checks.
+
+**October16 final work record:** All nine coverage rows and phases0–6 are implemented for the PC candidate. Recorded original gameplay and serialized scene controls informed the layout; executable stubs, shared timings/rules, free-building board, performer adaptation and background staging are explicitly bounded in the source inventory. Native gameplay, saves, separation, gestures and final visual checks pass as listed. Next action is owner play review using the separate launcher; audio approval and any device/server rollout require their own actual evidence.

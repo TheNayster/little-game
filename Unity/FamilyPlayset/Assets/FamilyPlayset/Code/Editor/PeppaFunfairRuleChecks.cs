@@ -39,6 +39,20 @@ public static class PeppaFunfairRuleChecks
         save=UnityEngine.JsonUtility.FromJson<SoloSnapshot>(UnityEngine.JsonUtility.ToJson(save));
 #endif
         var restored=GameWorld.Restore(save);GameWorld.Validate(restored.Snapshot());Need(restored.ReadFunfair().wheel.rounds==1&&restored.ReadFunfair().wheel.riders.Length==0,"snapshot serialization retains results and releases occupancy");
+        // Exercise both real branch shapes: Funfair60 lacked Markets, while
+        // the Markets fork lacked Funfair. Preserve identity and earned history.
+        SoloSnapshot Roundtrip(SoloSnapshot s){
+#if UNITY_EDITOR
+            return UnityEngine.JsonUtility.FromJson<SoloSnapshot>(UnityEngine.JsonUtility.ToJson(s));
+#else
+            return s;
+#endif
+        }
+        var funfairFork=restored.Snapshot();funfairFork.schema=60;funfairFork.markets=null;var combined=GameWorld.WithDinosaurWorld(GameWorld.Restore(Roundtrip(funfairFork)));Need(combined.WorldId==identity && combined.ReadFunfair().wheel.rounds==1 && combined.ReadMarkets()!=null,"Funfair fork gains Markets without resetting history");
+        var marketsFork=combined.Snapshot();marketsFork.schema=60;marketsFork.funfair=null;foreach(var p in marketsFork.players)if(p.zone==PeppaFunfair.Zone)p.zone=MarketsRules.Zone;marketsFork.markets.photos=3;marketsFork.markets.stations[0].completed=2;marketsFork.markets.ponies[0].rounds=1;var joined=GameWorld.WithDinosaurWorld(GameWorld.Restore(Roundtrip(marketsFork)));Need(joined.WorldId==identity && joined.ReadFunfair()!=null && joined.ReadMarkets().photos==3 && joined.ReadMarkets().stations[0].completed==2 && joined.ReadMarkets().ponies[0].rounds==1,"Markets fork gains Funfair without resetting earned history");
+        bool Invalid(SoloSnapshot s){try{GameWorld.Validate(s);return false;}catch(ArgumentException){return true;}catch(InvalidOperationException){return true;}}
+        var missing=joined.Snapshot();missing.markets=null;Need(Invalid(missing),"current-schema missing world is rejected");missing.schema=60;Need(Invalid(missing),"legacy player cannot occupy an absent Markets world");
+        Console.WriteLine("PASS both isolated world forks migrate additively; current and occupied missing-module states remain invalid.");
         Console.WriteLine("PASS Funfair GameWorld integration, additive migration and restore.");
     }
 }

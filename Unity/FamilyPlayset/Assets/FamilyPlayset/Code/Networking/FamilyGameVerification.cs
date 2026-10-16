@@ -80,6 +80,7 @@ namespace LittleWeeps.NetworkProbe
             public LittleWeeps.Core.KingdomState kingdom;public int visibleKingdomNpcs;public string kingdomApproach;public string[] lastTouchTargets,kingdomNpcArt,picnicNpcArt,kingdomNpcJobs,kingdomNpcPoses;public Vector2[] kingdomNpcPoints;
             public LittleWeeps.Core.HideState hideAndSeek;public LittleWeeps.Core.KeepyState keepy;public Vector2 balloonPoint;
             public bool sceneryReady;public string place;public float cameraX;public int pendingScenery;public string[] residentScenery;public string[] homeDrawOrder;
+            public LittleWeeps.Core.MarketsState markets;public string marketsView,marketsOutcome;
             public string funfairMusic;public bool funfairMusicPlaying;
             public LittleWeeps.Core.FunfairState funfair;public int visibleFunfairPlayers;public string funfairOutcome;
             public LittleWeeps.Core.SpideyState spidey;public int visibleSpideyPlayers;public string spideyOutcome;public string[] spideyPoses;
@@ -244,6 +245,7 @@ namespace LittleWeeps.NetworkProbe
             // Hidden Windows players do not have a capturable swap-chain image.
             // Render the actual live canvas to an offscreen target in this player.
             yield return null;
+            screen.PrepareMarketsCapture();
             CaptureFrame(Path.Combine(probe.Output,"garden.png"));
         }
         private IEnumerator RevealOutfits()
@@ -427,6 +429,7 @@ namespace LittleWeeps.NetworkProbe
                 evidence.kingdomNpcArt=screen.KingdomNpcArt;evidence.picnicNpcArt=screen.PicnicNpcArt;evidence.kingdomNpcJobs=screen.KingdomNpcJobs;evidence.kingdomNpcPoses=screen.KingdomNpcPoses;evidence.kingdomNpcPoints=screen.KingdomNpcPoints;
                 evidence.kingdom=screen.KingdomGame;evidence.visibleKingdomNpcs=screen.VisibleKingdomNpcs;
                 evidence.kingdomApproach=screen.KingdomApproach;evidence.lastTouchTargets=lastTouchTargets;
+                evidence.markets=screen.MarketsViewState;evidence.marketsView=screen.MarketsView;evidence.marketsOutcome=screen.MarketsOutcome;
                 evidence.funfairMusic=screen.FunfairMusicTrack;evidence.funfairMusicPlaying=screen.FunfairMusicPlaying;
                 evidence.funfair=screen.FunfairView;evidence.visibleFunfairPlayers=screen.VisibleFunfairPlayers;evidence.funfairOutcome=screen.FunfairLastOutcome;
                 evidence.spidey=screen.SpideyView;evidence.visibleSpideyPlayers=screen.VisibleSpideyPlayers;evidence.spideyOutcome=screen.SpideyLastOutcome;evidence.spideyPoses=screen.SpideyRenderedPoses;
