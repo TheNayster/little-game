@@ -2,7 +2,7 @@
 
 Owner selection **PEP-01**, October 16, 2026. Goal IDs: WORLD-02 / FAMILY-01 / ITEM-02. Build a functioning DUPLO Peppa Pig Funfair adaptation inside Little Weeps, with its recognizable setting, character actions and five selected activities available to up to four family players together.
 
-**Status: gameplay/button-layout correction in verification; main integration pending.** Phases0–7 are technically verified. Phase8 packaging and the checked one-to-four-player launcher pass; source delivery is being reconciled with the concurrent Markets/Drive work. [Selected worlds tracker](../selected-worlds-tracker.md) records the other selected worlds. Physical-device rollout and owner visual/audio acceptance remain separate.
+**Status: PC gameplay, original-control layout and launcher verified; main integration pending.** Phases0–7 are technically verified. Phase8 packaging and the checked one-to-four-player launcher pass; source delivery is being reconciled with the concurrent Markets/Drive work. [Selected worlds tracker](../selected-worlds-tracker.md) records the other selected worlds. Physical-device rollout and owner visual/audio acceptance remain separate.
 
 ## Research and available inputs
 
@@ -125,9 +125,9 @@ Update this plan, the selected-world tracker, main build guide and relevant deci
 | 3 Three rides | Technically verified | Four actual clients board/start/spin both rides; independent exit preserves siblings. Four slide turns, three poses and photos pass. |
 | 4 Hook a Flower and prizes | Technically verified | Native cast/rod/tether, shared queue, moving target input and one source-type prize per catch; duplicate/stale authority checks pass. |
 | 5 Face painting | Updated layout passed594; final source check pending | Three touch contributors paint the original round stencil using six source colours and a cycling icon; reveal/persistence passed.596 also applies the source design detail to the recipient. |
-| 6 Complete world presentation | Updated gesture/contact verification in progress | PC and phone/tablet-shaped views inspected; eight decoded clips, section music and source props packaged. Subjective motion/audio approval remains with owner. |
+| 6 Complete world presentation | Technical review complete | PC and phone/tablet-shaped views inspected; eight decoded clips, section music and source props packaged. Subjective motion/audio approval remains with owner. |
 | 7 Shared play and recovery checks | Passed |592 activity assertions;593 four-client repair/reopen/late-join and Hulk/HQ visits;593 actual private reopen/automatic authority handoff/solo return. No runtime exceptions in final runs. |
-| 8 Packaging and source delivery | Packaging passed; Git integration pending |593 release profiles,289 checked Funfair files, separate saved launcher with four-client durable-ready verification. Final main/remote commit pending concurrent integration. |
+| 8 Packaging and source delivery | Packaging/launcher passed; Git integration pending |598 release profiles;292 checked Funfair files; four-client launcher remains ready. Final combined main source/remote commit pending concurrent integration. |
 
 Next bounded task: **integrate the checked source with completed concurrent worlds, verify the resulting contract and push main.**
 
@@ -161,3 +161,8 @@ Original Funfair gameplay footage and serialized UI were inspected after the own
 #### Current layout verification checkpoint
 
 596 completes the direct-gesture, common painting, late reconnect, full authority/four-client reopen and packaged Hulk/HQ run with zero runtime errors.597 completes the targeted face/held-cup depth captures and private/shared separation run. Reviewed captures show the source tiger details on the saved recipient and the cup in front of the body. The597 launcher attempt exposed a fourth-client protocol timeout during a2.9s wheel alpha-load stall; the local packed-mask correction is compiled/pixel-checked and awaiting a fresh native build. This is a remaining packaging check, not a passed launcher result. Main integration must preserve the owner’s subsequently committed Drive removal and concurrent Markets work. Existing593 launcher acceptance remains historical.
+
+
+#### Verified launcher and current packaging
+
+598 passes the same four-client packaged launcher that timed out in597. `LocalData/peppa-funfair-launcher-check.json` records the durable ready state for family27dd7b7d2ca041c39949114d82275c90. Actual wheel loads measured132/137/140/144ms with the packed hit mask; no runtime exception was logged. The native candidate also preserves the committed Drive removal. Its schema60/content96 reflects the changed action ordering; this is isolated preview evidence, not a live-family server/app rollout. Content-v6 contains292 files /73,934,054 bytes and the unchanged actor-manifest hash above. The remaining work is integration with the completed Markets source, additive old-fork save checks and one combined four-client check before main delivery.
