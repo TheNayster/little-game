@@ -35,14 +35,28 @@ def main():
     try:
         server=run.start('server');clients={}
         def open_player(index):
-            profile='player-'+str(index);client=run.start('client',profile);wait(lambda:client.input('inspect')['ready'],'Drive player ready')
-            if previous is None:client.input('fixtureTravel',text='go-for-a-drive');wait(lambda:client.input('inspect')['zone']=='go-for-a-drive','Drive entry')
+            profile='player-'+str(index)
+            # Automated pointer isolation is only for hidden setup/checks.
+            # Owner windows must start without FamilyGameVerification, which
+            # disables the physical mouse to protect automated test gestures.
+            run.interactive=False;run.review_controls=True
+            setup=run.start('client',profile)
+            wait(lambda:(v:=setup.input('inspect'))['ready'] and not v['pending'] and not v['worldLoading'],'Drive setup ready')
+            if previous is None:
+                setup.input('fixtureTravel',text='go-for-a-drive')
+                wait(lambda:(v:=setup.input('inspect'))['ready'] and v['zone']=='go-for-a-drive' and not v['pending'] and not v['worldLoading'],'Drive entry')
+            if args.verify:
+                clients[profile]=setup;return
+            setup.close();wait(lambda:profile not in server.state()['connected'],'setup profile disconnected')
+            run.interactive=True;run.review_controls=False
+            client=run.start('client',profile)
+            wait(lambda:client.status()['status']=='connected' and any(p['id']==profile for p in client.state()['view']['players']),'native mouse player connected')
             clients[profile]=client
         for i in range(1,count+1):open_player(i)
         if args.verify:
             time.sleep(3);require(len(server.state()['connected'])==count and all(c.input('inspect')['ready'] and c.input('inspect')['visibleDrivePlayers']==count for c in clients.values()),'Packaged Drive view did not remain ready')
             write(ROOT/'LocalData/go-for-a-drive-launcher-check.json',dict(passed=True,build=run.build,runId=run.run_id,players=count,installedServerTouched=False));return
-        write(ROOT/'LocalData/go-for-a-drive-preview-session.json',dict(runId=run.run_id,build=run.build,players=count))
+        write(ROOT/'LocalData/go-for-a-drive-preview-session.json',dict(runId=run.run_id,build=run.build,players=count,nativeControls=True))
         seen=read(ROOT/'LocalData/go-for-a-drive-preview-reopen.json')
         while any(c.process.poll() is None for c in clients.values()):
             request=read(ROOT/'LocalData/go-for-a-drive-preview-reopen.json')
@@ -51,7 +65,7 @@ def main():
                 for i in range(1,count+1):
                     profile='player-'+str(i);client=clients.get(profile)
                     if client is None or client.process.poll() is not None:open_player(i)
-                write(ROOT/'LocalData/go-for-a-drive-preview-session.json',dict(runId=run.run_id,build=run.build,players=count))
+                write(ROOT/'LocalData/go-for-a-drive-preview-session.json',dict(runId=run.run_id,build=run.build,players=count,nativeControls=True))
             time.sleep(.5)
     finally:run.close();lock.close()
 
