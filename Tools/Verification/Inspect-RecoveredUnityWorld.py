@@ -3,7 +3,7 @@
 # ///
 """Read an exported Unity world without modifying its assets.
 
-Owner: Hulk world Phase 0. Inputs are an AssetRipper-style project and original
+Owner: recovered-world inventory. Inputs are an AssetRipper-style project and original
 scene. Outputs are research data, not game assets or recovered executable code.
 Keep outputs in ignored LocalData; source artifacts must remain unchanged.
 """
@@ -169,6 +169,8 @@ def main():
     parser.add_argument("--scene", required=True)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--closure-limit", type=int, default=20000)
+    parser.add_argument("--activity-pattern", action="append", default=[],
+                        help="Additional script-type regex; default activity selection is retained")
     args = parser.parse_args()
     project, output = args.project.resolve(), args.output.resolve()
     scene = Path(args.scene).as_posix()
@@ -184,7 +186,8 @@ def main():
     game_objects = {k: n for k, n in objects.items() if n["class_id"] == 1}
     components = [n for n in objects.values() if n["class_id"] == 114]
     actor_nodes = [n for n in components if n["script_type"] == "MonoActor"]
-    activities = [n for n in components if re.search(r"Activity$|HBP.*Controller$|Hbp.*Activity$|CakeStickerMapController$", n["script_type"])]
+    activity_pattern = re.compile("|".join([r"Activity$|HBP.*Controller$|Hbp.*Activity$|CakeStickerMapController$"] + args.activity_pattern))
+    activities = [n for n in components if activity_pattern.search(n["script_type"])]
     actor_rows = []
     for actor in actor_nodes:
         go = game_objects.get(actor["game_object_id"], {})
@@ -222,7 +225,7 @@ def main():
             closures[root["object"]] = all_closures[key]
     action_rows = []
     for actor in actor_rows:
-        row = {"name": actor["name"], "id": actor["id"], "behaviors": [], "inventory": [], "animators": []}
+        row = {"name": actor["name"], "id": actor["id"], "behaviors": [], "inventory": [], "prop_handlers": [], "animators": []}
         for component in actor["components"]:
             fields = component["fields"]
             row["behaviors"].append({"type": component["type"], "id": component["id"],
@@ -230,6 +233,11 @@ def main():
             if component["type"] == "NewActorInventoryActivity":
                 for slot in fields.get("holdSlots", []):
                     row["inventory"].append({**slot, "slot_asset": world.asset_label(next(refs(slot["holdSlotId"])))})
+            if component["type"] == "ActorPropHandler":
+                # Earlier packs use peg mappings rather than the newer inventory
+                # activity. Preserve their distinct ownership representation.
+                row["prop_handlers"].append({"id": component["id"],
+                                             "configuration": {k: v for k, v in fields.items() if not k.startswith("m_")}})
             if component["type"] == "PrefabReferences":
                 target_id = str(fields.get("Animator", {}).get("fileID", "0"))
                 animator = objects.get(target_id)
@@ -255,7 +263,8 @@ def main():
     duplicate_bricks = [{"game_object_id": key, "name": game_objects.get(key, {}).get("name"), "components": count}
                         for key, count in brick_owners.items() if count > 1]
     report = {
-        "schema": 1, "purpose": "Hulk world Phase 0 static evidence; not runtime acceptance",
+        "schema": 1, "purpose": "Recovered world static evidence; not runtime acceptance",
+        "activity_pattern": activity_pattern.pattern,
         "project": str(project), "scene": scene, "scene_sha256": before,
         "objects": len(objects), "game_objects": len(game_objects), "script_components": len(components),
         "actor_components": len(actor_rows), "activity_components": len(roots), "reachable_files": len(seen),

@@ -2,7 +2,7 @@
 
 Created October 15, 2026. Goal IDs: WORLD-02 / FAMILY-01 / ITEM-02.
 
-Build the second world the owner selected: **Spidey's headquarters**, following Hulk's birthday. The goal is a complete playable family adaptation of its activities, characters and actions in Little Weeps, for up to four players together. Preserve the existing 2D game and the finished Hulk world. This is the implementation plan; no Spidey HQ production implementation or runtime acceptance is claimed here.
+Build the second world the owner selected: **Spidey's headquarters**, following Hulk's birthday. The goal is a complete playable family adaptation of its activities, characters and actions in Little Weeps, for up to four players together. Preserve the existing 2D game and the finished Hulk world. Phase 0 static recovery/inventory is complete as recorded below; no Spidey HQ production gameplay or runtime acceptance is claimed here.
 
 ## Evidence and scope
 
@@ -16,7 +16,7 @@ Primary local evidence is under ignored `LocalData/Research/DuploMarvel/marvel-c
 - `DuploMarvel/AddressableAssets/Remote/ScriptableObjects/V1.2/BuildYourOwnSettings/SpideyHq_BYO_Settings.asset`: candidate building configuration requiring dependency inspection.
 - `Scripts/Assembly-CSharp/StoryToys/deprecated/SpideyHQDirector.cs`: structural fields/methods mention civilians, boredom/sleep, benches, pizza, balloons and walking routes. Related globe/poster types expose effect/animation settings. These are empty method stubs in a deprecated namespace; active scene bindings and native behavior must be established before using them as current rules.
 
-The later full Hulk export still contains only eight scenes and **does not contain the HQ scene**. It does contain more HQ-specific prefabs than the earlier recovery. The existing two-world native mapping receipt verifies selected method ranges, not complete HQ logic. Original C# gameplay bodies have not been recovered.
+At planning time, the later full Hulk export contained only eight scenes and lacked HQ. Phase 0 subsequently recovered the exact scene into a separate research export; see the checkpoint below. Native mapping receipts verify selected method ranges, not complete HQ logic. Original C# gameplay bodies have not been recovered.
 
 [Apple's game feature](https://apps.apple.com/us/mac/story/id1613533386) independently describes changing Spidey's picture, taking a photo with the friends, balloons and teamwork to recover stolen pizza. Its cat rescue and car wash sections describe other adventures; do not import those into HQ without scene evidence. The [current app listing](https://apps.apple.com/us/app/lego-duplo-marvel/id1573101225) supports the overall open-ended play premise, not exact HQ timings. Physical LEGO set descriptions are not executable-app specifications.
 
@@ -94,6 +94,45 @@ Read the current server rollout policy before any later deployment. New shared s
 
 ## Current status and next task
 
-Planning complete. Production phases 0–6 remain unimplemented/unaccepted for Spidey HQ. Today's bounded read confirmed the exact pack identity, local description, HQ-specific assets and the missing scene in the later export; it did not establish a complete dependency closure or original gameplay code.
+Phase 0 static recovery and inventory is complete. Phases 1–6 remain pending. Next bounded implementation task is **Phase 1: world foundation and character actions**, using the recovered scene and binding inventory below. Keep one phase active at a time and update its actual acceptance before continuing. Hulk's [existing phase record](hulk-birthday-world-phase-plan-2026-10-15.md) remains authoritative for its own delivered world.
 
-Next implementation task: **Phase 0 only as the initial bounded work item**, followed by the evidence-derived dependency sequence above when implementation is requested. Keep one phase active at a time and update its actual acceptance before continuing. Hulk's [existing phase record](hulk-birthday-world-phase-plan-2026-10-15.md) remains authoritative for its own delivered world.
+## Phase 0 recovery checkpoint October 15
+
+The pack's scene GUID resolves to `Assets/DuploMarvel/PlayPacks/SpideyAndFriends/Scenes/saf_Park.unity`. Its catalog dependency closure contains 299 locations and 226 remote bundles, with no missing catalog keys. Reused 224 existing Hulk-research bundles and downloaded the two missing SpideyAndFriends bundles from their retained publisher catalog URLs: 309,910 bytes in total. All 226 remote bundles now have local UnityFS files and SHA256 identities; no phone, purchase, official-app unlock or account change was needed.
+
+A separate task-owned AssetRipper session exported `LocalData/Research/DuploMarvel/marvel-complete-spidey-project/ExportedProject` using Unity fallback 6000.0.58f2. The exporter reported finished assets/assemblies/post-export and the task-owned process was then closed. The earlier recovery session and production Unity project were preserved.
+
+The read-only scene scan found 10,387 serialized objects, 2,813 GameObjects, 2,735 script components, 14 actor components and 30 activity roots. All 30 static activity closures completed within the configured bound; 1,374 reachable files were indexed, including 186 animation clips and seven animation controllers. There were no parse errors, duplicate meta GUIDs, exporter placeholders or missing-reference statuses. The one unresolved script is an explicitly disabled component with a null script. Of the inspected references, 4,292 target files have unverified imported subobject identities; that category is not a missing file and still requires import/runtime qualification.
+
+The actor cast is Spiderman, Spiderman_Morales, Spiderman_Gwen, GreenGoblin, PizzaGuy, BalloonSeller and eight civilians: LavalliereLady, BlueBlazerLady, BlueJacketBoy, SmileyJacketBoy, GroovyGranny, BlueBlazerGuy, DungareesGirl and HeartsBlouseGirl. Hero actors contain 58/60/57 attached script components respectively. Their scene-bound legacy `ActorPropHandler` peg mappings differ from Hulk's newer inventory activity; retain that distinction when adapting shared item rules. Each hero has a layered animator binding plus hand-specific web projectile/holding components. Spin/Morales has the active invisibility component; do not assign that power to Ghost Spider from name-based assumptions.
+
+The earlier 192 HQ-related native ranges were rechecked against current original-binary bytes. A further focused controller selection produced 1,227 independently mapped ranges, all fully decoded by Capstone. Selection includes shared classes, nested types and similarly named controller versions; it is not a count of HQ-exclusive methods. The producer attempted 1,239 methods with a 120-method-per-type cap, so absence from this extraction is not absence from the app. These are native instructions and structural evidence, not recovered original C# or a completed semantic reconstruction.
+
+### Activity coverage and implementation acceptance
+
+IDs below are exported component file IDs in `saf_Park.unity`. Every row is **recovered static evidence; gameplay remains pending**. Family adaptations apply the four-player completion contract above. Exact runtime timings, trigger priorities and interruption transitions must be traced at the affected implementation phase; serialized numbers alone do not establish their semantics.
+
+| Scope | Source bindings and recovered actions | Required implementation acceptance |
+| --- | --- | --- |
+| Hero arrival and free movement | New intro 8586; WalkOnTouch, dragging, pickup, back-to-screen and five back-to-visible roots; actor-specific layered animators | Arrival, walking/facing, pickup/drag/contact and safe interruptions; four recognizable participants with working hero-role access |
+| Pizza stall | VendingStallActivity 9392, queue 9508, seller 9974, counter/spawn pegs 8943/9873, original pizza prefab | Shared queue, visible seller handoff, one held pizza, eating/finish/replay and independent departure |
+| Balloons and floating | VendingStallActivity 9393, queue 9507, seller 9543; FloatWithPropsActivity 8597 and SlowFallWithPropActivity 8573 | Balloon pickup, hand bindings, floating/bobbing, release and slow landing; no stuck floating actor or duplicated prop after exit |
+| Slide | SlideActivity 8557, queue 10164, SlideComponent and SlideAnimation | Approach, queue, slide contact/descent and landing; one child leaving preserves the others' turn |
+| Civilian life and seating | Enabled SpideyHQDirector 8571 despite deprecated namespace; six OnTapMoveToPegActivity seating roots, idle/flee roots | Walking, boredom, sleeping/waking, seating, pizza/balloon interaction and villain reactions; interrupt safely for direct play |
+| Poster | SpideyHqPosterInteraction 9111; three original poster textures, scaler, particle and PosterTap sound event | Change the actual picture with flip/fade, sound and effect; shared selection persists according to the chosen world-save contract |
+| Globe | SpideyHqGlobeInteraction 8577; three dots, tap animator and GlobeTap event | Complete tap/dot/reaction loop with repeated input handled; preserve bindings and source effect timing after native trace |
+| Camera | CameraStandActivity 10079; touch 9586, peg collection 9737, photo display 9326, take-photo behavior descriptor | Hero positioning, camera handling, actual pictured result and feedback; closing/leaving does not disrupt siblings |
+| Domino knock-over | DominoeEffectActivity 9381; epicenter 3606, range field 1.4, balance/fall descriptors | Confirm triggering path, then reproduce nearby balance/fall/recovery reactions and safe replay |
+| Goblin theft and web fight | GreenGoblinActivity 10042 and recovery 10330; pizza and balloon theft refs, five battle centers and three hero finish positions per center | Natural theft of either item, hero contribution, web contact/hold/pull, same-item recovery, celebration and smoke/vanish/replay; four players and NPC role fallback |
+| Hero powers | SpideySenseController 8558, three web shooting/pull/hold/thwip bindings; Spin InvisibilityBehaviour 10236 | Actual actor-specific senses/webs/invisibility, facing and hand contact; correct activation/cleanup when leaving or an encounter ends |
+| Build an HQ | BuildYourOwnController 8746; HQ settings, six base plates, eight brick categories containing 26 variants | Shared snapping/placement/removal/reset and saved creations; retain HQ-specific palette/poster/globe/newspaper bricks and explain 2D adaptation |
+| Jigsaws | JigsawController 10270, popup 9848 and billboard; five original art images, two masks, four difficulty fields valued 2/3/4/5 | Recover actual piece-count interpretation, shared selection/drag/snap/completion/replay and independent exits; no generic substitute artwork |
+| Remaining set pieces and audio | Full scene configuration, reachable dependencies and 30 closures retain backdrop, claw-arm, newspaper, pink-block, invitation, animation and sound bindings | Distinguish interactive objects from scenery, close every confirmed interaction and inspect complete world presentation at normal speed |
+
+The Goblin scene configuration supports both stolen item types, five battle centers, cooldown pairs 8–32 and 80–150, pull duration 3 and recovery celebration duration 8. Treat these as field values until their native use is followed. The original three-position finish formations need an explicit four-player family adaptation; do not hide or remove the fourth participant. The building and puzzle systems are scene controllers outside the default `Activity` suffix inventory and are included explicitly in the coverage above.
+
+### Retained evidence and checks
+
+Ignored evidence root: `LocalData/Research/DuploMarvel/world-tests/SpideyHQ/Phase0/`. It contains `catalog-local-closure.json`, `spidey-download-receipt.json`, export/load receipts and logs, `Inventory/` reference/actor/activity/closure/configuration/hash files, `binding-summary.json`, `existing-native-coverage.json` and `native-verified/independent-verification.json`. The recovered scene SHA256 is `3b428b542b5d160808c5dba39c2a3301bd08925c89fe6fd00553c68a324ce7e3`.
+
+The reusable [catalog inspector](../../Tools/Verification/Inspect-RecoveredAddressableCatalog.py) resolves the original GUID, detects alias cycles and records local bundle hashes without changing inputs. The [world inspector](../../Tools/Verification/Inspect-RecoveredUnityWorld.py) now accepts extra activity-type patterns and records legacy prop handlers while retaining its existing default activity selection. Both ran against the recovered HQ inputs; the scene hash remained unchanged. Native mapping and byte/decode checks passed. This checkpoint establishes static recovery/inventory acceptance only: no new production game build, visual/audio approval, device installation or live-server rollout.
