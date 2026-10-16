@@ -2,7 +2,7 @@
 
 Owner selection **PEP-01**, October 16, 2026. Goal IDs: WORLD-02 / FAMILY-01 / ITEM-02. Build a functioning DUPLO Peppa Pig Funfair adaptation inside Little Weeps, with its recognizable setting, character actions and five selected activities available to up to four family players together.
 
-**Status: all PC implementation phases technically complete; combined release685 checked, main delivery finishing.** Phases0–7 are technically verified. Phase8 packaging and the checked one-to-four-player launcher pass; the combined Markets/Funfair source is checked and source delivery is finishing. [Selected worlds tracker](../selected-worlds-tracker.md) records the other selected worlds. Physical-device rollout and owner visual/audio acceptance remain separate.
+**Status: all PC implementation phases technically complete; combined release685 checked and integrated on main.** Phases0–7 are technically verified. Phase8 packaging and the checked one-to-four-player launcher pass; the combined Markets/Funfair source is checked and integrated on main. [Selected worlds tracker](../selected-worlds-tracker.md) records the other selected worlds. Physical-device rollout and owner visual/audio acceptance remain separate.
 
 ## Research and available inputs
 
@@ -127,9 +127,9 @@ Update this plan, the selected-world tracker, main build guide and relevant deci
 | 5 Face painting | Updated layout passed594; final source check pending | Three touch contributors paint the original round stencil using six source colours and a cycling icon; reveal/persistence passed.596 also applies the source design detail to the recipient. |
 | 6 Complete world presentation | Technical review complete | PC and phone/tablet-shaped views inspected; eight decoded clips, section music and source props packaged. Subjective motion/audio approval remains with owner. |
 | 7 Shared play and recovery checks | Passed |592 activity assertions;593 four-client repair/reopen/late-join and Hulk/HQ visits;593 actual private reopen/automatic authority handoff/solo return. No runtime exceptions in final runs. |
-| 8 Packaging and source delivery | Combined release checked; main delivery finishing |685 packages the current source and292 Funfair media files alongside Markets/Hulk/HQ. Four current clients preserve the earlier save, share direct wheel input, travel between worlds and reopen the authority. |
+| 8 Packaging and source delivery | Complete for PC |685 packages the current source and292 Funfair media files alongside Markets/Hulk/HQ. Four current clients preserve the earlier save, share direct wheel input, travel between worlds and reopen the authority. |
 
-Next bounded task: **finish main/remote delivery and select the checked685 launcher; physical-device rollout and owner review remain separate.**
+Next bounded task: **owner play/audio review of the checked PC preview. Physical-device rollout and installed-family updates remain separate, unperformed work.**
 
 
 ## Technical acceptance — October16
@@ -182,3 +182,12 @@ The pre-isolation root prototypes were preserved twice, with hashes, then22 unch
 
 
 The final685 launcher also passes four-client durable readiness: `LocalData/peppa-funfair-launcher-check.json`, family411e32eb6d894f6b9f124c3274053364. It selects the packaged685 client/server and the292-file Funfair receipt. Visible play windows use normal mouse input; only hidden setup/check clients use the fixture. The native candidate is ready for source delivery and the separate owner play/audio review.
+
+
+### Main checkout delivery
+
+Checked source is integrated on main. The main checkout contains the exact2236 sealed685 artifact files, verified by SHA256 after copying from the isolated build. All2527 Unity inputs match the checked candidate:2405 byte-for-byte and122 text files differing only by Git newline/BOM normalization, with no other source/asset differences. `LocalData/peppa-funfair-artifact-copy.json` records the comparison. No tracked input was rewritten to manufacture byte equality.
+
+The main-root configured launcher passes a fresh four-client durable-readiness run for generated family7e60bf1ba1964e029a97510304515fb8; see main-root `LocalData/peppa-funfair-launcher-check.json`. The selected current candidate is685 and its own separate saved preview family is ready for normal mouse-controlled play. Existing Hulk/HQ/Markets selections and the installed authority are preserved. Detailed earlier native evidence remains under `LocalData/Worktrees/PeppaFunfair/LocalData/SharedGarden` and `LocalData/Worktrees/PeppaFunfair/LocalData/FamilyLAN`; the isolated checkout is retained for these ignored builds/saves/evidence after branch cleanup.
+
+Tracked source delivery and preserved untracked work are separate: only this task’s checked source, integration changes and records are committed. Unrelated pre-existing untracked review/source folders remain untouched. Source delivery is PC-qualified, not physical-phone/tablet installation, subjective audio approval or live-server deployment.

@@ -10,7 +10,7 @@ Source: [Official app description and update history](https://apps.apple.com/us/
 
 | ID | World | Activities to track | Status | Plan and evidence |
 | --- | --- | --- | --- | --- |
-| PEP-01 | Funfair | Teacups; Ferris wheel; spiral slide; Hook a Flower prizes; face painting. | PC ready; main delivery finishing | [Acceptance and adaptations](implementation/peppa-funfair-world-phase-plan-2026-10-16.md#technical-acceptance--october16); [Play](../Tools/Launch/Play-PeppaFunfair.ps1). |
+| PEP-01 | Funfair | Teacups; Ferris wheel; spiral slide; Hook a Flower prizes; face painting. | PC ready | [Acceptance and adaptations](implementation/peppa-funfair-world-phase-plan-2026-10-16.md#technical-acceptance--october16); [Play](../Tools/Launch/Play-PeppaFunfair.ps1). |
 
 ## LEGO Bluey
 
