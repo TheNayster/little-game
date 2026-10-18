@@ -23,7 +23,7 @@ namespace LittleWeeps.Client
 #if UNITY_EDITOR
                 return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/DuploMarvel/world-tests/SpideyHQ/Content-v4"));
 #else
-                return Path.Combine(Application.streamingAssetsPath,"SpideyHQ");
+                return RecoveredWorldContent.Root("SpideyHQ");
 #endif
             }
         }

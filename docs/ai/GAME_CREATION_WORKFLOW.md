@@ -18,6 +18,8 @@ For Unity, prefer KitWright `execute_code` when actually available for this proj
 
 Use owner-approved remote operations within their actual capability and task boundaries. Discover current project/share IDs and grants; do not reuse expired IDs. Consult `C:\dev01\agentKssh\docs\KEN_PC_RUNBOOK.md` when available for Ken-PC work; that path was absent during this comparison. If absent, report the missing procedure and use only an already documented supported operation. Never substitute arbitrary remote shell edits or claim a notice/archive is live validation.
 
+Family mobile builds include the checked recovered-world packs through `RecoveredMobileContent` and `Tools/Build/recovered-mobile-packs.json`. The catalog pins retained local media and receipts; do not delete those source bundles or silently ship without them. Check actual packed files and the on-device Places menu when delivering recovered worlds. Android's ordinary-file art readers use a versioned extracted content cache; iOS reads its bundled StreamingAssets. Client-only pack/menu fixes retain the installed compatible server.
+
 ## Unity edits, compilation and recovery
 
 - Batch independent bounded reads, inspect every result, and carry returned IDs into dependent calls. Resolve ambiguous names to exact scene/prefab/asset paths before changing anything.

@@ -78,6 +78,7 @@ namespace LittleWeeps.Client
         }
         private void ResetPresentation()
         {
+            CancelPresentationBuild();
             CancelPointers();CancelStairApproach();ResetBedrooms();ResetBathroom();ResetBedroomFurniture();ResetRoomPlay();ResetCollections();ResetDiscovery();ResetKitchen();ResetBooks();ResetSecrets();stairControl=null;stairFront=null;stairVisuals.Clear();Narration?.Stop();ResetScenery();ResetHome();
             // Keep one canvas, event system and narration source across switches.
             // Disable old children now so deferred Destroy cannot receive input.
@@ -124,7 +125,7 @@ namespace LittleWeeps.Client
         private readonly Dictionary<string,(RectTransform root,GameCharacterVisual view)> friends=new Dictionary<string,(RectTransform,GameCharacterVisual)>();
         private readonly Dictionary<string,Text> holders=new Dictionary<string,Text>();
         public bool Shared=>shared!=null;
-        public bool Ready=>Board!=null && (World!=null || shared?.View!=null);
+        public bool Ready=>!presentationBuilding && Board!=null && (World!=null || shared?.View!=null);
         public bool ActionPending=>shared!=null && (shared.Busy || TravelPending);
         public string Feedback=>message?.text??"";
         public string Dragging=>dragging;
@@ -323,11 +324,15 @@ namespace LittleWeeps.Client
             }
             UpdateVoiceControls();
             menu.SetActive(false);
+            #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+            StartMobilePresentation();
+            #else
             BuildNavigation();BuildScenery();BuildHome();BuildKeepy();BuildRooms();BuildBedrooms();BuildBedroomFurniture();BuildSecrets();BuildBooks();BuildRoomPlay();BuildKitchen();BuildDiscovery();BuildHideAndSeek();BuildPark();BuildTag();BuildPond();BuildBathroom();BuildCreekBoats();BuildCreekFishing();BuildZoo();BuildDinosaurWorld();BuildKingdom();BuildDaycare();BuildSandpit();BuildTreasure();BuildVet();BuildDaycarePlay();BuildSeagulls();BuildShore();BuildWaveRide();BuildBirthday();BuildSpidey();BuildFunfairFromWorld();BuildMarkets();
             // Session switches destroy the old (already disabled) children at
             // frame end; do not retain them for later orientation/layout changes.
             foreach(RectTransform child in safe)if(child.gameObject.activeSelf)layoutPositions[child]=child.anchoredPosition;
             ApplyResponsiveLayout();
+            #endif
         }
         public SoloResult Command(SoloAction action,string item="",string target="",string value="",float x=0,float y=0)
         {
@@ -532,6 +537,7 @@ namespace LittleWeeps.Client
         private void Update()
         {
             FinishBackgroundSave(false);
+            if(presentationBuilding)return;
             TickWorldMusic();
             if(Ready)TickCake();
             if(Ready){TickMixing();TickBubbleLab();TickLiquidColors();TickMarbleRamps();}
@@ -703,6 +709,7 @@ namespace LittleWeeps.Client
         }
         private void Render()
         {
+            if(presentationBuilding)return;
             frameToysAt=-1; // An acknowledged edit can render again within this frame.
             if(avatar==null)return;
             EnsureToyViews();

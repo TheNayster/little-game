@@ -94,6 +94,7 @@ namespace LittleWeeps.Client
             worldScroll=worldViewport.gameObject.AddComponent<ScrollRect>();worldScroll.viewport=worldViewport;worldScroll.content=worldContent;
             worldScroll.horizontal=false;worldScroll.vertical=true;worldScroll.movementType=ScrollRect.MovementType.Clamped;
             for(var i=0;i<WorldIds.Length;i++)if((WorldIds[i]!=PeppaFunfair.Zone || FunfairArt.Available) && (WorldIds[i]!=HulkBirthday.Zone || BirthdayArt.Available) && (WorldIds[i]!=SpideyHQ.Zone || SpideyArt.Available))BuildWorldBubble(i);
+            worldContent.sizeDelta=new Vector2(280,worldBubbles.Count*212);
 
             trayPanel=Plain(characterTray,"Cast shelf",Vector2.zero,Vector2.zero,new Color(.71f,.89f,.99f),true).rectTransform;
             trayPanel.anchorMin=Vector2.zero;trayPanel.anchorMax=new Vector2(1,0);trayPanel.pivot=new Vector2(.5f,0);trayPanel.sizeDelta=new Vector2(0,300);
@@ -131,7 +132,8 @@ namespace LittleWeeps.Client
             var id=WorldIds[index];var ready=true;
             var group=Rect(worldContent,"World "+id,Vector2.zero,new Vector2(280,212));worldBubbles.Add(group);
             group.anchorMin=group.anchorMax=new Vector2(.5f,1);
-            group.anchoredPosition=new Vector2(0,-90-index*212);
+            // Use the visible order: an unavailable pack must not reserve a blank card.
+            group.anchoredPosition=new Vector2(0,-90-(worldBubbles.Count-1)*212);
             Panel(group,"Soft shadow",new Vector2(0,-6),Vector2.one*174,new Color(.23f,.51f,.63f,.23f),false,true);
             var border=Panel(group,"World "+(id=="garden"?"Garden":id=="creek"?"Creek":WorldNames[index]),Vector2.zero,Vector2.one*170,Color.white,true,true);
             var button=NavButton(border,()=>{if(!ready || WorldLoading)return;BeginWorldTravel(id);});button.interactable=ready;

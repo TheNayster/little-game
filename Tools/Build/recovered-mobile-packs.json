@@ -1,0 +1,22 @@
+{
+  "packs": [
+    {
+      "world": "HulkBirthday",
+      "source": "Builds/NetworkProbe/G3-0.0.685/Client/LittleWeepsNetwork_Data/StreamingAssets/HulkBirthday",
+      "receipt": "Builds/NetworkProbe/G3-0.0.685/HulkBirthday-assets.json",
+      "receiptSha256": "f1461cd5e397e134b2af99805179fe52c9af578eeb559ce93f6df301d79d3ef1"
+    },
+    {
+      "world": "SpideyHQ",
+      "source": "Builds/NetworkProbe/G3-0.0.685/Client/LittleWeepsNetwork_Data/StreamingAssets/SpideyHQ",
+      "receipt": "Builds/NetworkProbe/G3-0.0.685/SpideyHQ-assets.json",
+      "receiptSha256": "2c88785205524c5f58f85ada9c8a280146d768501c13bf4a7082b9af162e3051"
+    },
+    {
+      "world": "PeppaFunfair",
+      "source": "Builds/NetworkProbe/G3-0.0.685/Client/LittleWeepsNetwork_Data/StreamingAssets/PeppaFunfair",
+      "receipt": "Builds/NetworkProbe/G3-0.0.685/PeppaFunfair-assets.json",
+      "receiptSha256": "63fedd5a657d331df253eb95e91334f52a80aedfc1a7fcbf84771e8d36f1425d"
+    }
+  ]
+}

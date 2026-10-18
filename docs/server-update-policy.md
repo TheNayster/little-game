@@ -1,6 +1,10 @@
 # Shared PC server and app-update policy
 
-## Current installation — October 5, 2026
+## Current installation — October 18, 2026
+
+Server **690**, protocol3/content97/schema61, is ready in the permanent slot on port63648. It replaces686 after an observed reliable send-queue overflow and a guarded idle rollout. Automatic full-world snapshots are coalesced at2Hz; command replies/join snapshots remain immediate. Four native686 clients pass181 seconds, nine travel commands, independent departure and zero queue errors, with about66% less receive traffic. Core/save fields are unchanged; the one-file networking digest difference is explicitly reviewed as compatible. Publication preserved saved-world bytes, enrollment, four profile IDs and131 item IDs. Helper690, sign-in startup and automatic recovery are verified. Both iPads and Android have689 installed, preserving saves/preferences and adding recovered Hulk/HQ/Funfair media, compact Places-menu spacing and staged startup. Renewed iPad profiles expire October25. Physical play acceptance and the newly requested Daycare arrival correction remain separate. [Rollout evidence and device status](implementation/family-release-686-2026-10-18.md).
+
+## Previous installation — October 5, 2026
 
 Server **463**, protocol3/content72/schema53, runs in the permanent slot on port63648. The parent explicitly authorized the coordinated server and phone update. Fresh signed Android **463** is installed in place and its actual runtime reports connected; the Sandcastle screen was inspected. Existing enrollment, four profiles,131 items and seven pieces survived the compiled migration; later parent reset/build/decorate commands are recorded separately from retention. Matching helper463, automatic recovery and sign-in startup are verified. Older iPads413 are unchanged and require separately authorized compatible delivery. Preserve this current authority during compatible app updates. [Rollout and private receipts](implementation/family-release-451-452-2026-10-04.md#authorized-release463-rollout--october5).
 

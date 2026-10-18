@@ -92,6 +92,10 @@ namespace LittleWeeps.Client
             }
             if(!CanKeepLoading(deadline,generation))yield break;
             travelStages.Add(shared==null?"local-arrival":"authority-confirmed");
+            #if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+            yield return PrepareRecoveredPresentation(WorldLayout.Canonical(target));
+            if(!CanKeepLoading(deadline,generation))yield break;
+            #endif
             if(shared==null)
             {
                 if(!TrySaveNow()){FailTravel("Your new place couldn't be saved yet. Please ask a grown-up.");yield break;}

@@ -38,7 +38,7 @@ namespace LittleWeeps.Client
 #if UNITY_EDITOR
                 return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/DuploMarvel/world-tests/HulkCompleteProbe/Baked2D-v27"));
 #else
-                return Path.Combine(Application.streamingAssetsPath,"HulkBirthday");
+                return RecoveredWorldContent.Root("HulkBirthday");
 #endif
             }
         }

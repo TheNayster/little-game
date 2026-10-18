@@ -76,7 +76,8 @@ namespace LittleWeeps.NetworkProbe
         [Serializable] public sealed class DinosaurMotion {public double clock;public int[] points;public int left,wandering,riders;}
         [Serializable] private sealed class ShoreFrame {public string epoch;public double time;public BeachShoreState shore;}
         private double shoreTime,nextShoreSend,lastShoreSend;private long lastShoreSerial=-1;
-        [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public double seconds;}
+        [Serializable] private sealed class MotionMetrics {public int checkpointWrites,motionPackets,diagnosticWriteConflicts;public long snapshotMessages,snapshotBytes;public double seconds;}
+        private long snapshotMessages,snapshotBytes;
         private CheckpointStore store;
         private FileStream authorityLock;
         private long sequence,seenSequence;
@@ -439,6 +440,7 @@ namespace LittleWeeps.NetworkProbe
         }
         private void Publish(ulong? acknowledgedPeer=null)
         {
+            nextAmbientPublish=Time.realtimeSinceStartupAsDouble+.5;ambientDirty=false;
             foreach(var item in poses.Keys.ToArray())if(!session.Checkpoint().toys.Any(t=>t.id==item && t.holder==poses[item].actor))poses.Remove(item);
             var state=Current();WriteJson(Path.Combine(output,"view.json"),state);
             // The command acknowledgement already carries the same complete
@@ -649,12 +651,16 @@ namespace LittleWeeps.NetworkProbe
             accumulator+=elapsed;motionClock=now;var moved=false;var stepped=false;
             maintenanceDirty|=session.AdvanceIdle(elapsed,out var maintenanceVisible);
             ambientDirty|=session.AmbientChanged;
-            if(maintenanceVisible){SaveAuthority();Publish();ambientDirty=false;}
-            else if(ambientDirty && now>=nextAmbientPublish){nextAmbientPublish=now+.25;Publish();ambientDirty=false;}
+            // A combined family snapshot is about 175 KB. Coalesce automatic
+            // changes to 2 Hz rather than filling the reliable queue with stale
+            // copies. Command acknowledgements and joining still send at once;
+            // independent position/activity streams retain their existing rate.
+            if(maintenanceVisible){SaveAuthority();ambientDirty=true;}
             else if(maintenanceDirty && now-lastMaintenanceSave>=5)SaveAuthority();
             var beforeWalkingRevision=session.Revision;
             while(accumulator>=1.0/30){stepped=true;moved|=movement.Tick(now,1f/30);accumulator-=1.0/30;}
-            if(session.Revision!=beforeWalkingRevision){SaveAuthority();Publish();}
+            if(session.Revision!=beforeWalkingRevision){SaveAuthority();ambientDirty=true;}
+            if(ambientDirty && now>=nextAmbientPublish)Publish();
             positionDirty|=moved;
             if(positionDirty && ((stepped && !moved) || now-lastPositionSave>=1))SaveAuthority();
             if(now<nextMotionSend)return;nextMotionSend=Math.Max(nextMotionSend+.05,now);
@@ -686,7 +692,7 @@ namespace LittleWeeps.NetworkProbe
             }
             // Diagnostics are deliberately not durable checkpoints.
             if(config.verifyGarden || now>=nextViewObservation)ObserveView(Current());
-            if(now>=nextMotionEvidence){nextMotionEvidence=now+1;WriteJson(Path.Combine(output,"motion-stats.json"),new MotionMetrics{checkpointWrites=checkpointWrites,motionPackets=motionPackets,diagnosticWriteConflicts=diagnosticWriteConflicts,seconds=now-started});}
+            if(now>=nextMotionEvidence){nextMotionEvidence=now+1;WriteJson(Path.Combine(output,"motion-stats.json"),new MotionMetrics{checkpointWrites=checkpointWrites,motionPackets=motionPackets,diagnosticWriteConflicts=diagnosticWriteConflicts,snapshotMessages=snapshotMessages,snapshotBytes=snapshotBytes,seconds=now-started});}
         }
         private void ReceivePose(ulong sender,FastBufferReader reader)
         {
@@ -714,6 +720,7 @@ namespace LittleWeeps.NetworkProbe
         private void Send<T>(string name,ulong peer,T message,NetworkDelivery delivery=NetworkDelivery.ReliableFragmentedSequenced)
         {
             var bytes=Utf8.GetBytes(JsonUtility.ToJson(message));
+            if(config.role=="server" && name==StateMessage){snapshotMessages++;snapshotBytes+=bytes.Length;}
             if(bytes.Length>MaxWireBytes-4)throw new InvalidDataException("Network message exceeds probe limit.");
             using var writer=new FastBufferWriter(bytes.Length+4,Allocator.Temp);
             writer.WriteValueSafe(bytes.Length);writer.WriteBytesSafe(bytes);

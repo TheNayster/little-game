@@ -21,7 +21,7 @@ namespace LittleWeeps.Client
 #if UNITY_EDITOR
                 return Path.GetFullPath(Path.Combine(Application.dataPath,"../../../LocalData/Research/PeppaPig/world-tests/Funfair/Content-v6"));
 #else
-                return Path.Combine(Application.streamingAssetsPath,"PeppaFunfair");
+                return RecoveredWorldContent.Root("PeppaFunfair");
 #endif
             }
         }

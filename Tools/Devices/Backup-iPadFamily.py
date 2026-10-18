@@ -14,7 +14,9 @@ def main():
     p.add_argument('--copy-timeout',type=int,default=40,help='Seconds per app-data copy; paired Wi-Fi can need longer than USB.')
     args=p.parse_args();assert re.fullmatch(r'[A-Za-z0-9-]{20,64}',args.device) and 56<=args.build<=9999
     assert 40<=args.copy_timeout<=180
-    data=dict(device=args.device,label=args.label,build=args.build,copyTimeout=args.copy_timeout)
+    layout=(ROOT/'Unity/FamilyPlayset/Assets/FamilyPlayset/Code/Core/Shared/Layout/WorldLayout.cs').read_text()
+    supported_schema=int(re.search(r'\bSchema\s*=\s*(\d+)',layout).group(1))
+    data=dict(device=args.device,label=args.label,build=args.build,copyTimeout=args.copy_timeout,maxSchema=supported_schema)
     code='data='+repr(data)+'\n'+r'''
 import pathlib,subprocess,datetime,json,hashlib,plistlib,uuid
 base=pathlib.Path.home()/'Developer/LittleWeeps'
@@ -34,7 +36,8 @@ verified=[]
 for save in saves:
     raw=save.read_bytes();header,digest,payload=raw.split(b'\n',2)
     assert header==b'LITTLEWEEPS-SOLO-1' and hashlib.sha256(payload).hexdigest().encode()==digest,'Save checksum failed'
-    world=json.loads(payload);assert world['schema'] in (1,2,3,4,5) and world['players'] and world['toys'],'Unexpected solo save'
+    # Backups may contain any retained schema supported by the current game.
+    world=json.loads(payload);assert type(world['schema']) is int and 1<=world['schema']<=data['maxSchema'] and world['players'] and world['toys'],'Unexpected solo save'
     verified.append(dict(path=save.relative_to(out).as_posix(),revision=world['revision'],schema=world['schema']))
 preferences=plistlib.loads((out/'preferences.plist').read_bytes());assert isinstance(preferences,dict)
 files=[dict(path=str(f.relative_to(out)),sha256=hashlib.sha256(f.read_bytes()).hexdigest()) for f in out.rglob('*') if f.is_file() and not f.name.endswith(('.copy.log','.copy.json'))]

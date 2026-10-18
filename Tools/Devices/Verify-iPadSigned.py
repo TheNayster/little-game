@@ -15,23 +15,27 @@ def main():
     parser.add_argument('build', type=int)
     parser.add_argument('--device', required=True)
     parser.add_argument('--label', choices=('ipad7', 'ipad9', 'iphone'), required=True)
+    parser.add_argument('--output-tag', default='', help='Separate signed device output from Build-iOS-Mac.sh')
     args = parser.parse_args()
     assert 71 <= args.build <= 9999
     assert re.fullmatch(r'[A-Za-z0-9-]{20,64}', args.device)
+    assert not args.output_tag or re.fullmatch(r'[A-Za-z0-9_-]+', args.output_tag)
     transfer = json.loads((ROOT/f'LocalData/ios-{args.build}-transfer.json').read_text())
     assert transfer['build'] == args.build
-    data = dict(build=args.build, device=args.device, label=args.label)
+    data = dict(build=args.build, device=args.device, label=args.label, outputTag=args.output_tag)
     code = 'data=' + repr(data) + '\n' + r'''
 import datetime,hashlib,json,pathlib,plistlib,subprocess
 root=pathlib.Path.home()/'Developer/LittleWeeps';build=data['build']
 folder=root/f'Builds/G3-0.0.{build}'
 assert not (folder/'.native-build-lock').exists(),'Native build is still running'
-logs=sorted((root/'Logs').glob(f'g3-ios-0.0.{build}-local-*.log'),key=lambda p:p.stat().st_mtime)
+tag='-'+data['outputTag'] if data['outputTag'] else ''
+logs=sorted((root/'Logs').glob(f'g3-ios-0.0.{build}{tag}-local-*.log'),key=lambda p:p.stat().st_mtime)
 assert logs,'Missing native build log'
 log=logs[-1]
 assert log.with_suffix('.log.exit').read_text().strip()=='0','Native signed build did not succeed'
 text=log.read_text(errors='replace');assert '** BUILD SUCCEEDED **' in text
-app=folder/'DerivedData/Build/Products/Release-iphoneos/LittleWeeps.app'
+product=folder/'DeviceBuilds'/data['outputTag'] if data['outputTag'] else folder
+app=product/'DerivedData/Build/Products/Release-iphoneos/LittleWeeps.app'
 subprocess.run(['codesign','--verify','--deep','--strict',str(app)],check=True,capture_output=True)
 info=plistlib.loads((app/'Info.plist').read_bytes());bundle='com.littleweeps.familyplayset'
 assert info['CFBundleIdentifier']==bundle and info['CFBundleVersion']==str(build)
