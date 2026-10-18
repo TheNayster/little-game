@@ -32,7 +32,7 @@ static class WaterChecks
         second.expectedRevision=world.Revision;Need(family.Submit(2,second).Accepted,"same mould rebased idempotent water");feedback.Observe(world.ReadSandpit(),true,.05f);
         Need(world.ReadSandpit().moulds[2].wet && feedback.Events[2]==1,"one shared transition for two requests");
         Need(Send(3,SoloAction.Travel,"daycare").Accepted,"late join");family.AdvanceIdle(.1,out _);
-        Need(world.ReadSandpit().members.All(m=>m.attending),"late fourth joins");
+        Need(!world.ReadSandpit().members[3].attending,"late arrival stays free play");Need(Send(3,SoloAction.Sandpit,"start").Accepted,"explicit fourth join");
         var late=new SandWaterFeedback();late.Observe(world.ReadSandpit(),true,0);Need(late.Events.All(e=>e==0),"late join does not pour old wet state");
         Need(Tool(3,"water",3).Accepted && world.ReadSandpit().moulds.All(m=>m.wet),"four different moulds remain wet");
         before=Moulds();Need(Send(2,SoloAction.Sandpit,"leave").Accepted && Moulds()==before,"independent exit preserves construction");

@@ -37,7 +37,7 @@ partial class Program
  static void Main(string[] args)
  {
   if(args.Any(a=>a!="--flexible"))throw new ArgumentException("Use --flexible or no arguments for current rules.");
-  FlexibleChecks();Console.WriteLine("SAND_DECOR_PASS "+checks+" checks");
+  WorldEntryChecks();FlexibleChecks();Console.WriteLine("SAND_DECOR_PASS "+checks+" checks");
  }
  // Retained socket-era fixtures document the superseded contract. Current
  // migrations execute through SandpitJsonTests and FlexibleChecks instead.
@@ -70,7 +70,7 @@ partial class Program
   Need(!Send(1,ToolCommand(1,"water","missing")).Accepted,"unknown identity");
   Need(!Send(1,ToolCommand(1,"water",c,w.ReadSandpit().round+1)).Accepted,"wrong epoch");
   Need(Cmd(4,SoloAction.Travel,"daycare").Accepted,"late travel");family.AdvanceIdle(.1,out _);
-  Need(w.ReadSandpit().members.All(m=>m.attending) && w.ReadSandpit().friends.SequenceEqual(cast),"late joins existing creation");
+  Need(!w.ReadSandpit().members[3].attending && w.ReadSandpit().friends.SequenceEqual(cast),"late world entry stays free play");Need(Cmd(4,SoloAction.Sandpit,"start").Accepted,"explicit late join");
   before=Json(w.ReadSandpit().moulds);Need(Cmd(2,SoloAction.Sandpit,"leave").Accepted,"independent leave");family.AdvanceIdle(.1,out _);
   Need(w.ReadSandpit().members.Count(m=>m.attending)==3 && Json(w.ReadSandpit().moulds)==before,"leave preserves siblings");
   Need(family.Detach(3) && w.ReadSandpit().members.Count(m=>m.attending)==2,"independent disconnect");
@@ -113,7 +113,7 @@ partial class Program
  {var at=DaycareSandpit.PiecePoint(col,row,shape,orientation);var c=Command(actor,SoloAction.Sandpit,"place",DaycareSandpit.Target("place",w.ReadSandpit().round),at.X,at.Y,DaycareSandpit.Choice(shape,orientation));Need(Send(actor,c).Accepted,"shape place "+shape+orientation);return "p-"+c.requestId;}
  static void ShapeChecks()
  {
-  Setup();Need(Cmd(4,SoloAction.Travel,"daycare").Accepted,"four shape builders");family.AdvanceIdle(.1,out _);
+  Setup();Need(Cmd(4,SoloAction.Travel,"daycare").Accepted,"four shape builders");family.AdvanceIdle(.1,out _);Need(Cmd(4,SoloAction.Sandpit,"start").Accepted,"fourth explicitly joins");
   var round=ShapePlace(1,"round",0,0,0);var wall=ShapePlace(2,"wall",0,1,0);var gate=ShapePlace(3,"gate",0,3,0);var square=ShapePlace(4,"square",0,5,0);
   var spine=ShapePlace(1,"wall",90,7,1);var sideGate=ShapePlace(2,"gate",90,0,2);
   foreach(var id in new[]{round,wall,gate,square,spine,sideGate}){
